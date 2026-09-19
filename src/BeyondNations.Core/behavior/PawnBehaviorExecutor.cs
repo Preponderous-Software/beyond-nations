@@ -86,23 +86,13 @@ namespace beyondnations {
         }
 
         private void executeGatherResourcesBehavior(Pawn pawn) {
-            if (!pawn.hasTargetEntity() || (pawn.getTargetEntity().getType() != EntityType.TREE && pawn.getTargetEntity().getType() != EntityType.ROCK)) {
-                // select nearest tree or rock
-                Entity nearestTree = environment.getNearestTree(pawn.getPosition());
-                Entity nearestRock = environment.getNearestRock(pawn.getPosition());
-                if (nearestTree != null && nearestRock != null) {
-                    if (Vector3.Distance(pawn.getPosition(), nearestTree.getPosition()) < Vector3.Distance(pawn.getPosition(), nearestRock.getPosition())) {
-                        pawn.setTargetEntity(nearestTree);
-                    } else {
-                        pawn.setTargetEntity(nearestRock);
-                    }
-                } else if (nearestTree != null) {
-                    pawn.setTargetEntity(nearestTree);
-                } else if (nearestRock != null) {
-                    pawn.setTargetEntity(nearestRock);
+            if (!pawn.hasTargetEntity() || !isGatherable(pawn.getTargetEntity().getType())) {
+                Entity target = selectGatherTarget(pawn);
+                if (target != null) {
+                    pawn.setTargetEntity(target);
                 }
                 else {
-                    // TODO: no trees or rocks, pawn should do something else
+                    // TODO: nothing to gather, pawn should do something else
                 }
             }
 
@@ -112,15 +102,15 @@ namespace beyondnations {
                 return;
             }
             EntityType targetEntityType = targetEntity.getType();
-            
+
             if (pawn.isAtTargetEntity()) {
                 // gather
-                if (targetEntity.getType() == EntityType.TREE || targetEntityType == EntityType.ROCK) {
+                if (isGatherable(targetEntityType)) {
                     targetEntity.markForDeletion();
                     pawn.getInventory().transferContentsOfInventory(targetEntity.getInventory());
                     pawn.setTargetEntity(null);
 
-                    if (targetEntity.getType() == EntityType.TREE && pawn.getInventory().getNumItems(ItemType.SAPLING) > 0) {
+                    if (targetEntityType == EntityType.TREE && pawn.getInventory().getNumItems(ItemType.SAPLING) > 0) {
                         pawn.setCurrentBehaviorType(BehaviorType.PLANT_SAPLING);
                     }
                     else {
@@ -128,7 +118,7 @@ namespace beyondnations {
                     }
                 }
                 else {
-                    Log.warning("Pawn " + pawn + " is at target entity " + targetEntity + " but it is not a tree or rock.");
+                    Log.warning("Pawn " + pawn + " is at target entity " + targetEntity + " but it is not a tree, rock or chicken.");
                     pawn.setTargetEntity(null);
                 }
             }
@@ -136,6 +126,43 @@ namespace beyondnations {
                 // move towards target entity
                 pawn.moveTowardsTargetEntity();
             }
+        }
+
+        /**
+         * The entity types a pawn gathers from by walking up to them and taking
+         * their inventory -- the same set the player's interact command harvests.
+         */
+        private static bool isGatherable(EntityType type) {
+            return type == EntityType.TREE || type == EntityType.ROCK || type == EntityType.CHICKEN;
+        }
+
+        /**
+         * Picks what a pawn should gather next. A pawn that needs food hunts the
+         * nearest chicken if there is one (#253); otherwise it takes whichever of
+         * the nearest tree and the nearest rock is closer, so that a pawn after
+         * wood or stone leaves the chickens alone. Returns null when there is
+         * nothing to gather.
+         */
+        private Entity selectGatherTarget(Pawn pawn) {
+            if (pawn.needsFood()) {
+                Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
+                if (nearestChicken != null) {
+                    return nearestChicken;
+                }
+            }
+
+            Entity nearestTree = environment.getNearestTree(pawn.getPosition());
+            Entity nearestRock = environment.getNearestRock(pawn.getPosition());
+            if (nearestTree != null && nearestRock != null) {
+                if (Vector3.Distance(pawn.getPosition(), nearestTree.getPosition()) < Vector3.Distance(pawn.getPosition(), nearestRock.getPosition())) {
+                    return nearestTree;
+                }
+                return nearestRock;
+            }
+            if (nearestTree != null) {
+                return nearestTree;
+            }
+            return nearestRock;
         }
 
         private void executeSellResourcesBehavior(Pawn pawn) {

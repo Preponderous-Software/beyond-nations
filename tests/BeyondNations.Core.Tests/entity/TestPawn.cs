@@ -72,5 +72,36 @@ namespace beyondnationstests {
             Assert.Equal(targetEntity, pawn.getTargetEntity());
 
         }
+
+        [Fact]
+        public void testNeedsFood_BelowThresholdWithNothingEdible() {
+            // prepare: a new pawn carries coins only
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "Pawn", random);
+            pawn.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+
+            // check
+            Assert.True(pawn.needsFood());
+        }
+
+        [Fact]
+        public void testNeedsFood_AtThreshold_IsFalse() {
+            // prepare
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "Pawn", random);
+            pawn.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD);
+
+            // check
+            Assert.False(pawn.needsFood());
+        }
+
+        [Fact]
+        public void testNeedsFood_BelowThresholdCarryingMeat_IsFalse() {
+            // prepare: any edible item counts, not only an apple
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "Pawn", random);
+            pawn.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            pawn.getInventory().addItem(ItemType.CHICKEN_MEAT, 1);
+
+            // check
+            Assert.False(pawn.needsFood());
+        }
     }
 }
