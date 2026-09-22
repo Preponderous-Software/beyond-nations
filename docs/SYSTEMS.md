@@ -40,14 +40,14 @@ The nation system creates and manages nations. Players can create their own nati
 *Planned:* per-nation culture and history, alliances, and conflict between nations.
 
 ## Resource Collection
-Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood and a rock yields stone, for both. The player can additionally harvest a chicken for chicken meat; pawn gathering targets only trees and rocks. These resources are used to build structures, to trade, and — for apples and chicken meat — to eat.
+Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone. These resources are used to build structures, to trade, and — for apples and chicken meat — to eat.
 
 *Planned:* using collected resources as crafting inputs.
 
 ## Food and Energy
 The player and every pawn carry an energy level that falls each tick by their own metabolism. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple and chicken meat are both food and a pawn carrying either has no reason to go looking for more.
 
-*Planned:* letting pawns harvest a chicken for themselves — the interaction is reachable by the player only, so a pawn can obtain meat by trade but not by hunting.
+*Planned:* stocking meat at market stalls — a stall trades apples only, so a settlement pawn buys apples or goes out to hunt, but cannot buy meat.
 
 ## Building
 The building system creates and manages settlements. Players and pawns can found a settlement and build stalls within it.

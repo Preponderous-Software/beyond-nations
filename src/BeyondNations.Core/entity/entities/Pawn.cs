@@ -13,6 +13,9 @@ namespace beyondnations {
         
         private int distanceThreshold = 10;
 
+        // Below this much energy a pawn with nothing edible to hand goes looking for food.
+        public const float HUNGRY_ENERGY_THRESHOLD = 80f;
+
         private float energy = 100.00f;
         private float metabolism;
 
@@ -111,6 +114,18 @@ namespace beyondnations {
 
         public void setEnergy(float energy) {
             this.energy = energy;
+        }
+
+        /**
+        * Whether the pawn should be looking for something to eat. Any edible
+        * item counts, not just an apple (#83) -- a pawn carrying chicken meat
+        * will eat it on the next energy step, so it has no reason to go
+        * looking for food. Shared by the behavior calculator, which decides
+        * whether to buy food, and the executor, which decides whether to hunt
+        * for it (#253).
+        */
+        public bool needsFood() {
+            return energy < HUNGRY_ENERGY_THRESHOLD && !FoodItems.hasFood(getInventory());
         }
 
         public BehaviorType getCurrentBehaviorType() {

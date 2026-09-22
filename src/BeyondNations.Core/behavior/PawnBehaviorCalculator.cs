@@ -46,7 +46,7 @@ namespace beyondnations {
             }
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
-            if (pawnNeedsFood(pawn)) {
+            if (pawn.needsFood()) {
                 int expectedFoodCost = 1;
                 Stall stall = market.getStall(pawn.getId());
                 if (stall != null && stall.getInventory().getNumItems(ItemType.APPLE) > 0) {
@@ -135,7 +135,7 @@ namespace beyondnations {
         }
 
         private BehaviorType computeBehaviorTypeOutsideSettlement(Pawn pawn) {
-            if (pawnNeedsFood(pawn)) {
+            if (pawn.needsFood()) {
                 int expectedFoodCost = 1;
                 if (pawn.getInventory().getNumItems(ItemType.COIN) >= expectedFoodCost && pawn.getHomeSettlementId() != null) {
                     return BehaviorType.GO_TO_HOME_SETTLEMENT;
@@ -225,13 +225,6 @@ namespace beyondnations {
             int distanceToNearestSapling = nearestSapling == null ? int.MaxValue : (int)Vector3.Distance(nearestSapling.getPosition(), pawn.getPosition());
 
             return (nearestTree == null || distanceToNearestTree > threshold) && (nearestSapling == null || distanceToNearestSapling > threshold);
-        }
-
-        private bool pawnNeedsFood(Pawn pawn) {
-            // Any edible item counts, not just an apple (#83) -- a pawn carrying
-            // chicken meat will eat it on the next energy step, so it has no
-            // reason to go looking for food.
-            return pawn.getEnergy() < 80 && !FoodItems.hasFood(pawn.getInventory());
         }
     }
 }
