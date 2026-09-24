@@ -109,6 +109,29 @@ Mount & Blade: Warband is a medieval action role-playing game that features a sa
 ### Minecraft
 Minecraft is a sandbox video game that allows players to explore a procedurally generated world, gather resources, craft items, and build structures. The game features a variety of gameplay elements such as combat, exploration, and resource gathering. The game is a great source of inspiration for our project because it features many of the gameplay elements that we want to implement in our game.
 
+## Usage reporting
+Usage reporting is on by default: each time the game starts, Beyond Nations sends its name (`beyond-nations`) and its version in one `startup` event to [trace](https://github.com/Stephenson-Software/trace) at `https://trace.danielstephenson.dev`. Nothing about you, your machine, your IP address, your world or anything you do in the game is sent. The report goes out on a background thread, never holds up the game, and is dropped silently if the service cannot be reached.
+
+The first run creates a `settings.json` in the game's data directory (`~/.local/share/BeyondNations/` on Linux, `%AppData%\BeyondNations\` on Windows) and prints a one-line notice naming it. To turn reporting off, any one of these is enough:
+
+- `"usageReporting": {"enabled": false}` in that `settings.json`:
+
+  ```json
+  {
+      "usageReporting": {
+          "enabled": false
+      }
+  }
+  ```
+
+- the command-line switch `--no-usage-reporting`, for one run
+- the environment variable `TRACE_USAGE_REPORTING=off` (also `false`, `0`, `no`), which turns off every program that reports to trace
+- the environment variable `DO_NOT_TRACK=1` (see [consoledonottrack.com](https://consoledonottrack.com))
+
+The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
+
+Details: https://github.com/Stephenson-Software/trace#usage-reporting
+
 ## Contributing
 To get started contributing to this project, please read the [Contributing Guide](./docs/CONTRIBUTING.md).
 

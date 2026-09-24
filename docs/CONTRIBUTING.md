@@ -27,6 +27,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--render-stats` | report draw calls, instance counts and frame times on exit |
 | `--debug-mode` | open with the F1 overlay already on |
 | `--first-person` | open in first person, which `V` otherwise toggles |
+| `--no-usage-reporting` | send no usage report this run (see *Usage reporting* in the README) |
 | `--help` | list every switch |
 
 ### Troubleshooting

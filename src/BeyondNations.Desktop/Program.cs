@@ -1,5 +1,7 @@
 using System;
 using beyondnations;
+using beyondnations.desktop.telemetry;
+using StephensonSoftware.Trace;
 
 namespace beyondnations.desktop {
 
@@ -20,14 +22,25 @@ namespace beyondnations.desktop {
 
             GameOptions options = GameOptions.parse(args);
 
-            try {
-                using (Game game = new Game(options)) {
-                    game.run();
+            // One `startup` event to trace, on a background thread; see
+            // UsageReporting for what is sent and every way to turn it off.
+            // Disposing the client on the way out gives the event up to five
+            // seconds to be delivered, so a short run is still counted.
+            using (TraceClient usageReporting = UsageReporting.start(
+                       options.NoUsageReporting,
+                       UsageReporting.defaultDefaultsPath(),
+                       UsageReporting.defaultSettingsPath(),
+                       message => Log.info(message),
+                       message => Log.warning(message))) {
+                try {
+                    using (Game game = new Game(options)) {
+                        game.run();
+                    }
+                } catch (Exception e) {
+                    Console.Error.WriteLine("[error] the host failed to start: " + e.Message);
+                    Console.Error.WriteLine(e);
+                    return 1;
                 }
-            } catch (Exception e) {
-                Console.Error.WriteLine("[error] the host failed to start: " + e.Message);
-                Console.Error.WriteLine(e);
-                return 1;
             }
 
             return 0;

@@ -100,6 +100,13 @@ namespace beyondnations.desktop {
         */
         public bool FirstPerson = false;
 
+        /**
+        * Send nothing to trace this run, whatever settings.json says. The
+        * one-run counterpart of "usageReporting": { "enabled": false }; see
+        * UsageReporting and the README's "Usage reporting" section.
+        */
+        public bool NoUsageReporting = false;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -119,6 +126,7 @@ namespace beyondnations.desktop {
                     case "--no-labels":        options.NoLabels = true; break;
                     case "--debug-mode":       options.DebugMode = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
+                    case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
                     case "--help":
                     case "-h":
@@ -190,6 +198,7 @@ namespace beyondnations.desktop {
                 "  --no-culling            submit every primitive, culling nothing",
                 "  --no-labels             draw no world-space nametags",
                 "  --first-person          open in first person; V toggles the view mid-run",
+                "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --start-screen NAME     open on title, main-menu, config, world or pause",
                 "  --help, -h              print this and exit"
