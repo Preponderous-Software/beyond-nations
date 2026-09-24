@@ -30,6 +30,20 @@ The licence requires that the copyright notice travels with the font, which is
 why `LICENSE-DejaVu.txt` sits beside the `.ttf` and is copied to the build
 output rather than living only here.
 
+## Vendored source
+
+### trace-client (C#)
+
+| | |
+| --- | --- |
+| File | `src/BeyondNations.Desktop/telemetry/TraceClient.cs` |
+| Upstream | <https://github.com/Stephenson-Software/trace-client-csharp>, 0.1.0 |
+| Licence | MIT (stated in the file's header, which is kept as is) |
+
+The one-file client behind the `startup` usage report; see "Usage reporting"
+in the README. Copied rather than referenced as a package, the way its
+upstream intends, so it adds no NuGet dependency.
+
 ## Packages
 
 Restored from nuget.org at build time; none is vendored into this repository.

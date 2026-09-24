@@ -43,6 +43,17 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testNoUsageReportingTurnsReportingOffForTheRun() {
+            // run
+            GameOptions defaults = GameOptions.parse(new string[] { });
+            GameOptions options = GameOptions.parse(new string[] { "--no-usage-reporting" });
+
+            // verify
+            Assert.False(defaults.NoUsageReporting);
+            Assert.True(options.NoUsageReporting);
+        }
+
+        [Fact]
         public void testUsageTextNamesEverySwitchThatParseAccepts() {
             // prepare: every case handled by GameOptions.parse, in the order it
             // handles them. A switch added to parse and forgotten in the usage
@@ -51,7 +62,7 @@ namespace beyondnationstests.desktop {
                 "--width", "--height", "--ticks-per-second", "--exit-after-frames",
                 "--screenshot-after-frames", "--seed", "--no-vsync", "--smoke-resize",
                 "--render-stats", "--render-distance", "--no-culling", "--no-labels",
-                "--debug-mode", "--first-person", "--start-screen"
+                "--debug-mode", "--first-person", "--no-usage-reporting", "--start-screen"
             };
 
             // run

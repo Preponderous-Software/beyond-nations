@@ -45,6 +45,9 @@
          to pack its glyph atlas. Its licence sits beside it. See #222. -->
     <None Include="assets/fonts/DejaVuSans.ttf" CopyToOutputDirectory="PreserveNewest" />
     <None Include="assets/fonts/LICENSE-DejaVu.txt" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Usage reporting defaults (enabled, endpoint, key), read at startup
+         from beside the executable. See telemetry/UsageReporting.cs. -->
+    <None Include="usage-reporting.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
