@@ -531,6 +531,86 @@ namespace beyondnationstests {
         }
 
         /**
+            * Computes the behavior of a hungry pawn standing in a settlement whose
+            * only stall is owned by a merchant and stocked as given. When
+            * pawnOwnsStall is set the hungry pawn is that merchant instead.
+        */
+        private BehaviorType computeHungryPawnInSettlementWithStall(ItemType stockType, int stockQuantity, int pawnCoins, bool pawnOwnsStall) {
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+
+            Pawn nationLeader = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(nationLeader);
+            Nation nation = new Nation("test", nationLeader.getId(), random);
+            nationRepository.addNation(nation);
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), nation.getId(), nation.getColor(), nation.getName(), random);
+            entityRepository.addEntity(settlement);
+
+            Pawn merchant = new Pawn(new Vector3(0, 0, 0), "test", random);
+            nation.addMember(merchant.getId());
+            nation.setRole(merchant.getId(), NationRole.MERCHANT);
+            merchant.setNationId(nation.getId());
+            entityRepository.addEntity(merchant);
+            settlement.getMarket().createStall();
+            Stall stall = settlement.getMarket().getStallForSale();
+            stall.setOwnerId(merchant.getId());
+            stall.getInventory().addItem(stockType, stockQuantity);
+
+            Pawn pawn = merchant;
+            if (!pawnOwnsStall) {
+                pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
+                entityRepository.addEntity(pawn);
+            }
+            pawn.setEnergy(10);
+            pawn.getInventory().setNumItems(ItemType.COIN, pawnCoins);
+            pawn.setHomeSettlementId(settlement.getId());
+            pawn.setCurrentSettlementId(settlement.getId());
+
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+            return calculator.computeBehaviorType(pawn);
+        }
+
+        /**
+            * Input: hungry pawn in a settlement whose only food for sale is chicken meat
+            * Expected output: PURCHASE_FOOD (#255)
+        */
+        [Fact]
+        public void testComputeBehaviorType_InSettlementOnlyMeatForSale_ShouldPurchaseFood() {
+            // run
+            BehaviorType behaviorType = computeHungryPawnInSettlementWithStall(ItemType.CHICKEN_MEAT, 1, 100, false);
+
+            // verify
+            Assert.Equal(BehaviorType.PURCHASE_FOOD, behaviorType);
+        }
+
+        /**
+            * Input: hungry pawn with fewer coins than the only food on sale costs
+            * Expected output: not PURCHASE_FOOD, since the purchase would fail
+        */
+        [Fact]
+        public void testComputeBehaviorType_InSettlementCannotAffordFood_ShouldNotPurchaseFood() {
+            // run: one apple is priced at its base cost of 40
+            BehaviorType behaviorType = computeHungryPawnInSettlementWithStall(ItemType.APPLE, 1, 39, false);
+
+            // verify
+            Assert.NotEqual(BehaviorType.PURCHASE_FOOD, behaviorType);
+        }
+
+        /**
+            * Input: hungry merchant whose own stall holds chicken meat and no apples
+            * Expected output: COLLECT_FOOD_FROM_STALL (#255)
+        */
+        [Fact]
+        public void testComputeBehaviorType_InSettlementIsMerchantStallHasMeat_ShouldCollectFoodFromStall() {
+            // run
+            BehaviorType behaviorType = computeHungryPawnInSettlementWithStall(ItemType.CHICKEN_MEAT, 4, 0, true);
+
+            // verify
+            Assert.Equal(BehaviorType.COLLECT_FOOD_FROM_STALL, behaviorType);
+        }
+
+        /**
             * Input: pawn is outside a settlement, low on energy and carrying nothing edible
             * Expected output: GO_TO_HOME_SETTLEMENT
         */

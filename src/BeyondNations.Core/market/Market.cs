@@ -90,8 +90,58 @@ namespace beyondnations {
             return totalNumItemsSold;
         }
 
+        /**
+        * Buys one of whichever food gives the most energy per coin at current
+        * prices, falling back to the next food when that one cannot be bought.
+        * @return the id of the stall owner, or null if no food could be bought
+        */
         public EntityId purchaseFood(Entity entity) {
-            return buyItem(entity, ItemType.APPLE, 1);
+            foreach (ItemType foodType in getFoodInPurchaseOrder()) {
+                EntityId stallOwnerId = buyItem(entity, foodType, 1);
+                if (stallOwnerId != null) {
+                    return stallOwnerId;
+                }
+            }
+            return null;
+        }
+
+        /**
+        * @return whether purchaseFood would succeed for this entity right now
+        */
+        public bool canPurchaseFood(Entity entity) {
+            foreach (ItemType foodType in FoodItems.getFoodInDescendingEnergyOrder()) {
+                int cost = ItemCostCalculator.calculateCostBasedOnSupply(foodType, this);
+                if (findStallsToBuyFrom(entity, foodType, 1, cost).Count > 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+        * Every food, cheapest per unit of energy restored first at the market's
+        * current supply-based prices. Ties keep the most nourishing food first.
+        */
+        private List<ItemType> getFoodInPurchaseOrder() {
+            List<ItemType> order = new List<ItemType>(FoodItems.getFoodInDescendingEnergyOrder());
+            // insertion sort, because List.Sort is not stable and ties must keep their order
+            for (int i = 1; i < order.Count; i++) {
+                ItemType foodType = order[i];
+                int j = i - 1;
+                while (j >= 0 && costsLessPerEnergy(foodType, order[j])) {
+                    order[j + 1] = order[j];
+                    j--;
+                }
+                order[j + 1] = foodType;
+            }
+            return order;
+        }
+
+        private bool costsLessPerEnergy(ItemType a, ItemType b) {
+            // cost(a) / energy(a) < cost(b) / energy(b), cross-multiplied to stay in integers
+            long costA = ItemCostCalculator.calculateCostBasedOnSupply(a, this);
+            long costB = ItemCostCalculator.calculateCostBasedOnSupply(b, this);
+            return costA * FoodItems.getEnergyRestored(b) < costB * FoodItems.getEnergyRestored(a);
         }
 
         /**
@@ -99,25 +149,7 @@ namespace beyondnations {
         */
         public EntityId buyItem(Entity entity, ItemType itemType, int quantity) {
             int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
-            List<Stall> stallsToBuyFrom = new List<Stall>();
-            foreach(Stall stall in stalls) {
-                if (stall.getOwnerId() == null) {
-                    continue;
-                }
-                if (stall.getOwnerId() == entity.getId()) {
-                    continue;
-                }
-                if (!stall.getInventory().hasItem(itemType)) {
-                    continue;
-                }
-                if (stall.getInventory().getNumItems(itemType) < quantity) {
-                    continue;
-                }
-                if (entity.getInventory().getNumItems(ItemType.COIN) < cost * quantity) {
-                    continue;
-                }
-                stallsToBuyFrom.Add(stall);
-            }
+            List<Stall> stallsToBuyFrom = findStallsToBuyFrom(entity, itemType, quantity, cost);
             if (stallsToBuyFrom.Count == 0) {
                 return null;
             }
@@ -137,6 +169,29 @@ namespace beyondnations {
 
             Log.info("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + cost * quantity + " coins");
             return stallToBuyFrom.getOwnerId();
+        }
+
+        private List<Stall> findStallsToBuyFrom(Entity entity, ItemType itemType, int quantity, int cost) {
+            List<Stall> stallsToBuyFrom = new List<Stall>();
+            foreach(Stall stall in stalls) {
+                if (stall.getOwnerId() == null) {
+                    continue;
+                }
+                if (stall.getOwnerId() == entity.getId()) {
+                    continue;
+                }
+                if (!stall.getInventory().hasItem(itemType)) {
+                    continue;
+                }
+                if (stall.getInventory().getNumItems(itemType) < quantity) {
+                    continue;
+                }
+                if (entity.getInventory().getNumItems(ItemType.COIN) < cost * quantity) {
+                    continue;
+                }
+                stallsToBuyFrom.Add(stall);
+            }
+            return stallsToBuyFrom;
         }
 
         /**
