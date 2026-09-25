@@ -122,7 +122,7 @@ namespace beyondnations {
         * Every food, cheapest per unit of energy restored first at the market's
         * current supply-based prices. Ties keep the most nourishing food first.
         */
-        public List<ItemType> getFoodInPurchaseOrder() {
+        private List<ItemType> getFoodInPurchaseOrder() {
             List<ItemType> order = new List<ItemType>(FoodItems.getFoodInDescendingEnergyOrder());
             // insertion sort, because List.Sort is not stable and ties must keep their order
             for (int i = 1; i < order.Count; i++) {
