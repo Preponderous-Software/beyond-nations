@@ -47,7 +47,7 @@ Players and pawns collect resources by interacting with the nearest entity in ra
 ## Food and Energy
 The player and every pawn carry an energy level that falls each tick by their own metabolism. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple and chicken meat are both food and a pawn carrying either has no reason to go looking for more.
 
-*Planned:* stocking meat at market stalls — a stall trades apples only, so a settlement pawn buys apples or goes out to hunt, but cannot buy meat.
+Markets read the same table. A hungry pawn in a settlement first takes food from its own stall, if it owns one holding any, and otherwise buys food when some stall it can afford holds any; only when neither is possible does it leave to gather or hunt. Buying picks whichever food gives the most energy per coin at the market's current supply-based prices, and falls back to the next food when that one cannot be afforded.
 
 ## Building
 The building system creates and manages settlements. Players and pawns can found a settlement and build stalls within it.

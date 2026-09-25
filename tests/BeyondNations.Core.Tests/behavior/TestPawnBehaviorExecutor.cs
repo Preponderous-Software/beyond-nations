@@ -162,5 +162,33 @@ namespace beyondnationstests {
             Assert.Same(chicken, pawn.getTargetEntity());
             Assert.True(pawn.getVelocity().X > 0);
         }
+
+        /**
+            * Input: hungry pawn in a settlement, owning a stall that holds meat and apples
+            * Expected output: half the meat moves to the pawn and the apples stay (#255)
+        */
+        [Fact]
+        public void testCollectFoodFromStall_TakesHalfTheMostNourishingFood() {
+            // prepare
+            Pawn pawn = createPawn(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            Nation nation = new Nation("test", pawn.getId(), random);
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), nation.getId(), nation.getColor(), nation.getName(), random);
+            entityRepository.addEntity(settlement);
+            pawn.setCurrentSettlementId(settlement.getId());
+            settlement.getMarket().createStall();
+            Stall stall = settlement.getMarket().getStallForSale();
+            stall.setOwnerId(pawn.getId());
+            stall.getInventory().addItem(ItemType.CHICKEN_MEAT, 4);
+            stall.getInventory().addItem(ItemType.APPLE, 6);
+
+            // run
+            executor.executeBehavior(pawn, BehaviorType.COLLECT_FOOD_FROM_STALL);
+
+            // check
+            Assert.Equal(2, pawn.getInventory().getNumItems(ItemType.CHICKEN_MEAT));
+            Assert.Equal(2, stall.getInventory().getNumItems(ItemType.CHICKEN_MEAT));
+            Assert.Equal(6, stall.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.APPLE));
+        }
     }
 }

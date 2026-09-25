@@ -170,5 +170,26 @@ namespace beyondnationstests {
             Assert.Equal(FoodItems.getEnergyRestored(ItemType.APPLE), energyRestored);
             Assert.False(FoodItems.hasFood(inventory));
         }
+
+        [Fact]
+        public void testMostNourishingFoodIsMeatWhenBothAreHeld() {
+            // prepare
+            Inventory inventory = new Inventory(0);
+            inventory.addItem(ItemType.APPLE, 5);
+            inventory.addItem(ItemType.CHICKEN_MEAT, 1);
+
+            // run / check
+            Assert.Equal(ItemType.CHICKEN_MEAT, FoodItems.getMostNourishingFood(inventory));
+        }
+
+        [Fact]
+        public void testMostNourishingFoodIsNullWithoutFood() {
+            // prepare
+            Inventory inventory = new Inventory(0);
+            inventory.addItem(ItemType.WOOD, 10);
+
+            // run / check
+            Assert.Null(FoodItems.getMostNourishingFood(inventory));
+        }
     }
 }

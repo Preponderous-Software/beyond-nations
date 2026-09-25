@@ -35,13 +35,19 @@ namespace beyondnations {
                 return;
             }
 
-            int applesToTransfer = stall.getInventory().getNumItems(ItemType.APPLE)/2;
-            if (applesToTransfer == 0) {
-                applesToTransfer = 1;
+            ItemType? foodType = FoodItems.getMostNourishingFood(stall.getInventory());
+            if (foodType == null) {
+                player.getStatus().update("Your stall has no food.");
+                return;
             }
-            stall.getInventory().removeItem(ItemType.APPLE, applesToTransfer);
-            player.getInventory().addItem(ItemType.APPLE, applesToTransfer);
-            player.getStatus().update("Collected " + applesToTransfer + " apples from stall.");
+
+            int foodToTransfer = stall.getInventory().getNumItems(foodType.Value)/2;
+            if (foodToTransfer == 0) {
+                foodToTransfer = 1;
+            }
+            stall.getInventory().removeItem(foodType.Value, foodToTransfer);
+            player.getInventory().addItem(foodType.Value, foodToTransfer);
+            player.getStatus().update("Collected " + foodToTransfer + " " + foodType.Value + " from stall.");
         }
     }
 }

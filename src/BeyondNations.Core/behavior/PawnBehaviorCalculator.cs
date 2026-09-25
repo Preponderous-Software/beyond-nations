@@ -47,13 +47,12 @@ namespace beyondnations {
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
             if (pawn.needsFood()) {
-                int expectedFoodCost = 1;
                 Stall stall = market.getStall(pawn.getId());
-                if (stall != null && stall.getInventory().getNumItems(ItemType.APPLE) > 0) {
+                if (stall != null && FoodItems.hasFood(stall.getInventory())) {
                     return BehaviorType.COLLECT_FOOD_FROM_STALL;
                 }
 
-                if (pawn.getInventory().getNumItems(ItemType.COIN) >= expectedFoodCost && market.getQuantityAvailable(ItemType.APPLE) > 0) {
+                if (market.canPurchaseFood(pawn)) {
                     return BehaviorType.PURCHASE_FOOD;
                 }
                 else {

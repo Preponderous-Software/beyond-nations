@@ -52,6 +52,18 @@ namespace beyondnations {
         }
 
         /// <summary>
+        /// The most nourishing food the inventory holds, or null when it holds none.
+        /// </summary>
+        public static ItemType? getMostNourishingFood(Inventory inventory) {
+            foreach (ItemType foodType in foodInDescendingEnergyOrder) {
+                if (inventory.getNumItems(foodType) > 0) {
+                    return foodType;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Removes one of the most nourishing food the inventory holds and returns
         /// the energy it restores. Returns zero, and consumes nothing, when the
         /// inventory holds no food at all.

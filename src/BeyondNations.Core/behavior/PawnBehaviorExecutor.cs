@@ -519,14 +519,20 @@ namespace beyondnations {
 
             // collect food
             Stall stall = market.getStall(pawn.getId());
-            int food = stall.getInventory().getNumItems(ItemType.APPLE);
+            ItemType? foodType = FoodItems.getMostNourishingFood(stall.getInventory());
+            if (foodType == null) {
+                Log.warning("Pawn " + pawn + " is trying to collect food from their stall but it holds none.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            int food = stall.getInventory().getNumItems(foodType.Value);
             int foodToTransfer = food / 2;
             if (foodToTransfer == 0) {
                 foodToTransfer = 1;
             }
-            pawn.getInventory().addItem(ItemType.APPLE, foodToTransfer);
-            stall.getInventory().removeItem(ItemType.APPLE, foodToTransfer);
-            Log.info("Pawn " + pawn.getName() + " collected " + foodToTransfer + " food from their stall.");
+            pawn.getInventory().addItem(foodType.Value, foodToTransfer);
+            stall.getInventory().removeItem(foodType.Value, foodToTransfer);
+            Log.info("Pawn " + pawn.getName() + " collected " + foodToTransfer + " " + foodType.Value + " from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
