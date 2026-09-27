@@ -162,7 +162,7 @@ namespace beyondnations {
                                 if (gameConfig.getRespawnPawns()) {
                                     pawn.setEnergy(100);
                                     if (gameConfig.getKeepInventoryOnDeath() == false) {
-                                        pawn.getInventory().clear();
+                                        dropInventory(pawn);
                                     }
 
                                     if (!pawn.isCurrentlyInSettlement()) {
@@ -280,7 +280,7 @@ namespace beyondnations {
                         numPlayerDeaths++;
                         player.setEnergy(100);
                         if (gameConfig.getKeepInventoryOnDeath() == false) {
-                            player.getInventory().clear();
+                            dropInventory(player);
                         }
                         player.getStatus().update("You died.");
                 
@@ -331,6 +331,19 @@ namespace beyondnations {
                 else if (entity.getType() == EntityType.CHICKEN) {
                     MovementIntegrator.step(entity, fixedDeltaTime, ChickenGroundHeight);
                 }
+            }
+        }
+
+        /**
+        * A death with keep-inventory off leaves the inventory where the entity
+        * died, as drops that can be picked up again (#174), rather than
+        * deleting it. Called before the respawn teleport, so the drops land at
+        * the place of death. getEntities() returns a copy, so adding here
+        * during the fixedUpdate walk is safe.
+        */
+        private void dropInventory(Entity entity) {
+            foreach (ItemDrop drop in ItemDrop.dropContentsOf(entity.getInventory(), entity.getPosition())) {
+                entityRepository.addEntity(drop);
             }
         }
 

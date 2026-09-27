@@ -26,6 +26,13 @@ namespace beyondnations {
                 return;
             }
 
+            // Drops come first: a pawn can die within reach of its settlement,
+            // and if entering the settlement won, those drops could never be
+            // collected. Once they are picked up, the next press enters.
+            if (pickUpItemDropsInRange(player)) {
+                return;
+            }
+
             AppleTree tree = environment.getNearestTree(player.getPosition());
             Rock rock = environment.getNearestRock(player.getPosition());
             Pawn pawn = (Pawn) environment.getNearestEntityOfType(player.getPosition(), EntityType.PAWN);
@@ -65,6 +72,30 @@ namespace beyondnations {
             else {
                 player.getStatus().update("No entities within range to interact with.");
             }
+        }
+
+        /**
+        * Picks up every drop within reach at once, since a death leaves one
+        * drop per item type stacked on the same spot. Drops already marked for
+        * deletion are skipped so a second press before the next tick cannot
+        * collect the same stack twice.
+        */
+        private bool pickUpItemDropsInRange(Player player) {
+            List<string> pickedUp = new List<string>();
+            foreach (Entity entity in entityRepository.getEntitiesOfType(EntityType.ITEM_DROP)) {
+                if (entity.isMarkedForDeletion() || Vector3.Distance(player.getPosition(), entity.getPosition()) >= 5) {
+                    continue;
+                }
+                ItemStack stack = ((ItemDrop) entity).getItemStack();
+                player.getInventory().addItem(stack.getItemType(), stack.getQuantity());
+                entity.markForDeletion();
+                pickedUp.Add(entity.getName());
+            }
+            if (pickedUp.Count == 0) {
+                return false;
+            }
+            player.getStatus().update("Picked up " + string.Join(", ", pickedUp) + ".");
+            return true;
         }
 
         private List<string> generatePhrases(Nation pawnsNation, Pawn pawn, Player player) {

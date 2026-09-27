@@ -53,8 +53,11 @@ The `Inventory` class contains a list of ItemSlots. The public API remains uncha
 - `getTotalNumItems()`: Returns the total number of items
 
 ### ItemDrop
-The `ItemDrop` class extends `Entity` and represents an ItemStack that exists in the world as a physical entity. Players and pawns can interact with ItemDrops to pick them up. It provides:
+The `ItemDrop` class extends `Entity` and represents an ItemStack that exists in the world as a physical entity. The player picks up every ItemDrop within reach by interacting (`InteractCommand`); pawns do not pick them up. It provides:
 - `getItemStack()`: Returns the ItemStack this drop represents
+- `dropContentsOf(Inventory, Vector3)`: Returns one ItemDrop per non-empty slot, resting on the ground below the given position, and empties the inventory
+
+When keep-inventory is off, `Simulation` uses `dropContentsOf` on death, so the inventory of a dead player, or of a pawn that respawns, is left where it died instead of being deleted.
 
 ## Usage Examples
 
@@ -110,6 +113,6 @@ The internal implementation has changed from a `Dictionary<ItemType, int>` to a 
    - ItemSlot: Handles slot logic
    - Inventory: Manages collections of slots
 
-3. **World Drops**: ItemStacks can now exist in the world as ItemDrop entities, allowing for dropped items that players can pick up.
+3. **World Drops**: ItemStacks can now exist in the world as ItemDrop entities, allowing for dropped items that the player can pick up.
 
 4. **Extensible**: The system is designed to be easily extended with new features in the future.
