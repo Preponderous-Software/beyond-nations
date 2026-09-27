@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace beyondnations {
@@ -21,6 +22,28 @@ namespace beyondnations {
 
         public ItemStack getItemStack() {
             return itemStack;
+        }
+
+        // Half the sphere's 0.5 scale, so a drop rests on the flat tile plane
+        // (y = 0) rather than floating at whatever height its owner died at.
+        public const float GroundHeight = 0.25f;
+
+        /**
+        * Turns everything in an inventory into drops at a position, one per
+        * non-empty slot, and empties the inventory. This is what a death with
+        * keep-inventory off leaves behind, where it used to leave nothing.
+        */
+        public static List<ItemDrop> dropContentsOf(Inventory inventory, Vector3 position) {
+            List<ItemDrop> drops = new List<ItemDrop>();
+            Vector3 dropPosition = new Vector3(position.X, GroundHeight, position.Z);
+            foreach (ItemSlot slot in inventory.getSlots()) {
+                if (!slot.isEmpty()) {
+                    ItemStack stack = slot.getItemStack();
+                    drops.Add(new ItemDrop(dropPosition, new ItemStack(stack.getItemType(), stack.getQuantity())));
+                }
+            }
+            inventory.clear();
+            return drops;
         }
 
         private static Rgba colorForItemType(ItemType itemType) {

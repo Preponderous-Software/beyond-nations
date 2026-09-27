@@ -30,7 +30,7 @@ The event system records notable occurrences in the game — chunk generation, n
 The world generation system creates a procedurally generated world out of chunks of locations. Generated land is populated with resources, settlements, and pawns.
 
 ## Inventory
-The inventory system manages the items and resources held by an entity. Items are collected from the world and traded at markets.
+The inventory system manages the items and resources held by an entity. Items are collected from the world and traded at markets. When "Keep Inventory" is turned off, a player that dies — or a pawn that dies with "Respawn Pawns" on — leaves its inventory where it died as item drops, one per item type (a pawn that dies for good still takes its inventory with it); the player picks up every drop within reach by interacting (`E`). Pawns do not pick drops up.
 
 *Planned:* using held resources as crafting inputs.
 
