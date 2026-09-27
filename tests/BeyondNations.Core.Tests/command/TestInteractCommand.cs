@@ -101,5 +101,20 @@ namespace beyondnationstests {
             Assert.Equal(2, player.getInventory().getNumItems(ItemType.APPLE));
             Assert.False(rock.isMarkedForDeletion());
         }
+
+        [Fact]
+        public void testExecute_DropNextToSettlement_DropTakenBeforeEntering() {
+            // prepare: a pawn can die within reach of its settlement
+            addDrop(new Vector3(2, 0, 0), ItemType.COIN, 9);
+            Settlement settlement = new Settlement(new Vector3(1, 0, 0), new NationId(), Rgba.White, "Testland", random);
+            entityRepository.addEntity(settlement);
+
+            // run
+            command.execute(player);
+
+            // check: picked up, and the player is still outside
+            Assert.Equal(9, player.getInventory().getNumItems(ItemType.COIN));
+            Assert.False(player.isCurrentlyInSettlement());
+        }
     }
 }

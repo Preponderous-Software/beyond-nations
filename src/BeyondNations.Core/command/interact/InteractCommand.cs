@@ -26,6 +26,13 @@ namespace beyondnations {
                 return;
             }
 
+            // Drops come first: a pawn can die within reach of its settlement,
+            // and if entering the settlement won, those drops could never be
+            // collected. Once they are picked up, the next press enters.
+            if (pickUpItemDropsInRange(player)) {
+                return;
+            }
+
             AppleTree tree = environment.getNearestTree(player.getPosition());
             Rock rock = environment.getNearestRock(player.getPosition());
             Pawn pawn = (Pawn) environment.getNearestEntityOfType(player.getPosition(), EntityType.PAWN);
@@ -46,9 +53,6 @@ namespace beyondnations {
                 List <string> phrases = generatePhrases(pawnsNation, pawn, player);
                 string phrase = phrases[random.range(0, phrases.Count)];
                 player.getStatus().update(pawn.getName() + ": \"" + phrase + "\"");
-            }
-            else if (pickUpItemDropsInRange(player)) {
-                return;
             }
             else if (tree != null && Vector3.Distance(player.getPosition(), tree.getPosition()) < 5) {
                 tree.markForDeletion();
