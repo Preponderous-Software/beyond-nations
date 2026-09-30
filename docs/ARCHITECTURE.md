@@ -92,6 +92,7 @@ or a screen, it is host.
 | Menus, heads-up display, info boxes | Desktop |
 | Glyph atlas and world-space nametags | Desktop |
 | Screenshots and file paths | Desktop |
+| Usage reporting (the `startup` event, `settings.json`, the vendored trace client) | Desktop |
 
 ## Consequences worth knowing
 
