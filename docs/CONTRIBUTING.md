@@ -25,10 +25,17 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--seed N` | fix the world seed, so a run is reproducible |
 | `--screenshot-after-frames N` | write a PNG and carry on |
 | `--render-stats` | report draw calls, instance counts and frame times on exit |
+| `--render-distance N` | start at this render distance; 0 keeps the configured one |
+| `--no-culling` | submit every primitive, culling nothing, to measure what culling saves |
+| `--no-labels` | draw no world-space nametags |
+| `--smoke-resize` | resize the window part-way through, to exercise resize handling |
+| `--width N`, `--height N` | window size (default 1280 × 720) |
+| `--ticks-per-second N` | simulation rate, independent of frame rate (default 50) |
+| `--no-vsync` | do not wait for vertical sync |
 | `--debug-mode` | open with the F1 overlay already on |
 | `--first-person` | open in first person, which `V` otherwise toggles |
 | `--no-usage-reporting` | send no usage report this run (see *Usage reporting* in the README) |
-| `--help` | list every switch |
+| `--help`, `-h` | list every switch |
 
 ### Troubleshooting
 
@@ -40,7 +47,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 
 ```
 src/BeyondNations.Core/      the simulation. No graphics, no engine, no packages.
-src/BeyondNations.Desktop/   the host: window, renderer, camera, input, UI.
+src/BeyondNations.Desktop/   the host: window, renderer, camera, input, UI, usage reporting.
 tests/BeyondNations.Core.Tests/
 tests/BeyondNations.Desktop.Tests/
 docs/
