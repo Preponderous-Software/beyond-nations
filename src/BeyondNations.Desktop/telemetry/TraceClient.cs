@@ -1,5 +1,5 @@
 /*
- * trace-client 0.1.0 -- https://github.com/Stephenson-Software/trace-client-csharp
+ * trace-client 0.2.0 -- https://github.com/Stephenson-Software/trace-client-csharp
  *
  * One call to report that a program was used. Copy this file into a project as
  * is, or reference the project; either way there is nothing else to add.
@@ -41,11 +41,15 @@ namespace StephensonSoftware.Trace
     /// (<c>TRACE_USAGE_REPORTING=off</c> or <c>DO_NOT_TRACK=1</c>) -- reason
     /// <c>environment</c>; the program's own setting, <c>enabled: false</c> --
     /// reason <c>config</c>; no key -- reason <c>no key</c>.</para>
+    /// <para>Every event carries the program's own version as the tag
+    /// <c>version</c> -- the third constructor argument, required, so a
+    /// <c>command</c> event can be tied to a release as well as a
+    /// <c>startup</c> one. An event's own <c>version</c> tag wins over it.</para>
     /// <code>
-    /// var trace = new TraceClient("https://trace.example.org", "my-game",
+    /// var trace = new TraceClient("https://trace.example.org", "my-game", ProgramVersion,
     ///                             key: settings.UsageReportingKey,
     ///                             enabled: settings.UsageReportingEnabled);
-    /// trace.Report("startup", tags: new Dictionary&lt;string, string&gt; { { "version", Version } });
+    /// trace.Report("startup");
     /// ...
     /// trace.Dispose(); // on shutdown: sends what is queued, bounded by the timeout
     /// </code>
@@ -53,7 +57,7 @@ namespace StephensonSoftware.Trace
     public sealed class TraceClient : IDisposable
     {
         /// <summary>The client version, as sent in the User-Agent header.</summary>
-        public const string Version = "0.1.0";
+        public const string Version = "0.2.0";
 
         /// <summary>How many reports may wait to be sent before new ones are dropped.</summary>
         public const int QueueCapacity = 256;
@@ -89,6 +93,7 @@ namespace StephensonSoftware.Trace
 
         private readonly Uri _endpoint;
         private readonly string _application;
+        private readonly string _version;
         private readonly string _key;
         private readonly Action<string> _log;
         private readonly BlockingCollection<string> _queue;   // null when disabled
@@ -98,18 +103,23 @@ namespace StephensonSoftware.Trace
         private int _closed;
 
         /// <summary>
-        /// A client for the program named <paramref name="application"/>, reporting
-        /// to the trace server at <paramref name="baseUrl"/>. Throws only for a
-        /// missing or malformed <paramref name="baseUrl"/> or a missing
-        /// <paramref name="application"/> -- programming errors, not runtime ones.
+        /// A client for the program named <paramref name="application"/>, at
+        /// <paramref name="version"/>, reporting to the trace server at
+        /// <paramref name="baseUrl"/>. Throws <see cref="ArgumentException"/> only for a
+        /// missing or malformed <paramref name="baseUrl"/>, a missing
+        /// <paramref name="application"/>, or a missing <paramref name="version"/> or
+        /// one longer than <see cref="MaxLength"/> characters -- programming errors,
+        /// not runtime ones.
         /// </summary>
         /// <param name="baseUrl">The trace server, e.g. <c>https://trace.danielstephenson.dev</c>.</param>
         /// <param name="application">The program's name, exactly as its key was issued for.</param>
+        /// <param name="version">The program's own version, trimmed. Sent as the tag <c>version</c>
+        /// on every event unless the event carries its own.</param>
         /// <param name="key">The program's write key. Without one the client is a no-op.</param>
         /// <param name="enabled">The program's own opt-out. <c>false</c> yields a client that reports nothing.</param>
         /// <param name="log">Where dropped reports are mentioned. Optional; treat as debug-level.</param>
-        public TraceClient(string baseUrl, string application, string key = null, bool enabled = true,
-                           Action<string> log = null)
+        public TraceClient(string baseUrl, string application, string version, string key = null,
+                           bool enabled = true, Action<string> log = null)
         {
             if (string.IsNullOrWhiteSpace(baseUrl))
             {
@@ -119,8 +129,17 @@ namespace StephensonSoftware.Trace
             {
                 throw new ArgumentException("application is required", "application");
             }
+            if (string.IsNullOrWhiteSpace(version))
+            {
+                throw new ArgumentException("version is required", "version");
+            }
+            if (version.Trim().Length > MaxLength)
+            {
+                throw new ArgumentException("version is longer than " + MaxLength + " characters", "version");
+            }
             _endpoint = new Uri(baseUrl.Trim().TrimEnd('/') + "/api/metrics");
             _application = application.Trim();
+            _version = version.Trim();
             _key = key == null ? "" : key.Trim();
             _log = log;
 
@@ -151,7 +170,7 @@ namespace StephensonSoftware.Trace
         /// <summary>A client that reports nothing. Useful as a default before settings are read.</summary>
         public static TraceClient Disabled()
         {
-            return new TraceClient("http://disabled.invalid", "disabled", enabled: false);
+            return new TraceClient("http://disabled.invalid", "disabled", "disabled", enabled: false);
         }
 
         /// <summary>
@@ -209,7 +228,9 @@ namespace StephensonSoftware.Trace
         /// <summary>
         /// Reports that <paramref name="name"/> happened, with an optional numeric
         /// value and optional string tags. Returns immediately and never throws.
-        /// A report the server would reject for its size -- more than
+        /// The program's version is added as the tag <c>version</c> unless
+        /// <paramref name="tags"/> already has one; <paramref name="tags"/> itself is
+        /// never modified. A report the server would reject for its size -- more than
         /// <see cref="MaxTags"/> tags, or a string longer than <see cref="MaxLength"/> --
         /// is dropped here instead of being sent.
         /// </summary>
@@ -222,7 +243,7 @@ namespace StephensonSoftware.Trace
             try
             {
                 string body;
-                string problem = Json(_application, name, value, tags, out body);
+                string problem = Json(_application, name, value, WithVersion(tags, _version), out body);
                 if (problem != null)
                 {
                     Log("dropped " + name + ": " + problem);
@@ -343,6 +364,37 @@ namespace StephensonSoftware.Trace
             {
                 // a throwing logger must not break the promise either
             }
+        }
+
+        /// <summary>
+        /// The event's own tags plus <c>version</c>, unless the event already
+        /// carries one. A copy; the caller's collection is never modified.
+        /// </summary>
+        internal static List<KeyValuePair<string, string>> WithVersion(
+            IEnumerable<KeyValuePair<string, string>> tags, string version)
+        {
+            var merged = new List<KeyValuePair<string, string>>();
+            bool hasVersion = false;
+            if (tags != null)
+            {
+                foreach (KeyValuePair<string, string> tag in tags)
+                {
+                    if (tag.Key == null || tag.Value == null)
+                    {
+                        continue;
+                    }
+                    if (tag.Key == "version")
+                    {
+                        hasVersion = true;
+                    }
+                    merged.Add(tag);
+                }
+            }
+            if (!hasVersion)
+            {
+                merged.Add(new KeyValuePair<string, string>("version", version));
+            }
+            return merged;
         }
 
         // JSON is written by hand so this file has no dependencies. The shape is
