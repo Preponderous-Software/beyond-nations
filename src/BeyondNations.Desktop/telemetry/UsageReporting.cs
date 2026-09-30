@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using beyondnations;
@@ -143,6 +142,14 @@ namespace beyondnations.desktop.telemetry {
         }
 
         /**
+        * The game's version, which the client adds to every event as the tag
+        * `version`. Never blank, since the client refuses a blank one.
+        */
+        public static string programVersion() {
+            return string.IsNullOrWhiteSpace(GameVersion.Version) ? "unknown" : GameVersion.Version;
+        }
+
+        /**
         * Builds the client, says whether reporting is on, and reports
         * `startup`. The caller disposes the client on exit, which gives the
         * event up to five seconds to be sent. Never throws.
@@ -154,14 +161,14 @@ namespace beyondnations.desktop.telemetry {
                 string endpoint = string.IsNullOrWhiteSpace(settings.Endpoint)
                     ? "https://trace.danielstephenson.dev"
                     : settings.Endpoint;
-                TraceClient client = new TraceClient(endpoint, Application,
+                TraceClient client = new TraceClient(endpoint, Application, programVersion(),
                     key: settings.Key,
                     enabled: settings.Enabled && !switchedOff);
                 string line = notice(client, settings.FirstRun, settingsPath);
                 if (line != null) {
                     info(line);
                 }
-                client.Report("startup", tags: new Dictionary<string, string> { { "version", GameVersion.Version } });
+                client.Report("startup");
                 return client;
             } catch (Exception e) {
                 warn("usage reporting could not start: " + e.Message);
