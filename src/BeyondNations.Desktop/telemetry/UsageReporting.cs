@@ -10,7 +10,15 @@ namespace beyondnations.desktop.telemetry {
     /**
     * Tells trace (https://trace.danielstephenson.dev) that Beyond Nations was
     * started, and nothing else: one `startup` event, tagged with the game's
-    * version. Nothing about the player, the machine or the world is sent.
+    * version and a random installation ID (the tag `install`). Nothing about
+    * the player, the machine or the world is sent.
+    *
+    * The installation ID is a random UUID the client keeps in
+    * trace-install-id, beside settings.json in the game's data directory; it
+    * lets trace count installations rather than startups. Deleting the file
+    * resets it. TRACE_INSTALL_ID, when set and not blank, is sent instead and
+    * the file is not touched. The client only reads or writes the file when
+    * reporting is on, so every opt-out below also stops the ID.
     *
     * Reporting is on by default and the player has the last word. First match
     * turns it off, and is the reason the startup line gives:
@@ -34,6 +42,8 @@ namespace beyondnations.desktop.telemetry {
         public const string Application = "beyond-nations";
         public const string DefaultsFileName = "usage-reporting.json";
         public const string SettingsFileName = "settings.json";
+        public const string InstallIdFileName = "trace-install-id";
+        public const string InstallIdVariable = "TRACE_INSTALL_ID";
         public const string DetailsUrl = "https://github.com/Stephenson-Software/trace#usage-reporting";
 
         private static readonly JsonDocumentOptions JsonOptions = new JsonDocumentOptions {
@@ -57,6 +67,20 @@ namespace beyondnations.desktop.telemetry {
         /** The player's settings, in the game's data directory. */
         public static string defaultSettingsPath() {
             return Path.Combine(AppDataPaths.getBaseDirectory(), SettingsFileName);
+        }
+
+        /** The installation ID's file: beside settings.json, in the game's data directory. */
+        public static string installIdPath(string settingsPath) {
+            return Path.Combine(Path.GetDirectoryName(settingsPath), InstallIdFileName);
+        }
+
+        /**
+        * TRACE_INSTALL_ID when it is set and not blank, else null. Passed to the
+        * client as its explicit ID, which wins over the file.
+        */
+        public static string installIdOverride() {
+            string id = System.Environment.GetEnvironmentVariable(InstallIdVariable);
+            return string.IsNullOrWhiteSpace(id) ? null : id;
         }
 
         /**
@@ -134,7 +158,8 @@ namespace beyondnations.desktop.telemetry {
             if (!firstRun) {
                 return null;
             }
-            return "Usage reporting is on: Beyond Nations sends its name and version at startup to "
+            return "Usage reporting is on: Beyond Nations sends its name, its version and a random "
+                + "installation ID (kept in " + installIdPath(settingsPath) + "; delete it to reset) at startup to "
                 + "https://trace.danielstephenson.dev - nothing about you, your machine or your world. "
                 + "Turn it off with \"usageReporting\": { \"enabled\": false } in " + settingsPath
                 + ", with --no-usage-reporting, or for every program that reports to trace with "
@@ -163,7 +188,9 @@ namespace beyondnations.desktop.telemetry {
                     : settings.Endpoint;
                 TraceClient client = new TraceClient(endpoint, Application, programVersion(),
                     key: settings.Key,
-                    enabled: settings.Enabled && !switchedOff);
+                    enabled: settings.Enabled && !switchedOff,
+                    installId: installIdOverride(),
+                    installIdFile: installIdPath(settingsPath));
                 string line = notice(client, settings.FirstRun, settingsPath);
                 if (line != null) {
                     info(line);
