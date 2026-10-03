@@ -43,6 +43,15 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testStartScreenAcceptsTheInventoryScreen() {
+            // run
+            GameOptions options = GameOptions.parse(new string[] { "--start-screen", "inventory" });
+
+            // verify
+            Assert.Equal(ScreenType.INVENTORY, options.StartScreen);
+        }
+
+        [Fact]
         public void testNoUsageReportingTurnsReportingOffForTheRun() {
             // run
             GameOptions defaults = GameOptions.parse(new string[] { });

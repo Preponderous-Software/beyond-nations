@@ -32,6 +32,7 @@ namespace beyondnations.desktop.ui {
         private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
         private readonly PauseScreen pauseScreen = new PauseScreen();
         private readonly ConfigScreen configScreen = new ConfigScreen();
+        private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly WorldHud worldHud = new WorldHud();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
@@ -71,11 +72,11 @@ namespace beyondnations.desktop.ui {
         * Draws whichever screen is active. simulation may be null, which is the
         * case on every screen except the world.
         *
-        * debugMode and inventoryVisible are passed in rather than held here,
-        * because the input layer already owns them: F1 gates the debug
-        * commands as well as the overlay, and two copies would drift.
+        * debugMode is passed in rather than held here, because the input layer
+        * already owns it: F1 gates the debug commands as well as the overlay,
+        * and two copies would drift.
         */
-        public void render(double deltaTime, float width, float height, Simulation simulation, bool debugMode, bool inventoryVisible) {
+        public void render(double deltaTime, float width, float height, Simulation simulation, bool debugMode) {
             frameRate.record(deltaTime);
             controller.Update((float) deltaTime);
 
@@ -95,7 +96,12 @@ namespace beyondnations.desktop.ui {
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
-                        action = worldHud.draw(width, height, simulation, debugMode, inventoryVisible, frameRate.getFramesPerSecond());
+                        action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond());
+                    }
+                    break;
+                case ScreenType.INVENTORY:
+                    if (simulation != null) {
+                        action = inventoryScreen.draw(width, height, simulation.getPlayer().getInventory());
                     }
                     break;
             }

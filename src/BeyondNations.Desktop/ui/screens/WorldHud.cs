@@ -44,7 +44,7 @@ namespace beyondnations.desktop.ui.screens {
             ImGuiWindowFlags.NoInputs |
             ImGuiWindowFlags.AlwaysAutoResize;
 
-        public UiAction draw(float width, float height, Simulation simulation, bool debugMode, bool inventoryVisible, int framesPerSecond) {
+        public UiAction draw(float width, float height, Simulation simulation, bool debugMode, int framesPerSecond) {
             Player player = simulation.getPlayer();
             float rightColumnX = width - BoxWidth - SideMargin;
             float lowerRowY = height - LowerRowOffsetFromBottom;
@@ -66,9 +66,7 @@ namespace beyondnations.desktop.ui.screens {
                     .draw(rightColumnX, MarketBoxY, BoxWidth);
             }
 
-            if (inventoryVisible) {
-                new InventoryInfoBox(player.getInventory()).draw(SideMargin, lowerRowY, BoxWidth);
-            }
+            new InventoryInfoBox(player.getInventory()).draw(SideMargin, lowerRowY, BoxWidth);
 
             new PlayerInfoBox(player, simulation.getNationRepository()).draw(rightColumnX, lowerRowY, BoxWidth);
 

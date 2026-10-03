@@ -20,7 +20,6 @@ namespace beyondnations.desktop.input {
     public class PlayerInputController {
         private readonly MouseLook mouseLook = new MouseLook();
         private bool debugMode;
-        private bool inventoryVisible = true;
 
         public MouseLook getMouseLook() {
             return mouseLook;
@@ -37,10 +36,6 @@ namespace beyondnations.desktop.input {
         */
         public void setDebugMode(bool debugMode) {
             this.debugMode = debugMode;
-        }
-
-        public bool isInventoryVisible() {
-            return inventoryVisible;
         }
 
         public void update(Simulation simulation, InputService inputService) {
@@ -107,10 +102,6 @@ namespace beyondnations.desktop.input {
                 new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository())
                     .execute(player);
             }
-            if (inputService.wasPressedThisFrame(KeyBindings.ToggleInventory)) {
-                inventoryVisible = !inventoryVisible;
-                player.getStatus().update(inventoryVisible ? "Inventory shown." : "Inventory hidden.");
-            }
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleAutoWalk)) {
                 player.toggleAutoWalk();
             }
@@ -150,6 +141,11 @@ namespace beyondnations.desktop.input {
             // handled by the host in Game.readInput() and reports its own
             // status from there (#246). Handling it here as well would have
             // the world screen fire twice on one press.
+            //
+            // KeyBindings.ToggleInventory is absent for a similar reason: it
+            // changes screen rather than acting on the simulation, and it has
+            // to work on the inventory screen, where this controller does not
+            // run. Game.readInput() hands it to ScreenState (#181).
         }
 
         private void runIfDebugMode(Player player, string actionDescription, System.Action action) {

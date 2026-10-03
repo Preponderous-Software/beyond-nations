@@ -4,6 +4,7 @@ using Xunit;
 using beyondnations;
 using beyondnations.desktop.ui;
 using beyondnations.desktop.ui.boxes;
+using beyondnations.desktop.ui.screens;
 
 namespace beyondnationstests {
 
@@ -123,6 +124,49 @@ namespace beyondnationstests {
 
             foreach (string line in box.getLines()) {
                 Assert.False(string.IsNullOrWhiteSpace(line));
+            }
+        }
+    }
+
+    /**
+    * The text of the inventory screen (#181), which needs no ImGui frame.
+    */
+    public class TestInventoryScreen {
+
+        [Fact]
+        public void testListsOccupiedSlotsInSlotOrder() {
+            Inventory inventory = new Inventory(7);
+            inventory.addItem(ItemType.STONE, 3);
+            inventory.addItem(ItemType.CHICKEN_MEAT, 2);
+
+            List<string> lines = InventoryScreen.getLines(inventory);
+
+            Assert.Equal(new List<string> { "Coins: 7", "Stone: 3", "Chicken Meat: 2" }, lines);
+        }
+
+        [Fact]
+        public void testSkipsSlotsEmptiedByRemoval() {
+            Inventory inventory = new Inventory(0);
+            inventory.addItem(ItemType.WOOD, 4);
+            inventory.addItem(ItemType.APPLE, 1);
+            inventory.removeItem(ItemType.WOOD, 4);
+
+            List<string> lines = InventoryScreen.getLines(inventory);
+
+            Assert.Equal(new List<string> { "Apples: 1" }, lines);
+        }
+
+        [Fact]
+        public void testSaysSoWhenTheInventoryIsEmpty() {
+            List<string> lines = InventoryScreen.getLines(new Inventory(0));
+
+            Assert.Equal(new List<string> { InventoryScreen.EmptyLine }, lines);
+        }
+
+        [Fact]
+        public void testEveryItemTypeHasAName() {
+            foreach (ItemType itemType in System.Enum.GetValues(typeof(ItemType))) {
+                Assert.NotEqual(itemType.ToString(), InventoryScreen.getItemName(itemType));
             }
         }
     }

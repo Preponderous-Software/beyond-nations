@@ -194,22 +194,24 @@ namespace beyondnationstests.desktop.input {
         }
 
         [Fact]
-        public void toggleInventory_flipsVisibility_oncePerPress() {
+        public void inventoryKey_isLeftToTheHost_andChangesNothingInTheSimulation() {
             Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
             FakeInputSource source = new FakeInputSource();
             InputService inputService = new InputService(source);
             PlayerInputController controller = new PlayerInputController();
+            int coinsBefore = player.getInventory().getNumItems(ItemType.COIN);
+            string statusBefore = player.getStatus().getStatus();
 
-            Assert.True(controller.isInventoryVisible());
-
+            // I changes screen, which Game.readInput() hands to ScreenState
+            // (#181). Handled here as well, it would act a second time on the
+            // same press.
             source.press(Key.I);
             inputService.update();
             controller.update(simulation, inputService);
-            Assert.False(controller.isInventoryVisible());
 
-            inputService.update();
-            controller.update(simulation, inputService);
-            Assert.False(controller.isInventoryVisible());
+            Assert.Equal(coinsBefore, player.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(statusBefore, player.getStatus().getStatus());
         }
 
         [Fact]
@@ -221,6 +223,7 @@ namespace beyondnationstests.desktop.input {
             PlayerInputController controller = new PlayerInputController();
 
             int coinsBefore = player.getInventory().getNumItems(ItemType.COIN);
+            string statusBefore = player.getStatus().getStatus();
 
             source.press(Key.F4);
             inputService.update();

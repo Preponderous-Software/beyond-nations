@@ -21,7 +21,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | Switch | Effect |
 | --- | --- |
 | `--exit-after-frames N` | render N frames, then exit |
-| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world` or `pause` |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause` or `inventory` |
 | `--seed N` | fix the world seed, so a run is reproducible |
 | `--screenshot-after-frames N` | write a PNG and carry on |
 | `--render-stats` | report draw calls, instance counts and frame times on exit |
