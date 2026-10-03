@@ -180,9 +180,10 @@ namespace beyondnations.desktop {
 
             // The Unity build opened on the title screen, and now that the
             // screens exist again so does this. The world is not built until a
-            // screen asks for one, except when --start-screen names it directly.
+            // screen asks for one, except when --start-screen names it directly --
+            // or names the inventory screen, which is drawn over a world (#181).
             screens.goTo(options.StartScreen);
-            if (screens.isWorldActive()) {
+            if (screens.isWorldVisible()) {
                 createWorld();
             }
 
@@ -272,12 +273,13 @@ namespace beyondnations.desktop {
         /**
         * The binding table lives in KeyBindings and is applied by
         * PlayerInputController (src/BeyondNations.Desktop/input); see #217.
-        * Three bindings stay here because none of them acts on the simulation:
-        * Escape, since toggling screens can close the window; F12, since
-        * capture reads the framebuffer; and V, since the view is a mode on the
-        * host's camera. All three are things only the host owns. Escape and
-        * F12 sit above the world check because they mean something on every
-        * screen; V sits below it, because the view only matters in the world.
+        * Four bindings stay here because none of them acts on the simulation:
+        * Escape, since toggling screens can close the window; I, since it
+        * changes screen too (#181); F12, since capture reads the framebuffer;
+        * and V, since the view is a mode on the host's camera. All four are
+        * things only the host owns. Escape, I and F12 sit above the world
+        * check because each means something off the world screen; V sits below
+        * it, because the view only matters in the world.
         */
         private void readInput() {
             if (inputService == null) {
@@ -302,6 +304,16 @@ namespace beyondnations.desktop {
                 captureScreenshotAndReport();
             }
             // --- end #246 ---
+
+            // --- #181 ---
+            // I opens the inventory screen from the world and closes it again,
+            // so it is read above the world check, which the inventory screen
+            // does not pass. Leaving the world this way also stops the player
+            // input controller running, so nothing moves while it is open.
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleInventory)) {
+                screens.inventoryPressed();
+            }
+            // --- end #181 ---
 
             if (simulation == null || !screens.isWorldActive()) {
                 return;
@@ -353,7 +365,9 @@ namespace beyondnations.desktop {
 
             gl.Clear((uint) (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit));
 
-            if (simulation != null && screens.isWorldActive()) {
+            // The inventory screen (#181) is drawn over the world, so the world
+            // is drawn whenever it is visible, not only while it is active.
+            if (simulation != null && screens.isWorldVisible()) {
                 Player player = simulation.getPlayer();
 
                 // The snapshot is rebuilt into the same buffers every frame and
@@ -396,7 +410,7 @@ namespace beyondnations.desktop {
             // --- #221 imgui user interface ---
             // Drawn last, so it sits over the world rather than under it.
             ui?.render(deltaTime, window.FramebufferSize.X, window.FramebufferSize.Y, simulation,
-                      playerInputController.isDebugMode(), playerInputController.isInventoryVisible());
+                      playerInputController.isDebugMode());
             if (ui != null) {
                 if (ui.consumeStartRequest()) {
                     createWorld();

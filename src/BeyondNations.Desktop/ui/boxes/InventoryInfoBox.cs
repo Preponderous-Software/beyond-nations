@@ -5,7 +5,9 @@ namespace beyondnations.desktop.ui.boxes {
     /**
     * The player's inventory, ported from
     * Assets/Scripts/ui/boxes/InventoryInfoBox.cs. Same six item types, same
-    * labels, same order. Toggled with I, which is why the key is in the title.
+    * labels, same order. It used to be toggled with I; that key now opens the
+    * full inventory screen (#181), and the key stays in the title as the hint
+    * for reaching it.
     */
     public class InventoryInfoBox : InfoBox {
         private readonly Inventory inventory;

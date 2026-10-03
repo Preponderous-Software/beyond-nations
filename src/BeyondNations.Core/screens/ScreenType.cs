@@ -5,6 +5,7 @@ namespace beyondnations {
         WORLD,
         PAUSE,
         MAIN_MENU,
-        CONFIG
+        CONFIG,
+        INVENTORY
     }
 }

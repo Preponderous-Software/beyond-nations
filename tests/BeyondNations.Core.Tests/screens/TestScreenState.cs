@@ -100,5 +100,61 @@ namespace beyondnationstests {
 
             Assert.Equal(ScreenType.TITLE, screens.getPrevious());
         }
+
+        [Fact]
+        public void testInventoryKeyOpensAndClosesTheInventoryFromTheWorld() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.WORLD);
+
+            screens.inventoryPressed();
+            Assert.Equal(ScreenType.INVENTORY, screens.getCurrent());
+
+            screens.inventoryPressed();
+            Assert.Equal(ScreenType.WORLD, screens.getCurrent());
+        }
+
+        [Fact]
+        public void testInventoryKeyDoesNothingOffTheWorld() {
+            ScreenState screens = new ScreenState();
+
+            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.MAIN_MENU, ScreenType.CONFIG, ScreenType.PAUSE }) {
+                screens.goTo(screen);
+                screens.inventoryPressed();
+                Assert.Equal(screen, screens.getCurrent());
+            }
+        }
+
+        [Fact]
+        public void testEscapeClosesTheInventoryRatherThanPausing() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.WORLD);
+            screens.inventoryPressed();
+
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.WORLD, screens.getCurrent());
+        }
+
+        [Fact]
+        public void testInventoryPausesTheWorldButLeavesItVisible() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.INVENTORY);
+
+            Assert.False(screens.shouldAdvanceSimulation());
+            Assert.False(screens.isWorldActive());
+            Assert.True(screens.isWorldVisible());
+        }
+
+        [Fact]
+        public void testWorldIsVisibleOnlyOnTheWorldAndInventoryScreens() {
+            ScreenState screens = new ScreenState();
+
+            screens.goTo(ScreenType.WORLD);
+            Assert.True(screens.isWorldVisible());
+
+            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.MAIN_MENU, ScreenType.CONFIG, ScreenType.PAUSE }) {
+                screens.goTo(screen);
+                Assert.False(screens.isWorldVisible());
+            }
+        }
     }
 }

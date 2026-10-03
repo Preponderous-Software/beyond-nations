@@ -155,8 +155,9 @@ namespace beyondnations.desktop {
                 case "config":    return ScreenType.CONFIG;
                 case "world":     return ScreenType.WORLD;
                 case "pause":     return ScreenType.PAUSE;
+                case "inventory": return ScreenType.INVENTORY;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world or pause)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause or inventory)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -200,7 +201,7 @@ namespace beyondnations.desktop {
                 "  --first-person          open in first person; V toggles the view mid-run",
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --debug-mode            open with the F1 debug overlay already on",
-                "  --start-screen NAME     open on title, main-menu, config, world or pause",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause or inventory",
                 "  --help, -h              print this and exit"
             });
         }

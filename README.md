@@ -69,12 +69,12 @@ The following controls are available in the game:
 | `P` | Plant a sapling |
 | `H` | Teleport to home settlement |
 | `B` | Build stall |
-| `I` | Toggle the inventory display (shown by default) |
+| `I` | Open / close the inventory screen (pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
-| `Escape` | Pause / unpause; back out of a menu; quit from the main menu |
+| `Escape` | Pause / unpause; close the inventory screen; back out of a menu; quit from the main menu |
 | `F1` | Toggle debug mode (and the debug menu) |
 | `F2` | Generate nearby land *(debug mode only)* |
 | `F3` | Spawn a new pawn *(debug mode only)* |
