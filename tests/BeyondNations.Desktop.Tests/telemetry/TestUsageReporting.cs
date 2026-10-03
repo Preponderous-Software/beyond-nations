@@ -26,6 +26,8 @@ namespace beyondnationstests.desktop.telemetry {
         private readonly string settingsPath;
         private readonly string savedTraceUsageReporting;
         private readonly string savedDoNotTrack;
+        private readonly string savedInstallId;
+        private readonly string installIdPath;
         private readonly List<string> infos = new List<string>();
         private readonly List<string> warnings = new List<string>();
 
@@ -36,13 +38,17 @@ namespace beyondnationstests.desktop.telemetry {
             settingsPath = Path.Combine(directory, "data", UsageReporting.SettingsFileName);
             savedTraceUsageReporting = Environment.GetEnvironmentVariable("TRACE_USAGE_REPORTING");
             savedDoNotTrack = Environment.GetEnvironmentVariable("DO_NOT_TRACK");
+            savedInstallId = Environment.GetEnvironmentVariable("TRACE_INSTALL_ID");
             Environment.SetEnvironmentVariable("TRACE_USAGE_REPORTING", null);
             Environment.SetEnvironmentVariable("DO_NOT_TRACK", null);
+            Environment.SetEnvironmentVariable("TRACE_INSTALL_ID", null);
+            installIdPath = Path.Combine(directory, "data", UsageReporting.InstallIdFileName);
         }
 
         public void Dispose() {
             Environment.SetEnvironmentVariable("TRACE_USAGE_REPORTING", savedTraceUsageReporting);
             Environment.SetEnvironmentVariable("DO_NOT_TRACK", savedDoNotTrack);
+            Environment.SetEnvironmentVariable("TRACE_INSTALL_ID", savedInstallId);
             try {
                 Directory.Delete(directory, true);
             } catch (IOException) {
@@ -88,8 +94,9 @@ namespace beyondnationstests.desktop.telemetry {
                 Assert.True(File.Exists(settingsPath));
                 Assert.Contains("\"enabled\": true", File.ReadAllText(settingsPath));
                 string notice = Assert.Single(infos);
-                Assert.StartsWith("Usage reporting is on: Beyond Nations sends its name and version", notice);
+                Assert.StartsWith("Usage reporting is on: Beyond Nations sends its name, its version and a random installation ID", notice);
                 Assert.Contains(settingsPath, notice);
+                Assert.Contains(installIdPath, notice);
                 Assert.Contains("--no-usage-reporting", notice);
                 Assert.Contains("TRACE_USAGE_REPORTING=off", notice);
                 Assert.Contains("DO_NOT_TRACK=1", notice);
@@ -106,11 +113,63 @@ namespace beyondnationstests.desktop.telemetry {
                 TraceClient client = start();
                 client.Dispose(); // drains the queued event
 
+                string installId = File.ReadAllText(installIdPath).Trim();
+                Assert.True(Guid.TryParse(installId, out _));
+                Assert.Equal(installId, client.InstallId);
                 Assert.Equal(
-                    "{\"application\":\"beyond-nations\",\"name\":\"startup\",\"tags\":{\"version\":\"" + GameVersion.Version + "\"}}",
+                    "{\"application\":\"beyond-nations\",\"name\":\"startup\",\"tags\":{\"version\":\"" + GameVersion.Version + "\",\"install\":\"" + installId + "\"}}",
                     stub.Body);
                 Assert.Equal("Bearer test-key", stub.Authorization);
                 Assert.Empty(infos); // not the first run, reporting on: nothing to say
+            }
+        }
+
+        [Fact]
+        public void testTheInstallationIdIsKeptBesideSettingsAndReusedOnTheNextStart() {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings("{ \"usageReporting\": { \"enabled\": true } }");
+
+                TraceClient first = start();
+                first.Dispose();
+                TraceClient second = start();
+                second.Dispose();
+
+                Assert.Equal(UsageReporting.installIdPath(settingsPath), installIdPath);
+                Assert.False(string.IsNullOrEmpty(first.InstallId));
+                Assert.Equal(first.InstallId, second.InstallId);
+                Assert.Equal(first.InstallId, File.ReadAllText(installIdPath).Trim());
+                Assert.Contains("\"install\":\"" + first.InstallId + "\"", stub.Body);
+            }
+        }
+
+        [Fact]
+        public void testTraceInstallIdIsSentInsteadAndTheFileIsLeftAlone() {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings("{ \"usageReporting\": { \"enabled\": true } }");
+                Environment.SetEnvironmentVariable("TRACE_INSTALL_ID", " pinned-id ");
+
+                TraceClient client = start();
+                client.Dispose();
+
+                Assert.Equal("pinned-id", client.InstallId);
+                Assert.Contains("\"install\":\"pinned-id\"", stub.Body);
+                Assert.False(File.Exists(installIdPath));
+            }
+        }
+
+        [Fact]
+        public void testNoInstallationIdIsWrittenWhenReportingIsOff() {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings("{ \"usageReporting\": { \"enabled\": false } }");
+
+                TraceClient client = start();
+                client.Dispose();
+
+                Assert.Null(client.InstallId);
+                Assert.False(File.Exists(installIdPath));
             }
         }
 
