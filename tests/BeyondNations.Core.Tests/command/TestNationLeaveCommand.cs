@@ -82,7 +82,7 @@ namespace beyondnationstests {
             Assert.False(nation.isMember(player.getId()));
             Assert.Equal(1, nation.getNumberOfMembers());
             Assert.Equal(1, nationRepository.getNumberOfNations());
-            Assert.Equal(Rgba.White, player.getAppearance().getColor());
+            Assert.Equal(Rgba.White, player.getAppearance().getPrimaryPart().getColor());
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationLeave));
             Assert.Equal("You left nation Testland. Members: 1.", player.getStatus().getStatus());
         }
@@ -153,7 +153,7 @@ namespace beyondnationstests {
             Assert.True(settlement.isMarkedForDeletion());
             Assert.Equal(0, nation.getNumberOfSettlements());
             Assert.Null(player.getHomeSettlementId());
-            Assert.Equal(Rgba.White, player.getAppearance().getColor());
+            Assert.Equal(Rgba.White, player.getAppearance().getPrimaryPart().getColor());
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationDisband));
             Assert.Equal("You disbanded nation Testland.", player.getStatus().getStatus());
         }
@@ -194,7 +194,7 @@ namespace beyondnationstests {
             Assert.False(nation.isMember(player.getId()));
             Assert.Equal(1, nationRepository.getNumberOfNations());
             Assert.Null(player.getNationId());
-            Assert.Equal(Rgba.White, player.getAppearance().getColor());
+            Assert.Equal(Rgba.White, player.getAppearance().getPrimaryPart().getColor());
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationLeave));
             Assert.Equal("You left nation Testland. Members: 1.", player.getStatus().getStatus());
         }

@@ -33,7 +33,7 @@ namespace beyondnationstests {
             Assert.Equal(player.getId(), nation.getLeaderId());
             Assert.Equal(1, nation.getNumberOfMembers());
             Assert.Equal(NationRole.LEADER, nation.getRole(player.getId()));
-            Assert.Equal(nation.getColor(), player.getAppearance().getColor());
+            Assert.Equal(nation.getColor(), player.getAppearance().getPrimaryPart().getColor());
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationCreation));
             Assert.Equal("Created nation " + nation.getName() + ".", player.getStatus().getStatus());
         }

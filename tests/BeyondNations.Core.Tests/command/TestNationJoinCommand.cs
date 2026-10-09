@@ -40,7 +40,7 @@ namespace beyondnationstests {
             Assert.True(nation.isMember(player.getId()));
             Assert.Equal(2, nation.getNumberOfMembers());
             Assert.Equal(NationRole.SERF, nation.getRole(player.getId()));
-            Assert.Equal(nation.getColor(), player.getAppearance().getColor());
+            Assert.Equal(nation.getColor(), player.getAppearance().getPrimaryPart().getColor());
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationJoin));
             Assert.Equal("You joined nation Testland. Members: 2.", player.getStatus().getStatus());
         }
