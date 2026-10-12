@@ -198,5 +198,38 @@ namespace beyondnationstests {
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationLeave));
             Assert.Equal("You left nation Testland. Members: 1.", player.getStatus().getStatus());
         }
+
+        [Fact]
+        public void testExecute_LeaderWithMembers_HomeSettlementCleared() {
+            // prepare
+            Nation nation = new Nation("Testland", player.getId(), random);
+            nation.addMember(new EntityId());
+            enter(nation);
+            Settlement settlement = addSettlement(nation);
+            player.setHomeSettlementId(settlement.getId());
+
+            // run
+            command.execute(player);
+
+            // check
+            Assert.Null(player.getHomeSettlementId());
+        }
+
+        [Fact]
+        public void testExecute_LeaderWithMembersWithStall_StallReleasedAndStockReturned() {
+            // prepare
+            Nation nation = new Nation("Testland", player.getId(), random);
+            nation.addMember(new EntityId());
+            enter(nation);
+            Stall stall = giveStall(addSettlement(nation), ItemType.WOOD, 7);
+
+            // run
+            command.execute(player);
+
+            // check
+            Assert.Null(stall.getOwnerId());
+            Assert.Equal(0, stall.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(7, player.getInventory().getNumItems(ItemType.WOOD));
+        }
     }
 }
