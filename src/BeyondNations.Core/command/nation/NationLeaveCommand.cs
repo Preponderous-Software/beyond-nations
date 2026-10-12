@@ -37,22 +37,7 @@ namespace beyondnations {
             player.setColor(Rgba.White);
             eventProducer.produceNationLeaveEvent(nation, player.getId());
             player.getStatus().update("You left nation " + nation.getName() + ". Members: " + nation.getNumberOfMembers() + ".");
-
-
-            // remove stall ownership
-            foreach(Settlement settlement in entityRepository.getEntitiesOfType(EntityType.SETTLEMENT)) {
-                if (settlement.getNationId() != nation.getId()) {
-                    continue;
-                }
-                Market market = settlement.getMarket();
-                Stall stall = market.getStall(player.getId());
-                if (stall != null) {
-                    player.getInventory().transferContentsOfInventory(stall.getInventory());
-                    stall.setOwnerId(null);
-                }
-            }         
-
-            player.setHomeSettlementId(null);
+            releaseStallsAndHome(nation, player);
         }
 
         private void deleteNation(Nation nation, Player player) {
@@ -84,7 +69,29 @@ namespace beyondnations {
             player.setColor(Rgba.White);
             eventProducer.produceNationLeaveEvent(nation, player.getId());
             player.getStatus().update("You left nation " + nation.getName() + ". Members: " + nation.getNumberOfMembers() + ".");
-            return;
+            releaseStallsAndHome(nation, player);
+        }
+
+        /**
+        * Hands back every stall the player owns in the nation's settlements,
+        * moving its stock into the player's inventory, and clears the
+        * player's home settlement. Shared by both ways of leaving a nation
+        * that leave the nation standing.
+        */
+        private void releaseStallsAndHome(Nation nation, Player player) {
+            foreach (Settlement settlement in entityRepository.getEntitiesOfType(EntityType.SETTLEMENT)) {
+                if (settlement.getNationId() != nation.getId()) {
+                    continue;
+                }
+                Market market = settlement.getMarket();
+                Stall stall = market.getStall(player.getId());
+                if (stall != null) {
+                    player.getInventory().transferContentsOfInventory(stall.getInventory());
+                    stall.setOwnerId(null);
+                }
+            }
+
+            player.setHomeSettlementId(null);
         }
     }
 }
