@@ -187,24 +187,27 @@ namespace beyondnations {
                                     if (pawn.getNationId() != null) {
                                         Nation nation = nationRepository.getNation(pawn.getNationId());
                                         NationRole role = nation.getRole(pawn.getId());
+
+                                        // --- #267 ---
+                                        // remove the dying pawn first, so it can neither inherit its own
+                                        // leadership nor keep a sole-member nation from being disbanded
+                                        nation.removeMember(pawn.getId());
+
                                         if (role == NationRole.LEADER) {
-                                            // transfer leadership to another pawn
+                                            // transfer leadership to another member
                                             if (nation.getNumberOfMembers() > 0) {
                                                 nation.setLeaderId(nation.getOldestMemberId());
-                                                if (pawn.getType() == EntityType.PAWN) {
-                                                    Pawn newLeader = (Pawn) entityRepository.getEntity(nation.getLeaderId());
+                                                Entity newLeader = entityRepository.getEntity(nation.getLeaderId());
+                                                nation.setRole(newLeader.getId(), NationRole.LEADER);
+                                                if (newLeader.getType() == EntityType.PAWN) {
                                                     player.getStatus().update(newLeader.getName() + " is now the leader of " + nation.getName() + ".");
-                                                    nation.setRole(newLeader.getId(), NationRole.LEADER);
                                                 }
-                                                else if (pawn.getType() == EntityType.PLAYER) {
-                                                    Player newLeader = (Player) entityRepository.getEntity(nation.getLeaderId());
+                                                else if (newLeader.getType() == EntityType.PLAYER) {
                                                     player.getStatus().update("You are now the leader of " + nation.getName() + ".");
-                                                    nation.setRole(newLeader.getId(), NationRole.LEADER);
                                                 }
                                                 else {
                                                     Log.info("ERROR: Oldest member of nation " + nation.getName() + " is not a pawn or player.");
                                                 }
-                                        
                                             }
                                             else {
                                                 nationRepository.removeNation(nation);
@@ -232,8 +235,6 @@ namespace beyondnations {
                                                 }
                                             }
                                         }
-
-                                        nation.removeMember(pawn.getId());
                                     }
                                 }
                             }
