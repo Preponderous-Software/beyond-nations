@@ -86,10 +86,13 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Install Mesa (llvmpipe) and Xvfb
+      # GLFW (inside Silk.NET) opens the X11 client libraries at run time; the
+      # runner image does not carry all of them.
+      - name: Install Mesa (llvmpipe), Xvfb and the X11 client libraries
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends xvfb libgl1-mesa-dri libglx-mesa0 libegl1
+          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri libglx-mesa0 libegl1 \
+            libx11-6 libxext6 libxrandr2 libxcursor1 libxi6 libxinerama1 libxxf86vm1 libxkbcommon0 libxkbcommon-x11-0
 
       - name: Build the parity tool and the game
         run: dotnet build tools/BeyondNations.RendererParity/BeyondNations.RendererParity.csproj --configuration Release
@@ -101,6 +104,7 @@ jobs:
         run: |
           # xvfb-run waits until the X server is accepting connections; the
           # llvmpipe variables above reach Xvfb through its environment.
+          set -o pipefail
           mkdir -p parity-out
           xvfb-run -a -s "-screen 0 1280x800x24" \
             dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
