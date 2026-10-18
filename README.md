@@ -72,6 +72,7 @@ The following controls are available in the game:
 | `I` | Open / close the inventory screen (pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
+| `Right Mouse Button` (hold) + move the mouse | Look around |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
 | `Escape` | Pause / unpause; close the inventory screen; back out of a menu; quit from the main menu |
