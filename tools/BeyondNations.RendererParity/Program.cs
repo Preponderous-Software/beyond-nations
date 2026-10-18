@@ -68,6 +68,14 @@ namespace beyondnations.tools.parity {
             options.Title = "Beyond Nations renderer parity";
             options.VSync = false;
             options.API = new GraphicsAPI(options.API.API, options.API.Profile, options.API.Flags, new APIVersion(4, 5));
+            // Silk.NET hides why GLFW could not load; ask it directly first so a
+            // failure says something useful.
+            try {
+                Silk.NET.GLFW.Glfw.GetApi().Dispose();
+            } catch (Exception e) {
+                Console.Error.WriteLine("GLFW could not be loaded: " + e);
+                return 1;
+            }
             IWindow window = Window.Create(options);
             window.Load += () => {
                 try {
