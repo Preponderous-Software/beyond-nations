@@ -20,6 +20,7 @@ namespace beyondnations {
         private GameConfig gameConfig;
         private RandomSource random;
         private TickCounter tickCounter;
+        private TimeOfDay timeOfDay;
         private Player player;
         private EventRepository eventRepository;
         private EventProducer eventProducer;
@@ -59,6 +60,7 @@ namespace beyondnations {
             nationNameGenerator = new NationNameGenerator(random);
 
             tickCounter = new TickCounter();
+            timeOfDay = new TimeOfDay(tickCounter); // #279: read by renderers only
             player = new Player(gameConfig.getPlayerWalkSpeed(), gameConfig.getPlayerRunSpeed(), tickCounter, gameConfig.getStatusExpirationTicks(), gameConfig.getRenderDistance(), random);
             eventRepository = new EventRepository();
             eventProducer = new EventProducer(eventRepository);
@@ -77,6 +79,7 @@ namespace beyondnations {
         public GameConfig getGameConfig() { return gameConfig; }
         public RandomSource getRandom() { return random; }
         public TickCounter getTickCounter() { return tickCounter; }
+        public TimeOfDay getTimeOfDay() { return timeOfDay; }
         public Player getPlayer() { return player; }
         public EventRepository getEventRepository() { return eventRepository; }
         public EventProducer getEventProducer() { return eventProducer; }

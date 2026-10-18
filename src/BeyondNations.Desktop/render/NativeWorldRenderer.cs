@@ -20,6 +20,13 @@ namespace beyondnations.desktop.render {
     * are ports of PrimitiveMesh, so the two renderers can be compared image
     * for image.
     *
+    * With sun lighting (#280) the light is Strata's instead: a sun and a moon
+    * following the simulation's time of day, cascaded shadows, hemisphere
+    * ambient, fog and the analytic sky. The game owns time and passes it in
+    * every frame with setTimeOfDay; Strata only evaluates it. The parity
+    * check constructs the renderer without sun lighting, so it still compares
+    * like with like.
+    *
     * Culling stays in C#: the same RenderCuller decides, in the same order,
     * so the culled count is SilkWorldRenderer's by construction. The items
     * that survive are written into one array that is reused between frames,
@@ -41,12 +48,19 @@ namespace beyondnations.desktop.render {
         private int instancesDrawn;
         private int instancesCulled;
 
+        // --- #280 ---
+        private readonly bool sunLighting;
+        private StrataNative.Lighting sun;
+        private float timeOfDay = TimeOfDay.DefaultStartFraction;
+        // --- end #280 ---
+
         /**
         * getProcAddress resolves GL entry points in the current context; Silk
         * provides it as window.GLContext.GetProcAddress. It is only called
         * while this constructor runs.
         */
-        public NativeWorldRenderer(Func<string, IntPtr> getProcAddress, int width, int height) {
+        public NativeWorldRenderer(Func<string, IntPtr> getProcAddress, int width, int height, bool sunLighting = false) {
+            this.sunLighting = sunLighting;
             this.width = Math.Max(1, width);
             this.height = Math.Max(1, height);
 
@@ -89,6 +103,14 @@ namespace beyondnations.desktop.render {
             lighting.legacy_direction[2] = SilkWorldRenderer.LightDirection.Z;
             StrataNative.check(StrataNative.strata_set_lighting(engine, &lighting), "set_lighting");
 
+            // --- #280 ---
+            if (sunLighting) {
+                StrataNative.Lighting defaults;
+                StrataNative.check(StrataNative.strata_lighting_defaults(StrataNative.LightingSun, &defaults), "lighting_defaults");
+                sun = defaults;
+            }
+            // --- end #280 ---
+
             Log.info("native renderer ready: Strata " + Marshal.PtrToStringUTF8(StrataNative.strata_version_string())
                 + " (ABI " + abi + ") on " + gpuDescription);
         }
@@ -100,6 +122,18 @@ namespace beyondnations.desktop.render {
         }
 
         public string getName() { return "native"; }
+
+        // --- #280 ---
+        public bool usesSunLighting() { return sunLighting; }
+
+        /** The simulation's time of day, [0, 1); used on the next render with sun lighting. */
+        public void setTimeOfDay(float fraction) {
+            if (float.IsNaN(fraction) || float.IsInfinity(fraction)) {
+                throw new ArgumentOutOfRangeException(nameof(fraction), fraction, "the time of day must be finite");
+            }
+            timeOfDay = fraction;
+        }
+        // --- end #280 ---
         public string getGpuDescription() { return gpuDescription; }
 
         public void setViewportSize(int width, int height) {
@@ -139,8 +173,21 @@ namespace beyondnations.desktop.render {
             camera.far_plane = projection.M43 / (projection.M33 + 1f);
             StrataNative.check(StrataNative.strata_set_camera(engine, &camera), "set_camera");
 
+            // --- #280 ---
+            if (sunLighting) {
+                StrataNative.Lighting lighting = sun;
+                lighting.time_of_day = timeOfDay;
+                StrataNative.check(StrataNative.strata_set_lighting(engine, &lighting), "set_lighting");
+            }
+            // --- end #280 ---
+
             // No clear: the host cleared the frame before the world is drawn.
+            // With sun lighting Strata paints its sky behind the world, where
+            // the host's depth buffer is still at the far plane.
             StrataNative.FrameDesc frame = new StrataNative.FrameDesc();
+            if (sunLighting) {
+                frame.clear_flags = StrataNative.ClearSky;
+            }
             StrataNative.check(StrataNative.strata_begin_frame(engine, &frame), "begin_frame");
             fixed (RenderItem* items = visible) {
                 StrataNative.check(StrataNative.strata_submit_primitives(engine, items, visibleCount), "submit_primitives");
