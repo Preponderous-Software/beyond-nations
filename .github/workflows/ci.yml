@@ -107,7 +107,14 @@ jobs:
           # llvmpipe variables above reach Xvfb through its environment.
           set -o pipefail
           mkdir -p parity-out
-          xvfb-run -a -s "-screen 0 1280x800x24" sh -c 'echo "DISPLAY=$DISPLAY"; xdpyinfo | head -5'
+          xvfb-run -a -s "-screen 0 1280x800x24" python3 -c '
+          import ctypes, glob
+          lib = ctypes.CDLL(glob.glob("tools/BeyondNations.RendererParity/bin/Release/net8.0/runtimes/linux-x64/native/libglfw.so.3")[0])
+          print("glfwInit:", lib.glfwInit())
+          msg = ctypes.c_char_p()
+          print("glfwGetError:", lib.glfwGetError(ctypes.byref(msg)), msg.value)
+          print("platform:", hex(lib.glfwGetPlatform()))
+          ' || true
           xvfb-run -a -s "-screen 0 1280x800x24" \
             dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
             --seeds 42,7,1234 --out parity-out
