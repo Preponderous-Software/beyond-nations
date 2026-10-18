@@ -57,3 +57,13 @@ jobs:
             exit 1
           fi
           echo "No UnityEngine reference in BeyondNations.Core."
+
+      # The same goes for the native engine (#274): Core hands RenderItem to
+      # whoever draws it, and must never reach for Strata or P/Invoke itself.
+      - name: Assert no native engine reference in core
+        run: |
+          if grep -rn --include='*.cs' -E '\[(DllImport|LibraryImport)|NativeLibrary\.|StrataNative|using[[:space:]]+Strata' src/BeyondNations.Core; then
+            echo "::error::BeyondNations.Core must not reference the Strata engine or P/Invoke."
+            exit 1
+          fi
+          echo "No native engine reference in BeyondNations.Core."

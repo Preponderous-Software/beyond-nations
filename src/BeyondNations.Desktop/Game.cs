@@ -21,7 +21,8 @@ namespace beyondnations.desktop {
     * accumulates real elapsed time and advances the simulation a whole number of
     * fixed steps, so the tick rate is stable and independent of frame rate.
     *
-    * Drawing is delegated to PrimitiveRenderer, which turns the world snapshot
+    * Drawing is delegated to an IWorldRenderer (#274) -- SilkWorldRenderer by
+    * default, which turns the world snapshot
     * into a few instanced draw calls (#218), viewed through the camera and
     * filtered by the culler that came with #219; the UI arrives with #221.
     */
@@ -48,7 +49,7 @@ namespace beyondnations.desktop {
         // --- end #221 ---
 
         // --- #218 instanced renderer ---
-        private PrimitiveRenderer renderer;
+        private IWorldRenderer renderer;
         private RenderStatsRecorder renderStats;
         // --- end #218 ---
 
@@ -120,6 +121,14 @@ namespace beyondnations.desktop {
             windowOptions.Size = new Vector2D<int>(options.Width, options.Height);
             windowOptions.Title = "Beyond Nations";
             windowOptions.VSync = options.VSync;
+            // --- #274 ---
+            // Strata needs OpenGL 4.5 core. Only the native renderer asks for
+            // it; the default path keeps Silk's default context untouched.
+            if (options.Renderer == RendererKind.Native) {
+                windowOptions.API = new GraphicsAPI(
+                    windowOptions.API.API, windowOptions.API.Profile, windowOptions.API.Flags, new APIVersion(4, 5));
+            }
+            // --- end #274 ---
 
             window = Window.Create(windowOptions);
             window.Load += onLoad;
@@ -146,7 +155,16 @@ namespace beyondnations.desktop {
             gl.ClearColor(0.45f, 0.65f, 0.90f, 1.0f);
 
             // --- #218 instanced renderer ---
-            renderer = new PrimitiveRenderer(gl);
+            // --- #274 ---
+            if (options.Renderer == RendererKind.Native) {
+                renderer = new NativeWorldRenderer(
+                    name => window.GLContext.GetProcAddress(name),
+                    window.FramebufferSize.X, window.FramebufferSize.Y);
+            } else {
+                renderer = new SilkWorldRenderer(gl);
+            }
+            Log.info("world renderer: " + renderer.getName());
+            // --- end #274 ---
             if (options.RenderStats) {
                 renderStats = new RenderStatsRecorder();
             }
@@ -485,6 +503,7 @@ namespace beyondnations.desktop {
             int height = Math.Max(1, size.Y);
             gl.Viewport(0, 0, (uint) width, (uint) height);
             camera.setAspectRatio(width, height);
+            renderer?.setViewportSize(width, height); // #274
             Log.info("framebuffer resized to " + size.X + "x" + size.Y + ", viewport set to " + width + "x" + height);
         }
 
@@ -531,7 +550,7 @@ namespace beyondnations.desktop {
             return snapshot;
         }
 
-        public PrimitiveRenderer getRenderer() {
+        public IWorldRenderer getRenderer() {
             return renderer;
         }
 

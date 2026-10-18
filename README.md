@@ -93,6 +93,7 @@ A number of systems combine to create the gameplay experience. Some are already 
 - [Silk.NET](https://github.com/dotnet/Silk.NET): windowing, OpenGL and input, maintained under the `dotnet` organisation.
 - [Dear ImGui](https://github.com/ImGuiNET/ImGui.NET): the menus, the heads-up display and the info boxes.
 - [FontStashSharp](https://github.com/FontStashSharp/FontStashSharp): the glyph atlas behind world-space nametags.
+- [Strata](https://github.com/Preponderous-Software/strata): a shared C++ engine (MIT) that the game is moving onto in phases. Today it is an opt-in renderer, `--renderer native`, which draws the same world inside the Silk.NET window. `--renderer silk` is the default. The build downloads the native library from a pinned Strata release and checks its SHA-256. Pass `/p:StrataNativeDir=<dir>` to use a local Strata build instead.
 - [Git](https://git-scm.com/) and [GitHub](https://github.com/): version control, review and continuous integration.
 
 The game does not use a commercial engine. Everything it draws is a coloured primitive generated in code, so the renderer, camera, input and user interface are written in the repository rather than supplied by a vendor. The reasoning is recorded in the [Engine Migration Rationale](./docs/ENGINE-MIGRATION-RATIONALE.md).

@@ -19,15 +19,21 @@ namespace beyondnations.desktop.render {
     * high-water mark: the snapshot lists are indexed rather than enumerated,
     * instance data is written into arrays that are reused between frames, and
     * uniform locations were looked up at startup.
+    *
+    * This is the renderer the game has always used, and still the default.
+    * It was PrimitiveRenderer until the IWorldRenderer seam arrived (#274) and
+    * gave it a sibling, NativeWorldRenderer, which draws the same snapshot
+    * through the Strata engine instead. Nothing it does changed with the
+    * rename.
     */
-    public unsafe class PrimitiveRenderer : IDisposable {
+    public unsafe class SilkWorldRenderer : IWorldRenderer {
 
         /**
         * A single directional light, pointing down and slightly across, so that
         * the top of a cube reads differently from its sides.
         */
-        private static readonly Vector3 LightDirection = Vector3.Normalize(new Vector3(-0.35f, -0.85f, -0.4f));
-        private const float Ambient = 0.35f;
+        internal static readonly Vector3 LightDirection = Vector3.Normalize(new Vector3(-0.35f, -0.85f, -0.4f));
+        internal const float Ambient = 0.35f;
 
         private readonly GL gl;
         private readonly InstancedPrimitiveShader shader;
@@ -37,7 +43,7 @@ namespace beyondnations.desktop.render {
         private int instancesDrawn;
         private int instancesCulled;
 
-        public PrimitiveRenderer(GL gl) {
+        public SilkWorldRenderer(GL gl) {
             this.gl = gl;
             this.shader = new InstancedPrimitiveShader(gl);
 
@@ -67,6 +73,11 @@ namespace beyondnations.desktop.render {
 
             Log.info("primitive renderer ready: " + batches.Length + " instanced batches");
         }
+
+        public string getName() { return "silk"; }
+
+        /** The host sets the GL viewport itself; nothing to do here. */
+        public void setViewportSize(int width, int height) { }
 
         public int getDrawCallCount() { return drawCalls; }
         public int getInstancesDrawn() { return instancesDrawn; }

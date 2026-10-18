@@ -3,6 +3,18 @@ using System.Globalization;
 
 namespace beyondnations.desktop {
 
+    // --- #274 ---
+    /**
+    * Which renderer draws the world. Silk is the managed renderer the game has
+    * always had; Native draws the same snapshot through the Strata engine
+    * (engine phase B1). Silk stays the default until the parity plan passes.
+    */
+    public enum RendererKind {
+        Silk,
+        Native
+    }
+    // --- end #274 ---
+
     /**
     * How the host should run. Everything here has a working default, so
     * `dotnet run --project src/BeyondNations.Desktop` needs no arguments.
@@ -107,6 +119,13 @@ namespace beyondnations.desktop {
         */
         public bool NoUsageReporting = false;
 
+        // --- #274 ---
+        /**
+        * The world renderer. Silk unless --renderer native asks for Strata.
+        */
+        public RendererKind Renderer = RendererKind.Silk;
+        // --- end #274 ---
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -128,6 +147,7 @@ namespace beyondnations.desktop {
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
+                    case "--renderer":         options.Renderer = rendererAfter(args, ref i); break;
                     case "--help":
                     case "-h":
                         printUsage();
@@ -161,6 +181,23 @@ namespace beyondnations.desktop {
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
+
+        // --- #274 ---
+        private static RendererKind rendererAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            switch (args[i].ToLowerInvariant()) {
+                case "silk":   return RendererKind.Silk;
+                case "native": return RendererKind.Native;
+            }
+            Console.Error.WriteLine("unknown renderer: " + args[i] + " (expected silk or native)");
+            System.Environment.Exit(2);
+            return RendererKind.Silk;
+        }
+        // --- end #274 ---
 
         private static int intAfter(string[] args, ref int i, int fallback) {
             if (i + 1 >= args.Length) {
@@ -202,6 +239,7 @@ namespace beyondnations.desktop {
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause or inventory",
+                "  --renderer NAME         silk (default) or native (the Strata engine)",
                 "  --help, -h              print this and exit"
             });
         }
