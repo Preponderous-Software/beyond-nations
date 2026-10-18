@@ -99,14 +99,14 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: "1"
           GALLIUM_DRIVER: llvmpipe
         run: |
-          # Xvfb itself needs the llvmpipe variables, or it can fail to start.
-          Xvfb :99 -screen 0 1280x800x24 &
-          sleep 3
-          export DISPLAY=:99
+          # xvfb-run waits until the X server is accepting connections; the
+          # llvmpipe variables above reach Xvfb through its environment.
           mkdir -p parity-out
-          dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
+          xvfb-run -a -s "-screen 0 1280x800x24" \
+            dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
             --seeds 42,7,1234 --out parity-out
-          dotnet src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll \
+          xvfb-run -a -s "-screen 0 1280x800x24" \
+            dotnet src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll \
             --renderer native --seed 42 --start-screen world --exit-after-frames 120 \
             --screenshot-after-frames 60 --render-stats --no-usage-reporting | tee parity-out/native-smoke.log
           grep -q "world renderer: native" parity-out/native-smoke.log
