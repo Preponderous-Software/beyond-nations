@@ -69,10 +69,10 @@
     the native renderer option, and the tests that load the library, need it.
   -->
   <PropertyGroup>
-    <StrataVersion>0.1.0</StrataVersion>
+    <StrataVersion>0.2.0</StrataVersion>
     <StrataReleaseUrl>https://github.com/Preponderous-Software/strata/releases/download/v$(StrataVersion)</StrataReleaseUrl>
-    <StrataLinuxSha256>3d37675bca3db92534a6ca9cfd7257b577441cdd34257d4da05182dfe2afd504</StrataLinuxSha256>
-    <StrataWindowsSha256>dda354899eb7933d2b45f32ef79938f0071a3b38436cc8bac62817f4c275acaa</StrataWindowsSha256>
+    <StrataLinuxSha256>95126e3f7b69696ddf58d6df780a98d9255a1a2c1de33a8e108b031edf14a20c</StrataLinuxSha256>
+    <StrataWindowsSha256>e4e661dabf2b1718943ad6595dd61ee9c71d8df31a87ac04db3b62df6c45a6ac</StrataWindowsSha256>
     <StrataCacheDir>$(BaseIntermediateOutputPath)strata/$(StrataVersion)/</StrataCacheDir>
   </PropertyGroup>
 
