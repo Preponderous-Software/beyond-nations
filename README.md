@@ -93,12 +93,36 @@ A number of systems combine to create the gameplay experience. Some are already 
 - [Silk.NET](https://github.com/dotnet/Silk.NET): windowing, OpenGL and input, maintained under the `dotnet` organisation.
 - [Dear ImGui](https://github.com/ImGuiNET/ImGui.NET): the menus, the heads-up display and the info boxes.
 - [FontStashSharp](https://github.com/FontStashSharp/FontStashSharp): the glyph atlas behind world-space nametags.
-- [Strata](https://github.com/Preponderous-Software/strata): a shared C++ engine (MIT) that the game is moving onto in phases. Today it is an opt-in renderer, `--renderer native`, which draws the same world inside the Silk.NET window. `--renderer silk` is the default. The build downloads the native library from a pinned Strata release and checks its SHA-256. Pass `/p:StrataNativeDir=<dir>` to use a local Strata build instead.
+- [Strata](https://github.com/Preponderous-Software/strata): a shared C++ engine (MIT) that the game is moving onto in phases. Today it is an opt-in renderer, `--renderer native`, which draws the same world inside the Silk.NET window, lit by a sun that follows the time of day (see below). `--renderer silk` is the default. The build downloads the native library from a pinned Strata release and checks its SHA-256. Pass `/p:StrataNativeDir=<dir>` to use a local Strata build instead.
 - [Git](https://git-scm.com/) and [GitHub](https://github.com/): version control, review and continuous integration.
 
 The game does not use a commercial engine. Everything it draws is a coloured primitive generated in code, so the renderer, camera, input and user interface are written in the repository rather than supplied by a vendor. The reasoning is recorded in the [Engine Migration Rationale](./docs/ENGINE-MIGRATION-RATIONALE.md).
 
 Third-party assets and their licences are listed in [THIRD-PARTY.md](./docs/THIRD-PARTY.md).
+
+### The native renderer
+
+`--renderer native` draws the world through Strata. By default it lights the
+world with Strata's sun and moon, which follow the simulation's time of day
+(`TimeOfDay` in Core, derived from the tick count; one day is 30,000 ticks,
+which is ten minutes at the default 50 ticks per second). Strata also adds
+cascaded shadows, hemisphere ambient light, fog and an analytic sky.
+`--native-lighting legacy` asks for the Silk renderer's fixed light instead.
+That is what the CI parity job compares. `--time-of-day F` starts a world at a
+chosen time: 0.25 is sunrise, 0.5 noon and 0.75 sunset. The F1 overlay shows
+the current time and day.
+
+```bash
+dotnet run --project src/BeyondNations.Desktop -- --renderer native --time-of-day 0.3
+```
+
+![Seed 42 drawn by the Silk renderer (left) and by --renderer native with sun lighting at time of day 0.3 (right)](./.github/media/renderer-silk-vs-native.png)
+
+*Seed 42. Left: `--renderer silk`, the default. Right: `--renderer native` in the mid-morning sun, with the player's shadow and Strata's sky.*
+
+![The same view with --renderer native at time of day 0.3, 0.5, 0.74 and 0.95](./.github/media/native-day-cycle.png)
+
+*`--renderer native` at time of day 0.3 (morning), 0.5 (noon), 0.74 (sunset) and 0.95 (night, by moonlight).*
 
 ## Inspirations
 ### Medieval Factions

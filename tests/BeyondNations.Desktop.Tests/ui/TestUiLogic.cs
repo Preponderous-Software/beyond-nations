@@ -95,6 +95,17 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testOverlayReportsTheTimeOfDay() {
+            // #280
+            Simulation simulation = newSimulation();
+            simulation.getTimeOfDay().setStartFraction(0.5f);
+
+            List<string> lines = new DebugInfoBox(simulation).getLines();
+
+            Assert.Contains("Time of day: 0.500 (day 0)", lines);
+        }
+
+        [Fact]
         public void testOverlayReportsRenderDistance() {
             Simulation simulation = newSimulation();
             simulation.getPlayer().decreaseRenderDistance();

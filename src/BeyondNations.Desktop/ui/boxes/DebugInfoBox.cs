@@ -13,7 +13,7 @@ namespace beyondnations.desktop.ui.boxes {
     * pushed in, since it is the simulation that counts them.
     */
     public class DebugInfoBox : InfoBox {
-        public const int NumDataPoints = 22;
+        public const int NumDataPoints = 23;
 
         private readonly Simulation simulation;
         private int framesPerSecond;
@@ -42,6 +42,10 @@ namespace beyondnations.desktop.ui.boxes {
             lines.Add("FPS: " + framesPerSecond);
             lines.Add("MTPS: " + tickCounter.getMtps());
             lines.Add("Total ticks: " + tickCounter.getTotalTicks());
+            // #280: the time of day the native renderer's sun follows.
+            TimeOfDay timeOfDay = simulation.getTimeOfDay();
+            lines.Add("Time of day: " + timeOfDay.getFraction().ToString("0.000", System.Globalization.CultureInfo.InvariantCulture)
+                + " (day " + timeOfDay.getDay() + ")");
 
             // #219 requires the overlay to report render distance "as it does
             // today". It did not: no box in the Unity build ever showed it, and

@@ -9,6 +9,16 @@ namespace beyondnations.desktop {
     * always had; Native draws the same snapshot through the Strata engine
     * (engine phase B1). Silk stays the default until the parity plan passes.
     */
+    // --- #280 ---
+    /** How --renderer native lights the world. */
+    public enum NativeLighting {
+        /** BN's fixed light, term for term: what the parity check compares. */
+        Legacy,
+        /** Strata's sun and moon, following the simulation's time of day. */
+        Sun
+    }
+    // --- end #280 ---
+
     public enum RendererKind {
         Silk,
         Native
@@ -126,6 +136,21 @@ namespace beyondnations.desktop {
         public RendererKind Renderer = RendererKind.Silk;
         // --- end #274 ---
 
+        // --- #280 ---
+        /**
+        * How the native renderer lights the world: the sun following the
+        * time of day unless --native-lighting legacy asks for BN's fixed
+        * light. Ignored by the Silk renderer.
+        */
+        public NativeLighting NativeLighting = NativeLighting.Sun;
+
+        /**
+        * The time of day a new world starts at, in [0, 1): 0.25 sunrise, 0.5
+        * noon, 0.75 sunset. Negative keeps TimeOfDay's default.
+        */
+        public float TimeOfDay = -1f;
+        // --- end #280 ---
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -148,6 +173,8 @@ namespace beyondnations.desktop {
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
                     case "--renderer":         options.Renderer = rendererAfter(args, ref i); break;
+                    case "--native-lighting":  options.NativeLighting = nativeLightingAfter(args, ref i); break;
+                    case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
                     case "--help":
                     case "-h":
                         printUsage();
@@ -199,6 +226,38 @@ namespace beyondnations.desktop {
         }
         // --- end #274 ---
 
+        // --- #280 ---
+        private static NativeLighting nativeLightingAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            switch (args[i].ToLowerInvariant()) {
+                case "legacy": return NativeLighting.Legacy;
+                case "sun":    return NativeLighting.Sun;
+            }
+            Console.Error.WriteLine("unknown native lighting: " + args[i] + " (expected legacy or sun)");
+            System.Environment.Exit(2);
+            return NativeLighting.Sun;
+        }
+
+        private static float timeOfDayAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            float parsed;
+            if (!float.TryParse(args[i], NumberStyles.Float, CultureInfo.InvariantCulture, out parsed)
+                || float.IsNaN(parsed) || parsed < 0f || parsed >= 1f) {
+                Console.Error.WriteLine("time of day must be a number in [0, 1): " + args[i]);
+                System.Environment.Exit(2);
+            }
+            return parsed;
+        }
+        // --- end #280 ---
+
         private static int intAfter(string[] args, ref int i, int fallback) {
             if (i + 1 >= args.Length) {
                 Console.Error.WriteLine("missing value after " + args[i]);
@@ -240,6 +299,8 @@ namespace beyondnations.desktop {
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause or inventory",
                 "  --renderer NAME         silk (default) or native (the Strata engine)",
+                "  --native-lighting NAME  native renderer only: sun (default; follows the time of day) or legacy",
+                "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --help, -h              print this and exit"
             });
         }

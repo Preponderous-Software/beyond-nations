@@ -159,7 +159,8 @@ namespace beyondnations.desktop {
             if (options.Renderer == RendererKind.Native) {
                 renderer = new NativeWorldRenderer(
                     name => window.GLContext.GetProcAddress(name),
-                    window.FramebufferSize.X, window.FramebufferSize.Y);
+                    window.FramebufferSize.X, window.FramebufferSize.Y,
+                    options.NativeLighting == NativeLighting.Sun); // #280
             } else {
                 renderer = new SilkWorldRenderer(gl);
             }
@@ -219,6 +220,12 @@ namespace beyondnations.desktop {
         private void createWorld() {
             simulation = new Simulation(gameConfig);
             simulation.getPlayer().getStatus().update("Press " + KeyBindings.CreateNewNation + " to create a nation.");
+
+            // --- #280 ---
+            if (options.TimeOfDay >= 0f) {
+                simulation.getTimeOfDay().setStartFraction(options.TimeOfDay);
+            }
+            // --- end #280 ---
 
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {
@@ -416,6 +423,11 @@ namespace beyondnations.desktop {
                 camera.setRenderDistance(player.getRenderDistance());
                 camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
                 culler.beginFrame(camera);
+                // --- #280 ---
+                if (renderer is NativeWorldRenderer native && native.usesSunLighting()) {
+                    native.setTimeOfDay(simulation.getTimeOfDay().getFraction());
+                }
+                // --- end #280 ---
                 renderer.render(snapshot, camera.getViewMatrix(), camera.getProjectionMatrix(), culler);
                 reportRenderDistance(player.getRenderDistance());
                 // --- end #219 ---
