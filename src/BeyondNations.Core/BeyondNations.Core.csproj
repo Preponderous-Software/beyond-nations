@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    BeyondNations.Core is the simulation, and it must never reference a game
+    engine. Everything under this directory is engine-agnostic and buildable
+    with nothing but the .NET SDK. See issue #211.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>beyondnations</RootNamespace>
+    <AssemblyName>BeyondNations.Core</AssemblyName>
+  </PropertyGroup>
+
+</Project>

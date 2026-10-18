@@ -1,53 +1,113 @@
 # Contributing Guide
 
 ## Getting Started
-To get started with the project, follow these steps:
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/Preponderous-Software/beyond-nations
-   cd beyond-nations
-   ```
+The only prerequisite is the [.NET SDK](https://dotnet.microsoft.com/download) 8.0 or newer.
 
-2. Open Unity Hub.
+```bash
+git clone https://github.com/Preponderous-Software/beyond-nations
+cd beyond-nations
+dotnet build
+dotnet test
+dotnet run --project src/BeyondNations.Desktop
+```
 
-3. Click "Add" (or "Open") and select the cloned `beyond-nations` directory.
+`dotnet build` and `dotnet test` need nothing but the SDK. `dotnet run` additionally needs an OpenGL 3.3 capable driver, which any desktop install has.
 
-4. Select Unity Editor version **2022.3.7f1** (or compatible version) when prompted.
-   - If you don't have this version installed, Unity Hub will prompt you to install it.
+### Useful switches
 
-5. Once the project opens in Unity, the main scene should load automatically.
-   - If it doesn't, navigate to `Assets/Scenes/` in the Project window and double-click `main.unity`.
+The game takes arguments that make it checkable without a person watching it, which is how the automated checks and most manual verification work:
 
-6. Press the Play button in the Unity Editor to run the game.
+| Switch | Effect |
+| --- | --- |
+| `--exit-after-frames N` | render N frames, then exit |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause` or `inventory` |
+| `--seed N` | fix the world seed, so a run is reproducible |
+| `--screenshot-after-frames N` | write a PNG and carry on |
+| `--render-stats` | report draw calls, instance counts and frame times on exit |
+| `--render-distance N` | start at this render distance; 0 keeps the configured one |
+| `--no-culling` | submit every primitive, culling nothing, to measure what culling saves |
+| `--no-labels` | draw no world-space nametags |
+| `--smoke-resize` | resize the window part-way through, to exercise resize handling |
+| `--width N`, `--height N` | window size (default 1280 × 720) |
+| `--ticks-per-second N` | simulation rate, independent of frame rate (default 50) |
+| `--no-vsync` | do not wait for vertical sync |
+| `--debug-mode` | open with the F1 overlay already on |
+| `--first-person` | open in first person, which `V` otherwise toggles |
+| `--no-usage-reporting` | send no usage report this run (see *Usage reporting* in the README) |
+| `--help`, `-h` | list every switch |
 
 ### Troubleshooting
-- **Missing Editor Version**: If you see this error, install Unity 2022.3.7f1 (or a compatible 2022.3.x version) through Unity Hub.
-- **Package Resolution Errors**: Unity will automatically download required packages when you first open the project. This may take a few minutes.
-- **Scene Not Loading**: Manually open the scene from `Assets/Scenes/main.unity` in the Project window.
+
+- **`dotnet: command not found`** — install the .NET SDK 8.0 or newer.
+- **The window does not open over SSH** — the game needs a display. On a headless machine, run it under a virtual framebuffer such as `Xvfb`, or use `--exit-after-frames` to check it starts without needing to see it.
+- **`Unable to load shared library 'cimgui'`** — the bundled Dear ImGui native library needs a reasonably current C library. The version pinned here works on Ubuntu 20.04 and newer; if you have changed the `ImGui.NET` version, check that first.
+
+## Layout
+
+```
+src/BeyondNations.Core/      the simulation. No graphics, no engine, no packages.
+src/BeyondNations.Desktop/   the host: window, renderer, camera, input, UI, usage reporting.
+tests/BeyondNations.Core.Tests/
+tests/BeyondNations.Desktop.Tests/
+docs/
+```
+
+The split is the most important convention in the project and is explained in the [Architecture Note](./ARCHITECTURE.md). The short version: **`BeyondNations.Core` must never reference a game engine, a graphics API, or a window.** A continuous integration job fails the build if it does.
+
+If you are unsure which project your change belongs in, ask whether it could be tested with no window open. If yes, it belongs in core.
+
+## Conventions
+
+- Target framework is **net8.0**.
+- Methods are `camelCase`, matching the existing code, rather than the usual .NET `PascalCase`. Consistency with the surrounding code wins.
+- Four-space indentation, opening brace on the same line.
+- The repository has been formatted with [csharpier](https://csharpier.com/) in the past; the tool manifest is in `.config/dotnet-tools.json`. Restore it with `dotnet tool restore` if you want it.
+- Prefer a plain class that can be constructed in a test over one that needs a graphics context.
+
+## Tests
+
+Tests are [xUnit](https://xunit.net/), under `tests/`, mirroring the structure of the code they cover.
+
+```bash
+dotnet test                                        # everything
+dotnet test tests/BeyondNations.Core.Tests         # the simulation only
+```
+
+Write tests for what you change. Two things are worth knowing:
+
+- **Assertions must be able to fail.** The suite this replaced used a Unity call that only wrote a note when something was wrong, so it could not fail a build and did not for years. Use `Assert.Equal`, `Assert.True` and friends, which stop the run.
+- **Randomness is injected and seedable.** Construct a `RandomSource` with a fixed seed in a test rather than relying on a default, and world generation will produce the same world every time.
 
 ## Branching
-To keep the codebase organized, we use a branching model that is similar to Git Flow. The main branch is the default branch, and it contains the latest stable version of the codebase. The develop branch contains the latest version of the codebase, and it is the branch that should be used for development.
+
+The model is close to Git Flow. `main` holds the latest stable version. `develop` holds the latest development version and is what pull requests target.
 
 ## Pull Requests
-To contribute to the project, you must create a pull request. A pull request is a request to merge your changes into the develop branch. To create a pull request, follow these steps:
-1. Create a new branch from the develop branch.
-1. Make your changes.
-1. Commit your changes.
-1. Push your changes to the remote repository.
-1. Create a pull request on GitHub.
-1. Wait for your pull request to be reviewed, approved & merged. Comments may be made on your pull request, and you may be asked to make changes.
 
-### Running CI Checks Locally
-Before creating a pull request, it's recommended to run the CI checks locally to ensure your changes pass all automated tests. See the [CI/CD Documentation](./CI-CD.md) for detailed instructions on:
-- Running Unity tests locally
-- Building the project to verify it compiles
-- Checking for missing or orphaned .meta files
+1. Branch from `develop`.
+2. Make your changes, with tests.
+3. Run `dotnet build` and `dotnet test` locally.
+4. Push and open a pull request against `develop`.
+5. Wait for review. The automated checks must pass before it can be merged.
 
-All pull requests must pass the automated CI checks before they can be merged.
+### Running the checks locally
+
+The checks are the same two commands the pipeline runs, so there is nothing special to reproduce:
+
+```bash
+dotnet build BeyondNations.sln --configuration Release
+dotnet test  BeyondNations.sln --configuration Release
+```
+
+And the guard on the core boundary:
+
+```bash
+grep -rn --include='*.cs' -E '^[[:space:]]*using[[:space:]]+UnityEngine' src/BeyondNations.Core
+```
+
+See the [CI/CD Documentation](./CI-CD.md) for what the pipeline does with them.
 
 ## Issues
-If you encounter a bug or have a feature request, you can create an issue. An issue is a way to report a bug or request a feature. To create an issue, follow these steps:
-1. Create a new issue on GitHub.
-1. Describe the bug or feature request.
-1. Wait for the issue to be reviewed and resolved.
+
+If you find a bug or want a feature, open an issue describing it. Bug reports are more useful with the seed (`--seed`) and the switches you ran with, since that makes the world reproducible.

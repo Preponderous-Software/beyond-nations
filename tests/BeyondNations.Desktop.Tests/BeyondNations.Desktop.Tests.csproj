@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Covers the input layer under src/BeyondNations.Desktop/input (#217). That
+    code references Silk.NET.Input.Key, so it cannot be reached by
+    BeyondNations.Core.Tests without adding an engine dependency to Core; this
+    project references BeyondNations.Desktop instead, which already carries
+    Silk.NET.Input as a package reference. Nothing here opens a window;
+    IInputSource is faked, so InputService, KeyBindings, MouseLook and
+    PlayerInputController are all exercised headlessly.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>beyondnationstests.desktop</RootNamespace>
+    <AssemblyName>BeyondNations.Desktop.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/BeyondNations.Desktop/BeyondNations.Desktop.csproj" />
+  </ItemGroup>
+
+</Project>

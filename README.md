@@ -1,29 +1,28 @@
-# ![Beyond Nations](https://raw.githubusercontent.com/Preponderous-Software/beyond-nations/master/.github/media/banner.png)
+# ![Beyond Nations](./.github/media/banner.png)
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
 ## Quick Start
-To run the game:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Preponderous-Software/beyond-nations.git
-   cd beyond-nations
-   ```
+The only prerequisite is the [.NET SDK](https://dotnet.microsoft.com/download) 8.0 or newer. There is no editor to install, no account to create and no licence to obtain.
 
-2. **Open in Unity Hub**
-   - Open Unity Hub
-   - Click "Add" or "Open" and select the cloned `beyond-nations` directory
-   - Use Unity Editor version **2022.3.7f1** (or compatible 2022.3.x version)
+```bash
+git clone https://github.com/Preponderous-Software/beyond-nations.git
+cd beyond-nations
+dotnet run --project src/BeyondNations.Desktop
+```
 
-3. **Play the game**
-   - Unity will load the project and download required packages
-   - The main scene should load automatically (or open from `Assets/Scenes/main.unity`)
-   - Press the Play button to start the game
+That builds the game and opens it. To run the tests instead:
 
-For detailed contribution guidelines, see the [Contributing Guide](./docs/CONTRIBUTING.md).
+```bash
+dotnet test
+```
+
+On Linux the game needs an OpenGL 3.3 capable driver and the usual X11 or Wayland libraries, both of which a desktop install already has.
+
+For detailed contribution guidelines, see the [Contributing Guide](./docs/CONTRIBUTING.md). For how the code is laid out, see the [Architecture Note](./docs/ARCHITECTURE.md).
 
 ## Project Status & CI
-[![Unity CI](https://github.com/Preponderous-Software/beyond-nations/actions/workflows/unity-ci.yml/badge.svg)](https://github.com/Preponderous-Software/beyond-nations/actions/workflows/unity-ci.yml)
+[![CI](https://github.com/Preponderous-Software/beyond-nations/actions/workflows/ci.yml/badge.svg)](https://github.com/Preponderous-Software/beyond-nations/actions/workflows/ci.yml)
 
 This project uses continuous integration to ensure code quality and stability. All pull requests are automatically tested. For more information about the CI pipeline and how to run checks locally, see the [CI/CD Documentation](./docs/CI-CD.md).
 
@@ -56,10 +55,10 @@ The following controls are available in the game:
 ---
 | Key | Action |
 | --- | --- |
-| `W` | Move forward |
-| `A` | Turn left |
-| `S` | Move backward |
-| `D` | Turn right |
+| `W` / `Up Arrow` | Move forward |
+| `A` / `Left Arrow` | Turn left |
+| `S` / `Down Arrow` | Move backward |
+| `D` / `Right Arrow` | Turn right |
 | `E` | Interact with nearest entity |
 | `Space` | Jump |
 | `Left Shift` | Sprint |
@@ -70,30 +69,35 @@ The following controls are available in the game:
 | `P` | Plant a sapling |
 | `H` | Teleport to home settlement |
 | `B` | Build stall |
-| `I` | Open inventory |
+| `I` | Open / close the inventory screen (pauses the world) |
 | `Insert` | Toggle auto-walk |
+| `V` | Switch between the third-person and first-person view |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
-| `F1` | Toggle show debug menu |
-| `F2` | Generate nearby land |
-| `F3` | Spawn a new pawn |
-| `F4` | Spawn money |
-| `F5` | Spawn wood |
-| `F6` | Teleport all pawns to you |
+| `Escape` | Pause / unpause; close the inventory screen; back out of a menu; quit from the main menu |
+| `F1` | Toggle debug mode (and the debug menu) |
+| `F2` | Generate nearby land *(debug mode only)* |
+| `F3` | Spawn a new pawn *(debug mode only)* |
+| `F4` | Spawn money *(debug mode only)* |
+| `F5` | Spawn wood *(debug mode only)* |
+| `F6` | Teleport all pawns to you *(debug mode only)* |
 | `F12` | Take screenshot |
 
+*(debug mode only)* keys do nothing until debug mode has been enabled with `F1`.
+
 ## Game Systems
-There are a number of systems that will be implemented in the game. These systems will be used to create an engaging gameplay experience. Details can be found in the [Systems Document](./docs/SYSTEMS.md).
+A number of systems combine to create the gameplay experience. Some are already implemented and some are still planned; the [Systems Document](./docs/SYSTEMS.md) lists each one with its current status.
 
 ## Tech Stack
-Our game will be built using the following technologies:
-- [C#](https://docs.microsoft.com/en-us/dotnet/csharp/): This object-oriented programming language will be used to write the game's code.
-- [Unity](https://unity.com/): A popular game engine that provides a framework for designing and developing games.
-- [Blender](https://www.blender.org/): A powerful 3D modeling software that will be used to create the game's visual assets.
-- [JSON](https://www.json.org/json-en.html): A lightweight data format that will be used to store and exchange game data, providing efficient and reliable data persistence.
-- [Git](https://git-scm.com/): A version control system that allows for collaborative development and efficient management of codebase changes.
-- [GitHub](https://github.com/): A web-based Git repository hosting service that enables version control and collaboration for developers.
-- [Visual Studio Code](https://code.visualstudio.com/): A code editor that supports a wide range of programming languages and offers features such as debugging, syntax highlighting, and extensions.
+- [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) on [.NET 8](https://dotnet.microsoft.com/): the whole game, simulation and host alike.
+- [Silk.NET](https://github.com/dotnet/Silk.NET): windowing, OpenGL and input, maintained under the `dotnet` organisation.
+- [Dear ImGui](https://github.com/ImGuiNET/ImGui.NET): the menus, the heads-up display and the info boxes.
+- [FontStashSharp](https://github.com/FontStashSharp/FontStashSharp): the glyph atlas behind world-space nametags.
+- [Git](https://git-scm.com/) and [GitHub](https://github.com/): version control, review and continuous integration.
+
+The game does not use a commercial engine. Everything it draws is a coloured primitive generated in code, so the renderer, camera, input and user interface are written in the repository rather than supplied by a vendor. The reasoning is recorded in the [Engine Migration Rationale](./docs/ENGINE-MIGRATION-RATIONALE.md).
+
+Third-party assets and their licences are listed in [THIRD-PARTY.md](./docs/THIRD-PARTY.md).
 
 ## Inspirations
 ### Medieval Factions
@@ -104,6 +108,31 @@ Mount & Blade: Warband is a medieval action role-playing game that features a sa
 
 ### Minecraft
 Minecraft is a sandbox video game that allows players to explore a procedurally generated world, gather resources, craft items, and build structures. The game features a variety of gameplay elements such as combat, exploration, and resource gathering. The game is a great source of inspiration for our project because it features many of the gameplay elements that we want to implement in our game.
+
+## Usage reporting
+Usage reporting is on by default: each time the game starts, Beyond Nations sends its name (`beyond-nations`), its version and a random installation ID in one `startup` event to [trace](https://github.com/Stephenson-Software/trace) at `https://trace.danielstephenson.dev`. Nothing about you, your machine, your world or anything you do in the game is sent. (The trace server sees the IP address of the request, as every web server does.)
+
+The installation ID is a random UUID, made on the first run with reporting on and kept in a file named `trace-install-id` beside `settings.json` (see below). It is not derived from anything about you or your computer; it only lets trace count installations rather than startups. Delete the file to reset it. Setting the environment variable `TRACE_INSTALL_ID` sends that value instead, and the file is left alone. Every way of turning reporting off below also stops the ID: with reporting off, the file is never created, read or sent. The report goes out on a background thread, never holds up the game, and is dropped silently if the service cannot be reached.
+
+The first run creates a `settings.json` in the game's data directory (`~/.local/share/BeyondNations/` on Linux, `%AppData%\BeyondNations\` on Windows) and prints a one-line notice naming it. To turn reporting off, any one of these is enough:
+
+- `"usageReporting": {"enabled": false}` in that `settings.json`:
+
+  ```json
+  {
+      "usageReporting": {
+          "enabled": false
+      }
+  }
+  ```
+
+- the command-line switch `--no-usage-reporting`, for one run
+- the environment variable `TRACE_USAGE_REPORTING=off` (also `false`, `0`, `no`), which turns off every program that reports to trace
+- the environment variable `DO_NOT_TRACK=1` (see [consoledonottrack.com](https://consoledonottrack.com))
+
+The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
+
+Details: https://github.com/Stephenson-Software/trace#usage-reporting
 
 ## Contributing
 To get started contributing to this project, please read the [Contributing Guide](./docs/CONTRIBUTING.md).

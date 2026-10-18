@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>beyondnations.desktop</RootNamespace>
+    <AssemblyName>BeyondNations.Desktop</AssemblyName>
+    <!--
+      The renderer hands vertex and instance data to the driver as raw pointers.
+      Copying it through a managed intermediate every frame would be exactly the
+      per-frame allocation #218 rules out.
+    -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontStashSharp" Version="1.3.10" />
+    <!--
+      The user interface (#221). Dear ImGui is immediate mode, as the OnGUI code
+      it replaces was, so the screens map across shape for shape.
+      Silk.NET.OpenGL.Extensions.ImGui supplies the GL backend and the input
+      plumbing, so neither has to be written here.
+    -->
+    <!--
+      Pinned to 1.90.8.1 deliberately. The native libcimgui.so shipped with
+      1.91.6.1 is built against GLIBC 2.38, so the game fails at startup with
+      "Unable to load shared library cimgui" on any distribution older than
+      that, Ubuntu 20.04 and 22.04 included. 1.90.8.1 has no such requirement,
+      and is the version Silk.NET.OpenGL.Extensions.ImGui 2.23.0 resolves on
+      its own. See #221.
+    -->
+    <PackageReference Include="ImGui.NET" Version="1.90.8.1" />
+    <PackageReference Include="Silk.NET.OpenGL.Extensions.ImGui" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.Windowing" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.OpenGL" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.Input" Version="2.23.0" />
+    <PackageReference Include="StbImageWriteSharp" Version="1.16.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The bundled font travels with the build; the game reads it at startup
+         to pack its glyph atlas. Its licence sits beside it. See #222. -->
+    <None Include="assets/fonts/DejaVuSans.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets/fonts/LICENSE-DejaVu.txt" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Usage reporting defaults (enabled, endpoint, key), read at startup
+         from beside the executable. See telemetry/UsageReporting.cs. -->
+    <None Include="usage-reporting.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../BeyondNations.Core/BeyondNations.Core.csproj" />
+  </ItemGroup>
+
+</Project>

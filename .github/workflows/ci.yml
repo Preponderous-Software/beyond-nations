@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+  push:
+    branches: ["main", "develop"]
+
+# Stop previous runs for the same workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Limit GITHUB_TOKEN permissions to only what is needed
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        run: dotnet restore BeyondNations.sln
+
+      - name: Build
+        run: dotnet build BeyondNations.sln --configuration Release --no-restore
+
+      # A compiling project is not a passing one. Test failures fail this job,
+      # which is what makes this a real merge gate -- the first the project has
+      # had. See #215.
+      - name: Test
+        run: dotnet test BeyondNations.sln --configuration Release --no-build --verbosity normal
+
+  core-is-engine-agnostic:
+    name: Core is engine-agnostic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # BeyondNations.Core exists to be buildable and testable without a game
+      # engine. That property is easy to lose by accident and cheap to check,
+      # so it is checked rather than trusted.
+      - name: Assert no engine reference in core
+        run: |
+          if grep -rn --include='*.cs' -E '^[[:space:]]*using[[:space:]]+UnityEngine' src/BeyondNations.Core; then
+            echo "::error::BeyondNations.Core must not reference UnityEngine."
+            exit 1
+          fi
+          echo "No UnityEngine reference in BeyondNations.Core."

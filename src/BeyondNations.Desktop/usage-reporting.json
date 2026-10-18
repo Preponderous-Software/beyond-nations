@@ -1,0 +1,16 @@
+// Usage reporting defaults, shipped with the game. Reporting is on unless the
+// player turns it off; see "Usage reporting" in the README and
+// https://github.com/Stephenson-Software/trace#usage-reporting.
+//
+// Do not edit this copy to opt out -- it is replaced on every build. Set
+// "usageReporting": { "enabled": false } in the settings.json the game creates
+// in its data directory on first run (the startup notice names the path), pass
+// --no-usage-reporting, or set TRACE_USAGE_REPORTING=off or DO_NOT_TRACK=1.
+//
+// The key identifies Beyond Nations to the trace server and can only report;
+// it is not a secret (trace decision 0001, per-program write keys).
+{
+    "enabled": true,
+    "endpoint": "https://trace.danielstephenson.dev",
+    "key": "5eeDrDejaHCRuOAOLlmyFfOMOoWwI8hTXXz3nBujQcs"
+}
