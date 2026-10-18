@@ -68,3 +68,18 @@ recorded beside the `PackageReference` in
 
 `BeyondNations.Core` has **no** package dependencies at all. That is deliberate:
 the simulation is meant to build and run with nothing but the .NET SDK.
+
+## Native libraries
+
+### Strata
+
+| | |
+| --- | --- |
+| Files | `runtimes/linux-x64/native/libstrata.so`, `runtimes/win-x64/native/strata.dll` in the build output |
+| Source | <https://github.com/Preponderous-Software/strata>, release `v0.1.0` |
+| Licence | MIT; its own third-party notices (SDL3, zlib licence; glm, glad, stb, MIT or public domain) are in `THIRD_PARTY_NOTICES.md` in the Strata release archive |
+| Integrity | Each file's SHA-256 is pinned in `BeyondNations.Desktop.csproj`, and the build refuses a download that does not match |
+
+This is the shared native engine behind `--renderer native` (#274). SDL3 is
+linked into it statically, so its zlib-licence notice travels with Strata's
+notices.
