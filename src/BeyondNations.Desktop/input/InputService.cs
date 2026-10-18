@@ -43,6 +43,7 @@ namespace beyondnations.desktop.input {
             }
 
             mouseDelta = source.GetMouseDelta();
+            source.EndFrame();
         }
 
         /**
