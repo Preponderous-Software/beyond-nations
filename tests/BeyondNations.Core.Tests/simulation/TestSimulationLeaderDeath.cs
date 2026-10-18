@@ -98,6 +98,7 @@ namespace beyondnationstests {
             Assert.True(settlement.isMarkedForDeletion());
             Assert.Empty(nation.getSettlements());
             Assert.Equal("Testland has been disbanded.", simulation.getPlayer().getStatus().getStatus());
+            Assert.Equal(1, simulation.getEventRepository().getNumberOfEvents(EventType.NationDisband));
         }
     }
 }
