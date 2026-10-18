@@ -67,3 +67,55 @@ jobs:
             exit 1
           fi
           echo "No native engine reference in BeyondNations.Core."
+
+  # Engine phase B1 (#275): the native renderer (Strata) must draw what the
+  # Silk.NET renderer draws. One process renders the same snapshot with both,
+  # for seeds 42, 7 (no pawns) and 1234 from three camera views, and fails if
+  # the per-kind instance, drawn or culled counts differ, or if more than 1%
+  # of pixels differ by over CIE76 Delta E 4 on llvmpipe. Then the real game
+  # runs headlessly with --renderer native.
+  renderer-parity:
+    name: Renderer parity (Silk vs native, llvmpipe)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install Mesa (llvmpipe) and Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb libgl1-mesa-dri libglx-mesa0 libegl1
+
+      - name: Build the parity tool and the game
+        run: dotnet build tools/BeyondNations.RendererParity/BeyondNations.RendererParity.csproj --configuration Release
+
+      - name: Parity and native smoke run
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          GALLIUM_DRIVER: llvmpipe
+        run: |
+          # Xvfb itself needs the llvmpipe variables, or it can fail to start.
+          Xvfb :99 -screen 0 1280x800x24 &
+          sleep 3
+          export DISPLAY=:99
+          mkdir -p parity-out
+          dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
+            --seeds 42,7,1234 --out parity-out
+          dotnet src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll \
+            --renderer native --seed 42 --start-screen world --exit-after-frames 120 \
+            --screenshot-after-frames 60 --render-stats --no-usage-reporting | tee parity-out/native-smoke.log
+          grep -q "world renderer: native" parity-out/native-smoke.log
+          cp ~/.local/share/BeyondNations/Screenshots/*.png parity-out/
+
+      - name: Upload parity images
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renderer-parity
+          path: parity-out/
+          if-no-files-found: ignore
