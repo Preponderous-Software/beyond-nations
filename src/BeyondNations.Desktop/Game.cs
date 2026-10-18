@@ -324,6 +324,14 @@ namespace beyondnations.desktop {
                 }
             }
 
+            // Any key leaves the title screen. ScreenState.anyKeyPressed()
+            // had no caller after the move off Unity, so the game stayed on
+            // the title for good. Escape is read first and still quits from
+            // the title, as it did.
+            if (inputService.wasAnyKeyPressedThisFrame()) {
+                screens.anyKeyPressed();
+            }
+
             // --- #246 ---
             // Capture reads the framebuffer, so the screenshot key stays with
             // the host rather than moving into PlayerInputController along with

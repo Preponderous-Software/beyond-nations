@@ -110,5 +110,25 @@ namespace beyondnationstests.desktop.input {
             inputService.update();
             Assert.Equal(Vector2.Zero, inputService.getMouseDelta());
         }
+
+        [Fact]
+        public void wasAnyKeyPressedThisFrame_isTrue_onlyOnTheFrameAKeyGoesDown() {
+            FakeInputSource source = new FakeInputSource();
+            InputService inputService = new InputService(source);
+
+            inputService.update();
+            Assert.False(inputService.wasAnyKeyPressedThisFrame());
+
+            source.press(Key.Enter);
+            inputService.update();
+            Assert.True(inputService.wasAnyKeyPressedThisFrame());
+
+            inputService.update();
+            Assert.False(inputService.wasAnyKeyPressedThisFrame());
+
+            source.press(Key.Q);
+            inputService.update();
+            Assert.True(inputService.wasAnyKeyPressedThisFrame());
+        }
     }
 }
