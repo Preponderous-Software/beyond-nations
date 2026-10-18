@@ -32,18 +32,44 @@ namespace beyondnations.desktop {
                        UsageReporting.defaultSettingsPath(),
                        message => Log.info(message),
                        message => Log.warning(message))) {
-                try {
-                    using (Game game = new Game(options)) {
-                        game.run();
-                    }
-                } catch (Exception e) {
-                    Console.Error.WriteLine("[error] the host failed to start: " + e.Message);
-                    Console.Error.WriteLine(e);
-                    return 1;
-                }
+                Game game = null;
+                return runAndReport(
+                    () => { game = new Game(options); game.run(); },
+                    () => game?.Dispose(),
+                    () => game != null && game.getFramesRendered() > 0,
+                    Console.Error.WriteLine);
             }
+        }
 
-            return 0;
+        /**
+        * Runs the game and reports what went wrong if it did. An exception
+        * thrown from inside the window's loop leaves Silk.NET believing the
+        * loop is still running, so disposing the window afterwards throws
+        * "You cannot call Reset inside of the render loop!" -- which, inside a
+        * using block, replaced the real exception and was all a player saw.
+        * The real one is reported first now, and a failure to dispose after
+        * it is only a warning.
+        */
+        public static int runAndReport(Action run, Action dispose, Func<bool> started, Action<string> error) {
+            int exitCode = 0;
+            try {
+                run();
+            } catch (Exception e) {
+                error(started()
+                    ? "[error] the game crashed: " + e.Message
+                    : "[error] the host failed to start: " + e.Message);
+                error(e.ToString());
+                exitCode = 1;
+            }
+            try {
+                dispose();
+            } catch (Exception e) {
+                if (exitCode == 0) {
+                    throw;
+                }
+                error("[warn ] cleanup after the error above also failed: " + e.Message);
+            }
+            return exitCode;
         }
     }
 }
