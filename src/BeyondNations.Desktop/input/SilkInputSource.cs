@@ -12,20 +12,35 @@ namespace beyondnations.desktop.input {
     */
     public class SilkInputSource : IInputSource {
         private readonly IInputContext context;
+        private readonly PressLatch<Key> keyPresses = new PressLatch<Key>();
         private Vector2 lastMousePosition;
         private bool hasLastMousePosition;
 
         public SilkInputSource(IInputContext context) {
             this.context = context;
+            foreach (IKeyboard keyboard in context.Keyboards) {
+                keyboard.KeyDown += (_, key, _) => keyPresses.recordPress(key);
+            }
         }
 
+        /**
+        * Down now, or went down since the last frame. The second half is what
+        * keeps a tap shorter than a frame from being lost (see PressLatch).
+        */
         public bool IsKeyDown(Key key) {
+            if (keyPresses.wasPressed(key)) {
+                return true;
+            }
             foreach (IKeyboard keyboard in context.Keyboards) {
                 if (keyboard.IsKeyPressed(key)) {
                     return true;
                 }
             }
             return false;
+        }
+
+        public void EndFrame() {
+            keyPresses.clear();
         }
 
         /**

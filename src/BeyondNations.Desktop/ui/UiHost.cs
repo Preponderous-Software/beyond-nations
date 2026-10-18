@@ -1,9 +1,11 @@
 using System;
+using ImGuiNET;
 using Silk.NET.Input;
 using Silk.NET.OpenGL;
 using Silk.NET.OpenGL.Extensions.ImGui;
 using Silk.NET.Windowing;
 using beyondnations;
+using beyondnations.desktop.input;
 using beyondnations.desktop.ui.screens;
 
 namespace beyondnations.desktop.ui {
@@ -23,6 +25,8 @@ namespace beyondnations.desktop.ui {
     */
     public class UiHost : IDisposable {
         private readonly ImGuiController controller;
+        private readonly IInputContext input;
+        private readonly PressLatch<MouseButton> clicks = new PressLatch<MouseButton>();
         private readonly ScreenState screens;
         // The config screen edits this whether or not a world exists, so it
         // comes from the host rather than through the simulation.
@@ -41,6 +45,10 @@ namespace beyondnations.desktop.ui {
 
         public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig) {
             this.controller = new ImGuiController(gl, window, input);
+            this.input = input;
+            foreach (IMouse mouse in input.Mice) {
+                mouse.MouseDown += (_, button) => clicks.recordPress(button);
+            }
             this.screens = screens;
             this.gameConfig = gameConfig;
         }
@@ -78,6 +86,7 @@ namespace beyondnations.desktop.ui {
         */
         public void render(double deltaTime, float width, float height, Simulation simulation, bool debugMode) {
             frameRate.record(deltaTime);
+            replayClicksShorterThanAFrame();
             controller.Update((float) deltaTime);
 
             UiAction action = UiAction.None;
@@ -108,6 +117,32 @@ namespace beyondnations.desktop.ui {
 
             apply(action);
             controller.Render();
+        }
+
+        /**
+        * ImGuiController reads the mouse buttons by polling, so a click whose
+        * down and up both land between two frames -- a touchpad tap-to-click,
+        * or any quick click at a low frame rate -- never reached ImGui and
+        * buttons such as Start ignored it. Such a click is handed to ImGui as
+        * queued events instead, which it plays back as down on this frame and
+        * up on the next. Called before controller.Update(), which is where
+        * ImGui consumes the queue.
+        */
+        private void replayClicksShorterThanAFrame() {
+            if (input.Mice.Count == 0) {
+                clicks.clear();
+                return;
+            }
+            IMouse mouse = input.Mice[0];
+            foreach (MouseButton button in clicks.takeReleasedSinceLastFrame(b => mouse.IsButtonPressed(b))) {
+                int index = (int) button;
+                if (index < 0 || index > 2) {
+                    continue;
+                }
+                ImGuiIOPtr io = ImGui.GetIO();
+                io.AddMouseButtonEvent(index, true);
+                io.AddMouseButtonEvent(index, false);
+            }
         }
 
         private void apply(UiAction action) {

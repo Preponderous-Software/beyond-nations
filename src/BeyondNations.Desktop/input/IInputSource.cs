@@ -18,5 +18,13 @@ namespace beyondnations.desktop.input {
         bool IsKeyDown(Key key);
 
         Vector2 GetMouseDelta();
+
+        /**
+        * Called by InputService once it has read every key for the frame. A
+        * source that latches presses between frames (SilkInputSource) forgets
+        * them here; a source that only reports live state has nothing to do.
+        */
+        void EndFrame() {
+        }
     }
 }
