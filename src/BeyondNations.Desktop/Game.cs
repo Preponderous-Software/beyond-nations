@@ -159,7 +159,10 @@ namespace beyondnations.desktop {
             // --- #274 ---
             if (options.Renderer == RendererKind.Native) {
                 renderer = new NativeWorldRenderer(
-                    name => window.GLContext.GetProcAddress(name),
+                    // TryGetProcAddress: Strata's loader asks for every GL 4.5
+                    // entry point and some drivers (Intel UHD 630 on Windows)
+                    // lack ones it never calls, such as glGetnTexImage.
+                    name => window.GLContext.TryGetProcAddress(name, out IntPtr address) ? address : IntPtr.Zero,
                     window.FramebufferSize.X, window.FramebufferSize.Y,
                     options.NativeLighting == NativeLighting.Sun); // #280
             } else {
