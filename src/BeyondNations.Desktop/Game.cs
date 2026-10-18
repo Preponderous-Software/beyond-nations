@@ -73,6 +73,7 @@ namespace beyondnations.desktop {
         // --screenshot-after-frames as well as from the F12 binding (#246).
         private bool screenshotAfterFramesDone;
         private string lastScreenshotPath;
+        private bool screenshotRequested;
 
         public Game(GameOptions options) {
             this.options = options;
@@ -338,8 +339,14 @@ namespace beyondnations.desktop {
             // the rest of the bindings. It is read from the binding table and
             // edge-detected by InputService like every other key, and it sits
             // above the world check so a screenshot can be taken on any screen.
+            // The press only asks for a capture; onRender takes it once the
+            // frame is drawn and before the buffers are swapped. Reading here,
+            // at the start of the next frame, read the back buffer after a
+            // swap, whose contents OpenGL leaves undefined -- Mesa happens to
+            // keep them, but Windows drivers may hand back black or stale
+            // pixels.
             if (inputService.wasPressedThisFrame(KeyBindings.TakeScreenshot)) {
-                captureScreenshotAndReport();
+                screenshotRequested = true;
             }
             // --- end #246 ---
 
@@ -463,6 +470,13 @@ namespace beyondnations.desktop {
                 }
             }
             // --- end #221 ---
+
+            // F12 (#246): the frame is complete, world and UI, and not yet
+            // swapped, so the back buffer holds exactly what is on screen.
+            if (screenshotRequested) {
+                screenshotRequested = false;
+                captureScreenshotAndReport();
+            }
 
             framesRendered++;
             // --- #219 camera and culling ---
