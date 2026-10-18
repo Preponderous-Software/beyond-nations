@@ -88,6 +88,37 @@ The following controls are available in the game:
 ## Game Systems
 A number of systems combine to create the gameplay experience. Some are already implemented and some are still planned; the [Systems Document](./docs/SYSTEMS.md) lists each one with its current status.
 
+## History film
+![Seed 12: six nations founding settlements and spreading over the map, one orbit](./.github/media/history-film.gif)
+
+*Seed 12, twenty in-game days (600,000 ticks) in 25 seconds: six nations rise one after another, each tinting the land its settlements recruit from. Rendered from the recorded USD stage in headless Blender.*
+
+A seeded world can be run with no window, recorded tick by tick and turned into a film. The clip above is seed 12 over 600,000 ticks (twenty days of Core's `TimeOfDay`, about 3 hours 20 minutes of play at 50 ticks per second), one frame per 800 ticks: six nations are founded one after another, each nation's colour spreads over the ground its settlements would recruit from, and pawns (drawn larger than life) take their nation's colour when they join.
+
+```bash
+# 1. Record: JSON Lines of entities, nations and events (deterministic per seed)
+dotnet run --project tools/BeyondNations.HistoryExport -c Release -- \
+    --seed 12 --ticks 600000 --every 200 --out out/history.jsonl
+
+# 2. Convert to a time-sampled OpenUSD stage (usd-recorder), chunked and flattened
+uv run --python 3.12 tools/history-to-usd.py out/history.jsonl out/usd/history.usda \
+    --stride 800 --chunk-size 200 --flatten
+
+# 3. Render an orbit in headless Blender, then overlay the counters and encode
+blender -b --threads 4 --python tools/history-film/render.py -- \
+    out/usd/history_flat.usdc out/frames --engine cycles --samples 16
+uv run --python 3.12 tools/history-film/finish.py out/usd/history_flat.usdc out/frames out/film
+```
+
+`tools/history-film/make-film.sh` runs all of it. What is recorded:
+
+- **Time**: the tick and Core's day (`TimeOfDay.getDay()`) on every frame; the overlay shows both.
+- **Entities**: every entity's kind, position, nation, home settlement and appearance (primitive, offset, scale, colour) from `EntityRepository`. Core's `EntityId` is a fresh `Guid` each run, so the exporter numbers entities and nations itself in first-seen order.
+- **Events**: nation founded, joined, left and disbanded, pawn spawned and died, from Core's own `EventRepository`; leadership changes and settlement founding are derived by comparing each nation with the previous tick, because Core changes those without an event.
+- **Territory** in the film is not a Core concept. A tile takes the colour of the nation whose settlement is nearest, if that settlement is within `settlementJoinRange`: the rule a pawn uses when it decides which nation to join.
+
+Same seed, same output: `tools/BeyondNations.HistoryExport.Tests` checks byte-identical exports. Core reads the wall clock in two places (the per-second tick counter and sapling growth, #272), so the exporter replaces both with simulated time at the game's 50 ticks per second without changing Core.
+
 ## Tech Stack
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) on [.NET 8](https://dotnet.microsoft.com/): the whole game, simulation and host alike.
 - [Silk.NET](https://github.com/dotnet/Silk.NET): windowing, OpenGL and input, maintained under the `dotnet` organisation.

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    A headless recorder for the simulation's history, used to make the history
+    film (see "History film" in the top-level README). It references Core
+    and nothing else; neither the game nor Core references it.
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>beyondnations.historyexport</RootNamespace>
+    <AssemblyName>BeyondNations.HistoryExport</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/BeyondNations.Core/BeyondNations.Core.csproj" />
+  </ItemGroup>
+
+</Project>
