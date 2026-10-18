@@ -211,6 +211,8 @@ namespace beyondnations {
                                             }
                                             else {
                                                 nationRepository.removeNation(nation);
+                                                // --- #269 ---
+                                                eventProducer.produceNationDisbandEvent(nation);
 
                                                 // remove settlements
                                                 foreach (EntityId settlementId in nation.getSettlements()) {
