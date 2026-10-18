@@ -1,12 +1,22 @@
 using System.Collections.Generic;
 using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace beyondnations {
 
     /**
     * One primitive to draw, flattened out of the simulation. Positions are
     * already in world space, so the host does no transform-tree walking.
+    *
+    * The layout is part of a contract: the native renderer (Strata) reads a
+    * list of these through a raw pointer, as a 44-byte record of an int kind,
+    * a position, a scale and four colour floats, in that order. Sequential
+    * layout is C#'s default for a struct, but it is stated here so the
+    * contract is visible, and BeyondNations.Desktop.Tests checks the size and
+    * offsets against the native library. Adding, removing or reordering a
+    * field breaks the native view.
     */
+    [StructLayout(LayoutKind.Sequential)]
     public struct RenderItem {
         public PrimitiveKind kind;
         public Vector3 position;
