@@ -1,4 +1,3 @@
-using System;
 using System.Numerics;
 
 namespace beyondnations {
@@ -8,10 +7,14 @@ namespace beyondnations {
 
         private int height;
 
-        private DateTime planted;
-        private int growTime;
+        private readonly TickCounter tickCounter;
+        // The total tick it was planted on, and how long it takes to grow in
+        // simulated seconds. Growth is measured in ticks, not on the wall
+        // clock, so a seed grows the same trees on every run (#272).
+        private readonly int plantedTick;
+        private readonly int growTime;
 
-        public Sapling(Vector3 position, int height, RandomSource random) : base(EntityType.SAPLING, "Sapling") {
+        public Sapling(Vector3 position, int height, RandomSource random, TickCounter tickCounter) : base(EntityType.SAPLING, "Sapling") {
             this.height = height;
             setPosition(position);
 
@@ -24,7 +27,8 @@ namespace beyondnations {
             getInventory().addItem(ItemType.APPLE, random.range(2, 4));
             getInventory().addItem(ItemType.SAPLING, random.range(1, 3));
 
-            planted = DateTime.Now;
+            this.tickCounter = tickCounter;
+            plantedTick = tickCounter.getTotalTicks();
             growTime = random.range(60, 600);
         }
 
@@ -32,8 +36,13 @@ namespace beyondnations {
             return height;
         }
 
+        public int getGrowTime() {
+            return growTime;
+        }
+
         public bool isGrown() {
-            return DateTime.Now.Subtract(planted).TotalSeconds > growTime;
+            long ticksSincePlanted = tickCounter.getTotalTicks() - plantedTick;
+            return ticksSincePlanted > (long) growTime * tickCounter.getTicksPerSecond();
         }
     }
 }

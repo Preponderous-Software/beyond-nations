@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using System.Reflection;
 using System.Text.Json;
 using Xunit;
 
@@ -155,45 +153,14 @@ namespace beyondnations.historyexport.tests {
         }
 
         [Fact]
-        public void testWallClockPin_SaplingGrowsAfterItsGrowTimeInSimulatedSeconds() {
-            GameConfig config = new GameConfig();
-            config.setWorldSeed(SeedWithoutPawns);
-            Simulation simulation = new Simulation(config);
-            WallClockPin pin = new WallClockPin(simulation, 50);
-            Sapling sapling = new Sapling(new Vector3(0, 1, 0), 3, simulation.getRandom());
-            simulation.getEntityRepository().addEntity(sapling);
-            int growTime = (int) typeof(Sapling)
-                .GetField("growTime", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(sapling);
-            int growTicks = growTime * 50;
+        public void testTicksPerSecondOption_ReachesTheSimulation() {
+            ExportOptions options = new ExportOptions();
+            options.Seed = SeedWithoutPawns;
+            options.Ticks = 1;
+            options.TicksPerSecond = 20;
+            HistoryExporter exporter = new HistoryExporter(options, new System.IO.MemoryStream());
 
-            // Far more ticks than real seconds pass here, so on the wall clock
-            // it would never grow; in simulated time it grows on schedule.
-            int tick = 0;
-            while (simulation.getEntityRepository().getEntity(sapling.getId()) != null && tick < growTicks + 10) {
-                pin.beforeTick();
-                simulation.fixedUpdate(1f / 50f);
-                tick++;
-            }
-
-            Assert.Null(simulation.getEntityRepository().getEntity(sapling.getId()));
-            Assert.InRange(tick, growTicks, growTicks + 2);
-        }
-
-        [Fact]
-        public void testWallClockPin_ResetsTheSecondCounterEveryTicksPerSecondTicks() {
-            GameConfig config = new GameConfig();
-            config.setWorldSeed(SeedWithoutPawns);
-            Simulation simulation = new Simulation(config);
-            WallClockPin pin = new WallClockPin(simulation, 50);
-
-            for (int i = 1; i <= 120; i++) {
-                pin.beforeTick();
-                simulation.fixedUpdate(1f / 50f);
-                // The counter reads as the game's would at exactly 50 ticks per
-                // real second, whatever the real clock did meanwhile.
-                Assert.Equal(i % 50, simulation.getTickCounter().getTick());
-            }
-            Assert.Equal(120, simulation.getTickCounter().getTotalTicks());
+            Assert.Equal(20, exporter.getSimulation().getTickCounter().getTicksPerSecond());
         }
     }
 }

@@ -59,7 +59,7 @@ namespace beyondnations {
             pawnNameGenerator = new PawnNameGenerator(random);
             nationNameGenerator = new NationNameGenerator(random);
 
-            tickCounter = new TickCounter();
+            tickCounter = new TickCounter(gameConfig.getTicksPerSecond());
             timeOfDay = new TimeOfDay(tickCounter); // #279: read by renderers only
             player = new Player(gameConfig.getPlayerWalkSpeed(), gameConfig.getPlayerRunSpeed(), tickCounter, gameConfig.getStatusExpirationTicks(), gameConfig.getRenderDistance(), random);
             eventRepository = new EventRepository();
@@ -69,7 +69,7 @@ namespace beyondnations {
             worldGenerator = new WorldGenerator(environment, player, eventProducer, entityRepository, gameConfig, random, pawnNameGenerator);
             nationRepository = new NationRepository(random);
             pawnBehaviorCalculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
-            pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator);
+            pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator, tickCounter);
             entityRepository.addEntity(player);
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
             // The opening hint names a key, and key bindings belong to the host
