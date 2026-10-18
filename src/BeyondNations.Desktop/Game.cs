@@ -80,6 +80,7 @@ namespace beyondnations.desktop {
             if (options.Seed != 0) {
                 gameConfig.setWorldSeed(options.Seed);
             }
+            gameConfig.setTicksPerSecond(options.TicksPerSecond);
             this.fixedTimeStep = 1.0 / options.TicksPerSecond;
         }
 
@@ -266,7 +267,8 @@ namespace beyondnations.desktop {
             }
 
             while (accumulator >= fixedTimeStep) {
-                simulation.getTickCounter().increment();
+                // fixedUpdate increments the tick counter itself; one fixed
+                // step is exactly one tick.
                 simulation.fixedUpdate((float) fixedTimeStep);
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;

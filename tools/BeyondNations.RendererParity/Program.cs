@@ -116,7 +116,6 @@ namespace beyondnations.tools.parity {
                     config.setWorldSeed(seed);
                     Simulation simulation = new Simulation(config);
                     for (int t = 0; t < ticks; t++) {
-                        simulation.getTickCounter().increment();
                         simulation.fixedUpdate(1f / 50f);
                     }
                     WorldSnapshot snapshot = new WorldSnapshot();

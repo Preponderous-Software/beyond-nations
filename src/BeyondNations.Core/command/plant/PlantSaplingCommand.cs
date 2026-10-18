@@ -4,8 +4,10 @@ namespace beyondnations {
     public class PlantSaplingCommand {
         private RandomSource random;
         private EntityRepository entityRepository;
+        private TickCounter tickCounter;
 
-        public PlantSaplingCommand(EntityRepository entityRepository, RandomSource random) {
+        public PlantSaplingCommand(EntityRepository entityRepository, RandomSource random, TickCounter tickCounter) {
+            this.tickCounter = tickCounter;
             this.random = random;
             this.entityRepository = entityRepository;
         }
@@ -13,7 +15,7 @@ namespace beyondnations {
         public void execute(Player player) {
             if (player.getInventory().getNumItems(ItemType.SAPLING) > 0) {
                 player.getInventory().removeItem(ItemType.SAPLING, 1);
-                Sapling sapling = new Sapling(player.getPosition(), 3, random);
+                Sapling sapling = new Sapling(player.getPosition(), 3, random, tickCounter);
                 sapling.setPosition(sapling.getPosition() + new Vector3(random.range(-5, 5), 0, random.range(-5, 5)));
                 sapling.setPosition(new Vector3(sapling.getPosition().X, 2, sapling.getPosition().Z));
                 entityRepository.addEntity(sapling);

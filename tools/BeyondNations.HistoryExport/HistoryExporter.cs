@@ -52,9 +52,10 @@ namespace beyondnations.historyexport {
     * The numbers are first-seen order in this export, so they are stable for a
     * given seed, tick count and `Every`, not across different `Every` values.
     *
-    * Determinism also needs Core's two wall-clock reads (the per-second tick
-    * counter and sapling growth) replaced with simulated time; see
-    * WallClockPin and #272.
+    * Determinism also relies on Core measuring time in ticks, not on the wall
+    * clock: the pawn behaviour cadence and sapling growth both follow the tick
+    * count and GameConfig's ticks per second (#272), which the exporter sets
+    * from TicksPerSecond.
     */
     public sealed class HistoryExporter {
         public const string Format = "beyond-nations-history/1";
@@ -70,7 +71,6 @@ namespace beyondnations.historyexport {
 
         private readonly ExportOptions options;
         private readonly Simulation simulation;
-        private readonly WallClockPin pin;
         private readonly Utf8JsonWriter json;
         private readonly Stream sink;
 
@@ -91,8 +91,8 @@ namespace beyondnations.historyexport {
             this.options = options;
             GameConfig config = new GameConfig();
             config.setWorldSeed(options.Seed);
+            config.setTicksPerSecond(options.TicksPerSecond);
             simulation = new Simulation(config);
-            pin = new WallClockPin(simulation, options.TicksPerSecond);
             sink = output;
             json = new Utf8JsonWriter(output, new JsonWriterOptions {
                 Indented = false,
@@ -114,7 +114,6 @@ namespace beyondnations.historyexport {
             float dt = 1f / options.TicksPerSecond;
             writeHeader();
             for (int i = 0; i < options.Ticks; i++) {
-                pin.beforeTick();
                 simulation.fixedUpdate(dt);
                 int tick = simulation.getTickCounter().getTotalTicks();
                 writeNewChunks(tick);

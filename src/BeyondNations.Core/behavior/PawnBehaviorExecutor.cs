@@ -14,8 +14,10 @@ namespace beyondnations {
         private NationRepository nationRepository;
         private EventProducer eventProducer;
         private EntityRepository entityRepository;
+        private TickCounter tickCounter;
 
-        public PawnBehaviorExecutor(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, NationNameGenerator nationNameGenerator) {
+        public PawnBehaviorExecutor(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, NationNameGenerator nationNameGenerator, TickCounter tickCounter) {
+            this.tickCounter = tickCounter;
             this.nationNameGenerator = nationNameGenerator;
             this.random = random;
             this.environment = environment;
@@ -335,7 +337,7 @@ namespace beyondnations {
             Vector3 position = pawn.getPosition();
             position += new Vector3(random.range(-5f, 5f), 0, random.range(-5f, 5f));
             position.Y = 2;
-            Sapling tree = new Sapling(position, 3, random);
+            Sapling tree = new Sapling(position, 3, random, tickCounter);
             entityRepository.addEntity(tree);
             pawn.getInventory().removeItem(ItemType.SAPLING, 1);
             pawn.setCurrentBehaviorType(BehaviorType.WANDER);

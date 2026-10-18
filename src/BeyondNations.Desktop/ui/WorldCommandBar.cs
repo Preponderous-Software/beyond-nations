@@ -108,7 +108,7 @@ namespace beyondnations.desktop.ui {
 
             if (player.getInventory().getNumItems(ItemType.SAPLING) > 0 && !player.isCurrentlyInSettlement()) {
                 commands.Add(new WorldCommand("Plant Sapling", () =>
-                    new PlantSaplingCommand(entityRepository, simulation.getRandom()).execute(player)));
+                    new PlantSaplingCommand(entityRepository, simulation.getRandom(), simulation.getTickCounter()).execute(player)));
             }
 
             if (!player.isCurrentlyInSettlement()) {

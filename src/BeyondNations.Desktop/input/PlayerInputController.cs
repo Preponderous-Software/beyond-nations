@@ -91,7 +91,7 @@ namespace beyondnations.desktop.input {
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.PlantSapling)) {
-                new PlantSaplingCommand(simulation.getEntityRepository(), simulation.getRandom())
+                new PlantSaplingCommand(simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter())
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.TeleportToHomeSettlement)) {

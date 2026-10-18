@@ -18,7 +18,7 @@ namespace beyondnationstests {
             environment = new Environment(5, 5, entityRepository, random);
             NationRepository nationRepository = new NationRepository(random);
             EventProducer eventProducer = new EventProducer(new EventRepository());
-            executor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, new NationNameGenerator(random));
+            executor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, new NationNameGenerator(random), new TickCounter());
         }
 
         /**

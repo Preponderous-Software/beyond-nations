@@ -117,7 +117,7 @@ uv run --python 3.12 tools/history-film/finish.py out/usd/history_flat.usdc out/
 - **Events**: nation founded, joined, left and disbanded, pawn spawned and died, from Core's own `EventRepository`; leadership changes and settlement founding are derived by comparing each nation with the previous tick, because Core changes those without an event.
 - **Territory** in the film is not a Core concept. A tile takes the colour of the nation whose settlement is nearest, if that settlement is within `settlementJoinRange`: the rule a pawn uses when it decides which nation to join.
 
-Same seed, same output: `tools/BeyondNations.HistoryExport.Tests` checks byte-identical exports. Core reads the wall clock in two places (the per-second tick counter and sapling growth, #272), so the exporter replaces both with simulated time at the game's 50 ticks per second without changing Core.
+Same seed, same output: `tools/BeyondNations.HistoryExport.Tests` checks byte-identical exports. Core measures time in ticks rather than on the wall clock (the pawn behaviour cadence and sapling growth, #272), so a headless run of a seed matches the windowed game at the same ticks per second.
 
 ## Tech Stack
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) on [.NET 8](https://dotnet.microsoft.com/): the whole game, simulation and host alike.

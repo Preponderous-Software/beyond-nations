@@ -11,6 +11,7 @@ namespace beyondnations {
         private bool keepInventoryOnDeath;
         private bool lagPreventionEnabled;
         private int worldSeed;
+        private int ticksPerSecond;
 
         // non-modifiable
         private int statusExpirationTicks;
@@ -35,6 +36,10 @@ namespace beyondnations {
             lagPreventionEnabled = true;
             // 0 means pick a fresh seed each run; any other value reproduces that world.
             worldSeed = 0;
+            // Simulated ticks per simulated second. Sapling growth and the
+            // pawn behaviour cadence are measured against it, never against
+            // the wall clock (#272). The host runs its fixed step at this rate.
+            ticksPerSecond = TickCounter.DefaultTicksPerSecond;
 
             // non-modifiable
             statusExpirationTicks = 500;
@@ -54,6 +59,17 @@ namespace beyondnations {
         // modifiable
         public int getWorldSeed() {
             return worldSeed;
+        }
+
+        public int getTicksPerSecond() {
+            return ticksPerSecond;
+        }
+
+        public void setTicksPerSecond(int ticksPerSecond) {
+            if (ticksPerSecond <= 0) {
+                throw new System.ArgumentOutOfRangeException(nameof(ticksPerSecond), "must be positive");
+            }
+            this.ticksPerSecond = ticksPerSecond;
         }
 
         public void setWorldSeed(int worldSeed) {
