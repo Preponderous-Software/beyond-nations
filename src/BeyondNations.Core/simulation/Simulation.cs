@@ -384,6 +384,16 @@ namespace beyondnations {
                         // graphics resource to release.
                         entityRepository.removeEntity(entity);
                     }
+
+                    // The player can be inside any settlement, including one
+                    // whose nation has just been disbanded. Once it is gone the
+                    // world HUD has nothing to show for "current settlement" and
+                    // threw every frame, so the player is put back outside.
+                    EntityId currentSettlementId = player.getCurrentSettlementId();
+                    if (currentSettlementId != null && entityRepository.getEntity(currentSettlementId) == null) {
+                        player.setCurrentSettlementId(null);
+                        player.setVisible(true);
+                    }
                 }
     }
 }
