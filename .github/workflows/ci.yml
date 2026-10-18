@@ -86,14 +86,17 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      # GLFW (inside Silk.NET) opens the X11 client libraries at run time; the
-      # runner image does not carry all of them.
+      # Silk.NET's loader does not pick up the GLFW it bundles on this runner
+      # ("Could not load from any of the possible library names"), so the
+      # system libglfw3 is installed for it to fall back to -- the same GLFW
+      # the game uses on Ubuntu 20.04, where the bundled one needs a newer
+      # glibc. GLFW opens the X11 client libraries at run time.
       - name: Install Mesa (llvmpipe), Xvfb and the X11 client libraries
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri libglx-mesa0 libegl1 \
             libx11-6 libx11-xcb1 libxext6 libxrender1 libxrandr2 libxcursor1 libxi6 libxinerama1 libxxf86vm1 \
-            libxkbcommon0 libxkbcommon-x11-0 x11-utils
+            libxkbcommon0 libxkbcommon-x11-0 libglfw3
 
       - name: Build the parity tool and the game
         run: dotnet build tools/BeyondNations.RendererParity/BeyondNations.RendererParity.csproj --configuration Release
@@ -107,14 +110,6 @@ jobs:
           # llvmpipe variables above reach Xvfb through its environment.
           set -o pipefail
           mkdir -p parity-out
-          xvfb-run -a -s "-screen 0 1280x800x24" python3 -c '
-          import ctypes, glob
-          lib = ctypes.CDLL(glob.glob("tools/BeyondNations.RendererParity/bin/Release/net8.0/runtimes/linux-x64/native/libglfw.so.3")[0])
-          print("glfwInit:", lib.glfwInit())
-          msg = ctypes.c_char_p()
-          print("glfwGetError:", lib.glfwGetError(ctypes.byref(msg)), msg.value)
-          print("platform:", hex(lib.glfwGetPlatform()))
-          ' || true
           xvfb-run -a -s "-screen 0 1280x800x24" \
             dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
             --seeds 42,7,1234 --out parity-out
