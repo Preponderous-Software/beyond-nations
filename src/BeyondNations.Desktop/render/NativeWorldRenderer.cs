@@ -118,7 +118,21 @@ namespace beyondnations.desktop.render {
         [UnmanagedCallersOnly]
         private static IntPtr resolveGlFunction(byte* name, IntPtr user) {
             Func<string, IntPtr> getProcAddress = (Func<string, IntPtr>) GCHandle.FromIntPtr(user).Target;
-            return getProcAddress(Marshal.PtrToStringUTF8((IntPtr) name));
+            return resolveOptional(getProcAddress, Marshal.PtrToStringUTF8((IntPtr) name));
+        }
+
+        /**
+        * Looks up one GL function, giving null when the driver lacks it.
+        * Strata's loader asks for every GL 4.5 entry point and leaves the
+        * missing ones null; an exception here would instead escape an
+        * [UnmanagedCallersOnly] callback and end the process.
+        */
+        public static IntPtr resolveOptional(Func<string, IntPtr> getProcAddress, string name) {
+            try {
+                return getProcAddress(name);
+            } catch (Exception) {
+                return IntPtr.Zero;
+            }
         }
 
         public string getName() { return "native"; }
