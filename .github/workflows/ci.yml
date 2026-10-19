@@ -68,14 +68,11 @@ jobs:
           fi
           echo "No native engine reference in BeyondNations.Core."
 
-  # Engine phase B1 (#275): the native renderer (Strata) must draw what the
-  # Silk.NET renderer draws. One process renders the same snapshot with both,
-  # for seeds 42, 7 (no pawns) and 1234 from three camera views, and fails if
-  # the per-kind instance, drawn or culled counts differ, or if more than 1%
-  # of pixels differ by over CIE76 Delta E 4 on llvmpipe. Then the real game
-  # runs headlessly with --renderer native.
-  renderer-parity:
-    name: Renderer parity (Silk vs native, llvmpipe)
+  # The world is drawn by Strata only. The real game runs headlessly on
+  # Mesa llvmpipe from the world screen, renders frames and takes a
+  # screenshot, and the log must name Strata as the world renderer.
+  strata-smoke:
+    name: Game smoke run (Strata, llvmpipe)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -98,34 +95,29 @@ jobs:
             libx11-6 libx11-xcb1 libxext6 libxrender1 libxrandr2 libxcursor1 libxi6 libxinerama1 libxxf86vm1 \
             libxkbcommon0 libxkbcommon-x11-0 libglfw3
 
-      - name: Build the parity tool and the game
-        run: dotnet build tools/BeyondNations.RendererParity/BeyondNations.RendererParity.csproj --configuration Release
+      - name: Build the game
+        run: dotnet build src/BeyondNations.Desktop/BeyondNations.Desktop.csproj --configuration Release
 
-      - name: Parity and native smoke run
+      - name: Smoke run
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
           GALLIUM_DRIVER: llvmpipe
         run: |
-          # xvfb-run waits until the X server is accepting connections; the
-          # llvmpipe variables above reach Xvfb through its environment.
           set -o pipefail
-          mkdir -p parity-out
-          xvfb-run -a -s "-screen 0 1280x800x24" \
-            dotnet tools/BeyondNations.RendererParity/bin/Release/net8.0/BeyondNations.RendererParity.dll \
-            --seeds 42,7,1234 --out parity-out
+          mkdir -p smoke-out
           xvfb-run -a -s "-screen 0 1280x800x24" \
             dotnet src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll \
-            --renderer native --seed 42 --start-screen world --exit-after-frames 120 \
-            --screenshot-after-frames 60 --render-stats --no-usage-reporting | tee parity-out/native-smoke.log
-          grep -q "world renderer: native" parity-out/native-smoke.log
-          cp ~/.local/share/BeyondNations/Screenshots/*.png parity-out/
+            --seed 42 --start-screen world --exit-after-frames 120 \
+            --screenshot-after-frames 60 --render-stats --no-usage-reporting | tee smoke-out/smoke.log
+          grep -q "world renderer: strata" smoke-out/smoke.log
+          cp ~/.local/share/BeyondNations/Screenshots/*.png smoke-out/
 
-      - name: Upload parity images
+      - name: Upload the screenshot
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: renderer-parity
-          path: parity-out/
+          name: strata-smoke
+          path: smoke-out/
           if-no-files-found: ignore
 
   # tools/history-to-replay.py: a seeded export becomes a usd-replay/1 replay that

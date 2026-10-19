@@ -8,29 +8,24 @@ using beyondnations;
 namespace beyondnations.desktop.render {
 
     /**
-    * Draws the world snapshot through Strata, the shared native engine, inside
-    * the window and GL context Silk.NET already owns (engine phase B1, #274).
+    * Draws the world snapshot through Strata, the shared native engine and
+    * the game's only world renderer, inside the window and GL context
+    * Silk.NET owns (engine phase B1, #274; Strata-only since the Silk world
+    * renderer was removed).
     *
     * Strata is created on the host's context: it loads GL through Silk's own
     * GetProcAddress, draws into whatever framebuffer is bound, and puts back
     * every piece of GL state it touched, so the labels and the ImGui layer
-    * drawn after it are none the wiser. Lighting is Strata's LEGACY mode,
-    * which is SilkWorldRenderer's model term for term (the same light
-    * direction and ambient are passed across), and Strata's primitive meshes
-    * are ports of PrimitiveMesh, so the two renderers can be compared image
-    * for image.
+    * drawn after it are none the wiser.
     *
-    * With sun lighting (#280) the light is Strata's instead: a sun and a moon
-    * following the simulation's time of day, cascaded shadows, hemisphere
-    * ambient, fog and the analytic sky. The game owns time and passes it in
-    * every frame with setTimeOfDay; Strata only evaluates it. The parity
-    * check constructs the renderer without sun lighting, so it still compares
-    * like with like.
+    * The light is Strata's (#280): a sun and a moon following the
+    * simulation's time of day, cascaded shadows, hemisphere ambient, fog and
+    * the analytic sky. The game owns time and passes it in every frame with
+    * setTimeOfDay; Strata only evaluates it.
     *
-    * Culling stays in C#: the same RenderCuller decides, in the same order,
-    * so the culled count is SilkWorldRenderer's by construction. The items
-    * that survive are written into one array that is reused between frames,
-    * and that array goes across as a pointer -- RenderItem is Strata's
+    * Culling stays in C#: RenderCuller decides what is drawn. The items that
+    * survive are written into one array that is reused between frames, and
+    * that array goes across as a pointer -- RenderItem is Strata's
     * StrataRenderItem byte for byte (#273), so nothing is converted. Six
     * calls cross the boundary per frame.
     */
@@ -49,8 +44,7 @@ namespace beyondnations.desktop.render {
         private int instancesCulled;
 
         // --- #280 ---
-        private readonly bool sunLighting;
-        private StrataNative.Lighting sun;
+        private readonly StrataNative.Lighting sun;
         private float timeOfDay = TimeOfDay.DefaultStartFraction;
         // --- end #280 ---
 
@@ -59,8 +53,7 @@ namespace beyondnations.desktop.render {
         * provides it as window.GLContext.GetProcAddress. It is only called
         * while this constructor runs.
         */
-        public NativeWorldRenderer(Func<string, IntPtr> getProcAddress, int width, int height, bool sunLighting = false) {
-            this.sunLighting = sunLighting;
+        public NativeWorldRenderer(Func<string, IntPtr> getProcAddress, int width, int height) {
             this.width = Math.Max(1, width);
             this.height = Math.Max(1, height);
 
@@ -94,21 +87,11 @@ namespace beyondnations.desktop.render {
             }
 
             gpuDescription = Marshal.PtrToStringUTF8(StrataNative.strata_gpu_description(engine)) ?? "";
-            StrataNative.Lighting lighting = new StrataNative.Lighting {
-                mode = StrataNative.LightingLegacy,
-                legacy_ambient = SilkWorldRenderer.Ambient,
-            };
-            lighting.legacy_direction[0] = SilkWorldRenderer.LightDirection.X;
-            lighting.legacy_direction[1] = SilkWorldRenderer.LightDirection.Y;
-            lighting.legacy_direction[2] = SilkWorldRenderer.LightDirection.Z;
-            StrataNative.check(StrataNative.strata_set_lighting(engine, &lighting), "set_lighting");
-
             // --- #280 ---
-            if (sunLighting) {
-                StrataNative.Lighting defaults;
-                StrataNative.check(StrataNative.strata_lighting_defaults(StrataNative.LightingSun, &defaults), "lighting_defaults");
-                sun = defaults;
-            }
+            // Strata's sun and moon, following the simulation's time of day.
+            StrataNative.Lighting defaults;
+            StrataNative.check(StrataNative.strata_lighting_defaults(StrataNative.LightingSun, &defaults), "lighting_defaults");
+            sun = defaults;
             // --- end #280 ---
 
             Log.info("native renderer ready: Strata " + Marshal.PtrToStringUTF8(StrataNative.strata_version_string())
@@ -135,11 +118,9 @@ namespace beyondnations.desktop.render {
             }
         }
 
-        public string getName() { return "native"; }
+        public string getName() { return "strata"; }
 
         // --- #280 ---
-        public bool usesSunLighting() { return sunLighting; }
-
         /** The simulation's time of day, [0, 1); used on the next render with sun lighting. */
         public void setTimeOfDay(float fraction) {
             if (float.IsNaN(fraction) || float.IsInfinity(fraction)) {
@@ -163,8 +144,8 @@ namespace beyondnations.desktop.render {
         public void render(WorldSnapshot snapshot, Matrix4x4 view, Matrix4x4 projection, RenderCuller culler) {
             visibleCount = 0;
             instancesCulled = 0;
-            // Ground first, then entities: the order SilkWorldRenderer appends
-            // them in, so the culler sees the same sequence.
+            // Ground first, then entities, so the culler sees them in the
+            // order it always has.
             appendAll(snapshot.getGroundItems(), culler);
             appendAll(snapshot.getEntityItems(), culler);
 
@@ -172,7 +153,7 @@ namespace beyondnations.desktop.render {
 
             StrataNative.Camera camera = new StrataNative.Camera();
             // System.Numerics rows are GL columns, so both matrices go across
-            // exactly as SilkWorldRenderer uploads them.
+            // exactly as GL expects them.
             Buffer.MemoryCopy(&view, camera.view, 64, 64);
             Buffer.MemoryCopy(&projection, camera.projection, 64, 64);
             Matrix4x4 inverseView;
@@ -188,20 +169,16 @@ namespace beyondnations.desktop.render {
             StrataNative.check(StrataNative.strata_set_camera(engine, &camera), "set_camera");
 
             // --- #280 ---
-            if (sunLighting) {
-                StrataNative.Lighting lighting = sun;
-                lighting.time_of_day = timeOfDay;
-                StrataNative.check(StrataNative.strata_set_lighting(engine, &lighting), "set_lighting");
-            }
+            StrataNative.Lighting lighting = sun;
+            lighting.time_of_day = timeOfDay;
+            StrataNative.check(StrataNative.strata_set_lighting(engine, &lighting), "set_lighting");
             // --- end #280 ---
 
             // No clear: the host cleared the frame before the world is drawn.
             // With sun lighting Strata paints its sky behind the world, where
             // the host's depth buffer is still at the far plane.
             StrataNative.FrameDesc frame = new StrataNative.FrameDesc();
-            if (sunLighting) {
-                frame.clear_flags = StrataNative.ClearSky;
-            }
+            frame.clear_flags = StrataNative.ClearSky;
             StrataNative.check(StrataNative.strata_begin_frame(engine, &frame), "begin_frame");
             fixed (RenderItem* items = visible) {
                 StrataNative.check(StrataNative.strata_submit_primitives(engine, items, visibleCount), "submit_primitives");
@@ -212,8 +189,7 @@ namespace beyondnations.desktop.render {
             StrataNative.check(StrataNative.strata_get_frame_stats(engine, &stats), "get_frame_stats");
             drawCalls = stats.draw_calls;
             instancesDrawn = stats.instances;
-            // What the engine reports it drew, not what was sent: the parity
-            // check compares these with SilkWorldRenderer's batch counts.
+            // What the engine reports it drew, not what was sent.
             for (int kind = 0; kind < perKind.Length; kind++) {
                 perKind[kind] = stats.instances_per_kind[kind];
             }

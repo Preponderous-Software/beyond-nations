@@ -86,7 +86,7 @@ or a screen, it is host.
 | The snapshot the host draws from | Core |
 | Seedable randomness, the logging seam, screen state | Core |
 | Window, OpenGL context, the game loop | Desktop |
-| Instanced primitive renderer, shaders, meshes | Desktop |
+| The world renderer: Strata through P/Invoke (`NativeWorldRenderer`) | Desktop |
 | Camera, projection, frustum and distance culling | Desktop |
 | Keyboard and mouse, key bindings | Desktop |
 | Menus, heads-up display, info boxes | Desktop |

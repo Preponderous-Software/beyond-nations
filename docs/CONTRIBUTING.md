@@ -12,7 +12,7 @@ dotnet test
 dotnet run --project src/BeyondNations.Desktop
 ```
 
-`dotnet build` and `dotnet test` need nothing but the SDK. `dotnet run` additionally needs an OpenGL 3.3 capable driver, which any desktop install has.
+`dotnet build` and `dotnet test` need nothing but the SDK. `dotnet run` additionally needs an OpenGL 4.5 capable driver (Strata, the world renderer, requires it), on Linux or Windows x64; macOS is not supported for now.
 
 ### Useful switches
 

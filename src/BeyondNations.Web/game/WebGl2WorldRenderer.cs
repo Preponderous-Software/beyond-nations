@@ -9,7 +9,9 @@ using beyondnations.web.host;
 namespace beyondnations.web {
 
     /**
-    * SilkWorldRenderer, ported to WebGL2: the default renderer in the browser.
+    * The browser's world renderer for now: a WebGL2 port of the Silk renderer
+    * the desktop used before it became Strata-only. It is replaced by Strata
+    * linked into the page once that link is proven (docs/WEB.md).
     *
     * Same meshes (PrimitiveMesh, shared with the desktop), same 80-byte
     * instance (model matrix + colour), same light and ambient, same shader
@@ -24,7 +26,7 @@ namespace beyondnations.web {
     */
     public unsafe class WebGl2WorldRenderer : IWorldRenderer {
 
-        // SilkWorldRenderer.LightDirection and .Ambient (internal there).
+        // The Silk renderer's fixed light direction and ambient.
         private static readonly Vector3 LightDirection = Vector3.Normalize(new Vector3(-0.35f, -0.85f, -0.4f));
         private const float Ambient = 0.35f;
 
@@ -68,7 +70,7 @@ namespace beyondnations.web {
             Log.info("primitive renderer ready (WebGL2): " + batches.Length + " instanced batches");
         }
 
-        public string getName() { return "silk"; }
+        public string getName() { return "webgl2"; }
 
         public void setViewportSize(int width, int height) { }
 
@@ -122,7 +124,7 @@ namespace beyondnations.web {
                 if (batch.count == batch.instances.Length) {
                     Array.Resize(ref batch.instances, batch.instances.Length * 2);
                 }
-                // As PrimitiveBatch.add: scaled and translated, written directly.
+                // Scaled and translated only, so the matrix is written directly.
                 batch.instances[batch.count].model = new Matrix4x4(
                     item.scale.X, 0f, 0f, 0f,
                     0f, item.scale.Y, 0f, 0f,
