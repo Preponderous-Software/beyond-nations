@@ -153,6 +153,12 @@ namespace beyondnations {
                     return describeLeadershipChange((LeadershipChangeEvent) e, nations, entities);
                 case EventType.PawnRelationshipIncrease:
                     return describeRelationshipMilestone((PawnRelationshipIncreaseEvent) e, nations, entities);
+                case EventType.NationRelationChange:
+                    return describeNationRelationChange((NationRelationChangeEvent) e, nations);
+                case EventType.NationRaid:
+                    return describeNationRaid((NationRaidEvent) e, nations, entities);
+                case EventType.SettlementCapture:
+                    return describeSettlementCapture((SettlementCaptureEvent) e, nations, entities);
                 default:
                     // ChunkGenerate and PawnSpawn: noise.
                     return null;
@@ -378,6 +384,50 @@ namespace beyondnations {
             return pick(e, pawn.getName(),
                 p + " now counts you a friend.",
                 "You and " + p + " have become friends.");
+        }
+
+        /**
+        * Relations only produce an event when two nations cross into another
+        * named state, so each one is a line. The event's own wording already
+        * tells an alliance from a rivalry or a cooling feud; alliances get a
+        * little variety on top.
+        */
+        private string describeNationRelationChange(NationRelationChangeEvent e, List<NationId> nations) {
+            nations.Add(e.getNation1().getId());
+            nations.Add(e.getNation2().getId());
+            if (e.getAfter() == NationRelationState.ALLIED) {
+                string a = e.getNation1().getName();
+                string b = e.getNation2().getName();
+                return pick(e, a + "|" + b,
+                    a + " and " + b + " have formed an alliance.",
+                    a + " and " + b + " swore an alliance.");
+            }
+            return e.getDescription();
+        }
+
+        private string describeNationRaid(NationRaidEvent e, List<NationId> nations, List<EntityId> entities) {
+            nations.Add(e.getRaider().getId());
+            nations.Add(e.getVictim().getId());
+            if (e.getSettlement() != null) {
+                entities.Add(e.getSettlement().getId());
+            }
+            string raider = e.getRaider().getName();
+            string victim = e.getVictim().getName();
+            return pick(e, raider + "|" + victim,
+                raider + " raided " + victim + " and carried off " + e.getLoot() + ".",
+                "Raiders from " + raider + " struck " + victim + ", taking " + e.getLoot() + ".");
+        }
+
+        private string describeSettlementCapture(SettlementCaptureEvent e, List<NationId> nations, List<EntityId> entities) {
+            nations.Add(e.getTo().getId());
+            nations.Add(e.getFrom().getId());
+            entities.Add(e.getSettlement().getId());
+            string to = e.getTo().getName();
+            string from = e.getFrom().getName();
+            string place = SettlementTiers.getDisplayName(e.getSettlement().getTier()).ToLowerInvariant();
+            return pick(e, to + "|" + from,
+                to + " captured a " + place + " from " + from + ".",
+                "After a siege, a " + place + " of " + from + " fell to " + to + ".");
         }
 
         // --- helpers --------------------------------------------------------

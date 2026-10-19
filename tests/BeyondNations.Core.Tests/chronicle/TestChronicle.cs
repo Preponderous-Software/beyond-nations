@@ -216,6 +216,42 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testDiplomacy_RelationsRaidsAndCapturesAreChronicled() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation ironvale = world.pawnNation("Ironvale", 3);
+            Nation ashford = world.pawnNation("Ashford", 3);
+            Settlement town = world.settlement(ashford, 40, 40);
+            EventProducer producer = world.simulation.getEventProducer();
+            Chronicle chronicle = world.simulation.getChronicle();
+
+            producer.produceNationRelationChangeEvent(ironvale, ashford, NationRelationState.NEUTRAL, NationRelationState.ALLIED);
+            ChronicleEntry alliance = chronicle.getEntries().Last();
+            Assert.Equal(EventType.NationRelationChange, alliance.getEventType());
+            Assert.Contains("alliance", alliance.getText());
+            Assert.True(alliance.involvesNation(ironvale.getId()));
+            Assert.True(alliance.involvesNation(ashford.getId()));
+
+            producer.produceNationRelationChangeEvent(ironvale, ashford, NationRelationState.RIVAL, NationRelationState.HOSTILE);
+            Assert.Equal("Ironvale and Ashford are now hostile.", chronicle.getEntries().Last().getText());
+
+            producer.produceNationRaidEvent(ironvale, ashford, town, "12 coins");
+            ChronicleEntry raid = chronicle.getEntries().Last();
+            Assert.Equal(EventType.NationRaid, raid.getEventType());
+            Assert.Contains("12 coins", raid.getText());
+            Assert.Contains("Ironvale", raid.getText());
+            Assert.Contains("Ashford", raid.getText());
+            Assert.True(raid.involvesNation(ashford.getId()));
+
+            producer.produceSettlementCaptureEvent(town, ashford, ironvale);
+            ChronicleEntry capture = chronicle.getEntries().Last();
+            Assert.Equal(EventType.SettlementCapture, capture.getEventType());
+            Assert.Contains("Ironvale", capture.getText());
+            Assert.Contains("Ashford", capture.getText());
+            Assert.Contains(SettlementTiers.getDisplayName(town.getTier()).ToLowerInvariant(), capture.getText());
+            Assert.True(capture.involvesNation(ironvale.getId()));
+        }
+
+        [Fact]
         public void testPlayerLeavesAsLeader_SuccessionIsChronicled() {
             Simulation simulation = makeSimulation();
             Player player = simulation.getPlayer();
