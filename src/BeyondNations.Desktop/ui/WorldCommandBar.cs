@@ -101,10 +101,18 @@ namespace beyondnations.desktop.ui {
                         if (player.getId() == nation.getLeaderId()) {
                             commands.Add(new WorldCommand("Withdraw Funds", () =>
                                 new WithdrawSettlementFundsCommand(nationRepository, entityRepository).execute(player)));
+
+                            int stockpile = CollectSettlementStockpileCommand.getStockpileSize(settlement);
+                            if (stockpile > 0) {
+                                commands.Add(new WorldCommand("Collect Stockpile (" + stockpile + ")", () =>
+                                    new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player)));
+                            }
                         }
                     }
                 }
             }
+
+            addPawnCommands(simulation, commands);
 
             if (player.getInventory().getNumItems(ItemType.SAPLING) > 0 && !player.isCurrentlyInSettlement()) {
                 commands.Add(new WorldCommand("Plant Sapling", () =>
@@ -137,6 +145,47 @@ namespace beyondnations.desktop.ui {
             }
 
             return commands;
+        }
+
+        /**
+        * Talk, gift and invite for the pawn within reach, plus the leader's
+        * levers when the player leads that pawn's nation. Each label names the
+        * pawn and how it feels about the player, so the bar doubles as the
+        * relationship readout for whoever is standing in front of the player.
+        */
+        private static void addPawnCommands(Simulation simulation, List<WorldCommand> commands) {
+            Player player = simulation.getPlayer();
+            Pawn pawn = PawnRelations.findPawnInRange(player, simulation.getEnvironment());
+            if (pawn == null) {
+                return;
+            }
+            NationRepository nationRepository = simulation.getNationRepository();
+            EntityRepository entityRepository = simulation.getEntityRepository();
+            EventProducer eventProducer = simulation.getEventProducer();
+
+            commands.Add(new WorldCommand("Talk to " + PawnRelations.describe(pawn, player), () =>
+                new TalkToPawnCommand(nationRepository, eventProducer, simulation.getTickCounter()).execute(player, pawn)));
+
+            if (GiftPawnCommand.canGift(player)) {
+                commands.Add(new WorldCommand("Gift " + pawn.getName(), () =>
+                    new GiftPawnCommand(eventProducer).execute(player, pawn)));
+            }
+
+            if (InvitePawnToNationCommand.isApplicable(player, pawn)) {
+                commands.Add(new WorldCommand("Invite " + pawn.getName(), () =>
+                    new InvitePawnToNationCommand(nationRepository, eventProducer, entityRepository).execute(player, pawn)));
+            }
+
+            if (LeaderPawnCommands.playerLeads(player, pawn, nationRepository)) {
+                if (pawn.getOrder() == null) {
+                    commands.Add(new WorldCommand("Order " + pawn.getName() + ": Gather Wood", () =>
+                        new OrderPawnToGatherCommand(nationRepository).execute(player, pawn)));
+                }
+                if (LeaderPawnCommands.canAppointMerchant(player, pawn, nationRepository, entityRepository)) {
+                    commands.Add(new WorldCommand("Appoint " + pawn.getName() + " Merchant", () =>
+                        new AppointMerchantCommand(nationRepository, entityRepository, eventProducer).execute(player, pawn)));
+                }
+            }
         }
     }
 }

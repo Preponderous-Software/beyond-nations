@@ -23,6 +23,8 @@ namespace beyondnations.desktop.input {
         public static readonly Key MoveRight = Key.D;
         public static readonly Key MoveRightAlt = Key.Right;
         public static readonly Key Interact = Key.E;
+        public static readonly Key GiftToPawn = Key.G;
+        public static readonly Key InviteToNation = Key.R;
         public static readonly Key Jump = Key.Space;
         public static readonly Key Sprint = Key.ShiftLeft;
         public static readonly Key CreateNewNation = Key.N;

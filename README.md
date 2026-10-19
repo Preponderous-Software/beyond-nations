@@ -67,7 +67,9 @@ The following controls are available in the game:
 | `A` / `Left Arrow` | Turn left |
 | `S` / `Down Arrow` | Move backward |
 | `D` / `Right Arrow` | Turn right |
-| `E` | Interact with nearest entity |
+| `E` | Interact with nearest entity (talk to a pawn in reach) |
+| `G` | Give the pawn in reach a gift (food if it is hungry, otherwise coins, food, wood or stone) |
+| `R` | Invite the pawn in reach into your nation |
 | `Space` | Jump |
 | `Left Shift` | Sprint |
 | `N` | Create a new nation |

@@ -23,6 +23,13 @@ namespace beyondnations {
         private Dictionary<EntityId, int> relationships = new Dictionary<EntityId, int>();
         private EntityId currentSettlementId;
 
+        // map of entity id to the tick it last talked with this pawn, so a
+        // conversation only warms the relationship once per cooldown
+        private Dictionary<EntityId, int> lastConversationTicks = new Dictionary<EntityId, int>();
+
+        // a leader's standing request, or null
+        private NationOrder order;
+
         public Pawn(Vector3 position, string name, RandomSource random) : base(EntityType.PAWN, name) {
             this.random = random;
             this.speed = random.range(10, 20);
@@ -180,6 +187,31 @@ namespace beyondnations {
             else {
                 getRelationships().Add(entity.getId(), -amount);
             }
+        }
+
+        /**
+        * Whether a conversation at this tick would warm the relationship:
+        * true the first time, then only once the cooldown has passed since the
+        * last conversation that did.
+        */
+        public bool isConversationWarm(EntityId speakerId, int tick, int cooldownTicks) {
+            int lastTick;
+            if (!lastConversationTicks.TryGetValue(speakerId, out lastTick)) {
+                return true;
+            }
+            return tick - lastTick >= cooldownTicks;
+        }
+
+        public void recordConversation(EntityId speakerId, int tick) {
+            lastConversationTicks[speakerId] = tick;
+        }
+
+        public NationOrder getOrder() {
+            return order;
+        }
+
+        public void setOrder(NationOrder order) {
+            this.order = order;
         }
 
         public bool isCurrentlyInSettlement() {

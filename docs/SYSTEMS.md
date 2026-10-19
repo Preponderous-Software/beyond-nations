@@ -57,6 +57,14 @@ The building system creates and manages settlements. Players and pawns can found
 ## Pawn
 The pawn system creates and manages pawns. Pawns populate the world and interact with each other, the player, and the world. On each tick a behavior calculator chooses a behavior for the pawn — gathering, wandering, trading, construction, or nation actions — and a behavior executor carries it out.
 
+### Relationships and leadership
+Every pawn keeps a relationship number for the player, shown as a named tier: Stranger (below 5), Acquaintance (5+), Friend (15+) and Loyal (30+). Once the player has met a pawn, its nametag reads `Name (Tier)`, and the world command bar names the pawn in reach the same way.
+
+- **Talking** (`E`, or *Talk to …*): the pawn answers with a line built from its situation rather than a random phrase -- how well it knows the player, then the most pressing thing on its mind: hunger, an order it is working on, whether it has a nation (and whether it would join the player's), its loyalty to a rival nation, or what it is doing for the player's own nation. The first conversation with a given pawn in any 30-second window raises the relationship by 2; talking again sooner still gets an answer but does not count.
+- **Gifting** (`G`, or *Gift …*): hands over something from the player's inventory, chosen for the pawn. A hungry pawn gets one food item and values it most (+6); otherwise 10 coins (+2), then one food item (+2), then 5 wood or 5 stone (+1).
+- **Inviting** (`R`, or *Invite …*): a player in a nation can recruit a nationless pawn that is at least an Acquaintance. A pawn in another nation has to be Loyal to defect; its old nation loses the member, any stall it owned there is given up, and it starts over without a home settlement or order. A pawn that leads its nation never defects, so an invitation can never leave a nation leaderless or disband it.
+- **Leading**: when the player leads the pawn's nation, two more commands appear. *Order …: Gather Wood* asks a member that is at least an Acquaintance to bring 10 wood to the nation (the nation needs a settlement); the pawn keeps living its own life, and whatever wood it carries is handed into the settlement's stockpile whenever it is inside one of its nation's settlements, until the quota is met, at which point its relationship rises by 3. The leader takes the stockpile's wood and stone with *Collect Stockpile* inside the settlement. *Appoint … Merchant* hands a serf a free stall in its home settlement, making it a merchant (+6).
+
 *Planned:* pawn traits that affect behavior and interactions with other pawns.
 
 ## Market
