@@ -35,13 +35,20 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
+      # src/BeyondNations.Web/global.json selects the .NET 8 SDK there (the
+      # runner image also has newer ones, whose wasm workloads differ), so
+      # both steps run from that directory.
       - name: Install the wasm-tools workload
-        run: dotnet workload install wasm-tools
+        working-directory: src/BeyondNations.Web
+        run: |
+          dotnet --version
+          dotnet workload install wasm-tools
 
       - name: Publish (browser-wasm, AOT)
+        working-directory: src/BeyondNations.Web
         run: |
           start=$(date +%s)
-          dotnet publish src/BeyondNations.Web/BeyondNations.Web.csproj -c Release -o web-publish
+          dotnet publish BeyondNations.Web.csproj -c Release -o "$GITHUB_WORKSPACE/web-publish"
           echo "publish took $(( $(date +%s) - start )) s"
 
       # The site is the published wwwroot. The .br copies are dropped: the

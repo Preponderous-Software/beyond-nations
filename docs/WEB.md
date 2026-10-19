@@ -89,6 +89,11 @@ python3 -m http.server 8080 --directory web-publish/wwwroot
 # open http://localhost:8080/?seed=42
 ```
 
+`src/BeyondNations.Web/global.json` selects a .NET 8 SDK for that directory
+(the workload is per SDK band; with a newer SDK it would be `wasm-tools-net8`),
+so run the workload install and the publish from there if newer SDKs are
+installed.
+
 `BeyondNations.Web` is deliberately **not** in `BeyondNations.sln`, so
 `dotnet build` and `dotnet test` on the solution still need nothing but the .NET
 SDK. Its plain-C# parts (the URL options, the key table and the browser input
