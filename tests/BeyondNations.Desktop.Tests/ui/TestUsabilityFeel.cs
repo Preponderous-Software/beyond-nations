@@ -73,6 +73,8 @@ namespace beyondnationstests {
             Assert.True(StatusTone.isFailure("There is no one within reach to invite."));
             Assert.True(StatusTone.isFailure("Mira: \"I don't even know you.\" (needs Acquaintance)"));
             Assert.True(StatusTone.isFailure("Mira is already a merchant."));
+            Assert.True(StatusTone.isFailure("A house needs 30 wood. Need 5 more wood, 0 more stone."));
+            Assert.True(StatusTone.isFailure("This settlement has no room for another building."));
         }
 
         [Fact]

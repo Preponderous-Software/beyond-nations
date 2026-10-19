@@ -33,6 +33,7 @@ namespace beyondnations.desktop.ui {
             "You have nothing ",
             "You need to ",
             "This settlement does not ",
+            "This settlement has no ",
             "Too close ",
             "Max number ",
             "Market is full",
@@ -46,6 +47,7 @@ namespace beyondnations.desktop.ui {
         // and pawns turning the player down until they know them better.
         private static readonly string[] FailureFragments = {
             " is already a ",
+            ". Need ",
             " has no home settlement",
             "(needs ",
         };
