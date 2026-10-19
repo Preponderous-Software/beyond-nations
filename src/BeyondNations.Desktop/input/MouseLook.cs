@@ -5,7 +5,9 @@ namespace beyondnations.desktop.input {
 
     /**
     * Accumulates mouse movement into a yaw/pitch look direction for camera
-    * control.
+    * control. PlayerInputController feeds it only vertical motion: sideways
+    * motion during a right-button drag turns the player instead (steering),
+    * so the yaw here stays a zero offset unless something else applies it.
     *
     * The Unity version never had this: it turned the player with A/D
     * (Input.GetAxis("Horizontal") feeding Player.setMovementInput, still
@@ -17,6 +19,8 @@ namespace beyondnations.desktop.input {
     * touch Player or drive movement.
     */
     public class MouseLook {
+        public const float DefaultSensitivityDegreesPerPixel = 0.15f;
+
         private readonly float sensitivityDegreesPerPixel;
         private readonly float minPitchDegrees;
         private readonly float maxPitchDegrees;
@@ -24,7 +28,7 @@ namespace beyondnations.desktop.input {
         private float yawDegrees;
         private float pitchDegrees;
 
-        public MouseLook(float sensitivityDegreesPerPixel = 0.15f, float minPitchDegrees = -89f, float maxPitchDegrees = 89f) {
+        public MouseLook(float sensitivityDegreesPerPixel = DefaultSensitivityDegreesPerPixel, float minPitchDegrees = -89f, float maxPitchDegrees = 89f) {
             this.sensitivityDegreesPerPixel = sensitivityDegreesPerPixel;
             this.minPitchDegrees = minPitchDegrees;
             this.maxPitchDegrees = maxPitchDegrees;

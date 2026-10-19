@@ -81,6 +81,15 @@ namespace beyondnations {
             return yaw;
         }
 
+        /**
+        * Turns the player by an angle in radians; positive turns left. Mouse
+        * steering (a right-button drag) uses this, on top of the A/D turn
+        * applied in fixedUpdate.
+        */
+        public void turn(float radians) {
+            yaw += radians;
+        }
+
         public int getCurrentSpeed() {
             return currentSpeed;
         }

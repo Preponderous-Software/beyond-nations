@@ -28,15 +28,16 @@ the time of day, its sky, cascaded shadows and fog.
 ## Playing
 
 - Keyboard and mouse, as on the desktop. Hold the **right mouse button** and
-  move the mouse to look around (the page takes pointer lock for the drag, so
-  the cursor does not wander).
+  move the mouse to steer: left/right turns the player, so W walks wherever the
+  drag points, and up/down tilts the camera (the page takes pointer lock for
+  the drag, so the cursor does not wander).
 - Text and the user interface are laid out in CSS pixels and drawn at the
   screen's `devicePixelRatio`, so they are the intended size on a high-DPI
   screen rather than shrunk, and the ImGui font is rasterised at that ratio.
 - **Touch-only devices** (phones, tablets without a keyboard) get a notice that
   the game is played with a keyboard and mouse, and can then carry on with
   basic on-screen controls: a pad for W/A/S/D, buttons for interact, jump, run,
-  inventory, view and the menu, and a drag on the world to look around. A tap
+  inventory, view and the menu, and a drag on the world to steer. A tap
   on the title screen counts as the "any key" it asks for. The HUD's command
   buttons are tappable. This is a first pass, not a designed touch scheme; the
   command bar is cramped on a narrow portrait screen.
@@ -138,8 +139,9 @@ and runs in `Build and test`.
 
 - desktop profile: the title screen appears, a key opens the main menu, Start
   builds a world, the world is drawn (pixels sampled from the frame, not the
-  clear colour), W walks, a right-drag looks (exactly 9 degrees of yaw and 1.5
-  of pitch for a 60 by 10 pixel drag) and a plain move does not (#291), a key
+  clear colour), W walks, a right-drag steers (the player turns exactly 9
+  degrees and the camera tilts 1.5 for a 60 by 10 pixel drag, with no camera
+  yaw offset) and a plain move does not (#291), a key
   tap shorter than a frame toggles the view (#290), and there are no console
   errors, page errors or failed requests;
 - iPhone 13 profile: the keyboard notice appears, the on-screen controls come

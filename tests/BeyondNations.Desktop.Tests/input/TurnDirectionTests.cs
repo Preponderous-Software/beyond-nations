@@ -55,6 +55,28 @@ namespace beyondnationstests.desktop.input {
         [Theory]
         [InlineData(40f, 1f)]
         [InlineData(-40f, -1f)]
+        public void rightDragSteering_pointsTheWalkTowardTheMatchingSideOfTheScreen(float mouseDeltaX, float expectedSide) {
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            FakeInputSource source = new FakeInputSource();
+            InputService inputService = new InputService(source);
+            PlayerInputController controller = new PlayerInputController();
+            PlayerCamera camera = new PlayerCamera();
+
+            camera.follow(player.getPosition(), player.getYaw(), 0f, 0f);
+            Matrix4x4 viewBefore = camera.getViewMatrix();
+
+            source.setMouseDelta(new Vector2(mouseDeltaX, 0f));
+            inputService.update();
+            controller.update(simulation, inputService);
+
+            float side = screenRightComponent(viewBefore, player.getForward());
+            Assert.True(side * expectedSide > 0f, "a drag of " + mouseDeltaX + " steered the player toward the wrong side of the screen (view-space x = " + side + ")");
+        }
+
+        [Theory]
+        [InlineData(40f, 1f)]
+        [InlineData(-40f, -1f)]
         public void mouseLook_turnsTheViewTheWayTheMouseMoves(float mouseDeltaX, float expectedSide) {
             Simulation simulation = createSimulation();
             Player player = simulation.getPlayer();

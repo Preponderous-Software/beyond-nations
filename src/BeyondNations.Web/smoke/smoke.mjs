@@ -133,10 +133,12 @@ try {
     await page.keyboard.down("KeyW");
     await page.waitForTimeout(600);
     await page.keyboard.up("KeyW");
-    // Look only while the right button is held (#291): a drag of +60, -10
-    // pixels at 0.15 degrees a pixel is -9 degrees of yaw (a drag to the
-    // right lowers yaw, which turns the view right) and 1.5 of pitch;
-    // moving with no button held afterwards changes nothing.
+    // Steer only while the right button is held (#291): a drag of +60, -10
+    // pixels at 0.15 degrees a pixel turns the player -9 degrees (a drag to
+    // the right lowers yaw, which turns right) and tilts the camera 1.5;
+    // the camera's own yaw offset stays 0. Moving with no button held
+    // afterwards changes nothing.
+    const beforeLook = await status();
     await page.mouse.move(640, 360);
     await page.mouse.down({ button: "right" });
     await page.mouse.move(700, 350, { steps: 5 });
@@ -144,9 +146,10 @@ try {
     await page.mouse.move(200, 500, { steps: 5 });
     await page.waitForTimeout(400);
     const looked = await status();
-    result.look = { yaw: looked.lookYaw, pitch: looked.lookPitch };
-    if (Math.abs(looked.lookYaw + 9) > 0.01 || Math.abs(looked.lookPitch - 1.5) > 0.01) {
-      throw new Error("right-drag look gave yaw " + looked.lookYaw + ", pitch " + looked.lookPitch + "; expected -9 and 1.5");
+    const turned = looked.playerYaw - beforeLook.playerYaw;
+    result.look = { playerTurn: turned, yaw: looked.lookYaw, pitch: looked.lookPitch };
+    if (Math.abs(turned + 9) > 0.01 || Math.abs(looked.lookYaw) > 0.01 || Math.abs(looked.lookPitch - 1.5) > 0.01) {
+      throw new Error("right-drag steer turned the player " + turned + " (look yaw " + looked.lookYaw + ", pitch " + looked.lookPitch + "); expected -9, 0 and 1.5");
     }
     // A key tap shorter than a frame still lands (#290): V switches view.
     await page.keyboard.press("KeyV");
