@@ -20,8 +20,8 @@
   -->
 
   <PropertyGroup>
-    <StrataCommit>d24a3494709def2c2c20dbb8a6b3712ab902c301</StrataCommit>
-    <StrataSourceSha256>58436c5346f0150a25706c29c8684c61aaa753802a67b1e2960178106b748056</StrataSourceSha256>
+    <StrataCommit>38517b62fc6224b8a5ce97e10fe99a9f78a0eb58</StrataCommit>
+    <StrataSourceSha256>b8f835c0c28552470ba330197149ed8683ce7d8d8ad8b54ef67bf9cb105666c4</StrataSourceSha256>
     <StrataWebDir>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)strata-web/$(StrataCommit)/</StrataWebDir>
     <StrataWebArchive Condition="'$(StrataWebArchive)' == ''">$(StrataWebDir)strata.a</StrataWebArchive>
     <BnWebArchive>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)bnweb/bnweb.a</BnWebArchive>
