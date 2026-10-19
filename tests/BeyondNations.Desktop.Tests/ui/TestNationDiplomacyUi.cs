@@ -40,7 +40,9 @@ namespace beyondnationstests.desktop.ui {
 
             Assert.Equal(2, rows.Count);
             Assert.Same(result.hostile, rows[0].nation);
-            Assert.StartsWith(result.hostile.getName() + ": 7 members, 1 village. Hostile (", rows[0].text);
+            // the staged hostile nation also takes in the wild pawns around the stage
+            Assert.StartsWith(result.hostile.getName() + ": " + result.hostile.getNumberOfMembers() + " members, 1 village. Hostile (", rows[0].text);
+            Assert.True(result.hostile.getNumberOfMembers() >= DiplomacyShowcase.HostileMembers);
             Assert.EndsWith(", neighbour", rows[0].text);
             Assert.StartsWith(result.friendly.getName() + ": 3 members, 1 camp. Friendly (", rows[1].text);
             Assert.True(rows[0].canAct);

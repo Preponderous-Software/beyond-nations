@@ -8,6 +8,9 @@ namespace beyondnations {
     * on, then where it stands with nations (and whether it could be
     * recruited), then what it is doing and where it lives.
     *
+    * A pawn with traits ends with a word about itself (PawnTraits.aside), and
+    * an ambitious or loyal one answers questions of allegiance in character.
+    *
     * Deterministic on purpose: the same situation always produces the same
     * line, so what a pawn says is information the player can act on.
     */
@@ -19,7 +22,10 @@ namespace beyondnations {
             RelationshipTier tier = PawnRelations.getTier(pawn, player);
             bool playerLeadsPawn = pawnNation != null && pawnNation.getLeaderId() == player.getId();
 
-            return greeting(tier, playerLeadsPawn) + " " + remark(pawn, player, pawnNation, playerNation, tier, playerLeadsPawn);
+            string line = greeting(tier, playerLeadsPawn) + " " + remark(pawn, player, pawnNation, playerNation, tier, playerLeadsPawn);
+            // and a word about itself, by its first trait (PawnTraits), unless it is starving
+            string aside = pawn.needsFood() ? null : PawnTraits.aside(pawn);
+            return aside == null ? line : line + " " + aside;
         }
 
         private static string greeting(RelationshipTier tier, bool playerLeadsPawn) {
@@ -51,7 +57,17 @@ namespace beyondnations {
                 return "I'm gathering " + order.getRemaining() + " more " + order.getItemType().ToString().ToLower() + " for " + pawnNation.getName() + ".";
             }
 
+            if (pawn.isSettler() && pawnNation != null) {
+                return "Home got crowded, so I'm off to found a new settlement for " + pawnNation.getName() + ".";
+            }
+
             if (pawnNation == null) {
+                if (pawn.isSettler()) {
+                    return "I've left my old nation behind. I'll found one of my own.";
+                }
+                if (pawn.hasTrait(PawnTrait.AMBITIOUS)) {
+                    return "I don't belong to any nation. I mean to found my own.";
+                }
                 if (playerNation != null && tier >= RelationshipTier.ACQUAINTANCE) {
                     return "I don't belong to any nation. I'd join " + playerNation.getName() + " if you asked.";
                 }
@@ -61,6 +77,10 @@ namespace beyondnations {
             if (playerNation == null || pawnNation.getId() != playerNation.getId()) {
                 if (pawnNation.getLeaderId() == pawn.getId()) {
                     return "I lead " + pawnNation.getName() + ". We are " + pawnNation.getNumberOfMembers() + " strong.";
+                }
+                if (playerNation != null && tier >= RelationshipTier.LOYAL
+                        && PawnRelations.getRelationship(pawn, player) < PawnTraits.relationshipToDefect(pawn)) {
+                    return "I'd do almost anything for you, but I won't leave " + pawnNation.getName() + ".";
                 }
                 if (playerNation != null && tier >= RelationshipTier.LOYAL) {
                     return "Between us, I'd leave " + pawnNation.getName() + " for " + playerNation.getName() + " if you asked.";

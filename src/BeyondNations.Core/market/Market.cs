@@ -205,6 +205,18 @@ namespace beyondnations {
         * @return the id of the stall owner, or null if purchase failed
         */
         public EntityId sellResources(Entity entity) {
+            return sellResources(entity, 0);
+        }
+
+        /**
+        * Sells one of each good the entity carries to a stall that can pay.
+        * priceBonusPercent raises the price the seller asks (a greedy pawn
+        * drives a harder bargain); a stall that cannot pay the higher price is
+        * not sold to.
+        *
+        * @return the id of the stall owner, or null if nothing was sold
+        */
+        public EntityId sellResources(Entity entity, int priceBonusPercent) {
             List<Stall> stallsToSellTo = new List<Stall>();
             foreach(Stall stall in stalls) {
                 if (stall.getOwnerId() == null) {
@@ -222,7 +234,7 @@ namespace beyondnations {
                         continue;
                     }
 
-                    int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+                    int cost = askingPrice(ItemCostCalculator.calculateCostBasedOnSupply(itemType, this), priceBonusPercent);
 
                     if (stall.getInventory().getNumItems(ItemType.COIN) < cost) {
                         continue;
@@ -247,7 +259,7 @@ namespace beyondnations {
                     continue;
                 }
 
-                int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+                int cost = askingPrice(ItemCostCalculator.calculateCostBasedOnSupply(itemType, this), priceBonusPercent);
 
                 if (stallToSellTo.getInventory().getNumItems(ItemType.COIN) < cost) {
                     continue;
@@ -291,6 +303,14 @@ namespace beyondnations {
                 }
             }
             return -1;
+        }
+
+        /** A price raised by a percentage, by at least one coin when raised at all. */
+        public static int askingPrice(int cost, int priceBonusPercent) {
+            if (priceBonusPercent <= 0) {
+                return cost;
+            }
+            return cost + System.Math.Max(1, cost * priceBonusPercent / 100);
         }
 
         public int getQuantityAvailable(ItemType itemType) {

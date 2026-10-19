@@ -19,6 +19,8 @@ namespace beyondnations {
         private int currentChunkZ = 0;
         private EntityRepository entityRepository;
         private GameConfig gameConfig;
+        // Traits come from their own stream (PawnTraits), so they never shift the rest of a seeded world.
+        private RandomSource traitRandom;
 
         public WorldGenerator(Environment environment, Player player, EventProducer eventProducer, EntityRepository entityRepository, GameConfig gameConfig, RandomSource random, PawnNameGenerator pawnNameGenerator) {
             this.pawnNameGenerator = pawnNameGenerator;
@@ -30,6 +32,10 @@ namespace beyondnations {
             this.locationScale = environment.getLocationScale();
             this.entityRepository = entityRepository;
             this.gameConfig = gameConfig;
+        }
+
+        public void setTraitRandom(RandomSource traitRandom) {
+            this.traitRandom = traitRandom;
         }
 
         public void update() {
@@ -139,26 +145,40 @@ namespace beyondnations {
         }
 
         private void spawnPawns(Chunk chunk) {
-            if (gameConfig.getLagPreventionEnabled()) {
-                int maxNumberOfPawns = 100;
-                int numPawns = entityRepository.getNumEntitiesOfType(EntityType.PAWN);
-                if (numPawns >= maxNumberOfPawns) {
+            int numPawns = rollNumberOfPawns(random.range(0, 100));
+            for (int i = 0; i < numPawns; i++) {
+                if (gameConfig.getLagPreventionEnabled() && entityRepository.getNumEntitiesOfType(EntityType.PAWN) >= gameConfig.getMaxNumPawns()) {
                     return;
                 }
-            }
-            
-            // 10% change to spawn a pawn
-            bool shouldSpawnPawn = random.range(0, 100) < 10;
-            if (shouldSpawnPawn) {
                 Location randomLocation = chunk.getRandomLocation();
                 Vector3 locationPosition = randomLocation.getPosition();
 
                 // create pawn
                 Vector3 position = new Vector3(locationPosition.X, (float)(locationPosition.Y + 1.5), locationPosition.Z);
                 Pawn pawn = new Pawn(position, pawnNameGenerator.generate(), random);
+                if (traitRandom != null) {
+                    pawn.setTraits(PawnTraits.roll(traitRandom));
+                }
                 eventProducer.producePawnSpawnEvent(position, pawn);
                 entityRepository.addEntity(pawn);
             }
+        }
+
+        /** Percent chance that a new chunk has at least one pawn, and that it has two. */
+        public const int ONE_PAWN_CHANCE_PERCENT = 40;
+        public const int TWO_PAWNS_CHANCE_PERCENT = 15;
+
+        /**
+        * How many pawns a new chunk starts with, from a roll in [0, 100). It
+        * used to be a 10% chance of one, which left a fresh world of nine
+        * chunks with a single pawn -- too few for a market, let alone two
+        * nations. Now about half of all chunks are inhabited.
+        */
+        public static int rollNumberOfPawns(int roll) {
+            if (roll < TWO_PAWNS_CHANCE_PERCENT) {
+                return 2;
+            }
+            return roll < ONE_PAWN_CHANCE_PERCENT ? 1 : 0;
         }
 
         private void spawnChickens(Chunk chunk) {

@@ -45,6 +45,10 @@ namespace beyondnations {
             RandomSource random = simulation.getRandom();
             Staged staged = new Staged();
 
+            // the land around the player, with whatever pawns it brings, before
+            // anything is staged on it
+            simulation.getWorldGenerator().update();
+
             new NationCreateCommand(nationRepository, simulation.getEventProducer(), random, simulation.getNationNameGenerator())
                 .execute(player);
             staged.playerNation = nationRepository.getNation(player.getNationId());
@@ -63,6 +67,18 @@ namespace beyondnations {
             staged.hostile = foundPawnNation(simulation, start + right * HalfGap + forward * AheadDistance, HostileMembers, 2, out staged.hostileSettlement);
             staged.friendly = foundPawnNation(simulation, start - right * (HalfGap + FriendlyOffset) + forward * AheadDistance, FriendlyMembers, 0, out staged.friendlySettlement);
 
+            // The world's own pawns would join whichever village is nearest --
+            // often the player's, which then outnumbers the besiegers. They are
+            // the hostile nation's people already, so the staged siege holds.
+            foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(EntityType.PAWN)) {
+                Pawn wild = (Pawn) entity;
+                if (wild.getNationId() == null) {
+                    staged.hostile.addMember(wild.getId());
+                    wild.setNationId(staged.hostile.getId());
+                    wild.setColor(staged.hostile.getColor());
+                }
+            }
+
             NationRelations relations = nationRepository.getRelations();
             relations.adjust(staged.playerNation, staged.hostile, HostileScore);
             relations.adjust(staged.playerNation, staged.friendly, FriendlyScore);
@@ -78,6 +94,7 @@ namespace beyondnations {
         private static Nation foundPawnNation(Simulation simulation, Vector3 site, int members, int buildings, out Settlement settlement) {
             RandomSource random = simulation.getRandom();
             Pawn leader = new Pawn(site, simulation.getPawnNameGenerator().generate(), random);
+            leader.setTraits(PawnTraits.roll(simulation.getTraitRandom()));
             simulation.getEntityRepository().addEntity(leader);
             Nation nation = new Nation(simulation.getNationNameGenerator().generate(), leader.getId(), random);
             simulation.getNationRepository().addNation(nation);
@@ -108,6 +125,7 @@ namespace beyondnations {
         private static void addPawns(Simulation simulation, Nation nation, Settlement settlement, int count) {
             for (int i = 0; i < count; i++) {
                 Pawn pawn = new Pawn(settlement.getPosition(), simulation.getPawnNameGenerator().generate(), simulation.getRandom());
+                pawn.setTraits(PawnTraits.roll(simulation.getTraitRandom()));
                 simulation.getEntityRepository().addEntity(pawn);
                 nation.addMember(pawn.getId());
                 pawn.setNationId(nation.getId());

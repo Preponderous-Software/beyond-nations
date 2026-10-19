@@ -32,6 +32,12 @@ namespace beyondnations {
         // a leader's standing request, or null
         private NationOrder order;
 
+        // character (PawnTraits); empty for a pawn made outside world generation
+        private List<PawnTrait> traits = new List<PawnTrait>();
+
+        // sent out by a crowded settlement to found another (PopulationGrowth)
+        private bool settler;
+
         public Pawn(Vector3 position, string name, RandomSource random) : base(EntityType.PAWN, name) {
             this.random = random;
             this.speed = random.range(10, 20);
@@ -156,8 +162,34 @@ namespace beyondnations {
             return getAppearance().getLabel();
         }
 
+        /** Energy burned per tick, after traits (a glutton burns more). */
         public float getMetabolism() {
-            return metabolism;
+            return metabolism * PawnTraits.metabolismMultiplier(this);
+        }
+
+        public bool isSettler() {
+            return settler;
+        }
+
+        public void setSettler(bool settler) {
+            this.settler = settler;
+        }
+
+        public IReadOnlyList<PawnTrait> getTraits() {
+            return traits;
+        }
+
+        public bool hasTrait(PawnTrait trait) {
+            return traits.Contains(trait);
+        }
+
+        public void setTraits(IEnumerable<PawnTrait> traits) {
+            this.traits = new List<PawnTrait>();
+            foreach (PawnTrait trait in traits) {
+                if (!this.traits.Contains(trait)) {
+                    this.traits.Add(trait);
+                }
+            }
         }
 
         public void increaseRelationship(Entity entity, int amount) {
@@ -273,13 +305,16 @@ namespace beyondnations {
                 return "(purchasing food)";
             }
             else if (getCurrentBehaviorType() == BehaviorType.CONSTRUCT_SETTLEMENT) {
-                return "(creating settlementing)";
+                return "(founding a settlement)";
             }
             else if (getCurrentBehaviorType() == BehaviorType.GO_TO_HOME_SETTLEMENT) {
                 return "(going home)";
             }
             else if (getCurrentBehaviorType() == BehaviorType.PLANT_SAPLING) {
                 return "(planting sapling)";
+            }
+            else if (getCurrentBehaviorType() == BehaviorType.SEEK_SETTLEMENT_SITE) {
+                return "(looking for land to settle)";
             }
             else {
                 return "(?)";

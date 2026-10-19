@@ -29,6 +29,10 @@ namespace beyondnations {
         CREATE_NATION,
         JOIN_NATION,
         JOIN_RANDOM_SETTLEMENT,
-        WITHDRAW_SETTLEMENT_FUNDS
+        WITHDRAW_SETTLEMENT_FUNDS,
+
+        // added later; appended so earlier values keep their numbers
+        CONTRIBUTE_TO_STOCKPILE,
+        SEEK_SETTLEMENT_SITE
     }
 }

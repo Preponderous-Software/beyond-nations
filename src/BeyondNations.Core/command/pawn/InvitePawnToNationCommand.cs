@@ -58,6 +58,11 @@ namespace beyondnations {
                     player.getStatus().update(who + ": \"I'm loyal to " + oldNation.getName() + ".\" (needs " + RelationshipTiers.getName(RIVAL_TIER_REQUIRED) + ")");
                     return;
                 }
+                // a pawn with the Loyal trait needs far more than Loyal standing (PawnTraits)
+                if (PawnRelations.getRelationship(pawn, player) < PawnTraits.relationshipToDefect(pawn)) {
+                    player.getStatus().update(who + ": \"I think the world of you, but " + oldNation.getName() + " is my home. I won't turn my back on it.\" (Loyal by nature)");
+                    return;
+                }
                 leaveOldNation(pawn, oldNation);
             }
 

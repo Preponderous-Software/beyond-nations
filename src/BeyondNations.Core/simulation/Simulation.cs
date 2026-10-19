@@ -37,6 +37,8 @@ namespace beyondnations {
         private Diplomacy diplomacy;
         private string playerTerritory = null;
         private bool playerTerritoryKnown = false;
+        private RandomSource traitRandom;
+        private PopulationGrowth populationGrowth;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -87,6 +89,12 @@ namespace beyondnations {
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
             // Its own stream, so where pawns stroll in town never shifts the rest of a seeded world.
             settlementLife = new SettlementLife(new RandomSource(random.getSeed() ^ 0x5E771E));
+            // Traits and growth get their own streams too, for the same reason.
+            traitRandom = new RandomSource(random.getSeed() ^ 0x7A175);
+            worldGenerator.setTraitRandom(traitRandom);
+            populationGrowth = new PopulationGrowth(new RandomSource(random.getSeed() ^ 0x620717), entityRepository, nationRepository, environment, eventProducer, gameConfig, player);
+            // pawns keep a day: home at nightfall, out again in the morning
+            pawnBehaviorCalculator.setTimeOfDay(timeOfDay);
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -105,6 +113,9 @@ namespace beyondnations {
         public Diplomacy getDiplomacy() { return diplomacy; }
         public PawnNameGenerator getPawnNameGenerator() { return pawnNameGenerator; }
         public NationNameGenerator getNationNameGenerator() { return nationNameGenerator; }
+        /** The stream pawn traits are rolled from, for pawns made outside world generation (SettlementShowcase). */
+        public RandomSource getTraitRandom() { return traitRandom; }
+        public PopulationGrowth getPopulationGrowth() { return populationGrowth; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         public int getNumPlayerDeaths() { return numPlayerDeaths; }
 
@@ -153,7 +164,8 @@ namespace beyondnations {
                             if (!pawn.isCurrentlyInSettlement()) {
                                 // Pawns the player has met show how they feel about the player.
                                 string nameLine = PawnRelations.hasMet(pawn, player) ? PawnRelations.describe(pawn, player) : pawn.getName();
-                                string nameTagText = nameLine + "\n" + pawn.getCurrentBehaviorDescription();
+                                string traits = PawnTraits.describe(pawn);
+                                string nameTagText = nameLine + (traits.Length > 0 ? "\n" + traits : "") + "\n" + pawn.getCurrentBehaviorDescription();
                                 pawn.setNameTag(nameTagText);
                             }
 
@@ -310,6 +322,7 @@ namespace beyondnations {
                     if (tickCounter.getTotalTicks() % TerritoryCheckTicks == 0) {
                         announceBorderCrossing();
                     }
+                    populationGrowth.update(tickCounter.getTotalTicks());
 
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();

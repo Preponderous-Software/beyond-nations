@@ -15,10 +15,11 @@ namespace beyondnations.historyexport.tests {
     * format the USD converter (tools/history-to-usd.py) reads.
     */
     public class TestHistoryExporter {
-        // Seed 42 founds its first nation at tick 2250 and that nation's
-        // first settlement at tick 2300; seed 7 generates no pawns at all.
+        // Seed 42 founds its first nation at tick 2000 and that nation's
+        // first settlement at tick 2050.
         private const int SeedWithPawns = 42;
-        private const int SeedWithoutPawns = 7;
+        // Most chunks have pawns since pawns spawn more densely; this seed's opening chunks have none.
+        private const int SeedWithoutPawns = 79;
         private const int TicksPastFirstSettlement = 2400;
 
         private static string export(int seed, int ticks, int every = 50) {

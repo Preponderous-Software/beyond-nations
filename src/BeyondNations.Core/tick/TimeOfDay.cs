@@ -10,7 +10,7 @@ namespace beyondnations {
     * which is what Strata's sun lighting expects. It is a pure function of
     * TickCounter.getTotalTicks(), the ticks per day and the fraction the world
     * started at -- no wall clock -- so the same tick always gives the same
-    * time. Nothing in the simulation reads it yet; it changes no rules.
+    * time. One rule reads it: pawns go home at night (PawnBehaviorCalculator).
     */
     public class TimeOfDay {
 
@@ -50,6 +50,18 @@ namespace beyondnations {
         /** The current time of day in [0, 1). */
         public float getFraction() {
             return fractionAt(tickCounter.getTotalTicks(), ticksPerDay, startFraction);
+        }
+
+        /** Night runs from a little after sunset to a little before sunrise. */
+        public const float NightStartFraction = 0.8f;
+        public const float NightEndFraction = 0.2f;
+
+        public bool isNight() {
+            return isNightAt(getFraction());
+        }
+
+        public static bool isNightAt(float fraction) {
+            return fraction >= NightStartFraction || fraction < NightEndFraction;
         }
 
         /** Days completed since the world started: 0 on the first day. */
