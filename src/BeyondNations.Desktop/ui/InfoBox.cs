@@ -72,13 +72,22 @@ namespace beyondnations.desktop.ui {
         * grows upwards as lines are added rather than down off the screen.
         */
         public float drawAbove(float x, float bottomY, float width, float minTopY) {
+            float height = getExpectedHeight();
+            float top = System.MathF.Max(minTopY, bottomY - height);
+            draw(x, top, width);
+            return top;
+        }
+
+        /**
+        * How tall the box was when last drawn, or an estimate from its line
+        * count before it has been drawn at all.
+        */
+        public float getExpectedHeight() {
             float height;
             if (!lastHeights.TryGetValue(title, out height)) {
                 height = ImGui.GetFrameHeightWithSpacing() * (getLines().Count + 1);
             }
-            float top = System.MathF.Max(minTopY, bottomY - height);
-            draw(x, top, width);
-            return top;
+            return height;
         }
 
         /**

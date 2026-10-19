@@ -126,7 +126,16 @@ namespace beyondnations.desktop.ui.screens {
                 leftTop = debugInfoBox.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
             }
 
-            new InventoryInfoBox(player.getInventory()).drawAbove(layout.LeftX, columnBottom, layout.BoxWidth, leftTop);
+            // On a short window with the debug box open there is no room for
+            // the inventory under it, so it moves into a second column beside
+            // the debug box rather than off the bottom of the screen.
+            InventoryInfoBox inventoryBox = new InventoryInfoBox(player.getInventory());
+            float inventoryX = layout.LeftX;
+            if (leftTop + inventoryBox.getExpectedHeight() > columnBottom && layout.LeftX + layout.BoxWidth * 2f + layout.Gap < layout.RightX) {
+                inventoryX = layout.LeftX + layout.BoxWidth + layout.Gap;
+                leftTop = layout.Margin;
+            }
+            inventoryBox.drawAbove(inventoryX, columnBottom, layout.BoxWidth, leftTop);
 
             // Right column: the settlement and market boxes stack down from
             // the top while the player is inside a settlement, and the player
