@@ -96,6 +96,9 @@ namespace beyondnations.web {
         // UiHost.apply, unchanged.
         private void apply(UiAction action) {
             switch (action) {
+                case UiAction.Continue:
+                    screens.anyKeyPressed();
+                    break;
                 case UiAction.StartGame:
                     startRequested = true;
                     screens.goTo(ScreenType.WORLD);

@@ -10,6 +10,7 @@ namespace beyondnations.desktop.ui {
     */
     public enum UiAction {
         None,
+        Continue,
         StartGame,
         OpenConfig,
         Back,
