@@ -333,6 +333,7 @@ namespace beyondnations.web {
             json.Append(",\"labelsDrawn\":").Append(labels != null ? labels.getLabelsDrawn() : 0);
             json.Append(",\"fps\":").Append(ui.getFramesPerSecond());
             MouseLook look = playerInputController.getMouseLook();
+            json.Append(",\"playerYaw\":").Append(simulation == null ? "0" : (simulation.getPlayer().getYaw() * 180f / System.MathF.PI).ToString("0.##", CultureInfo.InvariantCulture));
             json.Append(",\"lookYaw\":").Append(look.getYawDegrees().ToString("0.##", CultureInfo.InvariantCulture));
             json.Append(",\"lookPitch\":").Append(look.getPitchDegrees().ToString("0.##", CultureInfo.InvariantCulture));
             json.Append(",\"camera\":\"").Append(camera.getMode().ToString()).Append('"');

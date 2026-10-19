@@ -1,3 +1,4 @@
+using System.Numerics;
 using beyondnations;
 
 namespace beyondnations.desktop.input {
@@ -18,6 +19,8 @@ namespace beyondnations.desktop.input {
     * with a status message until F1 has been pressed at least once.
     */
     public class PlayerInputController {
+        private const float DegreesToRadians = System.MathF.PI / 180f;
+
         private readonly MouseLook mouseLook = new MouseLook();
         private bool debugMode;
 
@@ -39,9 +42,15 @@ namespace beyondnations.desktop.input {
         }
 
         public void update(Simulation simulation, InputService inputService) {
-            mouseLook.apply(inputService.getMouseDelta());
-
             Player player = simulation.getPlayer();
+
+            // A right-button drag steers: sideways motion turns the player, so
+            // W walks wherever the drag points, and up/down tilts the camera.
+            // The camera stays behind the player rather than orbiting it.
+            Vector2 mouseDelta = inputService.getMouseDelta();
+            player.turn(-mouseDelta.X * MouseLook.DefaultSensitivityDegreesPerPixel * DegreesToRadians);
+            mouseLook.apply(new Vector2(0f, mouseDelta.Y));
+
             applyMovement(player, inputService);
             applyActions(simulation, player, inputService);
         }

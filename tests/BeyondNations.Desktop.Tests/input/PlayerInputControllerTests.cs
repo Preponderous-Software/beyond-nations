@@ -278,21 +278,55 @@ namespace beyondnationstests.desktop.input {
         }
 
         [Fact]
-        public void mouseLook_accumulatesFromMouseDelta_everyFrame() {
+        public void rightDrag_sidewaysTurnsThePlayer_everyFrame_andLeavesTheCameraBehind() {
             Simulation simulation = createSimulation();
             FakeInputSource source = new FakeInputSource();
             InputService inputService = new InputService(source);
             PlayerInputController controller = new PlayerInputController();
+            float yawBefore = simulation.getPlayer().getYaw();
 
+            // Dragging right turns right, which lowers yaw in this world.
             source.setMouseDelta(new System.Numerics.Vector2(10f, 0f));
             inputService.update();
             controller.update(simulation, inputService);
-            float yawAfterFirst = controller.getMouseLook().getYawDegrees();
-            Assert.NotEqual(0f, yawAfterFirst);
+            float yawAfterFirst = simulation.getPlayer().getYaw();
+            Assert.True(yawAfterFirst < yawBefore, "a drag to the right should turn the player right");
+            Assert.Equal(10f * MouseLook.DefaultSensitivityDegreesPerPixel * System.MathF.PI / 180f, yawBefore - yawAfterFirst, 5);
 
             inputService.update();
             controller.update(simulation, inputService);
-            Assert.True(controller.getMouseLook().getYawDegrees() < yawAfterFirst, "mouse look should keep accumulating while the mouse keeps moving");
+            Assert.True(simulation.getPlayer().getYaw() < yawAfterFirst, "steering should keep turning while the mouse keeps moving");
+            Assert.Equal(0f, controller.getMouseLook().getYawDegrees());
+        }
+
+        [Fact]
+        public void rightDrag_verticalTiltsTheCamera_withoutTurningThePlayer() {
+            Simulation simulation = createSimulation();
+            FakeInputSource source = new FakeInputSource();
+            InputService inputService = new InputService(source);
+            PlayerInputController controller = new PlayerInputController();
+            float yawBefore = simulation.getPlayer().getYaw();
+
+            source.setMouseDelta(new System.Numerics.Vector2(0f, -10f));
+            inputService.update();
+            controller.update(simulation, inputService);
+
+            Assert.Equal(yawBefore, simulation.getPlayer().getYaw());
+            Assert.Equal(1.5f, controller.getMouseLook().getPitchDegrees(), 3);
+        }
+
+        [Fact]
+        public void noMouseMotion_leavesThePlayersHeadingAlone() {
+            Simulation simulation = createSimulation();
+            FakeInputSource source = new FakeInputSource();
+            InputService inputService = new InputService(source);
+            PlayerInputController controller = new PlayerInputController();
+            float yawBefore = simulation.getPlayer().getYaw();
+
+            inputService.update();
+            controller.update(simulation, inputService);
+
+            Assert.Equal(yawBefore, simulation.getPlayer().getYaw());
         }
 
         [Fact]

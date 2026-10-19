@@ -65,7 +65,7 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(nation, keys(KeyBindings.ToggleNations), "Nations: relations, gifts, alliances"));
 
             const string view = "View and game";
-            rows.Add(new Row(view, "Right mouse (hold)", "Look around"));
+            rows.Add(new Row(view, "Right mouse (hold)", "Steer and tilt the view"));
             rows.Add(new Row(view, keys(KeyBindings.ToggleCameraView), "First / third person"));
             rows.Add(new Row(view, keys(KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance), "Render distance up / down"));
             rows.Add(new Row(view, keys(KeyBindings.TakeScreenshot), "Screenshot"));
