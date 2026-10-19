@@ -85,7 +85,7 @@ namespace beyondnations.desktop.ui {
         public float getExpectedHeight() {
             float height;
             if (!lastHeights.TryGetValue(title, out height)) {
-                height = ImGui.GetFrameHeightWithSpacing() * (getLines().Count + 1);
+                height = Overlay.lineHeight() * (getLines().Count + 1) + ImGui.GetStyle().WindowPadding.Y * 2f;
             }
             return height;
         }

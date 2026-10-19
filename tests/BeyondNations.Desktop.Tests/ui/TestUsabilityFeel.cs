@@ -186,5 +186,47 @@ namespace beyondnationstests {
             Assert.Equal(0f, GameOptions.parse(new string[0]).UiScale);
             Assert.Equal(ScreenType.CONTROLS, GameOptions.parse(new string[] { "--start-screen", "controls" }).StartScreen);
         }
+    
+        [Fact]
+        public void testTextWrapBreaksAtSpacesWithinTheWidth() {
+            // One unit per character.
+            List<string> lines = TextWrap.wrap("Not enough wood. Need 20.", 12f, text => text.Length);
+
+            Assert.Equal(new List<string> { "Not enough", "wood. Need", "20." }, lines);
+            Assert.Empty(TextWrap.wrap("", 12f, text => text.Length));
+            // A word longer than the width stays whole on its own line.
+            Assert.Equal(new List<string> { "Supercalifragilistic" }, TextWrap.wrap("Supercalifragilistic", 5f, text => text.Length));
+        }
+
+        [Fact]
+        public void testControlsColumnsKeepSectionsWholeAndWithinTheHeight() {
+            List<ControlsScreen.Row> rows = ControlsScreen.getRows();
+            foreach (int capacity in new[] { 12, 20, 40, 200 }) {
+                int[] column = ControlsScreen.assignColumns(rows, capacity);
+                Dictionary<int, int> linesInColumn = new Dictionary<int, int>();
+                Dictionary<string, int> sectionColumn = new Dictionary<string, int>();
+                string last = null;
+                for (int i = 0; i < rows.Count; i++) {
+                    if (i > 0) {
+                        Assert.True(column[i] >= column[i - 1], "columns must not go backwards");
+                    }
+                    linesInColumn.TryGetValue(column[i], out int lines);
+                    if (rows[i].Section != last) {
+                        lines += lines > 0 ? 2 : 1;
+                        last = rows[i].Section;
+                    }
+                    lines++;
+                    linesInColumn[column[i]] = lines;
+                    Assert.True(lines <= capacity, "column " + column[i] + " runs past " + capacity + " lines");
+                    // No section taller than the capacity here, so none is split.
+                    if (sectionColumn.TryGetValue(rows[i].Section, out int seen)) {
+                        Assert.Equal(seen, column[i]);
+                    } else {
+                        sectionColumn[rows[i].Section] = column[i];
+                    }
+                }
+            }
+            Assert.All(ControlsScreen.assignColumns(rows, 200), c => Assert.Equal(0, c));
+        }
     }
 }

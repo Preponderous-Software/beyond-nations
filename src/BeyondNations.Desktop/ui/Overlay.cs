@@ -59,6 +59,29 @@ namespace beyondnations.desktop.ui {
                 Vector2.Zero, new Vector2(width, height), ImGui.GetColorU32(new Vector4(0f, 0f, 0f, 0.6f)));
         }
 
+        /**
+        * The height of one line of text plus the spacing after it, and of a
+        * framed widget such as a button, worked out from the style rather
+        * than asked of ImGui: the browser build links cimgui statically and
+        * the shared UI keeps to the ImGui calls it is known to run there.
+        */
+        public static float lineHeight() {
+            return BaseFontSize + ImGui.GetStyle().ItemSpacing.Y;
+        }
+
+        public static float frameHeight() {
+            return BaseFontSize + ImGui.GetStyle().FramePadding.Y * 2f;
+        }
+
+        /**
+        * Fills a rectangle given in window-local coordinates (the ones
+        * SetCursorPos takes) in the current window.
+        */
+        public static void fillLocalRect(Vector2 localMin, Vector2 size, Vector4 colour) {
+            Vector2 origin = ImGui.GetWindowPos();
+            ImGui.GetWindowDrawList().AddRectFilled(origin + localMin, origin + localMin + size, ImGui.GetColorU32(colour));
+        }
+
         public static void end() {
             ImGui.End();
         }
@@ -98,6 +121,11 @@ namespace beyondnations.desktop.ui {
         * of the button clicked this frame, or -1.
         */
         public static int menuButtons(string[] labels, float width, float topY, float maxBottom) {
+            float ignored;
+            return menuButtons(labels, width, topY, maxBottom, out ignored);
+        }
+
+        public static int menuButtons(string[] labels, float width, float topY, float maxBottom, out float bottom) {
             float padding = ImGui.GetStyle().FramePadding.X * 2f;
             float buttonWidth = UiScale.px(160f);
             foreach (string label in labels) {
@@ -109,7 +137,7 @@ namespace beyondnations.desktop.ui {
             float available = maxBottom - topY;
             if (needed > available && available > 0f) {
                 float shrink = available / needed;
-                buttonHeight = System.MathF.Max(ImGui.GetFrameHeight(), buttonHeight * shrink);
+                buttonHeight = System.MathF.Max(frameHeight(), buttonHeight * shrink);
                 gap = System.MathF.Max(UiScale.px(2f), gap * shrink);
             }
             int clicked = -1;
@@ -120,6 +148,7 @@ namespace beyondnations.desktop.ui {
                 }
                 y += buttonHeight + gap;
             }
+            bottom = y - gap;
             return clicked;
         }
 

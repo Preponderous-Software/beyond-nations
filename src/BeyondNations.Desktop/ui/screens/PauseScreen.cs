@@ -1,5 +1,3 @@
-using ImGuiNET;
-
 namespace beyondnations.desktop.ui.screens {
 
     /**
@@ -37,9 +35,10 @@ namespace beyondnations.desktop.ui.screens {
             // The warning about Main Menu sits under the buttons, so the
             // column stops a couple of lines short of the bottom to leave it
             // room on a short window.
-            float warningSpace = ImGui.GetTextLineHeightWithSpacing() * 2f;
-            int clicked = Overlay.menuButtons(ButtonLabels, width, centreY, height - warningSpace);
-            float warningY = System.MathF.Min(ImGui.GetCursorPosY() + warningSpace * 0.25f, height - warningSpace * 0.5f);
+            float warningSpace = Overlay.lineHeight() * 2f;
+            float buttonsBottom;
+            int clicked = Overlay.menuButtons(ButtonLabels, width, centreY, height - warningSpace, out buttonsBottom);
+            float warningY = System.MathF.Min(buttonsBottom + warningSpace * 0.5f, height - warningSpace * 0.5f);
             Overlay.textCentered(MainMenuWarning, Overlay.BaseFontSize, warningY, width);
             Overlay.end();
 

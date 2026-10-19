@@ -87,76 +87,112 @@ namespace beyondnations.desktop.ui.screens {
             return string.Join(" / ", names);
         }
 
+        public const string PreviousLabel = "< Prev";
+        public const string NextLabel = "Next >";
+
+        private int page;
+
+        /**
+        * Fills columns of at most linesPerColumn lines (a section heading,
+        * and the blank line before every heading but a column's first, count
+        * as lines), starting a new column rather than splitting a section
+        * unless the section is taller than a whole column. Returns the column
+        * each row goes in. Kept apart from drawing so it can be tested.
+        */
+        public static int[] assignColumns(List<Row> rows, int linesPerColumn) {
+            linesPerColumn = System.Math.Max(2, linesPerColumn);
+            int[] column = new int[rows.Count];
+            int current = 0;
+            int lines = 0;
+            string last = null;
+            for (int i = 0; i < rows.Count; i++) {
+                if (rows[i].Section != last) {
+                    int sectionLines = 1;
+                    for (int j = i; j < rows.Count && rows[j].Section == rows[i].Section; j++) {
+                        sectionLines++;
+                    }
+                    int gap = lines > 0 ? 1 : 0;
+                    if (lines > 0 && lines + gap + sectionLines > linesPerColumn) {
+                        current++;
+                        lines = 0;
+                        gap = 0;
+                    }
+                    lines += gap + 1;
+                    last = rows[i].Section;
+                } else if (lines >= linesPerColumn) {
+                    current++;
+                    lines = 1;
+                }
+                column[i] = current;
+                lines++;
+            }
+            return column;
+        }
+
         public UiAction draw(float width, float height) {
             UiAction action = UiAction.None;
 
             Overlay.beginFullScreen("##controls-screen", width, height);
             Overlay.dimBackground(width, height);
 
-            float lineHeight = ImGui.GetTextLineHeightWithSpacing();
             float margin = UiScale.px(16f);
             float titleSize = Overlay.BaseFontSize * 2f;
             Overlay.textCentered(Title, titleSize, margin + titleSize / 2f, width);
             float top = margin * 1.5f + titleSize;
 
-            // The key column is as wide as the widest key name, so long names
-            // such as "Page Up / Page Down" never run into the action. Two
-            // columns of sections when the window is wide enough, one (which
-            // scrolls) when it is not.
-            List<Row> rows = getRows();
-            float keyColumn = 0f;
-            float actionColumn = 0f;
-            int sections = 0;
-            string lastSection = null;
-            foreach (Row row in rows) {
-                keyColumn = System.MathF.Max(keyColumn, ImGui.CalcTextSize(row.Keys).X);
-                actionColumn = System.MathF.Max(actionColumn, ImGui.CalcTextSize(row.Action).X);
-                if (row.Section != lastSection) {
-                    sections++;
-                    lastSection = row.Section;
-                }
-            }
-            float gutter = UiScale.px(14f);
-            float columnWidth = keyColumn + gutter + actionColumn;
-            int columns = width >= columnWidth * 2f + margin * 3f ? 2 : 1;
-            int linesPerColumn = (rows.Count + sections * 2 + columns - 1) / columns;
-            float totalWidth = columns * columnWidth + (columns - 1) * margin;
-            float left = System.MathF.Max(margin, (width - totalWidth) / 2f);
-
             float buttonWidth = UiScale.px(120f);
             float buttonHeight = UiScale.px(32f);
             float buttonY = height - buttonHeight - margin;
-            float listHeight = System.MathF.Max(lineHeight * 3f, buttonY - lineHeight * 1.5f - top);
+            float listBottom = buttonY - Overlay.lineHeight() * 1.5f;
+            float gutter = UiScale.px(14f);
+            float lineHeight = Overlay.lineHeight();
 
-            ImGui.SetCursorPos(new Vector2(left, top));
-            ImGui.BeginChild("##controls-list", new Vector2(System.MathF.Max(columnWidth, width - left * 2f), listHeight),
-                ImGuiChildFlags.None, ImGuiWindowFlags.NoBackground);
+            // As many columns as fit across (up to three), each as tall as
+            // the space above the Close button. What does not fit goes on
+            // further pages behind Prev and Next, so a short window or a
+            // phone shows every binding at a readable size rather than
+            // cutting the list off.
+            List<Row> rows = getRows();
+            float keyColumn = 0f;
+            float actionColumn = 0f;
+            foreach (Row row in rows) {
+                keyColumn = System.MathF.Max(keyColumn, ImGui.CalcTextSize(row.Keys).X);
+                actionColumn = System.MathF.Max(actionColumn, ImGui.CalcTextSize(row.Action).X);
+            }
+            float columnWidth = keyColumn + gutter + actionColumn;
+            int across = System.Math.Clamp((int) ((width - margin) / (columnWidth + margin)), 1, 3);
+            int linesPerColumn = (int) ((listBottom - top) / lineHeight);
+            int[] column = assignColumns(rows, linesPerColumn);
+            int columnCount = column.Length == 0 ? 1 : column[column.Length - 1] + 1;
+            int pages = (columnCount + across - 1) / across;
+            page = System.Math.Clamp(page, 0, pages - 1);
+            int visibleColumns = System.Math.Min(across, columnCount - page * across);
+
+            float totalWidth = visibleColumns * columnWidth + (visibleColumns - 1) * margin;
+            float left = System.MathF.Max(margin, (width - totalWidth) / 2f);
             Vector4 sectionColour = new Vector4(1f, 0.85f, 0.45f, 1f);
             Vector4 keyColour = new Vector4(0.65f, 0.85f, 1f, 1f);
-            float columnX = 0f;
-            float rowY = 0f;
-            int linesInColumn = 0;
-            lastSection = null;
+            int currentColumn = -1;
+            float rowY = top;
+            string lastSection = null;
             for (int i = 0; i < rows.Count; i++) {
+                if (column[i] / across != page) {
+                    continue;
+                }
                 Row row = rows[i];
+                float columnX = left + (column[i] % across) * (columnWidth + margin);
+                if (column[i] != currentColumn) {
+                    currentColumn = column[i];
+                    rowY = top;
+                    lastSection = null;
+                }
                 if (row.Section != lastSection) {
-                    // A section is never split across the two columns.
-                    int sectionLines = 2;
-                    for (int j = i; j < rows.Count && rows[j].Section == row.Section; j++) {
-                        sectionLines++;
-                    }
-                    if (columns > 1 && columnX == 0f && linesInColumn > 0 && linesInColumn + sectionLines > linesPerColumn + 2) {
-                        columnX = columnWidth + margin;
-                        rowY = 0f;
-                        linesInColumn = 0;
-                    }
-                    if (linesInColumn > 0) {
+                    if (rowY > top) {
                         rowY += lineHeight;
                     }
                     ImGui.SetCursorPos(new Vector2(columnX, rowY));
                     ImGui.TextColored(sectionColour, row.Section);
                     rowY += lineHeight;
-                    linesInColumn += 2;
                     lastSection = row.Section;
                 }
                 ImGui.SetCursorPos(new Vector2(columnX, rowY));
@@ -164,13 +200,22 @@ namespace beyondnations.desktop.ui.screens {
                 ImGui.SetCursorPos(new Vector2(columnX + keyColumn + gutter, rowY));
                 ImGui.TextUnformatted(row.Action);
                 rowY += lineHeight;
-                linesInColumn++;
             }
-            ImGui.EndChild();
 
-            Overlay.textCentered(CloseHint, Overlay.BaseFontSize, buttonY - lineHeight * 0.75f, width);
-            if (Overlay.buttonAt(CloseLabel, (width - buttonWidth) / 2f, buttonY, buttonWidth, buttonHeight)) {
+            string hint = pages > 1 ? CloseHint + "  Page " + (page + 1) + " of " + pages : CloseHint;
+            Overlay.textCentered(hint, Overlay.BaseFontSize, buttonY - Overlay.lineHeight() * 0.75f, width);
+            float centreX = width / 2f;
+            if (Overlay.buttonAt(CloseLabel, centreX - buttonWidth / 2f, buttonY, buttonWidth, buttonHeight)) {
                 action = UiAction.CloseControls;
+            }
+            if (pages > 1) {
+                float pagerWidth = System.MathF.Min(buttonWidth, (width - buttonWidth) / 2f - margin * 2f);
+                if (page > 0 && Overlay.buttonAt(PreviousLabel, centreX - buttonWidth / 2f - margin - pagerWidth, buttonY, pagerWidth, buttonHeight)) {
+                    page--;
+                }
+                if (page < pages - 1 && Overlay.buttonAt(NextLabel, centreX + buttonWidth / 2f + margin, buttonY, pagerWidth, buttonHeight)) {
+                    page++;
+                }
             }
             Overlay.end();
             return action;

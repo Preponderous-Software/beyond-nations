@@ -58,6 +58,12 @@ namespace beyondnations.desktop.ui.screens {
 
         private string lastStatus;
         private double lastStatusChangedAt;
+        private double clock;
+
+        private static List<string> wrapForCentre(string text, Layout layout) {
+            float maxWidth = layout.CentreWrapWidth - ImGui.GetStyle().WindowPadding.X * 2f;
+            return TextWrap.wrap(text, maxWidth, line => ImGui.CalcTextSize(line).X);
+        }
 
         /**
         * Where the HUD's columns go, as plain numbers, so the arithmetic can
@@ -168,7 +174,7 @@ namespace beyondnations.desktop.ui.screens {
 
             // A twentieth of the height, as the Unity bar had, but never less
             // than a comfortable touch target nor more than a chunky button.
-            float buttonHeight = System.Math.Clamp(height / 20f, ImGui.GetFrameHeight() + UiScale.px(8f), UiScale.px(44f));
+            float buttonHeight = System.Math.Clamp(height / 20f, Overlay.frameHeight() + UiScale.px(8f), UiScale.px(44f));
             float minButtonWidth = System.MathF.Min(width / 10f, UiScale.px(110f));
             float maxRowWidth = width - layout.Margin * 2f;
             float spacing = ImGui.GetStyle().ItemSpacing.X;
@@ -255,11 +261,10 @@ namespace beyondnations.desktop.ui.screens {
                 ? new Vector4(1f, 0.35f, 0.35f, 1f)
                 : new Vector4(1f, 0.8f, 0.3f, 1f);
             ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
-            ImGui.SetNextWindowSizeConstraints(Vector2.Zero, new Vector2(layout.CentreWrapWidth, float.MaxValue));
             if (ImGui.Begin("##hunger-warning", StatusFlags)) {
-                ImGui.PushTextWrapPos(layout.CentreWrapWidth - ImGui.GetStyle().WindowPadding.X);
-                ImGui.TextColored(colour, warning);
-                ImGui.PopTextWrapPos();
+                foreach (string line in wrapForCentre(warning, layout)) {
+                    ImGui.TextColored(colour, line);
+                }
             }
             ImGui.End();
         }
@@ -283,7 +288,8 @@ namespace beyondnations.desktop.ui.screens {
             // message flashes brighter for a moment so a repeated press is
             // noticed. Long messages wrap in the space between the columns of
             // boxes instead of running under them.
-            double now = ImGui.GetTime();
+            clock += ImGui.GetIO().DeltaTime;
+            double now = clock;
             if (status != lastStatus) {
                 lastStatus = status;
                 lastStatusChangedAt = now;
@@ -294,18 +300,18 @@ namespace beyondnations.desktop.ui.screens {
                 ? new Vector4(0.55f + 0.3f * flash, 0.10f, 0.10f, 0.90f)
                 : new Vector4(0.08f + 0.25f * flash, 0.08f + 0.25f * flash, 0.10f + 0.25f * flash, 0.85f);
 
+            // The panel is painted with the draw list under the text, in a
+            // window with no background of its own.
             ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
-            ImGui.SetNextWindowSizeConstraints(Vector2.Zero, new Vector2(layout.CentreWrapWidth, float.MaxValue));
-            ImGui.PushStyleColor(ImGuiCol.WindowBg, background);
             float bottom = y;
-            if (ImGui.Begin("##status", StatusFlags)) {
-                ImGui.PushTextWrapPos(layout.CentreWrapWidth - ImGui.GetStyle().WindowPadding.X);
-                ImGui.TextUnformatted(failure ? "! " + status : status);
-                ImGui.PopTextWrapPos();
+            if (ImGui.Begin("##status", StatusFlags | ImGuiWindowFlags.NoBackground)) {
+                Overlay.fillLocalRect(Vector2.Zero, ImGui.GetWindowSize(), background);
+                foreach (string line in wrapForCentre(failure ? "! " + status : status, layout)) {
+                    ImGui.TextUnformatted(line);
+                }
                 bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
             }
             ImGui.End();
-            ImGui.PopStyleColor();
             return bottom + layout.Gap * 0.5f;
         }
     }
