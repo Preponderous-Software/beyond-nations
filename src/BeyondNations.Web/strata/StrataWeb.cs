@@ -44,6 +44,16 @@ namespace beyondnations.web.strata {
             public float far_plane;
         }
 
+        // ABI 1.1: a point light, for the night lights (NightLighting).
+        [StructLayout(LayoutKind.Sequential)]
+        public struct PointLight {
+            public fixed float position[3];
+            public float range;
+            public fixed float color[3];
+            public float intensity;
+            public uint flags;
+        }
+
         [StructLayout(LayoutKind.Sequential)]
         public struct Lighting {
             public int mode;
@@ -89,6 +99,7 @@ namespace beyondnations.web.strata {
         [DllImport(Library)] public static extern int strata_resize(IntPtr engine, int width, int height);
         [DllImport(Library)] public static extern int strata_set_camera(IntPtr engine, Camera* camera);
         [DllImport(Library)] public static extern int strata_set_lighting(IntPtr engine, Lighting* lighting);
+        [DllImport(Library)] public static extern int strata_set_point_lights(IntPtr engine, PointLight* lights, int count);
         [DllImport(Library)] public static extern int strata_lighting_defaults(int mode, Lighting* lighting);
         [DllImport(Library)] public static extern int strata_begin_frame(IntPtr engine, FrameDesc* desc);
         [DllImport(Library)] public static extern int strata_submit_primitives(IntPtr engine, RenderItem* items, int count);

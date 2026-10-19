@@ -118,6 +118,40 @@ namespace beyondnations.desktop.render {
             }
         }
 
+
+        // --- night lights ---
+        private Vector3 playerPosition;
+        private readonly NightLighting.Light[] nightLights = new NightLighting.Light[NightLighting.LightCount];
+        private int lastNightLightCount = -1;
+
+        /** Where the player stands, so the night lights can follow them. */
+        public void setPlayerPosition(Vector3 position) {
+            playerPosition = position;
+        }
+
+        private void submitNightLights(float latitudeDegrees) {
+            int count = NightLighting.compute(timeOfDay, latitudeDegrees, playerPosition, nightLights);
+            if (count == 0 && lastNightLightCount == 0) {
+                return;
+            }
+            lastNightLightCount = count;
+            StrataNative.PointLight* lights = stackalloc StrataNative.PointLight[NightLighting.LightCount];
+            for (int i = 0; i < count; i++) {
+                NightLighting.Light light = nightLights[i];
+                lights[i].position[0] = light.Position.X;
+                lights[i].position[1] = light.Position.Y;
+                lights[i].position[2] = light.Position.Z;
+                lights[i].range = light.Range;
+                lights[i].color[0] = light.Colour.X;
+                lights[i].color[1] = light.Colour.Y;
+                lights[i].color[2] = light.Colour.Z;
+                lights[i].intensity = light.Intensity;
+                lights[i].flags = 0;
+            }
+            StrataNative.check(StrataNative.strata_set_point_lights(engine, lights, count), "set_point_lights");
+        }
+        // --- end night lights ---
+
         public string getName() { return "strata"; }
 
         // --- #280 ---
@@ -172,6 +206,7 @@ namespace beyondnations.desktop.render {
             StrataNative.Lighting lighting = sun;
             lighting.time_of_day = timeOfDay;
             StrataNative.check(StrataNative.strata_set_lighting(engine, &lighting), "set_lighting");
+            submitNightLights(lighting.latitude_degrees);
             // --- end #280 ---
 
             // No clear: the host cleared the frame before the world is drawn.

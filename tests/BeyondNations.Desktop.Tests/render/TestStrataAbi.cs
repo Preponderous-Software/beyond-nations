@@ -69,6 +69,12 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testPointLightMatchesNative() {
+            assertLayout<StrataNative.PointLight>(StrataNative.StructPointLight, "position", "range", "color",
+                "intensity", "flags");
+        }
+
+        [Fact]
         public void testFrameDescAndStatsMatchNative() {
             assertLayout<StrataNative.FrameDesc>(StrataNative.StructFrameDesc, "clear_flags", "clear_color");
             assertLayout<StrataNative.FrameStats>(StrataNative.StructFrameStats, "draw_calls", "instances",
