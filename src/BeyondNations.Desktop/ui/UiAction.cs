@@ -13,6 +13,7 @@ namespace beyondnations.desktop.ui {
         StartGame,
         OpenConfig,
         Back,
+        MainMenu,
         Quit
     }
 }

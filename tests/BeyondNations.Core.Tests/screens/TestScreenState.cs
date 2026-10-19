@@ -117,7 +117,10 @@ namespace beyondnationstests {
         public void testInventoryKeyDoesNothingOffTheWorld() {
             ScreenState screens = new ScreenState();
 
-            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.MAIN_MENU, ScreenType.CONFIG, ScreenType.PAUSE }) {
+            screens.goTo(ScreenType.PAUSE);
+            Assert.True(screens.isWorldVisible());
+
+            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.MAIN_MENU, ScreenType.CONFIG }) {
                 screens.goTo(screen);
                 screens.inventoryPressed();
                 Assert.Equal(screen, screens.getCurrent());
@@ -145,13 +148,16 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testWorldIsVisibleOnlyOnTheWorldAndInventoryScreens() {
+        public void testWorldIsVisibleOnlyOnTheWorldInventoryAndPauseScreens() {
             ScreenState screens = new ScreenState();
 
             screens.goTo(ScreenType.WORLD);
             Assert.True(screens.isWorldVisible());
 
-            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.MAIN_MENU, ScreenType.CONFIG, ScreenType.PAUSE }) {
+            screens.goTo(ScreenType.PAUSE);
+            Assert.True(screens.isWorldVisible());
+
+            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.MAIN_MENU, ScreenType.CONFIG }) {
                 screens.goTo(screen);
                 Assert.False(screens.isWorldVisible());
             }

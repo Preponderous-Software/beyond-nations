@@ -106,6 +106,11 @@ namespace beyondnations.web {
                 case UiAction.Back:
                     screens.goTo(screens.getCurrent() == ScreenType.PAUSE ? ScreenType.WORLD : ScreenType.MAIN_MENU);
                     break;
+                case UiAction.MainMenu:
+                    // No saves yet, so leaving for the menu ends this world;
+                    // Start builds a fresh one.
+                    screens.goTo(ScreenType.MAIN_MENU);
+                    break;
                 case UiAction.Quit:
                     quitRequested = true;
                     break;

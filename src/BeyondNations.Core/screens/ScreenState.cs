@@ -31,12 +31,12 @@ namespace beyondnations {
         }
 
         /**
-        * Whether the world should be drawn this frame. The inventory screen
-        * is laid over the world rather than replacing it, so the world stays
-        * visible behind it even though it has stopped advancing.
+        * Whether the world should be drawn this frame. The inventory and pause
+        * screens are laid over the world rather than replacing it, so the
+        * world stays visible behind them even though it has stopped advancing.
         */
         public bool isWorldVisible() {
-            return current == ScreenType.WORLD || current == ScreenType.INVENTORY;
+            return current == ScreenType.WORLD || current == ScreenType.INVENTORY || current == ScreenType.PAUSE;
         }
 
         /**
