@@ -229,7 +229,6 @@ namespace beyondnations.desktop.text {
 
             currentRight = right;
             currentUp = up;
-            currentWorldUnitsPerPixel = LineHeightInWorldUnits / font.LineHeight;
 
             for (int i = 0; i < labels.Count; i++) {
                 LabelItem label = labels[i];
@@ -243,6 +242,7 @@ namespace beyondnations.desktop.text {
                     continue;
                 }
 
+                currentWorldUnitsPerPixel = culling.getLineHeight(LineHeightInWorldUnits, label.position, view, projection) / font.LineHeight;
                 Vector2 measured = font.MeasureString(label.text);
                 currentPenOffset = LabelBillboard.getCenteringOffset(measured);
                 // a label may ask to be drawn larger (a settlement's name); 0 means normal size
