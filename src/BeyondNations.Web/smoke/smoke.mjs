@@ -118,7 +118,8 @@ try {
     await page.waitForTimeout(600);
     await page.keyboard.up("KeyW");
     // Look only while the right button is held (#291): a drag of +60, -10
-    // pixels at 0.15 degrees a pixel is 9 degrees of yaw and 1.5 of pitch;
+    // pixels at 0.15 degrees a pixel is -9 degrees of yaw (a drag to the
+    // right lowers yaw, which turns the view right) and 1.5 of pitch;
     // moving with no button held afterwards changes nothing.
     await page.mouse.move(640, 360);
     await page.mouse.down({ button: "right" });
@@ -128,8 +129,8 @@ try {
     await page.waitForTimeout(400);
     const looked = await status();
     result.look = { yaw: looked.lookYaw, pitch: looked.lookPitch };
-    if (Math.abs(looked.lookYaw - 9) > 0.01 || Math.abs(looked.lookPitch - 1.5) > 0.01) {
-      throw new Error("right-drag look gave yaw " + looked.lookYaw + ", pitch " + looked.lookPitch + "; expected 9 and 1.5");
+    if (Math.abs(looked.lookYaw + 9) > 0.01 || Math.abs(looked.lookPitch - 1.5) > 0.01) {
+      throw new Error("right-drag look gave yaw " + looked.lookYaw + ", pitch " + looked.lookPitch + "; expected -9 and 1.5");
     }
     // A key tap shorter than a frame still lands (#290): V switches view.
     await page.keyboard.press("KeyV");
