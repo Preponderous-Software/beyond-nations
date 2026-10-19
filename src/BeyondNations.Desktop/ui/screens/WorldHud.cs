@@ -85,18 +85,42 @@ namespace beyondnations.desktop.ui.screens {
             }
 
             float buttonHeight = height / 20f;
-            float buttonWidth = width / 10f;
+            float minButtonWidth = width / 10f;
             float barX = 100f;
-            float barY = height - buttonHeight - 10f;
+            float maxRowWidth = width - barX - SideMargin;
+            float spacing = ImGui.GetStyle().ItemSpacing.X;
+            float textPadding = ImGui.GetStyle().FramePadding.X * 2f;
+
+            // A fixed tenth of the window clipped longer labels such as
+            // "Create Nation" or "Collect Coins (12)" once the window was
+            // narrower than about 1000 pixels, so each button is at least as
+            // wide as its label, and a row that would run off the right edge
+            // wraps onto another one above it.
+            float[] buttonWidths = new float[commands.Count];
+            bool[] startsRow = new bool[commands.Count];
+            int rows = 1;
+            float rowWidth = 0f;
+            for (int i = 0; i < commands.Count; i++) {
+                buttonWidths[i] = System.MathF.Max(minButtonWidth, ImGui.CalcTextSize(commands[i].getLabel()).X + textPadding);
+                if (i > 0 && rowWidth + spacing + buttonWidths[i] > maxRowWidth) {
+                    startsRow[i] = true;
+                    rows++;
+                    rowWidth = buttonWidths[i];
+                } else {
+                    rowWidth += (i > 0 ? spacing : 0f) + buttonWidths[i];
+                }
+            }
+            float rowStep = buttonHeight + ImGui.GetStyle().ItemSpacing.Y;
+            float barY = height - buttonHeight - 10f - rowStep * (rows - 1);
 
             ImGui.SetNextWindowPos(new Vector2(barX, barY), ImGuiCond.Always);
             if (ImGui.Begin("##world-command-bar", BarFlags)) {
                 WorldCommand clicked = null;
                 for (int i = 0; i < commands.Count; i++) {
-                    if (i > 0) {
+                    if (i > 0 && !startsRow[i]) {
                         ImGui.SameLine();
                     }
-                    if (ImGui.Button(commands[i].getLabel(), new Vector2(buttonWidth, buttonHeight))) {
+                    if (ImGui.Button(commands[i].getLabel(), new Vector2(buttonWidths[i], buttonHeight))) {
                         clicked = commands[i];
                     }
                 }
