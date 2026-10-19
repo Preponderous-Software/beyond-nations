@@ -45,17 +45,22 @@ namespace beyondnations.desktop.ui {
 
         /**
         * Draws the box at the given position. A width of zero, or a height of
-        * zero, tells ImGui to fit that axis to the contents.
+        * zero, tells ImGui to fit that axis to the contents. Returns the y of
+        * the box's bottom edge, so a caller can stack the next box under it
+        * rather than guessing its height.
         */
-        public void draw(float x, float y, float width) {
+        public float draw(float x, float y, float width) {
             ImGui.SetNextWindowPos(new Vector2(x, y), ImGuiCond.Always);
             ImGui.SetNextWindowSize(new Vector2(width, 0), ImGuiCond.Always);
+            float bottom = y;
             if (ImGui.Begin(title, BoxFlags)) {
                 foreach (string line in getLines()) {
                     ImGui.TextUnformatted(line);
                 }
+                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
             }
             ImGui.End();
+            return bottom;
         }
     }
 }

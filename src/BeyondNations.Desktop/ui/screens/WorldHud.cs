@@ -26,7 +26,7 @@ namespace beyondnations.desktop.ui.screens {
         private const float BoxWidth = 200f;
         private const float LowerRowOffsetFromBottom = 220f;
         private const float SettlementBoxY = 30f;
-        private const float MarketBoxY = 200f;
+        private const float BoxGap = 10f;
 
         private const ImGuiWindowFlags BarFlags =
             ImGuiWindowFlags.NoDecoration |
@@ -58,17 +58,24 @@ namespace beyondnations.desktop.ui.screens {
                 debugInfoBox.draw(SideMargin, SideMargin, BoxWidth);
             }
 
+            // The right column used to put the market box at y = 200 and the
+            // player box 220 pixels above the bottom, which overlapped once the
+            // window was under about 600 pixels high. Each box now starts below
+            // the one above it, and the player box only moves down from its
+            // usual place, never up into the market box.
+            float rightColumnBottom = 0f;
             if (player.isCurrentlyInSettlement()) {
                 Settlement settlement = (Settlement) simulation.getEntityRepository().getEntity(player.getCurrentSettlementId());
-                new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository())
+                float settlementBottom = new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository())
                     .draw(rightColumnX, SettlementBoxY, BoxWidth);
-                new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository())
-                    .draw(rightColumnX, MarketBoxY, BoxWidth);
+                rightColumnBottom = new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository())
+                    .draw(rightColumnX, settlementBottom + BoxGap, BoxWidth);
             }
 
             new InventoryInfoBox(player.getInventory()).draw(SideMargin, lowerRowY, BoxWidth);
 
-            new PlayerInfoBox(player, simulation.getNationRepository()).draw(rightColumnX, lowerRowY, BoxWidth);
+            float playerBoxY = System.MathF.Max(lowerRowY, rightColumnBottom + BoxGap);
+            new PlayerInfoBox(player, simulation.getNationRepository()).draw(rightColumnX, playerBoxY, BoxWidth);
 
             return UiAction.None;
         }
