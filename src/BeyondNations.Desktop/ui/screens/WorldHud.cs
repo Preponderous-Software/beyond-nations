@@ -144,9 +144,6 @@ namespace beyondnations.desktop.ui.screens {
             // inventory below is pushed down rather than drawn over it.
             ObjectiveTrackerBox objectiveTracker = new ObjectiveTrackerBox(simulation);
             leftTop = objectiveTracker.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
-            // The toast is centred, under the status line and the hunger
-            // warning, so neither runs over it.
-            objectiveTracker.drawToast(width, height, centreBottom + layout.Gap);
 
             // On a short window with the debug box open there is no room for
             // the inventory under it, so it moves into a second column beside
@@ -174,10 +171,13 @@ namespace beyondnations.desktop.ui.screens {
             new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
 
             // Last, so the full chronicle window sits over the boxes it covers.
-            // The recent strip stacks under the status line and the hunger warning
-            // in the top-centre column, between the left and right box columns.
-            chroniclePanel.draw(width, height, simulation, chronicleView ?? defaultChronicleView,
-                ChroniclePanel.compactTop(centreBottom));
+            // The top-centre column stacks, top down: the status line, the
+            // hunger warning, the recent chronicle strip (no wider than the
+            // space between the box columns, so it never covers the objective
+            // tracker), then the objective toast, so none of them overlap.
+            float stripBottom = chroniclePanel.draw(width, height, simulation, chronicleView ?? defaultChronicleView,
+                ChroniclePanel.compactTop(centreBottom), layout.CentreWrapWidth);
+            objectiveTracker.drawToast(width, height, stripBottom + layout.Gap);
 
             return action;
         }

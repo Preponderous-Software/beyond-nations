@@ -149,14 +149,21 @@ namespace beyondnations.desktop.ui {
 
         // --- drawing ----------------------------------------------------------
 
-        public void draw(float width, float height, Simulation simulation, ChronicleView view, float top = CompactTop) {
+        /**
+        * Draws the current view. Returns the bottom edge of the recent strip,
+        * or top when no strip is drawn, so whatever the HUD centres under it
+        * (the objective toast) can start there. maxWidth caps the strip at
+        * the space the HUD's box columns leave in the middle.
+        */
+        public float draw(float width, float height, Simulation simulation, ChronicleView view, float top = CompactTop, float maxWidth = float.MaxValue) {
             Chronicle chronicle = simulation.getChronicle();
             if (chronicle == null || view == null) {
-                return;
+                return top;
             }
+            float bottom = top;
             switch (view.getMode()) {
                 case ChronicleMode.Recent:
-                    drawRecent(width, top, chronicle, simulation.getPlayer(), simulation.getTickCounter().getTotalTicks());
+                    bottom = drawRecent(width, top, maxWidth, chronicle, simulation.getPlayer(), simulation.getTickCounter().getTotalTicks());
                     break;
                 case ChronicleMode.Full:
                     drawFull(width, height, chronicle, simulation.getPlayer(), view);
@@ -165,13 +172,15 @@ namespace beyondnations.desktop.ui {
             if (view.getMode() != ChronicleMode.Full) {
                 lastSeenTotal = -1;
             }
+            return bottom;
         }
 
-        private void drawRecent(float width, float top, Chronicle chronicle, Player player, int nowTick) {
-            float panelWidth = compactWidth(width);
+        private float drawRecent(float width, float top, float maxWidth, Chronicle chronicle, Player player, int nowTick) {
+            float panelWidth = Math.Min(compactWidth(width), maxWidth);
             if (panelWidth <= 0f) {
-                return;
+                return top;
             }
+            float bottom = top;
             ImGui.SetNextWindowPos(new Vector2(width / 2f, top), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowSize(new Vector2(panelWidth, 0f), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.6f);
@@ -190,8 +199,10 @@ namespace beyondnations.desktop.ui {
                     string line = fitToWidth(displayLine(entry, player), lineWidth, s => ImGui.CalcTextSize(s).X);
                     drawStampedLine(line, mine ? MineMarker.Length + entry.getTimestamp().Length : entry.getTimestamp().Length, mine, alpha);
                 }
+                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
             }
             ImGui.End();
+            return bottom;
         }
 
         private void drawFull(float width, float height, Chronicle chronicle, Player player, ChronicleView view) {

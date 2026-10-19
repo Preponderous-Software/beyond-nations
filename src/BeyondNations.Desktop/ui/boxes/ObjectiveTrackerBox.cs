@@ -130,7 +130,7 @@ namespace beyondnations.desktop.ui.boxes {
 
         /**
         * The toast, centred horizontally and no higher than minY, which the
-        * HUD sets below the tracker, the status line and the hunger warning
+        * HUD sets below the status line, the hunger warning and the chronicle strip
         * so none of them sit on top of each other on a narrow window.
         */
         public void drawToast(float screenWidth, float screenHeight, float minY) {
