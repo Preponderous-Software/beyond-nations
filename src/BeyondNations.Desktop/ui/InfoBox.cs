@@ -54,13 +54,53 @@ namespace beyondnations.desktop.ui {
             ImGui.SetNextWindowSize(new Vector2(width, 0), ImGuiCond.Always);
             float bottom = y;
             if (ImGui.Begin(title, BoxFlags)) {
-                foreach (string line in getLines()) {
-                    ImGui.TextUnformatted(line);
-                }
-                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
+                drawBody();
+                float height = ImGui.GetWindowSize().Y;
+                lastHeights[title] = height;
+                bottom = ImGui.GetWindowPos().Y + height;
             }
             ImGui.End();
             return bottom;
         }
+
+        /**
+        * Draws the box so that its bottom edge sits at bottomY, unless that
+        * would lift its top above minTopY, in which case it starts at minTopY
+        * instead. Returns the top y it was drawn at. The height used is the
+        * one this box had last frame (ImGui sizes a window to its contents a
+        * frame late anyway), so a box anchored to the bottom of the screen
+        * grows upwards as lines are added rather than down off the screen.
+        */
+        public float drawAbove(float x, float bottomY, float width, float minTopY) {
+            float height = getExpectedHeight();
+            float top = System.MathF.Max(minTopY, bottomY - height);
+            draw(x, top, width);
+            return top;
+        }
+
+        /**
+        * How tall the box was when last drawn, or an estimate from its line
+        * count before it has been drawn at all.
+        */
+        public float getExpectedHeight() {
+            float height;
+            if (!lastHeights.TryGetValue(title, out height)) {
+                height = Overlay.lineHeight() * (getLines().Count + 1) + ImGui.GetStyle().WindowPadding.Y * 2f;
+            }
+            return height;
+        }
+
+        /**
+        * The contents of the box. By default one text line per getLines()
+        * entry; a box with something richer to show, such as a bar, overrides
+        * this and still keeps getLines() for the text a test can check.
+        */
+        protected virtual void drawBody() {
+            foreach (string line in getLines()) {
+                ImGui.TextUnformatted(line);
+            }
+        }
+
+        private static readonly Dictionary<string, float> lastHeights = new Dictionary<string, float>();
     }
 }

@@ -83,12 +83,14 @@
     <Compile Include="$(DesktopDir)input/IInputSource.cs" Link="shared/input/IInputSource.cs" />
     <Compile Include="$(DesktopDir)input/InputService.cs" Link="shared/input/InputService.cs" />
     <Compile Include="$(DesktopDir)input/KeyBindings.cs" Link="shared/input/KeyBindings.cs" />
+    <Compile Include="$(DesktopDir)input/KeyNames.cs" Link="shared/input/KeyNames.cs" />
     <Compile Include="$(DesktopDir)input/MouseDeltaTracker.cs" Link="shared/input/MouseDeltaTracker.cs" />
     <Compile Include="$(DesktopDir)input/MouseLook.cs" Link="shared/input/MouseLook.cs" />
     <Compile Include="$(DesktopDir)input/PlayerInputController.cs" Link="shared/input/PlayerInputController.cs" />
     <Compile Include="$(DesktopDir)input/PressLatch.cs" Link="shared/input/PressLatch.cs" />
     <Compile Include="$(DesktopDir)render/CameraMode.cs" Link="shared/render/CameraMode.cs" />
     <Compile Include="$(DesktopDir)render/IWorldRenderer.cs" Link="shared/render/IWorldRenderer.cs" />
+    <Compile Include="$(DesktopDir)render/NightLighting.cs" Link="shared/render/NightLighting.cs" />
     <Compile Include="$(DesktopDir)render/PlayerCamera.cs" Link="shared/render/PlayerCamera.cs" />
     <Compile Include="$(DesktopDir)render/RenderCuller.cs" Link="shared/render/RenderCuller.cs" />
     <Compile Include="$(DesktopDir)render/RenderStatsRecorder.cs" Link="shared/render/RenderStatsRecorder.cs" />

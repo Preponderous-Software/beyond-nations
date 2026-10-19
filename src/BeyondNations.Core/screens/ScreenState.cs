@@ -17,6 +17,8 @@ namespace beyondnations {
     public class ScreenState {
         private ScreenType current = ScreenType.TITLE;
         private ScreenType previous = ScreenType.TITLE;
+        // Where the controls screen goes back to when it is closed.
+        private ScreenType controlsReturn = ScreenType.MAIN_MENU;
 
         public ScreenType getCurrent() {
             return current;
@@ -36,7 +38,37 @@ namespace beyondnations {
         * world stays visible behind them even though it has stopped advancing.
         */
         public bool isWorldVisible() {
-            return current == ScreenType.WORLD || current == ScreenType.INVENTORY || current == ScreenType.PAUSE;
+            return isLaidOverWorld(current)
+                || (current == ScreenType.CONTROLS && isLaidOverWorld(controlsReturn));
+        }
+
+        private static bool isLaidOverWorld(ScreenType screen) {
+            return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.PAUSE;
+        }
+
+        /**
+        * The screen the controls screen returns to when it closes.
+        */
+        public ScreenType getControlsReturn() {
+            return controlsReturn;
+        }
+
+        /**
+        * The controls key, and the Controls buttons, open the list of key
+        * bindings from the world, the pause screen or the main menu, and close
+        * it again back to where it was opened. Every binding used to be
+        * documented only in the README, so a player in the game had no way to
+        * find out what the keys did. The key means nothing on other screens.
+        */
+        public void controlsPressed() {
+            if (current == ScreenType.CONTROLS) {
+                goTo(controlsReturn);
+                return;
+            }
+            if (current == ScreenType.WORLD || current == ScreenType.PAUSE || current == ScreenType.MAIN_MENU) {
+                controlsReturn = current;
+                goTo(ScreenType.CONTROLS);
+            }
         }
 
         /**
@@ -97,6 +129,10 @@ namespace beyondnations {
             }
             if (current == ScreenType.CONFIG) {
                 goTo(ScreenType.MAIN_MENU);
+                return true;
+            }
+            if (current == ScreenType.CONTROLS) {
+                goTo(controlsReturn);
                 return true;
             }
             if (current == ScreenType.MAIN_MENU) {

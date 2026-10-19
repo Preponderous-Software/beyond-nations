@@ -162,5 +162,46 @@ namespace beyondnationstests {
                 Assert.False(screens.isWorldVisible());
             }
         }
+    
+        [Fact]
+        public void testControlsOpenFromTheWorldAndCloseBackToIt() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.WORLD);
+
+            screens.controlsPressed();
+            Assert.Equal(ScreenType.CONTROLS, screens.getCurrent());
+            Assert.True(screens.isWorldVisible());
+            Assert.False(screens.shouldAdvanceSimulation());
+
+            screens.controlsPressed();
+            Assert.Equal(ScreenType.WORLD, screens.getCurrent());
+        }
+
+        [Fact]
+        public void testEscapeClosesControlsBackToWhereTheyWereOpened() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.PAUSE);
+            screens.controlsPressed();
+
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.PAUSE, screens.getCurrent());
+
+            screens.goTo(ScreenType.MAIN_MENU);
+            screens.controlsPressed();
+            Assert.False(screens.isWorldVisible());
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.MAIN_MENU, screens.getCurrent());
+        }
+
+        [Fact]
+        public void testControlsKeyDoesNothingOnTitleConfigOrInventory() {
+            ScreenState screens = new ScreenState();
+
+            foreach (ScreenType screen in new ScreenType[] { ScreenType.TITLE, ScreenType.CONFIG, ScreenType.INVENTORY }) {
+                screens.goTo(screen);
+                screens.controlsPressed();
+                Assert.Equal(screen, screens.getCurrent());
+            }
+        }
     }
 }

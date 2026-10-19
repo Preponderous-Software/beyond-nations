@@ -107,7 +107,7 @@ try {
     await page.waitForTimeout(300);
     await page.screenshot({ path: path.join(out, "menu.png") });
     const viewport = page.viewportSize();
-    // MainMenuScreen: Start is 100x50, its top edge 25 px below the centre.
+    // MainMenuScreen: Start is at least 160x40, its top edge 25 px below the centre.
     const startFrames = menu.frames;
     await page.mouse.click(viewport.width / 2, viewport.height / 2 + 50);
     const world = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after Start");

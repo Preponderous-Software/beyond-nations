@@ -181,6 +181,14 @@ namespace beyondnations.desktop {
             // --- end #222 ---
 
             // --- #221 imgui user interface ---
+            // --- high-DPI ---
+            // The UI is drawn in framebuffer pixels, so on a monitor scaled
+            // to 150 % or 200 % it has to be drawn that much larger, or every
+            // label comes out tiny. --ui-scale overrides the detected value.
+            UiScale.set(UiScale.resolve(options.UiScale, detectContentScale(),
+                window.Size.X > 0 ? (float) window.FramebufferSize.X / window.Size.X : 1f));
+            Log.info("ui scale: " + UiScale.get());
+            // --- end high-DPI ---
             ui = new UiHost(gl, window, input, screens, gameConfig);
             playerInputController.setDebugMode(options.DebugMode);
             // --- end #221 ---
@@ -206,6 +214,26 @@ namespace beyondnations.desktop {
 
             clock.Start();
             Log.info("host ready: " + options.TicksPerSecond + " ticks per second");
+        }
+
+        /**
+        * The content scale of the primary monitor as GLFW reports it: 1.5 on
+        * a Windows display set to 150 %, the Xft.dpi ratio on X11. 1 when it
+        * cannot be read, which leaves the UI at its design size.
+        */
+        private static unsafe float detectContentScale() {
+            try {
+                Silk.NET.GLFW.Glfw glfw = Silk.NET.GLFW.GlfwProvider.GLFW.Value;
+                Silk.NET.GLFW.Monitor* monitor = glfw.GetPrimaryMonitor();
+                if (monitor == null) {
+                    return 1f;
+                }
+                glfw.GetMonitorContentScale(monitor, out float x, out float y);
+                return System.MathF.Max(x, y);
+            } catch (Exception exception) {
+                Log.warning("could not read the monitor's content scale: " + exception.Message);
+                return 1f;
+            }
         }
 
         // --- #221 imgui user interface ---
@@ -320,6 +348,13 @@ namespace beyondnations.desktop {
                 if (!screens.escapePressed()) {
                     window.Close();
                 }
+            }
+
+            // ? opens and closes the controls screen. Read before the any-key
+            // check, so the press that leaves the title does not also open the
+            // controls over the main menu it lands on.
+            if (inputService.wasPressedThisFrame(KeyBindings.ShowControls)) {
+                screens.controlsPressed();
             }
 
             // Any key leaves the title screen. ScreenState.anyKeyPressed()
@@ -443,6 +478,7 @@ namespace beyondnations.desktop {
                 // --- #280 ---
                 if (renderer is NativeWorldRenderer native) {
                     native.setTimeOfDay(simulation.getTimeOfDay().getFraction());
+                    native.setPlayerPosition(player.getPosition());
                 }
                 // --- end #280 ---
                 renderer.render(snapshot, camera.getViewMatrix(), camera.getProjectionMatrix(), culler);

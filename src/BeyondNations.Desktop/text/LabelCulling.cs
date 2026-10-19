@@ -29,13 +29,13 @@ namespace beyondnations.desktop.text {
         * so a nametag that survived to the render distance would be a couple of
         * pixels tall and would still cost a draw.
         */
-        private float cullDistance = 140f;
+        private float cullDistance = 100f;
 
         /**
         * Where fading starts. Must be below the cull distance for the ramp to
         * have anywhere to happen.
         */
-        private float fadeDistance = 90f;
+        private float fadeDistance = 55f;
 
         /**
         * How far outside the frustum a label may stray before it is dropped.
@@ -44,6 +44,41 @@ namespace beyondnations.desktop.text {
         * glyphs are still visible.
         */
         private float frustumSlack = 1.3f;
+
+        /**
+        * The most of the screen's height one line of a nametag may cover.
+        * Labels are sized in world units, so one a few units from the camera
+        * filled a tenth of the screen and hid the pawn it named; a playtest
+        * called them huge. Up close a label is now capped at this, and from
+        * further away it shrinks with distance as before.
+        */
+        private float maxScreenFraction = 0.026f;
+
+        public float getMaxScreenFraction() { return maxScreenFraction; }
+        public void setMaxScreenFraction(float maxScreenFraction) { this.maxScreenFraction = maxScreenFraction; }
+
+        /**
+        * How tall, in world units, to draw one line of a label at this
+        * position: the design height, or less when that would cover more
+        * than getMaxScreenFraction() of the screen at this distance.
+        */
+        public float getLineHeight(float designLineHeight, Vector3 labelPosition, Matrix4x4 view, Matrix4x4 projection) {
+            float distance = Vector3.Distance(labelPosition, LabelBillboard.getEyePosition(view));
+            return getLineHeightAt(designLineHeight, distance, projection.M22, maxScreenFraction);
+        }
+
+        /**
+        * The sizing on its own. projectionYScale is the projection's M22,
+        * 1 / tan(fovY / 2): a line h units tall at distance d covers
+        * h * M22 / (2 d) of the screen's height.
+        */
+        public static float getLineHeightAt(float designLineHeight, float distance, float projectionYScale, float maxScreenFraction) {
+            if (distance <= 0f || projectionYScale <= 0f || maxScreenFraction <= 0f) {
+                return designLineHeight;
+            }
+            float cap = maxScreenFraction * 2f * distance / projectionYScale;
+            return Math.Min(designLineHeight, cap);
+        }
 
         public float getCullDistance() { return cullDistance; }
         public float getFadeDistance() { return fadeDistance; }

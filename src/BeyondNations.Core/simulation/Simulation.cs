@@ -152,7 +152,7 @@ namespace beyondnations {
                                 // check if pawn is falling into void
                                 float ypos = pawn.getPosition().Y;
                                 if (ypos < -10) {
-                                    Log.info("Entity " + pawn.getId() + " fell into void. Teleporting.");
+                                    Log.debug("Entity " + pawn.getId() + " fell into void. Teleporting.");
                                     EntityId homeSettlementId = pawn.getHomeSettlementId();
                                     if (homeSettlementId != null) {
                                         // pawn has home settlement, so respawn at settlement

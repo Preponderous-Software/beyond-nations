@@ -41,6 +41,8 @@ namespace beyondnations.desktop.input {
         public static readonly Key IncreaseRenderDistance = Key.PageUp;
         public static readonly Key DecreaseRenderDistance = Key.PageDown;
         public static readonly Key Pause = Key.Escape;
+        // "?" on most layouts. F1 is already the debug toggle.
+        public static readonly Key ShowControls = Key.Slash;
         public static readonly Key ToggleDebugMode = Key.F1;
         public static readonly Key GenerateNearbyLand = Key.F2;
         public static readonly Key SpawnNewPawn = Key.F3;

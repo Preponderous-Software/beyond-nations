@@ -19,39 +19,30 @@ namespace beyondnations.desktop.ui.screens {
         public const string MainMenuWarning = "Main Menu ends this world; it is not saved.";
         public const string QuitLabel = "Quit";
 
-        private const float ButtonWidth = 160f;
-        private const float ButtonHeight = 40f;
-        private const float ButtonGap = 12f;
+        public const string ControlsLabel = "Controls";
+
+        private static readonly string[] ButtonLabels = { ResumeLabel, ControlsLabel, MainMenuLabel, QuitLabel };
+        private static readonly UiAction[] ButtonActions = { UiAction.Back, UiAction.OpenControls, UiAction.MainMenu, UiAction.Quit };
 
         public UiAction draw(float width, float height) {
-            float centreX = width / 2f;
             float centreY = height / 2f;
-            float buttonX = centreX - ButtonWidth / 2f;
-            float buttonY = centreY;
-
-            UiAction action = UiAction.None;
 
             Overlay.beginFullScreen("##pause-screen", width, height);
             Overlay.dimBackground(width, height);
             Overlay.textCentered(Title, height / 10f, centreY / 2f, width);
             Overlay.textCentered(ResumeHint, height / 30f, centreY / 2f + height / 12f, width);
 
-            if (Overlay.buttonAt(ResumeLabel, buttonX, buttonY, ButtonWidth, ButtonHeight)) {
-                action = UiAction.Back;
-            }
-            buttonY += ButtonHeight + ButtonGap;
-            if (Overlay.buttonAt(MainMenuLabel, buttonX, buttonY, ButtonWidth, ButtonHeight)) {
-                action = UiAction.MainMenu;
-            }
-            buttonY += ButtonHeight + ButtonGap;
-            if (Overlay.buttonAt(QuitLabel, buttonX, buttonY, ButtonWidth, ButtonHeight)) {
-                action = UiAction.Quit;
-            }
-            buttonY += ButtonHeight + ButtonGap;
-            Overlay.textCentered(MainMenuWarning, Overlay.BaseFontSize, buttonY + ButtonGap, width);
+            // The warning about Main Menu sits under the buttons, so the
+            // column stops a couple of lines short of the bottom to leave it
+            // room on a short window.
+            float warningSpace = Overlay.lineHeight() * 2f;
+            float buttonsBottom;
+            int clicked = Overlay.menuButtons(ButtonLabels, width, centreY, height - warningSpace, out buttonsBottom);
+            float warningY = System.MathF.Min(buttonsBottom + warningSpace * 0.5f, height - warningSpace * 0.5f);
+            Overlay.textCentered(MainMenuWarning, Overlay.BaseFontSize, warningY, width);
             Overlay.end();
 
-            return action;
+            return clicked < 0 ? UiAction.None : ButtonActions[clicked];
         }
     }
 }

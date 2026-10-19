@@ -87,6 +87,7 @@ The following controls are available in the game:
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
 | `Escape` | Pause / unpause; close the inventory screen; back out of a menu; quit from the main menu |
+| `?` (`/` key) | Show every control (also the **? Controls** button on the HUD, pause screen and main menu) |
 | `F1` | Toggle debug mode (and the debug menu) |
 | `F2` | Generate nearby land *(debug mode only)* |
 | `F3` | Spawn a new pawn *(debug mode only)* |
