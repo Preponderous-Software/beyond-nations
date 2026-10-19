@@ -37,6 +37,12 @@ namespace beyondnations {
         private Dictionary<EntityId, int> relationships = new Dictionary<EntityId, int>();
         private EntityId currentSettlementId = null;
 
+        // Lifetime counters read by the objectives (objectives/). Both are
+        // cumulative, so an objective that asks for one is met even if the
+        // player did it before the objective came up.
+        private int mealsEaten = 0;
+        private int marketSales = 0;
+
         public Player(int walkSpeed, int runSpeed, TickCounter tickCounter, int statusExpirationTicks, int renderDistance, RandomSource random) : base(EntityType.PLAYER, "Player") {
             // Metabolism is now a fixed config value (see setMetabolism). The
             // draw that used to pick a random one is kept, discarded, so that
@@ -269,7 +275,23 @@ namespace beyondnations {
         * no longer the only thing the player will eat.
         */
         private void eatIfCarryingFood() {
-            energy += FoodItems.consumeMostNourishingFood(getInventory());
+            int restored = FoodItems.consumeMostNourishingFood(getInventory());
+            if (restored > 0) {
+                energy += restored;
+                mealsEaten++;
+            }
+        }
+
+        public int getMealsEaten() {
+            return mealsEaten;
+        }
+
+        public int getMarketSales() {
+            return marketSales;
+        }
+
+        public void recordMarketSale() {
+            marketSales++;
         }
     }
 }

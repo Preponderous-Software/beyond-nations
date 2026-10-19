@@ -132,6 +132,13 @@ namespace beyondnations.desktop.ui.screens {
                 leftTop = debugInfoBox.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
             }
 
+            // The objective tracker comes next in the left column, under the
+            // controls button (and the debug box when F1 is on), so the
+            // inventory below is pushed down rather than drawn over it.
+            ObjectiveTrackerBox objectiveTracker = new ObjectiveTrackerBox(simulation);
+            leftTop = objectiveTracker.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
+            objectiveTracker.drawToast(width, height);
+
             // On a short window with the debug box open there is no room for
             // the inventory under it, so it moves into a second column beside
             // the debug box rather than off the bottom of the screen.

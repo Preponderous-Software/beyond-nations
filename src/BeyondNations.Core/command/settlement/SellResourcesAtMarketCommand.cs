@@ -34,6 +34,7 @@ namespace beyondnations {
                 player.getStatus().update("No one is buying resources at this market or you do not have enough resources to sell.");
                 return;
             }
+            player.recordMarketSale();
 
             // increase relationship with owner of stall
             Entity stallOwner = entityRepository.getEntity(stallOwnerId);

@@ -39,6 +39,7 @@ namespace beyondnations {
         private bool playerTerritoryKnown = false;
         private RandomSource traitRandom;
         private PopulationGrowth populationGrowth;
+        private ObjectiveTracker objectiveTracker;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -95,6 +96,7 @@ namespace beyondnations {
             populationGrowth = new PopulationGrowth(new RandomSource(random.getSeed() ^ 0x620717), entityRepository, nationRepository, environment, eventProducer, gameConfig, player);
             // pawns keep a day: home at nightfall, out again in the morning
             pawnBehaviorCalculator.setTimeOfDay(timeOfDay);
+            objectiveTracker = ObjectiveTracker.createDefault();
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -116,6 +118,7 @@ namespace beyondnations {
         /** The stream pawn traits are rolled from, for pawns made outside world generation (SettlementShowcase). */
         public RandomSource getTraitRandom() { return traitRandom; }
         public PopulationGrowth getPopulationGrowth() { return populationGrowth; }
+        public ObjectiveTracker getObjectiveTracker() { return objectiveTracker; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         public int getNumPlayerDeaths() { return numPlayerDeaths; }
 
@@ -363,6 +366,10 @@ namespace beyondnations {
                     }
 
                     deleteEntitiesMarkedForDeletion();
+
+                    // Once a second of game time, after the world has settled
+                    // for this tick, so a reward lands on a consistent state.
+                    objectiveTracker.update(this);
                 }
 
         /**
