@@ -11,6 +11,8 @@ namespace beyondnations {
     */
     public enum HintKey {
         Interact,
+        GiftToPawn,
+        InviteToNation,
         CreateNewNation,
         JoinNation,
         LeaveNation,

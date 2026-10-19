@@ -63,7 +63,7 @@ namespace beyondnationstests {
         public void testCosts_ReadFromTheConstantsTheCommandsCheck() {
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD, arc("found-settlement").evaluate(simulation).getTarget());
             Assert.Equal(Stall.WOOD_COST_TO_BUILD, arc("build-stall").evaluate(simulation).getTarget());
-            Assert.Equal(Stall.WOOD_COST_TO_BUILD / 5, ObjectiveCatalog.firstWoodTarget());
+            Assert.Equal(Settlement.WOOD_COST_TO_BUILD / 5, ObjectiveCatalog.firstWoodTarget());
             Assert.Contains(Settlement.WOOD_COST_TO_BUILD.ToString(), arc("second-settlement").getHint(simulation));
         }
 

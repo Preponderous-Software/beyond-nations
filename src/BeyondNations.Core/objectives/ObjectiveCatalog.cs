@@ -28,8 +28,8 @@ namespace beyondnations {
         public const int AmbitionCategoryCount = 4;
 
         public static int firstWoodTarget() {
-            // A fifth of a stall: a handful of trees, enough to learn the key.
-            return System.Math.Max(1, Stall.WOOD_COST_TO_BUILD / 5);
+            // A fifth of a settlement: a handful of trees, enough to learn the key.
+            return System.Math.Max(1, Settlement.WOOD_COST_TO_BUILD / 5);
         }
 
         private static int smallCoinReward() { return System.Math.Max(1, Stall.COIN_COST_TO_PURCHASE / 4); }
@@ -74,7 +74,7 @@ namespace beyondnations {
 
                 new Objective("grow-nation", "Grow your nation to " + NationGrowthTarget,
                     s => ObjectiveProgress.count("Members", members(s), NationGrowthTarget),
-                    "Settlers without a nation join the nearest settlement. Explore to meet them.",
+                    "Talk to settlers ({Interact}) and give gifts ({GiftToPawn}); once they know you, press {InviteToNation}.",
                     ObjectiveReward.coins(largeCoinReward())),
 
                 new Objective("sell-resources", "Sell resources at market",
@@ -105,7 +105,7 @@ namespace beyondnations {
                     int target = NationGrowthTarget + NationGrowthStep * tier;
                     return new Objective(id, "Grow your nation to " + target,
                         s => ObjectiveProgress.count("Members", members(s), target),
-                        "More settlements draw more settlers.",
+                        "Befriend settlers and press {InviteToNation}. Nationless settlers also join nearby settlements.",
                         reward, true);
                 }
                 case 1: {

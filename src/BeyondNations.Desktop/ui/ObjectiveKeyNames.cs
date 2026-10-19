@@ -13,6 +13,8 @@ namespace beyondnations.desktop.ui {
         public static string of(HintKey key) {
             switch (key) {
                 case HintKey.Interact: return KeyBindings.Interact.ToString();
+                case HintKey.GiftToPawn: return KeyBindings.GiftToPawn.ToString();
+                case HintKey.InviteToNation: return KeyBindings.InviteToNation.ToString();
                 case HintKey.CreateNewNation: return KeyBindings.CreateNewNation.ToString();
                 case HintKey.JoinNation: return KeyBindings.JoinNation.ToString();
                 case HintKey.LeaveNation: return KeyBindings.LeaveNation.ToString();
