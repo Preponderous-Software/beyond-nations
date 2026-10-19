@@ -64,6 +64,7 @@ namespace beyondnations {
                 nation.setLeaderId(nation.getRandomMemberId());
                 nation.setRole(nation.getLeaderId(), NationRole.LEADER);
             }
+            eventProducer.produceLeadershipChangeEvent(nation, player.getId(), nation.getLeaderId());
             nation.removeMember(player.getId());
             player.setNationId(null);
             player.setColor(Rgba.White);

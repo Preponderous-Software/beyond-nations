@@ -1,5 +1,6 @@
 using System.Numerics;
 using beyondnations;
+using beyondnations.desktop.ui;
 
 namespace beyondnations.desktop.input {
 
@@ -23,9 +24,15 @@ namespace beyondnations.desktop.input {
 
         private readonly MouseLook mouseLook = new MouseLook();
         private bool debugMode;
+        private readonly ChronicleView chronicleView = new ChronicleView();
 
         public MouseLook getMouseLook() {
             return mouseLook;
+        }
+
+        /** Which chronicle view the HUD shows; KeyBindings.ToggleChronicle cycles it. */
+        public ChronicleView getChronicleView() {
+            return chronicleView;
         }
 
         public bool isDebugMode() {
@@ -131,12 +138,15 @@ namespace beyondnations.desktop.input {
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.BuildStall)) {
-                new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository())
+                new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository(), simulation.getEventProducer())
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.BuildBuilding)) {
                 new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository())
                     .execute(player, null);
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.ToggleChronicle)) {
+                player.getStatus().update(ChronicleView.describe(chronicleView.cycle()));
             }
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleAutoWalk)) {
                 player.toggleAutoWalk();

@@ -111,7 +111,7 @@ namespace beyondnations.desktop.ui {
         * already owns it: F1 gates the debug commands as well as the overlay,
         * and two copies would drift.
         */
-        public void render(double deltaTime, float width, float height, Simulation simulation, bool debugMode) {
+        public void render(double deltaTime, float width, float height, Simulation simulation, bool debugMode, ChronicleView chronicleView = null) {
             frameRate.record(deltaTime);
             replayClicksShorterThanAFrame();
             controller.Update((float) deltaTime);
@@ -132,7 +132,7 @@ namespace beyondnations.desktop.ui {
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
-                        action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond());
+                        action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond(), chronicleView);
                     }
                     break;
                 case ScreenType.CONTROLS:

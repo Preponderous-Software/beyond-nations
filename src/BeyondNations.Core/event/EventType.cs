@@ -14,6 +14,9 @@ namespace beyondnations {
         PawnRelationshipIncrease,
         NationRelationChange,
         NationRaid,
-        SettlementCapture
+        SettlementCapture,
+        SettlementFounded,
+        StallBuilt,
+        LeadershipChange
     }
 }
