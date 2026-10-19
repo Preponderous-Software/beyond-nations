@@ -1,0 +1,67 @@
+<Project>
+
+  <!--
+    Strata, the engine the world is drawn with, linked into dotnet.native.wasm.
+
+    Strata's browser build (WebGL 2 / GLES 3.0 device, Strata #18) has no
+    release yet, so a commit is pinned here, like the desktop pins a release:
+    the source tarball for that commit is checked against its SHA-256 and
+    built by native/build-strata.sh with the Emscripten the wasm-tools
+    workload links with (Strata's own CI uses a newer one, whose objects may
+    not link here). The result is cached under obj/ and linked as
+    strata.a, whose file name is what [DllImport("strata")] resolves to.
+
+    bnweb.a is native/bnweb_gl.c: it makes the page's WebGL 2 context known
+    to Emscripten, which STRATA_SURFACE_HOST_CONTEXT requires.
+
+    Building needs CMake 3.24 or newer: on PATH, or STRATA_CMAKE=/path/to/cmake.
+    /p:StrataWebArchive=/path/to/strata.a links a Strata built elsewhere
+    (it must be built with the same Emscripten and with wasm exceptions).
+  -->
+
+  <PropertyGroup>
+    <StrataCommit>d24a3494709def2c2c20dbb8a6b3712ab902c301</StrataCommit>
+    <StrataSourceSha256>58436c5346f0150a25706c29c8684c61aaa753802a67b1e2960178106b748056</StrataSourceSha256>
+    <StrataWebDir>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)strata-web/$(StrataCommit)/</StrataWebDir>
+    <StrataWebArchive Condition="'$(StrataWebArchive)' == ''">$(StrataWebDir)strata.a</StrataWebArchive>
+    <BnWebArchive>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)bnweb/bnweb.a</BnWebArchive>
+    <EmccExtraLDFlags>$(EmccExtraLDFlags) -sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2</EmccExtraLDFlags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <NativeFileReference Include="$(StrataWebArchive)" />
+    <NativeFileReference Include="$(BnWebArchive)" />
+  </ItemGroup>
+
+  <Target Name="BuildStrataForWasm"
+          BeforeTargets="_PrepareForWasmBuildNative"
+          DependsOnTargets="_SetupEmscripten"
+          Condition="!Exists('$(StrataWebArchive)')">
+    <ItemGroup>
+      <_StrataEnv Include="BN_EMSCRIPTEN_SDK=$(EmscriptenSdkToolsPath)" />
+      <_StrataEnv Include="BN_EMSCRIPTEN_NODE=$(EmscriptenNodeToolsPath)bin/node" />
+      <_StrataEnv Include="BN_EMSCRIPTEN_CACHE=$(EmscriptenCacheSdkCacheDir)" />
+    </ItemGroup>
+    <Exec Command="bash &quot;$(MSBuildThisFileDirectory)build-strata.sh&quot; $(StrataCommit) $(StrataSourceSha256) &quot;$(StrataWebDir)&quot;"
+          EnvironmentVariables="@(_StrataEnv)" />
+  </Target>
+
+  <Target Name="BuildBnWebForWasm"
+          BeforeTargets="_PrepareForWasmBuildNative"
+          DependsOnTargets="_SetupEmscripten"
+          Inputs="$(MSBuildThisFileDirectory)bnweb_gl.c"
+          Outputs="$(BnWebArchive)">
+    <ItemGroup>
+      <_BnWebEnv Include="@(EmscriptenEnvVars)" />
+      <_BnWebEnv Include="EM_CACHE=$(EmscriptenCacheSdkCacheDir)" />
+      <_BnWebEnv Include="EM_FROZEN_CACHE=True" />
+    </ItemGroup>
+    <MakeDir Directories="$([System.IO.Path]::GetDirectoryName('$(BnWebArchive)'))" />
+    <Exec Command="&quot;$(EmscriptenUpstreamEmscriptenPath)emcc&quot; -c -O2 &quot;$(MSBuildThisFileDirectory)bnweb_gl.c&quot; -o &quot;$(BnWebArchive).o&quot;"
+          EnvironmentVariables="@(_BnWebEnv)" />
+    <Delete Files="$(BnWebArchive)" />
+    <Exec Command="&quot;$(EmscriptenUpstreamEmscriptenPath)emar&quot; rcs &quot;$(BnWebArchive)&quot; &quot;$(BnWebArchive).o&quot;"
+          EnvironmentVariables="@(_BnWebEnv)" />
+  </Target>
+
+</Project>

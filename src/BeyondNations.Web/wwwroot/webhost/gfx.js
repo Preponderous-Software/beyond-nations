@@ -1,24 +1,19 @@
-// WebGL2 device for the web host: three passes, each a port of a desktop
-// renderer, driven from C# (host/WebHost.cs, WebGpu) with pointers into wasm
-// memory. Nothing here knows which game it is drawing.
+// WebGL2 device for the web host, driven from C# (host/WebHost.cs, WebGpu)
+// with pointers into wasm memory. Nothing here knows which game it is
+// drawing. The world itself is drawn by the game's engine (Strata, linked
+// into the wasm module) in this same context; these are the passes over it:
 //
-//   primitives  instanced coloured meshes with one directional light
-//               (BeyondNations.Desktop/render/InstancedPrimitiveShader.cs)
 //   labels      textured, tinted quads over the world, no depth test
-//               (BeyondNations.Desktop/text/LabelShader.cs)
+//               (BeyondNations.Desktop/text/LabelShader.cs, with
+//               "#version 330 core" replaced by "#version 300 es")
 //   imgui       Dear ImGui draw lists (as imgui_impl_opengl3)
-//
-// The shaders are the desktop's with "#version 330 core" replaced by
-// "#version 300 es" and a precision line added; nothing else changed.
 
 let gl = null;
 let canvas = null;
 let heap = () => { throw new Error("webhost: heap view not set"); };
 
-const meshes = [null];
 const textures = [null];
 
-let primitive = null;
 let label = null;
 let imgui = null;
 let sampleRequest = null;
@@ -56,53 +51,6 @@ function program(vertexSource, fragmentSource, uniforms) {
   for (const name of uniforms) locations[name] = gl.getUniformLocation(p, name);
   return { program: p, u: locations };
 }
-
-const PRIMITIVE_VS = `#version 300 es
-layout (location = 0) in vec3 aPosition;
-layout (location = 1) in vec3 aNormal;
-layout (location = 2) in vec4 aModel0;
-layout (location = 3) in vec4 aModel1;
-layout (location = 4) in vec4 aModel2;
-layout (location = 5) in vec4 aModel3;
-layout (location = 6) in vec4 aColor;
-
-uniform mat4 uView;
-uniform mat4 uProjection;
-
-out vec3 vNormal;
-out vec4 vColor;
-
-void main() {
-    mat4 model = mat4(aModel0, aModel1, aModel2, aModel3);
-    vec4 worldPosition = model * vec4(aPosition, 1.0);
-    mat3 rotationScale = mat3(model);
-    vec3 squaredScale = vec3(
-        dot(rotationScale[0], rotationScale[0]),
-        dot(rotationScale[1], rotationScale[1]),
-        dot(rotationScale[2], rotationScale[2]));
-    vNormal = normalize(rotationScale * (aNormal / max(squaredScale, vec3(1e-8))));
-    vColor = aColor;
-    gl_Position = uProjection * uView * worldPosition;
-}
-`;
-
-const PRIMITIVE_FS = `#version 300 es
-precision highp float;
-in vec3 vNormal;
-in vec4 vColor;
-
-uniform vec3 uLightDirection;
-uniform float uAmbient;
-
-out vec4 fragColor;
-
-void main() {
-    vec3 normal = normalize(vNormal);
-    float diffuse = max(dot(normal, -uLightDirection), 0.0);
-    float light = uAmbient + (1.0 - uAmbient) * diffuse;
-    fragColor = vec4(vColor.rgb * light, vColor.a);
-}
-`;
 
 const LABEL_VS = `#version 300 es
 layout (location = 0) in vec3 aPosition;
@@ -179,7 +127,6 @@ export function init(targetCanvas, heapView) {
   });
   if (!gl) return null;
 
-  primitive = program(PRIMITIVE_VS, PRIMITIVE_FS, ["uView", "uProjection", "uLightDirection", "uAmbient"]);
   label = program(LABEL_VS, LABEL_FS, ["uView", "uProjection", "uAtlas"]);
   label.vao = gl.createVertexArray();
   label.vbo = gl.createBuffer();
@@ -247,76 +194,6 @@ export function endFrame() {
     sampleRequest = null;
     resolve(sampleNow());
   }
-}
-
-// --- primitives ---
-
-export function createMesh(verticesPtr, vertexFloats, indicesPtr, indexCount) {
-  const mesh = {
-    vao: gl.createVertexArray(),
-    vbo: gl.createBuffer(),
-    ibo: gl.createBuffer(),
-    instances: gl.createBuffer(),
-    capacity: 0,
-    indexCount,
-  };
-  gl.bindVertexArray(mesh.vao);
-  gl.bindBuffer(gl.ARRAY_BUFFER, mesh.vbo);
-  gl.bufferData(gl.ARRAY_BUFFER, f32(verticesPtr, vertexFloats), gl.STATIC_DRAW);
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.ibo);
-  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint32Array(u8().buffer, indicesPtr, indexCount), gl.STATIC_DRAW);
-  const vertexStride = 6 * 4;
-  gl.enableVertexAttribArray(0);
-  gl.vertexAttribPointer(0, 3, gl.FLOAT, false, vertexStride, 0);
-  gl.enableVertexAttribArray(1);
-  gl.vertexAttribPointer(1, 3, gl.FLOAT, false, vertexStride, 12);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, mesh.instances);
-  const instanceStride = 20 * 4;
-  for (let column = 0; column < 4; column++) {
-    gl.enableVertexAttribArray(2 + column);
-    gl.vertexAttribPointer(2 + column, 4, gl.FLOAT, false, instanceStride, column * 16);
-    gl.vertexAttribDivisor(2 + column, 1);
-  }
-  gl.enableVertexAttribArray(6);
-  gl.vertexAttribPointer(6, 4, gl.FLOAT, false, instanceStride, 64);
-  gl.vertexAttribDivisor(6, 1);
-  gl.bindVertexArray(null);
-  gl.bindBuffer(gl.ARRAY_BUFFER, null);
-  meshes.push(mesh);
-  return meshes.length - 1;
-}
-
-export function beginPrimitives(matricesPtr, lightX, lightY, lightZ, ambient) {
-  gl.enable(gl.DEPTH_TEST);
-  gl.depthFunc(gl.LESS);
-  gl.enable(gl.CULL_FACE);
-  gl.cullFace(gl.BACK);
-  gl.frontFace(gl.CCW);
-  gl.disable(gl.BLEND);
-  gl.useProgram(primitive.program);
-  // System.Numerics rows are GLSL columns: uploaded as they are.
-  gl.uniformMatrix4fv(primitive.u.uView, false, f32(matricesPtr, 16));
-  gl.uniformMatrix4fv(primitive.u.uProjection, false, f32(matricesPtr + 64, 16));
-  gl.uniform3f(primitive.u.uLightDirection, lightX, lightY, lightZ);
-  gl.uniform1f(primitive.u.uAmbient, ambient);
-}
-
-export function drawInstances(meshId, instancesPtr, instanceCount) {
-  const mesh = meshes[meshId];
-  const bytes = instanceCount * 80;
-  gl.bindVertexArray(mesh.vao);
-  gl.bindBuffer(gl.ARRAY_BUFFER, mesh.instances);
-  if (bytes > mesh.capacity) {
-    // Grown to the next power of two, so a world that gains one instance a
-    // frame does not reallocate every frame.
-    let capacity = Math.max(mesh.capacity, 80 * 1024);
-    while (capacity < bytes) capacity *= 2;
-    gl.bufferData(gl.ARRAY_BUFFER, capacity, gl.STREAM_DRAW);
-    mesh.capacity = capacity;
-  }
-  gl.bufferSubData(gl.ARRAY_BUFFER, 0, u8(), instancesPtr, bytes);
-  gl.drawElementsInstanced(gl.TRIANGLES, mesh.indexCount, gl.UNSIGNED_INT, 0, instanceCount);
 }
 
 // --- textures ---
@@ -432,7 +309,7 @@ function sampleNow() {
       gl.readPixels(Math.floor(w * gx / grid), Math.floor(h * gy / grid), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
       const key = (pixel[0] >> 3) + "," + (pixel[1] >> 3) + "," + (pixel[2] >> 3);
       colours.add(key);
-      // The clear colour is (0.45, 0.65, 0.90): anything else is something drawn.
+      // The clear colour is (0.45, 0.65, 0.90): anything else was drawn over it.
       if (Math.abs(pixel[0] - 115) > 6 || Math.abs(pixel[1] - 166) > 6 || Math.abs(pixel[2] - 230) > 6) nonSky++;
     }
   }

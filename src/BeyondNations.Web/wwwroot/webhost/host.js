@@ -34,6 +34,16 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
   const { dotnet } = await import(new URL(frameworkPath + "dotnet.js", document.baseURI).href);
   runtime = await dotnet
     .withResourceLoader(loader)
+    // Native code's stderr (Emscripten's printErr) is the console's error
+    // channel by default. Strata writes its informational lines there too
+    // ("strata info: ..."), so those go to the log instead; anything else
+    // native code prints on stderr is still an error.
+    .withModuleConfig({
+      printErr(text) {
+        if (/^strata (info|debug):/.test(text)) console.log(text);
+        else console.error(text);
+      },
+    })
     .withConfig({ disableIntegrityCheck: true })
     .create();
 

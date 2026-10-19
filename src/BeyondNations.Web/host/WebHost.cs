@@ -29,27 +29,6 @@ namespace beyondnations.web.host {
         [JSImport("gfx.endFrame", Module)]
         public static partial void endFrame();
 
-        // --- instanced primitives (the silk renderer, ported) ---
-
-        /**
-        * A static mesh: interleaved float positions and normals (6 floats a
-        * vertex) and 32-bit indices. Returns the mesh's handle.
-        */
-        [JSImport("gfx.createMesh", Module)]
-        public static partial int createMesh(int verticesPtr, int vertexFloats, int indicesPtr, int indexCount);
-
-        /**
-        * Starts the primitive pass: view and projection (16 floats each,
-        * System.Numerics order, uploaded untransposed), light direction and
-        * ambient, as the desktop shader takes them.
-        */
-        [JSImport("gfx.beginPrimitives", Module)]
-        public static partial void beginPrimitives(int matricesPtr, double lightX, double lightY, double lightZ, double ambient);
-
-        /** One instanced draw: count instances of 20 floats (model + colour). */
-        [JSImport("gfx.drawInstances", Module)]
-        public static partial void drawInstances(int mesh, int instancesPtr, int instanceCount);
-
         // --- textures ---
 
         [JSImport("gfx.createTexture", Module)]
