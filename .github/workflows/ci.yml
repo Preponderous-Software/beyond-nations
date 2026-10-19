@@ -127,3 +127,53 @@ jobs:
           name: renderer-parity
           path: parity-out/
           if-no-files-found: ignore
+
+  # tools/history-to-replay.py: a seeded export becomes a usd-replay/1 replay that
+  # usd-recorder's validator accepts, and two exports of one seed give the same
+  # state hash at every sample.
+  history-replay:
+    name: History replay (usd-replay/1)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install usd-recorder
+        run: python -m pip install "usd-recorder @ git+https://github.com/Preponderous-Software/usd-recorder@v0.2.0"
+
+      - name: Export seed 42 twice
+        run: |
+          for run in a b; do
+            dotnet run --project tools/BeyondNations.HistoryExport -c Release -- \
+              --seed 42 --ticks 40000 --every 200 --out "out/$run.jsonl"
+          done
+
+      - name: Convert, validate and compare
+        run: |
+          for run in a b; do
+            python tools/history-to-replay.py "out/$run.jsonl" "out/$run.usdc" --stride 400 --sim-version "${GITHUB_SHA::12}"
+            usd-recorder replay validate "out/$run.usdc"
+          done
+          python - <<'PY'
+          from usd_recorder.replay import read_replay
+          a, b = read_replay("out/a.usdc"), read_replay("out/b.usdc")
+          assert len(a.ticks) == 100 and a.ticks == b.ticks, (len(a.ticks), len(b.ticks))
+          assert a.hashes == b.hashes, "two exports of one seed differ"
+          print(f"{len(a.ticks)} samples, identical state hashes; last {a.hashes[-1]}")
+          PY
+
+      - name: Upload the replay
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-replay-seed42
+          path: out/a.usdc
