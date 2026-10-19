@@ -449,7 +449,7 @@ namespace beyondnations {
             stall.getInventory().removeItem(ItemType.COIN, numCoinsToTransfer);
             pawn.getInventory().addItem(ItemType.COIN, numCoinsToTransfer);
 
-            Log.info("Pawn " + pawn.getName() + " transferred items to their stall.");
+            Log.debug("Pawn " + pawn.getName() + " transferred items to their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
@@ -552,7 +552,7 @@ namespace beyondnations {
             int profit = stall.getInventory().getNumItems(ItemType.COIN);
             pawn.getInventory().addItem(ItemType.COIN, profit);
             stall.getInventory().removeItem(ItemType.COIN, profit);
-            Log.info("Pawn " + pawn.getName() + " collected " + profit + " coins from their stall.");
+            Log.debug("Pawn " + pawn.getName() + " collected " + profit + " coins from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
@@ -586,7 +586,7 @@ namespace beyondnations {
             }
             pawn.getInventory().addItem(foodType.Value, foodToTransfer);
             stall.getInventory().removeItem(foodType.Value, foodToTransfer);
-            Log.info("Pawn " + pawn.getName() + " collected " + foodToTransfer + " " + foodType.Value + " from their stall.");
+            Log.debug("Pawn " + pawn.getName() + " collected " + foodToTransfer + " " + foodType.Value + " from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
@@ -603,7 +603,7 @@ namespace beyondnations {
             }
             settlement.removeFunds(fundsToWithdraw);
             pawn.getInventory().addItem(ItemType.COIN, fundsToWithdraw);
-            Log.info("Pawn " + pawn.getName() + " withdrew " + fundsToWithdraw + " funds from " + settlement.getName() + ".");
+            Log.debug("Pawn " + pawn.getName() + " withdrew " + fundsToWithdraw + " funds from " + settlement.getName() + ".");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 

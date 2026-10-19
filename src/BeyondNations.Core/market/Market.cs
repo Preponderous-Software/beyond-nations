@@ -174,7 +174,7 @@ namespace beyondnations {
 
             totalNumItemsBought += quantity;
 
-            Log.info("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + cost * quantity + " coins");
+            Log.debug("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + cost * quantity + " coins");
             return stallToBuyFrom.getOwnerId();
         }
 
@@ -263,7 +263,7 @@ namespace beyondnations {
 
                 totalNumItemsSold++;
 
-                Log.info("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
+                Log.debug("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
             }
             return stallToSellTo.getOwnerId();
         }

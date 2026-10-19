@@ -25,7 +25,7 @@ namespace beyondnations {
         
         public BehaviorType computeBehaviorType(Pawn pawn) {
             if (pawn.isMarkedForDeletion()) {
-                Log.info("[PBC] Pawn '" + pawn.getName() + " is marked for deletion. Returning NONE.");
+                Log.debug("[PBC] Pawn '" + pawn.getName() + " is marked for deletion. Returning NONE.");
                 return BehaviorType.NONE;
             }
 
@@ -68,7 +68,7 @@ namespace beyondnations {
 
             if (role == NationRole.LEADER) {
                 if (pawn.getInventory().getNumItems(ItemType.COIN) < 100 && currentSettlement.getFunds() > 100) {
-                    Log.info("[PBC] Pawn is low on coins. Withdrawing from settlement.");
+                    Log.debug("[PBC] Pawn is low on coins. Withdrawing from settlement.");
                     return BehaviorType.WITHDRAW_SETTLEMENT_FUNDS;
                 }
 
