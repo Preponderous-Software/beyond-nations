@@ -222,4 +222,28 @@ namespace beyondnationstests {
             Assert.Equal(ScreenType.MAIN_MENU, screens.getCurrent());
         }
     }
+
+    public class TestHungerWarning {
+
+        private static Simulation newSimulationWithSeed42() {
+            GameConfig gameConfig = new GameConfig();
+            gameConfig.setWorldSeed(42);
+            return new Simulation(gameConfig);
+        }
+
+        [Fact]
+        public void testHungerWarning_IsSilentWhileFed_ThenWarnsThenSaysStarving() {
+            Player player = newSimulationWithSeed42().getPlayer();
+
+            player.setEnergy(WorldHud.HungryEnergy);
+            Assert.Null(WorldHud.getHungerWarning(player));
+
+            player.setEnergy(WorldHud.HungryEnergy - 1);
+            Assert.StartsWith("Hungry: energy 29", WorldHud.getHungerWarning(player));
+            Assert.Contains("Press E at a tree or a chicken", WorldHud.getHungerWarning(player));
+
+            player.setEnergy(WorldHud.StarvingEnergy - 1);
+            Assert.StartsWith("Starving! Energy 9", WorldHud.getHungerWarning(player));
+        }
+    }
 }

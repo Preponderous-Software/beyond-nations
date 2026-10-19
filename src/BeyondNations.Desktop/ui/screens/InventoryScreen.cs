@@ -53,6 +53,10 @@ namespace beyondnations.desktop.ui.screens {
             float y = height / 4f;
 
             Overlay.beginFullScreen("##inventory-screen", width, height);
+            // The list is drawn over the live world, and white text on bright
+            // terrain or sky was hard to read; dimming the world behind it makes
+            // the screen read as a panel.
+            Overlay.dimBackground(width, height);
             Overlay.textCentered(Title, height / 10f, y, width);
             y += lineHeight * 2f;
             foreach (string line in getLines(inventory)) {

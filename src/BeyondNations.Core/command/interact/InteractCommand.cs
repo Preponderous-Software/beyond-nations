@@ -56,8 +56,15 @@ namespace beyondnations {
             }
             else if (tree != null && Vector3.Distance(player.getPosition(), tree.getPosition()) < 5) {
                 tree.markForDeletion();
+                // A tree carries apples as well as wood, and the message used
+                // to name only the wood, so apples -- the food a hungry player
+                // is looking for -- arrived unannounced.
+                int wood = tree.getInventory().getNumItems(ItemType.WOOD);
+                int apples = tree.getInventory().getNumItems(ItemType.APPLE);
                 player.getInventory().transferContentsOfInventory(tree.getInventory());
-                player.getStatus().update("Gathered wood from tree.");
+                player.getStatus().update(apples > 0
+                    ? "Gathered " + wood + " wood and " + apples + (apples == 1 ? " apple" : " apples") + " from tree."
+                    : "Gathered " + wood + " wood from tree.");
             }
             else if (rock != null && Vector3.Distance(player.getPosition(), rock.getPosition()) < 5) {
                 rock.markForDeletion();

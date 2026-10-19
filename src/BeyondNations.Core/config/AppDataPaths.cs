@@ -21,6 +21,7 @@ namespace beyondnations {
 
         private const string ApplicationFolderName = "BeyondNations";
         private const string ScreenshotsFolderName = "Screenshots";
+        private const string CrashReportsFolderName = "CrashReports";
 
         /**
         * The directory BeyondNations stores its data under, e.g.
@@ -43,6 +44,14 @@ namespace beyondnations {
         */
         public static string getScreenshotsDirectory() {
             return System.IO.Path.Combine(getBaseDirectory(), ScreenshotsFolderName);
+        }
+
+        /**
+        * The directory a crash report is written to when the game stops on an
+        * error, beside the screenshots.
+        */
+        public static string getCrashReportsDirectory() {
+            return System.IO.Path.Combine(getBaseDirectory(), CrashReportsFolderName);
         }
 
         /**

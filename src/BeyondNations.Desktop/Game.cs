@@ -198,7 +198,7 @@ namespace beyondnations.desktop {
             // The Unity build opened on the title screen, and now that the
             // screens exist again so does this. The world is not built until a
             // screen asks for one, except when --start-screen names it directly --
-            // or names the inventory screen, which is drawn over a world (#181).
+            // or names the inventory or pause screen, each drawn over a world (#181).
             screens.goTo(options.StartScreen);
             if (screens.isWorldVisible()) {
                 createWorld();

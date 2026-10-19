@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
+using beyondnations.desktop.input;
 using beyondnations.desktop.ui.boxes;
 
 namespace beyondnations.desktop.ui.screens {
@@ -26,7 +27,16 @@ namespace beyondnations.desktop.ui.screens {
         private const float BoxWidth = 200f;
         private const float LowerRowOffsetFromBottom = 220f;
         private const float SettlementBoxY = 30f;
-        private const float MarketBoxY = 200f;
+        private const float BoxGap = 10f;
+
+        /**
+        * Energy below which the HUD warns that the player is going hungry,
+        * and below which it says they are starving. Energy falls every tick
+        * and the player dies at zero; before these warnings the only sign was
+        * the number in the player box, so death arrived unannounced.
+        */
+        public const float HungryEnergy = 30f;
+        public const float StarvingEnergy = 10f;
 
         private const ImGuiWindowFlags BarFlags =
             ImGuiWindowFlags.NoDecoration |
@@ -51,6 +61,7 @@ namespace beyondnations.desktop.ui.screens {
 
             drawCommandButtons(width, height, simulation);
             drawStatus(width, player);
+            drawHungerWarning(width, player);
 
             if (debugMode) {
                 DebugInfoBox debugInfoBox = new DebugInfoBox(simulation);
@@ -58,17 +69,24 @@ namespace beyondnations.desktop.ui.screens {
                 debugInfoBox.draw(SideMargin, SideMargin, BoxWidth);
             }
 
+            // The right column used to put the market box at y = 200 and the
+            // player box 220 pixels above the bottom, which overlapped once the
+            // window was under about 600 pixels high. Each box now starts below
+            // the one above it, and the player box only moves down from its
+            // usual place, never up into the market box.
+            float rightColumnBottom = 0f;
             if (player.isCurrentlyInSettlement()) {
                 Settlement settlement = (Settlement) simulation.getEntityRepository().getEntity(player.getCurrentSettlementId());
-                new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository())
+                float settlementBottom = new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository())
                     .draw(rightColumnX, SettlementBoxY, BoxWidth);
-                new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository())
-                    .draw(rightColumnX, MarketBoxY, BoxWidth);
+                rightColumnBottom = new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository())
+                    .draw(rightColumnX, settlementBottom + BoxGap, BoxWidth);
             }
 
             new InventoryInfoBox(player.getInventory()).draw(SideMargin, lowerRowY, BoxWidth);
 
-            new PlayerInfoBox(player, simulation.getNationRepository()).draw(rightColumnX, lowerRowY, BoxWidth);
+            float playerBoxY = System.MathF.Max(lowerRowY, rightColumnBottom + BoxGap);
+            new PlayerInfoBox(player, simulation.getNationRepository()).draw(rightColumnX, playerBoxY, BoxWidth);
 
             return UiAction.None;
         }
@@ -85,18 +103,42 @@ namespace beyondnations.desktop.ui.screens {
             }
 
             float buttonHeight = height / 20f;
-            float buttonWidth = width / 10f;
+            float minButtonWidth = width / 10f;
             float barX = 100f;
-            float barY = height - buttonHeight - 10f;
+            float maxRowWidth = width - barX - SideMargin;
+            float spacing = ImGui.GetStyle().ItemSpacing.X;
+            float textPadding = ImGui.GetStyle().FramePadding.X * 2f;
+
+            // A fixed tenth of the window clipped longer labels such as
+            // "Create Nation" or "Collect Coins (12)" once the window was
+            // narrower than about 1000 pixels, so each button is at least as
+            // wide as its label, and a row that would run off the right edge
+            // wraps onto another one above it.
+            float[] buttonWidths = new float[commands.Count];
+            bool[] startsRow = new bool[commands.Count];
+            int rows = 1;
+            float rowWidth = 0f;
+            for (int i = 0; i < commands.Count; i++) {
+                buttonWidths[i] = System.MathF.Max(minButtonWidth, ImGui.CalcTextSize(commands[i].getLabel()).X + textPadding);
+                if (i > 0 && rowWidth + spacing + buttonWidths[i] > maxRowWidth) {
+                    startsRow[i] = true;
+                    rows++;
+                    rowWidth = buttonWidths[i];
+                } else {
+                    rowWidth += (i > 0 ? spacing : 0f) + buttonWidths[i];
+                }
+            }
+            float rowStep = buttonHeight + ImGui.GetStyle().ItemSpacing.Y;
+            float barY = height - buttonHeight - 10f - rowStep * (rows - 1);
 
             ImGui.SetNextWindowPos(new Vector2(barX, barY), ImGuiCond.Always);
             if (ImGui.Begin("##world-command-bar", BarFlags)) {
                 WorldCommand clicked = null;
                 for (int i = 0; i < commands.Count; i++) {
-                    if (i > 0) {
+                    if (i > 0 && !startsRow[i]) {
                         ImGui.SameLine();
                     }
-                    if (ImGui.Button(commands[i].getLabel(), new Vector2(buttonWidth, buttonHeight))) {
+                    if (ImGui.Button(commands[i].getLabel(), new Vector2(buttonWidths[i], buttonHeight))) {
                         clicked = commands[i];
                     }
                 }
@@ -106,6 +148,43 @@ namespace beyondnations.desktop.ui.screens {
                 if (clicked != null) {
                     clicked.execute();
                 }
+            }
+            ImGui.End();
+        }
+
+        /**
+        * The hunger warning, or null when the player is not hungry. The
+        * player eats on their own whenever they carry food, so a hungry
+        * player is one with none, and the warning says where to get some.
+        */
+        public static string getHungerWarning(Player player) {
+            float energy = player.getEnergy();
+            if (energy >= HungryEnergy) {
+                return null;
+            }
+            string howToEat = "Press " + KeyBindings.Interact + " at a tree or a chicken for food, or buy food in a settlement.";
+            if (energy < StarvingEnergy) {
+                return "Starving! Energy " + (int) energy + ". " + howToEat;
+            }
+            return "Hungry: energy " + (int) energy + " and falling. " + howToEat;
+        }
+
+        /**
+        * Drawn under the status line and held there, rather than posted as a
+        * status, so a later message cannot push it off screen while the
+        * danger is still real.
+        */
+        private void drawHungerWarning(float width, Player player) {
+            string warning = getHungerWarning(player);
+            if (warning == null) {
+                return;
+            }
+            Vector4 colour = player.getEnergy() < StarvingEnergy
+                ? new Vector4(1f, 0.35f, 0.35f, 1f)
+                : new Vector4(1f, 0.8f, 0.3f, 1f);
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, 50f), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            if (ImGui.Begin("##hunger-warning", StatusFlags)) {
+                ImGui.TextColored(colour, warning);
             }
             ImGui.End();
         }

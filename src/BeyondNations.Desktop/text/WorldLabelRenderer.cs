@@ -47,10 +47,11 @@ namespace beyondnations.desktop.text {
 
         /**
         * How tall one line of a nametag is, in world units. A pawn is one unit
-        * across, so this is roughly the height of the thing the name belongs
-        * to.
+        * across. This was 1.15, a line as tall as the pawn, which made a name
+        * several pawns wide up close; a playtest called them huge. 0.6 still
+        * reads at the default render distance.
         */
-        private const float LineHeightInWorldUnits = 1.15f;
+        private const float LineHeightInWorldUnits = 0.6f;
 
         /**
         * How far above an entity's origin the bottom of its nametag sits.

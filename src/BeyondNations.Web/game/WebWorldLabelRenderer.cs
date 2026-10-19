@@ -25,7 +25,7 @@ namespace beyondnations.web {
         private const int AtlasWidth = 1024;
         private const int AtlasHeight = 1024;
         private const int FontSizePixels = 32;
-        private const float LineHeightInWorldUnits = 1.15f;
+        private const float LineHeightInWorldUnits = 0.6f;
         private const float HeightAboveEntity = 1.4f;
         private const int PrewarmFirstCodepoint = 32;
         private const int PrewarmLastCodepoint = 126;

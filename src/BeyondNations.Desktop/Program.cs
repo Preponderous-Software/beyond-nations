@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using beyondnations;
 using beyondnations.desktop.telemetry;
 using StephensonSoftware.Trace;
@@ -8,10 +10,19 @@ namespace beyondnations.desktop {
     public static class Program {
 
         public static int Main(string[] args) {
+            GameOptions options = GameOptions.parse(args);
+
             // Core logs through a sink so that it needs no engine and no console
-            // of its own. The host decides where the output goes.
+            // of its own. The host decides where the output goes. Debug lines --
+            // one per simulation event, thousands in a long session -- filled
+            // the console window a Windows launcher leaves open, so they are
+            // shown only with --debug-mode.
             Log.setSink((level, message) => {
-                if (level == LogLevel.Error) {
+                if (level == LogLevel.Debug) {
+                    if (options.DebugMode) {
+                        Console.WriteLine("[debug] " + message);
+                    }
+                } else if (level == LogLevel.Error) {
                     Console.Error.WriteLine("[error] " + message);
                 } else if (level == LogLevel.Warning) {
                     Console.Error.WriteLine("[warn ] " + message);
@@ -19,8 +30,6 @@ namespace beyondnations.desktop {
                     Console.WriteLine("[info ] " + message);
                 }
             });
-
-            GameOptions options = GameOptions.parse(args);
 
             // One `startup` event to trace, on a background thread; see
             // UsageReporting for what is sent and every way to turn it off.
@@ -33,12 +42,51 @@ namespace beyondnations.desktop {
                        message => Log.info(message),
                        message => Log.warning(message))) {
                 Game game = null;
-                return runAndReport(
+                List<string> report = new List<string>();
+                int exitCode = runAndReport(
                     () => { game = new Game(options); game.run(); },
                     () => game?.Dispose(),
                     () => game != null && game.getFramesRendered() > 0,
-                    Console.Error.WriteLine);
+                    line => { Console.Error.WriteLine(line); report.Add(line); });
+                if (exitCode != 0) {
+                    reportCrashFile(report);
+                }
+                return exitCode;
             }
+        }
+
+        /**
+        * Saves what went wrong to a file and says where. On Windows the game is
+        * started from a launcher whose console closes when the game does, so
+        * the error printed above was gone before anyone could read it, and a
+        * bug report had nothing to attach.
+        */
+        private static void reportCrashFile(List<string> report) {
+            try {
+                string path = writeCrashReport(AppDataPaths.getCrashReportsDirectory(), report, DateTime.Now);
+                Console.Error.WriteLine("[error] a crash report was saved to " + path);
+            } catch (Exception e) {
+                Console.Error.WriteLine("[warn ] the crash report could not be saved: " + e.Message);
+            }
+        }
+
+        /**
+        * Writes the report lines, with the game version and the time, to a new
+        * file in directory and returns its path. Public so a test can write
+        * one into a temporary directory.
+        */
+        public static string writeCrashReport(string directory, IEnumerable<string> lines, DateTime now) {
+            Directory.CreateDirectory(directory);
+            string path = Path.Combine(directory, "crash_" + now.ToString("yyyyMMdd_HHmmss") + ".txt");
+            List<string> contents = new List<string> {
+                "Beyond Nations " + beyondnations.desktop.ui.GameVersion.getLabel(),
+                "Time: " + now.ToString("yyyy-MM-dd HH:mm:ss"),
+                "OS: " + System.Runtime.InteropServices.RuntimeInformation.OSDescription,
+                ""
+            };
+            contents.AddRange(lines);
+            File.WriteAllLines(path, contents);
+            return path;
         }
 
         /**

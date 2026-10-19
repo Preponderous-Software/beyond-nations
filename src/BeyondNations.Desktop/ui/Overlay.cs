@@ -40,6 +40,16 @@ namespace beyondnations.desktop.ui {
             ImGui.Begin(id, FullScreenFlags);
         }
 
+        /**
+        * Darkens the whole screen behind the widgets that follow, so a screen
+        * laid over the world reads as a panel in front of it rather than as
+        * text floating on the terrain. Call straight after beginFullScreen.
+        */
+        public static void dimBackground(float width, float height) {
+            ImGui.GetWindowDrawList().AddRectFilled(
+                Vector2.Zero, new Vector2(width, height), ImGui.GetColorU32(new Vector4(0f, 0f, 0f, 0.6f)));
+        }
+
         public static void end() {
             ImGui.End();
         }

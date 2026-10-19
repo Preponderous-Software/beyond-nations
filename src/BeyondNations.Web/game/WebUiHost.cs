@@ -96,6 +96,9 @@ namespace beyondnations.web {
         // UiHost.apply, unchanged.
         private void apply(UiAction action) {
             switch (action) {
+                case UiAction.Continue:
+                    screens.anyKeyPressed();
+                    break;
                 case UiAction.StartGame:
                     startRequested = true;
                     screens.goTo(ScreenType.WORLD);
@@ -105,6 +108,11 @@ namespace beyondnations.web {
                     break;
                 case UiAction.Back:
                     screens.goTo(screens.getCurrent() == ScreenType.PAUSE ? ScreenType.WORLD : ScreenType.MAIN_MENU);
+                    break;
+                case UiAction.MainMenu:
+                    // No saves yet, so leaving for the menu ends this world;
+                    // Start builds a fresh one.
+                    screens.goTo(ScreenType.MAIN_MENU);
                     break;
                 case UiAction.Quit:
                     quitRequested = true;

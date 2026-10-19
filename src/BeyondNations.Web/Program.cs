@@ -24,12 +24,21 @@ namespace beyondnations.web {
     public static class Program {
 
         public static int Main(string[] args) {
+            // Debug lines (one per simulation event) stay out of the browser
+            // console unless the URL asks for debug mode, as on the desktop.
+            // The sink is installed before the options are parsed so that
+            // parsing can warn, so it reads the flag through this local.
+            bool showDebugLog = false;
             Log.setSink((level, message) => {
+                if (level == LogLevel.Debug && !showDebugLog) {
+                    return;
+                }
                 WebPage.log(level == LogLevel.Error ? "error" : level == LogLevel.Warning ? "warn" : "info", message);
             });
 
             List<string> arguments = WebOptions.toArguments(WebPage.query(), warning => Log.warning(warning));
             GameOptions options = GameOptions.parse(arguments.ToArray());
+            showDebugLog = options.DebugMode;
             if (arguments.Count > 0) {
                 Log.info("options from the URL: " + string.Join(" ", arguments));
             }
