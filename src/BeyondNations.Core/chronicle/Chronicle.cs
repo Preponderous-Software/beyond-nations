@@ -10,7 +10,11 @@ namespace beyondnations {
     * worth telling into short lines with an in-game time stamp -- "Day 3, dusk
     * - Mira founded the nation of Ironvale." -- and keeps the most recent
     * ones. Noise is left out: chunk generation, pawn spawns and relationship
-    * ticks never make an entry.
+    * ticks never make an entry. In a populated world some events happen too
+    * often to tell every time, so births and pawns joining a nation are told
+    * only for the player's nation, as is drift between neutral and friendly
+    * relations, and a raid between two other nations is told once a day per
+    * raider and victim.
     *
     * Phrasing varies, but deterministically. Each line picks its template
     * from a hash of the world seed, the event and how many entries came
@@ -34,6 +38,10 @@ namespace beyondnations {
         private readonly List<ChronicleEntry> entries = new List<ChronicleEntry>();
         private int totalRecorded;
         private int nationsFounded;
+        // raider|victim pairs already told today, so a feud between two
+        // nations is one line a day rather than one per raid
+        private readonly HashSet<string> raidsToldToday = new HashSet<string>();
+        private int raidDay = -1;
 
         public Chronicle(EventRepository eventRepository, EntityRepository entityRepository, NationRepository nationRepository,
                 TimeOfDay timeOfDay, TickCounter tickCounter, int seed, int capacity = DefaultCapacity) {
@@ -159,8 +167,10 @@ namespace beyondnations {
                     return describeNationRaid((NationRaidEvent) e, nations, entities);
                 case EventType.SettlementCapture:
                     return describeSettlementCapture((SettlementCaptureEvent) e, nations, entities);
+                case EventType.PawnSpawn:
+                    return describeBirth((PawnSpawnEvent) e, nations, entities);
                 default:
-                    // ChunkGenerate and PawnSpawn: noise.
+                    // ChunkGenerate: noise.
                     return null;
             }
         }
@@ -204,6 +214,11 @@ namespace beyondnations {
                     "You swore yourself to " + n + ".",
                     "You joined the nation of " + n + ".",
                     n + " took you in as one of its own.");
+            }
+            // Pawns join nations all the time in a populated world (immigrants
+            // and settlers), so only a join to the player's own nation is told.
+            if (!isPlayersNation(nation.getId())) {
+                return null;
             }
             string p = nameOf(e.getEntityId());
             return pick(e, n + p,
@@ -393,6 +408,13 @@ namespace beyondnations {
         * little variety on top.
         */
         private string describeNationRelationChange(NationRelationChangeEvent e, List<NationId> nations) {
+            // Drift between neutral and friendly is constant in a populated
+            // world; it is told only when the player's nation is one of the pair.
+            bool drift = e.getBefore() >= NationRelationState.NEUTRAL && e.getBefore() != NationRelationState.ALLIED
+                && e.getAfter() >= NationRelationState.NEUTRAL && e.getAfter() != NationRelationState.ALLIED;
+            if (drift && !isPlayersNation(e.getNation1().getId()) && !isPlayersNation(e.getNation2().getId())) {
+                return null;
+            }
             nations.Add(e.getNation1().getId());
             nations.Add(e.getNation2().getId());
             if (e.getAfter() == NationRelationState.ALLIED) {
@@ -406,6 +428,18 @@ namespace beyondnations {
         }
 
         private string describeNationRaid(NationRaidEvent e, List<NationId> nations, List<EntityId> entities) {
+            // Hostile nations raid each other every few seconds. A raid on or by
+            // the player's nation is always told; any other pair gets one line a day.
+            if (!isPlayersNation(e.getRaider().getId()) && !isPlayersNation(e.getVictim().getId())) {
+                int day = currentDay();
+                if (day != raidDay) {
+                    raidDay = day;
+                    raidsToldToday.Clear();
+                }
+                if (!raidsToldToday.Add(e.getRaider().getId() + "|" + e.getVictim().getId())) {
+                    return null;
+                }
+            }
             nations.Add(e.getRaider().getId());
             nations.Add(e.getVictim().getId());
             if (e.getSettlement() != null) {
@@ -430,7 +464,34 @@ namespace beyondnations {
                 "After a siege, a " + place + " of " + from + " fell to " + to + ".");
         }
 
+        /**
+        * Spawns are noise (world generation, wanderers, immigrants), except a
+        * child born into the player's nation: a newborn is the only pawn that
+        * spawns already belonging to a nation.
+        */
+        private string describeBirth(PawnSpawnEvent e, List<NationId> nations, List<EntityId> entities) {
+            Pawn pawn = e.getPawn();
+            if (pawn == null || pawn.getNationId() == null || !isPlayersNation(pawn.getNationId())) {
+                return null;
+            }
+            Nation nation = nationOf(pawn.getNationId());
+            if (nation == null) {
+                return null;
+            }
+            nations.Add(nation.getId());
+            entities.Add(pawn.getId());
+            string n = nation.getName();
+            return pick(e, pawn.getName(),
+                pawn.getName() + " was born in " + n + ".",
+                n + " welcomed a newborn, " + pawn.getName() + ".");
+        }
+
         // --- helpers --------------------------------------------------------
+
+        private bool isPlayersNation(NationId id) {
+            Player player = findPlayer() as Player;
+            return id != null && player != null && player.getNationId() != null && player.getNationId().Equals(id);
+        }
 
         private string pick(Event e, string key, params string[] options) {
             return pickBy(e.getType(), key, options);

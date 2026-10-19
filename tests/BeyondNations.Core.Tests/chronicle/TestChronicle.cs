@@ -234,6 +234,15 @@ namespace beyondnationstests {
             producer.produceNationRelationChangeEvent(ironvale, ashford, NationRelationState.RIVAL, NationRelationState.HOSTILE);
             Assert.Equal("Ironvale and Ashford are now hostile.", chronicle.getEntries().Last().getText());
 
+            // Drift between neutral and friendly is quiet unless the player's nation is involved.
+            int told = chronicle.getTotalRecorded();
+            producer.produceNationRelationChangeEvent(ironvale, ashford, NationRelationState.NEUTRAL, NationRelationState.FRIENDLY);
+            producer.produceNationRelationChangeEvent(ironvale, ashford, NationRelationState.FRIENDLY, NationRelationState.NEUTRAL);
+            Assert.Equal(told, chronicle.getTotalRecorded());
+            Nation mine = world.playerNation(1);
+            producer.produceNationRelationChangeEvent(mine, ashford, NationRelationState.NEUTRAL, NationRelationState.FRIENDLY);
+            Assert.Equal("Relations between " + mine.getName() + " and Ashford are now friendly.", chronicle.getEntries().Last().getText());
+
             producer.produceNationRaidEvent(ironvale, ashford, town, "12 coins");
             ChronicleEntry raid = chronicle.getEntries().Last();
             Assert.Equal(EventType.NationRaid, raid.getEventType());
@@ -249,6 +258,63 @@ namespace beyondnationstests {
             Assert.Contains("Ashford", capture.getText());
             Assert.Contains(SettlementTiers.getDisplayName(town.getTier()).ToLowerInvariant(), capture.getText());
             Assert.True(capture.involvesNation(ironvale.getId()));
+        }
+
+        [Fact]
+        public void testPopulatedWorld_JoinsAndBirthsAreToldOnlyForThePlayersNation() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation theirs = world.pawnNation("Ashford", 2);
+            Nation mine = world.playerNation(1);
+            EventProducer producer = world.simulation.getEventProducer();
+            Chronicle chronicle = world.simulation.getChronicle();
+            int before = chronicle.getTotalRecorded();
+
+            // An immigrant joining someone else's nation, and a child born there: quiet.
+            Pawn immigrant = world.addMember(theirs);
+            producer.produceNationJoinEvent(theirs, immigrant.getId());
+            Pawn theirChild = world.addMember(theirs);
+            producer.producePawnSpawnEvent(Vector3.Zero, theirChild);
+            // A nationless wanderer turning up: quiet.
+            producer.producePawnSpawnEvent(Vector3.Zero, world.pawn());
+            Assert.Equal(before, chronicle.getTotalRecorded());
+
+            Pawn recruit = world.addMember(mine);
+            producer.produceNationJoinEvent(mine, recruit.getId());
+            ChronicleEntry join = chronicle.getEntries().Last();
+            Assert.Equal(EventType.NationJoin, join.getEventType());
+            Assert.Contains(recruit.getName(), join.getText());
+
+            Pawn child = world.addMember(mine);
+            producer.producePawnSpawnEvent(Vector3.Zero, child);
+            ChronicleEntry birth = chronicle.getEntries().Last();
+            Assert.Equal(EventType.PawnSpawn, birth.getEventType());
+            Assert.Contains(child.getName(), birth.getText());
+            Assert.True(birth.concerns(world.player));
+        }
+
+        [Fact]
+        public void testRaidsBetweenOtherNations_OneLineADayPerPair_PlayersAlwaysTold() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation ironvale = world.pawnNation("Ironvale", 2);
+            Nation ashford = world.pawnNation("Ashford", 2);
+            Nation mine = world.playerNation(1);
+            Settlement town = world.settlement(ashford, 40, 40);
+            Settlement home = world.settlement(mine, -40, -40);
+            EventProducer producer = world.simulation.getEventProducer();
+            Chronicle chronicle = world.simulation.getChronicle();
+
+            producer.produceNationRaidEvent(ironvale, ashford, town, "5 wood");
+            producer.produceNationRaidEvent(ironvale, ashford, town, "5 wood");
+            producer.produceNationRaidEvent(ironvale, ashford, town, "5 wood");
+            Assert.Equal(1, chronicle.getEntries().Count(e => e.getEventType() == EventType.NationRaid));
+            // The other way round is a different pair.
+            producer.produceNationRaidEvent(ashford, ironvale, town, "2 coins");
+            Assert.Equal(2, chronicle.getEntries().Count(e => e.getEventType() == EventType.NationRaid));
+
+            producer.produceNationRaidEvent(ironvale, mine, home, "3 stone");
+            producer.produceNationRaidEvent(ironvale, mine, home, "3 stone");
+            Assert.Equal(4, chronicle.getEntries().Count(e => e.getEventType() == EventType.NationRaid));
+            Assert.True(chronicle.getEntries().Last().concerns(world.player));
         }
 
         [Fact]
@@ -286,6 +352,9 @@ namespace beyondnationstests {
         private static List<string> tellJoins(int seed) {
             Simulation simulation = makeSimulation(seed);
             Nation nation = pawnFoundsNation(simulation, addPawn(simulation, "Mira"), "Ironvale");
+            // Pawn joins are told for the player's nation only.
+            nation.addMember(simulation.getPlayer().getId());
+            simulation.getPlayer().setNationId(nation.getId());
             for (int i = 0; i < 12; i++) {
                 Pawn pawn = addPawn(simulation, "Pawn" + i);
                 nation.addMember(pawn.getId());
