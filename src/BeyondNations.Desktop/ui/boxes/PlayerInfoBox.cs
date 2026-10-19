@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Numerics;
+using ImGuiNET;
 
 namespace beyondnations.desktop.ui.boxes {
 
@@ -33,6 +35,23 @@ namespace beyondnations.desktop.ui.boxes {
             }
 
             return lines;
+        }
+
+        /**
+        * The energy line is drawn as a bar coloured by hunger (see EnergyBar),
+        * with the number written on it; the remaining lines follow as text.
+        * getLines() still starts with the energy line, so the text a test
+        * reads is unchanged.
+        */
+        protected override void drawBody() {
+            float energy = player.getEnergy();
+            ImGui.PushStyleColor(ImGuiCol.PlotHistogram, EnergyBar.getColour(energy));
+            ImGui.ProgressBar(EnergyBar.getFraction(energy), new Vector2(-1f, 0f), EnergyBar.getLabel(energy));
+            ImGui.PopStyleColor();
+            List<string> lines = getLines();
+            for (int i = 1; i < lines.Count; i++) {
+                ImGui.TextUnformatted(lines[i]);
+            }
         }
     }
 }
