@@ -245,7 +245,9 @@ namespace beyondnations.desktop {
         */
         private void createWorld() {
             simulation = new Simulation(gameConfig);
-            simulation.getPlayer().getStatus().update("Press " + KeyBindings.CreateNewNation + " to create a nation.");
+            // The objective tracker (top left) carries the step-by-step guidance
+            // now, so the opening line points at it rather than competing with it.
+            simulation.getPlayer().getStatus().update("Welcome! Your first objective is at the top left.");
 
             // --- #280 ---
             if (options.TimeOfDay >= 0f) {

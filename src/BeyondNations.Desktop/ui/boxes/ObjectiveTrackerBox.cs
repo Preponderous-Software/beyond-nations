@@ -130,15 +130,16 @@ namespace beyondnations.desktop.ui.boxes {
         }
 
         /**
-        * The toast, centred horizontally a little below the status line and
-        * the hunger warning so none of them sit on top of each other.
+        * The toast, centred horizontally and no higher than minY, which the
+        * HUD sets below the tracker, the status line and the hunger warning
+        * so none of them sit on top of each other on a narrow window.
         */
-        public void drawToast(float screenWidth, float screenHeight) {
+        public void drawToast(float screenWidth, float screenHeight, float minY) {
             string text = toastText(simulation);
             if (text == null) {
                 return;
             }
-            ImGui.SetNextWindowPos(new Vector2(screenWidth / 2f, Math.Max(96f, screenHeight * 0.16f)), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            ImGui.SetNextWindowPos(new Vector2(screenWidth / 2f, Math.Max(minY, screenHeight * 0.16f)), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowBgAlpha(0.75f);
             if (ImGui.Begin("##objective-toast", PanelFlags | ImGuiWindowFlags.AlwaysAutoResize)) {
                 ImGui.TextColored(HeadingColour, "Objective complete!");
