@@ -175,9 +175,38 @@ A game supplies an `IWebGame`, its page and its own renderer on top of `WebGpu`.
 ### `--renderer native` in the browser (follow-up)
 
 The desktop's `--renderer native` draws through Strata over P/Invoke. Strata's
-WebGL2/Emscripten backend is being built separately; once it exists, the
-browser equivalent is a second `IWorldRenderer` in `BeyondNations.Web` that
-calls Strata linked into `dotnet.native.wasm` as a `NativeFileReference` (the
-way cimgui is linked here), selected by the same `renderer=native` option that
-today falls back to silk in `WebGame`'s constructor. Nothing else in the host
-needs to change.
+WebGL 2 backend is on Strata `main` (strata#18; no release tag yet), and
+Strata's own `docs/WEB.md` has a section for this port. The browser equivalent
+is a second `IWorldRenderer` in `BeyondNations.Web` that calls Strata linked
+into `dotnet.native.wasm`. It is selected by the same `renderer=native` option
+that today logs a warning and falls back to silk in `WebGame`'s constructor.
+How that fits this host, checked against Strata's notes:
+
+- **Linking.** Link Strata the way `native/cimgui.targets` links cimgui: a
+  pinned, SHA-checked archive as a `NativeFileReference`, named `strata.a` so
+  that it matches `[DllImport("strata")]`. Add
+  `-sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2` to `EmccExtraLDFlags`.
+- **Emscripten version (the main risk).** The .NET 8 `wasm-tools` workload
+  links with **Emscripten 3.1.34**. Strata's CI builds with 6.0.11, and objects
+  from a much newer Emscripten may not link with the older `wasm-ld`. Strata
+  has to be built with 3.1.34 (the workload's own `emcc` works, as
+  `cimgui.targets` shows), probably with `-DSTRATA_WITH_SDL=OFF`. Nobody has
+  yet checked whether Strata's C++ builds with that compiler.
+- **Exceptions.** This app uses .NET 8's default
+  (`WasmEnableExceptionHandling=true`, i.e. `-fwasm-exceptions`), so Strata
+  must be built with `-DSTRATA_WASM_EXCEPTIONS=wasm`. cimgui is compiled with
+  `-fno-exceptions` and does not conflict.
+- **Surface.** Use `STRATA_SURFACE_HOST_CONTEXT`, so that Strata draws into
+  the page's context between the primitive pass and the labels and UI, as
+  `NativeWorldRenderer` does on the desktop. That needs one change here.
+  `webhost/gfx.js` creates its WebGL 2 context with `canvas.getContext`,
+  which Emscripten's GL layer does not know about, and Strata requires a
+  context made current through Emscripten. The native renderer must either
+  register the page's existing context with Emscripten's `GL`
+  (`GL.registerContext` + `GL.makeContextCurrent`, exported from the .NET
+  module) or have Emscripten create it (`emscripten_webgl_create_context` on
+  the same canvas) and hand it to `gfx.js`. Either way, there is one context
+  for both. Strata saves and restores the GL state it touches. `gfx.js` sets
+  all the state each pass needs, so the two can share the context.
+- **Frame loop and threads.** These already match: one frame per
+  `requestAnimationFrame` through `WebHostExports.Frame`, and no threads.
