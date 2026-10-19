@@ -47,13 +47,17 @@ namespace beyondnations.desktop.input {
         }
 
         private void applyMovement(Player player, InputService inputService) {
+            // Unity's world is left-handed and this renderer's is right-handed,
+            // so a rising yaw now turns the view to the left. Left therefore
+            // raises yaw and right lowers it, the reverse of Unity's
+            // Input.GetAxis("Horizontal").
             float horizontal = 0f;
             float vertical = 0f;
             if (inputService.isHeld(KeyBindings.MoveLeft) || inputService.isHeld(KeyBindings.MoveLeftAlt)) {
-                horizontal -= 1f;
+                horizontal += 1f;
             }
             if (inputService.isHeld(KeyBindings.MoveRight) || inputService.isHeld(KeyBindings.MoveRightAlt)) {
-                horizontal += 1f;
+                horizontal -= 1f;
             }
             if (inputService.isHeld(KeyBindings.MoveForward) || inputService.isHeld(KeyBindings.MoveForwardAlt)) {
                 vertical += 1f;
