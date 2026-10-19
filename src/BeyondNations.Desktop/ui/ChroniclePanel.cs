@@ -176,10 +176,10 @@ namespace beyondnations.desktop.ui {
             ImGui.SetNextWindowSize(new Vector2(panelWidth, 0f), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.6f);
             if (ImGui.Begin("##chronicle-recent", CompactFlags)) {
-                ImGui.TextColored(HintColour, "Chronicle  [" + KeyNames.describe(KeyBindings.ToggleChronicle) + ": more]");
+                Overlay.textColoured(HintColour, "Chronicle  [" + KeyNames.describe(KeyBindings.ToggleChronicle) + ": more]");
                 List<ChronicleEntry> recent = chronicle.getRecent(RecentCount);
                 if (recent.Count == 0) {
-                    ImGui.TextColored(HintColour, "Nothing worth telling has happened yet.");
+                    Overlay.textColoured(HintColour, "Nothing worth telling has happened yet.");
                 }
                 float lineWidth = ImGui.GetContentRegionAvail().X;
                 for (int i = recent.Count - 1; i >= 0; i--) {
@@ -209,20 +209,20 @@ namespace beyondnations.desktop.ui {
                     view.setMode(ChronicleMode.Hidden);
                 }
                 ImGui.SameLine();
-                ImGui.TextColored(HintColour, KeyNames.describe(KeyBindings.ToggleChronicle) + " cycles views");
+                Overlay.textColoured(HintColour, KeyNames.describe(KeyBindings.ToggleChronicle) + " cycles views");
 
                 int kept = chronicle.getCount();
                 int total = chronicle.getTotalRecorded();
                 string counts = total > kept
                     ? total + " entries; the latest " + kept + " are kept."
                     : total + (total == 1 ? " entry." : " entries.");
-                ImGui.TextColored(HintColour, counts);
+                Overlay.textColoured(HintColour, counts);
                 ImGui.Separator();
 
                 if (ImGui.BeginChild("##chronicle-scroll", Vector2.Zero)) {
                     List<ChronicleEntry> entries = select(chronicle.getEntries(), player, onlyMine);
                     if (entries.Count == 0) {
-                        ImGui.TextColored(HintColour, onlyMine
+                        Overlay.textColoured(HintColour, onlyMine
                             ? "Nothing about you or your nation yet."
                             : "Nothing worth telling has happened yet.");
                     }
@@ -230,9 +230,9 @@ namespace beyondnations.desktop.ui {
                     ImGui.PushTextWrapPos(0f);
                     foreach (ChronicleEntry entry in entries) {
                         bool mine = entry.concerns(player);
-                        ImGui.TextColored(StampColour, (mine ? MineMarker : "") + entry.getTimestamp());
+                        Overlay.textColoured(StampColour, (mine ? MineMarker : "") + entry.getTimestamp());
                         ImGui.SameLine();
-                        ImGui.TextColored(mine ? MineColour : TextColour, entry.getText());
+                        Overlay.textColoured(mine ? MineColour : TextColour, entry.getText());
                     }
                     ImGui.PopTextWrapPos();
                     // Follow the newest entry on opening and as entries
@@ -256,12 +256,12 @@ namespace beyondnations.desktop.ui {
             Vector4 stamp = withAlpha(StampColour, alpha);
             Vector4 text = withAlpha(mine ? MineColour : TextColour, alpha);
             if (line.Length <= stampLength) {
-                ImGui.TextColored(stamp, line);
+                Overlay.textColoured(stamp, line);
                 return;
             }
-            ImGui.TextColored(stamp, line.Substring(0, stampLength));
+            Overlay.textColoured(stamp, line.Substring(0, stampLength));
             ImGui.SameLine(0f, 0f);
-            ImGui.TextColored(text, line.Substring(stampLength));
+            Overlay.textColoured(text, line.Substring(stampLength));
         }
 
         private static Vector4 withAlpha(Vector4 colour, float alpha) {
