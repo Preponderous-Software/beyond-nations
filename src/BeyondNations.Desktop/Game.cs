@@ -256,6 +256,9 @@ namespace beyondnations.desktop {
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
             }
+            if (options.StageDiplomacy) {
+                DiplomacyShowcase.stage(simulation);
+            }
 
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {
@@ -389,6 +392,9 @@ namespace beyondnations.desktop {
             // input controller running, so nothing moves while it is open.
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleInventory)) {
                 screens.inventoryPressed();
+            }
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleNations)) {
+                screens.nationsPressed();
             }
             // --- end #181 ---
 

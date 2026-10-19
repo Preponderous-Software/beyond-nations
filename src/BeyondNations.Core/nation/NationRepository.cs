@@ -6,6 +6,7 @@ namespace beyondnations {
         private RandomSource random;
         private Dictionary<NationId, Nation> nations;
         private List<NationId> nationIds;
+        private readonly NationRelations relations = new NationRelations();
 
         public NationRepository(RandomSource random) {
             this.random = random;
@@ -13,7 +14,15 @@ namespace beyondnations {
             nationIds = new List<NationId>();
         }
 
+        /** How every pair of nations stands toward each other. */
+        public NationRelations getRelations() {
+            return relations;
+        }
+
         public Nation getNation(NationId id) {
+            if (id == null) {
+                return null;
+            }
             try {
                 return nations[id];
             } catch (KeyNotFoundException) {
@@ -39,6 +48,7 @@ namespace beyondnations {
         public void removeNation(Nation nation) {
             nations.Remove(nation.getId());
             nationIds.Remove(nation.getId());
+            relations.forget(nation);
         }
 
         public int getNumberOfNations() {
@@ -53,8 +63,10 @@ namespace beyondnations {
 
         public List<Nation> getNations() {
             List<Nation> nationList = new List<Nation>();
-            foreach (Nation nation in nations.Values) {
-                nationList.Add(nation);
+            // in founding order, so anything that walks the nations (diplomacy
+            // above all) does so the same way on every run of a seed
+            foreach (NationId id in nationIds) {
+                nationList.Add(nations[id]);
             }
             return nationList;
         }

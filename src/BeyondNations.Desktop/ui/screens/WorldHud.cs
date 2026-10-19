@@ -155,7 +155,7 @@ namespace beyondnations.desktop.ui.screens {
                     .draw(layout.RightX, settlementBottom + layout.Gap, layout.BoxWidth) + layout.Gap;
             }
 
-            new PlayerInfoBox(player, simulation.getNationRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
+            new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
 
             return action;
         }

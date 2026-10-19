@@ -124,7 +124,9 @@ namespace beyondnationstests {
             // check
             Assert.Equal(2, entityRepository.getNumEntitiesOfType(EntityType.SETTLEMENT));
             Assert.Equal(1, nation.getNumberOfSettlements());
-            Assert.Equal("Settlement founded.", player.getStatus().getStatus());
+            // founding this near another nation's settlement is resented
+            Assert.StartsWith("Settlement founded. ", player.getStatus().getStatus());
+            Assert.EndsWith(" resent a new settlement so near their land.", player.getStatus().getStatus());
         }
 
         [Fact]

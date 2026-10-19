@@ -11,6 +11,9 @@ namespace beyondnations {
         PawnSpawn,
         PawnDeath,
         PlayerDeath,
-        PawnRelationshipIncrease
+        PawnRelationshipIncrease,
+        NationRelationChange,
+        NationRaid,
+        SettlementCapture
     }
 }

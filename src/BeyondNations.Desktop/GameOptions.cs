@@ -130,6 +130,13 @@ namespace beyondnations.desktop {
         */
         public float UiScale = 0f;
 
+        /**
+        * Opens the game with the player leading a nation that has two
+        * neighbours, one friendly and one hostile and besieging it, and the
+        * player standing at the border. See DiplomacyShowcase.
+        */
+        public bool StageDiplomacy = false;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -149,6 +156,7 @@ namespace beyondnations.desktop {
                     case "--no-labels":        options.NoLabels = true; break;
                     case "--debug-mode":       options.DebugMode = true; break;
                     case "--stage-settlement": options.StageSettlement = true; break;
+                    case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
@@ -183,8 +191,9 @@ namespace beyondnations.desktop {
                 case "pause":     return ScreenType.PAUSE;
                 case "inventory": return ScreenType.INVENTORY;
                 case "controls":  return ScreenType.CONTROLS;
+                case "nations":   return ScreenType.NATIONS;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory or controls)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls or nations)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -261,7 +270,8 @@ namespace beyondnations.desktop {
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory or controls",
+                "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls or nations",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --help, -h              print this and exit"

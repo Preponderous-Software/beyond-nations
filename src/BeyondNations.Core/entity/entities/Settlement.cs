@@ -12,6 +12,8 @@ namespace beyondnations {
         private List<Building> buildings = new List<Building>();
         private int residentCount = 0;
         private long drawnLayoutSignature = long.MinValue;
+        private float claimRadius = Territory.getBaseClaimRadius(SettlementTier.CAMP);
+        private string siegeText = null;
 
         public static readonly int WOOD_COST_TO_BUILD = 50;
 
@@ -52,6 +54,53 @@ namespace beyondnations {
 
         public NationId getNationId() {
             return this.nationId;
+        }
+
+        public string getNationName() {
+            return this.nationName;
+        }
+
+        /**
+        * Hands the settlement to another nation (#176): its banner, awnings
+        * and border posts take the new colour and its nametag the new name.
+        * Who lives there and who owns which stall is the caller's business.
+        */
+        public void changeNation(Nation nation) {
+            this.nationId = nation.getId();
+            this.color = nation.getColor();
+            this.nationName = nation.getName();
+            this.siegeText = null;
+            updateNameTag();
+            drawnLayoutSignature = long.MinValue;
+            refreshAppearance();
+        }
+
+        // territory -----------------------------------------------------------------------------------------
+
+        /**
+        * How far the settlement's claim reaches from its centre, as Territory
+        * last worked it out: its tier's radius, cut back where it would run
+        * into a neighbour's.
+        */
+        public float getClaimRadius() {
+            return claimRadius;
+        }
+
+        public void setClaimRadius(float claimRadius) {
+            this.claimRadius = claimRadius;
+        }
+
+        /** "Besieged by Xland (2/6)", or null when nobody is laying siege. */
+        public string getSiegeText() {
+            return siegeText;
+        }
+
+        public void setSiegeText(string siegeText) {
+            if (this.siegeText == siegeText) {
+                return;
+            }
+            this.siegeText = siegeText;
+            updateNameTag();
         }
 
         public string getNameTagText() {
@@ -203,6 +252,9 @@ namespace beyondnations {
         private void updateNameTag() {
             string label = SettlementTiers.getDisplayName(getTier()) + " of " + this.nationName + "\n";
             label += getCurrentlyPresentEntitiesCount() + " here, " + residentCount + "/" + getResidentCap() + " residents";
+            if (siegeText != null) {
+                label += "\n" + siegeText;
+            }
             getAppearance().setLabel(label);
         }
     }

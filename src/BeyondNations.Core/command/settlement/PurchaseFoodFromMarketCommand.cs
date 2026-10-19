@@ -54,6 +54,7 @@ namespace beyondnations {
                 return;
             }
             
+            Diplomacy.recordTrade(nationRepository, player.getNationId(), settlement);
             player.getStatus().update("You purchased food from " + stallOwner.getName() + ". Relationship increased to " + player.getRelationships()[stallOwnerId] + ".");
         }
     }

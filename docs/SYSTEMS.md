@@ -17,12 +17,12 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Pawn | Implemented | [`src/BeyondNations.Core/entity/entities/Pawn.cs`](../src/BeyondNations.Core/entity/entities/Pawn.cs), [`src/BeyondNations.Core/behavior/`](../src/BeyondNations.Core/behavior/) |
 | Market | Implemented | [`src/BeyondNations.Core/market/`](../src/BeyondNations.Core/market/) |
 | Crafting | Planned | — |
-| Territory | Planned | — |
+| Territory | Implemented | [`src/BeyondNations.Core/territory/`](../src/BeyondNations.Core/territory/) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
 
 ## Event
-The event system records notable occurrences in the game — chunk generation, nation creation/join/leave/disband, pawn and player deaths, pawn spawns, the player falling into the void, and pawn relationships improving. Events are produced through a single producer and stored in a repository that can be queried by event type, which is what drives the event counts shown in the debug display.
+The event system records notable occurrences in the game — chunk generation, nation creation/join/leave/disband, pawn and player deaths, pawn spawns, the player falling into the void, pawn relationships improving, nations changing how they stand toward each other (alliances formed and broken, rivalries, hostility), raids, and settlements captured. Events are produced through a single producer and stored in a repository that can be queried by event type, which is what drives the event counts shown in the debug display.
 
 *Planned:* letting other systems subscribe to events so that an event can trigger further actions, rather than only being recorded.
 
@@ -37,7 +37,30 @@ The inventory system manages the items and resources held by an entity. Items ar
 ## Nation
 The nation system creates and manages nations. Players can create their own nation or join an existing one, and nations track their members and their roles.
 
-*Planned:* per-nation culture and history, alliances, and conflict between nations.
+### Relations between nations
+Every pair of nations has one score from -100 to +100, starting at zero (`NationRelations`, held by `NationRepository`). Named states are read off it: **Hostile** at -50 and below, **Rival** at -20 and below, **Friendly** at +20 and above, **Neutral** between, and **Allied** while an agreed alliance stands. An alliance ends if the score falls below zero. Every change of named state is recorded as a `NationRelationChange` event.
+
+Every 250 ticks (`Diplomacy.ROUND_TICKS`, five seconds) a diplomacy round runs, with no randomness:
+
+| Cause | Change |
+| --- | --- |
+| Settlements of the two nations within 450 units (neighbours) | -1 a round; -2 where the claims touch (edges within 25) |
+| Allied | +1 a round |
+| Each third nation both are Rival or Hostile toward | +1 a round |
+| Nothing else pushing | 1 toward zero every 6 rounds |
+| Founding a settlement within 450 of another nation's | -10 |
+| A member trading at the other's market (the player selling or buying food) | +1 |
+| Poaching a member with an invitation (#300) | -15 |
+| A gift of coins | +2 per 5 coins (the player's 25-coin gift is +10) |
+| Denouncing | -25 (player), -10 (pawn-led) |
+
+**Pawn-led nations choose.** A nation led by a pawn agrees an alliance with another pawn-led nation at +40; pays 20 coins of tribute from its richest treasury to a Rival-or-worse neighbour at least twice its strength (every fourth round); and denounces, once, a weaker nation it has sunk to -40 with. A nation's strength is its members plus its allies' members. A nation led by the player makes no choices on its own.
+
+**Conflict.** Between two Hostile neighbours of unequal strength, the stronger raids the weaker's nearest settlement every fourth round, carrying 5 coins, 5 wood and 5 stone from its treasury and stockpile to its own nearest settlement (`NationRaid` event). If the stronger has a strength of at least 4 and twice the weaker's, and its nearest settlement is of at least the target's tier, it besieges the target; the siege shows on the settlement's nametag (`Besieged by Xland (2/6)`), and kept up for 6 rounds in a row it takes the settlement (#176, `SettlementCapture` event). A siege lapses the round its conditions stop holding, so gifts, an alliance, recruiting or a building that lifts the settlement's tier can save it. Towns cannot be besieged. A captured settlement takes its new nation's colours and name; the losing nation's residents lose their home there, their stalls are given up (a player's stock comes back to them) and those inside are turned out. Its treasury and stockpile go with it. A nation left with no settlement is disbanded and its members become nationless.
+
+**Player diplomacy.** A player who leads a nation can, from the nations screen (`O`) or from the command bar while standing in another nation's land, **gift** 25 coins (paid into that nation's first settlement's treasury), **propose an alliance** (accepted at +30) or **denounce** it (ends any alliance). The nations screen lists every other nation with its members, settlements, relation and whether it is a neighbour, and warns of any siege of the player's settlements. The answer to each action is on the status line. `--stage-diplomacy` sets up a nation between a friendly and a hostile, besieging neighbour.
+
+*Planned:* per-nation culture and history; pawn-led nations poaching each other's members; open battle.
 
 ## Resource Collection
 Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone; a pawn with wood enough for a stall but short of stone goes for the nearest rock instead. These resources are used to build structures, to trade, and — for apples and chicken meat — to eat.
@@ -70,7 +93,9 @@ The player builds with `K` (whatever `BuildingPlanner` says the settlement needs
 
 `--stage-settlement` (desktop and web) opens the game with such a town standing ahead of the player, for screenshots.
 
-*Planned:* walls and defence once there is conflict between nations; buildings that store food.
+A town's palisade is also its defence: towns cannot be besieged (see Nation).
+
+*Planned:* buildings that store food.
 
 ## Pawn
 The pawn system creates and manages pawns. Pawns populate the world and interact with each other, the player, and the world. On each tick a behavior calculator chooses a behavior for the pawn — gathering, wandering, trading, construction, or nation actions — and a behavior executor carries it out.
@@ -92,4 +117,9 @@ The market system is used to buy and sell resources within a settlement. Each se
 *Planned.* The crafting system will be used to create items from resources. Players will be able to craft items using the resources they collect from the world.
 
 ## Territory
-*Planned.* The territory system will be used to create and manage territories. Territories will be used to claim land and build structures.
+Every settlement claims a circle of land around it whose radius grows with its tier: 70 units for a camp, 100 for a village, 130 for a town (`Territory`). Claims never overlap: where two would, each is cut back in proportion to its tier's radius so the two share the gap and the borders touch. Claims are redrawn every diplomacy round. Distances are measured across the ground, ignoring height.
+
+- **Borders are visible.** `SettlementLayout` rings each claim with short posts capped in the nation's colour, about one every 10 units, so two nations' claims meet as two colours of post.
+- **Founding is refused inside another nation's claim**, by the player (`This land is claimed by Xland.`) and by leader pawns alike; founding within 450 units of another nation's settlement costs relations with it.
+- **The player knows where they are.** The player box has a `Land:` line (`wilds`, `your own land`, or `Xland (Rival)`), and crossing a border puts it on the status line.
+- Touching borders are friction between nations, and a siege takes a whole settlement and its claim with it (see Nation).

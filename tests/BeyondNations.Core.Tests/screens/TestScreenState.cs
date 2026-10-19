@@ -203,5 +203,27 @@ namespace beyondnationstests {
                 Assert.Equal(screen, screens.getCurrent());
             }
         }
+
+        [Fact]
+        public void testNationsKeyOpensAndClosesTheNationsScreen_WhichPausesButShowsTheWorld() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.WORLD);
+
+            screens.nationsPressed();
+            Assert.Equal(ScreenType.NATIONS, screens.getCurrent());
+            Assert.False(screens.shouldAdvanceSimulation());
+            Assert.True(screens.isWorldVisible());
+
+            screens.nationsPressed();
+            Assert.Equal(ScreenType.WORLD, screens.getCurrent());
+
+            screens.nationsPressed();
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.WORLD, screens.getCurrent());
+
+            screens.goTo(ScreenType.PAUSE);
+            screens.nationsPressed();
+            Assert.Equal(ScreenType.PAUSE, screens.getCurrent());
+        }
     }
 }

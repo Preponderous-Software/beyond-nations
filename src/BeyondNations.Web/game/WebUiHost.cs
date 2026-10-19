@@ -29,6 +29,7 @@ namespace beyondnations.web {
         private readonly ConfigScreen configScreen = new ConfigScreen();
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
+        private readonly NationScreen nationScreen = new NationScreen();
         private readonly WorldHud worldHud = new WorldHud();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
@@ -89,6 +90,11 @@ namespace beyondnations.web {
                 case ScreenType.INVENTORY:
                     if (simulation != null) {
                         action = inventoryScreen.draw(width, height, simulation.getPlayer().getInventory());
+                    }
+                    break;
+                case ScreenType.NATIONS:
+                    if (simulation != null) {
+                        action = nationScreen.draw(width, height, simulation);
                     }
                     break;
             }

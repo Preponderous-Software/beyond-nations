@@ -67,7 +67,13 @@ namespace beyondnations {
             eventProducer.produceNationJoinEvent(playerNation, pawn.getId());
 
             string defection = oldNation == null ? "" : " left " + oldNation.getName() + " and";
-            player.getStatus().update(pawn.getName() + defection + " joined " + playerNation.getName() + "! Members: " + playerNation.getNumberOfMembers() + ".");
+            string resentment = "";
+            if (oldNation != null) {
+                // poaching a member is an affront to the nation it was taken from
+                nationRepository.getRelations().adjust(playerNation, oldNation, Diplomacy.POACHING);
+                resentment = " " + oldNation.getName() + " resents it: relations " + nationRepository.getRelations().describe(playerNation, oldNation) + ".";
+            }
+            player.getStatus().update(pawn.getName() + defection + " joined " + playerNation.getName() + "! Members: " + playerNation.getNumberOfMembers() + "." + resentment);
         }
 
         private void leaveOldNation(Pawn pawn, Nation oldNation) {

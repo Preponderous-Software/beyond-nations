@@ -411,7 +411,9 @@ namespace beyondnationstests {
             Assert.Null(pawn.getHomeSettlementId());
             Assert.Null(pawn.getOrder());
             Assert.Equal(1, eventRepository.getNumberOfEvents(EventType.NationLeave));
-            Assert.Equal("Ada left Rivalia and joined Homeland! Members: 2.", status());
+            // poaching a member costs relations with the nation it came from
+            Assert.Equal("Ada left Rivalia and joined Homeland! Members: 2. Rivalia resents it: relations Neutral (-15).", status());
+            Assert.Equal(Diplomacy.POACHING, nationRepository.getRelations().getScore(home, rival));
         }
 
         [Fact]

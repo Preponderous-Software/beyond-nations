@@ -110,6 +110,9 @@ namespace beyondnations.web {
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
             }
+            if (options.StageDiplomacy) {
+                DiplomacyShowcase.stage(simulation);
+            }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());
@@ -213,6 +216,9 @@ namespace beyondnations.web {
             }
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleInventory)) {
                 screens.inventoryPressed();
+            }
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleNations)) {
+                screens.nationsPressed();
             }
             if (simulation == null || !screens.isWorldActive()) {
                 return;

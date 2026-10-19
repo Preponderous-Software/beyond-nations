@@ -85,6 +85,8 @@ namespace beyondnations {
             signature = signature * 16 + settlement.getNumBuildings();
             signature = signature * 8 + getStockpileLevel(settlement.getInventory(), ItemType.WOOD);
             signature = signature * 8 + getStockpileLevel(settlement.getInventory(), ItemType.STONE);
+            // the border moves in whole units, so a claim nudged by a fraction does not redraw
+            signature = signature * 512 + (long) settlement.getClaimRadius();
             return signature;
         }
 
@@ -120,6 +122,8 @@ namespace beyondnations {
             if (settlement.getTier() == SettlementTier.TOWN) {
                 addPalisade(appearance, g);
             }
+
+            addBorderPosts(appearance, settlement.getClaimRadius(), nation, g);
 
             appearance.setLabelOffset(new Vector3(0f, g + LabelHeight, 0f));
             appearance.setLabelScale(LabelScale);
@@ -201,6 +205,32 @@ namespace beyondnations {
                 }
                 Vector3 at = ringPoint(PalisadeRadius, (float) i / PalisadePosts);
                 a.addPart(PrimitiveKind.Cylinder, at + new Vector3(0, g + 1.2f, 0), new Vector3(0.45f, 1.2f, 0.45f), DarkWood);
+            }
+        }
+
+        /** Roughly how far apart border posts stand along a claim's edge. */
+        public const float BorderPostSpacing = 10f;
+        public const int MinBorderPosts = 16;
+
+        /** How many posts mark a claim of this radius. */
+        public static int getBorderPostCount(float claimRadius) {
+            if (claimRadius <= 0f) {
+                return 0;
+            }
+            return Math.Max(MinBorderPosts, (int) MathF.Round(2f * MathF.PI * claimRadius / BorderPostSpacing));
+        }
+
+        /**
+        * The edge of the settlement's territory: a ring of short posts, each
+        * capped in the nation's colour, so a border can be seen from either
+        * side and two nations' claims meet as two colours of post.
+        */
+        private static void addBorderPosts(Appearance a, float claimRadius, Rgba nation, float g) {
+            int posts = getBorderPostCount(claimRadius);
+            for (int i = 0; i < posts; i++) {
+                Vector3 at = ringPoint(claimRadius, (float) i / posts);
+                a.addPart(PrimitiveKind.Cube, at + new Vector3(0, g + 1.2f, 0), new Vector3(0.35f, 2.4f, 0.35f), DarkWood);
+                a.addPart(PrimitiveKind.Cube, at + new Vector3(0, g + 2.7f, 0), new Vector3(0.9f, 0.7f, 0.9f), nation);
             }
         }
 

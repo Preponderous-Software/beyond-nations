@@ -43,7 +43,7 @@ namespace beyondnations {
         }
 
         private static bool isLaidOverWorld(ScreenType screen) {
-            return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.PAUSE;
+            return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.NATIONS || screen == ScreenType.PAUSE;
         }
 
         /**
@@ -110,6 +110,18 @@ namespace beyondnations {
         }
 
         /**
+        * The nations key opens the nations screen from the world and closes
+        * it again, as the inventory key does for the inventory.
+        */
+        public void nationsPressed() {
+            if (current == ScreenType.WORLD) {
+                goTo(ScreenType.NATIONS);
+            } else if (current == ScreenType.NATIONS) {
+                goTo(ScreenType.WORLD);
+            }
+        }
+
+        /**
         * Escape, which means something different on each screen. Returns false
         * when the press should quit the game, which is what Escape did on the
         * main menu.
@@ -119,7 +131,7 @@ namespace beyondnations {
                 goTo(ScreenType.PAUSE);
                 return true;
             }
-            if (current == ScreenType.INVENTORY) {
+            if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS) {
                 goTo(ScreenType.WORLD);
                 return true;
             }

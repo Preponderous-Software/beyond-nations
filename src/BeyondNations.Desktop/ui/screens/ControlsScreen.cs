@@ -61,6 +61,7 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(nation, keys(KeyBindings.BuildStall), "Build a market stall (leader)"));
             rows.Add(new Row(nation, keys(KeyBindings.BuildBuilding), "Build the settlement's next building (leader)"));
             rows.Add(new Row(nation, keys(KeyBindings.TeleportToHomeSettlement), "Teleport home"));
+            rows.Add(new Row(nation, keys(KeyBindings.ToggleNations), "Nations: relations, gifts, alliances"));
 
             const string view = "View and game";
             rows.Add(new Row(view, "Right mouse (hold)", "Look around"));
