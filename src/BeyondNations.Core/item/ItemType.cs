@@ -6,5 +6,12 @@ namespace beyondnations {
         APPLE,
         SAPLING,
         CHICKEN_MEAT,
+
+        // crafted (see RecipeBook)
+        AXE,
+        PICKAXE,
+        COOKED_MEAT,
+        PLANKS,
+        BRICKS,
     }
 }

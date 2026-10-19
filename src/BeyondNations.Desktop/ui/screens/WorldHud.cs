@@ -263,7 +263,7 @@ namespace beyondnations.desktop.ui.screens {
             ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
             if (ImGui.Begin("##hunger-warning", StatusFlags)) {
                 foreach (string line in wrapForCentre(warning, layout)) {
-                    ImGui.TextColored(colour, line);
+                    Overlay.textColoured(colour, line);
                 }
             }
             ImGui.End();

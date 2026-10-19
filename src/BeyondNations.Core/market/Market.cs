@@ -218,7 +218,7 @@ namespace beyondnations {
                         continue;
                     }
 
-                    if (itemType == ItemType.COIN) {
+                    if (!isSoldInBulk(itemType)) {
                         continue;
                     }
 
@@ -243,7 +243,7 @@ namespace beyondnations {
                     continue;
                 }
 
-                if (itemType == ItemType.COIN) {
+                if (!isSoldInBulk(itemType)) {
                     continue;
                 }
 
@@ -266,6 +266,31 @@ namespace beyondnations {
                 Log.debug("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
             }
             return stallToSellTo.getOwnerId();
+        }
+
+        /**
+        * Whether selling resources hands this item over. Coin is the payment,
+        * and tools are kept: a press of Sell Resources used to empty the
+        * whole bag, which would have sold the player's axe with the wood.
+        */
+        public static bool isSoldInBulk(ItemType itemType) {
+            return itemType != ItemType.COIN && !Tools.isTool(itemType);
+        }
+
+        /**
+        * The cheapest price one of these sells for here right now, or -1 when
+        * no stall (other than the buyer's own) has one.
+        */
+        public int getPriceToBuy(Entity buyer, ItemType itemType) {
+            foreach (Stall stall in stalls) {
+                if (stall.getOwnerId() == null || stall.getOwnerId() == buyer.getId()) {
+                    continue;
+                }
+                if (stall.getInventory().getNumItems(itemType) > 0) {
+                    return ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+                }
+            }
+            return -1;
         }
 
         public int getQuantityAvailable(ItemType itemType) {

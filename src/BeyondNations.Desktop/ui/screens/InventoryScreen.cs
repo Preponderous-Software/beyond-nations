@@ -16,7 +16,7 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class InventoryScreen {
         public const string Title = "INVENTORY";
-        public const string CloseHint = "(Press I or ESCAPE to close)";
+        public const string CloseHint = "(Press I or ESCAPE to close, C to craft)";
         public const string EmptyLine = "Your inventory is empty.";
 
         public static List<string> getLines(Inventory inventory) {
@@ -25,7 +25,12 @@ namespace beyondnations.desktop.ui.screens {
                 if (slot.isEmpty()) {
                     continue;
                 }
-                lines.Add(getItemName(slot.getItemStack().getItemType()) + ": " + slot.getQuantity());
+                ItemType itemType = slot.getItemStack().getItemType();
+                string line = getItemName(itemType) + ": " + slot.getQuantity();
+                if (Tools.isTool(itemType)) {
+                    line += " (" + Tools.getUsesLeft(inventory, itemType) + " uses left on the one in hand)";
+                }
+                lines.Add(line);
             }
             if (lines.Count == 0) {
                 lines.Add(EmptyLine);
@@ -37,15 +42,7 @@ namespace beyondnations.desktop.ui.screens {
         * The same labels the HUD box uses, so an item reads the same in both.
         */
         public static string getItemName(ItemType itemType) {
-            switch (itemType) {
-                case ItemType.COIN: return "Coins";
-                case ItemType.WOOD: return "Wood";
-                case ItemType.STONE: return "Stone";
-                case ItemType.APPLE: return "Apples";
-                case ItemType.SAPLING: return "Saplings";
-                case ItemType.CHICKEN_MEAT: return "Chicken Meat";
-                default: return itemType.ToString();
-            }
+            return ItemNames.getDisplayName(itemType);
         }
 
         public UiAction draw(float width, float height, Inventory inventory) {

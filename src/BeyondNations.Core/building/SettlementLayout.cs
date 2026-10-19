@@ -60,6 +60,7 @@ namespace beyondnations {
         private static readonly Rgba Goods = new Rgba(0.70f, 0.55f, 0.33f);
         private static readonly Rgba Soil = new Rgba(0.42f, 0.28f, 0.15f);
         private static readonly Rgba Crop = new Rgba(0.40f, 0.72f, 0.22f);
+        private static readonly Rgba Brick = new Rgba(0.66f, 0.30f, 0.20f);
 
         /** Where stall slot i stands, relative to the settlement's centre (y = 0). */
         public static Vector3 getStallSlotOffset(int slot) {
@@ -116,6 +117,7 @@ namespace beyondnations {
                     case BuildingType.HOUSE: addHouse(appearance, at, nation, g); break;
                     case BuildingType.STOREHOUSE: addStorehouse(appearance, at, nation, g); break;
                     case BuildingType.FARM: addFarm(appearance, at, g); break;
+                    case BuildingType.WORKSHOP: addWorkshop(appearance, at, nation, g); break;
                 }
             }
 
@@ -182,6 +184,29 @@ namespace beyondnations {
             // a stack of cut stone beside it
             a.addPart(PrimitiveKind.Cube, at + new Vector3(3.3f, g + 0.4f, 1.2f), new Vector3(1.2f, 0.8f, 1.2f), DarkStone);
             a.addPart(PrimitiveKind.Cube, at + new Vector3(3.3f, g + 1.1f, 1.2f), new Vector3(0.9f, 0.6f, 0.9f), DarkStone);
+        }
+
+        /**
+        * An open-sided timber shed with a workbench and a chimney, and a
+        * stack of planks and bricks out front: the place to craft.
+        */
+        private static void addWorkshop(Appearance a, Vector3 at, Rgba nation, float g) {
+            // four posts and a pitched roof in the nation's colour
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(-2.2f, g + 1.4f, -1.8f), new Vector3(0.3f, 2.8f, 0.3f), DarkWood);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(2.2f, g + 1.4f, -1.8f), new Vector3(0.3f, 2.8f, 0.3f), DarkWood);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(-2.2f, g + 1.4f, 1.8f), new Vector3(0.3f, 2.8f, 0.3f), DarkWood);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(2.2f, g + 1.4f, 1.8f), new Vector3(0.3f, 2.8f, 0.3f), DarkWood);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(0, g + 2.95f, 0), new Vector3(5.2f, 0.3f, 4.4f), shade(nation, 0.8f));
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(0, g + 3.35f, 0), new Vector3(3.6f, 0.5f, 3.0f), shade(nation, 0.65f));
+            // back wall and a stone chimney
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(0, g + 1.2f, -1.8f), new Vector3(4.2f, 2.4f, 0.2f), Wood);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(1.6f, g + 2.6f, -1.6f), new Vector3(0.7f, 5.2f, 0.7f), Stone);
+            // workbench with an anvil-grey block on it
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(-0.4f, g + 0.5f, 0), new Vector3(2.6f, 1.0f, 1.0f), Wood);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(-0.9f, g + 1.2f, 0), new Vector3(0.6f, 0.4f, 0.4f), DarkStone);
+            // finished goods out front: planks and a stack of bricks
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(3.4f, g + 0.2f, 1.4f), new Vector3(1.6f, 0.4f, 0.8f), Goods);
+            a.addPart(PrimitiveKind.Cube, at + new Vector3(3.4f, g + 0.3f, -0.4f), new Vector3(0.9f, 0.6f, 0.9f), Brick);
         }
 
         private static void addFarm(Appearance a, Vector3 at, float g) {
@@ -271,7 +296,8 @@ namespace beyondnations {
         private static int stallState(Stall stall) {
             Inventory inventory = stall.getInventory();
             int state = 0;
-            if (inventory.getNumItems(ItemType.WOOD) > 0 || inventory.getNumItems(ItemType.STONE) > 0 || inventory.getNumItems(ItemType.SAPLING) > 0) {
+            // any goods at all -- crafted ones too -- fill the crate
+            if (inventory.getTotalNumItems() - inventory.getNumItems(ItemType.COIN) > 0) {
                 state |= 1;
             }
             if (FoodItems.hasFood(inventory)) {

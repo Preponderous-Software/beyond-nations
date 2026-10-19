@@ -249,8 +249,13 @@ namespace beyondnations {
             SettlementLayout.build(this, getAppearance());
         }
 
+        /** "Town of Southernland": the first line of the nametag. */
+        public string getDisplayName() {
+            return SettlementTiers.getDisplayName(getTier()) + " of " + this.nationName;
+        }
+
         private void updateNameTag() {
-            string label = SettlementTiers.getDisplayName(getTier()) + " of " + this.nationName + "\n";
+            string label = getDisplayName() + "\n";
             label += getCurrentlyPresentEntitiesCount() + " here, " + residentCount + "/" + getResidentCap() + " residents";
             if (siegeText != null) {
                 label += "\n" + siegeText;

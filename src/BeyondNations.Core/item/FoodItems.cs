@@ -17,11 +17,14 @@ namespace beyondnations {
         /// is deterministic; TestFoodItems asserts the two stay consistent.
         /// </summary>
         private static readonly ItemType[] foodInDescendingEnergyOrder = new ItemType[] {
+            ItemType.COOKED_MEAT,
             ItemType.CHICKEN_MEAT,
             ItemType.APPLE,
         };
 
         private static readonly Dictionary<ItemType, int> energyRestoredByFood = new Dictionary<ItemType, int>() {
+            // cooking (RecipeBook.CookedMeat: one meat and one wood) nearly doubles a chicken's worth
+            {ItemType.COOKED_MEAT, 45},
             {ItemType.CHICKEN_MEAT, 25},
             {ItemType.APPLE, 15},
         };

@@ -8,7 +8,9 @@ namespace beyondnations {
     *
     * The order is by need: a house when the settlement is nearly out of room
     * for residents, a farm when farms lag behind houses, a storehouse when the
-    * market is full; after that houses, farms and storehouses in turn. The
+    * market is full; then, once it is a village (two buildings), its one
+    * workshop for crafting planks and bricks; after that houses, farms and
+    * storehouses in turn. The
     * first that the settlement still has room for and the builder can pay for
     * wins. Deterministic: no randomness, only the settlement's state.
     */
@@ -29,9 +31,16 @@ namespace beyondnations {
             if (market.getNumStalls() >= market.getMaxNumStalls()) {
                 order.Add(BuildingType.STOREHOUSE);
             }
+            // a village gets its workshop before more of the same: put last
+            // only, it would never be built, since the other limits add up
+            // to all twelve building slots
+            if (settlement.getNumBuildings() >= 2) {
+                order.Add(BuildingType.WORKSHOP);
+            }
             addIfAbsent(order, BuildingType.HOUSE);
             addIfAbsent(order, BuildingType.FARM);
             addIfAbsent(order, BuildingType.STOREHOUSE);
+            addIfAbsent(order, BuildingType.WORKSHOP);
             return order;
         }
 

@@ -8,6 +8,7 @@ namespace beyondnations {
         CONFIG,
         INVENTORY,
         CONTROLS,
-        NATIONS
+        NATIONS,
+        CRAFTING
     }
 }

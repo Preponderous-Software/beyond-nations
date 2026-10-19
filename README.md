@@ -79,15 +79,16 @@ The following controls are available in the game:
 | `P` | Plant a sapling |
 | `H` | Teleport to home settlement |
 | `B` | Build stall |
-| `K` | Build the building your settlement needs most (house, storehouse or farm; costs wood and stone) |
+| `K` | Build the building your settlement needs most (house, storehouse, farm or workshop; costs wood and stone) |
 | `I` | Open / close the inventory screen (pauses the world) |
 | `O` | Open / close the nations screen: every nation, its size and its relation to yours; a leader can gift, propose an alliance or denounce from here (pauses the world) |
+| `C` | Open / close the crafting screen (axe, pickaxe, cooked meat, planks, bricks; pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
 | `Right Mouse Button` (hold) + move the mouse | Look around |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
-| `Escape` | Pause / unpause; close the inventory or nations screen; back out of a menu; quit from the main menu |
+| `Escape` | Pause / unpause; close the inventory, nations or crafting screen; back out of a menu; quit from the main menu |
 | `?` (`/` key) | Show every control (also the **? Controls** button on the HUD, pause screen and main menu) |
 | `F1` | Toggle debug mode (and the debug menu) |
 | `F2` | Generate nearby land *(debug mode only)* |
@@ -114,6 +115,7 @@ Buildings cost wood **and stone**, so quarrying matters. Press `K` inside one of
 | House | 20 wood, 15 stone | Room for 4 more residents (a settlement starts with room for 8) |
 | Storehouse | 10 wood, 30 stone | 2 more market stalls |
 | Farm | 25 wood, 10 stone | One apple every 500 ticks, stocked into a merchant's stall |
+| Workshop | 15 wood, 10 stone | Lets anyone inside craft planks and bricks |
 
 Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`).
 
@@ -129,6 +131,19 @@ Hostility has stakes. A stronger hostile neighbour raids your nearest settlement
 As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land: **Gift 25 coins** (+10, paid into their treasury), **Propose Alliance** (accepted at +30) or **Denounce** (-25, and it ends any alliance). `--stage-diplomacy` opens the game leading a nation between a friendly neighbour and a hostile one already besieging your village (the screenshot above is `--seed 42 --start-screen world --stage-diplomacy`).
 
 ![The nations screen: your nation and its besieged village, then each other nation with its members, settlements and relation, and Gift, Ally and Denounce buttons](./.github/media/nations-screen.png)
+
+### Crafting
+Press `C` (or *Craft* on a touch screen) to open the crafting screen. Each recipe shows its cost, what it is good for, and what you are still missing; tap or click a ready one to make it.
+
+| Recipe | Inputs | Why make it |
+| --- | --- | --- |
+| Axe | 4 wood, 2 stone | +3 wood from every tree, for 20 trees |
+| Pickaxe | 3 wood, 3 stone | +2 stone from every rock, for 15 rocks |
+| Cooked Meat | 1 chicken meat, 1 wood | 45 energy instead of raw meat's 25 |
+| Planks x2 | 3 wood, in a settlement with a Workshop | Sell for more than the wood |
+| Bricks x2 | 3 stone, 1 wood, in a settlement with a Workshop | Sell for more than the stone |
+
+Tools wear out, so keep some wood and stone for the next one. Merchants craft too: their stalls stock tools you can buy, cooked meat, and (with a workshop) planks and bricks. The full rules are in the [Systems Document](./docs/SYSTEMS.md#crafting).
 
 ## History film
 ![Seed 12: six nations founding settlements and spreading over the map, one orbit](./.github/media/history-film.gif)

@@ -192,8 +192,9 @@ namespace beyondnations.desktop {
                 case "inventory": return ScreenType.INVENTORY;
                 case "controls":  return ScreenType.CONTROLS;
                 case "nations":   return ScreenType.NATIONS;
+                case "crafting":  return ScreenType.CRAFTING;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls or nations)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations or crafting)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -271,7 +272,7 @@ namespace beyondnations.desktop {
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls or nations",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations or crafting",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --help, -h              print this and exit"

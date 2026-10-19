@@ -9,6 +9,16 @@ namespace beyondnations {
             {ItemType.STONE, 30},
             {ItemType.SAPLING, 20},
             {ItemType.CHICKEN_MEAT, 50},
+            // Crafted trade goods and tools are worth more than what went
+            // into them, so crafting to sell is a profit: planks 2 x 120 from
+            // 3 wood (180), bricks 2 x 110 from 3 stone and a wood (150), an
+            // axe 360 from 300 of materials, a pickaxe 330 from 270. Cooked
+            // meat is for eating, priced at the same coins per energy as raw.
+            {ItemType.AXE, 360},
+            {ItemType.PICKAXE, 330},
+            {ItemType.COOKED_MEAT, 90},
+            {ItemType.PLANKS, 120},
+            {ItemType.BRICKS, 110},
         };
 
         public static int getBaseCost(ItemType itemType) {

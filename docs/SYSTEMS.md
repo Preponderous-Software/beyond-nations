@@ -16,7 +16,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Building | Implemented | [`src/BeyondNations.Core/building/`](../src/BeyondNations.Core/building/), [`src/BeyondNations.Core/command/settlement/`](../src/BeyondNations.Core/command/settlement/) |
 | Pawn | Implemented | [`src/BeyondNations.Core/entity/entities/Pawn.cs`](../src/BeyondNations.Core/entity/entities/Pawn.cs), [`src/BeyondNations.Core/behavior/`](../src/BeyondNations.Core/behavior/) |
 | Market | Implemented | [`src/BeyondNations.Core/market/`](../src/BeyondNations.Core/market/) |
-| Crafting | Planned | — |
+| Crafting | Implemented | [`src/BeyondNations.Core/crafting/`](../src/BeyondNations.Core/crafting/), [`src/BeyondNations.Core/command/crafting/`](../src/BeyondNations.Core/command/crafting/) |
 | Territory | Implemented | [`src/BeyondNations.Core/territory/`](../src/BeyondNations.Core/territory/) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
@@ -30,9 +30,7 @@ The event system records notable occurrences in the game — chunk generation, n
 The world generation system creates a procedurally generated world out of chunks of locations. Generated land is populated with resources, settlements, and pawns.
 
 ## Inventory
-The inventory system manages the items and resources held by an entity. Items are collected from the world and traded at markets. When "Keep Inventory" is turned off, a player that dies — or a pawn that dies with "Respawn Pawns" on — leaves its inventory where it died as item drops, one per item type (a pawn that dies for good still takes its inventory with it); the player picks up every drop within reach by interacting (`E`). Pawns do not pick drops up. The player's holdings are summarised in a HUD box in the corner of the world screen; pressing `I` opens the inventory screen, which lists every occupied slot and pauses the world until `I` or `Escape` closes it.
-
-*Planned:* using held resources as crafting inputs.
+The inventory system manages the items and resources held by an entity. Items are collected from the world and traded at markets. When "Keep Inventory" is turned off, a player that dies — or a pawn that dies with "Respawn Pawns" on — leaves its inventory where it died as item drops, one per item type (a pawn that dies for good still takes its inventory with it); the player picks up every drop within reach by interacting (`E`). Pawns do not pick drops up. The player's holdings are summarised in a HUD box in the corner of the world screen; pressing `I` opens the inventory screen, which lists every occupied slot and pauses the world until `I` or `Escape` closes it. Crafted items join the HUD box once the player holds any, and a tool's line shows the uses left on the one in hand. Held resources are the inputs to [crafting](#crafting).
 
 ## Nation
 The nation system creates and manages nations. Players can create their own nation or join an existing one, and nations track their members and their roles.
@@ -63,12 +61,10 @@ Every 250 ticks (`Diplomacy.ROUND_TICKS`, five seconds) a diplomacy round runs, 
 *Planned:* per-nation culture and history; pawn-led nations poaching each other's members; open battle.
 
 ## Resource Collection
-Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone; a pawn with wood enough for a stall but short of stone goes for the nearest rock instead. These resources are used to build structures, to trade, and — for apples and chicken meat — to eat.
-
-*Planned:* using collected resources as crafting inputs.
+Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone; a pawn with wood enough for a stall but short of stone goes for the nearest rock instead. These resources are used to build structures, to trade, to [craft](#crafting), and — for apples and chicken meat — to eat. A tree or rock gives more to a gatherer carrying the right tool: an axe adds 3 wood per tree and a pickaxe 2 stone per rock (3 becomes 5), and each gather wears the tool by one use. The status line says what the tool added and how many uses are left.
 
 ## Food and Energy
-The player and every pawn carry an energy level that falls each tick by their own metabolism. The player's is a fixed configured rate at which a full bar lasts one in-game day; a pawn's varies between pawns but a full bar always lasts several minutes. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple and chicken meat are both food and a pawn carrying either has no reason to go looking for more.
+The player and every pawn carry an energy level that falls each tick by their own metabolism. The player's is a fixed configured rate at which a full bar lasts one in-game day; a pawn's varies between pawns but a full bar always lasts several minutes. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple (15), chicken meat (25) and cooked meat (45) are all food and a pawn carrying either has no reason to go looking for more.
 
 Markets read the same table. A hungry pawn in a settlement first takes food from its own stall, if it owns one holding any, and otherwise buys food when some stall it can afford holds any; only when neither is possible does it leave to gather or hunt. Buying picks whichever food gives the most energy per coin at the market's current supply-based prices, and falls back to the next food when that one cannot be afforded.
 
@@ -82,8 +78,9 @@ The building system creates and manages settlements. Players and pawns can found
 | House | 20 wood, 15 stone | 6 | Room for 4 more residents. A settlement with no houses has room for 8. |
 | Storehouse | 10 wood, 30 stone | 2 | 2 more market stalls. |
 | Farm | 25 wood, 10 stone | 4 | Every 500 ticks, one apple into the merchant stall holding the fewest. With no merchant the harvest is lost. |
+| Workshop | 15 wood, 10 stone | 1 | Anyone inside may craft planks and bricks; merchants there turn their wood and stone into them. |
 
-The player builds with `K` (whatever `BuildingPlanner` says the settlement needs most that they can pay for) or from the command bar, which offers one button per affordable building. Any member of the owning nation may build. The cost is taken from what the builder carries first and then from the settlement's stockpile, the wood and stone that member pawns deliver under orders. A leader pawn whose market is full builds the same way when it has the materials. `BuildingPlanner` puts a house first when the settlement is within two of its resident cap, a farm when farms lag behind houses, and a storehouse when the market is full.
+The player builds with `K` (whatever `BuildingPlanner` says the settlement needs most that they can pay for) or from the command bar, which offers one button per affordable building. Any member of the owning nation may build. The cost is taken from what the builder carries first and then from the settlement's stockpile, the wood and stone that member pawns deliver under orders. A leader pawn whose market is full builds the same way when it has the materials. `BuildingPlanner` puts a house first when the settlement is within two of its resident cap, a farm when farms lag behind houses, and a storehouse when the market is full; after those, a settlement with two or more buildings puts up its workshop.
 
 **Residents.** A pawn calls a settlement home only if there is room: one that cannot find room in any of its nation's settlements stays homeless and keeps gathering until a house goes up. The simulation recounts residents every 50 ticks.
 
@@ -113,8 +110,24 @@ Every pawn keeps a relationship number for the player, shown as a named tier: St
 ## Market
 The market system is used to buy and sell resources within a settlement. Each settlement has a market with a limited number of stalls, which can be built or purchased by pawns and by the player. Stall owners stock their stalls with items and collect the profit from sales. Item prices are calculated from the item's base cost and the market's current supply of that item, rather than being set per stall: base / (1 + supply / 10), so ten units on offer halve the price, never falling below a quarter of the base cost. A pawn heads to market once it carries 20 or more goods of any kind and the trip has a purpose for its role.
 
+Crafted goods have prices of their own (base cost: axe 360, pickaxe 330, planks 120, bricks 110, cooked meat 90), set so that tools and trade goods sell for more than their inputs. *Sell Resources* sells everything but coin and tools, so a player never sells their axe by accident. A merchant stocking its stall first crafts from its haul: an axe and a pickaxe whenever the stall has none of that tool, cooked meat from up to two chicken meat, and, if the settlement has a workshop, up to two batches each of planks and bricks. The player can buy a stocked tool from the command bar (*Buy Axe (price)*) when they have none and can pay.
+
 ## Crafting
-*Planned.* The crafting system will be used to create items from resources. Players will be able to craft items using the resources they collect from the world.
+Crafting turns resources into tools, better food and trade goods. The recipes are data in `RecipeBook`; `Crafting` checks and performs a craft for the player, the crafting screen and merchant pawns alike.
+
+| Recipe | Inputs | Needs | Makes | Why |
+| --- | --- | --- | --- | --- |
+| Axe | 4 wood, 2 stone | — | 1 axe | +3 wood per tree; wears out after 20 trees |
+| Pickaxe | 3 wood, 3 stone | — | 1 pickaxe | +2 stone per rock; wears out after 15 rocks |
+| Cooked Meat | 1 chicken meat, 1 wood | — | 1 cooked meat | 45 energy instead of raw meat's 25 |
+| Planks | 3 wood | Workshop | 2 planks | Sell for 240 against the wood's 180 |
+| Bricks | 3 stone, 1 wood | Workshop | 2 bricks | Sell for 220 against the inputs' 150 |
+
+A recipe that needs a building can be made only inside a settlement that has one; any settlement's workshop will do. A tool is an ordinary item; the inventory remembers the uses spent on the one in hand, and when it wears out one is removed and a spare, if any, starts fresh — so wood and stone stay in demand for replacements. Pawns that hold a tool get the same bonus when they gather.
+
+Pressing `C` (or *Craft* on a touch screen) opens the crafting screen over the paused world: one row per recipe with its cost, what it is good for, and either how many can be made right now or exactly what is missing ("Need 2 more stone", "Need a Workshop in this settlement"). Clicking or tapping a ready row crafts one batch, and the result is shown on the screen. `C` or `Escape` closes it. The command bar also offers *Craft Axe* and *Craft Pickaxe* outright when the player has none and can make one.
+
+*Planned:* crafted goods as building materials, and more recipes as new resources arrive.
 
 ## Territory
 Every settlement claims a circle of land around it whose radius grows with its tier: 70 units for a camp, 100 for a village, 130 for a town (`Territory`). Claims never overlap: where two would, each is cut back in proportion to its tier's radius so the two share the gap and the borders touch. Claims are redrawn every diplomacy round. Distances are measured across the ground, ignoring height.

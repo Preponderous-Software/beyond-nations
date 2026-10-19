@@ -398,6 +398,11 @@ namespace beyondnations.desktop {
             }
             // --- end #181 ---
 
+            // C opens and closes the crafting screen (#47) the same way.
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
+                screens.craftingPressed();
+            }
+
             if (simulation == null || !screens.isWorldActive()) {
                 return;
             }

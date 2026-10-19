@@ -65,14 +65,17 @@ namespace beyondnations {
                 int wood = tree.getInventory().getNumItems(ItemType.WOOD);
                 int apples = tree.getInventory().getNumItems(ItemType.APPLE);
                 player.getInventory().transferContentsOfInventory(tree.getInventory());
-                player.getStatus().update(apples > 0
-                    ? "Gathered " + wood + " wood and " + apples + (apples == 1 ? " apple" : " apples") + " from tree."
-                    : "Gathered " + wood + " wood from tree.");
+                GatherBonus bonus = Tools.applyGatherBonus(player.getInventory(), EntityType.TREE);
+                player.getStatus().update((apples > 0
+                    ? "Gathered " + (wood + bonus.getAmount()) + " wood and " + apples + (apples == 1 ? " apple" : " apples") + " from tree"
+                    : "Gathered " + (wood + bonus.getAmount()) + " wood from tree") + describeBonus(bonus, player.getInventory()));
             }
             else if (rock != null && Vector3.Distance(player.getPosition(), rock.getPosition()) < 5) {
                 rock.markForDeletion();
+                int stone = rock.getInventory().getNumItems(ItemType.STONE);
                 player.getInventory().transferContentsOfInventory(rock.getInventory());
-                player.getStatus().update("Gathered stone from rock.");
+                GatherBonus bonus = Tools.applyGatherBonus(player.getInventory(), EntityType.ROCK);
+                player.getStatus().update("Gathered " + (stone + bonus.getAmount()) + " stone from rock" + describeBonus(bonus, player.getInventory()));
             }
             else if (chicken != null && Vector3.Distance(player.getPosition(), chicken.getPosition()) < 5) {
                 chicken.markForDeletion();
@@ -82,6 +85,24 @@ namespace beyondnations {
             else {
                 player.getStatus().update("No entities within range to interact with.");
             }
+        }
+
+        /**
+        * The end of a gather message: what the tool added and how worn it is,
+        * or that it broke. Without a tool, a hint that one would help.
+        */
+        public static string describeBonus(GatherBonus bonus, Inventory inventory) {
+            if (bonus.getTool() == null) {
+                return ".";
+            }
+            ItemType tool = bonus.getTool().Value;
+            string name = ItemNames.getSingularName(tool);
+            string extra = " (+" + bonus.getAmount() + " from your " + name + ")";
+            if (bonus.didBreak()) {
+                int left = inventory.getNumItems(tool);
+                return extra + ". Your " + name + " wore out" + (left > 0 ? "; " + left + " left." : "!");
+            }
+            return extra + ", " + Tools.getUsesLeft(inventory, tool) + " uses left.";
         }
 
         /**

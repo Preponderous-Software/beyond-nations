@@ -52,6 +52,7 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(act, keys(KeyBindings.InviteToNation), "Invite the pawn within reach to your nation"));
             rows.Add(new Row(act, keys(KeyBindings.PlantSapling), "Plant a sapling"));
             rows.Add(new Row(act, keys(KeyBindings.ToggleInventory), "Inventory"));
+            rows.Add(new Row(act, keys(KeyBindings.ToggleCrafting), "Crafting: tools, cooked meat, planks, bricks"));
 
             const string nation = "Nations and settlements";
             rows.Add(new Row(nation, keys(KeyBindings.CreateNewNation), "Create a nation"));
@@ -193,12 +194,12 @@ namespace beyondnations.desktop.ui.screens {
                         rowY += lineHeight;
                     }
                     ImGui.SetCursorPos(new Vector2(columnX, rowY));
-                    ImGui.TextColored(sectionColour, row.Section);
+                    Overlay.textColoured(sectionColour, row.Section);
                     rowY += lineHeight;
                     lastSection = row.Section;
                 }
                 ImGui.SetCursorPos(new Vector2(columnX, rowY));
-                ImGui.TextColored(keyColour, row.Keys);
+                Overlay.textColoured(keyColour, row.Keys);
                 ImGui.SetCursorPos(new Vector2(columnX + keyColumn + gutter, rowY));
                 ImGui.TextUnformatted(row.Action);
                 rowY += lineHeight;

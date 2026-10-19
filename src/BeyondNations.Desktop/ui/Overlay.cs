@@ -106,6 +106,20 @@ namespace beyondnations.desktop.ui {
             ImGui.SetWindowFontScale(1f);
         }
 
+        /**
+        * Coloured text at the cursor. ImGui.TextColored is not used because
+        * the C function behind it is variadic (a printf-style format), and
+        * on the browser build calling a variadic function through a P/Invoke
+        * fails with "null function or function signature mismatch". A text
+        * colour pushed with the plain U32 overload around TextUnformatted
+        * draws the same thing with only fixed-signature calls.
+        */
+        public static void textColoured(Vector4 colour, string text) {
+            ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(colour));
+            ImGui.TextUnformatted(text);
+            ImGui.PopStyleColor();
+        }
+
         public static void textAt(string text, float x, float y) {
             ImGui.SetCursorPos(new Vector2(x, y));
             ImGui.TextUnformatted(text);

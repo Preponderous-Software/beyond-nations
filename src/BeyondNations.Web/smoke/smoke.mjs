@@ -101,6 +101,22 @@ try {
     await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
     await page.waitForTimeout(500);
     await page.screenshot({ path: path.join(out, "phone-world.png") });
+    // The Craft button opens the crafting screen (#47); its Close button (or Escape) closes it.
+    const craft = await page.$('#touch [data-key="KeyC"]');
+    const craftBox = await craft.boundingBox();
+    await page.touchscreen.tap(craftBox.x + craftBox.width / 2, craftBox.y + craftBox.height / 2);
+    const crafting = await waitFor((s) => s.screen === "CRAFTING", "the crafting screen after tapping Craft", 10000);
+    await waitFor((s) => s.frames >= crafting.frames + 30, "30 frames of the crafting screen");
+    await page.screenshot({ path: path.join(out, "phone-crafting.png") });
+    // The on-screen controls step aside so they do not cover the recipe rows.
+    if (await page.isVisible('#touch [data-key="KeyW"]')) {
+      throw new Error("the touch controls still cover the crafting screen");
+    }
+    await page.keyboard.press("Escape");
+    await waitFor((s) => s.screen === "WORLD", "the world after closing crafting", 10000);
+    if (!(await page.isVisible('#touch [data-key="KeyW"]'))) {
+      throw new Error("the touch controls did not come back after crafting");
+    }
   } else {
     await page.keyboard.press("Enter");
     const menu = await waitFor((s) => s.screen === "MAIN_MENU", "the main menu");
@@ -140,6 +156,15 @@ try {
     await page.waitForTimeout(300);
     await page.keyboard.press("KeyV");
     await waitFor((s) => s.camera === "ThirdPerson", "V to switch back", 10000);
+    // C opens the crafting screen (#47) and Escape closes it; drawing it must
+    // not trip the browser's ImGui bindings.
+    await page.waitForTimeout(300);
+    await page.keyboard.press("KeyC");
+    const crafting = await waitFor((s) => s.screen === "CRAFTING", "C to open the crafting screen", 10000);
+    await waitFor((s) => s.frames >= crafting.frames + 30, "30 frames of the crafting screen");
+    await page.screenshot({ path: path.join(out, "crafting.png") });
+    await page.keyboard.press("Escape");
+    await waitFor((s) => s.screen === "WORLD", "Escape to close the crafting screen", 10000);
     result.framesSinceStart = (await status()).frames - startFrames;
   }
 
