@@ -31,8 +31,6 @@ namespace beyondnations.web {
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {
             { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory" } },
-            { "renderer", new[] { "silk", "native" } },
-            { "native-lighting", new[] { "legacy", "sun" } },
         };
 
         /** Returns the argument list; warnings go to warn. */

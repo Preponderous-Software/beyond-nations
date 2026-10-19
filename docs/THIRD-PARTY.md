@@ -87,6 +87,6 @@ the simulation is meant to build and run with nothing but the .NET SDK.
 | Licence | MIT; its own third-party notices (SDL3, zlib licence; glm, glad, stb, MIT or public domain) are in `THIRD_PARTY_NOTICES.md` in the Strata release archive |
 | Integrity | Each file's SHA-256 is pinned in `BeyondNations.Desktop.csproj`, and the build refuses a download that does not match |
 
-This is the shared native engine behind `--renderer native` (#274). SDL3 is
+This is the shared native engine that draws the world (#274; the only world renderer since the Silk renderer was removed). SDL3 is
 linked into it statically, so its zlib-licence notice travels with Strata's
 notices.

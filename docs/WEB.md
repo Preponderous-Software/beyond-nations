@@ -16,15 +16,14 @@ box. Only what touches a window or OpenGL has a browser counterpart.
 | --- | --- |
 | `Game` (Silk.NET window, Update/Render) | `game/WebGame.cs` (`requestAnimationFrame`) |
 | `SilkInputSource` | `game/BrowserInputSource.cs` (`KeyboardEvent.code` via `game/BrowserKeys.cs`) |
-| `SilkWorldRenderer`, `PrimitiveBatch`, `InstancedPrimitiveShader` | `game/WebGl2WorldRenderer.cs` + `wwwroot/webhost/gfx.js` |
+| `NativeWorldRenderer` (Strata) | for now `game/WebGl2WorldRenderer.cs` + `wwwroot/webhost/gfx.js`, a WebGL2 port of the Silk renderer the desktop had before it became Strata-only; Strata in the page is the next step (below) |
 | `WorldLabelRenderer` (FontStashSharp + GL) | `game/WebWorldLabelRenderer.cs` (FontStashSharp + WebGL2) |
 | `UiHost` + Silk's `ImGuiController` | `game/WebUiHost.cs` + `host/ImGuiWebBackend.cs` |
 | Command-line options | the URL query (`game/WebOptions.cs`) |
 
-The shaders are the desktop's with `#version 330 core` replaced by
-`#version 300 es` and a precision line; the meshes, instance layout, light,
-ambient and clear colour are the same. A seed-42 world drawn by both differs in
-about 1% of pixels, the edges antialiasing touches.
+The interim renderer's shaders are the former desktop Silk renderer's with
+`#version 330 core` replaced by `#version 300 es`; it has the fixed light of
+that renderer, not Strata's sun, sky and shadows.
 
 ## Playing
 
@@ -60,7 +59,6 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `time-of-day=F` | starting time of day, 0 to 1 |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
 | `exit-after-frames=N`, `screenshot-after-frames=N` | for automated runs |
-| `renderer=silk\|native` | `native` is not available in the browser yet (see below); it logs a warning and uses silk |
 
 Anything unknown or malformed is dropped with a console warning. (On the
 desktop a bad option ends the process; in a page that would take the runtime
@@ -172,14 +170,13 @@ deploys by hand.
 
 A game supplies an `IWebGame`, its page and its own renderer on top of `WebGpu`.
 
-### `--renderer native` in the browser (follow-up)
+### Strata in the browser (next step)
 
-The desktop's `--renderer native` draws through Strata over P/Invoke. Strata's
+The desktop draws the world only through Strata, over P/Invoke. Strata's
 WebGL 2 backend is on Strata `main` (strata#18; no release tag yet), and
 Strata's own `docs/WEB.md` has a section for this port. The browser equivalent
 is a second `IWorldRenderer` in `BeyondNations.Web` that calls Strata linked
-into `dotnet.native.wasm`. It is selected by the same `renderer=native` option
-that today logs a warning and falls back to silk in `WebGame`'s constructor.
+into `dotnet.native.wasm`, replacing the interim WebGL2 renderer.
 How that fits this host, checked against Strata's notes:
 
 - **Linking.** Link Strata the way `native/cimgui.targets` links cimgui: a
@@ -201,7 +198,7 @@ How that fits this host, checked against Strata's notes:
   `NativeWorldRenderer` does on the desktop. That needs one change here.
   `webhost/gfx.js` creates its WebGL 2 context with `canvas.getContext`,
   which Emscripten's GL layer does not know about, and Strata requires a
-  context made current through Emscripten. The native renderer must either
+  context made current through Emscripten. The Strata renderer must either
   register the page's existing context with Emscripten's `GL`
   (`GL.registerContext` + `GL.makeContextCurrent`, exported from the .NET
   module) or have Emscripten create it (`emscripten_webgl_create_context` on

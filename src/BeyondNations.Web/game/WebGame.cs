@@ -68,13 +68,6 @@ namespace beyondnations.web {
 
             inputService = new InputService(inputSource);
 
-            // --- #274 seam ---
-            // The browser has one world renderer today. --renderer native is
-            // Strata, which has no WebGL2 backend yet; asking for it says so
-            // and falls back rather than failing to start.
-            if (options.Renderer == RendererKind.Native) {
-                Log.warning("--renderer native is not available in the browser yet; using silk (WebGL2)");
-            }
             renderer = new WebGl2WorldRenderer();
             Log.info("world renderer: " + renderer.getName() + " (WebGL2)");
             if (options.RenderStats) {

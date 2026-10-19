@@ -21,10 +21,11 @@ namespace beyondnations.desktop {
     * accumulates real elapsed time and advances the simulation a whole number of
     * fixed steps, so the tick rate is stable and independent of frame rate.
     *
-    * Drawing is delegated to an IWorldRenderer (#274) -- SilkWorldRenderer by
-    * default, which turns the world snapshot
-    * into a few instanced draw calls (#218), viewed through the camera and
-    * filtered by the culler that came with #219; the UI arrives with #221.
+    * Drawing is delegated to an IWorldRenderer (#274): NativeWorldRenderer,
+    * which hands the world snapshot to the Strata engine, viewed through the
+    * camera and filtered by the culler that came with #219; the UI arrives
+    * with #221. Strata is the only world renderer; Silk.NET still provides
+    * the window, the GL context, input and the ImGui backend.
     */
     public class Game : IDisposable {
         private readonly GameOptions options;
@@ -124,12 +125,9 @@ namespace beyondnations.desktop {
             windowOptions.Title = "Beyond Nations";
             windowOptions.VSync = options.VSync;
             // --- #274 ---
-            // Strata needs OpenGL 4.5 core. Only the native renderer asks for
-            // it; the default path keeps Silk's default context untouched.
-            if (options.Renderer == RendererKind.Native) {
-                windowOptions.API = new GraphicsAPI(
-                    windowOptions.API.API, windowOptions.API.Profile, windowOptions.API.Flags, new APIVersion(4, 5));
-            }
+            // Strata needs OpenGL 4.5 core.
+            windowOptions.API = new GraphicsAPI(
+                windowOptions.API.API, windowOptions.API.Profile, windowOptions.API.Flags, new APIVersion(4, 5));
             // --- end #274 ---
 
             window = Window.Create(windowOptions);
@@ -158,17 +156,12 @@ namespace beyondnations.desktop {
 
             // --- #218 instanced renderer ---
             // --- #274 ---
-            if (options.Renderer == RendererKind.Native) {
-                renderer = new NativeWorldRenderer(
-                    // TryGetProcAddress: Strata's loader asks for every GL 4.5
-                    // entry point and some drivers (Intel UHD 630 on Windows)
-                    // lack ones it never calls, such as glGetnTexImage.
-                    name => window.GLContext.TryGetProcAddress(name, out IntPtr address) ? address : IntPtr.Zero,
-                    window.FramebufferSize.X, window.FramebufferSize.Y,
-                    options.NativeLighting == NativeLighting.Sun); // #280
-            } else {
-                renderer = new SilkWorldRenderer(gl);
-            }
+            renderer = new NativeWorldRenderer(
+                // TryGetProcAddress: Strata's loader asks for every GL 4.5
+                // entry point and some drivers (Intel UHD 630 on Windows)
+                // lack ones it never calls, such as glGetnTexImage.
+                name => window.GLContext.TryGetProcAddress(name, out IntPtr address) ? address : IntPtr.Zero,
+                window.FramebufferSize.X, window.FramebufferSize.Y);
             Log.info("world renderer: " + renderer.getName());
             // --- end #274 ---
             if (options.RenderStats) {
@@ -444,7 +437,7 @@ namespace beyondnations.desktop {
                 camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
                 culler.beginFrame(camera);
                 // --- #280 ---
-                if (renderer is NativeWorldRenderer native && native.usesSunLighting()) {
+                if (renderer is NativeWorldRenderer native) {
                     native.setTimeOfDay(simulation.getTimeOfDay().getFraction());
                 }
                 // --- end #280 ---
