@@ -23,6 +23,22 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testTwoCounters_DescribedTogetherAndPooledForTheBar() {
+            ObjectiveProgress progress = ObjectiveProgress.countersWith(false, "Wood", 12, 20, "Stone", 9, 5);
+            Assert.Equal("Wood 12/20 \u00b7 Stone 5/5", progress.describe());
+            Assert.True(progress.hasSecondCounter());
+            // 12 of 20 wood plus 5 of 5 stone (the extra 4 stone does not count)
+            Assert.Equal(17f / 25f, progress.fraction(), 3);
+        }
+
+        [Fact]
+        public void testFraction_SingleCounterAndFlag() {
+            Assert.Equal(0.25f, ObjectiveProgress.count("Wood", 10, 40).fraction(), 3);
+            Assert.Equal(1f, ObjectiveProgress.flag(true).fraction());
+            Assert.Equal(0f, ObjectiveProgress.flag(false).fraction());
+        }
+
+        [Fact]
         public void testFlag_HasNoCounter() {
             Assert.True(ObjectiveProgress.flag(true).isComplete());
             Assert.False(ObjectiveProgress.flag(false).isComplete());

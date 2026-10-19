@@ -62,7 +62,10 @@ namespace beyondnationstests {
         [Fact]
         public void testCosts_ReadFromTheConstantsTheCommandsCheck() {
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD, arc("found-settlement").evaluate(simulation).getTarget());
-            Assert.Equal(Stall.WOOD_COST_TO_BUILD, arc("build-stall").evaluate(simulation).getTarget());
+            ObjectiveProgress stall = arc("build-stall").evaluate(simulation);
+            Assert.Equal(Stall.WOOD_COST_TO_BUILD, stall.getTarget());
+            Assert.Equal(Stall.STONE_COST_TO_BUILD, stall.getSecondTarget());
+            Assert.Equal("Wood 0/" + Stall.WOOD_COST_TO_BUILD + " \u00b7 Stone 0/" + Stall.STONE_COST_TO_BUILD, stall.describe());
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD / 5, ObjectiveCatalog.firstWoodTarget());
             Assert.Contains(Settlement.WOOD_COST_TO_BUILD.ToString(), arc("second-settlement").getHint(simulation));
         }
@@ -144,6 +147,19 @@ namespace beyondnationstests {
             Assert.False(arc("build-stall").evaluate(simulation).isComplete());
             settlement.getMarket().createStall();
             Assert.True(arc("build-stall").evaluate(simulation).isComplete());
+        }
+
+        [Fact]
+        public void testBuildStall_HintAsksForStoneUntilAffordable() {
+            makePlayerLeader();
+            string hint = arc("build-stall").getHint(simulation);
+            Assert.Contains(Stall.STONE_COST_TO_BUILD + " stone", hint);
+            Assert.Contains("{BuildStall}", hint);
+
+            player.getInventory().addItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            player.getInventory().addItem(ItemType.STONE, Stall.STONE_COST_TO_BUILD);
+            Assert.True(Stall.canAffordToBuild(player.getInventory()));
+            Assert.Equal("Inside your settlement, press {BuildStall}.", arc("build-stall").getHint(simulation));
         }
 
         [Fact]

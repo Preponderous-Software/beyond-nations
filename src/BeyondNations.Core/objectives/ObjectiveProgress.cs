@@ -11,12 +11,21 @@ namespace beyondnations {
         private readonly string label;
         private readonly int current;
         private readonly int target;
+        // An optional second counter, for a cost paid in two things
+        // ("Wood 12/20 · Stone 3/5"); null label when there is none.
+        private readonly string secondLabel;
+        private readonly int secondCurrent;
+        private readonly int secondTarget;
 
-        private ObjectiveProgress(bool complete, string label, int current, int target) {
+        private ObjectiveProgress(bool complete, string label, int current, int target,
+                                  string secondLabel = null, int secondCurrent = 0, int secondTarget = 0) {
             this.complete = complete;
             this.label = label;
             this.current = current;
             this.target = target;
+            this.secondLabel = secondLabel;
+            this.secondCurrent = secondCurrent;
+            this.secondTarget = secondTarget;
         }
 
         /** A yes-or-no objective with no counter to show. */
@@ -34,11 +43,39 @@ namespace beyondnations {
             return new ObjectiveProgress(complete, label, current, target);
         }
 
+        /** Met by its own test, with two counters shown alongside. */
+        public static ObjectiveProgress countersWith(bool complete, string label, int current, int target,
+                                                     string secondLabel, int secondCurrent, int secondTarget) {
+            return new ObjectiveProgress(complete, label, current, target, secondLabel, secondCurrent, secondTarget);
+        }
+
         public bool isComplete() { return complete; }
         public string getLabel() { return label; }
         public int getCurrent() { return current; }
         public int getTarget() { return target; }
         public bool hasCounter() { return label != null; }
+        public bool hasSecondCounter() { return secondLabel != null; }
+        public string getSecondLabel() { return secondLabel; }
+        public int getSecondCurrent() { return secondCurrent; }
+        public int getSecondTarget() { return secondTarget; }
+
+        /**
+        * How full the counters are, 0 to 1, for a progress bar: each counter
+        * is capped at its target and the two are pooled, so neither can make
+        * up for the other being short.
+        */
+        public float fraction() {
+            int total = target + (secondLabel != null ? secondTarget : 0);
+            if (label == null || total <= 0) {
+                return complete ? 1f : 0f;
+            }
+            int have = capped(current, target) + (secondLabel != null ? capped(secondCurrent, secondTarget) : 0);
+            return (float) have / total;
+        }
+
+        private static int capped(int value, int max) {
+            return value < 0 ? 0 : value > max ? max : value;
+        }
 
         /**
         * "Wood 12/40", with the current value capped at the target so a full
@@ -48,8 +85,11 @@ namespace beyondnations {
             if (label == null) {
                 return null;
             }
-            int shown = current > target ? target : current;
-            return label + " " + shown + "/" + target;
+            string text = label + " " + capped(current, target) + "/" + target;
+            if (secondLabel != null) {
+                text += " \u00b7 " + secondLabel + " " + capped(secondCurrent, secondTarget) + "/" + secondTarget;
+            }
+            return text;
         }
     }
 }

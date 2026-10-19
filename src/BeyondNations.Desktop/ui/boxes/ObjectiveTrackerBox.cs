@@ -111,8 +111,7 @@ namespace beyondnations.desktop.ui.boxes {
                 ImGui.PopTextWrapPos();
 
                 if (progress.hasCounter() && progress.getTarget() > 0) {
-                    float fraction = Math.Clamp((float) progress.getCurrent() / progress.getTarget(), 0f, 1f);
-                    ImGui.ProgressBar(fraction, new Vector2(-1f, 0f), progress.describe());
+                    ImGui.ProgressBar(progress.fraction(), new Vector2(-1f, 0f), progress.describe());
                 }
 
                 string hintText = hint(simulation);

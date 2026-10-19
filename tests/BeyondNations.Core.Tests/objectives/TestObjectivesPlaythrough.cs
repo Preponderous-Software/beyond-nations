@@ -47,13 +47,57 @@ namespace beyondnationstests {
         }
 
         private void gatherWoodUntil(int target) {
-            for (int attempt = 0; attempt < 200 && ObjectiveCatalog.wood(simulation) < target; attempt++) {
-                AppleTree tree = simulation.getEnvironment().getNearestTree(player.getPosition());
-                Assert.NotNull(tree);
-                player.setPosition(tree.getPosition());
+            gatherUntil(EntityType.TREE, ItemType.WOOD, target);
+        }
+
+        private void gatherStoneUntil(int target) {
+            gatherUntil(EntityType.ROCK, ItemType.STONE, target);
+        }
+
+        /**
+        * Walks to the nearest tree or rock that nothing else is standing by --
+        * Interact talks to a pawn or enters a settlement before it chops --
+        * and presses Interact, until the player carries enough.
+        */
+        private void gatherUntil(EntityType source, ItemType item, int target) {
+            for (int attempt = 0; attempt < 300 && player.getInventory().getNumItems(item) < target; attempt++) {
+                Entity resource = nearestClearResource(source);
+                Assert.NotNull(resource);
+                player.setPosition(resource.getPosition());
                 interact();
-                tick(1); // the chopped tree is removed at the end of the tick
+                if (player.isCurrentlyInSettlement()) {
+                    new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
+                }
+                tick(1); // the gathered resource is removed at the end of the tick
             }
+            Assert.True(player.getInventory().getNumItems(item) >= target, item + " short of " + target);
+        }
+
+        private Entity nearestClearResource(EntityType source) {
+            Entity best = null;
+            float bestDistance = float.MaxValue;
+            foreach (Entity candidate in simulation.getEntityRepository().getEntitiesOfType(source)) {
+                if (candidate.isMarkedForDeletion() || somethingElseWithinReach(candidate.getPosition())) {
+                    continue;
+                }
+                float distance = Vector3.Distance(player.getPosition(), candidate.getPosition());
+                if (distance < bestDistance) {
+                    bestDistance = distance;
+                    best = candidate;
+                }
+            }
+            return best;
+        }
+
+        private bool somethingElseWithinReach(Vector3 position) {
+            foreach (EntityType blocker in new[] { EntityType.SETTLEMENT, EntityType.PAWN }) {
+                foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(blocker)) {
+                    if (Vector3.Distance(position, entity.getPosition()) < 6) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private bool tooCloseToASettlement(Vector3 position, int minDistance) {
@@ -111,9 +155,11 @@ namespace beyondnationstests {
             tickOneSecond();
             assertCurrent("build-stall");
 
-            // 6. build a stall (B) inside it; wood is gathered outside first
+            // 6. build a stall (B) inside it; wood and stone are gathered outside first
             new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
             gatherWoodUntil(Stall.WOOD_COST_TO_BUILD);
+            gatherStoneUntil(Stall.STONE_COST_TO_BUILD);
+            Assert.True(Stall.canAffordToBuild(player.getInventory()));
             player.setPosition(settlement.getPosition());
             interact();
             Assert.True(player.isCurrentlyInSettlement());

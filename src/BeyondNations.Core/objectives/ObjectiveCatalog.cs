@@ -9,8 +9,8 @@ namespace beyondnations {
     *
     * Every cost shown or asked for is read from the constant the command
     * checks (Settlement.WOOD_COST_TO_BUILD, Stall.WOOD_COST_TO_BUILD,
-    * Stall.COIN_COST_TO_PURCHASE), so retuning a cost retunes its objective
-    * and its reward with it. Each step is reachable with the commands on
+    * Stall.STONE_COST_TO_BUILD, Stall.COIN_COST_TO_PURCHASE), so retuning
+    * a cost retunes its objective and its reward with it. Each step is reachable with the commands on
     * develop; hints name keys as "{HintKey}" tokens for the host to resolve.
     */
     public static class ObjectiveCatalog {
@@ -66,10 +66,13 @@ namespace beyondnations {
                     ObjectiveReward.None),
 
                 new Objective("build-stall", "Build a market stall",
-                    s => ObjectiveProgress.counterWith(nationStalls(s) >= 1, "Wood", wood(s), Stall.WOOD_COST_TO_BUILD),
-                    s => isLeader(s)
-                        ? "Inside your settlement with " + Stall.WOOD_COST_TO_BUILD + " wood, press {BuildStall}."
-                        : "Your leader builds stalls; help by bringing wood.",
+                    s => ObjectiveProgress.countersWith(nationStalls(s) >= 1,
+                        "Wood", wood(s), Stall.WOOD_COST_TO_BUILD, "Stone", stone(s), Stall.STONE_COST_TO_BUILD),
+                    s => !isLeader(s)
+                        ? "Your leader builds stalls; help by bringing wood and stone."
+                        : Stall.canAffordToBuild(s.getPlayer().getInventory())
+                            ? "Inside your settlement, press {BuildStall}."
+                            : "Gather " + Stall.WOOD_COST_TO_BUILD + " wood and " + Stall.STONE_COST_TO_BUILD + " stone (press {Interact} at rocks), then press {BuildStall} inside your settlement.",
                     ObjectiveReward.coins(mediumCoinReward())),
 
                 new Objective("grow-nation", "Grow your nation to " + NationGrowthTarget,
@@ -141,6 +144,10 @@ namespace beyondnations {
 
         public static int wood(Simulation simulation) {
             return simulation.getPlayer().getInventory().getNumItems(ItemType.WOOD);
+        }
+
+        public static int stone(Simulation simulation) {
+            return simulation.getPlayer().getInventory().getNumItems(ItemType.STONE);
         }
 
         public static Nation playerNation(Simulation simulation) {
