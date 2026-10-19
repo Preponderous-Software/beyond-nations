@@ -106,5 +106,11 @@ namespace beyondnations {
             }
             return count;
         }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal RandomSource getRandom() {
+            return random;
+        }
     }
 }

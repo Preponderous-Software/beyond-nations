@@ -99,5 +99,17 @@ namespace beyondnations {
             int randomIndex = random.range(0, entities.Count);
             return entities[entityIds[randomIndex]];
         }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** Replaces everything with the saved entities, in their saved order. */
+        internal void restore(List<Entity> saved) {
+            entities.Clear();
+            entityIds.Clear();
+            orderedEntities.Clear();
+            foreach (Entity entity in saved) {
+                addEntity(entity);
+            }
+        }
     }
 }

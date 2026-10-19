@@ -19,6 +19,12 @@ namespace beyondnations.desktop.ui {
         CloseControls,
         Quit,
         // close an overlay screen (crafting) and return to the world
-        ResumeWorld
+        ResumeWorld,
+        // saves (docs/SAVES.md): load the latest, open the list, load the
+        // one picked from it, save now from the pause screen
+        ContinueGame,
+        OpenLoad,
+        LoadSlot,
+        SaveGame
     }
 }

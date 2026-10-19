@@ -146,6 +146,11 @@ Press `C` (or *Craft* on a touch screen) to open the crafting screen. Each recip
 
 Tools wear out, so keep some wood and stone for the next one. Merchants craft too: their stalls stock tools you can buy, cooked meat, and (with a workshop) planks and bricks. The full rules are in the [Systems Document](./docs/SYSTEMS.md#crafting).
 
+## Saving and loading
+Worlds are saved, on the desktop and in the browser. The game autosaves every couple of minutes of play and whenever you leave the world (*Main Menu* or *Quit* on the pause screen, or closing the window); *Save* on the pause screen saves at once and says so. On the main menu, *Continue* picks up the latest world and *Load* lists every saved world with its day, your nation and when it was saved.
+
+Saves live in `~/.local/share/BeyondNations/Saves` on Linux, `%AppData%\BeyondNations\Saves` on Windows, and the browser's local storage on the web. Each save is checksummed and the one before it is kept as a backup; a damaged save falls back to its backup, and a save from a newer version is refused rather than overwritten. A loaded world is the same world, down to its random numbers: it plays on exactly as it would have without the save. `--continue` opens the latest save and `--no-saves` turns saving off for a run. The format, versioning and migration policy are in [docs/SAVES.md](./docs/SAVES.md).
+
 ## History film
 ![Seed 12: six nations founding settlements and spreading over the map, one orbit](./.github/media/history-film.gif)
 

@@ -1,3 +1,4 @@
+using System.Text.Json;
 namespace beyondnations {
 
     public class GameConfig {
@@ -220,6 +221,66 @@ namespace beyondnations {
 
         public string getBeyondNationsDirectoryPath() {
             return beyondNationsDirectoryPath;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /**
+        * Every setting the simulation reads, so a loaded world runs under the
+        * rules it was started with. The data directory is the machine's, not
+        * the world's, and is left as this host has it.
+        */
+        internal void save(SaveWriter writer) {
+            writer.write("chunkSize", chunkSize);
+            writer.write("locationScale", locationScale);
+            writer.write("respawnPawns", respawnPawns);
+            writer.write("keepInventoryOnDeath", keepInventoryOnDeath);
+            writer.write("lagPreventionEnabled", lagPreventionEnabled);
+            writer.write("worldSeed", worldSeed);
+            writer.write("ticksPerSecond", ticksPerSecond);
+            writer.write("statusExpirationTicks", statusExpirationTicks);
+            writer.write("playerWalkSpeed", playerWalkSpeed);
+            writer.write("playerRunSpeed", playerRunSpeed);
+            writer.write("ticksBetweenBehaviorCalculations", ticksBetweenBehaviorCalculations);
+            writer.write("ticksBetweenBehaviorExecutions", ticksBetweenBehaviorExecutions);
+            writer.write("minDistanceBetweenSettlements", minDistanceBetweenSettlements);
+            writer.write("settlementJoinRange", settlementJoinRange);
+            writer.write("settlementMetabolismMultiplier", settlementMetabolismMultiplier);
+            writer.write("playerMetabolism", playerMetabolism);
+            writer.write("ticksBetweenSettlementIncome", ticksBetweenSettlementIncome);
+            writer.write("renderDistance", renderDistance);
+            writer.write("maxNumEntities", maxNumEntities);
+            writer.write("maxNumChunks", maxNumChunks);
+            writer.write("maxNumPawns", maxNumPawns);
+        }
+
+        internal void load(JsonElement element) {
+            chunkSize = SaveReader.getInt(element, "chunkSize");
+            locationScale = SaveReader.getInt(element, "locationScale");
+            respawnPawns = SaveReader.getBool(element, "respawnPawns");
+            keepInventoryOnDeath = SaveReader.getBool(element, "keepInventoryOnDeath");
+            lagPreventionEnabled = SaveReader.getBool(element, "lagPreventionEnabled");
+            worldSeed = SaveReader.getInt(element, "worldSeed");
+            ticksPerSecond = SaveReader.getInt(element, "ticksPerSecond");
+            statusExpirationTicks = SaveReader.getInt(element, "statusExpirationTicks");
+            playerWalkSpeed = SaveReader.getInt(element, "playerWalkSpeed");
+            playerRunSpeed = SaveReader.getInt(element, "playerRunSpeed");
+            ticksBetweenBehaviorCalculations = SaveReader.getInt(element, "ticksBetweenBehaviorCalculations");
+            ticksBetweenBehaviorExecutions = SaveReader.getInt(element, "ticksBetweenBehaviorExecutions");
+            minDistanceBetweenSettlements = SaveReader.getInt(element, "minDistanceBetweenSettlements");
+            settlementJoinRange = SaveReader.getInt(element, "settlementJoinRange");
+            settlementMetabolismMultiplier = SaveReader.getFloat(element, "settlementMetabolismMultiplier");
+            playerMetabolism = SaveReader.getFloat(element, "playerMetabolism");
+            ticksBetweenSettlementIncome = SaveReader.getInt(element, "ticksBetweenSettlementIncome");
+            renderDistance = SaveReader.getInt(element, "renderDistance");
+            maxNumEntities = SaveReader.getInt(element, "maxNumEntities");
+            maxNumChunks = SaveReader.getInt(element, "maxNumChunks");
+            maxNumPawns = SaveReader.getInt(element, "maxNumPawns");
+            if (chunkSize <= 0 || locationScale <= 0 || ticksPerSecond <= 0
+                    || ticksBetweenBehaviorCalculations <= 0 || ticksBetweenBehaviorExecutions <= 0
+                    || ticksBetweenSettlementIncome <= 0) {
+                throw new SaveFormatException("the save's settings are out of range");
+            }
         }
     }
 }

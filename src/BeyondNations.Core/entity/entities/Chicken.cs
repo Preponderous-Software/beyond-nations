@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Numerics;
 
 namespace beyondnations {
@@ -50,6 +51,24 @@ namespace beyondnations {
             } else {
                 setVelocity(new Vector3(0, verticalVelocity, 0));
             }
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.writeStream("random", random);
+            writer.write("speed", speed);
+            writer.write("wanderTarget", wanderTarget);
+            writer.write("wanderTimer", wanderTimer);
+            writer.write("wanderInterval", wanderInterval);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            random = reader.stream(SaveReader.property(element, "random"));
+            speed = SaveReader.getInt(element, "speed");
+            wanderTarget = SaveReader.getVector3(element, "wanderTarget");
+            wanderTimer = SaveReader.getFloat(element, "wanderTimer");
+            wanderInterval = SaveReader.getFloat(element, "wanderInterval");
         }
     }
 }

@@ -41,6 +41,8 @@ namespace beyondnations.desktop.ui {
             "Your stall has no ",
             "Debug mode must ",
             "Screenshot capture failed",
+            "Could not save",
+            "Could not load",
         };
 
         // Refusals that start with a name: "Mira is already a merchant.",

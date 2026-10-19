@@ -120,6 +120,13 @@ namespace beyondnations.desktop.ui {
             ImGui.PopStyleColor();
         }
 
+        /** textCentered in a colour, with the same fixed-signature calls as textColoured. */
+        public static void textCenteredColoured(Vector4 colour, string text, float fontSize, float centreY, float width) {
+            ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(colour));
+            textCentered(text, fontSize, centreY, width);
+            ImGui.PopStyleColor();
+        }
+
         public static void textAt(string text, float x, float y) {
             ImGui.SetCursorPos(new Vector2(x, y));
             ImGui.TextUnformatted(text);

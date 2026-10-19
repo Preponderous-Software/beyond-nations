@@ -137,6 +137,20 @@ namespace beyondnations.desktop {
         */
         public bool StageDiplomacy = false;
 
+        /**
+        * Neither save nor offer to load this run: no autosave, no save on
+        * quit, no Continue or Load. For automated runs that should leave a
+        * player's saves alone. See docs/SAVES.md.
+        */
+        public bool NoSaves = false;
+
+        /**
+        * Open straight into the most recently saved world, as Continue on the
+        * main menu does. Falls back to the main menu, saying why, when there
+        * is no save to continue.
+        */
+        public bool Continue = false;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -159,6 +173,8 @@ namespace beyondnations.desktop {
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
+                    case "--no-saves":         options.NoSaves = true; break;
+                    case "--continue":         options.Continue = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
                     case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
                     case "--ui-scale":         options.UiScale = uiScaleAfter(args, ref i); break;
@@ -193,8 +209,9 @@ namespace beyondnations.desktop {
                 case "controls":  return ScreenType.CONTROLS;
                 case "nations":   return ScreenType.NATIONS;
                 case "crafting":  return ScreenType.CRAFTING;
+                case "load":      return ScreenType.LOAD;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations or crafting)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, crafting or load)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -269,10 +286,12 @@ namespace beyondnations.desktop {
                 "  --no-labels             draw no world-space nametags",
                 "  --first-person          open in first person; V toggles the view mid-run",
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
+                "  --no-saves              do not autosave, save on quit or offer saved worlds this run",
+                "  --continue              open in the most recently saved world (Continue on the main menu)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations or crafting",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, crafting or load",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --help, -h              print this and exit"

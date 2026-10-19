@@ -1,0 +1,3 @@
+# Save files carry a checksum over their exact bytes (docs/SAVES.md), so git
+# must never convert their line endings.
+*.bnsave binary

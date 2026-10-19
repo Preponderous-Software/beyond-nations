@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 
@@ -573,6 +574,34 @@ namespace beyondnations {
                 : (n % 10) == 3 ? "rd"
                 : "th";
             return n + suffix;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.beginArray("entries");
+            foreach (ChronicleEntry entry in entries) {
+                writer.beginObject();
+                entry.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.write("totalRecorded", totalRecorded);
+            writer.write("nationsFounded", nationsFounded);
+            writer.writeStringList("raidsToldToday", raidsToldToday);
+            writer.write("raidDay", raidDay);
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            entries.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "entries").EnumerateArray()) {
+                entries.Add(ChronicleEntry.load(entry, reader));
+            }
+            totalRecorded = SaveReader.getInt(element, "totalRecorded");
+            nationsFounded = SaveReader.getInt(element, "nationsFounded");
+            raidsToldToday.Clear();
+            raidsToldToday.UnionWith(SaveReader.getStringList(element, "raidsToldToday"));
+            raidDay = SaveReader.getInt(element, "raidDay");
         }
     }
 }

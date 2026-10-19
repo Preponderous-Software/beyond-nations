@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 
@@ -158,6 +159,32 @@ namespace beyondnations {
             }
             alliances.RemoveWhere(pair => pair.StartsWith(id + "|") || pair.EndsWith("|" + id));
             denounced.RemoveWhere(pair => pair.StartsWith(id + "|") || pair.EndsWith("|" + id));
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.beginArray("scores");
+            foreach (KeyValuePair<string, int> entry in scores) {
+                writer.beginArray();
+                writer.writeValue(entry.Key);
+                writer.writeValue(entry.Value);
+                writer.endArray();
+            }
+            writer.endArray();
+            writer.writeStringList("alliances", alliances);
+            writer.writeStringList("denounced", denounced);
+        }
+
+        internal void load(JsonElement element) {
+            scores.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "scores").EnumerateArray()) {
+                scores[entry[0].GetString()] = entry[1].GetInt32();
+            }
+            alliances.Clear();
+            alliances.UnionWith(SaveReader.getStringList(element, "alliances"));
+            denounced.Clear();
+            denounced.UnionWith(SaveReader.getStringList(element, "denounced"));
         }
     }
 }

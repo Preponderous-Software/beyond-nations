@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -555,6 +556,35 @@ namespace beyondnations {
                 this.fromB = fromB;
                 this.distance = distance;
                 this.gap = gap;
+            }
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("round", round);
+            writer.writeIdIntMap("siegeProgress", siegeProgress);
+            writer.beginArray("besiegers");
+            foreach (KeyValuePair<EntityId, Nation> entry in besiegers) {
+                writer.beginArray();
+                writer.writeValue(entry.Key);
+                writer.writeValue(entry.Value == null ? null : entry.Value.getId().getGuid().ToString("N"));
+                writer.endArray();
+            }
+            writer.endArray();
+        }
+
+        /** Nations laying siege, which a save must hold even if they have since been disbanded. */
+        internal IEnumerable<Nation> getBesiegingNations() {
+            return besiegers.Values;
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            round = SaveReader.getInt(element, "round");
+            reader.readIdIntMap(element, "siegeProgress", siegeProgress);
+            besiegers.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "besiegers").EnumerateArray()) {
+                besiegers[reader.entityId(entry[0])] = reader.nation(entry[1]);
             }
         }
     }

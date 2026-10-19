@@ -22,6 +22,7 @@ namespace beyondnations {
         private const string ApplicationFolderName = "BeyondNations";
         private const string ScreenshotsFolderName = "Screenshots";
         private const string CrashReportsFolderName = "CrashReports";
+        private const string SavesFolderName = "Saves";
 
         /**
         * The directory BeyondNations stores its data under, e.g.
@@ -52,6 +53,14 @@ namespace beyondnations {
         */
         public static string getCrashReportsDirectory() {
             return System.IO.Path.Combine(getBaseDirectory(), CrashReportsFolderName);
+        }
+
+        /**
+        * The directory saved worlds are kept in (docs/SAVES.md), beside the
+        * screenshots: "~/.local/share/BeyondNations/Saves" on Linux.
+        */
+        public static string getSavesDirectory() {
+            return System.IO.Path.Combine(getBaseDirectory(), SavesFolderName);
         }
 
         /**

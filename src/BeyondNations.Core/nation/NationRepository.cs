@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 
 namespace beyondnations {
@@ -69,6 +70,17 @@ namespace beyondnations {
                 nationList.Add(nations[id]);
             }
             return nationList;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** Puts the saved nations back, in founding order. */
+        internal void restore(List<Nation> saved) {
+            nations.Clear();
+            nationIds.Clear();
+            foreach (Nation nation in saved) {
+                addNation(nation);
+            }
         }
     }
 }

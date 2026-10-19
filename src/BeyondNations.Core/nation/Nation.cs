@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 
 namespace beyondnations {
@@ -105,6 +106,41 @@ namespace beyondnations {
         public EntityId getRandomSettlementId() {
             int randomIndex = random.range(0, settlements.Count);
             return settlements[randomIndex];
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("id", id);
+            writer.writeStream("random", random);
+            writer.write("name", name);
+            writer.write("leaderId", leaderId);
+            writer.writeIdList("members", members);
+            writer.beginArray("roles");
+            foreach (KeyValuePair<EntityId, NationRole> entry in roles) {
+                writer.beginArray();
+                writer.writeValue(entry.Key);
+                writer.writeValue(entry.Value.ToString());
+                writer.endArray();
+            }
+            writer.endArray();
+            writer.write("color", color);
+            writer.writeIdList("settlements", settlements);
+        }
+
+        /** A nation as it was saved. Its id comes first, so references to it can resolve. */
+        internal static Nation load(JsonElement element, SaveReader reader) {
+            Nation nation = new Nation(SaveReader.getString(element, "name"), reader.getEntityId(element, "leaderId"),
+                reader.stream(SaveReader.property(element, "random")));
+            nation.id = reader.getNationId(element, "id");
+            nation.members = reader.getIdList(element, "members");
+            nation.roles.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "roles").EnumerateArray()) {
+                nation.roles[reader.entityId(entry[0])] = SaveReader.toEnum<NationRole>(entry[1]);
+            }
+            nation.color = SaveReader.getRgba(element, "color");
+            nation.settlements = reader.getIdList(element, "settlements");
+            return nation;
         }
     }
 }

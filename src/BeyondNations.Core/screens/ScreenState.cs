@@ -155,7 +155,7 @@ namespace beyondnations {
                 goTo(ScreenType.WORLD);
                 return true;
             }
-            if (current == ScreenType.CONFIG) {
+            if (current == ScreenType.CONFIG || current == ScreenType.LOAD) {
                 goTo(ScreenType.MAIN_MENU);
                 return true;
             }

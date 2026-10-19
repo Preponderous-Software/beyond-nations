@@ -41,6 +41,13 @@ namespace beyondnations.desktop {
         private Simulation simulation;
         private readonly WorldSnapshot snapshot = new WorldSnapshot();
 
+        // Saving (docs/SAVES.md): slots under AppDataPaths, an autosave every
+        // couple of minutes of play, and a save whenever the player leaves the
+        // world. automatedExit marks a close that --exit-after-frames asked
+        // for, which is a test run and saves nothing on the way out.
+        private SaveSession saves;
+        private bool automatedExit;
+
         // --- #222 world-space text ---
         private WorldLabelRenderer labels;
         // --- end #222 ---
@@ -189,7 +196,8 @@ namespace beyondnations.desktop {
                 window.Size.X > 0 ? (float) window.FramebufferSize.X / window.Size.X : 1f));
             Log.info("ui scale: " + UiScale.get());
             // --- end high-DPI ---
-            ui = new UiHost(gl, window, input, screens, gameConfig);
+            saves = new SaveSession(new FileSaveStorage(AppDataPaths.getSavesDirectory()), GameVersion.Version, !options.NoSaves);
+            ui = new UiHost(gl, window, input, screens, gameConfig, saves);
             playerInputController.setDebugMode(options.DebugMode);
             // --- end #221 ---
 
@@ -208,7 +216,9 @@ namespace beyondnations.desktop {
             // screen asks for one, except when --start-screen names it directly --
             // or names the inventory or pause screen, each drawn over a world (#181).
             screens.goTo(options.StartScreen);
-            if (screens.isWorldVisible()) {
+            if (options.Continue) {
+                continueLatest();
+            } else if (screens.isWorldVisible()) {
                 createWorld();
             }
 
@@ -269,6 +279,46 @@ namespace beyondnations.desktop {
             }
             culler.setEnabled(!options.NoCulling);
             // --- end #219 ---
+
+            saves.beginNewWorld(simulation, DateTime.UtcNow);
+        }
+
+        /**
+        * Replaces the world with a saved one, or stays where it is with the
+        * reason on screen when the save cannot be loaded. Nothing is written.
+        */
+        private void loadWorld(string slot) {
+            Simulation loaded = saves.load(slot);
+            if (loaded == null) {
+                return;
+            }
+            simulation = loaded;
+            accumulator = 0;
+            culler.setEnabled(!options.NoCulling);
+            screens.goTo(ScreenType.WORLD);
+        }
+
+        /** --continue: the latest save, or the main menu when there is none. */
+        private void continueLatest() {
+            SaveSlotInfo latest = saves.latest();
+            if (latest == null) {
+                Log.warning("--continue: there is no saved world to continue");
+                screens.goTo(ScreenType.MAIN_MENU);
+                return;
+            }
+            loadWorld(latest.Slot);
+            if (simulation == null) {
+                screens.goTo(ScreenType.MAIN_MENU);
+            }
+        }
+
+        /** Saves the world in play, saying so on the status line; the pause screen shows the detail. */
+        private void saveWorld() {
+            if (simulation == null) {
+                return;
+            }
+            bool saved = saves.save(simulation, false);
+            simulation.getPlayer().getStatus().update(saved ? "Game saved." : saves.getFeedback());
         }
         // --- end #221 ---
 
@@ -306,6 +356,7 @@ namespace beyondnations.desktop {
                 simulation.fixedUpdate((float) fixedTimeStep);
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;
+                saves.onFixedStep(simulation);
             }
 
         }
@@ -327,6 +378,7 @@ namespace beyondnations.desktop {
             }
 
             if (options.ExitAfterFrames > 0 && framesRendered >= options.ExitAfterFrames) {
+                automatedExit = true;
                 window.Close();
             }
         }
@@ -511,6 +563,17 @@ namespace beyondnations.desktop {
                 if (ui.consumeStartRequest()) {
                     createWorld();
                 }
+                string slotToLoad = ui.consumeLoadRequest();
+                if (slotToLoad != null) {
+                    loadWorld(slotToLoad);
+                }
+                if (ui.consumeSaveRequest()) {
+                    saveWorld();
+                }
+                if (ui.consumeLeaveRequest()) {
+                    saveWorld();
+                    saves.refresh();
+                }
                 if (ui.isQuitRequested()) {
                     window.Close();
                 }
@@ -594,6 +657,12 @@ namespace beyondnations.desktop {
 
         private void onClosing() {
             clock.Stop();
+
+            // Quit, Escape on the menu or the window's close button: the
+            // world in play is saved on the way out.
+            if (simulation != null && saves != null && !automatedExit) {
+                saves.save(simulation, false);
+            }
             double seconds = clock.Elapsed.TotalSeconds;
             Log.info(string.Format(
                 "shutting down after {0} frames and {1} fixed steps in {2:F2}s ({3:F1} fps, {4:F1} tps)",

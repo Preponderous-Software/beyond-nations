@@ -40,13 +40,20 @@ namespace beyondnations.desktop.ui {
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
+        private readonly LoadScreen loadScreen = new LoadScreen();
+        // saving (docs/SAVES.md): the host owns the world, so a screen asking
+        // to save or load is a request the host picks up after the frame
+        private readonly SaveSession saves;
+        private string loadRequest;
+        private bool saveRequested;
+        private bool leaveRequested;
         private readonly WorldHud worldHud = new WorldHud();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
         private bool quitRequested;
         private bool startRequested;
 
-        public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig) {
+        public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig, SaveSession saves) {
             this.controller = new ImGuiController(gl, window, input, configureForUiScale);
             this.input = input;
             foreach (IMouse mouse in input.Mice) {
@@ -54,6 +61,7 @@ namespace beyondnations.desktop.ui {
             }
             this.screens = screens;
             this.gameConfig = gameConfig;
+            this.saves = saves;
         }
 
         /**
@@ -88,6 +96,27 @@ namespace beyondnations.desktop.ui {
         * True once, when a screen has asked for a world to be created. The host
         * clears it by calling this; the world is the host's to build.
         */
+        /** The slot a screen asked to load (Continue, or a pick from the Load list), once; null otherwise. */
+        public string consumeLoadRequest() {
+            string slot = loadRequest;
+            loadRequest = null;
+            return slot;
+        }
+
+        /** True once, when Save on the pause screen was pressed. */
+        public bool consumeSaveRequest() {
+            bool requested = saveRequested;
+            saveRequested = false;
+            return requested;
+        }
+
+        /** True once, when Main Menu on the pause screen was pressed: the host saves the world. */
+        public bool consumeLeaveRequest() {
+            bool requested = leaveRequested;
+            leaveRequested = false;
+            return requested;
+        }
+
         public bool consumeStartRequest() {
             bool requested = startRequested;
             startRequested = false;
@@ -122,13 +151,13 @@ namespace beyondnations.desktop.ui {
                     action = titleScreen.draw(width, height);
                     break;
                 case ScreenType.MAIN_MENU:
-                    action = mainMenuScreen.draw(width, height);
+                    action = mainMenuScreen.draw(width, height, saves.latest(), saves.isFeedbackError() ? saves.getFeedback() : null);
                     break;
                 case ScreenType.CONFIG:
                     action = configScreen.draw(width, height, gameConfig);
                     break;
                 case ScreenType.PAUSE:
-                    action = pauseScreen.draw(width, height);
+                    action = pauseScreen.draw(width, height, saves);
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
@@ -152,6 +181,9 @@ namespace beyondnations.desktop.ui {
                     if (simulation != null) {
                         action = craftingScreen.draw(width, height, simulation);
                     }
+                    break;
+                case ScreenType.LOAD:
+                    action = loadScreen.draw(width, height, saves);
                     break;
             }
 
@@ -201,8 +233,8 @@ namespace beyondnations.desktop.ui {
                     screens.goTo(screens.getCurrent() == ScreenType.PAUSE ? ScreenType.WORLD : ScreenType.MAIN_MENU);
                     break;
                 case UiAction.MainMenu:
-                    // No saves yet, so leaving for the menu ends this world;
-                    // Start builds a fresh one.
+                    // the host saves the world before the menu is shown
+                    leaveRequested = true;
                     screens.goTo(ScreenType.MAIN_MENU);
                     break;
                 case UiAction.OpenControls:
@@ -214,6 +246,20 @@ namespace beyondnations.desktop.ui {
                     break;
                 case UiAction.ResumeWorld:
                     screens.goTo(ScreenType.WORLD);
+                    break;
+                case UiAction.ContinueGame:
+                    SaveSlotInfo latest = saves.latest();
+                    loadRequest = latest != null ? latest.Slot : null;
+                    break;
+                case UiAction.OpenLoad:
+                    saves.refresh();
+                    screens.goTo(ScreenType.LOAD);
+                    break;
+                case UiAction.LoadSlot:
+                    loadRequest = loadScreen.consumeSelection();
+                    break;
+                case UiAction.SaveGame:
+                    saveRequested = true;
                     break;
             }
         }

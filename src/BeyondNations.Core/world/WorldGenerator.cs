@@ -276,5 +276,12 @@ namespace beyondnations {
 
             generateSurroundingChunksAt(chunkX, chunkZ);
         }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void restoreCurrentChunk(int x, int z) {
+            currentChunkX = x;
+            currentChunkZ = z;
+        }
     }
 }

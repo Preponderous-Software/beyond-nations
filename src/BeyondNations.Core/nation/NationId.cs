@@ -5,6 +5,15 @@ namespace beyondnations {
     public class NationId {
         private Guid guid;
 
+        /** The same identity, rebuilt from a save (docs/SAVES.md). */
+        internal NationId(Guid value) {
+            this.guid = value;
+        }
+
+        internal Guid getGuid() {
+            return guid;
+        }
+
         public NationId() {
             guid = Guid.NewGuid();
         }

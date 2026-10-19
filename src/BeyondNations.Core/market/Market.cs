@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using Enum = System.Enum;
 
@@ -329,6 +330,35 @@ namespace beyondnations {
 
         public int getTotalCoins() {
             return getQuantityAvailable(ItemType.COIN);
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.writeStream("random", random);
+            writer.write("maxNumStalls", maxNumStalls);
+            writer.write("totalNumItemsBought", totalNumItemsBought);
+            writer.write("totalNumItemsSold", totalNumItemsSold);
+            writer.beginArray("stalls");
+            foreach (Stall stall in stalls) {
+                writer.beginObject();
+                stall.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            random = reader.stream(SaveReader.property(element, "random"));
+            maxNumStalls = SaveReader.getInt(element, "maxNumStalls");
+            totalNumItemsBought = SaveReader.getInt(element, "totalNumItemsBought");
+            totalNumItemsSold = SaveReader.getInt(element, "totalNumItemsSold");
+            stalls = new List<Stall>();
+            foreach (JsonElement stall in SaveReader.property(element, "stalls").EnumerateArray()) {
+                Stall loaded = new Stall();
+                loaded.load(stall, reader);
+                stalls.Add(loaded);
+            }
         }
     }
 }
