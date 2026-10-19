@@ -75,8 +75,27 @@ namespace beyondnations.desktop.input {
 
         private void applyActions(Simulation simulation, Player player, InputService inputService) {
             if (inputService.wasPressedThisFrame(KeyBindings.Interact)) {
-                new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom())
+                new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter())
                     .execute(player);
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.GiftToPawn)) {
+                Pawn pawn = PawnRelations.findPawnInRange(player, simulation.getEnvironment());
+                if (pawn == null) {
+                    player.getStatus().update("There is no one within reach to give a gift to.");
+                }
+                else {
+                    new GiftPawnCommand(simulation.getEventProducer()).execute(player, pawn);
+                }
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.InviteToNation)) {
+                Pawn pawn = PawnRelations.findPawnInRange(player, simulation.getEnvironment());
+                if (pawn == null) {
+                    player.getStatus().update("There is no one within reach to invite.");
+                }
+                else {
+                    new InvitePawnToNationCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository())
+                        .execute(player, pawn);
+                }
             }
             if (inputService.wasPressedThisFrame(KeyBindings.CreateNewNation)) {
                 new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())

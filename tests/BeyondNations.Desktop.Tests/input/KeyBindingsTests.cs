@@ -27,6 +27,8 @@ namespace beyondnationstests.desktop.input {
         [Fact]
         public void actionBindings_matchReadme() {
             Assert.Equal(Key.E, KeyBindings.Interact);
+            Assert.Equal(Key.G, KeyBindings.GiftToPawn);
+            Assert.Equal(Key.R, KeyBindings.InviteToNation);
             Assert.Equal(Key.Space, KeyBindings.Jump);
             Assert.Equal(Key.ShiftLeft, KeyBindings.Sprint);
             Assert.Equal(Key.N, KeyBindings.CreateNewNation);
@@ -63,7 +65,8 @@ namespace beyondnationstests.desktop.input {
             // to duplicate their primary.
             Key[] bindings = {
                 KeyBindings.MoveForward, KeyBindings.MoveBackward, KeyBindings.MoveLeft, KeyBindings.MoveRight,
-                KeyBindings.Interact, KeyBindings.Jump, KeyBindings.Sprint,
+                KeyBindings.Interact, KeyBindings.GiftToPawn, KeyBindings.InviteToNation,
+                KeyBindings.Jump, KeyBindings.Sprint,
                 KeyBindings.CreateNewNation, KeyBindings.JoinNation, KeyBindings.LeaveNation,
                 KeyBindings.FoundSettlement, KeyBindings.PlantSapling, KeyBindings.TeleportToHomeSettlement,
                 KeyBindings.BuildStall, KeyBindings.ToggleInventory, KeyBindings.ToggleAutoWalk,

@@ -117,6 +117,9 @@ namespace beyondnations {
                                 pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism());
                             }
 
+                            // A pawn under a leader's order hands it in before it can sell it.
+                            NationOrderDelivery.deliver(pawn, entityRepository, nationRepository, player, eventProducer);
+
                             int ticksBetweenBehaviorCalculations = gameConfig.getTicksBetweenBehaviorCalculations();
                             if (tickCounter.getTick() % ticksBetweenBehaviorCalculations == 0) {
                                 pawn.setCurrentBehaviorType(pawnBehaviorCalculator.computeBehaviorType(pawn));
@@ -128,7 +131,9 @@ namespace beyondnations {
                             }
 
                             if (!pawn.isCurrentlyInSettlement()) {
-                                string nameTagText = pawn.getName() + "\n" + pawn.getCurrentBehaviorDescription();
+                                // Pawns the player has met show how they feel about the player.
+                                string nameLine = PawnRelations.hasMet(pawn, player) ? PawnRelations.describe(pawn, player) : pawn.getName();
+                                string nameTagText = nameLine + "\n" + pawn.getCurrentBehaviorDescription();
                                 pawn.setNameTag(nameTagText);
                             }
 
