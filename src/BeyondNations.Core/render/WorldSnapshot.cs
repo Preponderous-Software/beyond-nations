@@ -30,6 +30,8 @@ namespace beyondnations {
     public struct LabelItem {
         public Vector3 position;
         public string text;
+        /** How much larger than a pawn's nametag to draw it; 0 or 1 is normal size. */
+        public float scale;
     }
 
     /**
@@ -131,8 +133,9 @@ namespace beyondnations {
 
                 if (appearance.hasLabel()) {
                     LabelItem label;
-                    label.position = origin;
+                    label.position = origin + appearance.getLabelOffset();
                     label.text = appearance.getLabel();
+                    label.scale = appearance.getLabelScale();
                     labels.Add(label);
                 }
             }

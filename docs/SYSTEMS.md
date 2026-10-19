@@ -13,7 +13,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Nation | Implemented | [`src/BeyondNations.Core/nation/`](../src/BeyondNations.Core/nation/) |
 | Resource Collection | Implemented | [`src/BeyondNations.Core/command/interact/`](../src/BeyondNations.Core/command/interact/) |
 | Food and Energy | Implemented | [`src/BeyondNations.Core/item/FoodItems.cs`](../src/BeyondNations.Core/item/FoodItems.cs) |
-| Building | Implemented | [`src/BeyondNations.Core/command/settlement/`](../src/BeyondNations.Core/command/settlement/) |
+| Building | Implemented | [`src/BeyondNations.Core/building/`](../src/BeyondNations.Core/building/), [`src/BeyondNations.Core/command/settlement/`](../src/BeyondNations.Core/command/settlement/) |
 | Pawn | Implemented | [`src/BeyondNations.Core/entity/entities/Pawn.cs`](../src/BeyondNations.Core/entity/entities/Pawn.cs), [`src/BeyondNations.Core/behavior/`](../src/BeyondNations.Core/behavior/) |
 | Market | Implemented | [`src/BeyondNations.Core/market/`](../src/BeyondNations.Core/market/) |
 | Crafting | Planned | — |
@@ -50,9 +50,27 @@ The player and every pawn carry an energy level that falls each tick by their ow
 Markets read the same table. A hungry pawn in a settlement first takes food from its own stall, if it owns one holding any, and otherwise buys food when some stall it can afford holds any; only when neither is possible does it leave to gather or hunt. Buying picks whichever food gives the most energy per coin at the market's current supply-based prices, and falls back to the next food when that one cannot be afforded.
 
 ## Building
-The building system creates and manages settlements. Players and pawns can found a settlement (50 wood, about ten trees) and build stalls within it (20 wood and 5 stone).
+The building system creates and manages settlements. Players and pawns can found a settlement (50 wood, about ten trees), build market stalls within it (20 wood and 5 stone), and put up buildings that make it grow.
 
-*Planned:* additional building types providing shelter and storage for a settlement's pawns.
+**Buildings.** Besides stalls, a settlement can hold up to 12 buildings, each paid for in wood *and* stone — the reason to quarry. Costs, limits and effects live in one table, `BuildingCatalog`:
+
+| Building | Cost | Limit | Effect |
+| --- | --- | --- | --- |
+| House | 20 wood, 15 stone | 6 | Room for 4 more residents. A settlement with no houses has room for 8. |
+| Storehouse | 10 wood, 30 stone | 2 | 2 more market stalls. |
+| Farm | 25 wood, 10 stone | 4 | Every 500 ticks, one apple into the merchant stall holding the fewest. With no merchant the harvest is lost. |
+
+The player builds with `K` (whatever `BuildingPlanner` says the settlement needs most that they can pay for) or from the command bar, which offers one button per affordable building. Any member of the owning nation may build. The cost is taken from what the builder carries first and then from the settlement's stockpile, the wood and stone that member pawns deliver under orders. A leader pawn whose market is full builds the same way when it has the materials. `BuildingPlanner` puts a house first when the settlement is within two of its resident cap, a farm when farms lag behind houses, and a storehouse when the market is full.
+
+**Residents.** A pawn calls a settlement home only if there is room: one that cannot find room in any of its nation's settlements stays homeless and keeps gathering until a house goes up. The simulation recounts residents every 50 ticks.
+
+**Tiers.** Two buildings make a Camp a Village, and five make it a Town. The tier and the resident count (`3/12 residents`) are shown on the settlement's nametag.
+
+**What a settlement looks like.** `SettlementLayout` draws a settlement from its state, with no randomness: a sandy plaza with a well and the nation's banner at the centre; stalls in a ring around the plaza, an owned stall with a nation-coloured awning and a crate of its goods, a stall for sale with a pale awning and a yellow sign; the stockpile as a log pile and a stone heap that rise with deliveries; buildings in a wider ring, in the order they were built; and, for a town, a palisade with four gates. The settlement redraws itself only when something it shows has changed. Pawns inside a settlement are still inside for every rule, but they stay visible and stroll about the plaza (`SettlementLife`) with their nametags hidden. The player also stays visible when entering.
+
+`--stage-settlement` (desktop and web) opens the game with such a town standing ahead of the player, for screenshots.
+
+*Planned:* walls and defence once there is conflict between nations; buildings that store food.
 
 ## Pawn
 The pawn system creates and manages pawns. Pawns populate the world and interact with each other, the player, and the world. On each tick a behavior calculator chooses a behavior for the pawn — gathering, wandering, trading, construction, or nation actions — and a behavior executor carries it out.

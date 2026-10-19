@@ -71,6 +71,16 @@ namespace beyondnations.desktop.ui {
                                 new BuildStallCommand(nationRepository, entityRepository).execute(player)));
                         }
 
+                        // one button per building the player can afford and the settlement has room for
+                        foreach (BuildingType buildingType in BuildingPlanner.getPriorityOrder(settlement)) {
+                            if (settlement.canAddBuilding(buildingType)
+                                    && BuildingCatalog.canAfford(player.getInventory(), settlement.getInventory(), buildingType)) {
+                                BuildingType typeToBuild = buildingType;
+                                commands.Add(new WorldCommand("Build " + BuildingCatalog.getDisplayName(buildingType), () =>
+                                    new BuildBuildingCommand(nationRepository, entityRepository).execute(player, typeToBuild)));
+                            }
+                        }
+
                         if (nation.getRole(player.getId()) == NationRole.SERF
                                 && player.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE
                                 && market.getNumStallsForSale() > 0) {

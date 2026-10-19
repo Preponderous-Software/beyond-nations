@@ -22,6 +22,8 @@ namespace beyondnations {
         // map of entity id to integer representing relationship strength
         private Dictionary<EntityId, int> relationships = new Dictionary<EntityId, int>();
         private EntityId currentSettlementId;
+        private Vector3 millTarget;
+        private bool hasMillTargetValue;
 
         // map of entity id to the tick it last talked with this pawn, so a
         // conversation only warms the relationship once per cooldown
@@ -215,6 +217,27 @@ namespace beyondnations {
 
         public void setOrder(NationOrder order) {
             this.order = order;
+        }
+
+        /**
+        * Where the pawn is strolling to while it mills about inside a
+        * settlement (SettlementLife). Means nothing outside one.
+        */
+        public bool hasMillTarget() {
+            return hasMillTargetValue;
+        }
+
+        public Vector3 getMillTarget() {
+            return millTarget;
+        }
+
+        public void setMillTarget(Vector3 millTarget) {
+            this.millTarget = millTarget;
+            this.hasMillTargetValue = true;
+        }
+
+        public void clearMillTarget() {
+            this.hasMillTargetValue = false;
         }
 
         public bool isCurrentlyInSettlement() {

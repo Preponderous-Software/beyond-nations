@@ -107,6 +107,9 @@ namespace beyondnations.web {
             if (options.TimeOfDay >= 0f) {
                 simulation.getTimeOfDay().setStartFraction(options.TimeOfDay);
             }
+            if (options.StageSettlement) {
+                SettlementShowcase.stage(simulation);
+            }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());

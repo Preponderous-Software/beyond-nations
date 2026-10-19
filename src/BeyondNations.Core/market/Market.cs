@@ -82,6 +82,13 @@ namespace beyondnations {
             return maxNumStalls;
         }
 
+        /**
+        * Room for more stalls, which is what a storehouse buys a settlement.
+        */
+        public void increaseMaxNumStalls(int amount) {
+            maxNumStalls += amount;
+        }
+
         public int getTotalNumItemsBought() {
             return totalNumItemsBought;
         }

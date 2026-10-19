@@ -245,6 +245,9 @@ namespace beyondnations.desktop.text {
 
                 Vector2 measured = font.MeasureString(label.text);
                 currentPenOffset = LabelBillboard.getCenteringOffset(measured);
+                // a label may ask to be drawn larger (a settlement's name); 0 means normal size
+                float labelScale = label.scale > 0f ? label.scale : 1f;
+                currentWorldUnitsPerPixel = LineHeightInWorldUnits * labelScale / font.LineHeight;
                 currentAnchor = label.position + new Vector3(0f, HeightAboveEntity, 0f);
 
                 FSColor tint = new FSColor(color.X, color.Y, color.Z, color.W * alpha);

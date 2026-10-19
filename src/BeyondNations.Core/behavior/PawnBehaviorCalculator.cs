@@ -84,6 +84,11 @@ namespace beyondnations {
                     }
                 }
                 else {
+                    // with the market full, grow the settlement if the materials are to hand
+                    if (BuildingPlanner.chooseNext(currentSettlement, pawn.getInventory()) != null) {
+                        return BehaviorType.CONSTRUCT_BUILDING;
+                    }
+
                     if (random.range(0, 100) < chanceToExitSettlement) {
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
@@ -186,7 +191,7 @@ namespace beyondnations {
                 }
             }
 
-            if (pawn.getHomeSettlementId() == null && numNationSettlements > 0) {
+            if (pawn.getHomeSettlementId() == null && numNationSettlements > 0 && nationHasRoomForResident(nation)) {
                 return BehaviorType.JOIN_RANDOM_SETTLEMENT;
             }
 
@@ -214,7 +219,11 @@ namespace beyondnations {
 
             if (role == NationRole.LEADER) {
                 // build a stall once the materials are in hand and there is room
-                return market.getNumStalls() < market.getMaxNumStalls() && Stall.canAffordToBuild(inventory);
+                if (market.getNumStalls() < market.getMaxNumStalls()) {
+                    return Stall.canAffordToBuild(inventory);
+                }
+                // with the market full, put up a building once it can be paid for
+                return BuildingPlanner.chooseNext(home, inventory) != null;
             }
             if (role == NationRole.MERCHANT) {
                 return inventory.containsAbundanceOfResources();
@@ -230,6 +239,16 @@ namespace beyondnations {
 
 
         // helper methods
+        private bool nationHasRoomForResident(Nation nation) {
+            foreach (EntityId settlementId in nation.getSettlements()) {
+                Settlement settlement = entityRepository.getEntity(settlementId) as Settlement;
+                if (settlement != null && settlement.hasRoomForResident()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private bool shouldPlantSapling(Pawn pawn) {
             if (pawn.getInventory().getNumItems(ItemType.SAPLING) == 0) {
                 return false;

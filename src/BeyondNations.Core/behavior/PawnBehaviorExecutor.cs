@@ -57,6 +57,9 @@ namespace beyondnations {
                 case BehaviorType.CONSTRUCT_STALL:
                     executeConstructStallBehavior(pawn);
                     break;
+                case BehaviorType.CONSTRUCT_BUILDING:
+                    executeConstructBuildingBehavior(pawn);
+                    break;
                 case BehaviorType.PURCHASE_STALL:
                     executePurchaseStallBehavior(pawn);
                     break;
@@ -307,10 +310,8 @@ namespace beyondnations {
                     Log.error("Pawn " + pawn + " has no settlement to go to.");
                     return;
                 }
-                homeSettlement.addCurrentlyPresentEntity(pawn.getId());
-                pawn.setCurrentSettlementId(homeSettlement.getId());
-                pawn.setVisible(false);
-                pawn.setTargetEntity(null);
+                // Inside, but still drawn: it mills about the town (SettlementLife).
+                SettlementLife.admit(pawn, homeSettlement);
                 pawn.setCurrentBehaviorType(BehaviorType.NONE);
                 return;
             }
@@ -330,6 +331,7 @@ namespace beyondnations {
             Settlement settlement = entityRepository.getEntity(pawn.getCurrentSettlementId()) as Settlement;
             settlement.removeCurrentlyPresentEntity(pawn.getId());
             pawn.clearCurrentSettlementId();
+            pawn.clearMillTarget();
             pawn.setPosition(settlement.getPosition() + new Vector3(random.range(-20, 20), 0, random.range(-20, 20)));
             pawn.setVisible(true);
             pawn.setColor(settlement.getColor());
@@ -480,12 +482,53 @@ namespace beyondnations {
                 return;
             }
 
-            // get random settlement
+            // get random settlement, falling back to any with room for another resident
             EntityId settlementId = nation.getRandomSettlementId();
             Settlement settlement = (Settlement) entityRepository.getEntity(settlementId);
+            if (settlement == null || !settlement.hasRoomForResident()) {
+                settlement = findSettlementWithRoom(nation);
+            }
+            if (settlement == null) {
+                Log.info("Pawn " + pawn + " found no settlement of " + nation.getName() + " with room for another resident.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
 
             // join settlement
-            pawn.setHomeSettlementId(settlementId);
+            pawn.setHomeSettlementId(settlement.getId());
+            settlement.setResidentCount(settlement.getResidentCount() + 1);
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        private Settlement findSettlementWithRoom(Nation nation) {
+            foreach (EntityId id in nation.getSettlements()) {
+                Settlement candidate = entityRepository.getEntity(id) as Settlement;
+                if (candidate != null && candidate.hasRoomForResident()) {
+                    return candidate;
+                }
+            }
+            return null;
+        }
+
+        /**
+        * A leader puts up whatever its settlement needs most that it can pay
+        * for (BuildingPlanner), paying in wood and stone.
+        */
+        private void executeConstructBuildingBehavior(Pawn pawn) {
+            EntityId currentSettlementId = pawn.getCurrentSettlementId();
+            if (currentSettlementId == null) {
+                Log.error("Pawn " + pawn + " is not in a settlement but is trying to construct a building.");
+                return;
+            }
+            Settlement settlement = (Settlement) entityRepository.getEntity(currentSettlementId);
+            BuildingType? type = BuildingPlanner.chooseNext(settlement, pawn.getInventory());
+            if (type == null) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            BuildingCatalog.deductCost(pawn.getInventory(), settlement.getInventory(), type.Value);
+            settlement.addBuilding(type.Value);
+            Log.info("Pawn " + pawn.getName() + " built a " + BuildingCatalog.getDisplayName(type.Value) + " in " + settlement.getName() + ".");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 

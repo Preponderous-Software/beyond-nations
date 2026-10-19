@@ -224,8 +224,10 @@ namespace beyondnationstests {
         public void testLeader_GoesHomeOnlyToBuildAStall() {
             // materials and room: go and build
             Assert.Equal(BehaviorType.GO_TO_HOME_SETTLEMENT, computeOutside(NationRole.LEADER, 0, 0, 30, 10));
-            // market full: no reason to walk in and idle
-            Assert.Equal(BehaviorType.GATHER_RESOURCES, computeOutside(NationRole.LEADER, 4, 0, 30, 10));
+            // market full but materials for a building (a farm): go and build that
+            Assert.Equal(BehaviorType.GO_TO_HOME_SETTLEMENT, computeOutside(NationRole.LEADER, 4, 0, 30, 10));
+            // market full and too little stone for any building: no reason to walk in and idle
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, computeOutside(NationRole.LEADER, 4, 0, 30, 5));
             // short of stone: keep gathering
             Assert.Equal(BehaviorType.GATHER_RESOURCES, computeOutside(NationRole.LEADER, 0, 0, 30, 0));
         }

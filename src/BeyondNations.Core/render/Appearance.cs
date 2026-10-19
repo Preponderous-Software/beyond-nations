@@ -48,6 +48,8 @@ namespace beyondnations {
     public class Appearance {
         private readonly List<AppearancePart> parts = new List<AppearancePart>();
         private string label;
+        private Vector3 labelOffset = Vector3.Zero;
+        private float labelScale = 1f;
 
         public Appearance() {
         }
@@ -63,6 +65,15 @@ namespace beyondnations {
 
         public IReadOnlyList<AppearancePart> getParts() {
             return parts;
+        }
+
+        /**
+        * Drops every part, keeping the label. For something whose look is
+        * rebuilt from its state -- a settlement redraws itself when a stall or
+        * a building goes up -- rather than recoloured in place.
+        */
+        public void clearParts() {
+            parts.Clear();
         }
 
         /**
@@ -91,6 +102,31 @@ namespace beyondnations {
 
         public void setLabel(string label) {
             this.label = label;
+        }
+
+        /**
+        * Where the label hangs, relative to the thing's origin. Zero for
+        * everything one primitive tall; a settlement lifts its nametag above
+        * its banner so the name is not buried in the buildings.
+        */
+        public Vector3 getLabelOffset() {
+            return labelOffset;
+        }
+
+        public void setLabelOffset(Vector3 labelOffset) {
+            this.labelOffset = labelOffset;
+        }
+
+        /**
+        * How large the label is drawn, relative to a pawn's nametag. A
+        * settlement's name is larger, so it reads from across its own plaza.
+        */
+        public float getLabelScale() {
+            return labelScale;
+        }
+
+        public void setLabelScale(float labelScale) {
+            this.labelScale = labelScale;
         }
 
         public bool hasLabel() {
