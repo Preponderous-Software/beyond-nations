@@ -31,6 +31,10 @@ coverage*.xml
 # layout, not source. See #221.
 imgui.ini
 
+# The web smoke test's npm install and output
+node_modules/
+smoke-out/
+
 # Agent worktrees
 .claude/
 

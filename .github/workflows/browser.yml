@@ -1,0 +1,105 @@
+# Builds Beyond Nations for the browser (src/BeyondNations.Web: .NET 8
+# browser-wasm, AOT), smoke-tests it in headless Chromium on a desktop and a
+# phone profile, and, when enabled, deploys it to arcade as
+# https://beyond-nations.play.danielstephenson.dev
+#
+# The desktop build and its required "Build and test" check (ci.yml) do not
+# depend on anything here: BeyondNations.Web is not in BeyondNations.sln.
+name: Browser build
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+  push:
+    branches: ["develop"]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    name: Web build and smoke test (headless Chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install the wasm-tools workload
+        run: dotnet workload install wasm-tools
+
+      - name: Publish (browser-wasm, AOT)
+        run: |
+          start=$(date +%s)
+          dotnet publish src/BeyondNations.Web/BeyondNations.Web.csproj -c Release -o web-publish
+          echo "publish took $(( $(date +%s) - start )) s"
+
+      # The site is the published wwwroot. The .br copies are dropped: the
+      # page's loader fetches the .gz ones (webhost/loader.js) and the arcade
+      # serves files as they are.
+      - name: Assemble the site
+        run: |
+          mkdir -p web-site
+          cp -r web-publish/wwwroot/. web-site/
+          find web-site -name '*.br' -delete
+          test -s web-site/index.html
+          test -s web-site/main.js
+          test -s web-site/webhost/host.js
+          test -s web-site/_framework/dotnet.js
+          test -s web-site/_framework/dotnet.native.wasm
+          test -s web-site/_framework/dotnet.native.wasm.gz
+          grep -q 'danielstephenson.dev/play' web-site/index.html
+          echo "site: $(du -sh web-site | cut -f1) on disk"
+          echo "first load (gzip): $(cat web-site/_framework/*.gz | wc -c) bytes of runtime and assemblies"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright and Chromium
+        working-directory: src/BeyondNations.Web/smoke
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Smoke test (desktop, then iPhone 13 profile)
+        run: |
+          python3 -m http.server 8080 --bind 127.0.0.1 --directory web-site > http.log 2>&1 &
+          sleep 1
+          cd src/BeyondNations.Web/smoke
+          node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/desktop"
+          node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/phone" --phone
+
+      - name: Upload smoke screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-smoke
+          path: smoke-out/
+          if-no-files-found: ignore
+
+      - name: Write the deploy version
+        run: |
+          version=$(sed -n 's/.*Version = "\(.*\)";.*/\1/p' src/BeyondNations.Desktop/ui/GameVersion.cs)
+          echo "${version}+g${GITHUB_SHA::7}" > "$RUNNER_TEMP/arcade-version.txt"
+          cat "$RUNNER_TEMP/arcade-version.txt"
+
+      - name: Deploy to arcade
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && vars.ARCADE_ENABLED == 'true')
+        uses: Stephenson-Software/arcade-deploy@v1
+        with:
+          slug: beyond-nations
+          token: ${{ secrets.ARCADE_TOKEN }}
+          site-dir: web-site
+          version-file: ${{ runner.temp }}/arcade-version.txt

@@ -1,0 +1,92 @@
+<Project>
+
+  <!--
+    cimgui for WebAssembly.
+
+    ImGui.NET's managed bindings P/Invoke into "cimgui". On the desktop that is
+    the libcimgui.so / cimgui.dll inside the ImGui.NET package; the browser has
+    no shared libraries, so the same C sources are compiled here with the
+    Emscripten that the wasm-tools workload ships, archived as cimgui.a, and
+    linked statically into dotnet.native.wasm as a NativeFileReference (the
+    file name, "cimgui", is what DllImport("cimgui") resolves to).
+
+    The sources are the exact commits ImGui.NET 1.90.8.1 was built from
+    (ImGui.NET-nativebuild v1.90.8: cimgui 7c16d31, Dear ImGui docking
+    6d948ab, i.e. 1.90.8), with the same define cimgui's own CMakeLists sets.
+    A different Dear ImGui would not match the managed struct layouts.
+
+    Both archives are downloaded once, checked against their SHA-256 and
+    cached under obj/, like the Strata library in the desktop project.
+  -->
+
+  <PropertyGroup>
+    <CimguiCommit>7c16d31cdb9d2db3038b324fe967ffa76b02c8c4</CimguiCommit>
+    <CimguiSha256>006201b1f36f341172dfb6c23f961611888d9b72116d2d17ce16aa6c9ac5ce1c</CimguiSha256>
+    <DearImguiCommit>6d948ab47ecf984239af01434f3ed03808dbf188</DearImguiCommit>
+    <DearImguiSha256>f42149f072bc792cc63463da586fc65a8146e2f68e59471dbf3dd94a88bd010a</DearImguiSha256>
+    <CimguiCacheDir>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)cimgui/$(CimguiCommit)/</CimguiCacheDir>
+    <CimguiArchive>$(CimguiCacheDir)cimgui.a</CimguiArchive>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <NativeFileReference Include="$(CimguiArchive)" />
+  </ItemGroup>
+
+  <Target Name="BuildCimguiForWasm"
+          BeforeTargets="_PrepareForWasmBuildNative"
+          DependsOnTargets="_SetupEmscripten"
+          Condition="!Exists('$(CimguiArchive)')">
+
+    <PropertyGroup>
+      <_CimguiZip>$(CimguiCacheDir)cimgui-$(CimguiCommit).zip</_CimguiZip>
+      <_ImguiZip>$(CimguiCacheDir)imgui-$(DearImguiCommit).zip</_ImguiZip>
+      <_CimguiSrc>$(CimguiCacheDir)cimgui-$(CimguiCommit)/</_CimguiSrc>
+      <_ImguiSrc>$(CimguiCacheDir)imgui-$(DearImguiCommit)/</_ImguiSrc>
+      <_CimguiObj>$(CimguiCacheDir)obj/</_CimguiObj>
+      <_Emcc>$(EmscriptenUpstreamEmscriptenPath)emcc</_Emcc>
+      <_Emar>$(EmscriptenUpstreamEmscriptenPath)emar</_Emar>
+    </PropertyGroup>
+
+    <DownloadFile Condition="!Exists('$(_CimguiZip)')"
+                  SourceUrl="https://github.com/cimgui/cimgui/archive/$(CimguiCommit).zip"
+                  DestinationFolder="$(CimguiCacheDir)" DestinationFileName="cimgui-$(CimguiCommit).zip" />
+    <DownloadFile Condition="!Exists('$(_ImguiZip)')"
+                  SourceUrl="https://github.com/ocornut/imgui/archive/$(DearImguiCommit).zip"
+                  DestinationFolder="$(CimguiCacheDir)" DestinationFileName="imgui-$(DearImguiCommit).zip" />
+
+    <GetFileHash Files="$(_CimguiZip)" Algorithm="SHA256">
+      <Output TaskParameter="Hash" PropertyName="_CimguiHash" />
+    </GetFileHash>
+    <GetFileHash Files="$(_ImguiZip)" Algorithm="SHA256">
+      <Output TaskParameter="Hash" PropertyName="_ImguiHash" />
+    </GetFileHash>
+    <Delete Condition="'$(_CimguiHash)' != '$(CimguiSha256)'" Files="$(_CimguiZip)" />
+    <Error Condition="'$(_CimguiHash)' != '$(CimguiSha256)'"
+           Text="cimgui $(CimguiCommit) has SHA-256 $(_CimguiHash), expected $(CimguiSha256). The download was deleted." />
+    <Delete Condition="'$(_ImguiHash)' != '$(DearImguiSha256)'" Files="$(_ImguiZip)" />
+    <Error Condition="'$(_ImguiHash)' != '$(DearImguiSha256)'"
+           Text="Dear ImGui $(DearImguiCommit) has SHA-256 $(_ImguiHash), expected $(DearImguiSha256). The download was deleted." />
+
+    <Unzip SourceFiles="$(_CimguiZip)" DestinationFolder="$(CimguiCacheDir)" Condition="!Exists('$(_CimguiSrc)cimgui.cpp')" />
+    <Unzip SourceFiles="$(_ImguiZip)" DestinationFolder="$(CimguiCacheDir)" Condition="!Exists('$(_ImguiSrc)imgui.cpp')" />
+
+    <ItemGroup>
+      <_CimguiSource Include="$(_CimguiSrc)cimgui.cpp" />
+      <_CimguiSource Include="$(_ImguiSrc)imgui.cpp;$(_ImguiSrc)imgui_draw.cpp;$(_ImguiSrc)imgui_demo.cpp;$(_ImguiSrc)imgui_widgets.cpp;$(_ImguiSrc)imgui_tables.cpp" />
+      <_CimguiEnv Include="@(EmscriptenEnvVars)" />
+      <_CimguiEnv Include="EM_CACHE=$(EmscriptenCacheSdkCacheDir)" Condition="'$(EmscriptenCacheSdkCacheDir)' != ''" />
+      <_CimguiEnv Include="EM_FROZEN_CACHE=True" />
+    </ItemGroup>
+
+    <MakeDir Directories="$(_CimguiObj)" />
+    <!-- cimgui.cpp includes "./imgui/imgui.h": point that at the Dear ImGui tree. -->
+    <Copy SourceFiles="$(_ImguiSrc)imgui.h;$(_ImguiSrc)imgui_internal.h;$(_ImguiSrc)imconfig.h;$(_ImguiSrc)imstb_rectpack.h;$(_ImguiSrc)imstb_textedit.h;$(_ImguiSrc)imstb_truetype.h"
+          DestinationFolder="$(_CimguiSrc)imgui" />
+    <Exec Command="&quot;$(_Emcc)&quot; -c -O2 -std=c++11 -fno-exceptions -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS=1 &quot;-DIMGUI_IMPL_API=extern \&quot;C\&quot;&quot; -I&quot;$(_CimguiSrc)&quot; -I&quot;$(_ImguiSrc)&quot; &quot;%(_CimguiSource.Identity)&quot; -o &quot;$(_CimguiObj)%(_CimguiSource.Filename).o&quot;"
+          EnvironmentVariables="@(_CimguiEnv)" />
+    <Exec Command="&quot;$(_Emar)&quot; rcs &quot;$(CimguiArchive)&quot; &quot;$(_CimguiObj)cimgui.o&quot; &quot;$(_CimguiObj)imgui.o&quot; &quot;$(_CimguiObj)imgui_draw.o&quot; &quot;$(_CimguiObj)imgui_demo.o&quot; &quot;$(_CimguiObj)imgui_widgets.o&quot; &quot;$(_CimguiObj)imgui_tables.o&quot;"
+          EnvironmentVariables="@(_CimguiEnv)" />
+    <Message Importance="high" Text="cimgui for wasm: $(CimguiArchive)" />
+  </Target>
+
+</Project>
