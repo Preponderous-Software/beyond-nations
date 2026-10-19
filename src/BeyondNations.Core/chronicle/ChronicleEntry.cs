@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 
 namespace beyondnations {
@@ -78,6 +79,33 @@ namespace beyondnations {
 
         public override string ToString() {
             return getLine();
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("sequence", sequence);
+            writer.writeEnum("eventType", eventType);
+            writer.write("tick", tick);
+            writer.write("day", day);
+            writer.write("partOfDay", partOfDay);
+            writer.write("text", text);
+            writer.beginArray("nationIds");
+            foreach (NationId id in nationIds) {
+                writer.writeValue(id == null ? null : id.getGuid().ToString("N"));
+            }
+            writer.endArray();
+            writer.writeIdList("entityIds", entityIds);
+        }
+
+        internal static ChronicleEntry load(JsonElement element, SaveReader reader) {
+            List<NationId> nations = new List<NationId>();
+            foreach (JsonElement id in SaveReader.property(element, "nationIds").EnumerateArray()) {
+                nations.Add(reader.nationId(id));
+            }
+            return new ChronicleEntry(SaveReader.getInt(element, "sequence"), SaveReader.getEnum<EventType>(element, "eventType"),
+                SaveReader.getInt(element, "tick"), SaveReader.getInt(element, "day"), SaveReader.getString(element, "partOfDay"),
+                SaveReader.getString(element, "text"), nations, reader.getIdList(element, "entityIds"));
         }
     }
 }

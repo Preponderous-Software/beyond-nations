@@ -76,6 +76,29 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
         ui.status?.(lastStatus);
       },
       ready() { ui.ready?.(); },
+      // Key-value storage for saves. localStorage can be missing or throw
+      // (private windows, storage turned off, quota), so every call is
+      // guarded and a failure comes back as a value, never an exception.
+      storageKeys(prefix) {
+        try {
+          const keys = [];
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith(prefix)) keys.push(key.slice(prefix.length));
+          }
+          return JSON.stringify(keys);
+        } catch (_) { return "[]"; }
+      },
+      storageGet(key) {
+        try { return localStorage.getItem(key); } catch (_) { return null; }
+      },
+      storageSet(key, value) {
+        try { localStorage.setItem(key, value); return ""; }
+        catch (e) { return (e && e.name === "QuotaExceededError") ? "the browser's storage for this site is full" : String(e && e.message || e); }
+      },
+      storageRemove(key) {
+        try { localStorage.removeItem(key); } catch (_) { /* nothing to do */ }
+      },
     },
   });
 
@@ -85,6 +108,14 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
   const host = exportsName.split(".").reduce((scope, key) => scope?.[key], exports);
   if (!host) throw new Error("webhost: " + exportsName + " is not exported by " + config.mainAssemblyName);
   const input = attachInput(canvas, host, ui.inputHooks || {});
+  // A tab being hidden is the last moment a page can count on: closing it,
+  // switching away on a phone, or the browser discarding it all pass through
+  // here, so the game is told and can save.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden" && host.Hidden) {
+      try { host.Hidden(); } catch (e) { console.error(e); }
+    }
+  });
 
   await runtime.runMain(config.mainAssemblyName, []);
 

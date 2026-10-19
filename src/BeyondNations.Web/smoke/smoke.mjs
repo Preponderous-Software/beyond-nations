@@ -4,7 +4,8 @@
 //
 // Loads the page, waits for the title screen, presses a key (main menu),
 // clicks Start, waits for the world to be drawn and checks that the canvas is
-// not blank, then fails on any console error, page error or failed request.
+// not blank, saves from the pause menu and continues from the main menu,
+// then fails on any console error, page error or failed request.
 // Writes title.png, menu.png, world.png and result.json to <output-dir>.
 //
 // --phone runs the same page as an iPhone 13 (touch, no hover) and checks
@@ -168,6 +169,37 @@ try {
     await page.screenshot({ path: path.join(out, "crafting.png") });
     await page.keyboard.press("Escape");
     await waitFor((s) => s.screen === "WORLD", "Escape to close the crafting screen", 10000);
+
+    // Saves (docs/SAVES.md): Escape pauses, Save writes the world to
+    // localStorage, Main Menu (which saves again) offers Continue, and
+    // Continue brings the same world back at the tick it was saved on.
+    // PauseScreen's column starts at the centre, MainMenuScreen's 25 px
+    // below it; buttons are 40 px tall with 12 px between them.
+    await page.waitForTimeout(300);
+    await page.keyboard.press("Escape");
+    await waitFor((s) => s.screen === "PAUSE", "Escape to pause", 10000);
+    await page.waitForTimeout(300);
+    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 52 + 20);
+    const saved = await waitFor((s) => s.savedWorlds >= 1 && s.saveFeedback.startsWith("Saved"), "Save on the pause screen", 20000);
+    await page.waitForTimeout(200);
+    await page.screenshot({ path: path.join(out, "pause-saved.png") });
+    result.save = {
+      feedback: saved.saveFeedback,
+      tick: saved.tick,
+      keys: await page.evaluate(() => Object.keys(localStorage).filter((k) => k.startsWith("beyond-nations/saves/"))
+        .map((k) => k + " " + localStorage.getItem(k).length)),
+    };
+    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 3 * 52 + 20);
+    await waitFor((s) => s.screen === "MAIN_MENU", "Main Menu from the pause screen", 10000);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(out, "menu-with-saves.png") });
+    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 25 + 52 + 20);
+    const resumed = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "Continue to load the saved world", 20000);
+    result.save.resumedAtTick = resumed.tick;
+    if (resumed.tick < saved.tick || resumed.tick > saved.tick + 300) {
+      throw new Error("Continue resumed at tick " + resumed.tick + ", not the saved tick " + saved.tick);
+    }
+    await waitFor((s) => s.frames >= resumed.frames + 30, "30 frames of the loaded world");
     result.framesSinceStart = (await status()).frames - startFrames;
   }
 

@@ -9,6 +9,8 @@ namespace beyondnations {
         INVENTORY,
         CONTROLS,
         NATIONS,
-        CRAFTING
+        CRAFTING,
+        // the list of saved worlds, reached from the main menu (docs/SAVES.md)
+        LOAD
     }
 }

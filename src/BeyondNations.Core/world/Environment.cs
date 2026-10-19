@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -109,6 +110,33 @@ namespace beyondnations {
             }
             int randomIndex = random.range(0, chunks.Count);
             return chunks[randomIndex];
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("id", id.getGuid());
+            writer.writeStream("random", random);
+            writer.beginArray("chunks");
+            foreach (Chunk chunk in chunks) {
+                writer.beginObject();
+                chunk.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            id = new EnvironmentId(SaveReader.getGuid(element, "id"));
+            random = reader.stream(SaveReader.property(element, "random"));
+            List<Chunk> loaded = new List<Chunk>();
+            foreach (JsonElement chunk in SaveReader.property(element, "chunks").EnumerateArray()) {
+                loaded.Add(Chunk.load(chunk, reader));
+            }
+            if (loaded.Count == 0) {
+                throw new SaveFormatException("a world with no land");
+            }
+            chunks = loaded;
         }
     }
 }

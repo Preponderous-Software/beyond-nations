@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -319,6 +320,62 @@ namespace beyondnations {
             else {
                 return "(?)";
             }
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.writeStream("random", random);
+            writer.write("speed", speed);
+            writer.write("nationId", nationId);
+            writer.write("homeSettlementId", homeSettlementId);
+            writer.write("targetEntity", targetEntity == null ? null : targetEntity.getId());
+            writer.writeEnum("behavior", currentBehaviorType);
+            writer.write("distanceThreshold", distanceThreshold);
+            writer.write("energy", energy);
+            writer.write("metabolism", metabolism);
+            writer.writeIdIntMap("relationships", relationships);
+            writer.write("currentSettlementId", currentSettlementId);
+            writer.write("millTarget", millTarget);
+            writer.write("hasMillTarget", hasMillTargetValue);
+            writer.writeIdIntMap("lastConversationTicks", lastConversationTicks);
+            if (order == null) {
+                writer.write("order", (string) null);
+            } else {
+                writer.beginObject("order");
+                order.save(writer);
+                writer.endObject();
+            }
+            writer.beginArray("traits");
+            foreach (PawnTrait trait in traits) {
+                writer.writeValue(trait.ToString());
+            }
+            writer.endArray();
+            writer.write("settler", settler);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            random = reader.stream(SaveReader.property(element, "random"));
+            speed = SaveReader.getInt(element, "speed");
+            nationId = reader.getNationId(element, "nationId");
+            homeSettlementId = reader.getEntityId(element, "homeSettlementId");
+            targetEntity = reader.entity(SaveReader.property(element, "targetEntity"));
+            currentBehaviorType = SaveReader.getEnum<BehaviorType>(element, "behavior");
+            distanceThreshold = SaveReader.getInt(element, "distanceThreshold");
+            energy = SaveReader.getFloat(element, "energy");
+            metabolism = SaveReader.getFloat(element, "metabolism");
+            reader.readIdIntMap(element, "relationships", relationships);
+            currentSettlementId = reader.getEntityId(element, "currentSettlementId");
+            millTarget = SaveReader.getVector3(element, "millTarget");
+            hasMillTargetValue = SaveReader.getBool(element, "hasMillTarget");
+            reader.readIdIntMap(element, "lastConversationTicks", lastConversationTicks);
+            JsonElement savedOrder = SaveReader.property(element, "order");
+            order = savedOrder.ValueKind == JsonValueKind.Null ? null : NationOrder.load(savedOrder, reader);
+            traits = new List<PawnTrait>();
+            foreach (JsonElement trait in SaveReader.property(element, "traits").EnumerateArray()) {
+                traits.Add(SaveReader.toEnum<PawnTrait>(trait));
+            }
+            settler = SaveReader.getBool(element, "settler");
         }
     }
 }

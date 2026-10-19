@@ -99,6 +99,23 @@ namespace beyondnations.web.host {
         /** The first frame has been drawn: the page hides its loading panel. */
         [JSImport("page.ready", Module)]
         public static partial void ready();
+
+        // --- storage (saves) ---
+
+        /** Every key starting with prefix, prefix removed, as a JSON array of strings. */
+        [JSImport("page.storageKeys", Module)]
+        public static partial string storageKeys(string prefix);
+
+        /** The value stored under key, or null. */
+        [JSImport("page.storageGet", Module)]
+        public static partial string storageGet(string key);
+
+        /** Stores a value; "" on success, otherwise why it could not. */
+        [JSImport("page.storageSet", Module)]
+        public static partial string storageSet(string key, string value);
+
+        [JSImport("page.storageRemove", Module)]
+        public static partial void storageRemove(string key);
     }
 
     /**
@@ -130,6 +147,9 @@ namespace beyondnations.web.host {
 
         /** The page lost focus: every key and button is up. */
         void focusLost();
+
+        /** The page is being hidden (tab closed, switched away, phone locked). */
+        void pageHidden();
     }
 
     /**
@@ -184,5 +204,8 @@ namespace beyondnations.web.host {
 
         [JSExport]
         public static void FocusLost() { game?.focusLost(); }
+
+        [JSExport]
+        public static void Hidden() { game?.pageHidden(); }
     }
 }

@@ -55,7 +55,9 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | --- | --- |
 | `ticks-per-second=N` | simulation rate (default 50) |
 | `seed=N` | world seed |
-| `start-screen=title\|main-menu\|config\|world\|pause\|inventory` | first screen |
+| `start-screen=title\|main-menu\|config\|world\|pause\|inventory\|load` | first screen |
+| `continue` | open in the most recently saved world |
+| `no-saves` | do not save or offer saved worlds this run |
 | `render-distance=N` | starting render distance |
 | `time-of-day=F` | starting time of day, 0 to 1 |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
@@ -64,6 +66,16 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 Anything unknown or malformed is dropped with a console warning. (On the
 desktop a bad option ends the process; in a page that would take the runtime
 down with it, so nothing unusable reaches `GameOptions.parse`.)
+
+### Saves
+
+Worlds are saved to the browser's `localStorage`, under keys starting
+`beyond-nations/saves/`, gzipped and base64-encoded (the arcade's games share
+one origin and its roughly 5 MB of storage). The game autosaves every couple
+of minutes of play, when the player leaves the world, and when the tab is
+hidden. Private windows and browsers with site data turned off may not keep
+them; a save that cannot be written says so on the pause screen. See
+[SAVES.md](./SAVES.md).
 
 ## Usage reporting: off
 

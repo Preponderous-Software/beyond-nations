@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 
@@ -136,6 +137,54 @@ namespace beyondnations {
         public bool isOnAmbitions() {
             Objective current = getCurrent();
             return current != null && current.isAmbition();
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /**
+        * The objectives themselves are code (ObjectiveCatalog): the arc is
+        * fixed and the n-th ambition is a function of n, so a save holds where
+        * the player is in the list and rebuilds the list from the catalog.
+        */
+        internal void save(SaveWriter writer) {
+            writer.write("currentIndex", currentIndex);
+            writer.write("ambitionsGenerated", ambitionsGenerated);
+            writer.write("objectiveCount", objectives.Count);
+            writer.write("currentId", getCurrent() == null ? null : getCurrent().getId());
+            writer.beginObject("currentProgress");
+            currentProgress.save(writer);
+            writer.endObject();
+            writer.write("evaluatedOnce", evaluatedOnce);
+            writer.write("lastCompleted", lastCompleted == null ? -1 : objectives.IndexOf(lastCompleted));
+            writer.write("lastCompletedTick", lastCompletedTick);
+        }
+
+        internal void load(JsonElement element) {
+            int savedAmbitions = SaveReader.getInt(element, "ambitionsGenerated");
+            while (ambitionsGenerated < savedAmbitions && ambitionFactory != null) {
+                Objective ambition = ambitionFactory(ambitionsGenerated);
+                if (ambition == null) {
+                    break;
+                }
+                ambitionsGenerated++;
+                objectives.Add(ambition);
+            }
+            if (objectives.Count != SaveReader.getInt(element, "objectiveCount")) {
+                throw new SaveFormatException("the save's objectives do not match this version's list");
+            }
+            currentIndex = SaveReader.getInt(element, "currentIndex");
+            if (currentIndex < 0 || currentIndex > objectives.Count) {
+                throw new SaveFormatException("the save's current objective is out of range");
+            }
+            string currentId = SaveReader.getString(element, "currentId");
+            if ((getCurrent() == null ? null : getCurrent().getId()) != currentId) {
+                throw new SaveFormatException("the save's current objective is not '" + currentId + "' in this version");
+            }
+            currentProgress = ObjectiveProgress.load(SaveReader.property(element, "currentProgress"));
+            evaluatedOnce = SaveReader.getBool(element, "evaluatedOnce");
+            int last = SaveReader.getInt(element, "lastCompleted");
+            lastCompleted = last >= 0 && last < objectives.Count ? objectives[last] : null;
+            lastCompletedTick = SaveReader.getInt(element, "lastCompletedTick");
         }
     }
 }

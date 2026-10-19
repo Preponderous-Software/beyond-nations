@@ -73,5 +73,15 @@ namespace beyondnations {
             generated.Add(name);
             return name;
         }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal List<string> getGenerated() {
+            return generated;
+        }
+
+        internal void restoreGenerated(List<string> names) {
+            generated = new List<string>(names);
+        }
     }
 }

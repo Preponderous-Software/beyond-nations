@@ -1,3 +1,4 @@
+using System.Text.Json;
 namespace beyondnations {
 
     /**
@@ -90,6 +91,25 @@ namespace beyondnations {
                 text += " \u00b7 " + secondLabel + " " + capped(secondCurrent, secondTarget) + "/" + secondTarget;
             }
             return text;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("complete", complete);
+            writer.write("label", label);
+            writer.write("current", current);
+            writer.write("target", target);
+            writer.write("secondLabel", secondLabel);
+            writer.write("secondCurrent", secondCurrent);
+            writer.write("secondTarget", secondTarget);
+        }
+
+        internal static ObjectiveProgress load(JsonElement element) {
+            return new ObjectiveProgress(SaveReader.getBool(element, "complete"), SaveReader.getString(element, "label"),
+                SaveReader.getInt(element, "current"), SaveReader.getInt(element, "target"),
+                SaveReader.getString(element, "secondLabel"), SaveReader.getInt(element, "secondCurrent"),
+                SaveReader.getInt(element, "secondTarget"));
         }
     }
 }

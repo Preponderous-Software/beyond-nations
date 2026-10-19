@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace beyondnations {
 
@@ -176,6 +177,49 @@ namespace beyondnations {
                 }
             }
             return total;
+        }
+    
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** Every slot in order, empty ones as null, and the wear on each tool. */
+        internal void save(SaveWriter writer) {
+            writer.beginArray("slots");
+            foreach (ItemSlot slot in slots) {
+                ItemStack stack = slot.getItemStack();
+                if (stack == null) {
+                    writer.getJson().WriteNullValue();
+                    continue;
+                }
+                writer.beginObject();
+                writer.writeEnum("type", stack.getItemType());
+                writer.write("quantity", stack.getQuantity());
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginArray("toolWear");
+            foreach (KeyValuePair<ItemType, int> entry in toolWear) {
+                writer.beginObject();
+                writer.writeEnum("tool", entry.Key);
+                writer.write("wear", entry.Value);
+                writer.endObject();
+            }
+            writer.endArray();
+        }
+
+        internal void load(JsonElement element) {
+            slots = new List<ItemSlot>();
+            foreach (JsonElement slot in SaveReader.property(element, "slots").EnumerateArray()) {
+                if (slot.ValueKind == JsonValueKind.Null) {
+                    slots.Add(new ItemSlot());
+                } else {
+                    slots.Add(new ItemSlot(new ItemStack(SaveReader.getEnum<ItemType>(slot, "type"), SaveReader.getInt(slot, "quantity"))));
+                }
+            }
+            toolWear.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "toolWear").EnumerateArray()) {
+                toolWear[SaveReader.getEnum<ItemType>(entry, "tool")] = SaveReader.getInt(entry, "wear");
+            }
         }
     }
 }

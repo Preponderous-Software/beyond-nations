@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -496,5 +497,299 @@ namespace beyondnations {
                         player.setVisible(true);
                     }
                 }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** The world's random streams, by the names a save uses for them. */
+        internal SaveStreams getStreams() {
+            SaveStreams streams = new SaveStreams();
+            streams.add(SaveStreams.Main, random);
+            streams.add(SaveStreams.SettlementLife, settlementLife.getRandom());
+            streams.add(SaveStreams.Traits, traitRandom);
+            streams.add(SaveStreams.Population, populationGrowth.getRandom());
+            return streams;
+        }
+
+        /**
+        * Writes the whole world into the body of a save. SaveGame wraps it in
+        * the header and checksum.
+        */
+        internal void save(SaveWriter writer, SaveStreams streams) {
+            writer.beginObject("config");
+            gameConfig.save(writer);
+            writer.endObject();
+            // The seed the world was actually built from, which is a fresh
+            // one when the config asked for 0.
+            writer.write("seed", random.getSeed());
+
+            writer.beginObject("time");
+            writer.write("totalTicks", tickCounter.getTotalTicks());
+            writer.write("ticksPerSecond", tickCounter.getTicksPerSecond());
+            writer.write("ticksPerDay", timeOfDay.getTicksPerDay());
+            writer.write("startFraction", timeOfDay.getStartFraction());
+            writer.endObject();
+
+            writer.beginObject("random");
+            foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {
+                writer.beginObject(stream.Key);
+                writer.write("seed", stream.Value.getSeed());
+                writer.beginArray("state");
+                foreach (int value in stream.Value.getState()) {
+                    writer.writeValue(value);
+                }
+                writer.endArray();
+                writer.endObject();
+            }
+            writer.endObject();
+
+            writer.beginObject("simulation");
+            writer.write("playerTerritory", playerTerritory);
+            writer.write("playerTerritoryKnown", playerTerritoryKnown);
+            writer.write("numPawnDeaths", numPawnDeaths);
+            writer.write("numPlayerDeaths", numPlayerDeaths);
+            writer.write("currentChunkX", worldGenerator.getCurrentChunkX());
+            writer.write("currentChunkZ", worldGenerator.getCurrentChunkZ());
+            writer.writeStringList("pawnNamesGenerated", pawnNameGenerator.getGenerated());
+            writer.writeStringList("nationNamesGenerated", nationNameGenerator.getGenerated());
+            writer.endObject();
+
+            writer.beginObject("environment");
+            environment.save(writer);
+            writer.endObject();
+
+            writer.write("playerId", player.getId());
+            writer.beginArray("entities");
+            foreach (Entity entity in entityRepository.getEntities()) {
+                writer.beginObject();
+                entity.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginArray("orphanEntities");
+            foreach (Entity entity in findOrphanEntities()) {
+                writer.beginObject();
+                entity.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+
+            writer.beginArray("nations");
+            foreach (Nation nation in nationRepository.getNations()) {
+                writer.beginObject();
+                nation.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginArray("orphanNations");
+            foreach (Nation nation in findOrphanNations()) {
+                writer.beginObject();
+                nation.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+
+            writer.beginObject("relations");
+            nationRepository.getRelations().save(writer);
+            writer.endObject();
+            writer.beginObject("diplomacy");
+            diplomacy.save(writer);
+            writer.endObject();
+            writer.beginObject("population");
+            populationGrowth.save(writer);
+            writer.endObject();
+            writer.beginObject("events");
+            eventRepository.save(writer);
+            writer.endObject();
+            writer.beginObject("objectives");
+            objectiveTracker.save(writer);
+            writer.endObject();
+            writer.beginObject("chronicle");
+            chronicle.save(writer);
+            writer.endObject();
+        }
+
+        /**
+        * Entities something still holds that the repository no longer does: a
+        * pawn's target that has been gathered and swept away (the pawn notices
+        * on its next step and lets go), or the player if it were ever removed.
+        * A save keeps them so the holder loads holding the same thing.
+        */
+        private List<Entity> findOrphanEntities() {
+            List<Entity> orphans = new List<Entity>();
+            HashSet<Entity> seen = new HashSet<Entity>(entityRepository.getEntities());
+            List<Entity> toVisit = new List<Entity>(entityRepository.getEntities());
+            if (seen.Add(player)) {
+                orphans.Add(player);
+                toVisit.Add(player);
+            }
+            for (int i = 0; i < toVisit.Count; i++) {
+                Pawn pawn = toVisit[i] as Pawn;
+                Entity target = pawn == null ? null : pawn.getTargetEntity();
+                if (target != null && seen.Add(target)) {
+                    orphans.Add(target);
+                    toVisit.Add(target);
+                }
+            }
+            return orphans;
+        }
+
+        /** Nations laying a siege that have since been disbanded. */
+        private List<Nation> findOrphanNations() {
+            List<Nation> orphans = new List<Nation>();
+            HashSet<Nation> seen = new HashSet<Nation>(nationRepository.getNations());
+            foreach (Nation nation in diplomacy.getBesiegingNations()) {
+                if (nation != null && seen.Add(nation)) {
+                    orphans.Add(nation);
+                }
+            }
+            return orphans;
+        }
+
+        /**
+        * Builds the world a save describes. A fresh Simulation is made from the
+        * saved settings, so every service is wired exactly as a new world's
+        * is, and then every piece of state is replaced with the saved one --
+        * the random streams last, since building the shells draws from them.
+        */
+        internal static Simulation load(JsonElement body) {
+            GameConfig config = new GameConfig();
+            JsonElement savedConfig = SaveReader.property(body, "config");
+            config.load(savedConfig);
+            config.setWorldSeed(SaveReader.getInt(body, "seed"));
+            if (config.getWorldSeed() == 0) {
+                // seed 0 means "pick one" to the constructor; a world really
+                // built from seed 0 is still rebuilt exactly, since every
+                // stream's state is restored below
+                Log.warning("save: world seed 0");
+            }
+            Simulation simulation = new Simulation(config);
+            simulation.restore(body);
+            return simulation;
+        }
+
+        private void restore(JsonElement body) {
+            SaveStreams streams = getStreams();
+            SaveReader reader = new SaveReader(streams, tickCounter);
+
+            JsonElement time = SaveReader.property(body, "time");
+            if (SaveReader.getInt(time, "ticksPerSecond") != tickCounter.getTicksPerSecond()) {
+                throw new SaveFormatException("the save's tick rate does not match its settings");
+            }
+            tickCounter.restoreTotalTicks(SaveReader.getInt(time, "totalTicks"));
+            float startFraction = SaveReader.getFloat(time, "startFraction");
+            if (float.IsNaN(startFraction) || startFraction < 0f || startFraction >= 1f) {
+                throw new SaveFormatException("the save's time of day is out of range");
+            }
+            timeOfDay.setStartFraction(startFraction);
+
+            // entities: every identity first, so references between them resolve
+            EntityId savedPlayerId = reader.getEntityId(body, "playerId");
+            List<KeyValuePair<Entity, JsonElement>> shells = new List<KeyValuePair<Entity, JsonElement>>();
+            List<Entity> inRepository = new List<Entity>();
+            bool playerFound = false;
+            foreach (string list in new string[] { "entities", "orphanEntities" }) {
+                foreach (JsonElement saved in SaveReader.property(body, list).EnumerateArray()) {
+                    Entity shell = createShell(saved);
+                    shell.loadIdentity(saved, reader);
+                    if (shell == player) {
+                        if (playerFound || !shell.getId().Equals(savedPlayerId)) {
+                            throw new SaveFormatException("the save holds more than one player");
+                        }
+                        playerFound = true;
+                    }
+                    reader.registerEntity(shell);
+                    shells.Add(new KeyValuePair<Entity, JsonElement>(shell, saved));
+                    if (list == "entities") {
+                        inRepository.Add(shell);
+                    }
+                }
+            }
+            if (!playerFound) {
+                throw new SaveFormatException("the save holds no player");
+            }
+
+            List<Nation> nations = new List<Nation>();
+            foreach (string list in new string[] { "nations", "orphanNations" }) {
+                foreach (JsonElement saved in SaveReader.property(body, list).EnumerateArray()) {
+                    Nation nation = Nation.load(saved, reader);
+                    reader.registerNation(nation);
+                    if (list == "nations") {
+                        nations.Add(nation);
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<Entity, JsonElement> shell in shells) {
+                shell.Key.load(shell.Value, reader);
+            }
+            entityRepository.restore(inRepository);
+            nationRepository.restore(nations);
+            nationRepository.getRelations().load(SaveReader.property(body, "relations"));
+
+            environment.load(SaveReader.property(body, "environment"), reader);
+
+            JsonElement state = SaveReader.property(body, "simulation");
+            playerTerritory = SaveReader.getString(state, "playerTerritory");
+            playerTerritoryKnown = SaveReader.getBool(state, "playerTerritoryKnown");
+            numPawnDeaths = SaveReader.getInt(state, "numPawnDeaths");
+            numPlayerDeaths = SaveReader.getInt(state, "numPlayerDeaths");
+            worldGenerator.restoreCurrentChunk(SaveReader.getInt(state, "currentChunkX"), SaveReader.getInt(state, "currentChunkZ"));
+            pawnNameGenerator.restoreGenerated(SaveReader.getStringList(state, "pawnNamesGenerated"));
+            nationNameGenerator.restoreGenerated(SaveReader.getStringList(state, "nationNamesGenerated"));
+
+            diplomacy.load(SaveReader.property(body, "diplomacy"), reader);
+            populationGrowth.load(SaveReader.property(body, "population"), reader);
+            eventRepository.load(SaveReader.property(body, "events"));
+            objectiveTracker.load(SaveReader.property(body, "objectives"));
+            chronicle.load(SaveReader.property(body, "chronicle"), reader);
+
+            JsonElement randoms = SaveReader.property(body, "random");
+            foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {
+                JsonElement saved = SaveReader.property(randoms, stream.Key);
+                if (SaveReader.getInt(saved, "seed") != stream.Value.getSeed()) {
+                    throw new SaveFormatException("the " + stream.Key + " random stream was seeded differently");
+                }
+                List<int> values = new List<int>();
+                foreach (JsonElement value in SaveReader.property(saved, "state").EnumerateArray()) {
+                    values.Add(value.GetInt32());
+                }
+                try {
+                    stream.Value.setState(values.ToArray());
+                } catch (System.ArgumentException e) {
+                    throw new SaveFormatException("the " + stream.Key + " random stream is corrupt", e);
+                }
+            }
+        }
+
+        /**
+        * An entity of the saved type, to be filled in by Entity.load. Whatever
+        * a constructor draws comes off a scratch stream, never the world's.
+        * The player is the one this Simulation already wired in everywhere.
+        */
+        private Entity createShell(JsonElement saved) {
+            EntityType type = SaveReader.getEnum<EntityType>(saved, "type");
+            RandomSource scratch = new RandomSource(0);
+            Vector3 origin = Vector3.Zero;
+            switch (type) {
+                case EntityType.PLAYER:
+                    return player;
+                case EntityType.PAWN:
+                    return new Pawn(origin, "", scratch);
+                case EntityType.TREE:
+                    return new AppleTree(origin, 5, scratch);
+                case EntityType.ROCK:
+                    return new Rock(origin);
+                case EntityType.SETTLEMENT:
+                    return new Settlement(origin, null, Rgba.White, "", scratch);
+                case EntityType.SAPLING:
+                    return new Sapling(origin, 3, scratch, tickCounter);
+                case EntityType.ITEM_DROP:
+                    return new ItemDrop(origin, new ItemStack(ItemType.COIN, 0));
+                case EntityType.CHICKEN:
+                    return new Chicken(origin, scratch);
+                default:
+                    throw new SaveFormatException("an entity of unknown type " + type);
+            }
+        }
     }
 }

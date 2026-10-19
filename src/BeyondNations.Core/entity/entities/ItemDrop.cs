@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -61,6 +62,17 @@ namespace beyondnations {
                 default:
                     return Rgba.White;
             }
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.writeEnum("itemType", itemStack.getItemType());
+            writer.write("quantity", itemStack.getQuantity());
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            itemStack = new ItemStack(SaveReader.getEnum<ItemType>(element, "itemType"), SaveReader.getInt(element, "quantity"));
         }
     }
 }

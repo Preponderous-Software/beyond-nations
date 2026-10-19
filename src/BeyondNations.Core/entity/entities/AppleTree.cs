@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Numerics;
 
 namespace beyondnations {
@@ -26,6 +27,16 @@ namespace beyondnations {
 
         public int getHeight() {
             return height;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.write("height", height);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            height = SaveReader.getInt(element, "height");
         }
     }
 }

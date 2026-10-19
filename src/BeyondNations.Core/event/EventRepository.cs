@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace beyondnations {
 
@@ -18,6 +19,8 @@ namespace beyondnations {
     */
     public class EventRepository {
         private Dictionary<EventType, List<Event>> events;
+        // events a loaded save no longer holds, counted so the totals stay whole
+        private Dictionary<EventType, int> droppedCounts = new Dictionary<EventType, int>();
         private List<Action<Event>> listeners = new List<Action<Event>>();
         private Dictionary<EventType, List<Action<Event>>> typedListeners = new Dictionary<EventType, List<Action<Event>>>();
 
@@ -103,11 +106,67 @@ namespace beyondnations {
             foreach (List<Event> list in events.Values) {
                 totalNumberOfEvents += list.Count;
             }
+            foreach (int dropped in droppedCounts.Values) {
+                totalNumberOfEvents += dropped;
+            }
             return totalNumberOfEvents;
         }
 
         public int getNumberOfEvents(EventType eventType) {
-            return events[eventType].Count;
+            int dropped;
+            droppedCounts.TryGetValue(eventType, out dropped);
+            return events[eventType].Count + dropped;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /**
+        * How many events of each type a save left behind. A save keeps only
+        * the most recent SavedEventsPerType of each, so the record does not
+        * grow without bound; the counts stay whole.
+        */
+        public const int SavedEventsPerType = 100;
+
+        internal void save(SaveWriter writer) {
+            writer.beginArray("types");
+            foreach (KeyValuePair<EventType, List<Event>> entry in events) {
+                List<Event> list = entry.Value;
+                int first = Math.Max(0, list.Count - SavedEventsPerType);
+                writer.beginObject();
+                writer.writeEnum("type", entry.Key);
+                writer.write("count", getNumberOfEvents(entry.Key));
+                writer.beginArray("recent");
+                for (int i = first; i < list.Count; i++) {
+                    writer.beginObject();
+                    writer.write("description", list[i].getDescription());
+                    writer.write("date", list[i].getDate().ToUniversalTime().Ticks);
+                    writer.endObject();
+                }
+                writer.endArray();
+                writer.endObject();
+            }
+            writer.endArray();
+        }
+
+        internal void load(JsonElement element) {
+            events.Clear();
+            droppedCounts.Clear();
+            foreach (JsonElement saved in SaveReader.property(element, "types").EnumerateArray()) {
+                EventType type = SaveReader.getEnum<EventType>(saved, "type");
+                List<Event> list = new List<Event>();
+                foreach (JsonElement e in SaveReader.property(saved, "recent").EnumerateArray()) {
+                    DateTime date = new DateTime(SaveReader.getLong(e, "date"), DateTimeKind.Utc).ToLocalTime();
+                    list.Add(new RestoredEvent(type, SaveReader.getString(e, "description"), date));
+                }
+                events[type] = list;
+                int dropped = SaveReader.getInt(saved, "count") - list.Count;
+                if (dropped < 0) {
+                    throw new SaveFormatException("an event count smaller than the events kept");
+                }
+                if (dropped > 0) {
+                    droppedCounts[type] = dropped;
+                }
+            }
         }
     }
 }

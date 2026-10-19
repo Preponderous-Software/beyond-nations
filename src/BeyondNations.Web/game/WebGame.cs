@@ -6,6 +6,7 @@ using beyondnations;
 using beyondnations.desktop;
 using beyondnations.desktop.input;
 using beyondnations.desktop.render;
+using beyondnations.desktop.ui;
 using beyondnations.web.host;
 
 namespace beyondnations.web {
@@ -47,6 +48,9 @@ namespace beyondnations.web {
         private readonly RenderCuller culler = new RenderCuller();
         private readonly WorldSnapshot snapshot = new WorldSnapshot();
         private Simulation simulation;
+        // saves go to localStorage (docs/SAVES.md); see LocalStorageSaveStorage
+        private readonly SaveSession saves;
+        private bool automatedExit;
 
         private readonly double fixedTimeStep;
         private double accumulator;
@@ -84,7 +88,8 @@ namespace beyondnations.web {
             }
 
             imgui = new ImGuiWebBackend(devicePixelRatio);
-            ui = new WebUiHost(imgui, screens, gameConfig);
+            saves = new SaveSession(new LocalStorageSaveStorage(), GameVersion.Version, !options.NoSaves);
+            ui = new WebUiHost(imgui, screens, gameConfig, saves);
             playerInputController.setDebugMode(options.DebugMode);
 
             if (options.FirstPerson) {
@@ -92,7 +97,15 @@ namespace beyondnations.web {
             }
 
             screens.goTo(options.StartScreen);
-            if (screens.isWorldVisible()) {
+            if (options.Continue) {
+                SaveSlotInfo latest = saves.latest();
+                if (latest != null) {
+                    loadWorld(latest.Slot);
+                }
+                if (simulation == null) {
+                    screens.goTo(ScreenType.MAIN_MENU);
+                }
+            } else if (screens.isWorldVisible()) {
                 createWorld();
             }
             Log.info("host ready: " + options.TicksPerSecond + " ticks per second");
@@ -120,7 +133,29 @@ namespace beyondnations.web {
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());
             }
             culler.setEnabled(!options.NoCulling);
+            saves.beginNewWorld(simulation, DateTime.UtcNow);
             Log.info("world created");
+        }
+
+        /** Game.loadWorld: the saved world replaces this one, or the reason is shown and nothing changes. */
+        private void loadWorld(string slot) {
+            Simulation loaded = saves.load(slot);
+            if (loaded == null) {
+                return;
+            }
+            simulation = loaded;
+            accumulator = 0;
+            culler.setEnabled(!options.NoCulling);
+            screens.goTo(ScreenType.WORLD);
+            Log.info("world loaded");
+        }
+
+        private void saveWorld() {
+            if (simulation == null) {
+                return;
+            }
+            bool saved = saves.save(simulation, false);
+            simulation.getPlayer().getStatus().update(saved ? "Game saved." : saves.getFeedback());
         }
 
         // --- IWebGame ---
@@ -169,6 +204,13 @@ namespace beyondnations.web {
             imgui.focusLost();
         }
 
+        /** A hidden tab may never come back, so the world is saved now. */
+        public void pageHidden() {
+            if (simulation != null && !stopped) {
+                saves.save(simulation, true);
+            }
+        }
+
         // --- Game.onUpdate ---
 
         private void update(double deltaTime) {
@@ -186,6 +228,7 @@ namespace beyondnations.web {
                 simulation.fixedUpdate((float) fixedTimeStep);
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;
+                saves.onFixedStep(simulation);
             }
         }
 
@@ -194,6 +237,7 @@ namespace beyondnations.web {
                 screenshotRequested = true;
             }
             if (options.ExitAfterFrames > 0 && framesRendered >= options.ExitAfterFrames) {
+                automatedExit = true;
                 close();
             }
         }
@@ -265,6 +309,17 @@ namespace beyondnations.web {
             if (ui.consumeStartRequest()) {
                 createWorld();
             }
+            string slotToLoad = ui.consumeLoadRequest();
+            if (slotToLoad != null) {
+                loadWorld(slotToLoad);
+            }
+            if (ui.consumeSaveRequest()) {
+                saveWorld();
+            }
+            if (ui.consumeLeaveRequest()) {
+                saveWorld();
+                saves.refresh();
+            }
             WebGpu.endFrame();
 
             if (screenshotRequested) {
@@ -308,6 +363,9 @@ namespace beyondnations.web {
             if (stopped) {
                 return;
             }
+            if (simulation != null && !automatedExit) {
+                saves.save(simulation, false);
+            }
             stopped = true;
             Log.info("shutting down after " + framesRendered + " frames and " + fixedStepsRun + " fixed steps");
             if (renderStats != null && renderStats.hasData()) {
@@ -328,6 +386,7 @@ namespace beyondnations.web {
             json.Append(",\"frames\":").Append(framesRendered);
             json.Append(",\"fixedSteps\":").Append(fixedStepsRun);
             json.Append(",\"world\":").Append(simulation != null ? "true" : "false");
+            json.Append(",\"tick\":").Append(simulation != null ? simulation.getTickCounter().getTotalTicks() : 0);
             json.Append(",\"renderer\":\"").Append(renderer.getName()).Append('"');
             json.Append(",\"drawCalls\":").Append(renderer.getDrawCallCount());
             json.Append(",\"instancesDrawn\":").Append(renderer.getInstancesDrawn());
@@ -340,8 +399,25 @@ namespace beyondnations.web {
             json.Append(",\"lookPitch\":").Append(look.getPitchDegrees().ToString("0.##", CultureInfo.InvariantCulture));
             json.Append(",\"camera\":\"").Append(camera.getMode().ToString()).Append('"');
             json.Append(",\"stopped\":").Append(stopped ? "true" : "false");
+            // saves (docs/SAVES.md), for the smoke test's save-and-continue check
+            json.Append(",\"savedWorlds\":").Append(saves.list().Count);
+            json.Append(",\"saveFeedback\":\"").Append(jsonEscape(saves.getFeedback() ?? "")).Append('"');
             json.Append('}');
             WebPage.status(json.ToString());
+        }
+
+        private static string jsonEscape(string text) {
+            StringBuilder escaped = new StringBuilder(text.Length);
+            foreach (char c in text) {
+                if (c == '"' || c == '\\') {
+                    escaped.Append('\\').Append(c);
+                } else if (c < ' ') {
+                    escaped.Append(' ');
+                } else {
+                    escaped.Append(c);
+                }
+            }
+            return escaped.ToString();
         }
 
         private static void applyStartingRenderDistance(Player player, int target) {

@@ -64,5 +64,15 @@ namespace beyondnations {
         public int getTicksPerSecond() {
             return ticksPerSecond;
         }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** The tick a loaded world resumes at. The wall-clock measurement starts afresh. */
+        internal void restoreTotalTicks(int totalTicks) {
+            if (totalTicks < 0) {
+                throw new SaveFormatException("a negative tick count");
+            }
+            this.totalTicks = totalTicks;
+        }
     }
 }

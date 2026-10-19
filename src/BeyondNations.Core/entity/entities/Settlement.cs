@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -261,6 +262,46 @@ namespace beyondnations {
                 label += "\n" + siegeText;
             }
             getAppearance().setLabel(label);
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.write("color", color);
+            writer.write("nationId", nationId);
+            writer.write("nationName", nationName);
+            writer.writeIdList("present", currentlyPresentEntities);
+            writer.beginObject("market");
+            market.save(writer);
+            writer.endObject();
+            writer.beginArray("buildings");
+            foreach (Building building in buildings) {
+                writer.beginObject();
+                writer.writeEnum("type", building.getType());
+                writer.write("slot", building.getSlot());
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.write("residentCount", residentCount);
+            writer.write("drawnLayoutSignature", drawnLayoutSignature);
+            writer.write("claimRadius", claimRadius);
+            writer.write("siegeText", siegeText);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            color = SaveReader.getRgba(element, "color");
+            nationId = reader.getNationId(element, "nationId");
+            nationName = SaveReader.getString(element, "nationName");
+            currentlyPresentEntities = reader.getIdList(element, "present");
+            market.load(SaveReader.property(element, "market"), reader);
+            buildings = new List<Building>();
+            foreach (JsonElement building in SaveReader.property(element, "buildings").EnumerateArray()) {
+                buildings.Add(new Building(SaveReader.getEnum<BuildingType>(building, "type"), SaveReader.getInt(building, "slot")));
+            }
+            residentCount = SaveReader.getInt(element, "residentCount");
+            drawnLayoutSignature = SaveReader.getLong(element, "drawnLayoutSignature");
+            claimRadius = SaveReader.getFloat(element, "claimRadius");
+            siegeText = SaveReader.getString(element, "siegeText");
         }
     }
 }

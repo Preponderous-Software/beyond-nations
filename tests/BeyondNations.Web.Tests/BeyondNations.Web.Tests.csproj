@@ -34,6 +34,7 @@
     <Compile Include="../../src/BeyondNations.Web/game/WebOptions.cs" Link="web/WebOptions.cs" />
     <Compile Include="../../src/BeyondNations.Web/game/BrowserKeys.cs" Link="web/BrowserKeys.cs" />
     <Compile Include="../../src/BeyondNations.Web/game/BrowserInputSource.cs" Link="web/BrowserInputSource.cs" />
+    <Compile Include="../../src/BeyondNations.Web/game/SaveStorageCodec.cs" Link="web/SaveStorageCodec.cs" />
   </ItemGroup>
 
 </Project>

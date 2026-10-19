@@ -1,0 +1,198 @@
+# Saves
+
+A Beyond Nations world can be saved and picked up again, on the desktop and
+in the browser. This document covers what a save holds, how it is checked,
+how the format is versioned and migrated, and where the files live.
+
+The rule above every other: **a save must never be broken or lost by the
+game**. A save that cannot be read is reported, never silently replaced, and
+the save before the latest is always kept.
+
+## Playing with saves
+
+- **Every world is saved on its own.** Starting a world gives it a slot; the
+  first save creates the file.
+- **Autosave** every 6,000 ticks (two minutes of play at the default 50 ticks a
+  second), and whenever the player leaves the world: *Main Menu* or *Quit* on
+  the pause screen, Escape on the main menu, or closing the window. The browser
+  build also saves when the tab is hidden (closed, switched away from, or a
+  phone locked), which is the last moment a page can count on.
+- **Save** on the pause screen saves at once, and the line under the buttons
+  says what happened: `Saved: Day 3 - Xland, 14:22.`, or why it could not.
+- **Continue** on the main menu loads the most recently saved world, and
+  **Load** lists every saved world, newest first, with its day, the player's
+  nation and when it was saved. A save that cannot be loaded is listed with
+  the reason (damaged, or made by a newer version) rather than hidden. Each
+  row has a **Delete** button that asks again (*Sure?*) before deleting.
+  Continue and Load only appear once there is something to load, and *Start*
+  stays the top button either way.
+- `--continue` (`?continue` in the browser) opens straight into the latest
+  save. `--no-saves` (`?no-saves`) turns saving off for a run: no autosave, no
+  save on quit, no Continue or Load. A run that ends because of
+  `--exit-after-frames` never saves on the way out.
+
+## Where saves live
+
+| Build | Location |
+| --- | --- |
+| Linux | `$XDG_DATA_HOME/BeyondNations/Saves`, or `~/.local/share/BeyondNations/Saves` |
+| Windows | `%AppData%\BeyondNations\Saves` |
+| Browser | `localStorage`, keys `beyond-nations/saves/<file name>` |
+
+Each world is `<slot>.bnsave`, with the save before it as `<slot>.bnsave.bak`.
+A slot is named after the world's seed and when it began:
+`world-42-20261018-142233` (a negative seed is written `m42`).
+
+In the browser every file is gzipped and base64-encoded behind a `gz:` marker
+(`SaveStorageCodec`), because the arcade serves every game from one origin and
+`localStorage` gives that origin about 5 MB in all. The bytes read back are
+exactly the bytes written, so the checksum below still holds. When storage is
+full the save fails with a message that says so and suggests deleting an old
+world from *Load*.
+
+## The file
+
+A save is UTF-8 text (in practice ASCII) in two parts:
+
+```
+{"magic":"beyond-nations-save","formatVersion":1,"gameVersion":"0.3.0-alpha","seed":42,"tick":2400,"day":1,"nation":null,"savedAt":"2026-10-18T12:00:00.0000000Z","bodyBytes":189217,"crc32":"b220a346"}
+{"formatVersion":1,"gameVersion":"0.3.0-alpha","config":{...},"seed":42,"time":{...},"random":{...},...}
+```
+
+- **Line 1, the header.** Enough to list the save (`day`, `nation`, `savedAt`)
+  and decide whether it can be read (`magic`, `formatVersion`) without reading
+  the world. `bodyBytes` and `crc32` describe everything after the newline.
+- **The body.** The whole world as one JSON object. Its own `formatVersion`
+  and `seed` must agree with the header's.
+
+`tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave` is a
+real version 1 save; open it to see every section. `.gitattributes` marks
+`*.bnsave` as binary, since a line-ending conversion would break the checksum.
+
+### What the body holds
+
+Everything the simulation is made of, so that a loaded world is the same world
+and goes on exactly as the saved one would have:
+
+| Section | Contents |
+| --- | --- |
+| `config` | every GameConfig setting the simulation reads (not the data directory, which is the machine's) |
+| `seed` | the seed the world was actually built from, even when the config asked for 0 |
+| `time` | total ticks, ticks per second and per day, and the time of day the world started at |
+| `random` | the full state of each of the four random streams (`main`, `settlementLife`, `traits`, `population`): seed, the generator's 56 ints and its two indices |
+| `simulation` | the death counters, the territory the player was last told about, the chunk world generation is centred on, and the names each name generator has handed out |
+| `environment` | every chunk: its id, coordinates, size and stream, and each location's id, colour and entity list |
+| `playerId`, `entities` | every entity in the repository, in repository order: id, name, position, velocity, visibility, deletion mark, inventory (every slot and every tool's wear), appearance (every part, colour and label), and what its kind adds -- a pawn's energy, raw metabolism, speed, nation, home, behaviour, target, mill target, relationships, conversation cooldowns, order, traits and settler flag; a settlement's colour, nation, residents, buildings, claim radius, siege text and its market with every stall; the player's yaw, speeds, energy, metabolism, relationships, nation, home and status line; a sapling's planting tick and growth time; a chicken's wander state; a drop's stack |
+| `orphanEntities` | entities something still holds that the repository no longer does, such as a pawn's target that was gathered and swept away the same tick; the pawn lets go on its next step, and must load holding it so that step happens the same way |
+| `nations`, `orphanNations` | every nation in founding order (id, name, colour, leader, members, roles, settlements, stream), and any disbanded nation still recorded as laying a siege |
+| `relations` | every pair's score, alliances and denunciations |
+| `diplomacy` | the diplomacy round and every siege's progress and besieger |
+| `population` | birth, immigration and settler cooldowns, the wanderer clock, the growth counters and the names growth has handed out |
+| `events` | for each event type, how many there have been and the most recent `SavedEventsPerType` (100): description and date |
+| `objectives` | where the player is in the objective list (current index, how many ambitions have been generated, the id of the current objective as a check), the progress shown on the HUD, and the last objective completed and when; the objectives themselves are code (`ObjectiveCatalog`) and are rebuilt to the saved length |
+| `chronicle` | every chronicle entry kept (up to 200: sequence, event type, tick, day, part of day, text, the nations and entities it names), how many have ever been recorded, nations founded, and the raids already told today |
+
+The player's meal and sale counters, which objectives read, are saved with the
+player.
+
+References between objects are by id (32 hex digits), and a load resolves
+every reference to the one object it names. That matters beyond tidiness:
+the simulation compares ids by reference in places (`stall.getOwnerId() ==
+pawn.getId()`), so two copies of one id would quietly break stall ownership.
+
+Floats are written in their shortest round-trip form, so every value reads
+back bit for bit. Enums are written by name, so adding a member never shifts
+the meaning of an old save.
+
+What is not saved, because it is not world state: the wall-clock measurement
+behind the debug overlay's ticks per second; and the live objects a fresh event
+points at (the pawn that died, the nation that formed). Loaded events keep
+their type, description and date (`RestoredEvent`), and the per-type counts
+stay whole even when older events are dropped.
+
+### Random streams
+
+`RandomSource` carries its own copy of the generator `System.Random` uses for a
+seeded instance (Knuth's subtractive generator), so its state can be read and
+written. It gives exactly the numbers `System.Random(seed)` does --
+`TestRandomSource` checks 20,000 draws of every kind for seven seeds -- so no
+seed's world changed when it was introduced.
+
+## Integrity
+
+Writing (`SaveSlots.write`):
+
+1. The new save is checked (header, length, checksum) before anything is written.
+2. If the slot holds a save made by a newer version, nothing is written and the
+   player is told; that save is left alone.
+3. The current save becomes the backup, but only if it is itself sound, so a
+   damaged save never pushes out a good backup.
+4. The new save is written to a temporary file, flushed to disk (`fsync`), and
+   renamed over the old one. A crash at any point leaves the old save intact.
+5. The written file is read back and compared byte for byte.
+
+Reading (`SaveGame.decode`, `SaveSlots.load`):
+
+- Not a save, damaged (wrong length, checksum mismatch), from a newer format,
+  or a well-formed file whose world cannot be built: a `SaveFormatException`
+  with a message for the player. Never a crash, and never a half-built world.
+- A damaged save falls back to its backup, and the player is told the latest
+  save was damaged and the one before it was loaded.
+- Loading never writes anything.
+
+## Versioning and migration
+
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 1.
+
+- **Any change to what a save holds bumps the version**, including adding a
+  section. A new section in an old save would otherwise be silently dropped by
+  an older build that loaded it and saved again.
+- **Every bump adds a migration step** to `SaveMigrations`: a function from the
+  body of version N to the body of version N + 1 that sets `formatVersion`.
+  Old saves are read by running every step from their version up, then
+  decoding the result exactly as a save written today. For a new section the
+  step is only "add it, empty".
+- **Steps are never edited or removed once released**, and every version gets a
+  fixture: when the version is current, run the tests once with
+  `BN_WRITE_SAVE_FIXTURE=1` and commit the new `vN-seed42-tick2400.bnsave`.
+  `TestSaveMigrations` fails if a version has no fixture or no step, and loads
+  every fixture and plays it on.
+- **A save from a newer version is refused**, with a message saying so, and the
+  file is left as it is.
+
+For example, a new system with state of its own goes in a new body section,
+with format 2 and a 1 -> 2 step that adds the section empty (or with whatever
+a world that never had it should start with).
+
+## How it is tested
+
+- **The round trip** (`TestSaveRoundTrip`, the key gate). A world is run for N
+  ticks, saved, loaded into a fresh `Simulation`, and then the original and the
+  copy are run side by side for M more ticks. They must be identical straight
+  after the load and still identical after: `WorldComparer` walks every field
+  of every object reachable from both simulations (every float bit for bit,
+  every list in order, the same shape of shared references), and the
+  determinism fingerprint (`TestSimulationDeterminism`'s, extended) must match
+  too. It runs for seeds 42, 1, 7, 2026 and 9, from tick 0 to tick 15,000, and
+  at the moments most likely to hide a forgotten field: mid-siege (the capture
+  still lands on the same tick), mid-orders with crafted and worn tools,
+  objectives part-way through with a chronicle written, a pawn holding a target
+  that has been swept away, and a loaded world saved again.
+  Because `Guid.NewGuid()` ids are the one thing no seed reproduces, after
+  both worlds run on, ids from before the save must still be equal and ids made
+  since need only correspond one to one.
+- **Coverage** (`TestSaveCoverage`). Every field of every type a `Simulation`
+  can hold, found by reflection, must be listed in `SaveCoverage` as saved,
+  derived (rebuilt on load, and still compared by the round trip) or transient.
+  A new field, or a new kind of entity, fails the test until someone decides
+  how it is saved.
+- **Integrity** (`TestSaveIntegrity`, `TestSaveSlots`): flipped bytes, truncated
+  files, foreign files, newer versions, header and body that disagree, a world
+  that checks out but cannot be built; backups, fallback to the backup, the
+  newer-version slot left alone, atomic writes.
+- **Migration** (`TestSaveMigrations`): the committed v1 fixture loads, plays
+  1,500 ticks on and saves again; the migration chain runs steps in order and
+  refuses a step that does not stamp its version.
+- **The browser** (`smoke.mjs`): after playing, the smoke test pauses, presses
+  Save, checks the save reached `localStorage`, goes to the main menu and
+  presses Continue, and checks the world comes back at the tick it was saved.

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -48,6 +49,10 @@ namespace beyondnations {
         public const int SETTLER_COOLDOWN_TICKS = 9000;
 
         private readonly RandomSource random;
+
+        internal RandomSource getRandom() {
+            return random;
+        }
         private readonly PawnNameGenerator nameGenerator;
         private readonly EntityRepository entityRepository;
         private readonly NationRepository nationRepository;
@@ -362,6 +367,34 @@ namespace beyondnations {
         private static string getSurname(string name) {
             int space = name.LastIndexOf(' ');
             return space < 0 ? null : name.Substring(space + 1);
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.writeIdIntMap("lastBirthTicks", lastBirthTicks);
+            writer.writeIdIntMap("lastImmigrationTicks", lastImmigrationTicks);
+            writer.writeIdIntMap("lastSettlerTicks", lastSettlerTicks);
+            writer.write("numSettlers", numSettlers);
+            writer.write("numSecessions", numSecessions);
+            writer.write("lastWandererTick", lastWandererTick);
+            writer.write("numBirths", numBirths);
+            writer.write("numImmigrants", numImmigrants);
+            writer.write("numWanderers", numWanderers);
+            writer.writeStringList("namesGenerated", nameGenerator.getGenerated());
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            reader.readIdIntMap(element, "lastBirthTicks", lastBirthTicks);
+            reader.readIdIntMap(element, "lastImmigrationTicks", lastImmigrationTicks);
+            reader.readIdIntMap(element, "lastSettlerTicks", lastSettlerTicks);
+            numSettlers = SaveReader.getInt(element, "numSettlers");
+            numSecessions = SaveReader.getInt(element, "numSecessions");
+            lastWandererTick = SaveReader.getInt(element, "lastWandererTick");
+            numBirths = SaveReader.getInt(element, "numBirths");
+            numImmigrants = SaveReader.getInt(element, "numImmigrants");
+            numWanderers = SaveReader.getInt(element, "numWanderers");
+            nameGenerator.restoreGenerated(SaveReader.getStringList(element, "namesGenerated"));
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 
 namespace beyondnations {
@@ -71,6 +72,18 @@ namespace beyondnations {
 
         public void transferContentsFromEntity(Entity entity) {
             inventory.transferContentsOfInventory(entity.getInventory());
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("ownerId", ownerId);
+            writer.write("inventory", inventory);
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            ownerId = reader.getEntityId(element, "ownerId");
+            inventory = reader.getInventory(element, "inventory");
         }
     }
 }

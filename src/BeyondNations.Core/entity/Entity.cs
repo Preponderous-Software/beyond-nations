@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Numerics;
 
 namespace beyondnations {
@@ -106,6 +107,52 @@ namespace beyondnations {
 
         public void setInventory(Inventory inventory) {
             this.inventory = inventory;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /**
+        * Writes what every entity has, then what this kind of entity adds
+        * (saveState). The type is written first, since a load needs it to know
+        * what to build.
+        */
+        internal void save(SaveWriter writer) {
+            writer.writeEnum("type", type);
+            writer.write("id", id);
+            writer.write("name", name);
+            writer.write("markedForDeletion", markedForDeletion);
+            writer.write("visible", visible);
+            writer.write("position", position);
+            writer.write("velocity", velocity);
+            writer.write("inventory", inventory);
+            writer.write("appearance", appearance);
+            saveState(writer);
+        }
+
+        /**
+        * Loads in two steps, because entities refer to each other: first every
+        * entity's identity (loadIdentity) so references can resolve, then
+        * everything else (load).
+        */
+        internal void loadIdentity(JsonElement element, SaveReader reader) {
+            id = reader.getEntityId(element, "id");
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            name = SaveReader.getString(element, "name");
+            markedForDeletion = SaveReader.getBool(element, "markedForDeletion");
+            visible = SaveReader.getBool(element, "visible");
+            position = SaveReader.getVector3(element, "position");
+            velocity = SaveReader.getVector3(element, "velocity");
+            inventory = reader.getInventory(element, "inventory");
+            appearance = SaveReader.getAppearance(element, "appearance");
+            loadState(element, reader);
+        }
+
+        internal virtual void saveState(SaveWriter writer) {
+        }
+
+        internal virtual void loadState(JsonElement element, SaveReader reader) {
         }
     }
 }

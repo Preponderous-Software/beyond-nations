@@ -60,6 +60,17 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testEscapeLeavesTheLoadListForMainMenu_WithNoWorldBehindIt() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.LOAD);
+            Assert.False(screens.isWorldVisible());
+            Assert.False(screens.shouldAdvanceSimulation());
+
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.MAIN_MENU, screens.getCurrent());
+        }
+
+        [Fact]
         public void testEscapeOnMainMenuAsksToQuit() {
             ScreenState screens = new ScreenState();
             screens.goTo(ScreenType.MAIN_MENU);

@@ -1,3 +1,4 @@
+using System.Text.Json;
 namespace beyondnations {
 
     /**
@@ -60,6 +61,22 @@ namespace beyondnations {
         /** "gather 10 wood (4/10 delivered)" */
         public string describe() {
             return describeTask() + " (" + delivered + "/" + quantity + " delivered)";
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("nationId", nationId);
+            writer.writeEnum("itemType", itemType);
+            writer.write("quantity", quantity);
+            writer.write("delivered", delivered);
+        }
+
+        internal static NationOrder load(JsonElement element, SaveReader reader) {
+            NationOrder order = new NationOrder(reader.getNationId(element, "nationId"),
+                SaveReader.getEnum<ItemType>(element, "itemType"), SaveReader.getInt(element, "quantity"));
+            order.delivered = SaveReader.getInt(element, "delivered");
+            return order;
         }
     }
 }

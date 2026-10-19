@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Numerics;
 
 namespace beyondnations {
@@ -11,8 +12,8 @@ namespace beyondnations {
         // The total tick it was planted on, and how long it takes to grow in
         // simulated seconds. Growth is measured in ticks, not on the wall
         // clock, so a seed grows the same trees on every run (#272).
-        private readonly int plantedTick;
-        private readonly int growTime;
+        private int plantedTick;
+        private int growTime;
 
         public Sapling(Vector3 position, int height, RandomSource random, TickCounter tickCounter) : base(EntityType.SAPLING, "Sapling") {
             this.height = height;
@@ -44,6 +45,20 @@ namespace beyondnations {
         public bool isGrown() {
             long ticksSincePlanted = tickCounter.getTotalTicks() - plantedTick;
             return ticksSincePlanted > (long) growTime * tickCounter.getTicksPerSecond();
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.write("height", height);
+            writer.write("plantedTick", plantedTick);
+            writer.write("growTime", growTime);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            height = SaveReader.getInt(element, "height");
+            plantedTick = SaveReader.getInt(element, "plantedTick");
+            growTime = SaveReader.getInt(element, "growTime");
         }
     }
 }

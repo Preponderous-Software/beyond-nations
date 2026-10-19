@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -292,6 +293,52 @@ namespace beyondnations {
 
         public void recordMarketSale() {
             marketSales++;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.write("walkSpeed", walkSpeed);
+            writer.write("runSpeed", runSpeed);
+            writer.write("currentSpeed", currentSpeed);
+            writer.write("renderDistance", renderDistance);
+            writer.write("horizontalInput", horizontalInput);
+            writer.write("verticalInput", verticalInput);
+            writer.write("jumpRequested", jumpRequested);
+            writer.write("yaw", yaw);
+            writer.write("nationId", nationId);
+            writer.write("homeSettlementId", homeSettlementId);
+            writer.beginObject("status");
+            status.save(writer);
+            writer.endObject();
+            writer.write("autoWalk", autoWalk);
+            writer.write("energy", energy);
+            writer.write("metabolism", metabolism);
+            writer.writeIdIntMap("relationships", relationships);
+            writer.write("currentSettlementId", currentSettlementId);
+            writer.write("mealsEaten", mealsEaten);
+            writer.write("marketSales", marketSales);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            walkSpeed = SaveReader.getInt(element, "walkSpeed");
+            runSpeed = SaveReader.getInt(element, "runSpeed");
+            currentSpeed = SaveReader.getInt(element, "currentSpeed");
+            renderDistance = SaveReader.getInt(element, "renderDistance");
+            horizontalInput = SaveReader.getFloat(element, "horizontalInput");
+            verticalInput = SaveReader.getFloat(element, "verticalInput");
+            jumpRequested = SaveReader.getBool(element, "jumpRequested");
+            yaw = SaveReader.getFloat(element, "yaw");
+            nationId = reader.getNationId(element, "nationId");
+            homeSettlementId = reader.getEntityId(element, "homeSettlementId");
+            status.load(SaveReader.property(element, "status"));
+            autoWalk = SaveReader.getBool(element, "autoWalk");
+            energy = SaveReader.getFloat(element, "energy");
+            metabolism = SaveReader.getFloat(element, "metabolism");
+            reader.readIdIntMap(element, "relationships", relationships);
+            currentSettlementId = reader.getEntityId(element, "currentSettlementId");
+            mealsEaten = SaveReader.getInt(element, "mealsEaten");
+            marketSales = SaveReader.getInt(element, "marketSales");
         }
     }
 }
