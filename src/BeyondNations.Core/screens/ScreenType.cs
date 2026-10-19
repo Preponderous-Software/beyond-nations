@@ -7,6 +7,7 @@ namespace beyondnations {
         MAIN_MENU,
         CONFIG,
         INVENTORY,
-        CONTROLS
+        CONTROLS,
+        NATIONS
     }
 }

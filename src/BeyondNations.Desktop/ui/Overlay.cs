@@ -152,6 +152,17 @@ namespace beyondnations.desktop.ui {
             return clicked;
         }
 
+        /**
+        * Left-aligned text at (x, y) at a Unity-style font size, using the
+        * same calls textCentered does.
+        */
+        public static void textAtScaled(string text, float fontSize, float x, float y) {
+            ImGui.SetWindowFontScale(fontScaleFor(fontSize));
+            ImGui.SetCursorPos(new Vector2(x, y));
+            ImGui.TextUnformatted(text);
+            ImGui.SetWindowFontScale(1f);
+        }
+
         public static bool buttonAt(string label, float x, float y, float width, float height) {
             ImGui.SetCursorPos(new Vector2(x, y));
             return ImGui.Button(label, new Vector2(width, height));

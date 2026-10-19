@@ -123,6 +123,7 @@ namespace beyondnations.desktop.ui {
             }
 
             addPawnCommands(simulation, commands);
+            addDiplomacyCommands(simulation, commands);
 
             if (player.getInventory().getNumItems(ItemType.SAPLING) > 0 && !player.isCurrentlyInSettlement()) {
                 commands.Add(new WorldCommand("Plant Sapling", () =>
@@ -155,6 +156,39 @@ namespace beyondnations.desktop.ui {
             }
 
             return commands;
+        }
+
+        /**
+        * Standing in another nation's land, a leader can deal with it on the
+        * spot: a gift, an alliance, a denunciation. The same three are on the
+        * nations screen (O) for every nation.
+        */
+        private static void addDiplomacyCommands(Simulation simulation, List<WorldCommand> commands) {
+            Player player = simulation.getPlayer();
+            NationRepository nationRepository = simulation.getNationRepository();
+            if (!NationDiplomacy.playerLeads(player, nationRepository)) {
+                return;
+            }
+            Settlement claim = Territory.findClaimAt(simulation.getEntityRepository(), player.getPosition());
+            if (claim == null || claim.getNationId() == player.getNationId()) {
+                return;
+            }
+            Nation own = nationRepository.getNation(player.getNationId());
+            Nation owner = nationRepository.getNation(claim.getNationId());
+            if (owner == null) {
+                return;
+            }
+            Diplomacy diplomacy = simulation.getDiplomacy();
+            if (player.getInventory().getNumItems(ItemType.COIN) >= Diplomacy.PLAYER_GIFT_COINS) {
+                commands.Add(new WorldCommand("Gift " + owner.getName() + " " + Diplomacy.PLAYER_GIFT_COINS + " Coins", () =>
+                    new GiftNationCommand(nationRepository, diplomacy).execute(player, owner)));
+            }
+            if (!nationRepository.getRelations().isAllied(own, owner)) {
+                commands.Add(new WorldCommand("Propose Alliance to " + owner.getName(), () =>
+                    new ProposeAllianceCommand(nationRepository).execute(player, owner)));
+            }
+            commands.Add(new WorldCommand("Denounce " + owner.getName(), () =>
+                new DenounceNationCommand(nationRepository, diplomacy).execute(player, owner)));
         }
 
         /**

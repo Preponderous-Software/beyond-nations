@@ -55,6 +55,7 @@ namespace beyondnations {
                 return;
             }
             
+            Diplomacy.recordTrade(nationRepository, player.getNationId(), settlement);
             player.getStatus().update("You sold resources to " + stallOwner.getName() + ". Relationship increased to " + player.getRelationships()[stallOwnerId] + ".");
         }
     }

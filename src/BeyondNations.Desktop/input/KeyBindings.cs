@@ -36,6 +36,7 @@ namespace beyondnations.desktop.input {
         public static readonly Key BuildStall = Key.B;
         public static readonly Key BuildBuilding = Key.K;
         public static readonly Key ToggleInventory = Key.I;
+        public static readonly Key ToggleNations = Key.O;
         public static readonly Key ToggleAutoWalk = Key.Insert;
         public static readonly Key ToggleCameraView = Key.V;
         public static readonly Key IncreaseRenderDistance = Key.PageUp;

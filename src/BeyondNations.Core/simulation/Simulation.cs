@@ -34,6 +34,9 @@ namespace beyondnations {
         private PawnNameGenerator pawnNameGenerator;
         private NationNameGenerator nationNameGenerator;
         private SettlementLife settlementLife;
+        private Diplomacy diplomacy;
+        private string playerTerritory = null;
+        private bool playerTerritoryKnown = false;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -49,6 +52,9 @@ namespace beyondnations {
 
         // How often each settlement recounts who calls it home.
         private const int ResidentRecountTicks = 50;
+
+        // How often the player's position is checked against the borders.
+        private const int TerritoryCheckTicks = 10;
 
         public Simulation(GameConfig gameConfig) {
             this.gameConfig = gameConfig;
@@ -72,10 +78,12 @@ namespace beyondnations {
             environment = new Environment(gameConfig.getChunkSize(), gameConfig.getLocationScale(), entityRepository, random);
             worldGenerator = new WorldGenerator(environment, player, eventProducer, entityRepository, gameConfig, random, pawnNameGenerator);
             nationRepository = new NationRepository(random);
+            nationRepository.getRelations().setEventProducer(eventProducer);
             pawnBehaviorCalculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
             pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator, tickCounter);
             player.setMetabolism(gameConfig.getPlayerMetabolism());
             entityRepository.addEntity(player);
+            diplomacy = new Diplomacy(nationRepository, entityRepository, eventProducer, player);
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
             // Its own stream, so where pawns stroll in town never shifts the rest of a seeded world.
             settlementLife = new SettlementLife(new RandomSource(random.getSeed() ^ 0x5E771E));
@@ -94,6 +102,7 @@ namespace beyondnations {
         public Environment getEnvironment() { return environment; }
         public WorldGenerator getWorldGenerator() { return worldGenerator; }
         public NationRepository getNationRepository() { return nationRepository; }
+        public Diplomacy getDiplomacy() { return diplomacy; }
         public PawnNameGenerator getPawnNameGenerator() { return pawnNameGenerator; }
         public NationNameGenerator getNationNameGenerator() { return nationNameGenerator; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
@@ -296,6 +305,12 @@ namespace beyondnations {
                         }
                     }
 
+                    // nations: relations drift, pawn-led nations choose, hostility bites
+                    diplomacy.update(tickCounter.getTotalTicks());
+                    if (tickCounter.getTotalTicks() % TerritoryCheckTicks == 0) {
+                        announceBorderCrossing();
+                    }
+
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();
 
@@ -336,6 +351,37 @@ namespace beyondnations {
 
                     deleteEntitiesMarkedForDeletion();
                 }
+
+        /**
+        * Says so on the status line when the player walks from one nation's
+        * land into another's, or out into the wilds.
+        */
+        private void announceBorderCrossing() {
+            if (player.isCurrentlyInSettlement()) {
+                return;
+            }
+            Settlement claim = Territory.findClaimAt(entityRepository, player.getPosition());
+            string owner = claim == null ? null : claim.getNationName();
+            if (owner == playerTerritory && playerTerritoryKnown) {
+                return;
+            }
+            string left = playerTerritory;
+            playerTerritory = owner;
+            if (!playerTerritoryKnown) {
+                // where the player starts is not a crossing
+                playerTerritoryKnown = true;
+                return;
+            }
+            if (owner != null && player.getNationId() != null && claim.getNationId() == player.getNationId()) {
+                player.getStatus().update("You are back on your own land.");
+            }
+            else if (owner != null) {
+                player.getStatus().update("You enter the land of " + Territory.describeFor(player, entityRepository, nationRepository) + ".");
+            }
+            else if (left != null) {
+                player.getStatus().update("You leave the land of " + left + " for the wilds.");
+            }
+        }
 
         /**
         * Replaces Rigidbody (#220): gravity, the ground clamp and the jump

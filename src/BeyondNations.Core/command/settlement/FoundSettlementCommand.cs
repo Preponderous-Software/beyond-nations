@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace beyondnations {
@@ -35,6 +36,13 @@ namespace beyondnations {
                 return;
             }
 
+            // never inside another nation's land
+            string objection = Territory.getFoundingObjection(entityRepository, nationRepository, player.getPosition(), nation.getId());
+            if (objection != null) {
+                player.getStatus().update(objection + " Found your settlement outside its borders.");
+                return;
+            }
+
             // if another settlement within 200 units
             foreach (Entity entity in entityRepository.getEntities()) {
                 if (entity.getType() == EntityType.SETTLEMENT) {
@@ -54,8 +62,18 @@ namespace beyondnations {
             Settlement settlement = new Settlement(player.getPosition(), player.getNationId(), nation.getColor(), nation.getName(), random);
             entityRepository.addEntity(settlement);
             nationRepository.getNation(player.getNationId()).addSettlement(settlement.getId());
-            player.getStatus().update("Settlement founded.");
             player.setHomeSettlementId(settlement.getId());
+            List<Nation> offended = Territory.recordFounding(settlement, entityRepository, nationRepository);
+            if (offended.Count == 0) {
+                player.getStatus().update("Settlement founded.");
+            }
+            else {
+                List<string> names = new List<string>();
+                foreach (Nation neighbour in offended) {
+                    names.Add(neighbour.getName());
+                }
+                player.getStatus().update("Settlement founded. " + string.Join(" and ", names) + " resent a new settlement so near their land.");
+            }
         }
     }
 }

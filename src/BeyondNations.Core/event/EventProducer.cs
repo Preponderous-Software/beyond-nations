@@ -69,5 +69,23 @@ namespace beyondnations {
             eventRepository.addEvent(pawnRelationshipIncreaseEvent);
             Log.debug("Produced event: " + pawnRelationshipIncreaseEvent);
         }
+    
+        public void produceNationRelationChangeEvent(Nation nation1, Nation nation2, NationRelationState before, NationRelationState after) {
+            NationRelationChangeEvent e = new NationRelationChangeEvent(nation1, nation2, before, after);
+            eventRepository.addEvent(e);
+            Log.debug("Produced event: " + e);
+        }
+
+        public void produceNationRaidEvent(Nation raider, Nation victim, Settlement settlement, string loot) {
+            NationRaidEvent e = new NationRaidEvent(raider, victim, settlement, loot);
+            eventRepository.addEvent(e);
+            Log.debug("Produced event: " + e);
+        }
+
+        public void produceSettlementCaptureEvent(Settlement settlement, Nation from, Nation to) {
+            SettlementCaptureEvent e = new SettlementCaptureEvent(settlement, from, to);
+            eventRepository.addEvent(e);
+            Log.debug("Produced event: " + e);
+        }
     }
 }

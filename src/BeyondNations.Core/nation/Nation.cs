@@ -52,6 +52,11 @@ namespace beyondnations {
             return members.Contains(memberId);
         }
 
+        /** A copy of the member list, oldest first, safe to walk while members change. */
+        public List<EntityId> getMemberIds() {
+            return new List<EntityId>(members);
+        }
+
         public int getNumberOfMembers() {
             return members.Count;
         }

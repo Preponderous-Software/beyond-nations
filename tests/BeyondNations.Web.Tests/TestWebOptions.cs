@@ -26,6 +26,12 @@ namespace beyondnationstests.web {
         }
 
         [Fact]
+        public void theDiplomacyStageAndTheNationsScreenCanBeAskedFor() {
+            List<string> args = parse("?stage-diplomacy&start-screen=nations");
+            Assert.Equal(new[] { "--stage-diplomacy", "--start-screen", "nations" }, args);
+        }
+
+        [Fact]
         public void theParsedOptionsMatchTheQuery() {
             GameOptions options = GameOptions.parse(parse("?ticks-per-second=25&seed=7&start-screen=main-menu&first-person=1&no-labels=true&render-distance=60&time-of-day=0.25").ToArray());
             Assert.Equal(25, options.TicksPerSecond);

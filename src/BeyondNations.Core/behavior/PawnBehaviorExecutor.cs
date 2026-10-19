@@ -273,6 +273,11 @@ namespace beyondnations {
                 Log.error("Pawn " + pawn + " does not have enough wood to build a settlement but is trying to.");
                 return;
             }
+            // never inside another nation's land
+            if (Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null) {
+                pawn.setCurrentBehaviorType(BehaviorType.WANDER);
+                return;
+            }
             inventory.removeItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
 
             // create settlement
@@ -280,6 +285,7 @@ namespace beyondnations {
             nation.addSettlement(settlement.getId());
             entityRepository.addEntity(settlement);
             pawn.setHomeSettlementId(settlement.getId());
+            Territory.recordFounding(settlement, entityRepository, nationRepository);
             pawn.setCurrentBehaviorType(BehaviorType.WANDER);
         }
 

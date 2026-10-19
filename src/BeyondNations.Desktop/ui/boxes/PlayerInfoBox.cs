@@ -13,10 +13,19 @@ namespace beyondnations.desktop.ui.boxes {
     public class PlayerInfoBox : InfoBox {
         private readonly Player player;
         private readonly NationRepository nationRepository;
+        private readonly EntityRepository entityRepository;
 
-        public PlayerInfoBox(Player player, NationRepository nationRepository) : base("Player Info") {
+        public PlayerInfoBox(Player player, NationRepository nationRepository) : this(player, nationRepository, null) {
+        }
+
+        /**
+        * With the entity repository, the box also says whose land the player
+        * is standing in.
+        */
+        public PlayerInfoBox(Player player, NationRepository nationRepository, EntityRepository entityRepository) : base("Player Info") {
             this.player = player;
             this.nationRepository = nationRepository;
+            this.entityRepository = entityRepository;
         }
 
         public override List<string> getLines() {
@@ -32,6 +41,10 @@ namespace beyondnations.desktop.ui.boxes {
             else {
                 lines.Add("Nation: none");
                 lines.Add("Role: none");
+            }
+
+            if (entityRepository != null) {
+                lines.Add("Land: " + Territory.describeFor(player, entityRepository, nationRepository));
             }
 
             return lines;

@@ -52,6 +52,15 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testStartScreenAcceptsTheNationsScreen_AndStageDiplomacyIsAFlag() {
+            GameOptions options = GameOptions.parse(new string[] { "--start-screen", "nations", "--stage-diplomacy" });
+
+            Assert.Equal(ScreenType.NATIONS, options.StartScreen);
+            Assert.True(options.StageDiplomacy);
+            Assert.False(GameOptions.parse(new string[] { }).StageDiplomacy);
+        }
+
+        [Fact]
         public void testNoUsageReportingTurnsReportingOffForTheRun() {
             // run
             GameOptions defaults = GameOptions.parse(new string[] { });

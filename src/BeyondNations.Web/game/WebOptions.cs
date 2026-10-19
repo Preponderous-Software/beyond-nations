@@ -26,11 +26,11 @@ namespace beyondnations.web {
         };
 
         private static readonly HashSet<string> FlagOptions = new HashSet<string> {
-            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person",
+            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-diplomacy",
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {
-            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls" } },
+            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations" } },
         };
 
         /** Returns the argument list; warnings go to warn. */

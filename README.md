@@ -81,12 +81,13 @@ The following controls are available in the game:
 | `B` | Build stall |
 | `K` | Build the building your settlement needs most (house, storehouse or farm; costs wood and stone) |
 | `I` | Open / close the inventory screen (pauses the world) |
+| `O` | Open / close the nations screen: every nation, its size and its relation to yours; a leader can gift, propose an alliance or denounce from here (pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
 | `Right Mouse Button` (hold) + move the mouse | Look around |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
-| `Escape` | Pause / unpause; close the inventory screen; back out of a menu; quit from the main menu |
+| `Escape` | Pause / unpause; close the inventory or nations screen; back out of a menu; quit from the main menu |
 | `?` (`/` key) | Show every control (also the **? Controls** button on the HUD, pause screen and main menu) |
 | `F1` | Toggle debug mode (and the debug menu) |
 | `F2` | Generate nearby land *(debug mode only)* |
@@ -115,6 +116,19 @@ Buildings cost wood **and stone**, so quarrying matters. Press `K` inside one of
 | Farm | 25 wood, 10 stone | One apple every 500 ticks, stocked into a merchant's stall |
 
 Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`).
+
+### Nations that deal with each other
+![Two nations' borders meeting on the road ahead: rings of posts capped in each nation's colour curve in from either side toward the point where the claims touch, with each nation's village in the distance](./.github/media/diplomacy-borders.png)
+
+Every settlement claims the land around it: 70 units for a camp, 100 for a village, 130 for a town. Claims never overlap; where two would, the border is drawn where they meet. Each claim is ringed by short posts capped in its nation's colour, the player box says whose land you are in, and crossing a border says so on the status line. Nobody may found a settlement inside another nation's claim, and founding one near another nation's land is resented.
+
+Every pair of nations has a standing from -100 to +100: **Hostile** (-50 and below), **Rival** (-20), **Neutral**, **Friendly** (+20) and **Allied**. Neighbours rub each other the wrong way, faster where their borders touch; allies warm; two nations with a common enemy draw together; trading at another nation's market helps a little, and poaching its members with an invitation hurts. Pawn-led nations make their own choices: they ally once relations reach +40, pay tribute to a hostile neighbour twice their strength, and denounce weaker nations they despise.
+
+Hostility has stakes. A stronger hostile neighbour raids your nearest settlement's treasury and stockpile, and one at least twice as strong (counting its allies' members) lays siege to it; thirty seconds of siege and the settlement changes hands. Towns, behind their palisades, cannot be besieged. A nation left with no settlement falls, and its members are left without one.
+
+As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land: **Gift 25 coins** (+10, paid into their treasury), **Propose Alliance** (accepted at +30) or **Denounce** (-25, and it ends any alliance). `--stage-diplomacy` opens the game leading a nation between a friendly neighbour and a hostile one already besieging your village (the screenshot above is `--seed 42 --start-screen world --stage-diplomacy`).
+
+![The nations screen: your nation and its besieged village, then each other nation with its members, settlements and relation, and Gift, Ally and Denounce buttons](./.github/media/nations-screen.png)
 
 ## History film
 ![Seed 12: six nations founding settlements and spreading over the map, one orbit](./.github/media/history-film.gif)

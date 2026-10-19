@@ -69,6 +69,8 @@ namespace beyondnations {
             if (generated.Contains(name)) {
                 return generate();
             }
+            // remembered, so two nations never share a name (borders are told apart by it)
+            generated.Add(name);
             return name;
         }
     }
