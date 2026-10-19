@@ -10,7 +10,7 @@ namespace beyondnations {
         private List<EntityId> currentlyPresentEntities = new List<EntityId>();
         private Market market;
 
-        public static readonly int WOOD_COST_TO_BUILD = 100;
+        public static readonly int WOOD_COST_TO_BUILD = 50;
 
         public Settlement(Vector3 position, NationId nationId, Rgba color, string nationName, RandomSource random) : base(EntityType.SETTLEMENT, "Settlement") {
             this.color = color;

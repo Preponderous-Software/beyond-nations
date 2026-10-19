@@ -22,6 +22,8 @@ namespace beyondnations {
         private int minDistanceBetweenSettlements;
         private int settlementJoinRange;
         private float settlementMetabolismMultiplier;
+        private float playerMetabolism;
+        private int ticksBetweenSettlementIncome;
         private int renderDistance;
         private int maxNumEntities;
         private int maxNumChunks;
@@ -45,11 +47,25 @@ namespace beyondnations {
             statusExpirationTicks = 500;
             playerWalkSpeed = 25;
             playerRunSpeed = 50;
-            ticksBetweenBehaviorCalculations = 1000;
+            // Both cadences are measured against the total tick count. Pawns
+            // rethink once per simulated second (50 ticks) -- the cadence the
+            // old "1000" actually produced, since it was compared against the
+            // tick within the second -- and act every fifth tick.
+            ticksBetweenBehaviorCalculations = 50;
             ticksBetweenBehaviorExecutions = 5;
             minDistanceBetweenSettlements = 250;
             settlementJoinRange = 500;
             settlementMetabolismMultiplier = 0.8f;
+            // Energy the player burns per tick outside a settlement. A full
+            // bar of 100 lasts one in-game day (TimeOfDay.DefaultTicksPerDay,
+            // ten minutes at 50 ticks per second) without eating. It used to
+            // be a random 0.001-0.010, so an unlucky player starved in three
+            // minutes.
+            playerMetabolism = 100f / TimeOfDay.DefaultTicksPerDay;
+            // Each settlement mints one coin per stall this often (10 s). Until
+            // #285 the windowed game advanced two ticks per step, so the old
+            // "every 1000 ticks" ran every 10 s of play; this keeps that rate.
+            ticksBetweenSettlementIncome = 500;
             renderDistance = 200;
             maxNumEntities = 100000;
             maxNumChunks = 10000;
@@ -147,6 +163,28 @@ namespace beyondnations {
 
         public float getSettlementMetabolismMultiplier() {
             return settlementMetabolismMultiplier;
+        }
+
+        public float getPlayerMetabolism() {
+            return playerMetabolism;
+        }
+
+        public void setPlayerMetabolism(float playerMetabolism) {
+            if (playerMetabolism < 0f || float.IsNaN(playerMetabolism)) {
+                throw new System.ArgumentOutOfRangeException(nameof(playerMetabolism), "must be zero or positive");
+            }
+            this.playerMetabolism = playerMetabolism;
+        }
+
+        public int getTicksBetweenSettlementIncome() {
+            return ticksBetweenSettlementIncome;
+        }
+
+        public void setTicksBetweenBehaviorCalculations(int ticks) {
+            if (ticks <= 0) {
+                throw new System.ArgumentOutOfRangeException(nameof(ticks), "must be positive");
+            }
+            this.ticksBetweenBehaviorCalculations = ticks;
         }
 
         public int getRenderDistance() {

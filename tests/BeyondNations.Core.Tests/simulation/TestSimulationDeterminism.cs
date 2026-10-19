@@ -14,7 +14,7 @@ namespace beyondnationstests {
     * matches the windowed game and every rerun matches the first.
     */
     public class TestSimulationDeterminism {
-        // Seed 42 founds its first nation at tick 2250.
+        // Seed 42 founds its first nation at tick 1000 (2250 before the 50-wood settlement).
         private const int Seed = 42;
         private const int Ticks = 2400;
 

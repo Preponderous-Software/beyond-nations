@@ -23,7 +23,7 @@ namespace beyondnations {
 
         private static readonly Dictionary<ItemType, int> energyRestoredByFood = new Dictionary<ItemType, int>() {
             {ItemType.CHICKEN_MEAT, 25},
-            {ItemType.APPLE, 10},
+            {ItemType.APPLE, 15},
         };
 
         public static bool isFood(ItemType itemType) {

@@ -44,8 +44,13 @@ namespace beyondnations {
                 return;
             }
 
+            if (player.getInventory().getNumItems(ItemType.STONE) < Stall.STONE_COST_TO_BUILD) {
+                player.getStatus().update("Not enough stone. Need " + (Stall.STONE_COST_TO_BUILD - player.getInventory().getNumItems(ItemType.STONE)) + " more.");
+                return;
+            }
+
             currentSettlement.getMarket().createStall();
-            player.getInventory().removeItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            Stall.payBuildCost(player.getInventory());
             player.getStatus().update("Stall built.");
         }
     }

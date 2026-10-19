@@ -133,8 +133,17 @@ namespace beyondnations {
             otherInventory.clear();
         }
 
+        /** Tradeable items (anything but coin) that count as worth a trip to market. */
+        public const int ABUNDANCE_THRESHOLD = 20;
+
+        /**
+        * Whether this holds enough tradeable goods -- any mix of wood, stone,
+        * food and saplings -- to be worth taking to market. It used to need
+        * more than ten each of wood, stone and apples at once, which with one
+        * stone per rock almost never happened, so pawns never traded.
+        */
         public bool containsAbundanceOfResources() {
-            return getNumItems(ItemType.WOOD) > 10 && getNumItems(ItemType.STONE) > 10 && getNumItems(ItemType.APPLE) > 10;
+            return getTotalNumItems() - getNumItems(ItemType.COIN) >= ABUNDANCE_THRESHOLD;
         }
 
         public int getTotalNumItems() {

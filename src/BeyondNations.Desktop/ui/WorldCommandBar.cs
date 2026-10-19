@@ -66,7 +66,7 @@ namespace beyondnations.desktop.ui {
 
                         if (player.getId() == nation.getLeaderId()
                                 && market.getNumStalls() < market.getMaxNumStalls()
-                                && player.getInventory().getNumItems(ItemType.WOOD) >= Stall.WOOD_COST_TO_BUILD) {
+                                && Stall.canAffordToBuild(player.getInventory())) {
                             commands.Add(new WorldCommand("Build Stall", () =>
                                 new BuildStallCommand(nationRepository, entityRepository).execute(player)));
                         }

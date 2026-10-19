@@ -28,14 +28,20 @@ namespace beyondnations {
         private Status status = null;
         private bool autoWalk = false;
         private float energy = 100;
-        private float metabolism;
+        private float metabolism = DefaultMetabolism;
+
+        /** One full bar of energy per in-game day; GameConfig overrides it. */
+        public const float DefaultMetabolism = 100f / TimeOfDay.DefaultTicksPerDay;
 
         // map of entity id to integer representing relationship strength
         private Dictionary<EntityId, int> relationships = new Dictionary<EntityId, int>();
         private EntityId currentSettlementId = null;
 
         public Player(int walkSpeed, int runSpeed, TickCounter tickCounter, int statusExpirationTicks, int renderDistance, RandomSource random) : base(EntityType.PLAYER, "Player") {
-            this.metabolism = random.range(0.001f, 0.010f);
+            // Metabolism is now a fixed config value (see setMetabolism). The
+            // draw that used to pick a random one is kept, discarded, so that
+            // every seed still generates the same world it always has.
+            random.range(0.001f, 0.010f);
             this.walkSpeed = walkSpeed;
             this.runSpeed = runSpeed;
             this.currentSpeed = walkSpeed;
@@ -115,6 +121,14 @@ namespace beyondnations {
             }
 
             energy -= metabolism;
+        }
+
+        public float getMetabolism() {
+            return metabolism;
+        }
+
+        public void setMetabolism(float metabolism) {
+            this.metabolism = metabolism;
         }
 
         public bool isGrounded() {

@@ -40,17 +40,17 @@ The nation system creates and manages nations. Players can create their own nati
 *Planned:* per-nation culture and history, alliances, and conflict between nations.
 
 ## Resource Collection
-Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone. These resources are used to build structures, to trade, and — for apples and chicken meat — to eat.
+Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone; a pawn with wood enough for a stall but short of stone goes for the nearest rock instead. These resources are used to build structures, to trade, and — for apples and chicken meat — to eat.
 
 *Planned:* using collected resources as crafting inputs.
 
 ## Food and Energy
-The player and every pawn carry an energy level that falls each tick by their own metabolism. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple and chicken meat are both food and a pawn carrying either has no reason to go looking for more.
+The player and every pawn carry an energy level that falls each tick by their own metabolism. The player's is a fixed configured rate at which a full bar lasts one in-game day; a pawn's varies between pawns but a full bar always lasts several minutes. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple and chicken meat are both food and a pawn carrying either has no reason to go looking for more.
 
 Markets read the same table. A hungry pawn in a settlement first takes food from its own stall, if it owns one holding any, and otherwise buys food when some stall it can afford holds any; only when neither is possible does it leave to gather or hunt. Buying picks whichever food gives the most energy per coin at the market's current supply-based prices, and falls back to the next food when that one cannot be afforded.
 
 ## Building
-The building system creates and manages settlements. Players and pawns can found a settlement and build stalls within it.
+The building system creates and manages settlements. Players and pawns can found a settlement (50 wood, about ten trees) and build stalls within it (20 wood and 5 stone).
 
 *Planned:* additional building types providing shelter and storage for a settlement's pawns.
 
@@ -68,7 +68,7 @@ Every pawn keeps a relationship number for the player, shown as a named tier: St
 *Planned:* pawn traits that affect behavior and interactions with other pawns.
 
 ## Market
-The market system is used to buy and sell resources within a settlement. Each settlement has a market with a limited number of stalls, which can be built or purchased by pawns and by the player. Stall owners stock their stalls with items and collect the profit from sales. Item prices are calculated from the item's base cost and the market's current supply of that item, rather than being set per stall.
+The market system is used to buy and sell resources within a settlement. Each settlement has a market with a limited number of stalls, which can be built or purchased by pawns and by the player. Stall owners stock their stalls with items and collect the profit from sales. Item prices are calculated from the item's base cost and the market's current supply of that item, rather than being set per stall: base / (1 + supply / 10), so ten units on offer halve the price, never falling below a quarter of the base cost. A pawn heads to market once it carries 20 or more goods of any kind and the trip has a purpose for its role.
 
 ## Crafting
 *Planned.* The crafting system will be used to create items from resources. Players will be able to craft items using the resources they collect from the world.
