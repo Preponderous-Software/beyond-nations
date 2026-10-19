@@ -55,5 +55,25 @@ namespace beyondnationstests {
             Assert.True(disposed);
             Assert.Empty(output);
         }
+
+        [Fact]
+        public void testCrashReport_IsWrittenWithTheErrorLines() {
+            string directory = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "bn-crash-test-" + Guid.NewGuid());
+            try {
+                string path = Program.writeCrashReport(
+                    directory,
+                    new List<string> { "[error] the game crashed: the real cause" },
+                    new DateTime(2026, 10, 18, 20, 30, 0));
+
+                Assert.Equal(System.IO.Path.Combine(directory, "crash_20261018_203000.txt"), path);
+                string text = System.IO.File.ReadAllText(path);
+                Assert.StartsWith("Beyond Nations v", text);
+                Assert.Contains("[error] the game crashed: the real cause", text);
+            } finally {
+                if (System.IO.Directory.Exists(directory)) {
+                    System.IO.Directory.Delete(directory, true);
+                }
+            }
+        }
     }
 }
