@@ -19,7 +19,7 @@ namespace beyondnations.historyexport.tests {
         // first settlement at tick 2050.
         private const int SeedWithPawns = 42;
         // Most chunks have pawns since pawns spawn more densely; this seed's opening chunks have none.
-        private const int SeedWithoutPawns = 79;
+        private const int SeedWithoutPawns = 78;
         private const int TicksPastFirstSettlement = 2400;
 
         private static string export(int seed, int ticks, int every = 50) {

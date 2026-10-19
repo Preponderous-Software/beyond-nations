@@ -401,7 +401,10 @@ namespace beyondnationstests {
             Assert.True(nations >= 3, "nations: " + nations);
             Assert.True(pawns >= 20, "pawns: " + pawns);
             Assert.True(countTrades(simulation) >= 5, "trades: " + countTrades(simulation));
-            Assert.True(simulation.getPopulationGrowth().getNumBirths() >= 1, "births: " + simulation.getPopulationGrowth().getNumBirths());
+            // Seed 42 now fills the pawn cap from immigrants and wanderers
+            // before a couple forms (it is at 100 by tick 10,000), and a full
+            // world has no room for a child, so births are asserted on the
+            // seeds below instead.
         }
 
         /**
@@ -423,6 +426,7 @@ namespace beyondnationstests {
             Assert.True(pawns >= 25, "pawns: " + pawns);
             Assert.True(settlements >= 4, "settlements: " + settlements);
             Assert.True(countTrades(simulation) >= 10, "trades: " + countTrades(simulation));
+            Assert.True(simulation.getPopulationGrowth().getNumBirths() >= 1, "births: " + simulation.getPopulationGrowth().getNumBirths());
         }
     }
 }

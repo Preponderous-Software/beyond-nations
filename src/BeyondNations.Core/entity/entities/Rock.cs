@@ -3,8 +3,12 @@ using System.Numerics;
 namespace beyondnations {
 
     public class Rock : Entity {
-        /** Stone a rock gives up. Rocks are scarce (one or two per chunk). */
-        public const int STONE_YIELD = 3;
+        /**
+        * Stone a rock gives up. Buildings cost 5-30 stone, so at 3 per rock
+        * and one or two rocks a chunk, stone was the bottleneck of every
+        * settlement; see WorldGenerator for the density and the regrowth.
+        */
+        public const int STONE_YIELD = 5;
 
         public Rock(Vector3 position) : base(EntityType.ROCK, "Rock") {
             setPosition(position);

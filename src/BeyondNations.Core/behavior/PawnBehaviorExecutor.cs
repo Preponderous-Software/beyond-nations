@@ -675,18 +675,56 @@ namespace beyondnations {
         * may be founded.
         */
         private void executeSeekSettlementSiteBehavior(Pawn pawn) {
-            Entity nearest = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
-            if (nearest == null) {
+            pawn.setTargetEntity(null);
+            Vector3 away = computeAwayFromSettlements(pawn.getPosition(), entityRepository.getEntitiesOfType(EntityType.SETTLEMENT));
+            if (away == Vector3.Zero) {
                 return;
             }
-            pawn.setTargetEntity(null);
-            Vector3 away = pawn.getPosition() - nearest.getPosition();
-            away.Y = 0;
-            if (away.LengthSquared() < 0.01f) {
-                away = new Vector3(1, 0, 0);
-            }
-            Vector3 horizontalVelocity = VectorMath.normalized(away) * pawn.getSpeed();
+            Vector3 horizontalVelocity = away * pawn.getSpeed();
             pawn.setVelocity(new Vector3(horizontalVelocity.X, pawn.getVelocity().Y, horizontalVelocity.Z));
+        }
+
+        /**
+        * The unit direction out of a cluster of settlements: each settlement
+        * within Territory.NEIGHBOUR_DISTANCE pushes away from itself, the
+        * nearer the harder (1/d). Walking away from only the nearest one sent
+        * a settler between two settlements back and forth forever, so a world
+        * whose generated land was all claimed never got another colony.
+        * Falls back to the nearest settlement when none is in range, and
+        * returns zero when there are no settlements at all.
+        */
+        public static Vector3 computeAwayFromSettlements(Vector3 position, List<Entity> settlements) {
+            Vector3 push = Vector3.Zero;
+            Entity nearest = null;
+            float nearestDistance = float.MaxValue;
+            foreach (Entity settlement in settlements) {
+                Vector3 offset = position - settlement.getPosition();
+                offset.Y = 0;
+                float distance = offset.Length();
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearest = settlement;
+                }
+                if (distance > Territory.NEIGHBOUR_DISTANCE) {
+                    continue;
+                }
+                if (distance < 0.1f) {
+                    offset = new Vector3(1, 0, 0);
+                    distance = 1f;
+                }
+                push += offset / (distance * distance);
+            }
+            if (push.LengthSquared() < 1e-12f) {
+                if (nearest == null) {
+                    return Vector3.Zero;
+                }
+                push = position - nearest.getPosition();
+                push.Y = 0;
+                if (push.LengthSquared() < 0.01f) {
+                    push = new Vector3(1, 0, 0);
+                }
+            }
+            return VectorMath.normalized(push);
         }
 
         // helpers -----------------------------------------------------------------------------------------------
