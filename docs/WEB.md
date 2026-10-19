@@ -1,7 +1,8 @@
 # Beyond Nations in the browser
 
 `src/BeyondNations.Web` is the game compiled for the browser: .NET 8
-`browser-wasm`, ahead-of-time compiled, drawing with WebGL2. It is published on
+`browser-wasm`, ahead-of-time compiled, with the world drawn by **Strata**,
+the same engine as the desktop, built for WebGL 2 and linked into the page. It is published on
 the arcade at **https://beyond-nations.play.danielstephenson.dev** and listed at
 <https://danielstephenson.dev/play>.
 
@@ -9,21 +10,20 @@ The simulation is `BeyondNations.Core`, unchanged. The desktop host's
 window-free code is compiled in from `src/BeyondNations.Desktop` as linked
 source, not copied: the input layer (`InputService`, `KeyBindings`,
 `PlayerInputController`, `MouseLook`, `PressLatch`), the camera and culler, the
-primitive meshes, the label maths, `GameOptions` and every ImGui screen and info
+label maths, `GameOptions` and every ImGui screen and info
 box. Only what touches a window or OpenGL has a browser counterpart.
 
 | Desktop (`BeyondNations.Desktop`) | Browser (`BeyondNations.Web`) |
 | --- | --- |
 | `Game` (Silk.NET window, Update/Render) | `game/WebGame.cs` (`requestAnimationFrame`) |
 | `SilkInputSource` | `game/BrowserInputSource.cs` (`KeyboardEvent.code` via `game/BrowserKeys.cs`) |
-| `NativeWorldRenderer` (Strata) | for now `game/WebGl2WorldRenderer.cs` + `wwwroot/webhost/gfx.js`, a WebGL2 port of the Silk renderer the desktop had before it became Strata-only; Strata in the page is the next step (below) |
+| `NativeWorldRenderer` (Strata over P/Invoke) | `game/StrataWorldRenderer.cs`: the same calls, to Strata linked into `dotnet.native.wasm` (`strata/StrataWeb.cs`, `native/strata.targets`) |
 | `WorldLabelRenderer` (FontStashSharp + GL) | `game/WebWorldLabelRenderer.cs` (FontStashSharp + WebGL2) |
 | `UiHost` + Silk's `ImGuiController` | `game/WebUiHost.cs` + `host/ImGuiWebBackend.cs` |
 | Command-line options | the URL query (`game/WebOptions.cs`) |
 
-The interim renderer's shaders are the former desktop Silk renderer's with
-`#version 330 core` replaced by `#version 300 es`; it has the fixed light of
-that renderer, not Strata's sun, sky and shadows.
+So the browser shows what the desktop shows: Strata's sun and moon following
+the time of day, its sky, cascaded shadows and fog.
 
 ## Playing
 
@@ -98,12 +98,27 @@ SDK. Its plain-C# parts (the URL options, the key table and the browser input
 source) are covered by `tests/BeyondNations.Web.Tests`, which is in the solution
 and runs in `Build and test`.
 
-- **AOT**: on by default for publish. On a walk through a seed-42 world in
-  headless Chromium the AOT build spends 2 to 4 ms of main-thread time a frame
-  at the 95th percentile; the interpreter spends 6 to 12 ms and climbs as the
-  world grows. `/p:RunAOTCompilation=false` builds the interpreter version in
-  about half the time, which is handy when only the page is changing.
-- **Size**: the first load is about 3.4 MB (the runtime and assemblies are
+- **Strata**: `native/strata.targets` pins a Strata commit (its browser
+  build has no release yet), checks the source tarball's SHA-256 and runs
+  `native/build-strata.sh`, which builds it with the **workload's own
+  Emscripten (3.1.34)**, not the newer one Strata's CI uses, so the objects
+  link with .NET's `wasm-ld`; with `-DSTRATA_WITH_SDL=OFF` (the page owns
+  the canvas) and `-DSTRATA_WASM_EXCEPTIONS=wasm` (the mode .NET 8 links the
+  module with). It needs CMake 3.24 or newer (`STRATA_CMAKE=/path/to/cmake`
+  if the one on PATH is older). The archive is linked as `strata.a`, the name
+  `[DllImport("strata")]` resolves to. `native/bnweb_gl.c` makes the
+  canvas's WebGL 2 context known to Emscripten, which Strata's
+  `STRATA_SURFACE_HOST_CONTEXT` requires; the labels and Dear ImGui are then
+  drawn by `webhost/gfx.js` in the same context.
+- **AOT**: on by default for publish. With the WebGL2 renderer used before Strata the
+  AOT build spent 2 to 4 ms of main-thread time a frame at the 95th
+  percentile on a seed-42 walk, the interpreter 6 to 12 ms. With Strata,
+  headless Chromium's software GPU (SwiftShader) is the bottleneck (about 9
+  fps at 1280x720 with Strata's default four 2048-pixel shadow cascades,
+  AOT or not), so frame times measured there say nothing about a real GPU.
+  `/p:RunAOTCompilation=false` builds the interpreter version in about half
+  the time, which is handy when only the page is changing.
+- **Size**: the first load is about 3.6 MB (the runtime and assemblies are
   fetched gzip-compressed and inflated in the browser by
   `webhost/loader.js`, because the arcade serves files as they are).
 - **cimgui**: ImGui.NET's native half has no browser build, so
@@ -158,9 +173,9 @@ deploys by hand.
 - `webhost/host.js`: `startWebHost({ canvas, ui, assembly, exportsName })`
   boots the runtime, registers the `webhost` JSImport module, forwards input
   and runs the frame clock;
-- `webhost/gfx.js`: the WebGL2 device (instanced primitives, textured labels,
-  Dear ImGui draw lists), driven by pointers into wasm memory so frame data is
-  never copied through interop;
+- `webhost/gfx.js`: the WebGL2 passes drawn over the engine's world
+  (textured labels, Dear ImGui draw lists), driven by pointers into wasm
+  memory so frame data is never copied through interop;
 - `webhost/input.js`, `canvas.js`, `loader.js`, `touch.js`: keyboard by
   `KeyboardEvent.code`, right-drag pointer-lock look, `devicePixelRatio`-aware
   sizing, the gzip loader, on-screen controls;
@@ -168,42 +183,5 @@ deploys by hand.
   implements, the `[JSExport]`s); `host/ImGuiWebBackend.cs`: Dear ImGui for the
   browser.
 
-A game supplies an `IWebGame`, its page and its own renderer on top of `WebGpu`.
-
-### Strata in the browser (next step)
-
-The desktop draws the world only through Strata, over P/Invoke. Strata's
-WebGL 2 backend is on Strata `main` (strata#18; no release tag yet), and
-Strata's own `docs/WEB.md` has a section for this port. The browser equivalent
-is a second `IWorldRenderer` in `BeyondNations.Web` that calls Strata linked
-into `dotnet.native.wasm`, replacing the interim WebGL2 renderer.
-How that fits this host, checked against Strata's notes:
-
-- **Linking.** Link Strata the way `native/cimgui.targets` links cimgui: a
-  pinned, SHA-checked archive as a `NativeFileReference`, named `strata.a` so
-  that it matches `[DllImport("strata")]`. Add
-  `-sMIN_WEBGL_VERSION=2 -sMAX_WEBGL_VERSION=2` to `EmccExtraLDFlags`.
-- **Emscripten version (the main risk).** The .NET 8 `wasm-tools` workload
-  links with **Emscripten 3.1.34**. Strata's CI builds with 6.0.11, and objects
-  from a much newer Emscripten may not link with the older `wasm-ld`. Strata
-  has to be built with 3.1.34 (the workload's own `emcc` works, as
-  `cimgui.targets` shows), probably with `-DSTRATA_WITH_SDL=OFF`. Nobody has
-  yet checked whether Strata's C++ builds with that compiler.
-- **Exceptions.** This app uses .NET 8's default
-  (`WasmEnableExceptionHandling=true`, i.e. `-fwasm-exceptions`), so Strata
-  must be built with `-DSTRATA_WASM_EXCEPTIONS=wasm`. cimgui is compiled with
-  `-fno-exceptions` and does not conflict.
-- **Surface.** Use `STRATA_SURFACE_HOST_CONTEXT`, so that Strata draws into
-  the page's context between the primitive pass and the labels and UI, as
-  `NativeWorldRenderer` does on the desktop. That needs one change here.
-  `webhost/gfx.js` creates its WebGL 2 context with `canvas.getContext`,
-  which Emscripten's GL layer does not know about, and Strata requires a
-  context made current through Emscripten. The Strata renderer must either
-  register the page's existing context with Emscripten's `GL`
-  (`GL.registerContext` + `GL.makeContextCurrent`, exported from the .NET
-  module) or have Emscripten create it (`emscripten_webgl_create_context` on
-  the same canvas) and hand it to `gfx.js`. Either way, there is one context
-  for both. Strata saves and restores the GL state it touches. `gfx.js` sets
-  all the state each pass needs, so the two can share the context.
-- **Frame loop and threads.** These already match: one frame per
-  `requestAnimationFrame` through `WebHostExports.Frame`, and no threads.
+A game supplies an `IWebGame` and its page, and links Strata the way
+`native/strata.targets` and `native/bnweb_gl.c` do here.

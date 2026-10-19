@@ -8,8 +8,9 @@
     camera and culler, the primitive meshes, the label maths and every ImGui
     screen, is compiled in from src/BeyondNations.Desktop as linked source,
     so the browser runs the same code rather than a copy of it. What is
-    browser-specific lives here: the host loop (game/), a WebGL2 port of the
-    silk renderer and the label pass, the ImGui platform/renderer backend
+    browser-specific lives here: the host loop (game/), Strata linked into
+    the page (strata/, native/strata.targets), the label pass, the ImGui
+    platform/renderer backend
     (host/), and the page (wwwroot/).
 
     Building it needs the wasm-tools workload:  dotnet workload install wasm-tools
@@ -89,7 +90,6 @@
     <Compile Include="$(DesktopDir)render/CameraMode.cs" Link="shared/render/CameraMode.cs" />
     <Compile Include="$(DesktopDir)render/IWorldRenderer.cs" Link="shared/render/IWorldRenderer.cs" />
     <Compile Include="$(DesktopDir)render/PlayerCamera.cs" Link="shared/render/PlayerCamera.cs" />
-    <Compile Include="$(DesktopDir)render/PrimitiveMesh.cs" Link="shared/render/PrimitiveMesh.cs" />
     <Compile Include="$(DesktopDir)render/RenderCuller.cs" Link="shared/render/RenderCuller.cs" />
     <Compile Include="$(DesktopDir)render/RenderStatsRecorder.cs" Link="shared/render/RenderStatsRecorder.cs" />
     <Compile Include="$(DesktopDir)render/ViewFrustum.cs" Link="shared/render/ViewFrustum.cs" />
@@ -106,5 +106,6 @@
   </ItemGroup>
 
   <Import Project="native/cimgui.targets" />
+  <Import Project="native/strata.targets" />
 
 </Project>

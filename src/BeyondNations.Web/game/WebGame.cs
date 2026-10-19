@@ -36,7 +36,10 @@ namespace beyondnations.web {
 
         private readonly ImGuiWebBackend imgui;
         private readonly WebUiHost ui;
-        private readonly IWorldRenderer renderer;
+        private readonly StrataWorldRenderer renderer;
+
+        /** The page's canvas (wwwroot/index.html). */
+        public const string CanvasSelector = "#game";
         private readonly WebWorldLabelRenderer labels;
         private readonly RenderStatsRecorder renderStats;
 
@@ -68,8 +71,10 @@ namespace beyondnations.web {
 
             inputService = new InputService(inputSource);
 
-            renderer = new WebGl2WorldRenderer();
-            Log.info("world renderer: " + renderer.getName() + " (WebGL2)");
+            // Strata draws the world, as on the desktop, into the page's
+            // WebGL 2 context (the canvas the page gave the host).
+            renderer = new StrataWorldRenderer(CanvasSelector);
+            Log.info("world renderer: " + renderer.getName());
             if (options.RenderStats) {
                 renderStats = new RenderStatsRecorder();
             }
@@ -231,6 +236,7 @@ namespace beyondnations.web {
                 camera.setRenderDistance(player.getRenderDistance());
                 camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
                 culler.beginFrame(camera);
+                renderer.setTimeOfDay(simulation.getTimeOfDay().getFraction());
                 renderer.render(snapshot, camera.getViewMatrix(), camera.getProjectionMatrix(), culler);
                 reportRenderDistance(player.getRenderDistance());
 

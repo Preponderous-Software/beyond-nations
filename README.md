@@ -3,7 +3,7 @@ Beyond Nations, previously called the Open Source Game project, started as a col
 
 ## Play in your browser
 
-**[Play Beyond Nations in your browser](https://beyond-nations.play.danielstephenson.dev)**: nothing to install. It is the same game, compiled to WebAssembly and drawn with WebGL2, and it is also listed in the [arcade](https://danielstephenson.dev/play). It is played with a keyboard and mouse; on a phone or tablet there are basic on-screen controls. The browser build sends no usage report. How it is built, the URL options (`?seed=42&start-screen=world`, the same names as the command-line options) and how to run it locally are in [docs/WEB.md](./docs/WEB.md).
+**[Play Beyond Nations in your browser](https://beyond-nations.play.danielstephenson.dev)**: nothing to install. It is the same game, compiled to WebAssembly and drawn by the same engine, Strata, built for WebGL 2, and it is also listed in the [arcade](https://danielstephenson.dev/play). It is played with a keyboard and mouse; on a phone or tablet there are basic on-screen controls. The browser build sends no usage report. How it is built, the URL options (`?seed=42&start-screen=world`, the same names as the command-line options) and how to run it locally are in [docs/WEB.md](./docs/WEB.md).
 
 ![The browser build: the title screen, the main menu, Start, then walking, looking around with the right mouse button, founding a nation and switching to first person](./.github/media/web-play.gif)
 
@@ -151,7 +151,7 @@ Core keeps no state hash of its own, so each sample's `replay:stateHash` is a SH
 - [Dear ImGui](https://github.com/ImGuiNET/ImGui.NET): the menus, the heads-up display and the info boxes.
 - [FontStashSharp](https://github.com/FontStashSharp/FontStashSharp): the glyph atlas behind world-space nametags.
 - [Strata](https://github.com/Preponderous-Software/strata): a shared C++ engine (MIT) and the game's world renderer. It draws the world inside the Silk.NET window, lit by a sun that follows the time of day (see below). The build downloads the native library from a pinned Strata release and checks its SHA-256. Pass `/p:StrataNativeDir=<dir>` to use a local Strata build instead.
-- [WebAssembly and WebGL2](./docs/WEB.md): the browser build, `src/BeyondNations.Web` (.NET 8 `browser-wasm`, AOT), which runs the same Core and screens in a page; its world renderer is moving to Strata's WebGL 2 build (see docs/WEB.md).
+- [WebAssembly and WebGL2](./docs/WEB.md): the browser build, `src/BeyondNations.Web` (.NET 8 `browser-wasm`, AOT), which runs the same Core and screens in a page, with the world drawn by Strata's WebGL 2 build linked into it.
 - [Git](https://git-scm.com/) and [GitHub](https://github.com/): version control, review and continuous integration.
 
 The game does not use a commercial engine. Everything it draws is a coloured primitive generated in code; the renderer is Strata, a small engine from the same organisation, and the camera, input and user interface are written in the repository rather than supplied by a vendor. The reasoning is recorded in the [Engine Migration Rationale](./docs/ENGINE-MIGRATION-RATIONALE.md).
