@@ -13,6 +13,7 @@ namespace beyondnations {
         private NationRepository nationRepository;
         private GameConfig gameConfig;
         private TickCounter tickCounter;
+        private TimeOfDay timeOfDay;
 
         public PawnBehaviorCalculator(Environment environment, EntityRepository entityRepository, NationRepository nationRepository, GameConfig gameConfig, TickCounter tickCounter, RandomSource random) {
             this.random = random;
@@ -23,6 +24,18 @@ namespace beyondnations {
             this.tickCounter = tickCounter;
         }
         
+        /**
+        * Gives pawns a day: with a clock set, residents head home at nightfall
+        * and stay in until morning. Without one (most tests) it is always day.
+        */
+        public void setTimeOfDay(TimeOfDay timeOfDay) {
+            this.timeOfDay = timeOfDay;
+        }
+
+        private bool isNight() {
+            return timeOfDay != null && timeOfDay.isNight();
+        }
+
         public BehaviorType computeBehaviorType(Pawn pawn) {
             if (pawn.isMarkedForDeletion()) {
                 Log.debug("[PBC] Pawn '" + pawn.getName() + " is marked for deletion. Returning NONE.");
@@ -38,17 +51,38 @@ namespace beyondnations {
         }
 
         private BehaviorType computeBehaviorTypeInSettlement(Pawn pawn) {
-            // Percent chance per behaviour calculation (once a simulated second)
-            // that an idle pawn walks back out, so a pawn with nothing to do
-            // spends about ten seconds in town rather than minutes.
-            int chanceToExitSettlement = 10;
+            BehaviorType behaviorType = computeBehaviorTypeInSettlementByDay(pawn);
+            // At night a pawn at home stays in unless hunger drives it out.
+            if (behaviorType == BehaviorType.EXIT_SETTLEMENT && isNight() && isAtHome(pawn) && !pawn.needsFood() && !pawn.isSettler()) {
+                return BehaviorType.NONE;
+            }
+            return behaviorType;
+        }
 
+        private static bool isAtHome(Pawn pawn) {
+            return pawn.getHomeSettlementId() != null && pawn.getHomeSettlementId().Equals(pawn.getCurrentSettlementId());
+        }
+
+        /**
+        * Whether an idle pawn walks back out this decision (once a simulated
+        * second). A visitor leaves after about ten seconds; a pawn at home
+        * lingers longer, by temperament (PawnTraits.idleExitChancePercent).
+        */
+        private bool rollIdleExit(Pawn pawn) {
+            return random.range(0, 100) < PawnTraits.idleExitChancePercent(pawn, isAtHome(pawn));
+        }
+
+        private BehaviorType computeBehaviorTypeInSettlementByDay(Pawn pawn) {
             EntityId currentSettlementId = pawn.getCurrentSettlementId();
             if (currentSettlementId == null) {
                 return BehaviorType.NONE;
             }
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
+            if (pawn.isSettler() && !pawn.needsFood()) {
+                // off to found a settlement of its own
+                return BehaviorType.EXIT_SETTLEMENT;
+            }
             if (pawn.needsFood()) {
                 Stall stall = market.getStall(pawn.getId());
                 if (stall != null && FoodItems.hasFood(stall.getInventory())) {
@@ -75,6 +109,10 @@ namespace beyondnations {
                 if (market.getNumStalls() < market.getMaxNumStalls()) {
                     // if not enough wood and stone
                     if (!Stall.canAffordToBuild(pawn.getInventory())) {
+                        // members' contributions may still pay for a building
+                        if (BuildingPlanner.chooseNext(currentSettlement, pawn.getInventory()) != null) {
+                            return BehaviorType.CONSTRUCT_BUILDING;
+                        }
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
                     else {
@@ -89,7 +127,7 @@ namespace beyondnations {
                         return BehaviorType.CONSTRUCT_BUILDING;
                     }
 
-                    if (random.range(0, 100) < chanceToExitSettlement) {
+                    if (rollIdleExit(pawn)) {
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
                     else {
@@ -109,7 +147,27 @@ namespace beyondnations {
                         return BehaviorType.SELL_RESOURCES;
                     }
 
-                    if (random.range(0, 100) < chanceToExitSettlement) {
+                    // nobody can buy it: put the wood and stone towards the town instead
+                    if (isAtHome(pawn) && hasSurplusToContribute(pawn)) {
+                        return BehaviorType.CONTRIBUTE_TO_STOCKPILE;
+                    }
+
+                    // A settlement founded by a member, away from its leader, is
+                    // built up by whoever lives there, from its stockpile.
+                    if (isAtHome(pawn) && nation.getLeaderId() != null) {
+                        Entity leader = entityRepository.getEntity(nation.getLeaderId());
+                        bool leaderLivesHere = leader is Pawn && currentSettlementId.Equals(((Pawn) leader).getHomeSettlementId());
+                        if (!leaderLivesHere) {
+                            if (market.getNumStalls() < market.getMaxNumStalls() && Stall.canAffordToBuild(pawn.getInventory(), currentSettlement.getInventory())) {
+                                return BehaviorType.CONSTRUCT_STALL;
+                            }
+                            if (BuildingPlanner.chooseNext(currentSettlement, pawn.getInventory()) != null) {
+                                return BehaviorType.CONSTRUCT_BUILDING;
+                            }
+                        }
+                    }
+
+                    if (rollIdleExit(pawn)) {
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
                     else {
@@ -127,7 +185,7 @@ namespace beyondnations {
                     return BehaviorType.COLLECT_PROFIT_FROM_STALL;
                 }
                 
-                if (random.range(0, 100) < chanceToExitSettlement) {
+                if (rollIdleExit(pawn)) {
                     return BehaviorType.EXIT_SETTLEMENT;
                 }
                 else {
@@ -147,13 +205,24 @@ namespace beyondnations {
                 }
             }
 
+            // nightfall: residents head home, so towns fill up in the evening
+            if (isNight() && pawn.getHomeSettlementId() != null && entityRepository.getEntity(pawn.getHomeSettlementId()) is Settlement) {
+                return BehaviorType.GO_TO_HOME_SETTLEMENT;
+            }
+
             if (shouldPlantSapling(pawn)) {
                 return BehaviorType.PLANT_SAPLING;
             }
 
+            if (pawn.getNationId() == null && pawn.isSettler()) {
+                // a seceding settler: a nation of its own, not the one next door
+                return pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD ? BehaviorType.CREATE_NATION : BehaviorType.GATHER_RESOURCES;
+            }
+
             if (pawn.getNationId() == null) {
                 Settlement nearestSettlement = (Settlement) environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
-                if (nearestSettlement != null && Vector3.Distance(pawn.getPosition(), nearestSettlement.getPosition()) < gameConfig.getSettlementJoinRange()) {
+                // an ambitious pawn only joins when practically inside the settlement (PawnTraits)
+                if (nearestSettlement != null && Vector3.Distance(pawn.getPosition(), nearestSettlement.getPosition()) < PawnTraits.joinRange(pawn, gameConfig.getSettlementJoinRange())) {
                     return BehaviorType.JOIN_NATION;
                 }
                 else {
@@ -186,13 +255,28 @@ namespace beyondnations {
                         return BehaviorType.CONSTRUCT_SETTLEMENT;
                     }
                     else {
-                        return BehaviorType.GATHER_RESOURCES;
+                        // it used to keep gathering here, and a founder that
+                        // happened to stay close to a rival never built at all
+                        return BehaviorType.SEEK_SETTLEMENT_SITE;
                     }
                 }
             }
 
-            if (pawn.getHomeSettlementId() == null && numNationSettlements > 0 && nationHasRoomForResident(nation)) {
-                return BehaviorType.JOIN_RANDOM_SETTLEMENT;
+            if (pawn.isSettler()) {
+                if (pawn.getInventory().getNumItems(ItemType.WOOD) < Settlement.WOOD_COST_TO_BUILD) {
+                    return BehaviorType.GATHER_RESOURCES;
+                }
+                return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : BehaviorType.SEEK_SETTLEMENT_SITE;
+            }
+
+            if (pawn.getHomeSettlementId() == null && numNationSettlements > 0) {
+                if (nationHasRoomForResident(nation)) {
+                    return BehaviorType.JOIN_RANDOM_SETTLEMENT;
+                }
+                // every settlement is full: with the wood to hand, found another for the nation
+                if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD) {
+                    return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : BehaviorType.SEEK_SETTLEMENT_SITE;
+                }
             }
 
             if (hasReasonToGoHome(pawn, role)) {
@@ -208,6 +292,18 @@ namespace beyondnations {
         * in, idled and walked straight back -- and spent most of its life
         * hidden inside the settlement.
         */
+        /** Wood and stone a serf must carry before handing it in is worth the trip. */
+        public const int CONTRIBUTION_MIN_SURPLUS = 20;
+
+        private static bool hasSurplusToContribute(Pawn pawn) {
+            return pawn.getInventory().getNumItems(ItemType.WOOD) + pawn.getInventory().getNumItems(ItemType.STONE) >= CONTRIBUTION_MIN_SURPLUS;
+        }
+
+        private bool isFarEnoughToSettle(Pawn pawn) {
+            Entity nearestSettlement = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
+            return nearestSettlement == null || Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition()) > gameConfig.getMinDistanceBetweenSettlements();
+        }
+
         private bool hasReasonToGoHome(Pawn pawn, NationRole role) {
             EntityId homeSettlementId = pawn.getHomeSettlementId();
             Settlement home = homeSettlementId == null ? null : entityRepository.getEntity(homeSettlementId) as Settlement;
@@ -219,10 +315,10 @@ namespace beyondnations {
 
             if (role == NationRole.LEADER) {
                 // build a stall once the materials are in hand and there is room
-                if (market.getNumStalls() < market.getMaxNumStalls()) {
-                    return Stall.canAffordToBuild(inventory);
+                if (market.getNumStalls() < market.getMaxNumStalls() && Stall.canAffordToBuild(inventory)) {
+                    return true;
                 }
-                // with the market full, put up a building once it can be paid for
+                // or put up a building once it can be paid for, stockpile included
                 return BuildingPlanner.chooseNext(home, inventory) != null;
             }
             if (role == NationRole.MERCHANT) {
@@ -232,7 +328,11 @@ namespace beyondnations {
                 if (inventory.getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE && market.getNumStallsForSale() > 0) {
                     return true;
                 }
-                return inventory.containsAbundanceOfResources() && market.getTotalCoins() > 10;
+                if (!inventory.containsAbundanceOfResources()) {
+                    return false;
+                }
+                // to sell it, or, with no coin at the market, to hand it in
+                return market.getTotalCoins() > 10 || hasSurplusToContribute(pawn);
             }
             return false;
         }

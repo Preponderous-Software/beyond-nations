@@ -21,6 +21,32 @@ namespace beyondnations {
                 && inventory.getNumItems(ItemType.STONE) >= STONE_COST_TO_BUILD;
         }
 
+        /** Whether a builder can pay, counting the settlement's stockpile as well as what it carries. */
+        public static bool canAffordToBuild(Inventory builder, Inventory stockpile) {
+            return available(builder, stockpile, ItemType.WOOD) >= WOOD_COST_TO_BUILD
+                && available(builder, stockpile, ItemType.STONE) >= STONE_COST_TO_BUILD;
+        }
+
+        /** Takes the cost from what the builder carries first, then from the stockpile. The caller has checked. */
+        public static void payBuildCost(Inventory builder, Inventory stockpile) {
+            take(builder, stockpile, ItemType.WOOD, WOOD_COST_TO_BUILD);
+            take(builder, stockpile, ItemType.STONE, STONE_COST_TO_BUILD);
+        }
+
+        private static int available(Inventory builder, Inventory stockpile, ItemType itemType) {
+            return builder.getNumItems(itemType) + (stockpile == null ? 0 : stockpile.getNumItems(itemType));
+        }
+
+        private static void take(Inventory builder, Inventory stockpile, ItemType itemType, int amount) {
+            int fromBuilder = System.Math.Min(amount, builder.getNumItems(itemType));
+            if (fromBuilder > 0) {
+                builder.removeItem(itemType, fromBuilder);
+            }
+            if (amount - fromBuilder > 0) {
+                stockpile.removeItem(itemType, amount - fromBuilder);
+            }
+        }
+
         /** Removes the wood and stone a new stall costs. */
         public static void payBuildCost(Inventory inventory) {
             inventory.removeItem(ItemType.WOOD, WOOD_COST_TO_BUILD);

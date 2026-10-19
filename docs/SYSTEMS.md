@@ -29,11 +29,24 @@ The event system records notable occurrences in the game — chunk generation, n
 ## World Generation
 The world generation system creates a procedurally generated world out of chunks of locations. Generated land is populated with resources, settlements, and pawns.
 
+**Pawns.** A new chunk has a 40% chance of at least one pawn and a 15% chance of two (`WorldGenerator.rollNumberOfPawns`), so about half of all land is inhabited. It used to be a 10% chance of one, which left most opening worlds with zero to three pawns. Each pawn rolls its traits (see Pawn) from a stream of its own, so the same seed always gives the same characters. With lag prevention on, neither generation nor growth takes the world past 100 pawns (`GameConfig.getMaxNumPawns()`).
+
+### Population growth
+After generation, `PopulationGrowth` adds pawns, checking every 30 seconds:
+
+- **Neighbours.** Pawns inside the same settlement at the same time grow fonder of each other, by 1 per check (2 for a gregarious pawn).
+- **Offspring** (#133). Two residents of a settlement with a relationship of at least 10 each way have a child there when the settlement has room for another resident (#304's caps) and 3 food to spare in its stockpile and stalls, which is eaten. A settlement has at most one birth every two minutes. The child takes a parent's surname and one trait from each parent (sometimes a fresh one instead), and is born into their nation and home. Its parents start at a relationship of 10 with it.
+- **Immigrants.** A thriving settlement (a Village, or two owned stalls) with room draws a nationless newcomer to its edge every three minutes or so, who joins its nation the ordinary way.
+- **Settlers.** A full settlement whose stockpile holds the 50 wood for another sends a serf off with it, freeing a place at home. The settler founds a new settlement for its nation once it is at least 250 units from any other, walking away from the nearest settlement until it is. A settlement needs no stone, so a nation keeps growing after the stone nearby runs out. An **ambitious** serf is chosen first, and it leaves the nation to found a rival one of its own.
+- **Wanderers.** A world with fewer than 12 pawns has a nationless wanderer turn up on generated land every minute.
+
+Homeless members of a nation whose settlements are all full found new settlements the same way when they have the wood. Measured headless over 12 seeds, no seed had more than 3 pawns or any trade after 300,000 ticks before this; after it, seed 42 has about 11 nations by the end of its first in-game day, and every seed tried has several nations, settlements and trades by the end of its second (`TestPopulationGrowth`).
+
 ## Inventory
 The inventory system manages the items and resources held by an entity. Items are collected from the world and traded at markets. When "Keep Inventory" is turned off, a player that dies — or a pawn that dies with "Respawn Pawns" on — leaves its inventory where it died as item drops, one per item type (a pawn that dies for good still takes its inventory with it); the player picks up every drop within reach by interacting (`E`). Pawns do not pick drops up. The player's holdings are summarised in a HUD box in the corner of the world screen; pressing `I` opens the inventory screen, which lists every occupied slot and pauses the world until `I` or `Escape` closes it. Crafted items join the HUD box once the player holds any, and a tool's line shows the uses left on the one in hand. Held resources are the inputs to [crafting](#crafting).
 
 ## Nation
-The nation system creates and manages nations. Players can create their own nation or join an existing one, and nations track their members and their roles.
+The nation system creates and manages nations. Players can create their own nation or join an existing one, and nations track their members and their roles. A nationless pawn joins the nation of a settlement within 100 units of it (60 for an ambitious pawn) and otherwise gathers 50 wood and founds its own; that range was 500, twice the distance between settlements, so every pawn in the opening chunks joined the first nation and a world rarely had a second.
 
 ### Relations between nations
 Every pair of nations has one score from -100 to +100, starting at zero (`NationRelations`, held by `NationRepository`). Named states are read off it: **Hostile** at -50 and below, **Rival** at -20 and below, **Friendly** at +20 and above, **Neutral** between, and **Allied** while an agreed alliance stands. An alliance ends if the score falls below zero. Every change of named state is recorded as a `NationRelationChange` event.
@@ -80,9 +93,11 @@ The building system creates and manages settlements. Players and pawns can found
 | Farm | 25 wood, 10 stone | 4 | Every 500 ticks, one apple into the merchant stall holding the fewest. With no merchant the harvest is lost. |
 | Workshop | 15 wood, 10 stone | 1 | Anyone inside may craft planks and bricks; merchants there turn their wood and stone into them. |
 
-The player builds with `K` (whatever `BuildingPlanner` says the settlement needs most that they can pay for) or from the command bar, which offers one button per affordable building. Any member of the owning nation may build. The cost is taken from what the builder carries first and then from the settlement's stockpile, the wood and stone that member pawns deliver under orders. A leader pawn whose market is full builds the same way when it has the materials. `BuildingPlanner` puts a house first when the settlement is within two of its resident cap, a farm when farms lag behind houses, and a storehouse when the market is full; after those, a settlement with two or more buildings puts up its workshop.
+The player builds with `K` (whatever `BuildingPlanner` says the settlement needs most that they can pay for) or from the command bar, which offers one button per affordable building. Any member of the owning nation may build. The cost is taken from what the builder carries first and then from the settlement's stockpile: the wood and stone that member pawns deliver under orders, and that a serf at home hands in when it carries 20 or more and the market has no coin to buy it (*contributing*). A leader pawn builds the same way when it, with the stockpile, has the materials. In a settlement its leader does not live in (one founded by a settler), the resident serfs build stalls and buildings from the stockpile instead. `BuildingPlanner` puts a house first when the settlement is within two of its resident cap, a farm when farms lag behind houses, and a storehouse when the market is full; after those, a settlement with two or more buildings puts up its workshop.
 
-**Residents.** A pawn calls a settlement home only if there is room: one that cannot find room in any of its nation's settlements stays homeless and keeps gathering until a house goes up. The simulation recounts residents every 50 ticks.
+**Residents.** A pawn calls a settlement home only if there is room: one that cannot find room in any of its nation's settlements stays homeless and keeps gathering until a house goes up or it has the wood to found another settlement. The simulation recounts residents every 50 ticks.
+
+**A day in town.** At nightfall (time of day 0.8 to 0.2) pawns with a home walk back to it and stay in until morning unless hunger drives them out, so towns fill up in the evening. By day an idle pawn at home walks out with a 2% chance a second (4% if industrious, 1% if gregarious); a visitor, 10%. The flat 10% everywhere was tuned when pawns inside were hidden, and emptied a staged town of 5 of its 8 residents within 13 seconds.
 
 **Tiers.** Two buildings make a Camp a Village, and five make it a Town. The tier and the resident count (`3/12 residents`) are shown on the settlement's nametag.
 
@@ -102,10 +117,24 @@ Every pawn keeps a relationship number for the player, shown as a named tier: St
 
 - **Talking** (`E`, or *Talk to …*): the pawn answers with a line built from its situation rather than a random phrase -- how well it knows the player, then the most pressing thing on its mind: hunger, an order it is working on, whether it has a nation (and whether it would join the player's), its loyalty to a rival nation, or what it is doing for the player's own nation. The first conversation with a given pawn in any 30-second window raises the relationship by 2; talking again sooner still gets an answer but does not count.
 - **Gifting** (`G`, or *Gift …*): hands over something from the player's inventory, chosen for the pawn. A hungry pawn gets one food item and values it most (+6); otherwise 10 coins (+2), then one food item (+2), then 5 wood or 5 stone (+1).
-- **Inviting** (`R`, or *Invite …*): a player in a nation can recruit a nationless pawn that is at least an Acquaintance. A pawn in another nation has to be Loyal to defect; its old nation loses the member, any stall it owned there is given up, and it starts over without a home settlement or order. A pawn that leads its nation never defects, so an invitation can never leave a nation leaderless or disband it.
+- **Inviting** (`R`, or *Invite …*): a player in a nation can recruit a nationless pawn that is at least an Acquaintance. A pawn in another nation has to be Loyal to defect (a pawn with the Loyal trait more than that, see Traits); its old nation loses the member, any stall it owned there is given up, and it starts over without a home settlement or order. A pawn that leads its nation never defects, so an invitation can never leave a nation leaderless or disband it.
 - **Leading**: when the player leads the pawn's nation, two more commands appear. *Order …: Gather Wood* asks a member that is at least an Acquaintance to bring 10 wood to the nation (the nation needs a settlement); the pawn keeps living its own life, and whatever wood it carries is handed into the settlement's stockpile whenever it is inside one of its nation's settlements, until the quota is met, at which point its relationship rises by 3. The leader takes the stockpile's wood and stone with *Collect Stockpile* inside the settlement. *Appoint … Merchant* hands a serf a free stall in its home settlement, making it a merchant (+6).
 
-*Planned:* pawn traits that affect behavior and interactions with other pawns.
+### Traits
+Every pawn has one trait, and 40% have a second (`PawnTraits`). Each changes what the pawn does:
+
+| Trait | Effect |
+| --- | --- |
+| Industrious | Half as much again wood or stone from every tree or rock; idles in town less. |
+| Greedy | Sells for a quarter more at the market, and will not sell to a stall that cannot pay that. |
+| Gregarious | Warms half as fast again to the player (talking, gifts, orders), twice as fast to neighbours; lingers in town. |
+| Glutton | Burns energy half as fast again. |
+| Ambitious | Joins a nearby nation only from within 60 units, so it usually founds its own; the first to leave a crowded settlement, and leaves its nation to do it. |
+| Loyal | Needs a relationship of 50, not 30 (Loyal tier), before it will defect to the player's nation. |
+
+Traits show on the nametag (`Name (Tier)`, then `Industrious, Greedy`, then what it is doing) and on the command bar's *Talk to Ada (Friend) - Industrious, Greedy*. In conversation a pawn ends with a word about itself by its first trait ("Is it supper time yet?"), and an ambitious or loyal pawn answers questions of allegiance in character ("I'd do almost anything for you, but I won't leave Rivalia.").
+
+*Planned:* pawns interacting with each other beyond trade and neighbourliness.
 
 ## Market
 The market system is used to buy and sell resources within a settlement. Each settlement has a market with a limited number of stalls, which can be built or purchased by pawns and by the player. Stall owners stock their stalls with items and collect the profit from sales. Item prices are calculated from the item's base cost and the market's current supply of that item, rather than being set per stall: base / (1 + supply / 10), so ten units on offer halve the price, never falling below a quarter of the base cost. A pawn heads to market once it carries 20 or more goods of any kind and the trip has a purpose for its role.

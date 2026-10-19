@@ -71,27 +71,25 @@ namespace beyondnations {
         }
 
         public Entity getNearestEntityOfType(Vector3 position, EntityType type) {
-            List<Entity> entities = entityRepository.getEntitiesOfType(type);
-            if (entities.Count == 0) {
-                return null;
-            }
-
-            // find nearest entity
+            // walks the repository in place rather than copying out a list per call
             Entity nearestEntity = null;
             float nearestDistance = float.MaxValue;
-            foreach (Entity entity in entities) {
+            int count = entityRepository.getEntityCount();
+            for (int i = 0; i < count; i++) {
+                Entity entity = entityRepository.getEntityAt(i);
+                if (entity.getType() != type) {
+                    continue;
+                }
                 if (entity.getType() == EntityType.PAWN) {
                     Pawn pawn = (Pawn) entity;
                     if (pawn.isCurrentlyInSettlement()) {
                         continue;
                     }
                 }
-                if (entity.getType() == type) {
-                    float distance = Vector3.Distance(position, entity.getPosition());
-                    if (distance < nearestDistance) {
-                        nearestDistance = distance;
-                        nearestEntity = entity;
-                    }
+                float distance = Vector3.DistanceSquared(position, entity.getPosition());
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestEntity = entity;
                 }
             }
             return nearestEntity;

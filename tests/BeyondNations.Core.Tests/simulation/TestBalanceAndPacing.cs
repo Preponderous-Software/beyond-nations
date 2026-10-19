@@ -163,14 +163,16 @@ namespace beyondnationstests {
             return pawn;
         }
 
-        [Fact]
-        public void testIdleSerf_LeavesTownWithinSeconds() {
+        private int countIdleExits(bool atHome) {
             EntityRepository entityRepository = new EntityRepository(random);
             Environment environment = new Environment(5, 5, entityRepository, random);
             NationRepository nationRepository = new NationRepository(random);
             Settlement settlement;
             Pawn serf = makePawnInOwnSettlement(NationRole.SERF, entityRepository, nationRepository, out settlement);
             serf.getInventory().setNumItems(ItemType.COIN, 0);
+            if (!atHome) {
+                serf.setHomeSettlementId(null);
+            }
             PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
 
             int exits = 0;
@@ -179,9 +181,19 @@ namespace beyondnationstests {
                     exits++;
                 }
             }
+            return exits;
+        }
 
+        [Fact]
+        public void testIdleVisitor_LeavesTownWithinSeconds() {
             // 10% per decision; the old 1% would give about 10
-            Assert.InRange(exits, 60, 140);
+            Assert.InRange(countIdleExits(false), 60, 140);
+        }
+
+        [Fact]
+        public void testIdleSerfAtHome_LingersLongerThanAVisitor() {
+            // 2% per decision at home: a staged town no longer empties in seconds
+            Assert.InRange(countIdleExits(true), 8, 35);
         }
 
         [Fact]
@@ -233,9 +245,10 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testSerf_GoesHomeToSellOnlyWhenTheMarketHasCoin() {
+        public void testSerf_GoesHomeToSellOrToHandInWoodAndStone() {
             Assert.Equal(BehaviorType.GO_TO_HOME_SETTLEMENT, computeOutside(NationRole.SERF, 1, 100, 30, 0));
-            Assert.Equal(BehaviorType.GATHER_RESOURCES, computeOutside(NationRole.SERF, 1, 0, 30, 0));
+            // no coin at the market: it goes anyway, to hand its wood in to the stockpile
+            Assert.Equal(BehaviorType.GO_TO_HOME_SETTLEMENT, computeOutside(NationRole.SERF, 1, 0, 30, 0));
             Assert.Equal(BehaviorType.GATHER_RESOURCES, computeOutside(NationRole.SERF, 1, 100, 5, 0));
         }
 

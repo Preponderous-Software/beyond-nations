@@ -245,7 +245,7 @@ namespace beyondnations.desktop.ui {
             EntityRepository entityRepository = simulation.getEntityRepository();
             EventProducer eventProducer = simulation.getEventProducer();
 
-            commands.Add(new WorldCommand("Talk to " + PawnRelations.describe(pawn, player), () =>
+            commands.Add(new WorldCommand("Talk to " + PawnRelations.describeWithTraits(pawn, player), () =>
                 new TalkToPawnCommand(nationRepository, eventProducer, simulation.getTickCounter()).execute(player, pawn)));
 
             if (GiftPawnCommand.canGift(player)) {

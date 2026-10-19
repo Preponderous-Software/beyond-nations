@@ -60,6 +60,7 @@ namespace beyondnations {
 
             for (int i = 0; i < NumResidents; i++) {
                 Pawn pawn = new Pawn(settlement.getPosition(), simulation.getPawnNameGenerator().generate(), random);
+                pawn.setTraits(PawnTraits.roll(simulation.getTraitRandom()));
                 entityRepository.addEntity(pawn);
                 nation.addMember(pawn.getId());
                 pawn.setNationId(nation.getId());

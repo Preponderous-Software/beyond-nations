@@ -41,6 +41,8 @@ namespace beyondnations {
         * Returns true when the pawn moved up a tier, so callers can say so.
         */
         public static bool raise(Pawn pawn, Player player, int amount, EventProducer eventProducer) {
+            // a gregarious pawn warms faster (PawnTraits)
+            amount = PawnTraits.adjustPlayerRelationshipGain(pawn, amount);
             RelationshipTier before = getTier(pawn, player);
             pawn.increaseRelationship(player, amount);
             player.increaseRelationship(pawn, amount);
@@ -72,6 +74,12 @@ namespace beyondnations {
         /** "Alice (Friend)" -- how status lines and buttons name a pawn. */
         public static string describe(Pawn pawn, Player player) {
             return pawn.getName() + " (" + getTierName(pawn, player) + ")";
+        }
+
+        /** "Alice (Friend) - Industrious, Greedy" -- the pawn in reach, as the command bar names it. */
+        public static string describeWithTraits(Pawn pawn, Player player) {
+            string traits = PawnTraits.describe(pawn);
+            return traits.Length == 0 ? describe(pawn, player) : describe(pawn, player) + " - " + traits;
         }
 
         /** The suffix appended when a tier is reached, or "" when it was not. */

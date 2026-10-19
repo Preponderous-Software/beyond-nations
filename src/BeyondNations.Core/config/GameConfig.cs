@@ -27,6 +27,7 @@ namespace beyondnations {
         private int renderDistance;
         private int maxNumEntities;
         private int maxNumChunks;
+        private int maxNumPawns;
         private string beyondNationsDirectoryPath;
 
         public GameConfig() {
@@ -54,7 +55,11 @@ namespace beyondnations {
             ticksBetweenBehaviorCalculations = 50;
             ticksBetweenBehaviorExecutions = 5;
             minDistanceBetweenSettlements = 250;
-            settlementJoinRange = 500;
+            // A nationless pawn this close to a settlement joins its nation;
+            // farther out it founds its own. It was 500, twice the distance
+            // between settlements, so every pawn in the opening chunks joined
+            // the first nation and the world never had a second.
+            settlementJoinRange = 100;
             settlementMetabolismMultiplier = 0.8f;
             // Energy the player burns per tick outside a settlement. A full
             // bar of 100 lasts one in-game day (TimeOfDay.DefaultTicksPerDay,
@@ -69,6 +74,9 @@ namespace beyondnations {
             renderDistance = 200;
             maxNumEntities = 100000;
             maxNumChunks = 10000;
+            // With lag prevention on, neither world generation nor growth
+            // (PopulationGrowth) takes the world past this many pawns.
+            maxNumPawns = 100;
             beyondNationsDirectoryPath = AppDataPaths.getBaseDirectory();
         }
 
@@ -193,6 +201,17 @@ namespace beyondnations {
 
         public int getMaxNumEntities() {
             return maxNumEntities;
+        }
+
+        public int getMaxNumPawns() {
+            return maxNumPawns;
+        }
+
+        public void setMaxNumPawns(int maxNumPawns) {
+            if (maxNumPawns < 0) {
+                throw new System.ArgumentOutOfRangeException(nameof(maxNumPawns), "must be zero or positive");
+            }
+            this.maxNumPawns = maxNumPawns;
         }
 
         public int getMaxNumChunks() {
