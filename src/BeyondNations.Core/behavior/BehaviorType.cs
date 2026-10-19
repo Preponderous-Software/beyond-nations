@@ -23,6 +23,7 @@ namespace beyondnations {
         // construction
         CONSTRUCT_SETTLEMENT,        
         CONSTRUCT_STALL,
+        CONSTRUCT_BUILDING,
 
         // nation
         CREATE_NATION,

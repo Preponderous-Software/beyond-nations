@@ -13,10 +13,10 @@ namespace beyondnations {
             player.setCurrentSettlementId(settlementId);
             player.getStatus().update("Entered settlement.");
 
-            // The player is inside, so it is no longer drawn. Where the camera
-            // sits while inside is the host's decision, taken from the player's
-            // current settlement; that arrives with #219.
-            player.setVisible(false);
+            // The player stays drawn while inside, standing in the town among
+            // the pawns milling about it, rather than vanishing (which made a
+            // settlement look deserted from the trailing camera).
+            player.setVisible(true);
         }
     }
 }

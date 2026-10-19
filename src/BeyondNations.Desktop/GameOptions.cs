@@ -115,6 +115,14 @@ namespace beyondnations.desktop {
         public float TimeOfDay = -1f;
         // --- end #280 ---
 
+        /**
+        * Open with a lived-in settlement already standing ahead of the player:
+        * a nation, a full market, merchants and residents. Exists so that what
+        * a town looks like can be screenshotted without an hour of play; see
+        * SettlementShowcase.
+        */
+        public bool StageSettlement = false;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -133,6 +141,7 @@ namespace beyondnations.desktop {
                     case "--no-culling":       options.NoCulling = true; break;
                     case "--no-labels":        options.NoLabels = true; break;
                     case "--debug-mode":       options.DebugMode = true; break;
+                    case "--stage-settlement": options.StageSettlement = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
@@ -227,6 +236,7 @@ namespace beyondnations.desktop {
                 "  --first-person          open in first person; V toggles the view mid-run",
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --debug-mode            open with the F1 debug overlay already on",
+                "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause or inventory",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --help, -h              print this and exit"

@@ -30,17 +30,20 @@ namespace beyondnationstests {
             Assert.Equal(0, settlement.getCurrentlyPresentEntitiesCount());
             Assert.Equal(4, settlement.getMarket().getMaxNumStalls());
 
+            // drawn as a place: a plaza disc first, with the nation's colour on the well and banner
             AppearancePart part = settlement.getAppearance().getPrimaryPart();
             Assert.Equal(PrimitiveKind.Cylinder, part.getKind());
-            Assert.Equal(new Vector3(10, 5, 10), part.getScale());
-            Assert.Equal(Rgba.Red, part.getColor());
+            Assert.True(settlement.getAppearance().getParts().Count > 1);
+            Assert.Contains(settlement.getAppearance().getParts(), p => p.getColor().Equals(Rgba.Red));
+            Assert.Equal(SettlementTier.CAMP, settlement.getTier());
+            Assert.Equal(BuildingCatalog.BASE_RESIDENTS, settlement.getResidentCap());
         }
 
         [Fact]
         public void testNameTag_NamesNationAndCountsNobody() {
             Settlement settlement = makeSettlement(new NationId());
 
-            Assert.Equal("Settlement of Testland\n\n(0)", settlement.getNameTagText());
+            Assert.Equal("Camp of Testland\n0 here, 0/8 residents", settlement.getNameTagText());
         }
 
         [Fact]
@@ -58,7 +61,7 @@ namespace beyondnationstests {
             Assert.Equal(2, settlement.getCurrentlyPresentEntitiesCount());
             Assert.Contains(first, settlement.getCurrentlyPresentEntities());
             Assert.Contains(second, settlement.getCurrentlyPresentEntities());
-            Assert.Equal("Settlement of Testland\n\n(2)", settlement.getNameTagText());
+            Assert.Equal("Camp of Testland\n2 here, 0/8 residents", settlement.getNameTagText());
         }
 
         [Fact]
@@ -77,7 +80,7 @@ namespace beyondnationstests {
             Assert.Equal(1, settlement.getCurrentlyPresentEntitiesCount());
             Assert.Contains(stays, settlement.getCurrentlyPresentEntities());
             Assert.DoesNotContain(leaves, settlement.getCurrentlyPresentEntities());
-            Assert.Equal("Settlement of Testland\n\n(1)", settlement.getNameTagText());
+            Assert.Equal("Camp of Testland\n1 here, 0/8 residents", settlement.getNameTagText());
         }
 
         [Fact]

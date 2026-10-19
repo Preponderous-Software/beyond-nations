@@ -34,6 +34,7 @@ namespace beyondnations.desktop.input {
         public static readonly Key PlantSapling = Key.P;
         public static readonly Key TeleportToHomeSettlement = Key.H;
         public static readonly Key BuildStall = Key.B;
+        public static readonly Key BuildBuilding = Key.K;
         public static readonly Key ToggleInventory = Key.I;
         public static readonly Key ToggleAutoWalk = Key.Insert;
         public static readonly Key ToggleCameraView = Key.V;

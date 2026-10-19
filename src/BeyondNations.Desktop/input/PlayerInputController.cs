@@ -125,6 +125,10 @@ namespace beyondnations.desktop.input {
                 new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository())
                     .execute(player);
             }
+            if (inputService.wasPressedThisFrame(KeyBindings.BuildBuilding)) {
+                new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository())
+                    .execute(player, null);
+            }
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleAutoWalk)) {
                 player.toggleAutoWalk();
             }

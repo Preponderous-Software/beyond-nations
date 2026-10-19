@@ -33,6 +33,7 @@ namespace beyondnations {
         private LagPreventer lagPreventer;
         private PawnNameGenerator pawnNameGenerator;
         private NationNameGenerator nationNameGenerator;
+        private SettlementLife settlementLife;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -45,6 +46,9 @@ namespace beyondnations {
         private const float PlayerGroundHeight = 1f;
         private const float PawnGroundHeight = 1.5f;
         private const float ChickenGroundHeight = 0.5f;
+
+        // How often each settlement recounts who calls it home.
+        private const int ResidentRecountTicks = 50;
 
         public Simulation(GameConfig gameConfig) {
             this.gameConfig = gameConfig;
@@ -73,6 +77,8 @@ namespace beyondnations {
             player.setMetabolism(gameConfig.getPlayerMetabolism());
             entityRepository.addEntity(player);
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
+            // Its own stream, so where pawns stroll in town never shifts the rest of a seeded world.
+            settlementLife = new SettlementLife(new RandomSource(random.getSeed() ^ 0x5E771E));
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -277,6 +283,16 @@ namespace beyondnations {
                                     settlement.getInventory().addItem(ItemType.COIN, numCoinsToGenerate);
                                 }
                             }
+
+                            // buildings: farms stock the market, residents are recounted, and the
+                            // settlement redraws itself if a stall or building has changed
+                            if (totalTicks % BuildingCatalog.FARM_TICKS_PER_HARVEST == 0) {
+                                settlement.harvestFarms();
+                            }
+                            if (totalTicks % ResidentRecountTicks == 0) {
+                                settlement.setResidentCount(SettlementLife.countResidents(entityRepository, settlement.getId()));
+                            }
+                            settlement.refreshAppearance();
                         }
                     }
 
@@ -342,6 +358,10 @@ namespace beyondnations {
                     Pawn pawn = (Pawn) entity;
                     if (!pawn.isCurrentlyInSettlement()) {
                         MovementIntegrator.step(pawn, fixedDeltaTime, PawnGroundHeight);
+                    }
+                    else if (entityRepository.getEntity(pawn.getCurrentSettlementId()) is Settlement settlement) {
+                        // inside, the pawn strolls about the town rather than falling under physics
+                        settlementLife.mill(pawn, settlement, fixedDeltaTime, PawnGroundHeight);
                     }
                 }
                 else if (entity.getType() == EntityType.CHICKEN) {

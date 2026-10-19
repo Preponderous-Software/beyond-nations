@@ -79,6 +79,7 @@ The following controls are available in the game:
 | `P` | Plant a sapling |
 | `H` | Teleport to home settlement |
 | `B` | Build stall |
+| `K` | Build the building your settlement needs most (house, storehouse or farm; costs wood and stone) |
 | `I` | Open / close the inventory screen (pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
@@ -98,6 +99,21 @@ The following controls are available in the game:
 
 ## Game Systems
 A number of systems combine to create the gameplay experience. Some are already implemented and some are still planned; the [Systems Document](./docs/SYSTEMS.md) lists each one with its current status.
+
+### Settlements that grow
+![A town of Southernland: a plaza with a well and banner, market stalls with nation-coloured awnings and crates of apples, houses, a storehouse, farms, a palisade, and residents milling about](./.github/media/settlement-town.png)
+
+A settlement is drawn as a place: a plaza with a well and the nation's banner, its market stalls in a ring around it (an owned stall has a nation-coloured awning and a crate of whatever it sells; a stall for sale has a pale awning and a yellow sign), and its buildings in a wider ring beyond. Pawns inside a settlement stay visible and mill about the plaza, so a busy town looks busy.
+
+Buildings cost wood **and stone**, so quarrying matters. Press `K` inside one of your nation's settlements to build whatever it needs most, or pick one from the command bar; the cost comes from what you carry first and then from the settlement's stockpile. Leader pawns build too once their market is full.
+
+| Building | Cost | Effect |
+| --- | --- | --- |
+| House | 20 wood, 15 stone | Room for 4 more residents (a settlement starts with room for 8) |
+| Storehouse | 10 wood, 30 stone | 2 more market stalls |
+| Farm | 25 wood, 10 stone | One apple every 500 ticks, stocked into a merchant's stall |
+
+Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`).
 
 ## History film
 ![Seed 12: six nations founding settlements and spreading over the map, one orbit](./.github/media/history-film.gif)

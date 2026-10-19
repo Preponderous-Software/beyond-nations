@@ -225,6 +225,10 @@ namespace beyondnations.desktop {
             }
             // --- end #280 ---
 
+            if (options.StageSettlement) {
+                SettlementShowcase.stage(simulation);
+            }
+
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);

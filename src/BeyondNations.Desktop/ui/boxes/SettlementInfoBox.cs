@@ -37,6 +37,12 @@ namespace beyondnations.desktop.ui.boxes {
 
             lines.Add("PCIS: " + settlement.getCurrentlyPresentEntitiesCount());
             lines.Add("Funds: " + settlement.getInventory().getNumItems(ItemType.COIN));
+            lines.Add("Tier: " + SettlementTiers.getDisplayName(settlement.getTier()) + " (" + settlement.getNumBuildings() + " buildings)");
+            lines.Add("Residents: " + settlement.getResidentCount() + "/" + settlement.getResidentCap());
+            BuildingType? next = BuildingPlanner.suggestNext(settlement);
+            if (next != null) {
+                lines.Add("Next (" + desktop.input.KeyBindings.BuildBuilding + "): " + BuildingCatalog.getDisplayName(next.Value) + ", " + BuildingCatalog.describeCost(next.Value));
+            }
 
             return lines;
         }

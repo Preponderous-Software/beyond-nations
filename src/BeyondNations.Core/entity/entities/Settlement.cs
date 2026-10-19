@@ -9,6 +9,9 @@ namespace beyondnations {
         private string nationName;
         private List<EntityId> currentlyPresentEntities = new List<EntityId>();
         private Market market;
+        private List<Building> buildings = new List<Building>();
+        private int residentCount = 0;
+        private long drawnLayoutSignature = long.MinValue;
 
         public static readonly int WOOD_COST_TO_BUILD = 50;
 
@@ -18,10 +21,11 @@ namespace beyondnations {
             this.nationName = nationName;
 
             setPosition(position);
-            setAppearance(new Appearance(PrimitiveKind.Cylinder, new Vector3(10, 5, 10), color));
-
-            updateNameTagWithCurrentlyPresentEntities();
+            setAppearance(new Appearance());
             market = new Market(4, random);
+
+            updateNameTag();
+            refreshAppearance();
         }
 
         public List<EntityId> getCurrentlyPresentEntities() {
@@ -30,12 +34,12 @@ namespace beyondnations {
 
         public void addCurrentlyPresentEntity(EntityId entityId) {
             this.currentlyPresentEntities.Add(entityId);
-            updateNameTagWithCurrentlyPresentEntities();
+            updateNameTag();
         }
 
         public void removeCurrentlyPresentEntity(EntityId entityId) {
             this.currentlyPresentEntities.Remove(entityId);
-            updateNameTagWithCurrentlyPresentEntities();
+            updateNameTag();
         }
 
         public int getCurrentlyPresentEntitiesCount() {
@@ -70,9 +74,135 @@ namespace beyondnations {
             getInventory().removeItem(ItemType.COIN, amount);
         }
 
-        private void updateNameTagWithCurrentlyPresentEntities() {
-            string label = "Settlement of " + this.nationName + "\n\n";
-            label += "(" + getCurrentlyPresentEntitiesCount() + ")";
+        // buildings -----------------------------------------------------------------------------------------
+
+        public IReadOnlyList<Building> getBuildings() {
+            return buildings;
+        }
+
+        public int getNumBuildings() {
+            return buildings.Count;
+        }
+
+        public int getNumBuildings(BuildingType type) {
+            int count = 0;
+            foreach (Building building in buildings) {
+                if (building.getType() == type) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        /**
+        * Whether another building of this type fits: under its own limit and
+        * under the settlement's total. Says nothing about materials.
+        */
+        public bool canAddBuilding(BuildingType type) {
+            return buildings.Count < BuildingCatalog.MAX_BUILDINGS
+                && getNumBuildings(type) < BuildingCatalog.getLimit(type);
+        }
+
+        /**
+        * Puts a building up in the next free slot and applies what it does. The
+        * caller has already taken the materials. Returns false, changing
+        * nothing, when there is no room for it.
+        */
+        public bool addBuilding(BuildingType type) {
+            if (!canAddBuilding(type)) {
+                return false;
+            }
+            buildings.Add(new Building(type, buildings.Count));
+            if (type == BuildingType.STOREHOUSE) {
+                market.increaseMaxNumStalls(BuildingCatalog.STOREHOUSE_STALLS);
+            }
+            updateNameTag();
+            refreshAppearance();
+            return true;
+        }
+
+        public SettlementTier getTier() {
+            return SettlementTiers.fromBuildingCount(buildings.Count);
+        }
+
+        /**
+        * How many pawns may call this settlement home: a base, and more for each
+        * house.
+        */
+        public int getResidentCap() {
+            return BuildingCatalog.BASE_RESIDENTS + BuildingCatalog.HOUSE_RESIDENTS * getNumBuildings(BuildingType.HOUSE);
+        }
+
+        /**
+        * How many call it home, as last counted. The simulation recounts it
+        * periodically (SettlementLife.countResidents); a pawn joining adds one
+        * straight away so two joiners in one tick cannot both take the last
+        * place.
+        */
+        public int getResidentCount() {
+            return residentCount;
+        }
+
+        public void setResidentCount(int residentCount) {
+            if (this.residentCount == residentCount) {
+                return;
+            }
+            this.residentCount = residentCount;
+            updateNameTag();
+        }
+
+        public bool hasRoomForResident() {
+            return residentCount < getResidentCap();
+        }
+
+        /**
+        * Each farm stocks one apple into the merchant stall holding the fewest,
+        * so farms feed the market rather than piling up out of reach. With no
+        * merchant there is nobody to sell the harvest and nothing is produced.
+        * Returns how many apples were stocked.
+        */
+        public int harvestFarms() {
+            int farms = getNumBuildings(BuildingType.FARM);
+            int stocked = 0;
+            for (int i = 0; i < farms; i++) {
+                Stall emptiest = null;
+                foreach (Stall stall in market.getStalls()) {
+                    if (stall.getOwnerId() == null) {
+                        continue;
+                    }
+                    if (emptiest == null || stall.getInventory().getNumItems(ItemType.APPLE) < emptiest.getInventory().getNumItems(ItemType.APPLE)) {
+                        emptiest = stall;
+                    }
+                }
+                if (emptiest == null) {
+                    break;
+                }
+                emptiest.getInventory().addItem(ItemType.APPLE, 1);
+                stocked++;
+            }
+            return stocked;
+        }
+
+        // drawing -------------------------------------------------------------------------------------------
+
+        /**
+        * Redraws the settlement if anything its look depends on has changed
+        * since it was last drawn: stalls built, bought or stocked, buildings put
+        * up. Cheap when nothing has changed, so the simulation calls it every
+        * tick rather than every place a stall can change hands having to.
+        */
+        public void refreshAppearance() {
+            long signature = SettlementLayout.computeSignature(this);
+            if (signature == drawnLayoutSignature) {
+                return;
+            }
+            drawnLayoutSignature = signature;
+            SettlementLayout.build(this, getAppearance());
+        }
+
+        private void updateNameTag() {
+            string label = SettlementTiers.getDisplayName(getTier()) + " of " + this.nationName + "\n";
+            label += getCurrentlyPresentEntitiesCount() + " here, " + residentCount + "/" + getResidentCap() + " residents";
             getAppearance().setLabel(label);
         }
     }
