@@ -19,7 +19,9 @@ namespace beyondnations.desktop.ui.screens {
 
             Overlay.beginFullScreen("##main-menu-screen", width, height);
             Overlay.textCentered(Title, height / 15f, centreY / 2f, width);
-            int clicked = Overlay.menuButtons(ButtonLabels, width, centreY, height - UiScale.px(16f));
+            // Start keeps the top edge it always had, 25 px below the centre,
+            // so it stays where players (and the browser smoke test) click.
+            int clicked = Overlay.menuButtons(ButtonLabels, width, centreY + UiScale.px(25f), height - UiScale.px(16f));
             Overlay.end();
 
             return clicked < 0 ? UiAction.None : ButtonActions[clicked];
