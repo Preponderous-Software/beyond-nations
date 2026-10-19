@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
+using beyondnations.desktop.input;
 using beyondnations.desktop.ui.boxes;
 
 namespace beyondnations.desktop.ui.screens {
@@ -28,6 +29,15 @@ namespace beyondnations.desktop.ui.screens {
         private const float SettlementBoxY = 30f;
         private const float BoxGap = 10f;
 
+        /**
+        * Energy below which the HUD warns that the player is going hungry,
+        * and below which it says they are starving. Energy falls every tick
+        * and the player dies at zero; before these warnings the only sign was
+        * the number in the player box, so death arrived unannounced.
+        */
+        public const float HungryEnergy = 30f;
+        public const float StarvingEnergy = 10f;
+
         private const ImGuiWindowFlags BarFlags =
             ImGuiWindowFlags.NoDecoration |
             ImGuiWindowFlags.NoSavedSettings |
@@ -51,6 +61,7 @@ namespace beyondnations.desktop.ui.screens {
 
             drawCommandButtons(width, height, simulation);
             drawStatus(width, player);
+            drawHungerWarning(width, player);
 
             if (debugMode) {
                 DebugInfoBox debugInfoBox = new DebugInfoBox(simulation);
@@ -137,6 +148,43 @@ namespace beyondnations.desktop.ui.screens {
                 if (clicked != null) {
                     clicked.execute();
                 }
+            }
+            ImGui.End();
+        }
+
+        /**
+        * The hunger warning, or null when the player is not hungry. The
+        * player eats on their own whenever they carry food, so a hungry
+        * player is one with none, and the warning says where to get some.
+        */
+        public static string getHungerWarning(Player player) {
+            float energy = player.getEnergy();
+            if (energy >= HungryEnergy) {
+                return null;
+            }
+            string howToEat = "Press " + KeyBindings.Interact + " at a tree or a chicken for food, or buy food in a settlement.";
+            if (energy < StarvingEnergy) {
+                return "Starving! Energy " + (int) energy + ". " + howToEat;
+            }
+            return "Hungry: energy " + (int) energy + " and falling. " + howToEat;
+        }
+
+        /**
+        * Drawn under the status line and held there, rather than posted as a
+        * status, so a later message cannot push it off screen while the
+        * danger is still real.
+        */
+        private void drawHungerWarning(float width, Player player) {
+            string warning = getHungerWarning(player);
+            if (warning == null) {
+                return;
+            }
+            Vector4 colour = player.getEnergy() < StarvingEnergy
+                ? new Vector4(1f, 0.35f, 0.35f, 1f)
+                : new Vector4(1f, 0.8f, 0.3f, 1f);
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, 50f), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            if (ImGui.Begin("##hunger-warning", StatusFlags)) {
+                ImGui.TextColored(colour, warning);
             }
             ImGui.End();
         }
