@@ -12,7 +12,8 @@ namespace beyondnations {
     * title screen, Escape moves between the main menu, the world and the pause
     * screen, and the config screen is reached from the main menu. The
     * inventory screen, which the Unity version never had, is opened from the
-    * world with I and left with I or Escape.
+    * world with I and left with I or Escape. The crafting screen works the
+    * same way on C.
     */
     public class ScreenState {
         private ScreenType current = ScreenType.TITLE;
@@ -43,7 +44,8 @@ namespace beyondnations {
         }
 
         private static bool isLaidOverWorld(ScreenType screen) {
-            return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.NATIONS || screen == ScreenType.PAUSE;
+            return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.NATIONS
+                || screen == ScreenType.CRAFTING || screen == ScreenType.PAUSE;
         }
 
         /**
@@ -106,6 +108,20 @@ namespace beyondnations {
                 goTo(ScreenType.INVENTORY);
             } else if (current == ScreenType.INVENTORY) {
                 goTo(ScreenType.WORLD);
+            } else if (current == ScreenType.CRAFTING) {
+                goTo(ScreenType.INVENTORY);
+            }
+        }
+
+        /**
+        * The crafting key opens the crafting screen from the world (or from
+        * the inventory screen) and closes it again.
+        */
+        public void craftingPressed() {
+            if (current == ScreenType.WORLD || current == ScreenType.INVENTORY) {
+                goTo(ScreenType.CRAFTING);
+            } else if (current == ScreenType.CRAFTING) {
+                goTo(ScreenType.WORLD);
             }
         }
 
@@ -131,7 +147,7 @@ namespace beyondnations {
                 goTo(ScreenType.PAUSE);
                 return true;
             }
-            if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS) {
+            if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS || current == ScreenType.CRAFTING) {
                 goTo(ScreenType.WORLD);
                 return true;
             }

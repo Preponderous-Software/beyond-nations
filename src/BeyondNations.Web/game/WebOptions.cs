@@ -30,7 +30,7 @@ namespace beyondnations.web {
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {
-            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations" } },
+            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations", "crafting" } },
         };
 
         /** Returns the argument list; warnings go to warn. */

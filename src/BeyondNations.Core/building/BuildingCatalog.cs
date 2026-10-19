@@ -8,6 +8,7 @@ namespace beyondnations {
     *   House       wood 20, stone 15  -- room for HOUSE_RESIDENTS more pawns to call the settlement home
     *   Storehouse  wood 10, stone 30  -- STOREHOUSE_STALLS more market stalls
     *   Farm        wood 25, stone 10  -- one apple every FARM_TICKS_PER_HARVEST ticks, stocked into a merchant's stall
+    *   Workshop    wood 15, stone 10  -- lets anyone inside craft the recipes that need it (planks, bricks; see RecipeBook)
     *
     * Every building needs far more stone than a stall does: a settlement
     * cannot grow past a camp without someone quarrying.
@@ -28,6 +29,7 @@ namespace beyondnations {
                 case BuildingType.HOUSE: return 20;
                 case BuildingType.STOREHOUSE: return 10;
                 case BuildingType.FARM: return 25;
+                case BuildingType.WORKSHOP: return 15;
             }
             return 0;
         }
@@ -37,6 +39,7 @@ namespace beyondnations {
                 case BuildingType.HOUSE: return 15;
                 case BuildingType.STOREHOUSE: return 30;
                 case BuildingType.FARM: return 10;
+                case BuildingType.WORKSHOP: return 10;
             }
             return 0;
         }
@@ -47,6 +50,7 @@ namespace beyondnations {
                 case BuildingType.HOUSE: return 6;
                 case BuildingType.STOREHOUSE: return 2;
                 case BuildingType.FARM: return 4;
+                case BuildingType.WORKSHOP: return 1;
             }
             return 0;
         }
@@ -56,6 +60,7 @@ namespace beyondnations {
                 case BuildingType.HOUSE: return "House";
                 case BuildingType.STOREHOUSE: return "Storehouse";
                 case BuildingType.FARM: return "Farm";
+                case BuildingType.WORKSHOP: return "Workshop";
             }
             return type.ToString();
         }

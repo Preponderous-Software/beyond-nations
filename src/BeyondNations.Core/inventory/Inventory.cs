@@ -9,6 +9,11 @@ namespace beyondnations {
     public class Inventory {
         private List<ItemSlot> slots;
 
+        // Uses already spent on the tool in hand, per tool type (see Tools).
+        // Forgotten whenever the last of that tool leaves the inventory, so a
+        // fresh tool always starts unworn.
+        private Dictionary<ItemType, int> toolWear = new Dictionary<ItemType, int>();
+
         public Inventory(int numGoldCoins) {
             slots = new List<ItemSlot>();
             
@@ -72,6 +77,7 @@ namespace beyondnations {
                     // Clear the slot if empty (quantity <= 0)
                     if (slot.getItemStack().isEmpty()) {
                         slot.clear();
+                        toolWear.Remove(itemType);
                     }
                     return;
                 }
@@ -90,6 +96,7 @@ namespace beyondnations {
                         slot.getItemStack().setQuantity(numItems);
                     } else {
                         slot.clear();
+                        toolWear.Remove(itemType);
                     }
                     return;
                 }
@@ -114,6 +121,21 @@ namespace beyondnations {
         public void clear() {
             foreach (ItemSlot slot in slots) {
                 slot.clear();
+            }
+            toolWear.Clear();
+        }
+
+        /** Uses already spent on the tool of this type in hand; 0 for a fresh one. */
+        public int getToolWear(ItemType toolType) {
+            int wear;
+            return toolWear.TryGetValue(toolType, out wear) ? wear : 0;
+        }
+
+        public void setToolWear(ItemType toolType, int wear) {
+            if (wear <= 0) {
+                toolWear.Remove(toolType);
+            } else {
+                toolWear[toolType] = wear;
             }
         }
 

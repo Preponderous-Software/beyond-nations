@@ -130,6 +130,8 @@ namespace beyondnations.desktop.ui {
                     new PlantSaplingCommand(entityRepository, simulation.getRandom(), simulation.getTickCounter()).execute(player)));
             }
 
+            addCraftingCommands(simulation, commands);
+
             if (!player.isCurrentlyInSettlement()) {
                 Settlement nearestSettlement = (Settlement) simulation.getEnvironment().getNearestEntityOfType(player.getPosition(), EntityType.SETTLEMENT);
                 if (nearestSettlement != null) {
@@ -149,7 +151,8 @@ namespace beyondnations.desktop.ui {
                         new PurchaseFoodFromMarketCommand(nationRepository, entityRepository).execute(player)));
                 }
 
-                if (player.getInventory().getNumItems(ItemType.WOOD) > 0 || player.getInventory().getNumItems(ItemType.STONE) > 0) {
+                if (player.getInventory().getNumItems(ItemType.WOOD) > 0 || player.getInventory().getNumItems(ItemType.STONE) > 0
+                        || player.getInventory().getNumItems(ItemType.PLANKS) > 0 || player.getInventory().getNumItems(ItemType.BRICKS) > 0) {
                     commands.Add(new WorldCommand("Sell Resources", () =>
                         new SellResourcesAtMarketCommand(nationRepository, entityRepository).execute(player)));
                 }
@@ -189,6 +192,41 @@ namespace beyondnations.desktop.ui {
             }
             commands.Add(new WorldCommand("Denounce " + owner.getName(), () =>
                 new DenounceNationCommand(nationRepository, diplomacy).execute(player, owner)));
+        }
+
+        /**
+        * Shortcuts into crafting (#47): a player without an axe or pickaxe who
+        * can make one is offered it outright -- the first craft is the one
+        * that teaches the screen exists -- and inside a settlement, a tool a
+        * merchant has stocked can be bought when the player can pay for it.
+        * Everything else is on the crafting screen (C).
+        */
+        private static void addCraftingCommands(Simulation simulation, List<WorldCommand> commands) {
+            Player player = simulation.getPlayer();
+            EntityRepository entityRepository = simulation.getEntityRepository();
+            Inventory inventory = player.getInventory();
+            Settlement settlement = CraftItemCommand.getCurrentSettlement(player, entityRepository);
+
+            foreach (Recipe recipe in new[] { RecipeBook.Axe, RecipeBook.Pickaxe }) {
+                ItemType tool = recipe.getOutput();
+                if (inventory.getNumItems(tool) > 0) {
+                    continue;
+                }
+                if (Crafting.canCraft(recipe, inventory, settlement)) {
+                    Recipe toCraft = recipe;
+                    commands.Add(new WorldCommand("Craft " + recipe.getName(), () =>
+                        new CraftItemCommand(entityRepository).execute(player, toCraft)));
+                    continue;
+                }
+                if (settlement != null) {
+                    int price = settlement.getMarket().getPriceToBuy(player, tool);
+                    if (price >= 0 && inventory.getNumItems(ItemType.COIN) >= price) {
+                        ItemType toBuy = tool;
+                        commands.Add(new WorldCommand("Buy " + recipe.getName() + " (" + price + ")", () =>
+                            new BuyItemFromMarketCommand(entityRepository).execute(player, toBuy)));
+                    }
+                }
+            }
         }
 
         /**

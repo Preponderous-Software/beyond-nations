@@ -17,6 +17,8 @@ namespace beyondnations.desktop.ui {
         MainMenu,
         OpenControls,
         CloseControls,
-        Quit
+        Quit,
+        // close an overlay screen (crafting) and return to the world
+        ResumeWorld
     }
 }

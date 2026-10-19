@@ -51,6 +51,9 @@ html, body {
 }
 
 .panel[hidden], #touch[hidden] { display: none; }
+/* The crafting screen is full of rows to tap and has its own Close button;
+   the controls would sit on top of its lower rows (main.js sets data-screen). */
+body[data-screen="CRAFTING"] #touch { display: none; }
 
 .panel h1 { margin: 0 0 4px; font-size: 1.6rem; }
 .panel .sub { margin: 0 0 16px; color: var(--muted); }

@@ -30,6 +30,7 @@ namespace beyondnations.web {
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
+        private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly WorldHud worldHud = new WorldHud();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
@@ -97,6 +98,11 @@ namespace beyondnations.web {
                         action = nationScreen.draw(width, height, simulation);
                     }
                     break;
+                case ScreenType.CRAFTING:
+                    if (simulation != null) {
+                        action = craftingScreen.draw(width, height, simulation);
+                    }
+                    break;
             }
 
             apply(action);
@@ -130,6 +136,9 @@ namespace beyondnations.web {
                     break;
                 case UiAction.Quit:
                     quitRequested = true;
+                    break;
+                case UiAction.ResumeWorld:
+                    screens.goTo(ScreenType.WORLD);
                     break;
             }
         }

@@ -113,6 +113,7 @@ namespace beyondnations {
                 if (isGatherable(targetEntityType)) {
                     targetEntity.markForDeletion();
                     pawn.getInventory().transferContentsOfInventory(targetEntity.getInventory());
+                    Tools.applyGatherBonus(pawn.getInventory(), targetEntityType);
                     pawn.setTargetEntity(null);
 
                     if (targetEntityType == EntityType.TREE && pawn.getInventory().getNumItems(ItemType.SAPLING) > 0) {
@@ -445,8 +446,13 @@ namespace beyondnations {
                 return;
             }
 
-            // transfer items
+            // make what it can from the haul first (tools, cooked meat, and
+            // planks and bricks where there is a workshop), then stock it all
             Stall stall = market.getStall(pawn.getId());
+            int crafted = MerchantCrafting.craftGoods(pawn.getInventory(), currentSettlement, stall.getInventory());
+            if (crafted > 0) {
+                Log.info("Pawn " + pawn.getName() + " crafted " + crafted + " batches of goods for their stall.");
+            }
             stall.transferContentsFromEntity(pawn);
 
             // get half of coins from stall

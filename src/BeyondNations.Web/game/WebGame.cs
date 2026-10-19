@@ -220,6 +220,9 @@ namespace beyondnations.web {
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleNations)) {
                 screens.nationsPressed();
             }
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
+                screens.craftingPressed();
+            }
             if (simulation == null || !screens.isWorldActive()) {
                 return;
             }

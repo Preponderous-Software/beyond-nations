@@ -7,6 +7,7 @@ namespace beyondnations {
     public enum BuildingType {
         HOUSE,
         STOREHOUSE,
-        FARM
+        FARM,
+        WORKSHOP
     }
 }

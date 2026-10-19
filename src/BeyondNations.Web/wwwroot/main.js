@@ -38,7 +38,12 @@ const ui = {
     show("touch", false);
     show("exited", true);
   },
-  status(value) { status = value; },
+  status(value) {
+    status = value;
+    // style.css hides the on-screen controls on screens they would cover,
+    // such as crafting, whose rows are tapped directly.
+    document.body.dataset.screen = (value && value.screen) || "";
+  },
   inputHooks: {
     // The title screen moves on with any key. A tap is not a key, so on
     // touch screens a tap on the title counts as one.

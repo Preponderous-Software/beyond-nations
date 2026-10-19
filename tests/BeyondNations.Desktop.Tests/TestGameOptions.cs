@@ -61,6 +61,12 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testStartScreenAcceptsTheCraftingScreen() {
+            GameOptions options = GameOptions.parse(new string[] { "--start-screen", "crafting" });
+            Assert.Equal(ScreenType.CRAFTING, options.StartScreen);
+        }
+
+        [Fact]
         public void testNoUsageReportingTurnsReportingOffForTheRun() {
             // run
             GameOptions defaults = GameOptions.parse(new string[] { });
