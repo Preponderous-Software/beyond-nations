@@ -126,10 +126,47 @@ and runs in `Build and test`.
   `native/cimgui.targets` downloads the exact cimgui and Dear ImGui commits
   ImGui.NET 1.90.8.1 was built from (pinned by SHA-256), compiles them with the
   workload's Emscripten and links them into `dotnet.native.wasm`.
+  Its printf-style functions cannot be called from here; see the next section.
 - `WasmStripILAfterAOT` stays off: with it, .NET 8's runtime fails to start
   this app. If an AOT publish ever fails at start-up with an interpreter
   assertion, delete `src/BeyondNations.Web/obj` and `bin` first: incremental
   AOT builds after a settings change have produced a broken runtime here.
+
+### Variadic ImGui functions
+
+Don't call `ImGui.TextColored`, `ImGui.Text`, `ImGui.TextWrapped`,
+`ImGui.TextDisabled`, `ImGui.BulletText`, `ImGui.LabelText`,
+`ImGui.SetTooltip`, `ImGui.SetItemTooltip` or `ImGui.LogText` in code the
+browser build compiles. That covers every screen under
+`src/BeyondNations.Desktop/ui`.
+Their C functions are variadic (`igTextColored(ImVec4 col, const char* fmt, ...)`),
+but ImGui.NET P/Invokes them with a fixed argument list (`(Vector4, byte*)`).
+On x64 the extra argument is simply never read. On WebAssembly a variadic
+function's signature has an extra parameter, a pointer to the varargs buffer,
+so the call fails the signature check. The first frame that reaches it ends the
+page with `RuntimeError: null function or function signature mismatch`, and the
+stack has no managed frames to show where.
+
+Use these instead:
+
+- `Overlay.textColoured(colour, text)` in place of `TextColored`;
+- `ImGui.TextUnformatted(text)` in place of `Text`;
+- `TextWrap.wrap` with one `TextUnformatted` per line, or
+  `ImGui.PushTextWrapPos(0f)`, then `TextUnformatted`, then `PopTextWrapPos()`,
+  in place of `TextWrapped`.
+
+Calls with a fixed signature are fine, even ones that pass a struct by value.
+`PushTextWrapPos`, `ProgressBar`, `PushStyleColor` (either overload),
+`SetNextWindowBgAlpha`, `BeginChild`, `GetScrollY` and `SetScrollHereY` all
+work in the browser. They were checked with the objective tracker and the full
+chronicle view. `TestNoVariadicImGuiCalls` (in
+`tests/BeyondNations.Desktop.Tests`) fails the desktop build if a variadic call
+appears in the shared source.
+
+To name the function behind any wasm trap, publish with a symbol map:
+`dotnet publish ... -p:WasmEmitSymbolMap=true -p:WasmNativeStrip=false`. The
+browser's stack trace then names each frame. For this trap the top frame was
+`aot_wrapper_..._ImGuiNative__igTextColored_pinvoke_void_cls11_Numerics_dVector4_cl7_byte_2a_`.
 
 ## Tests
 
