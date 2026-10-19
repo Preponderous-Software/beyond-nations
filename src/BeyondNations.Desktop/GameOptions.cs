@@ -123,6 +123,13 @@ namespace beyondnations.desktop {
         */
         public bool StageSettlement = false;
 
+        /**
+        * How much larger than its design size to draw the UI. 0, the default,
+        * uses the monitor's content scale (150 % in Windows display settings
+        * is 1.5); anything from 1 to 4 overrides it.
+        */
+        public float UiScale = 0f;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -146,6 +153,7 @@ namespace beyondnations.desktop {
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
                     case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
+                    case "--ui-scale":         options.UiScale = uiScaleAfter(args, ref i); break;
                     case "--help":
                     case "-h":
                         printUsage();
@@ -174,8 +182,9 @@ namespace beyondnations.desktop {
                 case "world":     return ScreenType.WORLD;
                 case "pause":     return ScreenType.PAUSE;
                 case "inventory": return ScreenType.INVENTORY;
+                case "controls":  return ScreenType.CONTROLS;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause or inventory)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory or controls)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -196,6 +205,21 @@ namespace beyondnations.desktop {
             return parsed;
         }
         // --- end #280 ---
+
+        private static float uiScaleAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            float parsed;
+            if (!float.TryParse(args[i], NumberStyles.Float, CultureInfo.InvariantCulture, out parsed)
+                    || float.IsNaN(parsed) || parsed < 1f || parsed > 4f) {
+                Console.Error.WriteLine("ui scale must be a number from 1 to 4: " + args[i]);
+                System.Environment.Exit(2);
+            }
+            return parsed;
+        }
 
         private static int intAfter(string[] args, ref int i, int fallback) {
             if (i + 1 >= args.Length) {
@@ -237,8 +261,9 @@ namespace beyondnations.desktop {
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause or inventory",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory or controls",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
+                "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --help, -h              print this and exit"
             });
         }

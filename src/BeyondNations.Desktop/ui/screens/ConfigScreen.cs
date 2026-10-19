@@ -27,8 +27,12 @@ namespace beyondnations.desktop.ui.screens {
         public UiAction draw(float width, float height, GameConfig gameConfig) {
             float centreX = width / 2f;
             float centreY = height / 2f;
-            float rowX = centreX - 150f;
-            float firstRowY = centreY + ButtonHeight / 2f;
+            float rowHeight = UiScale.px(RowHeight);
+            float widgetWidth = UiScale.px(WidgetWidth);
+            float buttonWidth = UiScale.px(ButtonWidth);
+            float buttonHeight = UiScale.px(ButtonHeight);
+            float rowX = centreX - UiScale.px(150f);
+            float firstRowY = centreY + buttonHeight / 2f;
 
             ConfigValues values = ConfigValues.readFrom(gameConfig);
             ConfigValues edited = ConfigValues.readFrom(gameConfig);
@@ -38,24 +42,24 @@ namespace beyondnations.desktop.ui.screens {
             Overlay.beginFullScreen("##config-screen", width, height);
             Overlay.textCentered(Title, height / 15f, centreY / 2f, width);
 
-            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + RowHeight));
-            ImGui.SetNextItemWidth(WidgetWidth);
+            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight));
+            ImGui.SetNextItemWidth(widgetWidth);
             ImGui.SliderInt("Chunk Size", ref edited.ChunkSize, ConfigValues.MinChunkSize, ConfigValues.MaxChunkSize);
 
-            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + RowHeight * 2f));
-            ImGui.SetNextItemWidth(WidgetWidth);
+            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 2f));
+            ImGui.SetNextItemWidth(widgetWidth);
             ImGui.SliderInt("Location Scale", ref edited.LocationScale, ConfigValues.MinLocationScale, ConfigValues.MaxLocationScale);
 
-            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + RowHeight * 3f));
+            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 3f));
             ImGui.Checkbox("Respawn Pawns", ref edited.RespawnPawns);
 
-            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + RowHeight * 4f));
+            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 4f));
             ImGui.Checkbox("Keep Inventory", ref edited.KeepInventoryOnDeath);
 
-            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + RowHeight * 5f));
+            ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 5f));
             ImGui.Checkbox("Lag Prevention", ref edited.LagPreventionEnabled);
 
-            if (Overlay.buttonAt("Back", centreX - ButtonWidth / 2f, height - ButtonHeight * 2f, ButtonWidth, ButtonHeight)) {
+            if (Overlay.buttonAt("Back", centreX - buttonWidth / 2f, height - buttonHeight * 2f, buttonWidth, buttonHeight)) {
                 action = UiAction.Back;
             }
             Overlay.end();

@@ -60,7 +60,7 @@ namespace beyondnationstests.web {
             for (char c = 'A'; c <= 'Z'; c++) codes.Add("Key" + c);
             for (int i = 1; i <= 24; i++) codes.Add("F" + i);
             codes.AddRange(new[] { "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "ShiftLeft", "Escape",
-                "Insert", "PageUp", "PageDown", "Enter", "Tab" });
+                "Insert", "PageUp", "PageDown", "Enter", "Tab", "Slash" });
             return codes.ToArray();
         }
     }

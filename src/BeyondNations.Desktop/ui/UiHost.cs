@@ -37,6 +37,7 @@ namespace beyondnations.desktop.ui {
         private readonly PauseScreen pauseScreen = new PauseScreen();
         private readonly ConfigScreen configScreen = new ConfigScreen();
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
+        private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly WorldHud worldHud = new WorldHud();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
@@ -44,13 +45,37 @@ namespace beyondnations.desktop.ui {
         private bool startRequested;
 
         public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig) {
-            this.controller = new ImGuiController(gl, window, input);
+            this.controller = new ImGuiController(gl, window, input, configureForUiScale);
             this.input = input;
             foreach (IMouse mouse in input.Mice) {
                 mouse.MouseDown += (_, button) => clicks.recordPress(button);
             }
             this.screens = screens;
             this.gameConfig = gameConfig;
+        }
+
+        /**
+        * Rasterises ImGui's font at the UI scale rather than at 13 px and
+        * stretching it, so text on a high-DPI display is both the right size
+        * and sharp, and scales padding, rounding and spacing to match. Runs
+        * inside ImGuiController's constructor, before the font atlas is
+        * uploaded.
+        */
+        private static unsafe void configureForUiScale() {
+            float scale = UiScale.get();
+            if (scale == 1f) {
+                return;
+            }
+            ImGuiIOPtr io = ImGui.GetIO();
+            io.Fonts.Clear();
+            ImFontConfig* config = ImGuiNative.ImFontConfig_ImFontConfig();
+            config->SizePixels = Overlay.DesignFontSize * scale;
+            config->OversampleH = 1;
+            config->OversampleV = 1;
+            config->PixelSnapH = 1;
+            io.Fonts.AddFontDefault(new ImFontConfigPtr(config));
+            ImGuiNative.ImFontConfig_destroy(config);
+            ImGui.GetStyle().ScaleAllSizes(scale);
         }
 
         public bool isQuitRequested() {
@@ -108,6 +133,9 @@ namespace beyondnations.desktop.ui {
                         action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond());
                     }
                     break;
+                case ScreenType.CONTROLS:
+                    action = controlsScreen.draw(width, height);
+                    break;
                 case ScreenType.INVENTORY:
                     if (simulation != null) {
                         action = inventoryScreen.draw(width, height, simulation.getPlayer().getInventory());
@@ -164,6 +192,10 @@ namespace beyondnations.desktop.ui {
                     // No saves yet, so leaving for the menu ends this world;
                     // Start builds a fresh one.
                     screens.goTo(ScreenType.MAIN_MENU);
+                    break;
+                case UiAction.OpenControls:
+                case UiAction.CloseControls:
+                    screens.controlsPressed();
                     break;
                 case UiAction.Quit:
                     quitRequested = true;

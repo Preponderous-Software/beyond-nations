@@ -72,7 +72,7 @@ namespace beyondnationstests.desktop.input {
                 KeyBindings.FoundSettlement, KeyBindings.PlantSapling, KeyBindings.TeleportToHomeSettlement,
                 KeyBindings.BuildStall, KeyBindings.BuildBuilding, KeyBindings.ToggleInventory, KeyBindings.ToggleAutoWalk,
                 KeyBindings.ToggleCameraView,
-                KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance, KeyBindings.Pause,
+                KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance, KeyBindings.Pause, KeyBindings.ShowControls,
                 KeyBindings.ToggleDebugMode, KeyBindings.GenerateNearbyLand, KeyBindings.SpawnNewPawn,
                 KeyBindings.SpawnMoney, KeyBindings.SpawnWood, KeyBindings.TeleportAllToPlayer,
                 KeyBindings.TakeScreenshot

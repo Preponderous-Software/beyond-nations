@@ -11,32 +11,18 @@ namespace beyondnations.desktop.ui.screens {
     public class MainMenuScreen {
         public const string Title = "Beyond Nations";
 
-        private const float ButtonWidth = 100f;
-        private const float ButtonHeight = 50f;
+        public static readonly string[] ButtonLabels = { "Start", "Config", "Controls", "Exit" };
+        private static readonly UiAction[] ButtonActions = { UiAction.StartGame, UiAction.OpenConfig, UiAction.OpenControls, UiAction.Quit };
 
         public UiAction draw(float width, float height) {
-            float centreX = width / 2f;
             float centreY = height / 2f;
-            float buttonX = centreX - ButtonWidth / 2f;
-            float buttonY = centreY + ButtonHeight / 2f;
-
-            UiAction action = UiAction.None;
 
             Overlay.beginFullScreen("##main-menu-screen", width, height);
             Overlay.textCentered(Title, height / 15f, centreY / 2f, width);
-
-            if (Overlay.buttonAt("Start", buttonX, buttonY, ButtonWidth, ButtonHeight)) {
-                action = UiAction.StartGame;
-            }
-            if (Overlay.buttonAt("Config", buttonX, buttonY + ButtonHeight * 2f, ButtonWidth, ButtonHeight)) {
-                action = UiAction.OpenConfig;
-            }
-            if (Overlay.buttonAt("Exit", buttonX, buttonY + ButtonHeight * 4f, ButtonWidth, ButtonHeight)) {
-                action = UiAction.Quit;
-            }
+            int clicked = Overlay.menuButtons(ButtonLabels, width, centreY, height - UiScale.px(16f));
             Overlay.end();
 
-            return action;
+            return clicked < 0 ? UiAction.None : ButtonActions[clicked];
         }
     }
 }

@@ -71,7 +71,7 @@ namespace beyondnationstests.desktop {
                 "--width", "--height", "--ticks-per-second", "--exit-after-frames",
                 "--screenshot-after-frames", "--seed", "--no-vsync", "--smoke-resize",
                 "--render-stats", "--render-distance", "--no-culling", "--no-labels",
-                "--debug-mode", "--first-person", "--no-usage-reporting", "--start-screen"
+                "--debug-mode", "--first-person", "--no-usage-reporting", "--start-screen", "--ui-scale"
             };
 
             // run

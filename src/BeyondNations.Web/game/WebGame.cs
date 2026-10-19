@@ -202,6 +202,9 @@ namespace beyondnations.web {
                     return;
                 }
             }
+            if (inputService.wasPressedThisFrame(KeyBindings.ShowControls)) {
+                screens.controlsPressed();
+            }
             if (inputService.wasAnyKeyPressedThisFrame()) {
                 screens.anyKeyPressed();
             }
@@ -240,6 +243,7 @@ namespace beyondnations.web {
                 camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
                 culler.beginFrame(camera);
                 renderer.setTimeOfDay(simulation.getTimeOfDay().getFraction());
+                renderer.setPlayerPosition(player.getPosition());
                 renderer.render(snapshot, camera.getViewMatrix(), camera.getProjectionMatrix(), culler);
                 reportRenderDistance(player.getRenderDistance());
 

@@ -21,7 +21,8 @@ The game takes arguments that make it checkable without a person watching it, wh
 | Switch | Effect |
 | --- | --- |
 | `--exit-after-frames N` | render N frames, then exit |
-| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause` or `inventory` |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory` or `controls` |
+| `--ui-scale F` | draw the UI F times its design size, 1 to 4; by default the monitor's content scale (150 % in Windows display settings is 1.5) |
 | `--seed N` | fix the world seed, so a run is reproducible |
 | `--screenshot-after-frames N` | write a PNG and carry on |
 | `--render-stats` | report draw calls, instance counts and frame times on exit |

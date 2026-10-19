@@ -15,6 +15,8 @@ namespace beyondnations.desktop.ui {
         OpenConfig,
         Back,
         MainMenu,
+        OpenControls,
+        CloseControls,
         Quit
     }
 }

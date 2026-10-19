@@ -16,11 +16,20 @@ namespace beyondnations.desktop.ui {
     public static class Overlay {
 
         /**
-        * The height in pixels of ImGui's built-in font at scale 1. Font sizes
-        * in the Unity screens were fractions of the screen height, so they
-        * become a scale factor against this.
+        * The height in pixels of ImGui's built-in font at a UI scale of 1.
         */
-        public const float BaseFontSize = 13f;
+        public const float DesignFontSize = 13f;
+
+        /**
+        * The height in pixels of the UI font as it is rasterised: the design
+        * size times UiScale, since the desktop host builds the font atlas at
+        * that size on a high-DPI display. Font sizes in the Unity screens
+        * were fractions of the screen height, so they become a scale factor
+        * against this.
+        */
+        public static float BaseFontSize {
+            get { return DesignFontSize * UiScale.get(); }
+        }
 
         private const ImGuiWindowFlags FullScreenFlags =
             ImGuiWindowFlags.NoDecoration |
@@ -77,6 +86,41 @@ namespace beyondnations.desktop.ui {
         public static void textAt(string text, float x, float y) {
             ImGui.SetCursorPos(new Vector2(x, y));
             ImGui.TextUnformatted(text);
+        }
+
+        /**
+        * A centred column of menu buttons starting at topY, all as wide as the
+        * widest label (and at least 160 design pixels), each 40 design pixels
+        * tall unless that would run past maxBottom, in which case the buttons
+        * and the gaps shrink together so the last one still fits. The main
+        * menu used fixed 50 px buttons two heights apart, so on a window under
+        * about 520 px high Exit was cut off at the bottom. Returns the index
+        * of the button clicked this frame, or -1.
+        */
+        public static int menuButtons(string[] labels, float width, float topY, float maxBottom) {
+            float padding = ImGui.GetStyle().FramePadding.X * 2f;
+            float buttonWidth = UiScale.px(160f);
+            foreach (string label in labels) {
+                buttonWidth = System.MathF.Max(buttonWidth, ImGui.CalcTextSize(label).X + padding * 2f);
+            }
+            float buttonHeight = UiScale.px(40f);
+            float gap = UiScale.px(12f);
+            float needed = labels.Length * buttonHeight + (labels.Length - 1) * gap;
+            float available = maxBottom - topY;
+            if (needed > available && available > 0f) {
+                float shrink = available / needed;
+                buttonHeight = System.MathF.Max(ImGui.GetFrameHeight(), buttonHeight * shrink);
+                gap = System.MathF.Max(UiScale.px(2f), gap * shrink);
+            }
+            int clicked = -1;
+            float y = topY;
+            for (int i = 0; i < labels.Length; i++) {
+                if (buttonAt(labels[i], (width - buttonWidth) / 2f, y, buttonWidth, buttonHeight)) {
+                    clicked = i;
+                }
+                y += buttonHeight + gap;
+            }
+            return clicked;
         }
 
         public static bool buttonAt(string label, float x, float y, float width, float height) {

@@ -28,6 +28,7 @@ namespace beyondnations.web {
         private readonly PauseScreen pauseScreen = new PauseScreen();
         private readonly ConfigScreen configScreen = new ConfigScreen();
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
+        private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly WorldHud worldHud = new WorldHud();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
@@ -82,6 +83,9 @@ namespace beyondnations.web {
                         action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond());
                     }
                     break;
+                case ScreenType.CONTROLS:
+                    action = controlsScreen.draw(width, height);
+                    break;
                 case ScreenType.INVENTORY:
                     if (simulation != null) {
                         action = inventoryScreen.draw(width, height, simulation.getPlayer().getInventory());
@@ -113,6 +117,10 @@ namespace beyondnations.web {
                     // No saves yet, so leaving for the menu ends this world;
                     // Start builds a fresh one.
                     screens.goTo(ScreenType.MAIN_MENU);
+                    break;
+                case UiAction.OpenControls:
+                case UiAction.CloseControls:
+                    screens.controlsPressed();
                     break;
                 case UiAction.Quit:
                     quitRequested = true;

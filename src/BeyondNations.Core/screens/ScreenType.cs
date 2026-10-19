@@ -6,6 +6,7 @@ namespace beyondnations {
         PAUSE,
         MAIN_MENU,
         CONFIG,
-        INVENTORY
+        INVENTORY,
+        CONTROLS
     }
 }
