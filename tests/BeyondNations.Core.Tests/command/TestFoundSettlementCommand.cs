@@ -149,7 +149,10 @@ namespace beyondnationstests {
             Assert.Equal(new Vector3(30, 0, -20), settlement.getPosition());
             Assert.Equal(settlementId, player.getHomeSettlementId());
             Assert.Equal(15, player.getInventory().getNumItems(ItemType.WOOD));
-            Assert.Equal(0, eventRepository.getTotalNumberOfEvents());
+            Assert.Equal(1, eventRepository.getTotalNumberOfEvents());
+            SettlementFoundedEvent founded = (SettlementFoundedEvent) eventRepository.getEvents(EventType.SettlementFounded)[0];
+            Assert.Same(settlement, founded.getSettlement());
+            Assert.Equal(player.getId(), founded.getFounderId());
             Assert.Equal("Settlement founded.", player.getStatus().getStatus());
         }
     }

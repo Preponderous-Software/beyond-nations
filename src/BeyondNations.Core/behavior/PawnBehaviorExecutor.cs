@@ -304,6 +304,7 @@ namespace beyondnations {
             pawn.setHomeSettlementId(settlement.getId());
             Territory.recordFounding(settlement, entityRepository, nationRepository);
             pawn.setSettler(false);
+            eventProducer.produceSettlementFoundedEvent(settlement, nation, pawn.getId());
             pawn.setCurrentBehaviorType(BehaviorType.WANDER);
         }
 
@@ -413,6 +414,7 @@ namespace beyondnations {
             Market market = currentSettlement.getMarket();
 
             market.createStall();
+            eventProducer.produceStallBuiltEvent(currentSettlement, nation, pawn.getId());
             pawn.setCurrentBehaviorType(BehaviorType.NONE);       
         }
 

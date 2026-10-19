@@ -40,6 +40,7 @@ namespace beyondnations.desktop.input {
         public static readonly Key ToggleCrafting = Key.C;
         public static readonly Key ToggleAutoWalk = Key.Insert;
         public static readonly Key ToggleCameraView = Key.V;
+        public static readonly Key ToggleChronicle = Key.Y;
         public static readonly Key IncreaseRenderDistance = Key.PageUp;
         public static readonly Key DecreaseRenderDistance = Key.PageDown;
         public static readonly Key Pause = Key.Escape;

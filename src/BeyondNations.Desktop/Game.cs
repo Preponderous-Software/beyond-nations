@@ -506,7 +506,7 @@ namespace beyondnations.desktop {
             // --- #221 imgui user interface ---
             // Drawn last, so it sits over the world rather than under it.
             ui?.render(deltaTime, window.FramebufferSize.X, window.FramebufferSize.Y, simulation,
-                      playerInputController.isDebugMode());
+                      playerInputController.isDebugMode(), playerInputController.getChronicleView());
             if (ui != null) {
                 if (ui.consumeStartRequest()) {
                     createWorld();

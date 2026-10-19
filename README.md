@@ -85,6 +85,7 @@ The following controls are available in the game:
 | `C` | Open / close the crafting screen (axe, pickaxe, cooked meat, planks, bricks; pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
+| `Y` | Cycle the chronicle: recent entries (top of the screen) → full scrollable history → hidden |
 | `Right Mouse Button` (hold) + move the mouse | Steer: left/right turns you (W then walks that way), up/down tilts the camera |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |

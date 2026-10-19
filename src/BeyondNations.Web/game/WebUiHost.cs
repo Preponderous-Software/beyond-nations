@@ -60,7 +60,7 @@ namespace beyondnations.web {
         }
 
         public void render(double deltaTime, double cssWidth, double cssHeight, double devicePixelRatio,
-                Simulation simulation, bool debugMode) {
+                Simulation simulation, bool debugMode, ChronicleView chronicleView = null) {
             frameRate.record(deltaTime);
             backend.newFrame(deltaTime, cssWidth, cssHeight, devicePixelRatio);
 
@@ -82,7 +82,7 @@ namespace beyondnations.web {
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
-                        action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond());
+                        action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond(), chronicleView);
                     }
                     break;
                 case ScreenType.CONTROLS:

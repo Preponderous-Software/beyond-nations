@@ -97,7 +97,14 @@ namespace beyondnations.desktop.ui.screens {
             }
         }
 
-        public UiAction draw(float width, float height, Simulation simulation, bool debugMode, int framesPerSecond) {
+        private readonly ChroniclePanel chroniclePanel = new ChroniclePanel();
+        private readonly ChronicleView defaultChronicleView = new ChronicleView();
+
+        /**
+        * chronicleView is the input layer's; null draws the recent entries,
+        * which is what a new view starts on.
+        */
+        public UiAction draw(float width, float height, Simulation simulation, bool debugMode, int framesPerSecond, ChronicleView chronicleView = null) {
             Player player = simulation.getPlayer();
             Layout layout = Layout.compute(width, height, UiScale.get());
             UiAction action = UiAction.None;
@@ -165,6 +172,12 @@ namespace beyondnations.desktop.ui.screens {
             }
 
             new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
+
+            // Last, so the full chronicle window sits over the boxes it covers.
+            // The recent strip stacks under the status line and the hunger warning
+            // in the top-centre column, between the left and right box columns.
+            chroniclePanel.draw(width, height, simulation, chronicleView ?? defaultChronicleView,
+                ChroniclePanel.compactTop(centreBottom));
 
             return action;
         }
@@ -259,7 +272,8 @@ namespace beyondnations.desktop.ui.screens {
         /**
         * Drawn under the status line and held there, rather than posted as a
         * status, so a later message cannot push it off screen while the
-        * danger is still real.
+        * danger is still real. Returns the warning's bottom edge, or y when
+        * there is none, so the chronicle strip can sit below it.
         */
         private float drawHungerWarning(float width, Player player, Layout layout, float y) {
             string warning = getHungerWarning(player);

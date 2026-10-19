@@ -87,5 +87,23 @@ namespace beyondnations {
             eventRepository.addEvent(e);
             Log.debug("Produced event: " + e);
         }
+
+        public void produceSettlementFoundedEvent(Settlement settlement, Nation nation, EntityId founderId) {
+            SettlementFoundedEvent settlementFoundedEvent = new SettlementFoundedEvent(settlement, nation, founderId);
+            eventRepository.addEvent(settlementFoundedEvent);
+            Log.debug("Produced event: " + settlementFoundedEvent);
+        }
+
+        public void produceStallBuiltEvent(Settlement settlement, Nation nation, EntityId builderId) {
+            StallBuiltEvent stallBuiltEvent = new StallBuiltEvent(settlement, nation, builderId);
+            eventRepository.addEvent(stallBuiltEvent);
+            Log.debug("Produced event: " + stallBuiltEvent);
+        }
+
+        public void produceLeadershipChangeEvent(Nation nation, EntityId previousLeaderId, EntityId newLeaderId) {
+            LeadershipChangeEvent leadershipChangeEvent = new LeadershipChangeEvent(nation, previousLeaderId, newLeaderId);
+            eventRepository.addEvent(leadershipChangeEvent);
+            Log.debug("Produced event: " + leadershipChangeEvent);
+        }
     }
 }

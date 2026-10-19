@@ -40,6 +40,7 @@ namespace beyondnations {
         private RandomSource traitRandom;
         private PopulationGrowth populationGrowth;
         private ObjectiveTracker objectiveTracker;
+        private Chronicle chronicle;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -82,6 +83,7 @@ namespace beyondnations {
             worldGenerator = new WorldGenerator(environment, player, eventProducer, entityRepository, gameConfig, random, pawnNameGenerator);
             nationRepository = new NationRepository(random);
             nationRepository.getRelations().setEventProducer(eventProducer);
+            chronicle = new Chronicle(eventRepository, entityRepository, nationRepository, timeOfDay, tickCounter, random.getSeed());
             pawnBehaviorCalculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
             pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator, tickCounter);
             player.setMetabolism(gameConfig.getPlayerMetabolism());
@@ -119,6 +121,7 @@ namespace beyondnations {
         public RandomSource getTraitRandom() { return traitRandom; }
         public PopulationGrowth getPopulationGrowth() { return populationGrowth; }
         public ObjectiveTracker getObjectiveTracker() { return objectiveTracker; }
+        public Chronicle getChronicle() { return chronicle; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         public int getNumPlayerDeaths() { return numPlayerDeaths; }
 
@@ -242,6 +245,7 @@ namespace beyondnations {
                                                 nation.setLeaderId(nation.getOldestMemberId());
                                                 Entity newLeader = entityRepository.getEntity(nation.getLeaderId());
                                                 nation.setRole(newLeader.getId(), NationRole.LEADER);
+                                                eventProducer.produceLeadershipChangeEvent(nation, pawn.getId(), newLeader.getId());
                                                 if (newLeader.getType() == EntityType.PAWN) {
                                                     player.getStatus().update(newLeader.getName() + " is now the leader of " + nation.getName() + ".");
                                                 }

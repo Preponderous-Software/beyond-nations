@@ -68,7 +68,7 @@ namespace beyondnations.desktop.ui {
                                 && market.getNumStalls() < market.getMaxNumStalls()
                                 && Stall.canAffordToBuild(player.getInventory())) {
                             commands.Add(new WorldCommand("Build Stall", () =>
-                                new BuildStallCommand(nationRepository, entityRepository).execute(player)));
+                                new BuildStallCommand(nationRepository, entityRepository, simulation.getEventProducer()).execute(player)));
                         }
 
                         // one button per building the player can afford and the settlement has room for

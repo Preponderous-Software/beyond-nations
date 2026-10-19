@@ -261,7 +261,7 @@ namespace beyondnations.web {
                 labels?.render(snapshot.getLabels(), camera.getViewMatrix(), camera.getProjectionMatrix());
             }
 
-            ui.render(deltaTime, cssWidth, cssHeight, devicePixelRatio, simulation, playerInputController.isDebugMode());
+            ui.render(deltaTime, cssWidth, cssHeight, devicePixelRatio, simulation, playerInputController.isDebugMode(), playerInputController.getChronicleView());
             if (ui.consumeStartRequest()) {
                 createWorld();
             }

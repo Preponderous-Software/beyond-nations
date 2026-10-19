@@ -74,6 +74,7 @@ namespace beyondnations {
                 }
                 player.getStatus().update("Settlement founded. " + string.Join(" and ", names) + " resent a new settlement so near their land.");
             }
+            eventProducer.produceSettlementFoundedEvent(settlement, nation, player.getId());
         }
     }
 }
