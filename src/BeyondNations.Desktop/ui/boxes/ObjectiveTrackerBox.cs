@@ -105,7 +105,7 @@ namespace beyondnations.desktop.ui.boxes {
             ImGui.SetNextWindowSize(new Vector2(width, 0), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.6f);
             if (ImGui.Begin("##objective-tracker", PanelFlags)) {
-                ImGui.TextColored(HeadingColour, heading(tracker));
+                Overlay.textColoured(HeadingColour, heading(tracker));
                 ImGui.PushTextWrapPos(0f);
                 ImGui.TextUnformatted(current.getTitle());
                 ImGui.PopTextWrapPos();
@@ -141,7 +141,7 @@ namespace beyondnations.desktop.ui.boxes {
             ImGui.SetNextWindowPos(new Vector2(screenWidth / 2f, Math.Max(minY, screenHeight * 0.16f)), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowBgAlpha(0.75f);
             if (ImGui.Begin("##objective-toast", PanelFlags | ImGuiWindowFlags.AlwaysAutoResize)) {
-                ImGui.TextColored(HeadingColour, "Objective complete!");
+                Overlay.textColoured(HeadingColour, "Objective complete!");
                 ImGui.TextUnformatted(text);
             }
             ImGui.End();
