@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeyondNations.HistoryExport
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeyondNations.HistoryExport.Tests", "tools\BeyondNations.HistoryExport.Tests\BeyondNations.HistoryExport.Tests.csproj", "{D7F4819A-3748-4180-B980-94B794FF3FEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeyondNations.Web.Tests", "tests\BeyondNations.Web.Tests\BeyondNations.Web.Tests.csproj", "{1D3DBFE7-A8AF-4023-9CC1-1F2EC2425DA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{D7F4819A-3748-4180-B980-94B794FF3FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7F4819A-3748-4180-B980-94B794FF3FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7F4819A-3748-4180-B980-94B794FF3FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D3DBFE7-A8AF-4023-9CC1-1F2EC2425DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D3DBFE7-A8AF-4023-9CC1-1F2EC2425DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D3DBFE7-A8AF-4023-9CC1-1F2EC2425DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D3DBFE7-A8AF-4023-9CC1-1F2EC2425DA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F3F6AF0B-DDC9-40EB-8086-74E3288947F2} = {4AA8847B-A6F0-4B5B-9A0E-EDA1FA678442}
@@ -62,5 +68,6 @@ Global
 		{67E9188D-1036-4778-8087-0C7660D460D4} = {9780C3CC-C16D-4E62-88D2-50D1290C5D75}
 		{029F5589-6939-4095-A570-A164B53A94B0} = {54A22133-6B62-4472-97F8-AECBF9BC97A4}
 		{D7F4819A-3748-4180-B980-94B794FF3FEE} = {54A22133-6B62-4472-97F8-AECBF9BC97A4}
+		{1D3DBFE7-A8AF-4023-9CC1-1F2EC2425DA2} = {9780C3CC-C16D-4E62-88D2-50D1290C5D75}
 	EndGlobalSection
 EndGlobal

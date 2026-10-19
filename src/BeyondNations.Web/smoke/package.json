@@ -1,0 +1,12 @@
+{
+  "name": "beyond-nations-web-smoke",
+  "private": true,
+  "description": "Headless Chromium smoke test for the browser build (see smoke.mjs).",
+  "type": "module",
+  "scripts": {
+    "smoke": "node smoke.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.55.1"
+  }
+}

@@ -1,6 +1,14 @@
 # ![Beyond Nations](./.github/media/banner.png)
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
+## Play in your browser
+
+**[Play Beyond Nations in your browser](https://beyond-nations.play.danielstephenson.dev)**: nothing to install. It is the same game, compiled to WebAssembly and drawn with WebGL2, and it is also listed in the [arcade](https://danielstephenson.dev/play). It is played with a keyboard and mouse; on a phone or tablet there are basic on-screen controls. The browser build sends no usage report. How it is built, the URL options (`?seed=42&start-screen=world`, the same names as the command-line options) and how to run it locally are in [docs/WEB.md](./docs/WEB.md).
+
+![The browser build: the title screen, the main menu, Start, then walking, looking around with the right mouse button, founding a nation and switching to first person](./.github/media/web-play.gif)
+
+*Recorded from the browser build in headless Chromium, seed 42.*
+
 ## Quick Start
 
 The only prerequisite is the [.NET SDK](https://dotnet.microsoft.com/download) 8.0 or newer. There is no editor to install, no account to create and no licence to obtain.
@@ -143,6 +151,7 @@ Core keeps no state hash of its own, so each sample's `replay:stateHash` is a SH
 - [Dear ImGui](https://github.com/ImGuiNET/ImGui.NET): the menus, the heads-up display and the info boxes.
 - [FontStashSharp](https://github.com/FontStashSharp/FontStashSharp): the glyph atlas behind world-space nametags.
 - [Strata](https://github.com/Preponderous-Software/strata): a shared C++ engine (MIT) that the game is moving onto in phases. Today it is an opt-in renderer, `--renderer native`, which draws the same world inside the Silk.NET window, lit by a sun that follows the time of day (see below). `--renderer silk` is the default. The build downloads the native library from a pinned Strata release and checks its SHA-256. Pass `/p:StrataNativeDir=<dir>` to use a local Strata build instead.
+- [WebAssembly and WebGL2](./docs/WEB.md): the browser build, `src/BeyondNations.Web` (.NET 8 `browser-wasm`, AOT), which runs the same Core and screens with a WebGL2 port of the default renderer.
 - [Git](https://git-scm.com/) and [GitHub](https://github.com/): version control, review and continuous integration.
 
 The game does not use a commercial engine. Everything it draws is a coloured primitive generated in code, so the renderer, camera, input and user interface are written in the repository rather than supplied by a vendor. The reasoning is recorded in the [Engine Migration Rationale](./docs/ENGINE-MIGRATION-RATIONALE.md).
@@ -205,6 +214,8 @@ The first run creates a `settings.json` in the game's data directory (`~/.local/
 - the environment variable `DO_NOT_TRACK=1` (see [consoledonottrack.com](https://consoledonottrack.com))
 
 The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
+
+The [browser build](./docs/WEB.md#usage-reporting-off) sends nothing: the reporting code is not part of it.
 
 Details: https://github.com/Stephenson-Software/trace#usage-reporting
 

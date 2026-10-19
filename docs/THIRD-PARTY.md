@@ -66,6 +66,13 @@ built against GLIBC 2.38 and will not load on an older distribution. The pin is
 recorded beside the `PackageReference` in
 `src/BeyondNations.Desktop/BeyondNations.Desktop.csproj`. See #221.
 
+The browser build (`src/BeyondNations.Web`, see [WEB.md](./WEB.md)) uses the same
+`ImGui.NET` 1.90.8.1, but no native binary from the package: `native/cimgui.targets`
+downloads the cimgui (`7c16d31`, MIT) and Dear ImGui (`6d948ab`, docking 1.90.8,
+MIT) sources that package was built from, checks their SHA-256 and compiles them
+to WebAssembly. Its smoke test uses `playwright` (Apache-2.0), a test-only npm
+package pinned in `src/BeyondNations.Web/smoke/package-lock.json`.
+
 `BeyondNations.Core` has **no** package dependencies at all. That is deliberate:
 the simulation is meant to build and run with nothing but the .NET SDK.
 

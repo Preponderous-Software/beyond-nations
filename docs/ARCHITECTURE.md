@@ -93,6 +93,7 @@ or a screen, it is host.
 | Glyph atlas and world-space nametags | Desktop |
 | Screenshots and file paths | Desktop |
 | Usage reporting (the `startup` event, `settings.json`, the vendored trace client) | Desktop |
+| The browser host: WebGL2 renderer, browser input, the page (reuses Desktop's window-free code as linked source) | Web ([WEB.md](./WEB.md)) |
 
 ## Consequences worth knowing
 

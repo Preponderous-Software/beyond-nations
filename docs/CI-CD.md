@@ -26,6 +26,10 @@ Fails if any `using UnityEngine` appears under `src/BeyondNations.Core`.
 
 The check lives in the workflow rather than in the project file, because a build file is the wrong place for a policy.
 
+### Browser build (`browser.yml`)
+
+[`.github/workflows/browser.yml`](../.github/workflows/browser.yml) publishes `src/BeyondNations.Web` for the browser (it installs the `wasm-tools` workload first), then drives the page in headless Chromium on a desktop and an iPhone 13 profile (`src/BeyondNations.Web/smoke/smoke.mjs`): title, main menu, Start, a drawn world, walking, right-drag look, a short key tap, and no console errors. On a push to `develop` with the `ARCADE_ENABLED` variable set it deploys the site to the arcade. See [WEB.md](./WEB.md).
+
 ## Running the checks locally
 
 They are the same commands, so there is nothing to reproduce:
