@@ -40,7 +40,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--continue` | open in the most recently saved world, as **Continue** on the main menu does; falls back to the main menu when there is none |
 | `--stage-settlement` | open with a lived-in settlement (nation, market, merchants, residents) standing ahead of the player |
 | `--stage-diplomacy` | open leading a nation between a friendly and a hostile, besieging neighbour, standing at the border |
-| `--time-of-day F` | start the world at this time of day, 0 to 1 exclusive (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
+| `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
 | `--help`, `-h` | list every switch |
 
 ### Troubleshooting
