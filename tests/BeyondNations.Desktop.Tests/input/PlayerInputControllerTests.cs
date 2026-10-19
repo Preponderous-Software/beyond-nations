@@ -41,7 +41,7 @@ namespace beyondnationstests.desktop.input {
             controller.update(simulation, inputService);
             player.fixedUpdate();
             float yawAfterSecondStep = player.getYaw();
-            Assert.True(yawAfterSecondStep > yawAfterFirstStep, "held turning should keep advancing yaw every frame it stays down");
+            Assert.True(yawAfterSecondStep < yawAfterFirstStep, "held turning should keep advancing yaw every frame it stays down");
 
             source.release(Key.D);
             inputService.update();
@@ -292,7 +292,7 @@ namespace beyondnationstests.desktop.input {
 
             inputService.update();
             controller.update(simulation, inputService);
-            Assert.True(controller.getMouseLook().getYawDegrees() > yawAfterFirst, "mouse look should keep accumulating while the mouse keeps moving");
+            Assert.True(controller.getMouseLook().getYawDegrees() < yawAfterFirst, "mouse look should keep accumulating while the mouse keeps moving");
         }
 
         [Fact]

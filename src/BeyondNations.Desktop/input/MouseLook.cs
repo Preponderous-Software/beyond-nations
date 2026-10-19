@@ -31,7 +31,9 @@ namespace beyondnations.desktop.input {
         }
 
         public void apply(Vector2 mouseDelta) {
-            yawDegrees += mouseDelta.X * sensitivityDegreesPerPixel;
+            // Moving the mouse right lowers yaw, which turns the view right
+            // in this right-handed world (see PlayerInputController).
+            yawDegrees -= mouseDelta.X * sensitivityDegreesPerPixel;
             pitchDegrees -= mouseDelta.Y * sensitivityDegreesPerPixel;
             pitchDegrees = Math.Clamp(pitchDegrees, minPitchDegrees, maxPitchDegrees);
         }
