@@ -153,6 +153,7 @@ jobs:
 
       - name: Export seed 42 twice
         run: |
+          mkdir -p out
           for run in a b; do
             dotnet run --project tools/BeyondNations.HistoryExport -c Release -- \
               --seed 42 --ticks 40000 --every 200 --out "out/$run.jsonl"
