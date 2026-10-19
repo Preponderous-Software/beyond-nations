@@ -27,7 +27,8 @@ namespace beyondnationstests {
         public void testCarriesStone() {
             Rock rock = new Rock(new Vector3(0, 0, 0));
 
-            Assert.Equal(3, rock.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal(Rock.STONE_YIELD, rock.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal(5, Rock.STONE_YIELD);
         }
     }
 }

@@ -143,7 +143,8 @@ namespace beyondnationstests {
             player.setPosition(new Vector3(player.getPosition().X, 1f, player.getPosition().Z));
             new FoundSettlementCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                 simulation.getEntityRepository(), simulation.getGameConfig(), simulation.getRandom()).execute(player);
-            Assert.Equal("Settlement founded.", player.getStatus().getStatus());
+            // a neighbour may add a diplomacy line after it (#306)
+            Assert.StartsWith("Settlement founded.", player.getStatus().getStatus());
             tickOneSecond();
             assertCurrent("enter-settlement");
 
@@ -204,7 +205,8 @@ namespace beyondnationstests {
             player.setPosition(new Vector3(site.X, 1f, site.Z));
             new FoundSettlementCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                 simulation.getEntityRepository(), simulation.getGameConfig(), simulation.getRandom()).execute(player);
-            Assert.Equal("Settlement founded.", player.getStatus().getStatus());
+            // a neighbour may add a diplomacy line after it (#306)
+            Assert.StartsWith("Settlement founded.", player.getStatus().getStatus());
             tickOneSecond();
 
             // The arc is done; ambitions take over and never run out.

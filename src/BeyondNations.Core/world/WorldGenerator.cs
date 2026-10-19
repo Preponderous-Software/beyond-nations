@@ -127,21 +127,52 @@ namespace beyondnations {
             }
         }
 
+        /** Ticks between rock regrowth attempts: 30 seconds at 50 ticks a second. */
+        public const int ROCK_REGROW_INTERVAL_TICKS = 1500;
+
+        /** Regrowth stops once the world holds this many rocks per generated chunk. */
+        public const int TARGET_ROCKS_PER_CHUNK = 3;
+
         private void spawnRockEntities(Chunk chunk) {
-            int numberOfRocks = random.range(chunk.getSize()/4, chunk.getSize()/2);
+            // Three to six attempts a chunk (a 7x7 chunk), was one or two.
+            int numberOfRocks = random.range(chunk.getSize()/2, chunk.getSize());
             for (int i = 0; i < numberOfRocks; i++) {
-                Location randomLocation = chunk.getRandomLocation();
-                if (randomLocation.getNumberOfEntities() > 0) {
-                    continue;
-                }
-
-                Vector3 locationPosition = randomLocation.getPosition();
-
-                // create rock
-                Vector3 position = new Vector3(locationPosition.X, locationPosition.Y + 1, locationPosition.Z);
-                Rock rock = new Rock(position);
-                entityRepository.addEntity(rock);
+                trySpawnRock(chunk);
             }
+        }
+
+        private bool trySpawnRock(Chunk chunk) {
+            Location randomLocation = chunk.getRandomLocation();
+            if (randomLocation.getNumberOfEntities() > 0) {
+                return false;
+            }
+
+            Vector3 locationPosition = randomLocation.getPosition();
+            Vector3 position = new Vector3(locationPosition.X, locationPosition.Y + 1, locationPosition.Z);
+            entityRepository.addEntity(new Rock(position));
+            return true;
+        }
+
+        /**
+        * Rocks used to be gone for good once mined, while trees come back from
+        * saplings, so a busy world ran out of stone. Called every tick: every
+        * ROCK_REGROW_INTERVAL_TICKS it surfaces one rock in a random generated
+        * chunk, until the world holds TARGET_ROCKS_PER_CHUNK per chunk.
+        * Returns whether a rock was added.
+        */
+        public bool regrowRocks(int totalTicks) {
+            if (totalTicks % ROCK_REGROW_INTERVAL_TICKS != 0) {
+                return false;
+            }
+            Chunk chunk = environment.getRandomChunk();
+            if (chunk == null) {
+                return false;
+            }
+            int numRocks = entityRepository.getEntitiesOfType(EntityType.ROCK).Count;
+            if (numRocks >= environment.getNumChunks() * TARGET_ROCKS_PER_CHUNK) {
+                return false;
+            }
+            return trySpawnRock(chunk);
         }
 
         private void spawnPawns(Chunk chunk) {

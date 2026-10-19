@@ -128,6 +128,7 @@ namespace beyondnations {
         public void fixedUpdate(float fixedDeltaTime) {
                     tickCounter.increment();
                     worldGenerator.update();
+                    worldGenerator.regrowRocks(tickCounter.getTotalTicks());
                     checkIfPlayerIsFallingIntoVoid();
                     player.getStatus().clearStatusIfExpired();
 

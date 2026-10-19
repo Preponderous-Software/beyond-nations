@@ -223,7 +223,7 @@ namespace beyondnationstests {
             command.execute(player);
 
             Assert.Equal(Rock.STONE_YIELD + Tools.PICKAXE_BONUS_STONE, player.getInventory().getNumItems(ItemType.STONE));
-            Assert.Equal("Gathered 5 stone from rock (+2 from your pickaxe), 14 uses left.", player.getStatus().getStatus());
+            Assert.Equal("Gathered 7 stone from rock (+2 from your pickaxe), 14 uses left.", player.getStatus().getStatus());
         }
 
         [Fact]
@@ -241,7 +241,7 @@ namespace beyondnationstests {
             command.execute(player);
 
             Assert.Equal(Rock.STONE_YIELD, player.getInventory().getNumItems(ItemType.STONE));
-            Assert.Equal("Gathered 3 stone from rock.", player.getStatus().getStatus());
+            Assert.Equal("Gathered 5 stone from rock.", player.getStatus().getStatus());
         }
 
         // --- the market ---
