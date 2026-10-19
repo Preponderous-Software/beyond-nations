@@ -8,10 +8,19 @@ namespace beyondnations.desktop {
     public static class Program {
 
         public static int Main(string[] args) {
+            GameOptions options = GameOptions.parse(args);
+
             // Core logs through a sink so that it needs no engine and no console
-            // of its own. The host decides where the output goes.
+            // of its own. The host decides where the output goes. Debug lines --
+            // one per simulation event, thousands in a long session -- filled
+            // the console window a Windows launcher leaves open, so they are
+            // shown only with --debug-mode.
             Log.setSink((level, message) => {
-                if (level == LogLevel.Error) {
+                if (level == LogLevel.Debug) {
+                    if (options.DebugMode) {
+                        Console.WriteLine("[debug] " + message);
+                    }
+                } else if (level == LogLevel.Error) {
                     Console.Error.WriteLine("[error] " + message);
                 } else if (level == LogLevel.Warning) {
                     Console.Error.WriteLine("[warn ] " + message);
@@ -19,8 +28,6 @@ namespace beyondnations.desktop {
                     Console.WriteLine("[info ] " + message);
                 }
             });
-
-            GameOptions options = GameOptions.parse(args);
 
             // One `startup` event to trace, on a background thread; see
             // UsageReporting for what is sent and every way to turn it off.
