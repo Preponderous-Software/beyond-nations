@@ -41,8 +41,8 @@ namespace beyondnationstests {
         public void testCarriesHarvestableResources() {
             AppleTree tree = new AppleTree(new Vector3(0, 0, 0), 5, random);
 
-            Assert.True(tree.getInventory().getNumItems(ItemType.WOOD) >= 3);
-            Assert.True(tree.getInventory().getNumItems(ItemType.WOOD) <= 5);
+            Assert.InRange(tree.getInventory().getNumItems(ItemType.WOOD), 4, 6);
+            Assert.InRange(tree.getInventory().getNumItems(ItemType.APPLE), 1, 3);
         }
     }
 }

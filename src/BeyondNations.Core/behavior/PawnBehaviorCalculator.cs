@@ -38,7 +38,10 @@ namespace beyondnations {
         }
 
         private BehaviorType computeBehaviorTypeInSettlement(Pawn pawn) {
-            int chanceToExitSettlement = 1;
+            // Percent chance per behaviour calculation (once a simulated second)
+            // that an idle pawn walks back out, so a pawn with nothing to do
+            // spends about ten seconds in town rather than minutes.
+            int chanceToExitSettlement = 10;
 
             EntityId currentSettlementId = pawn.getCurrentSettlementId();
             if (currentSettlementId == null) {
@@ -70,8 +73,8 @@ namespace beyondnations {
                 }
 
                 if (market.getNumStalls() < market.getMaxNumStalls()) {
-                    // if not enough wood
-                    if (pawn.getInventory().getNumItems(ItemType.WOOD) < Stall.WOOD_COST_TO_BUILD) {
+                    // if not enough wood and stone
+                    if (!Stall.canAffordToBuild(pawn.getInventory())) {
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
                     else {
@@ -81,7 +84,6 @@ namespace beyondnations {
                     }
                 }
                 else {
-                    // 10% chance to exit settlement
                     if (random.range(0, 100) < chanceToExitSettlement) {
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
@@ -102,7 +104,6 @@ namespace beyondnations {
                         return BehaviorType.SELL_RESOURCES;
                     }
 
-                    // 10% chance to exit settlement
                     if (random.range(0, 100) < chanceToExitSettlement) {
                         return BehaviorType.EXIT_SETTLEMENT;
                     }
@@ -113,7 +114,7 @@ namespace beyondnations {
             }
             else if (role == NationRole.MERCHANT) {
                 // transfer items to stall if pawn has wood or stone
-                if (pawn.getInventory().getNumItems(ItemType.WOOD) > 0 && pawn.getInventory().getNumItems(ItemType.STONE) > 0) {
+                if (pawn.getInventory().getNumItems(ItemType.WOOD) > 0 || pawn.getInventory().getNumItems(ItemType.STONE) > 0) {
                     return BehaviorType.TRANSFER_ITEMS_TO_STALL;
                 }
                 Stall stall = market.getStall(pawn.getId());
@@ -189,20 +190,42 @@ namespace beyondnations {
                 return BehaviorType.JOIN_RANDOM_SETTLEMENT;
             }
 
-            if (role == NationRole.LEADER) {
-                // if not enough wood for stall, gather resources
-                if (pawn.getInventory().getNumItems(ItemType.WOOD) <= Stall.WOOD_COST_TO_BUILD) {
-                    return BehaviorType.GATHER_RESOURCES;
-                }
-            }
-            
-            if (pawn.getInventory().containsAbundanceOfResources() && numNationSettlements > 0) {
+            if (hasReasonToGoHome(pawn, role)) {
                 return BehaviorType.GO_TO_HOME_SETTLEMENT;
             }
-            else {
-    
-                return BehaviorType.GATHER_RESOURCES;
+            return BehaviorType.GATHER_RESOURCES;
+        }
+
+        /**
+        * Whether the trip home would achieve anything. A pawn used to head home
+        * whenever it carried an abundance of goods, whatever its role, so a
+        * leader (who never sells) or a serf facing a market with no coin walked
+        * in, idled and walked straight back -- and spent most of its life
+        * hidden inside the settlement.
+        */
+        private bool hasReasonToGoHome(Pawn pawn, NationRole role) {
+            EntityId homeSettlementId = pawn.getHomeSettlementId();
+            Settlement home = homeSettlementId == null ? null : entityRepository.getEntity(homeSettlementId) as Settlement;
+            if (home == null) {
+                return false;
             }
+            Market market = home.getMarket();
+            Inventory inventory = pawn.getInventory();
+
+            if (role == NationRole.LEADER) {
+                // build a stall once the materials are in hand and there is room
+                return market.getNumStalls() < market.getMaxNumStalls() && Stall.canAffordToBuild(inventory);
+            }
+            if (role == NationRole.MERCHANT) {
+                return inventory.containsAbundanceOfResources();
+            }
+            if (role == NationRole.SERF) {
+                if (inventory.getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE && market.getNumStallsForSale() > 0) {
+                    return true;
+                }
+                return inventory.containsAbundanceOfResources() && market.getTotalCoins() > 10;
+            }
+            return false;
         }
 
 

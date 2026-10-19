@@ -70,6 +70,7 @@ namespace beyondnations {
             nationRepository = new NationRepository(random);
             pawnBehaviorCalculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
             pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator, tickCounter);
+            player.setMetabolism(gameConfig.getPlayerMetabolism());
             entityRepository.addEntity(player);
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
             // The opening hint names a key, and key bindings belong to the host
@@ -120,13 +121,17 @@ namespace beyondnations {
                             // A pawn under a leader's order hands it in before it can sell it.
                             NationOrderDelivery.deliver(pawn, entityRepository, nationRepository, player, eventProducer);
 
+                            // Cadences count total ticks. getTick() is the tick within
+                            // the current second (0..ticksPerSecond-1), so comparing
+                            // against it made any value above ticksPerSecond mean
+                            // "once per second".
                             int ticksBetweenBehaviorCalculations = gameConfig.getTicksBetweenBehaviorCalculations();
-                            if (tickCounter.getTick() % ticksBetweenBehaviorCalculations == 0) {
+                            if (tickCounter.getTotalTicks() % ticksBetweenBehaviorCalculations == 0) {
                                 pawn.setCurrentBehaviorType(pawnBehaviorCalculator.computeBehaviorType(pawn));
                             }
 
                             int ticksBetweenBehaviorExecutions = gameConfig.getTicksBetweenBehaviorExecutions();
-                            if (tickCounter.getTick() % ticksBetweenBehaviorExecutions == 0) {
+                            if (tickCounter.getTotalTicks() % ticksBetweenBehaviorExecutions == 0) {
                                 pawnBehaviorExecutor.executeBehavior(pawn, pawn.getCurrentBehaviorType());
                             }
 
@@ -266,7 +271,7 @@ namespace beyondnations {
                             Settlement settlement = (Settlement)entity;
 
                             int totalTicks = tickCounter.getTotalTicks();
-                            if (totalTicks % 1000 == 0) {
+                            if (totalTicks % gameConfig.getTicksBetweenSettlementIncome() == 0) {
                                 int numCoinsToGenerate = settlement.getMarket().getNumStalls();
                                 if (numCoinsToGenerate > 0) {
                                     settlement.getInventory().addItem(ItemType.COIN, numCoinsToGenerate);

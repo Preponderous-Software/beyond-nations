@@ -29,7 +29,8 @@ namespace beyondnations {
 
             this.tickCounter = tickCounter;
             plantedTick = tickCounter.getTotalTicks();
-            growTime = random.range(60, 600);
+            // one to five simulated minutes, so a planted grove regrows within a session
+            growTime = random.range(60, 300);
         }
 
         public int getHeight() {

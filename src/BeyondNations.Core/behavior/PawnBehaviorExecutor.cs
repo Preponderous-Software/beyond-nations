@@ -155,6 +155,15 @@ namespace beyondnations {
 
             Entity nearestTree = environment.getNearestTree(pawn.getPosition());
             Entity nearestRock = environment.getNearestRock(pawn.getPosition());
+
+            // Wood enough for a stall but short of stone: go for a rock, since
+            // rocks are scarce and the nearest-wins rule rarely picks one.
+            Inventory inventory = pawn.getInventory();
+            if (nearestRock != null
+                    && inventory.getNumItems(ItemType.WOOD) >= Stall.WOOD_COST_TO_BUILD
+                    && inventory.getNumItems(ItemType.STONE) < Stall.STONE_COST_TO_BUILD) {
+                return nearestRock;
+            }
             if (nearestTree != null && nearestRock != null) {
                 if (Vector3.Distance(pawn.getPosition(), nearestTree.getPosition()) < Vector3.Distance(pawn.getPosition(), nearestRock.getPosition())) {
                     return nearestTree;
@@ -345,8 +354,8 @@ namespace beyondnations {
 
         private void executeConstructStallBehavior(Pawn pawn) {
             // if not enough wood
-            if (pawn.getInventory().getNumItems(ItemType.WOOD) < Stall.WOOD_COST_TO_BUILD) {
-                Log.error("Pawn " + pawn + " does not have enough wood to build a stall, but is trying to.");
+            if (!Stall.canAffordToBuild(pawn.getInventory())) {
+                Log.error("Pawn " + pawn + " does not have enough wood and stone to build a stall, but is trying to.");
                 return;
             }
 
@@ -364,8 +373,8 @@ namespace beyondnations {
                 return;
             }
 
-            // remove wood
-            pawn.getInventory().removeItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            // pay wood and stone
+            Stall.payBuildCost(pawn.getInventory());
             
             // build stall
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);

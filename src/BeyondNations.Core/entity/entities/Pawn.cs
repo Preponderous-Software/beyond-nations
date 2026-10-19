@@ -33,7 +33,10 @@ namespace beyondnations {
         public Pawn(Vector3 position, string name, RandomSource random) : base(EntityType.PAWN, name) {
             this.random = random;
             this.speed = random.range(10, 20);
-            this.metabolism = random.range(0.001f, 0.010f);
+            // 0.002-0.005 energy per tick: a full bar lasts 20,000-50,000 ticks
+            // (7-17 minutes), so a pawn has time to find food. The old
+            // 0.001-0.010 starved the hungriest pawns in about three minutes.
+            this.metabolism = random.range(0.002f, 0.005f);
 
             setPosition(position);
             setAppearance(new Appearance(PrimitiveKind.Capsule, Vector3.One, Rgba.Gray));
