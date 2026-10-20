@@ -11,6 +11,7 @@ namespace beyondnations {
         
         private int totalNumItemsBought = 0;
         private int totalNumItemsSold = 0;
+        private MarketPrices prices = new MarketPrices();
 
         public Market(int maxNumStalls, RandomSource random) {
             this.random = random;
@@ -98,6 +99,42 @@ namespace beyondnations {
             return totalNumItemsSold;
         }
 
+        /** How this market's prices lean, item by item (MarketPricing drifts them). */
+        public MarketPrices getPrices() {
+            return prices;
+        }
+
+        /** What one of these costs to buy here right now. */
+        public int getBuyPrice(ItemType itemType) {
+            return ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+        }
+
+        /**
+        * What a stall here pays for one of these right now: the price once the
+        * sold unit is on the stall, which is the next unit's buying price.
+        * Buying one and selling it straight back therefore comes out even at
+        * best -- selling at the price the unit was bought at, when the stall
+        * had one fewer, would pay more than it cost, and a player could walk
+        * a merchant's coins out of the stall a unit at a time.
+        */
+        public int getSellPrice(ItemType itemType) {
+            return ItemCostCalculator.calculateCostAtSupply(itemType, this, getQuantityAvailable(itemType) + 1);
+        }
+
+        /**
+        * What buying quantity of these costs in all: each unit at the price
+        * it costs once the ones before it have left the stalls, so buying
+        * ten at once costs what buying them one at a time would.
+        */
+        public int getBuyCost(ItemType itemType, int quantity) {
+            int supply = getQuantityAvailable(itemType);
+            long total = 0;
+            for (int i = 0; i < quantity; i++) {
+                total += ItemCostCalculator.calculateCostAtSupply(itemType, this, supply - i);
+            }
+            return total > int.MaxValue ? int.MaxValue : (int) total;
+        }
+
         /**
         * Buys one of whichever food gives the most energy per coin at current
         * prices, falling back to the next food when that one cannot be bought.
@@ -156,8 +193,11 @@ namespace beyondnations {
         * @return the id of the stall owner, or null if purchase failed
         */
         public EntityId buyItem(Entity entity, ItemType itemType, int quantity) {
-            int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
-            List<Stall> stallsToBuyFrom = findStallsToBuyFrom(entity, itemType, quantity, cost);
+            if (quantity <= 0) {
+                return null;
+            }
+            int totalCost = getBuyCost(itemType, quantity);
+            List<Stall> stallsToBuyFrom = findStallsToBuyFrom(entity, itemType, quantity, totalCost);
             if (stallsToBuyFrom.Count == 0) {
                 return null;
             }
@@ -166,8 +206,8 @@ namespace beyondnations {
             Stall stallToBuyFrom = stallsToBuyFrom[randomStallIndex];
 
             // transfer coins
-            entity.getInventory().removeItem(ItemType.COIN, cost * quantity);
-            stallToBuyFrom.getInventory().addItem(ItemType.COIN, cost * quantity);
+            entity.getInventory().removeItem(ItemType.COIN, totalCost);
+            stallToBuyFrom.getInventory().addItem(ItemType.COIN, totalCost);
 
             // transfer items
             entity.getInventory().addItem(itemType, quantity);
@@ -175,11 +215,11 @@ namespace beyondnations {
 
             totalNumItemsBought += quantity;
 
-            Log.debug("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + cost * quantity + " coins");
+            Log.debug("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + totalCost + " coins");
             return stallToBuyFrom.getOwnerId();
         }
 
-        private List<Stall> findStallsToBuyFrom(Entity entity, ItemType itemType, int quantity, int cost) {
+        private List<Stall> findStallsToBuyFrom(Entity entity, ItemType itemType, int quantity, int totalCost) {
             List<Stall> stallsToBuyFrom = new List<Stall>();
             foreach(Stall stall in stalls) {
                 if (stall.getOwnerId() == null) {
@@ -194,7 +234,7 @@ namespace beyondnations {
                 if (stall.getInventory().getNumItems(itemType) < quantity) {
                     continue;
                 }
-                if (entity.getInventory().getNumItems(ItemType.COIN) < cost * quantity) {
+                if (entity.getInventory().getNumItems(ItemType.COIN) < totalCost) {
                     continue;
                 }
                 stallsToBuyFrom.Add(stall);
@@ -235,7 +275,7 @@ namespace beyondnations {
                         continue;
                     }
 
-                    int cost = askingPrice(ItemCostCalculator.calculateCostBasedOnSupply(itemType, this), priceBonusPercent);
+                    int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
 
                     if (stall.getInventory().getNumItems(ItemType.COIN) < cost) {
                         continue;
@@ -260,7 +300,7 @@ namespace beyondnations {
                     continue;
                 }
 
-                int cost = askingPrice(ItemCostCalculator.calculateCostBasedOnSupply(itemType, this), priceBonusPercent);
+                int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
 
                 if (stallToSellTo.getInventory().getNumItems(ItemType.COIN) < cost) {
                     continue;
@@ -346,6 +386,9 @@ namespace beyondnations {
                 writer.endObject();
             }
             writer.endArray();
+            writer.beginObject("prices");
+            prices.save(writer);
+            writer.endObject();
         }
 
         internal void load(JsonElement element, SaveReader reader) {
@@ -359,6 +402,8 @@ namespace beyondnations {
                 loaded.load(stall, reader);
                 stalls.Add(loaded);
             }
+            prices = new MarketPrices();
+            prices.load(SaveReader.property(element, "prices"));
         }
     }
 }

@@ -119,5 +119,10 @@ namespace beyondnations {
             eventRepository.addEvent(worldEventEvent);
             Log.debug("Produced event: " + worldEventEvent);
         }
+
+        public void produceCaravanEvent(CaravanEvent caravanEvent) {
+            eventRepository.addEvent(caravanEvent);
+            Log.debug("Produced event: " + caravanEvent);
+        }
     }
 }

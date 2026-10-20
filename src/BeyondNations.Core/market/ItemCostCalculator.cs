@@ -31,8 +31,24 @@ namespace beyondnations {
         /** The price never falls below this percentage of the base cost. */
         public const int PRICE_FLOOR_PERCENT = 25;
 
+        /**
+        * What one of these costs to buy at this market right now: the supply
+        * curve at what its stalls hold, leaned on by the market's price
+        * pressure (MarketPrices).
+        */
         public static int calculateCostBasedOnSupply(ItemType itemType, Market market) {
-            return calculateCost(getBaseCost(itemType), market.getQuantityAvailable(itemType));
+            return calculateCostAtSupply(itemType, market, market.getQuantityAvailable(itemType));
+        }
+
+        /** The price at this market if its stalls held quantityAvailable of the item. */
+        public static int calculateCostAtSupply(ItemType itemType, Market market, int quantityAvailable) {
+            return applyPressure(calculateCost(getBaseCost(itemType), quantityAvailable), market.getPrices().getPressure(itemType));
+        }
+
+        /** A price leaned on by a pressure in percent (100 leaves it alone), never below one coin. */
+        public static int applyPressure(int cost, int pressurePercent) {
+            long pressed = (long) cost * pressurePercent / 100;
+            return pressed < 1 ? 1 : (int) pressed;
         }
 
         /**

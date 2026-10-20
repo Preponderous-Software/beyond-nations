@@ -50,6 +50,7 @@ namespace beyondnations {
         private NationResources nationResources;
         private Realm realm;
         private WorldEvents worldEvents;
+        private TradeCaravans tradeCaravans;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -124,6 +125,8 @@ namespace beyondnations {
             pawnBehaviorExecutor.setRealm(realm);
             // droughts, bandits, claimants (worldevents/), on a stream of their own
             worldEvents = new WorldEvents(random.getSeed(), tickCounter.getTicksPerSecond());
+            tradeCaravans = new TradeCaravans(entityRepository, nationRepository, eventProducer, player, timeOfDay, nationResources);
+            tradeCaravans.setRealm(realm);
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -149,6 +152,7 @@ namespace beyondnations {
         public Chronicle getChronicle() { return chronicle; }
         public Realm getRealm() { return realm; }
         public WorldEvents getWorldEvents() { return worldEvents; }
+        public TradeCaravans getTradeCaravans() { return tradeCaravans; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         /** Which region every chunk is; see RegionMap. */
         public RegionMap getRegionMap() { return regionMap; }
@@ -382,6 +386,8 @@ namespace beyondnations {
                     seasonalWorld.update(tickCounter.getTotalTicks());
                     realm.update(tickCounter.getTotalTicks());
                     worldEvents.update(this);
+                    // living prices drift, and caravans roll between markets
+                    tradeCaravans.update(tickCounter.getTotalTicks(), fixedDeltaTime);
 
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();
@@ -667,6 +673,9 @@ namespace beyondnations {
             writer.beginObject("realm");
             realm.save(writer);
             writer.endObject();
+            writer.beginObject("trade");
+            tradeCaravans.save(writer);
+            writer.endObject();
             writer.beginObject("worldEvents");
             worldEvents.save(writer);
             writer.endObject();
@@ -808,6 +817,7 @@ namespace beyondnations {
             chronicle.load(SaveReader.property(body, "chronicle"), reader);
             realm.load(SaveReader.property(body, "realm"), reader);
             worldEvents.load(SaveReader.property(body, "worldEvents"), reader);
+            tradeCaravans.load(SaveReader.property(body, "trade"), reader);
 
             JsonElement randoms = SaveReader.property(body, "random");
             foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {
@@ -853,6 +863,8 @@ namespace beyondnations {
                     return new ItemDrop(origin, new ItemStack(ItemType.COIN, 0));
                 case EntityType.CHICKEN:
                     return new Chicken(origin, scratch);
+                case EntityType.CARAVAN:
+                    return new Caravan(origin, null, null, null, 0);
                 default:
                     throw new SaveFormatException("an entity of unknown type " + type);
             }

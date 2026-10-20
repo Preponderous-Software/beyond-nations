@@ -40,6 +40,8 @@ namespace beyondnations {
                 entityTypesToNotDelete.Add(EntityType.PLAYER);
                 entityTypesToNotDelete.Add(EntityType.PAWN);
                 entityTypesToNotDelete.Add(EntityType.SETTLEMENT);
+                // a caravan carries goods and coin that would vanish with it
+                entityTypesToNotDelete.Add(EntityType.CARAVAN);
 
                 // delete # of entities over max
                 int numEntitiesToDelete = numEntities - maxNumEntities;

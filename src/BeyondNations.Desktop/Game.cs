@@ -293,6 +293,9 @@ namespace beyondnations.desktop {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
+            if (options.StageTrade) {
+                TradeShowcase.stage(simulation);
+            }
 
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {

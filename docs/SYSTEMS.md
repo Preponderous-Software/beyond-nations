@@ -23,6 +23,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Rule (laws, war and peace, succession) | Implemented | [`src/BeyondNations.Core/realm/`](../src/BeyondNations.Core/realm/), [`src/BeyondNations.Core/command/nation/RealmCommands.cs`](../src/BeyondNations.Core/command/nation/RealmCommands.cs) |
 | Sharing | Implemented | [`src/BeyondNations.Core/sharing/`](../src/BeyondNations.Core/sharing/), [SHARING.md](./SHARING.md) |
 | World Events | Implemented | [`src/BeyondNations.Core/worldevents/`](../src/BeyondNations.Core/worldevents/) |
+| Trade | Implemented | [`src/BeyondNations.Core/trade/`](../src/BeyondNations.Core/trade/), [`src/BeyondNations.Core/market/MarketPricing.cs`](../src/BeyondNations.Core/market/MarketPricing.cs) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
 
@@ -30,7 +31,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 A world is its seed. The New World screen takes a number or any word (hashed to a seed, `WorldSeed`), and the pause screen's Share opens the world's link (`?seed=` on the browser build), an export of the run as a `usd-replay/1` replay (`RunRecorder`, `ReplayUsdaWriter`) and an export of the chronicle as a Markdown history (`ChronicleExport`). Recording reads the world and never draws from its random source, so it changes nothing. See [SHARING.md](./SHARING.md).
 
 ## Event
-The event system records notable occurrences in the game — chunk generation, nation creation/join/leave/disband, leadership changes, settlements founded, stalls built, pawn and player deaths, pawn spawns, the player falling into the void, pawn relationships improving, nations changing how they stand toward each other (alliances formed and broken, rivalries, hostility), raids, and settlements captured. Events are produced through a single producer and stored in a repository that can be queried by event type, which is what drives the event counts shown in the debug display. Other systems can subscribe to the repository, for every event or for one type; subscribers are called synchronously inside the tick that produced the event, and a subscriber that throws is logged and skipped.
+The event system records notable occurrences in the game — chunk generation, nation creation/join/leave/disband, leadership changes, settlements founded, stalls built, pawn and player deaths, pawn spawns, the player falling into the void, pawn relationships improving, nations changing how they stand toward each other (alliances formed and broken, rivalries, hostility), raids, settlements captured, and trade caravans sent, sold, escorted and robbed. Events are produced through a single producer and stored in a repository that can be queried by event type, which is what drives the event counts shown in the debug display. Other systems can subscribe to the repository, for every event or for one type; subscribers are called synchronously inside the tick that produced the event, and a subscriber that throws is logged and skipped.
 
 ### Chronicle
 The first subscriber is the chronicle ([`src/BeyondNations.Core/chronicle/`](../src/BeyondNations.Core/chronicle/)), which turns events into short, dated lines of history — "Day 3, dusk - Mira founded the nation of Ironvale." — and keeps the most recent 200. Diplomacy is part of the story: alliances formed and broken, rivalries and hostility, raids, and settlements captured each get a line. Noise (chunk generation, spawns, relationship ticks) is left out. So that a populated world doesn't flood it, births, pawns joining a nation, and drift between neutral and friendly relations are told only for the player's nation, and a raid between two other nations is told once a day per raider and victim. Phrasing varies, but is chosen from a hash of the world seed and the event rather than from the world's random source, so the same seed tells the same story and keeping a chronicle never changes the world. The HUD shows the last five entries at the top of the screen, fading as they age, and `Y` cycles to a full scrollable history and then hides it; entries about the player or the player's nation are drawn in gold and marked with `*`.
@@ -73,6 +74,9 @@ Every 250 ticks (`Diplomacy.ROUND_TICKS`, five seconds) a diplomacy round runs, 
 | Poaching a member with an invitation (#300) | -15 |
 | A gift of coins | +2 per 5 coins (the player's 25-coin gift is +10) |
 | Denouncing | -25 (player), -10 (pawn-led) |
+| A caravan selling at the other's market (see Trade) | +2 |
+| The player escorting the other's caravan | +8 |
+| The player robbing the other's caravan | -30 |
 
 **Pawn-led nations choose.** A nation led by a pawn agrees an alliance with another pawn-led nation at +40; pays 20 coins of tribute from its richest treasury to a Rival-or-worse neighbour at least twice its strength (every fourth round); and denounces, once, a weaker nation it has sunk to -40 with. A nation's strength is its members plus its allies' members. A nation led by the player makes no choices on its own.
 
@@ -147,6 +151,10 @@ Traits show on the nametag (`Name (Tier)`, then `Industrious, Greedy`, then what
 
 ## Market
 The market system is used to buy and sell resources within a settlement. Each settlement has a market with a limited number of stalls, which can be built or purchased by pawns and by the player. Stall owners stock their stalls with items and collect the profit from sales. Item prices are calculated from the item's base cost and the market's current supply of that item, rather than being set per stall: base / (1 + supply / 10), so ten units on offer halve the price, never falling below a quarter of the base cost. A pawn heads to market once it carries 20 or more goods of any kind and the trip has a purpose for its role.
+
+**Living prices** (`MarketPricing`, `MarketPrices`). On top of the supply curve, each market leans every price by a pressure, 50% to 200%, that drifts 5 points every pricing round (500 ticks) toward `100 * (demand + 20) / (stock + 20)`. Stock is what the stalls and the settlement's stockpile hold; demand grows with the residents: 3 + 2 per resident for food (all foods count together), 10 + 2 per resident for wood, 6 + 1 for stone, 2 + one per two residents for planks and bricks, 1 + one per four for tools. So a glutted market pays less, a scarce good pays more, and goods carried from one to the other sell for more than they cost. The market box lists each good's buying and selling price with an arrow for its movement since the last round.
+
+**No coins from nowhere.** A unit is bought at the price at the current stock and sold at the price once it has landed (stock + 1) -- the next unit's buying price -- and buying several at once costs each unit at the stock it leaves. Buying and selling straight back therefore never comes out ahead, at any stock or pressure (`TestMarketPricing`); it used to pay the difference between the two stock levels, a slow drain on any merchant's purse. Pinned numbers changed with it: a sale into an empty market now fetches `calculateCost(base, 1)` (planks 109, not 120).
 
 Crafted goods have prices of their own (base cost: axe 360, pickaxe 330, planks 120, bricks 110, cooked meat 90), set so that tools and trade goods sell for more than their inputs. *Sell Resources* sells everything but coin and tools, so a player never sells their axe by accident. A merchant stocking its stall first crafts from its haul: an axe and a pickaxe whenever the stall has none of that tool, cooked meat from up to two chicken meat, and, if the settlement has a workshop, up to two batches each of planks and bricks. The player can buy a stocked tool from the command bar (*Buy Axe (price)*) when they have none and can pay.
 
@@ -292,3 +300,32 @@ Outcomes go through the ordinary systems: inventories, treasuries and stockpiles
 
 Pending choices, running effects, both clocks and the stream are saved (save format 3, see [SAVES.md](./SAVES.md)).
 
+## Trade
+Caravans carry goods from where they are cheap to where they are dear (`TradeCaravans`, one call a tick from `Simulation`). Everything is deterministic: routes, cargo and timing follow from the world's state, with no random draws.
+
+**Sending.** Every 1,500 ticks each nation led by a pawn that has no caravan on the road, and has not sent one in the last 4,500 ticks, looks for a route. A settlement can spare what its stockpile holds above a reserve (40 wood, 30 stone, 4 + 2 food per resident; `TradeNeeds`). Up to 20 of its most plentiful spare goods, at least 5, go to whichever market within 1,200 units -- another nation's or its own -- would pay the most more than its own merchants would, counting only what that market's stalls and treasury could actually pay. A nation never trades with one it is at war with (a declared war, or Hostile relations). The caravan also takes a purse of up to 30 coins from the treasury. The player's nation never sends caravans on its own.
+
+**The land (Regions, `NationResources`).** A nation whose land is short of a commodity keeps half as much again of it back and its markets want half as much again of it; one with a surplus keeps back and wants two thirds as much (`TradeNeeds`). A route that carries what the origin's land has plenty of to a nation whose land lacks it (`canSupply`) is favoured by a quarter.
+
+**War and peace (Realm).** A declared war, as well as Hostile relations, stops caravans going to that nation and turns back any on the road; a truce is peace, so caravans travel under one, and the player cannot rob the caravans of a nation theirs has a truce with. A caravan selling at a market under Open Borders warms relations twice as much (+4).
+
+**The road.** A caravan is an entity (`Caravan`): a cart with four wheels, a bale, a pack in the nation's colour and its drover, labelled with its nation, where it is going and what it carries. It rolls at 8 units a second (a third of the player's walk) straight across the flat ground. If its market is lost, or its nation goes to war with the market's, it turns for home; if home is lost it makes for its nation's nearest settlement; if its nation falls, the cart is abandoned and its load left on the ground as drops.
+
+**Selling.** At its market it sells a unit at a time at the landing price (above): to the stall with the most coin that can pay, then to the settlement's treasury for its stockpile, until no one can pay. The rest rides home. Selling at another nation's market is worth +2 between the two. Home again, the takings and anything unsold go into the treasury and stockpile.
+
+**The player.** Within 20 units of a caravan out in the world, the command bar offers:
+
+| Command | Effect |
+| --- | --- |
+| *Buy wood (96)* | One of each of up to three of its goods, at the price it expects at market |
+| *Sell to Caravan* | One of each good it deals in that the player carries, at 80% of its market's paying price, while its purse lasts |
+| *Escort Caravan* | Ride guard: within 60 units when it arrives, the player is paid 15% of its takings (at least 5) from its purse and its nation gains +8 with the player's. Straying 150 units away ends the escort |
+| *Raid Caravan* | Take everything it carries; the cart is abandoned. Its nation loses 30 with the player's, enough to turn a Rival Hostile -- war. A nationless raider loses 10 with every one of its people. Not the player's own nation's caravans, nor one they are guarding |
+
+A player who leads a nation and stands in one of its settlements with a Storehouse gets *Send Caravan*, which opens a panel: previous/next to pick a market (with its relation and distance), -5/+5 per good to load up to 40 from what the player carries, each good's price here and there, and an estimate of what the load will fetch. At most two of the player's caravans are on the road at once; their takings go into the home treasury. Every control is a button, so it works the same by touch.
+
+Coins only ever change hands in all of this; `TestTradeCaravans` counts every coin in the world before and after each kind of trade, delivery, escort and raid.
+
+**The chronicle** tells what the player had a hand in -- caravans sent, sold and home, escorts, raids -- and anything to or from the player's nation; of the rest, only the first haul of the day worth 400 coins or more.
+
+`--stage-trade` (desktop and web, `?stage-trade`) opens the game leading a village that can send caravans, with a trading neighbour's caravan passing just ahead.

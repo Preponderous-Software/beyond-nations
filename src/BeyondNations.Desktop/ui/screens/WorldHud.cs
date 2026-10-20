@@ -181,6 +181,9 @@ namespace beyondnations.desktop.ui.screens {
                 ChroniclePanel.compactTop(centreBottom), layout.CentreWrapWidth);
             objectiveTracker.drawToast(width, height, stripBottom + layout.Gap);
 
+            // the caravan dispatch panel, when Send Caravan has opened it, over the rest
+            CaravanDispatchPanel.draw(width, height, simulation, centreBottom + layout.Gap);
+
             return action;
         }
 

@@ -169,6 +169,13 @@ namespace beyondnations.desktop {
         public bool StageSuccession = false;
 
         /**
+        * Opens the game with the player leading a nation whose village can
+        * send caravans, a trading neighbour, and one of its caravans on the
+        * road just ahead of the player. See TradeShowcase.
+        */
+        public bool StageTrade = false;
+
+        /**
         * Neither save nor offer to load this run: no autosave, no save on
         * quit, no Continue or Load. For automated runs that should leave a
         * player's saves alone. See docs/SAVES.md.
@@ -208,6 +215,7 @@ namespace beyondnations.desktop {
                     case "--stage-feel":       options.StageFeel = true; break;
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
                     case "--stage-event":      options.StageEvent = true; break;
+                    case "--stage-trade":      options.StageTrade = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--no-saves":         options.NoSaves = true; break;
@@ -365,6 +373,7 @@ namespace beyondnations.desktop {
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
+                "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
