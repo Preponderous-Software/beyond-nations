@@ -50,6 +50,10 @@ namespace beyondnations.pacing {
         private int nextSocialTick = 0;
         private int nextDiplomacyTick = 0;
         private EntityId recruitId = null;
+        private int courtingSinceTick = 0;
+
+        /** How long the bot courts one settler before trying another: two minutes at the default rate. */
+        private const int CourtingTicks = 120 * TickCounter.DefaultTicksPerSecond;
 
         public PacingBot(Simulation simulation) {
             this.simulation = simulation ?? throw new ArgumentNullException(nameof(simulation));
@@ -425,7 +429,10 @@ namespace beyondnations.pacing {
                 walkTo(recruit.getPosition());
                 return;
             }
-            if (PawnRelations.getTier(inReach, player) >= InvitePawnToNationCommand.NATIONLESS_TIER_REQUIRED) {
+            RelationshipTier needed = inReach.getNationId() == null
+                ? InvitePawnToNationCommand.NATIONLESS_TIER_REQUIRED
+                : InvitePawnToNationCommand.RIVAL_TIER_REQUIRED;
+            if (PawnRelations.getTier(inReach, player) >= needed) {
                 new InvitePawnToNationCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                     simulation.getEntityRepository()).execute(player, inReach);
                 recruitId = null;
@@ -451,30 +458,45 @@ namespace beyondnations.pacing {
         }
 
         /**
-        * Only nationless settlers: they join at Acquaintance, as the hint
-        * says. Poaching another nation's people takes Loyal standing and
-        * sours relations, which is not what a player learning the game does.
+        * Anyone the invitation could persuade: a nationless settler (it joins
+        * at Acquaintance), or another nation's member who does not lead it and
+        * is not Loyal by nature (it needs Loyal standing, and poaching sours
+        * relations). currentRecruit prefers nationless settlers.
         */
         private bool isRecruitable(Pawn pawn) {
-            return !pawn.isMarkedForDeletion() && !pawn.isCurrentlyInSettlement()
-                && pawn.getNationId() == null && InvitePawnToNationCommand.isApplicable(player, pawn);
+            if (pawn.isMarkedForDeletion() || pawn.isCurrentlyInSettlement() || !InvitePawnToNationCommand.isApplicable(player, pawn)) {
+                return false;
+            }
+            if (pawn.getNationId() == null) {
+                return true;
+            }
+            Nation nation = simulation.getNationRepository().getNation(pawn.getNationId());
+            return nation != null && nation.getLeaderId() != pawn.getId()
+                && PawnTraits.relationshipToDefect(pawn) <= RelationshipTiers.LOYAL_THRESHOLD;
         }
 
         /** The settler being courted; the bot sticks with one until it joins or wanders off. */
         private Pawn currentRecruit() {
+            int tick = simulation.getTickCounter().getTotalTicks();
+            // stay with a half-won settler while it is out and about, for up to two minutes
             if (recruitId != null && simulation.getEntityRepository().getEntity(recruitId) is Pawn kept
-                    && isRecruitable(kept) && groundDistance(player.getPosition(), kept.getPosition()) < 150) {
+                    && tick - courtingSinceTick < CourtingTicks * simulation.getTickCounter().getTicksPerSecond() / TickCounter.DefaultTicksPerSecond
+                    && isRecruitable(kept)) {
                 return kept;
             }
             recruitId = null;
             Pawn best = null;
-            float bestDistance = 400f; // about what a player can see
+            // the nearest one anywhere: a player with no one in sight goes looking (the minimap shows pawns)
+            float bestDistance = float.MaxValue;
             foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(EntityType.PAWN)) {
                 Pawn pawn = (Pawn) entity;
                 if (!isRecruitable(pawn)) {
                     continue;
                 }
                 float distance = groundDistance(player.getPosition(), pawn.getPosition());
+                if (pawn.getNationId() != null) {
+                    distance += 100000f; // only once no nationless settler is left anywhere
+                }
                 if (distance < bestDistance) {
                     bestDistance = distance;
                     best = pawn;
@@ -482,6 +504,7 @@ namespace beyondnations.pacing {
             }
             if (best != null) {
                 recruitId = best.getId();
+                courtingSinceTick = tick;
             }
             return best;
         }

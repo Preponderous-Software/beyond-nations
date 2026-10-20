@@ -177,7 +177,7 @@ namespace beyondnationstests {
                 tickOneSecond();
             }
             assertCurrent("sell-resources");
-            Assert.True(ObjectiveCatalog.members(simulation) >= ObjectiveCatalog.ArcNationGrowthTarget);
+            Assert.True(ObjectiveCatalog.members(simulation) >= ObjectiveCatalog.NationGrowthTarget);
 
             // 8. sell resources: keep trying while inside, as a player would.
             // A settler buys the stall and its coins come from other settlers

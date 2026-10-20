@@ -53,10 +53,10 @@
     },
     {
       "id": "grow-nation",
-      "title": "Grow your nation to 7",
+      "title": "Grow your nation to 5",
       "minSeconds": 5,
       "maxSeconds": 180,
-      "note": "Under 5 s means settlers had joined before the step came up and the player did nothing for it. At a target of 5 seed 3 finished in 1 s."
+      "note": "Under 5 s means settlers had joined before the step came up and the player did nothing for it. Before seasons and regions (#318) seed 3 finished in 1 s."
     },
     {
       "id": "sell-resources",

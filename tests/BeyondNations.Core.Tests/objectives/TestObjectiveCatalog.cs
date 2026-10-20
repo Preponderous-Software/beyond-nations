@@ -165,13 +165,13 @@ namespace beyondnationstests {
         [Fact]
         public void testGrowNation_CountsMembers() {
             Nation nation = makePlayerLeader();
-            for (int i = 1; i < ObjectiveCatalog.ArcNationGrowthTarget; i++) {
+            for (int i = 1; i < ObjectiveCatalog.NationGrowthTarget; i++) {
                 Assert.False(arc("grow-nation").evaluate(simulation).isComplete());
                 nation.addMember(new EntityId());
             }
             ObjectiveProgress progress = arc("grow-nation").evaluate(simulation);
             Assert.True(progress.isComplete());
-            Assert.Equal("Members " + ObjectiveCatalog.ArcNationGrowthTarget + "/" + ObjectiveCatalog.ArcNationGrowthTarget, progress.describe());
+            Assert.Equal("Members " + ObjectiveCatalog.NationGrowthTarget + "/" + ObjectiveCatalog.NationGrowthTarget, progress.describe());
         }
 
         [Fact]

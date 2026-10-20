@@ -9,7 +9,7 @@ How long each objective takes is measured, not guessed. `tools/BeyondNations.Pac
 - It works on the current objective and nothing else, pressing one key at a time and at most five a second.
 - It walks to things (sprinting, turning to face them) and never teleports. Gifts, conversations and market sales are at most one a second, the speed at which someone can read the reply.
 - It only runs the Core commands that the keys and HUD buttons run (`InteractCommand`, `NationCreateCommand`, `FoundSettlementCommand`, `BuildStallCommand`, `SellResourcesAtMarketCommand`, `GiftPawnCommand`, `InvitePawnToNationCommand`, `GiftNationCommand`). It never uses a debug command.
-- It recruits only nationless settlers. They join at Acquaintance, as the hint says. Poaching another nation's members needs Loyal standing and sours relations, which a player learning the game does not do.
+- It recruits nationless settlers first. They join at Acquaintance, as the hint says. Only when there are none left anywhere does it court another nation's members who neither lead it nor are Loyal by nature. Those need Loyal standing, and poaching them sours relations. It sticks with one settler for up to two minutes while that settler is out of doors.
 - When a siege warning tells it to "Gift, ally or grow it", it sends the besieger a gift if it can afford one. If it loses its nation anyway, it founds a new one and starts again.
 
 The bot reads the objective list generically. Ids it knows get a specific plan. Any other objective is planned from the label on its progress counter (`Wood`, `Stone`, `Members`, `Settlements`, `Funds`, `Day`), and anything else gets general play. The harness takes the objectives from `ObjectiveTracker.getObjectives()` and `getCompletedCount()`, so a reworked objective list is still measured, and it reports objectives it has no budget for instead of crashing.
@@ -81,25 +81,25 @@ Seconds of game time per objective, at 50 ticks a second and 30 000 ticks (10 mi
 
 | Objective | seed 1 | seed 2 | seed 3 | seed 4 | seed 5 | budget |
 |---|---|---|---|---|---|---|
-| Gather wood | 3 | 2 | 2 | 2 | 3 | 0 – 120 |
-| Eat something | 58 | 59 | 59 | 59 | 58 | 30 – 180 |
+| Gather wood | 3 | 3 | 2 | 2 | 2 | 0 – 120 |
+| Eat something | 58 | 58 | 59 | 59 | 59 | 30 – 180 |
 | Create or join a nation | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
-| Found a settlement | 2 | 4 | 6 | 1 | 4 | 0 – 180 |
+| Found a settlement | 6 | 3 | 4 | 1 | 5 | 0 – 180 |
 | Enter your settlement | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
-| Build a market stall | 3 | 2 | 3 | 2 | 3 | 0 – 120 |
-| Grow your nation to 7 | 25 | 45 | 9 | 51 | 36 | 5 – 180 |
-| Sell resources at market | 43 | 21 | 33 | 10 | 51 | 0 – 180 |
-| Found a second settlement | 8 | 10 | 5 | 9 | 6 | 0 – 120 |
-| Grow your nation to 10 (ambition) | never | never | never | 14 | never | 5 – 600, advisory |
-| Amass 500 coins (ambition) | – | – | – | 1 | – | 30 – 900, advisory |
-| Hold 3 settlements (ambition) | – | – | – | 7 | – | 0 – 300, advisory |
-| Survive to day 2 (ambition) | – | – | – | 862 | – | 300 – 1800, advisory |
+| Build a market stall | 2 | 4 | 2 | 2 | 2 | 0 – 120 |
+| Grow your nation to 5 | 60 | 18 | 144 | 24 | 24 | 5 – 180 |
+| Sell resources at market | 13 | 4 | 16 | 7 | 15 | 0 – 180 |
+| Found a second settlement | 6 | 6 | 12 | 6 | 6 | 0 – 120 |
+| Grow your nation to 10 (ambition) | 176 | 12 | never | 58 | 25 | 5 – 600, advisory |
+| Amass 500 coins (ambition) | 82 | 1 | – | 1 | 1 | 30 – 900, advisory |
+| Hold 3 settlements (ambition) | 6 | 1 | – | 10 | 8 | 0 – 300, advisory |
+| Survive to day 2 (ambition) | 606 | 908 | – | 848 | 871 | 300 – 1800, advisory |
 
-The whole first arc takes between 1 m 59 s and 2 m 43 s of game time.
+Measured on develop with seasons and regions (#318). The whole first arc takes between 1 m 38 s and 4 m 01 s of game time.
 
 ## Known issues the harness found
 
-- **"Grow your nation to 5" was met within a second on some seeds.** Settlers join a new settlement on their own, so on seed 3 the nation already had five members when the step came up (1 s; 13 to 32 s on the other seeds). The arc now asks for 7 (`ObjectiveCatalog.ArcNationGrowthTarget`), which takes 9 to 51 s. The minimum of 5 s fails the old target. The ambitions still grow from 5 (`NationGrowthTarget`): 10, 15, 20 and so on.
-- **On most seeds a new player's nation is besieged and taken within about ten minutes.** By minute two the world has 25 to 45 nations and its full 100 pawns, so few nationless settlers are left to recruit, and Hostile neighbours at least twice the player's strength lay siege. Gifts only buy time. On seeds 1, 2, 3 and 5 the bot's nation falls between minutes 7 and 13. Every nation it founds after that falls within a few minutes, so "Grow your nation to 10" never completes. This is why the ambitions are advisory for now. Make them binding once a new player can hold on.
+- **"Grow your nation to 5" used to be met within a second on some seeds.** Before seasons and regions (#318), settlers joined a new settlement on their own, and on seed 3 the nation already had five members when the step came up (1 s). The 5 s minimum fails that. On develop with #318 the step takes 18 s to 2 m 24 s, because nations now take up almost every settler in the first two minutes. So the target is unchanged, and the minimum stays to catch a return of the problem.
+- **On most seeds a new player's nation is besieged and taken within about ten minutes.** By minute two the world has 25 to 45 nations and its full 100 pawns, so few nationless settlers are left to recruit, and Hostile neighbours at least twice the player's strength lay siege. Gifts only buy time. On seed 3 the bot's nation falls at about minute 5. Every nation it founds after that falls within a few minutes, so "Grow your nation to 10" never completes there. Before #318 this happened on four of the five seeds. This is why the ambitions are advisory for now. Make them binding once a new player can hold on.
 - **"Amass 500 coins" is usually met when it comes up.** The rewards from the arc, the starting purse and the treasuries already add up to more than 500.
 - **The first minute leaves the player rich in wood.** "Eat something" is a one-minute wait for hunger. A player who keeps chopping trees in that minute ends it with about 400 wood, so both "Found a settlement" steps take only seconds afterwards.
