@@ -172,6 +172,8 @@ namespace beyondnations {
                     return describeBirth((PawnSpawnEvent) e, nations, entities);
                 case EventType.Statecraft:
                     return describeStatecraft((StatecraftEvent) e, nations, entities);
+                case EventType.WorldEvent:
+                    return describeWorldEvent(e as WorldEventEvent, nations, entities);
                 default:
                     // ChunkGenerate: noise.
                     return null;
@@ -501,6 +503,20 @@ namespace beyondnations {
             return pick(e, pawn.getName(),
                 pawn.getName() + " was born in " + n + ".",
                 n + " welcomed a newborn, " + pawn.getName() + ".");
+        }
+
+        /**
+        * A world event (worldevents/) writes its own line, since only it
+        * knows what was chosen; the chronicle keeps who it names, so a line
+        * about the player's nation is drawn in gold.
+        */
+        private string describeWorldEvent(WorldEventEvent e, List<NationId> nations, List<EntityId> entities) {
+            if (e == null || string.IsNullOrEmpty(e.getDescription())) {
+                return null;
+            }
+            nations.AddRange(e.getNations());
+            entities.AddRange(e.getEntities());
+            return e.getDescription();
         }
 
         // --- helpers --------------------------------------------------------

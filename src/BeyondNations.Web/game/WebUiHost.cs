@@ -46,6 +46,7 @@ namespace beyondnations.web {
         private bool saveRequested;
         private bool leaveRequested;
         private readonly WorldHud worldHud = new WorldHud();
+        private readonly WorldEventSheet worldEventSheet = new WorldEventSheet();
         private readonly FrameRateCounter frameRate = new FrameRateCounter();
 
         private bool quitRequested;
@@ -136,6 +137,8 @@ namespace beyondnations.web {
                 case ScreenType.WORLD:
                     if (simulation != null) {
                         action = worldHud.draw(width, height, simulation, debugMode, frameRate.getFramesPerSecond(), chronicleView);
+                        // a world event waiting on the player is drawn over the HUD (worldevents/)
+                        worldEventSheet.draw(width, height, simulation);
                     }
                     break;
                 case ScreenType.CONTROLS:

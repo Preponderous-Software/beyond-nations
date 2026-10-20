@@ -146,6 +146,9 @@ namespace beyondnations.web {
                 // starving: the first tick hands the rule to an heir
                 simulation.getPlayer().setEnergy(0.001f);
             }
+            if (options.StageEvent) {
+                simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
+            }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());
@@ -239,6 +242,11 @@ namespace beyondnations.web {
             readInput();
             runHousekeeping();
             if (stopped || !screens.shouldAdvanceSimulation() || simulation == null) {
+                return;
+            }
+            // the world waits while a world event's choice sheet is up (Game.onUpdate)
+            if (simulation.getWorldEvents().isAwaitingPlayer()) {
+                accumulator = 0;
                 return;
             }
             accumulator += deltaTime;

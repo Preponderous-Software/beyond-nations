@@ -158,6 +158,8 @@ namespace beyondnations.desktop {
         * player standing at the border. See DiplomacyShowcase.
         */
         public bool StageDiplomacy = false;
+        // open with a world event's choice sheet up (worldevents/)
+        public bool StageEvent = false;
 
         /**
         * As StageDiplomacy, with the player on the point of starving, so the
@@ -205,6 +207,7 @@ namespace beyondnations.desktop {
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--stage-feel":       options.StageFeel = true; break;
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
+                    case "--stage-event":      options.StageEvent = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--no-saves":         options.NoSaves = true; break;
@@ -359,6 +362,7 @@ namespace beyondnations.desktop {
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
+                "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",

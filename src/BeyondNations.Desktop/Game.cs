@@ -290,6 +290,9 @@ namespace beyondnations.desktop {
                 // starving: the first tick hands the rule to an heir
                 simulation.getPlayer().setEnergy(0.001f);
             }
+            if (options.StageEvent) {
+                simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
+            }
 
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {
@@ -360,6 +363,11 @@ namespace beyondnations.desktop {
             runHousekeeping();
 
             if (!screens.shouldAdvanceSimulation() || simulation == null) {
+                return;
+            }
+            // the world waits while a world event's choice sheet is up
+            if (simulation.getWorldEvents().isAwaitingPlayer()) {
+                accumulator = 0;
                 return;
             }
 
