@@ -56,6 +56,20 @@ namespace beyondnations.desktop.ui {
             return isActive() ? bottomReserve : 0f;
         }
 
+        private static float tipTop;
+
+        /**
+        * Where the HUD wants a tip card to start on a narrow touch screen (0:
+        * wherever FeelDirector would put it): set by WorldHud every frame.
+        */
+        public static float getTipTop() {
+            return isActive() ? tipTop : 0f;
+        }
+
+        public static void setTipTop(float top) {
+            tipTop = top;
+        }
+
         /** The host's report: what the page shows, under which setting. */
         public static void setState(TouchMode newMode, bool isActiveNow, float reserve) {
             available = true;

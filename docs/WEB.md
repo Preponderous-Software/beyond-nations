@@ -60,6 +60,8 @@ On a touch screen the page shows its own controls over the world, and the
 game lays its screens out for a finger (`TouchLayout` in
 `src/BeyondNations.Desktop/ui`, set only by the browser build):
 
+![A phone on its side: the joystick bottom left with its knob pushed up, the Bag, Craft, Realm, News, View, ? and Menu buttons along the bottom, and Jump, Run and Use bottom right, with the objective tracker, season and player boxes above them](../.github/media/touch-landscape.png)
+
 | Control | Does |
 | --- | --- |
 | Joystick (bottom left) | Walk: up forward, down back; sideways turns, as A and D do, as far as it is pushed. A nearly straight push is snapped straight, so walking does not also turn |

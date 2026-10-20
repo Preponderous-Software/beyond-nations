@@ -385,7 +385,7 @@ namespace beyondnations.desktop.ui.feel {
                 return;
             }
             float cardWidth = hintCardWidth(width);
-            ImGui.SetNextWindowPos(new Vector2(width / 2f, hintCardTop(height, isTouch())), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, (TouchLayout.getTipTop() > 0f ? TouchLayout.getTipTop() : hintCardTop(height, isTouch()))), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowSize(new Vector2(cardWidth, 0f), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.82f);
             if (ImGui.Begin("##feel-hint", HintFlags)) {
