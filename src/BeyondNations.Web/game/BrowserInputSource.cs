@@ -22,6 +22,7 @@ namespace beyondnations.web {
         private readonly HashSet<Key> down = new HashSet<Key>();
         private readonly PressLatch<Key> presses = new PressLatch<Key>();
         private Vector2 lookDelta;
+        private Vector2 moveAxis;
 
         public void key(Key key, bool isDown) {
             if (key == Key.Unknown) {
@@ -40,10 +41,33 @@ namespace beyondnations.web {
             lookDelta += new Vector2(dx, dy);
         }
 
-        /** Focus left the page: nothing stays held (no stuck W after alt-tab). */
+        /**
+        * The on-screen joystick (touch screens): x right, y forward, each
+        * clamped to [-1, 1] and the whole to the unit circle, so a page that
+        * reports a little past the rim cannot make the player faster than a
+        * held W. It stays where it was put until the page moves it again.
+        */
+        public void move(float x, float y) {
+            if (float.IsNaN(x) || float.IsNaN(y)) {
+                x = 0f;
+                y = 0f;
+            }
+            Vector2 axis = new Vector2(System.Math.Clamp(x, -1f, 1f), System.Math.Clamp(y, -1f, 1f));
+            if (axis.LengthSquared() > 1f) {
+                axis = Vector2.Normalize(axis);
+            }
+            moveAxis = axis;
+        }
+
+        /** Focus left the page: nothing stays held (no stuck W after alt-tab, no stuck stick). */
         public void releaseAll() {
             down.Clear();
             lookDelta = Vector2.Zero;
+            moveAxis = Vector2.Zero;
+        }
+
+        public Vector2 GetMoveAxis() {
+            return moveAxis;
         }
 
         public bool IsKeyDown(Key key) {

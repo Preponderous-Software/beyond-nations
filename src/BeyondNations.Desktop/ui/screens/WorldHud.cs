@@ -114,24 +114,38 @@ namespace beyondnations.desktop.ui.screens {
             // boxes used to sit a fixed 220 pixels above the bottom and the
             // debug box a fixed distance from the top, so on a short window
             // they overlapped each other and the bar.
-            float barTop = drawCommandButtons(width, height, simulation, layout);
+            // On a touch screen (TouchLayout) the joystick and buttons take a
+            // band along the bottom, so the bar and both columns stop above
+            // it; the band is 0 everywhere else.
+            bool touch = TouchLayout.isActive();
+            float barTop = drawCommandButtons(width, height - TouchLayout.getBottomReserve(), simulation, layout);
             float columnBottom = barTop - layout.Gap;
-            float centreY = drawStatus(width, player, layout, layout.Margin);
-            float centreBottom = drawHungerWarning(width, player, layout, centreY);
+            // A phone held upright has no room for the status line and the
+            // chronicle between the box columns, where they covered the
+            // objective tracker; on a narrow touch screen they go under it.
+            bool stackCentre = touch && layout.CentreWrapWidth + 2f * (layout.BoxWidth + layout.Margin * 2f) > width;
+            float centreBottom = layout.Margin;
+            if (!stackCentre) {
+                float centreY = drawStatus(width, player, layout, layout.Margin);
+                centreBottom = drawHungerWarning(width, player, layout, centreY);
+            }
 
             // Left column, from the top: the controls button (the touch path
             // to the controls list, and a reminder that it exists), then the
             // debug box when it is on. The inventory box sits at the bottom,
             // above the bar, and is pushed down rather than up into them.
             float leftTop = layout.Margin;
-            ImGui.SetNextWindowPos(new Vector2(layout.LeftX - ImGui.GetStyle().WindowPadding.X, leftTop - ImGui.GetStyle().WindowPadding.Y), ImGuiCond.Always);
-            if (ImGui.Begin("##controls-button", BarFlags)) {
-                if (ImGui.Button(ControlsButtonLabel)) {
-                    action = UiAction.OpenControls;
+            // touch screens have a ? in their button row instead
+            if (!touch) {
+                ImGui.SetNextWindowPos(new Vector2(layout.LeftX - ImGui.GetStyle().WindowPadding.X, leftTop - ImGui.GetStyle().WindowPadding.Y), ImGuiCond.Always);
+                if (ImGui.Begin("##controls-button", BarFlags)) {
+                    if (ImGui.Button(ControlsButtonLabel)) {
+                        action = UiAction.OpenControls;
+                    }
+                    leftTop = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
                 }
-                leftTop = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
+                ImGui.End();
             }
-            ImGui.End();
 
             if (debugMode) {
                 DebugInfoBox debugInfoBox = new DebugInfoBox(simulation);
@@ -144,17 +158,31 @@ namespace beyondnations.desktop.ui.screens {
             // inventory below is pushed down rather than drawn over it.
             ObjectiveTrackerBox objectiveTracker = new ObjectiveTrackerBox(simulation);
             leftTop = objectiveTracker.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
+            PlayerInfoBox playerBox = new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository());
+            if (stackCentre) {
+                // Upright, the player box sits at the top right beside the
+                // tracker, and the status line, warnings and chronicle run
+                // full width under the two of them.
+                float underBoxes = System.MathF.Max(leftTop, layout.Margin + playerBox.getExpectedHeight() + layout.Gap);
+                float centreY = drawStatus(width, player, layout, underBoxes);
+                centreBottom = drawHungerWarning(width, player, layout, centreY);
+            }
 
             // On a short window with the debug box open there is no room for
             // the inventory under it, so it moves into a second column beside
             // the debug box rather than off the bottom of the screen.
-            InventoryInfoBox inventoryBox = new InventoryInfoBox(player.getInventory());
-            float inventoryX = layout.LeftX;
-            if (leftTop + inventoryBox.getExpectedHeight() > columnBottom && layout.LeftX + layout.BoxWidth * 2f + layout.Gap < layout.RightX) {
-                inventoryX = layout.LeftX + layout.BoxWidth + layout.Gap;
-                leftTop = layout.Margin;
+            //
+            // On a touch screen there is no room for it above the controls,
+            // and the Bag button opens the full inventory a tap away.
+            if (!touch) {
+                InventoryInfoBox inventoryBox = new InventoryInfoBox(player.getInventory());
+                float inventoryX = layout.LeftX;
+                if (leftTop + inventoryBox.getExpectedHeight() > columnBottom && layout.LeftX + layout.BoxWidth * 2f + layout.Gap < layout.RightX) {
+                    inventoryX = layout.LeftX + layout.BoxWidth + layout.Gap;
+                    leftTop = layout.Margin;
+                }
+                inventoryBox.drawAbove(inventoryX, columnBottom, layout.BoxWidth, leftTop);
             }
-            inventoryBox.drawAbove(inventoryX, columnBottom, layout.BoxWidth, leftTop);
 
             // Right column: the settlement and market boxes stack down from
             // the top while the player is inside a settlement, and the player
@@ -168,9 +196,23 @@ namespace beyondnations.desktop.ui.screens {
                     .draw(layout.RightX, settlementBottom + layout.Gap, layout.BoxWidth) + layout.Gap;
             }
 
-            float playerTop = new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
+            float playerTop = stackCentre
+                ? drawAt(playerBox, layout.RightX, rightTop, layout.BoxWidth)
+                : playerBox.drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
             // the season, the winter warning and the region, just above the player box
-            new SeasonInfoBox(simulation).drawAbove(layout.RightX, playerTop - layout.Gap, layout.BoxWidth, rightTop);
+            SeasonInfoBox seasonBox = new SeasonInfoBox(simulation);
+            bool seasonUnderChronicle = stackCentre;
+            if (stackCentre) {
+                // drawn below, under the chronicle strip
+            } else if (touch && playerTop - layout.Gap - seasonBox.getExpectedHeight() < rightTop) {
+                // A phone on its side has no room above the player box once
+                // the controls take the bottom (TouchLayout), so the season
+                // goes under the objective tracker, where the inventory box
+                // would have been.
+                seasonBox.draw(layout.LeftX, leftTop, layout.BoxWidth);
+            } else {
+                seasonBox.drawAbove(layout.RightX, playerTop - layout.Gap, layout.BoxWidth, rightTop);
+            }
 
             // Last, so the full chronicle window sits over the boxes it covers.
             // The top-centre column stacks, top down: the status line, the
@@ -179,12 +221,29 @@ namespace beyondnations.desktop.ui.screens {
             // tracker), then the objective toast, so none of them overlap.
             float stripBottom = chroniclePanel.draw(width, height, simulation, chronicleView ?? defaultChronicleView,
                 ChroniclePanel.compactTop(centreBottom), layout.CentreWrapWidth);
+            TouchLayout.setTipTop(0f);
+            if (seasonUnderChronicle) {
+                // full width under the chronicle on a phone held upright, and
+                // a tip, while one shows, under that (FeelDirector reads
+                // TouchLayout.getTipTop) rather than over the status line
+                float seasonTop = System.MathF.Max(stripBottom, centreBottom) + layout.Gap;
+                float seasonBottom = seasonBox.draw(layout.LeftX, seasonTop, width - layout.Margin * 2f);
+                TouchLayout.setTipTop(seasonBottom + layout.Gap);
+            }
             objectiveTracker.drawToast(width, height, stripBottom + layout.Gap);
 
             // the caravan dispatch panel, when Send Caravan has opened it, over the rest
-            CaravanDispatchPanel.draw(width, height, simulation, centreBottom + layout.Gap);
+            // (from the top on a touch screen, whose controls step aside while
+            // it is open, so its Send and Close stay above the screen's edge)
+            CaravanDispatchPanel.draw(width, height, simulation, touch ? layout.Margin : centreBottom + layout.Gap);
 
             return action;
+        }
+
+        /** Draws an info box from the top down; returns its top, as drawAbove does. */
+        private static float drawAt(InfoBox box, float x, float top, float width) {
+            box.draw(x, top, width);
+            return top;
         }
 
         /**

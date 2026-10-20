@@ -35,6 +35,15 @@ namespace beyondnations.web {
             { "season", new[] { "spring", "summer", "autumn", "winter" } },
         };
 
+        /**
+        * Read by the page itself (main.js), not the game: touch=on|off|auto
+        * picks the touch controls (docs/WEB.md). Accepted here so they are
+        * not warned about, and passed on to nothing.
+        */
+        public static readonly HashSet<string> PageOptions = new HashSet<string> {
+            "touch",
+        };
+
         /** Returns the argument list; warnings go to warn. */
         public static List<string> toArguments(string query, Action<string> warn) {
             List<string> args = new List<string>();
@@ -51,6 +60,9 @@ namespace beyondnations.web {
                 }
                 name = name.ToLowerInvariant();
 
+                if (PageOptions.Contains(name)) {
+                    continue;
+                }
                 if (name == "seed") {
                     // A number, or any text, which WorldSeed hashes to one
                     // (docs/SHARING.md): a share link is ?seed=42.

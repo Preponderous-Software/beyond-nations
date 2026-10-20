@@ -35,8 +35,29 @@ namespace beyondnations.desktop.ui.screens {
             }
         }
 
+        public const string TouchSection = "Touch screen";
+
         public static List<Row> getRows() {
+            return getRows(false);
+        }
+
+        /**
+        * With touch, the on-screen controls come first (TouchLayout,
+        * docs/WEB.md): a player on a phone reads what is under their thumbs
+        * before the keyboard list, which still follows for a keyboard
+        * attached later.
+        */
+        public static List<Row> getRows(bool touch) {
             List<Row> rows = new List<Row>();
+            if (touch) {
+                rows.Add(new Row(TouchSection, "Left stick", "Walk; push sideways to turn"));
+                rows.Add(new Row(TouchSection, "Drag the world", "Steer and tilt the view"));
+                rows.Add(new Row(TouchSection, "Tap the world", "Use whatever is within reach"));
+                rows.Add(new Row(TouchSection, "Use", "Gather, talk, pick up, enter"));
+                rows.Add(new Row(TouchSection, "Jump / Run", "Jump; run on or off"));
+                rows.Add(new Row(TouchSection, "Button row", "Bag, Craft, Realm (nations), News, View, ?, Menu"));
+                rows.Add(new Row(TouchSection, "Drag a panel", "Scroll it; Close (top right) shuts it"));
+            }
             const string move = "Moving";
             rows.Add(new Row(move, keys(KeyBindings.MoveForward, KeyBindings.MoveForwardAlt), "Walk forward"));
             rows.Add(new Row(move, keys(KeyBindings.MoveBackward, KeyBindings.MoveBackwardAlt), "Walk back"));
@@ -145,7 +166,7 @@ namespace beyondnations.desktop.ui.screens {
             float top = margin * 1.5f + titleSize;
 
             float buttonWidth = UiScale.px(120f);
-            float buttonHeight = UiScale.px(32f);
+            float buttonHeight = UiScale.px(TouchLayout.isActive() ? TouchLayout.MinTarget : 32f);
             float buttonY = height - buttonHeight - margin;
             float listBottom = buttonY - Overlay.lineHeight() * 1.5f;
             float gutter = UiScale.px(14f);
@@ -156,7 +177,7 @@ namespace beyondnations.desktop.ui.screens {
             // further pages behind Prev and Next, so a short window or a
             // phone shows every binding at a readable size rather than
             // cutting the list off.
-            List<Row> rows = getRows();
+            List<Row> rows = getRows(TouchLayout.isActive());
             float keyColumn = 0f;
             float actionColumn = 0f;
             foreach (Row row in rows) {

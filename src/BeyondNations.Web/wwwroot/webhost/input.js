@@ -8,6 +8,19 @@
 // sent as Look(dx, dy) until the button is released. Where pointer lock is
 // refused (some embeds) the same drag still works, the cursor just moves.
 
+// A finger on the canvas (pointerType "touch") is handled apart from the
+// mouse. What a drag does depends on what is on screen, which the page
+// answers through hooks.touchDrag():
+//   "look"    the drag steers, as a right-drag does (hooks.touchLookScale
+//             times the pixels); a tap clicks the UI and is reported as
+//             Tap(x, y), so the game can act on a tap on the world;
+//   "scroll"  the drag scrolls the panel under the finger (as wheel
+//             movement); a tap clicks;
+//   "pointer" the finger is a mouse with its left button held: ImGui sees
+//             the press at once and every move (sliders).
+// In "look" and "scroll" the press is only sent when the finger lifts
+// without having travelled, so a drag that starts on a button never clicks it.
+
 // Keys whose browser default (scrolling, find, reload, help) would fight the
 // game. Ctrl/Cmd combinations are always left to the browser.
 const GAME_KEYS = /^(Key[A-Z]|Digit\d|Arrow\w+|Space|Tab|Enter|Escape|Backspace|Insert|Delete|Home|End|PageUp|PageDown|ShiftLeft|ShiftRight|F[1-9]|F10|F12|Quote|Slash|Backquote)$/;
@@ -15,6 +28,13 @@ const GAME_KEYS = /^(Key[A-Z]|Digit\d|Arrow\w+|Space|Tab|Enter|Escape|Backspace|
 // One event's movement, bounded: a wild value from a lock transition or a
 // driver hiccup should nudge the view, not spin it.
 const clampMove = (value) => Math.max(-250, Math.min(250, value || 0));
+
+// How far a finger may wander and still count as a tap, in CSS pixels.
+const TAP_SLOP = 10;
+// Dear ImGui scrolls 5 lines of its 13 px font per wheel step and the C#
+// side divides DOM wheel pixels by 100, so this many DOM pixels of wheel
+// per pixel of finger keep the panel under the finger.
+const WHEEL_PER_PIXEL = 100 / 65;
 
 export function attachInput(canvas, exports, hooks = {}) {
   const pointer = { look: false, lookId: -1, wasLocked: false, touchStart: null };
@@ -46,10 +66,17 @@ export function attachInput(canvas, exports, hooks = {}) {
     const [x, y] = position(event);
     exports.PointerMove(x, y);
     if (event.pointerType === "touch") {
-      // A finger is the left button. If it then travels, it becomes a look
-      // drag (see pointermove) and ImGui sees the press end off the button.
-      pointer.touchStart = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false };
-      exports.PointerButton(0, true);
+      // One finger on the canvas at a time; a second (the other thumb is
+      // usually on the joystick, which is not the canvas) is ignored.
+      if (pointer.touchStart) return;
+      const mode = hooks.touchDrag?.() || "look";
+      pointer.touchStart = {
+        id: event.pointerId, x: event.clientX, y: event.clientY,
+        lastX: event.clientX, lastY: event.clientY, dragging: false, mode,
+      };
+      if (mode === "pointer") exports.PointerButton(0, true);
+      else exports.PointerMove(-1e6, -1e6);
+      hooks.onTouch?.();
       hooks.onTap?.();
       canvas.setPointerCapture?.(event.pointerId);
       return;
@@ -78,15 +105,36 @@ export function attachInput(canvas, exports, hooks = {}) {
   canvas.addEventListener("pointermove", (event) => {
     if (pointer.touchStart && event.pointerId === pointer.touchStart.id) {
       const t = pointer.touchStart;
-      const dx = event.clientX - t.x;
-      const dy = event.clientY - t.y;
-      if (!t.dragging && Math.hypot(dx, dy) > 10) {
-        t.dragging = true;
-      }
-      if (t.dragging) {
-        exports.Look(clampMove(event.movementX), clampMove(event.movementY));
+      // Deltas from the previous event, not movementX: not every browser
+      // fills that in for touch.
+      // The first step of a drag counts from where the finger landed, so
+      // the slop a tap is allowed is not lost from the drag.
+      const stepX = event.clientX - (t.dragging ? t.lastX : t.x);
+      const stepY = event.clientY - (t.dragging ? t.lastY : t.y);
+      t.lastX = event.clientX;
+      t.lastY = event.clientY;
+      if (t.mode === "pointer") {
+        const [x, y] = position(event);
+        exports.PointerMove(x, y);
         return;
       }
+      if (!t.dragging && Math.hypot(event.clientX - t.x, event.clientY - t.y) > TAP_SLOP) {
+        t.dragging = true;
+        if (t.mode === "scroll") {
+          // the wheel scrolls whatever window is under the pointer
+          const [sx, sy] = position({ clientX: t.x, clientY: t.y });
+          exports.PointerMove(sx, sy);
+        }
+      }
+      if (t.dragging) {
+        if (t.mode === "scroll") {
+          exports.Wheel(0, -stepY * WHEEL_PER_PIXEL);
+        } else {
+          const scale = hooks.touchLookScale ?? 1;
+          exports.Look(clampMove(stepX * scale), clampMove(stepY * scale));
+        }
+      }
+      return;
     }
     if (pointer.look && event.pointerId === pointer.lookId) {
       const locked = document.pointerLockElement === canvas;
@@ -106,11 +154,26 @@ export function attachInput(canvas, exports, hooks = {}) {
 
   const release = (event) => {
     if (pointer.touchStart && event.pointerId === pointer.touchStart.id) {
-      const [x, y] = position(event);
-      if (pointer.touchStart.dragging) exports.PointerMove(-1e6, -1e6);
-      else exports.PointerMove(x, y);
-      exports.PointerButton(0, false);
+      const t = pointer.touchStart;
       pointer.touchStart = null;
+      const [x, y] = position(event);
+      if (t.mode === "pointer") {
+        exports.PointerMove(x, y);
+        exports.PointerButton(0, false);
+        return;
+      }
+      if (t.dragging || event.type === "pointercancel") {
+        exports.PointerMove(-1e6, -1e6);
+        return;
+      }
+      // A tap: ImGui's input queue plays the press and the release over two
+      // frames, so a button under the finger is clicked; then the pointer
+      // leaves, so nothing stays highlighted under a finger that has gone.
+      exports.PointerMove(x, y);
+      exports.PointerButton(0, true);
+      exports.PointerButton(0, false);
+      if (t.mode === "look") exports.Tap?.(x, y);
+      exports.PointerMove(-1e6, -1e6);
       return;
     }
     exports.PointerButton(imguiButton(event.button), false);
@@ -148,5 +211,7 @@ export function attachInput(canvas, exports, hooks = {}) {
     /** For on-screen controls: press or release a key by its code. */
     key(code, down) { exports.Key(code, down); },
     look(dx, dy) { exports.Look(dx, dy); },
+    /** The on-screen stick: x right, y forward, each in [-1, 1]. */
+    move(x, y) { exports.Move?.(x, y); },
   };
 }

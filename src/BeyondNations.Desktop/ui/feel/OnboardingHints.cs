@@ -184,7 +184,7 @@ namespace beyondnations.desktop.ui.feel {
             switch (step) {
                 case Step.Move:
                     return touch
-                        ? "Walk with the pad on the left. Drag across the world to look around."
+                        ? "Walk with the stick on the left. Drag across the world to look around."
                         : "Walk with W A S D. Hold the right mouse button and move the mouse to look around.";
                 case Step.Chop:
                     return touch

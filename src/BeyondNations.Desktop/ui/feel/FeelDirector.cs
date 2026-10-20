@@ -68,7 +68,13 @@ namespace beyondnations.desktop.ui.feel {
         public OnboardingHints getHints() { return hints; }
         public JuiceEffects getJuice() { return juice; }
         public ISoundService getSound() { return sound; }
-        public bool isTouch() { return touch; }
+
+        /**
+        * Whether tips are worded and sized for the on-screen controls: the
+        * browser's touch layout when the host reports one (TouchLayout,
+        * which follows the player's setting), else what the host said at start.
+        */
+        public bool isTouch() { return TouchLayout.isAvailable() ? TouchLayout.isActive() : touch; }
 
         /** --stage-feel replays the effects on every frame that is a multiple of this. */
         public const int DemoEveryFrames = 20;
@@ -379,18 +385,18 @@ namespace beyondnations.desktop.ui.feel {
                 return;
             }
             float cardWidth = hintCardWidth(width);
-            ImGui.SetNextWindowPos(new Vector2(width / 2f, hintCardTop(height, touch)), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, (TouchLayout.getTipTop() > 0f ? TouchLayout.getTipTop() : hintCardTop(height, isTouch()))), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowSize(new Vector2(cardWidth, 0f), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.82f);
             if (ImGui.Begin("##feel-hint", HintFlags)) {
                 Overlay.textColoured(HintHeadingColour,
                     "Tip " + hints.getNumber() + " of " + OnboardingHints.Steps.Length + ": " + OnboardingHints.title(step.Value));
                 ImGui.PushTextWrapPos(0f);
-                ImGui.TextUnformatted(OnboardingHints.text(step.Value, touch));
+                ImGui.TextUnformatted(OnboardingHints.text(step.Value, isTouch()));
                 ImGui.PopTextWrapPos();
                 // touch-sized buttons on a phone, ordinary ones with a mouse
-                float buttonHeight = touch ? UiScale.px(34f) : 0f;
-                float buttonWidth = UiScale.px(touch ? 96f : 80f);
+                float buttonHeight = isTouch() ? UiScale.px(34f) : 0f;
+                float buttonWidth = UiScale.px(isTouch() ? 96f : 80f);
                 if (ImGui.Button("Got it", new Vector2(buttonWidth, buttonHeight))) {
                     hints.dismiss();
                 }

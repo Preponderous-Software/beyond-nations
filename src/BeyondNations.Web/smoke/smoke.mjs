@@ -1,6 +1,6 @@
 // Headless Chromium smoke test for the browser build.
 //
-//   node smoke.mjs <url> <output-dir> [--phone]
+//   node smoke.mjs <url> <output-dir> [--phone | --phone-landscape]
 //
 // Loads the page, waits for the title screen, presses a key (main menu),
 // clicks Start and then Begin on the New World screen, waits for the world to
@@ -10,8 +10,12 @@
 // console error, page error or failed request.
 // Writes title.png, menu.png, world.png and result.json to <output-dir>.
 //
-// --phone runs the same page as an iPhone 13 (touch, no hover) and checks
-// the keyboard notice and the on-screen controls instead of playing.
+// --phone runs the same page as a phone held upright (390x844, touch, no
+// hover) and --phone-landscape as one on its side (844x390), and plays it
+// with the touch controls instead (docs/WEB.md, "Touch controls"): taps
+// through the menus, walks and turns with the joystick, steers with a drag,
+// opens and closes every panel from the button row and scrolls one by
+// dragging. Screenshots are named phone-*.png.
 
 import { chromium, devices } from "playwright";
 import fs from "node:fs";
@@ -19,9 +23,10 @@ import path from "node:path";
 
 const url = process.argv[2];
 const out = process.argv[3] || "smoke-out";
-const phone = process.argv.includes("--phone");
+const landscape = process.argv.includes("--phone-landscape");
+const phone = landscape || process.argv.includes("--phone");
 if (!url) {
-  console.error("usage: node smoke.mjs <url> <output-dir> [--phone]");
+  console.error("usage: node smoke.mjs <url> <output-dir> [--phone | --phone-landscape]");
   process.exit(2);
 }
 fs.mkdirSync(out, { recursive: true });
@@ -36,7 +41,16 @@ const browser = await chromium.launch({
   args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"],
 });
 const context = await browser.newContext(phone
-  ? { ...devices["iPhone 13"], userAgent: devices["iPhone 13"].userAgent + " headless-monitor" }
+  ? {
+    ...devices["iPhone 13"],
+    // the whole screen, as a game added to the home screen or in full
+    // screen gets it, upright or on its side
+    viewport: landscape ? { width: 844, height: 390 } : { width: 390, height: 844 },
+    // 2x rather than the phone's 3x: the same CSS layout, at under half the
+    // pixels for the software GPU the test runs on
+    deviceScaleFactor: 2,
+    userAgent: devices["iPhone 13"].userAgent + " headless-monitor",
+  }
   : { viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1, userAgent: "Mozilla/5.0 (X11; Linux x86_64) Chrome headless-monitor" });
 const page = await context.newPage();
 // Headless Chromium fakes pointer-lock movement (it warps the cursor and
@@ -72,7 +86,7 @@ async function waitFor(predicate, what, timeout = 120000) {
   throw new Error(`timed out waiting for ${what}; last status ${JSON.stringify(last)}; problems ${JSON.stringify(problems)}`);
 }
 
-const result = { url, phone, ok: false };
+const result = { url, phone, landscape, ok: false };
 try {
   const started = Date.now();
   await page.goto(url, { waitUntil: "load" });
@@ -86,50 +100,196 @@ try {
   await page.screenshot({ path: path.join(out, "title.png") });
 
   if (phone) {
-    const gateVisible = await page.isVisible("#gate");
-    if (!gateVisible) throw new Error("the keyboard notice (#gate) is not shown on a touch-only device");
-    await page.screenshot({ path: path.join(out, "phone-gate.png") });
-    await page.tap("#gate-continue");
-    if (!(await page.isVisible("#touch"))) throw new Error("the on-screen controls did not appear");
-    // A tap on the title is the "any key" a touch screen cannot press.
-    await page.touchscreen.tap(195, 300);
-    await waitFor((s) => s.screen === "MAIN_MENU", "the main menu after a tap");
+    // Touch controls (docs/WEB.md): no keyboard notice, no controls over
+    // the title, and the touch layout on from the first frame.
+    if (await page.isVisible("#touch")) throw new Error("the touch controls show over the title screen");
     const viewport = page.viewportSize();
-    await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 50);
+    const short = Math.min(viewport.width, viewport.height);
+    // A tap on the title is the "any key" a touch screen cannot press.
+    await page.touchscreen.tap(viewport.width / 2, viewport.height * 0.45);
+    await waitFor((s) => s.screen === "MAIN_MENU", "the main menu after a tap");
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(out, "phone-menu.png") });
+    // MainMenuScreen: Start is the first of a column of 44 px buttons whose top edge is 25 px below the centre.
+    await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 25 + 22);
     // Start opens the New World screen (docs/SHARING.md), whose Begin sits where Start was.
     await waitFor((s) => s.screen === "NEW_WORLD", "the New World screen after tapping Start", 10000);
     await page.waitForTimeout(300);
     await page.screenshot({ path: path.join(out, "phone-new-world.png") });
-    if (await page.isVisible('#touch [data-key="KeyW"]')) {
+    if (await page.isVisible("#stick")) {
       throw new Error("the touch controls cover the New World screen");
     }
-    await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 50);
-    await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after tapping Begin");
+    await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 25 + 22);
+    const world = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after tapping Begin");
+    result.worldMs = Date.now() - started;
     // A new world opens with the first tip (ui/feel/OnboardingHints).
     await waitFor((s) => s.hint === "move", "the first tip in a new world", 15000);
     await page.screenshot({ path: path.join(out, "phone-tip.png") });
-    // Hold the forward pad button for a moment; the game must keep running.
-    const forward = await page.$('#touch [data-key="KeyW"]');
-    const box = await forward.boundingBox();
-    await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+    await waitFor((s) => s.frames >= world.frames + 30 && s.touch, "the touch layout in the world");
+    for (const selector of ["#stick", '#touch [data-key="KeyE"]', '#touch [data-key="KeyI"]', '#touch [data-key="Escape"]']) {
+      if (!(await page.isVisible(selector))) throw new Error(selector + " is not shown in the world on a touch screen");
+    }
+    result.touch = await page.evaluate(() => window.beyondNations.touch());
+    if (!(result.touch.reserve > 80)) throw new Error("the controls' band was not reported to the game: " + JSON.stringify(result.touch));
+    // Held upright, a hint suggests turning the phone; it is dismissed by a tap.
+    if (viewport.height > viewport.width) {
+      if (!(await page.isVisible("#rotate-hint"))) throw new Error("no rotate hint in portrait");
+      await page.screenshot({ path: path.join(out, "phone-rotate-hint.png") });
+      await page.tap("#rotate-dismiss");
+      if (await page.isVisible("#rotate-hint")) throw new Error("the rotate hint did not go away");
+    }
     await page.waitForTimeout(500);
     await page.screenshot({ path: path.join(out, "phone-world.png") });
-    // The Craft button opens the crafting screen (#47); its Close button (or Escape) closes it.
-    const craft = await page.$('#touch [data-key="KeyC"]');
-    const craftBox = await craft.boundingBox();
-    await page.touchscreen.tap(craftBox.x + craftBox.width / 2, craftBox.y + craftBox.height / 2);
-    const crafting = await waitFor((s) => s.screen === "CRAFTING", "the crafting screen after tapping Craft", 10000);
-    await waitFor((s) => s.frames >= crafting.frames + 30, "30 frames of the crafting screen");
-    await page.screenshot({ path: path.join(out, "phone-crafting.png") });
-    // The on-screen controls step aside so they do not cover the recipe rows.
-    if (await page.isVisible('#touch [data-key="KeyW"]')) {
-      throw new Error("the touch controls still cover the crafting screen");
+
+    // Raw touch events, so a finger can be held and moved (page.touchscreen only taps).
+    const cdp = await context.newCDPSession(page);
+    const touchPoint = (x, y, id = 0) => ({ x, y, id, radiusX: 4, radiusY: 4, force: 1 });
+    const finger = {
+      down: (x, y, id) => cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [touchPoint(x, y, id)] }),
+      move: (x, y, id) => cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [touchPoint(x, y, id)] }),
+      up: () => cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] }),
+    };
+    const centreOf = async (selector) => {
+      const box = await (await page.$(selector)).boundingBox();
+      return { x: box.x + box.width / 2, y: box.y + box.height / 2, r: box.width / 2 };
+    };
+    // The status is published every few frames, and a software GPU draws
+    // only a few frames a second, so wait for frames rather than for time.
+    const settle = async (frames = 12) => {
+      const now = await status();
+      return waitFor((s) => s.frames >= now.frames + frames, frames + " more frames");
+    };
+
+    // The stick: pushed up it walks the player forward, without turning.
+    const stick = await centreOf("#stick");
+    const beforeWalk = await status();
+    await finger.down(stick.x, stick.y);
+    for (let i = 1; i <= 5; i++) await finger.move(stick.x, stick.y - stick.r * i / 5);
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(out, "phone-stick.png") });
+    await page.waitForTimeout(800);
+    await finger.up();
+    const afterWalk = await settle();
+    const walked = Math.hypot(afterWalk.playerX - beforeWalk.playerX, afterWalk.playerZ - beforeWalk.playerZ);
+    result.stickWalk = { walked, turned: afterWalk.playerYaw - beforeWalk.playerYaw };
+    if (!(walked > 1)) throw new Error("pushing the stick forward did not walk the player: " + JSON.stringify(result.stickWalk));
+    if (Math.abs(result.stickWalk.turned) > 0.01) throw new Error("a straight push turned the player: " + JSON.stringify(result.stickWalk));
+    // Pushed right it turns right (yaw falls), as D does.
+    await finger.down(stick.x, stick.y);
+    for (let i = 1; i <= 5; i++) await finger.move(stick.x + stick.r * i / 5, stick.y);
+    await page.waitForTimeout(500);
+    await finger.up();
+    const afterTurn = await settle();
+    result.stickTurn = afterTurn.playerYaw - afterWalk.playerYaw;
+    if (!(result.stickTurn < -5)) throw new Error("pushing the stick right did not turn the player right: " + result.stickTurn);
+
+    // A drag on the world steers like the desktop's right-drag, twice as
+    // far for a thumb: +60 px turns the player -18 degrees.
+    const lookStart = { x: viewport.width * 0.62, y: viewport.height * 0.42 };
+    const beforeLook = await settle();
+    await finger.down(lookStart.x, lookStart.y);
+    // a moment between moves and before the lift, as a real thumb takes:
+    // the browser merges touch moves sent faster than it delivers them
+    for (let i = 1; i <= 6; i++) {
+      await finger.move(lookStart.x + i * 10, lookStart.y);
+      await page.waitForTimeout(50);
     }
+    await page.waitForTimeout(100);
+    await finger.up();
+    const looked = await settle();
+    result.look = { playerTurn: looked.playerYaw - beforeLook.playerYaw, pitch: looked.lookPitch };
+    if (Math.abs(result.look.playerTurn + 18) > 0.5) {
+      throw new Error("a 60 px drag on the world turned the player " + result.look.playerTurn + "; expected -18");
+    }
+
+    // A tap on the world with nothing in reach does nothing at all (no
+    // "No entities within range"); the Use button does what E does.
+    await page.touchscreen.tap(lookStart.x, lookStart.y);
+    await page.waitForTimeout(400);
+    const tapped = await status();
+    result.tapsInteracted = tapped.tapsInteracted;
+    const use = await centreOf('#touch [data-key="KeyE"]');
+    await page.touchscreen.tap(use.x, use.y);
+    await page.waitForTimeout(400);
+
+    // Bag opens the inventory; the controls step aside, and the corner
+    // Close (top right of the safe area) brings the world back.
+    const closeAt = { x: viewport.width - 8 - 48, y: 8 + 22 };
+    const openPanel = async (key, screen, shot) => {
+      const button = await centreOf(`#touch [data-key="${key}"]`);
+      await page.touchscreen.tap(button.x, button.y);
+      const opened = await waitFor((s) => s.screen === screen, `${key} to open ${screen}`, 10000);
+      await waitFor((s) => s.frames >= opened.frames + 20, `20 frames of ${screen}`);
+      if (await page.isVisible("#stick")) throw new Error(`the touch controls still cover ${screen}`);
+      await page.screenshot({ path: path.join(out, shot) });
+    };
+    const closePanel = async (screen) => {
+      await page.touchscreen.tap(closeAt.x, closeAt.y);
+      await waitFor((s) => s.screen === "WORLD", `Close to leave ${screen}`, 10000);
+      if (!(await page.isVisible("#stick"))) throw new Error(`the touch controls did not come back after ${screen}`);
+      await page.waitForTimeout(300);
+    };
+    await openPanel("KeyI", "INVENTORY", "phone-inventory.png");
+    await closePanel("INVENTORY");
+    await openPanel("KeyC", "CRAFTING", "phone-crafting.png");
+    // a drag scrolls the recipe list rather than steering or crafting
+    await finger.down(viewport.width / 2, viewport.height * 0.75);
+    for (let i = 1; i <= 8; i++) await finger.move(viewport.width / 2, viewport.height * 0.75 - i * 0.05 * short);
+    await finger.up();
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(out, "phone-crafting-scrolled.png") });
+    if ((await status()).screen !== "CRAFTING") throw new Error("a drag on the crafting list left the screen");
+    await closePanel("CRAFTING");
+    await openPanel("KeyO", "NATIONS", "phone-nations.png");
+    // NationScreen's Laws tab: 120 px wide, right of the centre, under the corner Close (60 px)
+    await page.touchscreen.tap(viewport.width / 2 + 4 + 60, 60 + 15);
+    await settle();
+    if ((await status()).screen !== "NATIONS") throw new Error("tapping the Laws tab left the nations screen");
+    await page.screenshot({ path: path.join(out, "phone-laws.png") });
+    await closePanel("NATIONS");
+    // News opens the full chronicle, which a drag scrolls; News again hides it.
+    const news = await centreOf('#touch [data-key="KeyY"]');
+    await page.touchscreen.tap(news.x, news.y);
+    await waitFor((s) => s.chronicle === "Full", "News to open the full chronicle", 10000);
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(out, "phone-chronicle.png") });
+    await page.touchscreen.tap(news.x, news.y);
+    await waitFor((s) => s.chronicle === "Hidden", "News again to hide the chronicle", 10000);
+    await page.waitForTimeout(300);
+    await page.touchscreen.tap(news.x, news.y);
+    await waitFor((s) => s.chronicle === "Recent", "News a third time for the recent strip", 10000);
+    // ? opens the controls list, which leads with the touch controls.
+    await openPanel("Slash", "CONTROLS", "phone-controls.png");
     await page.keyboard.press("Escape");
-    await waitFor((s) => s.screen === "WORLD", "the world after closing crafting", 10000);
-    if (!(await page.isVisible('#touch [data-key="KeyW"]'))) {
-      throw new Error("the touch controls did not come back after crafting");
+    await waitFor((s) => s.screen === "WORLD", "Escape to close the controls", 10000);
+    await page.waitForTimeout(300);
+    // Menu pauses: fingertip-sized buttons from the top, with the touch switch.
+    await openPanel("Escape", "PAUSE", "phone-pause.png");
+    // PauseScreen on touch: the column starts 16 + 26 px down, 44 px buttons; Resume is first.
+    await page.touchscreen.tap(viewport.width / 2, 16 + 26 + 22);
+    await waitFor((s) => s.screen === "WORLD", "Resume on the pause screen", 10000);
+
+    // A world event (WorldEventSheet) rises from the bottom over the
+    // controls' band: the controls step aside, and a tap on the sheet's
+    // last choice answers it and brings them back.
+    // On its side only, since every page load costs the software GPU a while.
+    if (landscape) {
+      await page.goto(url + (url.includes("?") ? "&" : "?") + "start-screen=world&stage-event&no-saves", { waitUntil: "load" });
+      await waitFor((s) => s.screen === "WORLD" && s.world && s.worldEvent, "a staged world event", 120000);
+      await settle();
+      if (await page.isVisible("#stick")) throw new Error("the touch controls cover the world event's choices");
+      await page.screenshot({ path: path.join(out, "phone-event.png") });
+      // the last choice ends just above the sheet's closing note: 72 px up its middle
+      await page.touchscreen.tap(viewport.width / 2, viewport.height - 72);
+      await waitFor((s) => !s.worldEvent, "a tap on a choice to answer the world event", 20000);
+      await settle();
+      if (!(await page.isVisible("#stick"))) throw new Error("the touch controls did not come back after the world event");
     }
+
+    // The page itself never moved: no scroll, no zoom.
+    result.page = await page.evaluate(() => ({ scrollY: window.scrollY, scale: window.visualViewport ? window.visualViewport.scale : 1 }));
+    if (result.page.scrollY !== 0 || result.page.scale !== 1) throw new Error("the page scrolled or zoomed: " + JSON.stringify(result.page));
+    await page.waitForTimeout(500);
   } else {
     await page.keyboard.press("Enter");
     const menu = await waitFor((s) => s.screen === "MAIN_MENU", "the main menu");

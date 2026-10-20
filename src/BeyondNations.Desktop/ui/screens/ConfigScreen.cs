@@ -49,11 +49,28 @@ namespace beyondnations.desktop.ui.screens {
             float firstRowY = centreY + buttonHeight / 2f;
             // With the sound rows there are eight; on a short window (a phone
             // held sideways) the rows close up so the last stays above Back.
-            int rowCount = feel != null ? 8 : 5;
-            float rowsBottom = height - buttonHeight * 2.5f;
-            if (feel != null && firstRowY + rowHeight * (rowCount + 1) > rowsBottom) {
-                firstRowY = System.MathF.Max(centreY / 2f + Overlay.lineHeight(), rowsBottom - rowHeight * (rowCount + 1));
-                rowHeight = System.MathF.Max(Overlay.frameHeight() + UiScale.px(2f), (rowsBottom - firstRowY) / (rowCount + 1));
+            // The browser adds one more, the touch-controls switch (TouchLayout).
+            bool touchRow = TouchLayout.isAvailable();
+            int rowCount = (feel != null ? 8 : 5) + (touchRow ? 1 : 0);
+            float titleY = centreY / 2f;
+            float titleSize = height / 15f;
+            float backY = height - buttonHeight * 2f;
+            bool touch = TouchLayout.isActive();
+            if (touch) {
+                // fingertip-sized rows from the top, with Back after the
+                // last; what does not fit is dragged into view
+                rowHeight = UiScale.px(TouchLayout.MinTarget);
+                buttonHeight = UiScale.px(TouchLayout.MinTarget);
+                titleSize = Overlay.BaseFontSize * 2f;
+                titleY = UiScale.px(8f) + Overlay.BaseFontSize;
+                firstRowY = UiScale.px(4f);
+                backY = firstRowY + rowHeight * (rowCount + 1) + UiScale.px(8f);
+            } else {
+                float rowsBottom = height - buttonHeight * 2.5f;
+                if ((feel != null || touchRow) && firstRowY + rowHeight * (rowCount + 1) > rowsBottom) {
+                    firstRowY = System.MathF.Max(centreY / 2f + Overlay.lineHeight(), rowsBottom - rowHeight * (rowCount + 1));
+                    rowHeight = System.MathF.Max(Overlay.frameHeight() + UiScale.px(2f), (rowsBottom - firstRowY) / (rowCount + 1));
+                }
             }
 
             ConfigValues values = ConfigValues.readFrom(gameConfig);
@@ -62,7 +79,7 @@ namespace beyondnations.desktop.ui.screens {
             UiAction action = UiAction.None;
 
             Overlay.beginFullScreen("##config-screen", width, height);
-            Overlay.textCentered(Title, height / 15f, centreY / 2f, width);
+            Overlay.textCentered(Title, titleSize, titleY, width);
 
             ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight));
             ImGui.SetNextItemWidth(widgetWidth);
@@ -111,7 +128,16 @@ namespace beyondnations.desktop.ui.screens {
                 }
             }
 
-            if (Overlay.buttonAt("Back", centreX - buttonWidth / 2f, height - buttonHeight * 2f, buttonWidth, buttonHeight)) {
+            // Only the browser has on-screen touch controls to switch, so
+            // only it shows the row; the button cycles Auto, On, Off.
+            if (touchRow) {
+                float touchButtonHeight = touch ? rowHeight - UiScale.px(6f) : System.MathF.Min(rowHeight, Overlay.frameHeight());
+                if (Overlay.buttonAt(TouchLayout.describe(), rowX, firstRowY + rowHeight * rowCount, UiScale.px(300f), touchButtonHeight)) {
+                    TouchLayout.setMode(TouchLayout.next(TouchLayout.getMode()));
+                }
+            }
+
+            if (Overlay.buttonAt("Back", centreX - buttonWidth / 2f, backY, buttonWidth, buttonHeight)) {
                 action = UiAction.Back;
             }
             Overlay.end();

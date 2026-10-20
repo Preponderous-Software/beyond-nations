@@ -26,5 +26,14 @@ namespace beyondnations.desktop.input {
         */
         void EndFrame() {
         }
+
+        /**
+        * An analog stick's position, x to the right and y forward, each in
+        * [-1, 1]: the browser's on-screen joystick. Keyboard-only sources
+        * have none, so the default is zero and nothing about them changes.
+        */
+        Vector2 GetMoveAxis() {
+            return Vector2.Zero;
+        }
     }
 }
