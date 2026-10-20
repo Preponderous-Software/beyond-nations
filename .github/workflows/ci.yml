@@ -40,6 +40,24 @@ jobs:
       - name: Test
         run: dotnet test BeyondNations.sln --configuration Release --no-build --verbosity normal
 
+      # A scripted player plays every seed in docs/pacing-budget.json and the
+      # step fails if an objective finishes faster than its minimum, slower
+      # than its maximum, or never (docs/PACING.md).
+      - name: Pacing budget
+        run: |
+          status=0
+          dotnet tools/BeyondNations.Pacing/bin/Release/net8.0/BeyondNations.Pacing.dll --check --out pacing-out || status=$?
+          if [ -f pacing-out/pacing-report.md ]; then cat pacing-out/pacing-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+          exit $status
+
+      - name: Upload the pacing report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacing-report
+          path: pacing-out/
+          if-no-files-found: ignore
+
   core-is-engine-agnostic:
     name: Core is engine-agnostic
     runs-on: ubuntu-latest
