@@ -45,7 +45,8 @@ namespace beyondnations {
 
         private static bool isLaidOverWorld(ScreenType screen) {
             return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.NATIONS
-                || screen == ScreenType.CRAFTING || screen == ScreenType.PAUSE;
+                || screen == ScreenType.CRAFTING || screen == ScreenType.PAUSE
+                || screen == ScreenType.SUCCESSION || screen == ScreenType.GAME_OVER;
         }
 
         /**
@@ -147,7 +148,8 @@ namespace beyondnations {
                 goTo(ScreenType.PAUSE);
                 return true;
             }
-            if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS || current == ScreenType.CRAFTING) {
+            if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS || current == ScreenType.CRAFTING
+                    || current == ScreenType.SUCCESSION) {
                 goTo(ScreenType.WORLD);
                 return true;
             }
@@ -155,7 +157,7 @@ namespace beyondnations {
                 goTo(ScreenType.WORLD);
                 return true;
             }
-            if (current == ScreenType.CONFIG || current == ScreenType.LOAD) {
+            if (current == ScreenType.CONFIG || current == ScreenType.LOAD || current == ScreenType.GAME_OVER) {
                 goTo(ScreenType.MAIN_MENU);
                 return true;
             }

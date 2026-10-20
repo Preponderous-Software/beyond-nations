@@ -50,6 +50,11 @@ namespace beyondnations {
             return name;
         }
 
+        /** Gives the entity a new name: the player takes their heir's (Succession). */
+        public void rename(string name) {
+            this.name = name;
+        }
+
         public Vector3 getPosition() {
             return position;
         }

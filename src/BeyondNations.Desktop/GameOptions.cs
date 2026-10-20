@@ -153,6 +153,13 @@ namespace beyondnations.desktop {
         public bool StageDiplomacy = false;
 
         /**
+        * As StageDiplomacy, with the player on the point of starving, so the
+        * first tick passes the rule to an heir and opens the succession
+        * screen (realm/Succession).
+        */
+        public bool StageSuccession = false;
+
+        /**
         * Neither save nor offer to load this run: no autosave, no save on
         * quit, no Continue or Load. For automated runs that should leave a
         * player's saves alone. See docs/SAVES.md.
@@ -187,6 +194,7 @@ namespace beyondnations.desktop {
                     case "--stage-settlement": options.StageSettlement = true; break;
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--stage-feel":       options.StageFeel = true; break;
+                    case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--no-saves":         options.NoSaves = true; break;
@@ -244,8 +252,12 @@ namespace beyondnations.desktop {
                 case "nations":   return ScreenType.NATIONS;
                 case "crafting":  return ScreenType.CRAFTING;
                 case "load":      return ScreenType.LOAD;
+                case "laws":
+                    // the nations screen, opened on its Laws tab
+                    beyondnations.desktop.ui.screens.NationScreen.startOnLaws = true;
+                    return ScreenType.NATIONS;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, crafting or load)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting or load)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -326,7 +338,8 @@ namespace beyondnations.desktop {
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, crafting or load",
+                "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting or load",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",

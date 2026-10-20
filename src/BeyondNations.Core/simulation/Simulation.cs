@@ -48,6 +48,7 @@ namespace beyondnations {
         private SeasonalWorld seasonalWorld;
         private WorldPalette worldPalette;
         private NationResources nationResources;
+        private Realm realm;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -115,6 +116,11 @@ namespace beyondnations {
             seasonalWorld = new SeasonalWorld(seasonCalendar, regionMap, environment, entityRepository, gameConfig, player, random);
             worldPalette = new WorldPalette(seasonCalendar, regionMap);
             nationResources = new NationResources(entityRepository, regionMap);
+            // laws, war and peace, and the player's line of rulers (realm/)
+            realm = new Realm(nationRepository, entityRepository, eventProducer, player, diplomacy, gameConfig, tickCounter);
+            diplomacy.setRealm(realm);
+            populationGrowth.setRealm(realm);
+            pawnBehaviorExecutor.setRealm(realm);
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -138,6 +144,7 @@ namespace beyondnations {
         public PopulationGrowth getPopulationGrowth() { return populationGrowth; }
         public ObjectiveTracker getObjectiveTracker() { return objectiveTracker; }
         public Chronicle getChronicle() { return chronicle; }
+        public Realm getRealm() { return realm; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         /** Which region every chunk is; see RegionMap. */
         public RegionMap getRegionMap() { return regionMap; }
@@ -368,6 +375,7 @@ namespace beyondnations {
                     }
                     populationGrowth.update(tickCounter.getTotalTicks());
                     seasonalWorld.update(tickCounter.getTotalTicks());
+                    realm.update(tickCounter.getTotalTicks());
 
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();
@@ -384,7 +392,11 @@ namespace beyondnations {
                         // the same winter cold as pawns feel, on top of the ordinary burn
                         player.setEnergy(player.getEnergy() - player.getMetabolism() * (SeasonalRules.coldMultiplier(season) - 1f));
                     }
-                    if (player.getEnergy() <= 0) {
+                    if (player.getEnergy() <= 0 && !realm.isRunOver() && realm.onPlayerDeath()) {
+                        // a member of a nation is succeeded by an heir, or their line ends (realm/Succession)
+                        numPlayerDeaths++;
+                    }
+                    else if (player.getEnergy() <= 0 && !realm.isRunOver()) {
                         eventProducer.producePlayerDeathEvent(player);
                         numPlayerDeaths++;
                         player.setEnergy(100);
@@ -646,6 +658,9 @@ namespace beyondnations {
             writer.beginObject("chronicle");
             chronicle.save(writer);
             writer.endObject();
+            writer.beginObject("realm");
+            realm.save(writer);
+            writer.endObject();
         }
 
         /**
@@ -782,6 +797,7 @@ namespace beyondnations {
             eventRepository.load(SaveReader.property(body, "events"));
             objectiveTracker.load(SaveReader.property(body, "objectives"));
             chronicle.load(SaveReader.property(body, "chronicle"), reader);
+            realm.load(SaveReader.property(body, "realm"), reader);
 
             JsonElement randoms = SaveReader.property(body, "random");
             foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {

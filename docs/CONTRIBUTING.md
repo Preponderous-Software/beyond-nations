@@ -21,7 +21,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | Switch | Effect |
 | --- | --- |
 | `--exit-after-frames N` | render N frames, then exit |
-| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `crafting` or `load` |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `crafting` or `load` |
 | `--ui-scale F` | draw the UI F times its design size, 1 to 4; by default the monitor's content scale (150 % in Windows display settings is 1.5) |
 | `--seed N` | fix the world seed, so a run is reproducible |
 | `--screenshot-after-frames N` | write a PNG and carry on |
@@ -40,6 +40,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--continue` | open in the most recently saved world, as **Continue** on the main menu does; falls back to the main menu when there is none |
 | `--stage-settlement` | open with a lived-in settlement (nation, market, merchants, residents) standing ahead of the player |
 | `--stage-diplomacy` | open leading a nation between a friendly and a hostile, besieging neighbour, standing at the border |
+| `--stage-succession` | as `--stage-diplomacy`, with the player about to starve, so the first tick hands the rule to an heir and opens the succession screen |
 | `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
 | `--help`, `-h` | list every switch |
 

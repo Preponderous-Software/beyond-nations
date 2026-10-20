@@ -17,6 +17,8 @@ namespace beyondnations {
         SettlementCapture,
         SettlementFounded,
         StallBuilt,
-        LeadershipChange
+        LeadershipChange,
+        // a ruler's acts and the fate of their line: laws, war and peace, succession (realm/)
+        Statecraft
     }
 }

@@ -30,6 +30,10 @@ the save before the latest is always kept.
   save. `--no-saves` (`?no-saves`) turns saving off for a run: no autosave, no
   save on quit, no Continue or Load. A run that ends because of
   `--exit-after-frames` never saves on the way out.
+- **A run that has ended is never saved.** When the player dies in a nation
+  with no heir (docs/SYSTEMS.md, Rule), nothing more is written to the slot --
+  no autosave, no save on leaving -- so *Load* brings back the last save, from
+  before the death.
 
 ## Where saves live
 
@@ -65,8 +69,8 @@ A save is UTF-8 text (in practice ASCII) in two parts:
 - **The body.** The whole world as one JSON object. Its own `formatVersion`
   and `seed` must agree with the header's.
 
-`tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave` is a
-real version 1 save; open it to see every section. `.gitattributes` marks
+`tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave` and
+`v2-seed42-tick2400.bnsave` are real version 1 and 2 saves; open one to see every section. `.gitattributes` marks
 `*.bnsave` as binary, since a line-ending conversion would break the checksum.
 
 ### What the body holds
@@ -90,6 +94,7 @@ and goes on exactly as the saved one would have:
 | `population` | birth, immigration and settler cooldowns, the wanderer clock, the growth counters and the names growth has handed out |
 | `events` | for each event type, how many there have been and the most recent `SavedEventsPerType` (100): description and date |
 | `objectives` | where the player is in the objective list (current index, how many ambitions have been generated, the id of the current objective as a check), the progress shown on the HUD, and the last objective completed and when; the objectives themselves are code (`ObjectiveCatalog`) and are rebuilt to the saved length |
+| `realm` | the law round; each nation's laws (setting, any pending change and when it was proclaimed, taxes collected, deserters); wars; truces and the tick each ends; the line of rulers (name, nation, start, end, cause); when the current reign began; whether the run is over; the latest succession notice and whether the host has shown it (format 2) |
 | `chronicle` | every chronicle entry kept (up to 200: sequence, event type, tick, day, part of day, text, the nations and entities it names), how many have ever been recorded, nations founded, and the raids already told today |
 
 The player's meal and sale counters, which objectives read, are saved with the
@@ -150,7 +155,12 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 1.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 2.
+
+| Version | Change | Migration from the one before |
+| --- | --- | --- |
+| 1 | the first format | -- |
+| 2 | adds `realm` (laws, wars and truces, succession) | add `realm` empty: no laws, wars, truces or past rulers, reign begun at tick 0, run not over, no notice, and the law round a world played to the saved tick would have reached (`totalTicks / 500`) |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by
@@ -169,8 +179,8 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
   file is left as it is.
 
 For example, a new system with state of its own goes in a new body section,
-with format 2 and a 1 -> 2 step that adds the section empty (or with whatever
-a world that never had it should start with).
+with a new format and a step that adds the section empty (or with whatever a
+world that never had it should start with) -- as format 2 did for `realm`.
 
 ## How it is tested
 

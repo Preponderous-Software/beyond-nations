@@ -105,5 +105,12 @@ namespace beyondnations {
             eventRepository.addEvent(leadershipChangeEvent);
             Log.debug("Produced event: " + leadershipChangeEvent);
         }
+
+        /** A ruler's act or the fate of their line, already told as a line of history (realm/). */
+        public void produceStatecraftEvent(string text, Nation nation, Nation otherNation, EntityId entityId) {
+            StatecraftEvent statecraftEvent = new StatecraftEvent(text, nation, otherNation, entityId);
+            eventRepository.addEvent(statecraftEvent);
+            Log.debug("Produced event: " + statecraftEvent);
+        }
     }
 }

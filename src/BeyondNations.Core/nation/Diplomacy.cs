@@ -67,6 +67,8 @@ namespace beyondnations {
         private readonly EntityRepository entityRepository;
         private readonly EventProducer eventProducer;
         private readonly Player player;
+        // laws, wars and truces (realm/); null in a world built without one
+        private Realm realm;
 
         private int round = 0;
         private readonly Dictionary<EntityId, int> siegeProgress = new Dictionary<EntityId, int>();
@@ -77,6 +79,10 @@ namespace beyondnations {
             this.entityRepository = entityRepository;
             this.eventProducer = eventProducer;
             this.player = player;
+        }
+
+        public void setRealm(Realm realm) {
+            this.realm = realm;
         }
 
         /**
@@ -181,6 +187,10 @@ namespace beyondnations {
                 int score = relations.getScore(a, b);
                 delta = score > 0 ? -1 : (score < 0 ? 1 : 0);
             }
+            if (realm != null) {
+                // nations at war cannot warm, nations under a truce cannot grate
+                delta = realm.adjustDrift(a, b, delta);
+            }
             change(a, b, delta);
         }
 
@@ -211,7 +221,8 @@ namespace beyondnations {
                 }
             }
 
-            if (score <= AI_DENOUNCE_AT && !relations.hasDenounced(self, other) && getStrength(self) > getStrength(other)) {
+            if (score <= AI_DENOUNCE_AT && !relations.hasDenounced(self, other) && getStrength(self) > getStrength(other)
+                    && (realm == null || !realm.hasTruce(self, other))) {
                 relations.markDenounced(self, other);
                 if (isPlayersNation(other)) {
                     player.getStatus().update(self.getName() + " has denounced your nation.");
@@ -224,6 +235,9 @@ namespace beyondnations {
 
         private void conflict(Nation a, Nation b, HashSet<EntityId> besiegedThisRound) {
             if (nationRepository.getRelations().getState(a, b) != NationRelationState.HOSTILE) {
+                return;
+            }
+            if (realm != null && realm.hasTruce(a, b)) {
                 return;
             }
             Frontier frontier = findFrontier(a, b);
@@ -240,6 +254,10 @@ namespace beyondnations {
             Nation defender = aAttacks ? b : a;
             Settlement base_ = aAttacks ? frontier.fromA : frontier.fromB;
             Settlement target = aAttacks ? frontier.fromB : frontier.fromA;
+            // conscripts (realm/Laws) can make a nation too costly to attack at all
+            if (getStrength(attacker) <= getDefence(defender)) {
+                return;
+            }
 
             if (round % RAID_EVERY_ROUNDS == 0) {
                 raid(attacker, defender, target, base_);
@@ -259,15 +277,17 @@ namespace beyondnations {
         public bool canBesiege(Nation attacker, Nation defender, Settlement base_, Settlement target) {
             return target.getTier() != SettlementTier.TOWN
                 && getStrength(attacker) >= MIN_SIEGE_STRENGTH
-                && getStrength(attacker) >= 2 * getStrength(defender)
+                && getStrength(attacker) >= 2 * getDefence(defender)
                 && base_.getTier() >= target.getTier();
         }
 
         private void raid(Nation raider, Nation victim, Settlement target, Settlement home) {
             Inventory stock = target.getInventory();
-            int coins = Math.Min(RAID_COINS, stock.getNumItems(ItemType.COIN));
-            int wood = Math.Min(RAID_GOODS, stock.getNumItems(ItemType.WOOD));
-            int stone = Math.Min(RAID_GOODS, stock.getNumItems(ItemType.STONE));
+            // open borders (realm/Laws) let raiders carry off more
+            int multiplier = realm == null ? 1 : realm.raidLootMultiplier(victim);
+            int coins = Math.Min(RAID_COINS * multiplier, stock.getNumItems(ItemType.COIN));
+            int wood = Math.Min(RAID_GOODS * multiplier, stock.getNumItems(ItemType.WOOD));
+            int stone = Math.Min(RAID_GOODS * multiplier, stock.getNumItems(ItemType.STONE));
             if (coins + wood + stone == 0) {
                 return;
             }
@@ -469,6 +489,11 @@ namespace beyondnations {
                 }
             }
             return strength;
+        }
+
+        /** What a nation can put up against an attacker: its strength plus any conscripts (realm/Laws). */
+        public int getDefence(Nation nation) {
+            return getStrength(nation) + (realm == null ? 0 : realm.getConscripts(nation));
         }
 
         public bool isPawnLed(Nation nation) {

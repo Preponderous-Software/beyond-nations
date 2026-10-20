@@ -32,6 +32,13 @@ namespace beyondnations {
             this.entityRepository = entityRepository;
         }
 
+        // the player's laws (realm/): conscripts gather less
+        private Realm realm;
+
+        public void setRealm(Realm realm) {
+            this.realm = realm;
+        }
+
         public void executeBehavior(Pawn pawn, BehaviorType behaviorType) {
             switch (behaviorType) {
                 case BehaviorType.NONE:
@@ -127,6 +134,8 @@ namespace beyondnations {
                     // an industrious pawn works a tree or rock harder (PawnTraits)
                     int woodBonus = PawnTraits.gatherBonus(pawn, targetEntity.getInventory().getNumItems(ItemType.WOOD));
                     int stoneBonus = PawnTraits.gatherBonus(pawn, targetEntity.getInventory().getNumItems(ItemType.STONE));
+                    int woodBefore = pawn.getInventory().getNumItems(ItemType.WOOD);
+                    int stoneBefore = pawn.getInventory().getNumItems(ItemType.STONE);
                     pawn.getInventory().transferContentsOfInventory(targetEntity.getInventory());
                     Tools.applyGatherBonus(pawn.getInventory(), targetEntityType);
                     // the trait stacks with any tool bonus
@@ -136,6 +145,8 @@ namespace beyondnations {
                     if (stoneBonus > 0) {
                         pawn.getInventory().addItem(ItemType.STONE, stoneBonus);
                     }
+                    // a conscript spends part of its day at drill (realm/Laws)
+                    realm?.afterGather(pawn, woodBefore, stoneBefore);
                     pawn.setTargetEntity(null);
 
                     if (targetEntityType == EntityType.TREE && pawn.getInventory().getNumItems(ItemType.SAPLING) > 0) {

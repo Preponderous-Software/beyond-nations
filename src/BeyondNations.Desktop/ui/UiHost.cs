@@ -42,6 +42,7 @@ namespace beyondnations.desktop.ui {
         private readonly NationScreen nationScreen = new NationScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
+        private readonly SuccessionScreen successionScreen = new SuccessionScreen();
         // saving (docs/SAVES.md): the host owns the world, so a screen asking
         // to save or load is a request the host picks up after the frame
         private readonly SaveSession saves;
@@ -192,6 +193,12 @@ namespace beyondnations.desktop.ui {
                     break;
                 case ScreenType.LOAD:
                     action = loadScreen.draw(width, height, saves);
+                    break;
+                case ScreenType.SUCCESSION:
+                case ScreenType.GAME_OVER:
+                    if (simulation != null) {
+                        action = successionScreen.draw(width, height, simulation);
+                    }
                     break;
             }
 
