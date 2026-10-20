@@ -34,6 +34,11 @@ namespace beyondnations.web {
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
         private readonly SuccessionScreen successionScreen = new SuccessionScreen();
+        // sharing (docs/SHARING.md): the seed for a new world, and the Share
+        // screen's link and exports
+        private readonly NewWorldScreen newWorldScreen = new NewWorldScreen();
+        private readonly ShareScreen shareScreen = new ShareScreen();
+        private readonly ShareSession share;
         // saving (docs/SAVES.md): the host owns the world, so a screen asking
         // to save or load is a request the host picks up after the frame
         private readonly SaveSession saves;
@@ -53,11 +58,12 @@ namespace beyondnations.web {
             feel = director;
         }
 
-        public WebUiHost(ImGuiWebBackend backend, ScreenState screens, GameConfig gameConfig, SaveSession saves) {
+        public WebUiHost(ImGuiWebBackend backend, ScreenState screens, GameConfig gameConfig, SaveSession saves, ShareSession share) {
             this.backend = backend;
             this.screens = screens;
             this.gameConfig = gameConfig;
             this.saves = saves;
+            this.share = share;
         }
 
         public bool consumeQuitRequest() {
@@ -116,7 +122,16 @@ namespace beyondnations.web {
                     action = configScreen.draw(width, height, gameConfig, feel?.getSettings());
                     break;
                 case ScreenType.PAUSE:
-                    action = pauseScreen.draw(width, height, saves, feel?.getSettings());
+                    action = pauseScreen.draw(width, height, saves, feel?.getSettings(),
+                        simulation != null ? "World seed " + WorldSeed.format(ShareSession.seedOf(simulation)) : null);
+                    break;
+                case ScreenType.NEW_WORLD:
+                    action = newWorldScreen.draw(width, height, share);
+                    break;
+                case ScreenType.SHARE:
+                    if (simulation != null) {
+                        action = shareScreen.draw(width, height, simulation, share);
+                    }
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
@@ -153,6 +168,9 @@ namespace beyondnations.web {
             }
 
             feel?.drawOverlay(width, height, screens.getCurrent(), simulation);
+            if (share.handle(action, simulation)) {
+                action = UiAction.None;
+            }
             apply(action);
             backend.render();
         }
@@ -164,8 +182,19 @@ namespace beyondnations.web {
                     screens.anyKeyPressed();
                     break;
                 case UiAction.StartGame:
+                    // the New World screen asks for a seed first; its Begin builds the world
+                    screens.goTo(ScreenType.NEW_WORLD);
+                    break;
+                case UiAction.BeginWorld:
                     startRequested = true;
                     screens.goTo(ScreenType.WORLD);
+                    break;
+                case UiAction.OpenShare:
+                    share.clearFeedback();
+                    screens.goTo(ScreenType.SHARE);
+                    break;
+                case UiAction.BackToPause:
+                    screens.goTo(ScreenType.PAUSE);
                     break;
                 case UiAction.OpenConfig:
                     screens.goTo(ScreenType.CONFIG);

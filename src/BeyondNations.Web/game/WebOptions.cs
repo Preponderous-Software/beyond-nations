@@ -12,6 +12,7 @@ namespace beyondnations.web {
     *   ?ticks-per-second=20&seed=42&start-screen=world&debug-mode
     *
     * is `--ticks-per-second 20 --seed 42 --start-screen world --debug-mode`.
+    * ?seed= takes text as well as a number (?seed=Ironvale), as --seed does.
     *
     * GameOptions.parse ends the process on a value it cannot read, which in
     * a browser would take the runtime down with it, so every pair is checked
@@ -22,7 +23,7 @@ namespace beyondnations.web {
     public static class WebOptions {
 
         private static readonly HashSet<string> IntOptions = new HashSet<string> {
-            "ticks-per-second", "exit-after-frames", "screenshot-after-frames", "seed", "render-distance",
+            "ticks-per-second", "exit-after-frames", "screenshot-after-frames", "render-distance",
         };
 
         private static readonly HashSet<string> FlagOptions = new HashSet<string> {
@@ -30,7 +31,7 @@ namespace beyondnations.web {
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {
-            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations", "laws", "crafting", "load" } },
+            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations", "laws", "crafting", "load", "new-world", "share" } },
             { "season", new[] { "spring", "summer", "autumn", "winter" } },
         };
 
@@ -50,7 +51,16 @@ namespace beyondnations.web {
                 }
                 name = name.ToLowerInvariant();
 
-                if (IntOptions.Contains(name)) {
+                if (name == "seed") {
+                    // A number, or any text, which WorldSeed hashes to one
+                    // (docs/SHARING.md): a share link is ?seed=42.
+                    if (value.Length > 0) {
+                        args.Add("--seed");
+                        args.Add(value);
+                    } else {
+                        warn("ignoring seed=: expected a number or some text");
+                    }
+                } else if (IntOptions.Contains(name)) {
                     if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int number)
                             && (name != "ticks-per-second" || number > 0)) {
                         args.Add("--" + name);

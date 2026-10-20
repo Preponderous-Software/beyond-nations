@@ -6,8 +6,9 @@ namespace beyondnations.desktop.ui.screens {
     /**
     * The pause screen, ported from Assets/Scripts/screens/PauseScreen.cs.
     *
-    * "PAUSED" large, the hint about Escape small below it, then Resume, Save,
-    * Controls, Main Menu and Quit. Save writes the world to its slot at once
+    * "PAUSED" large, the hint about Escape small below it, the world's seed,
+    * then Resume, Save, Share (docs/SHARING.md), Controls, Main Menu and
+    * Quit. Save writes the world to its slot at once
     * and the line under the buttons says what happened -- "Saved: Day 3 -
     * Xland, 14:22." or why it could not -- so a player never has to wonder.
     * Main Menu and Quit save first (docs/SAVES.md), and the line says that
@@ -25,17 +26,19 @@ namespace beyondnations.desktop.ui.screens {
         public const string QuitLabel = "Quit";
 
         public const string ControlsLabel = "Controls";
+        // the world's seed, its link and the exports (docs/SHARING.md)
+        public const string ShareLabel = "Share";
 
         public static readonly Vector4 ErrorColour = new Vector4(1f, 0.45f, 0.4f, 1f);
         /** The same, dark enough to read on the menus' light sky. */
         public static readonly Vector4 MenuErrorColour = new Vector4(0.6f, 0.05f, 0.05f, 1f);
         private static readonly Vector4 SavedColour = new Vector4(0.6f, 1f, 0.6f, 1f);
 
-        private static readonly string[] ButtonLabels = { ResumeLabel, ControlsLabel, MainMenuLabel, QuitLabel };
-        private static readonly UiAction[] ButtonActions = { UiAction.Back, UiAction.OpenControls, UiAction.MainMenu, UiAction.Quit };
+        private static readonly string[] ButtonLabels = { ResumeLabel, ShareLabel, ControlsLabel, MainMenuLabel, QuitLabel };
+        private static readonly UiAction[] ButtonActions = { UiAction.Back, UiAction.OpenShare, UiAction.OpenControls, UiAction.MainMenu, UiAction.Quit };
 
-        private static readonly string[] ButtonLabelsWithSave = { ResumeLabel, SaveLabel, ControlsLabel, MainMenuLabel, QuitLabel };
-        private static readonly UiAction[] ButtonActionsWithSave = { UiAction.Back, UiAction.SaveGame, UiAction.OpenControls, UiAction.MainMenu, UiAction.Quit };
+        private static readonly string[] ButtonLabelsWithSave = { ResumeLabel, SaveLabel, ShareLabel, ControlsLabel, MainMenuLabel, QuitLabel };
+        private static readonly UiAction[] ButtonActionsWithSave = { UiAction.Back, UiAction.SaveGame, UiAction.OpenShare, UiAction.OpenControls, UiAction.MainMenu, UiAction.Quit };
 
         public UiAction draw(float width, float height) {
             return draw(width, height, null);
@@ -57,9 +60,11 @@ namespace beyondnations.desktop.ui.screens {
         /**
         * feel adds a mute toggle in the top-right corner, out of the column of
         * buttons so their places do not move; the volume itself is on the
-        * config screen.
+        * config screen. seedLine, "World seed 42", is shown just above the
+        * buttons, so the seed can be read off without opening Share
+        * (docs/SHARING.md); null leaves it out.
         */
-        public UiAction draw(float width, float height, SaveSession saves, FeelSettings feel) {
+        public UiAction draw(float width, float height, SaveSession saves, FeelSettings feel, string seedLine = null) {
             float centreY = height / 2f;
             bool canSave = saves != null && saves.isEnabled();
             string[] labels = canSave ? ButtonLabelsWithSave : ButtonLabels;
@@ -69,6 +74,9 @@ namespace beyondnations.desktop.ui.screens {
             Overlay.dimBackground(width, height);
             Overlay.textCentered(Title, height / 10f, centreY / 2f, width);
             Overlay.textCentered(ResumeHint, height / 30f, centreY / 2f + height / 12f, width);
+            if (seedLine != null) {
+                Overlay.textCentered(seedLine, Overlay.BaseFontSize, centreY - Overlay.lineHeight() * 0.75f, width);
+            }
 
             // The line about saving sits under the buttons, so the column
             // stops a couple of lines short of the bottom to leave it room on

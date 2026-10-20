@@ -118,7 +118,9 @@ part of the save contract: changing it would change the regions of every saved
 world. `TestRegionMap` pins seed 42's regions so it cannot change by accident.
 
 What is not saved, because it is not world state: the wall-clock measurement
-behind the debug overlay's ticks per second; and the live objects a fresh event
+behind the debug overlay's ticks per second; the recording behind Share >
+Export replay (`RunRecorder`, [SHARING.md](./SHARING.md)), which only reads the
+world and starts afresh at the tick a world is loaded at; and the live objects a fresh event
 points at (the pawn that died, the nation that formed). Loaded events keep
 their type, description and date (`RestoredEvent`), and the per-type counts
 stay whole even when older events are dropped.

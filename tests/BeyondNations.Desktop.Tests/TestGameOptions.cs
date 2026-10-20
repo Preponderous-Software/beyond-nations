@@ -34,6 +34,28 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testSeedTakesANumberOrText() {
+            GameOptions number = GameOptions.parse(new string[] { "--seed", "42" });
+            Assert.Equal(42, number.Seed);
+            Assert.Equal("42", number.SeedText);
+
+            GameOptions text = GameOptions.parse(new string[] { "--seed", "Ironvale" });
+            Assert.Equal(WorldSeed.fromText("Ironvale"), text.Seed);
+            Assert.Equal(1450162717, text.Seed);
+            Assert.Equal("Ironvale", text.SeedText);
+
+            GameOptions none = GameOptions.parse(new string[] { });
+            Assert.Equal(0, none.Seed);
+            Assert.Null(none.SeedText);
+        }
+
+        [Fact]
+        public void testTheNewWorldAndShareScreensCanBeOpenedOn() {
+            Assert.Equal(ScreenType.NEW_WORLD, GameOptions.parse(new string[] { "--start-screen", "new-world" }).StartScreen);
+            Assert.Equal(ScreenType.SHARE, GameOptions.parse(new string[] { "--start-screen", "share" }).StartScreen);
+        }
+
+        [Fact]
         public void testFirstPersonOpensInFirstPerson() {
             // run
             GameOptions options = GameOptions.parse(new string[] { "--first-person" });

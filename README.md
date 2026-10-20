@@ -195,6 +195,17 @@ Worlds are saved, on the desktop and in the browser. The game autosaves every co
 
 Saves live in `~/.local/share/BeyondNations/Saves` on Linux, `%AppData%\BeyondNations\Saves` on Windows, and the browser's local storage on the web. Each save is checksummed and the one before it is kept as a backup; a damaged save falls back to its backup, and a save from a newer version is refused rather than overwritten. A loaded world is the same world, down to its random numbers: it plays on exactly as it would have without the save. `--continue` opens the latest save and `--no-saves` turns saving off for a run. The format, versioning and migration policy are in [docs/SAVES.md](./docs/SAVES.md).
 
+## Sharing a world
+![The Share screen: the world's seed, its link, and the replay and history exports](./.github/media/share-screen.png)
+
+The same seed always builds the same world. *Start* opens the **New World** screen. Type a seed there (a number, or any word: `Ironvale` is always seed 1450162717), press *Random seed* for a fresh one, or leave it empty, then press *Begin*. The pause screen shows the world's seed. *Share* on the pause screen opens a screen with three actions:
+
+- **Copy link** puts `https://beyond-nations.play.danielstephenson.dev/?seed=…` on the clipboard. On a phone, the button is *Share link* and opens the system share sheet. Anyone who opens the link starts the same world.
+- **Export replay (USD)** saves the run so far as a `usd-replay/1` replay (`.usda`) that [usd-web](https://github.com/Preponderous-Software/usd-web)'s player can show.
+- **Export history (text)** saves the chronicle as "The History of <your nation>" in Markdown.
+
+On the desktop, exports go to `~/.local/share/BeyondNations/Exports` (`%AppData%\BeyondNations\Exports` on Windows). In the browser, they download. `--seed` and `?seed=` take a word as well as a number. How to view a replay, and what is in each file, is in [docs/SHARING.md](./docs/SHARING.md).
+
 ## History film
 ![Seed 12: six nations founding settlements and spreading over the map, one orbit](./.github/media/history-film.gif)
 

@@ -69,8 +69,8 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | Parameter | Meaning |
 | --- | --- |
 | `ticks-per-second=N` | simulation rate (default 50) |
-| `seed=N` | world seed |
-| `start-screen=title\|main-menu\|config\|world\|pause\|inventory\|load` | first screen |
+| `seed=N` or `seed=word` | world seed: a number, or any text, hashed to one exactly as the New World screen does ([SHARING.md](./SHARING.md)); the New World screen opens with it filled in. A share link is `?seed=N`. |
+| `start-screen=title\|main-menu\|config\|world\|pause\|inventory\|load\|new-world\|share` | first screen |
 | `continue` | open in the most recently saved world |
 | `no-saves` | do not save or offer saved worlds this run |
 | `render-distance=N` | starting render distance |
@@ -83,6 +83,16 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 Anything unknown or malformed is dropped with a console warning. (On the
 desktop a bad option ends the process; in a page that would take the runtime
 down with it, so nothing unusable reaches `GameOptions.parse`.)
+
+### Sharing
+
+Share on the pause screen ([SHARING.md](./SHARING.md)) uses the page:
+*Share link* opens the system share sheet (`navigator.share`) on a touch
+device that has one and copies to the clipboard everywhere else; the replay
+and history exports download, as F12's screenshot does; and the New World
+screen's seed field asks with `window.prompt`, because a canvas cannot open a
+phone's keyboard. The smoke test downloads both exports from the Share screen
+and opens a `?seed=Ironvale` link.
 
 ### Saves
 

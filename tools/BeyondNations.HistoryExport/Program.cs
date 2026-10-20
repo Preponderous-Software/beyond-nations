@@ -11,22 +11,33 @@ namespace beyondnations.historyexport {
     * Runs a seeded world with no window and writes its history as JSON Lines
     * (format described in HistoryExporter). tools/history-to-usd.py turns the
     * result into a time-sampled USD stage.
+    *
+    * --game-replay FILE instead writes the replay the game's Share > Export
+    * replay would write after --ticks ticks of --seed (GameReplay), a sample
+    * every --every ticks; --sim-version names the build in it.
     */
     public static class Program {
         private const string Usage =
             "usage: BeyondNations.HistoryExport [--seed N] [--ticks N] [--every N]\n"
             + "                                  [--ticks-per-second N] [--kinds pawn,settlement,...]\n"
-            + "                                  [--out FILE]   (default: stdout)";
+            + "                                  [--out FILE]   (default: stdout)\n"
+            + "       BeyondNations.HistoryExport --game-replay FILE.usda [--seed N] [--ticks N] [--every N]\n"
+            + "                                  [--sim-version TEXT]";
 
         public static int Main(string[] args) {
             ExportOptions options = new ExportOptions();
             string outPath = null;
+            string gameReplayPath = null;
+            string simVersion = "develop";
+            bool everyGiven = false;
             try {
                 for (int i = 0; i < args.Length; i++) {
                     switch (args[i]) {
                         case "--seed": options.Seed = int.Parse(next(args, ref i)); break;
                         case "--ticks": options.Ticks = int.Parse(next(args, ref i)); break;
-                        case "--every": options.Every = int.Parse(next(args, ref i)); break;
+                        case "--every": options.Every = int.Parse(next(args, ref i)); everyGiven = true; break;
+                        case "--game-replay": gameReplayPath = next(args, ref i); break;
+                        case "--sim-version": simVersion = next(args, ref i); break;
                         case "--ticks-per-second": options.TicksPerSecond = int.Parse(next(args, ref i)); break;
                         case "--kinds": options.Kinds = parseKinds(next(args, ref i)); break;
                         case "--out": outPath = next(args, ref i); break;
@@ -48,6 +59,14 @@ namespace beyondnations.historyexport {
                 Console.Error.WriteLine(e.Message);
                 Console.Error.WriteLine(Usage);
                 return 2;
+            }
+
+            if (gameReplayPath != null) {
+                string usda = GameReplay.export(options.Seed, options.Ticks, options.TicksPerSecond,
+                    everyGiven ? options.Every : 0, simVersion);
+                File.WriteAllText(gameReplayPath, usda, new System.Text.UTF8Encoding(false));
+                Console.Error.WriteLine("wrote " + gameReplayPath + " (the in-game replay of seed " + options.Seed + ", " + options.Ticks + " ticks)");
+                return 0;
             }
 
             using (Stream output = outPath == null ? Console.OpenStandardOutput() : File.Create(outPath)) {

@@ -175,6 +175,26 @@ namespace beyondnationstests {
         }
     
         [Fact]
+        public void testEscapeOnTheNewWorldScreenGoesBackToTheMainMenu() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.NEW_WORLD);
+            Assert.False(screens.isWorldVisible());
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.MAIN_MENU, screens.getCurrent());
+        }
+
+        [Fact]
+        public void testTheShareScreenIsLaidOverTheWorldAndEscapeReturnsToPause() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.PAUSE);
+            screens.goTo(ScreenType.SHARE);
+            Assert.True(screens.isWorldVisible());
+            Assert.False(screens.shouldAdvanceSimulation());
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.PAUSE, screens.getCurrent());
+        }
+
+        [Fact]
         public void testControlsOpenFromTheWorldAndCloseBackToIt() {
             ScreenState screens = new ScreenState();
             screens.goTo(ScreenType.WORLD);

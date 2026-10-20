@@ -38,7 +38,9 @@ The job fails unless the log contains `world renderer: strata`. It uploads the l
 
 ### 4. History replay (usd-replay/1)
 
-Exports seed 42 twice with `tools/BeyondNations.HistoryExport` (40 000 ticks, a sample every 200), converts each export with `tools/history-to-replay.py`, and validates both with [usd-recorder](https://github.com/Preponderous-Software/usd-recorder)'s `replay validate`. It then asserts that the two replays have 100 samples each with identical state hashes, so the same seed has to produce the same history. It uploads the replay as the `history-replay-seed42` artifact.
+Exports seed 42 twice with `tools/BeyondNations.HistoryExport` (40 000 ticks, a sample every 200), converts each export with `tools/history-to-replay.py`, and validates both with [usd-recorder](https://github.com/Preponderous-Software/usd-recorder)'s `replay validate`. It then asserts that the two replays have 100 samples each with identical state hashes, so the same seed has to produce the same history.
+
+It also checks the game's own export (Share > Export replay, [SHARING.md](./SHARING.md)), which writes `.usda` text without a USD library. `tools/BeyondNations.HistoryExport --game-replay` runs seed 42 for 40 000 ticks through the same `RunRecorder` and `ReplayUsdaWriter` twice. The job validates each file with `replay validate`, requires the two files to be byte-identical, and checks for 101 samples from tick 0 to 40 000. It uploads both replays as the `history-replay-seed42` artifact.
 
 ### Browser build (`browser.yml`)
 

@@ -25,6 +25,16 @@ namespace beyondnations.desktop.ui {
         ContinueGame,
         OpenLoad,
         LoadSlot,
-        SaveGame
+        SaveGame,
+        // sharing (docs/SHARING.md): build the world the New World screen
+        // names, open the Share screen from the pause screen and go back to
+        // it, and the Share screen's three buttons
+        BeginWorld,
+        RollSeed,
+        OpenShare,
+        BackToPause,
+        ShareLink,
+        ExportReplay,
+        ExportChronicle
     }
 }

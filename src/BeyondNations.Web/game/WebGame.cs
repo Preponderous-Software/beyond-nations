@@ -53,6 +53,8 @@ namespace beyondnations.web {
         private FeelDirector feel;
         // saves go to localStorage (docs/SAVES.md); see LocalStorageSaveStorage
         private readonly SaveSession saves;
+        // seeds, the run's replay and the history export (docs/SHARING.md)
+        private readonly ShareSession share;
         private bool automatedExit;
 
         private readonly double fixedTimeStep;
@@ -92,7 +94,8 @@ namespace beyondnations.web {
 
             imgui = new ImGuiWebBackend(devicePixelRatio);
             saves = new SaveSession(new LocalStorageSaveStorage(), GameVersion.Version, !options.NoSaves);
-            ui = new WebUiHost(imgui, screens, gameConfig, saves);
+            share = new ShareSession(new WebSharePlatform(), GameVersion.Version, options.SeedText);
+            ui = new WebUiHost(imgui, screens, gameConfig, saves, share);
             feel = new FeelDirector(new WebAudioSoundService(), new LocalStorageFeelSettingsStore(), WebAudio.isTouchOnly());
             feel.setDemo(options.StageFeel);
             ui.setFeel(feel);
@@ -121,6 +124,8 @@ namespace beyondnations.web {
         public Simulation getSimulation() { return simulation; }
 
         private void createWorld() {
+            // The New World screen's seed (docs/SHARING.md); ?seed= fills it in.
+            gameConfig.setWorldSeed(share.getChosenSeed());
             simulation = new Simulation(gameConfig);
             // The objective tracker (top left) carries the step-by-step guidance
             // now, so the opening line points at it rather than competing with it.
@@ -148,6 +153,7 @@ namespace beyondnations.web {
             culler.setEnabled(!options.NoCulling);
             saves.beginNewWorld(simulation, DateTime.UtcNow);
             feel.beginWorld(simulation, true);
+            share.beginWorld(simulation);
             Log.info("world created");
         }
 
@@ -158,6 +164,7 @@ namespace beyondnations.web {
                 return;
             }
             simulation = loaded;
+            share.beginWorld(simulation);
             accumulator = 0;
             feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
@@ -244,6 +251,7 @@ namespace beyondnations.web {
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;
                 saves.onFixedStep(simulation);
+                share.onFixedStep(simulation);
                 // the player died in a nation: the heir's screen, or the end of the line
                 if (RealmScreens.afterStep(simulation, screens)) {
                     break;
@@ -429,6 +437,10 @@ namespace beyondnations.web {
             json.Append(",\"effects\":").Append(feel.getJuice().getParticles().Count + feel.getJuice().getFloatingTexts().Count);
             json.Append(",\"savedWorlds\":").Append(saves.list().Count);
             json.Append(",\"saveFeedback\":\"").Append(jsonEscape(saves.getFeedback() ?? "")).Append('"');
+            // sharing (docs/SHARING.md), for the smoke test's seed and export checks
+            json.Append(",\"seed\":").Append(simulation != null ? WorldSeed.format(ShareSession.seedOf(simulation)) : "0");
+            json.Append(",\"replaySamples\":").Append(share.getRecorder().getSampleCount());
+            json.Append(",\"shareFeedback\":\"").Append(jsonEscape(share.getFeedback() ?? "")).Append('"');
             json.Append('}');
             WebPage.status(json.ToString());
         }
