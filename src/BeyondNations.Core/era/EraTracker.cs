@@ -80,7 +80,12 @@ namespace beyondnations {
 
         /** What the player's nation still needs to leave its era, measured now. */
         public List<EraRequirement> getRequirements(Simulation simulation) {
-            return EraRules.requirementsToLeave(era, NationStanding.of(simulation));
+            return EraRules.requirementsToLeave(era, NationStanding.of(simulation), dayOf(simulation));
+        }
+
+        /** The in-game day, counted from 1, as the chronicle and the era requirements count it. */
+        public static int dayOf(Simulation simulation) {
+            return simulation.getTimeOfDay().getDay() + 1;
         }
 
         /** Makes the n-th ambition for the objective list, at the era it was first made in. */
@@ -150,7 +155,7 @@ namespace beyondnations {
                 }
             }
 
-            if (standing != null && EraRules.allMet(EraRules.requirementsToLeave(era, standing))) {
+            if (standing != null && EraRules.allMet(EraRules.requirementsToLeave(era, standing, dayOf(simulation)))) {
                 advance(simulation, standing);
             }
 
@@ -232,6 +237,7 @@ namespace beyondnations {
             if (standing != null) {
                 nationName = standing.nation.getName();
             }
+            // a staged ending skips the calendar as well as the rest
             while (era < reach && standing != null) {
                 advance(simulation, standing);
             }

@@ -48,6 +48,13 @@ namespace beyondnationstests {
             return settlement;
         }
 
+        /** Runs the clock (and only the clock) on to the given day, counted from 1. */
+        private void passToDay(int day) {
+            while (EraTracker.dayOf(simulation) < day) {
+                simulation.getTickCounter().increment();
+            }
+        }
+
         private static void addMembers(Nation nation, int total) {
             while (nation.getNumberOfMembers() < total) {
                 nation.addMember(new EntityId());
@@ -76,6 +83,7 @@ namespace beyondnationstests {
             first.getMarket().createStall();
             first.addFunds(EraRules.KingdomFunds);
             addMembers(nation, EraRules.KingdomMembers);
+            passToDay(EraRules.KingdomDay);
             return nation;
         }
 
@@ -85,7 +93,7 @@ namespace beyondnationstests {
             Assert.Equal(RunOutcome.NONE, eras.getOutcome());
             Assert.Equal(0, eras.getReachedTick(Era.CAMP));
             Assert.Equal(-1, eras.getReachedTick(Era.VILLAGE));
-            Assert.Equal(3, eras.getRequirements(simulation).Count);
+            Assert.Equal(4, eras.getRequirements(simulation).Count);
             eras.evaluate(simulation);
             Assert.Equal(Era.CAMP, eras.getEra());
             Assert.False(eras.shouldShowOutcome());
@@ -97,8 +105,11 @@ namespace beyondnationstests {
             Settlement settlement = addSettlement(nation, Vector3.Zero);
             addMembers(nation, EraRules.VillageMembers);
             build(settlement, SettlementTiers.VILLAGE_BUILDINGS);
+            settlement.getMarket().createStall();
+            settlement.getMarket().createStall();
             eras.evaluate(simulation);
-            Assert.Equal(Era.CAMP, eras.getEra()); // no stall yet
+            Assert.Equal(Era.CAMP, eras.getEra()); // the first night has not passed
+            passToDay(EraRules.VillageDay);
 
             settlement.getMarket().createStall();
             settlement.getMarket().createStall();

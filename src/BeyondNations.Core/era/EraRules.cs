@@ -31,9 +31,9 @@ namespace beyondnations {
     * What each era asks and what it gives, in one table so the tracker, the
     * HUD, the objectives and the docs never disagree about a number.
     *
-    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls
-    *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds
-    *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 3,000 funds
+    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls; day 3
+    *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7
+    *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 3,000 funds; day 19
     *
     * Unlocks, for a nation the player leads (pawn-led nations are never held
     * back -- the era is the player's run, not the world's):
@@ -60,8 +60,22 @@ namespace beyondnations {
         public const int KingdomSettlements = 4;
         public const int KingdomFunds = 3000;
 
-        /** What the player's nation must have to leave this era; empty in the last one. */
-        public static List<EraRequirement> requirementsToLeave(Era era, NationStanding standing) {
+        // Each era also waits on the calendar (a day is ten minutes at the
+        // default rates): a nation that settlers flock to is a village in two
+        // minutes on most seeds, so two nights have to pass before it is
+        // one in name, and so on up. These set the floor of the pacing
+        // (Village from about 17 minutes, Town about an hour, Kingdom about
+        // three hours); the other requirements set how long a nation takes
+        // above it.
+        public const int VillageDay = 3;
+        public const int TownDay = 7;
+        public const int KingdomDay = 19;
+
+        /**
+        * What the player's nation must have to leave this era; empty in the
+        * last one. day is the in-game day, counted from 1.
+        */
+        public static List<EraRequirement> requirementsToLeave(Era era, NationStanding standing, int day) {
             int members = standing == null ? 0 : standing.members;
             int settlements = standing == null ? 0 : standing.settlements;
             int villages = standing == null ? 0 : standing.villages;
@@ -74,6 +88,7 @@ namespace beyondnations {
                         new EraRequirement("Village", villages, 1),
                         new EraRequirement("Members", members, VillageMembers),
                         new EraRequirement("Stalls", stalls, VillageStalls),
+                        new EraRequirement("Day", day, VillageDay),
                     };
                 case Era.VILLAGE:
                     return new List<EraRequirement> {
@@ -81,6 +96,7 @@ namespace beyondnations {
                         new EraRequirement("Members", members, TownMembers),
                         new EraRequirement("Settlements", settlements, TownSettlements),
                         new EraRequirement("Funds", funds, TownFunds),
+                        new EraRequirement("Day", day, TownDay),
                     };
                 case Era.TOWN:
                     return new List<EraRequirement> {
@@ -88,6 +104,7 @@ namespace beyondnations {
                         new EraRequirement("Members", members, KingdomMembers),
                         new EraRequirement("Settlements", settlements, KingdomSettlements),
                         new EraRequirement("Funds", funds, KingdomFunds),
+                        new EraRequirement("Day", day, KingdomDay),
                     };
                 default:
                     return new List<EraRequirement>();
@@ -144,6 +161,8 @@ namespace beyondnations {
                     return "Far from other settlements, press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood.";
                 case "Funds":
                     return "Your coins and your settlements' treasuries. Stalls earn coin; sell at market.";
+                case "Day":
+                    return "An era is not built in a day: hold on, and keep growing, until day " + requirement.target + ".";
             }
             return "";
         }

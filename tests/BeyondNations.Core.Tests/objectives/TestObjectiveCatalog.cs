@@ -38,6 +38,13 @@ namespace beyondnationstests {
             return nation;
         }
 
+        /** Runs the clock (and only the clock) on to the given day, counted from 1. */
+        private void passToDay(int day) {
+            while (EraTracker.dayOf(simulation) < day) {
+                simulation.getTickCounter().increment();
+            }
+        }
+
         private Settlement addSettlement(Nation nation, Vector3 position) {
             Settlement settlement = new Settlement(position, nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());
             simulation.getEntityRepository().addEntity(settlement);
@@ -184,6 +191,7 @@ namespace beyondnationstests {
             settlement.getMarket().createStall();
             settlement.getMarket().createStall();
             Assert.False(arc("grow-nation").evaluate(simulation).isComplete());
+            passToDay(EraRules.VillageDay);
             simulation.getEraTracker().evaluate(simulation);
             Assert.Equal(Era.VILLAGE, simulation.getEraTracker().getEra());
             Assert.True(arc("grow-nation").evaluate(simulation).isComplete());
@@ -315,6 +323,7 @@ namespace beyondnationstests {
                 nation.addMember(new EntityId());
             }
             first.addFunds(EraRules.TownFunds);
+            passToDay(EraRules.TownDay);
             EraTracker eras = simulation.getEraTracker();
             eras.evaluate(simulation); // camp -> village
             eras.evaluate(simulation); // village -> town

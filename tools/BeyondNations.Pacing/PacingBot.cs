@@ -365,6 +365,8 @@ namespace beyondnations.pacing {
                 case "Members": growNation(); return;
                 case "Settlements": foundSettlement(); return;
                 case "Funds": earnFunds(); return;
+                // waiting on the calendar: get ahead on the next era's members
+                case "Day": growNation(); return;
                 default: generalPlay(); return;
             }
         }

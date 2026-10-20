@@ -27,8 +27,8 @@ namespace beyondnationstests {
         public void testEraBox_ANewRun_IsTheCampWithTheVillageAhead() {
             Simulation simulation = makeSimulation();
             Assert.Equal("Era: Camp (1/4)", EraBox.headline(simulation));
-            Assert.Equal("Village: 0/3", EraBox.progressLabel(simulation));
-            Assert.Equal(0f, EraBox.progressFraction(simulation));
+            Assert.Equal("Village: 0/4", EraBox.progressLabel(simulation));
+            Assert.Equal(1f / EraRules.VillageDay / 4f, EraBox.progressFraction(simulation), 4); // day 1 of the days the village waits for
             Assert.Null(EraBox.collapseWarning(simulation));
             List<KeyValuePair<string, bool>> lines = EraBox.detailLines(simulation);
             Assert.Equal("To reach the Village era:", lines[0].Key);

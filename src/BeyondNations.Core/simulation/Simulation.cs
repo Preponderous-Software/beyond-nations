@@ -586,6 +586,10 @@ namespace beyondnations {
         * the header and checksum.
         */
         internal void save(SaveWriter writer, SaveStreams streams) {
+            // The era's limits on the player's nation are derived and rebuilt on
+            // load; bring them up to date here too, so a world changed since the
+            // last tick (a nation founded, a leader changed) saves as it loads.
+            eraTracker.applyRules(this);
             writer.beginObject("config");
             gameConfig.save(writer);
             writer.endObject();

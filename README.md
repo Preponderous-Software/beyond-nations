@@ -128,11 +128,11 @@ A run has an arc. Your nation advances **Camp → Village → Town → Kingdom**
 
 | To leave | Needs | The next era unlocks |
 | --- | --- | --- |
-| Camp | a village (2 buildings), 10 members, 2 market stalls | the workshop (planks and bricks); up to 3 settlements |
-| Village | a town (5 buildings), 18 members, 2 settlements, 1,000 funds | the storehouse (more stalls); up to 6 settlements |
-| Town | 2 towns, 25 members, 4 settlements, 3,000 funds | any number of settlements, and the Prosperity victory |
+| Camp | a village (2 buildings), 10 members, 2 market stalls; day 3 | the workshop (planks and bricks); up to 3 settlements |
+| Village | a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7 | the storehouse (more stalls); up to 6 settlements |
+| Town | 2 towns, 25 members, 4 settlements, 3,000 funds; day 19 | any number of settlements, and the Prosperity victory |
 
-A camp may build houses and farms and hold one settlement, and until the Town era nobody can besiege a nation you lead (raids still come). The objectives follow: after the opening steps the ambitions are set by the era you are in, and the last asks you to win. The era box at the top left of the HUD shows your era and how near the next one is; click or tap it for the details.
+Each era also waits for its day (a day is ten minutes of play). A camp may build houses and farms and hold one settlement, and until the Town era nobody can besiege a nation you lead (raids still come). The objectives follow: after the opening steps the ambitions are set by the era you are in, and the last asks you to win. The era box at the top left of the HUD shows your era and how near the next one is; click or tap it for the details.
 
 Win by **Dominion** (from the Town era, hold more than half of every settlement in the world, at least six), **Prosperity** (in the Kingdom era, 6,000 funds and 40 members) or **Concord** (from the Town era, be allied with every nation still standing). Lose if the nation you built collapses: no settlement and nobody but you, for five minutes. Either way the end-of-run screen tells the story -- the outcome, the era reached, the days survived and your numbers, then *The History of* your nation, drawn from the chronicle -- and offers to **Continue playing** (after a victory), start a **New world** or go to the **Main menu**. `--stage-victory` and `--stage-defeat` open on it (the screenshot above is `--seed 42 --start-screen world --stage-victory`; the one below is `--stage-defeat` at phone size).
 
