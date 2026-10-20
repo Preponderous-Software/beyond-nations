@@ -24,7 +24,7 @@ The job then checks the **pacing budget**:
 dotnet tools/BeyondNations.Pacing/bin/Release/net8.0/BeyondNations.Pacing.dll --check --out pacing-out
 ```
 
-A scripted player plays the seeds in `docs/pacing-budget.json` with no window. The step fails if any objective finishes faster than its minimum, slower than its maximum, or never. Advisory entries, objectives with no budget and budget entries no run reached show up as warnings. The report becomes the job summary and is uploaded as the `pacing-report` artifact. The seeds run in parallel and the step takes about a minute. See [PACING.md](./PACING.md), which also covers updating the budget.
+A scripted player plays the seeds in `docs/pacing-budget.json` with no window. The step fails if any objective finishes faster than its minimum, slower than its maximum, or never. Advisory entries, objectives with no budget and budget entries no run reached show up as warnings. The report becomes the job summary and is uploaded as the `pacing-report` artifact. The seeds run in parallel; the step takes about ten seconds on the runner. See [PACING.md](./PACING.md), which also covers updating the budget.
 
 ### 2. Core is engine-agnostic
 
