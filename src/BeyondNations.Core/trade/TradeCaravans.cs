@@ -293,7 +293,7 @@ namespace beyondnations {
 
         private bool hasCaravanOnTheRoad(NationId nationId) {
             foreach (Caravan caravan in getCaravans()) {
-                if (caravan.getNationId() == nationId && !caravan.isPlayerOwned()) {
+                if (nationId.Equals(caravan.getNationId()) && !caravan.isPlayerOwned()) {
                     return true;
                 }
             }
@@ -426,7 +426,7 @@ namespace beyondnations {
                 target = entityRepository.getEntity(caravan.getOriginId()) as Settlement;
             }
             if (caravan.getState() == CaravanState.RETURNING
-                    && (target == null || target.isMarkedForDeletion() || target.getNationId() != caravan.getNationId())) {
+                    && (target == null || target.isMarkedForDeletion() || !caravan.getNationId().Equals(target.getNationId()))) {
                 Settlement home = findNearestSettlementOf(nation, caravan.getPosition());
                 if (home == null) {
                     dissolve(caravan);
@@ -642,7 +642,7 @@ namespace beyondnations {
         }
 
         private bool isPlayersNation(NationId nationId) {
-            return nationId != null && player.getNationId() != null && nationId == player.getNationId();
+            return nationId != null && player.getNationId() != null && nationId.Equals(player.getNationId());
         }
 
         private void produce(CaravanEventKind kind, Caravan caravan, string story, bool notable, NationId otherNationId, List<EntityId> entities) {
@@ -650,7 +650,7 @@ namespace beyondnations {
             if (caravan.getNationId() != null) {
                 nations.Add(caravan.getNationId());
             }
-            if (otherNationId != null && otherNationId != caravan.getNationId()) {
+            if (otherNationId != null && !otherNationId.Equals(caravan.getNationId())) {
                 nations.Add(otherNationId);
             }
             eventProducer.produceCaravanEvent(new CaravanEvent(kind, caravan, story, notable, nations, entities));
@@ -876,7 +876,7 @@ namespace beyondnations {
                 return "Only the leader of a nation can send caravans.";
             }
             Settlement origin = getPlayerSettlement();
-            if (origin == null || origin.getNationId() != own.getId()) {
+            if (origin == null || !own.getId().Equals(origin.getNationId())) {
                 return "Send caravans from one of your own settlements.";
             }
             if (origin.getNumBuildings(BuildingType.STOREHOUSE) == 0) {

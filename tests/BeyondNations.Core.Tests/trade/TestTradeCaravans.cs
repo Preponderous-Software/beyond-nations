@@ -425,9 +425,12 @@ namespace beyondnationstests {
             Assert.Equal(trade.getNumDelivered(), copy.getTradeCaravans().getNumDelivered());
         }
 
-        [Fact]
-        public void testAVersion1Save_LoadsWithNoCaravans_AndPlainPrices() {
-            Simulation loaded = SaveGame.decode(System.IO.File.ReadAllBytes(SaveFixtures.pathFor(1)));
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void testAnOlderSave_LoadsWithNoCaravans_AndPlainPrices(int version) {
+            Simulation loaded = SaveGame.decode(System.IO.File.ReadAllBytes(SaveFixtures.pathFor(version)));
             Assert.Empty(loaded.getTradeCaravans().getCaravans());
             Assert.Equal(0, loaded.getTradeCaravans().getNumDispatched());
             foreach (Entity entity in loaded.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT)) {
@@ -437,6 +440,19 @@ namespace beyondnationstests {
                     Assert.Equal(0, MarketPricing.getTrend(loadedMarket, itemType));
                 }
             }
+        }
+
+        [Fact]
+        public void testTheVersion4Fixture_LoadsAndPlaysOn() {
+            byte[] file = System.IO.File.ReadAllBytes(SaveFixtures.pathFor(4));
+            Assert.Equal(4, SaveGame.check(file).FormatVersion);
+            Simulation loaded = SaveGame.decode(file);
+            Assert.Equal(SaveFixtures.FixtureTicks, loaded.getTickCounter().getTotalTicks());
+            for (int i = 0; i < 1500; i++) {
+                loaded.fixedUpdate(Step);
+            }
+            byte[] resaved = SaveGame.encode(loaded, "test");
+            Assert.Null(WorldComparer.difference(loaded, SaveGame.decode(resaved)));
         }
 
         // --- the chronicle ---
