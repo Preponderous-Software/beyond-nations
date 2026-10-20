@@ -271,7 +271,7 @@ try {
 
     // A world event (WorldEventSheet) rises from the bottom over the
     // controls' band: the controls step aside, and a tap on the sheet's
-    // last choice (on the bottom edge) answers it and brings them back.
+    // last choice answers it and brings them back.
     // On its side only, since every page load costs the software GPU a while.
     if (landscape) {
       await page.goto(url + (url.includes("?") ? "&" : "?") + "start-screen=world&stage-event&no-saves", { waitUntil: "load" });
@@ -279,7 +279,8 @@ try {
       await settle();
       if (await page.isVisible("#stick")) throw new Error("the touch controls cover the world event's choices");
       await page.screenshot({ path: path.join(out, "phone-event.png") });
-      await page.touchscreen.tap(viewport.width / 2, viewport.height - 30);
+      // the last choice ends just above the sheet's closing note: 72 px up its middle
+      await page.touchscreen.tap(viewport.width / 2, viewport.height - 72);
       await waitFor((s) => !s.worldEvent, "a tap on a choice to answer the world event", 20000);
       await settle();
       if (!(await page.isVisible("#stick"))) throw new Error("the touch controls did not come back after the world event");

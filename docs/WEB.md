@@ -71,7 +71,8 @@ game lays its screens out for a finger (`TouchLayout` in
 | Bag, Craft, Realm, News, View, ?, Menu | I, C, O (nations, diplomacy and laws), Y (the chronicle: full history, hidden, recent), V, the controls list, Escape |
 | HUD command bar | Tappable, and kept above the controls |
 
-- The controls show only while the world is up. Every other screen has its
+- The controls show only while the world is up, and step aside while a world
+  event's bottom sheet waits for a choice (its choices are tapped directly). Every other screen has its
   own buttons: the inventory, nations and crafting screens get a large
   **Close** in the top right, the pause, main menu and settings screens use
   44-pixel buttons from the top of the screen, and the controls list
@@ -278,7 +279,8 @@ browser's stack trace then names each frame. For this trap the top frame was
   the controls step aside and the corner Close brings the world back; a drag
   on the crafting list scrolls it; News cycles the chronicle; ? opens the
   controls list; Menu pauses and the touch Resume resumes; the first tip shows; and the
-  page has neither scrolled nor zoomed.
+  page has neither scrolled nor zoomed. On its side, a staged world event
+  (`?stage-event`) hides the controls until a tap on a choice answers it.
 
 Screenshots and the console log are uploaded as the `web-smoke` artifact.
 
