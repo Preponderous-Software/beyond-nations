@@ -44,7 +44,8 @@ namespace beyondnationstests {
                 added = simulation.getWorldGenerator().regrowRocks(attempt * WorldGenerator.ROCK_REGROW_INTERVAL_TICKS);
             }
             Assert.True(added);
-            Assert.Equal(1, entities.getNumEntitiesOfType(EntityType.ROCK));
+            // one rock, or two when the round lands in the highlands (RegionCatalog.rockFactor)
+            Assert.InRange(entities.getNumEntitiesOfType(EntityType.ROCK), 1, 2);
         }
 
         [Fact]

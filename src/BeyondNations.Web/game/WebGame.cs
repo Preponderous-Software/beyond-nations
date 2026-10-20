@@ -128,6 +128,9 @@ namespace beyondnations.web {
             if (options.TimeOfDay >= 0f) {
                 simulation.getTimeOfDay().setStartFraction(options.TimeOfDay);
             }
+            if (options.StartSeason.HasValue) {
+                simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+            }
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
             }
@@ -297,6 +300,8 @@ namespace beyondnations.web {
 
             if (simulation != null && screens.isWorldVisible()) {
                 Player player = simulation.getPlayer();
+                // seasons and regions recolour the ground and the leaves (WorldPalette)
+                snapshot.setPalette(simulation.getWorldPalette());
                 snapshot.capture(
                     simulation.getEntityRepository(),
                     simulation.getEnvironment(),

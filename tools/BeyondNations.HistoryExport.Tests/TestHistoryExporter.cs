@@ -18,8 +18,9 @@ namespace beyondnations.historyexport.tests {
         // Seed 42 founds its first nation at tick 2000 and that nation's
         // first settlement at tick 2050.
         private const int SeedWithPawns = 42;
-        // Most chunks have pawns since pawns spawn more densely; this seed's opening chunks have none.
-        private const int SeedWithoutPawns = 78;
+        // Most chunks have pawns since pawns spawn more densely; this seed's opening chunks have none
+        // (78 until regions (RegionMap) changed how many trees and rocks each chunk rolls).
+        private const int SeedWithoutPawns = 15;
         private const int TicksPastFirstSettlement = 2400;
 
         private static string export(int seed, int ticks, int every = 50) {

@@ -38,7 +38,9 @@ namespace beyondnationstests {
                     "environment", "worldGenerator", "nationRepository", "pawnNameGenerator", "nationNameGenerator", "settlementLife",
                     "diplomacy", "playerTerritory", "playerTerritoryKnown", "traitRandom", "populationGrowth", "numPawnDeaths", "numPlayerDeaths",
                     "objectiveTracker", "chronicle" },
-                Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer" },
+                // seasons come from the tick count and regions from the seed, so all five are rebuilt (docs/SAVES.md)
+                Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer",
+                    "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources" },
             },
             [typeof(GameConfig)] = new Entry {
                 Saved = new[] { "chunkSize", "locationScale", "respawnPawns", "keepInventoryOnDeath", "lagPreventionEnabled", "worldSeed",
@@ -144,7 +146,7 @@ namespace beyondnationstests {
             [typeof(WorldGenerator)] = new Entry {
                 Saved = new[] { "currentChunkX", "currentChunkZ" },
                 Derived = new[] { "pawnNameGenerator", "random", "environment", "player", "eventProducer", "chunkSize", "locationScale",
-                    "entityRepository", "gameConfig", "traitRandom" },
+                    "entityRepository", "gameConfig", "traitRandom", "regionMap" },
             },
             [typeof(ObjectiveTracker)] = new Entry {
                 Saved = new[] { "currentIndex", "ambitionsGenerated", "currentProgress", "evaluatedOnce", "lastCompleted", "lastCompletedTick" },
@@ -160,11 +162,27 @@ namespace beyondnationstests {
             },
             [typeof(ChronicleEntry)] = saved("sequence", "eventType", "tick", "day", "partOfDay", "text", "nationIds", "entityIds"),
             [typeof(PawnBehaviorCalculator)] = new Entry {
-                Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay" },
+                Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar" },
             },
             [typeof(PawnBehaviorExecutor)] = new Entry {
-                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter" },
+                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar" },
             },
+            // seasons and regions: no state of their own (docs/SAVES.md)
+            [typeof(RegionMap)] = new Entry {
+                Derived = new[] { "seed", "chunkLength" },
+                // a memo of lookups already made: a loaded world fills it again as it asks
+                Transient = new[] { "cache" },
+            },
+            [typeof(SeasonCalendar)] = new Entry { Derived = new[] { "timeOfDay" } },
+            [typeof(SeasonalWorld)] = new Entry {
+                Derived = new[] { "calendar", "regionMap", "environment", "entityRepository", "gameConfig", "player", "random" },
+            },
+            [typeof(WorldPalette)] = new Entry {
+                Derived = new[] { "calendar", "regionMap" },
+                // worked out afresh by every frame's beginFrame
+                Transient = new[] { "seasonTint", "seasonAmount", "leaf" },
+            },
+            [typeof(NationResources)] = new Entry { Derived = new[] { "entityRepository", "regionMap" } },
             [typeof(LagPreventer)] = new Entry {
                 Derived = new[] { "gameConfig", "tickCounter", "entityRepository", "environment" },
             },

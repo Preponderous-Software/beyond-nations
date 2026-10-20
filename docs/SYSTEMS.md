@@ -18,6 +18,8 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Market | Implemented | [`src/BeyondNations.Core/market/`](../src/BeyondNations.Core/market/) |
 | Crafting | Implemented | [`src/BeyondNations.Core/crafting/`](../src/BeyondNations.Core/crafting/), [`src/BeyondNations.Core/command/crafting/`](../src/BeyondNations.Core/command/crafting/) |
 | Territory | Implemented | [`src/BeyondNations.Core/territory/`](../src/BeyondNations.Core/territory/) |
+| Seasons | Implemented | [`src/BeyondNations.Core/season/`](../src/BeyondNations.Core/season/) |
+| Regions | Implemented | [`src/BeyondNations.Core/region/`](../src/BeyondNations.Core/region/) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
 
@@ -75,7 +77,7 @@ Every 250 ticks (`Diplomacy.ROUND_TICKS`, five seconds) a diplomacy round runs, 
 *Planned:* per-nation culture and history; pawn-led nations poaching each other's members; open battle.
 
 ## Resource Collection
-Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone; a pawn with wood enough for a stall but short of stone goes for the nearest rock instead. These resources are used to build structures, to trade, to [craft](#crafting), and — for apples and chicken meat — to eat. A tree or rock gives more to a gatherer carrying the right tool: an axe adds 3 wood per tree and a pickaxe 2 stone per rock (5 becomes 7), and each gather wears the tool by one use. The status line says what the tool added and how many uses are left. A rock gives 5 stone, and a new chunk gets three to six attempts at placing one (it was one or two rocks of 3 stone, which made stone the bottleneck of every settlement). Mined rocks also come back: every 30 seconds one rock surfaces in a random generated chunk, until the world holds three per chunk, so a busy world is not mined out for good the way it used to be.
+Players and pawns collect resources by interacting with the nearest entity in range. A tree yields wood, a rock yields stone and a chicken yields chicken meat, for both. A pawn only hunts a chicken when it needs food — energy under the threshold with nothing edible carried — and otherwise gathers from whichever of the nearest tree and nearest rock is closer, so pawns after wood or stone leave the chickens alone; a pawn with wood enough for a stall but short of stone goes for the nearest rock instead. These resources are used to build structures, to trade, to [craft](#crafting), and — for apples and chicken meat — to eat. A tree or rock gives more to a gatherer carrying the right tool: an axe adds 3 wood per tree and a pickaxe 2 stone per rock (5 becomes 7), and each gather wears the tool by one use. The status line says what the tool added and how many uses are left. A rock gives 5 stone, and a new chunk gets three to six attempts at placing one (it was one or two rocks of 3 stone, which made stone the bottleneck of every settlement), scaled by its [region](#regions) but never fewer than two. Mined rocks also come back: every 30 seconds one rock surfaces in a random generated chunk (two in the highlands), until the world holds three per chunk, so a busy world is not mined out for good the way it used to be.
 
 ## Food and Energy
 The player and every pawn carry an energy level that falls each tick by their own metabolism. The player's is a fixed configured rate at which a full bar lasts one in-game day; a pawn's varies between pawns but a full bar always lasts several minutes. A pawn inside a settlement burns energy more slowly than one outside it, and the player's energy does not fall at all while inside one. Reaching zero energy produces a death event and, subject to configuration, a respawn at the home settlement. Energy is restored by eating: below a threshold, the most nourishing edible item carried is consumed and its energy added. Which item types are edible, and how much each restores, is held in one table rather than being named at each call site, so an apple (15), chicken meat (25) and cooked meat (45) are all food and a pawn carrying either has no reason to go looking for more.
@@ -91,7 +93,7 @@ The building system creates and manages settlements. Players and pawns can found
 | --- | --- | --- | --- |
 | House | 20 wood, 15 stone | 6 | Room for 4 more residents. A settlement with no houses has room for 8. |
 | Storehouse | 10 wood, 30 stone | 2 | 2 more market stalls. |
-| Farm | 25 wood, 10 stone | 4 | Every 500 ticks, one apple into the merchant stall holding the fewest. With no merchant the harvest is lost. |
+| Farm | 25 wood, 10 stone | 4 | Every 500 ticks, one apple into the merchant stall holding the fewest (two in autumn, none in winter, one more on the plains; see [Seasons](#seasons)). With no merchant the harvest is lost. |
 | Workshop | 15 wood, 10 stone | 1 | Anyone inside may craft planks and bricks; merchants there turn their wood and stone into them. |
 
 The player builds with `K` (whatever `BuildingPlanner` says the settlement needs most that they can pay for) or from the command bar, which offers one button per affordable building. Any member of the owning nation may build. The cost is taken from what the builder carries first and then from the settlement's stockpile: the wood and stone that member pawns deliver under orders, and that a serf at home hands in when it carries 20 or more and the market has no coin to buy it (*contributing*). A leader pawn builds the same way when it, with the stockpile, has the materials. In a settlement its leader does not live in (one founded by a settler), the resident serfs build stalls and buildings from the stockpile instead. `BuildingPlanner` puts a house first when the settlement is within two of its resident cap, a farm when farms lag behind houses, and a storehouse when the market is full; after those, a settlement with two or more buildings puts up its workshop.
@@ -176,3 +178,52 @@ Not a simulation system: it lives in the host, in [`src/BeyondNations.Desktop/ui
 - **The first five minutes.** `OnboardingHints` shows one tip at a time in a new world (never a loaded one): walk and look, chop a tree, gather stone, found a settlement (create a nation first), and where the goals panel is. A tip goes as soon as its goal is met, or on *Got it*; *No tips* turns them off. Finished tips are recorded in `FeelSettings` and never shown again. On a touch-only device the wording names the on-screen pad and *Use* button. The tips are separate from the objectives, which they only read.
 - **Settings.** `FeelSettings` (volume, mute, tips on or off, tips finished) belong to the player, not a world, so they are kept beside the saves rather than in them: `feel-settings.txt` under the user data directory on the desktop, the `beyond-nations/feel-settings` key in the browser's localStorage. They are plain `key=value` lines read leniently. The config screen has *Volume*, *Mute Sound* and *Show Tips*; the pause screen has *Sound: On/Off* where there is sound.
 
+## Seasons
+The year turns through **spring, summer, autumn and winter**, `SeasonCalendar.DAYS_PER_SEASON` (2) in-game days each, so a year is eight days: about 80 minutes of play at the default tick rate. A world starts on the first day of spring. What each season does is one table, `SeasonalRules`:
+
+| Season | Farms (apples per round) | Saplings | Chickens hatch | Energy burned outdoors |
+| --- | --- | --- | --- | --- |
+| Spring | 1 | grow | yes | normal |
+| Summer | 1 | grow | yes | normal |
+| Autumn | 2 | grow | no | normal |
+| Winter | none | take 3x as long | no | x1.3 (cold) |
+
+Plains farms harvest one apple more whenever farms harvest at all. In spring and summer a chicken hatches every 30 seconds in a random chunk (always on the plains, rarely on the moor) until the world holds 50. Indoors is as warm as ever: the cold applies only outside a settlement, to the player and pawns alike.
+
+**Pawns respond.** From autumn, a pawn carrying fewer than 4 food (`WINTER_FOOD_STORE`) leans towards food when it gathers: a chicken within 120 units, or else a tree (which carries apples) over a rock. In winter an idle pawn at home leaves half as often, since indoors burns less. Measured headless over two years (16 days) for seeds 42, 7 and 2026, the population stays at the 100-pawn cap throughout with 8 to 12 deaths, against 6 to 10 without seasons; trees fall to a few hundred by midwinter and are back over a thousand in spring, and chickens are hunted down in autumn and hatch back in spring. `TestSeasonalRules` runs seed 42 through its first winter.
+
+**Seeing it.** The ground is tinted fresh in spring, golden in autumn and snowy in winter, and leaves turn orange in autumn and white in winter, blending over the last quarter of each season (`WorldPalette`, applied by `WorldSnapshot` as it captures; nothing stored changes). The HUD's Season box, above the player box, shows `Autumn - day 2/2, year 1`, then `Winter in 2 days` (amber) from two days out or `Winter: no harvests` (blue) in winter, then the region underfoot. The status line announces each new season and, the day before, that winter comes tomorrow. `--season NAME` (`?season=` in the browser) opens a new world on the first day of that season by moving the clock on, without running the world.
+
+**The season API**, for events, caravans and anything else that should care: `simulation.getSeasonCalendar()` gives
+- `getSeason()` (`Season.SPRING` .. `Season.WINTER`) and `isWinter()`;
+- `getDayOfYear()` (0 .. 7), `getDayOfSeason()`, `getYear()` (0 for the first);
+- `getDaysUntil(season)` and `getDaysUntilWinter()` (0 while it is winter);
+- `getSeasonProgress()`, how far through the season in [0, 1);
+- and the pure `seasonOfDay(day)`, `daysUntil(day, season)`, `name(season)` for any other day.
+
+The calendar holds no state: the season is a pure function of the tick count, so it is saved by saving the tick count and nothing was added to the save format.
+
+## Regions
+Every chunk belongs to a **region**, chosen by `RegionMap` from the world seed and the chunk's coordinates: two smooth noise fields, elevation and moisture, sampled on a grid four chunks across, so regions come in patches several chunks wide. High ground is **highlands**; otherwise wet ground is **forest**, dry ground **moor**, and the rest **plains** (about 30% plains, 26% forest, 24% highlands and 19% moor across seeds). Regions draw nothing from the world's random streams and are rebuilt from the seed on load; see [Saves](./SAVES.md).
+
+What a region holds is one table, `RegionCatalog`; each factor is relative to the old, region-less world:
+
+| Region | Trees | Rocks | Chickens | Food overall | Ground |
+| --- | --- | --- | --- | --- | --- |
+| Plains | 0.9 | 0.8 | 2.0 | 1.6 (+1 apple per farm round) | grassy green |
+| Forest | 1.8 | 0.6 | 0.8 | 1.2 | dark green |
+| Highlands | 0.6 | 2.2 | 0.5 | 0.6 | grey-green |
+| Moor | 0.5 | 0.9 | 0.4 | 0.5 | brown |
+
+**Stone stays reasonable everywhere.** Every chunk gets at least two rock attempts whatever its region; regrowth picks any generated chunk, so stone comes back everywhere, and surfaces two rocks at a time in the highlands. Measured over two years, seed 7 (little highland near its start) kept 15 to 120 rocks where it used to fall to about 10.
+
+**Surpluses and shortages**, for trade (caravans) and diplomacy: `simulation.getNationResources()` (`NationResources`) gives, for a nation,
+- `getAbundance(nation, commodity)`: the average of `RegionCatalog.abundance` over the land around its settlements (each settlement's chunk counted twice and the eight around it once), where 1.0 is the old world's;
+- `getStanding(nation, commodity)`: `SURPLUS` at 1.35 or more, `SHORTAGE` at 0.75 or less, else `NORMAL`;
+- `getSurpluses(nation)` and `getShortages(nation)`, in the order wood, stone, food;
+- `canSupply(supplier, buyer, commodity)`: the supplier has a surplus the buyer is short of;
+- and `itemTypesOf(commodity)` for the item types each `Commodity` (`WOOD`, `STONE`, `FOOD`) covers.
+
+So a highland nation has a surplus of stone and a shortage of wood and food, and a forest nation a surplus of wood and a shortage of stone. It is the land's endowment, not a stock count: it changes only when a nation gains or loses a settlement, draws no randomness, and changes nothing by being asked. A nation with no settlements has neither surplus nor shortage.
+
+*Planned:* caravans and diplomacy that act on surpluses and shortages; weather.

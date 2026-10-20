@@ -115,7 +115,7 @@ Buildings cost wood **and stone**, so quarrying matters. Press `K` inside one of
 | --- | --- | --- |
 | House | 20 wood, 15 stone | Room for 4 more residents (a settlement starts with room for 8) |
 | Storehouse | 10 wood, 30 stone | 2 more market stalls |
-| Farm | 25 wood, 10 stone | One apple every 500 ticks, stocked into a merchant's stall |
+| Farm | 25 wood, 10 stone | One apple every 500 ticks, stocked into a merchant's stall (double in autumn, none in winter) |
 | Workshop | 15 wood, 10 stone | Lets anyone inside craft planks and bricks |
 
 Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`).
@@ -132,6 +132,13 @@ Hostility has stakes. A stronger hostile neighbour raids your nearest settlement
 As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land: **Gift 25 coins** (+10, paid into their treasury), **Propose Alliance** (accepted at +30) or **Denounce** (-25, and it ends any alliance). `--stage-diplomacy` opens the game leading a nation between a friendly neighbour and a hostile one already besieging your village (the screenshot above is `--seed 42 --start-screen world --stage-diplomacy`).
 
 ![The nations screen: your nation and its besieged village, then each other nation with its members, settlements and relation, and Gift, Ally and Denounce buttons](./.github/media/nations-screen.png)
+
+### Seasons and regions
+![The same spot on seed 42 in spring, summer, autumn and winter: fresh green, then grey-green highland grass, golden autumn ground with turning leaves, and snow with frosted trees; the Season box above the player box says which season it is, how long until winter and what the land is good for](./.github/media/seasons.png)
+
+The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season, and the Season box (above the player box) shows the season, warns *Winter in 2 days*, and names the land you stand on.
+
+The land itself differs. The world is made of **regions** in patches several chunks wide: **forest** (plenty of wood, little stone), **highlands** (rich in stone, poor in food), **plains** (good farming and game) and the scarce **moor**. Every region has some stone, so a settlement outside the highlands is short of it rather than stuck, but nations do differ in what they have plenty of and what they lack, which is what trade and diplomacy will be built on. `--season winter` (or `?season=winter` in the browser) opens the game on the first day of that season; the screenshot above is `--seed 42 --start-screen world --season NAME --time-of-day 0.45`.
 
 ### Crafting
 Press `C` (or *Craft* on a touch screen) to open the crafting screen. Each recipe shows its cost, what it is good for, and what you are still missing; tap or click a ready one to make it.

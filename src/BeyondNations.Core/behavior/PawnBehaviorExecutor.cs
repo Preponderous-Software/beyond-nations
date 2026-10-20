@@ -15,6 +15,12 @@ namespace beyondnations {
         private EventProducer eventProducer;
         private EntityRepository entityRepository;
         private TickCounter tickCounter;
+        private SeasonCalendar seasonCalendar;
+
+        /** Gives pawns seasons: from autumn they lay in food (SeasonalRules.wantsStores). */
+        public void setSeasonCalendar(SeasonCalendar seasonCalendar) {
+            this.seasonCalendar = seasonCalendar;
+        }
 
         public PawnBehaviorExecutor(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, NationNameGenerator nationNameGenerator, TickCounter tickCounter) {
             this.tickCounter = tickCounter;
@@ -170,6 +176,19 @@ namespace beyondnations {
                 Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
                 if (nearestChicken != null) {
                     return nearestChicken;
+                }
+            }
+
+            // From autumn on, a pawn short of stores goes for food: a chicken
+            // close by, or else a tree, which carries apples, over a rock.
+            if (seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason())) {
+                Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
+                if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
+                    return nearestChicken;
+                }
+                Entity nearestFruit = environment.getNearestTree(pawn.getPosition());
+                if (nearestFruit != null && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
+                    return nearestFruit;
                 }
             }
 

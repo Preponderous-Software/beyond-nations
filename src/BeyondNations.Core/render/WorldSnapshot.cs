@@ -49,6 +49,20 @@ namespace beyondnations {
         private readonly List<RenderItem> entityItems = new List<RenderItem>();
         private readonly List<RenderItem> groundItems = new List<RenderItem>();
         private readonly List<LabelItem> labels = new List<LabelItem>();
+        private WorldPalette palette;
+
+        /**
+        * Seasons and regions (WorldPalette) recolour the ground and the
+        * leaves as they are captured. Null, the default, draws every colour
+        * exactly as stored.
+        */
+        public void setPalette(WorldPalette palette) {
+            this.palette = palette;
+        }
+
+        public WorldPalette getPalette() {
+            return palette;
+        }
 
         /**
         * Pawns, settlements, trees, rocks, saplings, chickens and item drops.
@@ -121,6 +135,9 @@ namespace beyondnations {
             entityItems.Clear();
             groundItems.Clear();
             labels.Clear();
+            if (palette != null) {
+                palette.beginFrame();
+            }
 
             // Indexed rather than foreach throughout: getEntities() would copy
             // the whole entity list, and enumerating an IReadOnlyList or a
@@ -147,7 +164,7 @@ namespace beyondnations {
                     item.kind = part.getKind();
                     item.position = origin + part.getOffset();
                     item.scale = part.getScale();
-                    item.color = part.getColor();
+                    item.color = palette == null ? part.getColor() : palette.partColour(entity.getType(), part.getColor());
                     entityItems.Add(item);
                 }
 
@@ -167,6 +184,7 @@ namespace beyondnations {
             List<Chunk> chunks = environment.getChunks();
             for (int c = 0; c < chunks.Count; c++) {
                 Location[,] locations = chunks[c].getLocations();
+                Region region = palette == null ? Region.PLAINS : palette.getRegionMap().regionOf(chunks[c]);
                 int width = locations.GetLength(0);
                 int depth = locations.GetLength(1);
                 for (int x = 0; x < width; x++) {
@@ -179,7 +197,7 @@ namespace beyondnations {
                         item.kind = PrimitiveKind.Cube;
                         item.position = location.getPosition();
                         item.scale = location.getScaleVector();
-                        item.color = location.getColor();
+                        item.color = palette == null ? location.getColor() : palette.groundColour(region, location.getColor());
                         groundItems.Add(item);
                     }
                 }

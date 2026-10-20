@@ -168,7 +168,9 @@ namespace beyondnations.desktop.ui.screens {
                     .draw(layout.RightX, settlementBottom + layout.Gap, layout.BoxWidth) + layout.Gap;
             }
 
-            new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
+            float playerTop = new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository()).drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
+            // the season, the winter warning and the region, just above the player box
+            new SeasonInfoBox(simulation).drawAbove(layout.RightX, playerTop - layout.Gap, layout.BoxWidth, rightTop);
 
             // Last, so the full chronicle window sits over the boxes it covers.
             // The top-centre column stacks, top down: the status line, the

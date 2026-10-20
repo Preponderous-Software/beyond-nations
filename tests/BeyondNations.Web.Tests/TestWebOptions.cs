@@ -32,6 +32,12 @@ namespace beyondnationstests.web {
         }
 
         [Fact]
+        public void theSeasonOptionIsPassedThrough() {
+            GameOptions options = GameOptions.parse(parse("?season=Winter").ToArray());
+            Assert.Equal(Season.WINTER, options.StartSeason);
+        }
+
+        [Fact]
         public void theParsedOptionsMatchTheQuery() {
             GameOptions options = GameOptions.parse(parse("?ticks-per-second=25&seed=7&start-screen=main-menu&first-person=1&no-labels=true&render-distance=60&time-of-day=0.25").ToArray());
             Assert.Equal(25, options.TicksPerSecond);
@@ -67,6 +73,7 @@ namespace beyondnationstests.web {
         [InlineData("?renderer=vulkan")]
         [InlineData("?time-of-day=1")]
         [InlineData("?time-of-day=NaN")]
+        [InlineData("?season=monsoon")]
         [InlineData("?debug-mode=maybe")]
         [InlineData("?width=800&height=600&no-vsync&smoke-resize&no-usage-reporting&help")]
         [InlineData("?utm_source=arcade&fbclid=x")]

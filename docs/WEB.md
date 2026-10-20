@@ -76,6 +76,7 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `render-distance=N` | starting render distance |
 | `time-of-day=F` | starting time of day, 0 to 1 |
 | `stage-feel` | replay the feedback effects every 20 frames, for screenshots |
+| `season=NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
 | `exit-after-frames=N`, `screenshot-after-frames=N` | for automated runs |
 
