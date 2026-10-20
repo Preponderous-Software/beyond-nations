@@ -77,7 +77,7 @@ game lays its screens out for a finger (`TouchLayout` in
 - A drag on a panel (crafting, nations, inventory, the full chronicle,
   the saved worlds) scrolls it; a press is only sent when the finger lifts
   without having travelled, so a drag that starts on a button never presses
-  it. On the settings screen a finger works the sliders instead.
+  it. A tap on a slider (the settings screen) sets it there.
 - The HUD leaves the controls' band clear: the command bar and the boxes stop
   above it, the inventory box is left out (Bag opens the full list), and on a
   phone held upright the status line and chronicle go under the objective

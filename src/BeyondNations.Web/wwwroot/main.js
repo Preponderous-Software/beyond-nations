@@ -163,12 +163,12 @@ const ui = {
       }
     },
     // What a finger drag on the canvas does (webhost/input.js): steer in
-    // the world, scroll a panel, or work a slider on the settings screen.
+    // the world, or scroll a panel (a tap on a slider still sets it).
     touchDrag() {
       if (!status || status.screen === "WORLD") {
         return status && (status.chronicle === "Full" || status.worldEvent) ? "scroll" : "look";
       }
-      return status.screen === "CONFIG" ? "pointer" : "scroll";
+      return "scroll";
     },
     touchLookScale: TOUCH_LOOK_SCALE,
   },
