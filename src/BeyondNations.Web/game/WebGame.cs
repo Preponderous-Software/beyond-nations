@@ -500,6 +500,8 @@ namespace beyondnations.web {
             json.Append(",\"tapsInteracted\":").Append(tapsInteracted);
             // a world event's bottom sheet is up: the page hides its controls so the choices can be tapped
             json.Append(",\"worldEvent\":").Append(WorldEventSheet.getView(simulation) != null ? "true" : "false");
+            // likewise the caravan dispatch panel (Send Caravan), whose buttons run down the screen
+            json.Append(",\"caravanPanel\":").Append(CaravanDispatchPanel.isOpen() ? "true" : "false");
             if (simulation != null) {
                 Vector3 position = simulation.getPlayer().getPosition();
                 json.Append(",\"playerX\":").Append(position.X.ToString("0.##", CultureInfo.InvariantCulture));

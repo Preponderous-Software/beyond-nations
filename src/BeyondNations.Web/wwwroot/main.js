@@ -133,9 +133,10 @@ const ui = {
     // style.css shows the on-screen controls only while the world is up:
     // every other screen has its own buttons and scrolls by dragging.
     document.body.dataset.screen = (value && value.screen) || "";
-    // A world event's bottom sheet (WorldEventSheet) pauses the world and
-    // takes the bottom of the screen: the controls step aside for it.
-    const sheet = !!(value && value.worldEvent);
+    // A world event's bottom sheet (WorldEventSheet), which pauses the world, and
+    // the caravan dispatch panel (Send Caravan) both
+    // reach the bottom of the screen: the controls step aside for them.
+    const sheet = !!(value && (value.worldEvent || value.caravanPanel));
     if (sheet !== (document.body.dataset.sheet === "on")) {
       document.body.dataset.sheet = sheet ? "on" : "off";
       if (sheet) joystick?.reset();
@@ -166,7 +167,7 @@ const ui = {
     // the world, or scroll a panel (a tap on a slider still sets it).
     touchDrag() {
       if (!status || status.screen === "WORLD") {
-        return status && (status.chronicle === "Full" || status.worldEvent) ? "scroll" : "look";
+        return status && (status.chronicle === "Full" || status.worldEvent || status.caravanPanel) ? "scroll" : "look";
       }
       return "scroll";
     },

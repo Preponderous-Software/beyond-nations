@@ -72,7 +72,8 @@ game lays its screens out for a finger (`TouchLayout` in
 | HUD command bar | Tappable, and kept above the controls |
 
 - The controls show only while the world is up, and step aside while a world
-  event's bottom sheet waits for a choice (its choices are tapped directly). Every other screen has its
+  event's bottom sheet waits for a choice or the caravan dispatch panel is
+  open (their buttons are tapped directly; the panel starts at the top). Every other screen has its
   own buttons: the inventory, nations and crafting screens get a large
   **Close** in the top right, the pause, main menu and settings screens use
   44-pixel buttons from the top of the screen, and the controls list

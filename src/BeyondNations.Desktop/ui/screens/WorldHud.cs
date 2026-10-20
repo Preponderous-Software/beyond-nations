@@ -233,7 +233,9 @@ namespace beyondnations.desktop.ui.screens {
             objectiveTracker.drawToast(width, height, stripBottom + layout.Gap);
 
             // the caravan dispatch panel, when Send Caravan has opened it, over the rest
-            CaravanDispatchPanel.draw(width, height, simulation, centreBottom + layout.Gap);
+            // (from the top on a touch screen, whose controls step aside while
+            // it is open, so its Send and Close stay above the screen's edge)
+            CaravanDispatchPanel.draw(width, height, simulation, touch ? layout.Margin : centreBottom + layout.Gap);
 
             return action;
         }
