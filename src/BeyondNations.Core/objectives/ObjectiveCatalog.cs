@@ -15,7 +15,14 @@ namespace beyondnations {
     */
     public static class ObjectiveCatalog {
 
-        /** Members the arc asks the player's nation to reach. */
+        /**
+        * Members the arc asks the player's nation to reach. Seven rather than
+        * five: settlers join a new settlement on their own, and at five the
+        * step could be met within a second of it coming up (docs/PACING.md).
+        */
+        public const int ArcNationGrowthTarget = 7;
+
+        /** The nation size the nation-size ambitions build from. */
         public const int NationGrowthTarget = 5;
 
         /** Members each further nation-size ambition adds. */
@@ -75,8 +82,8 @@ namespace beyondnations {
                             : "Gather " + Stall.WOOD_COST_TO_BUILD + " wood and " + Stall.STONE_COST_TO_BUILD + " stone (press {Interact} at rocks), then press {BuildStall} inside your settlement.",
                     ObjectiveReward.coins(mediumCoinReward())),
 
-                new Objective("grow-nation", "Grow your nation to " + NationGrowthTarget,
-                    s => ObjectiveProgress.count("Members", members(s), NationGrowthTarget),
+                new Objective("grow-nation", "Grow your nation to " + ArcNationGrowthTarget,
+                    s => ObjectiveProgress.count("Members", members(s), ArcNationGrowthTarget),
                     "Talk to settlers ({Interact}) and give gifts ({GiftToPawn}); once they know you, press {InviteToNation}.",
                     ObjectiveReward.coins(largeCoinReward())),
 

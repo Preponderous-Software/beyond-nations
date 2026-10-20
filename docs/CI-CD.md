@@ -16,7 +16,15 @@ dotnet build   BeyondNations.sln --configuration Release --no-restore
 dotnet test    BeyondNations.sln --configuration Release --no-build --verbosity normal
 ```
 
-A failing test fails the job. That is the whole point of it: a project that compiles is not a project that works. The solution holds four test projects (`BeyondNations.Core.Tests`, `BeyondNations.Desktop.Tests`, `BeyondNations.Web.Tests` and `tools/BeyondNations.HistoryExport.Tests`), so the log reports four `Total tests:` counts.
+A failing test fails the job. That is the whole point of it: a project that compiles is not a project that works. The solution holds five test projects (`BeyondNations.Core.Tests`, `BeyondNations.Desktop.Tests`, `BeyondNations.Web.Tests`, `tools/BeyondNations.HistoryExport.Tests` and `tools/BeyondNations.Pacing.Tests`), so the log reports five `Total tests:` counts.
+
+The job then checks the **pacing budget**:
+
+```
+dotnet tools/BeyondNations.Pacing/bin/Release/net8.0/BeyondNations.Pacing.dll --check --out pacing-out
+```
+
+A scripted player plays the seeds in `docs/pacing-budget.json` with no window. The step fails if any objective finishes faster than its minimum, slower than its maximum, or never. Advisory entries, objectives with no budget and budget entries no run reached show up as warnings. The report becomes the job summary and is uploaded as the `pacing-report` artifact. The seeds run in parallel and the step takes about a minute. See [PACING.md](./PACING.md), which also covers updating the budget.
 
 ### 2. Core is engine-agnostic
 
@@ -59,6 +67,14 @@ grep -rn --include='*.cs' -E '\[(DllImport|LibraryImport)|NativeLibrary\.|Strata
 
 The two `grep`s should print nothing.
 
+To check pacing:
+
+```bash
+dotnet run --project tools/BeyondNations.Pacing -c Release -- --check
+```
+
+It exits with status 1 when an objective is out of budget, and writes the report to `pacing-out/`.
+
 To check the game actually starts, without a person watching a window:
 
 ```bash
@@ -85,6 +101,8 @@ On a pull request, the checks appear at the bottom of the conversation tab; sele
 **`Project file does not exist`.** The solution or a project file is missing from the commit. `*.sln` and `*.csproj` are deliberately **not** ignored — see the note in `.gitignore` — but check that a new project was actually added and committed.
 
 **`Core is engine-agnostic` fails.** Something under `src/BeyondNations.Core` has taken a dependency on a game engine. The fix is to move the code into `src/BeyondNations.Desktop`, or to express what it needs as data the host reads. See the [Architecture Note](./ARCHITECTURE.md).
+
+**`Pacing budget` fails.** An objective took longer or shorter than `docs/pacing-budget.json` allows on one of its seeds, or never completed. The job summary has the report, with every objective's time on every seed. Run `dotnet run --project tools/BeyondNations.Pacing -c Release -- --seeds N --trace` to watch what the scripted player did on the failing seed. If the change was meant to alter pacing, update the budget as [PACING.md](./PACING.md) describes. Otherwise the change slowed the game down or sped it up by accident.
 
 ## History
 

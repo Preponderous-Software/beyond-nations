@@ -1,0 +1,106 @@
+{
+  "format": "beyond-nations-pacing-budget/1",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "objectiveLimit": 13,
+  "maxTicks": 60000,
+  "objectives": [
+    {
+      "id": "gather-wood",
+      "title": "Gather wood",
+      "minSeconds": 0,
+      "maxSeconds": 120,
+      "note": "Teaches Interact; one or two trees."
+    },
+    {
+      "id": "eat",
+      "title": "Eat something",
+      "minSeconds": 30,
+      "maxSeconds": 180,
+      "note": "A hunger wait: the player eats once energy falls below 90, about a minute in."
+    },
+    {
+      "id": "join-nation",
+      "title": "Create or join a nation",
+      "minSeconds": 0,
+      "maxSeconds": 60,
+      "note": "One key press."
+    },
+    {
+      "id": "found-settlement",
+      "title": "Found a settlement",
+      "minSeconds": 0,
+      "maxSeconds": 180,
+      "note": "Fast when the wood was gathered while waiting to eat."
+    },
+    {
+      "id": "enter-settlement",
+      "title": "Enter your settlement",
+      "minSeconds": 0,
+      "maxSeconds": 60,
+      "note": "One key press beside it."
+    },
+    {
+      "id": "build-stall",
+      "title": "Build a market stall",
+      "minSeconds": 0,
+      "maxSeconds": 120
+    },
+    {
+      "id": "grow-nation",
+      "title": "Grow your nation to 7",
+      "minSeconds": 5,
+      "maxSeconds": 180,
+      "note": "Under 5 s means settlers had joined before the step came up and the player did nothing for it. At a target of 5 seed 3 finished in 1 s."
+    },
+    {
+      "id": "sell-resources",
+      "title": "Sell resources at market",
+      "minSeconds": 0,
+      "maxSeconds": 180,
+      "note": "Waits for a settler to buy a stall and earn coins to pay with."
+    },
+    {
+      "id": "second-settlement",
+      "title": "Found a second settlement",
+      "minSeconds": 0,
+      "maxSeconds": 120
+    },
+    {
+      "id": "ambition-0",
+      "title": "Grow your nation to 10",
+      "minSeconds": 5,
+      "maxSeconds": 600,
+      "advisory": true,
+      "note": "Advisory until sieges stop taking a new player's settlements in the first ten minutes (docs/PACING.md, known issues)."
+    },
+    {
+      "id": "ambition-1",
+      "title": "Amass 500 coins",
+      "minSeconds": 30,
+      "maxSeconds": 900,
+      "advisory": true,
+      "note": "Advisory. Usually already met when it comes up: coins plus the treasuries pass 500 during the arc."
+    },
+    {
+      "id": "ambition-2",
+      "title": "Hold 3 settlements",
+      "minSeconds": 0,
+      "maxSeconds": 300,
+      "advisory": true
+    },
+    {
+      "id": "ambition-3",
+      "title": "Survive to day 2",
+      "minSeconds": 300,
+      "maxSeconds": 1800,
+      "advisory": true,
+      "note": "Ends with the clock, so it measures how far into day 1 the earlier ambitions finished."
+    }
+  ]
+}
