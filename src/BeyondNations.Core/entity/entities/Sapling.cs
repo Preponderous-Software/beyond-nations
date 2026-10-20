@@ -43,8 +43,16 @@ namespace beyondnations {
         }
 
         public bool isGrown() {
+            return isGrown(1);
+        }
+
+        /**
+        * Whether it has grown, when it needs growthTimeFactor times as long as
+        * usual -- winter slows growth (SeasonalRules.saplingGrowthFactor).
+        */
+        public bool isGrown(int growthTimeFactor) {
             long ticksSincePlanted = tickCounter.getTotalTicks() - plantedTick;
-            return ticksSincePlanted > (long) growTime * tickCounter.getTicksPerSecond();
+            return ticksSincePlanted > (long) growTime * growthTimeFactor * tickCounter.getTicksPerSecond();
         }
 
         // --- saving (docs/SAVES.md) ---

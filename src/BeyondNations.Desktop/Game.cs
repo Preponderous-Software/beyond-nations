@@ -270,6 +270,9 @@ namespace beyondnations.desktop {
                 simulation.getTimeOfDay().setStartFraction(options.TimeOfDay);
             }
             // --- end #280 ---
+            if (options.StartSeason.HasValue) {
+                simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+            }
 
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
@@ -534,6 +537,8 @@ namespace beyondnations.desktop {
                 // the host names what its camera is attached to and the
                 // simulation omits it for this frame only.
                 // --- end #173 ---
+                // seasons and regions recolour the ground and the leaves (WorldPalette)
+                snapshot.setPalette(simulation.getWorldPalette());
                 snapshot.capture(
                     simulation.getEntityRepository(),
                     simulation.getEnvironment(),

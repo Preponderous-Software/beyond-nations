@@ -116,6 +116,13 @@ namespace beyondnations.desktop {
         // --- end #280 ---
 
         /**
+        * Open on the first day of this season rather than of spring, by
+        * moving the clock on before the world is generated
+        * (SeasonCalendar.advanceClockTo). Null starts in spring.
+        */
+        public Season? StartSeason = null;
+
+        /**
         * Open with a lived-in settlement already standing ahead of the player:
         * a nation, a full market, merchants and residents. Exists so that what
         * a town looks like can be screenshotted without an hour of play; see
@@ -186,6 +193,7 @@ namespace beyondnations.desktop {
                     case "--continue":         options.Continue = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
                     case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
+                    case "--season":           options.StartSeason = seasonAfter(args, ref i); break;
                     case "--ui-scale":         options.UiScale = uiScaleAfter(args, ref i); break;
                     case "--help":
                     case "-h":
@@ -200,6 +208,23 @@ namespace beyondnations.desktop {
                 }
             }
             return options;
+        }
+
+        private static Season seasonAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            switch (args[i].ToLowerInvariant()) {
+                case "spring": return Season.SPRING;
+                case "summer": return Season.SUMMER;
+                case "autumn": return Season.AUTUMN;
+                case "winter": return Season.WINTER;
+            }
+            Console.Error.WriteLine("unknown season: " + args[i] + " (expected spring, summer, autumn or winter)");
+            System.Environment.Exit(2);
+            return Season.SPRING;
         }
 
         private static ScreenType screenAfter(string[] args, ref int i) {
@@ -303,6 +328,7 @@ namespace beyondnations.desktop {
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, crafting or load",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
+                "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --help, -h              print this and exit"
             });

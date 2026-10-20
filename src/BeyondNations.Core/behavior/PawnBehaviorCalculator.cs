@@ -14,6 +14,7 @@ namespace beyondnations {
         private GameConfig gameConfig;
         private TickCounter tickCounter;
         private TimeOfDay timeOfDay;
+        private SeasonCalendar seasonCalendar;
 
         public PawnBehaviorCalculator(Environment environment, EntityRepository entityRepository, NationRepository nationRepository, GameConfig gameConfig, TickCounter tickCounter, RandomSource random) {
             this.random = random;
@@ -30,6 +31,15 @@ namespace beyondnations {
         */
         public void setTimeOfDay(TimeOfDay timeOfDay) {
             this.timeOfDay = timeOfDay;
+        }
+
+        /** Gives pawns seasons: in winter they keep to town (warmer) a while longer. Without one it is always spring. */
+        public void setSeasonCalendar(SeasonCalendar seasonCalendar) {
+            this.seasonCalendar = seasonCalendar;
+        }
+
+        private bool isWinter() {
+            return seasonCalendar != null && seasonCalendar.isWinter();
         }
 
         private bool isNight() {
@@ -69,7 +79,12 @@ namespace beyondnations {
         * lingers longer, by temperament (PawnTraits.idleExitChancePercent).
         */
         private bool rollIdleExit(Pawn pawn) {
-            return random.range(0, 100) < PawnTraits.idleExitChancePercent(pawn, isAtHome(pawn));
+            int chance = PawnTraits.idleExitChancePercent(pawn, isAtHome(pawn));
+            if (isWinter()) {
+                // indoors burns less energy, and in winter outdoors burns more
+                chance = System.Math.Max(1, chance / 2);
+            }
+            return random.range(0, 100) < chance;
         }
 
         private BehaviorType computeBehaviorTypeInSettlementByDay(Pawn pawn) {

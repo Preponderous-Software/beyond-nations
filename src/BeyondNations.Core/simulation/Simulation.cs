@@ -42,6 +42,12 @@ namespace beyondnations {
         private PopulationGrowth populationGrowth;
         private ObjectiveTracker objectiveTracker;
         private Chronicle chronicle;
+        // seasons and regions (docs/SYSTEMS.md): all derived from the tick count and the seed, so never saved
+        private RegionMap regionMap;
+        private SeasonCalendar seasonCalendar;
+        private SeasonalWorld seasonalWorld;
+        private WorldPalette worldPalette;
+        private NationResources nationResources;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -100,6 +106,15 @@ namespace beyondnations {
             // pawns keep a day: home at nightfall, out again in the morning
             pawnBehaviorCalculator.setTimeOfDay(timeOfDay);
             objectiveTracker = ObjectiveTracker.createDefault();
+            // Regions come from the seed alone and seasons from the clock alone.
+            regionMap = new RegionMap(random.getSeed(), gameConfig.getChunkSize() * gameConfig.getLocationScale());
+            worldGenerator.setRegionMap(regionMap);
+            seasonCalendar = new SeasonCalendar(timeOfDay);
+            pawnBehaviorCalculator.setSeasonCalendar(seasonCalendar);
+            pawnBehaviorExecutor.setSeasonCalendar(seasonCalendar);
+            seasonalWorld = new SeasonalWorld(seasonCalendar, regionMap, environment, entityRepository, gameConfig, player, random);
+            worldPalette = new WorldPalette(seasonCalendar, regionMap);
+            nationResources = new NationResources(entityRepository, regionMap);
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -124,6 +139,16 @@ namespace beyondnations {
         public ObjectiveTracker getObjectiveTracker() { return objectiveTracker; }
         public Chronicle getChronicle() { return chronicle; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
+        /** Which region every chunk is; see RegionMap. */
+        public RegionMap getRegionMap() { return regionMap; }
+        /** The season API: current season, day of year, isWinter, days until winter. */
+        public SeasonCalendar getSeasonCalendar() { return seasonCalendar; }
+        /** Chickens hatching and the season announcements. */
+        public SeasonalWorld getSeasonalWorld() { return seasonalWorld; }
+        /** The colours seasons and regions give the world, for the host's WorldSnapshot. */
+        public WorldPalette getWorldPalette() { return worldPalette; }
+        /** Each nation's surpluses and shortages, for trade and diplomacy. */
+        public NationResources getNationResources() { return nationResources; }
         public int getNumPlayerDeaths() { return numPlayerDeaths; }
 
         public void fixedUpdate(float fixedDeltaTime) {
@@ -131,6 +156,7 @@ namespace beyondnations {
                     worldGenerator.update();
                     worldGenerator.regrowRocks(tickCounter.getTotalTicks());
                     checkIfPlayerIsFallingIntoVoid();
+                    Season season = seasonCalendar.getSeason();
                     player.getStatus().clearStatusIfExpired();
 
                     // list of positions to generate chunks at
@@ -149,7 +175,8 @@ namespace beyondnations {
                                 pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism() * gameConfig.getSettlementMetabolismMultiplier());
                             }
                             else {
-                                pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism());
+                                // winter cold bites outdoors (SeasonalRules)
+                                pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism() * SeasonalRules.coldMultiplier(season));
                             }
 
                             // A pawn under a leader's order hands it in before it can sell it.
@@ -292,7 +319,8 @@ namespace beyondnations {
                         }
                         else if (entity.getType() == EntityType.SAPLING) {
                             Sapling sapling = (Sapling)entity;
-                            if (sapling.isGrown()) {
+                            // saplings grow slowly through winter
+                            if (sapling.isGrown(SeasonalRules.saplingGrowthFactor(season))) {
                                 // replace with tree
                                 AppleTree tree = new AppleTree(sapling.getPosition(), 5, random);
                                 entityRepository.addEntity(tree);
@@ -317,7 +345,14 @@ namespace beyondnations {
                             // buildings: farms stock the market, residents are recounted, and the
                             // settlement redraws itself if a stall or building has changed
                             if (totalTicks % BuildingCatalog.FARM_TICKS_PER_HARVEST == 0) {
-                                settlement.harvestFarms();
+                                // double in autumn, nothing in winter, one more on the plains
+                                int rounds = SeasonalRules.farmYield(season);
+                                if (rounds > 0) {
+                                    rounds += RegionCatalog.farmBonus(regionMap.regionAt(settlement.getPosition()));
+                                }
+                                for (int round = 0; round < rounds; round++) {
+                                    settlement.harvestFarms();
+                                }
                             }
                             if (totalTicks % ResidentRecountTicks == 0) {
                                 settlement.setResidentCount(SettlementLife.countResidents(entityRepository, settlement.getId()));
@@ -332,6 +367,7 @@ namespace beyondnations {
                         announceBorderCrossing();
                     }
                     populationGrowth.update(tickCounter.getTotalTicks());
+                    seasonalWorld.update(tickCounter.getTotalTicks());
 
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();
@@ -344,6 +380,10 @@ namespace beyondnations {
                     }
             
                     player.fixedUpdate();
+                    if (!player.isCurrentlyInSettlement()) {
+                        // the same winter cold as pawns feel, on top of the ordinary burn
+                        player.setEnergy(player.getEnergy() - player.getMetabolism() * (SeasonalRules.coldMultiplier(season) - 1f));
+                    }
                     if (player.getEnergy() <= 0) {
                         eventProducer.producePlayerDeathEvent(player);
                         numPlayerDeaths++;

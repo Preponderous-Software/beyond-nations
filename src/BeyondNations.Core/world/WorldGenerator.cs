@@ -21,6 +21,8 @@ namespace beyondnations {
         private GameConfig gameConfig;
         // Traits come from their own stream (PawnTraits), so they never shift the rest of a seeded world.
         private RandomSource traitRandom;
+        // Which region each chunk is (forest, highlands, ...); null generates the old, region-less world.
+        private RegionMap regionMap;
 
         public WorldGenerator(Environment environment, Player player, EventProducer eventProducer, EntityRepository entityRepository, GameConfig gameConfig, RandomSource random, PawnNameGenerator pawnNameGenerator) {
             this.pawnNameGenerator = pawnNameGenerator;
@@ -36,6 +38,22 @@ namespace beyondnations {
 
         public void setTraitRandom(RandomSource traitRandom) {
             this.traitRandom = traitRandom;
+        }
+
+        /**
+        * Gives generation regions: a forest chunk gets more trees, a highland
+        * chunk more rocks, and so on (RegionCatalog).
+        */
+        public void setRegionMap(RegionMap regionMap) {
+            this.regionMap = regionMap;
+        }
+
+        public RegionMap getRegionMap() {
+            return regionMap;
+        }
+
+        private float factor(Chunk chunk, Commodity commodity) {
+            return regionMap == null ? 1f : RegionCatalog.abundance(regionMap.regionOf(chunk), commodity);
         }
 
         public void update() {
@@ -111,7 +129,7 @@ namespace beyondnations {
         }
 
         private void spawnTreeEntities(Chunk chunk) {
-            int numberOfTrees = random.range(chunk.getSize(), chunk.getSize() * 2);
+            int numberOfTrees = (int) System.MathF.Round(random.range(chunk.getSize(), chunk.getSize() * 2) * factor(chunk, Commodity.WOOD));
             for (int i = 0; i < numberOfTrees; i++) {
                 Location randomLocation = chunk.getRandomLocation();
                 if (randomLocation.getNumberOfEntities() > 0) {
@@ -134,8 +152,11 @@ namespace beyondnations {
         public const int TARGET_ROCKS_PER_CHUNK = 3;
 
         private void spawnRockEntities(Chunk chunk) {
-            // Three to six attempts a chunk (a 7x7 chunk), was one or two.
-            int numberOfRocks = random.range(chunk.getSize()/2, chunk.getSize());
+            // Three to six attempts a chunk (a 7x7 chunk), was one or two; then
+            // scaled by region (twice as many in the highlands), but never
+            // fewer than RegionCatalog.MIN_ROCK_ATTEMPTS_PER_CHUNK anywhere.
+            int numberOfRocks = (int) System.MathF.Round(random.range(chunk.getSize()/2, chunk.getSize()) * factor(chunk, Commodity.STONE));
+            numberOfRocks = System.Math.Max(RegionCatalog.MIN_ROCK_ATTEMPTS_PER_CHUNK, numberOfRocks);
             for (int i = 0; i < numberOfRocks; i++) {
                 trySpawnRock(chunk);
             }
@@ -172,7 +193,14 @@ namespace beyondnations {
             if (numRocks >= environment.getNumChunks() * TARGET_ROCKS_PER_CHUNK) {
                 return false;
             }
-            return trySpawnRock(chunk);
+            // Any chunk can be picked, so stone comes back everywhere; the
+            // highlands (rockFactor 2.2) surface two rocks at a time.
+            int attempts = regionMap == null ? 1 : System.Math.Max(1, (int) System.MathF.Round(RegionCatalog.rockFactor(regionMap.regionOf(chunk))));
+            bool added = false;
+            for (int i = 0; i < attempts; i++) {
+                added |= trySpawnRock(chunk);
+            }
+            return added;
         }
 
         private void spawnPawns(Chunk chunk) {
@@ -221,7 +249,7 @@ namespace beyondnations {
                 }
             }
             
-            int chickenSpawnProbability = 20;
+            int chickenSpawnProbability = regionMap == null ? 20 : (int) System.MathF.Round(20 * RegionCatalog.chickenFactor(regionMap.regionOf(chunk)));
             bool spawnChickens = random.range(0, 100) < chickenSpawnProbability;
             if (spawnChickens) {
                 int numberOfChickens = random.range(1, 4); // 1-3 chickens per chunk

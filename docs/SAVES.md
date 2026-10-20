@@ -104,6 +104,14 @@ Floats are written in their shortest round-trip form, so every value reads
 back bit for bit. Enums are written by name, so adding a member never shifts
 the meaning of an old save.
 
+**Seasons and regions are derived, not saved** (no format change was needed
+for them). The season is a pure function of the tick count (`SeasonCalendar`),
+and a chunk's region a pure function of the world seed and the chunk's
+coordinates (`RegionMap`), so a loaded world -- including any save written
+before either existed -- rebuilds both exactly. That makes `RegionMap`'s noise
+part of the save contract: changing it would change the regions of every saved
+world. `TestRegionMap` pins seed 42's regions so it cannot change by accident.
+
 What is not saved, because it is not world state: the wall-clock measurement
 behind the debug overlay's ticks per second; and the live objects a fresh event
 points at (the pawn that died, the nation that formed). Loaded events keep

@@ -24,7 +24,8 @@ namespace beyondnationstests {
 
             string stored = SaveStorageCodec.encode(file);
             Assert.StartsWith(SaveStorageCodec.GzipMarker, stored);
-            Assert.True(stored.Length < file.Length / 3, stored.Length + " characters for " + file.Length + " bytes");
+            // well under half; seed 42's region-shaped world (RegionMap) packs to about 34%, a little above the third it used to
+            Assert.True(stored.Length < file.Length * 2 / 5, stored.Length + " characters for " + file.Length + " bytes");
             byte[] back = SaveStorageCodec.decode(stored);
             Assert.Equal(file, back);
             Assert.Equal(1500, SaveGame.decode(back).getTickCounter().getTotalTicks());
