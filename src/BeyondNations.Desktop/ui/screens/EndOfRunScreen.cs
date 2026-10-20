@@ -96,7 +96,10 @@ namespace beyondnations.desktop.ui.screens {
 
             // the buttons take the bottom; the history takes what is left
             string[] labels = buttonLabels(outcome);
-            float buttonHeight = System.MathF.Max(UiScale.px(44f), Overlay.frameHeight());
+            // at least a fingertip (TouchLayout.MinTarget); the page hides its
+            // on-screen controls on every screen but the world, and a drag on
+            // this one scrolls rather than steers
+            float buttonHeight = System.MathF.Max(System.MathF.Max(UiScale.px(44f), TouchLayout.MinTarget), Overlay.frameHeight());
             float gap = UiScale.px(10f);
             float padding = ImGui.GetStyle().FramePadding.X * 2f;
             float rowWidth = -gap;

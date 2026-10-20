@@ -46,6 +46,8 @@ namespace beyondnations.desktop.ui {
                 case HintKey.LeaveNation: return "Leave Nation";
                 case HintKey.FoundSettlement: return "Found Settlement";
                 case HintKey.BuildStall: return "Build Stall";
+                // the bar offers one "Build House", "Build Farm", ... per building it can afford
+                case HintKey.BuildBuilding: return "a Build button";
                 case HintKey.TeleportToHomeSettlement: return "Teleport Home";
                 case HintKey.PlantSapling: return "Plant Sapling";
                 case HintKey.ToggleInventory: return "Bag";

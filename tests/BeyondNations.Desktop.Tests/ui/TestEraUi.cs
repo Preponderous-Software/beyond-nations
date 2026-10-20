@@ -127,6 +127,11 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testBuildBuildingHint_NamesTheCommandBarOnATouchScreen() {
+            Assert.Equal("a Build button", ObjectiveKeyNames.ofTouch(HintKey.BuildBuilding));
+        }
+
+        [Fact]
         public void testBuildBuildingHint_NamesTheBuildKey() {
             Assert.Equal(beyondnations.desktop.input.KeyBindings.BuildBuilding.ToString(), ObjectiveKeyNames.of(HintKey.BuildBuilding));
         }

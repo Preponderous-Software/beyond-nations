@@ -115,8 +115,11 @@ namespace beyondnations.desktop.ui.boxes {
             if (ImGui.Begin("##era-box", PanelFlags)) {
                 ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(HeadingColour));
                 // a button, not a hover: the touch path to the detail
+                float buttonHeight = TouchLayout.isActive()
+                    ? System.MathF.Max(TouchLayout.MinTarget, Overlay.frameHeight())
+                    : Overlay.frameHeight() + UiScale.px(6f);
                 bool toggled = ImGui.Button(headline(simulation) + (expanded ? "  -" : "  +") + "##era-toggle",
-                    new Vector2(-1f, Overlay.frameHeight() + UiScale.px(6f)));
+                    new Vector2(-1f, buttonHeight));
                 ImGui.PopStyleColor();
                 if (toggled) {
                     expanded = !expanded;
