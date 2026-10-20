@@ -37,7 +37,7 @@ namespace beyondnationstests {
                 Saved = new[] { "gameConfig", "random", "tickCounter", "timeOfDay", "player", "eventRepository", "entityRepository",
                     "environment", "worldGenerator", "nationRepository", "pawnNameGenerator", "nationNameGenerator", "settlementLife",
                     "diplomacy", "playerTerritory", "playerTerritoryKnown", "traitRandom", "populationGrowth", "numPawnDeaths", "numPlayerDeaths",
-                    "objectiveTracker", "chronicle" },
+                    "objectiveTracker", "chronicle", "realm" },
                 // seasons come from the tick count and regions from the seed, so all five are rebuilt (docs/SAVES.md)
                 Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer",
                     "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources" },
@@ -119,12 +119,12 @@ namespace beyondnationstests {
             },
             [typeof(Diplomacy)] = new Entry {
                 Saved = new[] { "round", "siegeProgress", "besiegers" },
-                Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player" },
+                Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player", "realm" },
             },
             [typeof(PopulationGrowth)] = new Entry {
                 Saved = new[] { "random", "nameGenerator", "lastBirthTicks", "lastImmigrationTicks", "lastSettlerTicks", "numSettlers",
                     "numSecessions", "lastWandererTick", "numBirths", "numImmigrants", "numWanderers" },
-                Derived = new[] { "entityRepository", "nationRepository", "environment", "eventProducer", "gameConfig", "player" },
+                Derived = new[] { "entityRepository", "nationRepository", "environment", "eventProducer", "gameConfig", "player", "realm" },
             },
             [typeof(PawnNameGenerator)] = new Entry { Saved = new[] { "generated" }, Derived = new[] { "random" } },
             [typeof(NationNameGenerator)] = new Entry { Saved = new[] { "generated" }, Derived = new[] { "random" } },
@@ -165,7 +165,7 @@ namespace beyondnationstests {
                 Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar" },
             },
             [typeof(PawnBehaviorExecutor)] = new Entry {
-                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar" },
+                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar", "realm" },
             },
             // seasons and regions: no state of their own (docs/SAVES.md)
             [typeof(RegionMap)] = new Entry {
@@ -183,6 +183,13 @@ namespace beyondnationstests {
                 Transient = new[] { "seasonTint", "seasonAmount", "leaf" },
             },
             [typeof(NationResources)] = new Entry { Derived = new[] { "entityRepository", "regionMap" } },
+            [typeof(Realm)] = new Entry {
+                Saved = new[] { "lawRound", "laws", "wars", "truces", "lineage", "reignStartTick", "runOver", "notice", "noticeShown" },
+                Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player", "diplomacy", "gameConfig", "tickCounter" },
+            },
+            [typeof(NationLaws)] = saved("nationId", "levels", "pending", "proclaimedAt", "lastTaxCollected", "totalTaxCollected", "deserters"),
+            [typeof(Reign)] = saved("name", "nationName", "startTick", "endTick", "cause"),
+            [typeof(SuccessionNotice)] = saved("previousName", "heirName", "nationName", "reignTicks", "reason", "lineEnded"),
             [typeof(LagPreventer)] = new Entry {
                 Derived = new[] { "gameConfig", "tickCounter", "entityRepository", "environment" },
             },

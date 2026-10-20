@@ -184,11 +184,11 @@ namespace beyondnations.desktop.ui {
             Diplomacy diplomacy = simulation.getDiplomacy();
             if (player.getInventory().getNumItems(ItemType.COIN) >= Diplomacy.PLAYER_GIFT_COINS) {
                 commands.Add(new WorldCommand("Gift " + owner.getName() + " " + Diplomacy.PLAYER_GIFT_COINS + " Coins", () =>
-                    new GiftNationCommand(nationRepository, diplomacy).execute(player, owner)));
+                    new GiftNationCommand(nationRepository, diplomacy, simulation.getRealm()).execute(player, owner)));
             }
             if (!nationRepository.getRelations().isAllied(own, owner)) {
                 commands.Add(new WorldCommand("Propose Alliance to " + owner.getName(), () =>
-                    new ProposeAllianceCommand(nationRepository).execute(player, owner)));
+                    new ProposeAllianceCommand(nationRepository, simulation.getRealm()).execute(player, owner)));
             }
             commands.Add(new WorldCommand("Denounce " + owner.getName(), () =>
                 new DenounceNationCommand(nationRepository, diplomacy).execute(player, owner)));

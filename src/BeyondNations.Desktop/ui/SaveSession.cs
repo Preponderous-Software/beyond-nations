@@ -18,6 +18,7 @@ namespace beyondnations.desktop.ui {
     public class SaveSession {
         /** Two minutes of play at the default 50 ticks per second. */
         public const int AutosaveTicks = 6000;
+        public const string RunOverFeedback = "Your line has ended, so this world is not saved again; Load brings back the last save.";
 
         private readonly SaveSlots slots;
         private readonly string gameVersion;
@@ -63,6 +64,13 @@ namespace beyondnations.desktop.ui {
         /** Saves the world in play to its slot. Returns whether it worked; the reason is in getFeedback(). */
         public bool save(Simulation simulation, bool automatic) {
             if (!enabled || simulation == null || currentSlot == null) {
+                return false;
+            }
+            // a run whose line has ended is never saved: the last save, from
+            // before the death, is what Load brings back (realm/Succession)
+            if (simulation.getRealm().isRunOver()) {
+                feedback = RunOverFeedback;
+                feedbackIsError = false;
                 return false;
             }
             try {

@@ -15,13 +15,42 @@ namespace beyondnations {
     * tests/BeyondNations.Core.Tests/save/fixtures that TestSaveMigrations
     * loads.
     *
-    * Version 1 is the first format, so there are no steps yet. The next
-    * change to what a save holds adds the step from 1 to 2 here; for a new
-    * section that is only "add it, empty".
+    * Version 1 is the first format.
+    *
+    *   1 -> 2  adds the realm section (realm/Realm): no laws, no wars or
+    *           truces, no past rulers, the reign begun at tick 0 and the
+    *           run not over -- which is exactly the state of a world from
+    *           before laws and succession existed.
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
-        private static readonly List<Func<JsonObject, JsonObject>> steps = new List<Func<JsonObject, JsonObject>>();
+        private static readonly List<Func<JsonObject, JsonObject>> steps = new List<Func<JsonObject, JsonObject>> {
+            addRealm,
+        };
+
+        /** 1 -> 2: a world from before the realm has no laws, wars, truces or lineage. */
+        private static JsonObject addRealm(JsonObject body) {
+            // the law rounds that would have run by the saved tick, as in a world played from the start
+            // (500 is Realm.LAW_ROUND_TICKS as format 2 had it; a released step never changes)
+            int lawRounds = 0;
+            JsonObject time = body["time"] as JsonObject;
+            if (time != null && time["totalTicks"] != null) {
+                lawRounds = Math.Max(0, (int) time["totalTicks"]) / 500;
+            }
+            body["realm"] = new JsonObject {
+                ["lawRound"] = lawRounds,
+                ["laws"] = new JsonArray(),
+                ["wars"] = new JsonArray(),
+                ["truces"] = new JsonArray(),
+                ["lineage"] = new JsonArray(),
+                ["reignStartTick"] = 0,
+                ["runOver"] = false,
+                ["noticeShown"] = false,
+                ["notice"] = null,
+            };
+            body["formatVersion"] = 2;
+            return body;
+        }
 
         public static IReadOnlyList<Func<JsonObject, JsonObject>> getSteps() {
             return steps;

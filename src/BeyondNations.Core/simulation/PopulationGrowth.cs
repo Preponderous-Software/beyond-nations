@@ -60,6 +60,8 @@ namespace beyondnations {
         private readonly EventProducer eventProducer;
         private readonly GameConfig gameConfig;
         private readonly Player player;
+        // the player's laws (realm/) can put immigrants off or draw them in
+        private Realm realm;
 
         private readonly Dictionary<EntityId, int> lastBirthTicks = new Dictionary<EntityId, int>();
         private readonly Dictionary<EntityId, int> lastImmigrationTicks = new Dictionary<EntityId, int>();
@@ -81,6 +83,10 @@ namespace beyondnations {
             this.eventProducer = eventProducer;
             this.gameConfig = gameConfig;
             this.player = player;
+        }
+
+        public void setRealm(Realm realm) {
+            this.realm = realm;
         }
 
         public int getNumBirths() { return numBirths; }
@@ -322,8 +328,12 @@ namespace beyondnations {
             if (!isThriving(settlement)) {
                 return false;
             }
+            int cooldown = realm == null ? IMMIGRATION_COOLDOWN_TICKS : realm.immigrationCooldown(settlement, IMMIGRATION_COOLDOWN_TICKS);
+            if (cooldown < 0) {
+                return false;
+            }
             int last;
-            if (lastImmigrationTicks.TryGetValue(settlement.getId(), out last) && totalTicks - last < IMMIGRATION_COOLDOWN_TICKS) {
+            if (lastImmigrationTicks.TryGetValue(settlement.getId(), out last) && totalTicks - last < cooldown) {
                 return false;
             }
             lastImmigrationTicks[settlement.getId()] = totalTicks;

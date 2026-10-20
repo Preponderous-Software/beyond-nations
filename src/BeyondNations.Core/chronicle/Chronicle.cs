@@ -170,6 +170,8 @@ namespace beyondnations {
                     return describeSettlementCapture((SettlementCaptureEvent) e, nations, entities);
                 case EventType.PawnSpawn:
                     return describeBirth((PawnSpawnEvent) e, nations, entities);
+                case EventType.Statecraft:
+                    return describeStatecraft((StatecraftEvent) e, nations, entities);
                 default:
                     // ChunkGenerate: noise.
                     return null;
@@ -284,6 +286,20 @@ namespace beyondnations {
                 "Hunger claimed " + who + " " + where + ".",
                 who + " was found starved " + where + ".",
                 who + " died of hunger " + where + ".");
+        }
+
+        /** A ruler's laws, wars, peaces and successions (realm/) arrive already worded. */
+        private static string describeStatecraft(StatecraftEvent e, List<NationId> nations, List<EntityId> entities) {
+            if (e.getNation() != null) {
+                nations.Add(e.getNation().getId());
+            }
+            if (e.getOtherNation() != null) {
+                nations.Add(e.getOtherNation().getId());
+            }
+            if (e.getEntityId() != null) {
+                entities.Add(e.getEntityId());
+            }
+            return e.getDescription();
         }
 
         private string describePlayerDeath(PlayerDeathEvent e, List<EntityId> entities) {

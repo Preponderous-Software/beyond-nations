@@ -20,6 +20,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Territory | Implemented | [`src/BeyondNations.Core/territory/`](../src/BeyondNations.Core/territory/) |
 | Seasons | Implemented | [`src/BeyondNations.Core/season/`](../src/BeyondNations.Core/season/) |
 | Regions | Implemented | [`src/BeyondNations.Core/region/`](../src/BeyondNations.Core/region/) |
+| Rule (laws, war and peace, succession) | Implemented | [`src/BeyondNations.Core/realm/`](../src/BeyondNations.Core/realm/), [`src/BeyondNations.Core/command/nation/RealmCommands.cs`](../src/BeyondNations.Core/command/nation/RealmCommands.cs) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
 
@@ -72,7 +73,7 @@ Every 250 ticks (`Diplomacy.ROUND_TICKS`, five seconds) a diplomacy round runs, 
 
 **Conflict.** Between two Hostile neighbours of unequal strength, the stronger raids the weaker's nearest settlement every fourth round, carrying 5 coins, 5 wood and 5 stone from its treasury and stockpile to its own nearest settlement (`NationRaid` event). If the stronger has a strength of at least 4 and twice the weaker's, and its nearest settlement is of at least the target's tier, it besieges the target; the siege shows on the settlement's nametag (`Besieged by Xland (2/6)`), and kept up for 6 rounds in a row it takes the settlement (#176, `SettlementCapture` event). A siege lapses the round its conditions stop holding, so gifts, an alliance, recruiting or a building that lifts the settlement's tier can save it. Towns cannot be besieged. A captured settlement takes its new nation's colours and name; the losing nation's residents lose their home there, their stalls are given up (a player's stock comes back to them) and those inside are turned out. Its treasury and stockpile go with it. A nation left with no settlement is disbanded and its members become nationless.
 
-**Player diplomacy.** A player who leads a nation can, from the nations screen (`O`) or from the command bar while standing in another nation's land, **gift** 25 coins (paid into that nation's first settlement's treasury), **propose an alliance** (accepted at +30) or **denounce** it (ends any alliance). The nations screen lists every other nation with its members, settlements, relation and whether it is a neighbour, and warns of any siege of the player's settlements. The answer to each action is on the status line. `--stage-diplomacy` sets up a nation between a friendly and a hostile, besieging neighbour.
+**Player diplomacy.** A player who leads a nation can, from the nations screen (`O`) or from the command bar while standing in another nation's land, send **tribute** of 25 coins (paid into that nation's first settlement's treasury), **propose an alliance** or **denounce** it (ends any alliance); from the nations screen they can also **declare war** or, once at odds, **offer peace** (see [Rule](#rule)). The nations screen lists every other nation with its members, settlements, relation, any war or truce, and whether it is a neighbour, and warns of any siege of the player's settlements. The answer to each action, with its reason, is on the status line. `--stage-diplomacy` sets up a nation between a friendly and a hostile, besieging neighbour.
 
 *Planned:* per-nation culture and history; pawn-led nations poaching each other's members; open battle.
 
@@ -169,6 +170,36 @@ Every settlement claims a circle of land around it whose radius grows with its t
 - **The player knows where they are.** The player box has a `Land:` line (`wilds`, `your own land`, or `Xland (Rival)`), and crossing a border puts it on the status line.
 - Touching borders are friction between nations, and a siege takes a whole settlement and its claim with it (see Nation).
 
+## Rule
+Being a ruler (`Realm`, in [`src/BeyondNations.Core/realm/`](../src/BeyondNations.Core/realm/)): the laws a nation lives under, the wars and truces its ruler declares and agrees, and the player's line of rulers. Nothing here draws on randomness, and a world that never touches it -- no laws set, no war declared, nobody dying in a nation -- takes exactly the course it always did.
+
+### Laws
+The nations screen's **Laws** tab (the court) lets the leader set four laws (`Laws`, `NationLaws`). A change is proclaimed and comes in `Realm.LAW_DELAY_TICKS` (1,500, thirty seconds) later, on the status line and in the chronicle ("Taxes in Townfield rose to High."). Choosing the setting already in force withdraws a pending change. Every 500 ticks (ten seconds) a law round runs, and each law in force does its work:
+
+| Law | Effect | Cost |
+| --- | --- | --- |
+| Taxes: Low / High | Each member pawn pays 1 / 3 coins into its home settlement's treasury (or the nation's first) | A point of loyalty every 3rd round / every round; a settlement waits twice as long for an immigrant / gets none |
+| Conscription | One conscript per two member pawns, rounded up, adds to the nation's **defence**: a hostile nation raids only if its strength is above the defence, and besieges only at twice the defence | Every gather of wood or stone by a member pawn loses 40% (rounded down) to drill |
+| Open borders | Immigrants come twice as often; 2 coins of tolls per settlement per round; every 4th round, +1 relations (trade) with every nation not at war with it | Raids on it carry off double; every 3rd round thieves take up to 2 coins and 2 wood from each settlement |
+| Rationing | Each member pawn gets back a quarter of a round's hunger | A point of loyalty every 2nd round |
+
+Loyalty is a member's relationship with the player (see Pawn). A member whose loyalty falls to -15 (`Realm.DESERT_AT`) deserts: it gives up its stall, home and order, leaves the nation, and the chronicle says so. Laws only bite while the player leads the nation. The panel shows each law's setting and any change coming in, the nation's defence, the last tax collection and the deserters so far.
+
+### War and peace
+From the nations screen a leader can also:
+
+- **Declare war**: any alliance breaks, relations fall to at least -60 (Hostile) and cannot warm while the war lasts, and the enemy's allies think 15 less of the player. Raids and sieges follow wherever the two are neighbours (see Nation). The enemy's answer names the odds: it laughs if it fields twice the player's strength, falls back behind its walls if the player has twice its defence, and otherwise takes up arms.
+- **Offer peace** (instead of War, once at war or Rival or worse): refused at -90 or worse ("too much blood"), or by an enemy at least twice the player's defence that thinks it is winning, unless a tribute has bought a truce; accepted, the war ends, relations come up to -19 (Neutral) and a **truce** holds for 3,000 ticks (a minute).
+- **Tribute**: the 25-coin gift, paid to a stronger nation the player is at war or at odds with, also buys a truce.
+- **Propose an alliance**: as before (+30), but refused by a nation at war with the player, and a nation at least twice the player's strength wants +60.
+
+Under a truce neither side raids nor besieges the other, a pawn-led nation does not denounce, and the pair's relations cannot grate (only warm).
+
+### Succession
+When the player dies as a member of a nation (`Succession`), an heir from that nation takes their place instead of the player respawning: family first (a pawn sharing the ruler's surname -- the first ruler has none, but each heir brings theirs and children take a parent's), then the most loyal, then whoever joined first; a pawn starving that same tick is passed over. The player is one entity for the whole game, so the heir is folded into it: the player takes the heir's name, position, energy (at least 50), belongings (the old ruler's are dropped as usual when "Keep Inventory" is off) and home, and a non-leader takes the heir's stall if they had none; the heir pawn leaves the world. The nation, its settlements, laws and relations are untouched. Members' loyalty to the new ruler starts at half what it was, and the heir's own family warm by 10. A succession screen tells who died, after how long a reign, who rules now and why, and lists the line of rulers; the chronicle records it.
+
+With no member left to succeed, the line ends and so does the run: the game-over screen offers *New World*, *Load* and *Main Menu*, and the world is never saved again (Load brings back the last save, from before the death). A nationless wanderer still rises again as before. `--stage-succession` opens the diplomacy stage with the player about to starve; `--start-screen laws` opens the nations screen on its Laws tab.
+
 ## Sound, feedback and tips (host)
 Not a simulation system: it lives in the host, in [`src/BeyondNations.Desktop/ui/feel/`](../src/BeyondNations.Desktop/ui/feel/), shared by the desktop and the browser. It reads the world and never writes to it, draws nothing from the simulation's `RandomSource`, and runs on real frame time, so the same seed steps identically with it on, off or missing (`TestFeel.testFeelLayerDoesNotChangeTheSimulation`, and the History replay job).
 
@@ -227,3 +258,4 @@ What a region holds is one table, `RegionCatalog`; each factor is relative to th
 So a highland nation has a surplus of stone and a shortage of wood and food, and a forest nation a surplus of wood and a shortage of stone. It is the land's endowment, not a stock count: it changes only when a nation gains or loses a settlement, draws no randomness, and changes nothing by being asked. A nation with no settlements has neither surplus nor shortage.
 
 *Planned:* caravans and diplomacy that act on surpluses and shortages; weather.
+

@@ -81,7 +81,7 @@ The following controls are available in the game:
 | `B` | Build stall |
 | `K` | Build the building your settlement needs most (house, storehouse, farm or workshop; costs wood and stone) |
 | `I` | Open / close the inventory screen (pauses the world) |
-| `O` | Open / close the nations screen: every nation, its size and its relation to yours; a leader can gift, propose an alliance or denounce from here (pauses the world) |
+| `O` | Open / close the nations screen: every nation, its size and its relation to yours; a leader can send tribute, propose an alliance, declare war or offer peace, or denounce from here, and set the nation's laws on its *Laws* tab (pauses the world; *Realm* on a touch screen) |
 | `C` | Open / close the crafting screen (axe, pickaxe, cooked meat, planks, bricks; pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
@@ -129,9 +129,35 @@ Every pair of nations has a standing from -100 to +100: **Hostile** (-50 and bel
 
 Hostility has stakes. A stronger hostile neighbour raids your nearest settlement's treasury and stockpile, and one at least twice as strong (counting its allies' members) lays siege to it; thirty seconds of siege and the settlement changes hands. Towns, behind their palisades, cannot be besieged. A nation left with no settlement falls, and its members are left without one.
 
-As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land: **Gift 25 coins** (+10, paid into their treasury), **Propose Alliance** (accepted at +30) or **Denounce** (-25, and it ends any alliance). `--stage-diplomacy` opens the game leading a nation between a friendly neighbour and a hostile one already besieging your village (the screenshot above is `--seed 42 --start-screen world --stage-diplomacy`).
+As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land, and every answer comes with its reason:
 
-![The nations screen: your nation and its besieged village, then each other nation with its members, settlements and relation, and Gift, Ally and Denounce buttons](./.github/media/nations-screen.png)
+- **Tribute** of 25 coins (+10, paid into their treasury). Paid to a stronger nation you are at war or at odds with, it also buys a minute's truce: no raids, no sieges.
+- **Ally**: accepted at +30, but never by a nation you are at war with, and a nation twice your strength wants +60 before it takes on so small a partner.
+- **War**: relations drop to Hostile and stay down while it lasts, any alliance with them breaks, and their allies think less of you. Where your lands meet, the stronger side raids and besieges.
+- **Peace** (in place of War once you are at odds): refused when too much blood lies between you (-90 or worse), or by an enemy twice your strength unless a tribute has softened them; accepted, the war ends with a minute's truce and relations at Neutral.
+- **Denounce** (-25, and it ends any alliance).
+
+`--stage-diplomacy` opens the game leading a nation between a friendly neighbour and a hostile one already besieging your village (the screenshot above is `--seed 42 --start-screen world --stage-diplomacy`).
+
+![The nations screen: Nations and Laws tabs, your nation and its besieged village, then each other nation with its members, settlements and relation, and Tribute, Ally, Peace or War, and Denounce buttons](./.github/media/nations-screen.png)
+
+### Ruling a nation
+![The Laws tab: taxes, conscription, borders and rationing, each with its setting, what it costs and buys, and a button for every setting](./.github/media/laws-screen.png)
+
+The nations screen's **Laws** tab is your court. A change is proclaimed and comes in thirty seconds later, with a line in the chronicle:
+
+| Law | Buys | Costs |
+| --- | --- | --- |
+| Taxes (None / Low / High) | 1 or 3 coins from every member into the treasury every 10 seconds | Loyalty: a point every 30 seconds (Low) or every 10 (High); immigrants come half as often (Low) or not at all (High) |
+| Conscription | One conscript per two members defends against raids and sieges | Members gather 40% less wood and stone |
+| Open borders | Immigrants twice as often, 2 coins of tolls per settlement, trade warms every nation you are not at war with | Raiders carry off double; thieves take coins and wood every 30 seconds |
+| Rationing | Members' hunger drains a quarter slower | Morale: a point of loyalty every 20 seconds |
+
+Loyalty is how each member feels about you. Push someone to -15 and they desert, taking their stall with them.
+
+![The succession screen: the founder died of hunger, you go on as the heir, and the line of rulers so far, with Continue](./.github/media/succession-screen.png)
+
+**Heirs.** Dying in a nation is not the end. A member takes your place -- family first (someone who shares your surname), then the most loyal -- and you go on as them, with the nation, its settlements and its friends and enemies as they were; your people's loyalty starts at half what it was. With no one left to take your place, your line ends and so does the run: *New World*, *Load* (the last save, from before the death; an ended run is never saved) or *Main Menu*. A wanderer with no nation still rises again as before. `--stage-succession` opens the diplomacy stage with the player about to starve (the screenshot above is `--seed 42 --start-screen world --stage-succession`; `--start-screen laws` opens on the Laws tab).
 
 ### Seasons and regions
 ![The same spot on seed 42 in spring, summer, autumn and winter: fresh green, then grey-green highland grass, golden autumn ground with turning leaves, and snow with frosted trees; the Season box above the player box says which season it is, how long until winter and what the land is good for](./.github/media/seasons.png)

@@ -11,6 +11,10 @@ namespace beyondnations {
         NATIONS,
         CRAFTING,
         // the list of saved worlds, reached from the main menu (docs/SAVES.md)
-        LOAD
+        LOAD,
+        // after the player dies in a nation: the heir who takes their place,
+        // or, with none, the end of the line (realm/Succession)
+        SUCCESSION,
+        GAME_OVER
     }
 }

@@ -137,6 +137,10 @@ namespace beyondnations.web {
             if (options.StageDiplomacy) {
                 DiplomacyShowcase.stage(simulation);
             }
+            if (options.StageSuccession) {
+                // starving: the first tick hands the rule to an heir
+                simulation.getPlayer().setEnergy(0.001f);
+            }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());
@@ -240,6 +244,10 @@ namespace beyondnations.web {
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;
                 saves.onFixedStep(simulation);
+                // the player died in a nation: the heir's screen, or the end of the line
+                if (RealmScreens.afterStep(simulation, screens)) {
+                    break;
+                }
             }
         }
 
