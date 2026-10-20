@@ -35,7 +35,13 @@ namespace beyondnations {
                 return;
             }
 
-            int coinsToTransfer = stall.getInventory().getNumItems(ItemType.COIN)/2;
+            int coinsInStall = stall.getInventory().getNumItems(ItemType.COIN);
+            if (coinsInStall == 0) {
+                player.getStatus().update("Your stall has no coins.");
+                return;
+            }
+
+            int coinsToTransfer = coinsInStall/2;
             if (coinsToTransfer == 0) {
                 coinsToTransfer = 1;
             }
