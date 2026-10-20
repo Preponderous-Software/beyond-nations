@@ -8,13 +8,15 @@
 //
 // ui: { progress(loadedBytes), ready(), fatal(message), quit(), status(obj),
 //       log(level, message) } -- every member optional.
+// modules: { name: object } -- extra JSImport modules the game's own code
+//       imports (Beyond Nations' "bn-audio"), registered before Main runs.
 
 import * as gfx from "./gfx.js";
 import { attachInput } from "./input.js";
 import { trackCanvasSize } from "./canvas.js";
 import { gzipResourceLoader } from "./loader.js";
 
-export async function startWebHost({ canvas, ui = {}, assembly, exportsName, frameworkPath = "./_framework/" }) {
+export async function startWebHost({ canvas, ui = {}, assembly, exportsName, frameworkPath = "./_framework/", modules = {} }) {
   const size = trackCanvasSize(canvas);
   size.measure();
 
@@ -101,6 +103,10 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
       },
     },
   });
+
+  for (const [name, module] of Object.entries(modules)) {
+    runtime.setModuleImports(name, module);
+  }
 
   const config = runtime.getConfig();
   const exports = await runtime.getAssemblyExports(config.mainAssemblyName);

@@ -21,6 +21,7 @@ box. Only what touches a window or OpenGL has a browser counterpart.
 | `WorldLabelRenderer` (FontStashSharp + GL) | `game/WebWorldLabelRenderer.cs` (FontStashSharp + WebGL2) |
 | `UiHost` + Silk's `ImGuiController` | `game/WebUiHost.cs` + `host/ImGuiWebBackend.cs` |
 | Command-line options | the URL query (`game/WebOptions.cs`) |
+| `NullSoundService` (no sound) | `game/WebAudioSoundService.cs`: cues synthesised with WebAudio in `wwwroot/audio.js` |
 
 So the browser shows what the desktop shows: Strata's sun and moon following
 the time of day, its sky, cascaded shadows and fog.
@@ -45,6 +46,20 @@ the time of day, its sky, cascaded shadows and fog.
   shows an "exited" panel (play again, or back to the arcade); F12 downloads a
   PNG; the window size is the page's.
 
+### Sound
+
+The browser build has sound; the desktop does not yet (see
+[SYSTEMS.md](./SYSTEMS.md#sound-feedback-and-tips-host)). `wwwroot/audio.js` is
+the `bn-audio` JSImport module (`game/WebAudioSoundService.cs`): every cue is
+synthesised with WebAudio oscillators and filtered noise as it plays, and the
+ambient loop is looped noise through a low-pass filter with scheduled bird or
+cricket chirps. No audio file is fetched. Browsers allow sound only after a
+user gesture, so the `AudioContext` is created on the first `keydown`,
+`pointerdown` or `touchend`; cues asked for before then are dropped and the
+ambient loop starts on that gesture. Volume, mute and the tips are kept in
+localStorage under `beyond-nations/feel-settings`.
+`window.beyondNations.audio()` reports `locked`, `running` or `unavailable`.
+
 ### URL options
 
 The desktop's command-line options work as URL query parameters with the same
@@ -60,6 +75,7 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `no-saves` | do not save or offer saved worlds this run |
 | `render-distance=N` | starting render distance |
 | `time-of-day=F` | starting time of day, 0 to 1 |
+| `stage-feel` | replay the feedback effects every 20 frames, for screenshots |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
 | `exit-after-frames=N`, `screenshot-after-frames=N` | for automated runs |
 
@@ -190,11 +206,13 @@ browser's stack trace then names each frame. For this trap the top frame was
   builds a world, the world is drawn (pixels sampled from the frame, not the
   clear colour), W walks, a right-drag steers (the player turns exactly 9
   degrees and the camera tilts 1.5 for a 60 by 10 pixel drag, with no camera
-  yaw offset) and a plain move does not (#291), a key
+  yaw offset) and a plain move does not (#291), the first tip of a new world
+  shows (`hint` in the status is `move`), a key
   tap shorter than a frame toggles the view (#290), and there are no console
   errors, page errors or failed requests;
 - iPhone 13 profile: the keyboard notice appears, the on-screen controls come
-  up, a tap leaves the title, Start can be tapped and the world is drawn.
+  up, a tap leaves the title, Start can be tapped, the world is drawn and the
+  first tip shows.
 
 Screenshots and the console log are uploaded as the `web-smoke` artifact.
 
@@ -221,9 +239,10 @@ deploys by hand.
 `wwwroot/webhost/` and `host/` know nothing about Beyond Nations, so another
 .NET game of the Strata family can reuse them:
 
-- `webhost/host.js`: `startWebHost({ canvas, ui, assembly, exportsName })`
-  boots the runtime, registers the `webhost` JSImport module, forwards input
-  and runs the frame clock;
+- `webhost/host.js`: `startWebHost({ canvas, ui, assembly, exportsName, modules })`
+  boots the runtime, registers the `webhost` JSImport module (and any of the
+  game's own, such as Beyond Nations' `bn-audio`), forwards input and runs
+  the frame clock;
 - `webhost/gfx.js`: the WebGL2 passes drawn over the engine's world
   (textured labels, Dear ImGui draw lists), driven by pointers into wasm
   memory so frame data is never copied through interop;

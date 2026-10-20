@@ -95,7 +95,9 @@ try {
     const viewport = page.viewportSize();
     await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 50);
     await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after tapping Start");
-    await page.waitForTimeout(1500);
+    // A new world opens with the first tip (ui/feel/OnboardingHints).
+    await waitFor((s) => s.hint === "move", "the first tip in a new world", 15000);
+    await page.screenshot({ path: path.join(out, "phone-tip.png") });
     // Hold the forward pad button for a moment; the game must keep running.
     const forward = await page.$('#touch [data-key="KeyW"]');
     const box = await forward.boundingBox();
@@ -130,6 +132,10 @@ try {
     const world = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after Start");
     result.worldMs = Date.now() - started;
     await waitFor((s) => s.frames >= world.frames + 60, "60 more frames in the world");
+    // A new world opens with the first tip (ui/feel/OnboardingHints), and the
+    // key presses so far have unlocked the page's sound (wwwroot/audio.js).
+    await waitFor((s) => s.hint === "move", "the first tip in a new world", 15000);
+    await page.screenshot({ path: path.join(out, "tip.png") });
     // Walk and look a little, as a player would.
     await page.keyboard.down("KeyW");
     await page.waitForTimeout(600);
@@ -207,6 +213,9 @@ try {
   result.sample = sample;
   result.frameStats = await page.evaluate(() => window.beyondNations.frameStats());
   result.status = await status();
+  // "running" once a key or tap has unlocked WebAudio; recorded, not asserted,
+  // since a headless browser may have no audio device.
+  result.audio = await page.evaluate(() => window.beyondNations.audio && window.beyondNations.audio());
   await page.screenshot({ path: path.join(out, phone ? "phone-final.png" : "world.png") });
   if (!sample || sample.notClearColour < sample.samples * 0.2 || sample.distinctColours < 4) {
     throw new Error("the world looks blank: " + JSON.stringify(sample));

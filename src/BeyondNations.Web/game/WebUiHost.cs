@@ -1,6 +1,7 @@
 using System;
 using beyondnations;
 using beyondnations.desktop.ui;
+using beyondnations.desktop.ui.feel;
 using beyondnations.desktop.ui.screens;
 using beyondnations.web.host;
 
@@ -43,6 +44,13 @@ namespace beyondnations.web {
 
         private bool quitRequested;
         private bool startRequested;
+
+        // sound, effects and tips (ui/feel); null leaves the screens as they were
+        private FeelDirector feel;
+
+        public void setFeel(FeelDirector director) {
+            feel = director;
+        }
 
         public WebUiHost(ImGuiWebBackend backend, ScreenState screens, GameConfig gameConfig, SaveSession saves) {
             this.backend = backend;
@@ -104,10 +112,10 @@ namespace beyondnations.web {
                     action = mainMenuScreen.draw(width, height, saves.latest(), saves.isFeedbackError() ? saves.getFeedback() : null);
                     break;
                 case ScreenType.CONFIG:
-                    action = configScreen.draw(width, height, gameConfig);
+                    action = configScreen.draw(width, height, gameConfig, feel?.getSettings());
                     break;
                 case ScreenType.PAUSE:
-                    action = pauseScreen.draw(width, height, saves);
+                    action = pauseScreen.draw(width, height, saves, feel?.getSettings());
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
@@ -137,6 +145,7 @@ namespace beyondnations.web {
                     break;
             }
 
+            feel?.drawOverlay(width, height, screens.getCurrent(), simulation);
             apply(action);
             backend.render();
         }

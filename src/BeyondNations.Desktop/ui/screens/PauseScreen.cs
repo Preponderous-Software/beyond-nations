@@ -1,4 +1,5 @@
 using System.Numerics;
+using beyondnations.desktop.ui.feel;
 
 namespace beyondnations.desktop.ui.screens {
 
@@ -40,8 +41,25 @@ namespace beyondnations.desktop.ui.screens {
             return draw(width, height, null);
         }
 
+        public const string SoundOnLabel = "Sound: On";
+        public const string SoundOffLabel = "Sound: Off";
+
         /** saves is null when saving is off for this run (--no-saves); the screen is then as it was before saves. */
         public UiAction draw(float width, float height, SaveSession saves) {
+            return draw(width, height, saves, null);
+        }
+
+        /** The label of the mute toggle in the top-right corner. */
+        public static string soundLabel(FeelSettings feel) {
+            return feel.isMuted() ? SoundOffLabel : SoundOnLabel;
+        }
+
+        /**
+        * feel adds a mute toggle in the top-right corner, out of the column of
+        * buttons so their places do not move; the volume itself is on the
+        * config screen.
+        */
+        public UiAction draw(float width, float height, SaveSession saves, FeelSettings feel) {
             float centreY = height / 2f;
             bool canSave = saves != null && saves.isEnabled();
             string[] labels = canSave ? ButtonLabelsWithSave : ButtonLabels;
@@ -65,6 +83,15 @@ namespace beyondnations.desktop.ui.screens {
                 Overlay.textCenteredColoured(saves.isFeedbackError() ? ErrorColour : SavedColour, saves.getFeedback(), Overlay.BaseFontSize, warningY, width);
             } else {
                 Overlay.textCentered(SavesOnLeaveHint, Overlay.BaseFontSize, warningY, width);
+            }
+            // only where there is sound to mute (the browser build)
+            if (feel != null && feel.isSoundAvailable()) {
+                float toggleWidth = UiScale.px(110f);
+                float toggleHeight = System.MathF.Max(Overlay.frameHeight(), UiScale.px(32f));
+                float margin = UiScale.px(10f);
+                if (Overlay.buttonAt(soundLabel(feel), width - toggleWidth - margin, margin, toggleWidth, toggleHeight)) {
+                    feel.setMuted(!feel.isMuted());
+                }
             }
             Overlay.end();
 

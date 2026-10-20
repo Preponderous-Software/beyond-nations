@@ -30,6 +30,14 @@ The licence requires that the copyright notice travels with the font, which is
 why `LICENSE-DejaVu.txt` sits beside the `.ttf` and is copied to the build
 output rather than living only here.
 
+## Sound
+
+None. Every sound in the browser build (`src/BeyondNations.Web/wwwroot/audio.js`)
+is synthesised with WebAudio oscillators and filtered noise when it plays, so no
+audio file, sample or sound font is shipped and there is no audio licence to
+record. A future recorded asset must be CC0 or similarly permissive and listed
+here.
+
 ## Vendored source
 
 ### trace-client (C#)

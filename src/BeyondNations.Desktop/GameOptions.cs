@@ -124,6 +124,14 @@ namespace beyondnations.desktop {
         public bool StageSettlement = false;
 
         /**
+        * Replays the feedback effects every couple of seconds -- chips,
+        * floating "+5 wood", buildings rising, the objective flash -- without
+        * touching the world, so they can be screenshotted headless. See
+        * FeelDirector.stageDemo.
+        */
+        public bool StageFeel = false;
+
+        /**
         * How much larger than its design size to draw the UI. 0, the default,
         * uses the monitor's content scale (150 % in Windows display settings
         * is 1.5); anything from 1 to 4 overrides it.
@@ -171,6 +179,7 @@ namespace beyondnations.desktop {
                     case "--debug-mode":       options.DebugMode = true; break;
                     case "--stage-settlement": options.StageSettlement = true; break;
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
+                    case "--stage-feel":       options.StageFeel = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--no-saves":         options.NoSaves = true; break;
@@ -291,6 +300,7 @@ namespace beyondnations.desktop {
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
+                "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, crafting or load",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",

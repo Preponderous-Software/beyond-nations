@@ -68,6 +68,26 @@ namespace beyondnations {
             return labels;
         }
 
+        /**
+        * Presentation-only extras for this frame: the host's particles,
+        * scaffolding and floating text (src/BeyondNations.Desktop/ui/feel).
+        * They are appended after capture() and gone at the next one, and
+        * nothing in the simulation ever reads them, so they cannot change
+        * what the world does.
+        */
+        public void addEffectItem(RenderItem item) {
+            entityItems.Add(item);
+        }
+
+        public void addEffectLabel(LabelItem label) {
+            labels.Add(label);
+        }
+
+        /** Replaces one captured entity item for this frame only (a building rising as it goes up). */
+        public void setEntityItem(int index, RenderItem item) {
+            entityItems[index] = item;
+        }
+
         public int getTotalItemCount() {
             return entityItems.Count + groundItems.Count;
         }

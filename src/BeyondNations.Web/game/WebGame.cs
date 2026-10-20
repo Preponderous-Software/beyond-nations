@@ -7,6 +7,7 @@ using beyondnations.desktop;
 using beyondnations.desktop.input;
 using beyondnations.desktop.render;
 using beyondnations.desktop.ui;
+using beyondnations.desktop.ui.feel;
 using beyondnations.web.host;
 
 namespace beyondnations.web {
@@ -48,6 +49,8 @@ namespace beyondnations.web {
         private readonly RenderCuller culler = new RenderCuller();
         private readonly WorldSnapshot snapshot = new WorldSnapshot();
         private Simulation simulation;
+        // sound, effects and the first-five-minutes tips (ui/feel); presentation only
+        private FeelDirector feel;
         // saves go to localStorage (docs/SAVES.md); see LocalStorageSaveStorage
         private readonly SaveSession saves;
         private bool automatedExit;
@@ -90,6 +93,9 @@ namespace beyondnations.web {
             imgui = new ImGuiWebBackend(devicePixelRatio);
             saves = new SaveSession(new LocalStorageSaveStorage(), GameVersion.Version, !options.NoSaves);
             ui = new WebUiHost(imgui, screens, gameConfig, saves);
+            feel = new FeelDirector(new WebAudioSoundService(), new LocalStorageFeelSettingsStore(), WebAudio.isTouchOnly());
+            feel.setDemo(options.StageFeel);
+            ui.setFeel(feel);
             playerInputController.setDebugMode(options.DebugMode);
 
             if (options.FirstPerson) {
@@ -134,6 +140,7 @@ namespace beyondnations.web {
             }
             culler.setEnabled(!options.NoCulling);
             saves.beginNewWorld(simulation, DateTime.UtcNow);
+            feel.beginWorld(simulation, true);
             Log.info("world created");
         }
 
@@ -145,6 +152,7 @@ namespace beyondnations.web {
             }
             simulation = loaded;
             accumulator = 0;
+            feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
             Log.info("world loaded");
@@ -285,6 +293,7 @@ namespace beyondnations.web {
         private void render(double deltaTime, double cssWidth, double cssHeight, double devicePixelRatio) {
             renderStats?.beginFrame();
             WebGpu.beginFrame(0.45, 0.65, 0.90);
+            feel.frame(simulation, screens.getCurrent(), deltaTime);
 
             if (simulation != null && screens.isWorldVisible()) {
                 Player player = simulation.getPlayer();
@@ -292,10 +301,12 @@ namespace beyondnations.web {
                     simulation.getEntityRepository(),
                     simulation.getEnvironment(),
                     camera.getMode() == CameraMode.FirstPerson ? player.getId() : null);
+                feel.decorate(snapshot);
 
                 MouseLook mouseLook = playerInputController.getMouseLook();
                 camera.setRenderDistance(player.getRenderDistance());
-                camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                camera.follow(player.getPosition() + feel.getCameraShake(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                feel.setView(camera.getViewMatrix(), camera.getProjectionMatrix());
                 culler.beginFrame(camera);
                 renderer.setTimeOfDay(simulation.getTimeOfDay().getFraction());
                 renderer.setPlayerPosition(player.getPosition());
@@ -400,6 +411,9 @@ namespace beyondnations.web {
             json.Append(",\"camera\":\"").Append(camera.getMode().ToString()).Append('"');
             json.Append(",\"stopped\":").Append(stopped ? "true" : "false");
             // saves (docs/SAVES.md), for the smoke test's save-and-continue check
+            json.Append(",\"audio\":\"").Append(feel.getSound().getState()).Append('"');
+            json.Append(",\"hint\":\"").Append(feel.describeHint()).Append('"');
+            json.Append(",\"effects\":").Append(feel.getJuice().getParticles().Count + feel.getJuice().getFloatingTexts().Count);
             json.Append(",\"savedWorlds\":").Append(saves.list().Count);
             json.Append(",\"saveFeedback\":\"").Append(jsonEscape(saves.getFeedback() ?? "")).Append('"');
             json.Append('}');
