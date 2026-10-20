@@ -49,6 +49,8 @@ namespace beyondnations.desktop {
         // world. automatedExit marks a close that --exit-after-frames asked
         // for, which is a test run and saves nothing on the way out.
         private SaveSession saves;
+        // seeds, the run's replay and the history export (docs/SHARING.md)
+        private ShareSession share;
         private bool automatedExit;
 
         // --- #222 world-space text ---
@@ -200,7 +202,8 @@ namespace beyondnations.desktop {
             Log.info("ui scale: " + UiScale.get());
             // --- end high-DPI ---
             saves = new SaveSession(new FileSaveStorage(AppDataPaths.getSavesDirectory()), GameVersion.Version, !options.NoSaves);
-            ui = new UiHost(gl, window, input, screens, gameConfig, saves);
+            share = new ShareSession(new DesktopSharePlatform(input), GameVersion.Version, options.SeedText);
+            ui = new UiHost(gl, window, input, screens, gameConfig, saves, share);
             feel = new FeelDirector(new NullSoundService(), new FileFeelSettingsStore(AppDataPaths.getBaseDirectory()), false);
             feel.setDemo(options.StageFeel);
             ui.setFeel(feel);
@@ -260,6 +263,9 @@ namespace beyondnations.desktop {
         * doing it.
         */
         private void createWorld() {
+            // The New World screen's seed (docs/SHARING.md); empty is a fresh
+            // world. --seed and --start-screen world arrive with it filled in.
+            gameConfig.setWorldSeed(share.getChosenSeed());
             simulation = new Simulation(gameConfig);
             // The objective tracker (top left) carries the step-by-step guidance
             // now, so the opening line points at it rather than competing with it.
@@ -295,6 +301,7 @@ namespace beyondnations.desktop {
 
             saves.beginNewWorld(simulation, DateTime.UtcNow);
             feel.beginWorld(simulation, true);
+            share.beginWorld(simulation);
         }
 
         /**
@@ -307,6 +314,7 @@ namespace beyondnations.desktop {
                 return;
             }
             simulation = loaded;
+            share.beginWorld(simulation);
             accumulator = 0;
             feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
@@ -372,6 +380,7 @@ namespace beyondnations.desktop {
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;
                 saves.onFixedStep(simulation);
+                share.onFixedStep(simulation);
                 // the player died in a nation: the heir's screen, or the end of the line
                 if (RealmScreens.afterStep(simulation, screens)) {
                     break;

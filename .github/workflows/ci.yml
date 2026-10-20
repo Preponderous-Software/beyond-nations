@@ -165,8 +165,28 @@ jobs:
           print(f"{len(a.ticks)} samples, identical state hashes; last {a.hashes[-1]}")
           PY
 
+      # The game's own Share > Export replay (RunRecorder + ReplayUsdaWriter,
+      # docs/SHARING.md) writes .usda text without a USD library; hold it to
+      # the same validator, and to the same seed giving the same replay.
+      - name: Validate the in-game replay export
+        run: |
+          for run in a b; do
+            dotnet run --project tools/BeyondNations.HistoryExport -c Release -- \
+              --seed 42 --ticks 40000 --every 400 --sim-version "${GITHUB_SHA::12}" --game-replay "out/game-$run.usda"
+            usd-recorder replay validate "out/game-$run.usda"
+          done
+          cmp out/game-a.usda out/game-b.usda
+          python - <<'PY'
+          from usd_recorder.replay import read_replay
+          r = read_replay("out/game-a.usda")
+          assert len(r.ticks) == 101 and r.ticks[0] == 0 and r.ticks[-1] == 40000, (len(r.ticks), r.ticks[:2], r.ticks[-1:])
+          print(f"in-game export: {len(r.ticks)} samples; last {r.hashes[-1]}")
+          PY
+
       - name: Upload the replay
         uses: actions/upload-artifact@v4
         with:
           name: history-replay-seed42
-          path: out/a.usdc
+          path: |
+            out/a.usdc
+            out/game-a.usda

@@ -3,9 +3,11 @@
 //   node smoke.mjs <url> <output-dir> [--phone]
 //
 // Loads the page, waits for the title screen, presses a key (main menu),
-// clicks Start, waits for the world to be drawn and checks that the canvas is
-// not blank, saves from the pause menu and continues from the main menu,
-// then fails on any console error, page error or failed request.
+// clicks Start and then Begin on the New World screen, waits for the world to
+// be drawn and checks that the canvas is not blank, opens Share from the pause
+// menu and downloads the replay and the history, saves from the pause menu and
+// continues from the main menu, opens a ?seed= link, then fails on any
+// console error, page error or failed request.
 // Writes title.png, menu.png, world.png and result.json to <output-dir>.
 //
 // --phone runs the same page as an iPhone 13 (touch, no hover) and checks
@@ -94,7 +96,15 @@ try {
     await waitFor((s) => s.screen === "MAIN_MENU", "the main menu after a tap");
     const viewport = page.viewportSize();
     await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 50);
-    await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after tapping Start");
+    // Start opens the New World screen (docs/SHARING.md), whose Begin sits where Start was.
+    await waitFor((s) => s.screen === "NEW_WORLD", "the New World screen after tapping Start", 10000);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(out, "phone-new-world.png") });
+    if (await page.isVisible('#touch [data-key="KeyW"]')) {
+      throw new Error("the touch controls cover the New World screen");
+    }
+    await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 50);
+    await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after tapping Begin");
     // A new world opens with the first tip (ui/feel/OnboardingHints).
     await waitFor((s) => s.hint === "move", "the first tip in a new world", 15000);
     await page.screenshot({ path: path.join(out, "phone-tip.png") });
@@ -129,7 +139,14 @@ try {
     // MainMenuScreen: Start is at least 160x40, its top edge 25 px below the centre.
     const startFrames = menu.frames;
     await page.mouse.click(viewport.width / 2, viewport.height / 2 + 50);
-    const world = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after Start");
+    // Start opens the New World screen (docs/SHARING.md); Begin, where Start
+    // was, builds a world with a fresh seed since the field is empty.
+    await waitFor((s) => s.screen === "NEW_WORLD", "the New World screen after Start", 10000);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(out, "new-world.png") });
+    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 50);
+    const world = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after Begin");
+    if (!world.seed) throw new Error("the world reports no seed");
     result.worldMs = Date.now() - started;
     await waitFor((s) => s.frames >= world.frames + 60, "60 more frames in the world");
     // A new world opens with the first tip (ui/feel/OnboardingHints), and the
@@ -180,10 +197,38 @@ try {
     // localStorage, Main Menu (which saves again) offers Continue, and
     // Continue brings the same world back at the tick it was saved on.
     // PauseScreen's column starts at the centre, MainMenuScreen's 25 px
-    // below it; buttons are 40 px tall with 12 px between them.
+    // below it; buttons are 40 px tall with 12 px between them. The pause
+    // column is Resume, Save, Share, Controls, Main Menu, Quit.
     await page.waitForTimeout(300);
     await page.keyboard.press("Escape");
     await waitFor((s) => s.screen === "PAUSE", "Escape to pause", 10000);
+    await page.waitForTimeout(300);
+
+    // Share (docs/SHARING.md): its column starts 10 px below the centre and
+    // is Copy link, Export replay (USD), Export history (text), Back. Each
+    // export is a download.
+    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 2 * 52 + 20);
+    await waitFor((s) => s.screen === "SHARE", "Share on the pause screen", 10000);
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: path.join(out, "share.png") });
+    const shareRow = (i) => viewport.height / 2 + 10 + i * 52 + 20;
+    result.share = { seed: world.seed };
+    for (const [row, name, expect] of [[1, "replay", "usd-replay/1"], [2, "history", "# The History of"]]) {
+      const [download] = await Promise.all([
+        page.waitForEvent("download", { timeout: 20000 }),
+        page.mouse.click(viewport.width / 2, shareRow(row)),
+      ]);
+      const file = path.join(out, download.suggestedFilename());
+      await download.saveAs(file);
+      const text = fs.readFileSync(file, "utf8");
+      if (!text.includes(expect)) throw new Error(`the ${name} download (${file}) does not contain ${expect}`);
+      result.share[name] = { file: download.suggestedFilename(), bytes: text.length };
+      await waitFor((s) => s.shareFeedback.startsWith("Downloaded"), `the Share screen to report the ${name} download`, 10000);
+      await page.waitForTimeout(200);
+    }
+    await page.screenshot({ path: path.join(out, "share-exported.png") });
+    await page.keyboard.press("Escape");
+    await waitFor((s) => s.screen === "PAUSE", "Escape from Share back to the pause screen", 10000);
     await page.waitForTimeout(300);
     await page.mouse.click(viewport.width / 2, viewport.height / 2 + 52 + 20);
     const saved = await waitFor((s) => s.savedWorlds >= 1 && s.saveFeedback.startsWith("Saved"), "Save on the pause screen", 20000);
@@ -195,7 +240,7 @@ try {
       keys: await page.evaluate(() => Object.keys(localStorage).filter((k) => k.startsWith("beyond-nations/saves/"))
         .map((k) => k + " " + localStorage.getItem(k).length)),
     };
-    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 3 * 52 + 20);
+    await page.mouse.click(viewport.width / 2, viewport.height / 2 + 4 * 52 + 20);
     await waitFor((s) => s.screen === "MAIN_MENU", "Main Menu from the pause screen", 10000);
     await page.waitForTimeout(300);
     await page.screenshot({ path: path.join(out, "menu-with-saves.png") });
@@ -207,6 +252,13 @@ try {
     }
     await waitFor((s) => s.frames >= resumed.frames + 30, "30 frames of the loaded world");
     result.framesSinceStart = (await status()).frames - startFrames;
+
+    // A share link: ?seed= with text names a world (WorldSeed hashes
+    // "Ironvale" to 1450162717), and the same link always builds it.
+    await page.goto(new URL("?seed=Ironvale&start-screen=world&no-saves", url).href, { waitUntil: "load" });
+    const linked = await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world from a ?seed= link");
+    if (linked.seed !== 1450162717) throw new Error("?seed=Ironvale built seed " + linked.seed + ", not 1450162717");
+    result.seedLink = { seed: linked.seed };
   }
 
   const sample = await page.evaluate(() => window.beyondNations.sampleNextFrame());

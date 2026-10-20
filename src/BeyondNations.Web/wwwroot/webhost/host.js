@@ -16,6 +16,14 @@ import { attachInput } from "./input.js";
 import { trackCanvasSize } from "./canvas.js";
 import { gzipResourceLoader } from "./loader.js";
 
+// The share sheet is for phones and tablets; a desktop browser that has
+// navigator.share too still copies, which is what a mouse user expects.
+function canShareLink() {
+  try {
+    return typeof navigator.share === "function" && window.matchMedia("(pointer: coarse)").matches;
+  } catch (_) { return false; }
+}
+
 export async function startWebHost({ canvas, ui = {}, assembly, exportsName, frameworkPath = "./_framework/", modules = {} }) {
   const size = trackCanvasSize(canvas);
   size.measure();
@@ -100,6 +108,44 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
       },
       storageRemove(key) {
         try { localStorage.removeItem(key); } catch (_) { /* nothing to do */ }
+      },
+      // Sharing (docs/SHARING.md). The system share sheet on a touch device
+      // that has one; the clipboard everywhere else.
+      canShare() { return canShareLink(); },
+      async shareLink(url, title) {
+        if (canShareLink()) {
+          try { await navigator.share({ title, url }); return "shared"; }
+          catch (e) {
+            if (e && e.name === "AbortError") return "cancelled";
+            // fall through to the clipboard
+          }
+        }
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(url);
+            return "copied";
+          }
+        } catch (e) { return "failed: " + String(e && e.message || e); }
+        return "failed: no clipboard";
+      },
+      downloadText(name, mime, content) {
+        try {
+          const blob = new Blob([content], { type: mime || "text/plain" });
+          const link = document.createElement("a");
+          link.download = name;
+          link.href = URL.createObjectURL(blob);
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          setTimeout(() => URL.revokeObjectURL(link.href), 60000);
+          return "";
+        } catch (e) { return String(e && e.message || e); }
+      },
+      promptText(message, current) {
+        try {
+          const typed = window.prompt(message, current || "");
+          return typed === null ? null : String(typed);
+        } catch (_) { return null; }
       },
     },
   });

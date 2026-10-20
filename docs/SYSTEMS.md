@@ -21,8 +21,12 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Seasons | Implemented | [`src/BeyondNations.Core/season/`](../src/BeyondNations.Core/season/) |
 | Regions | Implemented | [`src/BeyondNations.Core/region/`](../src/BeyondNations.Core/region/) |
 | Rule (laws, war and peace, succession) | Implemented | [`src/BeyondNations.Core/realm/`](../src/BeyondNations.Core/realm/), [`src/BeyondNations.Core/command/nation/RealmCommands.cs`](../src/BeyondNations.Core/command/nation/RealmCommands.cs) |
+| Sharing | Implemented | [`src/BeyondNations.Core/sharing/`](../src/BeyondNations.Core/sharing/), [SHARING.md](./SHARING.md) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
+
+## Sharing
+A world is its seed. The New World screen takes a number or any word (hashed to a seed, `WorldSeed`), and the pause screen's Share opens the world's link (`?seed=` on the browser build), an export of the run as a `usd-replay/1` replay (`RunRecorder`, `ReplayUsdaWriter`) and an export of the chronicle as a Markdown history (`ChronicleExport`). Recording reads the world and never draws from its random source, so it changes nothing. See [SHARING.md](./SHARING.md).
 
 ## Event
 The event system records notable occurrences in the game — chunk generation, nation creation/join/leave/disband, leadership changes, settlements founded, stalls built, pawn and player deaths, pawn spawns, the player falling into the void, pawn relationships improving, nations changing how they stand toward each other (alliances formed and broken, rivalries, hostility), raids, and settlements captured. Events are produced through a single producer and stored in a repository that can be queried by event type, which is what drives the event counts shown in the debug display. Other systems can subscribe to the repository, for every event or for one type; subscribers are called synchronously inside the tick that produced the event, and a subscriber that throws is logged and skipped.

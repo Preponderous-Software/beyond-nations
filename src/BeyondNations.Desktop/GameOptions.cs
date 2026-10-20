@@ -32,9 +32,16 @@ namespace beyondnations.desktop {
         public int ExitAfterFrames = 0;
 
         /**
-        * World seed. Zero means pick one, matching GameConfig.
+        * World seed. Zero means pick one, matching GameConfig. --seed takes a
+        * number or any text, which WorldSeed hashes to one (docs/SHARING.md).
         */
         public int Seed = 0;
+
+        /**
+        * The seed as it was given, "Ironvale" or "42", which the New World
+        * screen opens with. Null when no --seed was passed.
+        */
+        public string SeedText = null;
 
         /**
         * Resize the window part-way through the run. This exists so that resize
@@ -183,7 +190,10 @@ namespace beyondnations.desktop {
                     case "--ticks-per-second": options.TicksPerSecond = intAfter(args, ref i, options.TicksPerSecond); break;
                     case "--exit-after-frames":options.ExitAfterFrames = intAfter(args, ref i, options.ExitAfterFrames); break;
                     case "--screenshot-after-frames": options.ScreenshotAfterFrames = intAfter(args, ref i, options.ScreenshotAfterFrames); break;
-                    case "--seed":             options.Seed = intAfter(args, ref i, options.Seed); break;
+                    case "--seed":
+                        options.SeedText = textAfter(args, ref i);
+                        options.Seed = WorldSeed.fromText(options.SeedText);
+                        break;
                     case "--no-vsync":         options.VSync = false; break;
                     case "--smoke-resize":     options.SmokeResize = true; break;
                     case "--render-stats":     options.RenderStats = true; break;
@@ -256,8 +266,10 @@ namespace beyondnations.desktop {
                     // the nations screen, opened on its Laws tab
                     beyondnations.desktop.ui.screens.NationScreen.startOnLaws = true;
                     return ScreenType.NATIONS;
+                case "new-world": return ScreenType.NEW_WORLD;
+                case "share":     return ScreenType.SHARE;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting or load)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -294,6 +306,15 @@ namespace beyondnations.desktop {
             return parsed;
         }
 
+        private static string textAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            return args[i];
+        }
+
         private static int intAfter(string[] args, ref int i, int fallback) {
             if (i + 1 >= args.Length) {
                 Console.Error.WriteLine("missing value after " + args[i]);
@@ -323,7 +344,7 @@ namespace beyondnations.desktop {
                 "  --ticks-per-second N    simulation rate       (default 50)",
                 "  --exit-after-frames N   render N frames then exit; 0 runs until closed",
                 "  --screenshot-after-frames N  take a screenshot once N frames have rendered; 0 disables",
-                "  --seed N                world seed; 0 picks one",
+                "  --seed S                world seed: a number, or any text (hashed to one); 0 picks one",
                 "  --no-vsync              do not wait for vertical sync",
                 "  --smoke-resize          resize part-way through, to exercise resize handling",
                 "  --render-stats          report draw calls, frame times and allocation on exit",
@@ -339,7 +360,7 @@ namespace beyondnations.desktop {
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting or load",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",

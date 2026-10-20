@@ -54,6 +54,44 @@ namespace beyondnationstests.web {
             Assert.Equal(new[] { "--seed", "3" }, parse("?--SEED=3"));
         }
 
+        /**
+        * A share link is ?seed=42 (docs/SHARING.md); a seed can be text too,
+        * which GameOptions hashes the way the New World screen does. A
+        * number too large for an int used to be dropped; it is now text like
+        * any other, so a link never silently starts a different, random world.
+        */
+        [Theory]
+        [InlineData("?seed=42", 42, "42")]
+        [InlineData("?seed=Ironvale", 1450162717, "Ironvale")]
+        [InlineData("?seed=a+quiet%20valley", -1, "a quiet valley")]
+        [InlineData("?seed=99999999999", -1, "99999999999")]
+        public void aSeedInTheUrlStartsThatWorld(string query, int expected, string text) {
+            List<string> warnings = new List<string>();
+            List<string> args = parse(query, warnings);
+            Assert.Empty(warnings);
+            Assert.Equal(new[] { "--seed", text }, args);
+
+            GameOptions options = GameOptions.parse(args.ToArray());
+            Assert.Equal(text, options.SeedText);
+            Assert.Equal(expected == -1 ? WorldSeed.fromText(text) : expected, options.Seed);
+            Assert.NotEqual(0, options.Seed);
+        }
+
+        [Fact]
+        public void theShareLinkRoundTripsToItsSeed() {
+            int seed = WorldSeed.fromText("Ironvale");
+            string link = SeedLink.build(seed);
+            string query = link.Substring(link.IndexOf('?'));
+            GameOptions options = GameOptions.parse(parse(query).ToArray());
+            Assert.Equal(seed, options.Seed);
+        }
+
+        [Fact]
+        public void theNewWorldAndShareScreensCanBeAskedFor() {
+            Assert.Equal(new[] { "--start-screen", "new-world" }, parse("?start-screen=new-world"));
+            Assert.Equal(ScreenType.SHARE, GameOptions.parse(parse("?start-screen=share").ToArray()).StartScreen);
+        }
+
         [Fact]
         public void zeroOrFalseLeavesAFlagOff() {
             Assert.Empty(parse("?debug-mode=0&no-culling=false"));
@@ -68,7 +106,6 @@ namespace beyondnationstests.web {
         [InlineData("?ticks-per-second=0")]
         [InlineData("?ticks-per-second=-5")]
         [InlineData("?seed=")]
-        [InlineData("?seed=99999999999")]
         [InlineData("?start-screen=credits")]
         [InlineData("?renderer=vulkan")]
         [InlineData("?time-of-day=1")]
