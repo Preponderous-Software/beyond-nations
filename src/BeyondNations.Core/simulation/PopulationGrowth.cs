@@ -288,6 +288,11 @@ namespace beyondnations {
                     chosen = pawn;
                 }
             }
+            // a nation the player leads sends no settler its era cannot house (EraRules);
+            // an ambitious serf still leaves to found a nation of its own
+            if (chosen != null && !chosen.hasTrait(PawnTrait.AMBITIOUS) && !nation.canFoundSettlement()) {
+                chosen = null;
+            }
             if (chosen != null) {
                 Pawn pawn = chosen;
                 settlement.getInventory().removeItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);

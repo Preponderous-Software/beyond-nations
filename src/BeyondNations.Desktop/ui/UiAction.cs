@@ -35,6 +35,8 @@ namespace beyondnations.desktop.ui {
         BackToPause,
         ShareLink,
         ExportReplay,
-        ExportChronicle
+        ExportChronicle,
+        // the end-of-run screen: save this world and start a new one
+        NewWorld
     }
 }

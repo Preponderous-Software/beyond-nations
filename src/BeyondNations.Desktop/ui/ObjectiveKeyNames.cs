@@ -23,6 +23,7 @@ namespace beyondnations.desktop.ui {
                 case HintKey.LeaveNation: return KeyBindings.LeaveNation.ToString();
                 case HintKey.FoundSettlement: return KeyBindings.FoundSettlement.ToString();
                 case HintKey.BuildStall: return KeyBindings.BuildStall.ToString();
+                case HintKey.BuildBuilding: return KeyBindings.BuildBuilding.ToString();
                 case HintKey.TeleportToHomeSettlement: return KeyBindings.TeleportToHomeSettlement.ToString();
                 case HintKey.PlantSapling: return KeyBindings.PlantSapling.ToString();
                 case HintKey.ToggleInventory: return KeyBindings.ToggleInventory.ToString();
@@ -45,6 +46,8 @@ namespace beyondnations.desktop.ui {
                 case HintKey.LeaveNation: return "Leave Nation";
                 case HintKey.FoundSettlement: return "Found Settlement";
                 case HintKey.BuildStall: return "Build Stall";
+                // the bar offers one "Build House", "Build Farm", ... per building it can afford
+                case HintKey.BuildBuilding: return "a Build button";
                 case HintKey.TeleportToHomeSettlement: return "Teleport Home";
                 case HintKey.PlantSapling: return "Plant Sapling";
                 case HintKey.ToggleInventory: return "Bag";

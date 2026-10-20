@@ -176,6 +176,14 @@ namespace beyondnations.desktop {
         public bool StageTrade = false;
 
         /**
+        * Opens a world whose run has just ended -- a Prosperity victory in
+        * the Kingdom era, or a collapse -- on the end-of-run screen. See
+        * EndingShowcase.
+        */
+        public bool StageVictory = false;
+        public bool StageDefeat = false;
+
+        /**
         * Neither save nor offer to load this run: no autosave, no save on
         * quit, no Continue or Load. For automated runs that should leave a
         * player's saves alone. See docs/SAVES.md.
@@ -216,6 +224,8 @@ namespace beyondnations.desktop {
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
                     case "--stage-event":      options.StageEvent = true; break;
                     case "--stage-trade":      options.StageTrade = true; break;
+                    case "--stage-victory":    options.StageVictory = true; break;
+                    case "--stage-defeat":     options.StageDefeat = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--no-saves":         options.NoSaves = true; break;
@@ -371,6 +381,7 @@ namespace beyondnations.desktop {
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
+                "  --stage-victory         open on the end-of-run screen of a won run (--stage-defeat: a lost one)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",

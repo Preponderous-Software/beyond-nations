@@ -70,7 +70,7 @@ A save is UTF-8 text (in practice ASCII) in two parts:
   and `seed` must agree with the header's.
 
 `tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave`,
-`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave` and `v4-seed42-tick2400.bnsave` are real version 1, 2, 3 and 4 saves; open one to see every section. `.gitattributes` marks
+`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave`, `v4-seed42-tick2400.bnsave` and `v5-seed42-tick2400.bnsave` are real version 1 to 5 saves; open one to see every section. `.gitattributes` marks
 `*.bnsave` as binary, since a line-ending conversion would break the checksum.
 
 ### What the body holds
@@ -98,6 +98,7 @@ and goes on exactly as the saved one would have:
 | `worldEvents` | the world events' random stream, when the player's and the nations' next events are due, how many there have been and the player's last, the event waiting on the player's choice if any (its id, when it began and when it times out, and the nation, other nation, settlement, entity and number it was prepared with), and every running effect (drought, bandits) with its timers (format 3) |
 | `chronicle` | every chronicle entry kept (up to 200: sequence, event type, tick, day, part of day, text, the nations and entities it names), how many have ever been recorded, nations founded, and the raids already told today |
 | `trade` | when each nation last sent a caravan, the day the last notable haul was told, and how many caravans have been sent, have sold, have been robbed and have been escorted (format 4) |
+| `eras` | (format 5) the era and the tick each was reached, the run's outcome, when it came and whether a victory has been played past, the collapse countdown, the nation's name and its peak members, settlements and funds, the history kept for the end-of-run screen (up to 400 lines) with the last chronicle entry copied into it, and the era each ambition was made in |
 
 The player's meal and sale counters, which objectives read, are saved with the
 player.
@@ -159,7 +160,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 4.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 5.
 
 | Version | Change | Migration from the one before |
 | --- | --- | --- |
@@ -167,6 +168,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 | 2 | adds `realm` (laws, wars and truces, succession) | add `realm` empty: no laws, wars, truces or past rulers, reign begun at tick 0, run not over, no notice, and the law round a world played to the saved tick would have reached (`totalTicks / 500`) |
 | 3 | world events: the `worldEvents` section | add it empty: nothing pending or running; the events' clocks start from the first tick the loaded world runs, as a new world's do |
 | 4 | trade caravans and living prices: the `trade` section, `prices` in every market, and caravan entities | adds `trade` with nothing sent, and every market's `prices` empty (every item at its plain supply-curve price, no trend yet); an old world has no caravans |
+| 5 | eras and the end of a run: the `eras` section | add `eras` at the camp, with no outcome and an empty history; the era catches up with the nation one era a second as play resumes, and the chronicle's kept lines about the player are copied into the history |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by
@@ -215,8 +217,9 @@ world that never had it should start with) -- as format 2 did for `realm`.
   that checks out but cannot be built; backups, fallback to the backup, the
   newer-version slot left alone, atomic writes.
 - **World events** (`TestWorldEvents`): a world with a pending choice, a bandit camp and a drought round-trips, and the original and the copy, given the same choice, run on the same; v1 and v2 saves load with the world events' clocks started from their first tick, and the v3 fixture loads and plays on.
-- **Migration** (`TestSaveMigrations`): the committed v1 fixture loads, plays
-  1,500 ticks on and saves again; the migration chain runs steps in order and
+- **Migration** (`TestSaveMigrations`): the committed v1 to v5 fixtures load,
+  play 1,500 ticks on and save again; a save from before eras (v1 to v4) loads
+  at the camp with no outcome; the migration chain runs steps in order and
   refuses a step that does not stamp its version.
 - **The browser** (`smoke.mjs`): after playing, the smoke test pauses, presses
   Save, checks the save reached `localStorage`, goes to the main menu and

@@ -171,12 +171,29 @@ namespace beyondnationstests {
             Assert.Equal(6, tracker.getCompletedCount());
             Assert.StartsWith("Members ", tracker.getCurrentProgress().describe());
 
-            // 7. grow the nation: on seed 42, settlers without a nation join
-            // the new settlement on their own within a minute or two.
-            for (int second = 0; second < 300 && tracker.getCurrent().getId() == "grow-nation"; second++) {
+            // 7. reach the Village era: two buildings (K) and a second stall
+            // (B) make the camp a village; on seed 42 settlers without a
+            // nation join it on their own; and the first night has to pass.
+            new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
+            foreach (BuildingType type in new[] { BuildingType.HOUSE, BuildingType.FARM }) {
+                gatherWoodUntil(BuildingCatalog.getWoodCost(type));
+                gatherStoneUntil(BuildingCatalog.getStoneCost(type));
+                player.setPosition(settlement.getPosition());
+                interact();
+                Assert.True(new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, type));
+                new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
+            }
+            gatherWoodUntil(Stall.WOOD_COST_TO_BUILD);
+            gatherStoneUntil(Stall.STONE_COST_TO_BUILD);
+            player.setPosition(settlement.getPosition());
+            interact();
+            new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player);
+            Assert.Equal(SettlementTier.VILLAGE, settlement.getTier());
+            for (int second = 0; second < 1200 && tracker.getCurrent().getId() == "grow-nation"; second++) {
                 tickOneSecond();
             }
             assertCurrent("sell-resources");
+            Assert.Equal(Era.VILLAGE, simulation.getEraTracker().getEra());
             Assert.True(ObjectiveCatalog.members(simulation) >= ObjectiveCatalog.NationGrowthTarget);
 
             // 8. sell resources: keep trying while inside, as a player would.

@@ -277,7 +277,8 @@ namespace beyondnations {
                 }
             }
 
-            if (pawn.isSettler()) {
+            // a nation the player leads founds no more than its era allows (EraRules)
+            if (pawn.isSettler() && nation.canFoundSettlement()) {
                 if (pawn.getInventory().getNumItems(ItemType.WOOD) < Settlement.WOOD_COST_TO_BUILD) {
                     return BehaviorType.GATHER_RESOURCES;
                 }
@@ -289,7 +290,7 @@ namespace beyondnations {
                     return BehaviorType.JOIN_RANDOM_SETTLEMENT;
                 }
                 // every settlement is full: with the wood to hand, found another for the nation
-                if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD) {
+                if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD && nation.canFoundSettlement()) {
                     return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : BehaviorType.SEEK_SETTLEMENT_SITE;
                 }
             }

@@ -51,6 +51,7 @@ namespace beyondnations {
         private Realm realm;
         private WorldEvents worldEvents;
         private TradeCaravans tradeCaravans;
+        private EraTracker eraTracker;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -108,7 +109,9 @@ namespace beyondnations {
             populationGrowth = new PopulationGrowth(new RandomSource(random.getSeed() ^ 0x620717), entityRepository, nationRepository, environment, eventProducer, gameConfig, player);
             // pawns keep a day: home at nightfall, out again in the morning
             pawnBehaviorCalculator.setTimeOfDay(timeOfDay);
-            objectiveTracker = ObjectiveTracker.createDefault();
+            // eras (Camp to Kingdom) and the run's outcome; ambitions scale with the era they are made in
+            eraTracker = new EraTracker();
+            objectiveTracker = new ObjectiveTracker(ObjectiveCatalog.firstArc(), eraTracker.makeAmbition);
             // Regions come from the seed alone and seasons from the clock alone.
             regionMap = new RegionMap(random.getSeed(), gameConfig.getChunkSize() * gameConfig.getLocationScale());
             worldGenerator.setRegionMap(regionMap);
@@ -153,6 +156,7 @@ namespace beyondnations {
         public Realm getRealm() { return realm; }
         public WorldEvents getWorldEvents() { return worldEvents; }
         public TradeCaravans getTradeCaravans() { return tradeCaravans; }
+        public EraTracker getEraTracker() { return eraTracker; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         /** Which region every chunk is; see RegionMap. */
         public RegionMap getRegionMap() { return regionMap; }
@@ -439,6 +443,9 @@ namespace beyondnations {
 
                     // Once a second of game time, after the world has settled
                     // for this tick, so a reward lands on a consistent state.
+                    // The era goes first, so an ambition made this second is
+                    // made in the era just reached.
+                    eraTracker.update(this);
                     objectiveTracker.update(this);
                 }
 
@@ -579,6 +586,10 @@ namespace beyondnations {
         * the header and checksum.
         */
         internal void save(SaveWriter writer, SaveStreams streams) {
+            // The era's limits on the player's nation are derived and rebuilt on
+            // load; bring them up to date here too, so a world changed since the
+            // last tick (a nation founded, a leader changed) saves as it loads.
+            eraTracker.applyRules(this);
             writer.beginObject("config");
             gameConfig.save(writer);
             writer.endObject();
@@ -678,6 +689,9 @@ namespace beyondnations {
             writer.endObject();
             writer.beginObject("worldEvents");
             worldEvents.save(writer);
+            writer.endObject();
+            writer.beginObject("eras");
+            eraTracker.save(writer);
             writer.endObject();
         }
 
@@ -813,6 +827,8 @@ namespace beyondnations {
             diplomacy.load(SaveReader.property(body, "diplomacy"), reader);
             populationGrowth.load(SaveReader.property(body, "population"), reader);
             eventRepository.load(SaveReader.property(body, "events"));
+            // eras first: the objectives ask it for every ambition already made
+            eraTracker.load(SaveReader.property(body, "eras"));
             objectiveTracker.load(SaveReader.property(body, "objectives"));
             chronicle.load(SaveReader.property(body, "chronicle"), reader);
             realm.load(SaveReader.property(body, "realm"), reader);
@@ -835,6 +851,8 @@ namespace beyondnations {
                     throw new SaveFormatException("the " + stream.Key + " random stream is corrupt", e);
                 }
             }
+            // the era's limits on the player's nation are derived, not saved
+            eraTracker.applyRules(this);
         }
 
         /**

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -185,6 +186,37 @@ namespace beyondnationstests {
             // the loaded chronicle is still subscribed: it went on recording
             Assert.Equal(original.getChronicle().getEntries()[original.getChronicle().getCount() - 1].getText(),
                 copy.getChronicle().getEntries()[copy.getChronicle().getCount() - 1].getText());
+        }
+
+        [Fact]
+        public void testMidCollapse_ThePlayersNationFallsOnTheSameTick() {
+            Simulation original = newWorld(42);
+            run(original, 2400);
+            Player player = original.getPlayer();
+            new NationCreateCommand(original.getNationRepository(), original.getEventProducer(),
+                original.getRandom(), original.getNationNameGenerator()).execute(player);
+            player.setPosition(new Vector3(4000, 1, 4000));
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            new FoundSettlementCommand(original.getNationRepository(), original.getEventProducer(),
+                original.getEntityRepository(), original.getGameConfig(), original.getRandom()).execute(player);
+            Assert.NotNull(player.getHomeSettlementId());
+            run(original, 200);
+            Assert.Equal(1, original.getNationRepository().getNation(player.getNationId()).getSettlementLimit());
+            Assert.NotEmpty(original.getEraTracker().getHistory());
+
+            // a lone leader who disbands the nation starts the countdown
+            new NationLeaveCommand(original.getNationRepository(), original.getEventProducer(), original.getEntityRepository()).execute(player);
+            run(original, 200);
+            Assert.True(original.getEraTracker().getCollapseSinceTick() >= 0);
+
+            Simulation copy = roundTrip(original, 1000, "mid-collapse");
+            int left = original.getEraTracker().getCollapseTicksLeft(original);
+            Assert.Equal(left, copy.getEraTracker().getCollapseTicksLeft(copy));
+            run(original, left + 100);
+            run(copy, left + 100);
+            Assert.Equal(RunOutcome.DEFEAT, original.getEraTracker().getOutcome());
+            Assert.Equal(original.getEraTracker().getOutcomeTick(), copy.getEraTracker().getOutcomeTick());
+            Assert.Equal(RunOutcome.DEFEAT, copy.getEraTracker().getOutcome());
         }
 
         [Fact]

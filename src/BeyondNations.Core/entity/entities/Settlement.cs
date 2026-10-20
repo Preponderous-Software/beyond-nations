@@ -15,6 +15,9 @@ namespace beyondnations {
         private long drawnLayoutSignature = long.MinValue;
         private float claimRadius = Territory.getBaseClaimRadius(SettlementTier.CAMP);
         private string siegeText = null;
+        // the era whose buildings this settlement may put up, when the player
+        // leads its nation (EraTracker.applyRules); null for no limit
+        private Era? buildingEra = null;
 
         public static readonly int WOOD_COST_TO_BUILD = 50;
 
@@ -150,7 +153,21 @@ namespace beyondnations {
         */
         public bool canAddBuilding(BuildingType type) {
             return buildings.Count < BuildingCatalog.MAX_BUILDINGS
-                && getNumBuildings(type) < BuildingCatalog.getLimit(type);
+                && getNumBuildings(type) < BuildingCatalog.getLimit(type)
+                && isBuildingUnlocked(type);
+        }
+
+        /** Whether the era of the nation's player leader lets this type be built here (EraRules). */
+        public bool isBuildingUnlocked(BuildingType type) {
+            return buildingEra == null || EraRules.unlocksBuilding(buildingEra.Value, type);
+        }
+
+        public Era? getBuildingEra() {
+            return buildingEra;
+        }
+
+        public void setBuildingEra(Era? era) {
+            buildingEra = era;
         }
 
         /**

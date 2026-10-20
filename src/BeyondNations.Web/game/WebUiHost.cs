@@ -39,6 +39,8 @@ namespace beyondnations.web {
         private readonly NewWorldScreen newWorldScreen = new NewWorldScreen();
         private readonly ShareScreen shareScreen = new ShareScreen();
         private readonly ShareSession share;
+        private readonly EndOfRunScreen endOfRunScreen = new EndOfRunScreen();
+        private bool newWorldRequested;
         // saving (docs/SAVES.md): the host owns the world, so a screen asking
         // to save or load is a request the host picks up after the frame
         private readonly SaveSession saves;
@@ -91,6 +93,13 @@ namespace beyondnations.web {
         public bool consumeLeaveRequest() {
             bool requested = leaveRequested;
             leaveRequested = false;
+            return requested;
+        }
+
+        /** True once, when New world on the end-of-run screen was pressed: the host saves the ended world (the New World screen builds the next). */
+        public bool consumeNewWorldRequest() {
+            bool requested = newWorldRequested;
+            newWorldRequested = false;
             return requested;
         }
 
@@ -165,9 +174,13 @@ namespace beyondnations.web {
                     action = loadScreen.draw(width, height, saves);
                     break;
                 case ScreenType.SUCCESSION:
-                case ScreenType.GAME_OVER:
                     if (simulation != null) {
                         action = successionScreen.draw(width, height, simulation);
+                    }
+                    break;
+                case ScreenType.END_OF_RUN:
+                    if (simulation != null) {
+                        action = endOfRunScreen.draw(width, height, simulation);
                     }
                     break;
             }
@@ -235,6 +248,11 @@ namespace beyondnations.web {
                     break;
                 case UiAction.SaveGame:
                     saveRequested = true;
+                    break;
+                case UiAction.NewWorld:
+                    // the ended world is saved, then the New World screen asks for a seed as Start does
+                    newWorldRequested = true;
+                    screens.goTo(ScreenType.NEW_WORLD);
                     break;
             }
         }

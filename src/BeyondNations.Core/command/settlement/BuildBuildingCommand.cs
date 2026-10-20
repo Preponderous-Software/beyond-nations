@@ -57,6 +57,10 @@ namespace beyondnations {
             }
 
             string name = BuildingCatalog.getDisplayName(type);
+            if (!settlement.isBuildingUnlocked(type)) {
+                player.getStatus().update(EraRules.describeLocked(type));
+                return false;
+            }
             if (!settlement.canAddBuilding(type)) {
                 player.getStatus().update("No room for another " + name + " here.");
                 return false;

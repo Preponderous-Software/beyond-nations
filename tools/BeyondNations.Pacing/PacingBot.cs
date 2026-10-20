@@ -144,6 +144,8 @@ namespace beyondnations.pacing {
                 case "build-stall": buildStall(); return;
                 case "sell-resources": sellResources(); return;
                 case "second-settlement": foundSettlement(); return;
+                // "Reach the Village era" (the arc's seventh step), like every era ambition
+                case "grow-nation": advanceEra(); return;
             }
             ObjectiveProgress progress = simulation.getObjectiveTracker().getCurrentProgress();
             planFromLabel(progress.hasCounter() ? progress.getLabel() : null);
@@ -157,6 +159,8 @@ namespace beyondnations.pacing {
                 case "Settlements": foundSettlement(); return;
                 case "Funds": earnFunds(); return;
                 case "Day": generalPlay(); return;
+                case "Buildings": buildBuilding(); return;
+                case "Requirements": advanceEra(); return;
                 default: generalPlay(); return;
             }
         }
@@ -341,6 +345,91 @@ namespace beyondnations.pacing {
                 return;
             }
             enterOwnSettlement();
+        }
+
+        /**
+        * Works on the next era (EraRules) as the era box lists it: the first
+        * requirement still short, by the plan its label names.
+        */
+        private void advanceEra() {
+            EraRequirement? unmet = EraRules.firstUnmet(simulation.getEraTracker().getRequirements(simulation));
+            if (unmet == null) {
+                generalPlay();
+                return;
+            }
+            switch (unmet.Value.label) {
+                case "Village":
+                case "Town":
+                case "Towns": buildBuilding(); return;
+                case "Stalls": buildStall(); return;
+                case "Members": growNation(); return;
+                case "Settlements": foundSettlement(); return;
+                case "Funds": earnFunds(); return;
+                // waiting on the calendar: get ahead on the next era's members
+                case "Day": growNation(); return;
+                default: generalPlay(); return;
+            }
+        }
+
+        /**
+        * Puts up whatever building the settlement needs most (K), in the
+        * nation's settlement nearest to becoming a town, gathering the wood
+        * and stone it costs first.
+        */
+        private void buildBuilding() {
+            if (!WorldView.isLeader(simulation)) {
+                foundSettlement();
+                return;
+            }
+            Settlement target = settlementToBuildIn();
+            if (target == null) {
+                foundSettlement();
+                return;
+            }
+            BuildingType? wanted = BuildingPlanner.suggestNext(target);
+            if (wanted == null) {
+                generalPlay();
+                return;
+            }
+            Inventory stockpile = target.getInventory();
+            if (WorldView.wood(simulation) + stockpile.getNumItems(ItemType.WOOD) < BuildingCatalog.getWoodCost(wanted.Value)) {
+                gather(EntityType.TREE);
+                return;
+            }
+            if (WorldView.stone(simulation) + stockpile.getNumItems(ItemType.STONE) < BuildingCatalog.getStoneCost(wanted.Value)) {
+                gather(EntityType.ROCK);
+                return;
+            }
+            activity = "building a " + BuildingCatalog.getDisplayName(wanted.Value).ToLowerInvariant();
+            if (player.getCurrentSettlementId() == target.getId()) {
+                new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, null);
+                return;
+            }
+            leaveSettlementIfInside();
+            if (approach(target.getPosition())) {
+                interact();
+            }
+        }
+
+        /** The nation's settlement with the most buildings that is not yet a town, or its first. */
+        private Settlement settlementToBuildIn() {
+            Nation nation = WorldView.playerNation(simulation);
+            if (nation == null) {
+                return null;
+            }
+            Settlement best = null;
+            foreach (EntityId settlementId in nation.getSettlements()) {
+                if (!(simulation.getEntityRepository().getEntity(settlementId) is Settlement settlement)
+                        || BuildingPlanner.suggestNext(settlement) == null) {
+                    continue;
+                }
+                bool town = settlement.getTier() == SettlementTier.TOWN;
+                bool bestTown = best != null && best.getTier() == SettlementTier.TOWN;
+                if (best == null || (bestTown && !town) || (town == bestTown && settlement.getNumBuildings() > best.getNumBuildings())) {
+                    best = settlement;
+                }
+            }
+            return best;
         }
 
         private void sellResources() {

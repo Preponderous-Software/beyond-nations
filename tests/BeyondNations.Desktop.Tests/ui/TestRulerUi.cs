@@ -126,15 +126,19 @@ namespace beyondnationstests.desktop.ui {
             simulation.fixedUpdate(1f / 50f);
             Assert.True(RealmScreens.afterStep(simulation, screens));
 
-            Assert.Equal(ScreenType.GAME_OVER, screens.getCurrent());
-            Assert.Equal(SuccessionScreen.LineEndedTitle, SuccessionScreen.getTitle(simulation));
+            // one end-of-run screen: the end of a line is a defeat (EraTracker)
+            Assert.Equal(ScreenType.END_OF_RUN, screens.getCurrent());
+            Assert.Equal(RunOutcome.DEFEAT, simulation.getEraTracker().getOutcome());
+            Assert.Equal("Defeat", RunSummary.title(simulation.getEraTracker()));
+            Assert.Contains("died with no heir", RunSummary.subtitle(simulation));
+            Assert.Contains(EndOfRunScreen.LoadLabel, EndOfRunScreen.buttonLabels(RunOutcome.DEFEAT));
             Assert.False(saves.save(simulation, false));
             Assert.Equal(SaveSession.RunOverFeedback, saves.getFeedback());
             Assert.False(saves.isFeedbackError());
             Assert.Equal(before, storage.Files[saves.getCurrentSlot() + ".bnsave"]);
-            // Escape from the end of the line goes to the main menu
+            // Escape does not skip past the end of a run; its buttons lead on
             screens.escapePressed();
-            Assert.Equal(ScreenType.MAIN_MENU, screens.getCurrent());
+            Assert.Equal(ScreenType.END_OF_RUN, screens.getCurrent());
         }
 
         [Fact]

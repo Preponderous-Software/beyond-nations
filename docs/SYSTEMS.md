@@ -24,6 +24,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Sharing | Implemented | [`src/BeyondNations.Core/sharing/`](../src/BeyondNations.Core/sharing/), [SHARING.md](./SHARING.md) |
 | World Events | Implemented | [`src/BeyondNations.Core/worldevents/`](../src/BeyondNations.Core/worldevents/) |
 | Trade | Implemented | [`src/BeyondNations.Core/trade/`](../src/BeyondNations.Core/trade/), [`src/BeyondNations.Core/market/MarketPricing.cs`](../src/BeyondNations.Core/market/MarketPricing.cs) |
+| Eras and the end of a run | Implemented | [`src/BeyondNations.Core/era/`](../src/BeyondNations.Core/era/) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
 
@@ -211,7 +212,7 @@ Under a truce neither side raids nor besieges the other, a pawn-led nation does 
 ### Succession
 When the player dies as a member of a nation (`Succession`), an heir from that nation takes their place instead of the player respawning: family first (a pawn sharing the ruler's surname -- the first ruler has none, but each heir brings theirs and children take a parent's), then the most loyal, then whoever joined first; a pawn starving that same tick is passed over. The player is one entity for the whole game, so the heir is folded into it: the player takes the heir's name, position, energy (at least 50), belongings (the old ruler's are dropped as usual when "Keep Inventory" is off) and home, and a non-leader takes the heir's stall if they had none; the heir pawn leaves the world. The nation, its settlements, laws and relations are untouched. Members' loyalty to the new ruler starts at half what it was, and the heir's own family warm by 10. A succession screen tells who died, after how long a reign, who rules now and why, and lists the line of rulers; the chronicle records it.
 
-With no member left to succeed, the line ends and so does the run: the game-over screen offers *New World*, *Load* and *Main Menu*, and the world is never saved again (Load brings back the last save, from before the death). A nationless wanderer still rises again as before. `--stage-succession` opens the diplomacy stage with the player about to starve; `--start-screen laws` opens the nations screen on its Laws tab.
+With no member left to succeed, the line ends and so does the run: it is a defeat (see *Eras and the end of a run*), told on the end-of-run screen, which offers *New world*, *Load* and *Main menu*, and the world is never saved again (Load brings back the last save, from before the death). A nationless wanderer still rises again as before. `--stage-succession` opens the diplomacy stage with the player about to starve; `--start-screen laws` opens the nations screen on its Laws tab.
 
 ## Sound, feedback and tips (host)
 Not a simulation system: it lives in the host, in [`src/BeyondNations.Desktop/ui/feel/`](../src/BeyondNations.Desktop/ui/feel/), shared by the desktop and the browser. It reads the world and never writes to it, draws nothing from the simulation's `RandomSource`, and runs on real frame time, so the same seed steps identically with it on, off or missing (`TestFeel.testFeelLayerDoesNotChangeTheSimulation`, and the History replay job).
@@ -329,3 +330,33 @@ Coins only ever change hands in all of this; `TestTradeCaravans` counts every co
 **The chronicle** tells what the player had a hand in -- caravans sent, sold and home, escorts, raids -- and anything to or from the player's nation; of the rest, only the first haul of the day worth 400 coins or more.
 
 `--stage-trade` (desktop and web, `?stage-trade`) opens the game leading a village that can send caravans, with a trading neighbour's caravan passing just ahead.
+
+## Eras and the end of a run
+A run has an arc ([`src/BeyondNations.Core/era/`](../src/BeyondNations.Core/era/)): the player's nation advances **Camp → Village → Town → Kingdom**, and the run ends in a victory or a defeat. `EraTracker` judges the player's nation once a second of game time, one era at a time (so each is announced), and eras never go back. The numbers live in `EraRules` and `VictoryRules`.
+
+| To leave | Needs | Reaching the next era unlocks |
+| --- | --- | --- |
+| Camp | a village (a settlement with 2 buildings), 10 members, 2 market stalls; day 3 | Village: the **workshop** (planks and bricks at home); up to 3 settlements |
+| Village | a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7 | Town: the **storehouse** (more stalls); up to 6 settlements; Dominion and Concord victories |
+| Town | 2 towns, 25 members, 4 settlements, 3,000 funds; day 19 | Kingdom: any number of settlements; the Prosperity victory |
+
+Funds are the player's coins plus the treasuries of the nation's settlements. Each era also waits on the calendar (a day is ten minutes): settlers flock to a new nation, and the pacing bot found most nations a village within two or three minutes, so a camp is a village no sooner than day 3 (about 17 minutes in), a town no sooner than day 7 (about an hour) and a kingdom no sooner than day 19 (about three hours). A camp may put up houses and farms and hold one settlement. **Until the Town era the nation cannot be besieged** (`EraRules.isSheltered`; raids still come): the pacing bot found a new nation besieged and taken within minutes by neighbours twice its size, and every nation it refounded falling the same way ([PACING.md](./PACING.md)). From the Town era its towns have palisades and its other settlements can fall. The limits apply only to a nation **the player leads** (`Settlement.isBuildingUnlocked`, `Nation.canFoundSettlement`, set every tick by `EraTracker.applyRules`), and bind the nation's pawns too: its settlers do not leave for a site the era cannot hold, and its serfs do not build what it has not unlocked. Pawn-led nations are never held back. A locked building says so (`The Workshop is unlocked in the Village era.`), and so does founding past the limit.
+
+**Objectives follow the era.** The arc's seventh step, which was "Grow your nation to 5" and was met by settlers joining on their own, is now *Reach the Village era*, with members and buildings as its counters. After the arc, ambitions cycle through nation size, funds, settlements (or buildings, where the era will not allow more settlements) and the next era -- in the kingdom, *Win the game* -- and each is scaled to the era it was made in: nation size starts at 16 in the village, 20 in the town and 35 in the kingdom, funds at 1,000 (the arc's rewards and treasuries already make 500), 3,000 and 4,000, and every lap adds 5 members or 500 coins.
+
+**Victory** comes from one of three, judged on the player's nation:
+
+| Victory | When |
+| --- | --- |
+| Dominion | from the Town era: more than half of every settlement in the world, and at least 6 |
+| Prosperity | in the Kingdom era: 6,000 funds and 40 members |
+| Concord | from the Town era: allied with every other nation still standing, at least 2 of them |
+
+**Defeat**: once the player's nation has held a settlement, a nation with no settlement and nobody but the player -- or no nation at all -- is collapsing. The status line warns, the era box counts down, and if nothing changes for five minutes of game time (half a day) the run is lost. Founding a settlement or winning a follower calls it off.
+
+**The end of a run.** A victory or a defeat stops the world under the end-of-run screen: the outcome, the era reached, the days survived, when each era was reached, the nation's members, settlements and funds (now and at their most), objectives completed, and *The History of <Nation>*: every chronicle line about the player or their nation, kept by the tracker beyond the chronicle's 200 (up to 400), with the era milestones in gold. The history scrolls by dragging (finger or mouse), the wheel or a wide scrollbar. After a victory the player can **Continue playing** (the eras go on, no other outcome is recorded); either way they can start a **New world** (the ended one keeps its save) or go to the **Main menu**. A defeated world shows the screen again when it is loaded.
+
+**On the HUD**, an era box above the objective tracker shows the era and a bar of the next era's requirements (`Town: 2/4`); tapping or clicking it opens the requirements, what the next era unlocks and, from the Town era, how close each victory is.
+
+Era state -- the era and when each was reached, the outcome, the collapse countdown, the history and the era each ambition was made in -- is saved (format 5, [SAVES.md](./SAVES.md)). `--stage-victory` and `--stage-defeat` open on the end-of-run screen of a staged run (`EndingShowcase`).
+

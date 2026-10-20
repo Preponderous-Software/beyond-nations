@@ -3,8 +3,9 @@ namespace beyondnations.desktop.ui {
     /**
     * The one thing the hosts do about succession (realm/Succession): after
     * each simulation step, if the player has just died in a nation, show
-    * the succession screen -- or, when their line has ended, the game-over
-    * one. Shared by the desktop and browser hosts.
+    * the succession screen -- or, when their line has ended, the
+    * end-of-run screen, where EraTracker has recorded it as a defeat.
+    * Shared by the desktop and browser hosts.
     */
     public static class RealmScreens {
 
@@ -17,7 +18,11 @@ namespace beyondnations.desktop.ui {
             if (notice == null) {
                 return false;
             }
-            screens.goTo(notice.isLineEnded() ? ScreenType.GAME_OVER : ScreenType.SUCCESSION);
+            if (notice.isLineEnded()) {
+                screens.runEnded();
+            } else {
+                screens.goTo(ScreenType.SUCCESSION);
+            }
             return true;
         }
     }

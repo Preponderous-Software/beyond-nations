@@ -320,8 +320,8 @@ namespace beyondnations {
                 Log.error("Pawn " + pawn + " does not have enough wood to build a settlement but is trying to.");
                 return;
             }
-            // never inside another nation's land
-            if (Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null) {
+            // never inside another nation's land, nor past what the era allows (EraRules)
+            if (!nation.canFoundSettlement() || Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null) {
                 pawn.setCurrentBehaviorType(BehaviorType.WANDER);
                 return;
             }

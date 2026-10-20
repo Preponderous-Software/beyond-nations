@@ -18,6 +18,7 @@ namespace beyondnations {
         LeaveNation,
         FoundSettlement,
         BuildStall,
+        BuildBuilding,
         TeleportToHomeSettlement,
         PlantSapling,
         ToggleInventory,

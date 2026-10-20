@@ -86,6 +86,7 @@ The following controls are available in the game:
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
 | `Y` | Cycle the chronicle: recent entries (top of the screen) → full scrollable history → hidden |
+| Era box (top left; click or tap) | Open / close what the next era needs, what it unlocks and how close each victory is |
 | `Right Mouse Button` (hold) + move the mouse | Steer: left/right turns you (W then walks that way), up/down tilts the camera |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
@@ -119,6 +120,23 @@ Buildings cost wood **and stone**, so quarrying matters. Press `K` inside one of
 | Workshop | 15 wood, 10 stone | Lets anyone inside craft planks and bricks |
 
 Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`).
+
+### Eras, victory and the end of a run
+![The end-of-run screen after a Prosperity victory: the outcome, the era reached, days survived, when each era came, members, settlements and funds, then The History of Southernland, with the era milestones in gold, and Continue playing, New world and Main menu buttons](./.github/media/end-of-run-victory.png)
+
+A run has an arc. Your nation advances **Camp → Village → Town → Kingdom**, one era at a time, and each era asks for more and gives something concrete:
+
+| To leave | Needs | The next era unlocks |
+| --- | --- | --- |
+| Camp | a village (2 buildings), 10 members, 2 market stalls; day 3 | the workshop (planks and bricks); up to 3 settlements |
+| Village | a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7 | the storehouse (more stalls); up to 6 settlements |
+| Town | 2 towns, 25 members, 4 settlements, 3,000 funds; day 19 | any number of settlements, and the Prosperity victory |
+
+Each era also waits for its day (a day is ten minutes of play). A camp may build houses and farms and hold one settlement, and until the Town era nobody can besiege a nation you lead (raids still come). The objectives follow: after the opening steps the ambitions are set by the era you are in, and the last asks you to win. The era box at the top left of the HUD shows your era and how near the next one is; click or tap it for the details.
+
+Win by **Dominion** (from the Town era, hold more than half of every settlement in the world, at least six), **Prosperity** (in the Kingdom era, 6,000 funds and 40 members) or **Concord** (from the Town era, be allied with every nation still standing). Lose if the nation you built collapses: no settlement and nobody but you, for five minutes. Either way the end-of-run screen tells the story -- the outcome, the era reached, the days survived and your numbers, then *The History of* your nation, drawn from the chronicle -- and offers to **Continue playing** (after a victory), start a **New world** or go to the **Main menu**. `--stage-victory` and `--stage-defeat` open on it (the screenshot above is `--seed 42 --start-screen world --stage-victory`; the one below is `--stage-defeat` at phone size).
+
+<img src="./.github/media/end-of-run-defeat-phone.png" alt="The end-of-run screen after a defeat, at phone size: the stats stacked, the history wrapped, New world, Load and Main menu buttons stacked for a thumb" width="260">
 
 ### Nations that deal with each other
 ![Two nations' borders meeting on the road ahead: rings of posts capped in each nation's colour curve in from either side toward the point where the claims touch, with each nation's village in the distance](./.github/media/diplomacy-borders.png)

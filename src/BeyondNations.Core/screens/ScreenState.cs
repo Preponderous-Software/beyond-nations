@@ -46,8 +46,9 @@ namespace beyondnations {
         private static bool isLaidOverWorld(ScreenType screen) {
             return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.NATIONS
                 || screen == ScreenType.CRAFTING || screen == ScreenType.PAUSE
-                || screen == ScreenType.SUCCESSION || screen == ScreenType.GAME_OVER
-                || screen == ScreenType.SHARE;
+                || screen == ScreenType.SUCCESSION
+                || screen == ScreenType.SHARE
+                || screen == ScreenType.END_OF_RUN;
         }
 
         /**
@@ -140,6 +141,17 @@ namespace beyondnations {
         }
 
         /**
+        * The run has been won or lost: the end-of-run screen is laid over the
+        * stopped world. Only from the world, so a run that ends is never
+        * announced over a menu.
+        */
+        public void runEnded() {
+            if (current == ScreenType.WORLD) {
+                goTo(ScreenType.END_OF_RUN);
+            }
+        }
+
+        /**
         * Escape, which means something different on each screen. Returns false
         * when the press should quit the game, which is what Escape did on the
         * main menu.
@@ -162,7 +174,7 @@ namespace beyondnations {
                 goTo(ScreenType.PAUSE);
                 return true;
             }
-            if (current == ScreenType.CONFIG || current == ScreenType.LOAD || current == ScreenType.GAME_OVER || current == ScreenType.NEW_WORLD) {
+            if (current == ScreenType.CONFIG || current == ScreenType.LOAD || current == ScreenType.NEW_WORLD) {
                 goTo(ScreenType.MAIN_MENU);
                 return true;
             }

@@ -42,6 +42,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--stage-diplomacy` | open leading a nation between a friendly and a hostile, besieging neighbour, standing at the border |
 | `--stage-succession` | as `--stage-diplomacy`, with the player about to starve, so the first tick hands the rule to an heir and opens the succession screen |
 | `--stage-event` | open with a world event's choice sheet up (with `--stage-diplomacy`, wanderers at your village) |
+| `--stage-victory`, `--stage-defeat` | open on the end-of-run screen of a staged run: a Prosperity victory in the Kingdom era, or a collapse |
 | `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
 | `--help`, `-h` | list every switch |
 
