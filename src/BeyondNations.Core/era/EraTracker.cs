@@ -124,6 +124,7 @@ namespace beyondnations {
             foreach (Nation nation in simulation.getNationRepository().getNations()) {
                 bool limited = nation == led;
                 nation.setSettlementLimit(limited ? EraRules.settlementLimit(era) : 0);
+                nation.setSheltered(limited && EraRules.isSheltered(era));
                 foreach (EntityId settlementId in nation.getSettlements()) {
                     if (entities.getEntity(settlementId) is Settlement settlement) {
                         settlement.setBuildingEra(limited ? era : (Era?) null);

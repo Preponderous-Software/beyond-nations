@@ -124,7 +124,7 @@ namespace beyondnationstests {
             [typeof(Nation)] = new Entry {
                 Saved = new[] { "random", "id", "name", "leaderId", "members", "roles", "color", "settlements" },
                 // from the saved era, by EraTracker.applyRules at the end of a load
-                Derived = new[] { "settlementLimit" },
+                Derived = new[] { "settlementLimit", "sheltered" },
             },
             [typeof(NationId)] = saved("guid"),
             [typeof(NationRepository)] = new Entry {

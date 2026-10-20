@@ -38,7 +38,7 @@ namespace beyondnations {
     * Unlocks, for a nation the player leads (pawn-led nations are never held
     * back -- the era is the player's run, not the world's):
     *
-    *   Camp      houses and farms; one settlement
+    *   Camp      houses and farms; one settlement; no sieges (nor in the Village)
     *   Village   the workshop (planks and bricks); up to 3 settlements
     *   Town      the storehouse (more stalls); up to 6 settlements
     *   Kingdom   as many settlements as the land holds; Prosperity victory
@@ -158,6 +158,17 @@ namespace beyondnations {
 
         public static bool unlocksBuilding(Era era, BuildingType type) {
             return era >= unlockedIn(type);
+        }
+
+        /**
+        * Whether a nation the player leads is safe from sieges in this era.
+        * A new nation used to be besieged and taken within minutes by
+        * neighbours twice its size (docs/PACING.md); until the Town era,
+        * when its towns have palisades of their own, it is not. Raids still
+        * come.
+        */
+        public static bool isSheltered(Era era) {
+            return era < Era.TOWN;
         }
 
         /** How many settlements a nation the player leads may hold in this era; 0 for no limit. */

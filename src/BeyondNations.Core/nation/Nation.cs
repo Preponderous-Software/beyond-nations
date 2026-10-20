@@ -15,6 +15,8 @@ namespace beyondnations {
         // how many settlements the era lets a nation the player leads hold
         // (EraTracker.applyRules); 0 for no limit
         private int settlementLimit = 0;
+        // whether the era shelters this nation from sieges (EraTracker.applyRules)
+        private bool sheltered = false;
 
         public Nation(string name, EntityId leaderId, RandomSource random) {
             this.random = random;
@@ -109,6 +111,15 @@ namespace beyondnations {
 
         public void setSettlementLimit(int limit) {
             settlementLimit = limit;
+        }
+
+        /** True while a young nation the player leads cannot be besieged (EraRules.isSheltered). */
+        public bool isSheltered() {
+            return sheltered;
+        }
+
+        public void setSheltered(bool value) {
+            sheltered = value;
         }
 
         /** Whether the era lets this nation found another settlement. */

@@ -272,10 +272,12 @@ namespace beyondnations {
         /**
         * Whether the attacker is strong enough to lay siege to the target: a
         * strength of at least four, at least twice the defender's, a base of at least the target's
-        * tier, and a target that is not a walled town.
+        * tier, and a target that is not a walled town -- nor held by a young
+        * nation the player leads, which its era shelters (EraRules).
         */
         public bool canBesiege(Nation attacker, Nation defender, Settlement base_, Settlement target) {
             return target.getTier() != SettlementTier.TOWN
+                && !defender.isSheltered()
                 && getStrength(attacker) >= MIN_SIEGE_STRENGTH
                 && getStrength(attacker) >= 2 * getDefence(defender)
                 && base_.getTier() >= target.getTier();

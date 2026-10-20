@@ -276,8 +276,8 @@ namespace beyondnationstests {
         public void testAmbitions_StartBeyondTheArc() {
             Assert.Equal(ObjectiveCatalog.eraMembers(Era.VILLAGE), ObjectiveCatalog.ambition(0, Era.VILLAGE).evaluate(simulation).getTarget());
             Assert.True(ObjectiveCatalog.eraMembers(Era.VILLAGE) > EraRules.VillageMembers);
-            Assert.Equal(EraRules.TownFunds, ObjectiveCatalog.ambition(1, Era.VILLAGE).evaluate(simulation).getTarget());
-            Assert.Equal(EraRules.TownFunds + ObjectiveCatalog.fundsStep(), ObjectiveCatalog.ambition(5, Era.VILLAGE).evaluate(simulation).getTarget());
+            Assert.Equal(ObjectiveCatalog.eraFunds(Era.VILLAGE), ObjectiveCatalog.ambition(1, Era.VILLAGE).evaluate(simulation).getTarget());
+            Assert.Equal(ObjectiveCatalog.eraFunds(Era.VILLAGE) + ObjectiveCatalog.fundsStep(), ObjectiveCatalog.ambition(5, Era.VILLAGE).evaluate(simulation).getTarget());
             Assert.Equal(ObjectiveCatalog.ArcSettlementTarget + 1, ObjectiveCatalog.ambition(2, Era.VILLAGE).evaluate(simulation).getTarget());
             Assert.Equal("Reach the Town era", ObjectiveCatalog.ambition(3, Era.VILLAGE).getTitle());
             Assert.Equal("Win the game", ObjectiveCatalog.ambition(3, Era.KINGDOM).getTitle());

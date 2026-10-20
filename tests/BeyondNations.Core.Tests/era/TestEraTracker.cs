@@ -190,6 +190,28 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testAYoungNationThePlayerLeads_CannotBeBesieged_UntilTheTownEra() {
+            Nation nation = makeKingdomReadyNation();
+            Settlement target = simulation.getEntityRepository().getEntity(nation.getSettlement(EraRules.KingdomTowns)) as Settlement;
+            Assert.NotEqual(SettlementTier.TOWN, target.getTier());
+            Nation attacker = makePawnNation("Ironhold");
+            Settlement base_ = addSettlement(attacker, new Vector3(0, 1, 6000));
+            addMembers(attacker, 60);
+            Diplomacy diplomacy = simulation.getDiplomacy();
+
+            eras.applyRules(simulation);
+            Assert.True(nation.isSheltered());
+            Assert.False(diplomacy.canBesiege(attacker, nation, base_, target));
+            Assert.False(attacker.isSheltered()); // a pawn-led nation never is
+            eras.evaluate(simulation); // village
+            Assert.True(nation.isSheltered());
+            eras.evaluate(simulation); // town: its towns have palisades, the rest can fall
+            Assert.Equal(Era.TOWN, eras.getEra());
+            Assert.False(nation.isSheltered());
+            Assert.True(diplomacy.canBesiege(attacker, nation, base_, target));
+        }
+
+        [Fact]
         public void testALimitIsLifted_WhenThePlayerNoLongerLeads() {
             Nation nation = makePlayerLeader();
             Settlement settlement = addSettlement(nation, Vector3.Zero);
@@ -202,6 +224,7 @@ namespace beyondnationstests {
             eras.applyRules(simulation);
             Assert.Null(settlement.getBuildingEra());
             Assert.Equal(0, nation.getSettlementLimit());
+            Assert.False(nation.isSheltered());
         }
 
         [Fact]
