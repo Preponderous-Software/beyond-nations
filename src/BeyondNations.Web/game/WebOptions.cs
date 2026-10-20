@@ -26,7 +26,7 @@ namespace beyondnations.web {
         };
 
         private static readonly HashSet<string> FlagOptions = new HashSet<string> {
-            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-diplomacy", "no-saves", "continue",
+            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-diplomacy", "stage-feel", "no-saves", "continue",
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {

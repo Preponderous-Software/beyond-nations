@@ -9,6 +9,7 @@ using beyondnations.desktop.input;
 using beyondnations.desktop.render;
 using beyondnations.desktop.text;
 using beyondnations.desktop.ui;
+using beyondnations.desktop.ui.feel;
 
 namespace beyondnations.desktop {
 
@@ -39,6 +40,8 @@ namespace beyondnations.desktop {
         private readonly PlayerInputController playerInputController = new PlayerInputController();
 
         private Simulation simulation;
+        // sound, effects and the first-five-minutes tips (ui/feel); presentation only
+        private FeelDirector feel;
         private readonly WorldSnapshot snapshot = new WorldSnapshot();
 
         // Saving (docs/SAVES.md): slots under AppDataPaths, an autosave every
@@ -198,6 +201,9 @@ namespace beyondnations.desktop {
             // --- end high-DPI ---
             saves = new SaveSession(new FileSaveStorage(AppDataPaths.getSavesDirectory()), GameVersion.Version, !options.NoSaves);
             ui = new UiHost(gl, window, input, screens, gameConfig, saves);
+            feel = new FeelDirector(new NullSoundService(), new FileFeelSettingsStore(AppDataPaths.getBaseDirectory()), false);
+            feel.setDemo(options.StageFeel);
+            ui.setFeel(feel);
             playerInputController.setDebugMode(options.DebugMode);
             // --- end #221 ---
 
@@ -281,6 +287,7 @@ namespace beyondnations.desktop {
             // --- end #219 ---
 
             saves.beginNewWorld(simulation, DateTime.UtcNow);
+            feel.beginWorld(simulation, true);
         }
 
         /**
@@ -294,6 +301,7 @@ namespace beyondnations.desktop {
             }
             simulation = loaded;
             accumulator = 0;
+            feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
         }
@@ -506,6 +514,7 @@ namespace beyondnations.desktop {
             renderStats?.beginFrame();
 
             gl.Clear((uint) (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit));
+            feel?.frame(simulation, screens.getCurrent(), deltaTime);
 
             // The inventory screen (#181) is drawn over the world, so the world
             // is drawn whenever it is visible, not only while it is active.
@@ -529,6 +538,7 @@ namespace beyondnations.desktop {
                     simulation.getEntityRepository(),
                     simulation.getEnvironment(),
                     camera.getMode() == CameraMode.FirstPerson ? player.getId() : null);
+                feel.decorate(snapshot);
 
                 // --- #219 camera and culling ---
                 // The camera trails the player exactly as the parented Unity
@@ -538,7 +548,8 @@ namespace beyondnations.desktop {
                 // is touched.
                 MouseLook mouseLook = playerInputController.getMouseLook();
                 camera.setRenderDistance(player.getRenderDistance());
-                camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                camera.follow(player.getPosition() + feel.getCameraShake(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                feel.setView(camera.getViewMatrix(), camera.getProjectionMatrix());
                 culler.beginFrame(camera);
                 // --- #280 ---
                 if (renderer is NativeWorldRenderer native) {

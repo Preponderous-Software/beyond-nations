@@ -146,6 +146,17 @@ Press `C` (or *Craft* on a touch screen) to open the crafting screen. Each recip
 
 Tools wear out, so keep some wood and stone for the next one. Merchants craft too: their stalls stock tools you can buy, cooked meat, and (with a workshop) planks and bricks. The full rules are in the [Systems Document](./docs/SYSTEMS.md#crafting).
 
+### Sound, feedback and the first five minutes
+![A town with buildings rising inside wooden scaffolds, stone chips flying, and "+5 wood", "+3 stone" and "+12 coins" floating over the player under a warm objective-complete flash](./.github/media/feel-juice.png)
+
+Gathering and building answer back. Chopping a tree throws wood chips and leaves, mining a rock throws stone flakes, and every gain floats up over you ("+5 stone", "+12 coins"; a spend floats down in red). A new building rises out of the ground inside a wooden scaffold, finishing an objective flashes the screen gold, and a raid on your nation shakes the camera.
+
+In the browser every action has a sound: chop, mine, pickup, craft, a building finished, coins, a hunger warning, a hit (hunting, or a raid), interface clicks and objective fanfares, over an ambient loop of wind and birdsong by day and crickets by night. All of it is synthesised as it plays, so the game ships no audio files. Sound starts with your first key press or tap (browsers allow nothing sooner). *Volume*, *Mute Sound* and *Show Tips* are on the config screen, and *Sound: On/Off* is in the corner of the pause screen. The desktop build is silent for now: Strata has no audio and the desktop takes on no audio dependency.
+
+![The first tip card under the player: "Tip 1 of 5: Walk and look. Walk with W A S D. Hold the right mouse button and move the mouse to look around." with Got it and No tips buttons](./.github/media/feel-tip.png)
+
+A new world opens with five short tips, one at a time: walk and look, chop a tree, gather stone, found a settlement, and where your goals are. Each goes away as soon as you have done it, *Got it* dismisses it, and *No tips* turns them all off. A tip you have finished is never shown again, in that world or the next (*Show Tips* on the config screen starts them over). On a phone they talk about the pad and the *Use* button instead of keys. <img src="./.github/media/feel-tip-phone.png" alt="The same tip on a phone, above the on-screen controls: Walk with the pad on the left. Drag across the world to look around." width="260" align="right"> `--stage-feel` replays the effects every 20 frames for screenshots (the image above is `--seed 42 --start-screen world --stage-settlement --stage-feel`).
+
 ## Saving and loading
 Worlds are saved, on the desktop and in the browser. The game autosaves every couple of minutes of play and whenever you leave the world (*Main Menu* or *Quit* on the pause screen, or closing the window); *Save* on the pause screen saves at once and says so. On the main menu, *Continue* picks up the latest world and *Load* lists every saved world with its day, your nation and when it was saved.
 

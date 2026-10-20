@@ -6,6 +6,7 @@ using Silk.NET.OpenGL.Extensions.ImGui;
 using Silk.NET.Windowing;
 using beyondnations;
 using beyondnations.desktop.input;
+using beyondnations.desktop.ui.feel;
 using beyondnations.desktop.ui.screens;
 
 namespace beyondnations.desktop.ui {
@@ -52,6 +53,13 @@ namespace beyondnations.desktop.ui {
 
         private bool quitRequested;
         private bool startRequested;
+
+        // sound, effects and tips (ui/feel); null leaves the screens as they were
+        private FeelDirector feel;
+
+        public void setFeel(FeelDirector director) {
+            feel = director;
+        }
 
         public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig, SaveSession saves) {
             this.controller = new ImGuiController(gl, window, input, configureForUiScale);
@@ -154,10 +162,10 @@ namespace beyondnations.desktop.ui {
                     action = mainMenuScreen.draw(width, height, saves.latest(), saves.isFeedbackError() ? saves.getFeedback() : null);
                     break;
                 case ScreenType.CONFIG:
-                    action = configScreen.draw(width, height, gameConfig);
+                    action = configScreen.draw(width, height, gameConfig, feel?.getSettings());
                     break;
                 case ScreenType.PAUSE:
-                    action = pauseScreen.draw(width, height, saves);
+                    action = pauseScreen.draw(width, height, saves, feel?.getSettings());
                     break;
                 case ScreenType.WORLD:
                     if (simulation != null) {
@@ -187,6 +195,7 @@ namespace beyondnations.desktop.ui {
                     break;
             }
 
+            feel?.drawOverlay(width, height, screens.getCurrent(), simulation);
             apply(action);
             controller.Render();
         }

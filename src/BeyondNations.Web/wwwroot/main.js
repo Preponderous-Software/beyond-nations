@@ -3,6 +3,7 @@
 
 import { startWebHost } from "./webhost/host.js";
 import { isTouchOnly, wireTouchControls } from "./webhost/touch.js";
+import * as audio from "./audio.js";
 
 const $ = (id) => document.getElementById(id);
 const canvas = $("game");
@@ -71,6 +72,8 @@ try {
     ui,
     assembly: "BeyondNations.Web",
     exportsName: "beyondnations.web.host.WebHostExports",
+    // sound (audio.js), called from game/WebAudioSoundService.cs
+    modules: { "bn-audio": audio },
   });
   if (host) wireTouchControls($("touch"), host.input);
 } catch (error) {
@@ -85,4 +88,5 @@ window.beyondNations = {
   frameStats: () => (host ? host.frameStats() : null),
   sampleNextFrame: () => (host ? host.sampleNextFrame() : Promise.resolve(null)),
   gl: () => (host ? host.gl : null),
+  audio: () => audio.state(),
 };

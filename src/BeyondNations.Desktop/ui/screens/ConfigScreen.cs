@@ -1,5 +1,6 @@
 using System.Numerics;
 using ImGuiNET;
+using beyondnations.desktop.ui.feel;
 
 namespace beyondnations.desktop.ui.screens {
 
@@ -24,7 +25,20 @@ namespace beyondnations.desktop.ui.screens {
         private const float ButtonWidth = 100f;
         private const float ButtonHeight = 20f;
 
+        public const string VolumeLabel = "Volume";
+        public const string MuteLabel = "Mute Sound";
+        public const string TipsLabel = "Show Tips";
+        public const string NoSoundNote = "(sound plays in the browser version)";
+
         public UiAction draw(float width, float height, GameConfig gameConfig) {
+            return draw(width, height, gameConfig, null);
+        }
+
+        /**
+        * feel holds the player's sound and tips settings (ui/feel), drawn as
+        * three more rows under the world's; null leaves them out.
+        */
+        public UiAction draw(float width, float height, GameConfig gameConfig, FeelSettings feel) {
             float centreX = width / 2f;
             float centreY = height / 2f;
             float rowHeight = UiScale.px(RowHeight);
@@ -33,6 +47,14 @@ namespace beyondnations.desktop.ui.screens {
             float buttonHeight = UiScale.px(ButtonHeight);
             float rowX = centreX - UiScale.px(150f);
             float firstRowY = centreY + buttonHeight / 2f;
+            // With the sound rows there are eight; on a short window (a phone
+            // held sideways) the rows close up so the last stays above Back.
+            int rowCount = feel != null ? 8 : 5;
+            float rowsBottom = height - buttonHeight * 2.5f;
+            if (feel != null && firstRowY + rowHeight * (rowCount + 1) > rowsBottom) {
+                firstRowY = System.MathF.Max(centreY / 2f + Overlay.lineHeight(), rowsBottom - rowHeight * (rowCount + 1));
+                rowHeight = System.MathF.Max(Overlay.frameHeight() + UiScale.px(2f), (rowsBottom - firstRowY) / (rowCount + 1));
+            }
 
             ConfigValues values = ConfigValues.readFrom(gameConfig);
             ConfigValues edited = ConfigValues.readFrom(gameConfig);
@@ -58,6 +80,36 @@ namespace beyondnations.desktop.ui.screens {
 
             ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 5f));
             ImGui.Checkbox("Lag Prevention", ref edited.LagPreventionEnabled);
+
+            if (feel != null) {
+                int volume = (int) System.MathF.Round(feel.getVolume() * 100f);
+                ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 6f));
+                ImGui.SetNextItemWidth(widgetWidth);
+                if (ImGui.SliderInt(VolumeLabel, ref volume, 0, 100)) {
+                    feel.setVolume(volume / 100f);
+                }
+                if (!feel.isSoundAvailable()) {
+                    ImGui.SameLine();
+                    ImGui.TextUnformatted(NoSoundNote);
+                }
+
+                bool muted = feel.isMuted();
+                ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 7f));
+                if (ImGui.Checkbox(MuteLabel, ref muted)) {
+                    feel.setMuted(muted);
+                }
+
+                bool tips = feel.areHintsEnabled();
+                ImGui.SetCursorPos(new Vector2(rowX, firstRowY + rowHeight * 8f));
+                if (ImGui.Checkbox(TipsLabel, ref tips)) {
+                    // turning tips back on starts them over in the next new world
+                    if (tips) {
+                        feel.resetHints();
+                    } else {
+                        feel.setHintsEnabled(false);
+                    }
+                }
+            }
 
             if (Overlay.buttonAt("Back", centreX - buttonWidth / 2f, height - buttonHeight * 2f, buttonWidth, buttonHeight)) {
                 action = UiAction.Back;
