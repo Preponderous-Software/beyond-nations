@@ -3,7 +3,7 @@ Beyond Nations, previously called the Open Source Game project, started as a col
 
 ## Play in your browser
 
-**[Play Beyond Nations in your browser](https://beyond-nations.play.danielstephenson.dev)**: nothing to install. It is the same game, compiled to WebAssembly and drawn by the same engine, Strata, built for WebGL 2, and it is also listed in the [arcade](https://danielstephenson.dev/play). It is played with a keyboard and mouse; on a phone or tablet there are basic on-screen controls. The browser build sends no usage report. How it is built, the URL options (`?seed=42&start-screen=world`, the same names as the command-line options) and how to run it locally are in [docs/WEB.md](./docs/WEB.md).
+**[Play Beyond Nations in your browser](https://beyond-nations.play.danielstephenson.dev)**: nothing to install. It is the same game, compiled to WebAssembly and drawn by the same engine, Strata, built for WebGL 2, and it is also listed in the [arcade](https://danielstephenson.dev/play). It plays with a keyboard and mouse, or on a phone or tablet with touch controls: a joystick to walk, a drag to steer, a tap to gather, and big buttons for the rest. The browser build sends no usage report. How it is built, the URL options (`?seed=42&start-screen=world`, the same names as the command-line options) and how to run it locally are in [docs/WEB.md](./docs/WEB.md).
 
 ![The browser build: the title screen, the main menu, Start, then walking, looking around with the right mouse button, founding a nation and switching to first person](./.github/media/web-play.gif)
 

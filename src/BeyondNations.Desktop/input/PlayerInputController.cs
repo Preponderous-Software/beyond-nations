@@ -81,6 +81,14 @@ namespace beyondnations.desktop.input {
             if (inputService.isHeld(KeyBindings.MoveBackward) || inputService.isHeld(KeyBindings.MoveBackwardAlt)) {
                 vertical -= 1f;
             }
+            // The browser's on-screen stick (touch screens) is used when no
+            // movement key is held: up walks, down backs off, and sideways
+            // turns, as A and D do, by as much as the stick is pushed.
+            Vector2 stick = inputService.getMoveAxis();
+            if (horizontal == 0f && vertical == 0f && stick != Vector2.Zero) {
+                horizontal = stick.X == 0f ? 0f : -System.Math.Clamp(stick.X, -1f, 1f);
+                vertical = System.Math.Clamp(stick.Y, -1f, 1f);
+            }
             player.setMovementInput(horizontal, vertical);
             player.setSprinting(inputService.isHeld(KeyBindings.Sprint));
 

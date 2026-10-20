@@ -35,13 +35,7 @@ the time of day, its sky, cascaded shadows and fog.
 - Text and the user interface are laid out in CSS pixels and drawn at the
   screen's `devicePixelRatio`, so they are the intended size on a high-DPI
   screen rather than shrunk, and the ImGui font is rasterised at that ratio.
-- **Touch-only devices** (phones, tablets without a keyboard) get a notice that
-  the game is played with a keyboard and mouse, and can then carry on with
-  basic on-screen controls: a pad for W/A/S/D, buttons for interact, jump, run,
-  inventory, view and the menu, and a drag on the world to steer. A tap
-  on the title screen counts as the "any key" it asks for. The HUD's command
-  buttons are tappable. This is a first pass, not a designed touch scheme; the
-  command bar is cramped on a narrow portrait screen.
+- **Phones and tablets** get touch controls; see [Touch controls](#touch-controls).
 - What a browser cannot do is changed rather than faked: Exit on the main menu
   shows an "exited" panel (play again, or back to the arcade); F12 downloads a
   PNG; the window size is the page's.
@@ -59,6 +53,56 @@ user gesture, so the `AudioContext` is created on the first `keydown`,
 ambient loop starts on that gesture. Volume, mute and the tips are kept in
 localStorage under `beyond-nations/feel-settings`.
 `window.beyondNations.audio()` reports `locked`, `running` or `unavailable`.
+
+### Touch controls
+
+On a touch screen the page shows its own controls over the world, and the
+game lays its screens out for a finger (`TouchLayout` in
+`src/BeyondNations.Desktop/ui`, set only by the browser build):
+
+| Control | Does |
+| --- | --- |
+| Joystick (bottom left) | Walk: up forward, down back; sideways turns, as A and D do, as far as it is pushed. A nearly straight push is snapped straight, so walking does not also turn |
+| Drag on the world | Steer and tilt the view, like the desktop's right-drag (#309), at twice the angle per pixel, since a thumb's sweep is short |
+| Tap on the world | Use whatever is within reach (a tree, rock, chicken, pawn, drop or settlement), as E does. With nothing in reach a tap does nothing, so a short look never answers "No entities within range" |
+| Use, Jump, Run (bottom right) | E, Space, and Shift as a switch (tap on, tap off) |
+| Bag, Craft, Realm, News, View, ?, Menu | I, C, O (nations, diplomacy and laws), Y (the chronicle: full history, hidden, recent), V, the controls list, Escape |
+| HUD command bar | Tappable, and kept above the controls |
+
+- The controls show only while the world is up. Every other screen has its
+  own buttons: the inventory, nations and crafting screens get a large
+  **Close** in the top right, the pause, main menu and settings screens use
+  44-pixel buttons from the top of the screen, and the controls list
+  starts with these touch controls.
+- A drag on a panel (crafting, nations, inventory, the full chronicle,
+  the saved worlds) scrolls it; a press is only sent when the finger lifts
+  without having travelled, so a drag that starts on a button never presses
+  it. On the settings screen a finger works the sliders instead.
+- The HUD leaves the controls' band clear: the command bar and the boxes stop
+  above it, the inventory box is left out (Bag opens the full list), and on a
+  phone held upright the status line and chronicle go under the objective
+  tracker rather than over it. Objective hints name the buttons ("press
+  Use") instead of keys.
+- The UI stays inside the screen's safe area (`env(safe-area-inset-*)`), clear
+  of notches and rounded corners; the world still fills the whole screen.
+  ImGui's widgets get more padding and ImGui's `TouchExtraPadding`.
+- The page never scrolls, zooms, bounces, refreshes on a pull or opens a
+  long-press menu while playing (`touch-action`, `overscroll-behavior` and a
+  few listeners for what iOS Safari does regardless).
+- Both orientations work. On its side the panel buttons sit between the
+  joystick and the action buttons; held upright they take two rows above
+  them, and a hint (once, dismissable) suggests turning the phone for a wider
+  view.
+- Text is laid out in CSS pixels and rasterised at the screen's
+  `devicePixelRatio`, so it is as sharp as the screen.
+
+**When they show**: the setting is *Auto*, *On* or *Off*. Auto turns the
+touch layout on for a device whose main pointer is a finger, and on any
+device the moment a finger touches the screen; a desktop used with a mouse
+never sees it, and nothing about the desktop build changes. The setting is
+on the pause screen and the settings screen (the button cycles Auto, On,
+Off), is remembered in `localStorage` (`beyond-nations/touch-controls`), and
+`?touch=on|off|auto` overrides it for one visit.
 
 ### URL options
 
@@ -79,6 +123,7 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `season=NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
 | `exit-after-frames=N`, `screenshot-after-frames=N` | for automated runs |
+| `touch=on\|off\|auto` | touch controls (read by the page; see above) |
 
 Anything unknown or malformed is dropped with a console warning. (On the
 desktop a bad option ends the process; in a page that would take the runtime
@@ -221,16 +266,25 @@ browser's stack trace then names each frame. For this trap the top frame was
   shows (`hint` in the status is `move`), a key
   tap shorter than a frame toggles the view (#290), and there are no console
   errors, page errors or failed requests;
-- iPhone 13 profile: the keyboard notice appears, the on-screen controls come
-  up, a tap leaves the title, Start can be tapped, the world is drawn and the
-  first tip shows.
+- phone profiles, held upright (390x844) and on its side (844x390), with
+  touch: no controls over the title, a tap leaves it, Start is tapped, the
+  touch layout comes up with its band reported to the game (and, upright,
+  the rotate hint, dismissed by a tap); the joystick pushed up walks the
+  player without turning and pushed right turns them right; a 60 pixel drag
+  on the world turns the player exactly 18 degrees; a tap on the world with
+  nothing in reach does nothing; Bag, Craft and Realm open their panels,
+  the controls step aside and the corner Close brings the world back; a drag
+  on the crafting list scrolls it; News cycles the chronicle; ? opens the
+  controls list; Menu pauses and the touch Resume resumes; the first tip shows; and the
+  page has neither scrolled nor zoomed.
 
 Screenshots and the console log are uploaded as the `web-smoke` artifact.
 
 ```bash
 cd src/BeyondNations.Web/smoke && npm ci && npx playwright install chromium
 node smoke.mjs http://localhost:8080/ out            # desktop
-node smoke.mjs http://localhost:8080/ out --phone    # iPhone 13
+node smoke.mjs http://localhost:8080/ out --phone              # phone, upright
+node smoke.mjs http://localhost:8080/ out --phone-landscape    # phone, on its side
 ```
 
 `window.beyondNations.status()` in the browser console shows the same summary
@@ -258,8 +312,10 @@ deploys by hand.
   (textured labels, Dear ImGui draw lists), driven by pointers into wasm
   memory so frame data is never copied through interop;
 - `webhost/input.js`, `canvas.js`, `loader.js`, `touch.js`: keyboard by
-  `KeyboardEvent.code`, right-drag pointer-lock look, `devicePixelRatio`-aware
-  sizing, the gzip loader, on-screen controls;
+  `KeyboardEvent.code`, right-drag pointer-lock look and touch drags (look,
+  scroll or pointer, as the page decides), `devicePixelRatio`-aware sizing,
+  the gzip loader, the joystick, key buttons, safe-area insets and gesture
+  blocking;
 - `host/WebHost.cs`: the C# side (`WebGpu`, `WebPage`, the `IWebGame` a game
   implements, the `[JSExport]`s); `host/ImGuiWebBackend.cs`: Dear ImGui for the
   browser.

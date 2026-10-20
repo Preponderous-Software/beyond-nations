@@ -88,6 +88,40 @@ namespace beyondnations {
         }
 
         /**
+        * Whether a press of Interact out in the world would act on something:
+        * a drop, settlement, pawn, tree, rock or chicken within the same reach
+        * execute() uses. Inside a settlement it is false, since there the
+        * press means "leave", which the command bar offers by name. Touch
+        * screens use this so a tap on the world interacts only when there is
+        * something to interact with, rather than answering every stray tap
+        * with "No entities within range". Changes nothing.
+        */
+        public bool hasTargetInRange(Player player) {
+            if (player.isCurrentlyInSettlement()) {
+                return false;
+            }
+            Vector3 position = player.getPosition();
+            foreach (Entity entity in entityRepository.getEntitiesOfType(EntityType.ITEM_DROP)) {
+                if (!entity.isMarkedForDeletion() && Vector3.Distance(position, entity.getPosition()) < 5) {
+                    return true;
+                }
+            }
+            Entity[] nearest = {
+                environment.getNearestEntityOfType(position, EntityType.SETTLEMENT),
+                environment.getNearestEntityOfType(position, EntityType.PAWN),
+                environment.getNearestTree(position),
+                environment.getNearestRock(position),
+                environment.getNearestEntityOfType(position, EntityType.CHICKEN),
+            };
+            foreach (Entity entity in nearest) {
+                if (entity != null && Vector3.Distance(position, entity.getPosition()) < 5) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
         * The end of a gather message: what the tool added and how worn it is,
         * or that it broke. Without a tool, a hint that one would help.
         */

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using beyondnations.desktop.ui.feel;
 
@@ -69,13 +70,40 @@ namespace beyondnations.desktop.ui.screens {
             bool canSave = saves != null && saves.isEnabled();
             string[] labels = canSave ? ButtonLabelsWithSave : ButtonLabels;
             UiAction[] actions = canSave ? ButtonActionsWithSave : ButtonActions;
+            // The browser offers the touch-controls switch here too, before
+            // Quit, so it can be changed mid-game (TouchLayout; the desktop
+            // has no such switch and its column is unchanged).
+            int touchIndex = -1;
+            if (TouchLayout.isAvailable()) {
+                touchIndex = labels.Length - 1;
+                List<string> withTouch = new List<string>(labels);
+                withTouch.Insert(touchIndex, TouchLayout.describe());
+                List<UiAction> touchActions = new List<UiAction>(actions);
+                touchActions.Insert(touchIndex, UiAction.None);
+                labels = withTouch.ToArray();
+                actions = touchActions.ToArray();
+            }
 
             Overlay.beginFullScreen("##pause-screen", width, height);
             Overlay.dimBackground(width, height);
-            Overlay.textCentered(Title, height / 10f, centreY / 2f, width);
-            Overlay.textCentered(ResumeHint, height / 30f, centreY / 2f + height / 12f, width);
-            if (seedLine != null) {
-                Overlay.textCentered(seedLine, Overlay.BaseFontSize, centreY - Overlay.lineHeight() * 0.75f, width);
+            float buttonsTop = centreY;
+            if (TouchLayout.isActive()) {
+                // A phone on its side is under 400 pixels tall: the title
+                // goes to the top and the fingertip-sized column follows it,
+                // rather than starting halfway down and being squeezed.
+                Overlay.textCentered(Title, Overlay.BaseFontSize * 2f, UiScale.px(8f) + Overlay.BaseFontSize, width);
+                buttonsTop = UiScale.px(16f) + Overlay.BaseFontSize * 2f;
+                // the seed in the top-left corner, clear of the column (the
+                // mute toggle has the top-right one)
+                if (seedLine != null) {
+                    Overlay.textAt(seedLine, UiScale.px(12f), UiScale.px(12f));
+                }
+            } else {
+                Overlay.textCentered(Title, height / 10f, centreY / 2f, width);
+                Overlay.textCentered(ResumeHint, height / 30f, centreY / 2f + height / 12f, width);
+                if (seedLine != null) {
+                    Overlay.textCentered(seedLine, Overlay.BaseFontSize, centreY - Overlay.lineHeight() * 0.75f, width);
+                }
             }
 
             // The line about saving sits under the buttons, so the column
@@ -83,7 +111,7 @@ namespace beyondnations.desktop.ui.screens {
             // a short window.
             float warningSpace = Overlay.lineHeight() * 2f;
             float buttonsBottom;
-            int clicked = Overlay.menuButtons(labels, width, centreY, height - warningSpace, out buttonsBottom);
+            int clicked = Overlay.menuButtons(labels, width, buttonsTop, height - warningSpace, out buttonsBottom);
             float warningY = System.MathF.Min(buttonsBottom + warningSpace * 0.5f, height - warningSpace * 0.5f);
             if (!canSave) {
                 Overlay.textCentered(MainMenuWarning, Overlay.BaseFontSize, warningY, width);
@@ -103,6 +131,10 @@ namespace beyondnations.desktop.ui.screens {
             }
             Overlay.end();
 
+            if (clicked >= 0 && clicked == touchIndex) {
+                TouchLayout.setMode(TouchLayout.next(TouchLayout.getMode()));
+                return UiAction.None;
+            }
             return clicked < 0 ? UiAction.None : actions[clicked];
         }
     }

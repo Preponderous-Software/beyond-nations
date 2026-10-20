@@ -19,6 +19,14 @@ namespace beyondnationstests.web {
             Assert.Empty(parse(null));
         }
 
+        /** touch= is the page's (main.js), so the game takes no flag and gives no warning. */
+        [Fact]
+        public void theTouchSettingIsThePagesAndNotWarnedAbout() {
+            List<string> warnings = new List<string>();
+            Assert.Equal(new[] { "--seed", "7" }, parse("?touch=on&seed=7", warnings));
+            Assert.Empty(warnings);
+        }
+
         [Fact]
         public void namesAndValuesBecomeTheDesktopsFlags() {
             List<string> args = parse("?ticks-per-second=20&seed=42&start-screen=world&debug-mode");

@@ -22,6 +22,7 @@ namespace beyondnations.desktop.ui.screens {
         public const string Title = "CRAFTING";
         public const string CloseHint = "C or Escape closes";
         public const string CloseLabel = "Close";
+        public const string TouchHint = "Tap a \"Craft >\" row to make it; drag to scroll";
 
         /** What one recipe row shows. */
         public class Row {
@@ -106,8 +107,9 @@ namespace beyondnations.desktop.ui.screens {
             float y = top;
             Overlay.textCentered(Title, lineHeight * 1.6f, y, width);
             y += lineHeight * 1.2f;
-            Overlay.textCentered(CloseHint, lineHeight * 0.8f, y, width);
+            Overlay.textCentered(TouchLayout.isActive() ? TouchHint : CloseHint, lineHeight * 0.8f, y, width);
             y += lineHeight * 0.9f;
+            y = System.MathF.Max(y, Overlay.touchCloseBottom());
             ImGui.SetWindowFontScale(scale * 0.9f);
             drawWrapped(getLocationLine(simulation), x0, ref y, panelWidth, lineHeight * 0.9f, new Vector4(0.85f, 0.85f, 0.85f, 1f));
             y += lineHeight * 0.4f;
@@ -162,12 +164,18 @@ namespace beyondnations.desktop.ui.screens {
             ImGui.SetWindowFontScale(scale);
             float closeWidth = 120f * scale;
             float closeHeight = 36f * scale;
-            float closeY = System.MathF.Min(y + 6f, height - closeHeight - 8f);
+            // On touch the list scrolls by dragging, so Close follows the
+            // last row instead of being pinned over it (and the corner Close
+            // stays in reach).
+            float closeY = TouchLayout.isActive() ? y + 6f : System.MathF.Min(y + 6f, height - closeHeight - 8f);
             if (Overlay.buttonAt(CloseLabel + "##crafting", (width - closeWidth) * 0.5f, closeY, closeWidth, closeHeight)) {
                 action = UiAction.ResumeWorld;
             }
             ImGui.SetWindowFontScale(1f);
             Overlay.end();
+            if (Overlay.touchCloseButton("crafting", width)) {
+                action = UiAction.ResumeWorld;
+            }
 
             // craft after drawing, so the rows drawn this frame stay consistent
             if (clicked != null) {

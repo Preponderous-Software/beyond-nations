@@ -30,6 +30,13 @@ namespace beyondnations.web.host {
         private double framebufferScale = 1.0;
         private double displayWidth;
         private double displayHeight;
+        // the safe area (notches, rounded corners), as insets in CSS pixels
+        private float insetLeft;
+        private float insetTop;
+        private float insetRight;
+        private float insetBottom;
+        private ImGuiStyle defaultStyle;
+        private bool touchStyle;
 
         /**
         * fontRasterScale is the devicePixelRatio the font atlas is rasterised
@@ -59,7 +66,57 @@ namespace beyondnations.web.host {
             io.FontGlobalScale = 1f / scale;
 
             ImGui.StyleColorsDark();
+            defaultStyle = *ImGui.GetStyle().NativePtr;
             uploadFontAtlas();
+        }
+
+        /**
+        * Keeps the UI inside the safe area: ImGui is given the canvas less
+        * the insets as its display, its draw lists are shifted by the left
+        * and top insets, and pointer positions are shifted back. The world
+        * still fills the whole canvas, under the notch included.
+        */
+        public void setSafeArea(double left, double top, double right, double bottom) {
+            insetLeft = clampInset(left);
+            insetTop = clampInset(top);
+            insetRight = clampInset(right);
+            insetBottom = clampInset(bottom);
+        }
+
+        private static float clampInset(double value) {
+            return double.IsNaN(value) ? 0f : (float) Math.Clamp(value, 0.0, 200.0);
+        }
+
+        /** The width and height the UI is laid out in: the canvas less the safe-area insets. */
+        public float getUiWidth(double cssWidth) {
+            return (float) Math.Max(1.0, cssWidth - insetLeft - insetRight);
+        }
+
+        public float getUiHeight(double cssHeight) {
+            return (float) Math.Max(1.0, cssHeight - insetTop - insetBottom);
+        }
+
+        /**
+        * Fingertip-sized widgets for touch screens: more padding inside
+        * buttons and between them, wider scrollbars and grabs, and ImGui's
+        * own TouchExtraPadding, which widens every widget's hit area beyond
+        * what is drawn. Off restores the style the desktop uses.
+        */
+        public void setTouchStyle(bool touch) {
+            if (touch == touchStyle) {
+                return;
+            }
+            touchStyle = touch;
+            ImGuiStyle* style = ImGui.GetStyle().NativePtr;
+            *style = defaultStyle;
+            if (touch) {
+                style->FramePadding = new Vector2(10f, 8f);
+                style->ItemSpacing = new Vector2(10f, 8f);
+                style->ItemInnerSpacing = new Vector2(8f, 6f);
+                style->ScrollbarSize = 22f;
+                style->GrabMinSize = 22f;
+                style->TouchExtraPadding = new Vector2(4f, 4f);
+            }
         }
 
         private void uploadFontAtlas() {
@@ -77,7 +134,7 @@ namespace beyondnations.web.host {
             displayWidth = cssWidth;
             displayHeight = cssHeight;
             framebufferScale = devicePixelRatio;
-            io.DisplaySize = new Vector2((float) cssWidth, (float) cssHeight);
+            io.DisplaySize = new Vector2(getUiWidth(cssWidth), getUiHeight(cssHeight));
             io.DisplayFramebufferScale = new Vector2((float) devicePixelRatio, (float) devicePixelRatio);
             io.DeltaTime = (float) Math.Max(deltaSeconds, 1e-4);
             ImGui.NewFrame();
@@ -122,7 +179,7 @@ namespace beyondnations.web.host {
                         (int) list.VtxBuffer.Data, list.VtxBuffer.Size,
                         (int) list.IdxBuffer.Data, list.IdxBuffer.Size,
                         (int) commandData, written,
-                        displayWidth, displayHeight, framebufferScale);
+                        displayWidth, displayHeight, framebufferScale, insetLeft, insetTop);
                 }
             }
         }
@@ -130,7 +187,7 @@ namespace beyondnations.web.host {
         // --- input, queued as it arrives ---
 
         public void pointerMove(double x, double y) {
-            ImGui.GetIO().AddMousePosEvent((float) x, (float) y);
+            ImGui.GetIO().AddMousePosEvent((float) x - insetLeft, (float) y - insetTop);
         }
 
         public void pointerButton(int button, bool down) {

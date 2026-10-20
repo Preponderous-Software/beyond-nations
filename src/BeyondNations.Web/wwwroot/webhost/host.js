@@ -7,7 +7,9 @@
 //                                    exportsName: "beyondnations.web.host.WebHostExports" });
 //
 // ui: { progress(loadedBytes), ready(), fatal(message), quit(), status(obj),
-//       log(level, message) } -- every member optional.
+//       log(level, message), touchMode(mode), inputHooks } -- every member
+//       optional. touchMode is the game asking the page to store its
+//       touch-controls setting; the page answers with host.touchState().
 // modules: { name: object } -- extra JSImport modules the game's own code
 //       imports (Beyond Nations' "bn-audio"), registered before Main runs.
 
@@ -86,6 +88,7 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
         ui.status?.(lastStatus);
       },
       ready() { ui.ready?.(); },
+      touchMode(mode) { ui.touchMode?.(mode); },
       // Key-value storage for saves. localStorage can be missing or throw
       // (private windows, storage turned off, quota), so every call is
       // guarded and a failure comes back as a value, never an exception.
@@ -198,5 +201,9 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
     sampleNextFrame: () => gfx.sampleNextFrame(),
     gl: gfx.info(),
     stop() { running = false; },
+    /** Insets of the canvas's safe area (notches), in CSS pixels; the game keeps its UI inside. */
+    safeArea(left, top, right, bottom) { host.SafeArea?.(left, top, right, bottom); },
+    /** The touch-controls setting, whether they are showing, and the CSS pixels they cover at the bottom. */
+    touchState(mode, active, bottomReserve) { host.TouchState?.(mode, active, bottomReserve); },
   };
 }

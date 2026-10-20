@@ -11,6 +11,9 @@ namespace beyondnations.desktop.ui {
     public static class ObjectiveKeyNames {
 
         public static string of(HintKey key) {
+            if (TouchLayout.isActive()) {
+                return ofTouch(key);
+            }
             switch (key) {
                 case HintKey.Interact: return KeyBindings.Interact.ToString();
                 case HintKey.GiftToPawn: return KeyBindings.GiftToPawn.ToString();
@@ -23,6 +26,28 @@ namespace beyondnations.desktop.ui {
                 case HintKey.TeleportToHomeSettlement: return KeyBindings.TeleportToHomeSettlement.ToString();
                 case HintKey.PlantSapling: return KeyBindings.PlantSapling.ToString();
                 case HintKey.ToggleInventory: return KeyBindings.ToggleInventory.ToString();
+                default: return key.ToString();
+            }
+        }
+
+        /**
+        * The on-screen button that does the same on a touch screen
+        * (TouchLayout): the Use and Bag buttons, or the command bar's button
+        * of that name, which the bar offers whenever the action is possible.
+        */
+        public static string ofTouch(HintKey key) {
+            switch (key) {
+                case HintKey.Interact: return "Use";
+                case HintKey.GiftToPawn: return "Gift";
+                case HintKey.InviteToNation: return "Invite";
+                case HintKey.CreateNewNation: return "Create Nation";
+                case HintKey.JoinNation: return "Join Nation";
+                case HintKey.LeaveNation: return "Leave Nation";
+                case HintKey.FoundSettlement: return "Found Settlement";
+                case HintKey.BuildStall: return "Build Stall";
+                case HintKey.TeleportToHomeSettlement: return "Teleport Home";
+                case HintKey.PlantSapling: return "Plant Sapling";
+                case HintKey.ToggleInventory: return "Bag";
                 default: return key.ToString();
             }
         }

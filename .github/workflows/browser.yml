@@ -1,6 +1,6 @@
 # Builds Beyond Nations for the browser (src/BeyondNations.Web: .NET 8
 # browser-wasm, AOT), smoke-tests it in headless Chromium on a desktop and a
-# phone profile, and, when enabled, deploys it to arcade as
+# phone held upright and on its side, and, when enabled, deploys it to arcade as
 # https://beyond-nations.play.danielstephenson.dev
 #
 # The desktop build and its required "Build and test" check (ci.yml) do not
@@ -80,13 +80,14 @@ jobs:
           npm ci
           npx playwright install --with-deps chromium
 
-      - name: Smoke test (desktop, then iPhone 13 profile)
+      - name: Smoke test (desktop, then a phone upright and on its side)
         run: |
           python3 -m http.server 8080 --bind 127.0.0.1 --directory web-site > http.log 2>&1 &
           sleep 1
           cd src/BeyondNations.Web/smoke
           node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/desktop"
           node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/phone" --phone
+          node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/phone-landscape" --phone-landscape
 
       - name: Upload smoke screenshots
         if: always()

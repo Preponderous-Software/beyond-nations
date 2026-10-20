@@ -50,12 +50,7 @@ html, body {
   z-index: 10;
 }
 
-.panel[hidden], #touch[hidden] { display: none; }
-/* The crafting screen is full of rows to tap and has its own Close button;
-   the controls would sit on top of its lower rows (main.js sets data-screen). */
-body[data-screen="CRAFTING"] #touch { display: none; }
-/* The New World and Share screens (docs/SHARING.md) are buttons to tap; nothing moves there. */
-body[data-screen="NEW_WORLD"] #touch, body[data-screen="SHARE"] #touch { display: none; }
+.panel[hidden] { display: none; }
 
 .panel h1 { margin: 0 0 4px; font-size: 1.6rem; }
 .panel .sub { margin: 0 0 16px; color: var(--muted); }
@@ -109,64 +104,145 @@ button, .button {
 .button.secondary { background: rgba(255, 255, 255, 0.12); color: var(--text); }
 button:focus-visible, .button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* On-screen controls (touch-only devices). They sit above the HUD's lower
-   row, which the game draws 220 px from the bottom, so the inventory and
-   player boxes and the command buttons along the bottom stay uncovered. */
+/* --- Touch screens (docs/WEB.md, "Touch controls") ---
+   body[data-touch="on"] when the touch layout is on (main.js); the controls
+   show only while the world is up (data-screen="WORLD"), since every panel
+   has its own Close button and scrolls by dragging. */
+
+/* The page never scrolls, zooms, bounces or offers a long-press menu. */
+html, body {
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.panel, .panel * { touch-action: pan-y; -webkit-user-select: text; user-select: text; }
+
+/* Read by main.js for the safe-area insets the game keeps its UI inside. */
+#safe-area-probe {
+  position: fixed;
+  inset: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  visibility: hidden;
+  pointer-events: none;
+}
+
 #touch {
+  --stick: 128px;
+  --knob: 56px;
+  --use: 80px;
+  --small: 56px;
+  --gap: 8px;
+  --edge: 12px;
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(228px + env(safe-area-inset-bottom));
-  padding: 0 max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left));
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  bottom: 0;
+  padding: 0 max(var(--edge), env(safe-area-inset-right)) max(var(--edge), env(safe-area-inset-bottom)) max(var(--edge), env(safe-area-inset-left));
+  display: none;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "stick tray actions";
+  align-items: end;
+  gap: var(--gap);
   pointer-events: none;
   z-index: 5;
 }
+body[data-touch="on"][data-screen="WORLD"] #touch { display: grid; }
+/* a world event's choices take the bottom of the screen (WorldEventSheet) */
+body[data-sheet="on"] #touch { display: none !important; }
+
 #touch button {
   pointer-events: auto;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-  background: rgba(20, 28, 40, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(20, 28, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
-  border-radius: 10px;
-  min-width: 52px;
-  min-height: 52px;
-  padding: 0;
+  min-height: 44px;
+  padding: 0 6px;
   font-size: 0.95rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
-#touch button.held { background: rgba(127, 179, 255, 0.75); }
-.pad {
-  display: grid;
-  grid-template-columns: repeat(3, 56px);
-  grid-template-rows: repeat(3, 56px);
-  gap: 4px;
+#touch button.held { background: rgba(127, 179, 255, 0.8); border-color: #fff; }
+
+.stick {
+  grid-area: stick;
+  pointer-events: auto;
+  touch-action: none;
+  position: relative;
+  width: var(--stick);
+  height: var(--stick);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 28, 40, 0.25) 0%, rgba(20, 28, 40, 0.55) 70%);
+  border: 2px solid rgba(255, 255, 255, 0.45);
 }
-.pad [data-key="KeyW"] { grid-area: 1 / 2; }
-.pad [data-key="KeyA"] { grid-area: 2 / 1; }
-.pad [data-key="KeyD"] { grid-area: 2 / 3; }
-.pad [data-key="KeyS"] { grid-area: 3 / 2; }
-.actions {
-  display: grid;
-  grid-template-columns: repeat(3, 60px);
+.stick.held { border-color: rgba(127, 179, 255, 0.95); }
+.stick .knob {
+  position: absolute;
+  left: calc(50% - var(--knob) / 2);
+  top: calc(50% - var(--knob) / 2);
+  width: var(--knob);
+  height: var(--knob);
+  border-radius: 50%;
+  background: rgba(238, 242, 247, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+.stick.held .knob { background: rgba(127, 179, 255, 0.95); }
+
+.tray {
+  grid-area: tray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-end;
   gap: 6px;
 }
+.tray button { min-width: 52px; border-radius: 10px; }
 
-/* Landscape phones: smaller buttons so the controls fit above the HUD. */
-@media (max-height: 500px) {
-  #touch { bottom: 228px; }
-  #touch button { min-width: 40px; min-height: 40px; font-size: 0.8rem; }
-  .pad { grid-template-columns: repeat(3, 42px); grid-template-rows: repeat(3, 42px); gap: 3px; }
-  .actions { grid-template-columns: repeat(3, 48px); gap: 4px; }
+.actions {
+  grid-area: actions;
+  display: grid;
+  grid-template-columns: var(--small) var(--use);
+  grid-template-rows: var(--small) var(--use);
+  gap: var(--gap);
 }
-@media (max-height: 420px) {
-  #touch { bottom: auto; top: 50%; transform: translateY(-60%); }
+.actions button { border-radius: 50%; padding: 0; }
+.actions .jump { grid-area: 1 / 2; width: var(--small); height: var(--small); justify-self: center; }
+.actions .run { grid-area: 2 / 1; width: var(--small); height: var(--small); align-self: center; }
+.actions .use { grid-area: 2 / 2; width: var(--use); height: var(--use); font-size: 1.15rem; background: rgba(47, 93, 158, 0.75); }
+
+/* Held upright: the panel buttons get a row of their own above the thumbs. */
+@media (orientation: portrait) {
+  #touch { grid-template-areas: "tray tray tray" "stick . actions"; }
+  /* two rows of four, so every label fits a narrow screen */
+  .tray button { min-width: 0; flex: 1 1 22%; padding: 0 2px; }
 }
-@media (max-width: 420px) {
-  .pad { grid-template-columns: repeat(3, 50px); grid-template-rows: repeat(3, 50px); gap: 3px; }
-  .actions { grid-template-columns: repeat(3, 54px); gap: 5px; }
-  #touch button { min-width: 48px; min-height: 48px; }
+
+/* A small phone on its side: smaller controls, so the world shows between them. */
+@media (orientation: landscape) and (max-height: 420px) {
+  #touch { --stick: 112px; --knob: 50px; --use: 72px; --small: 50px; --gap: 6px; --edge: 10px; }
+  .tray button { min-width: 48px; font-size: 0.85rem; }
 }
+
+#rotate-hint {
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 10px 12px 10px 16px;
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  z-index: 8;
+}
+#rotate-hint[hidden] { display: none; }

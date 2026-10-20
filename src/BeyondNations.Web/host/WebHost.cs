@@ -53,12 +53,14 @@ namespace beyondnations.web.host {
         * One ImDrawList: 20-byte ImDrawVert, 16-bit indices, and commands of
         * 8 floats each (clip x1 y1 x2 y2, texture, vertex offset, index
         * offset, element count). displayW/H are in CSS pixels, scale is the
-        * framebuffer scale.
+        * framebuffer scale, and offsetX/Y (CSS pixels) is where the UI's
+        * origin sits on the canvas: the safe area's top left on a phone
+        * with a notch, 0 elsewhere.
         */
         [JSImport("gfx.drawImGuiList", Module)]
         public static partial void drawImGuiList(
             int verticesPtr, int vertexCount, int indicesPtr, int indexCount, int commandsPtr, int commandCount,
-            double displayW, double displayH, double scale);
+            double displayW, double displayH, double scale, double offsetX, double offsetY);
     }
 
     /** Page-level services: the things a desktop host would ask its window for. */
@@ -116,6 +118,13 @@ namespace beyondnations.web.host {
 
         [JSImport("page.storageRemove", Module)]
         public static partial void storageRemove(string key);
+
+        /**
+        * The player changed the touch-controls setting in the game ("auto",
+        * "on" or "off"): the page stores it and answers with TouchState.
+        */
+        [JSImport("page.touchMode", Module)]
+        public static partial void touchMode(string mode);
     }
 
     /**
@@ -150,6 +159,32 @@ namespace beyondnations.web.host {
 
         /** The page is being hidden (tab closed, switched away, phone locked). */
         void pageHidden();
+
+        // --- touch screens (docs/WEB.md, "Touch controls"); a game without
+        // touch controls can leave these as they are ---
+
+        /** The on-screen stick: x right, y forward, each in [-1, 1]; (0, 0) when let go. */
+        void move(double x, double y) {
+        }
+
+        /** A tap (no drag) at a point on the canvas, in CSS pixels, after its pointer events. */
+        void tap(double x, double y) {
+        }
+
+        /**
+        * The part of the canvas clear of notches and rounded corners
+        * (env(safe-area-inset-*)), as insets in CSS pixels; the UI keeps to it.
+        */
+        void safeArea(double left, double top, double right, double bottom) {
+        }
+
+        /**
+        * What the page shows: the touch-controls setting, whether the touch
+        * layout is on, and how many CSS pixels of the bottom of the safe area
+        * its controls cover.
+        */
+        void touchState(string mode, bool active, double bottomReserve) {
+        }
     }
 
     /**
@@ -207,5 +242,17 @@ namespace beyondnations.web.host {
 
         [JSExport]
         public static void Hidden() { game?.pageHidden(); }
+
+        [JSExport]
+        public static void Move(double x, double y) { game?.move(x, y); }
+
+        [JSExport]
+        public static void Tap(double x, double y) { game?.tap(x, y); }
+
+        [JSExport]
+        public static void SafeArea(double left, double top, double right, double bottom) { game?.safeArea(left, top, right, bottom); }
+
+        [JSExport]
+        public static void TouchState(string mode, bool active, double bottomReserve) { game?.touchState(mode, active, bottomReserve); }
     }
 }

@@ -107,10 +107,12 @@ namespace beyondnations.web {
         public void render(double deltaTime, double cssWidth, double cssHeight, double devicePixelRatio,
                 Simulation simulation, bool debugMode, ChronicleView chronicleView = null) {
             frameRate.record(deltaTime);
+            backend.setTouchStyle(TouchLayout.isActive());
             backend.newFrame(deltaTime, cssWidth, cssHeight, devicePixelRatio);
 
-            float width = (float) cssWidth;
-            float height = (float) cssHeight;
+            // the safe area: the canvas less any notch or rounded corners
+            float width = backend.getUiWidth(cssWidth);
+            float height = backend.getUiHeight(cssHeight);
             UiAction action = UiAction.None;
             switch (screens.getCurrent()) {
                 case ScreenType.TITLE:

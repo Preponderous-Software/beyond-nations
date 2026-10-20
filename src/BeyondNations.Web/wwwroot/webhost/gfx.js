@@ -249,10 +249,12 @@ export function drawLabels(matricesPtr, textureId, verticesPtr, vertexCount, ind
 // --- Dear ImGui ---
 
 export function drawImGuiList(verticesPtr, vertexCount, indicesPtr, indexCount, commandsPtr, commandCount,
-                              displayW, displayH, scale) {
+                              displayW, displayH, scale, offsetX = 0, offsetY = 0) {
   const fbH = canvas.height;
   gl.useProgram(imgui.program);
-  const L = 0, R = displayW, T = 0, B = displayH;
+  // ImGui's origin sits at (offsetX, offsetY) on the canvas: the safe
+  // area's corner on a phone with a notch.
+  const L = -offsetX, R = displayW - offsetX, T = -offsetY, B = displayH - offsetY;
   gl.uniformMatrix4fv(imgui.u.uProjection, false, new Float32Array([
     2 / (R - L), 0, 0, 0,
     0, 2 / (T - B), 0, 0,
@@ -278,8 +280,8 @@ export function drawImGuiList(verticesPtr, vertexCount, indicesPtr, indexCount, 
   let boundOffset = 0;
   for (let i = 0; i < commandCount; i++) {
     const c = i * 8;
-    const x1 = commands[c] * scale, y1 = commands[c + 1] * scale;
-    const x2 = commands[c + 2] * scale, y2 = commands[c + 3] * scale;
+    const x1 = (commands[c] + offsetX) * scale, y1 = (commands[c + 1] + offsetY) * scale;
+    const x2 = (commands[c + 2] + offsetX) * scale, y2 = (commands[c + 3] + offsetY) * scale;
     if (x2 <= x1 || y2 <= y1) continue;
     const vertexOffset = commands[c + 5];
     if (vertexOffset !== boundOffset) {

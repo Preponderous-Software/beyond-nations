@@ -78,6 +78,29 @@ namespace beyondnationstests.web {
             Assert.Equal(Vector2.Zero, input.getMouseDelta());
         }
 
+        /** The on-screen stick: kept within the unit circle, and let go of when focus is lost. */
+        [Fact]
+        public void theStickIsClampedAndReleasedWithFocus() {
+            BrowserInputSource source = new BrowserInputSource();
+            InputService input = new InputService(source);
+            source.move(0.5f, -0.25f);
+            input.update();
+            Assert.Equal(new Vector2(0.5f, -0.25f), input.getMoveAxis());
+
+            source.move(3f, 3f);
+            input.update();
+            Assert.Equal(1f, input.getMoveAxis().Length(), 3);
+
+            source.move(float.NaN, 1f);
+            input.update();
+            Assert.Equal(Vector2.Zero, input.getMoveAxis());
+
+            source.move(0f, 1f);
+            source.releaseAll();
+            input.update();
+            Assert.Equal(Vector2.Zero, input.getMoveAxis());
+        }
+
         [Fact]
         public void unknownKeysAreIgnored() {
             BrowserInputSource source = new BrowserInputSource();

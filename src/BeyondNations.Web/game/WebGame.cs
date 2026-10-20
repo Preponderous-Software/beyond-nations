@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Numerics;
 using System.Text;
 using Silk.NET.Input;
 using beyondnations;
@@ -68,6 +69,8 @@ namespace beyondnations.web {
         private bool stopped;
         private int lastLoggedRenderDistance;
         private ScreenType lastPublishedScreen = (ScreenType) (-1);
+        private bool tapPending;
+        private int tapsInteracted;
 
         public WebGame(GameOptions options, double devicePixelRatio) {
             this.options = options;
@@ -232,6 +235,48 @@ namespace beyondnations.web {
             imgui.focusLost();
         }
 
+        // --- touch screens (docs/WEB.md, "Touch controls") ---
+
+        public void move(double x, double y) { inputSource.move((float) x, (float) y); }
+
+        public void tap(double x, double y) { tapPending = true; }
+
+        public void safeArea(double left, double top, double right, double bottom) {
+            imgui.setSafeArea(left, top, right, bottom);
+        }
+
+        public void touchState(string mode, bool active, double bottomReserve) {
+            TouchLayout.setState(TouchLayout.parse(mode), active, (float) bottomReserve);
+            if (!active) {
+                inputSource.move(0f, 0f);
+            }
+        }
+
+        /**
+        * A tap on the world (not on a button or a box) interacts, as the Use
+        * button and E do, when something is within reach; with nothing there
+        * it does nothing, so a tap that was meant as a short look does not
+        * answer "No entities within range". Run after the UI has drawn, when
+        * ImGui has seen the tap and knows whether it landed on a window.
+        */
+        private void applyTap() {
+            if (!tapPending) {
+                return;
+            }
+            tapPending = false;
+            if (simulation == null || !screens.isWorldActive() || ImGuiNET.ImGui.GetIO().WantCaptureMouse) {
+                return;
+            }
+            InteractCommand interact = new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(),
+                simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter());
+            if (interact.hasTargetInRange(simulation.getPlayer())) {
+                // the same press E makes, so it goes through the same path
+                inputSource.key(KeyBindings.Interact, true);
+                inputSource.key(KeyBindings.Interact, false);
+                tapsInteracted++;
+            }
+        }
+
         /** A hidden tab may never come back, so the world is saved now. */
         public void pageHidden() {
             if (simulation != null && !stopped) {
@@ -349,6 +394,12 @@ namespace beyondnations.web {
             }
 
             ui.render(deltaTime, cssWidth, cssHeight, devicePixelRatio, simulation, playerInputController.isDebugMode(), playerInputController.getChronicleView());
+            applyTap();
+            TouchMode changedMode;
+            if (TouchLayout.consumeModeChange(out changedMode)) {
+                // the page stores the setting and answers with touchState
+                WebPage.touchMode(TouchLayout.toName(changedMode));
+            }
             if (ui.consumeStartRequest()) {
                 createWorld();
             }
@@ -442,6 +493,19 @@ namespace beyondnations.web {
             json.Append(",\"lookPitch\":").Append(look.getPitchDegrees().ToString("0.##", CultureInfo.InvariantCulture));
             json.Append(",\"camera\":\"").Append(camera.getMode().ToString()).Append('"');
             json.Append(",\"stopped\":").Append(stopped ? "true" : "false");
+            // touch screens (docs/WEB.md), for the page and the phone smoke test
+            json.Append(",\"touch\":").Append(TouchLayout.isActive() ? "true" : "false");
+            json.Append(",\"touchMode\":\"").Append(TouchLayout.toName(TouchLayout.getMode())).Append('"');
+            json.Append(",\"chronicle\":\"").Append(playerInputController.getChronicleView().getMode().ToString()).Append('"');
+            json.Append(",\"tapsInteracted\":").Append(tapsInteracted);
+            // a world event's bottom sheet is up: the page hides its controls so the choices can be tapped
+            json.Append(",\"worldEvent\":").Append(WorldEventSheet.getView(simulation) != null ? "true" : "false");
+            if (simulation != null) {
+                Vector3 position = simulation.getPlayer().getPosition();
+                json.Append(",\"playerX\":").Append(position.X.ToString("0.##", CultureInfo.InvariantCulture));
+                json.Append(",\"playerZ\":").Append(position.Z.ToString("0.##", CultureInfo.InvariantCulture));
+                json.Append(",\"wood\":").Append(simulation.getPlayer().getInventory().getNumItems(ItemType.WOOD));
+            }
             // saves (docs/SAVES.md), for the smoke test's save-and-continue check
             json.Append(",\"audio\":\"").Append(feel.getSound().getState()).Append('"');
             json.Append(",\"hint\":\"").Append(feel.describeHint()).Append('"');

@@ -156,7 +156,8 @@ namespace beyondnations.desktop.ui.screens {
             float lineHeight = System.MathF.Max(UiScale.px(26f), height / 22f);
             float buttonHeight = System.MathF.Max(lineHeight - 4f, UiScale.px(30f));
             float left = System.MathF.Max(width * 0.04f, UiScale.px(16f));
-            float y = System.MathF.Max(height / 18f, UiScale.px(12f));
+            // below the corner Close on a touch screen (TouchLayout)
+            float y = System.MathF.Max(System.MathF.Max(height / 18f, UiScale.px(12f)), Overlay.touchCloseBottom());
 
             Overlay.beginFullScreen("##nation-screen", width, height);
             Overlay.dimBackground(width, height);
@@ -184,10 +185,12 @@ namespace beyondnations.desktop.ui.screens {
             }
             Overlay.textCentered(CloseHint, height / 34f, height - lineHeight * 0.7f, width);
             Overlay.end();
+            // a finger has no O or Escape (TouchLayout)
+            UiAction action = Overlay.touchCloseButton("nations", width) ? UiAction.ResumeWorld : UiAction.None;
 
             // run after the rows are drawn, so a nation disbanding cannot upset the loop
             pending?.Invoke();
-            return UiAction.None;
+            return action;
         }
 
         /** Centred text wrapped to the screen's width, at most maxLines lines. Returns the y after the last line. */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>Beyond Nations</title>
   <meta name="description" content="Beyond Nations in your browser: a sandbox nation-simulation game. Gather wood and stone, found a nation and a settlement, and trade at its market.">
   <meta name="theme-color" content="#2b3a4f">
@@ -25,19 +25,10 @@
         <li><kbd>E</kbd> interact, <kbd>Space</kbd> jump, <kbd>Shift</kbd> sprint</li>
         <li><kbd>N</kbd> create a nation, <kbd>J</kbd> join one, <kbd>F</kbd> found a settlement</li>
         <li><kbd>I</kbd> inventory, <kbd>O</kbd> nations, diplomacy and laws, <kbd>V</kbd> first/third person, <kbd>Esc</kbd> pause</li>
+        <li>On a phone or tablet: the stick (left) walks and turns, a drag on the world steers, a tap on the world uses what is within reach, and the buttons do the rest</li>
       </ul>
     </details>
     <p class="small"><a href="https://danielstephenson.dev/play">More games at danielstephenson.dev/play</a></p>
-  </section>
-
-  <section id="gate" class="panel" hidden>
-    <h1>Beyond Nations</h1>
-    <p><b>This game is played with a keyboard and mouse.</b> On a phone or tablet it works best with a keyboard attached.</p>
-    <p>You can still try it with on-screen controls: a pad to walk, buttons for the main keys, and a drag on the world to look around.</p>
-    <p class="buttons">
-      <button id="gate-continue" type="button">Try the on-screen controls</button>
-      <a class="button secondary" href="https://danielstephenson.dev/play">Back to the arcade</a>
-    </p>
   </section>
 
   <section id="exited" class="panel" hidden>
@@ -58,24 +49,32 @@
     </p>
   </section>
 
-  <div id="touch" hidden>
-    <div class="pad">
-      <button data-key="KeyW" aria-label="Forward">▲</button>
-      <button data-key="KeyA" aria-label="Turn left">◀</button>
-      <button data-key="KeyD" aria-label="Turn right">▶</button>
-      <button data-key="KeyS" aria-label="Back">▼</button>
+  <!-- On-screen controls, shown on touch screens while the world is up
+       (main.js, webhost/touch.js; docs/WEB.md "Touch controls"). -->
+  <div id="touch" aria-label="On-screen controls">
+    <div class="stick" id="stick" role="application" aria-label="Walk and turn: drag the knob"><div class="knob"></div></div>
+    <div class="tray" role="toolbar" aria-label="Panels">
+      <button type="button" data-key="KeyI">Bag</button>
+      <button type="button" data-key="KeyC">Craft</button>
+      <button type="button" data-key="KeyO">Realm</button>
+      <button type="button" data-key="KeyY">News</button>
+      <button type="button" data-key="KeyV">View</button>
+      <button type="button" data-key="Slash" aria-label="Controls">?</button>
+      <button type="button" data-key="Escape">Menu</button>
     </div>
-    <div class="actions">
-      <button data-key="KeyE">Use</button>
-      <button data-key="Space">Jump</button>
-      <button data-key="ShiftLeft" data-toggle>Run</button>
-      <button data-key="KeyI">Bag</button>
-      <button data-key="KeyO">Realm</button>
-      <button data-key="KeyC">Craft</button>
-      <button data-key="KeyV">View</button>
-      <button data-key="Escape">Menu</button>
+    <div class="actions" role="toolbar" aria-label="Actions">
+      <button type="button" class="jump" data-key="Space">Jump</button>
+      <button type="button" class="run" data-key="ShiftLeft" data-toggle>Run</button>
+      <button type="button" class="use" data-key="KeyE">Use</button>
     </div>
   </div>
+
+  <div id="rotate-hint" role="status" hidden>
+    <span>Turn your phone sideways for a wider view.</span>
+    <button type="button" id="rotate-dismiss">OK</button>
+  </div>
+
+  <div id="safe-area-probe" aria-hidden="true"></div>
 
   <noscript><p class="panel">Beyond Nations needs JavaScript and WebAssembly.</p></noscript>
   <script type="module" src="main.js"></script>

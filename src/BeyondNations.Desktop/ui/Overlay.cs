@@ -152,8 +152,9 @@ namespace beyondnations.desktop.ui {
             foreach (string label in labels) {
                 buttonWidth = System.MathF.Max(buttonWidth, ImGui.CalcTextSize(label).X + padding * 2f);
             }
-            float buttonHeight = UiScale.px(40f);
-            float gap = UiScale.px(12f);
+            // a fingertip-sized column on touch screens (TouchLayout)
+            float buttonHeight = UiScale.px(TouchLayout.isActive() ? TouchLayout.MinTarget : 40f);
+            float gap = UiScale.px(TouchLayout.isActive() ? 8f : 12f);
             float needed = labels.Length * buttonHeight + (labels.Length - 1) * gap;
             float available = maxBottom - topY;
             if (needed > available && available > 0f) {
@@ -182,6 +183,35 @@ namespace beyondnations.desktop.ui {
             ImGui.SetCursorPos(new Vector2(x, y));
             ImGui.TextUnformatted(text);
             ImGui.SetWindowFontScale(1f);
+        }
+
+        /**
+        * On a touch screen (TouchLayout), a finger-sized Close button in the
+        * top right corner, in a window of its own so it stays put while the
+        * panel under it is dragged to scroll. A panel that is closed with a
+        * key on the desktop had no way to be closed by touch but the Menu
+        * button. Draws nothing and returns false when touch is not active.
+        * Call after the panel's own window has ended.
+        */
+        public static bool touchCloseButton(string id, float width) {
+            if (!TouchLayout.isActive()) {
+                return false;
+            }
+            Vector2 padding = ImGui.GetStyle().WindowPadding;
+            float buttonWidth = UiScale.px(96f);
+            float buttonHeight = UiScale.px(TouchLayout.MinTarget);
+            ImGui.SetNextWindowPos(new Vector2(width - buttonWidth - UiScale.px(8f) - padding.X, UiScale.px(8f) - padding.Y), ImGuiCond.Always);
+            bool clicked = false;
+            if (ImGui.Begin("##touch-close-" + id, FullScreenFlags & ~ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.AlwaysAutoResize)) {
+                clicked = ImGui.Button("Close##" + id, new Vector2(buttonWidth, buttonHeight));
+            }
+            ImGui.End();
+            return clicked;
+        }
+
+        /** Where the touch Close button ends, so full-width text can start below it; 0 without touch. */
+        public static float touchCloseBottom() {
+            return TouchLayout.isActive() ? UiScale.px(TouchLayout.MinTarget + 16f) : 0f;
         }
 
         public static bool buttonAt(string label, float x, float y, float width, float height) {
