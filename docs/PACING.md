@@ -105,10 +105,10 @@ When each era was reached, in minutes of game time from the start of the world, 
 | Era | seed 1 | seed 2 | seed 3 | seed 4 | seed 5 | aimed at |
 |---|---|---|---|---|---|---|
 | Village | 24.5 | 2.2 | 16.4 | 10.2 | 2.4 | 10 – 20 |
-| Town | 62.6 (with 16 members) | 6.1 | – | – | 43.0 | about 60 |
-| Kingdom | – | – | – | – | 182 (with 16 town members) | a few hours |
+| Town | 84.3 | 6.1 | – | 69.5 | 43.0 | about 60 |
+| Kingdom | about 200 | – | – | – | – | a few hours |
 
-Seeds 2 and 5 race through the Village and Town eras because settlers flock to a new nation in its first two minutes (15 to 18 members by minute 10). Seeds 1 and 3 stall on recruiting: once every settler belongs to a nation the bot can only poach, and its nation holds 9 to 21 members for hours. The Village era is binding in the budget; the Town and Kingdom eras are advisory until recruiting is steadier.
+Seeds 2 and 5 race through the Village era because settlers flock to a new nation in its first two minutes (15 to 18 members by minute 10), and seed 2 through the Town era too. Seed 3 stalls on recruiting: once every settler belongs to a nation the bot can only poach, and its nation holds 6 to 17 members for four hours. Seed 1 is the arc as aimed: a village at 25 minutes, a town at 84 and a kingdom at about 200 (members 25, its fourth settlement then). The bot never won within four hours: Prosperity needs 40 members, and the bot spends its coins on gifts. The Village era is binding in the budget; the Town and Kingdom eras are advisory until recruiting is steadier.
 
 ## Known issues the harness found
 

@@ -136,7 +136,7 @@ A camp may build houses and farms and hold one settlement, and until the Town er
 
 Win by **Dominion** (from the Town era, hold more than half of every settlement in the world, at least six), **Prosperity** (in the Kingdom era, 6,000 funds and 40 members) or **Concord** (from the Town era, be allied with every nation still standing). Lose if the nation you built collapses: no settlement and nobody but you, for five minutes. Either way the end-of-run screen tells the story -- the outcome, the era reached, the days survived and your numbers, then *The History of* your nation, drawn from the chronicle -- and offers to **Continue playing** (after a victory), start a **New world** or go to the **Main menu**. `--stage-victory` and `--stage-defeat` open on it (the screenshot above is `--seed 42 --start-screen world --stage-victory`; the one below is `--stage-defeat` at phone size).
 
-<img src="./.github/media/end-of-run-defeat-phone.png" alt="The end-of-run screen after a defeat, at phone size: the stats stacked, the history wrapped, New world and Main menu buttons side by side" width="260">
+<img src="./.github/media/end-of-run-defeat-phone.png" alt="The end-of-run screen after a defeat, at phone size: the stats stacked, the history wrapped, New world, Load and Main menu buttons stacked for a thumb" width="260">
 
 ### Nations that deal with each other
 ![Two nations' borders meeting on the road ahead: rings of posts capped in each nation's colour curve in from either side toward the point where the claims touch, with each nation's village in the distance](./.github/media/diplomacy-borders.png)
