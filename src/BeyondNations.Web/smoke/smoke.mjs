@@ -100,6 +100,9 @@ try {
     await waitFor((s) => s.screen === "NEW_WORLD", "the New World screen after tapping Start", 10000);
     await page.waitForTimeout(300);
     await page.screenshot({ path: path.join(out, "phone-new-world.png") });
+    if (await page.isVisible('#touch [data-key="KeyW"]')) {
+      throw new Error("the touch controls cover the New World screen");
+    }
     await page.touchscreen.tap(viewport.width / 2, viewport.height / 2 + 50);
     await waitFor((s) => s.screen === "WORLD" && s.world && s.instancesDrawn > 0, "the world after tapping Begin");
     // A new world opens with the first tip (ui/feel/OnboardingHints).
