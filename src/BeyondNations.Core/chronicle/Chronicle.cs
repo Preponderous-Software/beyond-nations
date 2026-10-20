@@ -174,6 +174,8 @@ namespace beyondnations {
                     return describeStatecraft((StatecraftEvent) e, nations, entities);
                 case EventType.WorldEvent:
                     return describeWorldEvent(e as WorldEventEvent, nations, entities);
+                case EventType.Caravan:
+                    return describeCaravan((CaravanEvent) e, nations, entities);
                 default:
                     // ChunkGenerate: noise.
                     return null;
@@ -469,6 +471,21 @@ namespace beyondnations {
             return pick(e, raider + "|" + victim,
                 raider + " raided " + victim + " and carried off " + e.getLoot() + ".",
                 "Raiders from " + raider + " struck " + victim + ", taking " + e.getLoot() + ".");
+        }
+
+        /**
+        * Trade caravans (TradeCaravans) write their own story, since only they
+        * know who rode guard or who robbed them; the chronicle tells the
+        * notable ones -- anything the player had a hand in, and the biggest
+        * hauls between other nations.
+        */
+        private string describeCaravan(CaravanEvent e, List<NationId> nations, List<EntityId> entities) {
+            if (!e.isNotable() || string.IsNullOrEmpty(e.getStory())) {
+                return null;
+            }
+            nations.AddRange(e.getNationIds());
+            entities.AddRange(e.getEntityIds());
+            return e.getStory();
         }
 
         private string describeSettlementCapture(SettlementCaptureEvent e, List<NationId> nations, List<EntityId> entities) {

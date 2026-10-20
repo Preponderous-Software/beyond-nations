@@ -149,6 +149,9 @@ namespace beyondnations.web {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
+            if (options.StageTrade) {
+                TradeShowcase.stage(simulation);
+            }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());

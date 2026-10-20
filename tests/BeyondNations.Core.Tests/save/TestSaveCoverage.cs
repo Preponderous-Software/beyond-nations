@@ -66,7 +66,7 @@ namespace beyondnationstests {
                 if (type == EntityType.NONE) {
                     continue;
                 }
-                Assert.Contains(type.ToString(), new[] { "TREE", "ROCK", "PAWN", "PLAYER", "SETTLEMENT", "SAPLING", "ITEM_DROP", "CHICKEN" });
+                Assert.Contains(type.ToString(), new[] { "TREE", "ROCK", "PAWN", "PLAYER", "SETTLEMENT", "SAPLING", "ITEM_DROP", "CHICKEN", "CARAVAN" });
             }
         }
     }

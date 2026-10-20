@@ -70,7 +70,7 @@ A save is UTF-8 text (in practice ASCII) in two parts:
   and `seed` must agree with the header's.
 
 `tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave`,
-`v2-seed42-tick2400.bnsave` and `v3-seed42-tick2400.bnsave` are real version 1, 2 and 3 saves; open one to see every section. `.gitattributes` marks
+`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave` and `v4-seed42-tick2400.bnsave` are real version 1, 2, 3 and 4 saves; open one to see every section. `.gitattributes` marks
 `*.bnsave` as binary, since a line-ending conversion would break the checksum.
 
 ### What the body holds
@@ -86,7 +86,7 @@ and goes on exactly as the saved one would have:
 | `random` | the full state of each of the four random streams (`main`, `settlementLife`, `traits`, `population`): seed, the generator's 56 ints and its two indices |
 | `simulation` | the death counters, the territory the player was last told about, the chunk world generation is centred on, and the names each name generator has handed out |
 | `environment` | every chunk: its id, coordinates, size and stream, and each location's id, colour and entity list |
-| `playerId`, `entities` | every entity in the repository, in repository order: id, name, position, velocity, visibility, deletion mark, inventory (every slot and every tool's wear), appearance (every part, colour and label), and what its kind adds -- a pawn's energy, raw metabolism, speed, nation, home, behaviour, target, mill target, relationships, conversation cooldowns, order, traits and settler flag; a settlement's colour, nation, residents, buildings, claim radius, siege text and its market with every stall; the player's yaw, speeds, energy, metabolism, relationships, nation, home and status line; a sapling's planting tick and growth time; a chicken's wander state; a drop's stack |
+| `playerId`, `entities` | every entity in the repository, in repository order: id, name, position, velocity, visibility, deletion mark, inventory (every slot and every tool's wear), appearance (every part, colour and label), and what its kind adds -- a pawn's energy, raw metabolism, speed, nation, home, behaviour, target, mill target, relationships, conversation cooldowns, order, traits and settler flag; a settlement's colour, nation, residents, buildings, claim radius, siege text and its market with every stall and its prices (each item's pressure and last-round reference price, where they differ from the defaults); a caravan's nation, colour, home and market, whether it is outbound or returning, its escort, whether it is the player's, its takings, when it set out and which way it faces (its goods and purse are its inventory); the player's yaw, speeds, energy, metabolism, relationships, nation, home and status line; a sapling's planting tick and growth time; a chicken's wander state; a drop's stack |
 | `orphanEntities` | entities something still holds that the repository no longer does, such as a pawn's target that was gathered and swept away the same tick; the pawn lets go on its next step, and must load holding it so that step happens the same way |
 | `nations`, `orphanNations` | every nation in founding order (id, name, colour, leader, members, roles, settlements, stream), and any disbanded nation still recorded as laying a siege |
 | `relations` | every pair's score, alliances and denunciations |
@@ -97,6 +97,7 @@ and goes on exactly as the saved one would have:
 | `realm` | the law round; each nation's laws (setting, any pending change and when it was proclaimed, taxes collected, deserters); wars; truces and the tick each ends; the line of rulers (name, nation, start, end, cause); when the current reign began; whether the run is over; the latest succession notice and whether the host has shown it (format 2) |
 | `worldEvents` | the world events' random stream, when the player's and the nations' next events are due, how many there have been and the player's last, the event waiting on the player's choice if any (its id, when it began and when it times out, and the nation, other nation, settlement, entity and number it was prepared with), and every running effect (drought, bandits) with its timers (format 3) |
 | `chronicle` | every chronicle entry kept (up to 200: sequence, event type, tick, day, part of day, text, the nations and entities it names), how many have ever been recorded, nations founded, and the raids already told today |
+| `trade` | when each nation last sent a caravan, the day the last notable haul was told, and how many caravans have been sent, have sold, have been robbed and have been escorted (format 4) |
 
 The player's meal and sale counters, which objectives read, are saved with the
 player.
@@ -158,13 +159,14 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 3.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 4.
 
 | Version | Change | Migration from the one before |
 | --- | --- | --- |
 | 1 | the first format | -- |
 | 2 | adds `realm` (laws, wars and truces, succession) | add `realm` empty: no laws, wars, truces or past rulers, reign begun at tick 0, run not over, no notice, and the law round a world played to the saved tick would have reached (`totalTicks / 500`) |
 | 3 | world events: the `worldEvents` section | add it empty: nothing pending or running; the events' clocks start from the first tick the loaded world runs, as a new world's do |
+| 4 | trade caravans and living prices: the `trade` section, `prices` in every market, and caravan entities | adds `trade` with nothing sent, and every market's `prices` empty (every item at its plain supply-curve price, no trend yet); an old world has no caravans |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by

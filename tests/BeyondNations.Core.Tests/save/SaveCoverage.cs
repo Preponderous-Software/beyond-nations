@@ -37,7 +37,7 @@ namespace beyondnationstests {
                 Saved = new[] { "gameConfig", "random", "tickCounter", "timeOfDay", "player", "eventRepository", "entityRepository",
                     "environment", "worldGenerator", "nationRepository", "pawnNameGenerator", "nationNameGenerator", "settlementLife",
                     "diplomacy", "playerTerritory", "playerTerritoryKnown", "traitRandom", "populationGrowth", "numPawnDeaths", "numPlayerDeaths",
-                    "objectiveTracker", "chronicle", "realm", "worldEvents" },
+                    "objectiveTracker", "chronicle", "realm", "worldEvents", "tradeCaravans" },
                 // seasons come from the tick count and regions from the seed, so all five are rebuilt (docs/SAVES.md)
                 Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer",
                     "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources" },
@@ -103,7 +103,17 @@ namespace beyondnationstests {
             [typeof(Appearance)] = saved("parts", "label", "labelOffset", "labelScale"),
             [typeof(AppearancePart)] = saved("kind", "offset", "scale", "color"),
             [typeof(Rgba)] = saved("r", "g", "b", "a"),
-            [typeof(Market)] = saved("random", "stalls", "maxNumStalls", "totalNumItemsBought", "totalNumItemsSold"),
+            [typeof(Market)] = saved("random", "stalls", "maxNumStalls", "totalNumItemsBought", "totalNumItemsSold", "prices"),
+            [typeof(MarketPrices)] = saved("pressure", "reference"),
+            [typeof(Caravan)] = saved("nationId", "color", "originId", "destinationId", "state", "escortId", "playerOwned", "earnings",
+                "departedTick", "facingX"),
+            [typeof(TradeCaravans)] = new Entry {
+                Saved = new[] { "lastDispatchTicks", "lastNotableDay", "numDispatched", "numDelivered", "numRaided", "numEscorted" },
+                Derived = new[] { "entityRepository", "nationRepository", "eventProducer", "player", "timeOfDay", "needs", "realm" },
+            },
+            [typeof(TradeNeeds)] = new Entry {
+                Derived = new[] { "nationResources", "nationRepository" },
+            },
             [typeof(Stall)] = saved("ownerId", "inventory"),
             [typeof(Building)] = saved("type", "slot"),
             [typeof(NationOrder)] = saved("nationId", "itemType", "quantity", "delivered"),

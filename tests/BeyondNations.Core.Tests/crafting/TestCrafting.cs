@@ -266,7 +266,9 @@ namespace beyondnationstests {
             Assert.NotNull(market.sellResources(player));
             Assert.Equal(1, player.getInventory().getNumItems(ItemType.AXE));
             Assert.Equal(0, player.getInventory().getNumItems(ItemType.PLANKS));
-            Assert.Equal(ItemCostCalculator.getBaseCost(ItemType.PLANKS), player.getInventory().getNumItems(ItemType.COIN));
+            // a sale is priced as the unit lands on the stall (supply 1), so
+            // buying it straight back can never cost less than it fetched
+            Assert.Equal(ItemCostCalculator.calculateCost(ItemCostCalculator.getBaseCost(ItemType.PLANKS), 1), player.getInventory().getNumItems(ItemType.COIN));
         }
 
         [Fact]

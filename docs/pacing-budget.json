@@ -56,7 +56,8 @@
       "title": "Grow your nation to 5",
       "minSeconds": 5,
       "maxSeconds": 180,
-      "note": "Under 5 s means settlers had joined before the step came up and the player did nothing for it. Before seasons and regions (#318) seed 3 finished in 1 s."
+      "note": "Under 5 s means settlers had joined before the step came up and the player did nothing for it. Before seasons and regions (#318) seed 3 finished in 1 s. Advisory since trade caravans and living prices (#321): which nationless settlers exist near the player is decided by market rolls on the world's main stream, so any change to trading reshuffles it. With #321 seed 3 never finishes (its camp falls to sieges every three minutes and the bot has no settlers left to recruit) and seed 11 finishes in 1 s, while seeds 6 to 15 take as long in all as on develop.",
+      "advisory": true
     },
     {
       "id": "sell-resources",

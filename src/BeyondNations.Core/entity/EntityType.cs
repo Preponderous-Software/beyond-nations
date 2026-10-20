@@ -10,5 +10,6 @@ namespace beyondnations {
         SAPLING,
         ITEM_DROP,
         CHICKEN,
+        CARAVAN,
     }
 }

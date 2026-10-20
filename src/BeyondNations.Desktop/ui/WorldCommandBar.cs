@@ -124,6 +124,7 @@ namespace beyondnations.desktop.ui {
 
             addPawnCommands(simulation, commands);
             addDiplomacyCommands(simulation, commands);
+            CaravanCommands.addCommands(simulation, commands);
 
             if (player.getInventory().getNumItems(ItemType.SAPLING) > 0 && !player.isCurrentlyInSettlement()) {
                 commands.Add(new WorldCommand("Plant Sapling", () =>

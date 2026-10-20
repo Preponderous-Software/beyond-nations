@@ -25,12 +25,16 @@ namespace beyondnations {
     *   2 -> 3  adds the worldEvents section (worldevents/WorldEvents),
     *           empty: nothing pending, nothing running, and the events'
     *           clocks start from the first tick the loaded world runs.
+    *   3 -> 4  trade caravans and living prices: a "trade" section (no
+    *           caravans sent yet), and every market's "prices" with every
+    *           item at its plain supply-curve price and no trend yet.
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
         private static readonly List<Func<JsonObject, JsonObject>> steps = new List<Func<JsonObject, JsonObject>> {
             addRealm,
             addWorldEvents,
+            addTradeAndPrices,
         };
 
         /** 1 -> 2: a world from before the realm has no laws, wars, truces or lineage. */
@@ -61,6 +65,33 @@ namespace beyondnations {
         private static JsonObject addWorldEvents(JsonObject body) {
             body["worldEvents"] = new JsonObject();
             body["formatVersion"] = 3;
+            return body;
+        }
+
+        /** 3 -> 4: caravans and living prices (TradeCaravans, MarketPrices). */
+        private static JsonObject addTradeAndPrices(JsonObject body) {
+            body["trade"] = new JsonObject {
+                ["numDispatched"] = 0,
+                ["numDelivered"] = 0,
+                ["numRaided"] = 0,
+                ["numEscorted"] = 0,
+                ["lastDispatchTicks"] = new JsonArray(),
+                ["lastNotableDay"] = -1,
+            };
+            foreach (string list in new[] { "entities", "orphanEntities" }) {
+                JsonArray entities = body[list] as JsonArray;
+                if (entities == null) {
+                    continue;
+                }
+                foreach (JsonNode entity in entities) {
+                    JsonObject saved = entity as JsonObject;
+                    JsonObject market = saved == null ? null : saved["market"] as JsonObject;
+                    if (market != null && !market.ContainsKey("prices")) {
+                        market["prices"] = new JsonObject { ["items"] = new JsonArray() };
+                    }
+                }
+            }
+            body["formatVersion"] = 4;
             return body;
         }
 

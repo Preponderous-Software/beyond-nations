@@ -20,6 +20,7 @@ namespace beyondnations {
         LeadershipChange,
         // a ruler's acts and the fate of their line: laws, war and peace, succession (realm/)
         Statecraft,
-        WorldEvent
+        WorldEvent,
+        Caravan
     }
 }

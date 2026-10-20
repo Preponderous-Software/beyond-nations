@@ -197,6 +197,17 @@ In the browser every action has a sound: chop, mine, pickup, craft, a building f
 
 A new world opens with five short tips, one at a time: walk and look, chop a tree, gather stone, found a settlement, and where your goals are. Each goes away as soon as you have done it, *Got it* dismisses it, and *No tips* turns them all off. A tip you have finished is never shown again, in that world or the next (*Show Tips* on the config screen starts them over). On a phone they talk about the pad and the *Use* button instead of keys. <img src="./.github/media/feel-tip-phone.png" alt="The same tip on a phone, above the on-screen controls: Walk with the pad on the left. Drag across the world to look around." width="260" align="right"> `--stage-feel` replays the effects every 20 frames for screenshots (the image above is `--seed 42 --start-screen world --stage-settlement --stage-feel`).
 
+### Trade caravans and living prices
+![A trade caravan on the road: a cart with a pack in its nation's colour, a canvas bale and its drover, labelled with where it is going and what it carries, and the command bar offering Buy wood, Sell to Caravan, Escort Caravan and Raid Caravan](./.github/media/trade-caravan.png)
+
+Every market prices its goods by what it has and who lives there. Prices fall as stalls fill up, and drift, a few points every ten seconds, toward what the settlement needs: a crowded town with an empty larder pays well over the odds for food, a camp sitting on a woodpile pays little for more wood. The market box (inside a settlement) lists what each good costs to buy and what a stall pays for one, with an arrow for which way it is moving. Buy where it is cheap, carry it, sell where it is dear. A sale is always priced as the unit lands on the stall, so buying something and selling it straight back never makes money.
+
+Nations led by pawns send **caravans**: a cart in the nation's colours carries what one of their settlements can spare to a dearer market within 1,200 units, never to a nation they are at war with (Hostile), and comes home with the takings. Standing beside one, the command bar lets you **buy** its goods (at the price it expects at market), **sell** it what it deals in, **escort** it (stay close until it arrives for a share of its takings and +8 with its nation) or **raid** it (everything it carries is yours, but its nation loses 30 with yours, which can mean war; without a nation, its people think less of you).
+
+Lead a nation and stand in one of its settlements with a **Storehouse**, and *Send Caravan* opens a panel to pick a market and load goods from what you carry; the takings go into the settlement's treasury. `--stage-trade` opens the game beside a passing caravan, leading a village that can send its own (the screenshots are `--seed 42 --start-screen world --stage-trade`).
+
+![The Send a Caravan panel over a village: a market picked with previous/next buttons, -5/+5 buttons to load apples, wood and stone with each good's price here and there, an estimate of what the load will fetch, and the market box's price list with green arrows for rising prices](./.github/media/trade-dispatch.png)
+
 ## Saving and loading
 Worlds are saved, on the desktop and in the browser. The game autosaves every couple of minutes of play and whenever you leave the world (*Main Menu* or *Quit* on the pause screen, or closing the window); *Save* on the pause screen saves at once and says so. On the main menu, *Continue* picks up the latest world and *Load* lists every saved world with its day, your nation and when it was saved.
 
