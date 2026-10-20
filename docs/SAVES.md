@@ -69,8 +69,8 @@ A save is UTF-8 text (in practice ASCII) in two parts:
 - **The body.** The whole world as one JSON object. Its own `formatVersion`
   and `seed` must agree with the header's.
 
-`tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave` and
-`v2-seed42-tick2400.bnsave` are real version 1 and 2 saves; open one to see every section. `.gitattributes` marks
+`tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave`,
+`v2-seed42-tick2400.bnsave` and `v3-seed42-tick2400.bnsave` are real version 1, 2 and 3 saves; open one to see every section. `.gitattributes` marks
 `*.bnsave` as binary, since a line-ending conversion would break the checksum.
 
 ### What the body holds
@@ -95,6 +95,7 @@ and goes on exactly as the saved one would have:
 | `events` | for each event type, how many there have been and the most recent `SavedEventsPerType` (100): description and date |
 | `objectives` | where the player is in the objective list (current index, how many ambitions have been generated, the id of the current objective as a check), the progress shown on the HUD, and the last objective completed and when; the objectives themselves are code (`ObjectiveCatalog`) and are rebuilt to the saved length |
 | `realm` | the law round; each nation's laws (setting, any pending change and when it was proclaimed, taxes collected, deserters); wars; truces and the tick each ends; the line of rulers (name, nation, start, end, cause); when the current reign began; whether the run is over; the latest succession notice and whether the host has shown it (format 2) |
+| `worldEvents` | the world events' random stream, when the player's and the nations' next events are due, how many there have been and the player's last, the event waiting on the player's choice if any (its id, when it began and when it times out, and the nation, other nation, settlement, entity and number it was prepared with), and every running effect (drought, bandits) with its timers (format 3) |
 | `chronicle` | every chronicle entry kept (up to 200: sequence, event type, tick, day, part of day, text, the nations and entities it names), how many have ever been recorded, nations founded, and the raids already told today |
 
 The player's meal and sale counters, which objectives read, are saved with the
@@ -157,12 +158,13 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 2.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 3.
 
 | Version | Change | Migration from the one before |
 | --- | --- | --- |
 | 1 | the first format | -- |
 | 2 | adds `realm` (laws, wars and truces, succession) | add `realm` empty: no laws, wars, truces or past rulers, reign begun at tick 0, run not over, no notice, and the law round a world played to the saved tick would have reached (`totalTicks / 500`) |
+| 3 | world events: the `worldEvents` section | add it empty: nothing pending or running; the events' clocks start from the first tick the loaded world runs, as a new world's do |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by
@@ -210,6 +212,7 @@ world that never had it should start with) -- as format 2 did for `realm`.
   files, foreign files, newer versions, header and body that disagree, a world
   that checks out but cannot be built; backups, fallback to the backup, the
   newer-version slot left alone, atomic writes.
+- **World events** (`TestWorldEvents`): a world with a pending choice, a bandit camp and a drought round-trips, and the original and the copy, given the same choice, run on the same; v1 and v2 saves load with the world events' clocks started from their first tick, and the v3 fixture loads and plays on.
 - **Migration** (`TestSaveMigrations`): the committed v1 fixture loads, plays
   1,500 ticks on and saves again; the migration chain runs steps in order and
   refuses a step that does not stamp its version.

@@ -49,6 +49,7 @@ namespace beyondnations {
         private WorldPalette worldPalette;
         private NationResources nationResources;
         private Realm realm;
+        private WorldEvents worldEvents;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -121,6 +122,8 @@ namespace beyondnations {
             diplomacy.setRealm(realm);
             populationGrowth.setRealm(realm);
             pawnBehaviorExecutor.setRealm(realm);
+            // droughts, bandits, claimants (worldevents/), on a stream of their own
+            worldEvents = new WorldEvents(random.getSeed(), tickCounter.getTicksPerSecond());
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -145,6 +148,7 @@ namespace beyondnations {
         public ObjectiveTracker getObjectiveTracker() { return objectiveTracker; }
         public Chronicle getChronicle() { return chronicle; }
         public Realm getRealm() { return realm; }
+        public WorldEvents getWorldEvents() { return worldEvents; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         /** Which region every chunk is; see RegionMap. */
         public RegionMap getRegionMap() { return regionMap; }
@@ -351,7 +355,8 @@ namespace beyondnations {
 
                             // buildings: farms stock the market, residents are recounted, and the
                             // settlement redraws itself if a stall or building has changed
-                            if (totalTicks % BuildingCatalog.FARM_TICKS_PER_HARVEST == 0) {
+                            // a drought (worldevents/) dries a nation's farms up
+                            if (totalTicks % BuildingCatalog.FARM_TICKS_PER_HARVEST == 0 && !worldEvents.isDrought(settlement.getNationId())) {
                                 // double in autumn, nothing in winter, one more on the plains
                                 int rounds = SeasonalRules.farmYield(season);
                                 if (rounds > 0) {
@@ -376,6 +381,7 @@ namespace beyondnations {
                     populationGrowth.update(tickCounter.getTotalTicks());
                     seasonalWorld.update(tickCounter.getTotalTicks());
                     realm.update(tickCounter.getTotalTicks());
+                    worldEvents.update(this);
 
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();
@@ -661,6 +667,9 @@ namespace beyondnations {
             writer.beginObject("realm");
             realm.save(writer);
             writer.endObject();
+            writer.beginObject("worldEvents");
+            worldEvents.save(writer);
+            writer.endObject();
         }
 
         /**
@@ -798,6 +807,7 @@ namespace beyondnations {
             objectiveTracker.load(SaveReader.property(body, "objectives"));
             chronicle.load(SaveReader.property(body, "chronicle"), reader);
             realm.load(SaveReader.property(body, "realm"), reader);
+            worldEvents.load(SaveReader.property(body, "worldEvents"), reader);
 
             JsonElement randoms = SaveReader.property(body, "random");
             foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {

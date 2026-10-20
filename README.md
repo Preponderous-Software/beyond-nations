@@ -166,6 +166,13 @@ The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game d
 
 The land itself differs. The world is made of **regions** in patches several chunks wide: **forest** (plenty of wood, little stone), **highlands** (rich in stone, poor in food), **plains** (good farming and game) and the scarce **moor**. Every region has some stone, so a settlement outside the highlands is short of it rather than stuck, but nations do differ in what they have plenty of and what they lack, which is what trade and diplomacy will be built on. `--season winter` (or `?season=winter` in the browser) opens the game on the first day of that season; the screenshot above is `--seed 42 --start-screen world --season NAME --time-of-day 0.45`.
 
+### World events
+Runs diverge. About every ten to fifteen minutes of play something happens that needs a decision: a drought dries up your farms, a fever breaks out in a crowded settlement, wanderers ask to join, bandits camp outside a village and rob it every minute, a claimant to a rival nation's leadership comes looking for backing, a storehouse catches fire, the harvest comes in heavy, a lost traveller offers a map to a spot rich in stone, or a merchant offers tools for a fraction of their price. A sheet rises from the bottom of the screen with two or three choices and what each will cost and bring; the world waits while you decide, and a choice you cannot afford is shown greyed out with the reason. Tap or click a choice. What happened, and what you chose, goes into the chronicle.
+
+Nations led by pawns meet the same events every few minutes, and their leaders choose for them -- so a neighbour may be weakened by sickness, grow by taking in wanderers, or have its leader overthrown by a claimant, and you read about it in the chronicle. `--stage-event` opens with an event already waiting (with `--stage-diplomacy`, one for your nation).
+
+![A world event: wanderers at the gate of your village, with three choices on a sheet over the paused world](./.github/media/world-event.png)
+
 ### Crafting
 Press `C` (or *Craft* on a touch screen) to open the crafting screen. Each recipe shows its cost, what it is good for, and what you are still missing; tap or click a ready one to make it.
 

@@ -112,5 +112,12 @@ namespace beyondnations {
             eventRepository.addEvent(statecraftEvent);
             Log.debug("Produced event: " + statecraftEvent);
         }
+
+        public void produceWorldEventEvent(string eventId, string text, System.Collections.Generic.IReadOnlyList<NationId> nations,
+                System.Collections.Generic.IReadOnlyList<EntityId> entities) {
+            WorldEventEvent worldEventEvent = new WorldEventEvent(eventId, text, nations, entities);
+            eventRepository.addEvent(worldEventEvent);
+            Log.debug("Produced event: " + worldEventEvent);
+        }
     }
 }

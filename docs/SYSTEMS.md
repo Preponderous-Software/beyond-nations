@@ -22,6 +22,7 @@ needs a window, which is why each can be exercised by a test — see the [Archit
 | Regions | Implemented | [`src/BeyondNations.Core/region/`](../src/BeyondNations.Core/region/) |
 | Rule (laws, war and peace, succession) | Implemented | [`src/BeyondNations.Core/realm/`](../src/BeyondNations.Core/realm/), [`src/BeyondNations.Core/command/nation/RealmCommands.cs`](../src/BeyondNations.Core/command/nation/RealmCommands.cs) |
 | Sharing | Implemented | [`src/BeyondNations.Core/sharing/`](../src/BeyondNations.Core/sharing/), [SHARING.md](./SHARING.md) |
+| World Events | Implemented | [`src/BeyondNations.Core/worldevents/`](../src/BeyondNations.Core/worldevents/) |
 
 **Note:** This document is a work in progress. It will be updated as the project progresses and more systems are planned/implemented. "Implemented" does not mean feature-complete — see the open issues for planned expansions to each system.
 
@@ -262,4 +263,32 @@ What a region holds is one table, `RegionCatalog`; each factor is relative to th
 So a highland nation has a surplus of stone and a shortage of wood and food, and a forest nation a surplus of wood and a shortage of stone. It is the land's endowment, not a stock count: it changes only when a nation gains or loses a settlement, draws no randomness, and changes nothing by being asked. A nation with no settlements has neither surplus nor shortage.
 
 *Planned:* caravans and diplomacy that act on surpluses and shortages; weather.
+## World Events
+World events make runs diverge (`WorldEvents`, [`src/BeyondNations.Core/worldevents/`](../src/BeyondNations.Core/worldevents/)). They are seeded and deterministic: they draw from a random stream of their own (the world seed xor a salt), so the same seed throws the same events, and having them never shifts the rolls of the rest of the world.
+
+**Two clocks.** About every 10 to 15 minutes of play (`PLAYER_EVENT_MIN_SECONDS`..`MAX`, the first after 7 to 11) an event is offered to the player, chosen by weight from the *personal* events and, when the player leads a nation, that nation's events; the same event is never offered twice running. When nothing fits, the clock looks again a minute later. Every 4 to 7 minutes a nation not led by the player meets a nation event and its leader chooses at once (`chooseForNation`, from the world's state). Both kinds are told in the chronicle; lines about the player's nation are gold as usual.
+
+**Choosing.** A player's event waits as a *pending choice*. The host draws a sheet over the HUD (`WorldEventSheet`): a title, what happened, and two or three full-width buttons with what each choice costs and brings; a choice that cannot be taken is greyed out with the reason. The host stops advancing the world while it is up. A choice nobody answers within 3 minutes of ticks -- possible only when nothing draws the sheet, as in a headless run or the history export -- takes the event's default.
+
+| Event | Who | When (weight) | Choices |
+| --- | --- | --- | --- |
+| Drought | nation | has farms; not in winter; not already in drought | dig irrigation (15 wood, 10 stone: farms dry a quarter day); buy grain (25 coins: 12 apples now, dry a day); ration and wait (dry a day, members -2 toward the player) |
+| Sickness | nation | a settlement with 3+ residents | pay a healer (20 coins, residents +2); quarantine (the 3 weakest -40 energy); let it run (the weakest falls if already run down, the others -70) |
+| Wanderers at the gate | nation | has a settlement (more likely with room) | welcome all 2-3 (2 food each); take only the strongest (one joins); turn them away (they stay, nationless) |
+| Bandit camp | nation | a camp or village (not a town) with wealth | raise a militia (3+ members; everyone -25 energy); pay 30 coins; bar the gates (robbed of 5 coins, 5 wood, 5 stone a minute for a day and a half) |
+| A claimant stirs | nation | another pawn-led nation of 3+ (likelier if Rival or Hostile) | back them (20 coins: they take power, +15 relations); warn its leader (+8, the claimant is exiled); stay out (half the time they win anyway, -10) |
+| A bountiful harvest | nation | not in winter, not in drought | fill the stores (10 + 4 per farm apples); sell (2 coins each); feast (members and player to full energy, members +3) |
+| Fire at the storehouse | nation | a storehouse and 10+ wood and stone stockpiled | bucket chain (lose a quarter; residents -25 energy); save the stone (lose all wood); let it burn (lose three quarters) |
+| A lost traveller | personal | always | share a meal or pay 15 coins for a map: 4 rich rocks and a 30-coin cache 160 paces off in the direction named; or send them on |
+| A travelling merchant | personal | the player has 50 coins or 20 wood | an axe and a pickaxe for 50 coins; 20 wood for 15 stone; decline |
+
+Outcomes go through the ordinary systems: inventories, treasuries and stockpiles, nation membership and joins, leadership changes, relations (`Diplomacy.change`), pawns' energy and relationships, and new entities in the world. A death from sickness is the simulation's ordinary pawn death on the next tick.
+
+**Lasting effects.** A drought (no farm harvest for the nation, `Simulation` asks `WorldEvents.isDrought`) and a bandit camp (robbing on a timer) are `WorldEffect`s with an end tick; each says so in the chronicle when it ends.
+
+**Seasons and regions.** Events read the `SeasonCalendar`: no drought and no bountiful harvest in winter. The lost traveller's map points into the highlands when any direction leads there (`RegionMap`), and says which land it leads to. Both clocks start on the first tick the world runs, so a world opened part-way through its year (`--season`) does not meet an event at once.
+
+**Adding an event.** Implement `IWorldEvent` (stateless; everything about one happening lives in its `WorldEventInstance`, which a save holds) and register it at the end of `WorldEventRegistry.createDefault`. The instance's fields (nation, other nation, settlement, entity, magnitude) are general, so a new event needs no new save format.
+
+Pending choices, running effects, both clocks and the stream are saved (save format 3, see [SAVES.md](./SAVES.md)).
 

@@ -37,7 +37,7 @@ namespace beyondnationstests {
                 Saved = new[] { "gameConfig", "random", "tickCounter", "timeOfDay", "player", "eventRepository", "entityRepository",
                     "environment", "worldGenerator", "nationRepository", "pawnNameGenerator", "nationNameGenerator", "settlementLife",
                     "diplomacy", "playerTerritory", "playerTerritoryKnown", "traitRandom", "populationGrowth", "numPawnDeaths", "numPlayerDeaths",
-                    "objectiveTracker", "chronicle", "realm" },
+                    "objectiveTracker", "chronicle", "realm", "worldEvents" },
                 // seasons come from the tick count and regions from the seed, so all five are rebuilt (docs/SAVES.md)
                 Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer",
                     "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources" },
@@ -161,6 +161,26 @@ namespace beyondnationstests {
                 Derived = new[] { "entityRepository", "nationRepository", "timeOfDay", "tickCounter", "seed", "capacity" },
             },
             [typeof(ChronicleEntry)] = saved("sequence", "eventType", "tick", "day", "partOfDay", "text", "nationIds", "entityIds"),
+            [typeof(WorldEvents)] = new Entry {
+                Saved = new[] { "random", "nextPlayerEventTick", "nextWorldEventTick", "numEvents", "numPlayerEvents", "lastPlayerEventId",
+                    "pending", "effects" },
+                // the events themselves are code, registered again as the Simulation is built
+                Derived = new[] { "registry" },
+            },
+            [typeof(WorldEventRegistry)] = new Entry { Derived = new[] { "events" } },
+            [typeof(WorldEventInstance)] = saved("eventId", "sequence", "startTick", "deadlineTick", "forPlayer", "nationId", "otherNationId",
+                "settlementId", "entityId", "magnitude"),
+            [typeof(WorldEffect)] = saved("kind", "nationId", "settlementId", "startTick", "endTick", "nextTick"),
+            // stateless: everything about one happening is in its WorldEventInstance
+            [typeof(DroughtEvent)] = new Entry(),
+            [typeof(SicknessEvent)] = new Entry(),
+            [typeof(WanderersEvent)] = new Entry(),
+            [typeof(BanditCampEvent)] = new Entry(),
+            [typeof(ClaimantEvent)] = new Entry(),
+            [typeof(BountifulHarvestEvent)] = new Entry(),
+            [typeof(LostTravellerEvent)] = new Entry(),
+            [typeof(StorehouseFireEvent)] = new Entry(),
+            [typeof(RareMerchantEvent)] = new Entry(),
             [typeof(PawnBehaviorCalculator)] = new Entry {
                 Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar" },
             },

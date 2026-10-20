@@ -21,11 +21,16 @@ namespace beyondnations {
     *           truces, no past rulers, the reign begun at tick 0 and the
     *           run not over -- which is exactly the state of a world from
     *           before laws and succession existed.
+    *
+    *   2 -> 3  adds the worldEvents section (worldevents/WorldEvents),
+    *           empty: nothing pending, nothing running, and the events'
+    *           clocks start from the first tick the loaded world runs.
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
         private static readonly List<Func<JsonObject, JsonObject>> steps = new List<Func<JsonObject, JsonObject>> {
             addRealm,
+            addWorldEvents,
         };
 
         /** 1 -> 2: a world from before the realm has no laws, wars, truces or lineage. */
@@ -49,6 +54,13 @@ namespace beyondnations {
                 ["notice"] = null,
             };
             body["formatVersion"] = 2;
+            return body;
+        }
+
+        /** 2 -> 3: a world from before world events has none pending, none running, and its clocks not yet started. */
+        private static JsonObject addWorldEvents(JsonObject body) {
+            body["worldEvents"] = new JsonObject();
+            body["formatVersion"] = 3;
             return body;
         }
 
