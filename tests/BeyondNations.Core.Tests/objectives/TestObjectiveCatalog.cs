@@ -163,15 +163,29 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testGrowNation_CountsMembers() {
+        public void testGrowNation_IsTheVillageEra_NotAHeadcount() {
+            // "Grow your nation to 5" was met by settlers joining on their own;
+            // the step now asks for the whole Village era
             Nation nation = makePlayerLeader();
-            for (int i = 1; i < ObjectiveCatalog.NationGrowthTarget; i++) {
-                Assert.False(arc("grow-nation").evaluate(simulation).isComplete());
+            Settlement settlement = addSettlement(nation, Vector3.Zero);
+            for (int i = 1; i < EraRules.VillageMembers; i++) {
                 nation.addMember(new EntityId());
             }
+            Assert.Contains("Village", arc("grow-nation").getTitle());
             ObjectiveProgress progress = arc("grow-nation").evaluate(simulation);
-            Assert.True(progress.isComplete());
-            Assert.Equal("Members " + ObjectiveCatalog.NationGrowthTarget + "/" + ObjectiveCatalog.NationGrowthTarget, progress.describe());
+            Assert.False(progress.isComplete());
+            Assert.Equal("Members " + EraRules.VillageMembers + "/" + EraRules.VillageMembers
+                + " \u00b7 Buildings 0/" + SettlementTiers.VILLAGE_BUILDINGS, progress.describe());
+            // the hint names the first thing still short: the village
+            Assert.Contains("{BuildBuilding}", arc("grow-nation").getHint(simulation));
+
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            settlement.getMarket().createStall();
+            Assert.False(arc("grow-nation").evaluate(simulation).isComplete());
+            simulation.getEraTracker().evaluate(simulation);
+            Assert.Equal(Era.VILLAGE, simulation.getEraTracker().getEra());
+            Assert.True(arc("grow-nation").evaluate(simulation).isComplete());
         }
 
         [Fact]
@@ -225,34 +239,86 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testAmbitions_CycleCategoriesAndRiseEachLap() {
-            for (int index = 0; index < ObjectiveCatalog.AmbitionCategoryCount * 5; index++) {
-                Objective ambition = ObjectiveCatalog.ambition(index);
-                Objective nextLap = ObjectiveCatalog.ambition(index + ObjectiveCatalog.AmbitionCategoryCount);
-                Assert.True(ambition.isAmbition());
-                Assert.NotEqual(ambition.getId(), nextLap.getId());
-                Assert.True(nextLap.evaluate(simulation).getTarget() > ambition.evaluate(simulation).getTarget(), ambition.getTitle());
-                Assert.False(ambition.getReward().isEmpty());
+        public void testAmbitions_CycleCategoriesAndNeverFallEachLap() {
+            foreach (Era era in new[] { Era.CAMP, Era.VILLAGE, Era.TOWN, Era.KINGDOM }) {
+                for (int index = 0; index < ObjectiveCatalog.AmbitionCategoryCount * 5; index++) {
+                    Objective ambition = ObjectiveCatalog.ambition(index, era);
+                    Objective nextLap = ObjectiveCatalog.ambition(index + ObjectiveCatalog.AmbitionCategoryCount, era);
+                    Assert.True(ambition.isAmbition());
+                    Assert.NotEqual(ambition.getId(), nextLap.getId());
+                    Assert.False(ambition.getReward().isEmpty());
+                    if (index % ObjectiveCatalog.AmbitionCategoryCount == 3) {
+                        continue; // the next era, or a victory: no number to rise
+                    }
+                    Assert.True(nextLap.evaluate(simulation).getTarget() >= ambition.evaluate(simulation).getTarget(), era + " " + ambition.getTitle());
+                }
+            }
+            // where nothing caps them (the kingdom founds as it likes), every lap asks for more
+            for (int index = 0; index < 3; index++) {
+                Assert.True(ObjectiveCatalog.ambition(index + 4, Era.KINGDOM).evaluate(simulation).getTarget()
+                    > ObjectiveCatalog.ambition(index, Era.KINGDOM).evaluate(simulation).getTarget());
+            }
+        }
+
+        [Fact]
+        public void testAmbitions_ScaleWithTheEraTheyAreMadeIn() {
+            for (int category = 0; category < 2; category++) {
+                int previous = 0;
+                foreach (Era era in new[] { Era.CAMP, Era.VILLAGE, Era.TOWN, Era.KINGDOM }) {
+                    int target = ObjectiveCatalog.ambition(category, era).evaluate(simulation).getTarget();
+                    Assert.True(target > previous, era + " " + ObjectiveCatalog.ambition(category, era).getTitle());
+                    previous = target;
+                }
             }
         }
 
         [Fact]
         public void testAmbitions_StartBeyondTheArc() {
-            Assert.Equal(ObjectiveCatalog.NationGrowthTarget + ObjectiveCatalog.NationGrowthStep, ObjectiveCatalog.ambition(0).evaluate(simulation).getTarget());
-            Assert.Equal(Stall.COIN_COST_TO_PURCHASE * 5, ObjectiveCatalog.ambition(1).evaluate(simulation).getTarget());
-            Assert.Equal(ObjectiveCatalog.ArcSettlementTarget + 1, ObjectiveCatalog.ambition(2).evaluate(simulation).getTarget());
-            Assert.Equal("Survive to day 2", ObjectiveCatalog.ambition(3).getTitle());
+            Assert.Equal(ObjectiveCatalog.eraMembers(Era.VILLAGE), ObjectiveCatalog.ambition(0, Era.VILLAGE).evaluate(simulation).getTarget());
+            Assert.True(ObjectiveCatalog.eraMembers(Era.VILLAGE) > EraRules.VillageMembers);
+            Assert.Equal(EraRules.TownFunds, ObjectiveCatalog.ambition(1, Era.VILLAGE).evaluate(simulation).getTarget());
+            Assert.Equal(EraRules.TownFunds + ObjectiveCatalog.fundsStep(), ObjectiveCatalog.ambition(5, Era.VILLAGE).evaluate(simulation).getTarget());
+            Assert.Equal(ObjectiveCatalog.ArcSettlementTarget + 1, ObjectiveCatalog.ambition(2, Era.VILLAGE).evaluate(simulation).getTarget());
+            Assert.Equal("Reach the Town era", ObjectiveCatalog.ambition(3, Era.VILLAGE).getTitle());
+            Assert.Equal("Win the game", ObjectiveCatalog.ambition(3, Era.KINGDOM).getTitle());
         }
 
         [Fact]
-        public void testDaysAmbition_TracksTimeOfDay() {
-            Objective days = ObjectiveCatalog.ambition(3);
-            Assert.False(days.evaluate(simulation).isComplete());
-            int ticksPerDay = simulation.getTimeOfDay().getTicksPerDay();
-            for (int i = 0; i < ticksPerDay * 2; i++) {
-                simulation.getTickCounter().increment();
+        public void testSettlementAmbitions_NeverAskPastTheEraLimit() {
+            for (int index = 2; index < 40; index += ObjectiveCatalog.AmbitionCategoryCount) {
+                foreach (Era era in new[] { Era.CAMP, Era.VILLAGE, Era.TOWN }) {
+                    Objective ambition = ObjectiveCatalog.ambition(index, era);
+                    if (ambition.getTitle().StartsWith("Hold ")) {
+                        Assert.True(ambition.evaluate(simulation).getTarget() <= EraRules.settlementLimit(era), ambition.getTitle());
+                    } else {
+                        Assert.StartsWith("Put up ", ambition.getTitle());
+                    }
+                }
             }
-            Assert.True(days.evaluate(simulation).isComplete());
+        }
+
+        [Fact]
+        public void testEraAmbition_MetOnceTheEraIsReached() {
+            Objective toTown = ObjectiveCatalog.ambition(3, Era.VILLAGE);
+            Assert.False(toTown.evaluate(simulation).isComplete());
+            Assert.Equal("Requirements", toTown.evaluate(simulation).getLabel());
+            Nation nation = makePlayerLeader();
+            Settlement first = addSettlement(nation, Vector3.Zero);
+            Settlement second = addSettlement(nation, new Vector3(1000, 0, 0));
+            foreach (BuildingType type in new[] { BuildingType.HOUSE, BuildingType.FARM, BuildingType.HOUSE, BuildingType.FARM, BuildingType.HOUSE }) {
+                first.addBuilding(type);
+            }
+            first.getMarket().createStall();
+            for (int i = 1; i < EraRules.TownMembers; i++) {
+                nation.addMember(new EntityId());
+            }
+            first.addFunds(EraRules.TownFunds);
+            EraTracker eras = simulation.getEraTracker();
+            eras.evaluate(simulation); // camp -> village
+            eras.evaluate(simulation); // village -> town
+            Assert.Equal(Era.TOWN, eras.getEra());
+            Assert.True(toTown.evaluate(simulation).isComplete());
+            Assert.NotNull(second);
         }
 
         [Fact]

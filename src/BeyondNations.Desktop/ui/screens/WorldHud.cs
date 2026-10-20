@@ -98,6 +98,10 @@ namespace beyondnations.desktop.ui.screens {
         }
 
         private readonly ChroniclePanel chroniclePanel = new ChroniclePanel();
+        // the era box keeps whether its detail is open from frame to frame
+        private readonly EraBox eraBox = new EraBox();
+
+        public EraBox getEraBox() { return eraBox; }
         private readonly ChronicleView defaultChronicleView = new ChronicleView();
 
         /**
@@ -156,6 +160,9 @@ namespace beyondnations.desktop.ui.screens {
             // The objective tracker comes next in the left column, under the
             // controls button (and the debug box when F1 is on), so the
             // inventory below is pushed down rather than drawn over it.
+            // The era (Camp to Kingdom) and how near the next one is sit just
+            // above it, compact unless tapped open.
+            leftTop = eraBox.draw(simulation, layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
             ObjectiveTrackerBox objectiveTracker = new ObjectiveTrackerBox(simulation);
             leftTop = objectiveTracker.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
             PlayerInfoBox playerBox = new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository());

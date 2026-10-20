@@ -155,6 +155,9 @@ namespace beyondnations.web {
             if (options.StageTrade) {
                 TradeShowcase.stage(simulation);
             }
+            if (options.StageVictory || options.StageDefeat) {
+                EndingShowcase.stage(simulation, options.StageVictory);
+            }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());
@@ -313,6 +316,10 @@ namespace beyondnations.web {
                     break;
                 }
             }
+            // a victory or a defeat stops the world for the end-of-run screen
+            if (simulation.getEraTracker().shouldShowOutcome()) {
+                screens.runEnded();
+            }
         }
 
         private void runHousekeeping() {
@@ -402,6 +409,10 @@ namespace beyondnations.web {
             }
             if (ui.consumeStartRequest()) {
                 createWorld();
+            }
+            if (ui.consumeNewWorldRequest()) {
+                // the ended world keeps its save; Begin on the New World screen builds the next
+                saveWorld();
             }
             string slotToLoad = ui.consumeLoadRequest();
             if (slotToLoad != null) {

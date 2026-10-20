@@ -8,31 +8,22 @@ namespace beyondnations.desktop.ui.screens {
     * With an heir it is a short pause in the story: who died, who takes
     * their place and why, and the line of rulers so far, with Continue to
     * play on as the heir. With no heir the line has ended and so has the
-    * run: the same story, then New World, Load (the last save, from before
-    * the death -- an ended run is never saved) and Main Menu.
+    * run, which the end-of-run screen tells (EndOfRunScreen, a defeat).
     *
     * The words come from getLines(), which needs no window, so they are
-    * asserted in unit tests. Escape is read by the host: it continues from
-    * a succession and goes to the main menu from the end of a line.
+    * asserted in unit tests. Escape is read by the host: it continues.
     */
     public class SuccessionScreen {
         public const string SuccessionTitle = "THE RULE PASSES ON";
-        public const string LineEndedTitle = "YOUR LINE HAS ENDED";
         public const string ContinueLabel = "Continue";
-        public const string NewWorldLabel = "New World";
-        public const string LoadLabel = "Load";
-        public const string MainMenuLabel = "Main Menu";
         /** How many past rulers the screen lists, most recent last. */
         public const int LineageShown = 6;
 
         private static readonly string[] SuccessionButtons = { ContinueLabel };
         private static readonly UiAction[] SuccessionActions = { UiAction.ResumeWorld };
-        private static readonly string[] LineEndedButtons = { NewWorldLabel, LoadLabel, MainMenuLabel };
-        private static readonly UiAction[] LineEndedActions = { UiAction.StartGame, UiAction.OpenLoad, UiAction.MainMenu };
 
         public static string getTitle(Simulation simulation) {
-            SuccessionNotice notice = simulation.getRealm().getNotice();
-            return notice != null && notice.isLineEnded() ? LineEndedTitle : SuccessionTitle;
+            return SuccessionTitle;
         }
 
         /** "2 days and 3 hours" style, from ticks, on the world's day length. */
@@ -54,14 +45,8 @@ namespace beyondnations.desktop.ui.screens {
                 return lines;
             }
             lines.Add(notice.getPreviousName() + " died of hunger after a reign of " + describeReign(simulation, notice.getReignTicks()) + ".");
-            if (notice.isLineEnded()) {
-                lines.Add(notice.getReason());
-                lines.Add(notice.getNationName() + " passes out of your hands.");
-            }
-            else {
-                lines.Add("You go on as " + notice.getHeirName() + ", " + notice.getReason() + ".");
-                lines.Add("The nation of " + notice.getNationName() + ", its settlements and its friends and enemies are yours still.");
-            }
+            lines.Add("You go on as " + notice.getHeirName() + ", " + notice.getReason() + ".");
+            lines.Add("The nation of " + notice.getNationName() + ", its settlements and its friends and enemies are yours still.");
             IReadOnlyList<Reign> lineage = realm.getLineage();
             if (lineage.Count > 0) {
                 lines.Add("");
@@ -71,16 +56,12 @@ namespace beyondnations.desktop.ui.screens {
                     Reign reign = lineage[i];
                     lines.Add((i + 1) + ". " + reign.getName() + " of " + reign.getNationName() + ", " + describeReign(simulation, reign.getEndTick() - reign.getStartTick()));
                 }
-                if (!notice.isLineEnded()) {
-                    lines.Add((lineage.Count + 1) + ". " + notice.getHeirName() + ", reigning");
-                }
+                lines.Add((lineage.Count + 1) + ". " + notice.getHeirName() + ", reigning");
             }
             return lines;
         }
 
         public UiAction draw(float width, float height, Simulation simulation) {
-            SuccessionNotice notice = simulation.getRealm().getNotice();
-            bool ended = notice != null && notice.isLineEnded();
             float margin = System.MathF.Max(width * 0.05f, UiScale.px(16f));
             float lineHeight = System.MathF.Max(UiScale.px(22f), height / 26f);
 
@@ -98,11 +79,9 @@ namespace beyondnations.desktop.ui.screens {
             }
             y += lineHeight * 0.6f;
 
-            string[] labels = ended ? LineEndedButtons : SuccessionButtons;
-            UiAction[] actions = ended ? LineEndedActions : SuccessionActions;
-            int clicked = Overlay.menuButtons(labels, width, y, height - lineHeight);
+            int clicked = Overlay.menuButtons(SuccessionButtons, width, y, height - lineHeight);
             Overlay.end();
-            return clicked < 0 ? UiAction.None : actions[clicked];
+            return clicked < 0 ? UiAction.None : SuccessionActions[clicked];
         }
     }
 }

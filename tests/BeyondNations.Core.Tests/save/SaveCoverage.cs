@@ -37,7 +37,7 @@ namespace beyondnationstests {
                 Saved = new[] { "gameConfig", "random", "tickCounter", "timeOfDay", "player", "eventRepository", "entityRepository",
                     "environment", "worldGenerator", "nationRepository", "pawnNameGenerator", "nationNameGenerator", "settlementLife",
                     "diplomacy", "playerTerritory", "playerTerritoryKnown", "traitRandom", "populationGrowth", "numPawnDeaths", "numPlayerDeaths",
-                    "objectiveTracker", "chronicle", "realm", "worldEvents", "tradeCaravans" },
+                    "objectiveTracker", "chronicle", "realm", "worldEvents", "tradeCaravans", "eraTracker" },
                 // seasons come from the tick count and regions from the seed, so all five are rebuilt (docs/SAVES.md)
                 Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer",
                     "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources" },
@@ -85,8 +85,12 @@ namespace beyondnationstests {
             [typeof(Player)] = saved("walkSpeed", "runSpeed", "currentSpeed", "renderDistance", "horizontalInput", "verticalInput",
                 "jumpRequested", "yaw", "nationId", "homeSettlementId", "status", "autoWalk", "energy", "metabolism", "relationships",
                 "currentSettlementId", "mealsEaten", "marketSales"),
-            [typeof(Settlement)] = saved("color", "nationId", "nationName", "currentlyPresentEntities", "market", "buildings",
-                "residentCount", "drawnLayoutSignature", "claimRadius", "siegeText"),
+            [typeof(Settlement)] = new Entry {
+                Saved = new[] { "color", "nationId", "nationName", "currentlyPresentEntities", "market", "buildings",
+                    "residentCount", "drawnLayoutSignature", "claimRadius", "siegeText" },
+                // from the saved era, by EraTracker.applyRules at the end of a load
+                Derived = new[] { "buildingEra" },
+            },
             [typeof(Chicken)] = saved("random", "speed", "wanderTarget", "wanderTimer", "wanderInterval"),
             [typeof(Sapling)] = new Entry { Saved = new[] { "height", "plantedTick", "growTime" }, Derived = new[] { "tickCounter" } },
             [typeof(AppleTree)] = saved("height"),
@@ -117,7 +121,11 @@ namespace beyondnationstests {
             [typeof(Stall)] = saved("ownerId", "inventory"),
             [typeof(Building)] = saved("type", "slot"),
             [typeof(NationOrder)] = saved("nationId", "itemType", "quantity", "delivered"),
-            [typeof(Nation)] = saved("random", "id", "name", "leaderId", "members", "roles", "color", "settlements"),
+            [typeof(Nation)] = new Entry {
+                Saved = new[] { "random", "id", "name", "leaderId", "members", "roles", "color", "settlements" },
+                // from the saved era, by EraTracker.applyRules at the end of a load
+                Derived = new[] { "settlementLimit" },
+            },
             [typeof(NationId)] = saved("guid"),
             [typeof(NationRepository)] = new Entry {
                 Saved = new[] { "nations", "nationIds", "relations" },
@@ -191,6 +199,10 @@ namespace beyondnationstests {
             [typeof(LostTravellerEvent)] = new Entry(),
             [typeof(StorehouseFireEvent)] = new Entry(),
             [typeof(RareMerchantEvent)] = new Entry(),
+            [typeof(EraTracker)] = saved("era", "reachedTicks", "outcome", "outcomeTick", "outcomeAcknowledged", "everHeldSettlement",
+                "collapseSinceTick", "nationName", "peakMembers", "peakSettlements", "peakFunds", "history", "lastChronicleSequence",
+                "ambitionEras"),
+            [typeof(HistoryEntry)] = saved("tick", "day", "partOfDay", "text", "milestone"),
             [typeof(PawnBehaviorCalculator)] = new Entry {
                 Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar" },
             },

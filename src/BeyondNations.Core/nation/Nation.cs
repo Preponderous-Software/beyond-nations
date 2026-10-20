@@ -12,6 +12,9 @@ namespace beyondnations {
         private Dictionary<EntityId, NationRole> roles = new Dictionary<EntityId, NationRole>();
         private Rgba color;
         private List<EntityId> settlements = new List<EntityId>();
+        // how many settlements the era lets a nation the player leads hold
+        // (EraTracker.applyRules); 0 for no limit
+        private int settlementLimit = 0;
 
         public Nation(string name, EntityId leaderId, RandomSource random) {
             this.random = random;
@@ -97,6 +100,20 @@ namespace beyondnations {
 
         public int getNumberOfSettlements() {
             return settlements.Count;
+        }
+
+        /** 0 when the nation may hold any number of settlements. */
+        public int getSettlementLimit() {
+            return settlementLimit;
+        }
+
+        public void setSettlementLimit(int limit) {
+            settlementLimit = limit;
+        }
+
+        /** Whether the era lets this nation found another settlement. */
+        public bool canFoundSettlement() {
+            return settlementLimit <= 0 || settlements.Count < settlementLimit;
         }
 
         public EntityId getSettlement(int index) {

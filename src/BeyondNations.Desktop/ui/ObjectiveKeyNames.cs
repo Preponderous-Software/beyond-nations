@@ -23,6 +23,7 @@ namespace beyondnations.desktop.ui {
                 case HintKey.LeaveNation: return KeyBindings.LeaveNation.ToString();
                 case HintKey.FoundSettlement: return KeyBindings.FoundSettlement.ToString();
                 case HintKey.BuildStall: return KeyBindings.BuildStall.ToString();
+                case HintKey.BuildBuilding: return KeyBindings.BuildBuilding.ToString();
                 case HintKey.TeleportToHomeSettlement: return KeyBindings.TeleportToHomeSettlement.ToString();
                 case HintKey.PlantSapling: return KeyBindings.PlantSapling.ToString();
                 case HintKey.ToggleInventory: return KeyBindings.ToggleInventory.ToString();

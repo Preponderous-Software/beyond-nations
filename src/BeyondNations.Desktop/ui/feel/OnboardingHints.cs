@@ -200,7 +200,7 @@ namespace beyondnations.desktop.ui.feel {
                         : "Press " + KeyNames.describe(KeyBindings.CreateNewNation) + " to start a nation, gather 50 wood, then press "
                           + KeyNames.describe(KeyBindings.FoundSettlement) + " to found a settlement.";
                 default:
-                    return "Your goals are in the panel at the top left. Each one you finish earns a reward.";
+                    return "Your goals are at the top left: your era (tap it to see what the next one needs) and your current objective. Each one you finish earns a reward.";
             }
         }
 

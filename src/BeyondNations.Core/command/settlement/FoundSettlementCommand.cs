@@ -30,6 +30,12 @@ namespace beyondnations {
                 player.getStatus().update("You are not the leader of a nation.");
                 return;
             }
+            // the era limits how many settlements a nation the player leads may hold (EraRules)
+            if (!nation.canFoundSettlement()) {
+                player.getStatus().update("Your nation may hold only " + nation.getSettlementLimit()
+                    + (nation.getSettlementLimit() == 1 ? " settlement" : " settlements") + " in this era. Reach the next era to found more.");
+                return;
+            }
             // if not enough wood
             if (player.getInventory().getNumItems(ItemType.WOOD) < Settlement.WOOD_COST_TO_BUILD) {
                 player.getStatus().update("Not enough wood. Need " + (Settlement.WOOD_COST_TO_BUILD - player.getInventory().getNumItems(ItemType.WOOD)) + " more.");

@@ -47,6 +47,41 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testTheVersion1Fixture_FromBeforeEras_LoadsAtTheCamp() {
+            Simulation loaded = SaveGame.decode(File.ReadAllBytes(SaveFixtures.pathFor(1)));
+            EraTracker eras = loaded.getEraTracker();
+            Assert.Equal(Era.CAMP, eras.getEra());
+            Assert.Equal(RunOutcome.NONE, eras.getOutcome());
+            Assert.False(eras.shouldShowOutcome());
+            Assert.Empty(eras.getHistory());
+            Assert.Equal(-1, eras.getCollapseSinceTick());
+            // and the run goes on from there: the era tracker judges the nation as play resumes
+            for (int i = 0; i < 100; i++) {
+                loaded.fixedUpdate(1f / 50f);
+            }
+            Assert.Equal(RunOutcome.NONE, eras.getOutcome());
+        }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        public void testTheLaterFixtures_StillLoadAndPlayOn(int version) {
+            byte[] file = File.ReadAllBytes(SaveFixtures.pathFor(version));
+            Assert.Equal(version, SaveGame.check(file).FormatVersion);
+            Simulation loaded = SaveGame.decode(file);
+            Assert.Equal(SaveFixtures.FixtureTicks, loaded.getTickCounter().getTotalTicks());
+            // versions 2 to 4 are from before eras: the camp, as a v1 save
+            Assert.Equal(Era.CAMP, loaded.getEraTracker().getEra());
+            Assert.Equal(RunOutcome.NONE, loaded.getEraTracker().getOutcome());
+            for (int i = 0; i < 1500; i++) {
+                loaded.fixedUpdate(1f / 50f);
+            }
+            Assert.Null(WorldComparer.difference(loaded, SaveGame.decode(SaveGame.encode(loaded, "test"))));
+        }
+
+        [Fact]
         public void testTheVersion1Fixture_ThroughTheMigrationChain_IsTheCurrentFormat() {
             byte[] file = File.ReadAllBytes(SaveFixtures.pathFor(1));
             int start = Array.IndexOf(file, (byte) '\n') + 1;

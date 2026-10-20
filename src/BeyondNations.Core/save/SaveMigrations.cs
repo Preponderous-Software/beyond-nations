@@ -28,6 +28,9 @@ namespace beyondnations {
     *   3 -> 4  trade caravans and living prices: a "trade" section (no
     *           caravans sent yet), and every market's "prices" with every
     *           item at its plain supply-curve price and no trend yet.
+    *   4 -> 5  eras (EraTracker): the "eras" section, at the camp with no
+    *           outcome and an empty history; the era catches up with the
+    *           nation on the first seconds of play
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
@@ -35,7 +38,15 @@ namespace beyondnations {
             addRealm,
             addWorldEvents,
             addTradeAndPrices,
+            addEras,
         };
+
+        /** 4 -> 5: a world from before eras starts at the camp, with no outcome. */
+        private static JsonObject addEras(JsonObject body) {
+            body["eras"] = EraTracker.defaultSection();
+            body["formatVersion"] = 5;
+            return body;
+        }
 
         /** 1 -> 2: a world from before the realm has no laws, wars, truces or lineage. */
         private static JsonObject addRealm(JsonObject body) {
