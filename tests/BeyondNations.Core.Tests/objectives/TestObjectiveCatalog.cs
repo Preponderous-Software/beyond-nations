@@ -182,6 +182,7 @@ namespace beyondnationstests {
             settlement.addBuilding(BuildingType.HOUSE);
             settlement.addBuilding(BuildingType.FARM);
             settlement.getMarket().createStall();
+            settlement.getMarket().createStall();
             Assert.False(arc("grow-nation").evaluate(simulation).isComplete());
             simulation.getEraTracker().evaluate(simulation);
             Assert.Equal(Era.VILLAGE, simulation.getEraTracker().getEra());
@@ -308,6 +309,7 @@ namespace beyondnationstests {
             foreach (BuildingType type in new[] { BuildingType.HOUSE, BuildingType.FARM, BuildingType.HOUSE, BuildingType.FARM, BuildingType.HOUSE }) {
                 first.addBuilding(type);
             }
+            first.getMarket().createStall();
             first.getMarket().createStall();
             for (int i = 1; i < EraRules.TownMembers; i++) {
                 nation.addMember(new EntityId());

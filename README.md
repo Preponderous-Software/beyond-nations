@@ -128,9 +128,9 @@ A run has an arc. Your nation advances **Camp → Village → Town → Kingdom**
 
 | To leave | Needs | The next era unlocks |
 | --- | --- | --- |
-| Camp | a village (2 buildings), 5 members, a market stall | the workshop (planks and bricks); up to 3 settlements |
-| Village | a town (5 buildings), 12 members, 2 settlements, 500 funds | the storehouse (more stalls); up to 6 settlements |
-| Town | 2 towns, 25 members, 4 settlements, 2,000 funds | any number of settlements, and the Prosperity victory |
+| Camp | a village (2 buildings), 10 members, 2 market stalls | the workshop (planks and bricks); up to 3 settlements |
+| Village | a town (5 buildings), 18 members, 2 settlements, 1,000 funds | the storehouse (more stalls); up to 6 settlements |
+| Town | 2 towns, 25 members, 4 settlements, 3,000 funds | any number of settlements, and the Prosperity victory |
 
 A camp may build houses and farms and hold one settlement, and until the Town era nobody can besiege a nation you lead (raids still come). The objectives follow: after the opening steps the ambitions are set by the era you are in, and the last asks you to win. The era box at the top left of the HUD shows your era and how near the next one is; click or tap it for the details.
 

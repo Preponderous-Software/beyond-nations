@@ -7,8 +7,8 @@
     4,
     5
   ],
-  "objectiveLimit": 13,
-  "maxTicks": 60000,
+  "objectiveLimit": 14,
+  "maxTicks": 180000,
   "objectives": [
     {
       "id": "gather-wood",
@@ -53,11 +53,10 @@
     },
     {
       "id": "grow-nation",
-      "title": "Grow your nation to 5",
-      "minSeconds": 5,
-      "maxSeconds": 180,
-      "note": "Under 5 s means settlers had joined before the step came up and the player did nothing for it. Before seasons and regions (#318) seed 3 finished in 1 s. Advisory since trade caravans and living prices (#321): which nationless settlers exist near the player is decided by market rolls on the world's main stream, so any change to trading reshuffles it. With #321 seed 3 never finishes (its camp falls to sieges every three minutes and the bot has no settlers left to recruit) and seed 11 finishes in 1 s, while seeds 6 to 15 take as long in all as on develop.",
-      "advisory": true
+      "title": "Reach the Village era",
+      "minSeconds": 20,
+      "maxSeconds": 1800,
+      "note": "The Village era (EraRules): a village, 10 members and 2 stalls. Aimed at 10-20 minutes of play; measured 2 to 25 minutes from the start (seeds 2 and 5 are fast because settlers flock to a new nation in its first two minutes). Gating again now that a nation the player leads cannot be besieged before the Town era. Under 20 s would mean the nation was a village before the step came up."
     },
     {
       "id": "sell-resources",
@@ -74,19 +73,19 @@
     },
     {
       "id": "ambition-0",
-      "title": "Grow your nation to 10",
+      "title": "Grow your nation to 16",
       "minSeconds": 5,
-      "maxSeconds": 600,
+      "maxSeconds": 2400,
       "advisory": true,
-      "note": "Advisory until sieges stop taking a new player's settlements in the first ten minutes (docs/PACING.md, known issues)."
+      "note": "Advisory: recruiting slows once every settler has a nation (docs/PACING.md)."
     },
     {
       "id": "ambition-1",
-      "title": "Amass 500 coins",
+      "title": "Amass 1000 coins",
       "minSeconds": 30,
-      "maxSeconds": 900,
+      "maxSeconds": 3900,
       "advisory": true,
-      "note": "Advisory. Usually already met when it comes up: coins plus the treasuries pass 500 during the arc."
+      "note": "Advisory. Raised from 500 to 1,000 for the Village era: the arc's rewards and treasuries passed 500 before it came up."
     },
     {
       "id": "ambition-2",
@@ -97,11 +96,19 @@
     },
     {
       "id": "ambition-3",
-      "title": "Survive to day 2",
-      "minSeconds": 300,
-      "maxSeconds": 1800,
+      "title": "Reach the Town era",
+      "minSeconds": 0,
+      "maxSeconds": 5400,
       "advisory": true,
-      "note": "Ends with the clock, so it measures how far into day 1 the earlier ambitions finished."
+      "note": "The Town era: a town, 18 members, 2 settlements and 1,000 funds. Aimed at about an hour; measured 6 to 84 minutes from the start, and not within four hours on seed 3, where recruiting stalls. Often reached before the ambition comes up, so no minimum. Advisory until recruiting is steadier."
+    },
+    {
+      "id": "ambition-4",
+      "title": "Grow your nation to 25",
+      "minSeconds": 300,
+      "maxSeconds": 3600,
+      "advisory": true,
+      "note": "Advisory: the Kingdom era's members, which the bot is slow to recruit."
     }
   ]
 }

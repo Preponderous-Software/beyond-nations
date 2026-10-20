@@ -73,6 +73,7 @@ namespace beyondnationstests {
                 }
             }
             first.getMarket().createStall();
+            first.getMarket().createStall();
             first.addFunds(EraRules.KingdomFunds);
             addMembers(nation, EraRules.KingdomMembers);
             return nation;
@@ -99,6 +100,7 @@ namespace beyondnationstests {
             eras.evaluate(simulation);
             Assert.Equal(Era.CAMP, eras.getEra()); // no stall yet
 
+            settlement.getMarket().createStall();
             settlement.getMarket().createStall();
             eras.evaluate(simulation);
             Assert.Equal(Era.VILLAGE, eras.getEra());

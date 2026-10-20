@@ -178,10 +178,10 @@ namespace beyondnations {
         /** The funds an era's funds ambitions start from. */
         public static int eraFunds(Era era) {
             switch (era) {
-                // twice the town's: the arc's rewards and treasuries already make 500 (docs/PACING.md)
-                case Era.VILLAGE: return EraRules.TownFunds * 2;
+                // the arc's rewards and treasuries already make 500 (docs/PACING.md)
+                case Era.VILLAGE: return EraRules.TownFunds;
                 case Era.TOWN: return EraRules.KingdomFunds;
-                case Era.KINGDOM: return VictoryRules.ProsperityFunds / 2;
+                case Era.KINGDOM: return VictoryRules.ProsperityFunds * 2 / 3;
                 default: return Stall.COIN_COST_TO_PURCHASE * 2;
             }
         }

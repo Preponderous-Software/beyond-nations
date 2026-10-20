@@ -31,9 +31,9 @@ namespace beyondnations {
     * What each era asks and what it gives, in one table so the tracker, the
     * HUD, the objectives and the docs never disagree about a number.
     *
-    *   Camp -> Village   a village (2 buildings), 5 members, a market stall
-    *   Village -> Town   a town (5 buildings), 12 members, 2 settlements, 500 funds
-    *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 2,000 funds
+    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls
+    *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds
+    *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 3,000 funds
     *
     * Unlocks, for a nation the player leads (pawn-led nations are never held
     * back -- the era is the player's run, not the world's):
@@ -45,17 +45,20 @@ namespace beyondnations {
     */
     public static class EraRules {
 
-        public const int VillageMembers = 5;
-        public const int VillageStalls = 1;
+        // Tuned with the pacing bot (docs/PACING.md): settlers join a new
+        // nation on their own for its first couple of minutes, so a handful
+        // of members is no measure of a village.
+        public const int VillageMembers = 10;
+        public const int VillageStalls = 2;
 
-        public const int TownMembers = 12;
+        public const int TownMembers = 18;
         public const int TownSettlements = 2;
-        public const int TownFunds = 500;
+        public const int TownFunds = 1000;
 
         public const int KingdomTowns = 2;
         public const int KingdomMembers = 25;
         public const int KingdomSettlements = 4;
-        public const int KingdomFunds = 2000;
+        public const int KingdomFunds = 3000;
 
         /** What the player's nation must have to leave this era; empty in the last one. */
         public static List<EraRequirement> requirementsToLeave(Era era, NationStanding standing) {
