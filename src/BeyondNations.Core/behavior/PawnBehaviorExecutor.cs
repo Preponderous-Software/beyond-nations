@@ -109,6 +109,11 @@ namespace beyondnations {
             }
         }
 
+        /** Whether the trees pawns fell carry apples now: not in winter. Without a calendar it is always spring. */
+        private bool treesBearFruit() {
+            return seasonCalendar == null || SeasonalRules.treesBearFruit(seasonCalendar.getSeason());
+        }
+
         private void executeGatherResourcesBehavior(Pawn pawn) {
             if (!pawn.hasTargetEntity() || !isGatherable(pawn.getTargetEntity().getType())) {
                 Entity target = selectGatherTarget(pawn);
@@ -136,7 +141,12 @@ namespace beyondnations {
                     int stoneBonus = PawnTraits.gatherBonus(pawn, targetEntity.getInventory().getNumItems(ItemType.STONE));
                     int woodBefore = pawn.getInventory().getNumItems(ItemType.WOOD);
                     int stoneBefore = pawn.getInventory().getNumItems(ItemType.STONE);
-                    pawn.getInventory().transferContentsOfInventory(targetEntity.getInventory());
+                    // a tree felled in winter is bare: wood, but no apples (SeasonalRules.treesBearFruit)
+                    Inventory haul = targetEntity.getInventory();
+                    if (targetEntityType == EntityType.TREE && !treesBearFruit()) {
+                        haul.removeItem(ItemType.APPLE, haul.getNumItems(ItemType.APPLE));
+                    }
+                    pawn.getInventory().transferContentsOfInventory(haul);
                     Tools.applyGatherBonus(pawn.getInventory(), targetEntityType);
                     // the trait stacks with any tool bonus
                     if (woodBonus > 0) {
@@ -191,14 +201,15 @@ namespace beyondnations {
             }
 
             // From autumn on, a pawn short of stores goes for food: a chicken
-            // close by, or else a tree, which carries apples, over a rock.
+            // close by, or else a tree, which carries apples, over a rock
+            // (in winter the trees are bare, so only the chicken).
             if (seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason())) {
                 Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
                 if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
                     return nearestChicken;
                 }
                 Entity nearestFruit = environment.getNearestTree(pawn.getPosition());
-                if (nearestFruit != null && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
+                if (nearestFruit != null && treesBearFruit() && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
                     return nearestFruit;
                 }
             }

@@ -88,15 +88,15 @@ Seconds of game time per objective, at 50 ticks a second and 30 000 ticks (10 mi
 | Enter your settlement | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
 | Build a market stall | 6 | 14 | 6 | 6 | 5 | 0 – 120 |
 | Reach the Village era | 1005 | 993 | 1003 | 1006 | 1007 | 300 – 1800 |
-| Sell resources at market | 1 | 7 | 1 | 1 | 1 | 0 – 180 |
-| Found a second settlement | 16 | 20 | 1 | 1 | 13 | 0 – 120 |
-| Grow your nation to 16 (ambition) | 1 | 1 | 405 | 1 | 1 | 5 – 2400, advisory |
-| Amass 1000 coins (ambition) | 913 | 1 | never | 1 | 1 | 30 – 3900, advisory |
-| Hold 3 settlements (ambition) | 12 | 27 | – | 1 | 21 | 0 – 300, advisory |
-| Reach the Town era (ambition) | 1457 | 2344 | – | 2395 | 2363 | 0 – 5400, advisory |
-| Grow your nation to 25 (ambition) | never | 1 | – | 1 | 1 | 300 – 3600, advisory |
+| Sell resources at market | 1 | 1 | 2 | 1 | 1 | 0 – 180 |
+| Found a second settlement | 15 | 14 | 1 | 1 | 18 | 0 – 120 |
+| Grow your nation to 16 (ambition) | 1 | 1 | 1 | 1 | 1 | 5 – 2400, advisory |
+| Amass 1000 coins (ambition) | 215 | 1 | 158 | 1 | 145 | 30 – 3900, advisory |
+| Hold 3 settlements (ambition) | 14 | 14 | 14 | 1 | 14 | 0 – 300, advisory |
+| Reach the Town era (ambition) | 2154 | 2369 | 2224 | 2395 | 2221 | 0 – 5400, advisory |
+| Grow your nation to 25 (ambition) | 1 | 1 | 1 | 1 | 1 | 300 – 3600, advisory |
 
-Measured with eras (Camp to Kingdom, see SYSTEMS.md) and the hungry start (the player begins at 85 energy), on develop with seasons, regions, rulers, world events and trade, for one hour of game time a seed (`maxTicks` 180 000, 14 objectives). The arc up to the Village era takes 17 to 20 minutes of game time on seeds 1 to 15.
+Measured with eras (Camp to Kingdom, see SYSTEMS.md) and the hungry start (the player begins at 85 energy), on develop with seasons, regions, rulers, world events, trade and spoiling apples, for one hour of game time a seed (`maxTicks` 180 000, 14 objectives). Spoiling apples (SYSTEMS.md, "Seasons") left every binding objective inside its budget and the budget unchanged; the arc to the Village era is unchanged to the second. Among the advisory ambitions, seed 3 now amasses its 1000 coins and goes on to the Town era (it stalled on the coins before), seed 1 now grows to 25, and the Town era takes longer on seed 1 (36 minutes after the previous step, against 24). The arc up to the Village era takes 17 to 20 minutes of game time on seeds 1 to 15.
 
 ### The eras
 

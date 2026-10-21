@@ -3,9 +3,9 @@ namespace beyondnations {
     /**
     * The part of the seasons that acts on its own each tick, called once a
     * tick from Simulation.fixedUpdate: chickens hatching in spring and
-    * summer, and telling the player when a season turns and when winter is a
-    * day away. The rest of the seasons are rules other systems ask about
-    * (SeasonalRules).
+    * summer, apples spoiling (SeasonalRules.applesSpoiling), and telling
+    * the player when a season turns and when winter is a day away. The rest
+    * of the seasons are rules other systems ask about (SeasonalRules).
     *
     * It holds no state of its own -- every decision is read off the tick
     * count -- so there is nothing to save.
@@ -38,6 +38,40 @@ namespace beyondnations {
             if (totalTicks % SeasonalRules.CHICKEN_HATCH_INTERVAL_TICKS == 0 && SeasonalRules.chickensHatch(calendar.getSeason())) {
                 hatchChicken();
             }
+            if (totalTicks % SeasonalRules.APPLE_SPOIL_INTERVAL_TICKS == 0) {
+                spoilApples();
+            }
+        }
+
+        /**
+        * One round of spoilage: every pawn and every market stall loses a share
+        * of the apples it holds beyond its kept store. The player's pack and
+        * the player's own stalls are left alone. Returns how many apples rotted.
+        */
+        public int spoilApples() {
+            int spoiled = 0;
+            foreach (Entity entity in entityRepository.getEntities()) {
+                if (entity.getType() == EntityType.PAWN) {
+                    spoiled += spoil(entity.getInventory(), SeasonalRules.PAWN_APPLES_KEPT);
+                }
+                else if (entity.getType() == EntityType.SETTLEMENT) {
+                    foreach (Stall stall in ((Settlement) entity).getMarket().getStalls()) {
+                        if (player.getId().Equals(stall.getOwnerId())) {
+                            continue;
+                        }
+                        spoiled += spoil(stall.getInventory(), SeasonalRules.STALL_APPLES_KEPT);
+                    }
+                }
+            }
+            return spoiled;
+        }
+
+        private static int spoil(Inventory inventory, int kept) {
+            int rotting = SeasonalRules.applesSpoiling(inventory.getNumItems(ItemType.APPLE), kept);
+            if (rotting > 0) {
+                inventory.removeItem(ItemType.APPLE, rotting);
+            }
+            return rotting;
         }
 
         /**
