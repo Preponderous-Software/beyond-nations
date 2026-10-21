@@ -332,6 +332,94 @@ namespace beyondnations {
             eventProducer.produceStatecraftEvent(text, nation, null, pawn.getId());
         }
 
+        // --- claims to rule ----------------------------------------------------------------------------
+
+        /**
+        * Whether a claimant can take the rule of a nation from its leader by
+        * force: null when the claim can stand, otherwise why it cannot. The
+        * player's own rule never passes this way -- it goes only to an heir,
+        * when the player dies (Succession) -- so a nation the player leads
+        * cannot be usurped. Nor can a claimant who is no longer a member of
+        * the nation, is dead or dying, or already leads it.
+        */
+        public string whyClaimFails(Nation nation, Pawn claimant) {
+            if (nation == null || nationRepository.getNation(nation.getId()) == null) {
+                return "the nation is no more";
+            }
+            if (claimant == null || claimant.isMarkedForDeletion() || claimant.getEnergy() <= 0 || !nation.isMember(claimant.getId())) {
+                return "the claimant is no longer of " + nation.getName();
+            }
+            if (claimant.getId().Equals(nation.getLeaderId())) {
+                return "the claimant already leads " + nation.getName();
+            }
+            if (nation.getLeaderId() != null && nation.getLeaderId().Equals(player.getId())) {
+                return "the rule of " + nation.getName() + " passes only to an heir";
+            }
+            return null;
+        }
+
+        /**
+        * A claimant takes the rule of a nation by force instead of by
+        * succession. The deposed leader stays on as a serf and the chronicle
+        * records the change. The nation's laws stay as they are -- they
+        * belong to the nation, as they do when an heir succeeds -- but any
+        * change the deposed ruler proclaimed that has not yet come in dies
+        * with their rule. Returns false, changing nothing, when the claim
+        * cannot stand (whyClaimFails).
+        */
+        public bool usurp(Nation nation, Pawn claimant) {
+            if (whyClaimFails(nation, claimant) != null) {
+                return false;
+            }
+            EntityId previous = nation.getLeaderId();
+            if (previous != null && nation.isMember(previous)) {
+                nation.setRole(previous, NationRole.SERF);
+            }
+            nation.setLeaderId(claimant.getId());
+            nation.setRole(claimant.getId(), NationRole.LEADER);
+            NationLaws entry = getLaws(nation);
+            if (entry != null) {
+                foreach (LawType law in Laws.All) {
+                    entry.clearPending(law);
+                }
+            }
+            eventProducer.produceLeadershipChangeEvent(nation, previous, claimant.getId());
+            return true;
+        }
+
+        /**
+        * A member is driven out of the nation: it gives up any stall, its
+        * home and its order, loses the nation's colour and goes its own way.
+        */
+        public void expel(Pawn pawn, Nation nation) {
+            foreach (Settlement settlement in diplomacy.getSettlements(nation)) {
+                foreach (Stall stall in settlement.getMarket().getStalls()) {
+                    if (stall.getOwnerId() != null && stall.getOwnerId().Equals(pawn.getId())) {
+                        stall.setOwnerId(null);
+                    }
+                }
+            }
+            nation.removeMember(pawn.getId());
+            pawn.setNationId(null);
+            pawn.setHomeSettlementId(null);
+            pawn.setOrder(null);
+            pawn.setColor(Rgba.White);
+            eventProducer.produceNationLeaveEvent(nation, pawn.getId());
+        }
+
+        /**
+        * Changes two nations' relations by the realm's rules, however the
+        * change comes about: nations at war cannot warm toward each other,
+        * and nations under a truce cannot grate. Returns the change made.
+        */
+        public int changeRelations(Nation a, Nation b, int delta) {
+            int bent = adjustDrift(a, b, delta);
+            if (bent != 0) {
+                diplomacy.change(a, b, bent);
+            }
+            return bent;
+        }
+
         // --- hooks for other systems --------------------------------------------------------------------
 
         /**
