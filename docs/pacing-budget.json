@@ -20,9 +20,9 @@
     {
       "id": "eat",
       "title": "Eat something",
-      "minSeconds": 30,
-      "maxSeconds": 180,
-      "note": "A hunger wait: the player eats once energy falls below 90, about a minute in."
+      "minSeconds": 0,
+      "maxSeconds": 60,
+      "note": "A new world starts the player below the eating line (Player.NewWorldEnergy), so the first food carried, such as the apples gather-wood rewards, is eaten at once. It used to be a minute's wait for hunger."
     },
     {
       "id": "join-nation",

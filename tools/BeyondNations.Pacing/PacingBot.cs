@@ -136,7 +136,7 @@ namespace beyondnations.pacing {
             }
             switch (current.getId()) {
                 case "gather-wood": gather(EntityType.TREE); return;
-                // Food comes with the wood; the player eats on their own once hungry.
+                // Food comes with the wood; a new world starts the player hungry enough to eat it at once.
                 case "eat": gather(EntityType.TREE); return;
                 case "join-nation": joinNation(); return;
                 case "found-settlement": foundSettlement(); return;

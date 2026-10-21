@@ -75,6 +75,8 @@ namespace beyondnationstests {
             int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
             Assert.Null(ObjectiveTrackerBox.toastText(simulation));
 
+            // full, so the rewarded apples are not eaten and "Eat something" brings no toast of its own
+            simulation.getPlayer().setEnergy(100f);
             simulation.getPlayer().getInventory().addItem(ItemType.WOOD, ObjectiveCatalog.firstWoodTarget());
             tick(simulation, 1);
             string toast = ObjectiveTrackerBox.toastText(simulation);
