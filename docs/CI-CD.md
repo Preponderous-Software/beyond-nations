@@ -109,3 +109,5 @@ On a pull request, the checks appear at the bottom of the conversation tab; sele
 This pipeline replaced a Unity one that had **never passed**. Every run failed at `Missing Unity License File and no Serial was found`, for the test job and the build job alike, so no pull request in the project's history had ever been gated by a passing test.
 
 The licence was not the only cause. The test suite also asserted through a Unity call that only logs, so even with a licence it could not have failed a build. Both had to be fixed to get a working gate: see #215 and #214.
+
+A second workflow, `Setup Website` (`setup-website.yaml`), generated docs with Donovan and pushed them to a `gh-pages` branch on every push and pull request against `main`. It failed on every run (the Donovan template's `public/*.css` was missing), there is no `gh-pages` branch, and the repository has no GitHub Pages site, so it was removed together with its `.github/donovan.json` config.
