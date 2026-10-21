@@ -98,6 +98,8 @@ namespace beyondnations {
             pawnBehaviorCalculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
             pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator, tickCounter);
             player.setMetabolism(gameConfig.getPlayerMetabolism());
+            // a new world starts the player a little hungry (see NewWorldEnergy); a load overwrites it
+            player.setEnergy(Player.NewWorldEnergy);
             entityRepository.addEntity(player);
             diplomacy = new Diplomacy(nationRepository, entityRepository, eventProducer, player);
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
