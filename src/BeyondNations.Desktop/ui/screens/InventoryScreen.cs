@@ -16,8 +16,8 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class InventoryScreen {
         public const string Title = "INVENTORY";
-        public const string CloseHint = "(Press I or ESCAPE to close, C to craft)";
-        public const string TouchCloseHint = "(Tap Close, top right, to go back)";
+        public const string CloseHint = "(Press {ToggleInventory} or {Pause} to close, {ToggleCrafting} to craft)";
+        public const string TouchCloseHint = ObjectiveKeyNames.TouchCloseHint;
         public const string EmptyLine = "Your inventory is empty.";
 
         public static List<string> getLines(Inventory inventory) {
@@ -61,7 +61,7 @@ namespace beyondnations.desktop.ui.screens {
                 Overlay.textCentered(line, height / 30f, y, width);
                 y += lineHeight;
             }
-            Overlay.textCentered(TouchLayout.isActive() ? TouchCloseHint : CloseHint, height / 30f, y + lineHeight, width);
+            Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint), height / 30f, y + lineHeight, width);
             Overlay.end();
 
             // a finger has no I or Escape (TouchLayout)

@@ -123,8 +123,8 @@ namespace beyondnationstests {
             Assert.Equal(applesBefore + 2, player.getInventory().getNumItems(ItemType.APPLE));
             Assert.StartsWith("Objective complete: Gather wood.", player.getStatus().getStatus());
 
-            // 2. eat: carry food and get hungry
-            player.setEnergy(50);
+            // 2. eat: a new world starts the player a little hungry, so the
+            // apples in hand are eaten at once, with no wait for hunger
             int coinsBefore = player.getInventory().getNumItems(ItemType.COIN);
             tickOneSecond();
             Assert.True(player.getMealsEaten() > 0);

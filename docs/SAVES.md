@@ -104,9 +104,10 @@ The player's meal and sale counters, which objectives read, are saved with the
 player.
 
 References between objects are by id (32 hex digits), and a load resolves
-every reference to the one object it names. That matters beyond tidiness:
-the simulation compares ids by reference in places (`stall.getOwnerId() ==
-pawn.getId()`), so two copies of one id would quietly break stall ownership.
+every reference to the one object it names. Entity and nation ids also
+compare by value with `==` (`stall.getOwnerId() == pawn.getId()` holds for
+two copies of one id), but entities and nations themselves are compared by
+reference, so each must still load as one object.
 
 Floats are written in their shortest round-trip form, so every value reads
 back bit for bit. Enums are written by name, so adding a member never shifts

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System;
+using System.Reflection;
 using Xunit;
 
 using beyondnations;
@@ -315,6 +317,55 @@ namespace beyondnationstests {
             }
             Assert.Equal(0, RealmTestHelp.count(simulation.getEventRepository(), EventType.Statecraft));
             Assert.Equal(3000 / Realm.LAW_ROUND_TICKS, simulation.getRealm().getLawRound());
+        }
+
+        /** An EntityId equal to the given one but a different object, as a reload or a copy could make. */
+        private static EntityId copyOf(EntityId id) {
+            return (EntityId) Activator.CreateInstance(typeof(EntityId), BindingFlags.NonPublic | BindingFlags.Instance, null,
+                new object[] { id.getId() }, null);
+        }
+
+        [Fact]
+        public void testADeserter_GivesUpTheirStall_HoweverTheOwnerIdWasMade() {
+            Nation own = world.playerNation(3);
+            Settlement town = world.settlement(own, 0, 0);
+            Pawn bitter = pawnsOf(own)[1];
+            bitter.decreaseRelationship(world.player, -Realm.DESERT_AT - 1);
+            town.getMarket().createStall();
+            List<Stall> stalls = town.getMarket().getStalls();
+            Stall stall = stalls[stalls.Count - 1];
+            stall.setOwnerId(copyOf(bitter.getId()));
+            Assert.NotSame(bitter.getId(), stall.getOwnerId());
+
+            enact(own, LawType.TAXES, 2);
+
+            Assert.False(own.isMember(bitter.getId()));
+            Assert.Null(stall.getOwnerId());
+        }
+
+        /**
+        * A change proclaimed by a ruler who has since lost the rule lapses
+        * (as a deposed ruler's does on a usurpation, #332): it never comes
+        * in, and the player is not told of laws in a nation they no longer lead.
+        */
+        [Fact]
+        public void testAProclamation_LapsesWhenThePlayerNoLongerLeads() {
+            Nation own = world.playerNation(3);
+            world.settlement(own, 0, 0);
+            realm.proclaim(own, LawType.TAXES, 2);
+            Pawn successor = pawnsOf(own)[0];
+            own.setRole(world.player.getId(), NationRole.SERF);
+            own.setLeaderId(successor.getId());
+            own.setRole(successor.getId(), NationRole.LEADER);
+            world.player.getStatus().update("before");
+
+            for (int i = 0; i < 5; i++) {
+                lawRound();
+            }
+
+            Assert.Equal(0, realm.getLevel(own, LawType.TAXES));
+            Assert.Equal(-1, realm.getLaws(own).getPending(LawType.TAXES));
+            Assert.Equal("before", status());
         }
     }
 }

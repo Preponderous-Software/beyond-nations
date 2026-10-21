@@ -64,10 +64,10 @@ namespace beyondnations {
 
     /**
     * Reads what SaveWriter wrote, and keeps the one thing a load needs beyond
-    * the JSON: identity. The simulation compares ids and nations by reference
-    * in places (stall.getOwnerId() == pawn.getId()), so every reference to an
-    * entity id resolves to the one EntityId instance the entity itself holds,
-    * and every reference to an entity or nation to the one object.
+    * the JSON: identity. Ids compare by value, but the simulation compares
+    * entities and nations by reference in places, so every reference to an
+    * entity or nation resolves to the one object, and every reference to an
+    * entity id to the one EntityId instance the entity itself holds.
     */
     public class SaveReader {
         private readonly SaveStreams streams;

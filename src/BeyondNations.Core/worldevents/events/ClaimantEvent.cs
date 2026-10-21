@@ -8,6 +8,14 @@ namespace beyondnations {
     * warning its leader earns a little goodwill and gets the claimant
     * thrown out; staying out of it may see the claimant take power anyway,
     * remembering who would not help.
+    *
+    * Everything here goes through the Realm's rules (realm/, #322): a claim
+    * stands only where Realm.whyClaimFails allows it -- never against the
+    * player's own rule, which passes only to an heir -- the seizure is a
+    * Realm.usurp (the nation keeps its laws; the deposed ruler's pending
+    * proclamations lapse), a warned-off claimant is Realm.expel'd, and
+    * goodwill and grudges are Realm.changeRelations, so a war keeps the
+    * two nations from warming and a truce keeps them from grating.
     */
     public class ClaimantEvent : IWorldEvent {
         public const string Id = "claimant";
@@ -50,8 +58,9 @@ namespace beyondnations {
 
         private static List<Pawn> claimantsIn(WorldEventContext context, Nation nation) {
             List<Pawn> claimants = new List<Pawn>();
+            Realm realm = context.getSimulation().getRealm();
             foreach (Pawn member in context.membersOf(nation)) {
-                if (!member.getId().Equals(nation.getLeaderId())) {
+                if (realm.whyClaimFails(nation, member) == null) {
                     claimants.Add(member);
                 }
             }
@@ -95,13 +104,23 @@ namespace beyondnations {
         }
 
         public List<WorldEventChoice> getChoices(WorldEventContext context, WorldEventInstance instance) {
+            Nation nation = context.getNation(instance.getNationId());
             Nation other = context.getNation(instance.getOtherNationId());
             string o = other == null ? "them" : other.getName();
+            Realm realm = context.getSimulation().getRealm();
+            bool atWar = realm.isAtWar(nation, other);
+            bool truce = realm.hasTruce(nation, other);
             return new List<WorldEventChoice> {
                 WorldEventChoice.requiring(context.availableCoins(instance) >= BACKING_COINS, "Back the claimant (" + BACKING_COINS + " coins)",
-                    "The claimant takes power, and " + o + " will be friendlier toward you.", "Needs " + BACKING_COINS + " coins"),
-                new WorldEventChoice("Warn " + o + "'s leader", "A little goodwill with " + o + "; the claimant is driven out."),
-                new WorldEventChoice("Stay out of it", "Nothing now -- but if the claimant wins anyway, they will remember."),
+                    atWar ? "The claimant takes power, but the war keeps " + o + " from warming to you."
+                        : "The claimant takes power, and " + o + " will be friendlier toward you.",
+                    "Needs " + BACKING_COINS + " coins"),
+                new WorldEventChoice("Warn " + o + "'s leader",
+                    atWar ? "The claimant is driven out; the war leaves no room for goodwill."
+                        : "A little goodwill with " + o + "; the claimant is driven out."),
+                new WorldEventChoice("Stay out of it",
+                    truce ? "Nothing now -- and the truce holds, even if the claimant wins anyway."
+                        : "Nothing now -- but if the claimant wins anyway, they will remember."),
             };
         }
 
@@ -124,52 +143,34 @@ namespace beyondnations {
             Nation other = context.getNation(instance.getOtherNationId());
             Pawn claimant = context.getEntity(instance.getEntityId()) as Pawn;
             string who = context.chooser(instance);
+            Realm realm = context.getSimulation().getRealm();
             if (nation == null || other == null || claimant == null || !other.isMember(claimant.getId())
                     || claimant.getId().Equals(other.getLeaderId())) {
                 return "the claimant who had sought " + who + " out vanished before anything came of it.";
             }
             string c = claimant.getName();
-            Diplomacy diplomacy = context.getSimulation().getDiplomacy();
+            string refused = realm.whyClaimFails(other, claimant);
+            if (refused != null) {
+                // e.g. the player has come to rule the nation since the claimant came: that rule passes only to an heir
+                return c + "'s claim to lead " + other.getName() + " came to nothing: " + refused + ".";
+            }
             if (choice == 0) {
                 context.payCoins(instance, BACKING_COINS);
-                seizePower(context, other, claimant);
-                diplomacy.change(nation, other, BACKED_RELATIONS);
+                realm.usurp(other, claimant);
+                realm.changeRelations(nation, other, BACKED_RELATIONS);
                 return "with " + nation.getName() + "'s gold behind them, " + c + " seized the leadership of " + other.getName() + ".";
             }
             if (choice == 1) {
-                exile(context, other, claimant);
-                diplomacy.change(nation, other, WARNED_RELATIONS);
+                realm.expel(claimant, other);
+                realm.changeRelations(nation, other, WARNED_RELATIONS);
                 return who + " warned " + other.getName() + " of " + c + "'s plotting, and " + c + " was driven out of it.";
             }
             if (instance.getMagnitude() == 1) {
-                seizePower(context, other, claimant);
-                diplomacy.change(nation, other, SPURNED_RELATIONS);
+                realm.usurp(other, claimant);
+                realm.changeRelations(nation, other, SPURNED_RELATIONS);
                 return c + " seized the leadership of " + other.getName() + " without " + nation.getName() + "'s help, and has not forgotten it.";
             }
             return c + "'s claim to lead " + other.getName() + " came to nothing, and " + who + " kept well out of it.";
-        }
-
-        private static void seizePower(WorldEventContext context, Nation nation, Pawn claimant) {
-            EntityId previous = nation.getLeaderId();
-            nation.setRole(previous, NationRole.SERF);
-            nation.setLeaderId(claimant.getId());
-            nation.setRole(claimant.getId(), NationRole.LEADER);
-            context.getSimulation().getEventProducer().produceLeadershipChangeEvent(nation, previous, claimant.getId());
-        }
-
-        private static void exile(WorldEventContext context, Nation nation, Pawn claimant) {
-            foreach (Settlement settlement in context.settlementsOf(nation)) {
-                foreach (Stall stall in settlement.getMarket().getStalls()) {
-                    if (stall.getOwnerId() != null && stall.getOwnerId().Equals(claimant.getId())) {
-                        stall.setOwnerId(null);
-                    }
-                }
-            }
-            nation.removeMember(claimant.getId());
-            claimant.setNationId(null);
-            claimant.setHomeSettlementId(null);
-            claimant.setOrder(null);
-            context.getSimulation().getEventProducer().produceNationLeaveEvent(nation, claimant.getId());
         }
     }
 }

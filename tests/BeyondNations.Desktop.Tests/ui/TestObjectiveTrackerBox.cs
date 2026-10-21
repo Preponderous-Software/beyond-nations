@@ -11,6 +11,8 @@ namespace beyondnationstests {
     /**
     * What the objective tracker shows, decided without an ImGui frame.
     */
+    // reads text that names keys or buttons by TouchLayout, which another test may switch on
+    [Collection("TouchLayout")]
     public class TestObjectiveTrackerBox {
         private const float FixedDeltaTime = 1f / 50f;
 
@@ -75,6 +77,8 @@ namespace beyondnationstests {
             int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
             Assert.Null(ObjectiveTrackerBox.toastText(simulation));
 
+            // full, so the rewarded apples are not eaten and "Eat something" brings no toast of its own
+            simulation.getPlayer().setEnergy(100f);
             simulation.getPlayer().getInventory().addItem(ItemType.WOOD, ObjectiveCatalog.firstWoodTarget());
             tick(simulation, 1);
             string toast = ObjectiveTrackerBox.toastText(simulation);

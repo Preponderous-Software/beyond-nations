@@ -14,6 +14,14 @@ namespace beyondnations {
     *
     * Plains farms harvest one apple more whenever farms harvest at all
     * (RegionCatalog.farmBonus).
+    *
+    * Two rules keep the good seasons from storing up a mild winter. Apples
+    * spoil all year: a pawn's or a market stall's apples beyond a modest store
+    * rot a sixth at a time (applesSpoiling), so nobody carries a hoard into
+    * winter. And in winter the trees a pawn fells are bare (treesBearFruit),
+    * so wood no longer brings food with it. The player is spared both: their
+    * pack and their own stalls never rot, and a tree still gives them its
+    * apples, so a world started in winter can still teach eating.
     */
     public static class SeasonalRules {
 
@@ -39,6 +47,44 @@ namespace beyondnations {
                 case Season.WINTER: return 0;
                 default: return 1;
             }
+        }
+
+        /** Ticks between spoilage rounds: 30 seconds, the same as a chicken hatching. */
+        public const int APPLE_SPOIL_INTERVAL_TICKS = 1500;
+
+        /**
+        * Apples a pawn keeps without any spoiling: three times WINTER_FOOD_STORE, so
+        * the store laid in for winter never rots, only a hoard does.
+        */
+        public const int PAWN_APPLES_KEPT = 3 * WINTER_FOOD_STORE;
+
+        /** Apples a market stall keeps without any spoiling: a small stock that still sells through winter. */
+        public const int STALL_APPLES_KEPT = 10;
+
+        /** The share of the apples beyond the kept store that rots each round: one in SPOIL_DIVISOR, rounded up. */
+        public const int SPOIL_DIVISOR = 6;
+
+        /**
+        * How many of these apples rot this round, given how many keep: none of
+        * the kept store, and a sixth (rounded up) of the rest. Halves a hoard
+        * in about two minutes, so a pawn that fells trees all summer
+        * carries a couple of dozen apples into winter rather than two hundred.
+        */
+        public static int applesSpoiling(int apples, int kept) {
+            if (apples <= kept) {
+                return 0;
+            }
+            return (apples - kept + SPOIL_DIVISOR - 1) / SPOIL_DIVISOR;
+        }
+
+        /**
+        * Whether a tree a pawn fells this season carries apples. Not in
+        * winter: the fruit has fallen, so a pawn felling trees for wood gets
+        * wood and saplings and no food. (The apples stay with the tree, so a
+        * tree standing at the end of winter bears again in spring.)
+        */
+        public static bool treesBearFruit(Season season) {
+            return season != Season.WINTER;
         }
 
         /** How many times longer than usual a sapling takes to grow in winter. */

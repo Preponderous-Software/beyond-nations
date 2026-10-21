@@ -85,8 +85,11 @@ game lays its screens out for a finger (`TouchLayout` in
 - The HUD leaves the controls' band clear: the command bar and the boxes stop
   above it, the inventory box is left out (Bag opens the full list), and on a
   phone held upright the status line and chronicle go under the objective
-  tracker rather than over it. Objective hints name the buttons ("press
-  Use") instead of keys.
+  tracker rather than over it.
+- No line names a key or a mouse button: objective hints, status lines, panel
+  footers, the chronicle and the tips name the button instead ("press Use",
+  "Realm", "Tap Close"), all from one table (`ObjectiveKeyNames`), and the
+  controls list puts the keyboard's rows under "Keyboard:" headings.
 - The UI stays inside the screen's safe area (`env(safe-area-inset-*)`), clear
   of notches and rounded corners; the world still fills the whole screen.
   ImGui's widgets get more padding and ImGui's `TouchExtraPadding`.

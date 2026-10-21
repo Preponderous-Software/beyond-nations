@@ -101,6 +101,47 @@ namespace beyondnationstests {
             Assert.True(arc("eat").evaluate(simulation).isComplete());
         }
 
+        /**
+        * "Eat something" used to be a minute's wait: a new world started the
+        * player at a full 100 and carried food is only eaten below
+        * Player.EatBelowEnergy. Now a new world starts the player below that
+        * line, so the first food picked up is eaten on the next step.
+        */
+        [Fact]
+        public void testEat_NewWorldPlayerEatsTheFirstFoodPickedUpAtOnce() {
+            Assert.Equal(Player.NewWorldEnergy, player.getEnergy());
+            Assert.True(player.getEnergy() < Player.EatBelowEnergy, "a new world should start the player hungry enough to eat");
+
+            player.fixedUpdate();
+            Assert.Equal(0, player.getMealsEaten());
+            Assert.False(arc("eat").evaluate(simulation).isComplete());
+
+            player.getInventory().addItem(ItemType.APPLE, 1);
+            player.fixedUpdate();
+            Assert.Equal(1, player.getMealsEaten());
+            Assert.True(arc("eat").evaluate(simulation).isComplete());
+        }
+
+        [Fact]
+        public void testEat_FirstAppleIsNotWastedOnAFullBar() {
+            // the head start is no bigger than one apple, so that apple restores all it can
+            Assert.True(Player.NewWorldEnergy + FoodItems.getEnergyRestored(ItemType.APPLE) <= 100f);
+            // and no smaller than needed: hunger still drains from nearly full
+            Assert.True(Player.NewWorldEnergy >= Player.EatBelowEnergy - FoodItems.getEnergyRestored(ItemType.APPLE));
+        }
+
+        [Fact]
+        public void testEat_StillRefusedWhenNotHungry() {
+            // eating stays gated on hunger: a full player carrying food keeps it
+            player.setEnergy(100f);
+            player.getInventory().addItem(ItemType.APPLE, 3);
+            for (int i = 0; i < 100; i++) {
+                player.fixedUpdate();
+            }
+            Assert.Equal(0, player.getMealsEaten());
+            Assert.Equal(3, player.getInventory().getNumItems(ItemType.APPLE));
+        }
+
         [Fact]
         public void testJoinNation_MetByCreatingOrJoining() {
             makePlayerLeader();

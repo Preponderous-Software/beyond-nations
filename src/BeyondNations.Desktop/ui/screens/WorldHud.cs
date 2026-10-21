@@ -333,7 +333,7 @@ namespace beyondnations.desktop.ui.screens {
             if (energy >= HungryEnergy) {
                 return null;
             }
-            string howToEat = "Press " + KeyBindings.Interact + " at a tree or a chicken for food, or buy food in a settlement.";
+            string howToEat = ObjectiveKeyNames.resolve("Press {Interact} at a tree or a chicken for food, or buy food in a settlement.");
             if (energy < StarvingEnergy) {
                 return "Starving! Energy " + (int) energy + ". " + howToEat;
             }
@@ -372,7 +372,7 @@ namespace beyondnations.desktop.ui.screens {
         * its expiry, and this is what puts it on the screen.
         */
         private float drawStatus(float width, Player player, Layout layout, float y) {
-            string status = player.getStatus().getStatus();
+            string status = ObjectiveKeyNames.resolve(player.getStatus().getStatus());
             if (string.IsNullOrEmpty(status)) {
                 lastStatus = null;
                 return y;

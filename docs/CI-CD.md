@@ -54,6 +54,10 @@ It also checks the game's own export (Share > Export replay, [SHARING.md](./SHAR
 
 [`.github/workflows/browser.yml`](../.github/workflows/browser.yml) publishes `src/BeyondNations.Web` for the browser (it installs the `wasm-tools` workload first), then drives the page in headless Chromium on a desktop and on a phone held upright and on its side (`src/BeyondNations.Web/smoke/smoke.mjs`): title, main menu, Start, a drawn world, walking, right-drag look, a short key tap, and no console errors; on the phones the same by touch, with the joystick, a drag to steer and every panel opened and closed from the touch controls. On a push to `develop` with the `ARCADE_ENABLED` variable set it deploys the site to the arcade. See [WEB.md](./WEB.md).
 
+### Release builds (`release.yml`)
+
+[`.github/workflows/release.yml`](../.github/workflows/release.yml) builds self-contained Windows x64 and Linux x64 downloads of the desktop game, with Strata, cimgui, GLFW and (on Windows) the Visual C++ runtime inside, and attaches them to a GitHub release when one is published or a bare version tag is pushed. It refuses a tag that differs from `GameVersion.Version`. It runs the packaged Linux build headlessly on llvmpipe and loads the packaged Windows native libraries. Run by hand, or on a pull request that changes it or the desktop project file, it is a dry run that keeps the archives as workflow artifacts. See [RELEASING.md](./RELEASING.md).
+
 ## Running the checks locally
 
 They are the same commands, so there is nothing to reproduce:
@@ -109,3 +113,5 @@ On a pull request, the checks appear at the bottom of the conversation tab; sele
 This pipeline replaced a Unity one that had **never passed**. Every run failed at `Missing Unity License File and no Serial was found`, for the test job and the build job alike, so no pull request in the project's history had ever been gated by a passing test.
 
 The licence was not the only cause. The test suite also asserted through a Unity call that only logs, so even with a licence it could not have failed a build. Both had to be fixed to get a working gate: see #215 and #214.
+
+A second workflow, `Setup Website` (`setup-website.yaml`), generated docs with Donovan and pushed them to a `gh-pages` branch on every push and pull request against `main`. It failed on every run (the Donovan template's `public/*.css` was missing), there is no `gh-pages` branch, and the repository has no GitHub Pages site, so it was removed together with its `.github/donovan.json` config.

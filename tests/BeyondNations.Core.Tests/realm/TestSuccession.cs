@@ -202,5 +202,59 @@ namespace beyondnationstests {
             Assert.Equal("took your place in Aland.", world.simulation.getChronicle().getRecent(1)[0].getText().Substring(
                 world.simulation.getChronicle().getRecent(1)[0].getText().Length - "took your place in Aland.".Length));
         }
+
+        /**
+        * A player who is only a member of a pawn-led nation is never
+        * succeeded by its leader: the leader keeps their crown, so the nation
+        * is never left pointing at a leader who has left the world.
+        */
+        [Fact]
+        public void testTheLeaderOfTheNation_IsNeverAMembersHeir() {
+            Nation theirs = world.pawnNation("Aland", 2);
+            theirs.addMember(world.player.getId());
+            world.player.setNationId(theirs.getId());
+            List<Pawn> members = pawnsOf(theirs);
+            Pawn leader = members[0];
+            Pawn other = members[1];
+            Assert.Same(leader.getId(), theirs.getLeaderId());
+            befriend(leader, world.player, 50);
+
+            realm.onPlayerDeath();
+
+            Assert.Equal(other.getName(), world.player.getName());
+            Assert.False(leader.isMarkedForDeletion());
+            Assert.Same(leader.getId(), theirs.getLeaderId());
+            Assert.True(theirs.isMember(theirs.getLeaderId()));
+            Assert.Equal(NationRole.LEADER, theirs.getRole(theirs.getLeaderId()));
+        }
+
+        [Fact]
+        public void testWithOnlyTheLeaderLeft_AMembersLineEnds() {
+            Nation theirs = world.pawnNation("Aland", 1);
+            theirs.addMember(world.player.getId());
+            world.player.setNationId(theirs.getId());
+            Pawn leader = pawnsOf(theirs)[0];
+
+            Assert.True(realm.onPlayerDeath());
+
+            Assert.True(realm.isRunOver());
+            Assert.False(leader.isMarkedForDeletion());
+            Assert.Same(leader.getId(), theirs.getLeaderId());
+        }
+
+        /** Even handed a nation's leader as heir, crowning keeps the nation led by someone still in the world. */
+        [Fact]
+        public void testCrowningTheLeader_HandsTheLeadershipToThePlayer() {
+            Nation theirs = world.pawnNation("Aland", 2);
+            theirs.addMember(world.player.getId());
+            world.player.setNationId(theirs.getId());
+            Pawn leader = pawnsOf(theirs)[0];
+
+            Succession.crown(leader, theirs, world.player, world.entities, world.diplomacy, new GameConfig());
+
+            Assert.True(leader.isMarkedForDeletion());
+            Assert.Equal(world.player.getId(), theirs.getLeaderId());
+            Assert.Equal(NationRole.LEADER, theirs.getRole(world.player.getId()));
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class PauseScreen {
         public const string Title = "PAUSED";
-        public const string ResumeHint = "(Press ESCAPE to resume)";
+        public const string ResumeHint = "(Press {Pause} to resume)";
         public const string ResumeLabel = "Resume";
         public const string SaveLabel = "Save";
         public const string MainMenuLabel = "Main Menu";
@@ -100,7 +100,7 @@ namespace beyondnations.desktop.ui.screens {
                 }
             } else {
                 Overlay.textCentered(Title, height / 10f, centreY / 2f, width);
-                Overlay.textCentered(ResumeHint, height / 30f, centreY / 2f + height / 12f, width);
+                Overlay.textCentered(ObjectiveKeyNames.resolve(ResumeHint), height / 30f, centreY / 2f + height / 12f, width);
                 if (seedLine != null) {
                     Overlay.textCentered(seedLine, Overlay.BaseFontSize, centreY - Overlay.lineHeight() * 0.75f, width);
                 }

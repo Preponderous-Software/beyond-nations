@@ -89,7 +89,7 @@ namespace beyondnations {
 
             // a nation of the Town era: younger nations the player leads cannot be besieged (EraRules.isSheltered)
             simulation.getEraTracker().stageEnding(simulation, Era.TOWN, RunOutcome.NONE);
-            player.getStatus().update(staged.hostile.getName() + " is besieging your village. Press O to see the nations.");
+            player.getStatus().update(staged.hostile.getName() + " is besieging your village. Press {ToggleNations} to see the nations.");
             return staged;
         }
 

@@ -41,7 +41,7 @@ namespace beyondnations.desktop.ui.boxes {
             lines.Add("Residents: " + settlement.getResidentCount() + "/" + settlement.getResidentCap());
             BuildingType? next = BuildingPlanner.suggestNext(settlement);
             if (next != null) {
-                lines.Add("Next (" + desktop.input.KeyBindings.BuildBuilding + "): " + BuildingCatalog.getDisplayName(next.Value) + ", " + BuildingCatalog.describeCost(next.Value));
+                lines.Add((TouchLayout.isActive() ? "Next: " : ObjectiveKeyNames.resolve("Next ({BuildBuilding}): ")) + BuildingCatalog.getDisplayName(next.Value) + ", " + BuildingCatalog.describeCost(next.Value));
             }
 
             return lines;

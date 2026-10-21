@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using Xunit;
 using beyondnations;
@@ -6,7 +7,8 @@ namespace beyondnationstests {
 
     /**
     * What the seasons do: autumn's double harvest, winter's empty farms, slow
-    * saplings and cold, chickens hatching in spring, and pawns laying in food.
+    * saplings and cold, chickens hatching in spring, pawns laying in food,
+    * apples spoiling and bare trees -- and that together they make winter lean.
     */
     public class TestSeasonalRules {
 
@@ -109,23 +111,147 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testAWorld_StaysPopulatedThroughItsFirstWinter() {
+        public void testApples_SpoilOnlyBeyondTheKeptStore() {
+            Assert.Equal(0, SeasonalRules.applesSpoiling(0, SeasonalRules.PAWN_APPLES_KEPT));
+            Assert.Equal(0, SeasonalRules.applesSpoiling(SeasonalRules.PAWN_APPLES_KEPT, SeasonalRules.PAWN_APPLES_KEPT));
+            // a single apple over the store rots: the share is rounded up
+            Assert.Equal(1, SeasonalRules.applesSpoiling(SeasonalRules.PAWN_APPLES_KEPT + 1, SeasonalRules.PAWN_APPLES_KEPT));
+            Assert.Equal(10, SeasonalRules.applesSpoiling(SeasonalRules.PAWN_APPLES_KEPT + 10 * SeasonalRules.SPOIL_DIVISOR, SeasonalRules.PAWN_APPLES_KEPT));
+            // the store laid in for winter never rots
+            Assert.True(SeasonalRules.PAWN_APPLES_KEPT >= SeasonalRules.WINTER_FOOD_STORE);
+        }
+
+        [Fact]
+        public void testSpoilage_RotsAPawnsHoardAndAStallsStock_ButNotThePlayers() {
+            Simulation simulation = createSimulation(42);
+            removeAllButThePlayer(simulation);
+            Pawn hoarder = new Pawn(new Vector3(5000, 1.5f, 5000), "Hoarder", new RandomSource(3));
+            hoarder.getInventory().addItem(ItemType.APPLE, 200);
+            Pawn frugal = new Pawn(new Vector3(5010, 1.5f, 5000), "Frugal", new RandomSource(4));
+            frugal.getInventory().addItem(ItemType.APPLE, SeasonalRules.PAWN_APPLES_KEPT);
+            simulation.getEntityRepository().addEntity(hoarder);
+            simulation.getEntityRepository().addEntity(frugal);
+            Settlement settlement = new Settlement(new Vector3(6000, 0, 6000), new NationId(), Rgba.Red, "Testland", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(settlement);
+            settlement.getMarket().createStall();
+            settlement.getMarket().createStall();
+            Stall pawnsStall = settlement.getMarket().getStalls()[0];
+            Stall playersStall = settlement.getMarket().getStalls()[1];
+            pawnsStall.setOwnerId(hoarder.getId());
+            playersStall.setOwnerId(simulation.getPlayer().getId());
+            pawnsStall.getInventory().addItem(ItemType.APPLE, 200);
+            playersStall.getInventory().addItem(ItemType.APPLE, 200);
+            Player player = simulation.getPlayer();
+            int playersApples = player.getInventory().getNumItems(ItemType.APPLE) + 200;
+            player.getInventory().addItem(ItemType.APPLE, 200);
+
+            // three minutes of rounds
+            for (int round = 0; round < 6; round++) {
+                simulation.getSeasonalWorld().spoilApples();
+            }
+
+            int hoard = hoarder.getInventory().getNumItems(ItemType.APPLE);
+            Assert.True(hoard < 100, "a hoard of 200 should have rotted to under half, not " + hoard);
+            Assert.True(hoard > SeasonalRules.PAWN_APPLES_KEPT);
+            Assert.Equal(SeasonalRules.PAWN_APPLES_KEPT, frugal.getInventory().getNumItems(ItemType.APPLE));
+            Assert.True(pawnsStall.getInventory().getNumItems(ItemType.APPLE) < 100);
+            Assert.Equal(200, playersStall.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(playersApples, player.getInventory().getNumItems(ItemType.APPLE));
+
+            // it happens on its own every APPLE_SPOIL_INTERVAL_TICKS
+            simulation.getSeasonalWorld().update(SeasonalRules.APPLE_SPOIL_INTERVAL_TICKS);
+            Assert.True(hoarder.getInventory().getNumItems(ItemType.APPLE) < hoard);
+        }
+
+        private static void removeAllButThePlayer(Simulation simulation) {
+            foreach (Entity entity in simulation.getEntityRepository().getEntities()) {
+                if (entity.getType() != EntityType.PLAYER) {
+                    simulation.getEntityRepository().removeEntity(entity);
+                }
+            }
+        }
+
+        [Fact]
+        public void testTrees_AreBareForPawnsInWinter() {
+            Assert.True(SeasonalRules.treesBearFruit(Season.SPRING));
+            Assert.True(SeasonalRules.treesBearFruit(Season.SUMMER));
+            Assert.True(SeasonalRules.treesBearFruit(Season.AUTUMN));
+            Assert.False(SeasonalRules.treesBearFruit(Season.WINTER));
+        }
+
+        [Fact]
+        public void testAWorld_GoesHungryInWinter_ButStaysPopulated() {
             // to the first day of the second spring: a whole year, winter included
             Simulation simulation = createSimulation(42);
             int ticks = (int) ((SeasonCalendar.DAYS_PER_YEAR - TimeOfDay.DefaultStartFraction) * TimeOfDay.DefaultTicksPerDay) + 100;
             int fewestPawns = int.MaxValue;
+            float mostFoodPerPawn = 0;
+            float foodPerPawnAtWinter = -1;
+            int stallFoodAtWinter = -1;
+            float foodPerPawnLateWinter = -1;
+            int stallFoodLateWinter = -1;
+            float emptyHandedLateWinter = -1;
             for (int i = 0; i < ticks; i++) {
                 simulation.fixedUpdate(1f / 50f);
-                if (i % 3000 == 0 && i > 30000) {
-                    fewestPawns = System.Math.Min(fewestPawns, simulation.getEntityRepository().getNumEntitiesOfType(EntityType.PAWN));
+                if (i % 3000 != 0 || i <= 30000) {
+                    continue;
+                }
+                List<Entity> pawns = simulation.getEntityRepository().getEntitiesOfType(EntityType.PAWN);
+                fewestPawns = System.Math.Min(fewestPawns, pawns.Count);
+                int food = 0;
+                int emptyHanded = 0;
+                foreach (Entity pawn in pawns) {
+                    int carried = SeasonalRules.countFood(pawn.getInventory());
+                    food += carried;
+                    if (carried == 0) {
+                        emptyHanded++;
+                    }
+                }
+                float foodPerPawn = (float) food / pawns.Count;
+                mostFoodPerPawn = System.Math.Max(mostFoodPerPawn, foodPerPawn);
+                SeasonCalendar calendar = simulation.getSeasonCalendar();
+                if (calendar.getSeason() != Season.WINTER) {
+                    continue;
+                }
+                if (foodPerPawnAtWinter < 0) {
+                    foodPerPawnAtWinter = foodPerPawn;
+                    stallFoodAtWinter = countStallFood(simulation);
+                }
+                if (calendar.getSeasonProgress() >= 0.75f) {
+                    // the last quarter of winter: keep the latest sample
+                    foodPerPawnLateWinter = foodPerPawn;
+                    stallFoodLateWinter = countStallFood(simulation);
+                    emptyHandedLateWinter = (float) emptyHanded / pawns.Count;
                 }
             }
             Assert.Equal(Season.SPRING, simulation.getSeasonCalendar().getSeason());
             Assert.Equal(1, simulation.getSeasonCalendar().getYear());
-            // measured: 100 pawns (the lag cap) all year and 6 deaths for seed 42
+
+            // measured for seed 42: at most ~23 food a pawn (in autumn; over 200 before
+            // apples spoiled), ~15 a pawn as winter comes and under 1 by its end, with
+            // two thirds of pawns empty-handed and the markets down from ~2,000 to ~250
+            Assert.True(mostFoodPerPawn < 40, "pawns hoarded " + mostFoodPerPawn + " food each");
+            Assert.True(foodPerPawnAtWinter > 0 && foodPerPawnLateWinter >= 0, "winter was sampled");
+            Assert.True(foodPerPawnLateWinter < foodPerPawnAtWinter / 4,
+                "pawns' stores went from " + foodPerPawnAtWinter + " to " + foodPerPawnLateWinter + " a pawn over winter");
+            Assert.True(emptyHandedLateWinter >= 0.5f, "only " + emptyHandedLateWinter + " of pawns ran out of food by late winter");
+            Assert.True(stallFoodLateWinter < stallFoodAtWinter / 2,
+                "the markets went from " + stallFoodAtWinter + " to " + stallFoodLateWinter + " food over winter");
+
+            // and still survivable: measured 100 pawns (the lag cap) all year and 10 deaths
             Assert.True(fewestPawns >= 60, "the population fell to " + fewestPawns);
             Assert.True(simulation.getNumPawnDeaths() < 40, simulation.getNumPawnDeaths() + " pawns died in a year");
             Assert.True(simulation.getEntityRepository().getNumEntitiesOfType(EntityType.TREE) > 200, "spring brings the trees back");
+        }
+
+        private static int countStallFood(Simulation simulation) {
+            int food = 0;
+            foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT)) {
+                foreach (Stall stall in ((Settlement) entity).getMarket().getStalls()) {
+                    food += SeasonalRules.countFood(stall.getInventory());
+                }
+            }
+            return food;
         }
     }
 }

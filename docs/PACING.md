@@ -82,21 +82,21 @@ Seconds of game time per objective, at 50 ticks a second and 30 000 ticks (10 mi
 | Objective | seed 1 | seed 2 | seed 3 | seed 4 | seed 5 | budget |
 |---|---|---|---|---|---|---|
 | Gather wood | 3 | 3 | 2 | 2 | 2 | 0 – 120 |
-| Eat something | 58 | 58 | 59 | 59 | 59 | 30 – 180 |
+| Eat something | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
 | Create or join a nation | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
-| Found a settlement | 6 | 3 | 4 | 1 | 5 | 0 – 180 |
+| Found a settlement | 3 | 7 | 6 | 3 | 3 | 0 – 180 |
 | Enter your settlement | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
-| Build a market stall | 2 | 4 | 2 | 2 | 2 | 0 – 120 |
-| Reach the Village era | 1121 | 950 | 1086 | 954 | 950 | 300 – 1800 |
-| Sell resources at market | 4 | 1 | 6 | 1 | 1 | 0 – 180 |
-| Found a second settlement | 13 | 11 | 11 | 6 | 9 | 0 – 120 |
-| Grow your nation to 16 (ambition) | never | 1 | 2130 | never | 1 | 5 – 2400, advisory |
-| Amass 1000 coins (ambition) | – | 179 | never | – | 207 | 30 – 3900, advisory |
-| Hold 3 settlements (ambition) | – | 8 | – | – | 11 | 0 – 300, advisory |
-| Reach the Town era (ambition) | – | 2200 | – | – | 2171 | 0 – 5400, advisory |
-| Grow your nation to 25 (ambition) | – | never | – | – | never | 300 – 3600, advisory |
+| Build a market stall | 6 | 14 | 6 | 6 | 5 | 0 – 120 |
+| Reach the Village era | 1005 | 993 | 1003 | 1006 | 1007 | 300 – 1800 |
+| Sell resources at market | 1 | 1 | 2 | 1 | 1 | 0 – 180 |
+| Found a second settlement | 15 | 14 | 1 | 1 | 18 | 0 – 120 |
+| Grow your nation to 16 (ambition) | 1 | 1 | 1 | 1 | 1 | 5 – 2400, advisory |
+| Amass 1000 coins (ambition) | 215 | 1 | 158 | 1 | 145 | 30 – 3900, advisory |
+| Hold 3 settlements (ambition) | 14 | 14 | 14 | 1 | 14 | 0 – 300, advisory |
+| Reach the Town era (ambition) | 2154 | 2369 | 2224 | 2395 | 2221 | 0 – 5400, advisory |
+| Grow your nation to 25 (ambition) | 1 | 1 | 1 | 1 | 1 | 300 – 3600, advisory |
 
-Measured with eras (Camp to Kingdom, see SYSTEMS.md), on develop with seasons, regions, rulers, world events and trade, for one hour of game time a seed (`maxTicks` 180 000, 14 objectives). The arc up to the Village era takes 17 to 20 minutes of game time on seeds 1 to 15.
+Measured with eras (Camp to Kingdom, see SYSTEMS.md) and the hungry start (the player begins at 85 energy), on develop with seasons, regions, rulers, world events, trade and spoiling apples, for one hour of game time a seed (`maxTicks` 180 000, 14 objectives). Spoiling apples (SYSTEMS.md, "Seasons") left every binding objective inside its budget and the budget unchanged; the arc to the Village era is unchanged to the second. Among the advisory ambitions, seed 3 now amasses its 1000 coins and goes on to the Town era (it stalled on the coins before), seed 1 now grows to 25, and the Town era takes longer on seed 1 (36 minutes after the previous step, against 24). The arc up to the Village era takes 17 to 20 minutes of game time on seeds 1 to 15.
 
 ### The eras
 
@@ -115,4 +115,4 @@ Each era waits for its day as well as its requirements (`EraRules`: day 3, 7 and
 - **"Grow your nation to 5" used to be met within a second on some seeds.** *It is now "Reach the Village era" (a village, 10 members, 2 stalls and day 3), binding at 300 – 1800 s.* Before seasons and regions (#318), settlers joined a new settlement on their own, and on seed 3 the nation already had five members when the step came up (1 s). The 5 s minimum fails that. On develop with #318 the step takes 18 s to 2 m 24 s, because nations now take up almost every settler in the first two minutes. So the target is unchanged, and the minimum stays to catch a return of the problem.
 - **On most seeds a new player's nation was besieged and taken within about ten minutes.** *Addressed by eras: a nation the player leads cannot be besieged until the Town era (`EraRules.isSheltered`; raids still come), and a nation that falls apart for good ends the run as a defeat.* The original finding: By minute two the world has 25 to 45 nations and its full 100 pawns, so few nationless settlers are left to recruit, and Hostile neighbours at least twice the player's strength lay siege. Gifts only buy time. On seed 3 the bot's nation falls at about minute 5. Every nation it founds after that falls within a few minutes, so "Grow your nation to 10" never completes there. Before #318 this happened on four of the five seeds. This is why the ambitions are advisory for now. Make them binding once a new player can hold on.
 - **"Amass 500 coins" was usually met when it came up.** The rewards from the arc, the starting purse and the treasuries already add up to more than 500. *Addressed by eras: the funds ambitions start from the era's floor, 1,000 in the Village era.*
-- **The first minute leaves the player rich in wood.** "Eat something" is a one-minute wait for hunger. A player who keeps chopping trees in that minute ends it with about 400 wood, so both "Found a settlement" steps take only seconds afterwards. Not changed by eras.
+- **"Eat something" was a one-minute wait for hunger.** *Addressed: a new world starts the player at 85 energy (`Player.NewWorldEnergy`), below the line under which carried food is eaten (90), so the first food picked up is eaten at once and the step takes about a second. Eating is still refused above 90, and the rate hunger drains is unchanged.* The original finding: the player started full and only eats below 90, so the step was about 58 s of waiting, and a player who kept chopping trees in that minute ended it with about 400 wood, so both "Found a settlement" steps took only seconds afterwards. They still take seconds: the bot gathers that wood while the settlement objective is current.

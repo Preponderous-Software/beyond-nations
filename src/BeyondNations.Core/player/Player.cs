@@ -31,6 +31,29 @@ namespace beyondnations {
         private float energy = 100;
         private float metabolism = DefaultMetabolism;
 
+        /**
+        * The player eats carried food only below this, so a nearly full bar
+        * does not swallow a meal it has no room for.
+        */
+        public const float EatBelowEnergy = 90f;
+
+        /**
+        * A full bar. Nothing fills the player past it -- a meal eaten at 89
+        * stops here rather than at 134 -- and a save from a build that
+        * allowed more loads with the bar at full.
+        */
+        public const float MaxEnergy = 100f;
+
+        /**
+        * The energy a new world starts the player with: a little hungry, below
+        * EatBelowEnergy, so the first food picked up is eaten at once and "Eat
+        * something" is met by going and getting food rather than by a minute
+        * of waiting for the bar to fall (it used to start full, at 100). An
+        * apple tops it back up to full. Only a new world: loads keep the saved
+        * energy, and a player who respawns or a fresh Player starts at 100.
+        */
+        public const float NewWorldEnergy = 85f;
+
         /** One full bar of energy per in-game day; GameConfig overrides it. */
         public const float DefaultMetabolism = 100f / TimeOfDay.DefaultTicksPerDay;
 
@@ -132,7 +155,7 @@ namespace beyondnations {
             Vector3 horizontalVelocity = getForward() * forwardAmount * currentSpeed;
             setVelocity(new Vector3(horizontalVelocity.X, getVelocity().Y, horizontalVelocity.Z));
 
-            if (energy < 90) {
+            if (energy < EatBelowEnergy) {
                 eatIfCarryingFood();
             }
 
@@ -190,7 +213,7 @@ namespace beyondnations {
         }
 
         public void setEnergy(float energy) {
-            this.energy = energy;
+            this.energy = System.Math.Min(energy, MaxEnergy);
         }
 
         /**
@@ -278,7 +301,7 @@ namespace beyondnations {
         private void eatIfCarryingFood() {
             int restored = FoodItems.consumeMostNourishingFood(getInventory());
             if (restored > 0) {
-                energy += restored;
+                energy = System.Math.Min(energy + restored, MaxEnergy);
                 mealsEaten++;
             }
         }
@@ -333,7 +356,7 @@ namespace beyondnations {
             homeSettlementId = reader.getEntityId(element, "homeSettlementId");
             status.load(SaveReader.property(element, "status"));
             autoWalk = SaveReader.getBool(element, "autoWalk");
-            energy = SaveReader.getFloat(element, "energy");
+            energy = System.Math.Min(SaveReader.getFloat(element, "energy"), MaxEnergy);
             metabolism = SaveReader.getFloat(element, "metabolism");
             reader.readIdIntMap(element, "relationships", relationships);
             currentSettlementId = reader.getEntityId(element, "currentSettlementId");

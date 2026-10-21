@@ -6,7 +6,10 @@ namespace beyondnations {
     public enum WorldEffectKind {
         /** A nation's farms bring in nothing until it ends. */
         DROUGHT,
-        /** Bandits rob a settlement every BANDIT_THEFT_SECONDS until they leave or are paid off. */
+        /**
+        * Bandits rob a settlement every BANDIT_THEFT_SECONDS until they leave,
+        * are driven off or are paid off (WorldEvents.offerStandingBanditCamp).
+        */
         BANDITS,
     }
 

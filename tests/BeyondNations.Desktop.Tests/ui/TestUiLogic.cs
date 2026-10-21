@@ -223,6 +223,8 @@ namespace beyondnationstests {
         }
     }
 
+    // reads text that names keys or buttons by TouchLayout, which another test may switch on
+    [Collection("TouchLayout")]
     public class TestHungerWarning {
 
         private static Simulation newSimulationWithSeed42() {

@@ -200,6 +200,8 @@ namespace beyondnationstests {
         [Fact]
         public void testSimulation_RecordsCompletionTickForTheToast() {
             Simulation simulation = makeSimulation();
+            // full, so the apples gather-wood rewards are not eaten and "Eat something" stays put
+            simulation.getPlayer().setEnergy(100f);
             simulation.getPlayer().getInventory().addItem(ItemType.WOOD, ObjectiveCatalog.firstWoodTarget());
             int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
             for (int i = 0; i < ticksPerSecond; i++) {
