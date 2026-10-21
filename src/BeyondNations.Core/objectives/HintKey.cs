@@ -7,7 +7,11 @@ namespace beyondnations {
     * The player actions an objective hint can name. Key bindings belong to the
     * host's input layer, not to the simulation, so a hint carries a token such
     * as "{Interact}" and the host turns it into whatever key that action is
-    * bound to. Each name here matches a field on the desktop KeyBindings table.
+    * bound to, or the on-screen button that does it on a touch screen. Each
+    * name here matches a field on the desktop KeyBindings table. Any
+    * player-facing text, not only an objective hint, can carry these tokens
+    * (a status line from the simulation, a panel's help line), so no text
+    * names a keyboard key to a player on a phone.
     */
     public enum HintKey {
         Interact,
@@ -22,6 +26,11 @@ namespace beyondnations {
         TeleportToHomeSettlement,
         PlantSapling,
         ToggleInventory,
+        ToggleCrafting,
+        ToggleNations,
+        ToggleChronicle,
+        ShowControls,
+        Pause,
     }
 
     public static class ObjectiveHint {

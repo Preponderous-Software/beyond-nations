@@ -20,7 +20,7 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class CraftingScreen {
         public const string Title = "CRAFTING";
-        public const string CloseHint = "C or Escape closes";
+        public const string CloseHint = "{ToggleCrafting} or {Pause} closes";
         public const string CloseLabel = "Close";
         public const string TouchHint = "Tap a \"Craft >\" row to make it; drag to scroll";
 
@@ -83,8 +83,8 @@ namespace beyondnations.desktop.ui.screens {
             if (settlement.getNumBuildings(BuildingType.WORKSHOP) > 0) {
                 return "In the " + settlement.getDisplayName() + ", which has a Workshop: every recipe is open.";
             }
-            return "In the " + settlement.getDisplayName() + ", which has no Workshop yet (build one with " + KeyBindings.BuildBuilding
-                + " or the command bar).";
+            return "In the " + settlement.getDisplayName() + ", which has no Workshop yet ("
+                + (TouchLayout.isActive() ? "build one from the command bar" : ObjectiveKeyNames.resolve("build one with {BuildBuilding} or the command bar")) + ").";
         }
 
         public UiAction draw(float width, float height, Simulation simulation) {
@@ -107,7 +107,7 @@ namespace beyondnations.desktop.ui.screens {
             float y = top;
             Overlay.textCentered(Title, lineHeight * 1.6f, y, width);
             y += lineHeight * 1.2f;
-            Overlay.textCentered(TouchLayout.isActive() ? TouchHint : CloseHint, lineHeight * 0.8f, y, width);
+            Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint, TouchHint), lineHeight * 0.8f, y, width);
             y += lineHeight * 0.9f;
             y = System.MathF.Max(y, Overlay.touchCloseBottom());
             ImGui.SetWindowFontScale(scale * 0.9f);
@@ -152,7 +152,7 @@ namespace beyondnations.desktop.ui.screens {
             ImGui.SetWindowFontScale(1f);
 
             // the result of the last craft, since the world's status line is hidden behind this screen
-            string status = simulation.getPlayer().getStatus().getStatus();
+            string status = ObjectiveKeyNames.resolve(simulation.getPlayer().getStatus().getStatus());
             if (!string.IsNullOrEmpty(status)) {
                 ImGui.SetWindowFontScale(scale * 0.9f);
                 y += 2f;

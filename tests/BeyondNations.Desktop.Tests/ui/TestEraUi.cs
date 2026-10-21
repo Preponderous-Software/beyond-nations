@@ -15,6 +15,8 @@ namespace beyondnationstests {
     * ImGui frame: what they say, which buttons are offered, how a drag
     * scrolls the history, and how the screens get there.
     */
+    // reads text that names keys or buttons by TouchLayout, which another test may switch on
+    [Collection("TouchLayout")]
     public class TestEraUi {
 
         private static Simulation makeSimulation() {

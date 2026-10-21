@@ -19,7 +19,7 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class NationScreen {
         public const string Title = "NATIONS";
-        public const string CloseHint = "(Press O or ESCAPE to close)";
+        public const string CloseHint = "(Press {ToggleNations} or {Pause} to close)";
         public const string NoOtherNations = "No other nation has been founded yet.";
         public const string NationsTab = "Nations";
         public const string LawsTab = "Laws";
@@ -63,7 +63,7 @@ namespace beyondnations.desktop.ui.screens {
             NationRepository nationRepository = simulation.getNationRepository();
             Nation own = nationRepository.getNation(player.getNationId());
             if (own == null) {
-                lines.Add("You belong to no nation. Press N to found one, or J to join one.");
+                lines.Add(ObjectiveKeyNames.resolve("You belong to no nation. Press {CreateNewNation} to found one, or {JoinNation} to join one."));
                 return lines;
             }
             bool leads = own.getLeaderId().Equals(player.getId());
@@ -179,11 +179,11 @@ namespace beyondnations.desktop.ui.screens {
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
             // the answer goes on the status line, shown here too since the HUD is hidden
-            string status = player.getStatus().getStatus();
+            string status = ObjectiveKeyNames.resolve(player.getStatus().getStatus());
             if (!string.IsNullOrEmpty(status)) {
                 drawWrappedCentred(status, height / 34f, height - lineHeight * 3.1f, width, left, lineHeight * 0.75f, 3);
             }
-            Overlay.textCentered(CloseHint, height / 34f, height - lineHeight * 0.7f, width);
+            Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint), height / 34f, height - lineHeight * 0.7f, width);
             Overlay.end();
             // a finger has no O or Escape (TouchLayout)
             UiAction action = Overlay.touchCloseButton("nations", width) ? UiAction.ResumeWorld : UiAction.None;
