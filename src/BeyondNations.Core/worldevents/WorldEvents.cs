@@ -181,6 +181,52 @@ namespace beyondnations {
             return startPlayerEvent(context);
         }
 
+        /**
+        * The settlements of the nation the player leads that have a bandit
+        * camp outside them, in the nation's order: the camps the player can
+        * still deal with (offerStandingBanditCamp). Empty when the player
+        * leads no nation.
+        */
+        public List<Settlement> getStandingBanditCamps(Simulation simulation) {
+            List<Settlement> camped = new List<Settlement>();
+            WorldEventContext context = new WorldEventContext(simulation, this);
+            foreach (Settlement settlement in context.settlementsOf(playerLedNation(context))) {
+                if (hasBandits(settlement.getId())) {
+                    camped.Add(settlement);
+                }
+            }
+            return camped;
+        }
+
+        /**
+        * Puts a bandit camp the player waited on back in front of them as a
+        * choice: drive the bandits off, pay them, or keep the gates barred.
+        * Barring the gates is not final; until the camp moves on, its leader
+        * can still deal with it. Off the event clock and the event stream: it
+        * draws no random numbers and does not count as a new event. Returns
+        * whether the choice was offered (not when another choice is waiting,
+        * there is no camp there, or the player does not lead its nation).
+        */
+        public bool offerStandingBanditCamp(Simulation simulation, EntityId settlementId) {
+            if (pending != null || !hasBandits(settlementId)) {
+                return false;
+            }
+            IWorldEvent bandits = registry.get(BanditCampEvent.Id);
+            WorldEventContext context = new WorldEventContext(simulation, this);
+            Settlement settlement = context.getSettlement(settlementId);
+            Nation nation = settlement == null ? null : context.getNation(settlement.getNationId());
+            if (bandits == null || !context.isLedByPlayer(nation)) {
+                return false;
+            }
+            WorldEventInstance instance = new WorldEventInstance(BanditCampEvent.Id, numEvents, context.getTick(), true);
+            instance.setNationId(nation.getId());
+            instance.setSettlementId(settlementId);
+            instance.setMagnitude(BanditCampEvent.StandingCamp);
+            instance.setDeadlineTick(context.getTick() + context.ticks(CHOICE_TIMEOUT_SECONDS));
+            pending = instance;
+            return true;
+        }
+
         private Nation playerLedNation(WorldEventContext context) {
             Nation nation = context.getNation(context.getPlayer().getNationId());
             return context.isLedByPlayer(nation) ? nation : null;
