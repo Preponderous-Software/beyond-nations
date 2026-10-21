@@ -86,7 +86,7 @@ namespace beyondnations {
 
                 new Objective("sell-resources", "Sell resources at market",
                     s => ObjectiveProgress.flag(s.getPlayer().getMarketSales() > 0),
-                    "Inside a settlement, click Sell Resources. A merchant's stall with coins buys wood and stone.",
+                    "Inside a settlement, choose Sell Resources. A merchant's stall with coins buys wood and stone.",
                     ObjectiveReward.coins(mediumCoinReward())),
 
                 new Objective("second-settlement", "Found a second settlement",

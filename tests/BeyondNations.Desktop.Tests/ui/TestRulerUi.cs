@@ -15,6 +15,8 @@ namespace beyondnationstests.desktop.ui {
     * gets to them, and that an ended run is never saved. Read off the
     * --stage-diplomacy world, with no window.
     */
+    // reads text that names keys or buttons by TouchLayout, which another test may switch on
+    [Collection("TouchLayout")]
     public class TestRulerUi {
 
         private static Simulation staged(out DiplomacyShowcase.Staged result) {
@@ -61,7 +63,7 @@ namespace beyondnationstests.desktop.ui {
             config.setWorldSeed(42);
             Simulation simulation = new Simulation(config);
 
-            Assert.Equal(new List<string> { LawsPanel.NoNation }, LawsPanel.getLines(simulation));
+            Assert.Equal(new List<string> { "You belong to no nation, and live under no laws. Found one (N) to make them." }, LawsPanel.getLines(simulation));
             Assert.Empty(LawsPanel.getRows(simulation));
         }
 

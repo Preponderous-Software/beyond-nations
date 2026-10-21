@@ -25,6 +25,10 @@ namespace beyondnations.desktop.ui {
     public class ChroniclePanel {
         public const int RecentCount = 5;
 
+        /** The recent strip's heading and the full view's help, with key tokens (ObjectiveKeyNames). */
+        public const string RecentHeading = "Chronicle  [{ToggleChronicle}: more]";
+        public const string CycleHint = "{ToggleChronicle} cycles views";
+
         /** Ticks an entry stays at full strength in the recent strip (30 s at 50 tps). */
         public const int FreshTicks = 1500;
         /** Ticks after which an entry has faded as far as it will (3 min at 50 tps). */
@@ -185,7 +189,7 @@ namespace beyondnations.desktop.ui {
             ImGui.SetNextWindowSize(new Vector2(panelWidth, 0f), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.6f);
             if (ImGui.Begin("##chronicle-recent", CompactFlags)) {
-                Overlay.textColoured(HintColour, "Chronicle  [" + KeyNames.describe(KeyBindings.ToggleChronicle) + ": more]");
+                Overlay.textColoured(HintColour, ObjectiveKeyNames.resolve(RecentHeading));
                 List<ChronicleEntry> recent = chronicle.getRecent(RecentCount);
                 if (recent.Count == 0) {
                     Overlay.textColoured(HintColour, "Nothing worth telling has happened yet.");
@@ -220,7 +224,7 @@ namespace beyondnations.desktop.ui {
                     view.setMode(ChronicleMode.Hidden);
                 }
                 ImGui.SameLine();
-                Overlay.textColoured(HintColour, KeyNames.describe(KeyBindings.ToggleChronicle) + " cycles views");
+                Overlay.textColoured(HintColour, ObjectiveKeyNames.resolve(CycleHint));
 
                 int kept = chronicle.getCount();
                 int total = chronicle.getTotalRecorded();

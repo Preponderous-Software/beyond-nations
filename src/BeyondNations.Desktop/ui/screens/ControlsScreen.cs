@@ -20,7 +20,8 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class ControlsScreen {
         public const string Title = "CONTROLS";
-        public const string CloseHint = "(Press ? or ESCAPE to close)";
+        public const string CloseHint = "(Press {ShowControls} or {Pause} to close)";
+        public const string TouchCloseHint = "(Tap Close to go back)";
         public const string CloseLabel = "Close";
 
         public struct Row {
@@ -37,6 +38,9 @@ namespace beyondnations.desktop.ui.screens {
 
         public const string TouchSection = "Touch screen";
 
+        /** Put before each keyboard heading under the touch controls: "Keyboard: Moving". */
+        public const string KeyboardPrefix = "Keyboard: ";
+
         public static List<Row> getRows() {
             return getRows(false);
         }
@@ -45,7 +49,7 @@ namespace beyondnations.desktop.ui.screens {
         * With touch, the on-screen controls come first (TouchLayout,
         * docs/WEB.md): a player on a phone reads what is under their thumbs
         * before the keyboard list, which still follows for a keyboard
-        * attached later.
+        * attached later, under headings that start with KeyboardPrefix.
         */
         public static List<Row> getRows(bool touch) {
             List<Row> rows = new List<Row>();
@@ -102,6 +106,16 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(debug, keys(KeyBindings.SpawnMoney), "Spawn coins"));
             rows.Add(new Row(debug, keys(KeyBindings.SpawnWood), "Spawn wood"));
             rows.Add(new Row(debug, keys(KeyBindings.TeleportAllToPlayer), "Teleport every pawn here"));
+            if (touch) {
+                // under the touch controls the key list is for a keyboard
+                // attached later, and its headings say so, so a player on a
+                // phone never reads "N" as something they could press
+                for (int i = 0; i < rows.Count; i++) {
+                    if (rows[i].Section != TouchSection) {
+                        rows[i] = new Row(KeyboardPrefix + rows[i].Section, rows[i].Keys, rows[i].Action);
+                    }
+                }
+            }
             return rows;
         }
 
@@ -228,7 +242,8 @@ namespace beyondnations.desktop.ui.screens {
                 rowY += lineHeight;
             }
 
-            string hint = pages > 1 ? CloseHint + "  Page " + (page + 1) + " of " + pages : CloseHint;
+            string closeHint = ObjectiveKeyNames.closeHint(CloseHint, TouchCloseHint);
+            string hint = pages > 1 ? closeHint + "  Page " + (page + 1) + " of " + pages : closeHint;
             Overlay.textCentered(hint, Overlay.BaseFontSize, buttonY - Overlay.lineHeight() * 0.75f, width);
             float centreX = width / 2f;
             if (Overlay.buttonAt(CloseLabel, centreX - buttonWidth / 2f, buttonY, buttonWidth, buttonHeight)) {

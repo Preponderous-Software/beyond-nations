@@ -13,6 +13,8 @@ namespace beyondnationstests.desktop.ui {
     * The nations screen, the diplomacy buttons on the command bar and the
     * land line in the player box, read off the --stage-diplomacy world.
     */
+    // reads text that names keys or buttons by TouchLayout, which another test may switch on
+    [Collection("TouchLayout")]
     public class TestNationDiplomacyUi {
 
         private static Simulation staged(out DiplomacyShowcase.Staged result) {

@@ -11,6 +11,8 @@ namespace beyondnationstests {
     /**
     * What the objective tracker shows, decided without an ImGui frame.
     */
+    // reads text that names keys or buttons by TouchLayout, which another test may switch on
+    [Collection("TouchLayout")]
     public class TestObjectiveTrackerBox {
         private const float FixedDeltaTime = 1f / 50f;
 

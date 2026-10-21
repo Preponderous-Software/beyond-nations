@@ -13,7 +13,7 @@ namespace beyondnations.desktop.ui.screens {
     * they are asserted in unit tests.
     */
     public class LawsPanel {
-        public const string NoNation = "You belong to no nation, and live under no laws. Found one (N) to make them.";
+        public const string NoNation = "You belong to no nation, and live under no laws. Found one ({CreateNewNation}) to make them.";
 
         /** One law, as the panel shows it. */
         public class Row {
@@ -41,7 +41,7 @@ namespace beyondnations.desktop.ui.screens {
             Player player = simulation.getPlayer();
             Nation own = simulation.getNationRepository().getNation(player.getNationId());
             if (own == null) {
-                lines.Add(NoNation);
+                lines.Add(ObjectiveKeyNames.resolve(NoNation));
                 return lines;
             }
             Realm realm = simulation.getRealm();

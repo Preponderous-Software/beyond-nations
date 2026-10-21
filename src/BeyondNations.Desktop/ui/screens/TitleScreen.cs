@@ -15,11 +15,17 @@ namespace beyondnations.desktop.ui.screens {
     public class TitleScreen {
         public const string Title = "Beyond Nations";
         public const string ContinueHint = "Press any key or click to continue";
+        public const string TouchContinueHint = "Tap to continue";
+
+        /** The hint for the controls in use: a phone has no key to press (TouchLayout). */
+        public static string continueHint() {
+            return TouchLayout.isActive() ? TouchContinueHint : ContinueHint;
+        }
 
         public UiAction draw(float width, float height) {
             Overlay.beginFullScreen("##title-screen", width, height);
             Overlay.textCentered(Title, height / 10f, height / 2f - 50f, width);
-            Overlay.textCentered(ContinueHint, height / 30f, height / 2f + height / 10f, width);
+            Overlay.textCentered(continueHint(), height / 30f, height / 2f + height / 10f, width);
             Overlay.end();
             return ImGui.IsMouseClicked(ImGuiMouseButton.Left) ? UiAction.Continue : UiAction.None;
         }
