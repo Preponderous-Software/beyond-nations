@@ -9,6 +9,10 @@ Beyond Nations, previously called the Open Source Game project, started as a col
 
 *Recorded from the browser build in headless Chromium, seed 42.*
 
+## Download
+
+Windows x64 and Linux x64 builds are attached to each [release](https://github.com/Preponderous-Software/beyond-nations/releases) from 0.4.1 on: unpack the archive and run `BeyondNations.Desktop` (`.exe` on Windows). No .NET install is needed; the requirements are below and in [docs/RELEASING.md](./docs/RELEASING.md#what-is-in-a-download).
+
 ## Quick Start
 
 The only prerequisite is the [.NET SDK](https://dotnet.microsoft.com/download) 8.0 or newer. There is no editor to install, no account to create and no licence to obtain.
