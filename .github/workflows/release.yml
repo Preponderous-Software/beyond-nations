@@ -1,0 +1,320 @@
+# Builds the desktop game for Windows x64 and Linux x64 as self-contained
+# downloads and attaches them to a GitHub release. macOS is not supported.
+#
+#   - Publishing a release (gh release create <tag> ...) or pushing a bare
+#     version tag (0.4.1, no "v") builds both and uploads them to that release.
+#     A pushed tag with no release yet gets a pre-release created for it.
+#   - A pull request that changes this workflow or the desktop project file
+#     runs the same dry run, so a packaging change is checked before it merges.
+#   - workflow_dispatch builds both from the chosen branch and keeps them as
+#     workflow artifacts, so the packaging can be dry-run without a release.
+#     Give it a tag to build that tag and attach to its existing release instead
+#     (for adding builds to a release made before this workflow existed).
+#
+# Each download carries every native library the game loads: Strata (the world
+# renderer), cimgui, GLFW and, on Windows, the Visual C++ runtime Strata and
+# GLFW link against. See docs/RELEASING.md.
+name: Release
+
+on:
+  release:
+    types: [published]
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+"]
+  pull_request:
+    branches: ["main", "develop"]
+    paths:
+      - ".github/workflows/release.yml"
+      - "src/BeyondNations.Desktop/BeyondNations.Desktop.csproj"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to build and attach to (empty = dry run: workflow artifacts only)"
+        required: false
+        default: ""
+
+# A release created with gh release create also pushes its tag, so both events
+# fire for one release. Keyed on the tag, the later run replaces the earlier.
+concurrency:
+  group: release-${{ github.event.release.tag_name || inputs.tag || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  meta:
+    name: Resolve the version
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.resolve.outputs.tag }}
+      ref: ${{ steps.resolve.outputs.ref }}
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Resolve tag and ref
+        id: resolve
+        env:
+          EVENT: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          case "$EVENT" in
+            release)           tag="$RELEASE_TAG" ;;
+            push)              tag="$REF_NAME" ;;
+            workflow_dispatch) tag="$INPUT_TAG" ;;
+            *)                 tag="" ;;
+          esac
+          if [ -n "$tag" ]; then
+            if ! [[ "$tag" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "::error::Release tags are bare version numbers such as 0.4.1, not '$tag'."
+              exit 1
+            fi
+            echo "tag=$tag" >> "$GITHUB_OUTPUT"
+            echo "ref=refs/tags/$tag" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=$GITHUB_SHA" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.resolve.outputs.ref }}
+
+      # The version the game shows must be the version it is released as.
+      - name: Read GameVersion and check it against the tag
+        id: version
+        env:
+          TAG: ${{ steps.resolve.outputs.tag }}
+        run: |
+          version=$(sed -n 's/.*const string Version = "\([^"]*\)".*/\1/p' src/BeyondNations.Desktop/ui/GameVersion.cs)
+          if [ -z "$version" ]; then
+            echo "::error::Could not read Version from src/BeyondNations.Desktop/ui/GameVersion.cs."
+            exit 1
+          fi
+          if [ -n "$TAG" ] && [ "$version" != "$TAG" ]; then
+            echo "::error::GameVersion.Version is $version but the tag is $TAG. Bump GameVersion first (docs/RELEASING.md)."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Building Beyond Nations $version (tag: ${TAG:-none, dry run})"
+
+  linux:
+    name: Linux x64 build
+    needs: meta
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.meta.outputs.version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.meta.outputs.ref }}
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      # The build downloads Strata's linux-x64 library from its pinned release
+      # and checks the SHA-256 (BeyondNations.Desktop.csproj).
+      - name: Publish (self-contained, linux-x64)
+        run: |
+          dotnet publish src/BeyondNations.Desktop/BeyondNations.Desktop.csproj \
+            --configuration Release --runtime linux-x64 --self-contained true \
+            --output "publish/BeyondNations-$VERSION-linux-x64"
+
+      - name: Assemble the package
+        run: |
+          dir="publish/BeyondNations-$VERSION-linux-x64"
+          rm -rf "$dir/runtimes/win-x64"
+          cp LICENSE "$dir/LICENSE.txt"
+          cp docs/THIRD-PARTY.md "$dir/THIRD-PARTY.md"
+          for f in BeyondNations.Desktop libcimgui.so libglfw.so.3 runtimes/linux-x64/native/libstrata.so \
+                   assets/fonts/DejaVuSans.ttf usage-reporting.json; do
+            if [ ! -e "$dir/$f" ]; then echo "::error::$f is missing from the package."; exit 1; fi
+          done
+          chmod +x "$dir/BeyondNations.Desktop"
+
+      # The packaged binary, not the build output, is what is run: the world
+      # screen on Mesa llvmpipe, and the log must name Strata as the renderer.
+      - name: Install Mesa (llvmpipe), Xvfb and the X11 client libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri libglx-mesa0 libegl1 \
+            libx11-6 libx11-xcb1 libxext6 libxrender1 libxrandr2 libxcursor1 libxi6 libxinerama1 libxxf86vm1 \
+            libxkbcommon0 libxkbcommon-x11-0
+
+      - name: Smoke run the packaged game
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          GALLIUM_DRIVER: llvmpipe
+        run: |
+          set -o pipefail
+          cd "publish/BeyondNations-$VERSION-linux-x64"
+          xvfb-run -a -s "-screen 0 1280x800x24" ./BeyondNations.Desktop \
+            --seed 42 --start-screen world --exit-after-frames 120 \
+            --render-stats --no-usage-reporting --no-saves | tee "$GITHUB_WORKSPACE/smoke-linux.log"
+          grep -q "world renderer: strata" "$GITHUB_WORKSPACE/smoke-linux.log"
+
+      - name: Archive
+        run: |
+          cd publish
+          tar -czf "BeyondNations-$VERSION-linux-x64.tar.gz" "BeyondNations-$VERSION-linux-x64"
+          sha256sum "BeyondNations-$VERSION-linux-x64.tar.gz" > "BeyondNations-$VERSION-linux-x64.tar.gz.sha256"
+          ls -l
+
+      - name: Upload the package
+        uses: actions/upload-artifact@v4
+        with:
+          name: BeyondNations-${{ env.VERSION }}-linux-x64
+          path: |
+            publish/BeyondNations-${{ env.VERSION }}-linux-x64.tar.gz
+            publish/BeyondNations-${{ env.VERSION }}-linux-x64.tar.gz.sha256
+          if-no-files-found: error
+
+  windows:
+    name: Windows x64 build
+    needs: meta
+    runs-on: windows-latest
+    env:
+      VERSION: ${{ needs.meta.outputs.version }}
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.meta.outputs.ref }}
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish (self-contained, win-x64)
+        run: |
+          dotnet publish src/BeyondNations.Desktop/BeyondNations.Desktop.csproj `
+            --configuration Release --runtime win-x64 --self-contained true `
+            --output "publish/BeyondNations-$env:VERSION-win-x64"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      # strata.dll imports MSVCP140, VCRUNTIME140 and VCRUNTIME140_1, and
+      # glfw3.dll imports VCRUNTIME140. A Windows install without the Visual C++
+      # Redistributable has none of them, so the redistributable CRT DLLs from
+      # the runner's Visual Studio are deployed app-locally: beside the exe (for
+      # glfw3.dll) and beside strata.dll, which is loaded by full path and so
+      # resolves its imports from its own directory.
+      - name: Bundle the Visual C++ runtime
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vs = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          $crt = Get-ChildItem "$vs\VC\Redist\MSVC\*\x64\Microsoft.VC14*.CRT" -Directory |
+            Sort-Object FullName | Select-Object -Last 1
+          if (-not $crt) { Write-Error "No Visual C++ redistributable CRT found under $vs"; exit 1 }
+          Write-Host "Using $($crt.FullName)"
+          $dir = "publish/BeyondNations-$env:VERSION-win-x64"
+          foreach ($dll in "msvcp140.dll", "vcruntime140.dll", "vcruntime140_1.dll") {
+            Copy-Item (Join-Path $crt.FullName $dll) $dir
+            Copy-Item (Join-Path $crt.FullName $dll) "$dir/runtimes/win-x64/native"
+          }
+
+      - name: Assemble the package
+        run: |
+          $dir = "publish/BeyondNations-$env:VERSION-win-x64"
+          Remove-Item -Recurse -Force "$dir/runtimes/linux-x64" -ErrorAction SilentlyContinue
+          Copy-Item LICENSE "$dir/LICENSE.txt"
+          Copy-Item docs/THIRD-PARTY.md "$dir/THIRD-PARTY.md"
+          $required = "BeyondNations.Desktop.exe", "cimgui.dll", "glfw3.dll", "runtimes/win-x64/native/strata.dll",
+            "msvcp140.dll", "vcruntime140.dll", "vcruntime140_1.dll",
+            "runtimes/win-x64/native/msvcp140.dll", "runtimes/win-x64/native/vcruntime140.dll",
+            "runtimes/win-x64/native/vcruntime140_1.dll", "assets/fonts/DejaVuSans.ttf", "usage-reporting.json"
+          foreach ($f in $required) {
+            if (-not (Test-Path "$dir/$f")) { Write-Error "$f is missing from the package."; exit 1 }
+          }
+
+      # The runner has no OpenGL 4.5 driver, so the game cannot draw here. What
+      # is checked is that every native library loads from the package and
+      # Strata reports its version and ABI. (The runner also has the Visual C++
+      # runtime in System32, so this does not prove the bundled copies are
+      # used; the previous step proves they are in the package.)
+      - name: Load the packaged native libraries
+        run: |
+          $dir = (Resolve-Path "publish/BeyondNations-$env:VERSION-win-x64").Path
+          Add-Type -TypeDefinition @"
+          using System;
+          using System.Runtime.InteropServices;
+          public static class NativeCheck {
+              [DllImport("kernel32", SetLastError = true, CharSet = CharSet.Unicode)]
+              public static extern IntPtr LoadLibraryExW(string path, IntPtr file, uint flags);
+              [DllImport("kernel32", CharSet = CharSet.Ansi)]
+              public static extern IntPtr GetProcAddress(IntPtr module, string name);
+              [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate uint AbiVersion();
+              [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate IntPtr VersionString();
+          }
+          "@
+          $altered = 0x8  # LOAD_WITH_ALTERED_SEARCH_PATH: resolve imports from the DLL's own directory
+          foreach ($lib in "cimgui.dll", "glfw3.dll", "runtimes\win-x64\native\strata.dll") {
+            $h = [NativeCheck]::LoadLibraryExW((Join-Path $dir $lib), [IntPtr]::Zero, $altered)
+            if ($h -eq [IntPtr]::Zero) {
+              Write-Error "$lib failed to load (Win32 error $([Runtime.InteropServices.Marshal]::GetLastWin32Error()))"; exit 1
+            }
+            Write-Host "loaded $lib"
+          }
+          $strata = [NativeCheck]::LoadLibraryExW((Join-Path $dir "runtimes\win-x64\native\strata.dll"), [IntPtr]::Zero, $altered)
+          $abi = [Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer(
+            [NativeCheck]::GetProcAddress($strata, "strata_abi_version"), [NativeCheck+AbiVersion]).Invoke()
+          $ver = [Runtime.InteropServices.Marshal]::PtrToStringAnsi(
+            [Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer(
+              [NativeCheck]::GetProcAddress($strata, "strata_version_string"), [NativeCheck+VersionString]).Invoke())
+          Write-Host "Strata $ver, ABI $abi"
+
+      - name: Archive
+        run: |
+          Compress-Archive -Path "publish/BeyondNations-$env:VERSION-win-x64" `
+            -DestinationPath "publish/BeyondNations-$env:VERSION-win-x64.zip"
+          $hash = (Get-FileHash "publish/BeyondNations-$env:VERSION-win-x64.zip" -Algorithm SHA256).Hash.ToLower()
+          "$hash  BeyondNations-$env:VERSION-win-x64.zip" | Out-File -Encoding ascii -NoNewline "publish/BeyondNations-$env:VERSION-win-x64.zip.sha256"
+          Get-ChildItem publish
+
+      - name: Upload the package
+        uses: actions/upload-artifact@v4
+        with:
+          name: BeyondNations-${{ env.VERSION }}-win-x64
+          path: |
+            publish/BeyondNations-${{ env.VERSION }}-win-x64.zip
+            publish/BeyondNations-${{ env.VERSION }}-win-x64.zip.sha256
+          if-no-files-found: error
+
+  attach:
+    name: Attach to the release
+    needs: [meta, linux, windows]
+    if: needs.meta.outputs.tag != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TAG: ${{ needs.meta.outputs.tag }}
+    steps:
+      - name: Download the packages
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      # A tag pushed on its own has no release yet; one is made as a
+      # pre-release, as every Beyond Nations release so far has been. A release
+      # made with GITHUB_TOKEN does not start this workflow again.
+      - name: Make sure the release exists
+        run: |
+          if ! gh release view "$TAG" > /dev/null 2>&1; then
+            gh release create "$TAG" --verify-tag --prerelease --generate-notes --title "Beyond Nations $TAG"
+          fi
+
+      - name: Upload to the release
+        run: |
+          ls -l dist
+          gh release upload "$TAG" dist/* --clobber
