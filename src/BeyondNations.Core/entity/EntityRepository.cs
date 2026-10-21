@@ -7,22 +7,23 @@ namespace beyondnations {
         // TODO: transition to using a dictionary of dictionaries with entity type as the key for the outer dictionary
         private Dictionary<EntityId, Entity> entities;
         private List<EntityId> entityIds;
+        // the same entities in the same (insertion) order, so a walk over them
+        // needs no dictionary lookup per entity -- with a populated world the
+        // nearest-entity searches pawns make every few ticks walk them all
+        private List<Entity> orderedEntities;
 
         public EntityRepository(RandomSource random) {
             this.random = random;
             entities = new Dictionary<EntityId, Entity>();
             entityIds = new List<EntityId>();
+            orderedEntities = new List<Entity>();
         }
 
         public List<Entity> getEntities() {
             // Iterates entityIds rather than entities.Values: dictionary order
             // follows EntityId's Guid hash and therefore varies between runs,
             // which makes world generation irreproducible. Insertion order does not.
-            List<Entity> toReturn = new List<Entity>();
-            foreach (EntityId id in entityIds) {
-                toReturn.Add(entities[id]);
-            }
-            return toReturn;
+            return new List<Entity>(orderedEntities);
         }
 
         /**
@@ -41,13 +42,12 @@ namespace beyondnations {
         }
 
         public Entity getEntityAt(int index) {
-            return entities[entityIds[index]];
+            return orderedEntities[index];
         }
 
         public List<Entity> getEntitiesOfType(EntityType type) {
             List<Entity> entitiesOfType = new List<Entity>();
-            foreach (EntityId id in entityIds) {
-                Entity entity = entities[id];
+            foreach (Entity entity in orderedEntities) {
                 if (entity.getType() == type) {
                     entitiesOfType.Add(entity);
                 }
@@ -66,11 +66,16 @@ namespace beyondnations {
         public void addEntity(Entity entity) {
             entities.Add(entity.getId(), entity);
             entityIds.Add(entity.getId());
+            orderedEntities.Add(entity);
         }
 
         public void removeEntity(Entity entity) {
-            entities.Remove(entity.getId());
-            entityIds.Remove(entity.getId());
+            if (!entities.Remove(entity.getId())) {
+                return;
+            }
+            int index = entityIds.IndexOf(entity.getId());
+            entityIds.RemoveAt(index);
+            orderedEntities.RemoveAt(index);
         }
 
         public int getNumEntities() {
@@ -79,7 +84,7 @@ namespace beyondnations {
 
         public int getNumEntitiesOfType(EntityType type) {
             int numEntitiesOfType = 0;
-            foreach (Entity entity in entities.Values) {
+            foreach (Entity entity in orderedEntities) {
                 if (entity.getType() == type) {
                     numEntitiesOfType++;
                 }
@@ -93,6 +98,18 @@ namespace beyondnations {
             }
             int randomIndex = random.range(0, entities.Count);
             return entities[entityIds[randomIndex]];
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** Replaces everything with the saved entities, in their saved order. */
+        internal void restore(List<Entity> saved) {
+            entities.Clear();
+            entityIds.Clear();
+            orderedEntities.Clear();
+            foreach (Entity entity in saved) {
+                addEntity(entity);
+            }
         }
     }
 }

@@ -16,11 +16,20 @@ namespace beyondnations.desktop.ui {
     public static class Overlay {
 
         /**
-        * The height in pixels of ImGui's built-in font at scale 1. Font sizes
-        * in the Unity screens were fractions of the screen height, so they
-        * become a scale factor against this.
+        * The height in pixels of ImGui's built-in font at a UI scale of 1.
         */
-        public const float BaseFontSize = 13f;
+        public const float DesignFontSize = 13f;
+
+        /**
+        * The height in pixels of the UI font as it is rasterised: the design
+        * size times UiScale, since the desktop host builds the font atlas at
+        * that size on a high-DPI display. Font sizes in the Unity screens
+        * were fractions of the screen height, so they become a scale factor
+        * against this.
+        */
+        public static float BaseFontSize {
+            get { return DesignFontSize * UiScale.get(); }
+        }
 
         private const ImGuiWindowFlags FullScreenFlags =
             ImGuiWindowFlags.NoDecoration |
@@ -38,6 +47,39 @@ namespace beyondnations.desktop.ui {
             ImGui.SetNextWindowPos(Vector2.Zero, ImGuiCond.Always);
             ImGui.SetNextWindowSize(new Vector2(width, height), ImGuiCond.Always);
             ImGui.Begin(id, FullScreenFlags);
+        }
+
+        /**
+        * Darkens the whole screen behind the widgets that follow, so a screen
+        * laid over the world reads as a panel in front of it rather than as
+        * text floating on the terrain. Call straight after beginFullScreen.
+        */
+        public static void dimBackground(float width, float height) {
+            ImGui.GetWindowDrawList().AddRectFilled(
+                Vector2.Zero, new Vector2(width, height), ImGui.GetColorU32(new Vector4(0f, 0f, 0f, 0.6f)));
+        }
+
+        /**
+        * The height of one line of text plus the spacing after it, and of a
+        * framed widget such as a button, worked out from the style rather
+        * than asked of ImGui: the browser build links cimgui statically and
+        * the shared UI keeps to the ImGui calls it is known to run there.
+        */
+        public static float lineHeight() {
+            return BaseFontSize + ImGui.GetStyle().ItemSpacing.Y;
+        }
+
+        public static float frameHeight() {
+            return BaseFontSize + ImGui.GetStyle().FramePadding.Y * 2f;
+        }
+
+        /**
+        * Fills a rectangle given in window-local coordinates (the ones
+        * SetCursorPos takes) in the current window.
+        */
+        public static void fillLocalRect(Vector2 localMin, Vector2 size, Vector4 colour) {
+            Vector2 origin = ImGui.GetWindowPos();
+            ImGui.GetWindowDrawList().AddRectFilled(origin + localMin, origin + localMin + size, ImGui.GetColorU32(colour));
         }
 
         public static void end() {
@@ -64,9 +106,112 @@ namespace beyondnations.desktop.ui {
             ImGui.SetWindowFontScale(1f);
         }
 
+        /**
+        * Coloured text at the cursor. ImGui.TextColored is not used because
+        * the C function behind it is variadic (a printf-style format), and
+        * on the browser build calling a variadic function through a P/Invoke
+        * fails with "null function or function signature mismatch". A text
+        * colour pushed with the plain U32 overload around TextUnformatted
+        * draws the same thing with only fixed-signature calls.
+        */
+        public static void textColoured(Vector4 colour, string text) {
+            ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(colour));
+            ImGui.TextUnformatted(text);
+            ImGui.PopStyleColor();
+        }
+
+        /** textCentered in a colour, with the same fixed-signature calls as textColoured. */
+        public static void textCenteredColoured(Vector4 colour, string text, float fontSize, float centreY, float width) {
+            ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(colour));
+            textCentered(text, fontSize, centreY, width);
+            ImGui.PopStyleColor();
+        }
+
         public static void textAt(string text, float x, float y) {
             ImGui.SetCursorPos(new Vector2(x, y));
             ImGui.TextUnformatted(text);
+        }
+
+        /**
+        * A centred column of menu buttons starting at topY, all as wide as the
+        * widest label (and at least 160 design pixels), each 40 design pixels
+        * tall unless that would run past maxBottom, in which case the buttons
+        * and the gaps shrink together so the last one still fits. The main
+        * menu used fixed 50 px buttons two heights apart, so on a window under
+        * about 520 px high Exit was cut off at the bottom. Returns the index
+        * of the button clicked this frame, or -1.
+        */
+        public static int menuButtons(string[] labels, float width, float topY, float maxBottom) {
+            float ignored;
+            return menuButtons(labels, width, topY, maxBottom, out ignored);
+        }
+
+        public static int menuButtons(string[] labels, float width, float topY, float maxBottom, out float bottom) {
+            float padding = ImGui.GetStyle().FramePadding.X * 2f;
+            float buttonWidth = UiScale.px(160f);
+            foreach (string label in labels) {
+                buttonWidth = System.MathF.Max(buttonWidth, ImGui.CalcTextSize(label).X + padding * 2f);
+            }
+            // a fingertip-sized column on touch screens (TouchLayout)
+            float buttonHeight = UiScale.px(TouchLayout.isActive() ? TouchLayout.MinTarget : 40f);
+            float gap = UiScale.px(TouchLayout.isActive() ? 8f : 12f);
+            float needed = labels.Length * buttonHeight + (labels.Length - 1) * gap;
+            float available = maxBottom - topY;
+            if (needed > available && available > 0f) {
+                float shrink = available / needed;
+                buttonHeight = System.MathF.Max(frameHeight(), buttonHeight * shrink);
+                gap = System.MathF.Max(UiScale.px(2f), gap * shrink);
+            }
+            int clicked = -1;
+            float y = topY;
+            for (int i = 0; i < labels.Length; i++) {
+                if (buttonAt(labels[i], (width - buttonWidth) / 2f, y, buttonWidth, buttonHeight)) {
+                    clicked = i;
+                }
+                y += buttonHeight + gap;
+            }
+            bottom = y - gap;
+            return clicked;
+        }
+
+        /**
+        * Left-aligned text at (x, y) at a Unity-style font size, using the
+        * same calls textCentered does.
+        */
+        public static void textAtScaled(string text, float fontSize, float x, float y) {
+            ImGui.SetWindowFontScale(fontScaleFor(fontSize));
+            ImGui.SetCursorPos(new Vector2(x, y));
+            ImGui.TextUnformatted(text);
+            ImGui.SetWindowFontScale(1f);
+        }
+
+        /**
+        * On a touch screen (TouchLayout), a finger-sized Close button in the
+        * top right corner, in a window of its own so it stays put while the
+        * panel under it is dragged to scroll. A panel that is closed with a
+        * key on the desktop had no way to be closed by touch but the Menu
+        * button. Draws nothing and returns false when touch is not active.
+        * Call after the panel's own window has ended.
+        */
+        public static bool touchCloseButton(string id, float width) {
+            if (!TouchLayout.isActive()) {
+                return false;
+            }
+            Vector2 padding = ImGui.GetStyle().WindowPadding;
+            float buttonWidth = UiScale.px(96f);
+            float buttonHeight = UiScale.px(TouchLayout.MinTarget);
+            ImGui.SetNextWindowPos(new Vector2(width - buttonWidth - UiScale.px(8f) - padding.X, UiScale.px(8f) - padding.Y), ImGuiCond.Always);
+            bool clicked = false;
+            if (ImGui.Begin("##touch-close-" + id, FullScreenFlags & ~ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.AlwaysAutoResize)) {
+                clicked = ImGui.Button("Close##" + id, new Vector2(buttonWidth, buttonHeight));
+            }
+            ImGui.End();
+            return clicked;
+        }
+
+        /** Where the touch Close button ends, so full-width text can start below it; 0 without touch. */
+        public static float touchCloseBottom() {
+            return TouchLayout.isActive() ? UiScale.px(TouchLayout.MinTarget + 16f) : 0f;
         }
 
         public static bool buttonAt(string label, float x, float y, float width, float height) {

@@ -1,12 +1,22 @@
 using System.Collections.Generic;
 using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace beyondnations {
 
     /**
     * One primitive to draw, flattened out of the simulation. Positions are
     * already in world space, so the host does no transform-tree walking.
+    *
+    * The layout is part of a contract: the native renderer (Strata) reads a
+    * list of these through a raw pointer, as a 44-byte record of an int kind,
+    * a position, a scale and four colour floats, in that order. Sequential
+    * layout is C#'s default for a struct, but it is stated here so the
+    * contract is visible, and BeyondNations.Desktop.Tests checks the size and
+    * offsets against the native library. Adding, removing or reordering a
+    * field breaks the native view.
     */
+    [StructLayout(LayoutKind.Sequential)]
     public struct RenderItem {
         public PrimitiveKind kind;
         public Vector3 position;
@@ -20,6 +30,8 @@ namespace beyondnations {
     public struct LabelItem {
         public Vector3 position;
         public string text;
+        /** How much larger than a pawn's nametag to draw it; 0 or 1 is normal size. */
+        public float scale;
     }
 
     /**
@@ -37,6 +49,20 @@ namespace beyondnations {
         private readonly List<RenderItem> entityItems = new List<RenderItem>();
         private readonly List<RenderItem> groundItems = new List<RenderItem>();
         private readonly List<LabelItem> labels = new List<LabelItem>();
+        private WorldPalette palette;
+
+        /**
+        * Seasons and regions (WorldPalette) recolour the ground and the
+        * leaves as they are captured. Null, the default, draws every colour
+        * exactly as stored.
+        */
+        public void setPalette(WorldPalette palette) {
+            this.palette = palette;
+        }
+
+        public WorldPalette getPalette() {
+            return palette;
+        }
 
         /**
         * Pawns, settlements, trees, rocks, saplings, chickens and item drops.
@@ -54,6 +80,26 @@ namespace beyondnations {
 
         public IReadOnlyList<LabelItem> getLabels() {
             return labels;
+        }
+
+        /**
+        * Presentation-only extras for this frame: the host's particles,
+        * scaffolding and floating text (src/BeyondNations.Desktop/ui/feel).
+        * They are appended after capture() and gone at the next one, and
+        * nothing in the simulation ever reads them, so they cannot change
+        * what the world does.
+        */
+        public void addEffectItem(RenderItem item) {
+            entityItems.Add(item);
+        }
+
+        public void addEffectLabel(LabelItem label) {
+            labels.Add(label);
+        }
+
+        /** Replaces one captured entity item for this frame only (a building rising as it goes up). */
+        public void setEntityItem(int index, RenderItem item) {
+            entityItems[index] = item;
         }
 
         public int getTotalItemCount() {
@@ -89,6 +135,9 @@ namespace beyondnations {
             entityItems.Clear();
             groundItems.Clear();
             labels.Clear();
+            if (palette != null) {
+                palette.beginFrame();
+            }
 
             // Indexed rather than foreach throughout: getEntities() would copy
             // the whole entity list, and enumerating an IReadOnlyList or a
@@ -115,14 +164,15 @@ namespace beyondnations {
                     item.kind = part.getKind();
                     item.position = origin + part.getOffset();
                     item.scale = part.getScale();
-                    item.color = part.getColor();
+                    item.color = palette == null ? part.getColor() : palette.partColour(entity.getType(), part.getColor());
                     entityItems.Add(item);
                 }
 
                 if (appearance.hasLabel()) {
                     LabelItem label;
-                    label.position = origin;
+                    label.position = origin + appearance.getLabelOffset();
                     label.text = appearance.getLabel();
+                    label.scale = appearance.getLabelScale();
                     labels.Add(label);
                 }
             }
@@ -134,6 +184,7 @@ namespace beyondnations {
             List<Chunk> chunks = environment.getChunks();
             for (int c = 0; c < chunks.Count; c++) {
                 Location[,] locations = chunks[c].getLocations();
+                Region region = palette == null ? Region.PLAINS : palette.getRegionMap().regionOf(chunks[c]);
                 int width = locations.GetLength(0);
                 int depth = locations.GetLength(1);
                 for (int x = 0; x < width; x++) {
@@ -146,7 +197,7 @@ namespace beyondnations {
                         item.kind = PrimitiveKind.Cube;
                         item.position = location.getPosition();
                         item.scale = location.getScaleVector();
-                        item.color = location.getColor();
+                        item.color = palette == null ? location.getColor() : palette.groundColour(region, location.getColor());
                         groundItems.Add(item);
                     }
                 }

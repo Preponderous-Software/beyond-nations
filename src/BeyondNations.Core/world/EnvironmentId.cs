@@ -5,6 +5,15 @@ namespace beyondnations {
     public class EnvironmentId {
         private Guid guid;
 
+        /** The same identity, rebuilt from a save (docs/SAVES.md). */
+        internal EnvironmentId(Guid value) {
+            this.guid = value;
+        }
+
+        internal Guid getGuid() {
+            return guid;
+        }
+
         public EnvironmentId() {
             guid = Guid.NewGuid();
         }

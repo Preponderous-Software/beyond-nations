@@ -190,6 +190,7 @@ namespace beyondnationstests {
             // prepare pawn & nation
             Pawn nationLeader = new Pawn(new Vector3(0, 0, 0), "test", random);
             nationLeader.getInventory().addItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            nationLeader.getInventory().addItem(ItemType.STONE, Stall.STONE_COST_TO_BUILD);
             entityRepository.addEntity(nationLeader);
             Nation nation = new Nation("test", nationLeader.getId(), random);
             nationLeader.setNationId(nation.getId());
@@ -230,6 +231,7 @@ namespace beyondnationstests {
             // prepare pawn & nation
             Pawn nationLeader = new Pawn(new Vector3(0, 0, 0), "test", random);
             nationLeader.getInventory().addItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            nationLeader.getInventory().addItem(ItemType.STONE, Stall.STONE_COST_TO_BUILD);
             entityRepository.addEntity(nationLeader);
             Nation nation = new Nation("test", nationLeader.getId(), random);
             nationLeader.setNationId(nation.getId());
@@ -590,8 +592,8 @@ namespace beyondnationstests {
         */
         [Fact]
         public void testComputeBehaviorType_InSettlementCannotAffordFood_ShouldNotPurchaseFood() {
-            // run: one apple is priced at its base cost of 40
-            BehaviorType behaviorType = computeHungryPawnInSettlementWithStall(ItemType.APPLE, 1, 39, false);
+            // run: one apple on offer is priced at 40 * 10 / 11 = 36
+            BehaviorType behaviorType = computeHungryPawnInSettlementWithStall(ItemType.APPLE, 1, 35, false);
 
             // verify
             Assert.NotEqual(BehaviorType.PURCHASE_FOOD, behaviorType);

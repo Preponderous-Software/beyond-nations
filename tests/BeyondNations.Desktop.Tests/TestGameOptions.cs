@@ -34,6 +34,28 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testSeedTakesANumberOrText() {
+            GameOptions number = GameOptions.parse(new string[] { "--seed", "42" });
+            Assert.Equal(42, number.Seed);
+            Assert.Equal("42", number.SeedText);
+
+            GameOptions text = GameOptions.parse(new string[] { "--seed", "Ironvale" });
+            Assert.Equal(WorldSeed.fromText("Ironvale"), text.Seed);
+            Assert.Equal(1450162717, text.Seed);
+            Assert.Equal("Ironvale", text.SeedText);
+
+            GameOptions none = GameOptions.parse(new string[] { });
+            Assert.Equal(0, none.Seed);
+            Assert.Null(none.SeedText);
+        }
+
+        [Fact]
+        public void testTheNewWorldAndShareScreensCanBeOpenedOn() {
+            Assert.Equal(ScreenType.NEW_WORLD, GameOptions.parse(new string[] { "--start-screen", "new-world" }).StartScreen);
+            Assert.Equal(ScreenType.SHARE, GameOptions.parse(new string[] { "--start-screen", "share" }).StartScreen);
+        }
+
+        [Fact]
         public void testFirstPersonOpensInFirstPerson() {
             // run
             GameOptions options = GameOptions.parse(new string[] { "--first-person" });
@@ -49,6 +71,21 @@ namespace beyondnationstests.desktop {
 
             // verify
             Assert.Equal(ScreenType.INVENTORY, options.StartScreen);
+        }
+
+        [Fact]
+        public void testStartScreenAcceptsTheNationsScreen_AndStageDiplomacyIsAFlag() {
+            GameOptions options = GameOptions.parse(new string[] { "--start-screen", "nations", "--stage-diplomacy" });
+
+            Assert.Equal(ScreenType.NATIONS, options.StartScreen);
+            Assert.True(options.StageDiplomacy);
+            Assert.False(GameOptions.parse(new string[] { }).StageDiplomacy);
+        }
+
+        [Fact]
+        public void testStartScreenAcceptsTheCraftingScreen() {
+            GameOptions options = GameOptions.parse(new string[] { "--start-screen", "crafting" });
+            Assert.Equal(ScreenType.CRAFTING, options.StartScreen);
         }
 
         [Fact]
@@ -71,7 +108,7 @@ namespace beyondnationstests.desktop {
                 "--width", "--height", "--ticks-per-second", "--exit-after-frames",
                 "--screenshot-after-frames", "--seed", "--no-vsync", "--smoke-resize",
                 "--render-stats", "--render-distance", "--no-culling", "--no-labels",
-                "--debug-mode", "--first-person", "--no-usage-reporting", "--start-screen"
+                "--debug-mode", "--first-person", "--no-usage-reporting", "--start-screen", "--ui-scale"
             };
 
             // run

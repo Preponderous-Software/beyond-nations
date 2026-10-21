@@ -13,18 +13,46 @@ Every push and pull request against `main` and `develop` runs [`.github/workflow
 ```
 dotnet restore BeyondNations.sln
 dotnet build   BeyondNations.sln --configuration Release --no-restore
-dotnet test    BeyondNations.sln --configuration Release --no-build
+dotnet test    BeyondNations.sln --configuration Release --no-build --verbosity normal
 ```
 
-A failing test fails the job. That is the whole point of it: a project that compiles is not a project that works.
+A failing test fails the job. That is the whole point of it: a project that compiles is not a project that works. The solution holds five test projects (`BeyondNations.Core.Tests`, `BeyondNations.Desktop.Tests`, `BeyondNations.Web.Tests`, `tools/BeyondNations.HistoryExport.Tests` and `tools/BeyondNations.Pacing.Tests`), so the log reports five `Total tests:` counts.
+
+The job then checks the **pacing budget**:
+
+```
+dotnet tools/BeyondNations.Pacing/bin/Release/net8.0/BeyondNations.Pacing.dll --check --out pacing-out
+```
+
+A scripted player plays the seeds in `docs/pacing-budget.json` with no window. The step fails if any objective finishes faster than its minimum, slower than its maximum, or never. Advisory entries, objectives with no budget and budget entries no run reached show up as warnings. The report becomes the job summary and is uploaded as the `pacing-report` artifact. The seeds run in parallel; the step takes about ten seconds on the runner. See [PACING.md](./PACING.md), which also covers updating the budget.
 
 ### 2. Core is engine-agnostic
 
-Fails if any `using UnityEngine` appears under `src/BeyondNations.Core`.
+Fails if any `using UnityEngine` appears under `src/BeyondNations.Core`, or if core reaches for the native Strata engine or P/Invoke (`[DllImport]`, `[LibraryImport]`, `NativeLibrary.`, `StrataNative`, `using Strata`). Core hands render items to whoever draws them and never draws anything itself.
 
 `BeyondNations.Core` exists to be buildable and testable with nothing but the .NET SDK. That property is easy to lose by accident — one convenient reference and the simulation can no longer be run in a test — and it costs almost nothing to check, so it is checked rather than trusted.
 
 The check lives in the workflow rather than in the project file, because a build file is the wrong place for a policy.
+
+### 3. Game smoke run (Strata, llvmpipe)
+
+Builds the desktop game and runs it under `xvfb-run` on Mesa's software rasteriser (`LIBGL_ALWAYS_SOFTWARE=1`, `GALLIUM_DRIVER=llvmpipe`):
+
+```
+--seed 42 --start-screen world --exit-after-frames 120 --screenshot-after-frames 60 --render-stats --no-usage-reporting
+```
+
+The job fails unless the log contains `world renderer: strata`. It uploads the log and the screenshot as the `strata-smoke` artifact. It is the only job in this workflow that actually executes drawing code. It shows that the game starts, draws and exits, but it does not check what the frame looks like.
+
+### 4. History replay (usd-replay/1)
+
+Exports seed 42 twice with `tools/BeyondNations.HistoryExport` (40 000 ticks, a sample every 200), converts each export with `tools/history-to-replay.py`, and validates both with [usd-recorder](https://github.com/Preponderous-Software/usd-recorder)'s `replay validate`. It then asserts that the two replays have 100 samples each with identical state hashes, so the same seed has to produce the same history.
+
+It also checks the game's own export (Share > Export replay, [SHARING.md](./SHARING.md)), which writes `.usda` text without a USD library. `tools/BeyondNations.HistoryExport --game-replay` runs seed 42 for 40 000 ticks through the same `RunRecorder` and `ReplayUsdaWriter` twice. The job validates each file with `replay validate`, requires the two files to be byte-identical, and checks for 101 samples from tick 0 to 40 000. It uploads both replays as the `history-replay-seed42` artifact.
+
+### Browser build (`browser.yml`)
+
+[`.github/workflows/browser.yml`](../.github/workflows/browser.yml) publishes `src/BeyondNations.Web` for the browser (it installs the `wasm-tools` workload first), then drives the page in headless Chromium on a desktop and on a phone held upright and on its side (`src/BeyondNations.Web/smoke/smoke.mjs`): title, main menu, Start, a drawn world, walking, right-drag look, a short key tap, and no console errors; on the phones the same by touch, with the joystick, a drag to steer and every panel opened and closed from the touch controls. On a push to `develop` with the `ARCADE_ENABLED` variable set it deploys the site to the arcade. See [WEB.md](./WEB.md).
 
 ## Running the checks locally
 
@@ -34,9 +62,18 @@ They are the same commands, so there is nothing to reproduce:
 dotnet build BeyondNations.sln --configuration Release
 dotnet test  BeyondNations.sln --configuration Release
 grep -rn --include='*.cs' -E '^[[:space:]]*using[[:space:]]+UnityEngine' src/BeyondNations.Core
+grep -rn --include='*.cs' -E '\[(DllImport|LibraryImport)|NativeLibrary\.|StrataNative|using[[:space:]]+Strata' src/BeyondNations.Core
 ```
 
-The last one should print nothing.
+The two `grep`s should print nothing.
+
+To check pacing:
+
+```bash
+dotnet run --project tools/BeyondNations.Pacing -c Release -- --check
+```
+
+It exits with status 1 when an objective is out of budget, and writes the report to `pacing-out/`.
 
 To check the game actually starts, without a person watching a window:
 
@@ -64,6 +101,8 @@ On a pull request, the checks appear at the bottom of the conversation tab; sele
 **`Project file does not exist`.** The solution or a project file is missing from the commit. `*.sln` and `*.csproj` are deliberately **not** ignored — see the note in `.gitignore` — but check that a new project was actually added and committed.
 
 **`Core is engine-agnostic` fails.** Something under `src/BeyondNations.Core` has taken a dependency on a game engine. The fix is to move the code into `src/BeyondNations.Desktop`, or to express what it needs as data the host reads. See the [Architecture Note](./ARCHITECTURE.md).
+
+**`Pacing budget` fails.** An objective took longer or shorter than `docs/pacing-budget.json` allows on one of its seeds, or never completed. The job summary has the report, with every objective's time on every seed. Run `dotnet run --project tools/BeyondNations.Pacing -c Release -- --seeds N --trace` to watch what the scripted player did on the failing seed. If the change was meant to alter pacing, update the budget as [PACING.md](./PACING.md) describes. Otherwise the change slowed the game down or sped it up by accident.
 
 ## History
 

@@ -30,6 +30,14 @@ The licence requires that the copyright notice travels with the font, which is
 why `LICENSE-DejaVu.txt` sits beside the `.ttf` and is copied to the build
 output rather than living only here.
 
+## Sound
+
+None. Every sound in the browser build (`src/BeyondNations.Web/wwwroot/audio.js`)
+is synthesised with WebAudio oscillators and filtered noise when it plays, so no
+audio file, sample or sound font is shipped and there is no audio licence to
+record. A future recorded asset must be CC0 or similarly permissive and listed
+here.
+
 ## Vendored source
 
 ### trace-client (C#)
@@ -66,5 +74,27 @@ built against GLIBC 2.38 and will not load on an older distribution. The pin is
 recorded beside the `PackageReference` in
 `src/BeyondNations.Desktop/BeyondNations.Desktop.csproj`. See #221.
 
+The browser build (`src/BeyondNations.Web`, see [WEB.md](./WEB.md)) uses the same
+`ImGui.NET` 1.90.8.1, but no native binary from the package: `native/cimgui.targets`
+downloads the cimgui (`7c16d31`, MIT) and Dear ImGui (`6d948ab`, docking 1.90.8,
+MIT) sources that package was built from, checks their SHA-256 and compiles them
+to WebAssembly. Its smoke test uses `playwright` (Apache-2.0), a test-only npm
+package pinned in `src/BeyondNations.Web/smoke/package-lock.json`.
+
 `BeyondNations.Core` has **no** package dependencies at all. That is deliberate:
 the simulation is meant to build and run with nothing but the .NET SDK.
+
+## Native libraries
+
+### Strata
+
+| | |
+| --- | --- |
+| Files | `runtimes/linux-x64/native/libstrata.so`, `runtimes/win-x64/native/strata.dll` in the build output |
+| Source | <https://github.com/Preponderous-Software/strata>, release `v0.2.0` |
+| Licence | MIT; its own third-party notices (SDL3, zlib licence; glm, glad, stb, MIT or public domain) are in `THIRD_PARTY_NOTICES.md` in the Strata release archive |
+| Integrity | Each file's SHA-256 is pinned in `BeyondNations.Desktop.csproj`, and the build refuses a download that does not match |
+
+This is the shared native engine that draws the world (#274; the only world renderer since the Silk renderer was removed). SDL3 is
+linked into it statically, so its zlib-licence notice travels with Strata's
+notices.

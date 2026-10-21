@@ -12,11 +12,14 @@ namespace beyondnations {
     * title screen, Escape moves between the main menu, the world and the pause
     * screen, and the config screen is reached from the main menu. The
     * inventory screen, which the Unity version never had, is opened from the
-    * world with I and left with I or Escape.
+    * world with I and left with I or Escape. The crafting screen works the
+    * same way on C.
     */
     public class ScreenState {
         private ScreenType current = ScreenType.TITLE;
         private ScreenType previous = ScreenType.TITLE;
+        // Where the controls screen goes back to when it is closed.
+        private ScreenType controlsReturn = ScreenType.MAIN_MENU;
 
         public ScreenType getCurrent() {
             return current;
@@ -31,12 +34,46 @@ namespace beyondnations {
         }
 
         /**
-        * Whether the world should be drawn this frame. The inventory screen
-        * is laid over the world rather than replacing it, so the world stays
-        * visible behind it even though it has stopped advancing.
+        * Whether the world should be drawn this frame. The inventory and pause
+        * screens are laid over the world rather than replacing it, so the
+        * world stays visible behind them even though it has stopped advancing.
         */
         public bool isWorldVisible() {
-            return current == ScreenType.WORLD || current == ScreenType.INVENTORY;
+            return isLaidOverWorld(current)
+                || (current == ScreenType.CONTROLS && isLaidOverWorld(controlsReturn));
+        }
+
+        private static bool isLaidOverWorld(ScreenType screen) {
+            return screen == ScreenType.WORLD || screen == ScreenType.INVENTORY || screen == ScreenType.NATIONS
+                || screen == ScreenType.CRAFTING || screen == ScreenType.PAUSE
+                || screen == ScreenType.SUCCESSION
+                || screen == ScreenType.SHARE
+                || screen == ScreenType.END_OF_RUN;
+        }
+
+        /**
+        * The screen the controls screen returns to when it closes.
+        */
+        public ScreenType getControlsReturn() {
+            return controlsReturn;
+        }
+
+        /**
+        * The controls key, and the Controls buttons, open the list of key
+        * bindings from the world, the pause screen or the main menu, and close
+        * it again back to where it was opened. Every binding used to be
+        * documented only in the README, so a player in the game had no way to
+        * find out what the keys did. The key means nothing on other screens.
+        */
+        public void controlsPressed() {
+            if (current == ScreenType.CONTROLS) {
+                goTo(controlsReturn);
+                return;
+            }
+            if (current == ScreenType.WORLD || current == ScreenType.PAUSE || current == ScreenType.MAIN_MENU) {
+                controlsReturn = current;
+                goTo(ScreenType.CONTROLS);
+            }
         }
 
         /**
@@ -74,6 +111,43 @@ namespace beyondnations {
                 goTo(ScreenType.INVENTORY);
             } else if (current == ScreenType.INVENTORY) {
                 goTo(ScreenType.WORLD);
+            } else if (current == ScreenType.CRAFTING) {
+                goTo(ScreenType.INVENTORY);
+            }
+        }
+
+        /**
+        * The crafting key opens the crafting screen from the world (or from
+        * the inventory screen) and closes it again.
+        */
+        public void craftingPressed() {
+            if (current == ScreenType.WORLD || current == ScreenType.INVENTORY) {
+                goTo(ScreenType.CRAFTING);
+            } else if (current == ScreenType.CRAFTING) {
+                goTo(ScreenType.WORLD);
+            }
+        }
+
+        /**
+        * The nations key opens the nations screen from the world and closes
+        * it again, as the inventory key does for the inventory.
+        */
+        public void nationsPressed() {
+            if (current == ScreenType.WORLD) {
+                goTo(ScreenType.NATIONS);
+            } else if (current == ScreenType.NATIONS) {
+                goTo(ScreenType.WORLD);
+            }
+        }
+
+        /**
+        * The run has been won or lost: the end-of-run screen is laid over the
+        * stopped world. Only from the world, so a run that ends is never
+        * announced over a menu.
+        */
+        public void runEnded() {
+            if (current == ScreenType.WORLD) {
+                goTo(ScreenType.END_OF_RUN);
             }
         }
 
@@ -87,7 +161,8 @@ namespace beyondnations {
                 goTo(ScreenType.PAUSE);
                 return true;
             }
-            if (current == ScreenType.INVENTORY) {
+            if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS || current == ScreenType.CRAFTING
+                    || current == ScreenType.SUCCESSION) {
                 goTo(ScreenType.WORLD);
                 return true;
             }
@@ -95,8 +170,16 @@ namespace beyondnations {
                 goTo(ScreenType.WORLD);
                 return true;
             }
-            if (current == ScreenType.CONFIG) {
+            if (current == ScreenType.SHARE) {
+                goTo(ScreenType.PAUSE);
+                return true;
+            }
+            if (current == ScreenType.CONFIG || current == ScreenType.LOAD || current == ScreenType.NEW_WORLD) {
                 goTo(ScreenType.MAIN_MENU);
+                return true;
+            }
+            if (current == ScreenType.CONTROLS) {
+                goTo(controlsReturn);
                 return true;
             }
             if (current == ScreenType.MAIN_MENU) {

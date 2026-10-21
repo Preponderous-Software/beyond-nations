@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 
 namespace beyondnations {
@@ -11,6 +12,11 @@ namespace beyondnations {
         private Dictionary<EntityId, NationRole> roles = new Dictionary<EntityId, NationRole>();
         private Rgba color;
         private List<EntityId> settlements = new List<EntityId>();
+        // how many settlements the era lets a nation the player leads hold
+        // (EraTracker.applyRules); 0 for no limit
+        private int settlementLimit = 0;
+        // whether the era shelters this nation from sieges (EraTracker.applyRules)
+        private bool sheltered = false;
 
         public Nation(string name, EntityId leaderId, RandomSource random) {
             this.random = random;
@@ -50,6 +56,11 @@ namespace beyondnations {
 
         public bool isMember(EntityId memberId) {
             return members.Contains(memberId);
+        }
+
+        /** A copy of the member list, oldest first, safe to walk while members change. */
+        public List<EntityId> getMemberIds() {
+            return new List<EntityId>(members);
         }
 
         public int getNumberOfMembers() {
@@ -93,6 +104,29 @@ namespace beyondnations {
             return settlements.Count;
         }
 
+        /** 0 when the nation may hold any number of settlements. */
+        public int getSettlementLimit() {
+            return settlementLimit;
+        }
+
+        public void setSettlementLimit(int limit) {
+            settlementLimit = limit;
+        }
+
+        /** True while a young nation the player leads cannot be besieged (EraRules.isSheltered). */
+        public bool isSheltered() {
+            return sheltered;
+        }
+
+        public void setSheltered(bool value) {
+            sheltered = value;
+        }
+
+        /** Whether the era lets this nation found another settlement. */
+        public bool canFoundSettlement() {
+            return settlementLimit <= 0 || settlements.Count < settlementLimit;
+        }
+
         public EntityId getSettlement(int index) {
             return settlements[index];
         }
@@ -100,6 +134,41 @@ namespace beyondnations {
         public EntityId getRandomSettlementId() {
             int randomIndex = random.range(0, settlements.Count);
             return settlements[randomIndex];
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("id", id);
+            writer.writeStream("random", random);
+            writer.write("name", name);
+            writer.write("leaderId", leaderId);
+            writer.writeIdList("members", members);
+            writer.beginArray("roles");
+            foreach (KeyValuePair<EntityId, NationRole> entry in roles) {
+                writer.beginArray();
+                writer.writeValue(entry.Key);
+                writer.writeValue(entry.Value.ToString());
+                writer.endArray();
+            }
+            writer.endArray();
+            writer.write("color", color);
+            writer.writeIdList("settlements", settlements);
+        }
+
+        /** A nation as it was saved. Its id comes first, so references to it can resolve. */
+        internal static Nation load(JsonElement element, SaveReader reader) {
+            Nation nation = new Nation(SaveReader.getString(element, "name"), reader.getEntityId(element, "leaderId"),
+                reader.stream(SaveReader.property(element, "random")));
+            nation.id = reader.getNationId(element, "id");
+            nation.members = reader.getIdList(element, "members");
+            nation.roles.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "roles").EnumerateArray()) {
+                nation.roles[reader.entityId(entry[0])] = SaveReader.toEnum<NationRole>(entry[1]);
+            }
+            nation.color = SaveReader.getRgba(element, "color");
+            nation.settlements = reader.getIdList(element, "settlements");
+            return nation;
         }
     }
 }

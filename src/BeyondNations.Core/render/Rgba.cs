@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace beyondnations {
 
     /**
@@ -7,7 +9,11 @@ namespace beyondnations {
     * are randomly green, and entities carry one so the host knows what to tint
     * them. None of that needs a graphics context, so none of it belongs to the
     * engine.
+    *
+    * Four floats in r, g, b, a order, laid out sequentially: RenderItem
+    * carries one across to the native renderer as-is.
     */
+    [StructLayout(LayoutKind.Sequential)]
     public struct Rgba {
         public readonly float r;
         public readonly float g;

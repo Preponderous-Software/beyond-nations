@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Numerics;
 
 namespace beyondnations {
@@ -83,6 +84,56 @@ namespace beyondnations {
                     locations[x, z] = new Location(xpos * size + x, zpos * size + z, locationScale, random);
                 }
             }
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /**
+        * A chunk is its coordinates and size, from which its position, name
+        * and every location's position, scale and name follow; and the parts
+        * that were rolled or assigned: its id, each location's id and colour.
+        */
+        internal void save(SaveWriter writer) {
+            writer.write("id", id.getGuid());
+            writer.writeStream("random", random);
+            writer.write("x", xpos);
+            writer.write("z", zpos);
+            writer.write("size", size);
+            writer.write("locationScale", getLocationScale());
+            writer.beginArray("locations");
+            for (int x = 0; x < size; x++) {
+                for (int z = 0; z < size; z++) {
+                    writer.beginObject();
+                    locations[x, z].save(writer);
+                    writer.endObject();
+                }
+            }
+            writer.endArray();
+        }
+
+        internal static Chunk load(JsonElement element, SaveReader reader) {
+            int size = SaveReader.getInt(element, "size");
+            if (size <= 0 || size > 1024) {
+                throw new SaveFormatException("a chunk of size " + size);
+            }
+            RandomSource random = reader.stream(SaveReader.property(element, "random"));
+            // The constructor rolls each location's colour; those draws come
+            // off a scratch stream, and the saved colours replace them.
+            Chunk chunk = new Chunk(SaveReader.getInt(element, "x"), SaveReader.getInt(element, "z"), size,
+                SaveReader.getInt(element, "locationScale"), new RandomSource(0));
+            chunk.random = random;
+            chunk.id = new ChunkId(SaveReader.getGuid(element, "id"));
+            JsonElement saved = SaveReader.property(element, "locations");
+            if (saved.GetArrayLength() != size * size) {
+                throw new SaveFormatException("a chunk with " + saved.GetArrayLength() + " locations, not " + (size * size));
+            }
+            int index = 0;
+            for (int x = 0; x < size; x++) {
+                for (int z = 0; z < size; z++) {
+                    chunk.locations[x, z].load(saved[index++], reader);
+                }
+            }
+            return chunk;
         }
     }
 }

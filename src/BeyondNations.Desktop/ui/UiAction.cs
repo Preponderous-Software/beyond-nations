@@ -10,9 +10,33 @@ namespace beyondnations.desktop.ui {
     */
     public enum UiAction {
         None,
+        Continue,
         StartGame,
         OpenConfig,
         Back,
-        Quit
+        MainMenu,
+        OpenControls,
+        CloseControls,
+        Quit,
+        // close an overlay screen (crafting) and return to the world
+        ResumeWorld,
+        // saves (docs/SAVES.md): load the latest, open the list, load the
+        // one picked from it, save now from the pause screen
+        ContinueGame,
+        OpenLoad,
+        LoadSlot,
+        SaveGame,
+        // sharing (docs/SHARING.md): build the world the New World screen
+        // names, open the Share screen from the pause screen and go back to
+        // it, and the Share screen's three buttons
+        BeginWorld,
+        RollSeed,
+        OpenShare,
+        BackToPause,
+        ShareLink,
+        ExportReplay,
+        ExportChronicle,
+        // the end-of-run screen: save this world and start a new one
+        NewWorld
     }
 }

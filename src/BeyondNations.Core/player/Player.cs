@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -28,14 +29,26 @@ namespace beyondnations {
         private Status status = null;
         private bool autoWalk = false;
         private float energy = 100;
-        private float metabolism;
+        private float metabolism = DefaultMetabolism;
+
+        /** One full bar of energy per in-game day; GameConfig overrides it. */
+        public const float DefaultMetabolism = 100f / TimeOfDay.DefaultTicksPerDay;
 
         // map of entity id to integer representing relationship strength
         private Dictionary<EntityId, int> relationships = new Dictionary<EntityId, int>();
         private EntityId currentSettlementId = null;
 
+        // Lifetime counters read by the objectives (objectives/). Both are
+        // cumulative, so an objective that asks for one is met even if the
+        // player did it before the objective came up.
+        private int mealsEaten = 0;
+        private int marketSales = 0;
+
         public Player(int walkSpeed, int runSpeed, TickCounter tickCounter, int statusExpirationTicks, int renderDistance, RandomSource random) : base(EntityType.PLAYER, "Player") {
-            this.metabolism = random.range(0.001f, 0.010f);
+            // Metabolism is now a fixed config value (see setMetabolism). The
+            // draw that used to pick a random one is kept, discarded, so that
+            // every seed still generates the same world it always has.
+            random.range(0.001f, 0.010f);
             this.walkSpeed = walkSpeed;
             this.runSpeed = runSpeed;
             this.currentSpeed = walkSpeed;
@@ -73,6 +86,15 @@ namespace beyondnations {
 
         public float getYaw() {
             return yaw;
+        }
+
+        /**
+        * Turns the player by an angle in radians; positive turns left. Mouse
+        * steering (a right-button drag) uses this, on top of the A/D turn
+        * applied in fixedUpdate.
+        */
+        public void turn(float radians) {
+            yaw += radians;
         }
 
         public int getCurrentSpeed() {
@@ -115,6 +137,14 @@ namespace beyondnations {
             }
 
             energy -= metabolism;
+        }
+
+        public float getMetabolism() {
+            return metabolism;
+        }
+
+        public void setMetabolism(float metabolism) {
+            this.metabolism = metabolism;
         }
 
         public bool isGrounded() {
@@ -246,7 +276,69 @@ namespace beyondnations {
         * no longer the only thing the player will eat.
         */
         private void eatIfCarryingFood() {
-            energy += FoodItems.consumeMostNourishingFood(getInventory());
+            int restored = FoodItems.consumeMostNourishingFood(getInventory());
+            if (restored > 0) {
+                energy += restored;
+                mealsEaten++;
+            }
+        }
+
+        public int getMealsEaten() {
+            return mealsEaten;
+        }
+
+        public int getMarketSales() {
+            return marketSales;
+        }
+
+        public void recordMarketSale() {
+            marketSales++;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.write("walkSpeed", walkSpeed);
+            writer.write("runSpeed", runSpeed);
+            writer.write("currentSpeed", currentSpeed);
+            writer.write("renderDistance", renderDistance);
+            writer.write("horizontalInput", horizontalInput);
+            writer.write("verticalInput", verticalInput);
+            writer.write("jumpRequested", jumpRequested);
+            writer.write("yaw", yaw);
+            writer.write("nationId", nationId);
+            writer.write("homeSettlementId", homeSettlementId);
+            writer.beginObject("status");
+            status.save(writer);
+            writer.endObject();
+            writer.write("autoWalk", autoWalk);
+            writer.write("energy", energy);
+            writer.write("metabolism", metabolism);
+            writer.writeIdIntMap("relationships", relationships);
+            writer.write("currentSettlementId", currentSettlementId);
+            writer.write("mealsEaten", mealsEaten);
+            writer.write("marketSales", marketSales);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            walkSpeed = SaveReader.getInt(element, "walkSpeed");
+            runSpeed = SaveReader.getInt(element, "runSpeed");
+            currentSpeed = SaveReader.getInt(element, "currentSpeed");
+            renderDistance = SaveReader.getInt(element, "renderDistance");
+            horizontalInput = SaveReader.getFloat(element, "horizontalInput");
+            verticalInput = SaveReader.getFloat(element, "verticalInput");
+            jumpRequested = SaveReader.getBool(element, "jumpRequested");
+            yaw = SaveReader.getFloat(element, "yaw");
+            nationId = reader.getNationId(element, "nationId");
+            homeSettlementId = reader.getEntityId(element, "homeSettlementId");
+            status.load(SaveReader.property(element, "status"));
+            autoWalk = SaveReader.getBool(element, "autoWalk");
+            energy = SaveReader.getFloat(element, "energy");
+            metabolism = SaveReader.getFloat(element, "metabolism");
+            reader.readIdIntMap(element, "relationships", relationships);
+            currentSettlementId = reader.getEntityId(element, "currentSettlementId");
+            mealsEaten = SaveReader.getInt(element, "mealsEaten");
+            marketSales = SaveReader.getInt(element, "marketSales");
         }
     }
 }

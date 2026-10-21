@@ -5,6 +5,15 @@ namespace beyondnations {
     public class ChunkId {
         private Guid guid;
 
+        /** The same identity, rebuilt from a save (docs/SAVES.md). */
+        internal ChunkId(Guid value) {
+            this.guid = value;
+        }
+
+        internal Guid getGuid() {
+            return guid;
+        }
+
         public ChunkId() {
             guid = Guid.NewGuid();
         }

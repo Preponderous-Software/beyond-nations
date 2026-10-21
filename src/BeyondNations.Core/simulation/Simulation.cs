@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -20,6 +21,7 @@ namespace beyondnations {
         private GameConfig gameConfig;
         private RandomSource random;
         private TickCounter tickCounter;
+        private TimeOfDay timeOfDay;
         private Player player;
         private EventRepository eventRepository;
         private EventProducer eventProducer;
@@ -32,6 +34,24 @@ namespace beyondnations {
         private LagPreventer lagPreventer;
         private PawnNameGenerator pawnNameGenerator;
         private NationNameGenerator nationNameGenerator;
+        private SettlementLife settlementLife;
+        private Diplomacy diplomacy;
+        private string playerTerritory = null;
+        private bool playerTerritoryKnown = false;
+        private RandomSource traitRandom;
+        private PopulationGrowth populationGrowth;
+        private ObjectiveTracker objectiveTracker;
+        private Chronicle chronicle;
+        // seasons and regions (docs/SYSTEMS.md): all derived from the tick count and the seed, so never saved
+        private RegionMap regionMap;
+        private SeasonCalendar seasonCalendar;
+        private SeasonalWorld seasonalWorld;
+        private WorldPalette worldPalette;
+        private NationResources nationResources;
+        private Realm realm;
+        private WorldEvents worldEvents;
+        private TradeCaravans tradeCaravans;
+        private EraTracker eraTracker;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -44,6 +64,12 @@ namespace beyondnations {
         private const float PlayerGroundHeight = 1f;
         private const float PawnGroundHeight = 1.5f;
         private const float ChickenGroundHeight = 0.5f;
+
+        // How often each settlement recounts who calls it home.
+        private const int ResidentRecountTicks = 50;
+
+        // How often the player's position is checked against the borders.
+        private const int TerritoryCheckTicks = 10;
 
         public Simulation(GameConfig gameConfig) {
             this.gameConfig = gameConfig;
@@ -58,7 +84,8 @@ namespace beyondnations {
             pawnNameGenerator = new PawnNameGenerator(random);
             nationNameGenerator = new NationNameGenerator(random);
 
-            tickCounter = new TickCounter();
+            tickCounter = new TickCounter(gameConfig.getTicksPerSecond());
+            timeOfDay = new TimeOfDay(tickCounter); // #279: read by renderers only
             player = new Player(gameConfig.getPlayerWalkSpeed(), gameConfig.getPlayerRunSpeed(), tickCounter, gameConfig.getStatusExpirationTicks(), gameConfig.getRenderDistance(), random);
             eventRepository = new EventRepository();
             eventProducer = new EventProducer(eventRepository);
@@ -66,10 +93,43 @@ namespace beyondnations {
             environment = new Environment(gameConfig.getChunkSize(), gameConfig.getLocationScale(), entityRepository, random);
             worldGenerator = new WorldGenerator(environment, player, eventProducer, entityRepository, gameConfig, random, pawnNameGenerator);
             nationRepository = new NationRepository(random);
+            nationRepository.getRelations().setEventProducer(eventProducer);
+            chronicle = new Chronicle(eventRepository, entityRepository, nationRepository, timeOfDay, tickCounter, random.getSeed());
             pawnBehaviorCalculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
-            pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator);
+            pawnBehaviorExecutor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, nationNameGenerator, tickCounter);
+            player.setMetabolism(gameConfig.getPlayerMetabolism());
             entityRepository.addEntity(player);
+            diplomacy = new Diplomacy(nationRepository, entityRepository, eventProducer, player);
             lagPreventer = new LagPreventer(gameConfig, tickCounter, entityRepository, environment);
+            // Its own stream, so where pawns stroll in town never shifts the rest of a seeded world.
+            settlementLife = new SettlementLife(new RandomSource(random.getSeed() ^ 0x5E771E));
+            // Traits and growth get their own streams too, for the same reason.
+            traitRandom = new RandomSource(random.getSeed() ^ 0x7A175);
+            worldGenerator.setTraitRandom(traitRandom);
+            populationGrowth = new PopulationGrowth(new RandomSource(random.getSeed() ^ 0x620717), entityRepository, nationRepository, environment, eventProducer, gameConfig, player);
+            // pawns keep a day: home at nightfall, out again in the morning
+            pawnBehaviorCalculator.setTimeOfDay(timeOfDay);
+            // eras (Camp to Kingdom) and the run's outcome; ambitions scale with the era they are made in
+            eraTracker = new EraTracker();
+            objectiveTracker = new ObjectiveTracker(ObjectiveCatalog.firstArc(), eraTracker.makeAmbition);
+            // Regions come from the seed alone and seasons from the clock alone.
+            regionMap = new RegionMap(random.getSeed(), gameConfig.getChunkSize() * gameConfig.getLocationScale());
+            worldGenerator.setRegionMap(regionMap);
+            seasonCalendar = new SeasonCalendar(timeOfDay);
+            pawnBehaviorCalculator.setSeasonCalendar(seasonCalendar);
+            pawnBehaviorExecutor.setSeasonCalendar(seasonCalendar);
+            seasonalWorld = new SeasonalWorld(seasonCalendar, regionMap, environment, entityRepository, gameConfig, player, random);
+            worldPalette = new WorldPalette(seasonCalendar, regionMap);
+            nationResources = new NationResources(entityRepository, regionMap);
+            // laws, war and peace, and the player's line of rulers (realm/)
+            realm = new Realm(nationRepository, entityRepository, eventProducer, player, diplomacy, gameConfig, tickCounter);
+            diplomacy.setRealm(realm);
+            populationGrowth.setRealm(realm);
+            pawnBehaviorExecutor.setRealm(realm);
+            // droughts, bandits, claimants (worldevents/), on a stream of their own
+            worldEvents = new WorldEvents(random.getSeed(), tickCounter.getTicksPerSecond());
+            tradeCaravans = new TradeCaravans(entityRepository, nationRepository, eventProducer, player, timeOfDay, nationResources);
+            tradeCaravans.setRealm(realm);
             // The opening hint names a key, and key bindings belong to the host
             // input layer rather than to the simulation, so the host sets it.
         }
@@ -77,6 +137,7 @@ namespace beyondnations {
         public GameConfig getGameConfig() { return gameConfig; }
         public RandomSource getRandom() { return random; }
         public TickCounter getTickCounter() { return tickCounter; }
+        public TimeOfDay getTimeOfDay() { return timeOfDay; }
         public Player getPlayer() { return player; }
         public EventRepository getEventRepository() { return eventRepository; }
         public EventProducer getEventProducer() { return eventProducer; }
@@ -84,15 +145,37 @@ namespace beyondnations {
         public Environment getEnvironment() { return environment; }
         public WorldGenerator getWorldGenerator() { return worldGenerator; }
         public NationRepository getNationRepository() { return nationRepository; }
+        public Diplomacy getDiplomacy() { return diplomacy; }
         public PawnNameGenerator getPawnNameGenerator() { return pawnNameGenerator; }
         public NationNameGenerator getNationNameGenerator() { return nationNameGenerator; }
+        /** The stream pawn traits are rolled from, for pawns made outside world generation (SettlementShowcase). */
+        public RandomSource getTraitRandom() { return traitRandom; }
+        public PopulationGrowth getPopulationGrowth() { return populationGrowth; }
+        public ObjectiveTracker getObjectiveTracker() { return objectiveTracker; }
+        public Chronicle getChronicle() { return chronicle; }
+        public Realm getRealm() { return realm; }
+        public WorldEvents getWorldEvents() { return worldEvents; }
+        public TradeCaravans getTradeCaravans() { return tradeCaravans; }
+        public EraTracker getEraTracker() { return eraTracker; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
+        /** Which region every chunk is; see RegionMap. */
+        public RegionMap getRegionMap() { return regionMap; }
+        /** The season API: current season, day of year, isWinter, days until winter. */
+        public SeasonCalendar getSeasonCalendar() { return seasonCalendar; }
+        /** Chickens hatching and the season announcements. */
+        public SeasonalWorld getSeasonalWorld() { return seasonalWorld; }
+        /** The colours seasons and regions give the world, for the host's WorldSnapshot. */
+        public WorldPalette getWorldPalette() { return worldPalette; }
+        /** Each nation's surpluses and shortages, for trade and diplomacy. */
+        public NationResources getNationResources() { return nationResources; }
         public int getNumPlayerDeaths() { return numPlayerDeaths; }
 
         public void fixedUpdate(float fixedDeltaTime) {
                     tickCounter.increment();
                     worldGenerator.update();
+                    worldGenerator.regrowRocks(tickCounter.getTotalTicks());
                     checkIfPlayerIsFallingIntoVoid();
+                    Season season = seasonCalendar.getSeason();
                     player.getStatus().clearStatusIfExpired();
 
                     // list of positions to generate chunks at
@@ -111,21 +194,32 @@ namespace beyondnations {
                                 pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism() * gameConfig.getSettlementMetabolismMultiplier());
                             }
                             else {
-                                pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism());
+                                // winter cold bites outdoors (SeasonalRules)
+                                pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism() * SeasonalRules.coldMultiplier(season));
                             }
 
+                            // A pawn under a leader's order hands it in before it can sell it.
+                            NationOrderDelivery.deliver(pawn, entityRepository, nationRepository, player, eventProducer);
+
+                            // Cadences count total ticks. getTick() is the tick within
+                            // the current second (0..ticksPerSecond-1), so comparing
+                            // against it made any value above ticksPerSecond mean
+                            // "once per second".
                             int ticksBetweenBehaviorCalculations = gameConfig.getTicksBetweenBehaviorCalculations();
-                            if (tickCounter.getTick() % ticksBetweenBehaviorCalculations == 0) {
+                            if (tickCounter.getTotalTicks() % ticksBetweenBehaviorCalculations == 0) {
                                 pawn.setCurrentBehaviorType(pawnBehaviorCalculator.computeBehaviorType(pawn));
                             }
 
                             int ticksBetweenBehaviorExecutions = gameConfig.getTicksBetweenBehaviorExecutions();
-                            if (tickCounter.getTick() % ticksBetweenBehaviorExecutions == 0) {
+                            if (tickCounter.getTotalTicks() % ticksBetweenBehaviorExecutions == 0) {
                                 pawnBehaviorExecutor.executeBehavior(pawn, pawn.getCurrentBehaviorType());
                             }
 
                             if (!pawn.isCurrentlyInSettlement()) {
-                                string nameTagText = pawn.getName() + "\n" + pawn.getCurrentBehaviorDescription();
+                                // Pawns the player has met show how they feel about the player.
+                                string nameLine = PawnRelations.hasMet(pawn, player) ? PawnRelations.describe(pawn, player) : pawn.getName();
+                                string traits = PawnTraits.describe(pawn);
+                                string nameTagText = nameLine + (traits.Length > 0 ? "\n" + traits : "") + "\n" + pawn.getCurrentBehaviorDescription();
                                 pawn.setNameTag(nameTagText);
                             }
 
@@ -133,7 +227,7 @@ namespace beyondnations {
                                 // check if pawn is falling into void
                                 float ypos = pawn.getPosition().Y;
                                 if (ypos < -10) {
-                                    Log.info("Entity " + pawn.getId() + " fell into void. Teleporting.");
+                                    Log.debug("Entity " + pawn.getId() + " fell into void. Teleporting.");
                                     EntityId homeSettlementId = pawn.getHomeSettlementId();
                                     if (homeSettlementId != null) {
                                         // pawn has home settlement, so respawn at settlement
@@ -199,6 +293,7 @@ namespace beyondnations {
                                                 nation.setLeaderId(nation.getOldestMemberId());
                                                 Entity newLeader = entityRepository.getEntity(nation.getLeaderId());
                                                 nation.setRole(newLeader.getId(), NationRole.LEADER);
+                                                eventProducer.produceLeadershipChangeEvent(nation, pawn.getId(), newLeader.getId());
                                                 if (newLeader.getType() == EntityType.PAWN) {
                                                     player.getStatus().update(newLeader.getName() + " is now the leader of " + nation.getName() + ".");
                                                 }
@@ -211,6 +306,8 @@ namespace beyondnations {
                                             }
                                             else {
                                                 nationRepository.removeNation(nation);
+                                                // --- #269 ---
+                                                eventProducer.produceNationDisbandEvent(nation);
 
                                                 // remove settlements
                                                 foreach (EntityId settlementId in nation.getSettlements()) {
@@ -241,7 +338,8 @@ namespace beyondnations {
                         }
                         else if (entity.getType() == EntityType.SAPLING) {
                             Sapling sapling = (Sapling)entity;
-                            if (sapling.isGrown()) {
+                            // saplings grow slowly through winter
+                            if (sapling.isGrown(SeasonalRules.saplingGrowthFactor(season))) {
                                 // replace with tree
                                 AppleTree tree = new AppleTree(sapling.getPosition(), 5, random);
                                 entityRepository.addEntity(tree);
@@ -256,14 +354,44 @@ namespace beyondnations {
                             Settlement settlement = (Settlement)entity;
 
                             int totalTicks = tickCounter.getTotalTicks();
-                            if (totalTicks % 1000 == 0) {
+                            if (totalTicks % gameConfig.getTicksBetweenSettlementIncome() == 0) {
                                 int numCoinsToGenerate = settlement.getMarket().getNumStalls();
                                 if (numCoinsToGenerate > 0) {
                                     settlement.getInventory().addItem(ItemType.COIN, numCoinsToGenerate);
                                 }
                             }
+
+                            // buildings: farms stock the market, residents are recounted, and the
+                            // settlement redraws itself if a stall or building has changed
+                            // a drought (worldevents/) dries a nation's farms up
+                            if (totalTicks % BuildingCatalog.FARM_TICKS_PER_HARVEST == 0 && !worldEvents.isDrought(settlement.getNationId())) {
+                                // double in autumn, nothing in winter, one more on the plains
+                                int rounds = SeasonalRules.farmYield(season);
+                                if (rounds > 0) {
+                                    rounds += RegionCatalog.farmBonus(regionMap.regionAt(settlement.getPosition()));
+                                }
+                                for (int round = 0; round < rounds; round++) {
+                                    settlement.harvestFarms();
+                                }
+                            }
+                            if (totalTicks % ResidentRecountTicks == 0) {
+                                settlement.setResidentCount(SettlementLife.countResidents(entityRepository, settlement.getId()));
+                            }
+                            settlement.refreshAppearance();
                         }
                     }
+
+                    // nations: relations drift, pawn-led nations choose, hostility bites
+                    diplomacy.update(tickCounter.getTotalTicks());
+                    if (tickCounter.getTotalTicks() % TerritoryCheckTicks == 0) {
+                        announceBorderCrossing();
+                    }
+                    populationGrowth.update(tickCounter.getTotalTicks());
+                    seasonalWorld.update(tickCounter.getTotalTicks());
+                    realm.update(tickCounter.getTotalTicks());
+                    worldEvents.update(this);
+                    // living prices drift, and caravans roll between markets
+                    tradeCaravans.update(tickCounter.getTotalTicks(), fixedDeltaTime);
 
                     int maxChunks = gameConfig.getMaxNumChunks();
                     int numChunks = environment.getNumChunks();
@@ -276,7 +404,15 @@ namespace beyondnations {
                     }
             
                     player.fixedUpdate();
-                    if (player.getEnergy() <= 0) {
+                    if (!player.isCurrentlyInSettlement()) {
+                        // the same winter cold as pawns feel, on top of the ordinary burn
+                        player.setEnergy(player.getEnergy() - player.getMetabolism() * (SeasonalRules.coldMultiplier(season) - 1f));
+                    }
+                    if (player.getEnergy() <= 0 && !realm.isRunOver() && realm.onPlayerDeath()) {
+                        // a member of a nation is succeeded by an heir, or their line ends (realm/Succession)
+                        numPlayerDeaths++;
+                    }
+                    else if (player.getEnergy() <= 0 && !realm.isRunOver()) {
                         eventProducer.producePlayerDeathEvent(player);
                         numPlayerDeaths++;
                         player.setEnergy(100);
@@ -304,7 +440,45 @@ namespace beyondnations {
                     }
 
                     deleteEntitiesMarkedForDeletion();
+
+                    // Once a second of game time, after the world has settled
+                    // for this tick, so a reward lands on a consistent state.
+                    // The era goes first, so an ambition made this second is
+                    // made in the era just reached.
+                    eraTracker.update(this);
+                    objectiveTracker.update(this);
                 }
+
+        /**
+        * Says so on the status line when the player walks from one nation's
+        * land into another's, or out into the wilds.
+        */
+        private void announceBorderCrossing() {
+            if (player.isCurrentlyInSettlement()) {
+                return;
+            }
+            Settlement claim = Territory.findClaimAt(entityRepository, player.getPosition());
+            string owner = claim == null ? null : claim.getNationName();
+            if (owner == playerTerritory && playerTerritoryKnown) {
+                return;
+            }
+            string left = playerTerritory;
+            playerTerritory = owner;
+            if (!playerTerritoryKnown) {
+                // where the player starts is not a crossing
+                playerTerritoryKnown = true;
+                return;
+            }
+            if (owner != null && player.getNationId() != null && claim.getNationId() == player.getNationId()) {
+                player.getStatus().update("You are back on your own land.");
+            }
+            else if (owner != null) {
+                player.getStatus().update("You enter the land of " + Territory.describeFor(player, entityRepository, nationRepository) + ".");
+            }
+            else if (left != null) {
+                player.getStatus().update("You leave the land of " + left + " for the wilds.");
+            }
+        }
 
         /**
         * Replaces Rigidbody (#220): gravity, the ground clamp and the jump
@@ -327,6 +501,10 @@ namespace beyondnations {
                     Pawn pawn = (Pawn) entity;
                     if (!pawn.isCurrentlyInSettlement()) {
                         MovementIntegrator.step(pawn, fixedDeltaTime, PawnGroundHeight);
+                    }
+                    else if (entityRepository.getEntity(pawn.getCurrentSettlementId()) is Settlement settlement) {
+                        // inside, the pawn strolls about the town rather than falling under physics
+                        settlementLife.mill(pawn, settlement, fixedDeltaTime, PawnGroundHeight);
                     }
                 }
                 else if (entity.getType() == EntityType.CHICKEN) {
@@ -379,6 +557,335 @@ namespace beyondnations {
                         // graphics resource to release.
                         entityRepository.removeEntity(entity);
                     }
+
+                    // The player can be inside any settlement, including one
+                    // whose nation has just been disbanded. Once it is gone the
+                    // world HUD has nothing to show for "current settlement" and
+                    // threw every frame, so the player is put back outside.
+                    EntityId currentSettlementId = player.getCurrentSettlementId();
+                    if (currentSettlementId != null && entityRepository.getEntity(currentSettlementId) == null) {
+                        player.setCurrentSettlementId(null);
+                        player.setVisible(true);
+                    }
                 }
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** The world's random streams, by the names a save uses for them. */
+        internal SaveStreams getStreams() {
+            SaveStreams streams = new SaveStreams();
+            streams.add(SaveStreams.Main, random);
+            streams.add(SaveStreams.SettlementLife, settlementLife.getRandom());
+            streams.add(SaveStreams.Traits, traitRandom);
+            streams.add(SaveStreams.Population, populationGrowth.getRandom());
+            return streams;
+        }
+
+        /**
+        * Writes the whole world into the body of a save. SaveGame wraps it in
+        * the header and checksum.
+        */
+        internal void save(SaveWriter writer, SaveStreams streams) {
+            // The era's limits on the player's nation are derived and rebuilt on
+            // load; bring them up to date here too, so a world changed since the
+            // last tick (a nation founded, a leader changed) saves as it loads.
+            eraTracker.applyRules(this);
+            writer.beginObject("config");
+            gameConfig.save(writer);
+            writer.endObject();
+            // The seed the world was actually built from, which is a fresh
+            // one when the config asked for 0.
+            writer.write("seed", random.getSeed());
+
+            writer.beginObject("time");
+            writer.write("totalTicks", tickCounter.getTotalTicks());
+            writer.write("ticksPerSecond", tickCounter.getTicksPerSecond());
+            writer.write("ticksPerDay", timeOfDay.getTicksPerDay());
+            writer.write("startFraction", timeOfDay.getStartFraction());
+            writer.endObject();
+
+            writer.beginObject("random");
+            foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {
+                writer.beginObject(stream.Key);
+                writer.write("seed", stream.Value.getSeed());
+                writer.beginArray("state");
+                foreach (int value in stream.Value.getState()) {
+                    writer.writeValue(value);
+                }
+                writer.endArray();
+                writer.endObject();
+            }
+            writer.endObject();
+
+            writer.beginObject("simulation");
+            writer.write("playerTerritory", playerTerritory);
+            writer.write("playerTerritoryKnown", playerTerritoryKnown);
+            writer.write("numPawnDeaths", numPawnDeaths);
+            writer.write("numPlayerDeaths", numPlayerDeaths);
+            writer.write("currentChunkX", worldGenerator.getCurrentChunkX());
+            writer.write("currentChunkZ", worldGenerator.getCurrentChunkZ());
+            writer.writeStringList("pawnNamesGenerated", pawnNameGenerator.getGenerated());
+            writer.writeStringList("nationNamesGenerated", nationNameGenerator.getGenerated());
+            writer.endObject();
+
+            writer.beginObject("environment");
+            environment.save(writer);
+            writer.endObject();
+
+            writer.write("playerId", player.getId());
+            writer.beginArray("entities");
+            foreach (Entity entity in entityRepository.getEntities()) {
+                writer.beginObject();
+                entity.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginArray("orphanEntities");
+            foreach (Entity entity in findOrphanEntities()) {
+                writer.beginObject();
+                entity.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+
+            writer.beginArray("nations");
+            foreach (Nation nation in nationRepository.getNations()) {
+                writer.beginObject();
+                nation.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginArray("orphanNations");
+            foreach (Nation nation in findOrphanNations()) {
+                writer.beginObject();
+                nation.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+
+            writer.beginObject("relations");
+            nationRepository.getRelations().save(writer);
+            writer.endObject();
+            writer.beginObject("diplomacy");
+            diplomacy.save(writer);
+            writer.endObject();
+            writer.beginObject("population");
+            populationGrowth.save(writer);
+            writer.endObject();
+            writer.beginObject("events");
+            eventRepository.save(writer);
+            writer.endObject();
+            writer.beginObject("objectives");
+            objectiveTracker.save(writer);
+            writer.endObject();
+            writer.beginObject("chronicle");
+            chronicle.save(writer);
+            writer.endObject();
+            writer.beginObject("realm");
+            realm.save(writer);
+            writer.endObject();
+            writer.beginObject("trade");
+            tradeCaravans.save(writer);
+            writer.endObject();
+            writer.beginObject("worldEvents");
+            worldEvents.save(writer);
+            writer.endObject();
+            writer.beginObject("eras");
+            eraTracker.save(writer);
+            writer.endObject();
+        }
+
+        /**
+        * Entities something still holds that the repository no longer does: a
+        * pawn's target that has been gathered and swept away (the pawn notices
+        * on its next step and lets go), or the player if it were ever removed.
+        * A save keeps them so the holder loads holding the same thing.
+        */
+        private List<Entity> findOrphanEntities() {
+            List<Entity> orphans = new List<Entity>();
+            HashSet<Entity> seen = new HashSet<Entity>(entityRepository.getEntities());
+            List<Entity> toVisit = new List<Entity>(entityRepository.getEntities());
+            if (seen.Add(player)) {
+                orphans.Add(player);
+                toVisit.Add(player);
+            }
+            for (int i = 0; i < toVisit.Count; i++) {
+                Pawn pawn = toVisit[i] as Pawn;
+                Entity target = pawn == null ? null : pawn.getTargetEntity();
+                if (target != null && seen.Add(target)) {
+                    orphans.Add(target);
+                    toVisit.Add(target);
+                }
+            }
+            return orphans;
+        }
+
+        /** Nations laying a siege that have since been disbanded. */
+        private List<Nation> findOrphanNations() {
+            List<Nation> orphans = new List<Nation>();
+            HashSet<Nation> seen = new HashSet<Nation>(nationRepository.getNations());
+            foreach (Nation nation in diplomacy.getBesiegingNations()) {
+                if (nation != null && seen.Add(nation)) {
+                    orphans.Add(nation);
+                }
+            }
+            return orphans;
+        }
+
+        /**
+        * Builds the world a save describes. A fresh Simulation is made from the
+        * saved settings, so every service is wired exactly as a new world's
+        * is, and then every piece of state is replaced with the saved one --
+        * the random streams last, since building the shells draws from them.
+        */
+        internal static Simulation load(JsonElement body) {
+            GameConfig config = new GameConfig();
+            JsonElement savedConfig = SaveReader.property(body, "config");
+            config.load(savedConfig);
+            config.setWorldSeed(SaveReader.getInt(body, "seed"));
+            if (config.getWorldSeed() == 0) {
+                // seed 0 means "pick one" to the constructor; a world really
+                // built from seed 0 is still rebuilt exactly, since every
+                // stream's state is restored below
+                Log.warning("save: world seed 0");
+            }
+            Simulation simulation = new Simulation(config);
+            simulation.restore(body);
+            return simulation;
+        }
+
+        private void restore(JsonElement body) {
+            SaveStreams streams = getStreams();
+            SaveReader reader = new SaveReader(streams, tickCounter);
+
+            JsonElement time = SaveReader.property(body, "time");
+            if (SaveReader.getInt(time, "ticksPerSecond") != tickCounter.getTicksPerSecond()) {
+                throw new SaveFormatException("the save's tick rate does not match its settings");
+            }
+            tickCounter.restoreTotalTicks(SaveReader.getInt(time, "totalTicks"));
+            float startFraction = SaveReader.getFloat(time, "startFraction");
+            if (float.IsNaN(startFraction) || startFraction < 0f || startFraction >= 1f) {
+                throw new SaveFormatException("the save's time of day is out of range");
+            }
+            timeOfDay.setStartFraction(startFraction);
+
+            // entities: every identity first, so references between them resolve
+            EntityId savedPlayerId = reader.getEntityId(body, "playerId");
+            List<KeyValuePair<Entity, JsonElement>> shells = new List<KeyValuePair<Entity, JsonElement>>();
+            List<Entity> inRepository = new List<Entity>();
+            bool playerFound = false;
+            foreach (string list in new string[] { "entities", "orphanEntities" }) {
+                foreach (JsonElement saved in SaveReader.property(body, list).EnumerateArray()) {
+                    Entity shell = createShell(saved);
+                    shell.loadIdentity(saved, reader);
+                    if (shell == player) {
+                        if (playerFound || !shell.getId().Equals(savedPlayerId)) {
+                            throw new SaveFormatException("the save holds more than one player");
+                        }
+                        playerFound = true;
+                    }
+                    reader.registerEntity(shell);
+                    shells.Add(new KeyValuePair<Entity, JsonElement>(shell, saved));
+                    if (list == "entities") {
+                        inRepository.Add(shell);
+                    }
+                }
+            }
+            if (!playerFound) {
+                throw new SaveFormatException("the save holds no player");
+            }
+
+            List<Nation> nations = new List<Nation>();
+            foreach (string list in new string[] { "nations", "orphanNations" }) {
+                foreach (JsonElement saved in SaveReader.property(body, list).EnumerateArray()) {
+                    Nation nation = Nation.load(saved, reader);
+                    reader.registerNation(nation);
+                    if (list == "nations") {
+                        nations.Add(nation);
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<Entity, JsonElement> shell in shells) {
+                shell.Key.load(shell.Value, reader);
+            }
+            entityRepository.restore(inRepository);
+            nationRepository.restore(nations);
+            nationRepository.getRelations().load(SaveReader.property(body, "relations"));
+
+            environment.load(SaveReader.property(body, "environment"), reader);
+
+            JsonElement state = SaveReader.property(body, "simulation");
+            playerTerritory = SaveReader.getString(state, "playerTerritory");
+            playerTerritoryKnown = SaveReader.getBool(state, "playerTerritoryKnown");
+            numPawnDeaths = SaveReader.getInt(state, "numPawnDeaths");
+            numPlayerDeaths = SaveReader.getInt(state, "numPlayerDeaths");
+            worldGenerator.restoreCurrentChunk(SaveReader.getInt(state, "currentChunkX"), SaveReader.getInt(state, "currentChunkZ"));
+            pawnNameGenerator.restoreGenerated(SaveReader.getStringList(state, "pawnNamesGenerated"));
+            nationNameGenerator.restoreGenerated(SaveReader.getStringList(state, "nationNamesGenerated"));
+
+            diplomacy.load(SaveReader.property(body, "diplomacy"), reader);
+            populationGrowth.load(SaveReader.property(body, "population"), reader);
+            eventRepository.load(SaveReader.property(body, "events"));
+            // eras first: the objectives ask it for every ambition already made
+            eraTracker.load(SaveReader.property(body, "eras"));
+            objectiveTracker.load(SaveReader.property(body, "objectives"));
+            chronicle.load(SaveReader.property(body, "chronicle"), reader);
+            realm.load(SaveReader.property(body, "realm"), reader);
+            worldEvents.load(SaveReader.property(body, "worldEvents"), reader);
+            tradeCaravans.load(SaveReader.property(body, "trade"), reader);
+
+            JsonElement randoms = SaveReader.property(body, "random");
+            foreach (KeyValuePair<string, RandomSource> stream in streams.all()) {
+                JsonElement saved = SaveReader.property(randoms, stream.Key);
+                if (SaveReader.getInt(saved, "seed") != stream.Value.getSeed()) {
+                    throw new SaveFormatException("the " + stream.Key + " random stream was seeded differently");
+                }
+                List<int> values = new List<int>();
+                foreach (JsonElement value in SaveReader.property(saved, "state").EnumerateArray()) {
+                    values.Add(value.GetInt32());
+                }
+                try {
+                    stream.Value.setState(values.ToArray());
+                } catch (System.ArgumentException e) {
+                    throw new SaveFormatException("the " + stream.Key + " random stream is corrupt", e);
+                }
+            }
+            // the era's limits on the player's nation are derived, not saved
+            eraTracker.applyRules(this);
+        }
+
+        /**
+        * An entity of the saved type, to be filled in by Entity.load. Whatever
+        * a constructor draws comes off a scratch stream, never the world's.
+        * The player is the one this Simulation already wired in everywhere.
+        */
+        private Entity createShell(JsonElement saved) {
+            EntityType type = SaveReader.getEnum<EntityType>(saved, "type");
+            RandomSource scratch = new RandomSource(0);
+            Vector3 origin = Vector3.Zero;
+            switch (type) {
+                case EntityType.PLAYER:
+                    return player;
+                case EntityType.PAWN:
+                    return new Pawn(origin, "", scratch);
+                case EntityType.TREE:
+                    return new AppleTree(origin, 5, scratch);
+                case EntityType.ROCK:
+                    return new Rock(origin);
+                case EntityType.SETTLEMENT:
+                    return new Settlement(origin, null, Rgba.White, "", scratch);
+                case EntityType.SAPLING:
+                    return new Sapling(origin, 3, scratch, tickCounter);
+                case EntityType.ITEM_DROP:
+                    return new ItemDrop(origin, new ItemStack(ItemType.COIN, 0));
+                case EntityType.CHICKEN:
+                    return new Chicken(origin, scratch);
+                case EntityType.CARAVAN:
+                    return new Caravan(origin, null, null, null, 0);
+                default:
+                    throw new SaveFormatException("an entity of unknown type " + type);
+            }
+        }
     }
 }

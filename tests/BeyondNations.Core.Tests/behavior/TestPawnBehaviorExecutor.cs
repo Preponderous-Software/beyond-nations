@@ -18,7 +18,7 @@ namespace beyondnationstests {
             environment = new Environment(5, 5, entityRepository, random);
             NationRepository nationRepository = new NationRepository(random);
             EventProducer eventProducer = new EventProducer(new EventRepository());
-            executor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, new NationNameGenerator(random));
+            executor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, new NationNameGenerator(random), new TickCounter());
         }
 
         /**
@@ -189,6 +189,52 @@ namespace beyondnationstests {
             Assert.Equal(2, stall.getInventory().getNumItems(ItemType.CHICKEN_MEAT));
             Assert.Equal(6, stall.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.APPLE));
+        }
+
+        /**
+            * Input: a merchant inside its settlement with wood and stone, stall empty
+            * Expected output: it makes an axe and a pickaxe and stocks them with the rest (#47)
+        */
+        [Fact]
+        public void testTransferItemsToStall_MerchantCraftsToolsForItsStall() {
+            Pawn pawn = createPawn(100);
+            pawn.getInventory().clear();
+            Settlement settlement = new Settlement(new Vector3(0, 1, 0), new NationId(), Rgba.Red, "Testland", random);
+            entityRepository.addEntity(settlement);
+            settlement.getMarket().createStall();
+            settlement.getMarket().getStallForSale().setOwnerId(pawn.getId());
+            pawn.setCurrentSettlementId(settlement.getId());
+            pawn.getInventory().addItem(ItemType.WOOD, 10);
+            pawn.getInventory().addItem(ItemType.STONE, 6);
+
+            executor.executeBehavior(pawn, BehaviorType.TRANSFER_ITEMS_TO_STALL);
+
+            Inventory stall = settlement.getMarket().getStall(pawn.getId()).getInventory();
+            Assert.Equal(1, stall.getNumItems(ItemType.AXE));
+            Assert.Equal(1, stall.getNumItems(ItemType.PICKAXE));
+            Assert.Equal(3, stall.getNumItems(ItemType.WOOD));
+            Assert.Equal(1, stall.getNumItems(ItemType.STONE));
+            Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.WOOD));
+        }
+
+        /**
+            * Input: a pawn carrying an axe gathers a tree
+            * Expected output: the axe's extra wood, the same as the player gets
+        */
+        [Fact]
+        public void testGatherResources_PawnWithAxe_GetsExtraWood() {
+            Pawn pawn = createPawn(100);
+            pawn.getInventory().clear();
+            pawn.getInventory().addItem(ItemType.AXE, 1);
+            AppleTree tree = new AppleTree(new Vector3(0, 0, 0), 3, random);
+            int wood = tree.getInventory().getNumItems(ItemType.WOOD);
+            entityRepository.addEntity(tree);
+            pawn.setTargetEntity(tree);
+
+            executor.executeBehavior(pawn, BehaviorType.GATHER_RESOURCES);
+
+            Assert.True(tree.isMarkedForDeletion());
+            Assert.Equal(wood + Tools.AXE_BONUS_WOOD, pawn.getInventory().getNumItems(ItemType.WOOD));
         }
     }
 }

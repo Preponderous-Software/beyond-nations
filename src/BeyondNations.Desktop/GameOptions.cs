@@ -32,9 +32,16 @@ namespace beyondnations.desktop {
         public int ExitAfterFrames = 0;
 
         /**
-        * World seed. Zero means pick one, matching GameConfig.
+        * World seed. Zero means pick one, matching GameConfig. --seed takes a
+        * number or any text, which WorldSeed hashes to one (docs/SHARING.md).
         */
         public int Seed = 0;
+
+        /**
+        * The seed as it was given, "Ironvale" or "42", which the New World
+        * screen opens with. Null when no --seed was passed.
+        */
+        public string SeedText = null;
 
         /**
         * Resize the window part-way through the run. This exists so that resize
@@ -107,6 +114,89 @@ namespace beyondnations.desktop {
         */
         public bool NoUsageReporting = false;
 
+        // --- #280 ---
+        /**
+        * The time of day a new world starts at, in [0, 1): 0.25 sunrise, 0.5
+        * noon, 0.75 sunset. Negative keeps TimeOfDay's default.
+        */
+        public float TimeOfDay = -1f;
+        // --- end #280 ---
+
+        /**
+        * Open on the first day of this season rather than of spring, by
+        * moving the clock on before the world is generated
+        * (SeasonCalendar.advanceClockTo). Null starts in spring.
+        */
+        public Season? StartSeason = null;
+
+        /**
+        * Open with a lived-in settlement already standing ahead of the player:
+        * a nation, a full market, merchants and residents. Exists so that what
+        * a town looks like can be screenshotted without an hour of play; see
+        * SettlementShowcase.
+        */
+        public bool StageSettlement = false;
+
+        /**
+        * Replays the feedback effects every couple of seconds -- chips,
+        * floating "+5 wood", buildings rising, the objective flash -- without
+        * touching the world, so they can be screenshotted headless. See
+        * FeelDirector.stageDemo.
+        */
+        public bool StageFeel = false;
+
+        /**
+        * How much larger than its design size to draw the UI. 0, the default,
+        * uses the monitor's content scale (150 % in Windows display settings
+        * is 1.5); anything from 1 to 4 overrides it.
+        */
+        public float UiScale = 0f;
+
+        /**
+        * Opens the game with the player leading a nation that has two
+        * neighbours, one friendly and one hostile and besieging it, and the
+        * player standing at the border. See DiplomacyShowcase.
+        */
+        public bool StageDiplomacy = false;
+        // open with a world event's choice sheet up (worldevents/)
+        public bool StageEvent = false;
+
+        /**
+        * As StageDiplomacy, with the player on the point of starving, so the
+        * first tick passes the rule to an heir and opens the succession
+        * screen (realm/Succession).
+        */
+        public bool StageSuccession = false;
+
+        /**
+        * Opens the game with the player leading a nation whose village can
+        * send caravans, a trading neighbour, and one of its caravans on the
+        * road just ahead of the player. See TradeShowcase.
+        */
+        public bool StageTrade = false;
+
+        /**
+        * Opens a world whose run has just ended -- a Prosperity victory in
+        * the Kingdom era, or a collapse -- on the end-of-run screen. See
+        * EndingShowcase.
+        */
+        public bool StageVictory = false;
+        public bool StageDefeat = false;
+
+        /**
+        * Neither save nor offer to load this run: no autosave, no save on
+        * quit, no Continue or Load. For automated runs that should leave a
+        * player's saves alone. See docs/SAVES.md.
+        */
+        public bool NoSaves = false;
+
+        /**
+        * Open straight into the most recently saved world, as Continue on the
+        * main menu does. Falls back to the main menu, saying why, when there
+        * is no save to continue.
+        */
+        public bool Continue = false;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -117,7 +207,10 @@ namespace beyondnations.desktop {
                     case "--ticks-per-second": options.TicksPerSecond = intAfter(args, ref i, options.TicksPerSecond); break;
                     case "--exit-after-frames":options.ExitAfterFrames = intAfter(args, ref i, options.ExitAfterFrames); break;
                     case "--screenshot-after-frames": options.ScreenshotAfterFrames = intAfter(args, ref i, options.ScreenshotAfterFrames); break;
-                    case "--seed":             options.Seed = intAfter(args, ref i, options.Seed); break;
+                    case "--seed":
+                        options.SeedText = textAfter(args, ref i);
+                        options.Seed = WorldSeed.fromText(options.SeedText);
+                        break;
                     case "--no-vsync":         options.VSync = false; break;
                     case "--smoke-resize":     options.SmokeResize = true; break;
                     case "--render-stats":     options.RenderStats = true; break;
@@ -125,9 +218,22 @@ namespace beyondnations.desktop {
                     case "--no-culling":       options.NoCulling = true; break;
                     case "--no-labels":        options.NoLabels = true; break;
                     case "--debug-mode":       options.DebugMode = true; break;
+                    case "--stage-settlement": options.StageSettlement = true; break;
+                    case "--stage-diplomacy":  options.StageDiplomacy = true; break;
+                    case "--stage-feel":       options.StageFeel = true; break;
+                    case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
+                    case "--stage-event":      options.StageEvent = true; break;
+                    case "--stage-trade":      options.StageTrade = true; break;
+                    case "--stage-victory":    options.StageVictory = true; break;
+                    case "--stage-defeat":     options.StageDefeat = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
+                    case "--no-saves":         options.NoSaves = true; break;
+                    case "--continue":         options.Continue = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
+                    case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
+                    case "--season":           options.StartSeason = seasonAfter(args, ref i); break;
+                    case "--ui-scale":         options.UiScale = uiScaleAfter(args, ref i); break;
                     case "--help":
                     case "-h":
                         printUsage();
@@ -143,6 +249,23 @@ namespace beyondnations.desktop {
             return options;
         }
 
+        private static Season seasonAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            switch (args[i].ToLowerInvariant()) {
+                case "spring": return Season.SPRING;
+                case "summer": return Season.SUMMER;
+                case "autumn": return Season.AUTUMN;
+                case "winter": return Season.WINTER;
+            }
+            Console.Error.WriteLine("unknown season: " + args[i] + " (expected spring, summer, autumn or winter)");
+            System.Environment.Exit(2);
+            return Season.SPRING;
+        }
+
         private static ScreenType screenAfter(string[] args, ref int i) {
             if (i + 1 >= args.Length) {
                 Console.Error.WriteLine("missing value after " + args[i]);
@@ -156,10 +279,61 @@ namespace beyondnations.desktop {
                 case "world":     return ScreenType.WORLD;
                 case "pause":     return ScreenType.PAUSE;
                 case "inventory": return ScreenType.INVENTORY;
+                case "controls":  return ScreenType.CONTROLS;
+                case "nations":   return ScreenType.NATIONS;
+                case "crafting":  return ScreenType.CRAFTING;
+                case "load":      return ScreenType.LOAD;
+                case "laws":
+                    // the nations screen, opened on its Laws tab
+                    beyondnations.desktop.ui.screens.NationScreen.startOnLaws = true;
+                    return ScreenType.NATIONS;
+                case "new-world": return ScreenType.NEW_WORLD;
+                case "share":     return ScreenType.SHARE;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause or inventory)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
+        }
+
+        // --- #280 ---
+        private static float timeOfDayAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            float parsed;
+            if (!float.TryParse(args[i], NumberStyles.Float, CultureInfo.InvariantCulture, out parsed)
+                || float.IsNaN(parsed) || parsed < 0f || parsed >= 1f) {
+                Console.Error.WriteLine("time of day must be a number in [0, 1): " + args[i]);
+                System.Environment.Exit(2);
+            }
+            return parsed;
+        }
+        // --- end #280 ---
+
+        private static float uiScaleAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            float parsed;
+            if (!float.TryParse(args[i], NumberStyles.Float, CultureInfo.InvariantCulture, out parsed)
+                    || float.IsNaN(parsed) || parsed < 1f || parsed > 4f) {
+                Console.Error.WriteLine("ui scale must be a number from 1 to 4: " + args[i]);
+                System.Environment.Exit(2);
+            }
+            return parsed;
+        }
+
+        private static string textAfter(string[] args, ref int i) {
+            if (i + 1 >= args.Length) {
+                Console.Error.WriteLine("missing value after " + args[i]);
+                System.Environment.Exit(2);
+            }
+            i++;
+            return args[i];
         }
 
         private static int intAfter(string[] args, ref int i, int fallback) {
@@ -191,7 +365,7 @@ namespace beyondnations.desktop {
                 "  --ticks-per-second N    simulation rate       (default 50)",
                 "  --exit-after-frames N   render N frames then exit; 0 runs until closed",
                 "  --screenshot-after-frames N  take a screenshot once N frames have rendered; 0 disables",
-                "  --seed N                world seed; 0 picks one",
+                "  --seed S                world seed: a number, or any text (hashed to one); 0 picks one",
                 "  --no-vsync              do not wait for vertical sync",
                 "  --smoke-resize          resize part-way through, to exercise resize handling",
                 "  --render-stats          report draw calls, frame times and allocation on exit",
@@ -200,8 +374,20 @@ namespace beyondnations.desktop {
                 "  --no-labels             draw no world-space nametags",
                 "  --first-person          open in first person; V toggles the view mid-run",
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
+                "  --no-saves              do not autosave, save on quit or offer saved worlds this run",
+                "  --continue              open in the most recently saved world (Continue on the main menu)",
                 "  --debug-mode            open with the F1 debug overlay already on",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause or inventory",
+                "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
+                "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
+                "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
+                "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
+                "  --stage-victory         open on the end-of-run screen of a won run (--stage-defeat: a lost one)",
+                "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
+                "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
+                "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
+                "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
+                "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --help, -h              print this and exit"
             });
         }

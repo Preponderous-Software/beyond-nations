@@ -34,6 +34,7 @@ namespace beyondnations {
                 player.getStatus().update("No one is buying resources at this market or you do not have enough resources to sell.");
                 return;
             }
+            player.recordMarketSale();
 
             // increase relationship with owner of stall
             Entity stallOwner = entityRepository.getEntity(stallOwnerId);
@@ -55,6 +56,7 @@ namespace beyondnations {
                 return;
             }
             
+            Diplomacy.recordTrade(nationRepository, player.getNationId(), settlement);
             player.getStatus().update("You sold resources to " + stallOwner.getName() + ". Relationship increased to " + player.getRelationships()[stallOwnerId] + ".");
         }
     }

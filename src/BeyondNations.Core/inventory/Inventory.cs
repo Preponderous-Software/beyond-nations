@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace beyondnations {
 
@@ -8,6 +9,11 @@ namespace beyondnations {
     /// </summary>
     public class Inventory {
         private List<ItemSlot> slots;
+
+        // Uses already spent on the tool in hand, per tool type (see Tools).
+        // Forgotten whenever the last of that tool leaves the inventory, so a
+        // fresh tool always starts unworn.
+        private Dictionary<ItemType, int> toolWear = new Dictionary<ItemType, int>();
 
         public Inventory(int numGoldCoins) {
             slots = new List<ItemSlot>();
@@ -72,6 +78,7 @@ namespace beyondnations {
                     // Clear the slot if empty (quantity <= 0)
                     if (slot.getItemStack().isEmpty()) {
                         slot.clear();
+                        toolWear.Remove(itemType);
                     }
                     return;
                 }
@@ -90,6 +97,7 @@ namespace beyondnations {
                         slot.getItemStack().setQuantity(numItems);
                     } else {
                         slot.clear();
+                        toolWear.Remove(itemType);
                     }
                     return;
                 }
@@ -115,6 +123,21 @@ namespace beyondnations {
             foreach (ItemSlot slot in slots) {
                 slot.clear();
             }
+            toolWear.Clear();
+        }
+
+        /** Uses already spent on the tool of this type in hand; 0 for a fresh one. */
+        public int getToolWear(ItemType toolType) {
+            int wear;
+            return toolWear.TryGetValue(toolType, out wear) ? wear : 0;
+        }
+
+        public void setToolWear(ItemType toolType, int wear) {
+            if (wear <= 0) {
+                toolWear.Remove(toolType);
+            } else {
+                toolWear[toolType] = wear;
+            }
         }
 
         /**
@@ -133,8 +156,17 @@ namespace beyondnations {
             otherInventory.clear();
         }
 
+        /** Tradeable items (anything but coin) that count as worth a trip to market. */
+        public const int ABUNDANCE_THRESHOLD = 20;
+
+        /**
+        * Whether this holds enough tradeable goods -- any mix of wood, stone,
+        * food and saplings -- to be worth taking to market. It used to need
+        * more than ten each of wood, stone and apples at once, which with one
+        * stone per rock almost never happened, so pawns never traded.
+        */
         public bool containsAbundanceOfResources() {
-            return getNumItems(ItemType.WOOD) > 10 && getNumItems(ItemType.STONE) > 10 && getNumItems(ItemType.APPLE) > 10;
+            return getTotalNumItems() - getNumItems(ItemType.COIN) >= ABUNDANCE_THRESHOLD;
         }
 
         public int getTotalNumItems() {
@@ -145,6 +177,49 @@ namespace beyondnations {
                 }
             }
             return total;
+        }
+    
+
+        // --- saving (docs/SAVES.md) ---
+
+        /** Every slot in order, empty ones as null, and the wear on each tool. */
+        internal void save(SaveWriter writer) {
+            writer.beginArray("slots");
+            foreach (ItemSlot slot in slots) {
+                ItemStack stack = slot.getItemStack();
+                if (stack == null) {
+                    writer.getJson().WriteNullValue();
+                    continue;
+                }
+                writer.beginObject();
+                writer.writeEnum("type", stack.getItemType());
+                writer.write("quantity", stack.getQuantity());
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginArray("toolWear");
+            foreach (KeyValuePair<ItemType, int> entry in toolWear) {
+                writer.beginObject();
+                writer.writeEnum("tool", entry.Key);
+                writer.write("wear", entry.Value);
+                writer.endObject();
+            }
+            writer.endArray();
+        }
+
+        internal void load(JsonElement element) {
+            slots = new List<ItemSlot>();
+            foreach (JsonElement slot in SaveReader.property(element, "slots").EnumerateArray()) {
+                if (slot.ValueKind == JsonValueKind.Null) {
+                    slots.Add(new ItemSlot());
+                } else {
+                    slots.Add(new ItemSlot(new ItemStack(SaveReader.getEnum<ItemType>(slot, "type"), SaveReader.getInt(slot, "quantity"))));
+                }
+            }
+            toolWear.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "toolWear").EnumerateArray()) {
+                toolWear[SaveReader.getEnum<ItemType>(entry, "tool")] = SaveReader.getInt(entry, "wear");
+            }
         }
     }
 }

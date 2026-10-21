@@ -25,6 +25,7 @@ namespace beyondnations.desktop.input {
         private HashSet<Key> heldLastFrame = new HashSet<Key>();
         private HashSet<Key> heldThisFrame = new HashSet<Key>();
         private Vector2 mouseDelta;
+        private Vector2 moveAxis;
 
         public InputService(IInputSource source) {
             this.source = source;
@@ -43,6 +44,8 @@ namespace beyondnations.desktop.input {
             }
 
             mouseDelta = source.GetMouseDelta();
+            moveAxis = source.GetMoveAxis();
+            source.EndFrame();
         }
 
         /**
@@ -62,11 +65,32 @@ namespace beyondnations.desktop.input {
         }
 
         /**
+        * True on a frame where any key goes down, for the title screen's
+        * "any key moves on". Equivalent to Unity's Input.anyKeyDown.
+        */
+        public bool wasAnyKeyPressedThisFrame() {
+            foreach (Key key in heldThisFrame) {
+                if (!heldLastFrame.Contains(key)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
         * Mouse movement since the previous update(), for camera look. Zero on
         * a frame with no mouse or no prior position to diff against.
         */
         public Vector2 getMouseDelta() {
             return mouseDelta;
+        }
+
+        /**
+        * The analog stick's position at the last update(): x right, y
+        * forward, each in [-1, 1]; zero without a stick (IInputSource).
+        */
+        public Vector2 getMoveAxis() {
+            return moveAxis;
         }
 
         private static Key[] BuildTrackedKeys() {

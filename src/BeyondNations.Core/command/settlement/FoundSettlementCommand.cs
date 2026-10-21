@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace beyondnations {
@@ -29,9 +30,22 @@ namespace beyondnations {
                 player.getStatus().update("You are not the leader of a nation.");
                 return;
             }
+            // the era limits how many settlements a nation the player leads may hold (EraRules)
+            if (!nation.canFoundSettlement()) {
+                player.getStatus().update("Your nation may hold only " + nation.getSettlementLimit()
+                    + (nation.getSettlementLimit() == 1 ? " settlement" : " settlements") + " in this era. Reach the next era to found more.");
+                return;
+            }
             // if not enough wood
             if (player.getInventory().getNumItems(ItemType.WOOD) < Settlement.WOOD_COST_TO_BUILD) {
                 player.getStatus().update("Not enough wood. Need " + (Settlement.WOOD_COST_TO_BUILD - player.getInventory().getNumItems(ItemType.WOOD)) + " more.");
+                return;
+            }
+
+            // never inside another nation's land
+            string objection = Territory.getFoundingObjection(entityRepository, nationRepository, player.getPosition(), nation.getId());
+            if (objection != null) {
+                player.getStatus().update(objection + " Found your settlement outside its borders.");
                 return;
             }
 
@@ -54,8 +68,19 @@ namespace beyondnations {
             Settlement settlement = new Settlement(player.getPosition(), player.getNationId(), nation.getColor(), nation.getName(), random);
             entityRepository.addEntity(settlement);
             nationRepository.getNation(player.getNationId()).addSettlement(settlement.getId());
-            player.getStatus().update("Settlement founded.");
             player.setHomeSettlementId(settlement.getId());
+            List<Nation> offended = Territory.recordFounding(settlement, entityRepository, nationRepository);
+            if (offended.Count == 0) {
+                player.getStatus().update("Settlement founded.");
+            }
+            else {
+                List<string> names = new List<string>();
+                foreach (Nation neighbour in offended) {
+                    names.Add(neighbour.getName());
+                }
+                player.getStatus().update("Settlement founded. " + string.Join(" and ", names) + " resent a new settlement so near their land.");
+            }
+            eventProducer.produceSettlementFoundedEvent(settlement, nation, player.getId());
         }
     }
 }

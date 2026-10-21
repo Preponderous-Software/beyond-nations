@@ -1,3 +1,4 @@
+using System.Text.Json;
 namespace beyondnations {
 
     /**
@@ -49,6 +50,22 @@ namespace beyondnations {
 
         public string getStatus() {
             return status;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("ticksToExpire", ticksToExpire);
+            writer.write("text", status);
+            writer.write("tickLastSet", tickLastSet);
+            writer.write("duplicateMessageCount", duplicateMessageCount);
+        }
+
+        internal void load(JsonElement element) {
+            ticksToExpire = SaveReader.getInt(element, "ticksToExpire");
+            status = SaveReader.getString(element, "text");
+            tickLastSet = SaveReader.getInt(element, "tickLastSet");
+            duplicateMessageCount = SaveReader.getInt(element, "duplicateMessageCount");
         }
     }
 }

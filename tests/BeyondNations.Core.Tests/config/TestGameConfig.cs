@@ -26,6 +26,18 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testTicksPerSecond_DefaultsToFiftyAndCanBeSet() {
+            GameConfig config = new GameConfig();
+            Assert.Equal(50, config.getTicksPerSecond());
+
+            config.setTicksPerSecond(20);
+            Assert.Equal(20, config.getTicksPerSecond());
+            Assert.Equal(20, new Simulation(config).getTickCounter().getTicksPerSecond());
+
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => config.setTicksPerSecond(0));
+        }
+
+        [Fact]
         public void testBeyondNationsDirectoryPathHasNoHardcodedWindowsPath() {
             // run
             GameConfig config = new GameConfig();

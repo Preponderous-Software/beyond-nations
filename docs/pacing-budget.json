@@ -1,0 +1,114 @@
+{
+  "format": "beyond-nations-pacing-budget/1",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "objectiveLimit": 14,
+  "maxTicks": 180000,
+  "objectives": [
+    {
+      "id": "gather-wood",
+      "title": "Gather wood",
+      "minSeconds": 0,
+      "maxSeconds": 120,
+      "note": "Teaches Interact; one or two trees."
+    },
+    {
+      "id": "eat",
+      "title": "Eat something",
+      "minSeconds": 30,
+      "maxSeconds": 180,
+      "note": "A hunger wait: the player eats once energy falls below 90, about a minute in."
+    },
+    {
+      "id": "join-nation",
+      "title": "Create or join a nation",
+      "minSeconds": 0,
+      "maxSeconds": 60,
+      "note": "One key press."
+    },
+    {
+      "id": "found-settlement",
+      "title": "Found a settlement",
+      "minSeconds": 0,
+      "maxSeconds": 180,
+      "note": "Fast when the wood was gathered while waiting to eat."
+    },
+    {
+      "id": "enter-settlement",
+      "title": "Enter your settlement",
+      "minSeconds": 0,
+      "maxSeconds": 60,
+      "note": "One key press beside it."
+    },
+    {
+      "id": "build-stall",
+      "title": "Build a market stall",
+      "minSeconds": 0,
+      "maxSeconds": 120
+    },
+    {
+      "id": "grow-nation",
+      "title": "Reach the Village era",
+      "minSeconds": 300,
+      "maxSeconds": 1800,
+      "note": "The Village era (EraRules): a village, 10 members, 2 stalls and day 3. Aimed at 10-20 minutes of play; measured 17 to 20 minutes from the start on seeds 1 to 15, the calendar setting the floor (settlers flock to a new nation, which was a village in two or three minutes before the day was required). Gating again now that a nation the player leads cannot be besieged before the Town era. Under 5 minutes would mean the era no longer waits for its day."
+    },
+    {
+      "id": "sell-resources",
+      "title": "Sell resources at market",
+      "minSeconds": 0,
+      "maxSeconds": 180,
+      "note": "Waits for a settler to buy a stall and earn coins to pay with."
+    },
+    {
+      "id": "second-settlement",
+      "title": "Found a second settlement",
+      "minSeconds": 0,
+      "maxSeconds": 120
+    },
+    {
+      "id": "ambition-0",
+      "title": "Grow your nation to 16",
+      "minSeconds": 5,
+      "maxSeconds": 2400,
+      "advisory": true,
+      "note": "Advisory: recruiting slows once every settler has a nation (docs/PACING.md)."
+    },
+    {
+      "id": "ambition-1",
+      "title": "Amass 1000 coins",
+      "minSeconds": 30,
+      "maxSeconds": 3900,
+      "advisory": true,
+      "note": "Advisory. Raised from 500 to 1,000 for the Village era: the arc's rewards and treasuries passed 500 before it came up."
+    },
+    {
+      "id": "ambition-2",
+      "title": "Hold 3 settlements",
+      "minSeconds": 0,
+      "maxSeconds": 300,
+      "advisory": true
+    },
+    {
+      "id": "ambition-3",
+      "title": "Reach the Town era",
+      "minSeconds": 0,
+      "maxSeconds": 5400,
+      "advisory": true,
+      "note": "The Town era: a town, 18 members, 2 settlements, 1,000 funds and day 7. Aimed at about an hour; see docs/PACING.md for the measured times. Often reached before the ambition comes up, so no minimum. Advisory: on some seeds recruiting stalls short of 18 members."
+    },
+    {
+      "id": "ambition-4",
+      "title": "Grow your nation to 25",
+      "minSeconds": 300,
+      "maxSeconds": 3600,
+      "advisory": true,
+      "note": "Advisory: the Kingdom era's members, which the bot is slow to recruit."
+    }
+  ]
+}

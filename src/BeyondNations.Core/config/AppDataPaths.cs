@@ -21,6 +21,9 @@ namespace beyondnations {
 
         private const string ApplicationFolderName = "BeyondNations";
         private const string ScreenshotsFolderName = "Screenshots";
+        private const string CrashReportsFolderName = "CrashReports";
+        private const string SavesFolderName = "Saves";
+        private const string ExportsFolderName = "Exports";
 
         /**
         * The directory BeyondNations stores its data under, e.g.
@@ -43,6 +46,31 @@ namespace beyondnations {
         */
         public static string getScreenshotsDirectory() {
             return System.IO.Path.Combine(getBaseDirectory(), ScreenshotsFolderName);
+        }
+
+        /**
+        * The directory a crash report is written to when the game stops on an
+        * error, beside the screenshots.
+        */
+        public static string getCrashReportsDirectory() {
+            return System.IO.Path.Combine(getBaseDirectory(), CrashReportsFolderName);
+        }
+
+        /**
+        * The directory saved worlds are kept in (docs/SAVES.md), beside the
+        * screenshots: "~/.local/share/BeyondNations/Saves" on Linux.
+        */
+        public static string getSavesDirectory() {
+            return System.IO.Path.Combine(getBaseDirectory(), SavesFolderName);
+        }
+
+        /**
+        * The directory a replay or a chronicle exported from the pause menu's
+        * Share screen is written to (docs/SHARING.md):
+        * "~/.local/share/BeyondNations/Exports" on Linux.
+        */
+        public static string getExportsDirectory() {
+            return System.IO.Path.Combine(getBaseDirectory(), ExportsFolderName);
         }
 
         /**

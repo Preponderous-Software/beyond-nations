@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Covers the parts of the browser build (src/BeyondNations.Web) that are
+    plain C#: the URL query to command line translation, the KeyboardEvent.code
+    table and the browser input source. BeyondNations.Web itself targets
+    browser-wasm and needs the wasm-tools workload, so these files are compiled
+    in from its source here, against the desktop project, and run with the
+    rest of the suite on any machine. The page itself is covered by the
+    headless Chromium smoke test (.github/workflows/browser.yml).
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>beyondnationstests.web</RootNamespace>
+    <AssemblyName>BeyondNations.Web.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/BeyondNations.Desktop/BeyondNations.Desktop.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="../../src/BeyondNations.Web/game/WebOptions.cs" Link="web/WebOptions.cs" />
+    <Compile Include="../../src/BeyondNations.Web/game/BrowserKeys.cs" Link="web/BrowserKeys.cs" />
+    <Compile Include="../../src/BeyondNations.Web/game/BrowserInputSource.cs" Link="web/BrowserInputSource.cs" />
+    <Compile Include="../../src/BeyondNations.Web/game/SaveStorageCodec.cs" Link="web/SaveStorageCodec.cs" />
+  </ItemGroup>
+
+</Project>

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -71,27 +72,25 @@ namespace beyondnations {
         }
 
         public Entity getNearestEntityOfType(Vector3 position, EntityType type) {
-            List<Entity> entities = entityRepository.getEntitiesOfType(type);
-            if (entities.Count == 0) {
-                return null;
-            }
-
-            // find nearest entity
+            // walks the repository in place rather than copying out a list per call
             Entity nearestEntity = null;
             float nearestDistance = float.MaxValue;
-            foreach (Entity entity in entities) {
+            int count = entityRepository.getEntityCount();
+            for (int i = 0; i < count; i++) {
+                Entity entity = entityRepository.getEntityAt(i);
+                if (entity.getType() != type) {
+                    continue;
+                }
                 if (entity.getType() == EntityType.PAWN) {
                     Pawn pawn = (Pawn) entity;
                     if (pawn.isCurrentlyInSettlement()) {
                         continue;
                     }
                 }
-                if (entity.getType() == type) {
-                    float distance = Vector3.Distance(position, entity.getPosition());
-                    if (distance < nearestDistance) {
-                        nearestDistance = distance;
-                        nearestEntity = entity;
-                    }
+                float distance = Vector3.DistanceSquared(position, entity.getPosition());
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestEntity = entity;
                 }
             }
             return nearestEntity;
@@ -111,6 +110,33 @@ namespace beyondnations {
             }
             int randomIndex = random.range(0, chunks.Count);
             return chunks[randomIndex];
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("id", id.getGuid());
+            writer.writeStream("random", random);
+            writer.beginArray("chunks");
+            foreach (Chunk chunk in chunks) {
+                writer.beginObject();
+                chunk.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            id = new EnvironmentId(SaveReader.getGuid(element, "id"));
+            random = reader.stream(SaveReader.property(element, "random"));
+            List<Chunk> loaded = new List<Chunk>();
+            foreach (JsonElement chunk in SaveReader.property(element, "chunks").EnumerateArray()) {
+                loaded.Add(Chunk.load(chunk, reader));
+            }
+            if (loaded.Count == 0) {
+                throw new SaveFormatException("a world with no land");
+            }
+            chunks = loaded;
         }
     }
 }

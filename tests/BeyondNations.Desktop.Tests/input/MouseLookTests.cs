@@ -11,10 +11,10 @@ namespace beyondnationstests.desktop.input {
             MouseLook mouseLook = new MouseLook(sensitivityDegreesPerPixel: 1f);
 
             mouseLook.apply(new Vector2(10f, 0f));
-            Assert.Equal(10f, mouseLook.getYawDegrees());
+            Assert.Equal(-10f, mouseLook.getYawDegrees());
 
             mouseLook.apply(new Vector2(5f, 0f));
-            Assert.Equal(15f, mouseLook.getYawDegrees());
+            Assert.Equal(-15f, mouseLook.getYawDegrees());
         }
 
         [Fact]

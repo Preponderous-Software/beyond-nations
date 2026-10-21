@@ -23,6 +23,8 @@ namespace beyondnations.desktop.input {
         public static readonly Key MoveRight = Key.D;
         public static readonly Key MoveRightAlt = Key.Right;
         public static readonly Key Interact = Key.E;
+        public static readonly Key GiftToPawn = Key.G;
+        public static readonly Key InviteToNation = Key.R;
         public static readonly Key Jump = Key.Space;
         public static readonly Key Sprint = Key.ShiftLeft;
         public static readonly Key CreateNewNation = Key.N;
@@ -32,12 +34,18 @@ namespace beyondnations.desktop.input {
         public static readonly Key PlantSapling = Key.P;
         public static readonly Key TeleportToHomeSettlement = Key.H;
         public static readonly Key BuildStall = Key.B;
+        public static readonly Key BuildBuilding = Key.K;
         public static readonly Key ToggleInventory = Key.I;
+        public static readonly Key ToggleNations = Key.O;
+        public static readonly Key ToggleCrafting = Key.C;
         public static readonly Key ToggleAutoWalk = Key.Insert;
         public static readonly Key ToggleCameraView = Key.V;
+        public static readonly Key ToggleChronicle = Key.Y;
         public static readonly Key IncreaseRenderDistance = Key.PageUp;
         public static readonly Key DecreaseRenderDistance = Key.PageDown;
         public static readonly Key Pause = Key.Escape;
+        // "?" on most layouts. F1 is already the debug toggle.
+        public static readonly Key ShowControls = Key.Slash;
         public static readonly Key ToggleDebugMode = Key.F1;
         public static readonly Key GenerateNearbyLand = Key.F2;
         public static readonly Key SpawnNewPawn = Key.F3;

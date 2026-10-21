@@ -116,5 +116,34 @@ namespace beyondnationstests {
             Assert.Equal(9, player.getInventory().getNumItems(ItemType.COIN));
             Assert.False(player.isCurrentlyInSettlement());
         }
+
+        // hasTargetInRange: what a tap on the world (touch screens) checks first
+
+        [Fact]
+        public void testHasTargetInRange_NothingNear_False() {
+            entityRepository.addEntity(new Rock(new Vector3(20, 0, 0)));
+            Assert.False(command.hasTargetInRange(player));
+        }
+
+        [Fact]
+        public void testHasTargetInRange_RockInReach_TrueAndChangesNothing() {
+            Rock rock = new Rock(new Vector3(2, 0, 0));
+            entityRepository.addEntity(rock);
+            Assert.True(command.hasTargetInRange(player));
+            Assert.False(rock.isMarkedForDeletion());
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.STONE));
+        }
+
+        [Fact]
+        public void testHasTargetInRange_DropInReach_True() {
+            addDrop(new Vector3(1, 0, 0), ItemType.WOOD, 2);
+            Assert.True(command.hasTargetInRange(player));
+        }
+
+        [Fact]
+        public void testHasTargetInRange_DropAlreadyTaken_False() {
+            addDrop(new Vector3(1, 0, 0), ItemType.WOOD, 2).markForDeletion();
+            Assert.False(command.hasTargetInRange(player));
+        }
     }
 }

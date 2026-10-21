@@ -16,7 +16,8 @@ namespace beyondnations.desktop.ui.screens {
     */
     public class InventoryScreen {
         public const string Title = "INVENTORY";
-        public const string CloseHint = "(Press I or ESCAPE to close)";
+        public const string CloseHint = "(Press I or ESCAPE to close, C to craft)";
+        public const string TouchCloseHint = "(Tap Close, top right, to go back)";
         public const string EmptyLine = "Your inventory is empty.";
 
         public static List<string> getLines(Inventory inventory) {
@@ -25,7 +26,12 @@ namespace beyondnations.desktop.ui.screens {
                 if (slot.isEmpty()) {
                     continue;
                 }
-                lines.Add(getItemName(slot.getItemStack().getItemType()) + ": " + slot.getQuantity());
+                ItemType itemType = slot.getItemStack().getItemType();
+                string line = getItemName(itemType) + ": " + slot.getQuantity();
+                if (Tools.isTool(itemType)) {
+                    line += " (" + Tools.getUsesLeft(inventory, itemType) + " uses left on the one in hand)";
+                }
+                lines.Add(line);
             }
             if (lines.Count == 0) {
                 lines.Add(EmptyLine);
@@ -37,15 +43,7 @@ namespace beyondnations.desktop.ui.screens {
         * The same labels the HUD box uses, so an item reads the same in both.
         */
         public static string getItemName(ItemType itemType) {
-            switch (itemType) {
-                case ItemType.COIN: return "Coins";
-                case ItemType.WOOD: return "Wood";
-                case ItemType.STONE: return "Stone";
-                case ItemType.APPLE: return "Apples";
-                case ItemType.SAPLING: return "Saplings";
-                case ItemType.CHICKEN_MEAT: return "Chicken Meat";
-                default: return itemType.ToString();
-            }
+            return ItemNames.getDisplayName(itemType);
         }
 
         public UiAction draw(float width, float height, Inventory inventory) {
@@ -53,16 +51,21 @@ namespace beyondnations.desktop.ui.screens {
             float y = height / 4f;
 
             Overlay.beginFullScreen("##inventory-screen", width, height);
+            // The list is drawn over the live world, and white text on bright
+            // terrain or sky was hard to read; dimming the world behind it makes
+            // the screen read as a panel.
+            Overlay.dimBackground(width, height);
             Overlay.textCentered(Title, height / 10f, y, width);
             y += lineHeight * 2f;
             foreach (string line in getLines(inventory)) {
                 Overlay.textCentered(line, height / 30f, y, width);
                 y += lineHeight;
             }
-            Overlay.textCentered(CloseHint, height / 30f, y + lineHeight, width);
+            Overlay.textCentered(TouchLayout.isActive() ? TouchCloseHint : CloseHint, height / 30f, y + lineHeight, width);
             Overlay.end();
 
-            return UiAction.None;
+            // a finger has no I or Escape (TouchLayout)
+            return Overlay.touchCloseButton("inventory", width) ? UiAction.ResumeWorld : UiAction.None;
         }
     }
 }

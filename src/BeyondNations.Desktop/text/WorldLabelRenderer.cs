@@ -47,10 +47,11 @@ namespace beyondnations.desktop.text {
 
         /**
         * How tall one line of a nametag is, in world units. A pawn is one unit
-        * across, so this is roughly the height of the thing the name belongs
-        * to.
+        * across. This was 1.15, a line as tall as the pawn, which made a name
+        * several pawns wide up close; a playtest called them huge. 0.6 still
+        * reads at the default render distance.
         */
-        private const float LineHeightInWorldUnits = 1.15f;
+        private const float LineHeightInWorldUnits = 0.6f;
 
         /**
         * How far above an entity's origin the bottom of its nametag sits.
@@ -228,7 +229,6 @@ namespace beyondnations.desktop.text {
 
             currentRight = right;
             currentUp = up;
-            currentWorldUnitsPerPixel = LineHeightInWorldUnits / font.LineHeight;
 
             for (int i = 0; i < labels.Count; i++) {
                 LabelItem label = labels[i];
@@ -242,8 +242,12 @@ namespace beyondnations.desktop.text {
                     continue;
                 }
 
+                currentWorldUnitsPerPixel = culling.getLineHeight(LineHeightInWorldUnits, label.position, view, projection) / font.LineHeight;
                 Vector2 measured = font.MeasureString(label.text);
                 currentPenOffset = LabelBillboard.getCenteringOffset(measured);
+                // a label may ask to be drawn larger (a settlement's name); 0 means normal size
+                float labelScale = label.scale > 0f ? label.scale : 1f;
+                currentWorldUnitsPerPixel = LineHeightInWorldUnits * labelScale / font.LineHeight;
                 currentAnchor = label.position + new Vector3(0f, HeightAboveEntity, 0f);
 
                 FSColor tint = new FSColor(color.X, color.Y, color.Z, color.W * alpha);

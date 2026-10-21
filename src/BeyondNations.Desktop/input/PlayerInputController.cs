@@ -1,4 +1,6 @@
+using System.Numerics;
 using beyondnations;
+using beyondnations.desktop.ui;
 
 namespace beyondnations.desktop.input {
 
@@ -18,11 +20,19 @@ namespace beyondnations.desktop.input {
     * with a status message until F1 has been pressed at least once.
     */
     public class PlayerInputController {
+        private const float DegreesToRadians = System.MathF.PI / 180f;
+
         private readonly MouseLook mouseLook = new MouseLook();
         private bool debugMode;
+        private readonly ChronicleView chronicleView = new ChronicleView();
 
         public MouseLook getMouseLook() {
             return mouseLook;
+        }
+
+        /** Which chronicle view the HUD shows; KeyBindings.ToggleChronicle cycles it. */
+        public ChronicleView getChronicleView() {
+            return chronicleView;
         }
 
         public bool isDebugMode() {
@@ -39,27 +49,45 @@ namespace beyondnations.desktop.input {
         }
 
         public void update(Simulation simulation, InputService inputService) {
-            mouseLook.apply(inputService.getMouseDelta());
-
             Player player = simulation.getPlayer();
+
+            // A right-button drag steers: sideways motion turns the player, so
+            // W walks wherever the drag points, and up/down tilts the camera.
+            // The camera stays behind the player rather than orbiting it.
+            Vector2 mouseDelta = inputService.getMouseDelta();
+            player.turn(-mouseDelta.X * MouseLook.DefaultSensitivityDegreesPerPixel * DegreesToRadians);
+            mouseLook.apply(new Vector2(0f, mouseDelta.Y));
+
             applyMovement(player, inputService);
             applyActions(simulation, player, inputService);
         }
 
         private void applyMovement(Player player, InputService inputService) {
+            // Unity's world is left-handed and this renderer's is right-handed,
+            // so a rising yaw now turns the view to the left. Left therefore
+            // raises yaw and right lowers it, the reverse of Unity's
+            // Input.GetAxis("Horizontal").
             float horizontal = 0f;
             float vertical = 0f;
             if (inputService.isHeld(KeyBindings.MoveLeft) || inputService.isHeld(KeyBindings.MoveLeftAlt)) {
-                horizontal -= 1f;
+                horizontal += 1f;
             }
             if (inputService.isHeld(KeyBindings.MoveRight) || inputService.isHeld(KeyBindings.MoveRightAlt)) {
-                horizontal += 1f;
+                horizontal -= 1f;
             }
             if (inputService.isHeld(KeyBindings.MoveForward) || inputService.isHeld(KeyBindings.MoveForwardAlt)) {
                 vertical += 1f;
             }
             if (inputService.isHeld(KeyBindings.MoveBackward) || inputService.isHeld(KeyBindings.MoveBackwardAlt)) {
                 vertical -= 1f;
+            }
+            // The browser's on-screen stick (touch screens) is used when no
+            // movement key is held: up walks, down backs off, and sideways
+            // turns, as A and D do, by as much as the stick is pushed.
+            Vector2 stick = inputService.getMoveAxis();
+            if (horizontal == 0f && vertical == 0f && stick != Vector2.Zero) {
+                horizontal = stick.X == 0f ? 0f : -System.Math.Clamp(stick.X, -1f, 1f);
+                vertical = System.Math.Clamp(stick.Y, -1f, 1f);
             }
             player.setMovementInput(horizontal, vertical);
             player.setSprinting(inputService.isHeld(KeyBindings.Sprint));
@@ -71,8 +99,27 @@ namespace beyondnations.desktop.input {
 
         private void applyActions(Simulation simulation, Player player, InputService inputService) {
             if (inputService.wasPressedThisFrame(KeyBindings.Interact)) {
-                new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom())
+                new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter())
                     .execute(player);
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.GiftToPawn)) {
+                Pawn pawn = PawnRelations.findPawnInRange(player, simulation.getEnvironment());
+                if (pawn == null) {
+                    player.getStatus().update("There is no one within reach to give a gift to.");
+                }
+                else {
+                    new GiftPawnCommand(simulation.getEventProducer()).execute(player, pawn);
+                }
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.InviteToNation)) {
+                Pawn pawn = PawnRelations.findPawnInRange(player, simulation.getEnvironment());
+                if (pawn == null) {
+                    player.getStatus().update("There is no one within reach to invite.");
+                }
+                else {
+                    new InvitePawnToNationCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository())
+                        .execute(player, pawn);
+                }
             }
             if (inputService.wasPressedThisFrame(KeyBindings.CreateNewNation)) {
                 new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
@@ -91,7 +138,7 @@ namespace beyondnations.desktop.input {
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.PlantSapling)) {
-                new PlantSaplingCommand(simulation.getEntityRepository(), simulation.getRandom())
+                new PlantSaplingCommand(simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter())
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.TeleportToHomeSettlement)) {
@@ -99,8 +146,15 @@ namespace beyondnations.desktop.input {
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.BuildStall)) {
-                new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository())
+                new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository(), simulation.getEventProducer())
                     .execute(player);
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.BuildBuilding)) {
+                new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository())
+                    .execute(player, null);
+            }
+            if (inputService.wasPressedThisFrame(KeyBindings.ToggleChronicle)) {
+                player.getStatus().update(ChronicleView.describe(chronicleView.cycle()));
             }
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleAutoWalk)) {
                 player.toggleAutoWalk();

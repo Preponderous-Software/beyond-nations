@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -73,6 +74,20 @@ namespace beyondnations {
 
         public int getNumberOfEntities() {
             return entityIds.Count;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.write("id", id.getGuid());
+            writer.write("color", color);
+            writer.writeIdList("entityIds", entityIds);
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            id = new LocationId(SaveReader.getGuid(element, "id"));
+            color = SaveReader.getRgba(element, "color");
+            entityIds = reader.getIdList(element, "entityIds");
         }
     }
 }

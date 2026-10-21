@@ -27,6 +27,8 @@ namespace beyondnationstests.desktop.input {
         [Fact]
         public void actionBindings_matchReadme() {
             Assert.Equal(Key.E, KeyBindings.Interact);
+            Assert.Equal(Key.G, KeyBindings.GiftToPawn);
+            Assert.Equal(Key.R, KeyBindings.InviteToNation);
             Assert.Equal(Key.Space, KeyBindings.Jump);
             Assert.Equal(Key.ShiftLeft, KeyBindings.Sprint);
             Assert.Equal(Key.N, KeyBindings.CreateNewNation);
@@ -36,9 +38,12 @@ namespace beyondnationstests.desktop.input {
             Assert.Equal(Key.P, KeyBindings.PlantSapling);
             Assert.Equal(Key.H, KeyBindings.TeleportToHomeSettlement);
             Assert.Equal(Key.B, KeyBindings.BuildStall);
+            Assert.Equal(Key.K, KeyBindings.BuildBuilding);
             Assert.Equal(Key.I, KeyBindings.ToggleInventory);
+            Assert.Equal(Key.C, KeyBindings.ToggleCrafting);
             Assert.Equal(Key.Insert, KeyBindings.ToggleAutoWalk);
             Assert.Equal(Key.V, KeyBindings.ToggleCameraView);
+            Assert.Equal(Key.Y, KeyBindings.ToggleChronicle);
             Assert.Equal(Key.PageUp, KeyBindings.IncreaseRenderDistance);
             Assert.Equal(Key.PageDown, KeyBindings.DecreaseRenderDistance);
             Assert.Equal(Key.Escape, KeyBindings.Pause);
@@ -63,12 +68,13 @@ namespace beyondnationstests.desktop.input {
             // to duplicate their primary.
             Key[] bindings = {
                 KeyBindings.MoveForward, KeyBindings.MoveBackward, KeyBindings.MoveLeft, KeyBindings.MoveRight,
-                KeyBindings.Interact, KeyBindings.Jump, KeyBindings.Sprint,
+                KeyBindings.Interact, KeyBindings.GiftToPawn, KeyBindings.InviteToNation,
+                KeyBindings.Jump, KeyBindings.Sprint,
                 KeyBindings.CreateNewNation, KeyBindings.JoinNation, KeyBindings.LeaveNation,
                 KeyBindings.FoundSettlement, KeyBindings.PlantSapling, KeyBindings.TeleportToHomeSettlement,
-                KeyBindings.BuildStall, KeyBindings.ToggleInventory, KeyBindings.ToggleAutoWalk,
-                KeyBindings.ToggleCameraView,
-                KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance, KeyBindings.Pause,
+                KeyBindings.BuildStall, KeyBindings.BuildBuilding, KeyBindings.ToggleInventory, KeyBindings.ToggleCrafting, KeyBindings.ToggleAutoWalk,
+                KeyBindings.ToggleCameraView, KeyBindings.ToggleChronicle,
+                KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance, KeyBindings.Pause, KeyBindings.ShowControls,
                 KeyBindings.ToggleDebugMode, KeyBindings.GenerateNearbyLand, KeyBindings.SpawnNewPawn,
                 KeyBindings.SpawnMoney, KeyBindings.SpawnWood, KeyBindings.TeleportAllToPlayer,
                 KeyBindings.TakeScreenshot

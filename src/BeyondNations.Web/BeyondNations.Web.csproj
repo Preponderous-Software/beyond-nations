@@ -1,0 +1,113 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+
+  <!--
+    Beyond Nations in the browser (.NET 8, browser-wasm).
+
+    The simulation is BeyondNations.Core, unchanged. Everything the desktop
+    host does that does not touch a window or OpenGL: the input layer, the
+    camera and culler, the primitive meshes, the label maths and every ImGui
+    screen, is compiled in from src/BeyondNations.Desktop as linked source,
+    so the browser runs the same code rather than a copy of it. What is
+    browser-specific lives here: the host loop (game/), Strata linked into
+    the page (strata/, native/strata.targets), the label pass, the ImGui
+    platform/renderer backend
+    (host/), and the page (wwwroot/).
+
+    Building it needs the wasm-tools workload:  dotnet workload install wasm-tools
+    It is deliberately NOT in BeyondNations.sln, so `dotnet build` and
+    `dotnet test` on the solution need nothing beyond the .NET SDK, as before.
+    See docs/WEB.md.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>beyondnations.web</RootNamespace>
+    <AssemblyName>BeyondNations.Web</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- No threads are used, so the page needs no cross-origin isolation. -->
+    <WasmEnableThreads>false</WasmEnableThreads>
+    <!-- Ahead-of-time compilation on publish. Measured on the same walk
+         through a seed-42 world (headless Chromium): the AOT build spends
+         2 to 4 ms of main-thread time a frame at the 95th percentile, the
+         interpreter 6 to 12 ms and climbing, for 3.4 MB downloaded instead
+         of 2.1 MB. Pass /p:RunAOTCompilation=false for the interpreter (a
+         faster build for iterating on the page). -->
+    <RunAOTCompilation Condition="'$(RunAOTCompilation)' == ''">true</RunAOTCompilation>
+    <!-- Stripping IL after AOT saves about 150 KB but leaves .NET 8's
+         runtime unable to start this app ("should not be reached" in
+         interp.c), so the IL stays. -->
+    <WasmStripILAfterAOT>false</WasmStripILAfterAOT>
+    <DebugType>none</DebugType>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>full</TrimMode>
+    <!-- .gz beside every _framework file; the page's loader fetches those and
+         inflates them with the browser's DecompressionStream, because the
+         arcade serves files as they are and does not compress. -->
+    <CompressionEnabled>true</CompressionEnabled>
+    <WasmEmitSymbolMap>false</WasmEmitSymbolMap>
+    <DebuggerSupport>false</DebuggerSupport>
+    <EventSourceSupport>false</EventSourceSupport>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <!-- Emscripten: WebGL is driven from JavaScript, not through emscripten's
+         GL layer, so nothing GL is linked. -->
+    <EmccInitialHeapSize>134217728</EmccInitialHeapSize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Same versions as the desktop host. ImGui.NET's managed bindings are
+         used as they are; the native half (cimgui) is compiled for wasm by
+         native/cimgui.targets and linked statically. -->
+    <PackageReference Include="ImGui.NET" Version="1.90.8.1" />
+    <PackageReference Include="FontStashSharp" Version="1.3.10" />
+    <!-- Only for the Key enum the shared input layer is written against;
+         no Silk.NET window, GL or native library is used in the browser. -->
+    <PackageReference Include="Silk.NET.Input.Common" Version="2.23.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../BeyondNations.Core/BeyondNations.Core.csproj" />
+  </ItemGroup>
+
+  <!-- Shared with the desktop host, compiled from its source (not copied). -->
+  <PropertyGroup>
+    <DesktopDir>../BeyondNations.Desktop/</DesktopDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(DesktopDir)GameOptions.cs" Link="shared/GameOptions.cs" />
+    <Compile Include="$(DesktopDir)input/IInputSource.cs" Link="shared/input/IInputSource.cs" />
+    <Compile Include="$(DesktopDir)input/InputService.cs" Link="shared/input/InputService.cs" />
+    <Compile Include="$(DesktopDir)input/KeyBindings.cs" Link="shared/input/KeyBindings.cs" />
+    <Compile Include="$(DesktopDir)input/KeyNames.cs" Link="shared/input/KeyNames.cs" />
+    <Compile Include="$(DesktopDir)input/MouseDeltaTracker.cs" Link="shared/input/MouseDeltaTracker.cs" />
+    <Compile Include="$(DesktopDir)input/MouseLook.cs" Link="shared/input/MouseLook.cs" />
+    <Compile Include="$(DesktopDir)input/PlayerInputController.cs" Link="shared/input/PlayerInputController.cs" />
+    <Compile Include="$(DesktopDir)input/PressLatch.cs" Link="shared/input/PressLatch.cs" />
+    <Compile Include="$(DesktopDir)render/CameraMode.cs" Link="shared/render/CameraMode.cs" />
+    <Compile Include="$(DesktopDir)render/IWorldRenderer.cs" Link="shared/render/IWorldRenderer.cs" />
+    <Compile Include="$(DesktopDir)render/NightLighting.cs" Link="shared/render/NightLighting.cs" />
+    <Compile Include="$(DesktopDir)render/PlayerCamera.cs" Link="shared/render/PlayerCamera.cs" />
+    <Compile Include="$(DesktopDir)render/RenderCuller.cs" Link="shared/render/RenderCuller.cs" />
+    <Compile Include="$(DesktopDir)render/RenderStatsRecorder.cs" Link="shared/render/RenderStatsRecorder.cs" />
+    <Compile Include="$(DesktopDir)render/ViewFrustum.cs" Link="shared/render/ViewFrustum.cs" />
+    <Compile Include="$(DesktopDir)text/LabelBillboard.cs" Link="shared/text/LabelBillboard.cs" />
+    <Compile Include="$(DesktopDir)text/LabelCulling.cs" Link="shared/text/LabelCulling.cs" />
+    <Compile Include="$(DesktopDir)text/LabelQuadBuffer.cs" Link="shared/text/LabelQuadBuffer.cs" />
+    <Compile Include="$(DesktopDir)ui/**/*.cs" Exclude="$(DesktopDir)ui/UiHost.cs" Link="shared/ui/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The nametag font, the same file the desktop build ships. -->
+    <EmbeddedResource Include="$(DesktopDir)assets/fonts/DejaVuSans.ttf" LogicalName="DejaVuSans.ttf" />
+    <Content Include="$(DesktopDir)assets/fonts/LICENSE-DejaVu.txt" Link="wwwroot/LICENSE-DejaVu.txt" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Import Project="native/cimgui.targets" />
+  <Import Project="native/strata.targets" />
+
+</Project>

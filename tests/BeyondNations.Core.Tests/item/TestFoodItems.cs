@@ -22,10 +22,10 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testAnAppleRestoresTheSameEnergyItAlwaysHas() {
-            // check: the value the player and the pawn energy step used before
-            // food became a table, pinned so a table edit cannot change it silently
-            Assert.Equal(10, FoodItems.getEnergyRestored(ItemType.APPLE));
+        public void testAnAppleRestoresFifteenEnergy() {
+            // check: pinned so a table edit cannot change it silently. Raised
+            // from 10 to 15 so a tree's apples are worth eating.
+            Assert.Equal(15, FoodItems.getEnergyRestored(ItemType.APPLE));
         }
 
         [Fact]

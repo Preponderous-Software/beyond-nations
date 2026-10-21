@@ -3,6 +3,7 @@ using System;
 namespace beyondnations {
 
     public enum LogLevel {
+        Debug,
         Info,
         Warning,
         Error
@@ -29,6 +30,15 @@ namespace beyondnations {
 
         public static void setSink(Action<LogLevel, string> newSink) {
             sink = newSink ?? delegate { };
+        }
+
+        /**
+        * Detail for whoever is debugging the simulation, such as one line per
+        * event produced. Hosts hide it unless asked, because a long session
+        * produces thousands of these.
+        */
+        public static void debug(object message) {
+            sink(LogLevel.Debug, describe(message));
         }
 
         public static void info(object message) {

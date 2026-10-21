@@ -9,6 +9,7 @@ using beyondnations.desktop.input;
 using beyondnations.desktop.render;
 using beyondnations.desktop.text;
 using beyondnations.desktop.ui;
+using beyondnations.desktop.ui.feel;
 
 namespace beyondnations.desktop {
 
@@ -21,9 +22,11 @@ namespace beyondnations.desktop {
     * accumulates real elapsed time and advances the simulation a whole number of
     * fixed steps, so the tick rate is stable and independent of frame rate.
     *
-    * Drawing is delegated to PrimitiveRenderer, which turns the world snapshot
-    * into a few instanced draw calls (#218), viewed through the camera and
-    * filtered by the culler that came with #219; the UI arrives with #221.
+    * Drawing is delegated to an IWorldRenderer (#274): NativeWorldRenderer,
+    * which hands the world snapshot to the Strata engine, viewed through the
+    * camera and filtered by the culler that came with #219; the UI arrives
+    * with #221. Strata is the only world renderer; Silk.NET still provides
+    * the window, the GL context, input and the ImGui backend.
     */
     public class Game : IDisposable {
         private readonly GameOptions options;
@@ -37,7 +40,18 @@ namespace beyondnations.desktop {
         private readonly PlayerInputController playerInputController = new PlayerInputController();
 
         private Simulation simulation;
+        // sound, effects and the first-five-minutes tips (ui/feel); presentation only
+        private FeelDirector feel;
         private readonly WorldSnapshot snapshot = new WorldSnapshot();
+
+        // Saving (docs/SAVES.md): slots under AppDataPaths, an autosave every
+        // couple of minutes of play, and a save whenever the player leaves the
+        // world. automatedExit marks a close that --exit-after-frames asked
+        // for, which is a test run and saves nothing on the way out.
+        private SaveSession saves;
+        // seeds, the run's replay and the history export (docs/SHARING.md)
+        private ShareSession share;
+        private bool automatedExit;
 
         // --- #222 world-space text ---
         private WorldLabelRenderer labels;
@@ -48,7 +62,7 @@ namespace beyondnations.desktop {
         // --- end #221 ---
 
         // --- #218 instanced renderer ---
-        private PrimitiveRenderer renderer;
+        private IWorldRenderer renderer;
         private RenderStatsRecorder renderStats;
         // --- end #218 ---
 
@@ -72,6 +86,7 @@ namespace beyondnations.desktop {
         // --screenshot-after-frames as well as from the F12 binding (#246).
         private bool screenshotAfterFramesDone;
         private string lastScreenshotPath;
+        private bool screenshotRequested;
 
         public Game(GameOptions options) {
             this.options = options;
@@ -79,6 +94,7 @@ namespace beyondnations.desktop {
             if (options.Seed != 0) {
                 gameConfig.setWorldSeed(options.Seed);
             }
+            gameConfig.setTicksPerSecond(options.TicksPerSecond);
             this.fixedTimeStep = 1.0 / options.TicksPerSecond;
         }
 
@@ -120,6 +136,11 @@ namespace beyondnations.desktop {
             windowOptions.Size = new Vector2D<int>(options.Width, options.Height);
             windowOptions.Title = "Beyond Nations";
             windowOptions.VSync = options.VSync;
+            // --- #274 ---
+            // Strata needs OpenGL 4.5 core.
+            windowOptions.API = new GraphicsAPI(
+                windowOptions.API.API, windowOptions.API.Profile, windowOptions.API.Flags, new APIVersion(4, 5));
+            // --- end #274 ---
 
             window = Window.Create(windowOptions);
             window.Load += onLoad;
@@ -146,7 +167,15 @@ namespace beyondnations.desktop {
             gl.ClearColor(0.45f, 0.65f, 0.90f, 1.0f);
 
             // --- #218 instanced renderer ---
-            renderer = new PrimitiveRenderer(gl);
+            // --- #274 ---
+            renderer = new NativeWorldRenderer(
+                // TryGetProcAddress: Strata's loader asks for every GL 4.5
+                // entry point and some drivers (Intel UHD 630 on Windows)
+                // lack ones it never calls, such as glGetnTexImage.
+                name => window.GLContext.TryGetProcAddress(name, out IntPtr address) ? address : IntPtr.Zero,
+                window.FramebufferSize.X, window.FramebufferSize.Y);
+            Log.info("world renderer: " + renderer.getName());
+            // --- end #274 ---
             if (options.RenderStats) {
                 renderStats = new RenderStatsRecorder();
             }
@@ -164,7 +193,20 @@ namespace beyondnations.desktop {
             // --- end #222 ---
 
             // --- #221 imgui user interface ---
-            ui = new UiHost(gl, window, input, screens, gameConfig);
+            // --- high-DPI ---
+            // The UI is drawn in framebuffer pixels, so on a monitor scaled
+            // to 150 % or 200 % it has to be drawn that much larger, or every
+            // label comes out tiny. --ui-scale overrides the detected value.
+            UiScale.set(UiScale.resolve(options.UiScale, detectContentScale(),
+                window.Size.X > 0 ? (float) window.FramebufferSize.X / window.Size.X : 1f));
+            Log.info("ui scale: " + UiScale.get());
+            // --- end high-DPI ---
+            saves = new SaveSession(new FileSaveStorage(AppDataPaths.getSavesDirectory()), GameVersion.Version, !options.NoSaves);
+            share = new ShareSession(new DesktopSharePlatform(input), GameVersion.Version, options.SeedText);
+            ui = new UiHost(gl, window, input, screens, gameConfig, saves, share);
+            feel = new FeelDirector(new NullSoundService(), new FileFeelSettingsStore(AppDataPaths.getBaseDirectory()), false);
+            feel.setDemo(options.StageFeel);
+            ui.setFeel(feel);
             playerInputController.setDebugMode(options.DebugMode);
             // --- end #221 ---
 
@@ -181,14 +223,36 @@ namespace beyondnations.desktop {
             // The Unity build opened on the title screen, and now that the
             // screens exist again so does this. The world is not built until a
             // screen asks for one, except when --start-screen names it directly --
-            // or names the inventory screen, which is drawn over a world (#181).
+            // or names the inventory or pause screen, each drawn over a world (#181).
             screens.goTo(options.StartScreen);
-            if (screens.isWorldVisible()) {
+            if (options.Continue) {
+                continueLatest();
+            } else if (screens.isWorldVisible()) {
                 createWorld();
             }
 
             clock.Start();
             Log.info("host ready: " + options.TicksPerSecond + " ticks per second");
+        }
+
+        /**
+        * The content scale of the primary monitor as GLFW reports it: 1.5 on
+        * a Windows display set to 150 %, the Xft.dpi ratio on X11. 1 when it
+        * cannot be read, which leaves the UI at its design size.
+        */
+        private static unsafe float detectContentScale() {
+            try {
+                Silk.NET.GLFW.Glfw glfw = Silk.NET.GLFW.GlfwProvider.GLFW.Value;
+                Silk.NET.GLFW.Monitor* monitor = glfw.GetPrimaryMonitor();
+                if (monitor == null) {
+                    return 1f;
+                }
+                glfw.GetMonitorContentScale(monitor, out float x, out float y);
+                return System.MathF.Max(x, y);
+            } catch (Exception exception) {
+                Log.warning("could not read the monitor's content scale: " + exception.Message);
+                return 1f;
+            }
         }
 
         // --- #221 imgui user interface ---
@@ -199,8 +263,42 @@ namespace beyondnations.desktop {
         * doing it.
         */
         private void createWorld() {
+            // The New World screen's seed (docs/SHARING.md); empty is a fresh
+            // world. --seed and --start-screen world arrive with it filled in.
+            gameConfig.setWorldSeed(share.getChosenSeed());
             simulation = new Simulation(gameConfig);
-            simulation.getPlayer().getStatus().update("Press " + KeyBindings.CreateNewNation + " to create a nation.");
+            // The objective tracker (top left) carries the step-by-step guidance
+            // now, so the opening line points at it rather than competing with it.
+            simulation.getPlayer().getStatus().update("Welcome! Your first objective is at the top left.");
+
+            // --- #280 ---
+            if (options.TimeOfDay >= 0f) {
+                simulation.getTimeOfDay().setStartFraction(options.TimeOfDay);
+            }
+            // --- end #280 ---
+            if (options.StartSeason.HasValue) {
+                simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+            }
+
+            if (options.StageSettlement) {
+                SettlementShowcase.stage(simulation);
+            }
+            if (options.StageDiplomacy) {
+                DiplomacyShowcase.stage(simulation);
+            }
+            if (options.StageSuccession) {
+                // starving: the first tick hands the rule to an heir
+                simulation.getPlayer().setEnergy(0.001f);
+            }
+            if (options.StageEvent) {
+                simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
+            }
+            if (options.StageTrade) {
+                TradeShowcase.stage(simulation);
+            }
+            if (options.StageVictory || options.StageDefeat) {
+                EndingShowcase.stage(simulation, options.StageVictory);
+            }
 
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {
@@ -209,6 +307,50 @@ namespace beyondnations.desktop {
             }
             culler.setEnabled(!options.NoCulling);
             // --- end #219 ---
+
+            saves.beginNewWorld(simulation, DateTime.UtcNow);
+            feel.beginWorld(simulation, true);
+            share.beginWorld(simulation);
+        }
+
+        /**
+        * Replaces the world with a saved one, or stays where it is with the
+        * reason on screen when the save cannot be loaded. Nothing is written.
+        */
+        private void loadWorld(string slot) {
+            Simulation loaded = saves.load(slot);
+            if (loaded == null) {
+                return;
+            }
+            simulation = loaded;
+            share.beginWorld(simulation);
+            accumulator = 0;
+            feel.beginWorld(simulation, false);
+            culler.setEnabled(!options.NoCulling);
+            screens.goTo(ScreenType.WORLD);
+        }
+
+        /** --continue: the latest save, or the main menu when there is none. */
+        private void continueLatest() {
+            SaveSlotInfo latest = saves.latest();
+            if (latest == null) {
+                Log.warning("--continue: there is no saved world to continue");
+                screens.goTo(ScreenType.MAIN_MENU);
+                return;
+            }
+            loadWorld(latest.Slot);
+            if (simulation == null) {
+                screens.goTo(ScreenType.MAIN_MENU);
+            }
+        }
+
+        /** Saves the world in play, saying so on the status line; the pause screen shows the detail. */
+        private void saveWorld() {
+            if (simulation == null) {
+                return;
+            }
+            bool saved = saves.save(simulation, false);
+            simulation.getPlayer().getStatus().update(saved ? "Game saved." : saves.getFeedback());
         }
         // --- end #221 ---
 
@@ -229,6 +371,11 @@ namespace beyondnations.desktop {
             if (!screens.shouldAdvanceSimulation() || simulation == null) {
                 return;
             }
+            // the world waits while a world event's choice sheet is up
+            if (simulation.getWorldEvents().isAwaitingPlayer()) {
+                accumulator = 0;
+                return;
+            }
 
             accumulator += deltaTime;
 
@@ -241,12 +388,22 @@ namespace beyondnations.desktop {
             }
 
             while (accumulator >= fixedTimeStep) {
-                simulation.getTickCounter().increment();
+                // fixedUpdate increments the tick counter itself; one fixed
+                // step is exactly one tick.
                 simulation.fixedUpdate((float) fixedTimeStep);
                 accumulator -= fixedTimeStep;
                 fixedStepsRun++;
+                saves.onFixedStep(simulation);
+                share.onFixedStep(simulation);
+                // the player died in a nation: the heir's screen, or the end of the line
+                if (RealmScreens.afterStep(simulation, screens)) {
+                    break;
+                }
             }
-
+            // a victory or a defeat stops the world for the end-of-run screen
+            if (simulation.getEraTracker().shouldShowOutcome()) {
+                screens.runEnded();
+            }
         }
 
         /**
@@ -266,6 +423,7 @@ namespace beyondnations.desktop {
             }
 
             if (options.ExitAfterFrames > 0 && framesRendered >= options.ExitAfterFrames) {
+                automatedExit = true;
                 window.Close();
             }
         }
@@ -294,14 +452,35 @@ namespace beyondnations.desktop {
                 }
             }
 
+            // ? opens and closes the controls screen. Read before the any-key
+            // check, so the press that leaves the title does not also open the
+            // controls over the main menu it lands on.
+            if (inputService.wasPressedThisFrame(KeyBindings.ShowControls)) {
+                screens.controlsPressed();
+            }
+
+            // Any key leaves the title screen. ScreenState.anyKeyPressed()
+            // had no caller after the move off Unity, so the game stayed on
+            // the title for good. Escape is read first and still quits from
+            // the title, as it did.
+            if (inputService.wasAnyKeyPressedThisFrame()) {
+                screens.anyKeyPressed();
+            }
+
             // --- #246 ---
             // Capture reads the framebuffer, so the screenshot key stays with
             // the host rather than moving into PlayerInputController along with
             // the rest of the bindings. It is read from the binding table and
             // edge-detected by InputService like every other key, and it sits
             // above the world check so a screenshot can be taken on any screen.
+            // The press only asks for a capture; onRender takes it once the
+            // frame is drawn and before the buffers are swapped. Reading here,
+            // at the start of the next frame, read the back buffer after a
+            // swap, whose contents OpenGL leaves undefined -- Mesa happens to
+            // keep them, but Windows drivers may hand back black or stale
+            // pixels.
             if (inputService.wasPressedThisFrame(KeyBindings.TakeScreenshot)) {
-                captureScreenshotAndReport();
+                screenshotRequested = true;
             }
             // --- end #246 ---
 
@@ -313,7 +492,15 @@ namespace beyondnations.desktop {
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleInventory)) {
                 screens.inventoryPressed();
             }
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleNations)) {
+                screens.nationsPressed();
+            }
             // --- end #181 ---
+
+            // C opens and closes the crafting screen (#47) the same way.
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
+                screens.craftingPressed();
+            }
 
             if (simulation == null || !screens.isWorldActive()) {
                 return;
@@ -364,6 +551,7 @@ namespace beyondnations.desktop {
             renderStats?.beginFrame();
 
             gl.Clear((uint) (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit));
+            feel?.frame(simulation, screens.getCurrent(), deltaTime);
 
             // The inventory screen (#181) is drawn over the world, so the world
             // is drawn whenever it is visible, not only while it is active.
@@ -383,10 +571,13 @@ namespace beyondnations.desktop {
                 // the host names what its camera is attached to and the
                 // simulation omits it for this frame only.
                 // --- end #173 ---
+                // seasons and regions recolour the ground and the leaves (WorldPalette)
+                snapshot.setPalette(simulation.getWorldPalette());
                 snapshot.capture(
                     simulation.getEntityRepository(),
                     simulation.getEnvironment(),
                     camera.getMode() == CameraMode.FirstPerson ? player.getId() : null);
+                feel.decorate(snapshot);
 
                 // --- #219 camera and culling ---
                 // The camera trails the player exactly as the parented Unity
@@ -396,8 +587,15 @@ namespace beyondnations.desktop {
                 // is touched.
                 MouseLook mouseLook = playerInputController.getMouseLook();
                 camera.setRenderDistance(player.getRenderDistance());
-                camera.follow(player.getPosition(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                camera.follow(player.getPosition() + feel.getCameraShake(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                feel.setView(camera.getViewMatrix(), camera.getProjectionMatrix());
                 culler.beginFrame(camera);
+                // --- #280 ---
+                if (renderer is NativeWorldRenderer native) {
+                    native.setTimeOfDay(simulation.getTimeOfDay().getFraction());
+                    native.setPlayerPosition(player.getPosition());
+                }
+                // --- end #280 ---
                 renderer.render(snapshot, camera.getViewMatrix(), camera.getProjectionMatrix(), culler);
                 reportRenderDistance(player.getRenderDistance());
                 // --- end #219 ---
@@ -410,16 +608,38 @@ namespace beyondnations.desktop {
             // --- #221 imgui user interface ---
             // Drawn last, so it sits over the world rather than under it.
             ui?.render(deltaTime, window.FramebufferSize.X, window.FramebufferSize.Y, simulation,
-                      playerInputController.isDebugMode());
+                      playerInputController.isDebugMode(), playerInputController.getChronicleView());
             if (ui != null) {
                 if (ui.consumeStartRequest()) {
                     createWorld();
+                }
+                if (ui.consumeNewWorldRequest()) {
+                    // the ended world keeps its save; Begin on the New World screen builds the next
+                    saveWorld();
+                }
+                string slotToLoad = ui.consumeLoadRequest();
+                if (slotToLoad != null) {
+                    loadWorld(slotToLoad);
+                }
+                if (ui.consumeSaveRequest()) {
+                    saveWorld();
+                }
+                if (ui.consumeLeaveRequest()) {
+                    saveWorld();
+                    saves.refresh();
                 }
                 if (ui.isQuitRequested()) {
                     window.Close();
                 }
             }
             // --- end #221 ---
+
+            // F12 (#246): the frame is complete, world and UI, and not yet
+            // swapped, so the back buffer holds exactly what is on screen.
+            if (screenshotRequested) {
+                screenshotRequested = false;
+                captureScreenshotAndReport();
+            }
 
             framesRendered++;
             // --- #219 camera and culling ---
@@ -485,11 +705,18 @@ namespace beyondnations.desktop {
             int height = Math.Max(1, size.Y);
             gl.Viewport(0, 0, (uint) width, (uint) height);
             camera.setAspectRatio(width, height);
+            renderer?.setViewportSize(width, height); // #274
             Log.info("framebuffer resized to " + size.X + "x" + size.Y + ", viewport set to " + width + "x" + height);
         }
 
         private void onClosing() {
             clock.Stop();
+
+            // Quit, Escape on the menu or the window's close button: the
+            // world in play is saved on the way out.
+            if (simulation != null && saves != null && !automatedExit) {
+                saves.save(simulation, false);
+            }
             double seconds = clock.Elapsed.TotalSeconds;
             Log.info(string.Format(
                 "shutting down after {0} frames and {1} fixed steps in {2:F2}s ({3:F1} fps, {4:F1} tps)",
@@ -531,7 +758,7 @@ namespace beyondnations.desktop {
             return snapshot;
         }
 
-        public PrimitiveRenderer getRenderer() {
+        public IWorldRenderer getRenderer() {
             return renderer;
         }
 

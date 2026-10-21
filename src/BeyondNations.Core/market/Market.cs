@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Collections.Generic;
 using Enum = System.Enum;
 
@@ -10,6 +11,7 @@ namespace beyondnations {
         
         private int totalNumItemsBought = 0;
         private int totalNumItemsSold = 0;
+        private MarketPrices prices = new MarketPrices();
 
         public Market(int maxNumStalls, RandomSource random) {
             this.random = random;
@@ -82,12 +84,55 @@ namespace beyondnations {
             return maxNumStalls;
         }
 
+        /**
+        * Room for more stalls, which is what a storehouse buys a settlement.
+        */
+        public void increaseMaxNumStalls(int amount) {
+            maxNumStalls += amount;
+        }
+
         public int getTotalNumItemsBought() {
             return totalNumItemsBought;
         }
 
         public int getTotalNumItemsSold() {
             return totalNumItemsSold;
+        }
+
+        /** How this market's prices lean, item by item (MarketPricing drifts them). */
+        public MarketPrices getPrices() {
+            return prices;
+        }
+
+        /** What one of these costs to buy here right now. */
+        public int getBuyPrice(ItemType itemType) {
+            return ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+        }
+
+        /**
+        * What a stall here pays for one of these right now: the price once the
+        * sold unit is on the stall, which is the next unit's buying price.
+        * Buying one and selling it straight back therefore comes out even at
+        * best -- selling at the price the unit was bought at, when the stall
+        * had one fewer, would pay more than it cost, and a player could walk
+        * a merchant's coins out of the stall a unit at a time.
+        */
+        public int getSellPrice(ItemType itemType) {
+            return ItemCostCalculator.calculateCostAtSupply(itemType, this, getQuantityAvailable(itemType) + 1);
+        }
+
+        /**
+        * What buying quantity of these costs in all: each unit at the price
+        * it costs once the ones before it have left the stalls, so buying
+        * ten at once costs what buying them one at a time would.
+        */
+        public int getBuyCost(ItemType itemType, int quantity) {
+            int supply = getQuantityAvailable(itemType);
+            long total = 0;
+            for (int i = 0; i < quantity; i++) {
+                total += ItemCostCalculator.calculateCostAtSupply(itemType, this, supply - i);
+            }
+            return total > int.MaxValue ? int.MaxValue : (int) total;
         }
 
         /**
@@ -148,8 +193,11 @@ namespace beyondnations {
         * @return the id of the stall owner, or null if purchase failed
         */
         public EntityId buyItem(Entity entity, ItemType itemType, int quantity) {
-            int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
-            List<Stall> stallsToBuyFrom = findStallsToBuyFrom(entity, itemType, quantity, cost);
+            if (quantity <= 0) {
+                return null;
+            }
+            int totalCost = getBuyCost(itemType, quantity);
+            List<Stall> stallsToBuyFrom = findStallsToBuyFrom(entity, itemType, quantity, totalCost);
             if (stallsToBuyFrom.Count == 0) {
                 return null;
             }
@@ -158,8 +206,8 @@ namespace beyondnations {
             Stall stallToBuyFrom = stallsToBuyFrom[randomStallIndex];
 
             // transfer coins
-            entity.getInventory().removeItem(ItemType.COIN, cost * quantity);
-            stallToBuyFrom.getInventory().addItem(ItemType.COIN, cost * quantity);
+            entity.getInventory().removeItem(ItemType.COIN, totalCost);
+            stallToBuyFrom.getInventory().addItem(ItemType.COIN, totalCost);
 
             // transfer items
             entity.getInventory().addItem(itemType, quantity);
@@ -167,11 +215,11 @@ namespace beyondnations {
 
             totalNumItemsBought += quantity;
 
-            Log.info("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + cost * quantity + " coins");
+            Log.debug("Entity " + entity.getName() + " bought " + quantity + " " + itemType + " at the market for " + totalCost + " coins");
             return stallToBuyFrom.getOwnerId();
         }
 
-        private List<Stall> findStallsToBuyFrom(Entity entity, ItemType itemType, int quantity, int cost) {
+        private List<Stall> findStallsToBuyFrom(Entity entity, ItemType itemType, int quantity, int totalCost) {
             List<Stall> stallsToBuyFrom = new List<Stall>();
             foreach(Stall stall in stalls) {
                 if (stall.getOwnerId() == null) {
@@ -186,7 +234,7 @@ namespace beyondnations {
                 if (stall.getInventory().getNumItems(itemType) < quantity) {
                     continue;
                 }
-                if (entity.getInventory().getNumItems(ItemType.COIN) < cost * quantity) {
+                if (entity.getInventory().getNumItems(ItemType.COIN) < totalCost) {
                     continue;
                 }
                 stallsToBuyFrom.Add(stall);
@@ -198,6 +246,18 @@ namespace beyondnations {
         * @return the id of the stall owner, or null if purchase failed
         */
         public EntityId sellResources(Entity entity) {
+            return sellResources(entity, 0);
+        }
+
+        /**
+        * Sells one of each good the entity carries to a stall that can pay.
+        * priceBonusPercent raises the price the seller asks (a greedy pawn
+        * drives a harder bargain); a stall that cannot pay the higher price is
+        * not sold to.
+        *
+        * @return the id of the stall owner, or null if nothing was sold
+        */
+        public EntityId sellResources(Entity entity, int priceBonusPercent) {
             List<Stall> stallsToSellTo = new List<Stall>();
             foreach(Stall stall in stalls) {
                 if (stall.getOwnerId() == null) {
@@ -211,11 +271,11 @@ namespace beyondnations {
                         continue;
                     }
 
-                    if (itemType == ItemType.COIN) {
+                    if (!isSoldInBulk(itemType)) {
                         continue;
                     }
 
-                    int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+                    int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
 
                     if (stall.getInventory().getNumItems(ItemType.COIN) < cost) {
                         continue;
@@ -236,11 +296,11 @@ namespace beyondnations {
                     continue;
                 }
 
-                if (itemType == ItemType.COIN) {
+                if (!isSoldInBulk(itemType)) {
                     continue;
                 }
 
-                int cost = ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+                int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
 
                 if (stallToSellTo.getInventory().getNumItems(ItemType.COIN) < cost) {
                     continue;
@@ -256,9 +316,42 @@ namespace beyondnations {
 
                 totalNumItemsSold++;
 
-                Log.info("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
+                Log.debug("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
             }
             return stallToSellTo.getOwnerId();
+        }
+
+        /**
+        * Whether selling resources hands this item over. Coin is the payment,
+        * and tools are kept: a press of Sell Resources used to empty the
+        * whole bag, which would have sold the player's axe with the wood.
+        */
+        public static bool isSoldInBulk(ItemType itemType) {
+            return itemType != ItemType.COIN && !Tools.isTool(itemType);
+        }
+
+        /**
+        * The cheapest price one of these sells for here right now, or -1 when
+        * no stall (other than the buyer's own) has one.
+        */
+        public int getPriceToBuy(Entity buyer, ItemType itemType) {
+            foreach (Stall stall in stalls) {
+                if (stall.getOwnerId() == null || stall.getOwnerId() == buyer.getId()) {
+                    continue;
+                }
+                if (stall.getInventory().getNumItems(itemType) > 0) {
+                    return ItemCostCalculator.calculateCostBasedOnSupply(itemType, this);
+                }
+            }
+            return -1;
+        }
+
+        /** A price raised by a percentage, by at least one coin when raised at all. */
+        public static int askingPrice(int cost, int priceBonusPercent) {
+            if (priceBonusPercent <= 0) {
+                return cost;
+            }
+            return cost + System.Math.Max(1, cost * priceBonusPercent / 100);
         }
 
         public int getQuantityAvailable(ItemType itemType) {
@@ -277,6 +370,40 @@ namespace beyondnations {
 
         public int getTotalCoins() {
             return getQuantityAvailable(ItemType.COIN);
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal void save(SaveWriter writer) {
+            writer.writeStream("random", random);
+            writer.write("maxNumStalls", maxNumStalls);
+            writer.write("totalNumItemsBought", totalNumItemsBought);
+            writer.write("totalNumItemsSold", totalNumItemsSold);
+            writer.beginArray("stalls");
+            foreach (Stall stall in stalls) {
+                writer.beginObject();
+                stall.save(writer);
+                writer.endObject();
+            }
+            writer.endArray();
+            writer.beginObject("prices");
+            prices.save(writer);
+            writer.endObject();
+        }
+
+        internal void load(JsonElement element, SaveReader reader) {
+            random = reader.stream(SaveReader.property(element, "random"));
+            maxNumStalls = SaveReader.getInt(element, "maxNumStalls");
+            totalNumItemsBought = SaveReader.getInt(element, "totalNumItemsBought");
+            totalNumItemsSold = SaveReader.getInt(element, "totalNumItemsSold");
+            stalls = new List<Stall>();
+            foreach (JsonElement stall in SaveReader.property(element, "stalls").EnumerateArray()) {
+                Stall loaded = new Stall();
+                loaded.load(stall, reader);
+                stalls.Add(loaded);
+            }
+            prices = new MarketPrices();
+            prices.load(SaveReader.property(element, "prices"));
         }
     }
 }

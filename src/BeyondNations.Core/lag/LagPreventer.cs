@@ -40,17 +40,19 @@ namespace beyondnations {
                 entityTypesToNotDelete.Add(EntityType.PLAYER);
                 entityTypesToNotDelete.Add(EntityType.PAWN);
                 entityTypesToNotDelete.Add(EntityType.SETTLEMENT);
+                // a caravan carries goods and coin that would vanish with it
+                entityTypesToNotDelete.Add(EntityType.CARAVAN);
 
                 // delete # of entities over max
                 int numEntitiesToDelete = numEntities - maxNumEntities;
                 for (int i = 0; i < numEntitiesToDelete; i++) {
                     Entity entityToDelete = entityRepository.getRandomEntity();
                     if (entityTypesToNotDelete.Contains(entityToDelete.getType())) {
-                        Log.info("Skipping deletion of entity type: " + entityToDelete.getType());
+                        Log.debug("Skipping deletion of entity type: " + entityToDelete.getType());
                         continue;
                     }
                     entityToDelete.markForDeletion();
-                    Log.info("Marked entity for deletion: " + entityToDelete.getId() + " " + entityToDelete.getType());
+                    Log.debug("Marked entity for deletion: " + entityToDelete.getId() + " " + entityToDelete.getType());
                 }
             }
         }
@@ -67,7 +69,7 @@ namespace beyondnations {
                 for (int i = 0; i < numChunksToDelete; i++) {
                     Chunk chunkToDelete = environment.getRandomChunk();
                     environment.removeChunk(chunkToDelete);
-                    Log.info("Deleted chunk: " + chunkToDelete.getPosition());
+                    Log.debug("Deleted chunk: " + chunkToDelete.getPosition());
                 }
             }
         }

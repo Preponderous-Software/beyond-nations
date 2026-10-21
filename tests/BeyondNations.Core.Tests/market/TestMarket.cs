@@ -100,12 +100,12 @@ namespace beyondnationstests {
             // verify
             Assert.NotNull(stallOwnerId);
             Assert.Equal(1, buyer.getInventory().getNumItems(ItemType.CHICKEN_MEAT));
-            Assert.Equal(100 - ItemCostCalculator.getBaseCost(ItemType.CHICKEN_MEAT), buyer.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(100 - ItemCostCalculator.calculateCost(ItemCostCalculator.getBaseCost(ItemType.CHICKEN_MEAT), 1), buyer.getInventory().getNumItems(ItemType.COIN));
         }
 
         [Fact]
         public void testPurchaseFood_BothStocked_BuysMostEnergyPerCoin() {
-            // prepare: one of each, so meat costs 50 for 25 energy and an apple 40 for 10
+            // prepare: one of each, so meat costs 45 for 25 energy and an apple 36 for 15
             Market market = createMarketWithStall(1, 1);
             Pawn buyer = createBuyer(100);
 
@@ -133,9 +133,10 @@ namespace beyondnationstests {
 
         [Fact]
         public void testPurchaseFood_PreferredFoodUnaffordable_FallsBackToTheOther() {
-            // prepare: meat is preferred at these prices but costs 50; the buyer has 45
+            // prepare: one of each on offer, so meat costs 45 and an apple 36;
+            // meat is preferred at these prices but the buyer has only 44
             Market market = createMarketWithStall(1, 1);
-            Pawn buyer = createBuyer(45);
+            Pawn buyer = createBuyer(44);
 
             // execute
             EntityId stallOwnerId = market.purchaseFood(buyer);
@@ -143,7 +144,7 @@ namespace beyondnationstests {
             // verify
             Assert.NotNull(stallOwnerId);
             Assert.Equal(1, buyer.getInventory().getNumItems(ItemType.APPLE));
-            Assert.Equal(5, buyer.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(8, buyer.getInventory().getNumItems(ItemType.COIN));
         }
 
         [Fact]
@@ -151,9 +152,9 @@ namespace beyondnationstests {
             // prepare
             Market market = createMarketWithStall(1, 0);
 
-            // run / check: an apple costs 40, so 39 coins cannot buy one
-            Assert.False(market.canPurchaseFood(createBuyer(39)));
-            Assert.True(market.canPurchaseFood(createBuyer(40)));
+            // run / check: with one on offer an apple costs 40 * 10 / 11 = 36
+            Assert.False(market.canPurchaseFood(createBuyer(35)));
+            Assert.True(market.canPurchaseFood(createBuyer(36)));
         }
 
         [Fact]

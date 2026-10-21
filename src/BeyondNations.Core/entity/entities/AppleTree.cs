@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Numerics;
 
 namespace beyondnations {
@@ -17,13 +18,25 @@ namespace beyondnations {
                 .addPart(PrimitiveKind.Cylinder, Vector3.Zero, new Vector3(1, height, 1), TrunkBrown)
                 .addPart(PrimitiveKind.Cube, new Vector3(0, height - 1, 0), new Vector3(3, 3, 3), Rgba.Green));
 
-            getInventory().addItem(ItemType.WOOD, random.range(3, 6));
-            getInventory().addItem(ItemType.APPLE, random.range(0, 3));
+            // 4-6 wood and 1-3 apples: about ten trees found a settlement and
+            // every tree feeds you a little.
+            getInventory().addItem(ItemType.WOOD, random.range(4, 7));
+            getInventory().addItem(ItemType.APPLE, random.range(1, 4));
             getInventory().addItem(ItemType.SAPLING, random.range(0, 3));
         }
 
         public int getHeight() {
             return height;
+        }
+
+        // --- saving (docs/SAVES.md) ---
+
+        internal override void saveState(SaveWriter writer) {
+            writer.write("height", height);
+        }
+
+        internal override void loadState(JsonElement element, SaveReader reader) {
+            height = SaveReader.getInt(element, "height");
         }
     }
 }

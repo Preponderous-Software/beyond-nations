@@ -54,4 +54,64 @@
     <ProjectReference Include="../BeyondNations.Core/BeyondNations.Core.csproj" />
   </ItemGroup>
 
+  <!--
+    Strata, the shared native engine (#274). One native library per platform,
+    taken from a pinned Strata release and checked against its SHA-256, then
+    shipped under runtimes/<rid>/native/ beside cimgui and glfw. BN's build
+    never compiles C++.
+
+    To test against a local Strata build instead, pass
+    /p:StrataNativeDir=/path/to/strata/build (the directory that holds
+    libstrata.so or strata.dll); nothing is downloaded then.
+
+    A download that fails (no network) is a warning, not an error: the game
+    still builds and runs with the default renderer, and only
+    the native renderer option, and the tests that load the library, need it.
+  -->
+  <PropertyGroup>
+    <StrataVersion>0.2.0</StrataVersion>
+    <StrataReleaseUrl>https://github.com/Preponderous-Software/strata/releases/download/v$(StrataVersion)</StrataReleaseUrl>
+    <StrataLinuxSha256>95126e3f7b69696ddf58d6df780a98d9255a1a2c1de33a8e108b031edf14a20c</StrataLinuxSha256>
+    <StrataWindowsSha256>e4e661dabf2b1718943ad6595dd61ee9c71d8df31a87ac04db3b62df6c45a6ac</StrataWindowsSha256>
+    <StrataCacheDir>$(BaseIntermediateOutputPath)strata/$(StrataVersion)/</StrataCacheDir>
+  </PropertyGroup>
+
+  <Target Name="IncludeStrataNative" BeforeTargets="AssignTargetPaths">
+    <PropertyGroup>
+      <_StrataLinux>$(StrataCacheDir)linux-x64/libstrata.so</_StrataLinux>
+      <_StrataWindows>$(StrataCacheDir)win-x64/strata.dll</_StrataWindows>
+    </PropertyGroup>
+
+    <DownloadFile Condition="'$(StrataNativeDir)' == '' And !Exists('$(_StrataLinux)')"
+                  SourceUrl="$(StrataReleaseUrl)/libstrata-$(StrataVersion)-linux-x64.so"
+                  DestinationFolder="$(StrataCacheDir)linux-x64" DestinationFileName="libstrata.so"
+                  ContinueOnError="WarnAndContinue" />
+    <DownloadFile Condition="'$(StrataNativeDir)' == '' And !Exists('$(_StrataWindows)')"
+                  SourceUrl="$(StrataReleaseUrl)/strata-$(StrataVersion)-win-x64.dll"
+                  DestinationFolder="$(StrataCacheDir)win-x64" DestinationFileName="strata.dll"
+                  ContinueOnError="WarnAndContinue" />
+
+    <GetFileHash Condition="'$(StrataNativeDir)' == '' And Exists('$(_StrataLinux)')" Files="$(_StrataLinux)" Algorithm="SHA256">
+      <Output TaskParameter="Hash" PropertyName="_StrataLinuxHash" />
+    </GetFileHash>
+    <GetFileHash Condition="'$(StrataNativeDir)' == '' And Exists('$(_StrataWindows)')" Files="$(_StrataWindows)" Algorithm="SHA256">
+      <Output TaskParameter="Hash" PropertyName="_StrataWindowsHash" />
+    </GetFileHash>
+    <Delete Condition="'$(_StrataLinuxHash)' != '' And '$(_StrataLinuxHash)' != '$(StrataLinuxSha256)'" Files="$(_StrataLinux)" />
+    <Error Condition="'$(_StrataLinuxHash)' != '' And '$(_StrataLinuxHash)' != '$(StrataLinuxSha256)'"
+           Text="libstrata.so for Strata $(StrataVersion) has SHA-256 $(_StrataLinuxHash), expected $(StrataLinuxSha256). The download was deleted." />
+    <Delete Condition="'$(_StrataWindowsHash)' != '' And '$(_StrataWindowsHash)' != '$(StrataWindowsSha256)'" Files="$(_StrataWindows)" />
+    <Error Condition="'$(_StrataWindowsHash)' != '' And '$(_StrataWindowsHash)' != '$(StrataWindowsSha256)'"
+           Text="strata.dll for Strata $(StrataVersion) has SHA-256 $(_StrataWindowsHash), expected $(StrataWindowsSha256). The download was deleted." />
+
+    <ItemGroup Condition="'$(StrataNativeDir)' == ''">
+      <None Include="$(_StrataLinux)" Condition="Exists('$(_StrataLinux)')" Link="runtimes/linux-x64/native/libstrata.so" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+      <None Include="$(_StrataWindows)" Condition="Exists('$(_StrataWindows)')" Link="runtimes/win-x64/native/strata.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(StrataNativeDir)' != ''">
+      <None Include="$(StrataNativeDir)/libstrata.so" Condition="Exists('$(StrataNativeDir)/libstrata.so')" Link="runtimes/linux-x64/native/libstrata.so" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+      <None Include="$(StrataNativeDir)/strata.dll" Condition="Exists('$(StrataNativeDir)/strata.dll')" Link="runtimes/win-x64/native/strata.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+  </Target>
+
 </Project>

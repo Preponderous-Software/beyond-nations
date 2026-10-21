@@ -4,10 +4,14 @@ namespace beyondnations {
     public class BuildStallCommand {
         private NationRepository nationRepository;
         private EntityRepository entityRepository;
+        private EventProducer eventProducer;
 
-        public BuildStallCommand(NationRepository nationRepository, EntityRepository entityRepository) {
+        // eventProducer is optional so that existing callers keep compiling;
+        // without one the stall is built but the chronicle never hears of it.
+        public BuildStallCommand(NationRepository nationRepository, EntityRepository entityRepository, EventProducer eventProducer = null) {
             this.nationRepository = nationRepository;
             this.entityRepository = entityRepository;
+            this.eventProducer = eventProducer;
         }
 
         public void execute(Player player) {
@@ -44,9 +48,15 @@ namespace beyondnations {
                 return;
             }
 
+            if (player.getInventory().getNumItems(ItemType.STONE) < Stall.STONE_COST_TO_BUILD) {
+                player.getStatus().update("Not enough stone. Need " + (Stall.STONE_COST_TO_BUILD - player.getInventory().getNumItems(ItemType.STONE)) + " more.");
+                return;
+            }
+
             currentSettlement.getMarket().createStall();
-            player.getInventory().removeItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            Stall.payBuildCost(player.getInventory());
             player.getStatus().update("Stall built.");
+            eventProducer?.produceStallBuiltEvent(currentSettlement, nation, player.getId());
         }
     }
 }

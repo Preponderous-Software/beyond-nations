@@ -40,6 +40,24 @@ jobs:
       - name: Test
         run: dotnet test BeyondNations.sln --configuration Release --no-build --verbosity normal
 
+      # A scripted player plays every seed in docs/pacing-budget.json and the
+      # step fails if an objective finishes faster than its minimum, slower
+      # than its maximum, or never (docs/PACING.md).
+      - name: Pacing budget
+        run: |
+          status=0
+          dotnet tools/BeyondNations.Pacing/bin/Release/net8.0/BeyondNations.Pacing.dll --check --out pacing-out || status=$?
+          if [ -f pacing-out/pacing-report.md ]; then cat pacing-out/pacing-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+          exit $status
+
+      - name: Upload the pacing report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacing-report
+          path: pacing-out/
+          if-no-files-found: ignore
+
   core-is-engine-agnostic:
     name: Core is engine-agnostic
     runs-on: ubuntu-latest
@@ -57,3 +75,136 @@ jobs:
             exit 1
           fi
           echo "No UnityEngine reference in BeyondNations.Core."
+
+      # The same goes for the native engine (#274): Core hands RenderItem to
+      # whoever draws it, and must never reach for Strata or P/Invoke itself.
+      - name: Assert no native engine reference in core
+        run: |
+          if grep -rn --include='*.cs' -E '\[(DllImport|LibraryImport)|NativeLibrary\.|StrataNative|using[[:space:]]+Strata' src/BeyondNations.Core; then
+            echo "::error::BeyondNations.Core must not reference the Strata engine or P/Invoke."
+            exit 1
+          fi
+          echo "No native engine reference in BeyondNations.Core."
+
+  # The world is drawn by Strata only. The real game runs headlessly on
+  # Mesa llvmpipe from the world screen, renders frames and takes a
+  # screenshot, and the log must name Strata as the world renderer.
+  strata-smoke:
+    name: Game smoke run (Strata, llvmpipe)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      # Silk.NET's loader does not pick up the GLFW it bundles on this runner
+      # ("Could not load from any of the possible library names"), so the
+      # system libglfw3 is installed for it to fall back to -- the same GLFW
+      # the game uses on Ubuntu 20.04, where the bundled one needs a newer
+      # glibc. GLFW opens the X11 client libraries at run time.
+      - name: Install Mesa (llvmpipe), Xvfb and the X11 client libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri libglx-mesa0 libegl1 \
+            libx11-6 libx11-xcb1 libxext6 libxrender1 libxrandr2 libxcursor1 libxi6 libxinerama1 libxxf86vm1 \
+            libxkbcommon0 libxkbcommon-x11-0 libglfw3
+
+      - name: Build the game
+        run: dotnet build src/BeyondNations.Desktop/BeyondNations.Desktop.csproj --configuration Release
+
+      - name: Smoke run
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          GALLIUM_DRIVER: llvmpipe
+        run: |
+          set -o pipefail
+          mkdir -p smoke-out
+          xvfb-run -a -s "-screen 0 1280x800x24" \
+            dotnet src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll \
+            --seed 42 --start-screen world --exit-after-frames 120 \
+            --screenshot-after-frames 60 --render-stats --no-usage-reporting | tee smoke-out/smoke.log
+          grep -q "world renderer: strata" smoke-out/smoke.log
+          cp ~/.local/share/BeyondNations/Screenshots/*.png smoke-out/
+
+      - name: Upload the screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strata-smoke
+          path: smoke-out/
+          if-no-files-found: ignore
+
+  # tools/history-to-replay.py: a seeded export becomes a usd-replay/1 replay that
+  # usd-recorder's validator accepts, and two exports of one seed give the same
+  # state hash at every sample.
+  history-replay:
+    name: History replay (usd-replay/1)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install usd-recorder
+        run: python -m pip install "usd-recorder @ git+https://github.com/Preponderous-Software/usd-recorder@v0.2.0"
+
+      - name: Export seed 42 twice
+        run: |
+          mkdir -p out
+          for run in a b; do
+            dotnet run --project tools/BeyondNations.HistoryExport -c Release -- \
+              --seed 42 --ticks 40000 --every 200 --out "out/$run.jsonl"
+          done
+
+      - name: Convert, validate and compare
+        run: |
+          for run in a b; do
+            python tools/history-to-replay.py "out/$run.jsonl" "out/$run.usdc" --stride 400 --sim-version "${GITHUB_SHA::12}"
+            usd-recorder replay validate "out/$run.usdc"
+          done
+          python - <<'PY'
+          from usd_recorder.replay import read_replay
+          a, b = read_replay("out/a.usdc"), read_replay("out/b.usdc")
+          assert len(a.ticks) == 100 and a.ticks == b.ticks, (len(a.ticks), len(b.ticks))
+          assert a.hashes == b.hashes, "two exports of one seed differ"
+          print(f"{len(a.ticks)} samples, identical state hashes; last {a.hashes[-1]}")
+          PY
+
+      # The game's own Share > Export replay (RunRecorder + ReplayUsdaWriter,
+      # docs/SHARING.md) writes .usda text without a USD library; hold it to
+      # the same validator, and to the same seed giving the same replay.
+      - name: Validate the in-game replay export
+        run: |
+          for run in a b; do
+            dotnet run --project tools/BeyondNations.HistoryExport -c Release -- \
+              --seed 42 --ticks 40000 --every 400 --sim-version "${GITHUB_SHA::12}" --game-replay "out/game-$run.usda"
+            usd-recorder replay validate "out/game-$run.usda"
+          done
+          cmp out/game-a.usda out/game-b.usda
+          python - <<'PY'
+          from usd_recorder.replay import read_replay
+          r = read_replay("out/game-a.usda")
+          assert len(r.ticks) == 101 and r.ticks[0] == 0 and r.ticks[-1] == 40000, (len(r.ticks), r.ticks[:2], r.ticks[-1:])
+          print(f"in-game export: {len(r.ticks)} samples; last {r.hashes[-1]}")
+          PY
+
+      - name: Upload the replay
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-replay-seed42
+          path: |
+            out/a.usdc
+            out/game-a.usda

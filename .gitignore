@@ -31,6 +31,10 @@ coverage*.xml
 # layout, not source. See #221.
 imgui.ini
 
+# The web smoke test's npm install and output
+node_modules/
+smoke-out/
+
 # Agent worktrees
 .claude/
 
@@ -44,3 +48,6 @@ Thumbs.db
 # them. That ignore silently swallowed BeyondNations.sln and both .csproj files
 # across four merged pull requests, leaving a fresh clone with nothing to build.
 # The solution and its projects are source now. See #215.
+
+# The pacing harness report (docs/PACING.md)
+pacing-out/

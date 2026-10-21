@@ -14,14 +14,29 @@ namespace beyondnations {
         private NationRepository nationRepository;
         private EventProducer eventProducer;
         private EntityRepository entityRepository;
+        private TickCounter tickCounter;
+        private SeasonCalendar seasonCalendar;
 
-        public PawnBehaviorExecutor(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, NationNameGenerator nationNameGenerator) {
+        /** Gives pawns seasons: from autumn they lay in food (SeasonalRules.wantsStores). */
+        public void setSeasonCalendar(SeasonCalendar seasonCalendar) {
+            this.seasonCalendar = seasonCalendar;
+        }
+
+        public PawnBehaviorExecutor(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, NationNameGenerator nationNameGenerator, TickCounter tickCounter) {
+            this.tickCounter = tickCounter;
             this.nationNameGenerator = nationNameGenerator;
             this.random = random;
             this.environment = environment;
             this.nationRepository = nationRepository;
             this.eventProducer = eventProducer;
             this.entityRepository = entityRepository;
+        }
+
+        // the player's laws (realm/): conscripts gather less
+        private Realm realm;
+
+        public void setRealm(Realm realm) {
+            this.realm = realm;
         }
 
         public void executeBehavior(Pawn pawn, BehaviorType behaviorType) {
@@ -55,6 +70,9 @@ namespace beyondnations {
                 case BehaviorType.CONSTRUCT_STALL:
                     executeConstructStallBehavior(pawn);
                     break;
+                case BehaviorType.CONSTRUCT_BUILDING:
+                    executeConstructBuildingBehavior(pawn);
+                    break;
                 case BehaviorType.PURCHASE_STALL:
                     executePurchaseStallBehavior(pawn);
                     break;
@@ -78,6 +96,12 @@ namespace beyondnations {
                     break;
                 case BehaviorType.WITHDRAW_SETTLEMENT_FUNDS:
                     executeWithdrawSettlementFundsBehavior(pawn);
+                    break;
+                case BehaviorType.CONTRIBUTE_TO_STOCKPILE:
+                    executeContributeToStockpileBehavior(pawn);
+                    break;
+                case BehaviorType.SEEK_SETTLEMENT_SITE:
+                    executeSeekSettlementSiteBehavior(pawn);
                     break;
                 default:
                     Log.error("Behavior type " + behaviorType + " is not implemented.");
@@ -107,7 +131,22 @@ namespace beyondnations {
                 // gather
                 if (isGatherable(targetEntityType)) {
                     targetEntity.markForDeletion();
+                    // an industrious pawn works a tree or rock harder (PawnTraits)
+                    int woodBonus = PawnTraits.gatherBonus(pawn, targetEntity.getInventory().getNumItems(ItemType.WOOD));
+                    int stoneBonus = PawnTraits.gatherBonus(pawn, targetEntity.getInventory().getNumItems(ItemType.STONE));
+                    int woodBefore = pawn.getInventory().getNumItems(ItemType.WOOD);
+                    int stoneBefore = pawn.getInventory().getNumItems(ItemType.STONE);
                     pawn.getInventory().transferContentsOfInventory(targetEntity.getInventory());
+                    Tools.applyGatherBonus(pawn.getInventory(), targetEntityType);
+                    // the trait stacks with any tool bonus
+                    if (woodBonus > 0) {
+                        pawn.getInventory().addItem(ItemType.WOOD, woodBonus);
+                    }
+                    if (stoneBonus > 0) {
+                        pawn.getInventory().addItem(ItemType.STONE, stoneBonus);
+                    }
+                    // a conscript spends part of its day at drill (realm/Laws)
+                    realm?.afterGather(pawn, woodBefore, stoneBefore);
                     pawn.setTargetEntity(null);
 
                     if (targetEntityType == EntityType.TREE && pawn.getInventory().getNumItems(ItemType.SAPLING) > 0) {
@@ -151,8 +190,30 @@ namespace beyondnations {
                 }
             }
 
+            // From autumn on, a pawn short of stores goes for food: a chicken
+            // close by, or else a tree, which carries apples, over a rock.
+            if (seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason())) {
+                Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
+                if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
+                    return nearestChicken;
+                }
+                Entity nearestFruit = environment.getNearestTree(pawn.getPosition());
+                if (nearestFruit != null && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
+                    return nearestFruit;
+                }
+            }
+
             Entity nearestTree = environment.getNearestTree(pawn.getPosition());
             Entity nearestRock = environment.getNearestRock(pawn.getPosition());
+
+            // Wood enough for a stall but short of the stone a house takes: go for a rock,
+            // rocks are scarce and the nearest-wins rule rarely picks one.
+            Inventory inventory = pawn.getInventory();
+            if (nearestRock != null
+                    && inventory.getNumItems(ItemType.WOOD) >= Stall.WOOD_COST_TO_BUILD
+                    && inventory.getNumItems(ItemType.STONE) < BuildingCatalog.getStoneCost(BuildingType.HOUSE)) {
+                return nearestRock;
+            }
             if (nearestTree != null && nearestRock != null) {
                 if (Vector3.Distance(pawn.getPosition(), nearestTree.getPosition()) < Vector3.Distance(pawn.getPosition(), nearestRock.getPosition())) {
                     return nearestTree;
@@ -169,7 +230,7 @@ namespace beyondnations {
             Settlement settlement = (Settlement) entityRepository.getEntity(pawn.getCurrentSettlementId());
             
             Market market = settlement.getMarket();
-            EntityId stallOwnerId = market.sellResources(pawn);
+            EntityId stallOwnerId = market.sellResources(pawn, PawnTraits.sellPriceBonusPercent(pawn));
             if (stallOwnerId == null) {
                 Log.warning("Pawn " + pawn + " tried to sell resources but was unable to.");
                 pawn.setCurrentBehaviorType(BehaviorType.NONE);
@@ -259,6 +320,11 @@ namespace beyondnations {
                 Log.error("Pawn " + pawn + " does not have enough wood to build a settlement but is trying to.");
                 return;
             }
+            // never inside another nation's land, nor past what the era allows (EraRules)
+            if (!nation.canFoundSettlement() || Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null) {
+                pawn.setCurrentBehaviorType(BehaviorType.WANDER);
+                return;
+            }
             inventory.removeItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
 
             // create settlement
@@ -266,6 +332,9 @@ namespace beyondnations {
             nation.addSettlement(settlement.getId());
             entityRepository.addEntity(settlement);
             pawn.setHomeSettlementId(settlement.getId());
+            Territory.recordFounding(settlement, entityRepository, nationRepository);
+            pawn.setSettler(false);
+            eventProducer.produceSettlementFoundedEvent(settlement, nation, pawn.getId());
             pawn.setCurrentBehaviorType(BehaviorType.WANDER);
         }
 
@@ -286,20 +355,19 @@ namespace beyondnations {
                 homeSettlement = (Settlement) entityRepository.getEntity(homeSettlementId);
             }
 
-            if (!pawn.hasTargetEntity()) {
-                if (homeSettlement != null) {
-                    pawn.setTargetEntity(homeSettlement);
-                }
+            // Head for home, whatever it was walking to before. It used to keep
+            // a leftover target (the tree it was gathering from), walk there
+            // and be let into the settlement from wherever that was.
+            if (homeSettlement == null) {
+                Log.warning("Pawn " + pawn + " has no settlement to go to.");
+                return;
             }
-            else if (pawn.isAtTargetEntity(20)) {
-                if (homeSettlement == null) {
-                    Log.error("Pawn " + pawn + " has no settlement to go to.");
-                    return;
-                }
-                homeSettlement.addCurrentlyPresentEntity(pawn.getId());
-                pawn.setCurrentSettlementId(homeSettlement.getId());
-                pawn.setVisible(false);
-                pawn.setTargetEntity(null);
+            if (pawn.getTargetEntity() != homeSettlement) {
+                pawn.setTargetEntity(homeSettlement);
+            }
+            if (pawn.isAtTargetEntity(20)) {
+                // Inside, but still drawn: it mills about the town (SettlementLife).
+                SettlementLife.admit(pawn, homeSettlement);
                 pawn.setCurrentBehaviorType(BehaviorType.NONE);
                 return;
             }
@@ -319,6 +387,7 @@ namespace beyondnations {
             Settlement settlement = entityRepository.getEntity(pawn.getCurrentSettlementId()) as Settlement;
             settlement.removeCurrentlyPresentEntity(pawn.getId());
             pawn.clearCurrentSettlementId();
+            pawn.clearMillTarget();
             pawn.setPosition(settlement.getPosition() + new Vector3(random.range(-20, 20), 0, random.range(-20, 20)));
             pawn.setVisible(true);
             pawn.setColor(settlement.getColor());
@@ -335,41 +404,47 @@ namespace beyondnations {
             Vector3 position = pawn.getPosition();
             position += new Vector3(random.range(-5f, 5f), 0, random.range(-5f, 5f));
             position.Y = 2;
-            Sapling tree = new Sapling(position, 3, random);
+            Sapling tree = new Sapling(position, 3, random, tickCounter);
             entityRepository.addEntity(tree);
             pawn.getInventory().removeItem(ItemType.SAPLING, 1);
             pawn.setCurrentBehaviorType(BehaviorType.WANDER);
         }
 
+        /**
+        * Builds a stall in the settlement the pawn is in, paid from what it
+        * carries and then the stockpile. A leader builds; so does a member at
+        * home in a settlement its leader does not live in (a colony).
+        */
         private void executeConstructStallBehavior(Pawn pawn) {
-            // if not enough wood
-            if (pawn.getInventory().getNumItems(ItemType.WOOD) < Stall.WOOD_COST_TO_BUILD) {
-                Log.error("Pawn " + pawn + " does not have enough wood to build a stall, but is trying to.");
-                return;
-            }
-
-            // if not leader
-            Nation nation = nationRepository.getNation(pawn.getNationId());
-            if (nation.getRole(pawn.getId()) != NationRole.LEADER) {
-                Log.error("Pawn " + pawn + " is not a leader but is trying to build a stall.");
-                return;
-            }
-
             // if not currently in a settlement
             EntityId currentSettlementId = pawn.getCurrentSettlementId();
             if (currentSettlementId == null) {
                 Log.error("Pawn " + pawn + " is not in a settlement but is trying to build a stall.");
                 return;
             }
-
-            // remove wood
-            pawn.getInventory().removeItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
-            
-            // build stall
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
+
+            // if not enough wood and stone
+            if (!Stall.canAffordToBuild(pawn.getInventory(), currentSettlement.getInventory())) {
+                Log.error("Pawn " + pawn + " does not have enough wood and stone to build a stall, but is trying to.");
+                return;
+            }
+
+            // only a member of the nation that owns the settlement
+            Nation nation = nationRepository.getNation(pawn.getNationId());
+            if (nation == null || !nation.getId().Equals(currentSettlement.getNationId())) {
+                Log.error("Pawn " + pawn + " is trying to build a stall in another nation's settlement.");
+                return;
+            }
+
+            // pay wood and stone
+            Stall.payBuildCost(pawn.getInventory(), currentSettlement.getInventory());
+
+            // build stall
             Market market = currentSettlement.getMarket();
 
             market.createStall();
+            eventProducer.produceStallBuiltEvent(currentSettlement, nation, pawn.getId());
             pawn.setCurrentBehaviorType(BehaviorType.NONE);       
         }
 
@@ -426,8 +501,13 @@ namespace beyondnations {
                 return;
             }
 
-            // transfer items
+            // make what it can from the haul first (tools, cooked meat, and
+            // planks and bricks where there is a workshop), then stock it all
             Stall stall = market.getStall(pawn.getId());
+            int crafted = MerchantCrafting.craftGoods(pawn.getInventory(), currentSettlement, stall.getInventory());
+            if (crafted > 0) {
+                Log.info("Pawn " + pawn.getName() + " crafted " + crafted + " batches of goods for their stall.");
+            }
             stall.transferContentsFromEntity(pawn);
 
             // get half of coins from stall
@@ -436,13 +516,17 @@ namespace beyondnations {
             stall.getInventory().removeItem(ItemType.COIN, numCoinsToTransfer);
             pawn.getInventory().addItem(ItemType.COIN, numCoinsToTransfer);
 
-            Log.info("Pawn " + pawn.getName() + " transferred items to their stall.");
+            Log.debug("Pawn " + pawn.getName() + " transferred items to their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
         private void executeJoinNationBehavior(Pawn pawn) {
             Settlement nearestSettlement = (Settlement) environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
-            Nation nation = nationRepository.getNation(nearestSettlement.getNationId());
+            Nation nation = nearestSettlement == null ? null : nationRepository.getNation(nearestSettlement.getNationId());
+            if (nation == null) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
             nation.addMember(pawn.getId());
             pawn.setNationId(nation.getId());
             pawn.setColor(nation.getColor());
@@ -469,12 +553,53 @@ namespace beyondnations {
                 return;
             }
 
-            // get random settlement
+            // get random settlement, falling back to any with room for another resident
             EntityId settlementId = nation.getRandomSettlementId();
             Settlement settlement = (Settlement) entityRepository.getEntity(settlementId);
+            if (settlement == null || !settlement.hasRoomForResident()) {
+                settlement = findSettlementWithRoom(nation);
+            }
+            if (settlement == null) {
+                Log.info("Pawn " + pawn + " found no settlement of " + nation.getName() + " with room for another resident.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
 
             // join settlement
-            pawn.setHomeSettlementId(settlementId);
+            pawn.setHomeSettlementId(settlement.getId());
+            settlement.setResidentCount(settlement.getResidentCount() + 1);
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        private Settlement findSettlementWithRoom(Nation nation) {
+            foreach (EntityId id in nation.getSettlements()) {
+                Settlement candidate = entityRepository.getEntity(id) as Settlement;
+                if (candidate != null && candidate.hasRoomForResident()) {
+                    return candidate;
+                }
+            }
+            return null;
+        }
+
+        /**
+        * A leader puts up whatever its settlement needs most that it can pay
+        * for (BuildingPlanner), paying in wood and stone.
+        */
+        private void executeConstructBuildingBehavior(Pawn pawn) {
+            EntityId currentSettlementId = pawn.getCurrentSettlementId();
+            if (currentSettlementId == null) {
+                Log.error("Pawn " + pawn + " is not in a settlement but is trying to construct a building.");
+                return;
+            }
+            Settlement settlement = (Settlement) entityRepository.getEntity(currentSettlementId);
+            BuildingType? type = BuildingPlanner.chooseNext(settlement, pawn.getInventory());
+            if (type == null) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            BuildingCatalog.deductCost(pawn.getInventory(), settlement.getInventory(), type.Value);
+            settlement.addBuilding(type.Value);
+            Log.info("Pawn " + pawn.getName() + " built a " + BuildingCatalog.getDisplayName(type.Value) + " in " + settlement.getName() + ".");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
@@ -498,7 +623,7 @@ namespace beyondnations {
             int profit = stall.getInventory().getNumItems(ItemType.COIN);
             pawn.getInventory().addItem(ItemType.COIN, profit);
             stall.getInventory().removeItem(ItemType.COIN, profit);
-            Log.info("Pawn " + pawn.getName() + " collected " + profit + " coins from their stall.");
+            Log.debug("Pawn " + pawn.getName() + " collected " + profit + " coins from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
@@ -532,7 +657,7 @@ namespace beyondnations {
             }
             pawn.getInventory().addItem(foodType.Value, foodToTransfer);
             stall.getInventory().removeItem(foodType.Value, foodToTransfer);
-            Log.info("Pawn " + pawn.getName() + " collected " + foodToTransfer + " " + foodType.Value + " from their stall.");
+            Log.debug("Pawn " + pawn.getName() + " collected " + foodToTransfer + " " + foodType.Value + " from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
 
@@ -549,8 +674,87 @@ namespace beyondnations {
             }
             settlement.removeFunds(fundsToWithdraw);
             pawn.getInventory().addItem(ItemType.COIN, fundsToWithdraw);
-            Log.info("Pawn " + pawn.getName() + " withdrew " + fundsToWithdraw + " funds from " + settlement.getName() + ".");
+            Log.debug("Pawn " + pawn.getName() + " withdrew " + fundsToWithdraw + " funds from " + settlement.getName() + ".");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        /**
+        * A member at home with wood and stone nobody can buy hands it into the
+        * settlement's stockpile, where the leader builds from it. Only into its
+        * own nation's settlement.
+        */
+        private void executeContributeToStockpileBehavior(Pawn pawn) {
+            Settlement settlement = pawn.getCurrentSettlementId() == null ? null : entityRepository.getEntity(pawn.getCurrentSettlementId()) as Settlement;
+            if (settlement == null || pawn.getNationId() == null || !pawn.getNationId().Equals(settlement.getNationId())) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            foreach (ItemType itemType in new ItemType[] { ItemType.WOOD, ItemType.STONE }) {
+                int quantity = pawn.getInventory().getNumItems(itemType);
+                if (quantity > 0) {
+                    pawn.getInventory().removeItem(itemType, quantity);
+                    settlement.getInventory().addItem(itemType, quantity);
+                }
+            }
+            Log.info("Pawn " + pawn.getName() + " contributed to the stockpile of " + settlement.getName() + ".");
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        /**
+        * Walks straight away from the nearest settlement, to where a new one
+        * may be founded.
+        */
+        private void executeSeekSettlementSiteBehavior(Pawn pawn) {
+            pawn.setTargetEntity(null);
+            Vector3 away = computeAwayFromSettlements(pawn.getPosition(), entityRepository.getEntitiesOfType(EntityType.SETTLEMENT));
+            if (away == Vector3.Zero) {
+                return;
+            }
+            Vector3 horizontalVelocity = away * pawn.getSpeed();
+            pawn.setVelocity(new Vector3(horizontalVelocity.X, pawn.getVelocity().Y, horizontalVelocity.Z));
+        }
+
+        /**
+        * The unit direction out of a cluster of settlements: each settlement
+        * within Territory.NEIGHBOUR_DISTANCE pushes away from itself, the
+        * nearer the harder (1/d). Walking away from only the nearest one sent
+        * a settler between two settlements back and forth forever, so a world
+        * whose generated land was all claimed never got another colony.
+        * Falls back to the nearest settlement when none is in range, and
+        * returns zero when there are no settlements at all.
+        */
+        public static Vector3 computeAwayFromSettlements(Vector3 position, List<Entity> settlements) {
+            Vector3 push = Vector3.Zero;
+            Entity nearest = null;
+            float nearestDistance = float.MaxValue;
+            foreach (Entity settlement in settlements) {
+                Vector3 offset = position - settlement.getPosition();
+                offset.Y = 0;
+                float distance = offset.Length();
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearest = settlement;
+                }
+                if (distance > Territory.NEIGHBOUR_DISTANCE) {
+                    continue;
+                }
+                if (distance < 0.1f) {
+                    offset = new Vector3(1, 0, 0);
+                    distance = 1f;
+                }
+                push += offset / (distance * distance);
+            }
+            if (push.LengthSquared() < 1e-12f) {
+                if (nearest == null) {
+                    return Vector3.Zero;
+                }
+                push = position - nearest.getPosition();
+                push.Y = 0;
+                if (push.LengthSquared() < 0.01f) {
+                    push = new Vector3(1, 0, 0);
+                }
+            }
+            return VectorMath.normalized(push);
         }
 
         // helpers -----------------------------------------------------------------------------------------------
