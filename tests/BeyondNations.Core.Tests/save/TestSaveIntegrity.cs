@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Text.Json.Nodes;
 using Xunit;
 
 using beyondnations;
@@ -105,6 +106,38 @@ namespace beyondnationstests {
         public void testCrc32_MatchesTheStandardCheckValue() {
             // the CRC-32 check value for "123456789"
             Assert.Equal("cbf43926", Crc32.toHex(Crc32.compute(Encoding.ASCII.GetBytes("123456789"))));
+        }
+
+        /**
+        * An older build let eating fill the player past a full bar (134 from
+        * cooked meat at 89). Such a save still loads, with the bar back at full.
+        */
+        [Fact]
+        public void testAPlayerOverfedByAnOlderBuild_LoadsAtAFullBar() {
+            byte[] file = aSave();
+            int start = bodyStart(file);
+            JsonObject body = (JsonObject) JsonNode.Parse(new ReadOnlySpan<byte>(file, start, file.Length - start));
+            string playerId = (string) body["playerId"];
+            foreach (JsonNode entity in body["entities"].AsArray()) {
+                if ((string) entity["id"] == playerId) {
+                    entity["energy"] = 134f;
+                }
+            }
+            byte[] newBody = Encoding.UTF8.GetBytes(body.ToJsonString());
+            string header = Encoding.UTF8.GetString(file, 0, start - 1);
+            JsonObject headerJson = (JsonObject) JsonNode.Parse(header);
+            headerJson["bodyBytes"] = newBody.Length;
+            headerJson["crc32"] = Crc32.toHex(Crc32.compute(newBody));
+            byte[] header8 = Encoding.UTF8.GetBytes(headerJson.ToJsonString() + "\n");
+            byte[] overfed = new byte[header8.Length + newBody.Length];
+            header8.CopyTo(overfed, 0);
+            newBody.CopyTo(overfed, header8.Length);
+
+            Simulation loaded = SaveGame.decode(overfed);
+
+            Assert.Equal(Player.MaxEnergy, loaded.getPlayer().getEnergy());
+            loaded.fixedUpdate(1f / 50f);
+            Assert.True(loaded.getPlayer().getEnergy() < Player.MaxEnergy);
         }
     }
 }
