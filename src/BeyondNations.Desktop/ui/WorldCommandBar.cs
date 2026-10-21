@@ -122,6 +122,7 @@ namespace beyondnations.desktop.ui {
                 }
             }
 
+            addBanditCommands(simulation, commands);
             addPawnCommands(simulation, commands);
             addDiplomacyCommands(simulation, commands);
             CaravanCommands.addCommands(simulation, commands);
@@ -160,6 +161,28 @@ namespace beyondnations.desktop.ui {
             }
 
             return commands;
+        }
+
+        /**
+        * A bandit camp the player barred the gates against can still be
+        * dealt with while it stands: one button per camp outside the
+        * settlements of the nation the player leads, opening the world event
+        * sheet again on that camp (drive them off, pay them, or keep waiting).
+        */
+        private static void addBanditCommands(Simulation simulation, List<WorldCommand> commands) {
+            WorldEvents events = simulation.getWorldEvents();
+            if (events == null || events.isAwaitingPlayer()) {
+                return;
+            }
+            foreach (Settlement settlement in events.getStandingBanditCamps(simulation)) {
+                EntityId settlementId = settlement.getId();
+                commands.Add(new WorldCommand(dealWithBanditsLabel(settlement), () => events.offerStandingBanditCamp(simulation, settlementId)));
+            }
+        }
+
+        /** "Deal with Bandits (Oakford)" */
+        public static string dealWithBanditsLabel(Settlement settlement) {
+            return "Deal with Bandits (" + settlement.getDisplayName() + ")";
         }
 
         /**
