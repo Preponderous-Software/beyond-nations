@@ -160,11 +160,13 @@ namespace beyondnations {
                 if (nation == null) {
                     continue;
                 }
-                enactPending(nation, entry, totalTicks);
-                // laws are the player's to keep: a nation the player no longer leads leaves them be
-                if (!nation.getLeaderId().Equals(player.getId())) {
+                // laws are the player's to keep: a nation the player no longer leads leaves them be,
+                // and a change the player proclaimed there lapses with their rule, as a usurped ruler's does
+                if (nation.getLeaderId() != player.getId()) {
+                    clearAllPending(entry);
                     continue;
                 }
+                enactPending(nation, entry, totalTicks);
                 applyLaws(nation, entry);
             }
         }
@@ -181,6 +183,13 @@ namespace beyondnations {
                 string text = describeEnactment(nation, law, before, pending);
                 player.getStatus().update(text);
                 eventProducer.produceStatecraftEvent(text, nation, null, player.getId());
+            }
+        }
+
+        /** Every change proclaimed and not yet in force is withdrawn; the laws in force stay. */
+        private static void clearAllPending(NationLaws entry) {
+            foreach (LawType law in Laws.All) {
+                entry.clearPending(law);
             }
         }
 
@@ -379,9 +388,7 @@ namespace beyondnations {
             nation.setRole(claimant.getId(), NationRole.LEADER);
             NationLaws entry = getLaws(nation);
             if (entry != null) {
-                foreach (LawType law in Laws.All) {
-                    entry.clearPending(law);
-                }
+                clearAllPending(entry);
             }
             eventProducer.produceLeadershipChangeEvent(nation, previous, claimant.getId());
             return true;

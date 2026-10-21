@@ -7,7 +7,8 @@ namespace beyondnations {
     * Who takes the player's place when they die, and what passing the rule
     * to them means.
     *
-    * The heir is a member pawn of the player's nation. Family comes first: a
+    * The heir is a member pawn of the player's nation -- never a pawn who
+    * leads it, when the player is only a member there. Family comes first: a
     * pawn who shares the ruler's surname (the first ruler has none, but an
     * heir brings theirs, and children born in a settlement take a parent's,
     * so a dynasty fills out as it goes). Then whoever is most loyal to the
@@ -49,6 +50,10 @@ namespace beyondnations {
             bool bestFamily = false;
             int bestLoyalty = 0;
             foreach (EntityId id in nation.getMemberIds()) {
+                // a pawn who leads the nation keeps its crown rather than take a member's place
+                if (id == nation.getLeaderId()) {
+                    continue;
+                }
                 Pawn pawn = entityRepository.getEntity(id) as Pawn;
                 if (pawn == null || pawn.isMarkedForDeletion() || pawn.getEnergy() <= 0) {
                     continue;
@@ -120,6 +125,12 @@ namespace beyondnations {
             string heirSurname = surnameOf(heir.getName());
             EntityId heirHome = heir.getHomeSettlementId();
             float heirEnergy = heir.getEnergy();
+            // chooseHeir never names the leader, but should the heir lead, the player takes up that rule
+            // too: the nation is never left led by a pawn that has left the world
+            if (nation.getLeaderId() == heir.getId()) {
+                nation.setLeaderId(player.getId());
+                nation.setRole(player.getId(), NationRole.LEADER);
+            }
             nation.removeMember(heir.getId());
             heir.setTargetEntity(null);
             heir.markForDeletion();

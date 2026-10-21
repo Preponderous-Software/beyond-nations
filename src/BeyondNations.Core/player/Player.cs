@@ -38,6 +38,13 @@ namespace beyondnations {
         public const float EatBelowEnergy = 90f;
 
         /**
+        * A full bar. Nothing fills the player past it -- a meal eaten at 89
+        * stops here rather than at 134 -- and a save from a build that
+        * allowed more loads with the bar at full.
+        */
+        public const float MaxEnergy = 100f;
+
+        /**
         * The energy a new world starts the player with: a little hungry, below
         * EatBelowEnergy, so the first food picked up is eaten at once and "Eat
         * something" is met by going and getting food rather than by a minute
@@ -206,7 +213,7 @@ namespace beyondnations {
         }
 
         public void setEnergy(float energy) {
-            this.energy = energy;
+            this.energy = System.Math.Min(energy, MaxEnergy);
         }
 
         /**
@@ -294,7 +301,7 @@ namespace beyondnations {
         private void eatIfCarryingFood() {
             int restored = FoodItems.consumeMostNourishingFood(getInventory());
             if (restored > 0) {
-                energy += restored;
+                energy = System.Math.Min(energy + restored, MaxEnergy);
                 mealsEaten++;
             }
         }
@@ -349,7 +356,7 @@ namespace beyondnations {
             homeSettlementId = reader.getEntityId(element, "homeSettlementId");
             status.load(SaveReader.property(element, "status"));
             autoWalk = SaveReader.getBool(element, "autoWalk");
-            energy = SaveReader.getFloat(element, "energy");
+            energy = System.Math.Min(SaveReader.getFloat(element, "energy"), MaxEnergy);
             metabolism = SaveReader.getFloat(element, "metabolism");
             reader.readIdIntMap(element, "relationships", relationships);
             currentSettlementId = reader.getEntityId(element, "currentSettlementId");

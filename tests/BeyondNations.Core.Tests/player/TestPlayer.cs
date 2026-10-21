@@ -187,5 +187,30 @@ namespace beyondnationstests {
             Assert.Equal(5, player.getInventory().getNumItems(ItemType.WOOD));
             Assert.True(player.getEnergy() < 50);
         }
+
+        [Fact]
+        public void testEating_NeverFillsThePlayerPastAFullBar() {
+            // prepare: just under the meal threshold, with the most filling food there is
+            Player player = makePlayer(25, 50);
+            player.setEnergy(89);
+            player.getInventory().addItem(ItemType.COOKED_MEAT, 1);
+
+            // run
+            player.fixedUpdate();
+
+            // check: the meal is eaten, but the bar stops at full (it used to reach 134)
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.COOKED_MEAT));
+            Assert.True(player.getEnergy() <= Player.MaxEnergy);
+            Assert.True(player.getEnergy() > Player.MaxEnergy - 1);
+        }
+
+        [Fact]
+        public void testSetEnergy_IsCappedAtAFullBar() {
+            Player player = makePlayer(25, 50);
+            player.setEnergy(150);
+            Assert.Equal(Player.MaxEnergy, player.getEnergy());
+            player.setEnergy(0);
+            Assert.Equal(0, player.getEnergy());
+        }
     }
 }
