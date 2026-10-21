@@ -8,7 +8,7 @@ namespace beyondnations.desktop.ui {
     * lives here and UiOverlay draws it on every screen.
     */
     public static class GameVersion {
-        public const string Version = "0.3.0-alpha";
+        public const string Version = "0.4.0";
 
         /**
         * The label as it is drawn, "v" then the version, exactly as the Unity
