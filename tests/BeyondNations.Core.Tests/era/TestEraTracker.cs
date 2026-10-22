@@ -314,6 +314,34 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testTheEraAnnouncement_IsNotLost_WhenTheReachTheEraObjectiveCompletesOnTheSameTick() {
+            // The Simulation evaluates the era and then the objective on the
+            // same tick, so "Reach the Town era" completes the moment the era
+            // is announced, and its message used to replace the announcement
+            // (and the siege warning in it) before a frame was drawn.
+            makeKingdomReadyNation();
+            eras.evaluate(simulation);
+            Assert.Equal(Era.VILLAGE, eras.getEra());
+            simulation.getTickCounter().increment();
+            ObjectiveTracker objectives = new ObjectiveTracker(new[] { ObjectiveCatalog.ambition(3, Era.VILLAGE) }, null);
+            Assert.Equal("Reach the Town era", objectives.getCurrent().getTitle());
+            Assert.False(objectives.evaluate(simulation));
+
+            // one step, as Simulation.fixedUpdate runs it
+            simulation.getTickCounter().increment();
+            player.getStatus().beginTick();
+            eras.evaluate(simulation);
+            Assert.True(objectives.evaluate(simulation));
+            player.getStatus().endTick();
+
+            string status = player.getStatus().getStatus();
+            Assert.StartsWith("A new era: Testland is now a Town.", status);
+            Assert.Contains("hostile neighbours may besiege its villages in 5 minutes", status);
+            Assert.Contains("Objective complete: Reach the Town era.", status);
+            Assert.DoesNotContain("Village.", status); // last second's announcement is not repeated
+        }
+
+        [Fact]
         public void testTheSiegeWarning_IsOnTheStatusLine_AtTheTownEra_AMinuteBefore_AndAtItsEnd() {
             Nation nation;
             Nation attacker;

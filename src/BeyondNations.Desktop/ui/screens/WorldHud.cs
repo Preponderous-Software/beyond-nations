@@ -392,7 +392,10 @@ namespace beyondnations.desktop.ui.screens {
                 lastStatusChangedAt = now;
             }
             float flash = (float) System.Math.Clamp(1.0 - (now - lastStatusChangedAt) / StatusFlashSeconds, 0.0, 1.0);
-            bool failure = StatusTone.isFailure(status);
+            // a line can join several messages said in one step: it is a
+            // refusal if it starts with one or the newest one is
+            bool failure = StatusTone.isFailure(status)
+                || StatusTone.isFailure(ObjectiveKeyNames.resolve(player.getStatus().getLatest()));
             Vector4 background = failure
                 ? new Vector4(0.55f + 0.3f * flash, 0.10f, 0.10f, 0.90f)
                 : new Vector4(0.08f + 0.25f * flash, 0.08f + 0.25f * flash, 0.10f + 0.25f * flash, 0.85f);

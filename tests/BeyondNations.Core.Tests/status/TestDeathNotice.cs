@@ -58,5 +58,30 @@ namespace beyondnationstests {
             status.update(DeathNotice.combine(status.getStatus(), "Gum"));
             Assert.Equal("Gum has died.", status.getStatus());
         }
+    
+        [Fact]
+        public void testDeathsInTheStepOfAnotherMessage_AreCountedBesideIt_NotOverIt() {
+            TickCounter ticks = new TickCounter();
+            Status status = new Status(ticks, 100);
+            ticks.increment();
+            status.beginTick();
+            status.update("A new era: Testland is now a Town.");
+            DeathNotice.report(status, "Alder");
+            Assert.Equal("A new era: Testland is now a Town. Alder has died.", status.getStatus());
+            DeathNotice.report(status, "Birch");
+            Assert.Equal("A new era: Testland is now a Town. Alder and Birch have died.", status.getStatus());
+            status.endTick();
+            ticks.increment();
+            status.beginTick();
+            DeathNotice.report(status, "Cedar");
+            Assert.Equal("A new era: Testland is now a Town. 3 pawns have died.", status.getStatus());
+            // something else said later starts a fresh line
+            status.endTick();
+            ticks.increment();
+            status.beginTick();
+            status.update("Winter has come.");
+            DeathNotice.report(status, "Dogwood");
+            Assert.Equal("Winter has come. Dogwood has died.", status.getStatus());
+        }
     }
 }
