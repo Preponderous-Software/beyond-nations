@@ -58,7 +58,11 @@ namespace beyondnationstests.desktop.ui {
                 command("Collect Food (3)", CommandGroup.Stall),
                 command("Craft Pickaxe", CommandGroup.Craft),
                 command("Buy Axe (327)", CommandGroup.Craft),
-                command("Send Caravan", CommandGroup.Trade),
+                // the locked caravan button and the war/peace levers #361 adds
+                command("Send Caravan (needs Storehouse)", CommandGroup.Trade),
+                command("Offer Peace to Newham", CommandGroup.Trade),
+                command("Declare War on Newham", CommandGroup.Drastic),
+                command("Denounce Newham", CommandGroup.Drastic),
             };
             return CommandBarLayout.order(commands);
         }

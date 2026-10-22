@@ -23,7 +23,11 @@ namespace beyondnations.desktop.ui {
         People,
         /** Caravans, foreign nations and bandits within reach. */
         Trade,
-        /** Hostile or irreversible: its own row, and every click is confirmed. */
+        /**
+        * Hostile or irreversible (raid, denounce, declare war, leave the
+        * nation): its own row, and every click is confirmed. A new such
+        * action needs only this group passed to its WorldCommand.
+        */
         Drastic
     }
 
