@@ -186,24 +186,25 @@ namespace beyondnations {
         }
 
         /**
-         * Picks what a pawn should gather next. A pawn that needs food hunts the
-         * nearest chicken if there is one (#253); otherwise it takes whichever of
-         * the nearest tree and the nearest rock is closer, so that a pawn after
+         * Picks what a pawn should gather next. A pawn that needs food (or,
+         * from autumn, is short of stores) goes for food: a chicken within
+         * hunting range (#253), or else a tree carrying apples. A hungry pawn
+         * with neither -- in winter the trees are bare -- walks to the nearest
+         * chicken however far it is. Otherwise it takes whichever of the
+         * nearest tree and the nearest rock is closer, so that a pawn after
          * wood or stone leaves the chickens alone. Returns null when there is
          * nothing to gather.
+         *
+         * A hungry pawn once hunted the nearest chicken at any distance, and
+         * with no chicken took the nearer of a tree and a rock, so in early
+         * spring, with chickens hunted out and only beginning to hatch again,
+         * a hungry pawn could walk past fruit trees to a distant chicken or
+         * go for stone (docs/SYSTEMS.md, "Seasons").
          */
         private Entity selectGatherTarget(Pawn pawn) {
-            if (pawn.needsFood()) {
-                Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
-                if (nearestChicken != null) {
-                    return nearestChicken;
-                }
-            }
-
-            // From autumn on, a pawn short of stores goes for food: a chicken
-            // close by, or else a tree, which carries apples, over a rock
-            // (in winter the trees are bare, so only the chicken).
-            if (seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason())) {
+            bool hungry = pawn.needsFood();
+            bool wantsStores = seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason());
+            if (hungry || wantsStores) {
                 Entity nearestChicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
                 if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
                     return nearestChicken;
@@ -211,6 +212,9 @@ namespace beyondnations {
                 Entity nearestFruit = environment.getNearestTree(pawn.getPosition());
                 if (nearestFruit != null && treesBearFruit() && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
                     return nearestFruit;
+                }
+                if (hungry && nearestChicken != null) {
+                    return nearestChicken;
                 }
             }
 

@@ -17,6 +17,13 @@ namespace beyondnations {
         // Below this much energy a pawn with nothing edible to hand goes looking for food.
         public const float HUNGRY_ENERGY_THRESHOLD = 80f;
 
+        /**
+        * Below this much energy a hungry pawn is starving: it stops walking home
+        * to a market that cannot feed it and forages instead
+        * (PawnBehaviorCalculator). Above it, a hungry pawn still heads home first.
+        */
+        public const float STARVING_ENERGY_THRESHOLD = 40f;
+
         private float energy = 100.00f;
         private float metabolism;
 
@@ -145,6 +152,11 @@ namespace beyondnations {
         */
         public bool needsFood() {
             return energy < HUNGRY_ENERGY_THRESHOLD && !FoodItems.hasFood(getInventory());
+        }
+
+        /** Whether this pawn needs food and is down to its last reserves (STARVING_ENERGY_THRESHOLD). */
+        public bool isStarving() {
+            return energy < STARVING_ENERGY_THRESHOLD && needsFood();
         }
 
         public BehaviorType getCurrentBehaviorType() {

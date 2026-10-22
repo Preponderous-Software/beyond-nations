@@ -37,7 +37,7 @@ namespace beyondnations {
         /** Ticks between chicken hatchings in spring and summer: 30 seconds. */
         public const int CHICKEN_HATCH_INTERVAL_TICKS = 1500;
 
-        /** How far a pawn laying in stores will walk for a chicken rather than fell the nearest tree. */
+        /** How far a pawn after food (hungry, or laying in stores) will walk for a chicken rather than take a fruit tree. */
         public const float STORES_HUNT_RANGE = 120f;
 
         /** Apples each farm adds per harvest round in this season, before the region's bonus. */
