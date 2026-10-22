@@ -3,12 +3,13 @@
   <!--
     Strata, the engine the world is drawn with, linked into dotnet.native.wasm.
 
-    Strata's browser build (WebGL 2 / GLES 3.0 device, Strata #18) has no
-    release yet, so a commit is pinned here, like the desktop pins a release:
-    the source tarball for that commit is checked against its SHA-256 and
-    built by native/build-strata.sh with the Emscripten the wasm-tools
-    workload links with (Strata's own CI uses a newer one, whose objects may
-    not link here). The result is cached under obj/ and linked as
+    The commit of a Strata release is pinned here (v0.4.0, the release the
+    desktop pins too): the source tarball for that commit is checked against
+    its SHA-256 and built by native/build-strata.sh with the Emscripten the
+    wasm-tools workload links with. The release's own wasm32-emscripten
+    archive is not used: Strata's CI builds it with a much newer emsdk
+    (6.0.11) and merges SDL3 into it, and those objects do not link with the
+    workload's emsdk 3.1.34. The result is cached under obj/ and linked as
     strata.a, whose file name is what [DllImport("strata")] resolves to.
 
     bnweb.a is native/bnweb_gl.c: it makes the page's WebGL 2 context known
@@ -20,8 +21,8 @@
   -->
 
   <PropertyGroup>
-    <StrataCommit>38517b62fc6224b8a5ce97e10fe99a9f78a0eb58</StrataCommit>
-    <StrataSourceSha256>b8f835c0c28552470ba330197149ed8683ce7d8d8ad8b54ef67bf9cb105666c4</StrataSourceSha256>
+    <StrataCommit>2e03be8e78ef23a8449bdeaa25f279dcf9700a7f</StrataCommit>
+    <StrataSourceSha256>cbfd092504aa8a44ee1ad73d1b1fd91b4cc09a0e0cd2858bc86814d0e8754617</StrataSourceSha256>
     <StrataWebDir>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)strata-web/$(StrataCommit)/</StrataWebDir>
     <StrataWebArchive Condition="'$(StrataWebArchive)' == ''">$(StrataWebDir)strata.a</StrataWebArchive>
     <BnWebArchive>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)bnweb/bnweb.a</BnWebArchive>
