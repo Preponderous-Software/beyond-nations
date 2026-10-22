@@ -53,16 +53,17 @@ namespace beyondnations {
         }
 
         /**
-        * The nearest pawn out in the world within reach of the player, or null.
-        * Nobody can be talked to from inside a settlement, and pawns inside one
-        * are hidden, so both cases return null.
+        * The nearest pawn within reach of the player, or null. What counts is
+        * what is drawn: a resident strolling about the plaza can be talked
+        * to, gifted and invited whether the player is inside the settlement
+        * or standing at its edge (playtest 0.5.0: nobody in a player's own
+        * town could be reached, so "Befriend settlers and press R" stalled
+        * and starving residents could not be fed). Only a hidden pawn is out
+        * of reach.
         */
         public static Pawn findPawnInRange(Player player, Environment environment) {
-            if (player.isCurrentlyInSettlement()) {
-                return null;
-            }
-            Pawn pawn = (Pawn) environment.getNearestEntityOfType(player.getPosition(), EntityType.PAWN);
-            if (pawn == null || pawn.isMarkedForDeletion()) {
+            Pawn pawn = environment.getNearestVisiblePawn(player.getPosition());
+            if (pawn == null) {
                 return null;
             }
             if (Vector3.Distance(player.getPosition(), pawn.getPosition()) >= INTERACTION_RANGE) {

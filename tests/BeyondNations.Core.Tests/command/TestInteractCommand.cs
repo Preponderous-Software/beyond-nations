@@ -117,6 +117,68 @@ namespace beyondnationstests {
             Assert.False(player.isCurrentlyInSettlement());
         }
 
+        // pawns about a settlement (playtest 0.5.0, s01): drawn means reachable
+
+        private Settlement addSettlement(Vector3 position) {
+            Settlement settlement = new Settlement(position, new NationId(), Rgba.White, "Testland", random);
+            entityRepository.addEntity(settlement);
+            return settlement;
+        }
+
+        private Pawn addResident(Settlement settlement, Vector3 offset) {
+            Pawn pawn = new Pawn(settlement.getPosition() + offset, "Olivia", random);
+            entityRepository.addEntity(pawn);
+            SettlementLife.admit(pawn, settlement);
+            return pawn;
+        }
+
+        [Fact]
+        public void testExecute_PawnMillingOnPlaza_OutOfEnterReach_TalkedTo() {
+            // prepare: the well is 10 away, a resident strolls 3 away
+            Settlement settlement = addSettlement(new Vector3(10, 0, 0));
+            Pawn pawn = addResident(settlement, new Vector3(-7, 0, 0));
+
+            // run
+            command.execute(player);
+
+            // check
+            Assert.True(PawnRelations.hasMet(pawn, player));
+            Assert.False(player.isCurrentlyInSettlement());
+            Assert.StartsWith("Olivia", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_AtTheWellWithPawnNearby_EntersSettlement() {
+            // the well is the door: within reach of it, E enters even with a pawn closer
+            Settlement settlement = addSettlement(new Vector3(4, 0, 0));
+            Pawn pawn = addResident(settlement, new Vector3(-3, 0, 0));
+
+            command.execute(player);
+
+            Assert.True(player.isCurrentlyInSettlement());
+            Assert.False(PawnRelations.hasMet(pawn, player));
+        }
+
+        [Fact]
+        public void testExecute_InsideWithPawnInReach_LeavesSettlement() {
+            // inside, E always leaves; the pawn is reached by the bar, G and R
+            Settlement settlement = addSettlement(new Vector3(0, 0, 0));
+            new EnterSettlementCommand(entityRepository).execute(player, settlement);
+            Pawn pawn = addResident(settlement, new Vector3(3, 0, 0));
+
+            command.execute(player);
+
+            Assert.False(player.isCurrentlyInSettlement());
+            Assert.False(PawnRelations.hasMet(pawn, player));
+        }
+
+        [Fact]
+        public void testHasTargetInRange_PawnMillingInsideSettlement_True() {
+            Settlement settlement = addSettlement(new Vector3(10, 0, 0));
+            addResident(settlement, new Vector3(-7, 0, 0));
+            Assert.True(command.hasTargetInRange(player));
+        }
+
         // hasTargetInRange: what a tap on the world (touch screens) checks first
 
         [Fact]

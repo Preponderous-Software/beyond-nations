@@ -46,10 +46,15 @@ namespace beyondnations {
 
             AppleTree tree = environment.getNearestTree(player.getPosition());
             Rock rock = environment.getNearestRock(player.getPosition());
-            Pawn pawn = (Pawn) environment.getNearestEntityOfType(player.getPosition(), EntityType.PAWN);
+            // a resident strolling about a plaza is as reachable as one in the wilds
+            Pawn pawn = environment.getNearestVisiblePawn(player.getPosition());
             Settlement settlement = (Settlement) environment.getNearestEntityOfType(player.getPosition(), EntityType.SETTLEMENT);
             Chicken chicken = (Chicken) environment.getNearestEntityOfType(player.getPosition(), EntityType.CHICKEN);
 
+            // The well comes before a pawn: residents mill 3 to 16 units from
+            // it, so if a nearer pawn won, E by the well would rarely enter.
+            // Anywhere else on the plaza E talks, and inside, the command bar,
+            // G and R reach the same pawns while E leaves.
             if (settlement != null && Vector3.Distance(player.getPosition(), settlement.getPosition()) < 5) {
                 EnterSettlementCommand enterSettlementCommand = new EnterSettlementCommand(entityRepository);
                 enterSettlementCommand.execute(player, settlement);
@@ -108,7 +113,7 @@ namespace beyondnations {
             }
             Entity[] nearest = {
                 environment.getNearestEntityOfType(position, EntityType.SETTLEMENT),
-                environment.getNearestEntityOfType(position, EntityType.PAWN),
+                environment.getNearestVisiblePawn(position),
                 environment.getNearestTree(position),
                 environment.getNearestRock(position),
                 environment.getNearestEntityOfType(position, EntityType.CHICKEN),

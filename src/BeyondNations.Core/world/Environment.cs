@@ -71,6 +71,36 @@ namespace beyondnations {
             return (Rock)getNearestEntityOfType(position, EntityType.ROCK);
         }
 
+        /**
+        * The nearest pawn the player can see, for talking, gifting and
+        * inviting: one strolling about a settlement's plaza counts, since it
+        * is drawn there (SettlementLife), and a hidden or departing one does
+        * not. getNearestEntityOfType skips pawns inside a settlement, which
+        * left every resident the player met in their own town out of reach.
+        */
+        public Pawn getNearestVisiblePawn(Vector3 position) {
+            Pawn nearestPawn = null;
+            float nearestDistance = float.MaxValue;
+            int count = entityRepository.getEntityCount();
+            for (int i = 0; i < count; i++) {
+                Entity entity = entityRepository.getEntityAt(i);
+                if (entity.getType() != EntityType.PAWN || !entity.isVisible() || entity.isMarkedForDeletion()) {
+                    continue;
+                }
+                float distance = Vector3.DistanceSquared(position, entity.getPosition());
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestPawn = (Pawn) entity;
+                }
+            }
+            return nearestPawn;
+        }
+
+        /**
+        * The nearest entity of a type. Pawns inside a settlement are skipped:
+        * the pawn and settlement rules treat them as indoors. What the player
+        * can reach is getNearestVisiblePawn.
+        */
         public Entity getNearestEntityOfType(Vector3 position, EntityType type) {
             // walks the repository in place rather than copying out a list per call
             Entity nearestEntity = null;

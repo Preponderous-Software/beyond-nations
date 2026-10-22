@@ -9,9 +9,10 @@ namespace beyondnations {
     * A pawn inside a settlement used to be hidden, so a busy town looked
     * deserted. It now stays visible and mills about the plaza and the market
     * while it is inside: it is still "in the settlement" for every rule that
-    * cares (it cannot be gathered, talked to as if outside, or chosen as a
-    * target, and it moves by this rather than by physics), it is simply drawn
-    * there. Its nametag is hidden while inside, so a crowded market is not a
+    * cares (pawns do not seek it out or target it, and it moves by this
+    * rather than by physics), it is simply drawn there. Being drawn, it is
+    * within the player's reach like any other pawn: talking, gifting and
+    * inviting use Environment.getNearestVisiblePawn. Its nametag is hidden while inside, so a crowded market is not a
     * wall of names; the settlement's own nametag counts who is there.
     *
     * Milling draws from its own RandomSource rather than the simulation's, so
