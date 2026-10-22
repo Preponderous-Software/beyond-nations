@@ -187,8 +187,10 @@ namespace beyondnations.desktop.ui {
 
         /**
         * Standing in another nation's land, a leader can deal with it on the
-        * spot: a gift, an alliance, a denunciation. The same three are on the
-        * nations screen (O) for every nation.
+        * spot: a gift, an alliance, peace, war, a denunciation -- the same
+        * actions, by the same rules (NationDiplomacy), as the nations screen
+        * (O). An alliance is not offered while the two are at war or at odds,
+        * since it cannot be accepted there; Offer Peace is.
         */
         private static void addDiplomacyCommands(Simulation simulation, List<WorldCommand> commands) {
             Player player = simulation.getPlayer();
@@ -210,9 +212,18 @@ namespace beyondnations.desktop.ui {
                 commands.Add(new WorldCommand("Gift " + owner.getName() + " " + Diplomacy.PLAYER_GIFT_COINS + " Coins", () =>
                     new GiftNationCommand(nationRepository, diplomacy, simulation.getRealm()).execute(player, owner)));
             }
-            if (!nationRepository.getRelations().isAllied(own, owner)) {
+            Realm realm = simulation.getRealm();
+            if (NationDiplomacy.canProposeAlliance(nationRepository, realm, own, owner)) {
                 commands.Add(new WorldCommand("Propose Alliance to " + owner.getName(), () =>
-                    new ProposeAllianceCommand(nationRepository, simulation.getRealm()).execute(player, owner)));
+                    new ProposeAllianceCommand(nationRepository, realm).execute(player, owner)));
+            }
+            if (OfferPeaceCommand.isApplicable(nationRepository, realm, own, owner)) {
+                commands.Add(new WorldCommand("Offer Peace to " + owner.getName(), () =>
+                    new OfferPeaceCommand(nationRepository, realm).execute(player, owner)));
+            }
+            if (NationDiplomacy.canDeclareWar(realm, own, owner)) {
+                commands.Add(new WorldCommand("Declare War on " + owner.getName(), () =>
+                    new DeclareWarCommand(nationRepository, realm).execute(player, owner)));
             }
             commands.Add(new WorldCommand("Denounce " + owner.getName(), () =>
                 new DenounceNationCommand(nationRepository, diplomacy).execute(player, owner)));

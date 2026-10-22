@@ -147,7 +147,7 @@ Win by **Dominion** (from the Town era, hold more than half of every settlement 
 ### Nations that deal with each other
 ![Two nations' borders meeting on the road ahead: rings of posts capped in each nation's colour curve in from either side toward the point where the claims touch, with each nation's village in the distance](./.github/media/diplomacy-borders.png)
 
-Every settlement claims the land around it: 70 units for a camp, 100 for a village, 130 for a town. Claims never overlap; where two would, the border is drawn where they meet. Each claim is ringed by short posts capped in its nation's colour, the player box says whose land you are in, and crossing a border says so on the status line. Nobody may found a settlement inside another nation's claim, and founding one near another nation's land is resented.
+Every settlement claims the land around it: 70 units for a camp, 100 for a village, 130 for a town. Claims never overlap; where two would, the border is drawn where they meet. Each claim is ringed by short posts capped in its nation's colour, the player box says whose land you are in, and crossing a border says so on the status line. Nobody may found a settlement inside another nation's claim or within 250 units of any other settlement, and founding one near another nation's land is resented. A refused founding names the settlement in the way, how far it is, and how far and which way the nearest open ground lies.
 
 Every pair of nations has a standing from -100 to +100: **Hostile** (-50 and below), **Rival** (-20), **Neutral**, **Friendly** (+20) and **Allied**. Neighbours rub each other the wrong way, faster where their borders touch; allies warm; two nations with a common enemy draw together; trading at another nation's market helps a little, and poaching its members with an invitation hurts. Pawn-led nations make their own choices: they ally once relations reach +40, pay tribute to a hostile neighbour twice their strength, and denounce weaker nations they despise.
 
@@ -156,10 +156,12 @@ Hostility has stakes. A stronger hostile neighbour raids your nearest settlement
 As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land, and every answer comes with its reason:
 
 - **Tribute** of 25 coins (+10, paid into their treasury). Paid to a stronger nation you are at war or at odds with, it also buys a minute's truce: no raids, no sieges.
-- **Ally**: accepted at +30, but never by a nation you are at war with, and a nation twice your strength wants +60 before it takes on so small a partner.
-- **War**: relations drop to Hostile and stay down while it lasts, any alliance with them breaks, and their allies think less of you. Where your lands meet, the stronger side raids and besieges.
-- **Peace** (in place of War once you are at odds): refused when too much blood lies between you (-90 or worse), or by an enemy twice your strength unless a tribute has softened them; accepted, the war ends with a minute's truce and relations at Neutral.
+- **Ally**: accepted at +30, and a nation twice your strength wants +60 before it takes on so small a partner. Not offered while you are at war or at odds (Rival or worse): make peace first.
+- **War**: on any nation you are not already at war with, a Rival included. Relations drop to Hostile and stay down while it lasts, any alliance with them breaks, and their allies think less of you. Where your lands meet, the stronger side raids and besieges.
+- **Peace** (once you are at war or at odds): refused when too much blood lies between you (-90 or worse), or by an enemy twice your strength unless a tribute has softened them; accepted, the war ends with a minute's truce and relations at Neutral.
 - **Denounce** (-25, and it ends any alliance).
+
+The nations screen lists the nations that matter first -- at war, at odds, neighbours, allies, then the rest nearest first -- with a count, and scrolls with the mouse wheel, the arrow and page keys, a drag, or its *Up*/*Down* buttons. Each action sits in the same place on every row and is shown only where it can be taken; the command bar in another nation's land offers the same ones.
 
 `--stage-diplomacy` opens the game leading a nation between a friendly neighbour and a hostile one already besieging your village (the screenshot above is `--seed 42 --start-screen world --stage-diplomacy`).
 

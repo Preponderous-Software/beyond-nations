@@ -509,6 +509,11 @@ namespace beyondnations.desktop {
             }
             // --- end #181 ---
 
+            // the nations list scrolls with the arrow and page keys
+            if (screens.getCurrent() == ScreenType.NATIONS) {
+                beyondnations.desktop.ui.screens.NationScreen.readScrollKeys(inputService);
+            }
+
             // C opens and closes the crafting screen (#47) the same way.
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
                 screens.craftingPressed();

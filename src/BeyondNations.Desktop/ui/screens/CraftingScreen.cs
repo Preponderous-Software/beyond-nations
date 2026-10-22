@@ -50,9 +50,13 @@ namespace beyondnations.desktop.ui.screens {
                     + (recipe.getRequiredBuilding() != null ? " (needs a " + BuildingCatalog.getDisplayName(recipe.getRequiredBuilding().Value) + ")" : "");
                 List<string> missing = Crafting.getMissing(recipe, inventory, settlement);
                 row.CanCraft = missing.Count == 0;
+                BuildingType? building = recipe.getRequiredBuilding();
                 row.Status = row.CanCraft
                     ? "Ready: you can make " + Crafting.getMaxCrafts(recipe, inventory, settlement)
-                    : "Need " + string.Join(", ", missing);
+                    // a building the era has not unlocked cannot be had by gathering more (playtest 0.4.1 s07)
+                    : building != null && !Crafting.hasRequiredBuilding(recipe, settlement) && isLockedForPlayer(simulation, settlement, building.Value)
+                        ? "Locked: " + EraRules.describeLocked(building.Value)
+                        : "Need " + string.Join(", ", missing);
                 string held = describeHeld(inventory, recipe.getOutput());
                 if (held != null) {
                     row.Status += "  |  " + held;
@@ -74,14 +78,39 @@ namespace beyondnations.desktop.ui.screens {
             return "have " + count;
         }
 
+        /**
+        * Whether the era keeps the player from having this building: inside a
+        * settlement, by that settlement's era (set only for the nation the
+        * player leads); out in the world, by the era of the nation the player
+        * leads. A pawn-led nation is never held back.
+        */
+        public static bool isLockedForPlayer(Simulation simulation, Settlement settlement, BuildingType type) {
+            if (settlement != null) {
+                return !settlement.isBuildingUnlocked(type);
+            }
+            return NationDiplomacy.playerLeads(simulation.getPlayer(), simulation.getNationRepository())
+                && !EraRules.unlocksBuilding(simulation.getEraTracker().getEra(), type);
+        }
+
+        private static string lowerFirst(string text) {
+            return text.Length == 0 ? text : char.ToLowerInvariant(text[0]) + text.Substring(1);
+        }
+
         /** Where the player is, which decides the Workshop recipes. */
         public static string getLocationLine(Simulation simulation) {
             Settlement settlement = CraftItemCommand.getCurrentSettlement(simulation.getPlayer(), simulation.getEntityRepository());
+            bool locked = isLockedForPlayer(simulation, settlement, BuildingType.WORKSHOP);
             if (settlement == null) {
-                return "Out in the world: tools and food can be made anywhere. Planks and bricks need a settlement with a Workshop.";
+                return "Out in the world: tools and food can be made anywhere. Planks and bricks need a settlement with a Workshop"
+                    + (locked ? "; " + lowerFirst(EraRules.describeLocked(BuildingType.WORKSHOP)) : ".");
             }
             if (settlement.getNumBuildings(BuildingType.WORKSHOP) > 0) {
                 return "In the " + settlement.getDisplayName() + ", which has a Workshop: every recipe is open.";
+            }
+            if (locked) {
+                // not "build one with K": K cannot build what the era has not unlocked (playtest 0.4.1 s07)
+                return "In the " + settlement.getDisplayName() + ", which has no Workshop: " + lowerFirst(EraRules.describeLocked(BuildingType.WORKSHOP))
+                    + " See the era panel for what it takes.";
             }
             return "In the " + settlement.getDisplayName() + ", which has no Workshop yet ("
                 + (TouchLayout.isActive() ? "build one from the command bar" : ObjectiveKeyNames.resolve("build one with {BuildBuilding} or the command bar")) + ").";

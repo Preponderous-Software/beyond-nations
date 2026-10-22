@@ -27,6 +27,15 @@ namespace beyondnations.desktop.ui {
                 if (trade.getDispatchRefusal() == null) {
                     commands.Add(new WorldCommand(SendCaravanLabel, () => CaravanDispatchPanel.open(simulation)));
                 }
+                else {
+                    // in their own settlement a leader still sees the button, saying what
+                    // stands in the way; pressing it puts the whole reason on the status line
+                    // (playtest 0.4.1 s05: the refusal was hidden with the button)
+                    string blocked = getBlockedSendLabel(simulation);
+                    if (blocked != null) {
+                        commands.Add(new WorldCommand(blocked, () => CaravanDispatchPanel.open(simulation)));
+                    }
+                }
                 return;
             }
 
@@ -55,6 +64,30 @@ namespace beyondnations.desktop.ui {
             if (trade.canRaid(caravan)) {
                 commands.Add(new WorldCommand("Raid " + name, () => trade.raid(caravan)));
             }
+        }
+
+        /**
+        * For a leader in one of their own settlements who cannot send a
+        * caravan from it yet, the button's label with the short reason:
+        * "Send Caravan (Town era)", "Send Caravan (needs Storehouse)" or
+        * "Send Caravan (2 on the road)". Null anywhere else, or when a caravan
+        * can be sent.
+        */
+        public static string getBlockedSendLabel(Simulation simulation) {
+            TradeCaravans trade = simulation.getTradeCaravans();
+            Player player = simulation.getPlayer();
+            Settlement here = trade.getPlayerSettlement();
+            if (here == null || trade.getDispatchRefusal() == null
+                    || !NationDiplomacy.playerLeads(player, simulation.getNationRepository())
+                    || !here.getNationId().Equals(player.getNationId())) {
+                return null;
+            }
+            if (here.getNumBuildings(BuildingType.STOREHOUSE) == 0) {
+                return SendCaravanLabel + (here.isBuildingUnlocked(BuildingType.STOREHOUSE)
+                    ? " (needs Storehouse)"
+                    : " (" + Eras.getDisplayName(EraRules.unlockedIn(BuildingType.STOREHOUSE)) + " era)");
+            }
+            return SendCaravanLabel + " (" + trade.getNumPlayerCaravans() + " on the road)";
         }
     }
 }

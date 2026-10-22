@@ -122,6 +122,35 @@ namespace beyondnationstests.desktop.ui {
             Player player = simulation.getPlayer();
             new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, staged.traderSettlement);
             Assert.DoesNotContain(CaravanCommands.SendCaravanLabel, labels(simulation));
+            // not the player's settlement: nothing about caravans at all
+            Assert.Null(CaravanCommands.getBlockedSendLabel(simulation));
+        }
+
+        [Fact]
+        public void testOwnSettlementInTheCampEra_ShowsSendCaravanLockedWithTheReason() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Player player = simulation.getPlayer();
+            Nation nation = new Nation("Testland", player.getId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(nation);
+            player.setNationId(nation.getId());
+            Settlement settlement = new Settlement(player.getPosition(), nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());
+            simulation.getEntityRepository().addEntity(settlement);
+            nation.addSettlement(settlement.getId());
+            simulation.getEraTracker().applyRules(simulation);
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
+
+            // playtest 0.4.1 s05: the button and its refusal were both hidden
+            Assert.Contains("Send Caravan (Town era)", labels(simulation));
+            find(simulation, "Send Caravan (Town era)").execute();
+            Assert.False(CaravanDispatchPanel.isOpen());
+            Assert.Equal("This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.",
+                player.getStatus().getStatus());
+
+            // in the Town era, the Storehouse is what is missing
+            settlement.setBuildingEra(Era.TOWN);
+            Assert.Contains("Send Caravan (needs Storehouse)", labels(simulation));
         }
     }
 }

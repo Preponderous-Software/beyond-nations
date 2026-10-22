@@ -42,23 +42,20 @@ namespace beyondnations {
                 return;
             }
 
-            // never inside another nation's land
+            // never inside another nation's land; the refusal says which way open ground lies
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
             string objection = Territory.getFoundingObjection(entityRepository, nationRepository, player.getPosition(), nation.getId());
             if (objection != null) {
-                player.getStatus().update(objection + " Found your settlement outside its borders.");
+                player.getStatus().update(objection + " Found your settlement outside its borders. "
+                    + SettlementSites.describeNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
                 return;
             }
 
-            // if another settlement within 200 units
-            foreach (Entity entity in entityRepository.getEntities()) {
-                if (entity.getType() == EntityType.SETTLEMENT) {
-                    Settlement settlementToCheck = (Settlement)entity;
-                    int distance = (int)Vector3.Distance(player.getPosition(), settlementToCheck.getPosition());
-                    if (distance < gameConfig.getMinDistanceBetweenSettlements()) {
-                        player.getStatus().update("Too close to another settlement.");
-                        return;
-                    }
-                }
+            // nor within the minimum distance of another settlement: name it, and the way out
+            Settlement tooClose = SettlementSites.findTooClose(entityRepository, player.getPosition(), minDistance);
+            if (tooClose != null) {
+                player.getStatus().update(SettlementSites.describeTooClose(entityRepository, player.getPosition(), tooClose, minDistance, nation.getId()));
+                return;
             }
 
             // remove wood
