@@ -110,6 +110,14 @@ namespace beyondnations.pacing {
                   .Append(f.Message).Append("\n");
             }
 
+            md.Append("\n## Raids\n\nRaids on and by the player's nation over each run (Diplomacy).\n\n")
+              .Append("| seed | game time | raids on the player | per game hour | while sheltered | raids by the player |\n|---|---|---|---|---|---|\n");
+            foreach (PacingRunResult run in runs) {
+                md.Append("| ").Append(run.Seed).Append(" | ").Append(clock((double) run.TicksRun / run.TicksPerSecond))
+                  .Append(" | ").Append(run.RaidsOnPlayer).Append(" | ").Append(run.raidsOnPlayerPerHour().ToString("0.0"))
+                  .Append(" | ").Append(run.RaidsOnPlayerSheltered).Append(" | ").Append(run.RaidsByPlayer).Append(" |\n");
+            }
+
             md.Append("\n## Curves\n\nNations alive, pawns alive, and the player's nation and resources, once a minute.\n");
             foreach (PacingRunResult run in runs) {
                 md.Append("\n### Seed ").Append(run.Seed).Append("\n\n")
@@ -181,6 +189,10 @@ namespace beyondnations.pacing {
                     ticksPerSecond = r.TicksPerSecond,
                     ticksPerDay = r.TicksPerDay,
                     ticksRun = r.TicksRun,
+                    raidsOnPlayer = r.RaidsOnPlayer,
+                    raidsOnPlayerPerHour = r.raidsOnPlayerPerHour(),
+                    raidsOnPlayerSheltered = r.RaidsOnPlayerSheltered,
+                    raidsByPlayer = r.RaidsByPlayer,
                     objectives = r.Objectives.ConvertAll(t => new {
                         index = t.Index,
                         id = t.Id,

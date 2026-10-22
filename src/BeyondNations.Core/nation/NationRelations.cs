@@ -90,9 +90,10 @@ namespace beyondnations {
         /**
         * Moves the pair's score by delta, clamped to the range. An alliance
         * does not survive the score falling below zero. Returns the state the
-        * pair is in afterwards.
+        * pair is in afterwards. why, when given, is told with any change of
+        * named state ("over their border", RelationCause).
         */
-        public NationRelationState adjust(Nation a, Nation b, int delta) {
+        public NationRelationState adjust(Nation a, Nation b, int delta, string why = null) {
             if (a == null || b == null || a == b || delta == 0) {
                 return getState(a, b);
             }
@@ -110,7 +111,7 @@ namespace beyondnations {
 
             NationRelationState after = getState(a, b);
             if (after != before && after != NationRelationState.ALLIED && before != NationRelationState.ALLIED) {
-                eventProducer?.produceNationRelationChangeEvent(a, b, before, after);
+                eventProducer?.produceNationRelationChangeEvent(a, b, before, after, why);
             }
             return after;
         }

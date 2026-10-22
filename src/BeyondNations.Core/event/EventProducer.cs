@@ -70,8 +70,8 @@ namespace beyondnations {
             Log.debug("Produced event: " + pawnRelationshipIncreaseEvent);
         }
     
-        public void produceNationRelationChangeEvent(Nation nation1, Nation nation2, NationRelationState before, NationRelationState after) {
-            NationRelationChangeEvent e = new NationRelationChangeEvent(nation1, nation2, before, after);
+        public void produceNationRelationChangeEvent(Nation nation1, Nation nation2, NationRelationState before, NationRelationState after, string why = null) {
+            NationRelationChangeEvent e = new NationRelationChangeEvent(nation1, nation2, before, after, why);
             eventRepository.addEvent(e);
             Log.debug("Produced event: " + e);
         }

@@ -56,6 +56,16 @@ namespace beyondnations.pacing {
         public int TicksRun;
         public List<ObjectiveTiming> Objectives = new List<ObjectiveTiming>();
         public List<PacingSample> Samples = new List<PacingSample>();
+        /** Raids by another nation on the player's nation, and by the player's nation on another. */
+        public int RaidsOnPlayer;
+        public int RaidsByPlayer;
+        /** Of RaidsOnPlayer, those that came while its era sheltered it (EraRules.isSheltered). */
+        public int RaidsOnPlayerSheltered;
+
+        /** Raids on the player's nation per hour of game time. */
+        public double raidsOnPlayerPerHour() {
+            return TicksRun <= 0 ? 0 : RaidsOnPlayer * 3600.0 * TicksPerSecond / TicksRun;
+        }
     }
 
     /**
@@ -79,6 +89,20 @@ namespace beyondnations.pacing {
                 TicksPerSecond = options.TicksPerSecond,
                 TicksPerDay = simulation.getTimeOfDay().getTicksPerDay(),
             };
+
+            simulation.getEventRepository().subscribe(EventType.NationRaid, e => {
+                NationRaidEvent raid = (NationRaidEvent) e;
+                NationId own = simulation.getPlayer().getNationId();
+                if (own != null && own.Equals(raid.getVictim().getId())) {
+                    result.RaidsOnPlayer++;
+                    if (raid.getVictim().isSheltered()) {
+                        result.RaidsOnPlayerSheltered++;
+                    }
+                }
+                else if (own != null && own.Equals(raid.getRaider().getId())) {
+                    result.RaidsByPlayer++;
+                }
+            });
 
             float dt = 1f / options.TicksPerSecond;
             int recorded = 0;
