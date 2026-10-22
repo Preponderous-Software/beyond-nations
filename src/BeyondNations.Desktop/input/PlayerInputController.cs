@@ -25,6 +25,8 @@ namespace beyondnations.desktop.input {
         private readonly MouseLook mouseLook = new MouseLook();
         private bool debugMode;
         private readonly ChronicleView chronicleView = new ChronicleView();
+        private readonly BuildKey buildKey = new BuildKey();
+        private readonly System.Diagnostics.Stopwatch clock = System.Diagnostics.Stopwatch.StartNew();
 
         public MouseLook getMouseLook() {
             return mouseLook;
@@ -150,8 +152,8 @@ namespace beyondnations.desktop.input {
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.BuildBuilding)) {
-                new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository())
-                    .execute(player, null);
+                // twice to build: the first press names what and what it costs
+                buildKey.press(simulation, clock.Elapsed.TotalSeconds);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleChronicle)) {
                 player.getStatus().update(ChronicleView.describe(chronicleView.cycle()));
