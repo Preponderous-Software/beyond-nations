@@ -57,6 +57,8 @@ namespace beyondnations.desktop.ui.screens {
             ImGuiWindowFlags.AlwaysAutoResize;
 
         private string lastStatus;
+        // the command bar button waiting for its second click
+        private readonly ConfirmGate confirmGate = new ConfirmGate();
         private double lastStatusChangedAt;
         private double clock;
 
@@ -122,12 +124,20 @@ namespace beyondnations.desktop.ui.screens {
             // band along the bottom, so the bar and both columns stop above
             // it; the band is 0 everywhere else.
             bool touch = TouchLayout.isActive();
-            float barTop = drawCommandButtons(width, height - TouchLayout.getBottomReserve(), simulation, layout);
-            float columnBottom = barTop - layout.Gap;
             // A phone held upright has no room for the status line and the
             // chronicle between the box columns, where they covered the
             // objective tracker; on a narrow touch screen they go under it.
-            bool stackCentre = touch && layout.CentreWrapWidth + 2f * (layout.BoxWidth + layout.Margin * 2f) > width;
+            bool stackCentre = isStackCentre(width, layout, touch);
+            // The bar stops short of the right-hand column, which runs down
+            // to the bottom beside it (inside a settlement it holds four
+            // boxes, and with the bar under it the last button was cut off
+            // and the season box drawn over it). Upright, the right column is
+            // at the top, and the bar has the whole width.
+            float bottom = height - TouchLayout.getBottomReserve();
+            float barRight = getBarRight(width, layout, stackCentre);
+            float barTop = drawCommandButtons(width, barRight, bottom, simulation, layout);
+            float columnBottom = barTop - layout.Gap;
+            float rightColumnBottom = stackCentre ? columnBottom : bottom - layout.Margin;
             float centreBottom = layout.Margin;
             if (!stackCentre) {
                 float centreY = drawStatus(width, player, layout, layout.Margin);
@@ -205,7 +215,7 @@ namespace beyondnations.desktop.ui.screens {
 
             float playerTop = stackCentre
                 ? drawAt(playerBox, layout.RightX, rightTop, layout.BoxWidth)
-                : playerBox.drawAbove(layout.RightX, columnBottom, layout.BoxWidth, rightTop);
+                : playerBox.drawAbove(layout.RightX, rightColumnBottom, layout.BoxWidth, rightTop);
             // the season, the winter warning and the region, just above the player box
             SeasonInfoBox seasonBox = new SeasonInfoBox(simulation);
             bool seasonUnderChronicle = stackCentre;
@@ -254,73 +264,135 @@ namespace beyondnations.desktop.ui.screens {
         }
 
         /**
-        * The row of command buttons along the bottom. Which ones are offered is
-        * WorldCommandBar's decision; this only lays them out and runs the one
-        * that was clicked. Returns the y of the top of the bar (the bottom
-        * margin when there are no commands).
+        * Whether the status line, chronicle and season go in one column under
+        * the top boxes, as on a phone held upright, rather than between the
+        * left and right columns.
         */
-        private float drawCommandButtons(float width, float height, Simulation simulation, Layout layout) {
+        public static bool isStackCentre(float width, Layout layout, bool touch) {
+            return touch && layout.CentreWrapWidth + 2f * (layout.BoxWidth + layout.Margin * 2f) > width;
+        }
+
+        /**
+        * Where the command bar must stop on the right: short of the right
+        * column of boxes, which runs to the bottom of the window beside it,
+        * or the margin when that column is at the top (isStackCentre).
+        */
+        public static float getBarRight(float width, Layout layout, bool stackCentre) {
+            return stackCentre ? width - layout.Margin : layout.RightX - layout.Gap;
+        }
+
+        /**
+        * The settings CommandBarLayout lays the bar out with, for a bar
+        * between the left margin and barRight whose bottom row sits a margin
+        * above bottom. measure is the label width (ImGui.CalcTextSize in the
+        * game); the rest are ImGui's style values, passed in so the layout
+        * can be checked without a window.
+        */
+        public static CommandBarLayout.Settings barSettings(float width, float barRight, float bottom, Layout layout,
+                float uiScale, float frameHeight, float spacingX, float spacingY, float textPadding) {
+            CommandBarLayout.Settings settings = new CommandBarLayout.Settings();
+            settings.Left = layout.Margin;
+            settings.Right = System.MathF.Max(layout.Margin + 1f, barRight);
+            settings.Bottom = bottom - layout.Margin;
+            // A twentieth of the height, as the Unity bar had, but never less
+            // than a comfortable touch target nor more than a chunky button.
+            settings.ButtonHeight = System.Math.Clamp(bottom / 20f, frameHeight + 8f * uiScale, System.MathF.Max(frameHeight + 8f * uiScale, 44f * uiScale));
+            settings.MinButtonWidth = System.MathF.Min(width / 10f, 110f * uiScale);
+            settings.SpacingX = spacingX;
+            settings.SpacingY = spacingY;
+            settings.TextPadding = textPadding;
+            settings.WidthStep = 16f * uiScale;
+            settings.DrasticGap = layout.Gap;
+            return settings;
+        }
+
+        /** Hostile and irreversible buttons are drawn red; armed, brighter. */
+        private static readonly Vector4 DrasticColour = new Vector4(0.55f, 0.16f, 0.14f, 0.90f);
+        private static readonly Vector4 DrasticHoverColour = new Vector4(0.70f, 0.22f, 0.18f, 1f);
+        private static readonly Vector4 ArmedColour = new Vector4(0.85f, 0.30f, 0.10f, 1f);
+
+        /**
+        * The command buttons along the bottom. Which ones are offered is
+        * WorldCommandBar's decision and where each goes is CommandBarLayout's;
+        * this draws them and runs the one that was clicked, asking for a
+        * second click first for the ones that cannot be taken back. Returns
+        * the y of the top of the bar (the bottom margin when there are no
+        * commands).
+        */
+        private float drawCommandButtons(float width, float barRight, float height, Simulation simulation, Layout layout) {
             List<WorldCommand> commands = WorldCommandBar.getCommands(simulation);
             if (commands.Count == 0) {
                 return height - layout.Margin;
             }
 
-            // A twentieth of the height, as the Unity bar had, but never less
-            // than a comfortable touch target nor more than a chunky button.
-            float buttonHeight = System.Math.Clamp(height / 20f, Overlay.frameHeight() + UiScale.px(8f), UiScale.px(44f));
-            float minButtonWidth = System.MathF.Min(width / 10f, UiScale.px(110f));
-            float maxRowWidth = width - layout.Margin * 2f;
-            float spacing = ImGui.GetStyle().ItemSpacing.X;
-            float textPadding = ImGui.GetStyle().FramePadding.X * 2f;
+            ImGuiStylePtr style = ImGui.GetStyle();
+            CommandBarLayout.Settings settings = barSettings(width, barRight, height, layout,
+                UiScale.get(), Overlay.frameHeight(), style.ItemSpacing.X, style.ItemSpacing.Y, style.FramePadding.X * 2f);
+            CommandBarLayout.Result placed = CommandBarLayout.compute(commands, label => ImGui.CalcTextSize(label).X, settings);
+            Vector2 padding = style.WindowPadding;
+            double now = ImGui.GetTime();
 
-            // A fixed tenth of the window clipped longer labels such as
-            // "Create Nation" or "Collect Coins (12)" once the window was
-            // narrower than about 1000 pixels, so each button is at least as
-            // wide as its label, and a row that would run off the right edge
-            // wraps onto another one above it.
-            float[] buttonWidths = new float[commands.Count];
-            bool[] startsRow = new bool[commands.Count];
-            int rows = 1;
-            float rowWidth = 0f;
-            float widestRow = 0f;
-            for (int i = 0; i < commands.Count; i++) {
-                buttonWidths[i] = System.MathF.Max(minButtonWidth, ImGui.CalcTextSize(commands[i].getLabel()).X + textPadding);
-                if (i > 0 && rowWidth + spacing + buttonWidths[i] > maxRowWidth) {
-                    startsRow[i] = true;
-                    rows++;
-                    rowWidth = buttonWidths[i];
-                } else {
-                    rowWidth += (i > 0 ? spacing : 0f) + buttonWidths[i];
-                }
-                widestRow = System.MathF.Max(widestRow, rowWidth);
-            }
-            float rowStep = buttonHeight + ImGui.GetStyle().ItemSpacing.Y;
-            Vector2 padding = ImGui.GetStyle().WindowPadding;
-            float barY = height - buttonHeight - layout.Margin - rowStep * (rows - 1);
-            // Centred, so it sits between the inventory and player boxes
-            // rather than starting under one of them.
-            float barX = System.MathF.Max(layout.Margin, (width - widestRow) / 2f);
-
-            ImGui.SetNextWindowPos(new Vector2(barX - padding.X, barY - padding.Y), ImGuiCond.Always);
+            ImGui.SetNextWindowPos(new Vector2(settings.Left - padding.X, placed.Top - padding.Y), ImGuiCond.Always);
             if (ImGui.Begin("##world-command-bar", BarFlags)) {
                 WorldCommand clicked = null;
                 for (int i = 0; i < commands.Count; i++) {
-                    if (i > 0 && !startsRow[i]) {
-                        ImGui.SameLine();
+                    WorldCommand command = commands[i];
+                    CommandBarLayout.Rect rect = placed.Buttons[i];
+                    ImGui.SetCursorPos(new Vector2(rect.X - settings.Left + padding.X, rect.Y - placed.Top + padding.Y));
+                    bool armed = command.needsConfirm() && confirmGate.isArmed(command.getLabel(), now);
+                    string text = armed ? CommandBarLayout.getArmedLabel(command) : command.getLabel();
+                    int colours = 0;
+                    if (armed) {
+                        ImGui.PushStyleColor(ImGuiCol.Button, ArmedColour);
+                        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, ArmedColour);
+                        colours = 2;
+                    } else if (command.getGroup() == CommandGroup.Drastic) {
+                        ImGui.PushStyleColor(ImGuiCol.Button, DrasticColour);
+                        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, DrasticHoverColour);
+                        colours = 2;
                     }
-                    if (ImGui.Button(commands[i].getLabel(), new Vector2(buttonWidths[i], buttonHeight))) {
-                        clicked = commands[i];
+                    if (!command.isEnabled()) {
+                        ImGui.BeginDisabled();
+                    }
+                    // the id is the plain label, so arming keeps the same button
+                    if (ImGui.Button(text + "###" + command.getLabel(), new Vector2(rect.Width, rect.Height)) && command.isEnabled()) {
+                        clicked = command;
+                    }
+                    if (!command.isEnabled()) {
+                        ImGui.EndDisabled();
+                    }
+                    if (colours > 0) {
+                        ImGui.PopStyleColor(colours);
                     }
                 }
                 // Run the command after the row is laid out, so that a command
                 // which changes what the bar offers cannot invalidate the list
                 // being iterated.
                 if (clicked != null) {
-                    clicked.execute();
+                    runClicked(clicked, simulation.getPlayer(), now);
                 }
             }
             ImGui.End();
-            return barY;
+            return placed.Top;
+        }
+
+        /** A click on a bar button: run it, or arm it when it needs a second click. */
+        private void runClicked(WorldCommand command, Player player, double now) {
+            if (!command.needsConfirm()) {
+                confirmGate.disarm();
+                command.execute();
+                return;
+            }
+            if (confirmGate.press(command.getLabel(), now)) {
+                command.execute();
+                return;
+            }
+            player.getStatus().update(getConfirmPrompt(command, TouchLayout.isActive()));
+        }
+
+        /** "Click again to confirm: Raid Caravan." */
+        public static string getConfirmPrompt(WorldCommand command, bool touch) {
+            return (touch ? "Tap" : "Click") + " again to confirm: " + command.getLabel() + ".";
         }
 
         /**

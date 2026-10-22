@@ -85,7 +85,7 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(nation, keys(KeyBindings.LeaveNation), "Leave your nation"));
             rows.Add(new Row(nation, keys(KeyBindings.FoundSettlement), "Found a settlement (leader)"));
             rows.Add(new Row(nation, keys(KeyBindings.BuildStall), "Build a market stall (leader)"));
-            rows.Add(new Row(nation, keys(KeyBindings.BuildBuilding), "Build the settlement's next building (leader)"));
+            rows.Add(new Row(nation, keys(KeyBindings.BuildBuilding), "Build the settlement's next building (press twice)"));
             rows.Add(new Row(nation, keys(KeyBindings.TeleportToHomeSettlement), "Teleport home"));
             rows.Add(new Row(nation, keys(KeyBindings.ToggleNations), "Nations and laws: tribute, alliances, war and peace"));
 

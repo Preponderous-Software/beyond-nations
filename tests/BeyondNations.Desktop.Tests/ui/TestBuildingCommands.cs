@@ -7,7 +7,8 @@ using beyondnations.desktop.ui;
 namespace beyondnationstests.desktop.ui {
 
     /**
-    * The command bar offers a button per building the player can afford, and
+    * The command bar offers a button per building the settlement has room
+    * for, enabled when the player can afford it, and
     * the --stage-settlement showcase stands up a town the player can build in.
     */
     public class TestBuildingCommands {
@@ -48,7 +49,8 @@ namespace beyondnationstests.desktop.ui {
             settlement.getInventory().removeItem(ItemType.WOOD, settlement.getInventory().getNumItems(ItemType.WOOD));
             settlement.getInventory().removeItem(ItemType.STONE, settlement.getInventory().getNumItems(ItemType.STONE));
 
-            Assert.DoesNotContain("Build House", labels(simulation));
+            // offered, but disabled, so the buttons after it do not move when it can be paid for
+            Assert.False(WorldCommandBar.getCommands(simulation).Find(c => c.getLabel() == "Build House").isEnabled());
 
             player.getInventory().addItem(ItemType.WOOD, 100);
             player.getInventory().addItem(ItemType.STONE, 100);
