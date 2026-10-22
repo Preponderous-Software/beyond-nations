@@ -153,6 +153,11 @@ namespace beyondnations.desktop.ui {
 
 
 
+        /** Whether the era box on the world HUD has its detail open (--playtest-out reports it). */
+        public bool isEraDetailOpen() {
+            return worldHud.getEraBox().isExpanded();
+        }
+
         public int getFramesPerSecond() {
             return frameRate.getFramesPerSecond();
         }

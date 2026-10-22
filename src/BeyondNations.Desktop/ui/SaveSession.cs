@@ -29,6 +29,8 @@ namespace beyondnations.desktop.ui {
         private string feedback;
         private bool feedbackIsError;
         private List<SaveSlotInfo> listing;
+        // every save that reached the disk, manual or automatic (--playtest-out reports them)
+        private int savesWritten;
 
         public SaveSession(ISaveStorage storage, string gameVersion, bool enabled) {
             this.slots = new SaveSlots(storage);
@@ -47,6 +49,11 @@ namespace beyondnations.desktop.ui {
         /** What the pause screen says about saving: the last save, or why it failed. Null before either. */
         public string getFeedback() {
             return feedback;
+        }
+
+        /** How many saves have reached the disk this run, autosaves included. */
+        public int getSavesWritten() {
+            return savesWritten;
         }
 
         public bool isFeedbackError() {
@@ -76,6 +83,7 @@ namespace beyondnations.desktop.ui {
             try {
                 SaveHeader header = slots.write(currentSlot, SaveGame.encode(simulation, gameVersion));
                 lastSaveTick = simulation.getTickCounter().getTotalTicks();
+                savesWritten++;
                 feedback = (automatic ? "Autosaved: " : "Saved: ") + header.describe() + ", "
                     + header.SavedAtUtc.ToLocalTime().ToString("HH:mm", CultureInfo.InvariantCulture) + ".";
                 feedbackIsError = false;

@@ -208,3 +208,22 @@ jobs:
           path: |
             out/a.usdc
             out/game-a.usda
+
+  # The playtest kit (docs/PLAYTESTING.md): the report validator and the
+  # aggregator over a fixture run, plus a syntax check of the harness. Stdlib
+  # Python only, so this needs nothing installed and takes seconds.
+  playtest-tools:
+    name: Playtest tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Aggregator and report validator
+        run: python3 -I tools/playtest/test_aggregate.py
+
+      - name: Harness syntax
+        run: |
+          bash -n tools/playtest/pt.sh
+          bash -n tools/playtest/smoke.sh
+          python3 -I -m py_compile tools/playtest/pthelper.py
