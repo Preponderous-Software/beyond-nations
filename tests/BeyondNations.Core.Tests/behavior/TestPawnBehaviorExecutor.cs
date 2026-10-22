@@ -97,10 +97,11 @@ namespace beyondnationstests {
 
         /**
             * Input: hungry pawn, no chicken anywhere, a rock nearer than a tree
-            * Expected output: the pawn falls back to the nearest of tree and rock
+            * Expected output: the pawn goes for the tree, which carries apples,
+            * not the rock: a starving pawn wants food, not stone
         */
         [Fact]
-        public void testGatherResources_HungryPawnWithoutChicken_TargetsNearestOfTreeAndRock() {
+        public void testGatherResources_HungryPawnWithoutChicken_TargetsAFruitTreeOverACloserRock() {
             // prepare
             Pawn pawn = createPawn(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
             AppleTree tree = new AppleTree(new Vector3(60, 0, 0), 3, random);
@@ -112,7 +113,55 @@ namespace beyondnationstests {
             executor.executeBehavior(pawn, BehaviorType.GATHER_RESOURCES);
 
             // check
-            Assert.Same(rock, pawn.getTargetEntity());
+            Assert.Same(tree, pawn.getTargetEntity());
+        }
+
+        /**
+            * Input: hungry pawn in spring, a fruit tree close by and the only
+            * chicken far beyond the hunting range
+            * Expected output: the pawn eats from the tree rather than trekking
+            * across the world after the chicken (the early-spring die-off)
+        */
+        [Fact]
+        public void testGatherResources_HungryPawn_TakesANearTreeOverAFarChicken() {
+            // prepare
+            Pawn pawn = createPawn(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            AppleTree tree = new AppleTree(new Vector3(20, 0, 0), 3, random);
+            entityRepository.addEntity(tree);
+            Chicken chicken = new Chicken(new Vector3(SeasonalRules.STORES_HUNT_RANGE * 3, 0, 0), random);
+            entityRepository.addEntity(chicken);
+
+            // run
+            executor.executeBehavior(pawn, BehaviorType.GATHER_RESOURCES);
+
+            // check
+            Assert.Same(tree, pawn.getTargetEntity());
+        }
+
+        /**
+            * Input: the same, in winter, when the trees are bare for pawns
+            * Expected output: the pawn still walks for the chicken -- winter stays lean
+        */
+        [Fact]
+        public void testGatherResources_HungryPawnInWinter_StillWalksForAFarChicken() {
+            // prepare
+            TickCounter ticks = new TickCounter();
+            SeasonCalendar calendar = new SeasonCalendar(new TimeOfDay(ticks));
+            while (!calendar.isWinter()) {
+                ticks.increment();
+            }
+            executor.setSeasonCalendar(calendar);
+            Pawn pawn = createPawn(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            AppleTree tree = new AppleTree(new Vector3(20, 0, 0), 3, random);
+            entityRepository.addEntity(tree);
+            Chicken chicken = new Chicken(new Vector3(SeasonalRules.STORES_HUNT_RANGE * 3, 0, 0), random);
+            entityRepository.addEntity(chicken);
+
+            // run
+            executor.executeBehavior(pawn, BehaviorType.GATHER_RESOURCES);
+
+            // check
+            Assert.Same(chicken, pawn.getTargetEntity());
         }
 
         /**

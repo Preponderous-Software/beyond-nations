@@ -254,7 +254,8 @@ namespace beyondnations {
                             if (pawn.getEnergy() <= 0) {
                                 eventProducer.producePawnDeathEvent(pawn);
                                 numPawnDeaths++;
-                                player.getStatus().update(pawn.getName() + " has died.");
+                                // a run of deaths is one counting line, not one line per pawn
+                                player.getStatus().update(DeathNotice.combine(player.getStatus().getStatus(), pawn.getName()));
                                 if (gameConfig.getRespawnPawns()) {
                                     pawn.setEnergy(100);
                                     if (gameConfig.getKeepInventoryOnDeath() == false) {
