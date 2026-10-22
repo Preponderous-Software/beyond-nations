@@ -1,0 +1,315 @@
+{"t": 1792645147865, "cmd": "start", "args": ["--seed", "101"]}
+{"t": 1792645155751, "cmd": "shot", "args": ["title"]}
+{"t": 1792645156248, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1792645157521, "cmd": "shot", "args": ["menu"]}
+{"t": 1792645161500, "cmd": "key", "args": ["space"]}
+{"t": 1792645162026, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1792645162056, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645162179, "cmd": "shot", "args": ["menu"]}
+{"t": 1792645162850, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1792645163223, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645185670, "cmd": "state", "args": []}
+{"t": 1792645185879, "cmd": "click", "args": ["480", "419"]}
+{"t": 1792645188849, "cmd": "shot", "args": ["controls"]}
+{"t": 1792645196932, "cmd": "state", "args": []}
+{"t": 1792645197166, "cmd": "click", "args": ["480", "419"]}
+{"t": 1792645200311, "cmd": "state", "args": []}
+{"t": 1792645200791, "cmd": "shot", "args": ["controls2"]}
+{"t": 1792645206693, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792645209610, "cmd": "shot", "args": ["controls_p2"]}
+{"t": 1792645209899, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792645212713, "cmd": "shot", "args": ["controls_p3"]}
+{"t": 1792645220873, "cmd": "note", "args": ["--shot", "controls_debug", "Controls page 3 lists debug cheats (F2 generate land, F3 spawn pawn, F4 spawn coins, F5 spawn wood, F6 teleport pawns) to every new player from the main menu. A new player reading Controls learns they can spawn coins/wood; expected these hidden or behind a dev flag."]}
+{"t": 1792645221129, "cmd": "note", "args": ["Controls page 2 says 'Era box (tap)' before the player has ever seen an Era box; meaningless from the main menu. Also neither the menu nor Controls says what the game's goal is."]}
+{"t": 1792645221302, "cmd": "click", "args": ["480", "507"]}
+{"t": 1792645223186, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645226099, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645231881, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645232841, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645236013, "cmd": "shot", "args": ["world0"]}
+{"t": 1792645236274, "cmd": "state", "args": []}
+{"t": 1792645244844, "cmd": "note", "args": ["--shot", "first_view", "First view in world: nearest tree is 15m directly behind the player (state bearing +180) and not on screen; visible trees are ~40m+ away at the horizon edges. Objective 'Walk up to a tree' — a new player walks toward the far trees. Energy starts at 84.8/100, not full, with no explanation. Player is a plain white capsule."]}
+{"t": 1792645245194, "cmd": "click", "args": ["337", "388"]}
+{"t": 1792645248040, "cmd": "state", "args": []}
+{"t": 1792645248216, "cmd": "shot", "args": ["tip2"]}
+{"t": 1792645252715, "cmd": "click", "args": ["337", "388"]}
+{"t": 1792645254601, "cmd": "drag", "args": ["480", "270", "780", "270", "2"]}
+{"t": 1792645260439, "cmd": "state", "args": []}
+{"t": 1792645260587, "cmd": "shot", "args": ["drag1"]}
+{"t": 1792645268384, "cmd": "click", "args": ["337", "375"]}
+{"t": 1792645269247, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645278094, "cmd": "state", "args": []}
+{"t": 1792645278339, "cmd": "shot", "args": ["attree"]}
+{"t": 1792645281960, "cmd": "key", "args": ["e"]}
+{"t": 1792645284588, "cmd": "state", "args": []}
+{"t": 1792645284761, "cmd": "shot", "args": ["chop1"]}
+{"t": 1792645290795, "cmd": "events", "args": ["8"]}
+{"t": 1792645296891, "cmd": "note", "args": ["--shot", "chop1", "First chop: status says 'Gathered 5 wood and 2 apples from tree.' but Inventory shows Apples: 1 (plus an unmentioned Sapling: 1); energy jumped 81->96. An apple appears to have been eaten automatically with no message. Also the tree vanished after one E press - not obvious the tree was consumed. Floating '+1 app...' text is clipped behind the chronicle panel."]}
+{"t": 1792645297299, "cmd": "note", "args": ["Tip 3 'Gather stone' appears while Objective 1 'Gather wood' is still 5/10 — the tips run ahead of the objective, so the screen tells me two different things to do at once."]}
+{"t": 1792645297468, "cmd": "note", "args": ["--shot", "chronicle_trunc", "Chronicle lines are truncated with '...' ('Una Taylor declared the nation of Eastham, tho...'), and two NPC nations were founded within the first ~25 game seconds; as a newcomer I don't know who Una Taylor is or why it matters."]}
+{"t": 1792645301469, "cmd": "click", "args": ["337", "375"]}
+{"t": 1792645302271, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645316700, "cmd": "key", "args": ["e"]}
+{"t": 1792645319366, "cmd": "state", "args": []}
+{"t": 1792645319526, "cmd": "shot", "args": ["chop2"]}
+{"t": 1792645326320, "cmd": "key", "args": ["i"]}
+{"t": 1792645328893, "cmd": "shot", "args": ["inv"]}
+{"t": 1792645329237, "cmd": "state", "args": []}
+{"t": 1792645334881, "cmd": "events", "args": ["6"]}
+{"t": 1792645334996, "cmd": "note", "args": ["--shot", "inv", "Objective 2 'Eat something' with energy at 93: there is no Eat key and the Inventory screen (I) is read-only text, so a new player has no way to act on the objective; must just wait for energy to drop. An apple had already been auto-eaten before this objective appeared, which didn't count. Inventory text also draws over the player capsule."]}
+{"t": 1792645335320, "cmd": "key", "args": ["Escape"]}
+{"t": 1792645342007, "cmd": "note", "args": ["CORRECTION to the Eat note: Objective 2 'Eat something' auto-completed at tick 1853, 52 ticks after it appeared, with no action from me (auto-eat). The '+25 coins' toast was replaced so fast I never saw it; I only noticed coins 235->260 later in Inventory. An objective that completes itself teaches nothing and the reward is invisible."]}
+{"t": 1792645342206, "cmd": "state", "args": []}
+{"t": 1792645342427, "cmd": "shot", "args": ["obj3"]}
+{"t": 1792645347156, "cmd": "click", "args": ["337", "388"]}
+{"t": 1792645349049, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792645351915, "cmd": "shot", "args": ["era"]}
+{"t": 1792645352221, "cmd": "state", "args": []}
+{"t": 1792645362986, "cmd": "note", "args": ["Small correction: the '+25 coins' toast does persist (still visible at tick ~2200); I missed it because I'd opened Inventory. The real issue stands: objective 2 completes itself with no player action."]}
+{"t": 1792645363122, "cmd": "note", "args": ["--shot", "era", "Era box reads 'Village: 0/4' (4 = number of requirements) while the expanded checklist's first line is 'Village 0/1' (a settlement count). Two different 'Village' numbers side by side is confusing. Also the tip explaining the goal boxes ('Tip 5 of 5: Your goals') comes last, after I'd already finished two objectives; it would help most as tip 1."]}
+{"t": 1792645363483, "cmd": "click", "args": ["337", "401"]}
+{"t": 1792645365390, "cmd": "key", "args": ["n"]}
+{"t": 1792645369017, "cmd": "shot", "args": ["nation"]}
+{"t": 1792645369290, "cmd": "state", "args": []}
+{"t": 1792645376078, "cmd": "note", "args": ["--shot", "nation", "Pressing N created a nation instantly with an auto-generated name 'Northernville' — no prompt to name it or confirm. The Inventory panel jumped from the bottom-left to the centre-bottom when the Era box was expanded (layout shift). The era panel now says 'Sheltered: no siege can begin until the Town era' — first mention of sieges, unexplained and a bit alarming for minute 2."]}
+{"t": 1792645376473, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792645384436, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645393378, "cmd": "key", "args": ["e"]}
+{"t": 1792645395430, "cmd": "state", "args": []}
+{"t": 1792645395595, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645411165, "cmd": "key", "args": ["e"]}
+{"t": 1792645413218, "cmd": "state", "args": []}
+{"t": 1792645413413, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645420016, "cmd": "key", "args": ["e"]}
+{"t": 1792645422064, "cmd": "state", "args": []}
+{"t": 1792645422216, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645427968, "cmd": "key", "args": ["e"]}
+{"t": 1792645430027, "cmd": "state", "args": []}
+{"t": 1792645434345, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645440999, "cmd": "key", "args": ["e"]}
+{"t": 1792645443085, "cmd": "state", "args": []}
+{"t": 1792645443251, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645450431, "cmd": "key", "args": ["e"]}
+{"t": 1792645452484, "cmd": "state", "args": []}
+{"t": 1792645452632, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645467955, "cmd": "key", "args": ["e"]}
+{"t": 1792645469993, "cmd": "state", "args": []}
+{"t": 1792645470153, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645505902, "cmd": "key", "args": ["e"]}
+{"t": 1792645508002, "cmd": "state", "args": []}
+{"t": 1792645508177, "cmd": "shot", "args": ["wood50"]}
+{"t": 1792645514526, "cmd": "key", "args": ["f"]}
+{"t": 1792645517019, "cmd": "state", "args": []}
+{"t": 1792645517142, "cmd": "shot", "args": ["found_try"]}
+{"t": 1792645525487, "cmd": "note", "args": ["--shot", "found_try", "Pressing F on claimed land gives a clear message ('This land is claimed by Eastham. Found your settlement outside its borders.') but there is no visible border on the ground or map, and Eastham's settlement is ~108m away and not on screen, so I can't tell which way 'outside its borders' is. The bottom bar still offers 'Found Settlement' while it cannot work here. Bottom bar also now has 6 buttons incl. 'Gift Eastham 25 Coins' / 'Denounce Eastham' — diplomacy actions appearing just because I'm standing on their land."]}
+{"t": 1792645525799, "cmd": "face", "args": ["-120"]}
+{"t": 1792645530308, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645536530, "cmd": "state", "args": []}
+{"t": 1792645539663, "cmd": "state", "args": ["--full"]}
+{"t": 1792645539779, "cmd": "shot", "args": ["walked"]}
+{"t": 1792645543403, "cmd": "key", "args": ["f"]}
+{"t": 1792645546929, "cmd": "state", "args": []}
+{"t": 1792645547133, "cmd": "shot", "args": ["founded"]}
+{"t": 1792645553701, "cmd": "note", "args": ["--shot", "founded", "After leaving Eastham's land (status 'You leave the land of Eastham for the wilds.'), F says 'Too close to another settlement.' The nearest settlement is ~160m away (state). The message gives no distance or direction, so I have to guess how far to walk. Expected: 'Too close to Eastham (160m); settlements need Xm apart' or a marker."]}
+{"t": 1792645554120, "cmd": "face", "args": ["180"]}
+{"t": 1792645560665, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645566918, "cmd": "key", "args": ["f"]}
+{"t": 1792645570488, "cmd": "state", "args": []}
+{"t": 1792645576177, "cmd": "face", "args": ["180"]}
+{"t": 1792645583630, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792645595899, "cmd": "state", "args": []}
+{"t": 1792645596054, "cmd": "key", "args": ["f"]}
+{"t": 1792645599615, "cmd": "state", "args": []}
+{"t": 1792645616165, "cmd": "face", "args": ["20"]}
+{"t": 1792645616950, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645623159, "cmd": "state", "args": []}
+{"t": 1792645623305, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645629576, "cmd": "state", "args": []}
+{"t": 1792645629725, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645636015, "cmd": "state", "args": []}
+{"t": 1792645641304, "cmd": "key", "args": ["f"]}
+{"t": 1792645644981, "cmd": "state", "args": []}
+{"t": 1792645645200, "cmd": "shot", "args": ["founded2"]}
+{"t": 1792645645515, "cmd": "events", "args": ["6"]}
+{"t": 1792645654009, "cmd": "note", "args": ["--shot", "founded2", "Founding worked only after I'd sprinted ~400m+ from spawn: the rule is 200 units from every settlement, and by game-minute 2 there were 8+ NPC settlements around spawn. Objective 4 took 6000 ticks (120 game s), about half of it spent hunting for a legal spot with no guidance. The success status 'Settlement founded. Eastshire resent...' was overwritten within 8 ticks by 'You are back on your own land.', so the success message is effectively never seen."]}
+{"t": 1792645654674, "cmd": "note", "args": ["--shot", "founded2", "After founding: the settlement's floating 3D label ('0 here, 0/0 residents') renders huge and clipped at the top of the screen behind the toast and chronicle, and a tree trunk sticks straight through the middle of the new settlement's well/plaza — the tree wasn't cleared."]}
+{"t": 1792645661298, "cmd": "shot", "args": ["obj5"]}
+{"t": 1792645661563, "cmd": "state", "args": []}
+{"t": 1792645664884, "cmd": "key", "args": ["e"]}
+{"t": 1792645668480, "cmd": "state", "args": []}
+{"t": 1792645668663, "cmd": "shot", "args": ["inside"]}
+{"t": 1792645678956, "cmd": "note", "args": ["--shot", "inside", "Inside my settlement: the Season panel overlaps the Player Info panel so the Energy bar is hidden (only 'Role: LEADER' and 'Land' peek out). Settlement Info shows unexplained jargon 'PCIS: 1' and a truncated line 'Next (K): Farm, 25 wood, 10' (cut off at the panel edge). Five panels plus a 6-button bottom bar cover most of the view."]}
+{"t": 1792645679308, "cmd": "note", "args": ["--shot", "inside", "Objective 6 'Build a market stall' appears right as the chronicle says 'A new stall opened in the market of Northernville' and Market Info shows 'Stalls: 1/4, Stalls for Sale: 1' — I already seem to have a stall that I didn't build. Unclear whether the objective is still needed and what 'Stalls for Sale' means. Residents 2/8 also appeared without me recruiting anyone, with no message about who they are."]}
+{"t": 1792645679686, "cmd": "key", "args": ["e"]}
+{"t": 1792645682241, "cmd": "state", "args": []}
+{"t": 1792645685635, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645698344, "cmd": "key", "args": ["e"]}
+{"t": 1792645700870, "cmd": "state", "args": []}
+{"t": 1792645701056, "cmd": "shot", "args": ["rock1"]}
+{"t": 1792645705909, "cmd": "events", "args": ["12"]}
+{"t": 1792645706045, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792645708966, "cmd": "shot", "args": ["era2"]}
+{"t": 1792645723414, "cmd": "note", "args": ["Objective 6 'Build a market stall' (gather 20 wood + 5 stone, press B) completed by itself at tick 9001, 48 ticks after it appeared, because an NPC opened a stall in my settlement. I never pressed B; I then walked off to mine stone for an objective that was already done. The completion toast was hidden among 'Enter your settlement' messages."]}
+{"t": 1792645723539, "cmd": "note", "args": ["--shot", "era2", "Objective 7 progress bar text is clipped on the left ('mbers 4/10 • Buildings 0/2'). Objective 7 counts 'Members' and 'Buildings 0/2', while the expanded Era checklist for the same goal lists 'Village 0/1, Members 4/10, Stalls 1/2, Day 1/3' — buildings vs stalls, and the Day requirement is missing from the objective. Two panels describing the same goal differently."]}
+{"t": 1792645723852, "cmd": "note", "args": ["--shot", "era2", "Chronicle is spammed by NPC rivalries: all 5 visible lines are 'X and Y have become rivals' between nations I've never met; my own events scroll away within seconds."]}
+{"t": 1792645727997, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792645728859, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645739826, "cmd": "key", "args": ["e"]}
+{"t": 1792645741934, "cmd": "state", "args": []}
+{"t": 1792645742135, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645749212, "cmd": "key", "args": ["e"]}
+{"t": 1792645751303, "cmd": "state", "args": []}
+{"t": 1792645751443, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645758776, "cmd": "key", "args": ["e"]}
+{"t": 1792645760819, "cmd": "state", "args": []}
+{"t": 1792645760973, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645773022, "cmd": "key", "args": ["e"]}
+{"t": 1792645775089, "cmd": "state", "args": []}
+{"t": 1792645775282, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645780846, "cmd": "key", "args": ["e"]}
+{"t": 1792645782889, "cmd": "state", "args": []}
+{"t": 1792645788115, "cmd": "note", "args": ["Status 'Relations with Eastshire are now Rival.' appeared at ~tick 11000 while I was chopping trees in my own land; I'd never met or interacted with Eastshire (only the earlier hidden 'Eastshire resent a new settlement so near their land', ~400m away). No explanation of what Rival means or what to do."]}
+{"t": 1792645788251, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645802251, "cmd": "key", "args": ["e"]}
+{"t": 1792645804327, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645813495, "cmd": "key", "args": ["e"]}
+{"t": 1792645815573, "cmd": "state", "args": []}
+{"t": 1792645819640, "cmd": "key", "args": ["h"]}
+{"t": 1792645823178, "cmd": "state", "args": []}
+{"t": 1792645823324, "cmd": "key", "args": ["e"]}
+{"t": 1792645825838, "cmd": "key", "args": ["k"]}
+{"t": 1792645829373, "cmd": "state", "args": []}
+{"t": 1792645829512, "cmd": "shot", "args": ["build1"]}
+{"t": 1792645838975, "cmd": "note", "args": ["--shot", "build1", "Inside the settlement after building a Farm: the bottom action bar wraps to two rows and its right end ('Exit Settlement', 'Purchase Food') is covered by the Market Info panel; Market Info is now so long it pushes Season/Player Info off-screen (Energy no longer visible at all). 'Tier: Village (4 buildings)' in Settlement Info while the Era box still says 'Camp' — two different words for progress."]}
+{"t": 1792645839373, "cmd": "state", "args": ["--full"]}
+{"t": 1792645845407, "cmd": "key", "args": ["e"]}
+{"t": 1792645846944, "cmd": "state", "args": []}
+{"t": 1792645847060, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792645847517, "cmd": "key", "args": ["r"]}
+{"t": 1792645850048, "cmd": "state", "args": []}
+{"t": 1792645850202, "cmd": "shot", "args": ["invite1"]}
+{"t": 1792645854695, "cmd": "state", "args": ["--full"]}
+{"t": 1792645863533, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645872180, "cmd": "key", "args": ["r"]}
+{"t": 1792645874305, "cmd": "state", "args": []}
+{"t": 1792645874502, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645879777, "cmd": "key", "args": ["r"]}
+{"t": 1792645881823, "cmd": "state", "args": []}
+{"t": 1792645881959, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645882729, "cmd": "key", "args": ["r"]}
+{"t": 1792645884759, "cmd": "state", "args": []}
+{"t": 1792645891303, "cmd": "state", "args": []}
+{"t": 1792645891432, "cmd": "shot", "args": ["invite2"]}
+{"t": 1792645904221, "cmd": "face", "args": ["180"]}
+{"t": 1792645912801, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1792645915969, "cmd": "state", "args": []}
+{"t": 1792645916113, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645926552, "cmd": "key", "args": ["r"]}
+{"t": 1792645928553, "cmd": "state", "args": []}
+{"t": 1792645933470, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645958523, "cmd": "key", "args": ["e"]}
+{"t": 1792645960567, "cmd": "state", "args": []}
+{"t": 1792645960709, "cmd": "shot", "args": ["talk1"]}
+{"t": 1792645969830, "cmd": "note", "args": ["--shot", "talk1", "Cannot interact with pawns around my settlement: with Olivia Wood 2.9m away (state) and visibly beside me, E says 'No entities within range to interact with.' and R says 'There is no one within reach to invite.' Reproduced 6 times with 4 different pawns (Olivia Wood, Wendy Wood, Judy Evans, Bella Wilson) at 1.9-4.4m, both on the plaza and 20-30m outside it, ticks 13101-15541. Objective 7 says 'Befriend settlers and press R', so Members 6/10 can't be advanced this way."]}
+{"t": 1792645970269, "cmd": "note", "args": ["--shot", "talk1", "By the end of game-day 1 my nation is 'Rival' with Eastshire and 'hostile' with Newland (chronicle: 'Newland and Northernville are now hostile') without me ever meeting either; no explanation of why or what it means for me."]}
+{"t": 1792645977342, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645978135, "cmd": "state", "args": []}
+{"t": 1792645978279, "cmd": "key", "args": ["e"]}
+{"t": 1792645979559, "cmd": "state", "args": []}
+{"t": 1792645979760, "cmd": "state", "args": []}
+{"t": 1792645979903, "cmd": "key", "args": ["e"]}
+{"t": 1792645981155, "cmd": "state", "args": []}
+{"t": 1792645981326, "cmd": "state", "args": []}
+{"t": 1792645981483, "cmd": "key", "args": ["e"]}
+{"t": 1792645982779, "cmd": "state", "args": []}
+{"t": 1792645996752, "cmd": "key", "args": ["c"]}
+{"t": 1792645999341, "cmd": "shot", "args": ["craft"]}
+{"t": 1792645999595, "cmd": "state", "args": []}
+{"t": 1792646004099, "cmd": "click", "args": ["823", "127"]}
+{"t": 1792646006933, "cmd": "shot", "args": ["craft2"]}
+{"t": 1792646007155, "cmd": "state", "args": []}
+{"t": 1792646010419, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646011965, "cmd": "key", "args": ["p"]}
+{"t": 1792646014541, "cmd": "state", "args": []}
+{"t": 1792646014660, "cmd": "key", "args": ["o"]}
+{"t": 1792646017263, "cmd": "shot", "args": ["nations"]}
+{"t": 1792646017659, "cmd": "state", "args": []}
+{"t": 1792646026514, "cmd": "note", "args": ["--shot", "nations", "Nations screen on day 1 (game-minute ~5.5): Eastshire is 'Hostile (-51), neighbour' with 11 members and a town, and the header warns 'Hostile neighbours raid and besiege' — I have never interacted with them. Meanwhile Westernham is 'Friendly (+34)' and Oldland '+21', also without my doing anything. NPC nations are at 'town' tier on day 1 while I'm 'Camp'; they progress much faster than a player can. No indication of WHY relations moved."]}
+{"t": 1792646026811, "cmd": "click", "args": ["561", "350"]}
+{"t": 1792646029575, "cmd": "state", "args": []}
+{"t": 1792646029716, "cmd": "shot", "args": ["tribute"]}
+{"t": 1792646033246, "cmd": "click", "args": ["665", "397"]}
+{"t": 1792646036060, "cmd": "state", "args": []}
+{"t": 1792646036155, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792646039002, "cmd": "shot", "args": ["laws"]}
+{"t": 1792646045770, "cmd": "click", "args": ["225", "348"]}
+{"t": 1792646048559, "cmd": "state", "args": []}
+{"t": 1792646048686, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646050181, "cmd": "key", "args": ["y"]}
+{"t": 1792646052678, "cmd": "shot", "args": ["chron_full"]}
+{"t": 1792646052919, "cmd": "state", "args": []}
+{"t": 1792646061126, "cmd": "note", "args": ["--shot", "chron_full", "Full chronicle (Y) reveals 'Eastshire raided Northernville and carried off 5 coins, 5 wood, 5 stone' and 'Newland raided Northernville and carried off 5 coins, 5 wood, 5 stone' on day 1 night. I was never told at the moment (I only noticed my stone/wood shrinking); meanwhile the Era panel reassures 'Sheltered: no siege can begin until the Town era'. A newcomer reads 'sheltered' as safe. The chronicle has 258 entries by the end of day 1 — almost entirely NPC-vs-NPC rivalries/raids."]}
+{"t": 1792646066739, "cmd": "note", "args": ["Correction to the raid note: my personal inventory was not reduced by the raids (wood/stone changes were from crafting an axe); the raids presumably took from the settlement's stores. Point stands: no status/toast when my settlement is raided, and it contradicts 'Sheltered' in the Era panel."]}
+{"t": 1792646066864, "cmd": "key", "args": ["y"]}
+{"t": 1792646068355, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646070850, "cmd": "shot", "args": ["pause"]}
+{"t": 1792646071124, "cmd": "state", "args": []}
+{"t": 1792646077572, "cmd": "click", "args": ["480", "326"]}
+{"t": 1792646080307, "cmd": "shot", "args": ["saved"]}
+{"t": 1792646080535, "cmd": "events", "args": ["3"]}
+{"t": 1792646080596, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646082118, "cmd": "state", "args": []}
+{"t": 1792646087080, "cmd": "note", "args": ["Right after resuming from a save: status 'Your people raided Newland: 5 coins, 5 wood, 5 stone brought home.' My nation raids others automatically with no choice offered to me as leader; as a newcomer I didn't know my members could do that or how to stop it."]}
+{"t": 1792646087173, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646092419, "cmd": "key", "args": ["e"]}
+{"t": 1792646094395, "cmd": "state", "args": []}
+{"t": 1792646094493, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646101398, "cmd": "key", "args": ["e"]}
+{"t": 1792646103386, "cmd": "state", "args": []}
+{"t": 1792646103524, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646103718, "cmd": "key", "args": ["e"]}
+{"t": 1792646105701, "cmd": "state", "args": []}
+{"t": 1792646110251, "cmd": "state", "args": []}
+{"t": 1792646110354, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792646127751, "cmd": "key", "args": ["g"]}
+{"t": 1792646129912, "cmd": "state", "args": []}
+{"t": 1792646130049, "cmd": "shot", "args": ["gift"]}
+{"t": 1792646139686, "cmd": "note", "args": ["--shot", "gift", "G (gift) fails the same way: Frank Roberts 2.3m directly in front of me, 'There is no one within reach to give a gift to.' (tick 18257). Hypothesis from reading the code: pawns counted as 'inside' a settlement (the plaza label says '5 here') are skipped by Environment.getNearestEntityOfType, yet they are still rendered walking around the plaza and nearby — so every pawn a player meets near their own settlement looks interactable but isn't. Members stayed 6/10 for 3+ game minutes, also after opening borders."]}
+{"t": 1792646140040, "cmd": "state", "args": ["--full"]}
+{"t": 1792646149827, "cmd": "note", "args": ["Pacing: a game day is ~30000 ticks (10 game minutes; day 1 began at timeOfDay 0.30 and was 0.92 at tick 18497). The Village era requires 'Day 1/3', so even with everything else done the second era can't arrive until ~game-minute 17+. In my first 6 game minutes I finished 6 objectives and then had nothing achievable left (Members blocked, Day gated). Food is trivial: 35 apples hoarded, energy never below 81."]}
+{"t": 1792646149919, "cmd": "key", "args": ["c"]}
+{"t": 1792646151904, "cmd": "click", "args": ["823", "189"]}
+{"t": 1792646154144, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646154630, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646164482, "cmd": "key", "args": ["e"]}
+{"t": 1792646166457, "cmd": "state", "args": []}
+{"t": 1792646166544, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646179369, "cmd": "key", "args": ["e"]}
+{"t": 1792646181365, "cmd": "state", "args": []}
+{"t": 1792646181454, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646193605, "cmd": "key", "args": ["e"]}
+{"t": 1792646195588, "cmd": "state", "args": []}
+{"t": 1792646202173, "cmd": "note", "args": ["Opening borders (to draw newcomers, as objective 7 hints) soon produced 'Thieves slipped through the open borders of Northernville and took 2 coins and 1 wood.' The Laws screen only says 'Closed: strangers keep away'; it doesn't say Open brings newcomers or thieves, so the trade-off is invisible until it bites. Members still 6/10."]}
+{"t": 1792646202268, "cmd": "note", "args": ["walkto rock then E gathered a tree instead ('Gathered 7 wood ... from tree') because a tree was also within 5 units and trees outrank rocks; in a forest, mining a specific rock means first clearing trees around it."]}
+{"t": 1792646202355, "cmd": "key", "args": ["h"]}
+{"t": 1792646204825, "cmd": "key", "args": ["e"]}
+{"t": 1792646207281, "cmd": "key", "args": ["k"]}
+{"t": 1792646209742, "cmd": "state", "args": []}
+{"t": 1792646209828, "cmd": "shot", "args": ["house"]}
+{"t": 1792646215608, "cmd": "state", "args": []}
+{"t": 1792646215695, "cmd": "click", "args": ["638", "516"]}
+{"t": 1792646218413, "cmd": "key", "args": ["k"]}
+{"t": 1792646220873, "cmd": "state", "args": []}
+{"t": 1792646220955, "cmd": "shot", "args": ["house2"]}
+{"t": 1792646226396, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1792646232661, "cmd": "key", "args": ["e"]}
+{"t": 1792646235117, "cmd": "key", "args": ["k"]}
+{"t": 1792646237578, "cmd": "state", "args": []}
+{"t": 1792646237660, "cmd": "shot", "args": ["house3"]}
+{"t": 1792646245990, "cmd": "note", "args": ["--shot", "house", "Accidental raid: the bottom bar showed [Leave Nation][Teleport Home][Plant Sapling][Enter Settlement] (screenshot). I clicked 'Enter Settlement' at (638,516) ~1-2 s later and instead got 'You raided a Newham caravan and took 10 stone. Newham will not forget it.' (tick 20469) — a caravan must have come into range and the bar re-laid out under the cursor, putting a hostile action where a harmless one was. An irreversible diplomatic action should never sit in a shifting button row and has no confirmation."]}
+{"t": 1792646246381, "cmd": "note", "args": ["H (Teleport home) put me 9m from my settlement's centre, so the following E said 'No entities within range to interact with.' and I couldn't enter until I walked closer. Expected Teleport home to land within the 5-unit enter range (or inside)."]}
+{"t": 1792646254065, "cmd": "state", "args": []}
+{"t": 1792646254157, "cmd": "status", "args": []}
+{"t": 1792646254251, "cmd": "stop", "args": []}
+{"t": 1792646297780, "cmd": "report", "args": []}
+{"t": 1792671893627, "cmd": "stop", "args": []}

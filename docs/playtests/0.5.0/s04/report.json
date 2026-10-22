@@ -1,0 +1,116 @@
+{
+  "session": "s04",
+  "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O).",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 104,
+  "durationSec": 1139,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Nations screen (O) shows only the first ~7-8 nations, oldest first, with no scrolling: real neighbours are unreachable",
+      "detail": "By tick 7600 the world had ~20 nations (Easternham, Blueham, Oldtown, Lowerport, Northwood, Castleshire, Farmham, Eastfield, Blueford, Northtown...). The O screen lists only Littlefield..Hamletburg (the 8 oldest); rows past the bottom are dropped silently (NationScreen.cs breaks the loop when out of height). No scroll (mouse wheel, Down, Page Down tried), no 'and N more', no sorting by neighbour. My actual neighbours (Oldtown, Northwood, Redford, Northtown, the last two of which became Rival through border friction) never appeared, so I could not declare war on or make peace with them from O. The doc says the screen 'warns of any siege' and marks neighbours; with this cap neither can be relied on. Only after a conquest wave made Townford a neighbour did a 'neighbour' row show up.",
+      "repro": "pt start --seed 104; create nation (N); gather 50 wood; found a camp near (-10,-812); press O",
+      "screenshot": "shots/nations_truncated.png",
+      "tick": 7618
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "No way to declare war on, or make peace with, a nation reached only through the in-land command bar",
+      "detail": "Standing in Oldtown's land (a neighbour hidden from the O screen), the command bar offers Gift / Propose Alliance / Denounce only. After two Denounces Oldtown was Hostile (-62) and auto-raids started, but there was no Offer Peace anywhere (not on the bar, not on O). 'Propose Alliance' is still offered to a Hostile nation and just says 'needs +30'.",
+      "repro": "From the camp, walk ~250 m toward Oldtown; click 'Denounce Oldtown' twice; look at the command bar",
+      "screenshot": "shots/hostile_bar.png",
+      "tick": 12582
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Denouncing a nation removes the War button, so denounce -> war escalation is impossible",
+      "detail": "After denouncing Townford (Rival -25) its War button became Peace. War can only be declared on Neutral/Friendly nations; a Rival you want to fight can only be denounced further. Expected War to remain available (with Peace beside it) for a Rival you are not at war with.",
+      "repro": "O; click Denounce on Townford row; the War button now reads Peace",
+      "screenshot": "shots/rival.png",
+      "tick": 7618
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'An alliance needs +30' is misleading: every pawn nation wants +60 from a small player nation",
+      "detail": "Header and first refusal say 'An alliance needs +30. Gifts help.' After 75 coins of tribute to reach +30, Littlefield then said 'they are 4 to your 1 and want relations of +60'. As a starting 1-member nation, every pawn nation (all have >=2 members) needs +60 = 150 coins. State the doubled threshold up front, e.g. in the row or the first refusal.",
+      "repro": "O; Ally on Littlefield; Tribute x3; Ally again",
+      "screenshot": "shots/ally_60.png",
+      "tick": 7618
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "War is free and can be ended in the same instant: war+peace is a free 60-second truce",
+      "detail": "The game pauses on the O screen, so War then Peace happen in the same tick. Greenford (9 to my 5) took up arms and then 'accepts peace (the fighting has cost them enough)' with zero fighting; result: relations -19 and a 60 s truce. Littleburg the same. Expected peace to need some time at war or some cost, and the 'fighting has cost them' line to need actual fighting.",
+      "repro": "O; War on Greenford; Peace on Greenford (same tick 15158)",
+      "screenshot": "shots/greenford.png",
+      "tick": 15158
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "After H (Teleport Home) the bar shows 'Enter Settlement' but E says 'No entities within range'",
+      "detail": "Objective 5's hint says 'Walk up to it and press E. H takes you home.' After H, E fails with 'No entities within range to interact with.' while the command bar's 'Enter Settlement' works. H should land within E's range, or E should match the bar.",
+      "repro": "Found a camp; walk away; press H; press E",
+      "screenshot": "shots/e_vs_bar.png",
+      "tick": 14642
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Too close to another settlement.' gives no distance or direction",
+      "detail": "Pressing F 231 m from the nearest settlement only says 'Too close to another settlement.' The minimum (250 m) and which settlement are not stated; I had to walk around by trial. With ~20 pawn nations founding camps in the first day, finding a legal spot took three tries (a pawn founded Castleshire right where I was heading).",
+      "repro": "pt start --seed 104; gather 50 wood near (223,-495); press F",
+      "screenshot": "shots/too_close.png",
+      "tick": 5670
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "First raid on my camp had no status line: same-tick 'Autosaved.' overwrote it",
+      "detail": "At tick 18002 the chronicle has 'Townford raided Southham and carried off 5 coins, 5 wood, 5 stone' but the status line only showed 'Autosaved.' (both tick 18002). Later raids did show 'Townford raided your camp'. An attack on the player should win over an autosave notice.",
+      "repro": "Declare war on neighbour Townford at tick ~17546; wait to tick 18002; pt events",
+      "screenshot": "shots/camp_war.png",
+      "tick": 18002
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Nations row wrap leaves ', truce 60' / 's' split and pushes the last nation off the list",
+      "detail": "'Greenford: 5 members, 1 town. Neutral (-19), truce 60' wraps with a lone 's' on the next line; the taller row drops Hamletburg off the bottom (7 rows shown).",
+      "repro": "O; War then Peace on Greenford",
+      "screenshot": "shots/truce_wrap.png",
+      "tick": 15158
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "HUD panels overlap and clip inside the camp; world nametags draw over HUD and the O screen",
+      "detail": "Inside my camp the Settlement Info panel is clipped at the right edge ('Next (K): Farm, 25 wood, 10'), the Season panel covers Player Info, and the huge 'Camp of Southham / 0 here, 1/8 residents' nametag overlays the top-right HUD and the Nations tab buttons. Objective 7's bar text is clipped on the left ('nbers 2/10 • Buildings 0/2').",
+      "repro": "Enter your settlement; press O",
+      "screenshot": "shots/panels_overflow.png",
+      "tick": 15150
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {"Found a settlement": 150.0, "Enter your settlement": 298.0, "Build a market stall": 331.0},
+    "nationsInWorldAtFounding": 20,
+    "nationsVisibleOnNationsScreen": 8,
+    "coinsToAllyAsOneMemberNation": 150,
+    "alliancesFormed": 1,
+    "warsDeclared": 4,
+    "peacesMade": 4,
+    "raidsSufferedAtWar": 3,
+    "nationsDisbandedByTick21000": 7
+  },
+  "fun": 3,
+  "verdict": "The diplomacy actions read well: every refusal names its reason and the odds ('laughs... 28 to your 2', 'tribute may buy a truce'), and the world comes alive with sieges and captures. But the Nations screen shows only the 8 oldest of ~20 nations with no scrolling, so the neighbours that matter (whose borders grate into rivalry and who raid you) usually can't be warred on or made peace with, and the in-land command bar has no War or Peace to make up for it. War also costs nothing and can be ended in the same paused tick, so it has no weight yet."
+}

@@ -38,6 +38,11 @@ keys and clicking. Then you will write a structured report.
 5. **Always finish with `pt.sh stop`**, even if something went wrong, then write
    and validate `report.json`.
 6. Stay within your time budget. Check the clock now and then (`date`).
+7. **Keep every file you create inside your session directory**, including
+   any wrapper or helper script for `pt`. Other playtesters run at the same
+   time and may share your scratch directory; in the first parallel run, a
+   `pt` wrapper left in a shared scratch directory was overwritten by another
+   agent's, and key presses went to the wrong game.
 
 ## The harness
 

@@ -1,0 +1,239 @@
+{"t": 1792645148401, "cmd": "start", "args": ["--seed", "107"]}
+{"t": 1792645157761, "cmd": "key", "args": ["space"]}
+{"t": 1792645161299, "cmd": "shot", "args": ["menu"]}
+{"t": 1792645167534, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645170333, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645171131, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792645171482, "cmd": "key", "args": ["c"]}
+{"t": 1792645174001, "cmd": "shot", "args": ["craft0"]}
+{"t": 1792645174223, "cmd": "state", "args": []}
+{"t": 1792645180711, "cmd": "key", "args": ["c"]}
+{"t": 1792645181217, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645192393, "cmd": "key", "args": ["e"]}
+{"t": 1792645195046, "cmd": "state", "args": []}
+{"t": 1792645195215, "cmd": "shot", "args": ["chop1"]}
+{"t": 1792645203178, "cmd": "key", "args": ["Return"]}
+{"t": 1792645203843, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645207746, "cmd": "key", "args": ["e"]}
+{"t": 1792645210262, "cmd": "state", "args": []}
+{"t": 1792645210470, "cmd": "events", "args": ["10"]}
+{"t": 1792645216024, "cmd": "shot", "args": ["world2"]}
+{"t": 1792645216404, "cmd": "key", "args": ["c"]}
+{"t": 1792645219045, "cmd": "shot", "args": ["craft1"]}
+{"t": 1792645224802, "cmd": "click", "args": ["480", "126"]}
+{"t": 1792645227661, "cmd": "shot", "args": ["craft_axe"]}
+{"t": 1792645227904, "cmd": "state", "args": []}
+{"t": 1792645233164, "cmd": "key", "args": ["c"]}
+{"t": 1792645233727, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645240081, "cmd": "key", "args": ["e"]}
+{"t": 1792645242655, "cmd": "shot", "args": ["axechop"]}
+{"t": 1792645242917, "cmd": "state", "args": []}
+{"t": 1792645251145, "cmd": "key", "args": ["Return"]}
+{"t": 1792645251675, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792645262285, "cmd": "key", "args": ["e"]}
+{"t": 1792645264821, "cmd": "state", "args": []}
+{"t": 1792645264958, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792645321789, "cmd": "key", "args": ["e"]}
+{"t": 1792645324365, "cmd": "state", "args": []}
+{"t": 1792645324515, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792645331587, "cmd": "key", "args": ["e"]}
+{"t": 1792645334129, "cmd": "state", "args": []}
+{"t": 1792645334263, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792645338851, "cmd": "key", "args": ["e"]}
+{"t": 1792645341442, "cmd": "state", "args": []}
+{"t": 1792645347407, "cmd": "key", "args": ["c"]}
+{"t": 1792645348938, "cmd": "click", "args": ["480", "188"]}
+{"t": 1792645351805, "cmd": "state", "args": []}
+{"t": 1792645351934, "cmd": "key", "args": ["c"]}
+{"t": 1792645352468, "cmd": "walkto", "args": ["rock", "100"]}
+{"t": 1792645362906, "cmd": "key", "args": ["e"]}
+{"t": 1792645365464, "cmd": "state", "args": []}
+{"t": 1792645365584, "cmd": "walkto", "args": ["rock", "100"]}
+{"t": 1792645370366, "cmd": "key", "args": ["e"]}
+{"t": 1792645372925, "cmd": "state", "args": []}
+{"t": 1792645373094, "cmd": "walkto", "args": ["rock", "100"]}
+{"t": 1792645385976, "cmd": "key", "args": ["e"]}
+{"t": 1792645388561, "cmd": "state", "args": []}
+{"t": 1792645393457, "cmd": "walkto", "args": ["chicken", "120"]}
+{"t": 1792645418556, "cmd": "key", "args": ["e"]}
+{"t": 1792645421158, "cmd": "state", "args": []}
+{"t": 1792645424863, "cmd": "key", "args": ["c"]}
+{"t": 1792645426461, "cmd": "click", "args": ["480", "250"]}
+{"t": 1792645429262, "cmd": "shot", "args": ["craft_meat"]}
+{"t": 1792645429506, "cmd": "state", "args": []}
+{"t": 1792645435856, "cmd": "key", "args": ["c"]}
+{"t": 1792645436479, "cmd": "key", "args": ["n"]}
+{"t": 1792645439026, "cmd": "shot", "args": ["nation"]}
+{"t": 1792645439349, "cmd": "state", "args": []}
+{"t": 1792645442935, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645473440, "cmd": "key", "args": ["e"]}
+{"t": 1792645475986, "cmd": "state", "args": []}
+{"t": 1792645476147, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645484162, "cmd": "key", "args": ["e"]}
+{"t": 1792645486724, "cmd": "state", "args": []}
+{"t": 1792645486848, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645498035, "cmd": "key", "args": ["e"]}
+{"t": 1792645500577, "cmd": "state", "args": []}
+{"t": 1792645500735, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645507750, "cmd": "key", "args": ["e"]}
+{"t": 1792645510324, "cmd": "state", "args": []}
+{"t": 1792645515367, "cmd": "key", "args": ["f"]}
+{"t": 1792645518993, "cmd": "state", "args": []}
+{"t": 1792645519120, "cmd": "shot", "args": ["founded"]}
+{"t": 1792645522365, "cmd": "state", "args": ["--full"]}
+{"t": 1792645528922, "cmd": "note", "args": ["--shot", "too_close", "F at 175m from nearest settlement: red 'Too close to another settlement.' gives no distance or direction; objective text only says 'away from other settlements'. Player has to guess how far to walk."]}
+{"t": 1792645529287, "cmd": "key", "args": ["Return"]}
+{"t": 1792645529835, "cmd": "face", "args": ["30"]}
+{"t": 1792645531235, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792645543474, "cmd": "key", "args": ["f"]}
+{"t": 1792645547057, "cmd": "state", "args": []}
+{"t": 1792645550909, "cmd": "walkto", "args": ["settlement", "40"]}
+{"t": 1792645551557, "cmd": "key", "args": ["e"]}
+{"t": 1792645554134, "cmd": "state", "args": []}
+{"t": 1792645554267, "cmd": "key", "args": ["k"]}
+{"t": 1792645556819, "cmd": "shot", "args": ["build"]}
+{"t": 1792645557065, "cmd": "state", "args": []}
+{"t": 1792645570857, "cmd": "note", "args": ["--shot", "k_built_house", "Pressed K inside new settlement intending to see build options; it instantly built a House (20 wood, 15 stone) with no menu/confirm, eating the materials I'd saved for a Workshop. Residents were 1/12 so a house was not needed. Settlement Info 'Next (K): Farm...' only appears after; before pressing it the player can't tell what K will build unless they read that panel."]}
+{"t": 1792645571274, "cmd": "key", "args": ["e"]}
+{"t": 1792645572868, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645580299, "cmd": "key", "args": ["e"]}
+{"t": 1792645582841, "cmd": "state", "args": []}
+{"t": 1792645582966, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645583622, "cmd": "key", "args": ["e"]}
+{"t": 1792645586176, "cmd": "state", "args": []}
+{"t": 1792645586281, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792645586969, "cmd": "key", "args": ["e"]}
+{"t": 1792645589579, "cmd": "state", "args": []}
+{"t": 1792645589711, "cmd": "walkto", "args": ["rock", "100"]}
+{"t": 1792645691752, "cmd": "key", "args": ["e"]}
+{"t": 1792645694359, "cmd": "state", "args": []}
+{"t": 1792645694486, "cmd": "walkto", "args": ["rock", "100"]}
+{"t": 1792645703234, "cmd": "key", "args": ["e"]}
+{"t": 1792645705796, "cmd": "state", "args": []}
+{"t": 1792645710908, "cmd": "state", "args": []}
+{"t": 1792645711018, "cmd": "state", "args": ["--full"]}
+{"t": 1792645716074, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645726846, "cmd": "key", "args": ["e"]}
+{"t": 1792645729385, "cmd": "state", "args": []}
+{"t": 1792645729511, "cmd": "shot", "args": ["near_tree"]}
+{"t": 1792645734535, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645744073, "cmd": "key", "args": ["e"]}
+{"t": 1792645746655, "cmd": "state", "args": []}
+{"t": 1792645746782, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645751916, "cmd": "key", "args": ["e"]}
+{"t": 1792645754457, "cmd": "state", "args": []}
+{"t": 1792645758424, "cmd": "walkto", "args": ["settlement", "80"]}
+{"t": 1792645772189, "cmd": "key", "args": ["e"]}
+{"t": 1792645774724, "cmd": "state", "args": []}
+{"t": 1792645774841, "cmd": "shot", "args": ["inside2"]}
+{"t": 1792645783148, "cmd": "key", "args": ["c"]}
+{"t": 1792645785665, "cmd": "shot", "args": ["craft_inside"]}
+{"t": 1792645792419, "cmd": "note", "args": ["--shot", "craft_inside", "Crafting screen inside my 1-building Camp says 'no Workshop yet (build one with K or the command bar)', but the command bar offers only Stall/Farm/House (no Workshop button despite having 26 wood/13 stone >= 15/10) and Settlement Info says Next (K): Farm. No hint that a Workshop unlocks only after 2 buildings."]}
+{"t": 1792645792692, "cmd": "events", "args": ["60"]}
+{"t": 1792645797253, "cmd": "events", "args": ["400"]}
+{"t": 1792645803288, "cmd": "key", "args": ["c"]}
+{"t": 1792645804857, "cmd": "click", "args": ["282", "486"]}
+{"t": 1792645807682, "cmd": "shot", "args": ["farm"]}
+{"t": 1792645807938, "cmd": "state", "args": []}
+{"t": 1792645815957, "cmd": "note", "args": ["--shot", "farm", "Polish: objective progress bar label is cut off on the left ('nbers 2/10' for 'Members 2/10'), and the 'Sell Resources' command-bar button overlaps the Season panel text at the bottom right."]}
+{"t": 1792645816237, "cmd": "click", "args": ["425", "517"]}
+{"t": 1792645819020, "cmd": "state", "args": []}
+{"t": 1792645823718, "cmd": "key", "args": ["e"]}
+{"t": 1792645825224, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645833333, "cmd": "key", "args": ["e"]}
+{"t": 1792645835890, "cmd": "state", "args": []}
+{"t": 1792645836031, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645843634, "cmd": "key", "args": ["e"]}
+{"t": 1792645846166, "cmd": "state", "args": []}
+{"t": 1792645846314, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645856631, "cmd": "key", "args": ["e"]}
+{"t": 1792645859170, "cmd": "state", "args": []}
+{"t": 1792645859317, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645870252, "cmd": "key", "args": ["e"]}
+{"t": 1792645872826, "cmd": "state", "args": []}
+{"t": 1792645876648, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645885681, "cmd": "key", "args": ["e"]}
+{"t": 1792645888177, "cmd": "walkto", "args": ["settlement", "100"]}
+{"t": 1792645911204, "cmd": "key", "args": ["e"]}
+{"t": 1792645913711, "cmd": "shot", "args": ["inside3"]}
+{"t": 1792645914213, "cmd": "state", "args": []}
+{"t": 1792645926833, "cmd": "click", "args": ["110", "57"]}
+{"t": 1792645929608, "cmd": "shot", "args": ["era"]}
+{"t": 1792645939570, "cmd": "note", "args": ["--shot", "era", "Workshop (and so Planks/Bricks) is era-locked: the Era panel lists 'Unlocks: Workshop' at Village era (Members 10, Stalls 2, Day 3). The crafting screen instead tells the player to 'build one with K or the command bar' and never mentions the era lock; with 2 buildings and 25 wood/22 stone no Workshop button appears and nothing explains why."]}
+{"t": 1792645940005, "cmd": "state", "args": ["--full"]}
+{"t": 1792645944246, "cmd": "key", "args": ["e"]}
+{"t": 1792645945824, "cmd": "walkto", "args": ["chicken", "120"]}
+{"t": 1792645960766, "cmd": "key", "args": ["e"]}
+{"t": 1792645963311, "cmd": "state", "args": []}
+{"t": 1792645968048, "cmd": "key", "args": ["c"]}
+{"t": 1792645969555, "cmd": "click", "args": ["480", "250"]}
+{"t": 1792645971356, "cmd": "key", "args": ["c"]}
+{"t": 1792645971933, "cmd": "key", "args": ["i"]}
+{"t": 1792645974524, "cmd": "shot", "args": ["inv"]}
+{"t": 1792645974982, "cmd": "state", "args": []}
+{"t": 1792645982013, "cmd": "key", "args": ["i"]}
+{"t": 1792645982530, "cmd": "wait", "args": ["8"]}
+{"t": 1792645990611, "cmd": "state", "args": []}
+{"t": 1792645990766, "cmd": "wait", "args": ["8"]}
+{"t": 1792645998901, "cmd": "state", "args": []}
+{"t": 1792645999002, "cmd": "wait", "args": ["8"]}
+{"t": 1792646007136, "cmd": "state", "args": []}
+{"t": 1792646007276, "cmd": "wait", "args": ["8"]}
+{"t": 1792646015359, "cmd": "state", "args": []}
+{"t": 1792646015460, "cmd": "wait", "args": ["8"]}
+{"t": 1792646023548, "cmd": "state", "args": []}
+{"t": 1792646023646, "cmd": "wait", "args": ["8"]}
+{"t": 1792646031729, "cmd": "state", "args": []}
+{"t": 1792646031847, "cmd": "wait", "args": ["8"]}
+{"t": 1792646039914, "cmd": "state", "args": []}
+{"t": 1792646040039, "cmd": "wait", "args": ["8"]}
+{"t": 1792646048115, "cmd": "state", "args": []}
+{"t": 1792646048227, "cmd": "wait", "args": ["8"]}
+{"t": 1792646056310, "cmd": "state", "args": []}
+{"t": 1792646056434, "cmd": "wait", "args": ["8"]}
+{"t": 1792646064489, "cmd": "state", "args": []}
+{"t": 1792646064580, "cmd": "wait", "args": ["8"]}
+{"t": 1792646072634, "cmd": "state", "args": []}
+{"t": 1792646072748, "cmd": "wait", "args": ["8"]}
+{"t": 1792646080805, "cmd": "state", "args": []}
+{"t": 1792646086003, "cmd": "events", "args": ["300"]}
+{"t": 1792646086075, "cmd": "events", "args": ["300"]}
+{"t": 1792646099197, "cmd": "key", "args": ["i"]}
+{"t": 1792646100662, "cmd": "note", "args": ["--shot", "no_eat_option", "Cooked meat crafted at tick 14994 vanished silently by ~tick 15750 while energy was ~90 and I held 30 apples: auto-eat takes the most nourishing food first (FoodItems order) at ~90 energy, so most of the 45 energy is wasted, with no status message. Inventory screen has no Eat action. With apples dropping 1-3 per tree, the Cooked Meat recipe is effectively pointless for the player."]}
+{"t": 1792646100952, "cmd": "key", "args": ["i"]}
+{"t": 1792646101439, "cmd": "key", "args": ["c"]}
+{"t": 1792646102953, "cmd": "click", "args": ["480", "126"]}
+{"t": 1792646104707, "cmd": "key", "args": ["c"]}
+{"t": 1792646105162, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792646112636, "cmd": "key", "args": ["e"]}
+{"t": 1792646115125, "cmd": "state", "args": []}
+{"t": 1792646115215, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792646124452, "cmd": "key", "args": ["e"]}
+{"t": 1792646127050, "cmd": "state", "args": []}
+{"t": 1792646127145, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792646137626, "cmd": "key", "args": ["e"]}
+{"t": 1792646140124, "cmd": "state", "args": []}
+{"t": 1792646140215, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792646146899, "cmd": "key", "args": ["e"]}
+{"t": 1792646149360, "cmd": "state", "args": []}
+{"t": 1792646149450, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792646154705, "cmd": "key", "args": ["e"]}
+{"t": 1792646157195, "cmd": "state", "args": []}
+{"t": 1792646157292, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792646161185, "cmd": "key", "args": ["e"]}
+{"t": 1792646163683, "cmd": "state", "args": []}
+{"t": 1792646170293, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646172761, "cmd": "shot", "args": ["pause"]}
+{"t": 1792646177361, "cmd": "click", "args": ["480", "326"]}
+{"t": 1792646181096, "cmd": "state", "args": []}
+{"t": 1792646181201, "cmd": "stop", "args": []}
+{"t": 1792646182264, "cmd": "start", "args": ["--continue", "--seed", "107"]}
+{"t": 1792646187184, "cmd": "key", "args": ["space"]}
+{"t": 1792646190667, "cmd": "shot", "args": ["after_continue"]}
+{"t": 1792646193885, "cmd": "state", "args": []}
+{"t": 1792646204044, "cmd": "note", "args": ["--shot", "after_continue", "Save/continue keeps tool wear (Axes 1 (19 uses), Pickaxes 1 (9 uses)) - good. Separately, the gather status at tick 20334 read 'Gathered 7 wood ... (+3 from your axe), 1 uses left.' (should be '1 use left')."]}
+{"t": 1792646204467, "cmd": "events", "args": ["500"]}
+{"t": 1792646204514, "cmd": "stop", "args": []}
+{"t": 1792646231591, "cmd": "report", "args": []}
+{"t": 1792646236065, "cmd": "report", "args": []}
+{"t": 1792671893787, "cmd": "stop", "args": []}

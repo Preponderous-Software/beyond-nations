@@ -4,7 +4,11 @@ A release is a bare version tag on `main` (`0.4.1`, never `v0.4.1`) with a GitHu
 
 ## Steps
 
+0. **Playtest the candidate.** Run the parallel playtest ([PLAYTESTING.md](PLAYTESTING.md)) against `develop` and commit its evidence under `docs/playtests/<version>/`. A playtest of an unreleased build is filed under the next expected version, so the directory may already exist from an earlier run. Its findings do not block the release on their own; file the confirmed blocker and major ones as issues.
+
 1. **Bump the version.** On a branch from `develop`, set `Version` in [`src/BeyondNations.Desktop/ui/GameVersion.cs`](../src/BeyondNations.Desktop/ui/GameVersion.cs) to the new version, and open a pull request to `develop`. The release workflow refuses to build a tag that does not match this string, because it is the version the game shows in the corner of every screen. (#326 is an example.)
+
+   In the same pull request, make sure the playtest evidence is named for the version being released. If `docs/playtests/` holds a directory for a different version than the one this release turned out to be (for example `0.4.2/` when the release is `0.5.0`), rename it with `git mv` and update the version inside its README. The release workflow fails a tag whose evidence directory is missing, and fails it if any evidence directory is named for a later version.
 
 2. **Merge `develop` into `main`.** Once the bump is merged, open a pull request from `develop` to `main` and merge it with a merge commit, as #327 was.
 

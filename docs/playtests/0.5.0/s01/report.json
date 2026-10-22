@@ -1,0 +1,157 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 101,
+  "durationSec": 1120,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Pawns walking around the player's own settlement can't be talked to, gifted or invited (E/G/R say nobody is in reach)",
+      "detail": "Objective 7 says 'Befriend settlers and press R'. With pawns visibly 1.9-4.4m away (Olivia Wood, Wendy Wood, Judy Evans, Bella Wilson, Frank Roberts), E says 'No entities within range to interact with.', R says 'There is no one within reach to invite.', G says 'There is no one within reach to give a gift to.' I reproduced it 8+ times between ticks 13101 and 18257, on the plaza and 20-30m outside it. Hypothesis from the code: Environment.getNearestEntityOfType skips pawns flagged as inside a settlement (the plaza label says '5 here'), but those pawns are still rendered walking around, so they look interactable and aren't. Members stayed at 6/10 for about 3 game minutes.",
+      "repro": "pt start --seed 101; play through objective 6 (found a settlement ~400m from spawn); pt key e (exit); pt walkto pawn 30; pt key r  -> 'There is no one within reach to invite.'",
+      "screenshot": "shots/talk1.png",
+      "tick": 15541
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Context button bar re-laid out under the cursor: clicking 'Enter Settlement' raided a caravan instead",
+      "detail": "The bottom bar showed [Leave Nation][Teleport Home][Plant Sapling][Enter Settlement]. About 1-2 s later I clicked Enter Settlement at (638,516) and got 'You raided a Newham caravan and took 10 stone. Newham will not forget it.' A caravan had come into range and the buttons shifted, which put a hostile, irreversible diplomatic action where a harmless one had been, with no confirmation. Hostile actions (raid, war, denounce) need a fixed slot or a confirm step.",
+      "repro": "pt start --seed 101; found settlement; pt key h; pt shot; pt click 638 516 while a Newham caravan passes -> raid status",
+      "screenshot": "shots/house2.png",
+      "tick": 20469
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Founding a settlement: 'Too close to another settlement' gives no distance; first legal spot was ~400m from spawn",
+      "detail": "By game-minute 2, more than 8 NPC settlements surround spawn, and every settlement needs 200 units of clearance. F says 'This land is claimed by Eastham...' (no borders are drawn) and then 'Too close to another settlement.' with the nearest one 150-160m away and no hint of the 200-unit rule or which way to go. Objective 4 took 6000 ticks (120 game s), about half of it spent wandering. The success message ('Settlement founded...') was overwritten 8 ticks later by 'You are back on your own land.'",
+      "repro": "pt start --seed 101; gather 50 wood near spawn; pt key n; walk out of Eastham land; pt key f -> 'Too close to another settlement.'",
+      "screenshot": "shots/founded.png",
+      "tick": 6609
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Day-1 diplomacy and raids happen to the player unexplained; 'Sheltered' message contradicts raids",
+      "detail": "Without meeting anyone, by the end of day 1 I was Rival with Eastshire, Hostile with Newland and Farmville, and Friendly with others (Nations screen: Eastshire 'Hostile (-51)'). The full chronicle shows that Eastshire and Newland each raided Northernville (5 coins, 5 wood, 5 stone each), and no toast told me at the time. Meanwhile the Era panel says 'Sheltered: no siege can begin until the Town era'. My own nation also raided Newland automatically ('Your people raided Newland...'). A newcomer can't tell why any of this happens or how to influence it.",
+      "repro": "pt start --seed 101; play to ~tick 16000; pt key o (Nations); pt key y (full chronicle)",
+      "screenshot": "shots/chron_full.png",
+      "tick": 16769
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objectives 2 and 6 complete themselves with no player action",
+      "detail": "'Eat something' completed 52 ticks after it appeared (auto-eat; an apple had already been eaten silently on the first chop). 'Build a market stall' (gather 20 wood + 5 stone, press B) completed 48 ticks after it appeared because an NPC opened a stall in my settlement. I never pressed B, and then went to mine stone for an objective that was already done. Neither teaches the mechanic.",
+      "repro": "pt start --seed 101; chop 2 trees (obj 2 auto-completes); found + enter settlement (obj 6 auto-completes at ~tick 9001)",
+      "screenshot": "shots/inside.png",
+      "tick": 9001
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement HUD panels overlap: Energy hidden, action bar wraps under Market Info, text truncated",
+      "detail": "Inside the settlement, Season overlaps Player Info (the Energy bar is hidden). After the first building, Market Info grows long enough to push Season/Player Info off-screen, and the 2-row bottom bar's 'Exit Settlement'/'Purchase Food' sit under the panel. Settlement Info shows the jargon 'PCIS: 5' and a cut-off 'Next (K): House, 20 wood, 1'. Objective 7's progress bar text is clipped on the left ('mbers 6/10 • Buildings 2/2'). The settlement's floating 3D label renders huge and clipped across the top of the screen.",
+      "repro": "pt start --seed 101; found settlement; pt key e (enter); pt key k",
+      "screenshot": "shots/build1.png",
+      "tick": 12749
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Era box and objective describe the Village-era goal differently",
+      "detail": "The collapsed Era box says 'Village: 0/4' (4 requirements), while the expanded checklist starts 'Village 0/1' (a settlement count). Objective 7 tracks 'Members · Buildings 2/2' while the Era checklist tracks 'Village, Members, Stalls 1/2, Day 1/3'. Settlement Info says 'Tier: Village (4 buildings)' while the era is still Camp. Tip 5 ('Your goals', which explains these boxes) arrives last, after two objectives are already done.",
+      "repro": "pt start --seed 101; pt click 110 58 (expand Era box) at ticks 2589 and 10141",
+      "screenshot": "shots/era2.png",
+      "tick": 10141
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Village era gated on 'Day 3' (~17+ game minutes); after minute 6 nothing achievable was left",
+      "detail": "A game day is about 30000 ticks (10 game min). I finished objectives 1-6 by tick 9001 (3 game min). Objective 7 was then blocked by the pawn bug and the day gate, so I spent the rest of my session grinding wood and stone with no visible progress. Food is trivial: I had 35 apples and energy never dropped below 81.",
+      "repro": "pt start --seed 101; play 7 game minutes",
+      "screenshot": "shots/era2.png",
+      "tick": 18737
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Opening borders (to draw newcomers) silently invites thieves; the trade-off isn't explained",
+      "detail": "Laws > Borders only says 'Closed: strangers keep away.' After I set Open, the next event was 'Thieves slipped through the open borders of Northernville and took 2 coins and 1 wood.' Members rose only to 7/10 after building a House about 4000 ticks later.",
+      "repro": "pt key o; Laws tab; Borders Open; wait ~3000 ticks",
+      "screenshot": "shots/laws.png",
+      "tick": 19549
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "First view: nearest tree is directly behind the player, off-screen",
+      "detail": "The first objective is 'Walk up to a tree and press E', but the nearest tree is 15m behind the camera (bearing +180), and the visible trees are 40m+ away at the horizon. Energy starts at 84.8 rather than full, with no explanation. Dragging the right mouse 300px turned the view only about 45 degrees.",
+      "repro": "pt start --seed 101; Start; Begin; pt shot",
+      "screenshot": "shots/first_view.png",
+      "tick": 61
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Teleport home (H) lands 9m from the settlement centre, out of enter range; 'Enter Settlement' button still offered",
+      "detail": "After H, E said 'No entities within range to interact with.' and the 'Enter Settlement' button (shown regardless) did nothing useful. I had to walk closer before E would enter.",
+      "repro": "pt key h; pt key e",
+      "screenshot": "shots/house2.png",
+      "tick": 20193
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Controls screen shows debug cheats (F2-F6 spawn coins/wood/pawns) to every player",
+      "detail": "Main menu > Controls page 3 lists 'Debug: F1 overlay, F2 generate land, F3 spawn pawn, F4 spawn coins, F5 spawn wood, F6 teleport pawns'. It's visible to a first-time player before they even start. Page 2 also mentions 'Era box (tap)' before the player has seen one, and nothing on the menu says what the game's goal is.",
+      "repro": "pt start --seed 101; pt key space; Controls; Next; Next",
+      "screenshot": "shots/controls_debug.png",
+      "tick": 0
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "First chop message says '2 apples' but the inventory shows 1 (the other was silently eaten)",
+      "detail": "'Gathered 5 wood and 2 apples from tree.' Inventory showed Apples: 1, Saplings: 1 (saplings aren't mentioned), and energy jumped 81->96. Tip 3 'Gather stone' also showed while Gather wood was still at 5/10. The tree vanishes in one press with no animation.",
+      "repro": "pt start --seed 101; pt walkto tree; pt key e",
+      "screenshot": "shots/chop1.png",
+      "tick": 1097
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Chronicle flooded by NPC-vs-NPC events; nation auto-named without a prompt",
+      "detail": "There were 258 chronicle entries by the end of day 1, and the recent panel was all 'X and Y have become rivals' between nations I'd never met, with lines truncated with '...'. Pressing N created 'Northernville' instantly, with no chance to name or confirm it. A tree trunk stands through the middle of the new settlement's plaza.",
+      "repro": "pt key n; pt key y",
+      "screenshot": "shots/founded2.png",
+      "tick": 8645
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 36.0,
+      "Eat something": 37.1,
+      "Create or join a nation": 53.1,
+      "Found a settlement": 173.1,
+      "Enter your settlement": 179.1,
+      "Build a market stall": 180.0
+    },
+    "gameSecondsPlayed": 427,
+    "finalMembers": 7,
+    "pawnInteractionAttemptsFailed": 8,
+    "accidentalRaids": 1,
+    "settlementFoundAttempts": 4,
+    "applesHoarded": 35
+  },
+  "fun": 3,
+  "verdict": "The first 3 game minutes work well: the tip and objective chain (chop, nation, settle) is clear and fast, and tools and crafting are good. After that a newcomer runs into problems. Founding needs a 400m trek with no guidance, the pawns around your own settlement can't be talked to (which blocks the members objective), and a crowded NPC world raids you, turns hostile and floods the chronicle without explaining anything. One shifting button turned a harmless click into a raid. The biggest win would be fixing the pawn interaction bug, plus a clear 'why' for relations and raids."
+}

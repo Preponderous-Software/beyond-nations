@@ -106,7 +106,24 @@ major groups with their screenshots (open the PNGs and look before you
 vouch for a finding), and the problems section (missing or invalid reports,
 crashes). Say which findings more than one agent hit.
 
-## 8. Offer issues
+## 8. Commit the evidence
+
+Testing evidence goes into the repository, in a pull request to `develop`,
+under `docs/playtests/<version>/`, named after the version that was tested.
+A build of `develop` past the last release tag is experimental: name the
+directory for the **next expected version** (develop after 0.4.1 is `0.4.2`)
+and record the exact commit in its README. Whoever cuts the release renames
+the directory if the release turns out to be a different version
+(docs/RELEASING.md); the release workflow checks it.
+
+Copy in `summary.md`, `summary.json`, every session's `report.json`,
+`events.jsonl`, `findings.jsonl` and the screenshots that findings cite. Leave
+out `game.log`, `state.json`, the data folder and screenshots no finding uses.
+Keep the total small (shrink screenshots if needed). Write a README with the
+build, commit, date, goals, seeds, sessions and anything that went wrong in
+the run. Link the summary from docs/PLAYTESTING.md's run list.
+
+## 9. Offer issues
 
 For **confirmed** blocker and major findings only (you looked at the
 screenshot and the repro is plausible), offer to file GitHub issues. Before

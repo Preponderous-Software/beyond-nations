@@ -1,0 +1,102 @@
+{
+  "session": "s02",
+  "goal": "Reach the Village era as fast as you can (it cannot come before day 3, about 17 minutes of game time); record the game time of every objective.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 102,
+  "durationSec": 2118,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Every Village requirement except the day gate is met by NPCs within 3 game minutes; the last 14 minutes are pure waiting",
+      "detail": "After I founded the settlement (tick 6950), pawns joined Eastford on their own (Members 10/10) and NPCs built all 4 market stalls between ticks 7350 and 7902. By tick ~9100 (182 s) the checklist read Village 1/1, Members 10/10, Stalls 2/2 and only 'Day 1/3' was left. Nothing I did could speed things up from there, so the run was about 42,000 ticks of idling. Pawns also built the settlement up to 'Town (7 buildings)' with no input from me. Expected the requirements to need some player effort, or the day gate to be shorter.",
+      "repro": "pt start --seed 102; chop ~13 trees; N; walk out of claimed land; F; E; then wait and watch the era checklist",
+      "screenshot": "shots/pawns_do_it.png",
+      "tick": 9490
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 6 'Build a market stall' is completed by an NPC's stall, so the player never builds one",
+      "detail": "Objective 6 asks for 20 wood + 5 stone and B inside the settlement. It completed at tick 7350, when Alice Brown built a stall. I had 6 wood and 0 stone. The market was full (4/4) by tick 7902, so B is never needed at all.",
+      "repro": "pt start --seed 102; found a settlement and enter it; wait about 10 s",
+      "screenshot": "shots/pawns_do_it.png",
+      "tick": 7350
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Era checklist shows '[ ] Village 0/1' right after founding a settlement; meaning unclear",
+      "detail": "After F and E, the 'To reach the Village era' list still had Village 0/1 unchecked. It later ticked on its own as pawns built. Nothing on screen says what 'Village' needs.",
+      "repro": "pt start --seed 102; found a settlement; E; click the Era panel",
+      "screenshot": "shots/village_unchecked.png",
+      "tick": 7310
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Settlement tier 'Town' and nation era 'Camp' use the same words for two different ladders",
+      "detail": "On Day 2, Settlement Info said 'Tier: Town (7 buildings)' and the world label read 'Town of Eastford', while the era panel said 'Camp (1/4)'. Earlier, caravans had addressed it as 'Village of Eastford' (tick 9002). That is confusing when the goal is to reach the Village era.",
+      "repro": "pt start --seed 102; found a settlement; wait until day 2; enter it",
+      "screenshot": "shots/tier_vs_era.png",
+      "tick": 27854
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "After H (Teleport Home), E is out of range of the settlement although 'Enter Settlement' is offered",
+      "detail": "H puts the player 5.4 m from the settlement, and the interact range is 5. E reports 'No entities within range to interact with', while the bottom bar shows an 'Enter Settlement' button that does work. Expected H to land within E range.",
+      "repro": "pt start --seed 102; found a settlement; walk away; pt key h; pt key e",
+      "screenshot": "shots/home_e_range.png",
+      "tick": 10082
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress text is clipped on the left and says 'Buildings' where the checklist says 'Stalls'",
+      "detail": "The bar reads 'bers 10/10 • Buildings 2/2' instead of 'Members 10/10 · Buildings 2/2'. The era checklist calls the same thing 'Stalls 2/2'.",
+      "repro": "pt start --seed 102; reach objective 7",
+      "screenshot": "shots/obj_clipped.png",
+      "tick": 9490
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "HUD layout collisions: the settlement button row overlaps Market Info, and the world-space label sits behind the panels",
+      "detail": "Inside the settlement, the bottom buttons wrap to two rows and 'Purchase Food' covers the Planks/Bricks price lines. The big '<Tier> of Eastford / N here, M residents' label renders at the top, behind the chronicle and Settlement Info panels. On the first frame of the world, the Season panel overlapped the Energy bar and the Inventory panel was clipped at the bottom. That fixed itself a moment later. Town checklist 'Funds 565/1000' does not match Settlement Info 'Funds: 12'.",
+      "repro": "pt start --seed 102; found a settlement; enter it",
+      "screenshot": "shots/village_reached.png",
+      "tick": 52346
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "A world event froze the game while I waited, unnoticed",
+      "detail": "At tick 27854 a 'Sickness' event pauses the world ('The world waits while you decide'). I was idling through the day gate, so about 3 wall minutes were lost before I noticed it. It is fine for a player at the screen, but an idling player gets no audio or other alert.",
+      "repro": "pt start --seed 102; found a settlement; wait to day 2 dawn",
+      "screenshot": "shots/event.png",
+      "tick": 27854
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 7,
+    "eraReached": "Village",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 55.0,
+      "Eat something": 56.04,
+      "Create or join a nation": 59.0,
+      "Found a settlement": 139.0,
+      "Enter your settlement": 141.0,
+      "Build a market stall": 147.0,
+      "Reach the Village era": 1020.04
+    },
+    "secondsUntilOnlyDayGateRemained": 182,
+    "villageEraTick": 51002,
+    "treesChopped": 15,
+    "raidsOnPlayerSettlementBeforeVillage": 4
+  },
+  "fun": 2,
+  "verdict": "The Village era came at 1020 s, exactly when the day-3 gate opened, but the run was over in practice at about 180 s: pawns join and NPCs build the stalls and buildings by themselves, so the player only chops about 13 trees, presses N and F, then idles for 14 minutes. The opening (chop, nation, find unclaimed land, found) feels good. After that the player needs something to do, or the gate should line up with what the player actually achieves."
+}

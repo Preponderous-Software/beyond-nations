@@ -1,0 +1,95 @@
+{
+  "session": "s08",
+  "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 108,
+  "durationSec": 1310,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Claimant sheet promises goodwill but the result never shows it; Newport still reads Hostile (-86)",
+      "detail": "I chose 'Back the claimant (20 coins)'. The sheet said 'Newport will be friendlier toward you'. Coins went from 401 to 381 and the status line and chronicle both said 'With Westham's gold behind them, Daisy Jones seized the leadership of Newport.' Neither said anything about relations. On the Nations screen (O) right after, Newport showed Hostile (-86), and Newport had been raiding Westham before the event. A player cannot tell whether the +15 happened or whether 20 coins bought nothing. The resolution line, or the Nations row, should show the change (for example 'Newport +15, now -86').",
+      "repro": "pt start --seed 108; play to tick ~30554 as leader of a nation (N, F); the 'A claimant stirs' sheet appears; click option 1; press O",
+      "screenshot": "shots/nations1.png",
+      "tick": 30647
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "World event choices hide the numbers: claimant odds and relation sizes are not stated",
+      "detail": "Option 3 says 'if the claimant wins anyway, they will remember', but not that this happens half the time or that it costs -10. Options 1 and 2 say 'friendlier' and 'a little goodwill' instead of +15 and +8. Option 1 shows its coin cost, so the costs are clear, but the benefits are not concrete enough to compare.",
+      "repro": "same as above; read the sheet",
+      "screenshot": "shots/event1.png",
+      "tick": 30554
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "'--' in world event choice text renders as a blank gap",
+      "detail": "Option 3 of 'A claimant stirs' reads 'Nothing now    but if the claimant wins anyway, they will remember.' The source text is 'Nothing now -- but ...'. The dash glyph does not render on the sheet.",
+      "repro": "same as above",
+      "screenshot": "shots/event1.png",
+      "tick": 30554
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Main Menu autosave overwrites the world's only save slot, so a manual save made before an event choice is lost",
+      "detail": "I saved from the pause menu while the claimant sheet was up (tick 30554), chose option 1, then went to Main Menu > Load. Load lists one slot per world, and leaving to the menu had autosaved after the choice. The pre-choice save was gone, so the event could not be retried with another option. A player who saves before a big decision would expect to be able to go back.",
+      "repro": "with an event sheet up: Escape > Save; Escape; pick an option; Escape > Main Menu > Load",
+      "screenshot": "shots/load.png",
+      "tick": 31434
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "The first player world event is slow to arrive (tick 30554, ~10 game minutes)",
+      "detail": "Nothing was offered until 10.2 game minutes in. That is inside the designed 7-11 minute window, but on a loaded machine (about 20 tps) it took 20 real minutes. Only one AI nation event (a Newton leadership seizure, tick 19754) appeared in the chronicle before that. A tester can see at most one or two choices in a 30-minute session.",
+      "repro": "pt start --seed 108; play normally; watch pt events for world_event_offered",
+      "screenshot": "shots/event1.png",
+      "tick": 30554
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "A new player nation is raided 37 times in ~10 game minutes without any provocation",
+      "detail": "Westham (the player's 5-member camp) became rivals and then hostile with Newport, Whiteham and Blackburg by tick 14500, through nothing the player did. The chronicle then logged 37 'raided Westham' / 'struck Westham' lines by tick ~31000. The world had 88 raids and 10 settlement captures in total. The status bar never explained why relations fell.",
+      "repro": "pt start --seed 108; create a nation and found a settlement; gather for 10 game minutes; grep the chronicle for 'Westham'",
+      "screenshot": "shots/nations1.png",
+      "tick": 14250
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Too close to another settlement.' gives no minimum distance or direction",
+      "detail": "Pressing F 222 m from the nearest settlement failed with only this message, and it happened twice. I had to guess how far to walk. Stating the required distance (and which settlement) would help.",
+      "repro": "pt start --seed 108; create a nation, gather 50 wood, press F near (-181,-59)",
+      "screenshot": "shots/tooclose.png",
+      "tick": 4106
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress label is clipped to 'bers 5/10'",
+      "detail": "The 'Members 5/10 · Buildings 0/2' bar in the objective panel cuts off the start of 'Members'.",
+      "repro": "reach objective 7 (Reach the Village era)",
+      "screenshot": "shots/truncated.png",
+      "tick": 9706
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 16.0, "Eat something": 17.0, "Create or join a nation": 31.0, "Found a settlement": 86.0, "Enter your settlement": 90.0, "Build a market stall": 91.0},
+    "playerWorldEventsOffered": 1,
+    "firstPlayerWorldEventSec": 611.1,
+    "aiNationWorldEventsSeen": 1,
+    "choicesTaken": 1,
+    "raidsOnPlayerNation": 37
+  },
+  "fun": 3,
+  "verdict": "The world event sheet itself works well: it is readable, pauses the world, names the nations involved, prices each option, and the outcome lands at once in the status line and the chronicle. The weak part is the consequence: the benefit of a diplomatic choice is never shown in numbers before or after, so after paying 20 coins Newport still read Hostile (-86) and I could not tell what I had bought. Events also come rarely enough (the first at ~10 game minutes), and the save slot is single enough, that comparing choices in one session was not possible."
+}

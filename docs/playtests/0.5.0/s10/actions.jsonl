@@ -1,0 +1,124 @@
+{"t": 1792645147892, "cmd": "start", "args": ["--seed", "Ironvale"]}
+{"t": 1792645155586, "cmd": "key", "args": ["space"]}
+{"t": 1792645156122, "cmd": "wait", "args": ["2"]}
+{"t": 1792645158209, "cmd": "shot", "args": ["menu"]}
+{"t": 1792645166505, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645167290, "cmd": "wait", "args": ["2"]}
+{"t": 1792645169387, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645176096, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645176907, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645177051, "cmd": "wait", "args": ["3"]}
+{"t": 1792645180129, "cmd": "shot", "args": ["world1"]}
+{"t": 1792645180411, "cmd": "state", "args": []}
+{"t": 1792645186381, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645199262, "cmd": "key", "args": ["e"]}
+{"t": 1792645200024, "cmd": "wait", "args": ["1"]}
+{"t": 1792645201235, "cmd": "key", "args": ["e"]}
+{"t": 1792645202011, "cmd": "wait", "args": ["1"]}
+{"t": 1792645203203, "cmd": "key", "args": ["e"]}
+{"t": 1792645203989, "cmd": "wait", "args": ["1"]}
+{"t": 1792645205101, "cmd": "key", "args": ["e"]}
+{"t": 1792645205751, "cmd": "wait", "args": ["1"]}
+{"t": 1792645206857, "cmd": "key", "args": ["e"]}
+{"t": 1792645207420, "cmd": "wait", "args": ["1"]}
+{"t": 1792645208592, "cmd": "key", "args": ["e"]}
+{"t": 1792645209166, "cmd": "wait", "args": ["1"]}
+{"t": 1792645210264, "cmd": "state", "args": []}
+{"t": 1792645214138, "cmd": "walkto", "args": ["rock", "30"]}
+{"t": 1792645245343, "cmd": "key", "args": ["e"]}
+{"t": 1792645245930, "cmd": "wait", "args": ["1"]}
+{"t": 1792645247066, "cmd": "key", "args": ["e"]}
+{"t": 1792645247678, "cmd": "wait", "args": ["1"]}
+{"t": 1792645248757, "cmd": "key", "args": ["e"]}
+{"t": 1792645249413, "cmd": "wait", "args": ["1"]}
+{"t": 1792645250511, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645270267, "cmd": "key", "args": ["e"]}
+{"t": 1792645270809, "cmd": "wait", "args": ["1"]}
+{"t": 1792645271951, "cmd": "state", "args": []}
+{"t": 1792645276737, "cmd": "wait", "args": ["2"]}
+{"t": 1792645278850, "cmd": "state", "args": []}
+{"t": 1792645279010, "cmd": "shot", "args": ["after2trees"]}
+{"t": 1792645282606, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645292106, "cmd": "key", "args": ["e"]}
+{"t": 1792645292705, "cmd": "wait", "args": ["2"]}
+{"t": 1792645294857, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645334614, "cmd": "key", "args": ["e"]}
+{"t": 1792645335220, "cmd": "wait", "args": ["2"]}
+{"t": 1792645337350, "cmd": "state", "args": []}
+{"t": 1792645337479, "cmd": "events", "args": ["10"]}
+{"t": 1792645341281, "cmd": "events", "args": ["40"]}
+{"t": 1792645341448, "cmd": "key", "args": ["n"]}
+{"t": 1792645341988, "cmd": "wait", "args": ["2"]}
+{"t": 1792645344086, "cmd": "state", "args": []}
+{"t": 1792645344267, "cmd": "shot", "args": ["nation"]}
+{"t": 1792645348392, "cmd": "key", "args": ["Escape"]}
+{"t": 1792645348968, "cmd": "await", "args": ["PAUSE", "10"]}
+{"t": 1792645349290, "cmd": "wait", "args": ["1"]}
+{"t": 1792645350360, "cmd": "state", "args": ["--full"]}
+{"t": 1792645350506, "cmd": "shot", "args": ["pause"]}
+{"t": 1792645357302, "cmd": "click", "args": ["480", "326"]}
+{"t": 1792645358152, "cmd": "wait", "args": ["2"]}
+{"t": 1792645360236, "cmd": "shot", "args": ["saved"]}
+{"t": 1792645360496, "cmd": "events", "args": ["5"]}
+{"t": 1792645360580, "cmd": "state", "args": []}
+{"t": 1792645365052, "cmd": "click", "args": ["480", "367"]}
+{"t": 1792645365887, "cmd": "wait", "args": ["2"]}
+{"t": 1792645367980, "cmd": "shot", "args": ["share"]}
+{"t": 1792645368287, "cmd": "state", "args": []}
+{"t": 1792645375613, "cmd": "note", "args": ["--shot", "share_numeric", "Share screen shows only the numeric seed 1450162717 and a ?seed=1450162717 link; the word 'Ironvale' that I typed is not shown anywhere (pause menu also numeric). Tick 3494."]}
+{"t": 1792645376018, "cmd": "stop", "args": []}
+{"t": 1792645382651, "cmd": "start", "args": ["--continue"]}
+{"t": 1792645384678, "cmd": "await", "args": ["WORLD", "90"]}
+{"t": 1792645384828, "cmd": "wait", "args": ["1"]}
+{"t": 1792645385983, "cmd": "state", "args": ["--full"]}
+{"t": 1792645386120, "cmd": "shot", "args": ["loaded"]}
+{"t": 1792645386412, "cmd": "events", "args": ["6"]}
+{"t": 1792645400556, "cmd": "note", "args": ["--shot", "loaded_toast", "After pt start --continue, the 'Objective complete! Create or join a nation +25 coins' toast is shown again, though that objective was completed (and its coins paid) before saving. Coins correctly stay 306 (not paid twice). Tick 3518."]}
+{"t": 1792645400847, "cmd": "stop", "args": []}
+{"t": 1792645401935, "cmd": "start", "args": ["--continue"]}
+{"t": 1792645403902, "cmd": "await", "args": ["WORLD", "90"]}
+{"t": 1792645404052, "cmd": "state", "args": ["--full"]}
+{"t": 1792645439172, "cmd": "stop", "args": []}
+{"t": 1792645440367, "cmd": "start", "args": []}
+{"t": 1792645441920, "cmd": "key", "args": ["space"]}
+{"t": 1792645442581, "cmd": "wait", "args": ["2"]}
+{"t": 1792645444650, "cmd": "shot", "args": ["menu2"]}
+{"t": 1792645448904, "cmd": "click", "args": ["480", "310"]}
+{"t": 1792645449707, "cmd": "wait", "args": ["2"]}
+{"t": 1792645451775, "cmd": "shot", "args": ["newworld2"]}
+{"t": 1792645455812, "cmd": "click", "args": ["480", "235"]}
+{"t": 1792645456599, "cmd": "type", "args": ["1450162717"]}
+{"t": 1792645457159, "cmd": "wait", "args": ["1"]}
+{"t": 1792645458235, "cmd": "shot", "args": ["typed"]}
+{"t": 1792645461178, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645462069, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645462181, "cmd": "state", "args": []}
+{"t": 1792645462316, "cmd": "shot", "args": ["world2"]}
+{"t": 1792645469564, "cmd": "wait", "args": ["60"]}
+{"t": 1792645529651, "cmd": "state", "args": []}
+{"t": 1792645529792, "cmd": "events", "args": ["30"]}
+{"t": 1792645538408, "cmd": "shot", "args": ["world2_later"]}
+{"t": 1792645538700, "cmd": "state", "args": ["--full"]}
+{"t": 1792645548358, "cmd": "note", "args": ["--shot", "spawn_stripped", "Seeded world 1450162717, player idle at spawn (0,0). At tick 1 nearest trees were 33.6/45.0/61.9 m and rocks 15.0/30.0 m; by tick ~1977 (40 game-seconds) the nearest tree is 165 m away and the 15 m and 30 m rocks are gone. Objective 1 still says 'Walk up to a tree' but there is no tree in sight of spawn."]}
+{"t": 1792645548708, "cmd": "events", "args": ["40"]}
+{"t": 1792645553761, "cmd": "stop", "args": []}
+{"t": 1792645554918, "cmd": "start", "args": []}
+{"t": 1792645556342, "cmd": "key", "args": ["space"]}
+{"t": 1792645556907, "cmd": "wait", "args": ["2"]}
+{"t": 1792645559009, "cmd": "click", "args": ["480", "310"]}
+{"t": 1792645559845, "cmd": "wait", "args": ["2"]}
+{"t": 1792645561934, "cmd": "click", "args": ["480", "235"]}
+{"t": 1792645562767, "cmd": "type", "args": ["Ironvale"]}
+{"t": 1792645563315, "cmd": "wait", "args": ["1"]}
+{"t": 1792645564413, "cmd": "shot", "args": ["typed_word"]}
+{"t": 1792645564626, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645565453, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645565824, "cmd": "state", "args": []}
+{"t": 1792645569062, "cmd": "wait", "args": ["75"]}
+{"t": 1792645644195, "cmd": "state", "args": []}
+{"t": 1792645644359, "cmd": "events", "args": ["30"]}
+{"t": 1792645652240, "cmd": "shot", "args": ["run3_idle"]}
+{"t": 1792645652840, "cmd": "stop", "args": []}
+{"t": 1792645680568, "cmd": "report", "args": []}
+{"t": 1792645684854, "cmd": "report", "args": []}
+{"t": 1792671893897, "cmd": "stop", "args": []}
