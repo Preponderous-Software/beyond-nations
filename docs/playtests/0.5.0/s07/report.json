@@ -1,0 +1,96 @@
+{
+  "session": "s07",
+  "goal": "Crafting: find and use every recipe on the crafting screen (C); are tools worth making?",
+  "build": {
+    "version": "0.4.1",
+    "commit": "df53ae3"
+  },
+  "seed": 107,
+  "durationSec": 1057,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Planks/Bricks: crafting screen says build a Workshop with K or the command bar, but it is Village-era locked",
+      "detail": "Inside my 2-building Village-tier settlement with 25 wood / 22 stone (Workshop costs 15/10), the crafting screen reads 'In the Camp of Newburg, which has no Workshop yet (build one with K or the command bar)'. The command bar offers only Build Stall/House/Farm, and Settlement Info says 'Next (K): House'. The only place that explains why is the expanded Era panel: 'Unlocks: Workshop' at the Village era (Members 10, Stalls 2, Day 3). So 2 of the 5 recipes cannot be reached in an early session, and the screen that names them points the player the wrong way. Expected: the Planks/Bricks rows (and the Workshop hint) to say 'Workshop unlocks in the Village era' (EraRules.describeLocked already has that text).",
+      "repro": "pt start --seed 107; create nation (N), found settlement (F), build two buildings, gather 15+ wood and 10+ stone, enter settlement, press C; then check the command bar for a Workshop button",
+      "screenshot": "shots/craft_inside.png",
+      "tick": 11106
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Cooked Meat is auto-eaten silently at ~90 energy, wasting most of its 45; the recipe is pointless",
+      "detail": "I crafted 1 cooked meat at tick 14994 while holding 30 apples. By about tick 15750 it was gone (energy about 90 jumped to 98.8, so roughly 35 of the 45 energy was wasted at the cap). No status message, no chronicle line, and the inventory screen has no Eat action. The first cooked meat (tick 4634) and a chicken meat vanished the same silent way. Auto-eat takes the most nourishing food first (FoodItems.foodInDescendingEnergyOrder) and fires near 90 energy, so a 45-energy item is never worth more than an apple. Energy drains slowly (about 1 per 250 ticks) and trees drop 1-3 apples each (I had 42 apples by the end), so food crafting has no purpose. Expected: eat the least nourishing food that fills the gap (or wait until energy is lower), show 'Ate cooked meat (+45)', or give a manual Eat action.",
+      "repro": "pt start --seed 107; walkto chicken; e; C, click the Cooked Meat row; close; wait about 15 s game time while watching inventory/energy in pt state",
+      "screenshot": "shots/no_eat_option.png",
+      "tick": 15750
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "K builds a House instantly, with no menu or confirm, spending materials saved for a Workshop",
+      "detail": "On first entering my new settlement I pressed K expecting a build choice. It built a House at once (20 wood, 15 stone) at 1/12 residents. That spent the wood and stone I had gathered for a Workshop. 'Next (K): ...' is shown in Settlement Info, but it is easy to miss on first entry.",
+      "repro": "pt start --seed 107; found a settlement with about 70 wood / 21 stone; enter (e); press k",
+      "screenshot": "shots/k_built_house.png",
+      "tick": 7194
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Too close to another settlement.' gives no required distance or direction",
+      "detail": "Pressing F 175 m from the nearest settlement fails with only the red status line. The objective says 'press F away from other settlements'. The player has to guess how far to go (about 30 s of sprinting in a random direction worked).",
+      "repro": "pt start --seed 107; N; gather 50 wood; press F about 175 m from an NPC settlement",
+      "screenshot": "shots/too_close.png",
+      "tick": 6378
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress label clipped ('nbers 2/10'), and Sell Resources button overlaps the Season panel",
+      "detail": "In the Village objective the bar label is cut off on the left ('nbers 3/10 . Buildings 2/2'). Inside a settlement the command-bar 'Sell Resources' button draws over the Season panel text in the bottom right.",
+      "repro": "pt start --seed 107; reach objective 7 (Reach the Village era); enter your settlement",
+      "screenshot": "shots/farm.png",
+      "tick": 11386
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Tool wear status says '1 uses left'",
+      "detail": "The gather status at tick 20334 read 'Gathered 7 wood and 2 apples from tree (+3 from your axe), 1 uses left.' It should say '1 use left'. The screenshot is from after continue, where save/load kept tool wear correctly (Axes 19 uses, Pickaxes 9 uses).",
+      "repro": "pt start --seed 107; craft an axe; chop 19 trees; read the status line",
+      "screenshot": "shots/after_continue.png",
+      "tick": 20334
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 27.0,
+      "Eat something": 28.04,
+      "Create or join a nation": 94.04,
+      "Found a settlement": 140.04,
+      "Enter your settlement": 143.0,
+      "Build a market stall": 151.0
+    },
+    "recipesOnScreen": 5,
+    "recipesCrafted": 3,
+    "recipesBlocked": 2,
+    "axesCrafted": 2,
+    "pickaxesCrafted": 1,
+    "cookedMeatCrafted": 2,
+    "avgWoodPerTreeWithoutAxe": 6,
+    "avgWoodPerTreeWithAxe": 8.0,
+    "axeCostResources": 6,
+    "axeLifetimeBonusWood": 60,
+    "pickaxeCostResources": 6,
+    "pickaxeLifetimeBonusStone": 30,
+    "stonePerRockWithPickaxe": 7,
+    "toolWearPersistedAcrossSave": true
+  },
+  "fun": 3,
+  "verdict": "Tools are worth making, and the loop around them works. The crafting screen is clear (cost, benefit, 'Need 2 more wood', 'have 1 (8 uses left)'). The axe (6 resources for +60 wood) and pickaxe (6 for +30 stone, and stone is the scarcer resource) pay for themselves within a tree or two, and wear-out to a spare reads well. The rest of the screen falls short: Cooked Meat gets auto-eaten silently at about 90 energy with apples everywhere, and Planks/Bricks sit behind a Village-era Workshop that the crafting screen wrongly says K or the command bar will build. Three of the five recipes are of no real use to the player in the first hour."
+}

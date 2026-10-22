@@ -1,0 +1,166 @@
+{
+  "session": "s09",
+  "goal": "Accessibility and text audit, touching only what a mouse-and-keyboard player would: every screen and panel; cut-off, overlapping, unclear or misspelled text; contrast; anything only explained on hover. Also check whether the Season panel (bottom right) is clipped at the right edge, and whether the \"+N wood\" floating text is drawn under the \"Objective complete\" toast.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 109,
+  "durationSec": 945,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Inside a settlement the HUD right column overflows: Season panel covers Player Info, Settlement Info line cut off, bottom buttons hidden",
+      "detail": "After entering my settlement (E), the right column stacks Settlement Info + Market Info + Season + Player Info. The Season panel is pushed down to y~432 and drawn over Player Info ('LEADER' and 'Land: your own land' bleed out from behind it) and its last line touches the window bottom. Settlement Info 'Next (K): Farm, 25 wood, 10...' is cut off at the right edge, so the cost of the next building is unreadable. The bottom action-button row runs under the right column: the 6th button shows only 'Se'. Answer to the goal question: the Season panel itself is NOT clipped at the right edge in any layout I saw (x 750-950 at 960 wide, and its lines word-wrap); its problem is vertical overlap with Player Info inside a settlement.",
+      "repro": "pt start --seed 109; Start; Begin; gather 50 wood; N; walk >150m from other settlements; F; walkto settlement; e; pt shot",
+      "screenshot": "shots/enter.png",
+      "tick": 7371
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Floating '+N wood/apples' text is drawn under every HUD window, including the Objective complete toast and the Chronicle panel",
+      "detail": "Answer to the goal question: yes. Floating gain text is drawn on ImGui's background draw list (FeelDirector.drawOverlay -> drawFloatingTexts(background,...)), so every HUD window covers it, including the 'Objective complete!' toast which sits at screen centre ~16% down, right where the gain text rises above a tree. Seen directly: in chop2b the '+2 apples' line rises behind the translucent Chronicle panel and is unreadable. I could not get a frame with '+N wood' and the toast at once (objective 1 completed 8 ticks after the chop2a frame), but the toast is an ImGui window at the same height so the same rule applies. Expected: gain text above panels, or toast placed away from the gain text's path.",
+      "repro": "pt start --seed 109; Start; Begin; pt walkto tree; e (repeat until Wood 10/10); pt shot right after e",
+      "screenshot": "shots/chop2b.png",
+      "tick": 1843
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "World-space settlement label is huge, clipped off the top of the window and hidden under the status bar/Chronicle",
+      "detail": "Standing at my settlement the label ('Camp of Bigshire / N here, 0/8 residents') is ~45px tall, its name line is cut off by the top edge and the rest collides with the status toast, Chronicle panel and Era box. Stepping back 2s still leaves it under the status bar.",
+      "repro": "after founding: pt walkto settlement; pt shot; pt hold s 2; pt shot",
+      "screenshot": "shots/found4.png",
+      "tick": 6851
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective progress bar label is clipped: 'nbers 6/10 • Buildings 0/2'",
+      "detail": "For objective 7 'Reach the Village era' the centred label 'Members 6/10 · Buildings 0/2' is wider than the 182px bar, so 'Me' is cut off on the left.",
+      "repro": "reach objective 7; look at the Objective box",
+      "screenshot": "shots/rock1.png",
+      "tick": 8563
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Low contrast HUD text over bright terrain (bottom buttons ~1.9-2.1:1, progress bars ~1.9:1, energy 2.7:1)",
+      "detail": "The bottom action buttons and Objective/Chronicle/Era panels are translucent. Measured contrast: buttons white on (105,195,147) over lime grass = 2.1:1, on sand at a settlement = 1.9:1; 'Wood 50/50' and 'Village: 2/4' white on yellow bar (230,179,0) = 1.9:1; Energy label white on green (64,179,77) = 2.7:1; Objective hint grey on washed-out green = 4.0:1; Chronicle header '[Y: more]' faintest of all. Opaque panels (Inventory, Season, Player Info) are 17:1. Hovered Era button white on (66,150,250) ~3:1.",
+      "repro": "midday in Plains: pt shot; compare panels",
+      "screenshot": "shots/found_f.png",
+      "tick": 5463
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Menu screens: white text on light blue ~2.5:1; buttons barely distinguishable from background",
+      "detail": "Title, main menu, Config, New World and Load use white text on (115,166,230): 2.5:1 for the small 'Press any key...' and button labels. Button fill (~#5BA0EE) is close to the background, so buttons have almost no visible edge.",
+      "repro": "pt start --seed 109; pt shot; pt key space; pt shot",
+      "screenshot": "shots/mainmenu.png",
+      "tick": 0
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "No hover help anywhere: Config jargon, Nations actions and Laws options are unexplained",
+      "detail": "Config: 'Chunk Size', 'Location Scale', 'Lag Prevention', 'Respawn Pawns' have no explanation, even on hover; Volume label '(sound plays in the browser version)' implies desktop is silent but offers Volume/Mute. Nations: Tribute/Ally/War/Denounce have no tooltips, the '(0)' relation score is unlabelled, 'Tribute 25 coins for +10' (+10 of what?), Ally looks enabled although relation 0 < 30. Laws: only the CURRENT choice is described; Low/High taxes, Conscription On, Borders Open and 'Defence 1.' are never explained. Selected law marked only by '> None <' brackets.",
+      "repro": "Main menu > Config, pt move over items; in world O, hover buttons; click Laws",
+      "screenshot": "shots/nations_hover_ally.png",
+      "tick": 5911
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Stale world status ('Too close to another settlement.') shown on Crafting, Nations and Laws screens",
+      "detail": "After pressing F too close to a settlement, that status line appears at the bottom of the Crafting screen and the Nations/Laws screens, where it is unrelated and confusing.",
+      "repro": "press F within ~150m of a settlement; C; then O",
+      "screenshot": "shots/crafting.png",
+      "tick": 5867
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Text drawn over the 3D world without a backing panel (Inventory, Pause, Share) collides with the player capsule",
+      "detail": "Inventory screen lines 'Apples: 21' / 'Saplings: 7' sit right on top of the player capsule; Pause 'World seed 109' and the Share URL do the same. Full-history Chronicle window (Y) is translucent, so the Tip card text and the Season panel show through behind its rows (text on text).",
+      "repro": "pt key i; pt shot; pt key y; pt shot",
+      "screenshot": "shots/inventory.png",
+      "tick": 5867
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "First objective toast replaced after ~1 s by an objective the player never did ('Eat something')",
+      "detail": "Gather wood completed at tick 1851; 'Eat something' completed by itself at tick 1903 (apples are eaten automatically, energy 80->95), so the first 'Objective complete' toast is overwritten almost instantly. Status said 'Gathered 5 wood and 3 apples' while floating text and inventory showed +2 apples, with no message that one was eaten. Similarly 'Build a market stall' completed at tick 7503 while I had Wood 10/20 Stone 0/5 and never pressed B.",
+      "repro": "pt walkto tree; e; e; watch toasts and pt events",
+      "screenshot": "shots/chop2c.png",
+      "tick": 1903
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Chronicle lines truncated with '...', including the player's own nation name",
+      "detail": "Recent Chronicle cuts lines at panel width ('You raised a banner and named your people Bi...'), so the new nation's name is hidden there; only Y full view shows full lines.",
+      "repro": "press N; pt shot",
+      "screenshot": "shots/nation_n.png",
+      "tick": 2251
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'R' invite says 'There is no one within reach to invite.' while three pawns stand within 2-5 m",
+      "detail": "They are presumably already members, but the message claims nobody is there. Objective hint 'Befriend settlers and press R' doesn't say how to befriend (G gift only in Controls).",
+      "repro": "pt walkto pawn (own member); pt key r",
+      "screenshot": "shots/invite.png",
+      "tick": 15400
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Touch wording on desktop: 'Era box (tap)' in Controls and 'tap it' in the Your goals tip",
+      "detail": "Mouse players expect 'click'. The Era box being clickable is otherwise only hinted by a '+' glyph.",
+      "repro": "Controls page 2; Tip 5 of 5",
+      "screenshot": "shots/tip_tap.png",
+      "tick": 10995
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Era box: 'Village: 0/4' (requirements) next to checklist 'Village 0/1' (settlements) reads as contradictory",
+      "detail": "Header counts requirements met, checklist counts village settlements, both labelled 'Village'. 'Day 1/3' in the checklist vs 'day 1/2' in Season also reuses 'day' for different counts.",
+      "repro": "click the Era box",
+      "screenshot": "shots/era_panel.png",
+      "tick": 915
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Unexplained labels: 'PCIS: 2', green triangles after market prices, 'Export replay (USD)'",
+      "detail": "Settlement Info 'PCIS' is jargon; Market Info price triangles have no legend; 'USD' on Share reads as US dollars. Pawn nameplates (name/traits/activity) are ~6px tall and unreadable.",
+      "repro": "enter settlement; Esc > Share",
+      "screenshot": "shots/share.png",
+      "tick": 7371
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Crafting screen doesn't say how to craft; Load 'Delete' not styled as destructive",
+      "detail": "Crafting rows have no Craft button and no hover feedback when unaffordable; subtitle lacks a final period. Load screen 'Delete' is the same blue as the save row.",
+      "repro": "pt key c; main menu > Load",
+      "screenshot": "shots/load.png",
+      "tick": 5867
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 37.0, "Eat something": 38.1, "Create or join a nation": 44.1, "Found a settlement": 137.0, "Enter your settlement": 147.0, "Build a market stall": 150.1},
+    "screensAudited": 14,
+    "lowestMeasuredContrast": 1.85,
+    "seasonPanelRightEdgeClipped": 0,
+    "floatingTextUnderToast": 1
+  },
+  "fun": 3,
+  "verdict": "The opaque HUD boxes and the Controls screen read well, but translucent panels, bottom buttons and progress bars fall to about 2:1 contrast on bright grass or sand, and the right column overflows once you enter a settlement: Season covers Player Info and a Settlement Info line is cut off. The Season panel is not clipped at the right edge. Floating gain text is drawn under all HUD windows, the toast included. Much of the systems text (laws, diplomacy, config) is unexplained and has no hover help."
+}

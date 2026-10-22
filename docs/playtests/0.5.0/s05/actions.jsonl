@@ -1,0 +1,226 @@
+{"t": 1792645147764, "cmd": "start", "args": ["--seed", "105"]}
+{"t": 1792645154976, "cmd": "key", "args": ["space"]}
+{"t": 1792645176516, "cmd": "key", "args": ["space"]}
+{"t": 1792645180038, "cmd": "shot", "args": ["menu"]}
+{"t": 1792645185585, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645189570, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645196878, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645198049, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645200513, "cmd": "state", "args": []}
+{"t": 1792645200843, "cmd": "shot", "args": ["world0"]}
+{"t": 1792645207584, "cmd": "click", "args": ["338", "388"]}
+{"t": 1792645208541, "cmd": "key", "args": ["b"]}
+{"t": 1792645211108, "cmd": "state", "args": []}
+{"t": 1792645211276, "cmd": "shot", "args": ["b_try"]}
+{"t": 1792645216010, "cmd": "key", "args": ["n"]}
+{"t": 1792645218683, "cmd": "state", "args": []}
+{"t": 1792645218860, "cmd": "key", "args": ["b"]}
+{"t": 1792645221457, "cmd": "state", "args": []}
+{"t": 1792645221589, "cmd": "shot", "args": ["after_b"]}
+{"t": 1792645224812, "cmd": "key", "args": ["f"]}
+{"t": 1792645227412, "cmd": "state", "args": []}
+{"t": 1792645227560, "cmd": "events", "args": ["10"]}
+{"t": 1792645232082, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645293536, "cmd": "key", "args": ["e"]}
+{"t": 1792645295194, "cmd": "key", "args": ["e"]}
+{"t": 1792645296829, "cmd": "key", "args": ["e"]}
+{"t": 1792645299372, "cmd": "state", "args": []}
+{"t": 1792645303739, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645309046, "cmd": "key", "args": ["e"]}
+{"t": 1792645311658, "cmd": "state", "args": []}
+{"t": 1792645311830, "cmd": "shot", "args": ["chop1"]}
+{"t": 1792645317115, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645327829, "cmd": "key", "args": ["e"]}
+{"t": 1792645329857, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645341787, "cmd": "key", "args": ["e"]}
+{"t": 1792645343856, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645352873, "cmd": "key", "args": ["e"]}
+{"t": 1792645354990, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645361362, "cmd": "key", "args": ["e"]}
+{"t": 1792645363375, "cmd": "state", "args": []}
+{"t": 1792645367260, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645373648, "cmd": "key", "args": ["e"]}
+{"t": 1792645375766, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645376571, "cmd": "key", "args": ["e"]}
+{"t": 1792645378596, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645385733, "cmd": "key", "args": ["e"]}
+{"t": 1792645387819, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645394127, "cmd": "key", "args": ["e"]}
+{"t": 1792645396137, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645404503, "cmd": "key", "args": ["e"]}
+{"t": 1792645406624, "cmd": "state", "args": []}
+{"t": 1792645410398, "cmd": "shot", "args": ["wood_mismatch"]}
+{"t": 1792645410632, "cmd": "state", "args": []}
+{"t": 1792645414363, "cmd": "key", "args": ["f"]}
+{"t": 1792645416891, "cmd": "state", "args": []}
+{"t": 1792645417030, "cmd": "key", "args": ["b"]}
+{"t": 1792645419624, "cmd": "state", "args": []}
+{"t": 1792645419794, "cmd": "shot", "args": ["stall_try"]}
+{"t": 1792645425191, "cmd": "state", "args": ["--full"]}
+{"t": 1792645431256, "cmd": "key", "args": ["f"]}
+{"t": 1792645433320, "cmd": "note", "args": ["--shot", "too_close", "Pressing F at (-42,-164), tick ~4600: 'Too close to another settlement.' No settlement is visible on screen and none appears in nearest within view; the message gives no distance/direction or how far away I need to be, so the player must guess which way to walk."]}
+{"t": 1792645433742, "cmd": "face", "args": ["72"]}
+{"t": 1792645436734, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792645444957, "cmd": "key", "args": ["f"]}
+{"t": 1792645447551, "cmd": "state", "args": []}
+{"t": 1792645451237, "cmd": "key", "args": ["b"]}
+{"t": 1792645453766, "cmd": "state", "args": []}
+{"t": 1792645453932, "cmd": "shot", "args": ["b2"]}
+{"t": 1792645461617, "cmd": "note", "args": ["--shot", "label_clip", "Standing on my newly founded settlement (tick ~5300): the settlement's floating world label ('... 0 here, 1/8 residents') renders huge, runs off the top of the screen and sits behind/over the Chronicle and objective panels. Expected a readable label sized to fit."]}
+{"t": 1792645461953, "cmd": "key", "args": ["e"]}
+{"t": 1792645465594, "cmd": "state", "args": []}
+{"t": 1792645465746, "cmd": "shot", "args": ["inside"]}
+{"t": 1792645475353, "cmd": "note", "args": ["--shot", "inside_layout", "Inside my settlement (tick ~5530), right-side HUD overflows: Settlement Info 'Next (K): Farm, 25 wood, 10' is cut off mid-cost; Market Info + Season stack push the Season panel over Player Info (its 'LEADER' text bleeds through); the bottom action bar's 'Sell Resources' button is partly hidden under the Season panel. 960x540 window."]}
+{"t": 1792645475659, "cmd": "click", "args": ["700", "517"]}
+{"t": 1792645478456, "cmd": "state", "args": []}
+{"t": 1792645478583, "cmd": "shot", "args": ["sell1"]}
+{"t": 1792645483515, "cmd": "key", "args": ["e"]}
+{"t": 1792645486142, "cmd": "state", "args": []}
+{"t": 1792645486293, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645488450, "cmd": "key", "args": ["e"]}
+{"t": 1792645490530, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645491045, "cmd": "key", "args": ["e"]}
+{"t": 1792645493080, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645493567, "cmd": "key", "args": ["e"]}
+{"t": 1792645495648, "cmd": "state", "args": []}
+{"t": 1792645499878, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645508188, "cmd": "key", "args": ["e"]}
+{"t": 1792645510339, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645517518, "cmd": "key", "args": ["e"]}
+{"t": 1792645519554, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645534579, "cmd": "key", "args": ["e"]}
+{"t": 1792645536630, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645537376, "cmd": "key", "args": ["e"]}
+{"t": 1792645539470, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645552360, "cmd": "key", "args": ["e"]}
+{"t": 1792645554481, "cmd": "state", "args": []}
+{"t": 1792645558231, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1792645577010, "cmd": "key", "args": ["e"]}
+{"t": 1792645579599, "cmd": "key", "args": ["b"]}
+{"t": 1792645582205, "cmd": "state", "args": []}
+{"t": 1792645582381, "cmd": "events", "args": ["6"]}
+{"t": 1792645582496, "cmd": "shot", "args": ["stall_built"]}
+{"t": 1792645587867, "cmd": "state", "args": []}
+{"t": 1792645588011, "cmd": "shot", "args": ["obj7"]}
+{"t": 1792645594771, "cmd": "note", "args": ["--shot", "obj7_clip", "Objective 7 'Reach the Village era' progress bar label reads 'mbers 2/10 · Buildings 0/2' - the word 'Members' is clipped on the left (tick ~7950). Also the Season panel now sits on top of the 'Exit Settlement' button in the bottom bar."]}
+{"t": 1792645595088, "cmd": "click", "args": ["68", "517"]}
+{"t": 1792645597986, "cmd": "state", "args": []}
+{"t": 1792645598123, "cmd": "shot", "args": ["sell2"]}
+{"t": 1792645617202, "cmd": "note", "args": ["--shot", "sell_ambiguous", "Clicked 'Sell Resources' in my own settlement right after building its only stall (tick ~8120), carrying 30 apples/10 wood/5 stone. Status: 'No one is buying resources at this market or you do not have enough resources to sell.' Root cause (Market.sellResources) is that you cannot sell to your own stall, and the other merchant listed (Abigail Thompson) has no stall/coins; the message hides this. Expected: 'You can't sell to your own stall - sell at another settlement's market' (or show which stalls can pay). Market Info also shows 'Merchants: Abigail Thompson' which suggests she would buy."]}
+{"t": 1792645617495, "cmd": "state", "args": ["--full"]}
+{"t": 1792645634457, "cmd": "state", "args": ["--full"]}
+{"t": 1792645640422, "cmd": "key", "args": ["k"]}
+{"t": 1792645643229, "cmd": "state", "args": []}
+{"t": 1792645643538, "cmd": "shot", "args": ["kmenu"]}
+{"t": 1792645648479, "cmd": "events", "args": ["6"]}
+{"t": 1792645657354, "cmd": "note", "args": ["--shot", "k_built_house", "Pressed K inside my settlement (tick 8851) expecting the build menu / the advertised 'Next (K): Farm, 25 wood, 10...'. Instead it instantly built a House and consumed my 10 wood + 5 stone with no menu or confirmation; Settlement Info still says 'Next (K): Farm'. The help text says 'K build a building', so the player can't choose which building, and the 'Next' hint is wrong about what K does."]}
+{"t": 1792645657773, "cmd": "click", "args": ["474", "517"]}
+{"t": 1792645660632, "cmd": "state", "args": []}
+{"t": 1792645660807, "cmd": "events", "args": ["3"]}
+{"t": 1792645667231, "cmd": "key", "args": ["e"]}
+{"t": 1792645668817, "cmd": "state", "args": ["--full"]}
+{"t": 1792645668958, "cmd": "face", "args": ["-126"]}
+{"t": 1792645674397, "cmd": "hold", "args": ["Shift_L+w", "15"]}
+{"t": 1792645689690, "cmd": "state", "args": ["--full"]}
+{"t": 1792645694216, "cmd": "walkto", "args": ["stall", "40"]}
+{"t": 1792645709135, "cmd": "key", "args": ["e"]}
+{"t": 1792645711783, "cmd": "state", "args": []}
+{"t": 1792645711986, "cmd": "shot", "args": ["bluetown"]}
+{"t": 1792645717799, "cmd": "click", "args": ["205", "517"]}
+{"t": 1792645720615, "cmd": "state", "args": []}
+{"t": 1792645720760, "cmd": "events", "args": ["3"]}
+{"t": 1792645725590, "cmd": "click", "args": ["97", "517"]}
+{"t": 1792645728417, "cmd": "state", "args": []}
+{"t": 1792645728580, "cmd": "events", "args": ["2"]}
+{"t": 1792645728657, "cmd": "shot", "args": ["buyfood"]}
+{"t": 1792645734165, "cmd": "key", "args": ["e"]}
+{"t": 1792645736718, "cmd": "shot", "args": ["reenter1"]}
+{"t": 1792645739973, "cmd": "shot", "args": ["reenter2"]}
+{"t": 1792645747594, "cmd": "note", "args": ["--shot", "reenter2", "Whiteburg market, command bar reflows while you aim: between my screenshot and click (tick ~10360) a 'Buy Axe (327)' button appeared and pushed 'Exit Settlement' into the slot where 'Purchase Food' had been, so clicking Purchase Food exited the settlement. Buttons in a fixed order/slot (or at least no reordering under the cursor) would avoid misclicks, especially at low fps."]}
+{"t": 1792645747971, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645750839, "cmd": "events", "args": ["2"]}
+{"t": 1792645750931, "cmd": "state", "args": []}
+{"t": 1792645762676, "cmd": "shot", "args": ["pre_buy"]}
+{"t": 1792645762941, "cmd": "click", "args": ["227", "517"]}
+{"t": 1792645765747, "cmd": "events", "args": ["2"]}
+{"t": 1792645765884, "cmd": "state", "args": []}
+{"t": 1792645766055, "cmd": "shot", "args": ["post_buy"]}
+{"t": 1792645773144, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645775958, "cmd": "events", "args": ["1"]}
+{"t": 1792645776051, "cmd": "state", "args": ["--full"]}
+{"t": 1792645780262, "cmd": "state", "args": []}
+{"t": 1792645780408, "cmd": "shot", "args": ["sold1"]}
+{"t": 1792645788988, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645791277, "cmd": "state", "args": ["--full"]}
+{"t": 1792645791394, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645793752, "cmd": "state", "args": ["--full"]}
+{"t": 1792645793914, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645796218, "cmd": "state", "args": ["--full"]}
+{"t": 1792645796372, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645798658, "cmd": "state", "args": ["--full"]}
+{"t": 1792645798766, "cmd": "click", "args": ["337", "517"]}
+{"t": 1792645801121, "cmd": "state", "args": ["--full"]}
+{"t": 1792645812840, "cmd": "note", "args": ["--shot", "sold1", "Selling at Whiteburg (ticks 11287-11851): each 'Sell Resources' click sold ONE unit (1 stone +16, 1 stone +9, 1 wood +26), and the status only says 'You sold resources to Abigail Davies. Relationship increased to 2.' - never what was sold or for how much; I had to diff my inventory. After 3 sales the market (45 coins total) was dry and 31 apples / 14 saplings never sold at all, with the same ambiguous 'No one is buying...' message. Trade feels like click-grinding for tiny sums; expected a quantity choice and a sale receipt ('Sold 1 stone for 16 coins')."]}
+{"t": 1792645821227, "cmd": "events", "args": ["200"]}
+{"t": 1792645821341, "cmd": "state", "args": ["--full"]}
+{"t": 1792645827066, "cmd": "key", "args": ["e"]}
+{"t": 1792645827580, "cmd": "wait", "args": ["30"]}
+{"t": 1792645857659, "cmd": "events", "args": ["300"]}
+{"t": 1792645857772, "cmd": "events", "args": ["15"]}
+{"t": 1792645857890, "cmd": "shot", "args": ["road1"]}
+{"t": 1792645864139, "cmd": "wait", "args": ["60"]}
+{"t": 1792645924250, "cmd": "events", "args": ["400"]}
+{"t": 1792645924414, "cmd": "state", "args": []}
+{"t": 1792645941553, "cmd": "wait", "args": ["40"]}
+{"t": 1792645981683, "cmd": "state", "args": ["--full"]}
+{"t": 1792645981882, "cmd": "events", "args": ["500"]}
+{"t": 1792645981989, "cmd": "wait", "args": ["40"]}
+{"t": 1792646022065, "cmd": "state", "args": ["--full"]}
+{"t": 1792646022194, "cmd": "events", "args": ["500"]}
+{"t": 1792646022293, "cmd": "wait", "args": ["40"]}
+{"t": 1792646062350, "cmd": "state", "args": ["--full"]}
+{"t": 1792646062463, "cmd": "events", "args": ["500"]}
+{"t": 1792646074455, "cmd": "key", "args": ["h"]}
+{"t": 1792646077930, "cmd": "state", "args": []}
+{"t": 1792646078037, "cmd": "walkto", "args": ["tree", "20"]}
+{"t": 1792646086028, "cmd": "key", "args": ["e"]}
+{"t": 1792646087500, "cmd": "walkto", "args": ["tree", "20"]}
+{"t": 1792646093666, "cmd": "key", "args": ["e"]}
+{"t": 1792646095192, "cmd": "walkto", "args": ["tree", "20"]}
+{"t": 1792646106725, "cmd": "key", "args": ["e"]}
+{"t": 1792646108249, "cmd": "events", "args": ["600"]}
+{"t": 1792646111861, "cmd": "state", "args": []}
+{"t": 1792646111948, "cmd": "walkto", "args": ["settlement", "35"]}
+{"t": 1792646122872, "cmd": "key", "args": ["e"]}
+{"t": 1792646125437, "cmd": "key", "args": ["b"]}
+{"t": 1792646127953, "cmd": "events", "args": ["4"]}
+{"t": 1792646128075, "cmd": "shot", "args": ["stall2"]}
+{"t": 1792646136601, "cmd": "key", "args": ["e"]}
+{"t": 1792646138096, "cmd": "walkto", "args": ["tree", "25"]}
+{"t": 1792646155051, "cmd": "key", "args": ["e"]}
+{"t": 1792646157030, "cmd": "walkto", "args": ["settlement", "35"]}
+{"t": 1792646168605, "cmd": "key", "args": ["e"]}
+{"t": 1792646171101, "cmd": "key", "args": ["b"]}
+{"t": 1792646173586, "cmd": "events", "args": ["3"]}
+{"t": 1792646173636, "cmd": "events", "args": ["800"]}
+{"t": 1792646178908, "cmd": "wait", "args": ["90"]}
+{"t": 1792646268953, "cmd": "state", "args": ["--full"]}
+{"t": 1792646269035, "cmd": "events", "args": ["1000"]}
+{"t": 1792646272305, "cmd": "wait", "args": ["90"]}
+{"t": 1792646362346, "cmd": "state", "args": ["--full"]}
+{"t": 1792646362418, "cmd": "events", "args": ["1000"]}
+{"t": 1792646366146, "cmd": "state", "args": []}
+{"t": 1792646366215, "cmd": "status", "args": []}
+{"t": 1792646366282, "cmd": "shot", "args": ["tps0"]}
+{"t": 1792646372457, "cmd": "click", "args": ["480", "345"]}
+{"t": 1792646375172, "cmd": "state", "args": []}
+{"t": 1792646375253, "cmd": "events", "args": ["3"]}
+{"t": 1792646379353, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792646382066, "cmd": "shot", "args": ["era_panel"]}
+{"t": 1792646392088, "cmd": "note", "args": ["--shot", "era_panel", "Expanded the Era panel (tick ~25450). It lists Village needs as Village 0/1, Members 2/10, Stalls 2/2, Day 2/3, but Objective 7 for the same goal shows only 'Members 2/10 · Buildings 1/2' (no stalls/day). Expanding the panel also pushed the Inventory Info box into the middle of the screen. Nothing in the Era panel, objectives, tips or Controls mentions the Storehouse or caravans, so a player has no way to learn that caravans exist or that they unlock in the Town era."]}
+{"t": 1792646392330, "cmd": "events", "args": ["2000"]}
+{"t": 1792646392372, "cmd": "events", "args": ["2000"]}
+{"t": 1792646392419, "cmd": "events", "args": ["2000"]}
+{"t": 1792646392461, "cmd": "stop", "args": []}
+{"t": 1792646429169, "cmd": "report", "args": []}
+{"t": 1792671893734, "cmd": "stop", "args": []}

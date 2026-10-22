@@ -1,0 +1,436 @@
+{"type":"screen","tick":0,"wallTimeMs":1792645149698,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792645155771,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645184650,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792645192321,"how":"created","slot":"world-106-20261022-045952","seed":106}
+{"type":"screen","tick":0,"wallTimeMs":1792645192323,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":221,"wallTimeMs":1792645204625,"text":"Created nation Farmfield."}
+{"type":"chronicle","tick":221,"wallTimeMs":1792645204625,"kind":"NationCreation","text":"Under your hand, the nation of Farmfield was born. It is the first nation this world has known."}
+{"type":"screen","tick":365,"wallTimeMs":1792645211087,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":365,"wallTimeMs":1792645241335,"text":"Taxes: Low proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":365,"wallTimeMs":1792645243295,"text":"Borders: Open proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":369,"wallTimeMs":1792645250558,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":1001,"wallTimeMs":1792645279781,"kind":"NationCreation","text":"Hank Davies founded the nation of Northshire."}
+{"type":"chronicle","tick":1053,"wallTimeMs":1792645282300,"kind":"SettlementFounded","text":"Northshire put down roots: Hank Davies founded its first settlement."}
+{"type":"chronicle","tick":1401,"wallTimeMs":1792645298944,"kind":"NationCreation","text":"The nation of Oldland was born, with Una Johnson at its head."}
+{"type":"chronicle","tick":1501,"wallTimeMs":1792645303937,"kind":"NationCreation","text":"Fiona White founded the nation of Redville."}
+{"type":"chronicle","tick":1553,"wallTimeMs":1792645306579,"kind":"NationCreation","text":"Zach Robinson declared the nation of Cityham, though none had yet sworn to it."}
+{"type":"status","tick":1601,"wallTimeMs":1792645309020,"text":"You enter the land of Cityham (Neutral)."}
+{"type":"chronicle","tick":1601,"wallTimeMs":1792645309020,"kind":"SettlementFounded","text":"Zach Robinson raised the first settlement of Cityham."}
+{"type":"chronicle","tick":1653,"wallTimeMs":1792645311723,"kind":"SettlementFounded","text":"Fiona White laid the first stones of Redville."}
+{"type":"status","tick":1701,"wallTimeMs":1792645314116,"text":"You leave the land of Cityham for the wilds."}
+{"type":"chronicle","tick":1853,"wallTimeMs":1792645321385,"kind":"SettlementFounded","text":"Una Johnson raised the first settlement of Oldland."}
+{"type":"chronicle","tick":1953,"wallTimeMs":1792645326442,"kind":"NationCreation","text":"The nation of Easternburg was born, with Karl Wood at its head."}
+{"type":"status","tick":2001,"wallTimeMs":1792645328816,"text":"Farmfield opened its borders to traders and newcomers."}
+{"type":"chronicle","tick":2001,"wallTimeMs":1792645328816,"kind":"Statecraft","text":"Taxes in Farmfield rose to Low."}
+{"type":"chronicle","tick":2001,"wallTimeMs":1792645328816,"kind":"Statecraft","text":"Farmfield opened its borders to traders and newcomers."}
+{"type":"status","tick":2109,"wallTimeMs":1792645334169,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":2153,"wallTimeMs":1792645336274,"kind":"NationCreation","text":"Stan Roberts raised a banner and called it Fortburg."}
+{"type":"status","tick":2253,"wallTimeMs":1792645341015,"text":"You enter the land of Cityham (Neutral)."}
+{"type":"status","tick":2433,"wallTimeMs":1792645350283,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":2453,"wallTimeMs":1792645351378,"kind":"NationCreation","text":"Phoebe Johnson raised a banner and called it Fortport."}
+{"type":"chronicle","tick":2501,"wallTimeMs":1792645354118,"kind":"SettlementFounded","text":"Karl Wood raised the first settlement of Easternburg."}
+{"type":"chronicle","tick":2653,"wallTimeMs":1792645362731,"kind":"SettlementFounded","text":"Stan Roberts laid the first stones of Fortburg."}
+{"type":"status","tick":2665,"wallTimeMs":1792645363432,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2949,"wallTimeMs":1792645379506,"text":"Entered settlement."}
+{"type":"status","tick":3125,"wallTimeMs":1792645389558,"text":"Exited settlement."}
+{"type":"chronicle","tick":3201,"wallTimeMs":1792645393874,"kind":"SettlementFounded","text":"Fortport put down roots: Phoebe Johnson founded its first settlement."}
+{"type":"chronicle","tick":3353,"wallTimeMs":1792645402355,"kind":"StallBuilt","text":"Una Johnson built a market stall in Oldland."}
+{"type":"chronicle","tick":3753,"wallTimeMs":1792645424954,"kind":"StallBuilt","text":"Phoebe Johnson built a market stall in Fortport."}
+{"type":"chronicle","tick":3753,"wallTimeMs":1792645424954,"kind":"NationRelationChange","text":"Northshire and Redville have become rivals."}
+{"type":"chronicle","tick":3753,"wallTimeMs":1792645424954,"kind":"NationRelationChange","text":"Northshire and Cityham have become rivals."}
+{"type":"chronicle","tick":4253,"wallTimeMs":1792645454114,"kind":"NationRelationChange","text":"Northshire and Oldland have become rivals."}
+{"type":"status","tick":4373,"wallTimeMs":1792645460994,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":4397,"wallTimeMs":1792645462370,"text":"There is no one within reach to invite."}
+{"type":"status","tick":4533,"wallTimeMs":1792645470493,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":4553,"wallTimeMs":1792645471632,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":4753,"wallTimeMs":1792645483022,"kind":"NationRelationChange","text":"Northshire and Easternburg have become rivals."}
+{"type":"status","tick":4937,"wallTimeMs":1792645493353,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":4961,"wallTimeMs":1792645494708,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":5001,"wallTimeMs":1792645496975,"kind":"StallBuilt","text":"A new stall opened in the market of Fortburg, built by Stan Roberts."}
+{"type":"chronicle","tick":5001,"wallTimeMs":1792645496975,"kind":"NationRelationChange","text":"Oldland and Fortburg have become rivals."}
+{"type":"chronicle","tick":5001,"wallTimeMs":1792645496975,"kind":"NationRelationChange","text":"Cityham and Fortburg have become rivals."}
+{"type":"status","tick":5189,"wallTimeMs":1792645507767,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":5501,"wallTimeMs":1792645525246,"kind":"NationRelationChange","text":"Cityham and Fortport have become rivals."}
+{"type":"chronicle","tick":5553,"wallTimeMs":1792645528179,"kind":"NationCreation","text":"The nation of Westton was born, with Una Evans at its head."}
+{"type":"chronicle","tick":5853,"wallTimeMs":1792645544297,"kind":"SettlementFounded","text":"Una Evans laid the first stones of Westton."}
+{"type":"chronicle","tick":5901,"wallTimeMs":1792645546632,"kind":"NationCreation","text":"The nation of Villagefield was born, with Alice Brown at its head."}
+{"type":"save","tick":6001,"wallTimeMs":1792645551489,"count":1}
+{"type":"status","tick":6001,"wallTimeMs":1792645551489,"text":"Autosaved."}
+{"type":"chronicle","tick":6101,"wallTimeMs":1792645557114,"kind":"StallBuilt","text":"Phoebe Johnson built a market stall in Fortport."}
+{"type":"chronicle","tick":6253,"wallTimeMs":1792645565497,"kind":"NationRelationChange","text":"Cityham and Northshire are now hostile."}
+{"type":"chronicle","tick":6453,"wallTimeMs":1792645574886,"kind":"StallBuilt","text":"Una Evans built a market stall in Westton."}
+{"type":"chronicle","tick":6801,"wallTimeMs":1792645590461,"kind":"StallBuilt","text":"Trade came to Northshire: Hank Davies built a stall."}
+{"type":"chronicle","tick":6953,"wallTimeMs":1792645597142,"kind":"SettlementFounded","text":"Alice Brown laid the first stones of Villagefield."}
+{"type":"chronicle","tick":7001,"wallTimeMs":1792645599446,"kind":"NationRaid","text":"Cityham raided Northshire and carried off 1 coins, 4 wood, 5 stone."}
+{"type":"status","tick":7061,"wallTimeMs":1792645602262,"text":"You leave the land of Cityham for the wilds."}
+{"type":"status","tick":7201,"wallTimeMs":1792645608565,"text":"You enter the land of Fortburg (Neutral)."}
+{"type":"chronicle","tick":7501,"wallTimeMs":1792645622086,"kind":"NationRelationChange","text":"Northshire and Redville are now hostile."}
+{"type":"status","tick":7665,"wallTimeMs":1792645629826,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":7801,"wallTimeMs":1792645637192,"kind":"StallBuilt","text":"Trade came to Fortburg: Stan Roberts built a stall."}
+{"type":"chronicle","tick":7853,"wallTimeMs":1792645641350,"kind":"NationCreation","text":"The nation of Townburg was born, with Frank Robinson at its head."}
+{"type":"status","tick":7945,"wallTimeMs":1792645647594,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"objective_completed","tick":7953,"wallTimeMs":1792645648093,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":7953}
+{"type":"status","tick":7953,"wallTimeMs":1792645648093,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":7953,"wallTimeMs":1792645648093,"kind":"StallBuilt","text":"A new stall opened in the market of Fortport, built by Phoebe Johnson."}
+{"type":"chronicle","tick":7953,"wallTimeMs":1792645648093,"kind":"NationCreation","text":"Hank Johnson founded the nation of Southburg."}
+{"type":"objective_completed","tick":8001,"wallTimeMs":1792645651865,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":8001,"wallTimeMs":1792645651865,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":8001,"wallTimeMs":1792645651865,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Hank Davies."}
+{"type":"objective_completed","tick":8053,"wallTimeMs":1792645655779,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":8053,"wallTimeMs":1792645655779,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":8053,"wallTimeMs":1792645655779,"kind":"StallBuilt","text":"Trade came to Westton: Una Evans built a stall."}
+{"type":"status","tick":8093,"wallTimeMs":1792645658192,"text":"You leave the land of Fortburg for the wilds."}
+{"type":"status","tick":8129,"wallTimeMs":1792645660180,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":8201,"wallTimeMs":1792645664023,"kind":"StallBuilt","text":"Zach Robinson built a market stall in Cityham."}
+{"type":"chronicle","tick":8253,"wallTimeMs":1792645666749,"kind":"NationCreation","text":"Una Roberts raised a banner and called it Blueville."}
+{"type":"chronicle","tick":8253,"wallTimeMs":1792645666749,"kind":"NationRelationChange","text":"Cityham and Westton have become rivals."}
+{"type":"chronicle","tick":8253,"wallTimeMs":1792645666749,"kind":"NationRelationChange","text":"Easternburg and Westton have become rivals."}
+{"type":"chronicle","tick":8301,"wallTimeMs":1792645669232,"kind":"StallBuilt","text":"Alice Brown built a market stall in Villagefield."}
+{"type":"chronicle","tick":8301,"wallTimeMs":1792645669232,"kind":"SettlementFounded","text":"Una Roberts raised the first settlement of Blueville."}
+{"type":"chronicle","tick":8353,"wallTimeMs":1792645671834,"kind":"SettlementFounded","text":"Frank Robinson laid the first stones of Townburg."}
+{"type":"status","tick":8357,"wallTimeMs":1792645672052,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":8401,"wallTimeMs":1792645674181,"kind":"StallBuilt","text":"Trade came to Fortburg: Stan Roberts built a stall."}
+{"type":"status","tick":8561,"wallTimeMs":1792645681976,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":8701,"wallTimeMs":1792645689023,"kind":"StallBuilt","text":"Phoebe Johnson built a market stall in Fortport. The market is now full."}
+{"type":"chronicle","tick":8753,"wallTimeMs":1792645691714,"kind":"SettlementFounded","text":"Hank Johnson laid the first stones of Southburg."}
+{"type":"status","tick":8837,"wallTimeMs":1792645695950,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":8953,"wallTimeMs":1792645701780,"kind":"NationCreation","text":"Lily Wood founded the nation of Northfield."}
+{"type":"chronicle","tick":9001,"wallTimeMs":1792645704437,"kind":"StallBuilt","text":"Trade came to Easternburg: Karl Wood built a stall."}
+{"type":"status","tick":9029,"wallTimeMs":1792645705978,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":9065,"wallTimeMs":1792645707824,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":9101,"wallTimeMs":1792645709514,"kind":"SettlementFounded","text":"Northfield put down roots: Lily Wood founded its first settlement."}
+{"type":"status","tick":9233,"wallTimeMs":1792645715690,"text":"You enter the land of Fortburg (Neutral)."}
+{"type":"status","tick":9245,"wallTimeMs":1792645716239,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":9253,"wallTimeMs":1792645716584,"kind":"NationRelationChange","text":"Fortport and Villagefield have become rivals."}
+{"type":"chronicle","tick":9253,"wallTimeMs":1792645716584,"kind":"NationRelationChange","text":"Westton and Villagefield have become rivals."}
+{"type":"chronicle","tick":9253,"wallTimeMs":1792645716584,"kind":"NationRelationChange","text":"Oldland and Northshire are now hostile."}
+{"type":"status","tick":9733,"wallTimeMs":1792645737540,"text":"You leave the land of Fortburg for the wilds."}
+{"type":"status","tick":9753,"wallTimeMs":1792645738407,"text":"You enter the land of Fortburg (Neutral)."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792645738407,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Hank Davies."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792645738407,"kind":"NationCreation","text":"Harriet Walker founded the nation of Oldville."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792645738407,"kind":"NationRelationChange","text":"Northshire and Easternburg are now hostile."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792645738407,"kind":"NationRelationChange","text":"Cityham and Fortburg are now hostile."}
+{"type":"status","tick":9821,"wallTimeMs":1792645741592,"text":"You leave the land of Fortburg for the wilds."}
+{"type":"status","tick":9901,"wallTimeMs":1792645745422,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":9953,"wallTimeMs":1792645747964,"kind":"StallBuilt","text":"Una Roberts built a market stall in Blueville."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRelationChange","text":"Northshire and Fortburg swore an alliance."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRelationChange","text":"Fortburg and Oldland are now hostile."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRaid","text":"Raiders from Northshire struck Oldland, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRaid","text":"Raiders from Northshire struck Redville, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRaid","text":"Northshire raided Cityham and carried off 2 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRaid","text":"Northshire raided Easternburg and carried off 3 coins."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRaid","text":"Raiders from Fortburg struck Oldland, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792645750169,"kind":"NationRaid","text":"Raiders from Fortburg struck Cityham, taking 5 wood, 5 stone."}
+{"type":"status","tick":10133,"wallTimeMs":1792645756310,"text":"You enter the land of Fortburg (Neutral)."}
+{"type":"status","tick":10201,"wallTimeMs":1792645759355,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":10201,"wallTimeMs":1792645759355,"kind":"StallBuilt","text":"Trade came to Townburg: Frank Robinson built a stall."}
+{"type":"chronicle","tick":10201,"wallTimeMs":1792645759355,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Lily Wood."}
+{"type":"chronicle","tick":10301,"wallTimeMs":1792645763567,"kind":"StallBuilt","text":"Zach Robinson built a market stall in Cityham."}
+{"type":"status","tick":10381,"wallTimeMs":1792645767391,"text":"This land is claimed by Fortburg. Found your settlement outside its borders."}
+{"type":"chronicle","tick":10601,"wallTimeMs":1792645777500,"kind":"StallBuilt","text":"Una Evans built a market stall in Westton."}
+{"type":"chronicle","tick":10601,"wallTimeMs":1792645777500,"kind":"StallBuilt","text":"A new stall opened in the market of Southburg, built by Hank Johnson."}
+{"type":"chronicle","tick":10653,"wallTimeMs":1792645779876,"kind":"SettlementFounded","text":"Oldville put down roots: Harriet Walker founded its first settlement."}
+{"type":"status","tick":10713,"wallTimeMs":1792645782462,"text":"You leave the land of Fortburg for the wilds."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792645784171,"kind":"StallBuilt","text":"Alice Brown built a market stall in Villagefield."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792645784171,"kind":"NationRelationChange","text":"Oldland and Blueville have become rivals."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792645784171,"kind":"NationRelationChange","text":"Cityham and Blueville have become rivals."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792645784171,"kind":"NationRelationChange","text":"Westton and Townburg have become rivals."}
+{"type":"status","tick":10961,"wallTimeMs":1792645793265,"text":"Too close to another settlement."}
+{"type":"chronicle","tick":11001,"wallTimeMs":1792645795055,"kind":"NationRelationChange","text":"Oldland and Southburg have become rivals."}
+{"type":"status","tick":11253,"wallTimeMs":1792645806522,"text":"Easternburg has fallen and been disbanded."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792645806522,"kind":"StallBuilt","text":"Una Roberts built a market stall in Blueville."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792645806522,"kind":"SettlementCapture","text":"Northshire captured a village from Easternburg."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792645806522,"kind":"NationDisband","text":"Easternburg dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":11301,"wallTimeMs":1792645808824,"kind":"StallBuilt","text":"Hank Johnson built a market stall in Southburg."}
+{"type":"chronicle","tick":11401,"wallTimeMs":1792645813340,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Frank Robinson."}
+{"type":"chronicle","tick":11453,"wallTimeMs":1792645815634,"kind":"NationCreation","text":"Karl Evans raised a banner and called it Hamletton."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792645817610,"kind":"StallBuilt","text":"Fiona White built a market stall in Redville."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792645817610,"kind":"SettlementFounded","text":"Hamletton put down roots: Karl Evans founded its first settlement."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792645817610,"kind":"NationRelationChange","text":"Northshire and Northfield have become rivals."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792645817610,"kind":"NationRelationChange","text":"Southburg and Northfield have become rivals."}
+{"type":"status","tick":11545,"wallTimeMs":1792645819455,"text":"Too close to another settlement."}
+{"type":"chronicle","tick":11553,"wallTimeMs":1792645819782,"kind":"NationCreation","text":"Victor Robinson founded the nation of Westernland."}
+{"type":"chronicle","tick":11601,"wallTimeMs":1792645821732,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Lily Wood."}
+{"type":"chronicle","tick":11601,"wallTimeMs":1792645821732,"kind":"NationCreation","text":"Mia Robinson declared the nation of Cityford, though none had yet sworn to it."}
+{"type":"chronicle","tick":11601,"wallTimeMs":1792645821732,"kind":"NationCreation","text":"Ella Wilson founded the nation of Redton."}
+{"type":"chronicle","tick":11653,"wallTimeMs":1792645823939,"kind":"SettlementFounded","text":"Victor Robinson raised the first settlement of Westernland."}
+{"type":"chronicle","tick":11801,"wallTimeMs":1792645830072,"kind":"NationCreation","text":"Stan Williams raised a banner and called it Southernland."}
+{"type":"chronicle","tick":11901,"wallTimeMs":1792645834096,"kind":"StallBuilt","text":"Trade came to Villagefield: Alice Brown built a stall."}
+{"type":"chronicle","tick":11953,"wallTimeMs":1792645836203,"kind":"SettlementFounded","text":"Mia Robinson raised the first settlement of Cityford."}
+{"type":"status","tick":11993,"wallTimeMs":1792645837799,"text":"Too close to another settlement. (x2)"}
+{"type":"save","tick":12001,"wallTimeMs":1792645838280,"count":2}
+{"type":"status","tick":12001,"wallTimeMs":1792645838280,"text":"Autosaved."}
+{"type":"chronicle","tick":12053,"wallTimeMs":1792645840507,"kind":"StallBuilt","text":"A new stall opened in the market of Oldville, built by Harriet Walker."}
+{"type":"chronicle","tick":12053,"wallTimeMs":1792645840507,"kind":"SettlementFounded","text":"Ella Wilson laid the first stones of Redton."}
+{"type":"chronicle","tick":12053,"wallTimeMs":1792645840507,"kind":"NationCreation","text":"Abigail Wilson declared the nation of Easternfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":12153,"wallTimeMs":1792645845083,"kind":"StallBuilt","text":"A new stall opened in the market of Westton, built by Una Evans."}
+{"type":"chronicle","tick":12601,"wallTimeMs":1792645863009,"kind":"SettlementFounded","text":"Stan Williams laid the first stones of Southernland."}
+{"type":"chronicle","tick":12701,"wallTimeMs":1792645867511,"kind":"StallBuilt","text":"A new stall opened in the market of Cityham, built by Zach Robinson."}
+{"type":"chronicle","tick":12701,"wallTimeMs":1792645867511,"kind":"StallBuilt","text":"A new stall opened in the market of Southburg, built by Hank Johnson."}
+{"type":"chronicle","tick":12701,"wallTimeMs":1792645867511,"kind":"NationCreation","text":"Hank Brown founded the nation of Southernburg."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792645869793,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Frank Robinson."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792645869793,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletton, built by Karl Evans."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792645869793,"kind":"StallBuilt","text":"A new stall opened in the market of Redton, built by Ella Wilson."}
+{"type":"chronicle","tick":12953,"wallTimeMs":1792645878418,"kind":"StallBuilt","text":"A new stall opened in the market of Oldland, built by Una Johnson."}
+{"type":"chronicle","tick":12953,"wallTimeMs":1792645878418,"kind":"StallBuilt","text":"Trade came to Fortburg: Stan Roberts built a stall."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792645880842,"kind":"NationCreation","text":"Eve Lewis raised a banner and called it Whiteton."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792645880842,"kind":"NationRelationChange","text":"Fortburg and Oldville have become rivals."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792645880842,"kind":"NationRelationChange","text":"Blueville and Oldville have become rivals."}
+{"type":"chronicle","tick":13101,"wallTimeMs":1792645885925,"kind":"StallBuilt","text":"A new stall opened in the market of Redton, built by Ella Wilson."}
+{"type":"chronicle","tick":13101,"wallTimeMs":1792645885925,"kind":"SettlementFounded","text":"Abigail Wilson raised the first settlement of Easternfield."}
+{"type":"chronicle","tick":13153,"wallTimeMs":1792645888726,"kind":"StallBuilt","text":"A new stall opened in the market of Villagefield, built by Alice Brown."}
+{"type":"chronicle","tick":13153,"wallTimeMs":1792645888726,"kind":"StallBuilt","text":"A new stall opened in the market of Oldville, built by Harriet Walker."}
+{"type":"chronicle","tick":13201,"wallTimeMs":1792645891180,"kind":"StallBuilt","text":"Trade came to Blueville: Una Roberts built a stall."}
+{"type":"chronicle","tick":13301,"wallTimeMs":1792645896708,"kind":"StallBuilt","text":"Trade came to Easternfield: Abigail Wilson built a stall."}
+{"type":"chronicle","tick":13301,"wallTimeMs":1792645896708,"kind":"NationCreation","text":"Xavier Thompson declared the nation of Castleville, though none had yet sworn to it."}
+{"type":"chronicle","tick":13353,"wallTimeMs":1792645899158,"kind":"SettlementFounded","text":"Xavier Thompson laid the first stones of Castleville."}
+{"type":"status","tick":13393,"wallTimeMs":1792645900710,"text":"You are back on your own land."}
+{"type":"chronicle","tick":13393,"wallTimeMs":1792645900710,"kind":"SettlementFounded","text":"You raised the first settlement of Farmfield."}
+{"type":"objective_completed","tick":13401,"wallTimeMs":1792645901138,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":5348}
+{"type":"status","tick":13401,"wallTimeMs":1792645901138,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":13401,"wallTimeMs":1792645901138,"kind":"NationJoin","text":"Ruth Walker swore fealty to Farmfield."}
+{"type":"chronicle","tick":13401,"wallTimeMs":1792645901138,"kind":"NationJoin","text":"Bella Jones joined Farmfield."}
+{"type":"status","tick":13501,"wallTimeMs":1792645906505,"text":"Thieves slipped through the open borders of Farmfield and took 2 coins and 0 wood."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792645906505,"kind":"StallBuilt","text":"Trade came to Southernland: Stan Williams built a stall."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792645906505,"kind":"NationRelationChange","text":"Redville and Cityham have formed an alliance."}
+{"type":"chronicle","tick":13553,"wallTimeMs":1792645909222,"kind":"StallBuilt","text":"A new stall opened in the market of Redton, built by Ella Wilson."}
+{"type":"chronicle","tick":13601,"wallTimeMs":1792645911650,"kind":"NationCreation","text":"Tilly Walker founded the nation of Bluefield."}
+{"type":"status","tick":13637,"wallTimeMs":1792645913580,"text":"Entered settlement."}
+{"type":"objective_completed","tick":13653,"wallTimeMs":1792645914413,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":252}
+{"type":"status","tick":13653,"wallTimeMs":1792645914413,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792645919676,"kind":"NationCreation","text":"Jasmine Taylor raised a banner and called it Redshire."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792645919676,"kind":"NationRelationChange","text":"Oldville and Hamletton have become rivals."}
+{"type":"screen","tick":13753,"wallTimeMs":1792645919882,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":13753,"wallTimeMs":1792645931264,"text":"Taxes: None proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":13753,"wallTimeMs":1792645933221,"text":"Conscription: On proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":13757,"wallTimeMs":1792645945611,"from":"NATIONS","to":"WORLD"}
+{"type":"objective_completed","tick":13801,"wallTimeMs":1792645948111,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":148}
+{"type":"status","tick":13801,"wallTimeMs":1792645948111,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":13801,"wallTimeMs":1792645948111,"kind":"StallBuilt","text":"Trade came to Farmfield: Bella Jones built a stall."}
+{"type":"chronicle","tick":13801,"wallTimeMs":1792645948111,"kind":"NationCreation","text":"Charlotte Williams declared the nation of Whiteham, though none had yet sworn to it."}
+{"type":"chronicle","tick":13853,"wallTimeMs":1792645950979,"kind":"SettlementFounded","text":"Eve Lewis raised the first settlement of Whiteton."}
+{"type":"chronicle","tick":13853,"wallTimeMs":1792645950979,"kind":"StallBuilt","text":"Trade came to Farmfield: Bella Jones built a stall."}
+{"type":"chronicle","tick":13901,"wallTimeMs":1792645953563,"kind":"StallBuilt","text":"Trade came to Westton: Una Evans built a stall."}
+{"type":"chronicle","tick":13953,"wallTimeMs":1792645956276,"kind":"StallBuilt","text":"Zach Robinson built a market stall in Cityham."}
+{"type":"chronicle","tick":13953,"wallTimeMs":1792645956276,"kind":"StallBuilt","text":"Karl Evans built a market stall in Hamletton."}
+{"type":"chronicle","tick":13953,"wallTimeMs":1792645956276,"kind":"SettlementFounded","text":"Tilly Walker raised the first settlement of Bluefield."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792645958787,"kind":"SettlementFounded","text":"Hank Brown laid the first stones of Southernburg."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792645958787,"kind":"NationRelationChange","text":"Northshire and Westernland have become rivals."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792645958787,"kind":"NationRelationChange","text":"Oldland and Redville have formed an alliance."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792645958787,"kind":"NationRaid","text":"Redville raided Northshire and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792645958787,"kind":"NationRaid","text":"Cityham raided Fortburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":14053,"wallTimeMs":1792645961617,"kind":"NationCreation","text":"Bob Williams raised a banner and called it Bigville."}
+{"type":"chronicle","tick":14053,"wallTimeMs":1792645961617,"kind":"SettlementFounded","text":"Whiteham put down roots: Charlotte Williams founded its first settlement."}
+{"type":"screen","tick":14073,"wallTimeMs":1792645962745,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":14073,"wallTimeMs":1792645971129,"from":"CONTROLS","to":"WORLD"}
+{"type":"chronicle","tick":14101,"wallTimeMs":1792645972744,"kind":"StallBuilt","text":"Trade came to Southernland: Stan Williams built a stall."}
+{"type":"chronicle","tick":14101,"wallTimeMs":1792645972744,"kind":"NationCreation","text":"Gemma Williams declared the nation of Blackford, though none had yet sworn to it."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792645982001,"kind":"NationRelationChange","text":"Hamletton and Cityford have become rivals."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792645982001,"kind":"NationRelationChange","text":"Cityham and Villagefield swore an alliance."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792645982001,"kind":"NationRelationChange","text":"Villagefield and Fortport are now hostile."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792645982001,"kind":"NationRelationChange","text":"Villagefield and Westton are now hostile."}
+{"type":"chronicle","tick":14401,"wallTimeMs":1792645991049,"kind":"StallBuilt","text":"Trade came to Southburg: Hank Johnson built a stall."}
+{"type":"chronicle","tick":14401,"wallTimeMs":1792645991049,"kind":"StallBuilt","text":"Frank Robinson built a market stall in Townburg. The market is now full."}
+{"type":"chronicle","tick":14453,"wallTimeMs":1792645994140,"kind":"StallBuilt","text":"Trade came to Fortport: Phoebe Johnson built a stall."}
+{"type":"chronicle","tick":14501,"wallTimeMs":1792645996833,"kind":"NationRelationChange","text":"Oldville and Redton have become rivals."}
+{"type":"chronicle","tick":14601,"wallTimeMs":1792646002288,"kind":"StallBuilt","text":"Trade came to Blueville: Una Roberts built a stall."}
+{"type":"chronicle","tick":14601,"wallTimeMs":1792646002288,"kind":"StallBuilt","text":"A new stall opened in the market of Southernland, built by Stan Williams."}
+{"type":"chronicle","tick":14601,"wallTimeMs":1792646002288,"kind":"StallBuilt","text":"Ella Wilson built a market stall in Redton. The market is now full."}
+{"type":"chronicle","tick":14701,"wallTimeMs":1792646007758,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Lily Wood."}
+{"type":"chronicle","tick":14701,"wallTimeMs":1792646007758,"kind":"StallBuilt","text":"Xavier Thompson built a market stall in Castleville."}
+{"type":"chronicle","tick":14753,"wallTimeMs":1792646010590,"kind":"StallBuilt","text":"A new stall opened in the market of Villagefield, built by Alice Brown."}
+{"type":"chronicle","tick":14753,"wallTimeMs":1792646010590,"kind":"NationRelationChange","text":"Northfield and Westernland have become rivals."}
+{"type":"chronicle","tick":14801,"wallTimeMs":1792646013200,"kind":"StallBuilt","text":"A new stall opened in the market of Southernburg, built by Hank Brown."}
+{"type":"chronicle","tick":14853,"wallTimeMs":1792646016109,"kind":"StallBuilt","text":"Karl Evans built a market stall in Hamletton."}
+{"type":"status","tick":15001,"wallTimeMs":1792646024077,"text":"Thieves slipped through the open borders of Farmfield and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792646024077,"kind":"NationRelationChange","text":"Oldville and Southernland have become rivals."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792646024077,"kind":"NationRaid","text":"Raiders from Villagefield struck Fortport, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792646024077,"kind":"NationRaid","text":"Raiders from Villagefield struck Westton, taking 5 coins."}
+{"type":"chronicle","tick":15101,"wallTimeMs":1792646029349,"kind":"StallBuilt","text":"Una Johnson built a market stall in Oldland."}
+{"type":"chronicle","tick":15101,"wallTimeMs":1792646029349,"kind":"NationCreation","text":"The nation of Townford was born, with Natalie White at its head."}
+{"type":"chronicle","tick":15153,"wallTimeMs":1792646032246,"kind":"SettlementFounded","text":"Natalie White laid the first stones of Townford."}
+{"type":"chronicle","tick":15353,"wallTimeMs":1792646042857,"kind":"NationCreation","text":"Olivia Williams raised a banner and called it Fortford."}
+{"type":"chronicle","tick":15401,"wallTimeMs":1792646045428,"kind":"NationJoin","text":"Charlie Thompson joined Farmfield."}
+{"type":"chronicle","tick":15453,"wallTimeMs":1792646048141,"kind":"StallBuilt","text":"Stan Roberts built a market stall in Fortburg."}
+{"type":"chronicle","tick":15453,"wallTimeMs":1792646048141,"kind":"NationCreation","text":"Dave Lewis declared the nation of Easternwood, though none had yet sworn to it."}
+{"type":"status","tick":15501,"wallTimeMs":1792646050684,"text":"Conscription came into force in Farmfield: its people drill to defend it."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"SettlementFounded","text":"Easternwood put down roots: Dave Lewis founded its first settlement."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"NationRelationChange","text":"Hamletton and Easternfield have become rivals."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"NationRelationChange","text":"Northshire and Fortport swore an alliance."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"SettlementCapture","text":"Villagefield captured a village from Westton."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"NationDisband","text":"Westton dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"Statecraft","text":"Taxes were lifted in Farmfield."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792646050684,"kind":"Statecraft","text":"Conscription came into force in Farmfield: its people drill to defend it."}
+{"type":"chronicle","tick":15553,"wallTimeMs":1792646053453,"kind":"NationCreation","text":"The nation of Eastburg was born, with Una Wood at its head."}
+{"type":"chronicle","tick":15601,"wallTimeMs":1792646055927,"kind":"StallBuilt","text":"A new stall opened in the market of Oldville, built by Harriet Walker."}
+{"type":"chronicle","tick":15753,"wallTimeMs":1792646063443,"kind":"NationRelationChange","text":"Townburg and Castleville have become rivals."}
+{"type":"chronicle","tick":15753,"wallTimeMs":1792646063443,"kind":"NationRelationChange","text":"Cityford and Castleville have become rivals."}
+{"type":"chronicle","tick":15753,"wallTimeMs":1792646063443,"kind":"NationRelationChange","text":"Northshire and Blueville have formed an alliance."}
+{"type":"chronicle","tick":15753,"wallTimeMs":1792646063443,"kind":"NationRelationChange","text":"Cityham and Blueville are now hostile."}
+{"type":"chronicle","tick":15801,"wallTimeMs":1792646065826,"kind":"NationCreation","text":"The nation of Uppertown was born, with Harriet Williams at its head."}
+{"type":"chronicle","tick":15901,"wallTimeMs":1792646070814,"kind":"SettlementFounded","text":"Eastburg put down roots: Una Wood founded its first settlement."}
+{"type":"status","tick":16001,"wallTimeMs":1792646076020,"text":"Relations with Castleville are now Neutral."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792646076020,"kind":"NationRelationChange","text":"Farmfield and Castleville have become rivals."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792646076020,"kind":"NationRaid","text":"Cityham raided Blueville and carried off 5 coins."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792646076020,"kind":"NationRelationChange","text":"Relations between Farmfield and Castleville are now neutral."}
+{"type":"chronicle","tick":16053,"wallTimeMs":1792646078635,"kind":"WorldEvent","text":"Drought struck Cityham; Zach Robinson had irrigation ditches dug, and the farms were dry only a little while."}
+{"type":"chronicle","tick":16101,"wallTimeMs":1792646081019,"kind":"NationCreation","text":"Jasmine White founded the nation of Newburg."}
+{"type":"screen","tick":16137,"wallTimeMs":1792646082983,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":16137,"wallTimeMs":1792646088171,"text":"Conscription: Off proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":16137,"wallTimeMs":1792646089873,"text":"Borders: Closed proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":16141,"wallTimeMs":1792646091579,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":16201,"wallTimeMs":1792646094459,"kind":"NationCreation","text":"The nation of Townshire was born, with Samantha Johnson at its head."}
+{"type":"status","tick":16253,"wallTimeMs":1792646097103,"text":"Relations with Castleville are now Rival."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Farmfield and Castleville have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Townburg and Bluefield have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Southburg and Southernburg have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Blueville and Southernburg have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Cityford and Whiteton have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Southernland and Southernburg have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Easternfield and Whiteton have become rivals."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792646097103,"kind":"NationRelationChange","text":"Northshire and Southburg swore an alliance."}
+{"type":"status","tick":16305,"wallTimeMs":1792646099719,"text":"Exited settlement."}
+{"type":"chronicle","tick":16453,"wallTimeMs":1792646107334,"kind":"NationCreation","text":"Ursula Taylor raised a banner and called it Southville."}
+{"type":"status","tick":16501,"wallTimeMs":1792646109913,"text":"Thieves slipped through the open borders of Farmfield and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":16501,"wallTimeMs":1792646109913,"kind":"NationRelationChange","text":"Farmfield and Fortport have become rivals."}
+{"type":"chronicle","tick":16501,"wallTimeMs":1792646109913,"kind":"NationRelationChange","text":"Villagefield and Townburg have become rivals."}
+{"type":"chronicle","tick":16501,"wallTimeMs":1792646109913,"kind":"NationRelationChange","text":"Easternfield and Whiteham have become rivals."}
+{"type":"chronicle","tick":16501,"wallTimeMs":1792646109913,"kind":"NationRelationChange","text":"Cityham and Fortport are now hostile."}
+{"type":"chronicle","tick":16501,"wallTimeMs":1792646109913,"kind":"NationRelationChange","text":"Southburg and Northfield are now hostile."}
+{"type":"chronicle","tick":16653,"wallTimeMs":1792646115439,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Farmfield."}
+{"type":"status","tick":16753,"wallTimeMs":1792646119085,"text":"Relations with Whiteton are now Rival."}
+{"type":"chronicle","tick":16753,"wallTimeMs":1792646119085,"kind":"NationRelationChange","text":"Farmfield and Whiteton have become rivals."}
+{"type":"chronicle","tick":16801,"wallTimeMs":1792646120722,"kind":"SettlementFounded","text":"Jasmine White raised the first settlement of Newburg."}
+{"type":"status","tick":17001,"wallTimeMs":1792646127845,"text":"Blueville has fallen and been disbanded."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792646127845,"kind":"NationRelationChange","text":"Relations between Townburg and Villagefield are now neutral."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792646127845,"kind":"NationRaid","text":"Cityham raided Fortport and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792646127845,"kind":"SettlementCapture","text":"Cityham captured a camp from Blueville."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792646127845,"kind":"NationDisband","text":"Blueville dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792646127845,"kind":"NationRaid","text":"Raiders from Southburg struck Northfield, taking 3 coins, 5 stone."}
+{"type":"chronicle","tick":17053,"wallTimeMs":1792646130262,"kind":"SettlementFounded","text":"Gemma Williams raised the first settlement of Blackford."}
+{"type":"status","tick":17149,"wallTimeMs":1792646134512,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":17269,"wallTimeMs":1792646139935,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"status","tick":17393,"wallTimeMs":1792646145433,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792646150243,"kind":"NationRelationChange","text":"Southburg and Townford have become rivals."}
+{"type":"screen","tick":17669,"wallTimeMs":1792646157838,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":17669,"wallTimeMs":1792646161938,"text":"The change to conscription is withdrawn; they stay On."}
+{"type":"screen","tick":17673,"wallTimeMs":1792646163874,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":17753,"wallTimeMs":1792646167505,"kind":"NationRelationChange","text":"Southburg and Easternwood have become rivals."}
+{"type":"chronicle","tick":17753,"wallTimeMs":1792646167505,"kind":"NationRelationChange","text":"Westernland and Easternwood have become rivals."}
+{"type":"save","tick":18001,"wallTimeMs":1792646179010,"count":3}
+{"type":"status","tick":18001,"wallTimeMs":1792646179010,"text":"Autosaved."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792646179010,"kind":"NationRelationChange","text":"Fortburg and Oldville are now hostile."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792646179010,"kind":"NationRelationChange","text":"Relations between Fortport and Cityham are now rival."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792646179010,"kind":"NationRelationChange","text":"Southburg and Oldland are now hostile."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792646179010,"kind":"NationRelationChange","text":"Relations between Oldville and Fortburg are now rival."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792646179010,"kind":"NationRaid","text":"Raiders from Southburg struck Oldland, taking 2 coins."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792646179010,"kind":"Statecraft","text":"Farmfield closed its borders."}
+{"type":"chronicle","tick":18253,"wallTimeMs":1792646187380,"kind":"NationRelationChange","text":"Southburg and Eastburg have become rivals."}
+{"type":"status","tick":18501,"wallTimeMs":1792646197558,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792646197558,"kind":"NationRelationChange","text":"Cityham and Fortport are now hostile."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792646197558,"kind":"NationRelationChange","text":"Villagefield and Townburg have become rivals."}
+{"type":"status","tick":18601,"wallTimeMs":1792646201861,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"chronicle","tick":18753,"wallTimeMs":1792646208090,"kind":"NationRelationChange","text":"Oldville and Hamletton are now hostile."}
+{"type":"status","tick":18865,"wallTimeMs":1792646212533,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"chronicle","tick":19001,"wallTimeMs":1792646218415,"kind":"NationRelationChange","text":"Oldland and Oldville swore an alliance."}
+{"type":"chronicle","tick":19001,"wallTimeMs":1792646218415,"kind":"NationRelationChange","text":"Relations between Hamletton and Oldville are now rival."}
+{"type":"chronicle","tick":19001,"wallTimeMs":1792646218415,"kind":"NationRaid","text":"Oldland raided Fortburg and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":19001,"wallTimeMs":1792646218415,"kind":"NationRaid","text":"Raiders from Oldland struck Southburg, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":19253,"wallTimeMs":1792646227202,"kind":"NationRelationChange","text":"Easternwood and Newburg have become rivals."}
+{"type":"chronicle","tick":19253,"wallTimeMs":1792646227202,"kind":"NationRelationChange","text":"Eastburg and Newburg have become rivals."}
+{"type":"chronicle","tick":19253,"wallTimeMs":1792646227202,"kind":"NationRelationChange","text":"Cityford and Hamletton are now hostile."}
+{"type":"status","tick":19453,"wallTimeMs":1792646234218,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":19501,"wallTimeMs":1792646236416,"kind":"NationRelationChange","text":"Relations between Northshire and Westernland are now neutral."}
+{"type":"chronicle","tick":19501,"wallTimeMs":1792646236416,"kind":"NationRelationChange","text":"Blackford and Townford have become rivals."}
+{"type":"chronicle","tick":19501,"wallTimeMs":1792646236416,"kind":"NationRelationChange","text":"Blackford and Eastburg have become rivals."}
+{"type":"chronicle","tick":19501,"wallTimeMs":1792646236416,"kind":"NationRelationChange","text":"Northfield and Westernland are now hostile."}
+{"type":"status","tick":19549,"wallTimeMs":1792646238571,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"status","tick":19721,"wallTimeMs":1792646246308,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":19753,"wallTimeMs":1792646247754,"text":"Fortport has fallen and been disbanded."}
+{"type":"chronicle","tick":19753,"wallTimeMs":1792646247754,"kind":"SettlementCapture","text":"After a siege, a village of Fortport fell to Cityham."}
+{"type":"chronicle","tick":19753,"wallTimeMs":1792646247754,"kind":"NationDisband","text":"Fortport is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":20001,"wallTimeMs":1792646256974,"kind":"NationRelationChange","text":"Fortburg and Oldville are now hostile."}
+{"type":"chronicle","tick":20001,"wallTimeMs":1792646256974,"kind":"NationRelationChange","text":"Relations between Townburg and Villagefield are now neutral."}
+{"type":"chronicle","tick":20001,"wallTimeMs":1792646256974,"kind":"NationRaid","text":"Fortburg raided Oldville and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":20001,"wallTimeMs":1792646256974,"kind":"NationRaid","text":"Raiders from Northfield struck Westernland, taking 1 wood, 5 stone."}
+{"type":"chronicle","tick":20001,"wallTimeMs":1792646256974,"kind":"NationRaid","text":"Cityford raided Hamletton and carried off 5 coins, 5 wood, 1 stone."}
+{"type":"status","tick":20025,"wallTimeMs":1792646257831,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":20253,"wallTimeMs":1792646266076,"kind":"NationRelationChange","text":"Oldland and Westernland have become rivals."}
+{"type":"status","tick":20305,"wallTimeMs":1792646267959,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"chronicle","tick":20501,"wallTimeMs":1792646275440,"kind":"NationRelationChange","text":"Northshire and Villagefield have become rivals."}
+{"type":"chronicle","tick":20501,"wallTimeMs":1792646275440,"kind":"NationRelationChange","text":"Villagefield and Townburg have become rivals."}
+{"type":"status","tick":20729,"wallTimeMs":1792646283478,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":20753,"wallTimeMs":1792646284168,"text":"Relations with Villagefield are now Rival."}
+{"type":"chronicle","tick":20753,"wallTimeMs":1792646284168,"kind":"NationRelationChange","text":"Farmfield and Villagefield have become rivals."}
+{"type":"chronicle","tick":20753,"wallTimeMs":1792646284168,"kind":"NationRelationChange","text":"Oldville and Hamletton are now hostile."}
+{"type":"chronicle","tick":20753,"wallTimeMs":1792646284168,"kind":"NationRelationChange","text":"Fortburg and Southburg swore an alliance."}
+{"type":"chronicle","tick":20753,"wallTimeMs":1792646284168,"kind":"NationRelationChange","text":"Castleville and Townburg are now hostile."}
+{"type":"chronicle","tick":20753,"wallTimeMs":1792646284168,"kind":"NationRelationChange","text":"Castleville and Cityford are now hostile."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRelationChange","text":"Southburg and Westernland swore an alliance."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRelationChange","text":"Relations between Hamletton and Oldville are now rival."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Northshire raided Oldland and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Redville raided Northshire and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Raiders from Cityham struck Northshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Fortburg raided Oldland and carried off 5 coins."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Raiders from Southburg struck Oldland, taking 5 coins."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Raiders from Cityham struck Fortburg, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Fortburg raided Oldville and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Castleville raided Townburg and carried off 5 coins."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Raiders from Southburg struck Northfield, taking 5 coins, 1 wood, 5 stone."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Westernland raided Northfield and carried off 4 coins, 5 stone."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Raiders from Cityford struck Hamletton, taking 5 wood."}
+{"type":"chronicle","tick":21001,"wallTimeMs":1792646290886,"kind":"NationRaid","text":"Castleville raided Cityford and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":21253,"wallTimeMs":1792646297355,"text":"Relations with Castleville are now Hostile."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Redville and Northfield have formed an alliance."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Cityham and Northfield swore an alliance."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Southburg and Southernburg are now hostile."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Hamletton and Whiteton swore an alliance."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Southernland and Southernburg are now hostile."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Whiteton and Easternfield are now hostile."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Castleville and Farmfield are now hostile."}
+{"type":"chronicle","tick":21253,"wallTimeMs":1792646297355,"kind":"NationRelationChange","text":"Bluefield and Townburg are now hostile."}
+{"type":"screen","tick":21261,"wallTimeMs":1792646297657,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":21261,"wallTimeMs":1792646301723,"text":"Taxes: High proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":21265,"wallTimeMs":1792646303212,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":21501,"wallTimeMs":1792646309154,"kind":"NationRelationChange","text":"Hamletton and Easternfield are now hostile."}
+{"type":"chronicle","tick":21501,"wallTimeMs":1792646309154,"kind":"NationRelationChange","text":"Easternfield and Whiteham are now hostile."}
+{"type":"status","tick":21753,"wallTimeMs":1792646315570,"text":"Relations with Easternfield are now Friendly."}
+{"type":"chronicle","tick":21753,"wallTimeMs":1792646315570,"kind":"NationRelationChange","text":"Relations between Farmfield and Easternfield are now friendly."}
+{"type":"status","tick":22001,"wallTimeMs":1792646322367,"text":"Townburg has fallen and been disbanded."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationRelationChange","text":"Cityham and Southburg have become rivals."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"SettlementCapture","text":"After a siege, a camp of Townburg fell to Castleville."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationDisband","text":"Townburg faded from memory before it ever built a home."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationRaid","text":"Raiders from Southburg struck Southernburg, taking 5 coins."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationRaid","text":"Northfield raided Westernland and carried off 4 coins, 5 stone."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationRaid","text":"Raiders from Hamletton struck Easternfield, taking 5 coins."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationRaid","text":"Raiders from Southernland struck Southernburg, taking 5 coins."}
+{"type":"chronicle","tick":22001,"wallTimeMs":1792646322367,"kind":"NationRaid","text":"Raiders from Whiteton struck Easternfield, taking 5 coins."}
+{"type":"status","tick":22501,"wallTimeMs":1792646335583,"text":"Southernburg has fallen and been disbanded."}
+{"type":"chronicle","tick":22501,"wallTimeMs":1792646335583,"kind":"NationRelationChange","text":"Southburg and Townford are now hostile."}
+{"type":"chronicle","tick":22501,"wallTimeMs":1792646335583,"kind":"SettlementCapture","text":"After a siege, a camp of Southernburg fell to Southburg."}
+{"type":"chronicle","tick":22501,"wallTimeMs":1792646335583,"kind":"NationDisband","text":"Southernburg dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":22753,"wallTimeMs":1792646341926,"kind":"NationRelationChange","text":"Oldville and Hamletton are now hostile."}
+{"type":"chronicle","tick":22753,"wallTimeMs":1792646341926,"kind":"NationRelationChange","text":"Southburg and Easternwood are now hostile."}
+{"type":"chronicle","tick":22753,"wallTimeMs":1792646341926,"kind":"NationRelationChange","text":"Westernland and Easternwood are now hostile."}
+{"type":"status","tick":23001,"wallTimeMs":1792646348456,"text":"Taxes in Farmfield rose to High."}
+{"type":"chronicle","tick":23001,"wallTimeMs":1792646348456,"kind":"NationRaid","text":"Southburg raided Easternwood and carried off 5 wood, 1 stone."}
+{"type":"chronicle","tick":23001,"wallTimeMs":1792646348456,"kind":"NationRaid","text":"Oldville raided Hamletton and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":23001,"wallTimeMs":1792646348456,"kind":"NationRaid","text":"Westernland raided Easternwood and carried off 5 wood."}
+{"type":"chronicle","tick":23001,"wallTimeMs":1792646348456,"kind":"Statecraft","text":"Taxes in Farmfield rose to High."}
+{"type":"chronicle","tick":23253,"wallTimeMs":1792646354953,"kind":"NationRelationChange","text":"Castleville and Bluefield have become rivals."}
+{"type":"chronicle","tick":23253,"wallTimeMs":1792646354953,"kind":"NationRelationChange","text":"Southburg and Eastburg are now hostile."}
+{"type":"chronicle","tick":23553,"wallTimeMs":1792646362982,"kind":"WorldEvent","text":"Rain returned to Cityham, and its farms grew green again."}
+{"type":"status","tick":23753,"wallTimeMs":1792646368116,"text":"Townford has fallen and been disbanded."}
+{"type":"chronicle","tick":23753,"wallTimeMs":1792646368116,"kind":"NationRelationChange","text":"Cityford and Whiteton are now hostile."}
+{"type":"chronicle","tick":23753,"wallTimeMs":1792646368116,"kind":"NationRelationChange","text":"Fortburg and Hamletton have formed an alliance."}
+{"type":"chronicle","tick":23753,"wallTimeMs":1792646368116,"kind":"SettlementCapture","text":"Southburg captured a camp from Townford."}
+{"type":"chronicle","tick":23753,"wallTimeMs":1792646368116,"kind":"NationDisband","text":"Townford dissolved, its name already half-forgotten."}
+{"type":"save","tick":24001,"wallTimeMs":1792646374777,"count":4}
+{"type":"status","tick":24001,"wallTimeMs":1792646374777,"text":"Autosaved."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"NationRelationChange","text":"Oldland and Easternwood have formed an alliance."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"NationRelationChange","text":"Relations between Bluefield and Castleville are now neutral."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"SettlementCapture","text":"After a siege, a village of Easternwood fell to Southburg."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"NationDisband","text":"Easternwood is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"NationRaid","text":"Southburg raided Eastburg and carried off 2 wood, 5 stone."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"NationRaid","text":"Hamletton raided Oldville and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":24001,"wallTimeMs":1792646374777,"kind":"NationRaid","text":"Hamletton raided Cityford and carried off 5 wood, 5 stone."}

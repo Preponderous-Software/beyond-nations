@@ -228,6 +228,19 @@ recorder only reads what the game already shows.
 `summary.json` has the same and more (every session's derived metrics, the
 agent's own metrics) for anything that wants to process it.
 
+## Evidence in the repository
+
+Every run's evidence is committed under `docs/playtests/<version>/`, named
+after the version tested: a build of `develop` past the last release is filed
+under the next expected version, and renamed at release time if the release
+turns out to be a different version (see [RELEASING.md](RELEASING.md); the
+release workflow checks the names). The playtest skill's step 8 lists what to
+copy in.
+
+Runs so far:
+
+- [0.5.0](playtests/0.5.0/README.md) (develop `df53ae3`, 2026-10-21): the first 10-agent run.
+
 ## Troubleshooting
 
 - **Xvfb exits at once, or the game cannot create a GL 4.5 context** --

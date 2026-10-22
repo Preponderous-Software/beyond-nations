@@ -1,0 +1,346 @@
+{"type":"screen","tick":0,"wallTimeMs":1792645148771,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792645185498,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645195377,"from":"MAIN_MENU","to":"CONFIG"}
+{"type":"screen","tick":0,"wallTimeMs":1792645219786,"from":"CONFIG","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645222170,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1792645241398,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645243987,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792645250973,"how":"created","slot":"world-109-20261022-050050","seed":109}
+{"type":"screen","tick":0,"wallTimeMs":1792645250977,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":1407,"wallTimeMs":1792645315375,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":1503,"wallTimeMs":1792645320412,"kind":"NationCreation","text":"Grace Davies founded the nation of Greenshire. It is the first nation this world has known."}
+{"type":"chronicle","tick":1551,"wallTimeMs":1792645322850,"kind":"SettlementFounded","text":"Grace Davies raised the first settlement of Greenshire."}
+{"type":"chronicle","tick":1603,"wallTimeMs":1792645325467,"kind":"NationCreation","text":"Una Smith declared the nation of Upperport, though none had yet sworn to it."}
+{"type":"chronicle","tick":1803,"wallTimeMs":1792645335072,"kind":"NationCreation","text":"Bob Smith declared the nation of Southernfield, though none had yet sworn to it."}
+{"type":"status","tick":1807,"wallTimeMs":1792645335246,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1851,"wallTimeMs":1792645337365,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1851}
+{"type":"status","tick":1851,"wallTimeMs":1792645337365,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":1851,"wallTimeMs":1792645337365,"kind":"SettlementFounded","text":"Una Smith raised the first settlement of Upperport."}
+{"type":"objective_completed","tick":1903,"wallTimeMs":1792645339906,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1903,"wallTimeMs":1792645339906,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":2203,"wallTimeMs":1792645354813,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":300}
+{"type":"status","tick":2203,"wallTimeMs":1792645354813,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":2203,"wallTimeMs":1792645354813,"kind":"NationCreation","text":"You raised a banner and named your people Bigshire."}
+{"type":"chronicle","tick":2503,"wallTimeMs":1792645369167,"kind":"NationCreation","text":"Nancy Williams raised a banner and called it Cityville."}
+{"type":"status","tick":2619,"wallTimeMs":1792645374816,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2863,"wallTimeMs":1792645386178,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":2951,"wallTimeMs":1792645390605,"kind":"SettlementFounded","text":"Southernfield put down roots: Bob Smith founded its first settlement."}
+{"type":"status","tick":3031,"wallTimeMs":1792645394373,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":3227,"wallTimeMs":1792645403048,"text":"Gathered 4 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":3251,"wallTimeMs":1792645404179,"kind":"StallBuilt","text":"A new stall opened in the market of Upperport, built by Una Smith."}
+{"type":"status","tick":3499,"wallTimeMs":1792645415328,"text":"Gathered 4 wood and 2 apples from tree. (x3)"}
+{"type":"chronicle","tick":3551,"wallTimeMs":1792645417710,"kind":"SettlementFounded","text":"Cityville put down roots: Nancy Williams founded its first settlement."}
+{"type":"status","tick":3795,"wallTimeMs":1792645428752,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3903,"wallTimeMs":1792645433599,"kind":"StallBuilt","text":"A new stall opened in the market of Upperport, built by Una Smith."}
+{"type":"status","tick":3979,"wallTimeMs":1792645437286,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":4251,"wallTimeMs":1792645449212,"kind":"NationCreation","text":"Natalie Wood declared the nation of Bluewood, though none had yet sworn to it."}
+{"type":"chronicle","tick":4251,"wallTimeMs":1792645449212,"kind":"NationRelationChange","text":"Greenshire and Upperport have become rivals."}
+{"type":"status","tick":4339,"wallTimeMs":1792645452673,"text":"Gathered 6 wood and 1 apple from tree. (x2)"}
+{"type":"chronicle","tick":4351,"wallTimeMs":1792645453231,"kind":"NationCreation","text":"Charlotte Brown founded the nation of Fortressville."}
+{"type":"chronicle","tick":4403,"wallTimeMs":1792645455419,"kind":"StallBuilt","text":"Trade came to Southernfield: Bob Smith built a stall."}
+{"type":"chronicle","tick":4403,"wallTimeMs":1792645455419,"kind":"SettlementFounded","text":"Fortressville put down roots: Charlotte Brown founded its first settlement."}
+{"type":"chronicle","tick":4503,"wallTimeMs":1792645459484,"kind":"NationCreation","text":"Linda Taylor founded the nation of Fortresston."}
+{"type":"status","tick":4507,"wallTimeMs":1792645459626,"text":"Gathered 6 wood and 1 apple from tree. (x3)"}
+{"type":"chronicle","tick":4803,"wallTimeMs":1792645472280,"kind":"SettlementFounded","text":"Linda Taylor raised the first settlement of Fortresston."}
+{"type":"chronicle","tick":4851,"wallTimeMs":1792645474333,"kind":"StallBuilt","text":"Una Smith built a market stall in Upperport."}
+{"type":"chronicle","tick":4903,"wallTimeMs":1792645476487,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Grace Davies."}
+{"type":"status","tick":5143,"wallTimeMs":1792645486486,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":5251,"wallTimeMs":1792645491078,"kind":"StallBuilt","text":"Bob Smith built a market stall in Southernfield."}
+{"type":"chronicle","tick":5251,"wallTimeMs":1792645491078,"kind":"StallBuilt","text":"Charlotte Brown built a market stall in Fortressville."}
+{"type":"chronicle","tick":5251,"wallTimeMs":1792645491078,"kind":"NationRelationChange","text":"Greenshire and Southernfield have become rivals."}
+{"type":"chronicle","tick":5351,"wallTimeMs":1792645495197,"kind":"NationCreation","text":"The nation of Greenburg was born, with Natalie Thompson at its head."}
+{"type":"status","tick":5427,"wallTimeMs":1792645498422,"text":"Too close to another settlement."}
+{"type":"chronicle","tick":5451,"wallTimeMs":1792645499518,"kind":"SettlementFounded","text":"Natalie Wood laid the first stones of Bluewood."}
+{"type":"chronicle","tick":5603,"wallTimeMs":1792645506409,"kind":"StallBuilt","text":"Trade came to Fortressville: Charlotte Brown built a stall."}
+{"type":"chronicle","tick":5651,"wallTimeMs":1792645508693,"kind":"SettlementFounded","text":"Natalie Thompson laid the first stones of Greenburg."}
+{"type":"screen","tick":5819,"wallTimeMs":1792645516302,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":5819,"wallTimeMs":1792645524349,"from":"PAUSE","to":"SHARE"}
+{"type":"screen","tick":5819,"wallTimeMs":1792645534176,"from":"SHARE","to":"PAUSE"}
+{"type":"screen","tick":5823,"wallTimeMs":1792645536023,"from":"PAUSE","to":"WORLD"}
+{"type":"chronicle","tick":5851,"wallTimeMs":1792645537151,"kind":"NationCreation","text":"Ursula Robinson declared the nation of Smallford, though none had yet sworn to it."}
+{"type":"screen","tick":5867,"wallTimeMs":1792645538196,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":5867,"wallTimeMs":1792645548003,"from":"INVENTORY","to":"CRAFTING"}
+{"type":"screen","tick":5871,"wallTimeMs":1792645566637,"from":"CRAFTING","to":"WORLD"}
+{"type":"screen","tick":5911,"wallTimeMs":1792645568585,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":5915,"wallTimeMs":1792645600445,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":5951,"wallTimeMs":1792645601951,"kind":"StallBuilt","text":"A new stall opened in the market of Upperport, built by Una Smith. The market is now full."}
+{"type":"chronicle","tick":5951,"wallTimeMs":1792645601951,"kind":"StallBuilt","text":"Linda Taylor built a market stall in Fortresston."}
+{"type":"save","tick":6003,"wallTimeMs":1792645604168,"count":1}
+{"type":"status","tick":6003,"wallTimeMs":1792645604168,"text":"Autosaved."}
+{"type":"chronicle","tick":6003,"wallTimeMs":1792645604168,"kind":"NationRelationChange","text":"Upperport and Cityville have become rivals."}
+{"type":"chronicle","tick":6003,"wallTimeMs":1792645604168,"kind":"NationRelationChange","text":"Southernfield and Cityville have become rivals."}
+{"type":"chronicle","tick":6303,"wallTimeMs":1792645616190,"kind":"SettlementFounded","text":"Smallford put down roots: Ursula Robinson founded its first settlement."}
+{"type":"status","tick":6347,"wallTimeMs":1792645618107,"text":"Too close to another settlement."}
+{"type":"chronicle","tick":6403,"wallTimeMs":1792645620316,"kind":"StallBuilt","text":"Trade came to Southernfield: Bob Smith built a stall."}
+{"type":"chronicle","tick":6403,"wallTimeMs":1792645620316,"kind":"StallBuilt","text":"Charlotte Brown built a market stall in Fortressville."}
+{"type":"chronicle","tick":6451,"wallTimeMs":1792645622218,"kind":"NationCreation","text":"Katie Wilson declared the nation of Greatburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":6703,"wallTimeMs":1792645632505,"kind":"NationCreation","text":"The nation of Southernport was born, with Bob Davies at its head."}
+{"type":"chronicle","tick":6751,"wallTimeMs":1792645634900,"kind":"NationRelationChange","text":"Cityville and Fortressville have become rivals."}
+{"type":"status","tick":6811,"wallTimeMs":1792645638992,"text":"You are back on your own land."}
+{"type":"chronicle","tick":6811,"wallTimeMs":1792645638992,"kind":"SettlementFounded","text":"You raised the first settlement of Bigshire."}
+{"type":"objective_completed","tick":6851,"wallTimeMs":1792645642423,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4648}
+{"type":"status","tick":6851,"wallTimeMs":1792645642423,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":6851,"wallTimeMs":1792645642423,"kind":"NationCreation","text":"The nation of Bluetown was born, with Ruth Roberts at its head."}
+{"type":"chronicle","tick":6851,"wallTimeMs":1792645642423,"kind":"NationJoin","text":"Rachel Jones threw in their lot with Bigshire."}
+{"type":"chronicle","tick":6851,"wallTimeMs":1792645642423,"kind":"NationJoin","text":"Natalie White swore fealty to Bigshire."}
+{"type":"chronicle","tick":7003,"wallTimeMs":1792645655254,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Linda Taylor."}
+{"type":"chronicle","tick":7051,"wallTimeMs":1792645658410,"kind":"SettlementFounded","text":"Greatburg put down roots: Katie Wilson founded its first settlement."}
+{"type":"chronicle","tick":7103,"wallTimeMs":1792645661426,"kind":"NationJoin","text":"Karl Jones joined Bigshire."}
+{"type":"chronicle","tick":7251,"wallTimeMs":1792645669365,"kind":"NationRelationChange","text":"Cityville and Fortresston have become rivals."}
+{"type":"chronicle","tick":7251,"wallTimeMs":1792645669365,"kind":"NationRelationChange","text":"Cityville and Greenburg have become rivals."}
+{"type":"status","tick":7347,"wallTimeMs":1792645674482,"text":"Entered settlement."}
+{"type":"objective_completed","tick":7351,"wallTimeMs":1792645674706,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":500}
+{"type":"status","tick":7351,"wallTimeMs":1792645674706,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":7351,"wallTimeMs":1792645674706,"kind":"NationCreation","text":"Tilly Thomas founded the nation of Blackfield."}
+{"type":"chronicle","tick":7351,"wallTimeMs":1792645674706,"kind":"NationJoin","text":"Lily Robinson swore fealty to Bigshire."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1792645680542,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Grace Davies."}
+{"type":"objective_completed","tick":7503,"wallTimeMs":1792645683420,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":152}
+{"type":"status","tick":7503,"wallTimeMs":1792645683420,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1792645683420,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressville, built by Charlotte Brown. The market is now full."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1792645683420,"kind":"StallBuilt","text":"Trade came to Bigshire: Rachel Jones built a stall."}
+{"type":"chronicle","tick":7551,"wallTimeMs":1792645686106,"kind":"SettlementFounded","text":"Bob Davies raised the first settlement of Southernport."}
+{"type":"chronicle","tick":7551,"wallTimeMs":1792645686106,"kind":"StallBuilt","text":"Rachel Jones built a market stall in Bigshire."}
+{"type":"chronicle","tick":7603,"wallTimeMs":1792645688907,"kind":"StallBuilt","text":"Bob Smith built a market stall in Southernfield. The market is now full."}
+{"type":"chronicle","tick":7603,"wallTimeMs":1792645688907,"kind":"SettlementFounded","text":"Bluetown put down roots: Ruth Roberts founded its first settlement."}
+{"type":"chronicle","tick":7603,"wallTimeMs":1792645688907,"kind":"SettlementFounded","text":"Blackfield put down roots: Tilly Thomas founded its first settlement."}
+{"type":"chronicle","tick":7751,"wallTimeMs":1792645696935,"kind":"NationCreation","text":"Dave Smith declared the nation of Lowerville, though none had yet sworn to it."}
+{"type":"chronicle","tick":7751,"wallTimeMs":1792645696935,"kind":"NationRelationChange","text":"Bluewood and Fortressville have become rivals."}
+{"type":"chronicle","tick":7751,"wallTimeMs":1792645696935,"kind":"NationRelationChange","text":"Bluewood and Fortresston have become rivals."}
+{"type":"chronicle","tick":7803,"wallTimeMs":1792645699809,"kind":"NationJoin","text":"Gemma Wood threw in their lot with Bigshire."}
+{"type":"chronicle","tick":7803,"wallTimeMs":1792645699809,"kind":"StallBuilt","text":"Trade came to Bigshire: Lily Robinson built a stall."}
+{"type":"chronicle","tick":7851,"wallTimeMs":1792645702785,"kind":"StallBuilt","text":"Trade came to Bigshire: Lily Robinson built a stall. The market is now full."}
+{"type":"chronicle","tick":7851,"wallTimeMs":1792645702785,"kind":"NationCreation","text":"Tina Thompson raised a banner and called it Villagefield."}
+{"type":"chronicle","tick":8103,"wallTimeMs":1792645716835,"kind":"NationCreation","text":"Abigail Smith declared the nation of Blueland, though none had yet sworn to it."}
+{"type":"chronicle","tick":8151,"wallTimeMs":1792645719220,"kind":"SettlementFounded","text":"Villagefield put down roots: Tina Thompson founded its first settlement."}
+{"type":"chronicle","tick":8403,"wallTimeMs":1792645732178,"kind":"NationCreation","text":"The nation of Fortressham was born, with Dave White at its head."}
+{"type":"chronicle","tick":8451,"wallTimeMs":1792645734548,"kind":"StallBuilt","text":"Trade came to Bluetown: Ruth Roberts built a stall."}
+{"type":"chronicle","tick":8451,"wallTimeMs":1792645734548,"kind":"SettlementFounded","text":"Dave Smith raised the first settlement of Lowerville."}
+{"type":"status","tick":8547,"wallTimeMs":1792645739663,"text":"Exited settlement."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792645750238,"kind":"NationRelationChange","text":"Greenshire and Smallford have become rivals."}
+{"type":"chronicle","tick":8803,"wallTimeMs":1792645753013,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Grace Davies."}
+{"type":"chronicle","tick":8851,"wallTimeMs":1792645755618,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Linda Taylor."}
+{"type":"chronicle","tick":8903,"wallTimeMs":1792645758282,"kind":"StallBuilt","text":"Trade came to Bluetown: Ruth Roberts built a stall."}
+{"type":"chronicle","tick":8951,"wallTimeMs":1792645760672,"kind":"StallBuilt","text":"Tilly Thomas built a market stall in Blackfield."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1792645763282,"kind":"NationCreation","text":"The nation of Hamletville was born, with Natalie Thomas at its head."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1792645763282,"kind":"NationRelationChange","text":"Relations between Greenshire and Smallford are now neutral."}
+{"type":"chronicle","tick":9051,"wallTimeMs":1792645765717,"kind":"NationJoin","text":"Grace Roberts threw in their lot with Bigshire."}
+{"type":"status","tick":9251,"wallTimeMs":1792645776994,"text":"Relations with Smallford are now Rival."}
+{"type":"chronicle","tick":9251,"wallTimeMs":1792645776994,"kind":"NationJoin","text":"Daisy Walker swore fealty to Bigshire."}
+{"type":"chronicle","tick":9251,"wallTimeMs":1792645776994,"kind":"NationRelationChange","text":"Bigshire and Smallford have become rivals."}
+{"type":"chronicle","tick":9303,"wallTimeMs":1792645779749,"kind":"StallBuilt","text":"A new stall opened in the market of Cityville, built by Nancy Williams."}
+{"type":"chronicle","tick":9303,"wallTimeMs":1792645779749,"kind":"StallBuilt","text":"Trade came to Bluetown: Ruth Roberts built a stall."}
+{"type":"chronicle","tick":9303,"wallTimeMs":1792645779749,"kind":"NationCreation","text":"Zach Johnson founded the nation of Oldburg."}
+{"type":"chronicle","tick":9451,"wallTimeMs":1792645786377,"kind":"SettlementFounded","text":"Abigail Smith raised the first settlement of Blueland."}
+{"type":"status","tick":9503,"wallTimeMs":1792645788698,"text":"Relations with Greatburg are now Rival."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792645788698,"kind":"StallBuilt","text":"Bob Davies built a market stall in Southernport."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792645788698,"kind":"SettlementFounded","text":"Natalie Thomas laid the first stones of Hamletville."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792645788698,"kind":"NationRelationChange","text":"Greenshire and Greatburg have become rivals."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792645788698,"kind":"NationRelationChange","text":"Upperport and Smallford have become rivals."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792645788698,"kind":"NationRelationChange","text":"Bigshire and Greatburg have become rivals."}
+{"type":"status","tick":9539,"wallTimeMs":1792645790271,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":9651,"wallTimeMs":1792645795484,"kind":"StallBuilt","text":"Trade came to Villagefield: Tina Thompson built a stall."}
+{"type":"chronicle","tick":9751,"wallTimeMs":1792645799772,"kind":"StallBuilt","text":"Trade came to Blackfield: Tilly Thomas built a stall."}
+{"type":"chronicle","tick":9751,"wallTimeMs":1792645799772,"kind":"NationRelationChange","text":"Cityville and Greenburg are now hostile."}
+{"type":"status","tick":9763,"wallTimeMs":1792645800249,"text":"You leave the land of Bigshire for the wilds."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792645802016,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Ursula Robinson."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792645802016,"kind":"StallBuilt","text":"Trade came to Hamletville: Natalie Thomas built a stall."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792645802016,"kind":"NationCreation","text":"Yvonne Smith raised a banner and called it Villageton."}
+{"type":"chronicle","tick":9851,"wallTimeMs":1792645804187,"kind":"NationCreation","text":"The nation of Bigton was born, with Irene Brown at its head."}
+{"type":"status","tick":9887,"wallTimeMs":1792645805815,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRelationChange","text":"Greenshire and Bluetown have become rivals."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRelationChange","text":"Greenshire and Blackfield have become rivals."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRelationChange","text":"Upperport and Southernport have become rivals."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRelationChange","text":"Fortressville and Southernport have become rivals."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRelationChange","text":"Smallford and Bluetown have become rivals."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRelationChange","text":"Greatburg and Southernport have become rivals."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792645811070,"kind":"NationRaid","text":"Cityville raided Greenburg and carried off 2 wood, 5 stone."}
+{"type":"status","tick":10051,"wallTimeMs":1792645813363,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":10151,"wallTimeMs":1792645817922,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Grace Davies."}
+{"type":"chronicle","tick":10151,"wallTimeMs":1792645817922,"kind":"NationCreation","text":"Olivia Wood raised a banner and called it Westernshire."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792645820151,"kind":"SettlementFounded","text":"Villageton put down roots: Yvonne Smith founded its first settlement."}
+{"type":"status","tick":10227,"wallTimeMs":1792645821197,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":10267,"wallTimeMs":1792645822886,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":10303,"wallTimeMs":1792645824338,"kind":"NationCreation","text":"The nation of Yellowville was born, with Ursula Walker at its head."}
+{"type":"chronicle","tick":10451,"wallTimeMs":1792645831281,"kind":"SettlementFounded","text":"Bigton put down roots: Irene Brown founded its first settlement."}
+{"type":"chronicle","tick":10471,"wallTimeMs":1792645832157,"kind":"NationRelationChange","text":"Relations between Smallford and Bluetown are now neutral."}
+{"type":"status","tick":10495,"wallTimeMs":1792645833344,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":10503,"wallTimeMs":1792645833789,"text":"Relations with Villagefield are now Rival."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792645833789,"kind":"NationRelationChange","text":"Bigshire and Villagefield have become rivals."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792645833789,"kind":"NationRelationChange","text":"Smallford and Bluetown have become rivals."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792645833789,"kind":"NationRelationChange","text":"Lowerville and Villagefield have become rivals."}
+{"type":"chronicle","tick":10651,"wallTimeMs":1792645840170,"kind":"StallBuilt","text":"Ruth Roberts built a market stall in Bluetown."}
+{"type":"chronicle","tick":10803,"wallTimeMs":1792645847153,"kind":"SettlementFounded","text":"Zach Johnson laid the first stones of Oldburg."}
+{"type":"status","tick":10827,"wallTimeMs":1792645848131,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":10851,"wallTimeMs":1792645849116,"kind":"StallBuilt","text":"Natalie Wood built a market stall in Bluewood."}
+{"type":"chronicle","tick":10851,"wallTimeMs":1792645849116,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Bob Davies."}
+{"type":"chronicle","tick":10851,"wallTimeMs":1792645849116,"kind":"NationCreation","text":"Xavier Lewis founded the nation of Westernford."}
+{"type":"status","tick":10867,"wallTimeMs":1792645849835,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":10951,"wallTimeMs":1792645853091,"kind":"NationCreation","text":"Samantha Watson declared the nation of Greatham, though none had yet sworn to it."}
+{"type":"status","tick":11003,"wallTimeMs":1792645855305,"text":"Greenburg has fallen and been disbanded."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"StallBuilt","text":"Tilly Thomas built a market stall in Blackfield."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"NationCreation","text":"Gemma Thomas founded the nation of Farmville."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"NationRelationChange","text":"Greenshire and Cityville swore an alliance."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"NationRelationChange","text":"Cityville and Southernfield are now hostile."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"NationRaid","text":"Raiders from Cityville struck Southernfield, taking 3 coins."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"SettlementCapture","text":"Cityville captured a village from Greenburg."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792645855305,"kind":"NationDisband","text":"Greenburg is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":11051,"wallTimeMs":1792645857373,"kind":"StallBuilt","text":"Irene Brown built a market stall in Bigton."}
+{"type":"chronicle","tick":11103,"wallTimeMs":1792645859452,"kind":"NationCreation","text":"Dave Jones raised a banner and called it Northernshire."}
+{"type":"chronicle","tick":11151,"wallTimeMs":1792645861244,"kind":"NationCreation","text":"Isabella Lewis raised a banner and called it Northernham."}
+{"type":"status","tick":11199,"wallTimeMs":1792645863115,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"StallBuilt","text":"Natalie Thompson built a market stall in Cityville."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Linda Taylor. The market is now full."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"SettlementFounded","text":"Yellowville put down roots: Ursula Walker founded its first settlement."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"NationCreation","text":"Quinn Taylor declared the nation of Southham, though none had yet sworn to it."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"SettlementFounded","text":"Greatham put down roots: Samantha Watson founded its first settlement."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"NationRelationChange","text":"Greatburg and Blueland have become rivals."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645865148,"kind":"NationRelationChange","text":"Greenshire and Upperport are now hostile."}
+{"type":"status","tick":11259,"wallTimeMs":1792645865485,"text":"Chronicle hidden."}
+{"type":"status","tick":11311,"wallTimeMs":1792645867482,"text":"Chronicle: recent entries."}
+{"type":"chronicle","tick":11351,"wallTimeMs":1792645868963,"kind":"StallBuilt","text":"Ruth Roberts built a market stall in Bluetown."}
+{"type":"chronicle","tick":11403,"wallTimeMs":1792645871049,"kind":"NationCreation","text":"Yvonne Lewis declared the nation of Westwood, though none had yet sworn to it."}
+{"type":"chronicle","tick":11451,"wallTimeMs":1792645872977,"kind":"SettlementFounded","text":"Westernford put down roots: Xavier Lewis founded its first settlement."}
+{"type":"chronicle","tick":11551,"wallTimeMs":1792645877145,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Ursula Walker."}
+{"type":"chronicle","tick":11551,"wallTimeMs":1792645877145,"kind":"NationCreation","text":"Bob Thomas declared the nation of Eastham, though none had yet sworn to it."}
+{"type":"chronicle","tick":11551,"wallTimeMs":1792645877145,"kind":"NationCreation","text":"Isabella Thompson raised a banner and called it Southwood."}
+{"type":"status","tick":11599,"wallTimeMs":1792645879084,"text":"Welcome home!"}
+{"type":"status","tick":11603,"wallTimeMs":1792645879227,"text":"You are back on your own land."}
+{"type":"chronicle","tick":11603,"wallTimeMs":1792645879227,"kind":"NationCreation","text":"The nation of Littleshire was born, with Ella Evans at its head."}
+{"type":"chronicle","tick":11651,"wallTimeMs":1792645881055,"kind":"NationCreation","text":"Harriet Wilson founded the nation of Redland."}
+{"type":"chronicle","tick":11703,"wallTimeMs":1792645883082,"kind":"StallBuilt","text":"A new stall opened in the market of Cityville, built by Nancy Williams."}
+{"type":"chronicle","tick":11703,"wallTimeMs":1792645883082,"kind":"StallBuilt","text":"Trade came to Southernport: Bob Davies built a stall."}
+{"type":"chronicle","tick":11703,"wallTimeMs":1792645883082,"kind":"NationCreation","text":"The nation of Fortressland was born, with Ella Wood at its head."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792645884947,"kind":"NationCreation","text":"Daisy Wilson declared the nation of Townton, though none had yet sworn to it."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792645884947,"kind":"NationRelationChange","text":"Bluetown and Hamletville have become rivals."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792645884947,"kind":"NationRelationChange","text":"Blackfield and Hamletville have become rivals."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792645884947,"kind":"NationRelationChange","text":"Lowerville and Villageton have become rivals."}
+{"type":"chronicle","tick":11851,"wallTimeMs":1792645889124,"kind":"SettlementFounded","text":"Olivia Wood raised the first settlement of Westernshire."}
+{"type":"chronicle","tick":11903,"wallTimeMs":1792645891030,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Ursula Walker."}
+{"type":"save","tick":12003,"wallTimeMs":1792645895307,"count":2}
+{"type":"status","tick":12003,"wallTimeMs":1792645895307,"text":"Autosaved."}
+{"type":"chronicle","tick":12003,"wallTimeMs":1792645895307,"kind":"NationRelationChange","text":"Relations between Upperport and Greenshire are now rival."}
+{"type":"chronicle","tick":12051,"wallTimeMs":1792645897228,"kind":"StallBuilt","text":"A new stall opened in the market of Bluetown, built by Ruth Roberts. The market is now full."}
+{"type":"chronicle","tick":12051,"wallTimeMs":1792645897228,"kind":"NationCreation","text":"The nation of Northham was born, with Yvonne Robinson at its head."}
+{"type":"chronicle","tick":12103,"wallTimeMs":1792645899467,"kind":"SettlementFounded","text":"Northham put down roots: Yvonne Robinson founded its first settlement."}
+{"type":"chronicle","tick":12151,"wallTimeMs":1792645901588,"kind":"SettlementFounded","text":"Harriet Wilson laid the first stones of Redland."}
+{"type":"chronicle","tick":12203,"wallTimeMs":1792645904127,"kind":"StallBuilt","text":"Trade came to Smallford: Ursula Robinson built a stall."}
+{"type":"status","tick":12251,"wallTimeMs":1792645906394,"text":"Southernfield has fallen and been disbanded."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792645906394,"kind":"SettlementCapture","text":"After a siege, a camp of Southernfield fell to Cityville."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792645906394,"kind":"NationDisband","text":"Southernfield is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":12303,"wallTimeMs":1792645908857,"kind":"StallBuilt","text":"Trade came to Greenshire: Grace Davies built a stall."}
+{"type":"chronicle","tick":12303,"wallTimeMs":1792645908857,"kind":"StallBuilt","text":"A new stall opened in the market of Bigton, built by Irene Brown."}
+{"type":"chronicle","tick":12303,"wallTimeMs":1792645908857,"kind":"SettlementFounded","text":"Dave Jones raised the first settlement of Northernshire."}
+{"type":"chronicle","tick":12451,"wallTimeMs":1792645915584,"kind":"StallBuilt","text":"A new stall opened in the market of Blackfield, built by Tilly Thomas. The market is now full."}
+{"type":"chronicle","tick":12451,"wallTimeMs":1792645915584,"kind":"NationCreation","text":"Judy Walker declared the nation of Upperland, though none had yet sworn to it."}
+{"type":"status","tick":12503,"wallTimeMs":1792645917957,"text":"Relations with Villageton are now Rival."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792645917957,"kind":"NationRelationChange","text":"Bigshire and Villageton have become rivals."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792645917957,"kind":"NationRelationChange","text":"Blueland and Villageton have become rivals."}
+{"type":"chronicle","tick":12551,"wallTimeMs":1792645920175,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Bob Davies."}
+{"type":"chronicle","tick":12651,"wallTimeMs":1792645924489,"kind":"SettlementFounded","text":"Yvonne Lewis raised the first settlement of Westwood."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792645928854,"kind":"StallBuilt","text":"Trade came to Bluewood: Natalie Wood built a stall."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792645928854,"kind":"NationRelationChange","text":"Bluetown and Bigton have become rivals."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792645928854,"kind":"NationRelationChange","text":"Cityville and Bluewood swore an alliance."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792645928854,"kind":"NationRelationChange","text":"Bluewood and Fortressville are now hostile."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792645928854,"kind":"NationRelationChange","text":"Bluewood and Fortresston are now hostile."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1792645933204,"kind":"StallBuilt","text":"Trade came to Hamletville: Natalie Thomas built a stall."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1792645933204,"kind":"SettlementFounded","text":"Bob Thomas raised the first settlement of Eastham."}
+{"type":"chronicle","tick":12951,"wallTimeMs":1792645937752,"kind":"StallBuilt","text":"A new stall opened in the market of Westwood, built by Yvonne Lewis."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"SettlementFounded","text":"Townton put down roots: Daisy Wilson founded its first settlement."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"NationRelationChange","text":"Cityville and Upperport are now hostile."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"NationRelationChange","text":"Lowerville and Villagefield are now hostile."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"NationRaid","text":"Raiders from Cityville struck Upperport, taking 5 coins."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"NationRaid","text":"Bluewood raided Fortressville and carried off 5 coins."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"NationRaid","text":"Bluewood raided Fortresston and carried off 1 coins."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645940855,"kind":"NationRaid","text":"Lowerville raided Villagefield and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":13203,"wallTimeMs":1792645952429,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Ursula Walker."}
+{"type":"status","tick":13251,"wallTimeMs":1792645955110,"text":"Relations with Oldburg are now Rival."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792645955110,"kind":"StallBuilt","text":"A new stall opened in the market of Westernshire, built by Olivia Wood."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792645955110,"kind":"NationRelationChange","text":"Greenshire and Upperport are now hostile."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792645955110,"kind":"NationRelationChange","text":"Bigshire and Oldburg have become rivals."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792645955110,"kind":"NationRelationChange","text":"Blueland and Oldburg have become rivals."}
+{"type":"chronicle","tick":13303,"wallTimeMs":1792645957913,"kind":"SettlementFounded","text":"Isabella Thompson laid the first stones of Southwood."}
+{"type":"chronicle","tick":13351,"wallTimeMs":1792645960072,"kind":"StallBuilt","text":"Yvonne Robinson built a market stall in Northham."}
+{"type":"chronicle","tick":13451,"wallTimeMs":1792645964515,"kind":"StallBuilt","text":"A new stall opened in the market of Greatburg, built by Katie Wilson."}
+{"type":"chronicle","tick":13451,"wallTimeMs":1792645964515,"kind":"StallBuilt","text":"Dave Jones built a market stall in Northernshire."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792645966962,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Bob Davies."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792645966962,"kind":"NationRelationChange","text":"Cityville and Greatham have become rivals."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792645966962,"kind":"NationRelationChange","text":"Greatburg and Yellowville have become rivals."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792645966962,"kind":"NationRelationChange","text":"Blackfield and Greatham have become rivals."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792645966962,"kind":"NationRelationChange","text":"Upperport and Fortressville have formed an alliance."}
+{"type":"chronicle","tick":13551,"wallTimeMs":1792645969020,"kind":"StallBuilt","text":"A new stall opened in the market of Cityville, built by Nancy Williams."}
+{"type":"chronicle","tick":13703,"wallTimeMs":1792645975900,"kind":"StallBuilt","text":"Abigail Smith built a market stall in Blueland."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792645978250,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Ursula Walker. The market is now full."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792645978250,"kind":"NationRelationChange","text":"Bluetown and Westernford have become rivals."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792645978250,"kind":"NationRelationChange","text":"Villagefield and Westernford have become rivals."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792645978250,"kind":"NationRelationChange","text":"Greatburg and Blueland are now hostile."}
+{"type":"chronicle","tick":13803,"wallTimeMs":1792645980691,"kind":"StallBuilt","text":"Xavier Lewis built a market stall in Westernford."}
+{"type":"chronicle","tick":13803,"wallTimeMs":1792645980691,"kind":"StallBuilt","text":"Trade came to Townton: Daisy Wilson built a stall."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792645983041,"kind":"StallBuilt","text":"A new stall opened in the market of Redland, built by Harriet Wilson."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792645983041,"kind":"StallBuilt","text":"A new stall opened in the market of Greatham, built by Samantha Watson."}
+{"type":"chronicle","tick":13951,"wallTimeMs":1792645987701,"kind":"StallBuilt","text":"Trade came to Bigton: Irene Brown built a stall."}
+{"type":"status","tick":14003,"wallTimeMs":1792645990213,"text":"Fortresston has fallen and been disbanded."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645990213,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperport, taking 5 coins."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645990213,"kind":"SettlementCapture","text":"After a siege, a village of Fortressville fell to Bluewood."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645990213,"kind":"NationDisband","text":"Fortressville faded from memory before it ever built a home."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645990213,"kind":"SettlementCapture","text":"After a siege, a camp of Fortresston fell to Bluewood."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645990213,"kind":"NationDisband","text":"Fortresston is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645990213,"kind":"NationRaid","text":"Greatburg raided Blueland and carried off 1 coins, 5 stone."}
+{"type":"chronicle","tick":14051,"wallTimeMs":1792645992526,"kind":"StallBuilt","text":"Trade came to Northham: Yvonne Robinson built a stall."}
+{"type":"chronicle","tick":14151,"wallTimeMs":1792645997062,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletville, built by Natalie Thomas."}
+{"type":"chronicle","tick":14203,"wallTimeMs":1792645999327,"kind":"StallBuilt","text":"A new stall opened in the market of Greatburg, built by Katie Wilson."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792646001487,"kind":"StallBuilt","text":"Trade came to Northernshire: Dave Jones built a stall."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792646001487,"kind":"NationRelationChange","text":"Blueland and Westernshire have become rivals."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792646001487,"kind":"NationRelationChange","text":"Westernshire and Yellowville have become rivals."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792646001487,"kind":"NationRelationChange","text":"Lowerville and Villageton are now hostile."}
+{"type":"chronicle","tick":14303,"wallTimeMs":1792646003832,"kind":"StallBuilt","text":"Natalie Wood built a market stall in Bluewood."}
+{"type":"chronicle","tick":14303,"wallTimeMs":1792646003832,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Xavier Lewis."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1792646005939,"kind":"StallBuilt","text":"Trade came to Villagefield: Tina Thompson built a stall."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1792646005939,"kind":"StallBuilt","text":"Trade came to Cityville: Jasmine White built a stall."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1792646005939,"kind":"StallBuilt","text":"Isabella Thompson built a market stall in Southwood."}
+{"type":"status","tick":14503,"wallTimeMs":1792646012484,"text":"Upperport has fallen and been disbanded."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Relations between Greenshire and Bigshire are now friendly."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Relations between Upperport and Bigshire are now friendly."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Bluewood and Northham have become rivals."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Southernport and Northham have become rivals."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Greatham and Redland have become rivals."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Greenshire and Greatburg are now hostile."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Smallford and Upperport are now hostile."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationRelationChange","text":"Smallford and Bluetown are now hostile."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"SettlementCapture","text":"After a siege, a village of Upperport fell to Greenshire."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792646012484,"kind":"NationDisband","text":"Upperport is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":14603,"wallTimeMs":1792646016886,"kind":"StallBuilt","text":"A new stall opened in the market of Blueland, built by Abigail Smith."}
+{"type":"chronicle","tick":14603,"wallTimeMs":1792646016886,"kind":"StallBuilt","text":"Irene Brown built a market stall in Bigton. The market is now full."}
+{"type":"chronicle","tick":14703,"wallTimeMs":1792646021356,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Bob Davies. The market is now full."}
+{"type":"chronicle","tick":14703,"wallTimeMs":1792646021356,"kind":"StallBuilt","text":"Trade came to Townton: Daisy Wilson built a stall."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792646023397,"kind":"NationRelationChange","text":"Cityville and Northernshire have become rivals."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792646023397,"kind":"NationRelationChange","text":"Blackfield and Northernshire have become rivals."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792646023397,"kind":"NationRelationChange","text":"Northernshire and Redland have become rivals."}
+{"type":"chronicle","tick":14803,"wallTimeMs":1792646025569,"kind":"StallBuilt","text":"Trade came to Northernshire: Dave Jones built a stall."}
+{"type":"chronicle","tick":14851,"wallTimeMs":1792646027571,"kind":"StallBuilt","text":"Grace Davies built a market stall in Greenshire. The market is now full."}
+{"type":"chronicle","tick":14851,"wallTimeMs":1792646027571,"kind":"StallBuilt","text":"Olivia Wood built a market stall in Westernshire."}
+{"type":"chronicle","tick":14903,"wallTimeMs":1792646029760,"kind":"StallBuilt","text":"A new stall opened in the market of Southwood, built by Isabella Thompson."}
+{"type":"chronicle","tick":14951,"wallTimeMs":1792646031883,"kind":"StallBuilt","text":"A new stall opened in the market of Oldburg, built by Zach Johnson."}
+{"type":"status","tick":15003,"wallTimeMs":1792646034144,"text":"Relations with Southernport are now Friendly."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"StallBuilt","text":"Trade came to Greatham: Samantha Watson built a stall."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Xavier Lewis."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"StallBuilt","text":"Trade came to Northham: Yvonne Robinson built a stall."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRelationChange","text":"Relations between Bigshire and Southernport are now friendly."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRelationChange","text":"Oldburg and Westwood have become rivals."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRelationChange","text":"Villageton and Westwood have become rivals."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRelationChange","text":"Greatburg and Southernport are now hostile."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRelationChange","text":"Relations between Yellowville and Greatburg are now neutral."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRaid","text":"Greenshire raided Greatburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRaid","text":"Smallford raided Bluetown and carried off 1 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRaid","text":"Raiders from Greatburg struck Southernport, taking 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792646034144,"kind":"NationRaid","text":"Lowerville raided Villageton and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":15051,"wallTimeMs":1792646036112,"kind":"StallBuilt","text":"Trade came to Cityville: Nancy Williams built a stall."}
+{"type":"status","tick":15191,"wallTimeMs":1792646041987,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792646044511,"kind":"StallBuilt","text":"Trade came to Redland: Harriet Wilson built a stall."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792646044511,"kind":"NationRelationChange","text":"Cityville and Eastham have become rivals."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792646044511,"kind":"NationRelationChange","text":"Westernshire and Townton have become rivals."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792646044511,"kind":"NationRelationChange","text":"Eastham and Redland have become rivals."}
+{"type":"screen","tick":15475,"wallTimeMs":1792646053757,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":15475,"wallTimeMs":1792646056203,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":15475,"wallTimeMs":1792646056203,"count":3}
+{"type":"status","tick":15475,"wallTimeMs":1792646056203,"text":"Game saved."}
+{"type":"screen","tick":15475,"wallTimeMs":1792646063351,"from":"MAIN_MENU","to":"LOAD"}

@@ -1,0 +1,110 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter. Start with --season autumn (pt start --seed 103 --season autumn). Note how food and cold feel, and record how many pawns die over the winter (pt events) and how food per pawn feels.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 103,
+  "durationSec": 2985,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Mass starvation in the first winter: 50 pawns die of hunger 'within the walls', 0 from anything else",
+      "detail": "Started in winter (seed 103) because autumn ran at 12-18 tps and winter was ~50k ticks away (~70 wall minutes). From winter start (tick 180000) the first death came at tick 196859 (Fortham's leader Natalie Watson), then a steady drip: 4 by tick 200549, 42 by 226349, 50 by 230430. All 50 were hunger, every one 'within the walls'. Several nations lost their leaders, and my nation Fortham fell from 5 residents to 1 (just me). Deaths stopped as soon as spring began (~tick 231000). The player meanwhile never got below 90 energy: trees still drop 1-2 apples each in winter. So winter is trivial for the player and wipes out the NPCs. Caveat: a --season winter start gives pawns no autumn to stock up (SeasonalRules wants 4 food each), so a real autumn-to-winter run may be milder. Even so, nothing seen in autumn (no visible stores, a 2-day autumn) suggests pawns would cope.",
+      "repro": "pt start --seed 103 --season winter; key space; click 480 315; click 480 315; key j (once a nation exists); wait ~50k ticks; pt events 3000 | grep pawn_death",
+      "screenshot": "shots/fortham_late.png",
+      "tick": 226349
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "No warning before pawns starve; the first sign is a death notice",
+      "detail": "The HUD never says a resident is hungry, no screen shows settlement or pawn food stores, and there is no 'X is starving' alert. The Season panel only says 'Winter: no harvests'. The first a player hears is 'Hunger claimed Natalie Watson, leader of Fortham' at tick 196859, and with it a silent succession ('You are now the leader of Fortham.'). Rising apple prices (46 -> 68) are the only indirect clue.",
+      "repro": "As above; watch the HUD between tick 180000 and 196859",
+      "screenshot": "shots/deaths_screen.png",
+      "tick": 196859
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Player can't feed starving residents: gifting is off inside a settlement and Sell Resources refuses apples",
+      "detail": "As Fortham's new leader I held 10 apples while residents starved at the well. G (gift) gave 'There is no one within reach to give a gift to.' on 8 tries. The pawns stand inside the settlement circle, and PawnRelations.findPawnInRange returns null while the player is in a settlement. Outside the circle they walk off before the key lands (at 4-10 fps). After I built a stall, Sell Resources said 'No one is buying resources at this market', even though the apple buy price was 66. Collect Stockpile (452) only gave out wood and stone, and there is no way to put food into a stockpile. Expected: some way to feed your own people in winter.",
+      "repro": "pt start --seed 103 --season winter; join a nation; wait for the leader to starve; enter the settlement; key g; click Sell Resources",
+      "screenshot": "shots/no_feed.png",
+      "tick": 204813
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Talking to or gifting a moving pawn rarely works: it walks out of range before E/G lands",
+      "detail": "Across both worlds, 5 E presses and 8 G presses right after 'pt walkto pawn' (which reported the pawn at 2.9-4m) all got 'No entities within range' or 'no one within reach'. Pawns don't stop when the player comes near. At a few fps that makes talk, gift and invite nearly unusable.",
+      "repro": "pt start --seed 103 --season autumn; ...; pt walkto pawn 30; pt key e",
+      "screenshot": "shots/talk3.png",
+      "tick": 129560
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Player energy didn't drop at all while standing inside a settlement in winter",
+      "detail": "Energy stayed at exactly 95 from tick 183512 to 196244 (~0.42 day) inside Fortham, and no apples were eaten. Outside, the player ate about an apple every ~2500 ticks. If shelter is meant to switch hunger off, the UI doesn't say so. Either way, winter has no bite for the player.",
+      "repro": "pt start --seed 103 --season winter; join; enter settlement; wait 12000 ticks; pt state",
+      "screenshot": "shots/energy_frozen.png",
+      "tick": 196244
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement command bar buttons change order between visits, causing a wrong build",
+      "detail": "At tick 228084 the bar read 'Build Stall, Build Farm, Build House'. Clicking Build Farm and then where Build House had been built two farms. Later the bar read 'Build Stall, Build House, Build Farm'. On a two-row bar, buttons need stable positions.",
+      "repro": "As leader inside a settlement: click Build Farm (307,485), then click (412,485)",
+      "screenshot": "shots/spring_buttons.png",
+      "tick": 228550
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Leader's two-row command bar covers the Season panel; Sell Resources is offered with no stall",
+      "detail": "'Craft Pickaxe'/'Exit Settlement' sit on top of the Season panel, making 'Winter: no harvests' unreadable. Sell Resources is clickable with no stall and then says 'This settlement does not have any stalls.'",
+      "repro": "Become leader; enter settlement",
+      "screenshot": "shots/button_overlap.png",
+      "tick": 203913
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Settlement HUD text clipped and overlapping (title banner, Next (K) line, objective bar, Season panel)",
+      "detail": "Inside a settlement the big 'Village of Castleford / N here, M residents' banner overlaps the chronicle and objective panels. 'Next (K): Farm, 25 wood, 10...' runs off the right edge. The objective bar reads 'nbers 7/10' (Members clipped). The Season panel's 'poor in food' is cut off at the bottom of the window.",
+      "repro": "pt start --seed 103 --season autumn; join; key h; walkto settlement; key e",
+      "screenshot": "shots/settle_overlap.png",
+      "tick": 122192
+    },
+    {
+      "severity": "polish",
+      "category": "bug",
+      "title": "Settlement banner '5 here, 1/8 residents' when only the player is present",
+      "detail": "After Fortham's residents starved, the floating banner still said '5 here' while Residents was 1/8 and nobody else was visible.",
+      "repro": "As in the starvation repro; enter Fortham around tick 228000",
+      "screenshot": "shots/fortham_late.png",
+      "tick": 228084
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 15.0, "Eat something": 1.0, "Create or join a nation": 44.0, "Found a settlement": 1.0, "Enter your settlement": 9.0, "Build a market stall": 415.1},
+    "winterPawnDeaths": 50,
+    "winterPawnDeathsByHunger": 50,
+    "ownNationDeaths": 5,
+    "firstWinterDeathTick": 196859,
+    "lastWinterDeathTick": 230430,
+    "springStartTick": 231000,
+    "playerMinEnergyInWinter": 91.8,
+    "applePriceAutumnLate": 7,
+    "applePriceWinterPeak": 68,
+    "autumnTpsApprox": 15,
+    "winterTpsApprox": 30
+  },
+  "fun": 2,
+  "verdict": "Winter is lopsided: the player shrugs it off (trees still drop apples, energy never fell below 90), while 50 NPCs starved inside their own walls with no warning and no way for the player to feed them, even as a leader with apples in hand. That makes winter something that happens to the world, not something the player plays through. Starving pawns need a visible warning and a way to give, sell or store food, and their autumn stocking needs checking from a real autumn start (I had to use --season winter because autumn-to-winter took ~70 wall minutes at the tick rate I got)."
+}

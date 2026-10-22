@@ -1,0 +1,181 @@
+{"t": 1792645147724, "cmd": "start", "args": ["--seed", "102"]}
+{"t": 1792645154813, "cmd": "key", "args": ["space"]}
+{"t": 1792645158346, "cmd": "shot", "args": ["title"]}
+{"t": 1792645166430, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645167304, "cmd": "note", "args": ["--shot", "title_contrast", "Title screen: white text on light blue (115,166,230) has contrast ~2.5:1, below WCAG 4.5:1 for the small 'Press any key or click to continue' line."]}
+{"t": 1792645167602, "cmd": "key", "args": ["space"]}
+{"t": 1792645168553, "cmd": "click", "args": ["480", "419"]}
+{"t": 1792645170121, "cmd": "shot", "args": ["mainmenu"]}
+{"t": 1792645170242, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645171363, "cmd": "shot", "args": ["controls"]}
+{"t": 1792645171563, "cmd": "state", "args": []}
+{"t": 1792645176984, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645181820, "cmd": "state", "args": []}
+{"t": 1792645182092, "cmd": "shot", "args": ["nw2"]}
+{"t": 1792645186621, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645187602, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792645187835, "cmd": "state", "args": []}
+{"t": 1792645188085, "cmd": "shot", "args": ["world0"]}
+{"t": 1792645194499, "cmd": "note", "args": ["--shot", "hud_overlap", "Bottom-right Season panel overlaps the Energy bar (text 'Energy 84' half-hidden) and the Inventory panel bottom-left is cut off at the screen edge (Apples row clipped) at 960x540."]}
+{"t": 1792645194904, "cmd": "click", "args": ["167", "58"]}
+{"t": 1792645197895, "cmd": "shot", "args": ["era"]}
+{"t": 1792645246843, "cmd": "status", "args": []}
+{"t": 1792645247017, "cmd": "state", "args": []}
+{"t": 1792645256938, "cmd": "shot", "args": ["a1"]}
+{"t": 1792645260252, "cmd": "click", "args": ["425", "388"]}
+{"t": 1792645262232, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645277381, "cmd": "state", "args": []}
+{"t": 1792645280482, "cmd": "key", "args": ["e"]}
+{"t": 1792645282089, "cmd": "key", "args": ["e"]}
+{"t": 1792645283607, "cmd": "key", "args": ["e"]}
+{"t": 1792645285254, "cmd": "key", "args": ["e"]}
+{"t": 1792645286821, "cmd": "key", "args": ["e"]}
+{"t": 1792645288369, "cmd": "key", "args": ["e"]}
+{"t": 1792645289904, "cmd": "state", "args": []}
+{"t": 1792645290045, "cmd": "shot", "args": ["chop"]}
+{"t": 1792645293105, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645305420, "cmd": "key", "args": ["e"]}
+{"t": 1792645306999, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645312845, "cmd": "key", "args": ["e"]}
+{"t": 1792645314418, "cmd": "state", "args": []}
+{"t": 1792645319834, "cmd": "state", "args": []}
+{"t": 1792645319988, "cmd": "events", "args": ["15"]}
+{"t": 1792645323388, "cmd": "key", "args": ["n"]}
+{"t": 1792645326939, "cmd": "state", "args": []}
+{"t": 1792645327065, "cmd": "shot", "args": ["nation"]}
+{"t": 1792645330864, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645331286, "cmd": "key", "args": ["e"]}
+{"t": 1792645332854, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645350683, "cmd": "key", "args": ["e"]}
+{"t": 1792645352243, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645363243, "cmd": "key", "args": ["e"]}
+{"t": 1792645364824, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645383133, "cmd": "key", "args": ["e"]}
+{"t": 1792645384701, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645405811, "cmd": "key", "args": ["e"]}
+{"t": 1792645407372, "cmd": "state", "args": []}
+{"t": 1792645410454, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645421130, "cmd": "key", "args": ["e"]}
+{"t": 1792645422726, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645430398, "cmd": "key", "args": ["e"]}
+{"t": 1792645431962, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645458394, "cmd": "key", "args": ["e"]}
+{"t": 1792645459925, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645469479, "cmd": "key", "args": ["e"]}
+{"t": 1792645472058, "cmd": "state", "args": []}
+{"t": 1792645475223, "cmd": "key", "args": ["f"]}
+{"t": 1792645478779, "cmd": "state", "args": []}
+{"t": 1792645478900, "cmd": "shot", "args": ["founded"]}
+{"t": 1792645484360, "cmd": "face", "args": ["104"]}
+{"t": 1792645488379, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792645491570, "cmd": "state", "args": []}
+{"t": 1792645491754, "cmd": "events", "args": ["3"]}
+{"t": 1792645491890, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792645495155, "cmd": "state", "args": []}
+{"t": 1792645495316, "cmd": "events", "args": ["3"]}
+{"t": 1792645495393, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792645498614, "cmd": "state", "args": []}
+{"t": 1792645498752, "cmd": "events", "args": ["3"]}
+{"t": 1792645498890, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792645502078, "cmd": "state", "args": []}
+{"t": 1792645502270, "cmd": "events", "args": ["3"]}
+{"t": 1792645502376, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792645505682, "cmd": "state", "args": []}
+{"t": 1792645505847, "cmd": "events", "args": ["3"]}
+{"t": 1792645508339, "cmd": "key", "args": ["f"]}
+{"t": 1792645511920, "cmd": "state", "args": []}
+{"t": 1792645512054, "cmd": "events", "args": ["4"]}
+{"t": 1792645515418, "cmd": "key", "args": ["e"]}
+{"t": 1792645518981, "cmd": "state", "args": []}
+{"t": 1792645519118, "cmd": "shot", "args": ["inside"]}
+{"t": 1792645529634, "cmd": "note", "args": ["--shot", "village_unchecked", "After founding my settlement (tick ~6970) and entering it, the era checklist still shows '[ ] Village 0/1'. Unclear what 'Village' means if a founded settlement does not count. Also a huge world-space label '0 here, 5/8 residents' renders behind the HUD panels at the top, partly hidden."]}
+{"t": 1792645530064, "cmd": "state", "args": ["--full"]}
+{"t": 1792645535171, "cmd": "state", "args": ["--full"]}
+{"t": 1792645535335, "cmd": "key", "args": ["e"]}
+{"t": 1792645538000, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645552231, "cmd": "key", "args": ["e"]}
+{"t": 1792645553813, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645570322, "cmd": "key", "args": ["e"]}
+{"t": 1792645571967, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645579156, "cmd": "key", "args": ["e"]}
+{"t": 1792645580726, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645586981, "cmd": "key", "args": ["e"]}
+{"t": 1792645588572, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645597033, "cmd": "key", "args": ["e"]}
+{"t": 1792645598565, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1792645611169, "cmd": "key", "args": ["e"]}
+{"t": 1792645612712, "cmd": "state", "args": []}
+{"t": 1792645617086, "cmd": "events", "args": ["40"]}
+{"t": 1792645619777, "cmd": "events", "args": ["120"]}
+{"t": 1792645624329, "cmd": "shot", "args": ["era2"]}
+{"t": 1792645632292, "cmd": "note", "args": ["--shot", "pawns_do_it", "By tick ~9100 (3 game minutes) every Village requirement except the day gate was met with no player effort: pawns joined Eastford automatically (Members 10/10) and NPCs built all 4 market stalls within 30 s of founding (ticks 7350-7902). Objective 6 'Build a market stall' completed from Alice Brown's stall, not mine, so the player never builds one. Remaining 14 minutes are pure waiting for Day 3."]}
+{"t": 1792645632635, "cmd": "note", "args": ["--shot", "obj_clipped", "Objective 7 progress bar text is clipped on the left: 'bers 10/10 • Buildings 2/2' (should read 'Members 10/10 · Buildings 2/2'). It also says 'Buildings' while the era checklist says 'Stalls 2/2'."]}
+{"t": 1792645637713, "cmd": "key", "args": ["h"]}
+{"t": 1792645641374, "cmd": "key", "args": ["b"]}
+{"t": 1792645644180, "cmd": "state", "args": []}
+{"t": 1792645644386, "cmd": "key", "args": ["k"]}
+{"t": 1792645648176, "cmd": "state", "args": []}
+{"t": 1792645648513, "cmd": "shot", "args": ["build"]}
+{"t": 1792645653350, "cmd": "key", "args": ["e"]}
+{"t": 1792645656100, "cmd": "key", "args": ["k"]}
+{"t": 1792645659679, "cmd": "events", "args": ["5"]}
+{"t": 1792645659818, "cmd": "shot", "args": ["farm"]}
+{"t": 1792645663839, "cmd": "state", "args": []}
+{"t": 1792645664039, "cmd": "click", "args": ["640", "516"]}
+{"t": 1792645666916, "cmd": "state", "args": []}
+{"t": 1792645671440, "cmd": "note", "args": ["--shot", "home_e_range", "After H (Teleport Home) the player lands 5.4 m from the settlement centre; E then says 'No entities within range to interact with' (interact range is 5) although the bottom bar offers 'Enter Settlement'. Clicking the button works. Expected H to land within E range."]}
+{"t": 1792645671759, "cmd": "key", "args": ["k"]}
+{"t": 1792645675345, "cmd": "events", "args": ["4"]}
+{"t": 1792645675464, "cmd": "shot", "args": ["farm2"]}
+{"t": 1792645679196, "cmd": "wait", "args": ["300"]}
+{"t": 1792645979301, "cmd": "state", "args": []}
+{"t": 1792645979435, "cmd": "state", "args": ["--full"]}
+{"t": 1792645985207, "cmd": "wait", "args": ["290"]}
+{"t": 1792646275258, "cmd": "state", "args": []}
+{"t": 1792646275334, "cmd": "events", "args": ["30"]}
+{"t": 1792646275376, "cmd": "shot", "args": ["night"]}
+{"t": 1792646279385, "cmd": "wait", "args": ["295"]}
+{"t": 1792646574427, "cmd": "state", "args": []}
+{"t": 1792646577487, "cmd": "state", "args": ["--full"]}
+{"t": 1792646577573, "cmd": "shot", "args": ["event"]}
+{"t": 1792646582409, "cmd": "events", "args": ["60"]}
+{"t": 1792646582466, "cmd": "note", "args": ["--shot", "tier_vs_era", "Settlement Info shows 'Tier: Town (7 buildings)' and the label 'Town of Eastford' at Day 2 while the era is still 'Camp (1/4)' and the goal is the Village era. NPC caravans also addressed it as 'Village of Eastford' at tick 9002. Two different Camp/Village/Town ladders (settlement tier vs nation era) using the same words is confusing; the pawns built 7 buildings on their own."]}
+{"t": 1792646582670, "cmd": "click", "args": ["480", "349"]}
+{"t": 1792646585380, "cmd": "state", "args": []}
+{"t": 1792646589867, "cmd": "wait", "args": ["60"]}
+{"t": 1792646649902, "cmd": "state", "args": []}
+{"t": 1792646649979, "cmd": "wait", "args": ["60"]}
+{"t": 1792646710012, "cmd": "state", "args": []}
+{"t": 1792646710073, "cmd": "wait", "args": ["60"]}
+{"t": 1792646770112, "cmd": "state", "args": []}
+{"t": 1792646770176, "cmd": "wait", "args": ["60"]}
+{"t": 1792646830209, "cmd": "state", "args": []}
+{"t": 1792646830269, "cmd": "wait", "args": ["60"]}
+{"t": 1792646890314, "cmd": "state", "args": []}
+{"t": 1792646890402, "cmd": "wait", "args": ["60"]}
+{"t": 1792646950449, "cmd": "state", "args": []}
+{"t": 1792646950547, "cmd": "wait", "args": ["60"]}
+{"t": 1792646954756, "cmd": "status", "args": []}
+{"t": 1792647010595, "cmd": "state", "args": []}
+{"t": 1792647010687, "cmd": "wait", "args": ["60"]}
+{"t": 1792647070739, "cmd": "state", "args": []}
+{"t": 1792647074281, "cmd": "wait", "args": ["30"]}
+{"t": 1792647104321, "cmd": "state", "args": []}
+{"t": 1792647104412, "cmd": "wait", "args": ["30"]}
+{"t": 1792647134456, "cmd": "state", "args": []}
+{"t": 1792647134540, "cmd": "wait", "args": ["30"]}
+{"t": 1792647164579, "cmd": "state", "args": []}
+{"t": 1792647164660, "cmd": "wait", "args": ["30"]}
+{"t": 1792647194701, "cmd": "state", "args": []}
+{"t": 1792647194776, "cmd": "wait", "args": ["30"]}
+{"t": 1792647224808, "cmd": "state", "args": []}
+{"t": 1792647224872, "cmd": "wait", "args": ["30"]}
+{"t": 1792647254903, "cmd": "state", "args": []}
+{"t": 1792647257558, "cmd": "events", "args": ["200"]}
+{"t": 1792647257593, "cmd": "shot", "args": ["village"]}
+{"t": 1792647257827, "cmd": "state", "args": []}
+{"t": 1792647264244, "cmd": "note", "args": ["--shot", "village_reached", "Village era reached at tick 51002 (1020 s, exactly the day-3 gate). Also: inside the settlement the bottom button row wraps to two lines and 'Purchase Food' overlaps the Market Info prices (Planks/Bricks rows); Town checklist shows 'Funds 565/1000' while Settlement Info says Funds: 12, unclear what is counted."]}
+{"t": 1792647264470, "cmd": "events", "args": ["300"]}
+{"t": 1792647264503, "cmd": "stop", "args": []}
+{"t": 1792647289156, "cmd": "report", "args": []}
+{"t": 1792671893654, "cmd": "stop", "args": []}

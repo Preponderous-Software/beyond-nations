@@ -26,6 +26,7 @@ on:
     paths:
       - ".github/workflows/release.yml"
       - "src/BeyondNations.Desktop/BeyondNations.Desktop.csproj"
+      - "docs/playtests/**"
   workflow_dispatch:
     inputs:
       tag:
@@ -98,6 +99,37 @@ jobs:
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "Building Beyond Nations $version (tag: ${TAG:-none, dry run})"
+
+      # Playtest evidence lives in docs/playtests/<version>/. A playtest of an
+      # unreleased build is filed under the next expected version, so whoever
+      # cuts the release renames it to the version actually released
+      # (docs/RELEASING.md). A tagged release therefore needs its own
+      # evidence directory and must not leave one named for a later version.
+      - name: Check the playtest evidence directories
+        env:
+          TAG: ${{ steps.resolve.outputs.tag }}
+          # Releases before the playtest kit existed have no evidence.
+          FIRST_WITH_EVIDENCE: "0.4.2"
+        run: |
+          shopt -s nullglob
+          bad=0
+          for dir in docs/playtests/*/; do
+            name=$(basename "$dir")
+            if ! [[ "$name" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "::error::docs/playtests/$name is not named after a version such as 0.4.2."
+              bad=1
+            elif [ -n "$TAG" ] && [ "$name" != "$TAG" ] \
+                && [ "$(printf '%s\n%s\n' "$name" "$TAG" | sort -V | tail -n1)" = "$name" ]; then
+              echo "::error::docs/playtests/$name is newer than the release $TAG. Rename it to $TAG if it is this release's evidence (docs/RELEASING.md)."
+              bad=1
+            fi
+          done
+          if [ -n "$TAG" ] && [ ! -d "docs/playtests/$TAG" ] \
+              && [ "$(printf '%s\n%s\n' "$FIRST_WITH_EVIDENCE" "$TAG" | sort -V | head -n1)" = "$FIRST_WITH_EVIDENCE" ]; then
+            echo "::error::No playtest evidence for $TAG. Run the playtest (docs/PLAYTESTING.md) and commit it as docs/playtests/$TAG/ before tagging."
+            bad=1
+          fi
+          exit "$bad"
 
   linux:
     name: Linux x64 build
