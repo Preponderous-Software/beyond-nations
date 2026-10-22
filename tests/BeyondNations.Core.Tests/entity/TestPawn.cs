@@ -103,5 +103,30 @@ namespace beyondnationstests {
             // check
             Assert.False(pawn.needsFood());
         }
+
+        [Fact]
+        public void testSetEnergy_AboveAFullBar_StopsAtMaxEnergy() {
+            // prepare
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "Pawn", random);
+
+            // run: a cooked meat eaten at 89 would otherwise reach 134
+            pawn.setEnergy(134f);
+
+            // check
+            Assert.Equal(Pawn.MaxEnergy, pawn.getEnergy());
+            Assert.Equal(Player.MaxEnergy, Pawn.MaxEnergy);
+        }
+
+        [Fact]
+        public void testSetEnergy_BelowZero_IsKept() {
+            // prepare: the sickness event kills a pawn by setting its energy far below zero
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "Pawn", random);
+
+            // run
+            pawn.setEnergy(-100f);
+
+            // check
+            Assert.Equal(-100f, pawn.getEnergy());
+        }
     }
 }
