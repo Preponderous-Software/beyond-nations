@@ -55,7 +55,7 @@ namespace beyondnationstests {
             Assert.False(nation.isMember(leader.getId()));
             Assert.Equal(1, nation.getNumberOfMembers());
             Assert.Equal(1, simulation.getNationRepository().getNumberOfNations());
-            Assert.Equal("Survivor is now the leader of Testland.", simulation.getPlayer().getStatus().getStatus());
+            Assert.Equal("Leader has died. Survivor is now the leader of Testland.", simulation.getPlayer().getStatus().getStatus());
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace beyondnationstests {
             Assert.Equal(player.getId(), nation.getLeaderId());
             Assert.Equal(NationRole.LEADER, nation.getRole(player.getId()));
             Assert.False(nation.isMember(leader.getId()));
-            Assert.Equal("You are now the leader of Testland.", player.getStatus().getStatus());
+            Assert.Equal("Leader has died. You are now the leader of Testland.", player.getStatus().getStatus());
         }
 
         [Fact]
@@ -97,7 +97,7 @@ namespace beyondnationstests {
             Assert.Equal(0, simulation.getNationRepository().getNumberOfNations());
             Assert.True(settlement.isMarkedForDeletion());
             Assert.Empty(nation.getSettlements());
-            Assert.Equal("Testland has been disbanded.", simulation.getPlayer().getStatus().getStatus());
+            Assert.Equal("Leader has died. Testland has been disbanded.", simulation.getPlayer().getStatus().getStatus());
             Assert.Equal(1, simulation.getEventRepository().getNumberOfEvents(EventType.NationDisband));
         }
     }

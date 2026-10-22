@@ -9,11 +9,26 @@ namespace beyondnations {
     * is named again.
     *
     * The count is read back off the status text, so nothing new is saved.
+    * Status joins messages said on one tick, so the count is read off the
+    * latest message and a growing count amends only that one (report), and a
+    * death on the tick of an era announcement is told beside it.
     */
     public static class DeathNotice {
         private const string ONE = " has died.";
         private const string TWO = " have died.";
         private const string MANY = " pawns have died.";
+
+        /** Tells the status line that the pawn called name has died. */
+        public static void report(Status status, string name) {
+            string latest = status.getLatest();
+            string text = combine(latest, name);
+            if (deathsIn(latest) > 0 && !string.IsNullOrEmpty(status.getStatus())) {
+                status.amend(text);
+            }
+            else {
+                status.update(text);
+            }
+        }
 
         /** The status line after the pawn called name dies, given the line showing now. */
         public static string combine(string current, string name) {
