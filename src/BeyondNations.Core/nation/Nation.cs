@@ -17,6 +17,8 @@ namespace beyondnations {
         private int settlementLimit = 0;
         // whether the era shelters this nation from sieges (EraTracker.applyRules)
         private bool sheltered = false;
+        // whether no new siege of it may begin yet, its shelter just ended (EraTracker.applyRules)
+        private bool forewarned = false;
 
         public Nation(string name, EntityId leaderId, RandomSource random) {
             this.random = random;
@@ -113,13 +115,25 @@ namespace beyondnations {
             settlementLimit = limit;
         }
 
-        /** True while a young nation the player leads cannot be besieged (EraRules.isSheltered). */
+        /** True while the young nation the player leads or has joined cannot be besieged (EraRules.isSheltered). */
         public bool isSheltered() {
             return sheltered;
         }
 
         public void setSheltered(bool value) {
             sheltered = value;
+        }
+
+        /**
+        * True while the player's nation, its shelter just ended, is being
+        * given warning: no new siege of it may begin (EraRules.SiegeWarningTicks).
+        */
+        public bool isForewarned() {
+            return forewarned;
+        }
+
+        public void setForewarned(bool value) {
+            forewarned = value;
         }
 
         /** Whether the era lets this nation found another settlement. */

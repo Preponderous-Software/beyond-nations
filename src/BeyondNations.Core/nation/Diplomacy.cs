@@ -29,7 +29,9 @@ namespace beyondnations {
     *    its own nearest settlement is of at least the
     *    same tier, it lays siege to that settlement. A siege kept up for six
     *    rounds in a row (thirty seconds) takes the settlement. Towns, behind
-    *    their palisades, cannot be besieged. A nation that loses its last
+    *    their palisades, cannot be besieged, nor can the player's nation
+    *    before the Town era or, after it, until the player has had warning
+    *    (EraRules.isSheltered, EraRules.SiegeWarningTicks). A nation that loses its last
     *    settlement is disbanded and its members become nationless.
     *
     * A nation's strength is its members plus the members of its allies, so
@@ -263,7 +265,8 @@ namespace beyondnations {
                 raid(attacker, defender, target, base_);
             }
 
-            if (canBesiege(attacker, defender, base_, target) && !besiegedThisRound.Contains(target.getId())) {
+            if (canBesiege(attacker, defender, base_, target) && mayBeginSiege(attacker, defender, target)
+                    && !besiegedThisRound.Contains(target.getId())) {
                 besiegedThisRound.Add(target.getId());
                 besiege(attacker, defender, target);
             }
@@ -281,6 +284,16 @@ namespace beyondnations {
                 && getStrength(attacker) >= MIN_SIEGE_STRENGTH
                 && getStrength(attacker) >= 2 * getDefence(defender)
                 && base_.getTier() >= target.getTier();
+        }
+
+        /**
+        * Whether a siege of the target may begin or go on: not a new one
+        * while the player's nation is being given warning that its shelter
+        * has ended (EraRules.SiegeWarningTicks). A siege already under way
+        * goes on.
+        */
+        public bool mayBeginSiege(Nation attacker, Nation defender, Settlement target) {
+            return !defender.isForewarned() || getBesieger(target) == attacker;
         }
 
         private void raid(Nation raider, Nation victim, Settlement target, Settlement home) {

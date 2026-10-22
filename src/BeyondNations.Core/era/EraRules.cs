@@ -183,15 +183,24 @@ namespace beyondnations {
         }
 
         /**
-        * Whether a nation the player leads is safe from sieges in this era.
-        * A new nation used to be besieged and taken within minutes by
-        * neighbours twice its size (docs/PACING.md); until the Town era,
-        * when its towns have palisades of their own, it is not. Raids still
-        * come.
+        * Whether the player's nation (led or joined) is safe from sieges in
+        * this era. A new nation used to be besieged and taken within minutes
+        * by neighbours twice its size (docs/PACING.md), and a nation the
+        * player had joined still was; until the Town era, when its towns
+        * have palisades of their own, it is not. Raids still come.
         */
         public static bool isSheltered(Era era) {
             return era < Era.TOWN;
         }
+
+        /**
+        * When the shelter ends at the Town era, how long (in ticks: five
+        * minutes at the default rate) the player is given warning before
+        * any siege of their nation may begin. The era box counts it down
+        * and the status line says when it starts, a minute before it ends
+        * and when it ends.
+        */
+        public const int SiegeWarningTicks = 15000;
 
         /** How many settlements a nation the player leads may hold in this era; 0 for no limit. */
         public static int settlementLimit(Era era) {
