@@ -38,6 +38,8 @@ For detailed contribution guidelines, see the [Contributing Guide](./docs/CONTRI
 
 This project uses continuous integration to ensure code quality and stability. All pull requests are automatically tested. For more information about the CI pipeline and how to run checks locally, see the [CI/CD Documentation](./docs/CI-CD.md).
 
+The game can also be playtested by several AI agents at once, each playing the real desktop build headlessly toward its own goal, with their findings merged into one summary: see [Playtesting with agents](./docs/PLAYTESTING.md).
+
 ## Game Concept
 In this game, you'll be able to embark on an adventure in a procedurally generated world filled with resources, settlements and pawns.
 

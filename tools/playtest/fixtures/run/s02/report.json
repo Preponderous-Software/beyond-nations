@@ -1,0 +1,36 @@
+{
+  "session": "s02",
+  "goal": "Survive the first winter",
+  "build": {
+    "version": "0.4.1",
+    "commit": "6b402d5"
+  },
+  "seed": 7,
+  "durationSec": 900,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Season panel is clipped at the right edge",
+      "detail": "The same clipping at 960x540.",
+      "screenshot": "shots/season.png"
+    },
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "A pawn standing near a tree stops E from chopping it",
+      "detail": "Interact talks to the pawn instead; the tree cannot be chopped until the pawn walks off.",
+      "repro": "walkto tree while a pawn is within 5; key e",
+      "screenshot": "shots/pawn-block.png",
+      "tick": 2500
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 1,
+    "deaths": 1,
+    "winterReached": false
+  },
+  "fun": 3,
+  "verdict": "Starved once before winter; food is hard to find in the Highlands."
+}

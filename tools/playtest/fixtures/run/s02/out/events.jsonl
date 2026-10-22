@@ -1,0 +1,4 @@
+{"type":"world","tick":0,"wallTimeMs":1792640000000,"how":"created","slot":"world-7","seed":7}
+{"type":"objective_completed","tick":3000,"wallTimeMs":1792640090000,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":3000}
+{"type":"player_death","tick":8000,"wallTimeMs":1792640200000,"total":1}
+{"type":"save","tick":8100,"wallTimeMs":1792640210000,"count":1}

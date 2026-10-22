@@ -1,0 +1,5 @@
+{"type":"screen","tick":0,"wallTimeMs":1792640000000,"from":null,"to":"TITLE"}
+{"type":"world","tick":0,"wallTimeMs":1792640010000,"how":"created","slot":"world-42","seed":42}
+{"type":"objective_completed","tick":2200,"wallTimeMs":1792640070000,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2200}
+{"type":"objective_completed","tick":5200,"wallTimeMs":1792640150000,"number":2,"id":"gather-stone","title":"Gather stone","ticksTaken":3000}
+{"type":"era_changed","tick":9000,"wallTimeMs":1792640300000,"from":"Camp","to":"Village"}
