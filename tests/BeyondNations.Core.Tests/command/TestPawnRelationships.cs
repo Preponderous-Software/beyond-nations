@@ -110,15 +110,75 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testFindPawnInRange_OnlyWithinReachAndOutsideSettlements() {
+        public void testFindPawnInRange_OnlyWithinReach() {
             Pawn far = addPawn("Far", new Vector3(20, 0, 0));
             Assert.Null(PawnRelations.findPawnInRange(player, environment));
 
             Pawn near = addPawn("Near", new Vector3(3, 0, 0));
             Assert.Same(near, PawnRelations.findPawnInRange(player, environment));
+        }
 
-            player.setCurrentSettlementId(new EntityId());
+        /**
+        * The playtest bug (0.5.0, s01/s03/s06): the player stands in their own
+        * settlement and a resident strolls about the plaza a few metres away,
+        * drawn and plainly in front of them, yet G and R said nobody was in
+        * reach. A pawn that is drawn within reach can be talked to, gifted
+        * and invited, wherever either of them is.
+        */
+        [Fact]
+        public void testFindPawnInRange_PlayerAndPawnInsideOwnSettlement_PawnFound() {
+            Nation nation = playerNation();
+            Settlement settlement = addSettlement(nation);
+            player.setPosition(settlement.getPosition());
+            new EnterSettlementCommand(entityRepository).execute(player, settlement);
+            Pawn resident = addPawn("Olivia", settlement.getPosition() + new Vector3(2.9f, 0, 0));
+            join(nation, resident);
+            SettlementLife.admit(resident, settlement);
+
+            Assert.Same(resident, PawnRelations.findPawnInRange(player, environment));
+        }
+
+        [Fact]
+        public void testFindPawnInRange_PawnMillingInsideSettlement_PlayerOutside_PawnFound() {
+            Nation nation = playerNation();
+            Settlement settlement = addSettlement(nation);
+            Pawn resident = addPawn("Wendy", settlement.getPosition() + new Vector3(10, 0, 0));
+            SettlementLife.admit(resident, settlement);
+            player.setPosition(settlement.getPosition() + new Vector3(12, 0, 0));
+
+            Assert.Same(resident, PawnRelations.findPawnInRange(player, environment));
+        }
+
+        [Fact]
+        public void testFindPawnInRange_HiddenPawn_NotFound() {
+            Pawn hidden = addPawn("Hidden", new Vector3(2, 0, 0));
+            hidden.setVisible(false);
             Assert.Null(PawnRelations.findPawnInRange(player, environment));
+        }
+
+        [Fact]
+        public void testFindPawnInRange_HiddenPawnNearer_VisibleOneFound() {
+            Pawn hidden = addPawn("Hidden", new Vector3(1, 0, 0));
+            hidden.setVisible(false);
+            Pawn seen = addPawn("Seen", new Vector3(3, 0, 0));
+            Assert.Same(seen, PawnRelations.findPawnInRange(player, environment));
+        }
+
+        [Fact]
+        public void testGiftAndInvite_ResidentInsideOwnSettlement_Work() {
+            Nation nation = playerNation();
+            Settlement settlement = addSettlement(nation);
+            player.setPosition(settlement.getPosition());
+            new EnterSettlementCommand(entityRepository).execute(player, settlement);
+            Pawn stranger = addPawn("Frank", settlement.getPosition() + new Vector3(0, 0, 2.3f));
+            SettlementLife.admit(stranger, settlement);
+            setRelationship(stranger, 5);
+
+            Pawn pawn = PawnRelations.findPawnInRange(player, environment);
+            Assert.Same(stranger, pawn);
+            new InvitePawnToNationCommand(nationRepository, eventProducer, entityRepository).execute(player, pawn);
+
+            Assert.Equal(nation.getId(), stranger.getNationId());
         }
 
         // --- talking ---
