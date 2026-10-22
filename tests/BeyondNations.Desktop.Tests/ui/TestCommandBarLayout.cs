@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 using Xunit;
 
 using beyondnations;
@@ -306,6 +307,90 @@ namespace beyondnationstests.desktop.ui {
             WorldCommand leave = find(simulation, "Leave Nation");
             Assert.Equal(CommandGroup.Drastic, leave.getGroup());
             Assert.True(leave.needsConfirm());
+        }
+
+        /** Standing in a hostile neighbour's land as a leader (--stage-diplomacy): gift, peace, war, denounce. */
+        private static Simulation inForeignLand(out string ownerName) {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            DiplomacyShowcase.Staged staged = DiplomacyShowcase.stage(simulation);
+            simulation.getPlayer().setPosition(staged.hostileSettlement.getPosition() + new Vector3(30, 0, 0));
+            ownerName = simulation.getNationRepository().getNation(staged.hostileSettlement.getNationId()).getName();
+            return simulation;
+        }
+
+        [Fact]
+        public void inForeignLand_WarAndDenounceAreDrastic_PeaceIsNot() {
+            Simulation simulation = inForeignLand(out string name);
+            WorldCommand war = find(simulation, "Declare War on " + name);
+            WorldCommand peace = find(simulation, "Offer Peace to " + name);
+            WorldCommand denounce = find(simulation, "Denounce " + name);
+            Assert.NotNull(war);
+            Assert.NotNull(peace);
+            Assert.Equal(CommandGroup.Drastic, war.getGroup());
+            Assert.True(war.needsConfirm());
+            Assert.Equal(CommandGroup.Drastic, denounce.getGroup());
+            Assert.True(denounce.needsConfirm());
+            Assert.Equal(CommandGroup.Trade, peace.getGroup());
+            Assert.False(peace.needsConfirm());
+        }
+
+        [Fact]
+        public void inForeignLand_WarBecomingAvailableMovesNoOtherButton() {
+            Simulation simulation = inForeignLand(out string name);
+            CommandBarLayout.Settings settings = settingsFor(960, 540, 0, false, 1f, out _, out _);
+            List<WorldCommand> all = WorldCommandBar.getCommands(simulation);
+            List<WorldCommand> withoutWar = all.FindAll(c => c.getLabel() != "Declare War on " + name);
+            Assert.Equal(all.Count - 1, withoutWar.Count);
+            Dictionary<string, CommandBarLayout.Rect> before = place(withoutWar, settings);
+            Dictionary<string, CommandBarLayout.Rect> after = place(all, settings);
+            foreach (KeyValuePair<string, CommandBarLayout.Rect> entry in before) {
+                Assert.Equal(entry.Value, after[entry.Key]);
+            }
+        }
+
+        [Fact]
+        public void inTheLeadersOwnCamp_TheLockedSendCaravanSitsWithTheTradeButtons() {
+            Simulation simulation = inOwnCamp(out _);
+            WorldCommand send = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith(CaravanCommands.SendCaravanLabel));
+            Assert.NotNull(send);
+            Assert.NotEqual(CaravanCommands.SendCaravanLabel, send.getLabel());
+            Assert.Equal(CommandGroup.Trade, send.getGroup());
+            // after every place button, so it cannot move Exit, Purchase Food or Sell Resources
+            List<string> order = labels(simulation);
+            Assert.True(order.IndexOf("Sell Resources") < order.IndexOf(send.getLabel()));
+        }
+
+        [Theory]
+        [MemberData(nameof(Screens))]
+        public void theRealBarsFitTheWindowAndStayClearOfTheRightColumn(float width, float height, float reserve, bool touch, float uiScale) {
+            Simulation camp = inOwnCamp(out _);
+            camp.getPlayer().getInventory().addItem(ItemType.COIN, 500);
+            camp.getPlayer().getInventory().addItem(ItemType.WOOD, 100);
+            camp.getPlayer().getInventory().addItem(ItemType.STONE, 100);
+            Simulation foreign = inForeignLand(out _);
+            foreach (Simulation simulation in new[] { camp, foreign }) {
+                CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out WorldHud.Layout layout, out bool stackCentre);
+                List<WorldCommand> commands = WorldCommandBar.getCommands(simulation);
+                CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings);
+                Assert.True(result.Top >= 0f, "the bar runs off the top: " + result.Top);
+                CommandBarLayout.Rect rightColumn = new CommandBarLayout.Rect {
+                    X = layout.RightX, Y = layout.Margin, Width = layout.BoxWidth, Height = height - reserve - 2f * layout.Margin
+                };
+                for (int i = 0; i < commands.Count; i++) {
+                    CommandBarLayout.Rect button = result.Buttons[i];
+                    string label = commands[i].getLabel();
+                    Assert.True(button.X >= 0f && button.Right <= width, label + " runs off the side");
+                    Assert.True(button.Y >= 0f && button.Bottom <= height - reserve, label + " runs off the bottom or under the touch controls");
+                    if (!stackCentre) {
+                        Assert.False(button.overlaps(rightColumn), label + " is under the right-hand column");
+                    }
+                    for (int j = i + 1; j < commands.Count; j++) {
+                        Assert.False(button.overlaps(result.Buttons[j]), label + " overlaps " + commands[j].getLabel());
+                    }
+                }
+            }
         }
 
         [Fact]
