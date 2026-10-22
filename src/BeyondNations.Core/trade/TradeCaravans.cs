@@ -880,7 +880,9 @@ namespace beyondnations {
                 return "Send caravans from one of your own settlements.";
             }
             if (origin.getNumBuildings(BuildingType.STOREHOUSE) == 0) {
-                return "This settlement needs a Storehouse before it can send caravans.";
+                // and say when one can be built, when the era has not unlocked it yet
+                return "This settlement needs a Storehouse before it can send caravans."
+                    + (origin.isBuildingUnlocked(BuildingType.STOREHOUSE) ? "" : " " + EraRules.describeLocked(BuildingType.STOREHOUSE));
             }
             if (getNumPlayerCaravans() >= MAX_PLAYER_CARAVANS) {
                 return "You already have " + MAX_PLAYER_CARAVANS + " caravans on the road.";

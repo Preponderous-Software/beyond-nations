@@ -28,6 +28,29 @@ namespace beyondnations {
             return own;
         }
 
+        /**
+        * Whether an alliance is worth proposing: not allied already, not at
+        * war, and not at odds (Rival or worse) -- no nation allies with one
+        * it is quarrelling with, so the button is not offered (playtest
+        * 0.4.1: Propose Alliance stayed on the bar for a Hostile nation).
+        * Peace comes first. The nations screen and the command bar both ask
+        * this, so they never disagree.
+        */
+        public static bool canProposeAlliance(NationRepository nationRepository, Realm realm, Nation own, Nation target) {
+            if (own == null || target == null || own == target) {
+                return false;
+            }
+            NationRelations relations = nationRepository.getRelations();
+            return !relations.isAllied(own, target)
+                && (realm == null || !realm.isAtWar(own, target))
+                && relations.getState(own, target) > NationRelationState.RIVAL;
+        }
+
+        /** Whether war can be declared: on any nation the player's is not already at war with, a Rival included. */
+        public static bool canDeclareWar(Realm realm, Nation own, Nation target) {
+            return own != null && target != null && own != target && !realm.isAtWar(own, target);
+        }
+
         /** Whether the player can deal with other nations at all: they lead one. */
         public static bool playerLeads(Player player, NationRepository nationRepository) {
             Nation own = nationRepository.getNation(player.getNationId());
@@ -123,6 +146,11 @@ namespace beyondnations {
             }
             if (realm != null && realm.isAtWar(own, target)) {
                 player.getStatus().update(target.getName() + " will not ally with a nation it is at war with. Offer peace first.");
+                return;
+            }
+            if (relations.getState(own, target) <= NationRelationState.RIVAL) {
+                player.getStatus().update(target.getName() + " will not talk of an alliance while relations are " + relations.describe(own, target)
+                    + ". Offer peace or send tribute first.");
                 return;
             }
             if (relations.getScore(own, target) < NationRelations.ALLIANCE_REQUIRES) {

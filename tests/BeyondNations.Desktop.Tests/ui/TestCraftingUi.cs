@@ -77,6 +77,56 @@ namespace beyondnationstests.desktop.ui {
             Assert.StartsWith("Out in the world", CraftingScreen.getLocationLine(simulation));
         }
 
+        /** The player leads a Camp-era nation and stands in its only settlement, which has no Workshop. */
+        private static Settlement leadCampEraSettlement(Simulation simulation) {
+            Player player = simulation.getPlayer();
+            Nation nation = new Nation("Testland", player.getId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(nation);
+            player.setNationId(nation.getId());
+            Settlement settlement = new Settlement(player.getPosition(), nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());
+            simulation.getEntityRepository().addEntity(settlement);
+            nation.addSettlement(settlement.getId());
+            simulation.getEraTracker().applyRules(simulation);
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
+            return settlement;
+        }
+
+        [Fact]
+        public void testWorkshopLockedByEra_SaysWhenItUnlocks_NotToBuildOne() {
+            Simulation simulation = newSimulation();
+            Settlement settlement = leadCampEraSettlement(simulation);
+            Assert.Equal(Era.CAMP, simulation.getEraTracker().getEra());
+            Assert.False(settlement.isBuildingUnlocked(BuildingType.WORKSHOP));
+
+            string line = CraftingScreen.getLocationLine(simulation);
+            Assert.Equal("In the " + settlement.getDisplayName() + ", which has no Workshop: the Workshop is unlocked in the Village era."
+                + " See the era panel for what it takes.", line);
+            Assert.DoesNotContain("build one", line);
+
+            CraftingScreen.Row planks = CraftingScreen.getRows(simulation).Find(r => r.Recipe == RecipeBook.Planks);
+            Assert.Equal("Locked: The Workshop is unlocked in the Village era.", planks.Status);
+        }
+
+        [Fact]
+        public void testWorkshopLockedByEra_OutInTheWorld_SaysSoToo() {
+            Simulation simulation = newSimulation();
+            leadCampEraSettlement(simulation);
+            new ExitSettlementCommand(simulation.getEntityRepository()).execute(simulation.getPlayer());
+
+            Assert.EndsWith("need a settlement with a Workshop; the Workshop is unlocked in the Village era.", CraftingScreen.getLocationLine(simulation));
+        }
+
+        [Fact]
+        public void testWorkshopUnlocked_StillSaysHowToBuildOne() {
+            Simulation simulation = newSimulation();
+            Settlement settlement = leadCampEraSettlement(simulation);
+            settlement.setBuildingEra(Era.VILLAGE);
+
+            Assert.Contains("which has no Workshop yet (build one", CraftingScreen.getLocationLine(simulation));
+            CraftingScreen.Row planks = CraftingScreen.getRows(simulation).Find(r => r.Recipe == RecipeBook.Planks);
+            Assert.StartsWith("Need ", planks.Status);
+        }
+
         [Fact]
         public void testCommandBar_OffersCraftAxeOnceAffordable_ThenStops() {
             Simulation simulation = newSimulation();
