@@ -56,6 +56,33 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testEraBox_SaysTheNationIsSheltered_UntilTheTownEra() {
+            Simulation simulation = makeSimulation();
+            Assert.DoesNotContain(EraBox.detailLines(simulation), line => line.Key.StartsWith("Sheltered"));
+            SettlementShowcase.stage(simulation);
+            simulation.getEraTracker().applyRules(simulation);
+            Assert.Contains(EraBox.detailLines(simulation), line => line.Key == EraBox.ShelteredLine);
+            Assert.Null(EraBox.siegeWarning(simulation));
+        }
+
+        [Fact]
+        public void testEraBox_CountsDownTheSiegeWarning_WithoutBeingOpened() {
+            Simulation simulation = makeSimulation();
+            SettlementShowcase.stage(simulation);
+            simulation.getEraTracker().stageEnding(simulation, Era.TOWN, RunOutcome.NONE);
+            Assert.Equal("Sieges can begin in 5:00", EraBox.siegeWarning(simulation));
+            Assert.DoesNotContain(EraBox.detailLines(simulation), line => line.Key.StartsWith("Sheltered"));
+            for (int i = 0; i < 50 * 61; i++) {
+                simulation.getTickCounter().increment();
+            }
+            Assert.Equal("Sieges can begin in 3:59", EraBox.siegeWarning(simulation));
+            for (int i = 0; i < EraRules.SiegeWarningTicks; i++) {
+                simulation.getTickCounter().increment();
+            }
+            Assert.Null(EraBox.siegeWarning(simulation));
+        }
+
+        [Fact]
         public void testEraBox_TapsOpenAndClosed() {
             EraBox box = new EraBox();
             Assert.False(box.isExpanded());
