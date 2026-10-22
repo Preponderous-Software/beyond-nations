@@ -1,0 +1,308 @@
+{"t": 1792645147839, "cmd": "start", "args": ["--seed", "103", "--season", "autumn"]}
+{"t": 1792645155617, "cmd": "key", "args": ["space"]}
+{"t": 1792645159157, "cmd": "shot", "args": ["menu"]}
+{"t": 1792645167406, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645171211, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645177152, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645177959, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645180284, "cmd": "shot", "args": ["world0"]}
+{"t": 1792645180541, "cmd": "state", "args": []}
+{"t": 1792645186241, "cmd": "events", "args": ["30"]}
+{"t": 1792645186396, "cmd": "state", "args": ["--full"]}
+{"t": 1792645194342, "cmd": "click", "args": ["433", "388"]}
+{"t": 1792645195201, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645210935, "cmd": "key", "args": ["e"]}
+{"t": 1792645212500, "cmd": "key", "args": ["e"]}
+{"t": 1792645214085, "cmd": "key", "args": ["e"]}
+{"t": 1792645215696, "cmd": "key", "args": ["e"]}
+{"t": 1792645217333, "cmd": "key", "args": ["e"]}
+{"t": 1792645218911, "cmd": "key", "args": ["e"]}
+{"t": 1792645220471, "cmd": "state", "args": []}
+{"t": 1792645220632, "cmd": "shot", "args": ["chop"]}
+{"t": 1792645224341, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645234570, "cmd": "key", "args": ["e"]}
+{"t": 1792645236227, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645248959, "cmd": "key", "args": ["e"]}
+{"t": 1792645250528, "cmd": "state", "args": []}
+{"t": 1792645250687, "cmd": "events", "args": ["10"]}
+{"t": 1792645254426, "cmd": "key", "args": ["j"]}
+{"t": 1792645257060, "cmd": "shot", "args": ["join"]}
+{"t": 1792645257384, "cmd": "state", "args": []}
+{"t": 1792645264075, "cmd": "key", "args": ["h"]}
+{"t": 1792645266594, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1792645271189, "cmd": "key", "args": ["e"]}
+{"t": 1792645274824, "cmd": "shot", "args": ["settle"]}
+{"t": 1792645275101, "cmd": "state", "args": []}
+{"t": 1792645282556, "cmd": "note", "args": ["--shot", "settle_overlap", "Inside settlement: big floating title 'Village of Castleford / 0 here, 3/8 residents' overlaps chronicle and objective panels; Settlement Info 'Next (K): Farm, 25 wood, 10...' cut off at right edge; Season panel text 'poor in food' cut off at bottom of window. Also 'Residents: 3/8' while overhead says '0 here'."]}
+{"t": 1792645282913, "cmd": "state", "args": ["--full"]}
+{"t": 1792645305669, "cmd": "status", "args": []}
+{"t": 1792645310964, "cmd": "key", "args": ["o"]}
+{"t": 1792645313503, "cmd": "shot", "args": ["nations"]}
+{"t": 1792645313845, "cmd": "key", "args": ["Escape"]}
+{"t": 1792645315386, "cmd": "key", "args": ["i"]}
+{"t": 1792645317994, "cmd": "shot", "args": ["inv"]}
+{"t": 1792645318283, "cmd": "key", "args": ["Escape"]}
+{"t": 1792645323885, "cmd": "key", "args": ["e"]}
+{"t": 1792645326427, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792645333026, "cmd": "key", "args": ["e"]}
+{"t": 1792645335603, "cmd": "shot", "args": ["talk"]}
+{"t": 1792645335836, "cmd": "state", "args": []}
+{"t": 1792645340577, "cmd": "key", "args": ["e"]}
+{"t": 1792645343132, "cmd": "state", "args": []}
+{"t": 1792645343289, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1792645346489, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792645389419, "cmd": "state", "args": []}
+{"t": 1792645393245, "cmd": "key", "args": ["e"]}
+{"t": 1792645395819, "cmd": "shot", "args": ["talk"]}
+{"t": 1792645396073, "cmd": "events", "args": ["4"]}
+{"t": 1792645400528, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645441046, "cmd": "key", "args": ["e"]}
+{"t": 1792645442652, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645453338, "cmd": "key", "args": ["e"]}
+{"t": 1792645454950, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645485080, "cmd": "key", "args": ["e"]}
+{"t": 1792645486675, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645493906, "cmd": "key", "args": ["e"]}
+{"t": 1792645495492, "cmd": "state", "args": []}
+{"t": 1792645499397, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645507808, "cmd": "key", "args": ["e"]}
+{"t": 1792645509369, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645518207, "cmd": "key", "args": ["e"]}
+{"t": 1792645519761, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645527887, "cmd": "key", "args": ["e"]}
+{"t": 1792645529439, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645536587, "cmd": "key", "args": ["e"]}
+{"t": 1792645538128, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645544777, "cmd": "key", "args": ["e"]}
+{"t": 1792645546337, "cmd": "walkto", "args": ["chicken", "60"]}
+{"t": 1792645569157, "cmd": "key", "args": ["e"]}
+{"t": 1792645570722, "cmd": "state", "args": []}
+{"t": 1792645577343, "cmd": "key", "args": ["p"]}
+{"t": 1792645577908, "cmd": "hold", "args": ["w", "0.8"]}
+{"t": 1792645578920, "cmd": "key", "args": ["p"]}
+{"t": 1792645579483, "cmd": "hold", "args": ["w", "0.8"]}
+{"t": 1792645580447, "cmd": "key", "args": ["p"]}
+{"t": 1792645581003, "cmd": "hold", "args": ["w", "0.8"]}
+{"t": 1792645581965, "cmd": "state", "args": []}
+{"t": 1792645582132, "cmd": "shot", "args": ["plant"]}
+{"t": 1792645582410, "cmd": "key", "args": ["h"]}
+{"t": 1792645585000, "cmd": "state", "args": []}
+{"t": 1792645588956, "cmd": "state", "args": []}
+{"t": 1792645589113, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645617011, "cmd": "key", "args": ["e"]}
+{"t": 1792645619060, "cmd": "shot", "args": ["talk2"]}
+{"t": 1792645619336, "cmd": "state", "args": []}
+{"t": 1792645624207, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792645651550, "cmd": "key", "args": ["e"]}
+{"t": 1792645652366, "cmd": "state", "args": []}
+{"t": 1792645652728, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792645660343, "cmd": "key", "args": ["e"]}
+{"t": 1792645660924, "cmd": "state", "args": []}
+{"t": 1792645661133, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792645661587, "cmd": "key", "args": ["e"]}
+{"t": 1792645662187, "cmd": "state", "args": []}
+{"t": 1792645662328, "cmd": "shot", "args": ["talk3"]}
+{"t": 1792645672114, "cmd": "note", "args": ["Talking to a pawn fails repeatedly: 'pt walkto pawn' reports the pawn within reach (2.9-4m) but the immediate E press gives 'No entities within range to interact with.' (x3 in a row, plus 2 earlier). At ~4 fps the pawn walks out of the 5-unit range before the keypress lands; there is no way to make a pawn stop to talk. Needed to gift food / befriend (R)."]}
+{"t": 1792645672277, "cmd": "note", "args": ["Objective 7 progress bar text is clipped on the left: 'nbers 7/10 • Buildings 2/2' (Members cut off)."]}
+{"t": 1792645677969, "cmd": "key", "args": ["k"]}
+{"t": 1792645680047, "cmd": "state", "args": []}
+{"t": 1792645680211, "cmd": "key", "args": ["b"]}
+{"t": 1792645682289, "cmd": "state", "args": []}
+{"t": 1792645682467, "cmd": "shot", "args": ["kb"]}
+{"t": 1792645686065, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792645692857, "cmd": "key", "args": ["e"]}
+{"t": 1792645695415, "cmd": "key", "args": ["k"]}
+{"t": 1792645697976, "cmd": "state", "args": []}
+{"t": 1792645698086, "cmd": "shot", "args": ["buildk"]}
+{"t": 1792645698354, "cmd": "state", "args": []}
+{"t": 1792645706287, "cmd": "note", "args": ["--shot", "autumn_end", "Autumn prep done by tick 130000 (day 4 afternoon): 15 apples, 1 chicken meat, 47 wood from ~10 trees in ~3 game min. Apple market price at Castleford fell from 44/39 to 7/7 within one afternoon - food looks plentiful in autumn. No screen tells me how much food pawns or the settlement have stored for winter, or how many will go hungry."]}
+{"t": 1792645706597, "cmd": "key", "args": ["Escape"]}
+{"t": 1792645709176, "cmd": "shot", "args": ["pause"]}
+{"t": 1792645714297, "cmd": "click", "args": ["480", "326"]}
+{"t": 1792645717125, "cmd": "events", "args": ["3"]}
+{"t": 1792645717191, "cmd": "stop", "args": []}
+{"t": 1792645720304, "cmd": "start", "args": ["--seed", "103", "--season", "winter"]}
+{"t": 1792645726657, "cmd": "key", "args": ["space"]}
+{"t": 1792645730206, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645734020, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645734890, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645737208, "cmd": "state", "args": []}
+{"t": 1792645737340, "cmd": "shot", "args": ["winter0"]}
+{"t": 1792645743015, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645753131, "cmd": "key", "args": ["e"]}
+{"t": 1792645754734, "cmd": "state", "args": []}
+{"t": 1792645754871, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645763195, "cmd": "key", "args": ["e"]}
+{"t": 1792645764808, "cmd": "state", "args": []}
+{"t": 1792645764939, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645776654, "cmd": "key", "args": ["e"]}
+{"t": 1792645778155, "cmd": "state", "args": []}
+{"t": 1792645778305, "cmd": "state", "args": []}
+{"t": 1792645778427, "cmd": "events", "args": ["12"]}
+{"t": 1792645782692, "cmd": "key", "args": ["j"]}
+{"t": 1792645785224, "cmd": "state", "args": []}
+{"t": 1792645785387, "cmd": "events", "args": ["8"]}
+{"t": 1792645788799, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645796216, "cmd": "key", "args": ["e"]}
+{"t": 1792645797736, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645804609, "cmd": "key", "args": ["e"]}
+{"t": 1792645806140, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645822017, "cmd": "key", "args": ["e"]}
+{"t": 1792645823563, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645849399, "cmd": "key", "args": ["e"]}
+{"t": 1792645851047, "cmd": "key", "args": ["j"]}
+{"t": 1792645853588, "cmd": "state", "args": []}
+{"t": 1792645853724, "cmd": "events", "args": ["15"]}
+{"t": 1792645858982, "cmd": "key", "args": ["h"]}
+{"t": 1792645861577, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792645871801, "cmd": "key", "args": ["e"]}
+{"t": 1792645874373, "cmd": "shot", "args": ["fortham"]}
+{"t": 1792645874652, "cmd": "state", "args": []}
+{"t": 1792645979548, "cmd": "state", "args": ["--full"]}
+{"t": 1792646079703, "cmd": "state", "args": ["--full"]}
+{"t": 1792646179801, "cmd": "state", "args": ["--full"]}
+{"t": 1792646279888, "cmd": "state", "args": ["--full"]}
+{"t": 1792646379982, "cmd": "state", "args": ["--full"]}
+{"t": 1792646380066, "cmd": "events", "args": ["200"]}
+{"t": 1792646385744, "cmd": "note", "args": ["--shot", "energy_frozen", "Energy stayed at exactly 95 from tick 183512 to 196244 (12,700 ticks, ~0.42 of a day) while standing inside the Fortham settlement in winter, and no apples were eaten. Outside, the bar should drop 100/day x1.3 in winter (~55). Sheltering in a settlement seems to switch hunger off entirely, so winter has no bite for the player. If intended (warm hearth), the UI never says so."]}
+{"t": 1792646386035, "cmd": "events", "args": ["300"]}
+{"t": 1792646389833, "cmd": "events", "args": ["2000"]}
+{"t": 1792646389872, "cmd": "key", "args": ["e"]}
+{"t": 1792646391318, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1792646393386, "cmd": "state", "args": []}
+{"t": 1792646456902, "cmd": "state", "args": ["--full"]}
+{"t": 1792646516984, "cmd": "state", "args": ["--full"]}
+{"t": 1792646577052, "cmd": "state", "args": ["--full"]}
+{"t": 1792646580495, "cmd": "status", "args": []}
+{"t": 1792646580573, "cmd": "shot", "args": ["frozen"]}
+{"t": 1792646580736, "cmd": "state", "args": ["--full"]}
+{"t": 1792646584946, "cmd": "click", "args": ["480", "405"]}
+{"t": 1792646587641, "cmd": "state", "args": []}
+{"t": 1792646587693, "cmd": "events", "args": ["30"]}
+{"t": 1792646591186, "cmd": "events", "args": ["3000"]}
+{"t": 1792646593652, "cmd": "events", "args": ["3000"]}
+{"t": 1792646601560, "cmd": "key", "args": ["y"]}
+{"t": 1792646603503, "cmd": "note", "args": ["--shot", "deaths", "First winter deaths: Natalie Watson (my leader, Fortham) starved 'within the walls' at tick 196859, Wendy Walker (Uppertown leader) 196981, Victor Williams (Fortham) 199689, Bob Johnson (Newfield) 200549 - 4 starved within ~0.7 game-day of winter starting, while I stood next to them carrying 13 apples. No warning beforehand ('X is hungry'), no prompt to feed them; the only signal is a death line. I became leader of Fortham by succession silently (status 'You are now the leader of Fortham.')."]}
+{"t": 1792646603716, "cmd": "shot", "args": ["deaths_screen"]}
+{"t": 1792646613059, "cmd": "key", "args": ["y"]}
+{"t": 1792646613509, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646614960, "cmd": "state", "args": []}
+{"t": 1792646615029, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792646615263, "cmd": "key", "args": ["e"]}
+{"t": 1792646617213, "cmd": "key", "args": ["b"]}
+{"t": 1792646619161, "cmd": "state", "args": []}
+{"t": 1792646619237, "cmd": "shot", "args": ["stall"]}
+{"t": 1792646623691, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646625143, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792646634921, "cmd": "key", "args": ["e"]}
+{"t": 1792646636875, "cmd": "state", "args": []}
+{"t": 1792646636947, "cmd": "key", "args": ["b"]}
+{"t": 1792646638906, "cmd": "state", "args": []}
+{"t": 1792646638980, "cmd": "shot", "args": ["stall"]}
+{"t": 1792646644742, "cmd": "click", "args": ["175", "516"]}
+{"t": 1792646647446, "cmd": "shot", "args": ["sell"]}
+{"t": 1792646647761, "cmd": "state", "args": []}
+{"t": 1792646652603, "cmd": "note", "args": ["--shot", "button_overlap", "As leader inside a settlement, the bottom button bar wraps to two rows and 'Craft Pickaxe' / 'Exit Settlement' are drawn on top of the Season panel text ('Winter: no harvests' unreadable). Sell Resources is offered but answers 'This settlement does not have any stalls.' - the button should be disabled or explain the stall need."]}
+{"t": 1792646652949, "cmd": "click", "args": ["525", "485"]}
+{"t": 1792646655658, "cmd": "state", "args": []}
+{"t": 1792646660318, "cmd": "key", "args": ["b"]}
+{"t": 1792646662274, "cmd": "state", "args": []}
+{"t": 1792646662344, "cmd": "click", "args": ["175", "516"]}
+{"t": 1792646665067, "cmd": "state", "args": []}
+{"t": 1792646665140, "cmd": "shot", "args": ["aftersell"]}
+{"t": 1792646668923, "cmd": "click", "args": ["212", "516"]}
+{"t": 1792646671654, "cmd": "state", "args": []}
+{"t": 1792646671731, "cmd": "shot", "args": ["sold"]}
+{"t": 1792646679011, "cmd": "note", "args": ["--shot", "no_feed", "Leader of a starving settlement (5 pawns starved so far), holding 10 apples, while the market's apple buy price is 66: 'Sell Resources' says 'No one is buying resources at this market'. I found no way to hand food to my own hungry people - no feed/donate button, the stockpile ('Collect Stockpile (452)') only took wood and stone out. Expected: a way to put food into the stockpile or market so residents can eat."]}
+{"t": 1792646679355, "cmd": "key", "args": ["e"]}
+{"t": 1792646680805, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646681287, "cmd": "key", "args": ["e"]}
+{"t": 1792646682740, "cmd": "state", "args": []}
+{"t": 1792646682821, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646682980, "cmd": "key", "args": ["e"]}
+{"t": 1792646684437, "cmd": "state", "args": []}
+{"t": 1792646684516, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646684756, "cmd": "key", "args": ["e"]}
+{"t": 1792646686215, "cmd": "state", "args": []}
+{"t": 1792646686295, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646686460, "cmd": "key", "args": ["e"]}
+{"t": 1792646687929, "cmd": "state", "args": []}
+{"t": 1792646688027, "cmd": "shot", "args": ["talkw"]}
+{"t": 1792646702056, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646702365, "cmd": "key", "args": ["g"]}
+{"t": 1792646703810, "cmd": "state", "args": []}
+{"t": 1792646703886, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646704036, "cmd": "key", "args": ["g"]}
+{"t": 1792646705494, "cmd": "state", "args": []}
+{"t": 1792646705577, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646709104, "cmd": "key", "args": ["g"]}
+{"t": 1792646710539, "cmd": "state", "args": []}
+{"t": 1792646710589, "cmd": "shot", "args": ["gift"]}
+{"t": 1792646710828, "cmd": "events", "args": ["10"]}
+{"t": 1792646723711, "cmd": "state", "args": []}
+{"t": 1792646723776, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646738860, "cmd": "key", "args": ["g", "g", "g"]}
+{"t": 1792646740100, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646740562, "cmd": "key", "args": ["g", "g", "g"]}
+{"t": 1792646741805, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646745974, "cmd": "key", "args": ["g", "g", "g"]}
+{"t": 1792646747218, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646747600, "cmd": "key", "args": ["g", "g", "g"]}
+{"t": 1792646748842, "cmd": "walkto", "args": ["pawn", "15"]}
+{"t": 1792646753479, "cmd": "key", "args": ["g", "g", "g"]}
+{"t": 1792646754724, "cmd": "state", "args": []}
+{"t": 1792646754790, "cmd": "events", "args": ["20"]}
+{"t": 1792646761647, "cmd": "note", "args": ["--shot", "gift_fail", "Tried to feed starving Fortham residents with G (gift; not listed in the playtest key list, found it via the command bar code). 8 attempts at walkto-pawn + G gave 'There is no one within reach to give a gift to.' Residents cluster at the well inside the settlement circle, and gifting is disabled while the player is inside a settlement (PawnRelations.findPawnInRange returns null in-settlement), so the hungry pawns 'within the walls' are exactly the ones you can't feed."]}
+{"t": 1792646761893, "cmd": "key", "args": ["e"]}
+{"t": 1792646763335, "cmd": "state", "args": []}
+{"t": 1792646763397, "cmd": "hold", "args": ["s", "2"]}
+{"t": 1792646769099, "cmd": "click", "args": ["48", "19"]}
+{"t": 1792646771799, "cmd": "shot", "args": ["controls"]}
+{"t": 1792646776593, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646852032, "cmd": "state", "args": ["--full"]}
+{"t": 1792646927099, "cmd": "state", "args": ["--full"]}
+{"t": 1792646954847, "cmd": "status", "args": []}
+{"t": 1792647002194, "cmd": "state", "args": ["--full"]}
+{"t": 1792647077294, "cmd": "state", "args": ["--full"]}
+{"t": 1792647152399, "cmd": "state", "args": ["--full"]}
+{"t": 1792647227485, "cmd": "state", "args": ["--full"]}
+{"t": 1792647227542, "cmd": "events", "args": ["400"]}
+{"t": 1792647233589, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792647236289, "cmd": "key", "args": ["e"]}
+{"t": 1792647237726, "cmd": "state", "args": []}
+{"t": 1792647237788, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792647240589, "cmd": "key", "args": ["e"]}
+{"t": 1792647242026, "cmd": "state", "args": []}
+{"t": 1792647242078, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792647248072, "cmd": "key", "args": ["e"]}
+{"t": 1792647249512, "cmd": "state", "args": []}
+{"t": 1792647249570, "cmd": "events", "args": ["800"]}
+{"t": 1792647249602, "cmd": "events", "args": ["800"]}
+{"t": 1792647256025, "cmd": "key", "args": ["h"]}
+{"t": 1792647257467, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792647260531, "cmd": "key", "args": ["e"]}
+{"t": 1792647262967, "cmd": "note", "args": ["--shot", "fortham_late", "Late winter (tick ~227000, day 7 evening): 42 pawns have starved world-wide since winter began at tick 180000 (first death at 196859), every one 'within the walls'. Fortham (mine) lost its founder and most residents. Raids continue ('Westernland raided your camp'). No world population figure is shown anywhere, so I can't tell what fraction of people died."]}
+{"t": 1792647263198, "cmd": "date", "args": []}
+{"t": 1792647268846, "cmd": "note", "args": ["Fortham overhead banner says '5 here, 1/8 residents' while only the player is visible at the well and Residents: 1/8 - '5 here' count looks stale or counts the dead (see shots/fortham_late.png)."]}
+{"t": 1792647268893, "cmd": "click", "args": ["307", "485"]}
+{"t": 1792647271584, "cmd": "state", "args": []}
+{"t": 1792647271633, "cmd": "click", "args": ["412", "485"]}
+{"t": 1792647274329, "cmd": "state", "args": []}
+{"t": 1792647278071, "cmd": "events", "args": ["10"]}
+{"t": 1792647348127, "cmd": "state", "args": ["--full"]}
+{"t": 1792647418189, "cmd": "state", "args": ["--full"]}
+{"t": 1792647488241, "cmd": "state", "args": ["--full"]}
+{"t": 1792647558296, "cmd": "state", "args": ["--full"]}
+{"t": 1792647558347, "cmd": "events", "args": ["50"]}
+{"t": 1792647565512, "cmd": "events", "args": ["3000"]}
+{"t": 1792647565547, "cmd": "state", "args": ["--full"]}
+{"t": 1792647565594, "cmd": "shot", "args": ["spring_event"]}
+{"t": 1792647572470, "cmd": "click", "args": ["480", "345"]}
+{"t": 1792647575162, "cmd": "state", "args": []}
+{"t": 1792647725215, "cmd": "state", "args": ["--full"]}
+{"t": 1792647725265, "cmd": "events", "args": ["100"]}
+{"t": 1792647725291, "cmd": "shot", "args": ["spring"]}
+{"t": 1792647731831, "cmd": "note", "args": ["--shot", "spring_buttons", "Command bar reorders between visits: at tick 228084 it read 'Build Stall, Build Farm, Build House', now 'Build Stall, Build House, Build Farm'. I clicked Build Farm then where Build House had been and got a second farm ('Farm built.' twice, tick 228417/228550). Spring reached at tick ~231000 (Spring day 1/2, year 2); no pawn deaths after tick 230430."]}
+{"t": 1792647731977, "cmd": "stop", "args": []}
+{"t": 1792647770557, "cmd": "report", "args": []}
+{"t": 1792671893681, "cmd": "stop", "args": []}

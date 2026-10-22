@@ -197,6 +197,13 @@ namespace beyondnations.desktop {
         */
         public bool Continue = false;
 
+        /**
+        * Where a playtesting agent reads the game (docs/PLAYTESTING.md):
+        * state.json, rewritten about twice a second, and events.jsonl,
+        * appended as things happen. Null, the default, writes nothing.
+        */
+        public string PlaytestOut = null;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -234,6 +241,7 @@ namespace beyondnations.desktop {
                     case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
                     case "--season":           options.StartSeason = seasonAfter(args, ref i); break;
                     case "--ui-scale":         options.UiScale = uiScaleAfter(args, ref i); break;
+                    case "--playtest-out":     options.PlaytestOut = textAfter(args, ref i); break;
                     case "--help":
                     case "-h":
                         printUsage();
@@ -388,6 +396,7 @@ namespace beyondnations.desktop {
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
+                "  --playtest-out DIR      write state.json and events.jsonl to DIR for playtesting agents (docs/PLAYTESTING.md)",
                 "  --help, -h              print this and exit"
             });
         }

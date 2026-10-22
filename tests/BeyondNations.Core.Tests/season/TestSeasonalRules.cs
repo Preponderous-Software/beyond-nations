@@ -228,8 +228,8 @@ namespace beyondnationstests {
             Assert.Equal(1, simulation.getSeasonCalendar().getYear());
 
             // measured for seed 42: at most ~23 food a pawn (in autumn; over 200 before
-            // apples spoiled), ~15 a pawn as winter comes and under 1 by its end, with
-            // two thirds of pawns empty-handed and the markets down from ~2,000 to ~250
+            // apples spoiled), ~14 a pawn as winter comes and under 1 by its end, with
+            // two thirds of pawns empty-handed and the markets down from ~1,600 to ~200
             Assert.True(mostFoodPerPawn < 40, "pawns hoarded " + mostFoodPerPawn + " food each");
             Assert.True(foodPerPawnAtWinter > 0 && foodPerPawnLateWinter >= 0, "winter was sampled");
             Assert.True(foodPerPawnLateWinter < foodPerPawnAtWinter / 4,
@@ -238,10 +238,21 @@ namespace beyondnationstests {
             Assert.True(stallFoodLateWinter < stallFoodAtWinter / 2,
                 "the markets went from " + stallFoodAtWinter + " to " + stallFoodLateWinter + " food over winter");
 
-            // and still survivable: measured 100 pawns (the lag cap) all year and 10 deaths
+            // and still survivable: measured 100 pawns (the lag cap) all year and 5 deaths
             Assert.True(fewestPawns >= 60, "the population fell to " + fewestPawns);
             Assert.True(simulation.getNumPawnDeaths() < 40, simulation.getNumPawnDeaths() + " pawns died in a year");
             Assert.True(simulation.getEntityRepository().getNumEntitiesOfType(EntityType.TREE) > 200, "spring brings the trees back");
+
+            // and spring recovers rather than starving on: over the first half of the
+            // second spring, measured 0 deaths (6 before starving pawns foraged
+            // instead of walking back and forth to a market that could not feed them)
+            int deathsAtSpring = simulation.getNumPawnDeaths();
+            for (int i = 0; i < TimeOfDay.DefaultTicksPerDay; i++) {
+                simulation.fixedUpdate(1f / 50f);
+            }
+            Assert.Equal(Season.SPRING, simulation.getSeasonCalendar().getSeason());
+            int springDeaths = simulation.getNumPawnDeaths() - deathsAtSpring;
+            Assert.True(springDeaths <= 2, springDeaths + " pawns died in the first half of spring");
         }
 
         private static int countStallFood(Simulation simulation) {

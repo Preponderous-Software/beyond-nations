@@ -35,8 +35,9 @@ imgui.ini
 node_modules/
 smoke-out/
 
-# Agent worktrees
-.claude/
+# Agent worktrees and local settings; project skills are shared
+.claude/*
+!.claude/skills/
 
 # OS noise
 .DS_Store
@@ -51,3 +52,6 @@ Thumbs.db
 
 # The pacing harness report (docs/PACING.md)
 pacing-out/
+
+# Python bytecode (tools/)
+__pycache__/

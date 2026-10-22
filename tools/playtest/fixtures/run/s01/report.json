@@ -1,0 +1,42 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a new player",
+  "build": {
+    "version": "0.4.1",
+    "commit": "6b402d5"
+  },
+  "seed": 42,
+  "durationSec": 600,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Season panel clipped at the right edge at 1280x720",
+      "detail": "The Season box's last word runs past the right edge of the screen.",
+      "repro": "pt.sh start --seed 42 (PT_WIDTH=1280 PT_HEIGHT=720); Start; Begin; shot",
+      "screenshot": "shots/season-clipped.png",
+      "tick": 150
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Chronicle lines truncated with \"...\"",
+      "detail": "Long chronicle entries are cut off with an ellipsis and the compact strip offers no way to read the rest.",
+      "screenshot": "shots/chronicle.png",
+      "tick": 4000
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 2,
+    "eraReached": "Village",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 60,
+      "Gather stone": 140
+    },
+    "treesChopped": 5
+  },
+  "fun": 4,
+  "verdict": "A clear first ten minutes: the objective tracker always says what to do next. Small layout problems at 1280x720."
+}

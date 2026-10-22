@@ -1,0 +1,14 @@
+{
+  "session": "s05",
+  "dir": "/tmp/bn-playtest/20261021-2257/s05",
+  "display": ":104",
+  "window": "2097159",
+  "size": "960x540",
+  "args": [
+    "--seed",
+    "105"
+  ],
+  "startedAtMs": 1792645149989,
+  "version": "0.4.1",
+  "commit": "df53ae3"
+}

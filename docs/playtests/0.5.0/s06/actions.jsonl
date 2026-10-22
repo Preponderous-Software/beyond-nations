@@ -1,0 +1,442 @@
+{"t": 1792645147805, "cmd": "start", "args": ["--seed", "106"]}
+{"t": 1792645155698, "cmd": "key", "args": ["space"]}
+{"t": 1792645180328, "cmd": "state", "args": []}
+{"t": 1792645184056, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645184981, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1792645185186, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645191708, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645192591, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645192733, "cmd": "wait", "args": ["3"]}
+{"t": 1792645195885, "cmd": "state", "args": []}
+{"t": 1792645196236, "cmd": "shot", "args": ["world0"]}
+{"t": 1792645202071, "cmd": "click", "args": ["425", "389"]}
+{"t": 1792645203190, "cmd": "wait", "args": ["1"]}
+{"t": 1792645204408, "cmd": "key", "args": ["n"]}
+{"t": 1792645205041, "cmd": "wait", "args": ["2"]}
+{"t": 1792645207146, "cmd": "state", "args": []}
+{"t": 1792645207343, "cmd": "shot", "args": ["nation_create"]}
+{"t": 1792645210879, "cmd": "key", "args": ["o"]}
+{"t": 1792645211456, "cmd": "wait", "args": ["2"]}
+{"t": 1792645213677, "cmd": "state", "args": []}
+{"t": 1792645213861, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792645219467, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792645220389, "cmd": "wait", "args": ["2"]}
+{"t": 1792645222522, "cmd": "shot", "args": ["laws1"]}
+{"t": 1792645222880, "cmd": "state", "args": ["--full"]}
+{"t": 1792645240677, "cmd": "click", "args": ["225", "175"]}
+{"t": 1792645241513, "cmd": "wait", "args": ["1"]}
+{"t": 1792645242615, "cmd": "click", "args": ["225", "349"]}
+{"t": 1792645243440, "cmd": "wait", "args": ["1"]}
+{"t": 1792645244578, "cmd": "shot", "args": ["laws2"]}
+{"t": 1792645250426, "cmd": "key", "args": ["o"]}
+{"t": 1792645251003, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1792645251172, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792645293027, "cmd": "state", "args": []}
+{"t": 1792645296461, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792645299778, "cmd": "state", "args": []}
+{"t": 1792645303235, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1792645333911, "cmd": "key", "args": ["e"]}
+{"t": 1792645334453, "cmd": "wait", "args": ["1"]}
+{"t": 1792645335561, "cmd": "state", "args": []}
+{"t": 1792645335698, "cmd": "shot", "args": ["talk1"]}
+{"t": 1792645341051, "cmd": "state", "args": []}
+{"t": 1792645341209, "cmd": "face", "args": ["-22"]}
+{"t": 1792645342576, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645345257, "cmd": "state", "args": []}
+{"t": 1792645345416, "cmd": "face", "args": ["-25"]}
+{"t": 1792645348117, "cmd": "hold", "args": ["Shift_L+w", "1.55"]}
+{"t": 1792645349941, "cmd": "state", "args": []}
+{"t": 1792645350133, "cmd": "key", "args": ["e"]}
+{"t": 1792645350670, "cmd": "wait", "args": ["1"]}
+{"t": 1792645351739, "cmd": "state", "args": []}
+{"t": 1792645355039, "cmd": "face", "args": ["-140"]}
+{"t": 1792645362680, "cmd": "hold", "args": ["w", "0.3"]}
+{"t": 1792645363203, "cmd": "key", "args": ["e"]}
+{"t": 1792645363754, "cmd": "wait", "args": ["1"]}
+{"t": 1792645364875, "cmd": "state", "args": []}
+{"t": 1792645364999, "cmd": "shot", "args": ["talk2"]}
+{"t": 1792645372609, "cmd": "state", "args": ["--full"]}
+{"t": 1792645377481, "cmd": "face", "args": ["-15"]}
+{"t": 1792645378524, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1792645379137, "cmd": "state", "args": []}
+{"t": 1792645379274, "cmd": "key", "args": ["e"]}
+{"t": 1792645379885, "cmd": "wait", "args": ["1"]}
+{"t": 1792645381018, "cmd": "state", "args": []}
+{"t": 1792645381176, "cmd": "shot", "args": ["talk3"]}
+{"t": 1792645389011, "cmd": "note", "args": ["--shot", "overlap_settlement", "Inside foreign settlement Cityham at 960x540: Settlement/Market Info panels overlap the Season and Player Info panels on the right; bottom command bar's 'Exit Settlement' button is cut off at the right edge; big world-space labels (town name, 'Bella Evans Industrious (doing nothing)') draw over the chronicle and objective panels. tick ~1900"]}
+{"t": 1792645389383, "cmd": "key", "args": ["e"]}
+{"t": 1792645389969, "cmd": "wait", "args": ["1"]}
+{"t": 1792645391093, "cmd": "state", "args": []}
+{"t": 1792645399178, "cmd": "state", "args": []}
+{"t": 1792645404317, "cmd": "face", "args": ["80"]}
+{"t": 1792645409008, "cmd": "hold", "args": ["w", "0.6"]}
+{"t": 1792645409794, "cmd": "state", "args": []}
+{"t": 1792645409983, "cmd": "shot", "args": ["away1"]}
+{"t": 1792645415349, "cmd": "state", "args": ["--full"]}
+{"t": 1792645415511, "cmd": "face", "args": ["-120.4"]}
+{"t": 1792645421325, "cmd": "hold", "args": ["Shift_L+w", "0.9285714285714286"]}
+{"t": 1792645422527, "cmd": "state", "args": ["--full"]}
+{"t": 1792645422667, "cmd": "face", "args": ["-172.7"]}
+{"t": 1792645429402, "cmd": "hold", "args": ["w", "0.7444444444444444"]}
+{"t": 1792645430389, "cmd": "state", "args": ["--full"]}
+{"t": 1792645430687, "cmd": "face", "args": ["0.7"]}
+{"t": 1792645431421, "cmd": "hold", "args": ["Shift_L+w", "0.6714285714285715"]}
+{"t": 1792645432373, "cmd": "state", "args": ["--full"]}
+{"t": 1792645432576, "cmd": "state", "args": []}
+{"t": 1792645432720, "cmd": "shot", "args": ["near_bella"]}
+{"t": 1792645441767, "cmd": "state", "args": ["--full"]}
+{"t": 1792645441970, "cmd": "events", "args": ["40"]}
+{"t": 1792645460702, "cmd": "state", "args": ["--full"]}
+{"t": 1792645460848, "cmd": "key", "args": ["g"]}
+{"t": 1792645461418, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792645462039, "cmd": "state", "args": []}
+{"t": 1792645462200, "cmd": "key", "args": ["r"]}
+{"t": 1792645462765, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792645463364, "cmd": "state", "args": []}
+{"t": 1792645463516, "cmd": "shot", "args": ["invite1"]}
+{"t": 1792645466300, "cmd": "state", "args": []}
+{"t": 1792645469976, "cmd": "state", "args": ["--full"]}
+{"t": 1792645470127, "cmd": "key", "args": ["g"]}
+{"t": 1792645470719, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792645471333, "cmd": "state", "args": []}
+{"t": 1792645471472, "cmd": "key", "args": ["r"]}
+{"t": 1792645472033, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792645472638, "cmd": "state", "args": []}
+{"t": 1792645472761, "cmd": "shot", "args": ["invite2"]}
+{"t": 1792645477411, "cmd": "state", "args": ["--full"]}
+{"t": 1792645481865, "cmd": "state", "args": ["--full"]}
+{"t": 1792645482040, "cmd": "face", "args": ["122.3"]}
+{"t": 1792645486906, "cmd": "hold", "args": ["Shift_L+w", "0.6571428571428571"]}
+{"t": 1792645487836, "cmd": "state", "args": ["--full"]}
+{"t": 1792645488057, "cmd": "face", "args": ["68.8"]}
+{"t": 1792645492026, "cmd": "hold", "args": ["w", "0.4666666666666667"]}
+{"t": 1792645492652, "cmd": "state", "args": ["--full"]}
+{"t": 1792645492871, "cmd": "state", "args": []}
+{"t": 1792645493011, "cmd": "key", "args": ["g"]}
+{"t": 1792645493577, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792645494174, "cmd": "state", "args": []}
+{"t": 1792645494370, "cmd": "key", "args": ["r"]}
+{"t": 1792645494978, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792645495597, "cmd": "state", "args": []}
+{"t": 1792645495757, "cmd": "shot", "args": ["invite3"]}
+{"t": 1792645507274, "cmd": "state", "args": []}
+{"t": 1792645507434, "cmd": "key", "args": ["g"]}
+{"t": 1792645508046, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645508851, "cmd": "state", "args": []}
+{"t": 1792645519358, "cmd": "note", "args": ["--shot", "pawn_unreachable", "In Cityham's town square, a green pawn (Charlie Thomas) stands 1.8-3m in front of the player, but G says 'There is no one within reach to give a gift to.' and R says 'There is no one within reach to invite.' and E enters the settlement. Pawns counted as inside a settlement are still drawn on the plaza but can't be reached. Nothing on screen says why, and the command bar shows no pawn button. tick ~4700"]}
+{"t": 1792645519670, "cmd": "state", "args": []}
+{"t": 1792645531866, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1792645622220, "cmd": "state", "args": []}
+{"t": 1792645625534, "cmd": "face", "args": ["15"]}
+{"t": 1792645626218, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645628948, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645629666, "cmd": "key", "args": ["e"]}
+{"t": 1792645630194, "cmd": "wait", "args": ["1"]}
+{"t": 1792645631274, "cmd": "state", "args": []}
+{"t": 1792645636923, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645647357, "cmd": "key", "args": ["e"]}
+{"t": 1792645648112, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645648997, "cmd": "state", "args": []}
+{"t": 1792645649282, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645659839, "cmd": "key", "args": ["e"]}
+{"t": 1792645660374, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645661207, "cmd": "state", "args": []}
+{"t": 1792645661407, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645671694, "cmd": "key", "args": ["e"]}
+{"t": 1792645672277, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645673105, "cmd": "state", "args": []}
+{"t": 1792645673240, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645681794, "cmd": "key", "args": ["e"]}
+{"t": 1792645682336, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645683140, "cmd": "state", "args": []}
+{"t": 1792645687050, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645695654, "cmd": "key", "args": ["e"]}
+{"t": 1792645696256, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645697096, "cmd": "state", "args": []}
+{"t": 1792645697264, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645705591, "cmd": "key", "args": ["e"]}
+{"t": 1792645706176, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645706957, "cmd": "state", "args": []}
+{"t": 1792645707132, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645707549, "cmd": "key", "args": ["e"]}
+{"t": 1792645708082, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645708877, "cmd": "state", "args": []}
+{"t": 1792645709056, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645716027, "cmd": "key", "args": ["e"]}
+{"t": 1792645716601, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645717435, "cmd": "state", "args": []}
+{"t": 1792645717592, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645745233, "cmd": "key", "args": ["e"]}
+{"t": 1792645745793, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645746634, "cmd": "state", "args": []}
+{"t": 1792645750462, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792645759113, "cmd": "key", "args": ["e"]}
+{"t": 1792645759664, "cmd": "wait", "args": ["0.7"]}
+{"t": 1792645760449, "cmd": "face", "args": ["180"]}
+{"t": 1792645765996, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1792645767181, "cmd": "key", "args": ["f"]}
+{"t": 1792645767736, "cmd": "wait", "args": ["1"]}
+{"t": 1792645768854, "cmd": "state", "args": []}
+{"t": 1792645769071, "cmd": "shot", "args": ["founded"]}
+{"t": 1792645774149, "cmd": "state", "args": []}
+{"t": 1792645778210, "cmd": "face", "args": ["60"]}
+{"t": 1792645781546, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645784300, "cmd": "state", "args": []}
+{"t": 1792645784477, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645787222, "cmd": "state", "args": []}
+{"t": 1792645787360, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645790039, "cmd": "state", "args": []}
+{"t": 1792645790175, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645792878, "cmd": "state", "args": []}
+{"t": 1792645793058, "cmd": "key", "args": ["f"]}
+{"t": 1792645793563, "cmd": "wait", "args": ["1"]}
+{"t": 1792645794637, "cmd": "state", "args": []}
+{"t": 1792645804924, "cmd": "face", "args": ["-50"]}
+{"t": 1792645807204, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645809918, "cmd": "state", "args": []}
+{"t": 1792645810064, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645812752, "cmd": "state", "args": []}
+{"t": 1792645812963, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645815668, "cmd": "state", "args": []}
+{"t": 1792645819183, "cmd": "key", "args": ["f"]}
+{"t": 1792645819727, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645821353, "cmd": "state", "args": []}
+{"t": 1792645821511, "cmd": "shot", "args": ["settlement_founded"]}
+{"t": 1792645837432, "cmd": "state", "args": []}
+{"t": 1792645837578, "cmd": "key", "args": ["f"]}
+{"t": 1792645838110, "cmd": "wait", "args": ["1"]}
+{"t": 1792645839254, "cmd": "state", "args": []}
+{"t": 1792645845113, "cmd": "face", "args": ["-140"]}
+{"t": 1792645850532, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645853260, "cmd": "state", "args": []}
+{"t": 1792645853407, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645856185, "cmd": "state", "args": []}
+{"t": 1792645856351, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645859068, "cmd": "state", "args": []}
+{"t": 1792645859264, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645861981, "cmd": "state", "args": []}
+{"t": 1792645862106, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645864878, "cmd": "state", "args": []}
+{"t": 1792645869460, "cmd": "face", "args": ["90"]}
+{"t": 1792645872841, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645875553, "cmd": "state", "args": []}
+{"t": 1792645875681, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645878430, "cmd": "state", "args": []}
+{"t": 1792645878579, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645881264, "cmd": "state", "args": []}
+{"t": 1792645881405, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645884150, "cmd": "state", "args": []}
+{"t": 1792645888651, "cmd": "face", "args": ["70"]}
+{"t": 1792645891987, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645894683, "cmd": "state", "args": []}
+{"t": 1792645894840, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645897581, "cmd": "state", "args": []}
+{"t": 1792645897761, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792645900469, "cmd": "state", "args": []}
+{"t": 1792645900622, "cmd": "key", "args": ["f"]}
+{"t": 1792645901158, "cmd": "wait", "args": ["1"]}
+{"t": 1792645902336, "cmd": "state", "args": []}
+{"t": 1792645913387, "cmd": "note", "args": ["Founding a settlement: F says only 'Too close to another settlement.' twice while the nearest settlements were ~200m and ~105m away. The message doesn't give the minimum distance (250m in GameConfig) or which settlement is too close, and there is no map, so I sprinted in four directions for ~1.5 game-minutes while AI nations kept founding new towns ahead of me. tick 10989-13421"]}
+{"t": 1792645913504, "cmd": "key", "args": ["e"]}
+{"t": 1792645914018, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645915589, "cmd": "shot", "args": ["my_settlement"]}
+{"t": 1792645915996, "cmd": "state", "args": []}
+{"t": 1792645919756, "cmd": "key", "args": ["o"]}
+{"t": 1792645920289, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645921900, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792645922645, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645924234, "cmd": "shot", "args": ["laws3"]}
+{"t": 1792645930529, "cmd": "click", "args": ["97", "175"]}
+{"t": 1792645931355, "cmd": "wait", "args": ["1"]}
+{"t": 1792645932438, "cmd": "click", "args": ["225", "262"]}
+{"t": 1792645933261, "cmd": "wait", "args": ["1"]}
+{"t": 1792645934410, "cmd": "shot", "args": ["laws4"]}
+{"t": 1792645934754, "cmd": "click", "args": ["415", "45"]}
+{"t": 1792645935558, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645937199, "cmd": "shot", "args": ["nations2"]}
+{"t": 1792645937518, "cmd": "state", "args": []}
+{"t": 1792645945559, "cmd": "key", "args": ["o"]}
+{"t": 1792645946109, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645947690, "cmd": "shot", "args": ["in_settlement"]}
+{"t": 1792645961978, "cmd": "click", "args": ["48", "19"]}
+{"t": 1792645962753, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792645964380, "cmd": "shot", "args": ["controls"]}
+{"t": 1792645970516, "cmd": "click", "args": ["479", "507"]}
+{"t": 1792645971301, "cmd": "wait", "args": ["1"]}
+{"t": 1792645972414, "cmd": "await", "args": ["WORLD", "5"]}
+{"t": 1792645972602, "cmd": "wait", "args": ["40"]}
+{"t": 1792646012706, "cmd": "events", "args": ["30"]}
+{"t": 1792646012831, "cmd": "state", "args": []}
+{"t": 1792646017729, "cmd": "wait", "args": ["45"]}
+{"t": 1792646062795, "cmd": "events", "args": ["60"]}
+{"t": 1792646062853, "cmd": "state", "args": []}
+{"t": 1792646062988, "cmd": "shot", "args": ["after_laws"]}
+{"t": 1792646074083, "cmd": "note", "args": ["--shot", "objective_cutoff", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: it reads 'bers 4/10 • Buildings 0/2' instead of 'Members 4/10 • Buildings 0/2'. tick ~15700"]}
+{"t": 1792646074541, "cmd": "note", "args": ["Objective 6 'Build a market stall (Wood 3/20, Stone 0/5)' completed with +50 coins at tick 13801 when the pawn Bella Jones built a stall in my settlement. I had 3 wood and 0 stone and never pressed B. The chronicle also logged 'Trade came to Farmfield: Bella Jones built a stall.' twice (ticks 13801 and 13853), while the Market panel shows 2 stalls (Ruth Walker, Bella Jones). See after_laws.png"]}
+{"t": 1792646082840, "cmd": "key", "args": ["o"]}
+{"t": 1792646083340, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792646084909, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792646085682, "cmd": "wait", "args": ["1.5"]}
+{"t": 1792646087250, "cmd": "shot", "args": ["laws5"]}
+{"t": 1792646087532, "cmd": "click", "args": ["97", "262"]}
+{"t": 1792646088263, "cmd": "wait", "args": ["1"]}
+{"t": 1792646089320, "cmd": "click", "args": ["97", "363"]}
+{"t": 1792646090049, "cmd": "wait", "args": ["1"]}
+{"t": 1792646091148, "cmd": "shot", "args": ["laws6"]}
+{"t": 1792646091452, "cmd": "key", "args": ["o"]}
+{"t": 1792646091947, "cmd": "wait", "args": ["1"]}
+{"t": 1792646099468, "cmd": "await", "args": ["WORLD", "5"]}
+{"t": 1792646099568, "cmd": "key", "args": ["e"]}
+{"t": 1792646100064, "cmd": "wait", "args": ["1"]}
+{"t": 1792646101137, "cmd": "state", "args": []}
+{"t": 1792646104253, "cmd": "face", "args": ["90"]}
+{"t": 1792646109074, "cmd": "hold", "args": ["w", "1.5"]}
+{"t": 1792646110687, "cmd": "face", "args": ["-90"]}
+{"t": 1792646114731, "cmd": "state", "args": []}
+{"t": 1792646119833, "cmd": "state", "args": ["--full"]}
+{"t": 1792646119942, "cmd": "face", "args": ["-70.8"]}
+{"t": 1792646122329, "cmd": "hold", "args": ["Shift_L+w", "0.9785714285714285"]}
+{"t": 1792646123483, "cmd": "state", "args": ["--full"]}
+{"t": 1792646123619, "cmd": "face", "args": ["-144.6"]}
+{"t": 1792646128613, "cmd": "hold", "args": ["Shift_L+w", "0.9142857142857144"]}
+{"t": 1792646129714, "cmd": "state", "args": ["--full"]}
+{"t": 1792646129884, "cmd": "face", "args": ["67"]}
+{"t": 1792646133710, "cmd": "hold", "args": ["w", "0.39999999999999997"]}
+{"t": 1792646134229, "cmd": "state", "args": ["--full"]}
+{"t": 1792646134357, "cmd": "key", "args": ["g"]}
+{"t": 1792646134840, "cmd": "wait", "args": ["0.6"]}
+{"t": 1792646135498, "cmd": "state", "args": []}
+{"t": 1792646135607, "cmd": "wait", "args": ["4"]}
+{"t": 1792646139665, "cmd": "state", "args": ["--full"]}
+{"t": 1792646139785, "cmd": "key", "args": ["g"]}
+{"t": 1792646140287, "cmd": "wait", "args": ["0.6"]}
+{"t": 1792646140961, "cmd": "state", "args": []}
+{"t": 1792646141076, "cmd": "wait", "args": ["4"]}
+{"t": 1792646145142, "cmd": "state", "args": ["--full"]}
+{"t": 1792646145249, "cmd": "key", "args": ["g"]}
+{"t": 1792646145718, "cmd": "wait", "args": ["0.6"]}
+{"t": 1792646146388, "cmd": "state", "args": []}
+{"t": 1792646146483, "cmd": "wait", "args": ["4"]}
+{"t": 1792646150565, "cmd": "shot", "args": ["gift1"]}
+{"t": 1792646157696, "cmd": "key", "args": ["o"]}
+{"t": 1792646158166, "cmd": "wait", "args": ["1.2"]}
+{"t": 1792646159416, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792646160170, "cmd": "wait", "args": ["1.2"]}
+{"t": 1792646161433, "cmd": "click", "args": ["225", "262"]}
+{"t": 1792646162157, "cmd": "wait", "args": ["1"]}
+{"t": 1792646163216, "cmd": "shot", "args": ["laws_flip"]}
+{"t": 1792646163543, "cmd": "state", "args": []}
+{"t": 1792646163679, "cmd": "key", "args": ["o"]}
+{"t": 1792646169990, "cmd": "face", "args": ["180"]}
+{"t": 1792646177452, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1792646179592, "cmd": "state", "args": ["--full"]}
+{"t": 1792646179703, "cmd": "face", "args": ["-156.3"]}
+{"t": 1792646184322, "cmd": "hold", "args": ["Shift_L+w", "0.6857142857142857"]}
+{"t": 1792646185157, "cmd": "state", "args": ["--full"]}
+{"t": 1792646185276, "cmd": "face", "args": ["-72.5"]}
+{"t": 1792646188239, "cmd": "hold", "args": ["w", "0.5111111111111111"]}
+{"t": 1792646188883, "cmd": "state", "args": ["--full"]}
+{"t": 1792646189011, "cmd": "face", "args": ["-92.6"]}
+{"t": 1792646192300, "cmd": "hold", "args": ["w", "0.17777777777777778"]}
+{"t": 1792646192596, "cmd": "state", "args": ["--full"]}
+{"t": 1792646192729, "cmd": "face", "args": ["75.9"]}
+{"t": 1792646196677, "cmd": "hold", "args": ["w", "0.48888888888888893"]}
+{"t": 1792646197282, "cmd": "state", "args": ["--full"]}
+{"t": 1792646197398, "cmd": "key", "args": ["g"]}
+{"t": 1792646197869, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646198433, "cmd": "state", "args": []}
+{"t": 1792646198544, "cmd": "wait", "args": ["3"]}
+{"t": 1792646201617, "cmd": "state", "args": ["--full"]}
+{"t": 1792646201723, "cmd": "key", "args": ["g"]}
+{"t": 1792646202194, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646202770, "cmd": "state", "args": []}
+{"t": 1792646202868, "cmd": "wait", "args": ["3"]}
+{"t": 1792646205918, "cmd": "state", "args": ["--full"]}
+{"t": 1792646206018, "cmd": "face", "args": ["-114.7"]}
+{"t": 1792646210216, "cmd": "hold", "args": ["w", "0.5222222222222223"]}
+{"t": 1792646210824, "cmd": "state", "args": ["--full"]}
+{"t": 1792646210931, "cmd": "face", "args": ["-14"]}
+{"t": 1792646211795, "cmd": "hold", "args": ["w", "0.3888888888888889"]}
+{"t": 1792646212269, "cmd": "state", "args": ["--full"]}
+{"t": 1792646212367, "cmd": "key", "args": ["g"]}
+{"t": 1792646212829, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646213380, "cmd": "state", "args": []}
+{"t": 1792646213473, "cmd": "wait", "args": ["3"]}
+{"t": 1792646216525, "cmd": "state", "args": ["--full"]}
+{"t": 1792646216624, "cmd": "face", "args": ["164.1"]}
+{"t": 1792646222385, "cmd": "hold", "args": ["w", "0.3444444444444444"]}
+{"t": 1792646222818, "cmd": "state", "args": ["--full"]}
+{"t": 1792646222917, "cmd": "face", "args": ["19.6"]}
+{"t": 1792646224831, "cmd": "hold", "args": ["Shift_L+w", "0.6142857142857142"]}
+{"t": 1792646225563, "cmd": "state", "args": ["--full"]}
+{"t": 1792646225678, "cmd": "face", "args": ["-151.9"]}
+{"t": 1792646229167, "cmd": "hold", "args": ["w", "0.35555555555555557"]}
+{"t": 1792646229624, "cmd": "state", "args": ["--full"]}
+{"t": 1792646229726, "cmd": "face", "args": ["-72.4"]}
+{"t": 1792646232992, "cmd": "hold", "args": ["Shift_L+w", "0.9642857142857143"]}
+{"t": 1792646234077, "cmd": "state", "args": ["--full"]}
+{"t": 1792646234177, "cmd": "key", "args": ["g"]}
+{"t": 1792646234633, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646235179, "cmd": "state", "args": []}
+{"t": 1792646235262, "cmd": "wait", "args": ["3"]}
+{"t": 1792646238316, "cmd": "state", "args": ["--full"]}
+{"t": 1792646238418, "cmd": "key", "args": ["g"]}
+{"t": 1792646238880, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646239431, "cmd": "state", "args": []}
+{"t": 1792646239515, "cmd": "wait", "args": ["3"]}
+{"t": 1792646242583, "cmd": "state", "args": ["--full"]}
+{"t": 1792646242695, "cmd": "face", "args": ["47.6"]}
+{"t": 1792646245571, "cmd": "hold", "args": ["w", "0.36666666666666664"]}
+{"t": 1792646246038, "cmd": "state", "args": ["--full"]}
+{"t": 1792646246160, "cmd": "key", "args": ["g"]}
+{"t": 1792646246629, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646247176, "cmd": "state", "args": []}
+{"t": 1792646247275, "cmd": "wait", "args": ["3"]}
+{"t": 1792646250328, "cmd": "state", "args": ["--full"]}
+{"t": 1792646250429, "cmd": "face", "args": ["135.6"]}
+{"t": 1792646254820, "cmd": "hold", "args": ["w", "0.41111111111111115"]}
+{"t": 1792646255314, "cmd": "state", "args": ["--full"]}
+{"t": 1792646255412, "cmd": "face", "args": ["22.3"]}
+{"t": 1792646257141, "cmd": "hold", "args": ["w", "0.41111111111111115"]}
+{"t": 1792646257636, "cmd": "state", "args": ["--full"]}
+{"t": 1792646257720, "cmd": "key", "args": ["g"]}
+{"t": 1792646258170, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646258714, "cmd": "state", "args": []}
+{"t": 1792646258794, "cmd": "wait", "args": ["3"]}
+{"t": 1792646261842, "cmd": "state", "args": ["--full"]}
+{"t": 1792646261941, "cmd": "face", "args": ["147.8"]}
+{"t": 1792646266867, "cmd": "hold", "args": ["w", "0.8111111111111112"]}
+{"t": 1792646267760, "cmd": "state", "args": ["--full"]}
+{"t": 1792646267860, "cmd": "key", "args": ["g"]}
+{"t": 1792646268310, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646268849, "cmd": "state", "args": []}
+{"t": 1792646268929, "cmd": "wait", "args": ["3"]}
+{"t": 1792646271979, "cmd": "state", "args": ["--full"]}
+{"t": 1792646272066, "cmd": "face", "args": ["-171.1"]}
+{"t": 1792646277230, "cmd": "hold", "args": ["w", "0.4666666666666667"]}
+{"t": 1792646277776, "cmd": "state", "args": ["--full"]}
+{"t": 1792646277872, "cmd": "face", "args": ["107.1"]}
+{"t": 1792646282586, "cmd": "hold", "args": ["w", "0.6777777777777777"]}
+{"t": 1792646283346, "cmd": "state", "args": ["--full"]}
+{"t": 1792646283435, "cmd": "key", "args": ["g"]}
+{"t": 1792646283890, "cmd": "wait", "args": ["0.5"]}
+{"t": 1792646284438, "cmd": "state", "args": []}
+{"t": 1792646291528, "cmd": "note", "args": ["--shot", "members_unreachable", "Members of my own nation (Bella Jones, Ruth Walker, Charlie Thompson) stand 1.4-3.6m from me, up to ~10m outside my settlement's well. Over 10 tries, G always said 'There is no one within reach to give a gift to.' Pawns that count as inside a settlement are skipped, so I couldn't befriend my own people to shape who becomes heir. The HUD doesn't say why, and the members aren't listed anywhere either (the Nations panel shows only '4 members'), so a player can't see or influence the line of succession. tick ~18000"]}
+{"t": 1792646291774, "cmd": "state", "args": []}
+{"t": 1792646297581, "cmd": "key", "args": ["o"]}
+{"t": 1792646298028, "cmd": "wait", "args": ["1.2"]}
+{"t": 1792646299269, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792646299978, "cmd": "wait", "args": ["1.2"]}
+{"t": 1792646301216, "cmd": "click", "args": ["353", "175"]}
+{"t": 1792646301923, "cmd": "wait", "args": ["1"]}
+{"t": 1792646302963, "cmd": "shot", "args": ["laws_high"]}
+{"t": 1792646303138, "cmd": "key", "args": ["o"]}
+{"t": 1792646303584, "cmd": "wait", "args": ["60"]}
+{"t": 1792646363627, "cmd": "events", "args": ["80"]}
+{"t": 1792646374919, "cmd": "note", "args": ["Laws tab: the line under each law describes only the law in force. With Taxes: None and High pending, it still reads 'No tax: members keep their coin.', so a player can't find out what Low or High do (coin rate, loyalty cost, immigration) until 30 s after enacting one. Hover text or a description per option would help. See laws_high.png (also laws2.png for Low). tick 21261"]}
+{"t": 1792646374996, "cmd": "state", "args": []}
+{"t": 1792646375072, "cmd": "events", "args": ["400"]}
+{"t": 1792646380165, "cmd": "note", "args": ["--shot", "chronicle_noise", "By the end of day 1 the 5-line Chronicle panel scrolls with AI rivalries, stalls and nations falling (~20 nations founded and several disbanded in the first in-game day). My own law changes, like 'Taxes were lifted in Farmfield', go off the panel within seconds. They are highlighted, which helps, but with so much noise statecraft is easy to miss; the status bar shows only one of two laws that took effect on the same tick (15501). tick ~24000"]}
+{"t": 1792646380442, "cmd": "stop", "args": []}
+{"t": 1792646411710, "cmd": "report", "args": []}
+{"t": 1792671893760, "cmd": "stop", "args": []}

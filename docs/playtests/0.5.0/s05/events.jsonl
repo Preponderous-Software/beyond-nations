@@ -1,0 +1,225 @@
+{"type":"screen","tick":0,"wallTimeMs":1792645149455,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792645155038,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645186193,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792645197607,"how":"created","slot":"world-105-20261022-045957","seed":105}
+{"type":"screen","tick":0,"wallTimeMs":1792645197613,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":199,"wallTimeMs":1792645208746,"text":"You are not in a nation."}
+{"type":"status","tick":367,"wallTimeMs":1792645216338,"text":"Created nation Lowertown."}
+{"type":"chronicle","tick":367,"wallTimeMs":1792645216338,"kind":"NationCreation","text":"You raised a banner and named your people Lowertown. It is the first nation this world has known."}
+{"type":"status","tick":427,"wallTimeMs":1792645219134,"text":"You are not inside a settlement."}
+{"type":"status","tick":563,"wallTimeMs":1792645225115,"text":"Not enough wood. Need 50 more."}
+{"type":"chronicle","tick":1251,"wallTimeMs":1792645257430,"kind":"NationCreation","text":"The nation of Oldburg was born, with Oscar Smith at its head."}
+{"type":"status","tick":1303,"wallTimeMs":1792645259905,"text":"You enter the land of Oldburg (Neutral)."}
+{"type":"chronicle","tick":1303,"wallTimeMs":1792645259905,"kind":"SettlementFounded","text":"Oldburg put down roots: Oscar Smith founded its first settlement."}
+{"type":"status","tick":1963,"wallTimeMs":1792645293721,"text":"No entities within range to interact with."}
+{"type":"status","tick":1999,"wallTimeMs":1792645295498,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":2003,"wallTimeMs":1792645295697,"kind":"NationCreation","text":"Ruth Smith declared the nation of Bluetown, though none had yet sworn to it."}
+{"type":"status","tick":2031,"wallTimeMs":1792645297004,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2263,"wallTimeMs":1792645308717,"text":"You leave the land of Oldburg for the wilds."}
+{"type":"status","tick":2275,"wallTimeMs":1792645309341,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":2503,"wallTimeMs":1792645320732,"text":"You enter the land of Oldburg (Neutral)."}
+{"type":"status","tick":2583,"wallTimeMs":1792645324508,"text":"You leave the land of Oldburg for the wilds."}
+{"type":"chronicle","tick":2651,"wallTimeMs":1792645327524,"kind":"SettlementFounded","text":"Ruth Smith raised the first settlement of Bluetown."}
+{"type":"status","tick":2663,"wallTimeMs":1792645328074,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":2703,"wallTimeMs":1792645329717,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2703}
+{"type":"status","tick":2703,"wallTimeMs":1792645329717,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":2751,"wallTimeMs":1792645331871,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":2751,"wallTimeMs":1792645331871,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":2803,"wallTimeMs":1792645334193,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":2803,"wallTimeMs":1792645334193,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":2967,"wallTimeMs":1792645342024,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3003,"wallTimeMs":1792645343774,"kind":"NationCreation","text":"The nation of Whiteburg was born, with Jasmine Smith at its head."}
+{"type":"chronicle","tick":3103,"wallTimeMs":1792645348704,"kind":"SettlementFounded","text":"Whiteburg put down roots: Jasmine Smith founded its first settlement."}
+{"type":"status","tick":3195,"wallTimeMs":1792645353143,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":3379,"wallTimeMs":1792645361532,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3503,"wallTimeMs":1792645367359,"kind":"StallBuilt","text":"Ruth Smith built a market stall in Bluetown."}
+{"type":"status","tick":3643,"wallTimeMs":1792645373831,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":3703,"wallTimeMs":1792645376745,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":3915,"wallTimeMs":1792645386055,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":4083,"wallTimeMs":1792645394357,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":4307,"wallTimeMs":1792645404762,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":4515,"wallTimeMs":1792645414553,"text":"Too close to another settlement."}
+{"type":"status","tick":4575,"wallTimeMs":1792645417344,"text":"You are not inside a settlement."}
+{"type":"chronicle","tick":4851,"wallTimeMs":1792645430254,"kind":"StallBuilt","text":"A new stall opened in the market of Whiteburg, built by Jasmine Smith."}
+{"type":"status","tick":4875,"wallTimeMs":1792645431368,"text":"Too close to another settlement."}
+{"type":"chronicle","tick":5003,"wallTimeMs":1792645437442,"kind":"NationRelationChange","text":"Oldburg and Bluetown have become rivals."}
+{"type":"status","tick":5163,"wallTimeMs":1792645445177,"text":"You are back on your own land."}
+{"type":"chronicle","tick":5163,"wallTimeMs":1792645445177,"kind":"SettlementFounded","text":"You laid the first stones of Lowertown."}
+{"type":"objective_completed","tick":5203,"wallTimeMs":1792645447315,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":2400}
+{"type":"status","tick":5203,"wallTimeMs":1792645447315,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"status","tick":5275,"wallTimeMs":1792645451377,"text":"You are not inside a settlement."}
+{"type":"status","tick":5479,"wallTimeMs":1792645462192,"text":"Entered settlement."}
+{"type":"objective_completed","tick":5503,"wallTimeMs":1792645463569,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":300}
+{"type":"status","tick":5503,"wallTimeMs":1792645463569,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":5503,"wallTimeMs":1792645463569,"kind":"NationRelationChange","text":"Oldburg and Whiteburg have become rivals."}
+{"type":"chronicle","tick":5651,"wallTimeMs":1792645471666,"kind":"NationJoin","text":"Abigail Thompson threw in their lot with Lowertown."}
+{"type":"status","tick":5735,"wallTimeMs":1792645476356,"text":"This settlement does not have any stalls."}
+{"type":"status","tick":5867,"wallTimeMs":1792645483734,"text":"Exited settlement."}
+{"type":"chronicle","tick":5903,"wallTimeMs":1792645485670,"kind":"StallBuilt","text":"Trade came to Oldburg: Oscar Smith built a stall."}
+{"type":"chronicle","tick":5903,"wallTimeMs":1792645485670,"kind":"StallBuilt","text":"Trade came to Whiteburg: Jasmine Smith built a stall."}
+{"type":"status","tick":5963,"wallTimeMs":1792645488778,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"save","tick":6003,"wallTimeMs":1792645490929,"count":1}
+{"type":"status","tick":6003,"wallTimeMs":1792645490929,"text":"Autosaved."}
+{"type":"status","tick":6011,"wallTimeMs":1792645491330,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":6059,"wallTimeMs":1792645493891,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":6203,"wallTimeMs":1792645501256,"kind":"NationCreation","text":"Karl Robinson raised a banner and called it Northernton."}
+{"type":"status","tick":6335,"wallTimeMs":1792645508469,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":6527,"wallTimeMs":1792645517740,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":6603,"wallTimeMs":1792645521594,"kind":"SettlementFounded","text":"Karl Robinson laid the first stones of Northernton."}
+{"type":"chronicle","tick":6703,"wallTimeMs":1792645526253,"kind":"StallBuilt","text":"Trade came to Bluetown: Ruth Smith built a stall."}
+{"type":"chronicle","tick":6851,"wallTimeMs":1792645533119,"kind":"StallBuilt","text":"Jasmine Smith built a market stall in Whiteburg."}
+{"type":"status","tick":6891,"wallTimeMs":1792645534772,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":6951,"wallTimeMs":1792645537613,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":7291,"wallTimeMs":1792645552676,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":7503,"wallTimeMs":1792645562903,"text":"Relations with Oldburg are now Rival."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1792645562903,"kind":"NationRelationChange","text":"Lowertown and Oldburg have become rivals."}
+{"type":"chronicle","tick":7603,"wallTimeMs":1792645567939,"kind":"StallBuilt","text":"Oscar Smith built a market stall in Oldburg."}
+{"type":"chronicle","tick":7651,"wallTimeMs":1792645570663,"kind":"StallBuilt","text":"Ruth Smith built a market stall in Bluetown."}
+{"type":"chronicle","tick":7751,"wallTimeMs":1792645576680,"kind":"StallBuilt","text":"Trade came to Northernton: Karl Robinson built a stall."}
+{"type":"chronicle","tick":7751,"wallTimeMs":1792645576680,"kind":"NationRelationChange","text":"Bluetown and Oldburg are now hostile."}
+{"type":"status","tick":7763,"wallTimeMs":1792645577413,"text":"Entered settlement."}
+{"type":"status","tick":7807,"wallTimeMs":1792645579880,"text":"Stall built."}
+{"type":"chronicle","tick":7807,"wallTimeMs":1792645579880,"kind":"StallBuilt","text":"You built a market stall in Lowertown."}
+{"type":"objective_completed","tick":7851,"wallTimeMs":1792645582258,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":2348}
+{"type":"status","tick":7851,"wallTimeMs":1792645582258,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":7903,"wallTimeMs":1792645585288,"kind":"StallBuilt","text":"Trade came to Whiteburg: Jasmine Smith built a stall. The market is now full."}
+{"type":"chronicle","tick":7903,"wallTimeMs":1792645585288,"kind":"NationCreation","text":"The nation of Oldwood was born, with Tilly Evans at its head."}
+{"type":"chronicle","tick":8003,"wallTimeMs":1792645590917,"kind":"NationRaid","text":"Bluetown raided Oldburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":8051,"wallTimeMs":1792645593738,"kind":"SettlementFounded","text":"Oldwood put down roots: Tilly Evans founded its first settlement."}
+{"type":"status","tick":8087,"wallTimeMs":1792645595771,"text":"No one is buying resources at this market or you do not have enough resources to sell."}
+{"type":"chronicle","tick":8551,"wallTimeMs":1792645621621,"kind":"NationCreation","text":"The nation of Yellowshire was born, with Charlie Jones at its head."}
+{"type":"chronicle","tick":8651,"wallTimeMs":1792645627252,"kind":"StallBuilt","text":"Ruth Smith built a market stall in Bluetown. The market is now full."}
+{"type":"status","tick":8851,"wallTimeMs":1792645640994,"text":"House built."}
+{"type":"status","tick":9003,"wallTimeMs":1792645654765,"text":"Relations with Northernton are now Rival."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1792645654765,"kind":"NationRelationChange","text":"Lowertown and Northernton have become rivals."}
+{"type":"chronicle","tick":9051,"wallTimeMs":1792645658277,"kind":"StallBuilt","text":"Oscar Smith built a market stall in Oldburg."}
+{"type":"status","tick":9055,"wallTimeMs":1792645658572,"text":"Collected 3 wood and 15 stone from the stockpile."}
+{"type":"status","tick":9195,"wallTimeMs":1792645667512,"text":"Exited settlement."}
+{"type":"status","tick":9391,"wallTimeMs":1792645678093,"text":"You leave the land of Lowertown for the wilds."}
+{"type":"status","tick":9571,"wallTimeMs":1792645686681,"text":"You enter the land of Whiteburg (Neutral)."}
+{"type":"status","tick":10035,"wallTimeMs":1792645709379,"text":"Entered settlement."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792645718244,"kind":"SettlementFounded","text":"Charlie Jones laid the first stones of Yellowshire."}
+{"type":"status","tick":10211,"wallTimeMs":1792645718634,"text":"No one is buying resources at this market or you do not have enough resources to sell."}
+{"type":"status","tick":10363,"wallTimeMs":1792645726383,"text":"Exited settlement."}
+{"type":"status","tick":10503,"wallTimeMs":1792645733685,"text":"Relations with Oldwood are now Rival."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792645733685,"kind":"StallBuilt","text":"Karl Robinson built a market stall in Northernton."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792645733685,"kind":"NationRelationChange","text":"Lowertown and Oldwood have become rivals."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792645733685,"kind":"NationRelationChange","text":"Whiteburg and Oldwood have become rivals."}
+{"type":"status","tick":10519,"wallTimeMs":1792645734509,"text":"Entered settlement."}
+{"type":"status","tick":10795,"wallTimeMs":1792645748839,"text":"No one is buying resources at this market or you do not have enough resources to sell."}
+{"type":"chronicle","tick":11051,"wallTimeMs":1792645762213,"kind":"StallBuilt","text":"Oscar Smith built a market stall in Oldburg. The market is now full."}
+{"type":"status","tick":11079,"wallTimeMs":1792645763638,"text":"You purchased food from Abigail Davies. Relationship increased to 1."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792645772165,"kind":"NationRelationChange","text":"Whiteburg and Oldburg are now hostile."}
+{"type":"status","tick":11287,"wallTimeMs":1792645773923,"text":"You sold resources to Abigail Davies. Relationship increased to 2."}
+{"type":"chronicle","tick":11403,"wallTimeMs":1792645779644,"kind":"NationCreation","text":"Karl Wood founded the nation of Northerntown."}
+{"type":"status","tick":11615,"wallTimeMs":1792645789743,"text":"You sold resources to Abigail Davies. Relationship increased to 3."}
+{"type":"status","tick":11663,"wallTimeMs":1792645792078,"text":"You sold resources to Katie Thompson. Relationship increased to 1."}
+{"type":"status","tick":11719,"wallTimeMs":1792645794714,"text":"No one is buying resources at this market or you do not have enough resources to sell."}
+{"type":"status","tick":11771,"wallTimeMs":1792645797120,"text":"No one is buying resources at this market or you do not have enough resources to sell. (x2)"}
+{"type":"chronicle","tick":11803,"wallTimeMs":1792645798594,"kind":"StallBuilt","text":"Karl Robinson built a market stall in Northernton."}
+{"type":"status","tick":11823,"wallTimeMs":1792645799546,"text":"No one is buying resources at this market or you do not have enough resources to sell. (x3)"}
+{"type":"save","tick":12003,"wallTimeMs":1792645807984,"count":2}
+{"type":"status","tick":12003,"wallTimeMs":1792645807984,"text":"Autosaved."}
+{"type":"chronicle","tick":12003,"wallTimeMs":1792645807984,"kind":"NationRaid","text":"Raiders from Whiteburg struck Oldburg, taking 5 coins."}
+{"type":"chronicle","tick":12351,"wallTimeMs":1792645824154,"kind":"SettlementFounded","text":"Karl Wood raised the first settlement of Northerntown."}
+{"type":"status","tick":12419,"wallTimeMs":1792645827272,"text":"Exited settlement."}
+{"type":"status","tick":12503,"wallTimeMs":1792645831418,"text":"Relations with Oldburg are now Hostile."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792645831418,"kind":"NationRelationChange","text":"Whiteburg and Yellowshire have become rivals."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792645831418,"kind":"NationRelationChange","text":"Oldburg and Lowertown are now hostile."}
+{"type":"chronicle","tick":12903,"wallTimeMs":1792645850853,"kind":"StallBuilt","text":"A new stall opened in the market of Whiteburg, built by Jasmine Smith."}
+{"type":"status","tick":13003,"wallTimeMs":1792645856344,"text":"Oldburg raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792645856344,"kind":"NationRaid","text":"Oldburg raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":13151,"wallTimeMs":1792645865374,"kind":"StallBuilt","text":"Trade came to Oldwood: Tilly Evans built a stall."}
+{"type":"chronicle","tick":13351,"wallTimeMs":1792645876900,"kind":"StallBuilt","text":"A new stall opened in the market of Northernton, built by Karl Robinson. The market is now full."}
+{"type":"status","tick":14003,"wallTimeMs":1792645907925,"text":"Oldburg raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645907925,"kind":"NationRelationChange","text":"Oldwood and Yellowshire have become rivals."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792645907925,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":14103,"wallTimeMs":1792645912793,"kind":"StallBuilt","text":"A new stall opened in the market of Whiteburg, built by Jasmine Smith. The market is now full."}
+{"type":"chronicle","tick":14403,"wallTimeMs":1792645927533,"kind":"StallBuilt","text":"Trade came to Northerntown: Karl Wood built a stall."}
+{"type":"chronicle","tick":14403,"wallTimeMs":1792645927533,"kind":"NationCreation","text":"The nation of Hamletport was born, with Harriet White at its head."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792645944811,"kind":"NationRelationChange","text":"Whiteburg and Northerntown have become rivals."}
+{"type":"chronicle","tick":14903,"wallTimeMs":1792645952595,"kind":"SettlementFounded","text":"Hamletport put down roots: Harriet White founded its first settlement."}
+{"type":"status","tick":15003,"wallTimeMs":1792645957630,"text":"Oldburg raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792645957630,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792645970485,"kind":"NationRelationChange","text":"Bluetown and Whiteburg have formed an alliance."}
+{"type":"chronicle","tick":15451,"wallTimeMs":1792645981215,"kind":"StallBuilt","text":"Tilly Evans built a market stall in Oldwood."}
+{"type":"status","tick":15503,"wallTimeMs":1792645984107,"text":"Relations with Oldwood are now Hostile."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792645984107,"kind":"NationRelationChange","text":"Oldburg and Oldwood have formed an alliance."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792645984107,"kind":"NationRelationChange","text":"Oldwood and Lowertown are now hostile."}
+{"type":"status","tick":16003,"wallTimeMs":1792646009697,"text":"Oldwood raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1792646009697,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1792646009697,"kind":"NationRaid","text":"Raiders from Oldwood struck Lowertown, taking 5 coins."}
+{"type":"status","tick":17003,"wallTimeMs":1792646057685,"text":"Oldwood raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792646057685,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792646057685,"kind":"NationRaid","text":"Raiders from Oldwood struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":17251,"wallTimeMs":1792646068660,"kind":"NationRelationChange","text":"Oldwood and Hamletport have become rivals."}
+{"type":"status","tick":17375,"wallTimeMs":1792646074475,"text":"Welcome home!"}
+{"type":"status","tick":17383,"wallTimeMs":1792646074723,"text":"You are back on your own land."}
+{"type":"status","tick":17727,"wallTimeMs":1792646086100,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":17967,"wallTimeMs":1792646093696,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"save","tick":18003,"wallTimeMs":1792646094782,"count":3}
+{"type":"status","tick":18003,"wallTimeMs":1792646094782,"text":"Autosaved."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1792646094782,"kind":"NationRaid","text":"Oldburg raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1792646094782,"kind":"NationRaid","text":"Oldwood raided Lowertown and carried off 5 coins."}
+{"type":"status","tick":18343,"wallTimeMs":1792646106882,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":18503,"wallTimeMs":1792646112745,"text":"Relations with Whiteburg are now Friendly."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792646112745,"kind":"NationRelationChange","text":"Relations between Lowertown and Whiteburg are now friendly."}
+{"type":"chronicle","tick":18703,"wallTimeMs":1792646119464,"kind":"WorldEvent","text":"Wanderers came to the Village of Northerntown, and Karl Wood welcomed them all: Katie Smith, Una Watson joined Northerntown."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792646121024,"kind":"NationRelationChange","text":"Oldburg and Northernton have formed an alliance."}
+{"type":"status","tick":18807,"wallTimeMs":1792646122926,"text":"Entered settlement."}
+{"type":"status","tick":18871,"wallTimeMs":1792646125562,"text":"Not enough wood. Need 4 more."}
+{"type":"status","tick":19003,"wallTimeMs":1792646130977,"text":"Oldwood raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792646130977,"kind":"NationRelationChange","text":"Relations between Lowertown and Yellowshire are now friendly."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792646130977,"kind":"NationRelationChange","text":"Oldwood and Yellowshire are now hostile."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792646130977,"kind":"NationRaid","text":"Oldburg raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792646130977,"kind":"NationRaid","text":"Oldwood raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792646130977,"kind":"NationRaid","text":"Raiders from Oldwood struck Yellowshire, taking 2 wood, 3 stone."}
+{"type":"status","tick":19163,"wallTimeMs":1792646136762,"text":"Exited settlement."}
+{"type":"status","tick":19643,"wallTimeMs":1792646154864,"text":"You leave the land of Lowertown for the wilds."}
+{"type":"status","tick":19651,"wallTimeMs":1792646155130,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792646158457,"kind":"NationRelationChange","text":"Whiteburg and Northerntown are now hostile."}
+{"type":"status","tick":19883,"wallTimeMs":1792646162616,"text":"You are back on your own land."}
+{"type":"status","tick":20003,"wallTimeMs":1792646166439,"text":"Oldwood raided your camp: 5 coins taken."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792646166439,"kind":"NationRelationChange","text":"Northernton and Lowertown are now hostile."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792646166439,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792646166439,"kind":"NationRaid","text":"Northernton raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792646166439,"kind":"NationRaid","text":"Raiders from Oldwood struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792646166439,"kind":"NationRaid","text":"Whiteburg raided Northerntown and carried off 5 coins, 2 wood."}
+{"type":"status","tick":20071,"wallTimeMs":1792646168639,"text":"Entered settlement."}
+{"type":"status","tick":20139,"wallTimeMs":1792646171223,"text":"Stall built."}
+{"type":"chronicle","tick":20139,"wallTimeMs":1792646171223,"kind":"StallBuilt","text":"You built a market stall in Lowertown."}
+{"type":"status","tick":21003,"wallTimeMs":1792646202595,"text":"Northerntown has fallen and been disbanded."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationRaid","text":"Northernton raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationRaid","text":"Oldwood raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationRaid","text":"Raiders from Bluetown struck Oldburg, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationRaid","text":"Raiders from Whiteburg struck Oldburg, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationRaid","text":"Raiders from Whiteburg struck Northerntown, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"SettlementCapture","text":"After a siege, a village of Northerntown fell to Whiteburg."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792646202595,"kind":"NationDisband","text":"Northerntown is no more; it never raised so much as a hut."}
+{"type":"status","tick":22003,"wallTimeMs":1792646235834,"text":"Northernton raided your camp: 3 coins taken."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792646235834,"kind":"NationRaid","text":"Oldburg raided Lowertown and carried off 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792646235834,"kind":"NationRaid","text":"Raiders from Northernton struck Lowertown, taking 3 coins."}
+{"type":"status","tick":22251,"wallTimeMs":1792646243867,"text":"Relations with Hamletport are now Friendly."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1792646243867,"kind":"NationRelationChange","text":"Relations between Lowertown and Hamletport are now friendly."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1792646243867,"kind":"NationRelationChange","text":"Oldwood and Hamletport are now hostile."}
+{"type":"chronicle","tick":22503,"wallTimeMs":1792646252184,"kind":"NationRelationChange","text":"Oldburg and Yellowshire swore an alliance."}
+{"type":"status","tick":23003,"wallTimeMs":1792646267307,"text":"Oldburg raided your camp: 4 coins taken."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792646267307,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 4 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792646267307,"kind":"NationRaid","text":"Raiders from Yellowshire struck Oldwood, taking 5 coins, 4 wood, 3 stone."}
+{"type":"status","tick":23503,"wallTimeMs":1792646282453,"text":"Hamletport has fallen and been disbanded."}
+{"type":"chronicle","tick":23503,"wallTimeMs":1792646282453,"kind":"SettlementCapture","text":"Oldwood captured a camp from Hamletport."}
+{"type":"chronicle","tick":23503,"wallTimeMs":1792646282453,"kind":"NationDisband","text":"Hamletport is no more; it never raised so much as a hut."}
+{"type":"save","tick":24003,"wallTimeMs":1792646297173,"count":4}
+{"type":"status","tick":24003,"wallTimeMs":1792646297173,"text":"Autosaved."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1792646297173,"kind":"NationRelationChange","text":"Relations between Whiteburg and Oldwood are now neutral."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1792646297173,"kind":"NationRaid","text":"Oldburg raided Lowertown and carried off 4 coins."}
+{"type":"status","tick":25003,"wallTimeMs":1792646326384,"text":"Oldburg raided your camp: 4 coins taken."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1792646326384,"kind":"NationRaid","text":"Raiders from Oldburg struck Lowertown, taking 4 coins."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1792646326384,"kind":"NationRaid","text":"Raiders from Oldwood struck Yellowshire, taking 5 coins, 4 wood, 5 stone."}
+{"type":"world_event_offered","tick":25351,"wallTimeMs":1792646336297,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone (unavailable)","Decline"]}
+{"type":"status","tick":25351,"wallTimeMs":1792646372977,"text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"chronicle","tick":25351,"wallTimeMs":1792646372977,"kind":"WorldEvent","text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"world_event_resolved","tick":25351,"wallTimeMs":1792646372977,"title":"A travelling merchant","status":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"status","tick":26003,"wallTimeMs":1792646391231,"text":"Oldburg raided your camp: 4 coins taken."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1792646391231,"kind":"NationRaid","text":"Oldburg raided Lowertown and carried off 4 coins."}

@@ -11,7 +11,9 @@ namespace beyondnations.desktop.ui.boxes {
     * the next era unlocks and, once they are within reach, how close each
     * victory is -- and tapping again closes it, so nothing needs a hover.
     * While the player's nation is collapsing it says so, in red, with the
-    * time left.
+    * time left. While its shelter from sieges lasts the detail says so, and
+    * once the Town era ends it the box counts down, in amber and without
+    * being opened, to when sieges can begin.
     *
     * What it says is decided by the static methods, which need no ImGui
     * frame and are what the tests check.
@@ -21,6 +23,9 @@ namespace beyondnations.desktop.ui.boxes {
         private static readonly Vector4 MetColour = new Vector4(0.6f, 1f, 0.6f, 1f);
         private static readonly Vector4 UnmetColour = new Vector4(0.85f, 0.85f, 0.85f, 1f);
         private static readonly Vector4 DangerColour = new Vector4(1f, 0.4f, 0.35f, 1f);
+        private static readonly Vector4 WarningColour = new Vector4(1f, 0.75f, 0.3f, 1f);
+
+        public const string ShelteredLine = "Sheltered: no siege can begin until the Town era.";
 
         private const ImGuiWindowFlags PanelFlags =
             ImGuiWindowFlags.NoDecoration |
@@ -74,6 +79,16 @@ namespace beyondnations.desktop.ui.boxes {
             return "Collapsing! " + (seconds / 60) + ":" + (seconds % 60).ToString("00") + " left";
         }
 
+        /** "Sieges can begin in 4:12", or null when the player's nation is sheltered or the warning is over. */
+        public static string siegeWarning(Simulation simulation) {
+            int left = simulation.getEraTracker().getSiegeWarningTicksLeft(simulation);
+            if (left < 0 || ObjectiveCatalog.playerNation(simulation) == null) {
+                return null;
+            }
+            int seconds = left / simulation.getTickCounter().getTicksPerSecond();
+            return "Sieges can begin in " + (seconds / 60) + ":" + (seconds % 60).ToString("00");
+        }
+
         /** The opened detail, one line each, with whether each requirement is met. */
         public static List<KeyValuePair<string, bool>> detailLines(Simulation simulation) {
             List<KeyValuePair<string, bool>> lines = new List<KeyValuePair<string, bool>>();
@@ -88,6 +103,10 @@ namespace beyondnations.desktop.ui.boxes {
                 if (unlocks.Count > 0) {
                     lines.Add(new KeyValuePair<string, bool>("Unlocks: " + string.Join(", ", unlocks), false));
                 }
+            }
+            Nation own = ObjectiveCatalog.playerNation(simulation);
+            if (own != null && own.isSheltered()) {
+                lines.Add(new KeyValuePair<string, bool>(ShelteredLine, true));
             }
             NationStanding standing = NationStanding.of(simulation);
             Era era = eras.getEra();
@@ -128,6 +147,10 @@ namespace beyondnations.desktop.ui.boxes {
                 string warning = collapseWarning(simulation);
                 if (warning != null) {
                     Overlay.textColoured(DangerColour, warning);
+                }
+                string siege = siegeWarning(simulation);
+                if (siege != null) {
+                    Overlay.textColoured(WarningColour, siege);
                 }
                 if (expanded) {
                     ImGui.PushTextWrapPos(0f);

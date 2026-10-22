@@ -99,6 +99,8 @@ namespace beyondnationstests {
             [typeof(Status)] = new Entry {
                 Saved = new[] { "ticksToExpire", "status", "tickLastSet", "duplicateMessageCount" },
                 Derived = new[] { "tickCounter" },
+                // which messages share the line this step: the saved text is the line
+                Transient = new[] { "parts", "stepping", "joinable" },
             },
             [typeof(Inventory)] = saved("slots", "toolWear"),
             [typeof(ItemSlot)] = saved("itemStack"),
@@ -124,7 +126,7 @@ namespace beyondnationstests {
             [typeof(Nation)] = new Entry {
                 Saved = new[] { "random", "id", "name", "leaderId", "members", "roles", "color", "settlements" },
                 // from the saved era, by EraTracker.applyRules at the end of a load
-                Derived = new[] { "settlementLimit", "sheltered" },
+                Derived = new[] { "settlementLimit", "sheltered", "forewarned" },
             },
             [typeof(NationId)] = saved("guid"),
             [typeof(NationRepository)] = new Entry {

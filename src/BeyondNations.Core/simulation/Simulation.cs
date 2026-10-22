@@ -174,6 +174,8 @@ namespace beyondnations {
 
         public void fixedUpdate(float fixedDeltaTime) {
                     tickCounter.increment();
+                    // messages said during this step share the status line
+                    player.getStatus().beginTick();
                     worldGenerator.update();
                     worldGenerator.regrowRocks(tickCounter.getTotalTicks());
                     checkIfPlayerIsFallingIntoVoid();
@@ -254,7 +256,8 @@ namespace beyondnations {
                             if (pawn.getEnergy() <= 0) {
                                 eventProducer.producePawnDeathEvent(pawn);
                                 numPawnDeaths++;
-                                player.getStatus().update(pawn.getName() + " has died.");
+                                // a run of deaths is one counting line, not one line per pawn
+                                DeathNotice.report(player.getStatus(), pawn.getName());
                                 if (gameConfig.getRespawnPawns()) {
                                     pawn.setEnergy(100);
                                     if (gameConfig.getKeepInventoryOnDeath() == false) {
@@ -449,6 +452,7 @@ namespace beyondnations {
                     // made in the era just reached.
                     eraTracker.update(this);
                     objectiveTracker.update(this);
+                    player.getStatus().endTick();
                 }
 
         /**

@@ -1,0 +1,342 @@
+{"t": 1792645147653, "cmd": "start", "args": ["--seed", "108"]}
+{"t": 1792645155036, "cmd": "key", "args": ["space"]}
+{"t": 1792645155567, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1792645155745, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645156548, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1792645156711, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645157501, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1792645157857, "cmd": "state", "args": []}
+{"t": 1792645158016, "cmd": "shot", "args": ["start"]}
+{"t": 1792645165276, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645173688, "cmd": "key", "args": ["e"]}
+{"t": 1792645174226, "cmd": "key", "args": ["e"]}
+{"t": 1792645174730, "cmd": "key", "args": ["e"]}
+{"t": 1792645175233, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645185137, "cmd": "key", "args": ["e"]}
+{"t": 1792645185775, "cmd": "key", "args": ["e"]}
+{"t": 1792645186403, "cmd": "key", "args": ["e"]}
+{"t": 1792645187043, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645207360, "cmd": "key", "args": ["e"]}
+{"t": 1792645207880, "cmd": "key", "args": ["e"]}
+{"t": 1792645208437, "cmd": "key", "args": ["e"]}
+{"t": 1792645208984, "cmd": "state", "args": []}
+{"t": 1792645212824, "cmd": "status", "args": []}
+{"t": 1792645213015, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645218259, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645219613, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645226219, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645227658, "cmd": "key", "args": ["n"]}
+{"t": 1792645228197, "cmd": "wait", "args": ["2"]}
+{"t": 1792645230278, "cmd": "shot", "args": ["nation"]}
+{"t": 1792645230538, "cmd": "state", "args": []}
+{"t": 1792645235557, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645244315, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645245772, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645261700, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645263153, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645273300, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645274712, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645281893, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645283264, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645293050, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645294508, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645307841, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645309276, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645316151, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645317557, "cmd": "key", "args": ["f"]}
+{"t": 1792645318103, "cmd": "wait", "args": ["2"]}
+{"t": 1792645320174, "cmd": "state", "args": []}
+{"t": 1792645320302, "cmd": "shot", "args": ["settle"]}
+{"t": 1792645323963, "cmd": "face", "args": ["180"]}
+{"t": 1792645330444, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792645338658, "cmd": "key", "args": ["f"]}
+{"t": 1792645339240, "cmd": "wait", "args": ["2"]}
+{"t": 1792645341387, "cmd": "state", "args": []}
+{"t": 1792645345392, "cmd": "state", "args": []}
+{"t": 1792645351621, "cmd": "note", "args": ["--shot", "tooclose", "Pressing F 222m from nearest settlement says only 'Too close to another settlement.' with no minimum distance or direction; player must guess how far to walk. Repeated twice (x2)."]}
+{"t": 1792645351985, "cmd": "face", "args": ["20"]}
+{"t": 1792645352920, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645359126, "cmd": "key", "args": ["f"]}
+{"t": 1792645359720, "cmd": "wait", "args": ["2"]}
+{"t": 1792645361875, "cmd": "state", "args": []}
+{"t": 1792645371158, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1792645371666, "cmd": "key", "args": ["e"]}
+{"t": 1792645372202, "cmd": "wait", "args": ["2"]}
+{"t": 1792645374271, "cmd": "state", "args": []}
+{"t": 1792645374441, "cmd": "shot", "args": ["inside"]}
+{"t": 1792645379439, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645443940, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645445342, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645460880, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645462356, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645475909, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645477338, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645494391, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645495795, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645513981, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645515495, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645523691, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645525101, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645533890, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645535323, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645544710, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645546125, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645552484, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645553929, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645577970, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645579413, "cmd": "walkto", "args": ["settlement", "300"]}
+{"t": 1792645594195, "cmd": "key", "args": ["b"]}
+{"t": 1792645594756, "cmd": "wait", "args": ["1"]}
+{"t": 1792645595859, "cmd": "key", "args": ["k"]}
+{"t": 1792645596382, "cmd": "wait", "args": ["2"]}
+{"t": 1792645598477, "cmd": "state", "args": []}
+{"t": 1792645598638, "cmd": "events", "args": ["15"]}
+{"t": 1792645603015, "cmd": "shot", "args": ["where"]}
+{"t": 1792645603313, "cmd": "key", "args": ["h"]}
+{"t": 1792645603824, "cmd": "wait", "args": ["3"]}
+{"t": 1792645606895, "cmd": "state", "args": []}
+{"t": 1792645610631, "cmd": "key", "args": ["e"]}
+{"t": 1792645611193, "cmd": "wait", "args": ["2"]}
+{"t": 1792645613255, "cmd": "key", "args": ["k"]}
+{"t": 1792645613786, "cmd": "wait", "args": ["2"]}
+{"t": 1792645615868, "cmd": "state", "args": []}
+{"t": 1792645616010, "cmd": "shot", "args": ["farm"]}
+{"t": 1792645621544, "cmd": "click", "args": ["848", "517"]}
+{"t": 1792645622318, "cmd": "wait", "args": ["2"]}
+{"t": 1792645624450, "cmd": "key", "args": ["k"]}
+{"t": 1792645625013, "cmd": "wait", "args": ["2"]}
+{"t": 1792645627098, "cmd": "key", "args": ["k"]}
+{"t": 1792645627613, "cmd": "wait", "args": ["2"]}
+{"t": 1792645629710, "cmd": "state", "args": []}
+{"t": 1792645629830, "cmd": "events", "args": ["10"]}
+{"t": 1792645632672, "cmd": "shot", "args": ["farm2"]}
+{"t": 1792645632946, "cmd": "state", "args": []}
+{"t": 1792645639412, "cmd": "note", "args": ["--shot", "truncated", "Objective 7 progress bar label reads 'bers 5/10' -- 'Members' is clipped on the left of the HUD objective panel."]}
+{"t": 1792645639836, "cmd": "click", "args": ["742", "517"]}
+{"t": 1792645640842, "cmd": "wait", "args": ["2"]}
+{"t": 1792645643061, "cmd": "key", "args": ["k"]}
+{"t": 1792645643735, "cmd": "wait", "args": ["2"]}
+{"t": 1792645645850, "cmd": "state", "args": []}
+{"t": 1792645655735, "cmd": "state", "args": ["--full"]}
+{"t": 1792645655900, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645683779, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645685188, "cmd": "state", "args": ["--full"]}
+{"t": 1792645685391, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645714114, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645715568, "cmd": "state", "args": ["--full"]}
+{"t": 1792645715718, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645730280, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645731679, "cmd": "state", "args": ["--full"]}
+{"t": 1792645731809, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645737412, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645738844, "cmd": "state", "args": ["--full"]}
+{"t": 1792645738974, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645745836, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645747293, "cmd": "state", "args": ["--full"]}
+{"t": 1792645747445, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645755368, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645756777, "cmd": "state", "args": ["--full"]}
+{"t": 1792645756905, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645762743, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645764214, "cmd": "state", "args": ["--full"]}
+{"t": 1792645764383, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645776443, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645777810, "cmd": "state", "args": ["--full"]}
+{"t": 1792645777935, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645788450, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645789892, "cmd": "state", "args": ["--full"]}
+{"t": 1792645790074, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645799354, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645800759, "cmd": "state", "args": ["--full"]}
+{"t": 1792645800878, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645809164, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645810605, "cmd": "state", "args": ["--full"]}
+{"t": 1792645810749, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645824214, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645825634, "cmd": "state", "args": ["--full"]}
+{"t": 1792645825769, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645844020, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645845599, "cmd": "state", "args": ["--full"]}
+{"t": 1792645845717, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645855705, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645857160, "cmd": "state", "args": ["--full"]}
+{"t": 1792645857305, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645866836, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645868213, "cmd": "state", "args": ["--full"]}
+{"t": 1792645868314, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645876882, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645878381, "cmd": "state", "args": ["--full"]}
+{"t": 1792645878554, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645884385, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645885751, "cmd": "state", "args": ["--full"]}
+{"t": 1792645885860, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645903062, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645904439, "cmd": "state", "args": ["--full"]}
+{"t": 1792645904534, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645915871, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645917301, "cmd": "state", "args": ["--full"]}
+{"t": 1792645917410, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645923393, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645924766, "cmd": "state", "args": ["--full"]}
+{"t": 1792645924881, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645934114, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645935554, "cmd": "state", "args": ["--full"]}
+{"t": 1792645935706, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645947530, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645948897, "cmd": "state", "args": ["--full"]}
+{"t": 1792645949040, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645957014, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645958383, "cmd": "state", "args": ["--full"]}
+{"t": 1792645958485, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792645967126, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645968596, "cmd": "state", "args": ["--full"]}
+{"t": 1792645968696, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645982870, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645984299, "cmd": "state", "args": ["--full"]}
+{"t": 1792645984429, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645994059, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792645995473, "cmd": "state", "args": ["--full"]}
+{"t": 1792645995647, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646002189, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646003611, "cmd": "state", "args": ["--full"]}
+{"t": 1792646003761, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646013181, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646014576, "cmd": "state", "args": ["--full"]}
+{"t": 1792646014702, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646019073, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646020433, "cmd": "state", "args": ["--full"]}
+{"t": 1792646020554, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646029869, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646031228, "cmd": "state", "args": ["--full"]}
+{"t": 1792646031351, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646038072, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646039479, "cmd": "state", "args": ["--full"]}
+{"t": 1792646039630, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646051683, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646053053, "cmd": "state", "args": ["--full"]}
+{"t": 1792646053153, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646065172, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646066490, "cmd": "state", "args": ["--full"]}
+{"t": 1792646066616, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646075090, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646076392, "cmd": "state", "args": ["--full"]}
+{"t": 1792646076495, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646081806, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646083134, "cmd": "state", "args": ["--full"]}
+{"t": 1792646083242, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646109511, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646110821, "cmd": "state", "args": ["--full"]}
+{"t": 1792646110925, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646116476, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646117793, "cmd": "state", "args": ["--full"]}
+{"t": 1792646117889, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646127107, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646128519, "cmd": "state", "args": ["--full"]}
+{"t": 1792646128697, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646150395, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646151726, "cmd": "state", "args": ["--full"]}
+{"t": 1792646151812, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646160885, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646162186, "cmd": "state", "args": ["--full"]}
+{"t": 1792646162275, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646169599, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646170935, "cmd": "state", "args": ["--full"]}
+{"t": 1792646171047, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646186480, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646187805, "cmd": "state", "args": ["--full"]}
+{"t": 1792646187911, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646192179, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646193494, "cmd": "state", "args": ["--full"]}
+{"t": 1792646193583, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646201790, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646203091, "cmd": "state", "args": ["--full"]}
+{"t": 1792646203185, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646232028, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646233293, "cmd": "state", "args": ["--full"]}
+{"t": 1792646233369, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646241148, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646242411, "cmd": "state", "args": ["--full"]}
+{"t": 1792646242494, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646250895, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646252153, "cmd": "state", "args": ["--full"]}
+{"t": 1792646252233, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646265177, "cmd": "state", "args": []}
+{"t": 1792646265251, "cmd": "events", "args": ["200"]}
+{"t": 1792646276001, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646277255, "cmd": "state", "args": ["--full"]}
+{"t": 1792646277334, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646282522, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646283781, "cmd": "state", "args": ["--full"]}
+{"t": 1792646283854, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646289402, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646290653, "cmd": "state", "args": ["--full"]}
+{"t": 1792646290727, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646298979, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646300227, "cmd": "state", "args": ["--full"]}
+{"t": 1792646300300, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646305928, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646307183, "cmd": "state", "args": ["--full"]}
+{"t": 1792646307254, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646312025, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646313278, "cmd": "state", "args": ["--full"]}
+{"t": 1792646313354, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646324567, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646325820, "cmd": "state", "args": ["--full"]}
+{"t": 1792646325893, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646334467, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646335718, "cmd": "state", "args": ["--full"]}
+{"t": 1792646335799, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646339948, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646341198, "cmd": "state", "args": ["--full"]}
+{"t": 1792646341267, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792646356672, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646357926, "cmd": "state", "args": ["--full"]}
+{"t": 1792646357994, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646370468, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646371726, "cmd": "state", "args": ["--full"]}
+{"t": 1792646371807, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792646379781, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792646381034, "cmd": "state", "args": ["--full"]}
+{"t": 1792646383946, "cmd": "state", "args": []}
+{"t": 1792646384012, "cmd": "shot", "args": ["event1"]}
+{"t": 1792646390273, "cmd": "note", "args": ["--shot", "event1", "Claimant sheet: choice 3 description renders 'Nothing now    but if the claimant wins anyway' - a dash glyph is missing (blank gap). Odds (half the time) and relation sizes (+15/+8/-10) not stated; 'a little goodwill' vs 'friendlier' is vague."]}
+{"t": 1792646390435, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646390885, "cmd": "wait", "args": ["2"]}
+{"t": 1792646392920, "cmd": "state", "args": []}
+{"t": 1792646392984, "cmd": "shot", "args": ["esc"]}
+{"t": 1792646397315, "cmd": "click", "args": ["480", "326"]}
+{"t": 1792646398012, "cmd": "wait", "args": ["2"]}
+{"t": 1792646400044, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646400486, "cmd": "wait", "args": ["1"]}
+{"t": 1792646401526, "cmd": "state", "args": ["--full"]}
+{"t": 1792646404701, "cmd": "events", "args": ["5"]}
+{"t": 1792646404738, "cmd": "click", "args": ["480", "349"]}
+{"t": 1792646405452, "cmd": "wait", "args": ["2"]}
+{"t": 1792646407485, "cmd": "state", "args": []}
+{"t": 1792646407542, "cmd": "shot", "args": ["choice1"]}
+{"t": 1792646407647, "cmd": "events", "args": ["8"]}
+{"t": 1792646409999, "cmd": "key", "args": ["o"]}
+{"t": 1792646410440, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1792646410699, "cmd": "wait", "args": ["1"]}
+{"t": 1792646411735, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792646419118, "cmd": "note", "args": ["--shot", "nations1", "After choosing 'Back the claimant (20 coins)' (sheet: 'Newport will be friendlier toward you'), Nations screen shows Newport Hostile (-86) with a Peace button, i.e. we appear to be at war; the sheet did not warn that war blocks the goodwill."]}
+{"t": 1792646419264, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646419708, "cmd": "wait", "args": ["1"]}
+{"t": 1792646420747, "cmd": "key", "args": ["Escape"]}
+{"t": 1792646421195, "cmd": "wait", "args": ["1"]}
+{"t": 1792646422234, "cmd": "shot", "args": ["pause2"]}
+{"t": 1792646425261, "cmd": "state", "args": []}
+{"t": 1792646425323, "cmd": "click", "args": ["480", "449"]}
+{"t": 1792646426022, "cmd": "await", "args": ["MAIN_MENU", "15"]}
+{"t": 1792646426282, "cmd": "shot", "args": ["mm"]}
+{"t": 1792646430384, "cmd": "click", "args": ["480", "389"]}
+{"t": 1792646431087, "cmd": "wait", "args": ["2"]}
+{"t": 1792646433125, "cmd": "shot", "args": ["load"]}
+{"t": 1792646440062, "cmd": "click", "args": ["445", "187"]}
+{"t": 1792646440762, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792646440826, "cmd": "wait", "args": ["2"]}
+{"t": 1792646442868, "cmd": "state", "args": []}
+{"t": 1792646456289, "cmd": "note", "args": ["--shot", "load", "Load screen has one slot for the world; returning to Main Menu autosaved over the manual save made with the claimant sheet up, so the choice could not be retried with another option."]}
+{"t": 1792646456494, "cmd": "stop", "args": []}
+{"t": 1792646482819, "cmd": "report", "args": []}
+{"t": 1792671893824, "cmd": "stop", "args": []}

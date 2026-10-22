@@ -537,7 +537,7 @@ namespace beyondnationstests {
             * only stall is owned by a merchant and stocked as given. When
             * pawnOwnsStall is set the hungry pawn is that merchant instead.
         */
-        private BehaviorType computeHungryPawnInSettlementWithStall(ItemType stockType, int stockQuantity, int pawnCoins, bool pawnOwnsStall) {
+        private BehaviorType computeHungryPawnInSettlementWithStall(ItemType stockType, int stockQuantity, int pawnCoins, bool pawnOwnsStall, SeasonCalendar calendar = null) {
             EntityRepository entityRepository = new EntityRepository(random);
             Environment environment = new Environment(5, 5, entityRepository, random);
             NationRepository nationRepository = new NationRepository(random);
@@ -570,6 +570,7 @@ namespace beyondnationstests {
             pawn.setCurrentSettlementId(settlement.getId());
 
             PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+            calculator.setSeasonCalendar(calendar);
             return calculator.computeBehaviorType(pawn);
         }
 
@@ -613,7 +614,8 @@ namespace beyondnationstests {
         }
 
         /**
-            * Input: pawn is outside a settlement, low on energy and carrying nothing edible
+            * Input: pawn is outside a settlement, low on energy and carrying nothing
+            * edible, and its home market sells food it can afford
             * Expected output: GO_TO_HOME_SETTLEMENT
         */
         [Fact]
@@ -626,6 +628,8 @@ namespace beyondnationstests {
             TickCounter tickCounter = new TickCounter();
 
             Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
+            // thirty apples on offer: 40 * 10 / 40 = 10 coins each, which the pawn has
+            stockHomeMarket(entityRepository, pawn, ItemType.APPLE, 30);
 
             PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);
 
@@ -665,6 +669,167 @@ namespace beyondnationstests {
             Assert.Equal(BehaviorType.GATHER_RESOURCES, behaviorType);
 
             // cleanup
+        }
+
+        /**
+            * Input: the same hungry pawn, starving (energy 10), but its home
+            * market has no food at all (late winter)
+            * Expected output: GATHER_RESOURCES -- it forages, rather than walking
+            * home, finding nothing to buy, walking out and back again until it
+            * starves at its own gate
+        */
+        [Fact]
+        public void testComputeBehaviorType_OutsideSettlementAndHungry_HomeHasNoFood_ShouldForage() {
+            // prepare
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            // execute
+            BehaviorType behaviorType = calculator.computeBehaviorType(pawn);
+
+            // verify
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, behaviorType);
+        }
+
+        /**
+            * Input: the same pawn, its home market empty, but only hungry, not
+            * yet starving
+            * Expected output: GO_TO_HOME_SETTLEMENT, as before -- only a pawn on
+            * its last reserves gives up on home and forages
+        */
+        [Fact]
+        public void testComputeBehaviorType_OutsideSettlementHungryNotStarving_HomeHasNoFood_ShouldStillGoHome() {
+            // prepare
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
+            pawn.setEnergy(Pawn.STARVING_ENERGY_THRESHOLD + 10);
+            Assert.True(pawn.needsFood());
+            Assert.False(pawn.isStarving());
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            // execute
+            BehaviorType behaviorType = calculator.computeBehaviorType(pawn);
+
+            // verify
+            Assert.Equal(BehaviorType.GO_TO_HOME_SETTLEMENT, behaviorType);
+        }
+
+        /**
+            * Input: the same hungry pawn, its home market selling food dearer
+            * than the pawn's coins (one apple: 40 * 10 / 11 = 36 coins against 10)
+            * Expected output: GATHER_RESOURCES
+        */
+        [Fact]
+        public void testComputeBehaviorType_OutsideSettlementAndHungry_HomeFoodTooDear_ShouldForage() {
+            // prepare
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
+            stockHomeMarket(entityRepository, pawn, ItemType.APPLE, 1);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            // execute
+            BehaviorType behaviorType = calculator.computeBehaviorType(pawn);
+
+            // verify
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, behaviorType);
+        }
+
+        /**
+            * Input: the same hungry pawn at night, its home market empty
+            * Expected output: GATHER_RESOURCES -- nightfall does not send a
+            * starving pawn home to a market that cannot feed it
+        */
+        [Fact]
+        public void testComputeBehaviorType_OutsideSettlementAndHungryAtNight_HomeHasNoFood_ShouldForage() {
+            // prepare
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
+            TickCounter tickCounter = new TickCounter();
+            TimeOfDay timeOfDay = new TimeOfDay(tickCounter);
+            while (!timeOfDay.isNight()) {
+                tickCounter.increment();
+            }
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), tickCounter, random);
+            calculator.setTimeOfDay(timeOfDay);
+
+            // execute
+            BehaviorType behaviorType = calculator.computeBehaviorType(pawn);
+
+            // verify
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, behaviorType);
+        }
+
+        /**
+            * Input: the same hungry pawn in winter, its home market empty and no
+            * chicken within reach (the trees are bare for pawns in winter)
+            * Expected output: GO_TO_HOME_SETTLEMENT -- with nothing to forage it
+            * shelters at home, where it burns less, rather than wandering the cold
+        */
+        [Fact]
+        public void testComputeBehaviorType_OutsideSettlementAndHungryInWinter_NothingToForage_ShouldShelterAtHome() {
+            // prepare
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+            calculator.setSeasonCalendar(winterCalendar());
+
+            // execute
+            BehaviorType behaviorType = calculator.computeBehaviorType(pawn);
+
+            // verify
+            Assert.Equal(BehaviorType.GO_TO_HOME_SETTLEMENT, behaviorType);
+
+            // a chicken close by is worth going out for, even in winter
+            entityRepository.addEntity(new Chicken(new Vector3(20, 0, 0), random));
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, calculator.computeBehaviorType(pawn));
+        }
+
+        /**
+            * Input: a hungry pawn at home in winter, nothing it can buy and no
+            * chicken within reach
+            * Expected output: NONE -- it stays in out of the cold instead of
+            * walking out to forage for nothing
+        */
+        [Fact]
+        public void testComputeBehaviorType_InSettlementHungryInWinter_NothingToBuyOrForage_ShouldStayIn() {
+            // prepare: one apple on offer at 36 coins, the pawn has 10
+            BehaviorType inSpring = computeHungryPawnInSettlementWithStall(ItemType.APPLE, 1, 10, false);
+            BehaviorType inWinter = computeHungryPawnInSettlementWithStall(ItemType.APPLE, 1, 10, false, winterCalendar());
+
+            // verify
+            Assert.Equal(BehaviorType.EXIT_SETTLEMENT, inSpring);
+            Assert.Equal(BehaviorType.NONE, inWinter);
+        }
+
+        private static SeasonCalendar winterCalendar() {
+            TickCounter ticks = new TickCounter();
+            SeasonCalendar calendar = new SeasonCalendar(new TimeOfDay(ticks));
+            while (!calendar.isWinter()) {
+                ticks.increment();
+            }
+            return calendar;
+        }
+
+        /** Gives the pawn's home market one stall, kept by a merchant, holding the given food. */
+        private void stockHomeMarket(EntityRepository entityRepository, Pawn pawn, ItemType food, int quantity) {
+            Settlement home = (Settlement) entityRepository.getEntity(pawn.getHomeSettlementId());
+            Pawn merchant = new Pawn(home.getPosition(), "merchant", random);
+            entityRepository.addEntity(merchant);
+            home.getMarket().createStall();
+            Stall stall = home.getMarket().getStallForSale();
+            stall.setOwnerId(merchant.getId());
+            stall.getInventory().addItem(food, quantity);
         }
 
         /**

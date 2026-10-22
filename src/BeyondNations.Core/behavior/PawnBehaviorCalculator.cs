@@ -69,6 +69,29 @@ namespace beyondnations {
             return behaviorType;
         }
 
+        /** Whether a hungry pawn would find food at this settlement: in its own stall, or for sale at a price it can pay. */
+        private static bool canEatAt(Pawn pawn, Settlement settlement) {
+            Market market = settlement.getMarket();
+            Stall stall = market.getStall(pawn.getId());
+            if (stall != null && FoodItems.hasFood(stall.getInventory())) {
+                return true;
+            }
+            return market.canPurchaseFood(pawn);
+        }
+
+        /**
+        * Whether a hungry pawn could find food out in the world: a tree in fruit
+        * (any season but winter, SeasonalRules.treesBearFruit) or a chicken
+        * within hunting range (SeasonalRules.STORES_HUNT_RANGE).
+        */
+        private bool canForage(Pawn pawn) {
+            if (seasonCalendar == null || SeasonalRules.treesBearFruit(seasonCalendar.getSeason())) {
+                return true;
+            }
+            Entity chicken = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN);
+            return chicken != null && Vector3.Distance(pawn.getPosition(), chicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE;
+        }
+
         private static bool isAtHome(Pawn pawn) {
             return pawn.getHomeSettlementId() != null && pawn.getHomeSettlementId().Equals(pawn.getCurrentSettlementId());
         }
@@ -107,9 +130,11 @@ namespace beyondnations {
                 if (market.canPurchaseFood(pawn)) {
                     return BehaviorType.PURCHASE_FOOD;
                 }
-                else {
-                    return BehaviorType.EXIT_SETTLEMENT;
+                if (isAtHome(pawn) && !canForage(pawn)) {
+                    // nothing to buy and nothing out there (winter): stay in, where it burns less
+                    return BehaviorType.NONE;
                 }
+                return BehaviorType.EXIT_SETTLEMENT;
             }
 
             Nation nation = nationRepository.getNation(pawn.getNationId());
@@ -213,11 +238,21 @@ namespace beyondnations {
         }
 
         private BehaviorType computeBehaviorTypeOutsideSettlement(Pawn pawn) {
-            if (pawn.needsFood()) {
-                int expectedFoodCost = 1;
-                if (pawn.getInventory().getNumItems(ItemType.COIN) >= expectedFoodCost && pawn.getHomeSettlementId() != null) {
-                    return BehaviorType.GO_TO_HOME_SETTLEMENT;
+            if (pawn.needsFood() && pawn.getInventory().getNumItems(ItemType.COIN) > 0 && pawn.getHomeSettlementId() != null) {
+                // A hungry pawn with coins goes home to buy food. A starving one
+                // goes only if home can feed it: it used to go home on a single
+                // coin, find the food dearer than that or sold out, walk out and
+                // back again, and starve at its own gate -- most of the deaths at
+                // the end of a lean winter and into spring (docs/SYSTEMS.md,
+                // "Seasons"). Now it forages instead (a chicken, or a tree in
+                // fruit), unless there is nothing out there to forage (the trees
+                // bare in winter, no chicken near), when it goes home all the same
+                // to shelter where it burns less.
+                Settlement home = entityRepository.getEntity(pawn.getHomeSettlementId()) as Settlement;
+                if (pawn.isStarving() && home != null && !canEatAt(pawn, home) && canForage(pawn)) {
+                    return BehaviorType.GATHER_RESOURCES;
                 }
+                return BehaviorType.GO_TO_HOME_SETTLEMENT;
             }
 
             // nightfall: residents head home, so towns fill up in the evening

@@ -1,0 +1,125 @@
+{
+  "session": "s05",
+  "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 105,
+  "durationSec": 1246,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Storehouse and Send Caravan are gated behind the Town era, which cannot be reached in a session; caravans are never mentioned",
+      "detail": "The Storehouse unlocks only in the Town era (EraRules: day 7, 18 members, 2 settlements, 1,000 funds), and Send Caravan needs a Storehouse. By tick ~26,000 (day 2) I was still in Camp with 2/10 members. No objective, tip, Era panel entry or Controls entry mentions the Storehouse or caravans. The refusal text ('This settlement needs a Storehouse...') only appears inside the dispatch panel, and that panel's button is hidden whenever a refusal exists, so the player never sees it. In about 26k ticks no pawn nation sent a caravan either (they need wood/stone surpluses above 40/30 reserves), so I never met one on the road. Expected: the trade loop to be discoverable early, e.g. a locked 'Send Caravan (needs Storehouse, Town era)' button or an Era-panel line.",
+      "repro": "pt start --seed 105; create a nation (N), found a settlement (F), build a stall (B), enter the settlement as leader: no Send Caravan button and no explanation; pt events | grep -i caravan stays empty through tick 26000",
+      "screenshot": "shots/era_panel.png",
+      "tick": 26023
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Sell Resources fails with the same ambiguous message whatever the cause (own stall, unowned stalls, empty purses)",
+      "detail": "In my own settlement, carrying 30 apples, 10 wood and 5 stone, with one stall (mine): 'No one is buying resources at this market or you do not have enough resources to sell.' You cannot sell to your own stall, but the message doesn't say so, and Market Info lists 'Merchants: Abigail Thompson', which suggests she would buy. At Whiteburg the panel showed 'Total Coins: 33' with apples selling at 29 and the sale was still refused, apparently because the coins were in unowned for-sale stalls. The button is offered even when no stall can pay.",
+      "repro": "pt start --seed 105; N; gather 50 wood; F away from other settlements; E; gather 20 wood + 5 stone; E; B; click Sell Resources",
+      "screenshot": "shots/sell_ambiguous.png",
+      "tick": 8087
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Market selling is one unit per click with no receipt; apples and saplings never sold",
+      "detail": "Each Sell Resources click at Whiteburg sold ONE unit (1 stone +16, 1 stone +9, 1 wood +26 coins). The status says only 'You sold resources to Abigail Davies. Relationship increased to 2.', never what was sold or for how much; I had to diff my inventory. After 3 sales the market was dry. 31 apples and 14 saplings never sold. Compare the travelling-merchant event, which gives a clear receipt ('bought an axe and a pickaxe ... for 50 coins'). Expected: a quantity choice and a receipt line.",
+      "repro": "At Whiteburg's market (4 stalls, about 250 m from spawn on seed 105) click Sell Resources repeatedly; watch coins and inventory",
+      "screenshot": "shots/sold1.png",
+      "tick": 11287
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Market prices swing wildly within a minute (apples 54 -> 32 -> 13)",
+      "detail": "Whiteburg's apple buy price went 54 -> 32 -> 13 between ticks ~10,000 and ~11,400, and stone 42 -> 9. Purchase Food charged 21 coins for an apple while Market Info listed apples at 32 to buy. With prices this jumpy and only ~45 coins in the market, buying low and selling high has no readable signal.",
+      "repro": "Enter Whiteburg's market at tick ~10,000, watch Market Info prices across 2-3 visits; click Purchase Food and compare coins spent to the listed price",
+      "screenshot": "shots/sold1.png",
+      "tick": 11407
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "K builds a House instantly with no menu, while Settlement Info advertises 'Next (K): Farm'",
+      "detail": "Pressing K inside my settlement immediately built a House and spent my 10 wood + 5 stone with no choice or confirmation. Settlement Info said 'Next (K): Farm, 25 wood, 10...' before and after. Help says 'K build a building'. A player saving resources for a stall can lose them by pressing K to look.",
+      "repro": "Inside own settlement with >=10 wood and >=5 stone, press k",
+      "screenshot": "shots/k_built_house.png",
+      "tick": 8851
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement command bar reflows under the cursor, so clicks land on the wrong button",
+      "detail": "At Whiteburg a 'Buy Axe (327)' button appeared between my screenshot and click. It pushed 'Exit Settlement' into the slot where 'Purchase Food' had been, so clicking Purchase Food exited the settlement. At low fps this is easy to hit.",
+      "repro": "Enter Whiteburg's market; take a screenshot, wait a few seconds, click where Purchase Food was",
+      "screenshot": "shots/reenter2.png",
+      "tick": 10363
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Too close to another settlement' gives no direction or distance",
+      "detail": "Pressing F with 52 wood was refused with 'Too close to another settlement.' No settlement was on screen. The message doesn't say which settlement, how far it is or how far I needed to go, so I had to guess and walk ~170 m.",
+      "repro": "pt start --seed 105; N; chop to 50 wood ending near (-42,-164); press f",
+      "screenshot": "shots/too_close.png",
+      "tick": 4563
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Right-side and objective HUD text is clipped or overlapping inside a settlement",
+      "detail": "'Next (K): Farm, 25 wood, 10' is cut off mid-cost. The Season panel overlaps Player Info and covers the 'Sell Resources' / 'Exit Settlement' buttons. Objective 7's bar reads 'mbers 2/10 · Buildings 1/2' (Members clipped). Market Info's Bricks row runs into the Season panel when there are 3 merchants. Objective 7 also omits the Stalls and Day requirements that the Era panel shows.",
+      "repro": "Enter any settlement at 960x540 and look at the right column and the objective panel",
+      "screenshot": "shots/inside_layout.png",
+      "tick": 5719
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement's floating world label is huge and runs off the top of the screen",
+      "detail": "Standing at my settlement, the label 'Camp of Lowertown / N here, X/8 residents' renders at a huge size, is cut off at the top edge, and sits behind the Chronicle and objective panels.",
+      "repro": "Stand on or in any settlement",
+      "screenshot": "shots/label_clip.png",
+      "tick": 5463
+    },
+    {
+      "severity": "polish",
+      "category": "balance",
+      "title": "Neighbours turn hostile and raid the player's Camp repeatedly with no provocation",
+      "detail": "Oldburg became hostile (tick 12503) without any interaction and raided my camp 3 times, plus Oldwood once, by tick 25351 (4-5 coins each). Small sums, but hostility also shuts trade routes. Expected some cause or warning before a brand-new neighbour turns hostile.",
+      "repro": "pt start --seed 105; create nation, found settlement around (-30,-331); wait; pt events | grep -i raid",
+      "screenshot": "shots/tps0.png",
+      "tick": 25351
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 54.06,
+      "Eat something": 55.02,
+      "Create or join a nation": 56.06,
+      "Found a settlement": 104.06,
+      "Enter your settlement": 110.06,
+      "Build a market stall": 157.02
+    },
+    "stallsBuilt": 2,
+    "marketSalesSucceeded": 3,
+    "marketSalesRefused": 6,
+    "coinsFromMarketSales": 51,
+    "marketPurchases": 1,
+    "travellingMerchantPurchases": 1,
+    "storehousesBuilt": 0,
+    "caravansSent": 0,
+    "caravansSeenOnRoad": 0,
+    "finalTick": 26023
+  },
+  "fun": 2,
+  "verdict": "Building a stall is quick and well signposted (157 game seconds), but the trade loop past that point is weak. Selling is one unit per click, with no receipt and one ambiguous error for every failure, so earning 51 coins took a lot of guessing. The Storehouse and caravans sit behind the Town era, which no one reaches in a session, and nothing in the game mentions them. No pawn caravan appeared on the road in 26k ticks. The travelling-merchant event was the clearest and most satisfying trade moment of the run."
+}

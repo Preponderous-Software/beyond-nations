@@ -6,6 +6,7 @@ using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
 using beyondnations;
 using beyondnations.desktop.input;
+using beyondnations.desktop.playtest;
 using beyondnations.desktop.render;
 using beyondnations.desktop.text;
 using beyondnations.desktop.ui;
@@ -52,6 +53,10 @@ namespace beyondnations.desktop {
         // seeds, the run's replay and the history export (docs/SHARING.md)
         private ShareSession share;
         private bool automatedExit;
+
+        // --playtest-out (docs/PLAYTESTING.md): null unless the flag was given
+        private PlaytestRecorder playtest;
+        private readonly PlaytestView playtestView = new PlaytestView();
 
         // --- #222 world-space text ---
         private WorldLabelRenderer labels;
@@ -210,6 +215,11 @@ namespace beyondnations.desktop {
             playerInputController.setDebugMode(options.DebugMode);
             // --- end #221 ---
 
+            playtest = PlaytestRecorder.create(options.PlaytestOut);
+            if (playtest != null) {
+                Log.info("playtest output: " + System.IO.Path.GetFullPath(playtest.getDirectory()));
+            }
+
             // --- #173 ---
             // The view is a mode on the one camera, so opening in first person
             // is the same call V makes and nothing more.
@@ -311,6 +321,7 @@ namespace beyondnations.desktop {
             saves.beginNewWorld(simulation, DateTime.UtcNow);
             feel.beginWorld(simulation, true);
             share.beginWorld(simulation);
+            playtest?.worldStarted(simulation, "created", saves.getCurrentSlot());
         }
 
         /**
@@ -328,6 +339,7 @@ namespace beyondnations.desktop {
             feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
+            playtest?.worldStarted(simulation, "loaded", slot);
         }
 
         /** --continue: the latest save, or the main menu when there is none. */
@@ -642,6 +654,9 @@ namespace beyondnations.desktop {
             }
 
             framesRendered++;
+            if (playtest != null) {
+                recordPlaytest();
+            }
             // --- #219 camera and culling ---
             renderStats?.recordCamera(
                 simulation != null ? simulation.getPlayer().getRenderDistance() : 0,
@@ -650,6 +665,43 @@ namespace beyondnations.desktop {
             renderStats?.endFrame(
                 renderer != null ? renderer.getDrawCallCount() : 0,
                 renderer != null ? renderer.getInstancesDrawn() : 0);
+        }
+
+        /**
+        * Hands the playtest recorder what is on screen this frame: the
+        * simulation itself, plus the host-only parts of the picture -- the
+        * screen, the frame rate, the open panels and the tip card.
+        */
+        private void recordPlaytest() {
+            playtestView.Screen = screens.getCurrent();
+            playtestView.FramesPerSecond = ui != null ? ui.getFramesPerSecond() : 0;
+            playtestView.OpenPanels.Clear();
+            playtestView.Tip = null;
+            bool onWorld = simulation != null && screens.getCurrent() == ScreenType.WORLD;
+            if (onWorld) {
+                ChronicleMode chronicle = playerInputController.getChronicleView().getMode();
+                if (chronicle != ChronicleMode.Hidden) {
+                    playtestView.OpenPanels.Add(chronicle == ChronicleMode.Full ? "chronicle-full" : "chronicle-recent");
+                }
+                if (ui != null && ui.isEraDetailOpen()) {
+                    playtestView.OpenPanels.Add("era-detail");
+                }
+                if (CaravanDispatchPanel.isOpen()) {
+                    playtestView.OpenPanels.Add("caravan-dispatch");
+                }
+                if (simulation.getWorldEvents().isAwaitingPlayer()) {
+                    playtestView.OpenPanels.Add("world-event");
+                }
+                if (playerInputController.isDebugMode()) {
+                    playtestView.OpenPanels.Add("debug");
+                }
+                OnboardingHints.Step? tip = feel != null ? feel.getHints().getVisible() : null;
+                if (tip != null) {
+                    playtestView.OpenPanels.Add("tip");
+                    playtestView.Tip = OnboardingHints.title(tip.Value) + ": " + OnboardingHints.text(tip.Value, feel.isTouch());
+                }
+            }
+            playtest.update(simulation, playtestView, saves != null ? saves.getSavesWritten() : 0);
         }
 
         // --- #219 camera and culling ---

@@ -1,0 +1,85 @@
+{
+  "session": "s10",
+  "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches.",
+  "build": {
+    "version": "0.4.1",
+    "commit": "df53ae3"
+  },
+  "seed": "Ironvale",
+  "durationSec": 506,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Pawns strip all trees and near rocks around spawn within ~40 game seconds; objective 1 has no tree in sight",
+      "detail": "Seed 1450162717, player idle at spawn (0,0). At tick 1 the nearest trees are 33.6/45.0/61.9 m and the rocks 15.0/30.0 m. By tick ~1770-1977 (35-40 game seconds) the nearest tree is 165 m away and the 15 m and 30 m rocks are gone; the horizon screenshot shows only distant trees. Reproduced identically in two separate fresh worlds. A new player who reads the menus or tips for half a minute starts the first objective with a long walk. Expected: trees near spawn survive the first minute, or regrow / are protected around the player's spawn.",
+      "repro": "pt start; pt key space; click Start (480,310); click seed box (480,235); pt type 1450162717; click Begin (480,315); pt await WORLD 60; pt state (trees 33.6 m); pt wait 60; pt state (nearest tree 165 m)",
+      "screenshot": "shots/spawn_stripped.png",
+      "tick": 1977
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Share screen and pause menu show only the numeric seed, not the word the player typed",
+      "detail": "World created from the text seed 'Ironvale' (New World screen says '\"Ironvale\" is seed 1450162717'). The pause menu shows 'World seed 1450162717' and the Share screen shows 'World seed 1450162717' and ?seed=1450162717. The number does round-trip correctly (verified), but the memorable word the player chose is not shown, so a player telling a friend by voice has to read out a 10-digit number. Expected: show 'Ironvale (1450162717)' and perhaps use the word in the link.",
+      "repro": "pt start --seed Ironvale; space; Start; Begin; Escape; click Share (480,367)",
+      "screenshot": "shots/share_numeric.png",
+      "tick": 3494
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Same seed gives a different history once the player acts (first nation Westernburg vs Westernham)",
+      "detail": "Two idle runs of seed 1450162717 produced the same chronicle (Isabella Wood founds Westernham ~tick 901, Ruth Wilson founds Greentown ~1401, stall ~1450, Greentown settlement ~1801). In the first run, where I chopped a tree at about tick 600, the same pawn founded 'Westernburg' at tick 950 and the second nation was Tilly Taylor's Yellowfield at 1650. So the player's actions draw from the same random stream as world history, which changes names and order. Terrain, entities and starting pawns match exactly, so this may be intended, but a player who shares a seed and says 'go join Westernburg' will be confused. Consider separate RNG streams for world history versus player-driven randomness.",
+      "repro": "Run A: pt start --seed Ironvale, Begin, walkto tree, e, wait; pt events shows Westernburg at 950. Run B: pt start --seed Ironvale, Begin, wait 60; pt events shows Westernham at 901.",
+      "screenshot": "shots/world2_later.png",
+      "tick": 950
+    },
+    {
+      "severity": "polish",
+      "category": "bug",
+      "title": "Chronicle event ticks differ by 1-3 ticks between two identical idle runs of the same seed",
+      "detail": "Same seed, no input: Westernham founded at tick 901 vs 902, its settlement 953 vs 950, Greentown 1401 vs 1402, stall 1453 vs 1450, Greentown settlement 1801 vs 1802. Content and order are identical, only the tick jitters. Could be events stamped at frame time rather than sim tick on a loaded machine, or sim stepping depending on wall-clock frame time. Harmless for players but would break exact replays or tick-based tests.",
+      "repro": "Run the same idle seed twice (pt start; type 1450162717 / Ironvale; Begin; pt wait 75) and compare pt events chronicle ticks.",
+      "screenshot": "shots/run3_idle.png",
+      "tick": 1801
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "'Objective complete: Create or join a nation +25 coins' toast is shown again after loading a save",
+      "detail": "The objective was completed at tick 3342, before saving at 3494. After pt start --continue the completion toast appears again in the middle of the screen. Coins stay at 306 (not paid twice), so it is only a stale toast, but it suggests the reward was granted again.",
+      "repro": "Complete objective 3 (press N), Escape, Save, pt stop, pt start --continue; look at screen",
+      "screenshot": "shots/loaded.png",
+      "tick": 3518
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "HUD panels overlap on the first frame of a new world (Season panel over Player Info, Inventory cut off)",
+      "detail": "On the very first screenshot after Begin (tick 1), the Season panel sits over the energy bar in Player Info and the Inventory panel runs off the bottom of the screen. A few seconds later the layout is correct. Brief, but it is the first thing the player sees.",
+      "repro": "pt start; Start; type seed; Begin; pt await WORLD 60; pt shot immediately",
+      "screenshot": "shots/world2.png",
+      "tick": 1
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 3,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 47.0,
+      "Eat something": 48.04,
+      "Create or join a nation": 66.84
+    },
+    "saveTick": 3494,
+    "loadsTested": 2,
+    "saveLoadFieldsDiffering": 0,
+    "seedRoundTripMatched": true,
+    "wordAndNumberSeedSameWorld": true,
+    "saveFileBytes": 567473
+  },
+  "fun": 3,
+  "verdict": "Save/load works: after Save and a hard stop, `--continue` (tested twice) restored the tick, position, facing, inventory, coins, nation/role, objective progress, chronicle and entity IDs exactly. The UI is clear too ('Saved: Day 1 - Farmham, 23:02', 'Welcome back', 'Last played' on the main menu). Typing the Share screen's seed, or the word Ironvale, gives an identical starting world, and idle runs replay the same history. The real problem is that pawns strip every tree within about 165 m of spawn in the first 40 seconds, so a new player starting objective 1 faces a long walk. A smaller one: the Share screen drops the word seed in favour of a 10-digit number."
+}

@@ -1,0 +1,122 @@
+{
+  "session": "s06",
+  "goal": "Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies.",
+  "build": {"version": "0.4.1", "commit": "df53ae3"},
+  "seed": 106,
+  "durationSec": 1234,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "The ruler cannot die of hunger in a normal session, so succession is never seen",
+      "detail": "Energy drains about 0.17/game-second, even while sprinting. Gathered apples are eaten automatically: chopping 13 trees gave 25 apples, and energy went back to 99. Energy also seemed to hold steady inside my settlement (90.1 at ticks 14789 and 15733). At tick 24000 (8 game-minutes) energy was 94.5 with 21 apples in the pack. Starving the founder would take 10+ game-minutes of deliberately throwing away food, and the player has no way to discard it. Without the --stage-succession switch (not used, per the rules), the heir screen can't be reached in a 30-minute session. Old age or other causes of death, or a faster hunger curve, would make the dynasty mechanic reachable.",
+      "repro": "pt start --seed 106; key space; click 480 315; click 480 315; key n; chop ~10 trees (walkto tree; key e); watch player.energy in pt state",
+      "screenshot": "shots/in_settlement.png",
+      "tick": 24000
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Members of your own nation near your settlement can't be gifted or invited, so the heir can't be influenced",
+      "detail": "Bella Jones, Ruth Walker and Charlie Thompson (Farmfield members) stood 1.4-3.6m from me, up to ~10m from the well. Over 10 tries, G replied 'There is no one within reach to give a gift to.' PawnRelations.findPawnInRange skips pawns flagged as inside a settlement, even though they are drawn standing on the plaza. Succession favours the most loyal member, but I couldn't build loyalty with my own people. The game gives no hint why the pawn in front of you is 'out of reach'.",
+      "repro": "after founding a settlement and getting members: key e (exit), stand 10m from the well next to a member pawn, key g",
+      "screenshot": "shots/members_unreachable.png",
+      "tick": 18000
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "No UI shows who your members are or who the heir would be",
+      "detail": "The Nations tab shows only 'Farmfield, 4 members, 1 camp'. Settlement Info shows residents 4/8 and the merchants' names. Nothing names the members, their loyalty, or the current heir. The goal is about heirs, and the succession rules (family first, then the most loyal, then the longest sworn) can't be seen in game until the ruler is already dead.",
+      "repro": "key o (Nations tab) with a nation of 4 members",
+      "screenshot": "shots/nations2.png",
+      "tick": 13753
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Pawns in a foreign town square are visible but unreachable; E enters the settlement instead",
+      "detail": "In Cityham, a green pawn stood 1.8-3m in front of me. E entered the settlement, because settlement comes first in the interact order, and G/R said there was no one within reach. The command bar showed no pawn button either. You can't approach other nations' people where they actually gather.",
+      "repro": "walk to Cityham's well (~100m west of spawn), stand next to a pawn, key g / key r / key e",
+      "screenshot": "shots/pawn_unreachable.png",
+      "tick": 4700
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Laws tab only describes the law in force, not the option you're about to choose",
+      "detail": "With Taxes: None and High pending, the description still reads 'No tax: members keep their coin.' What Low or High actually do (coin per member, loyalty slip, immigration halved) only shows up 30 s after enacting them. Withdrawing a pending change worked well, though: 'The change to conscription is withdrawn; they stay On.'",
+      "repro": "key o; click Laws (543,45); click High (353,175); read the line under Taxes",
+      "screenshot": "shots/laws_high.png",
+      "tick": 21261
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Too close to another settlement' gives no distance or direction while AI settles the land around you",
+      "detail": "F failed twice with the nearest settlements ~200m and ~105m away. The minimum (250m) isn't stated, and there's no map. AI nations founded new towns in front of me as I ran. It took ~1 game-minute and four sprints in different directions to find a legal spot.",
+      "repro": "with 50 wood near (-617,-520) at tick ~11000, key f",
+      "screenshot": "shots/settlement_founded.png",
+      "tick": 11589
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "'Build a market stall' objective (+50 coins) completes when an NPC builds a stall; chronicle logs it twice",
+      "detail": "Objective 6 showed Wood 3/20, Stone 0/5. At tick 13801 it completed with +50 coins because the pawn Bella Jones built a stall in my settlement (the objective counts any nation stall). 'Trade came to Farmfield: Bella Jones built a stall.' was logged at tick 13801 and again at 13853. The title says 'Build', so free completion and a reward for nothing feels wrong.",
+      "repro": "found a settlement with borders Open, enter it, wait ~5 game seconds",
+      "screenshot": "shots/after_laws.png",
+      "tick": 13801
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Chronicle is flooded by AI nations; your own statecraft scrolls away in seconds",
+      "detail": "37 nation-creation events, plus rivalries, raids and disbandments, in the first in-game day. Your own law changes are highlighted but leave the 5-line panel almost at once. When two of your laws took effect on the same tick (15501), the status bar showed only conscription.",
+      "repro": "play to tick ~15000 with law changes pending; watch the Chronicle panel",
+      "screenshot": "shots/chronicle_noise.png",
+      "tick": 15501
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress label clipped: 'bers 4/10 • Buildings 0/2'",
+      "detail": "The progress bar text for 'Reach the Village era' is cut off on the left. It should read 'Members 4/10 • Buildings 0/2'.",
+      "repro": "complete objective 6, read the objective panel",
+      "screenshot": "shots/objective_cutoff.png",
+      "tick": 15961
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "HUD panels overlap at 960x540 inside a settlement; world labels draw over menus",
+      "detail": "The Settlement/Market Info panels cover the Season and Player Info panels. 'Exit Settlement'/'Purchase' are cut off at the right of the command bar. Huge world-space labels ('2 here, 3/8 residents', 'Bella Evans Industrious (doing nothing)') draw over the Chronicle, Objective panel and the Nations/Laws tabs.",
+      "repro": "enter any settlement (key e at the well); key o",
+      "screenshot": "shots/overlap_settlement.png",
+      "tick": 3113
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "eraReached": "Camp",
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 159.1,
+      "Eat something": 160.0,
+      "Create or join a nation": 161.1,
+      "Found a settlement": 268.0,
+      "Enter your settlement": 273.1,
+      "Build a market stall": 276.0
+    },
+    "lawsEnacted": 5,
+    "lawsRepealed": 3,
+    "pendingChangesWithdrawn": 1,
+    "nationMembers": 4,
+    "successionsSeen": 0,
+    "finalEnergy": 94.5,
+    "avgTps": 16
+  },
+  "fun": 3,
+  "verdict": "The laws system works well. Changes are proclaimed with a clear 30 s countdown, take effect with chronicle and status messages, can be withdrawn, and have visible results (Defence 6 from 2 conscripts, tax totals, thieves through open borders). The ruler/heir half of the goal can't be reached, though. The founder doesn't come close to starving in a normal session because apples are auto-eaten. No screen shows your members or your heir. You also can't befriend your own members while they're at home, so the succession rules can't be seen or influenced before a death that never comes."
+}

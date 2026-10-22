@@ -1,0 +1,220 @@
+{"t": 1792645147614, "cmd": "start", "args": ["--seed", "104"]}
+{"t": 1792645148448, "cmd": "key", "args": ["space"]}
+{"t": 1792645150924, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645153734, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792645160862, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792645161648, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792645161993, "cmd": "state", "args": []}
+{"t": 1792645162126, "cmd": "shot", "args": ["world1"]}
+{"t": 1792645168828, "cmd": "key", "args": ["o"]}
+{"t": 1792645171336, "cmd": "state", "args": []}
+{"t": 1792645171466, "cmd": "shot", "args": ["nations0"]}
+{"t": 1792645179229, "cmd": "key", "args": ["o"]}
+{"t": 1792645180778, "cmd": "key", "args": ["n"]}
+{"t": 1792645183313, "cmd": "state", "args": []}
+{"t": 1792645183431, "cmd": "events", "args": ["10"]}
+{"t": 1792645183611, "cmd": "shot", "args": ["nation_created"]}
+{"t": 1792645199559, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645206092, "cmd": "click", "args": ["433", "388"]}
+{"t": 1792645207959, "cmd": "face", "args": ["135"]}
+{"t": 1792645215983, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792645230408, "cmd": "state", "args": []}
+{"t": 1792645230426, "cmd": "key", "args": ["e"]}
+{"t": 1792645232012, "cmd": "key", "args": ["e"]}
+{"t": 1792645233581, "cmd": "key", "args": ["e"]}
+{"t": 1792645234179, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645235365, "cmd": "status", "args": []}
+{"t": 1792645235566, "cmd": "shot", "args": ["check"]}
+{"t": 1792645243783, "cmd": "key", "args": ["e"]}
+{"t": 1792645245366, "cmd": "key", "args": ["e"]}
+{"t": 1792645246958, "cmd": "key", "args": ["e"]}
+{"t": 1792645247533, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645254592, "cmd": "key", "args": ["e"]}
+{"t": 1792645256178, "cmd": "key", "args": ["e"]}
+{"t": 1792645257676, "cmd": "key", "args": ["e"]}
+{"t": 1792645258226, "cmd": "state", "args": []}
+{"t": 1792645261913, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645276983, "cmd": "key", "args": ["e"]}
+{"t": 1792645278586, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645294158, "cmd": "key", "args": ["e"]}
+{"t": 1792645295687, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645305988, "cmd": "key", "args": ["e"]}
+{"t": 1792645307549, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645327304, "cmd": "key", "args": ["e"]}
+{"t": 1792645328852, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645354771, "cmd": "key", "args": ["e"]}
+{"t": 1792645356319, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645403297, "cmd": "key", "args": ["e"]}
+{"t": 1792645404896, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645421040, "cmd": "key", "args": ["e"]}
+{"t": 1792645422605, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792645430603, "cmd": "key", "args": ["e"]}
+{"t": 1792645432178, "cmd": "state", "args": []}
+{"t": 1792645432332, "cmd": "events", "args": ["15"]}
+{"t": 1792645436593, "cmd": "key", "args": ["f"]}
+{"t": 1792645440139, "cmd": "state", "args": []}
+{"t": 1792645440257, "cmd": "events", "args": ["6"]}
+{"t": 1792645440356, "cmd": "shot", "args": ["founded"]}
+{"t": 1792645452759, "cmd": "note", "args": ["--shot", "too_close", "Pressing F 231m from the nearest settlement says only 'Too close to another settlement.' -- no distance needed (250) or which settlement; I had to read the source to know how far to walk."]}
+{"t": 1792645453036, "cmd": "face", "args": ["25"]}
+{"t": 1792645455009, "cmd": "hold", "args": ["w", "8"]}
+{"t": 1792645463207, "cmd": "state", "args": []}
+{"t": 1792645466904, "cmd": "events", "args": ["8"]}
+{"t": 1792645467015, "cmd": "shot", "args": ["look1"]}
+{"t": 1792645470959, "cmd": "state", "args": ["--full"]}
+{"t": 1792645473956, "cmd": "state", "args": ["--full"]}
+{"t": 1792645480207, "cmd": "face", "args": ["-150"]}
+{"t": 1792645485599, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792645497789, "cmd": "state", "args": []}
+{"t": 1792645502126, "cmd": "face", "args": ["-20"]}
+{"t": 1792645504156, "cmd": "hold", "args": ["Shift_L+w", "10"]}
+{"t": 1792645514412, "cmd": "state", "args": []}
+{"t": 1792645518143, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1792645519399, "cmd": "key", "args": ["f"]}
+{"t": 1792645522988, "cmd": "state", "args": []}
+{"t": 1792645523154, "cmd": "shot", "args": ["founded2"]}
+{"t": 1792645527094, "cmd": "key", "args": ["o"]}
+{"t": 1792645529661, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792645530000, "cmd": "events", "args": ["8"]}
+{"t": 1792645545065, "cmd": "note", "args": ["--shot", "nations_truncated", "Nations screen (O) lists only the first 8 nations (Littlefield..Hamletburg, oldest first). The world has ~20 (Easternham, Blueham, Oldtown, Lowerport, Northwood, Castleshire, Farmham, Eastfield, Blueford, Northtown...). No scroll, no 'and N more'. My actual neighbours (whose land I walked through to found my camp) are not on the screen, so I cannot ally/war with them from O. None of the 8 visible rows says 'neighbour'."]}
+{"t": 1792645549739, "cmd": "key", "args": ["Down", "Down", "Next"]}
+{"t": 1792645553550, "cmd": "shot", "args": ["nations_scroll"]}
+{"t": 1792645560286, "cmd": "click", "args": ["665", "161"]}
+{"t": 1792645563163, "cmd": "shot", "args": ["ally_refused"]}
+{"t": 1792645563489, "cmd": "state", "args": []}
+{"t": 1792645567562, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792645569970, "cmd": "state", "args": []}
+{"t": 1792645570205, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792645572589, "cmd": "state", "args": []}
+{"t": 1792645572763, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792645575134, "cmd": "state", "args": []}
+{"t": 1792645575282, "cmd": "shot", "args": ["after_tribute"]}
+{"t": 1792645578793, "cmd": "click", "args": ["665", "161"]}
+{"t": 1792645581670, "cmd": "state", "args": []}
+{"t": 1792645581827, "cmd": "shot", "args": ["allied"]}
+{"t": 1792645593276, "cmd": "note", "args": ["--shot", "ally_60", "Header says 'An alliance needs +30' and the first refusal says 'an alliance needs +30. Gifts help.' After paying 75 coins to reach +30, Littlefield then says it wants +60 because it is 4 to my 1. The +60 rule for bigger partners should be stated up front (in the header or the first refusal) - as a 1-member nation every pawn nation (all have >=2) needs +60, i.e. 150 coins of tribute."]}
+{"t": 1792645593692, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792645596002, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792645598414, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792645600785, "cmd": "click", "args": ["665", "161"]}
+{"t": 1792645603600, "cmd": "state", "args": []}
+{"t": 1792645608326, "cmd": "click", "args": ["873", "199"]}
+{"t": 1792645611162, "cmd": "state", "args": []}
+{"t": 1792645611272, "cmd": "shot", "args": ["rival"]}
+{"t": 1792645619193, "cmd": "note", "args": ["--shot", "rival", "After denouncing Townford (Rival -25), its War button turned into Peace. There is no way to declare war on a nation you are already at odds with -- the natural escalation denounce -> war is impossible; only Neutral/Friendly nations can be warred on. Also the Ally button is still offered to a Rival."]}
+{"t": 1792645619528, "cmd": "click", "args": ["769", "237"]}
+{"t": 1792645622424, "cmd": "state", "args": []}
+{"t": 1792645622622, "cmd": "shot", "args": ["war"]}
+{"t": 1792645630104, "cmd": "click", "args": ["769", "237"]}
+{"t": 1792645632982, "cmd": "state", "args": []}
+{"t": 1792645633189, "cmd": "shot", "args": ["peace"]}
+{"t": 1792645638897, "cmd": "key", "args": ["o"]}
+{"t": 1792645641598, "cmd": "events", "args": ["25"]}
+{"t": 1792645641772, "cmd": "shot", "args": ["world_after"]}
+{"t": 1792645647924, "cmd": "state", "args": []}
+{"t": 1792645648252, "cmd": "face", "args": ["-128"]}
+{"t": 1792645657554, "cmd": "hold", "args": ["Shift_L+w", "7"]}
+{"t": 1792645664821, "cmd": "state", "args": []}
+{"t": 1792645664978, "cmd": "shot", "args": ["neighbour_land"]}
+{"t": 1792645668451, "cmd": "face", "args": ["-17"]}
+{"t": 1792645670216, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792645674463, "cmd": "state", "args": []}
+{"t": 1792645674651, "cmd": "shot", "args": ["neighbour_land"]}
+{"t": 1792645684436, "cmd": "note", "args": ["--shot", "oldtown_bar", "In Oldtown's land (a real neighbour, founded 2nd-wave) the command bar offers Gift / Propose Alliance / Denounce but no War; and Oldtown is not among the 8 rows on the O screen, so there is no way at all to declare war on my actual neighbour."]}
+{"t": 1792645684752, "cmd": "click", "args": ["716", "517"]}
+{"t": 1792645687632, "cmd": "state", "args": []}
+{"t": 1792645687739, "cmd": "click", "args": ["716", "517"]}
+{"t": 1792645690587, "cmd": "state", "args": []}
+{"t": 1792645690713, "cmd": "shot", "args": ["denounce2"]}
+{"t": 1792645695788, "cmd": "key", "args": ["h"]}
+{"t": 1792645698399, "cmd": "wait", "args": ["40"]}
+{"t": 1792645738513, "cmd": "events", "args": ["30"]}
+{"t": 1792645738597, "cmd": "state", "args": []}
+{"t": 1792645743284, "cmd": "wait", "args": ["60"]}
+{"t": 1792645803377, "cmd": "events", "args": ["60"]}
+{"t": 1792645803482, "cmd": "state", "args": []}
+{"t": 1792645803621, "cmd": "shot", "args": ["home_wait"]}
+{"t": 1792645808218, "cmd": "key", "args": ["o"]}
+{"t": 1792645810763, "cmd": "shot", "args": ["nations2"]}
+{"t": 1792645820857, "cmd": "key", "args": ["o"]}
+{"t": 1792645822403, "cmd": "state", "args": []}
+{"t": 1792645826762, "cmd": "face", "args": ["-63"]}
+{"t": 1792645829717, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792645835917, "cmd": "state", "args": []}
+{"t": 1792645836094, "cmd": "shot", "args": ["oldtown2"]}
+{"t": 1792645844228, "cmd": "key", "args": ["h"]}
+{"t": 1792645847811, "cmd": "state", "args": []}
+{"t": 1792645852524, "cmd": "face", "args": ["70"]}
+{"t": 1792645855816, "cmd": "hold", "args": ["Shift_L+w", "9"]}
+{"t": 1792645865014, "cmd": "state", "args": []}
+{"t": 1792645865150, "cmd": "shot", "args": ["oldtown3"]}
+{"t": 1792645873970, "cmd": "click", "args": ["549", "517"]}
+{"t": 1792645876786, "cmd": "state", "args": []}
+{"t": 1792645876939, "cmd": "note", "args": ["--shot", "hostile_bar", "Hostile with neighbour Oldtown (after two Denounces from the command bar). The command bar in its land still offers 'Propose Alliance' and 'Denounce' but no 'Offer Peace', and Oldtown is not on the O screen, so peace with this neighbour is impossible; only 25-coin gifts can climb back."]}
+{"t": 1792645880717, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1792645894668, "cmd": "hold", "args": ["s", "0.6"]}
+{"t": 1792645895424, "cmd": "shot", "args": ["oldtown_tag"]}
+{"t": 1792645902674, "cmd": "wait", "args": ["50"]}
+{"t": 1792645952789, "cmd": "events", "args": ["60"]}
+{"t": 1792645952896, "cmd": "state", "args": []}
+{"t": 1792645953001, "cmd": "shot", "args": ["oldtown_tag2"]}
+{"t": 1792645958304, "cmd": "key", "args": ["h"]}
+{"t": 1792645961794, "cmd": "key", "args": ["e"]}
+{"t": 1792645965389, "cmd": "state", "args": []}
+{"t": 1792645965564, "cmd": "shot", "args": ["home_inside"]}
+{"t": 1792645972085, "cmd": "note", "args": ["--shot", "e_vs_bar", "After H (Teleport Home), the command bar shows 'Enter Settlement' but pressing E says 'No entities within range to interact with.' Objective 5 'Enter your settlement' (whose hint says 'H takes you home') stays incomplete."]}
+{"t": 1792645972671, "cmd": "click", "args": ["638", "517"]}
+{"t": 1792645976538, "cmd": "state", "args": []}
+{"t": 1792645976708, "cmd": "shot", "args": ["entered"]}
+{"t": 1792645986194, "cmd": "note", "args": ["--shot", "panels_overflow", "Inside my camp the Settlement Info panel is clipped at the right edge ('Next (K): Farm, 25 wood, 10' cut off), the Season panel covers the Player Info panel, and the camp's huge world-space nametag 'Camp of Southham / 0 here' draws over the top-right HUD."]}
+{"t": 1792645986738, "cmd": "key", "args": ["o"]}
+{"t": 1792645989290, "cmd": "click", "args": ["769", "275"]}
+{"t": 1792645992113, "cmd": "state", "args": []}
+{"t": 1792645992228, "cmd": "click", "args": ["769", "275"]}
+{"t": 1792645995005, "cmd": "state", "args": []}
+{"t": 1792645995123, "cmd": "shot", "args": ["greenford"]}
+{"t": 1792646001626, "cmd": "note", "args": ["--shot", "greenford", "Declared war on Greenford (9 to my 5) and offered peace in the same instant (game paused on the O screen, same tick 15158): 'Greenford accepts peace (the fighting has cost them enough)' though no fighting happened. War costs nothing and can be undone instantly, so war+peace is a free 60-second truce."]}
+{"t": 1792646002022, "cmd": "shot", "args": ["greenford_rows"]}
+{"t": 1792646002370, "cmd": "click", "args": ["769", "161"]}
+{"t": 1792646005228, "cmd": "state", "args": []}
+{"t": 1792646005358, "cmd": "shot", "args": ["war_ally"]}
+{"t": 1792646017853, "cmd": "note", "args": ["--shot", "truce_wrap", "Greenford row: ', truce 60 s' wraps so the 's' sits alone on a second line, and the taller row pushes Hamletburg off the bottom of the list (now 7 nations shown)."]}
+{"t": 1792646018211, "cmd": "click", "args": ["769", "161"]}
+{"t": 1792646021040, "cmd": "state", "args": []}
+{"t": 1792646021211, "cmd": "click", "args": ["561", "161"]}
+{"t": 1792646024048, "cmd": "state", "args": []}
+{"t": 1792646024155, "cmd": "click", "args": ["769", "161"]}
+{"t": 1792646026947, "cmd": "state", "args": []}
+{"t": 1792646027058, "cmd": "shot", "args": ["peace_ally"]}
+{"t": 1792646034162, "cmd": "key", "args": ["o"]}
+{"t": 1792646035669, "cmd": "wait", "args": ["75"]}
+{"t": 1792646110729, "cmd": "events", "args": ["80"]}
+{"t": 1792646110790, "cmd": "state", "args": []}
+{"t": 1792646119456, "cmd": "key", "args": ["o"]}
+{"t": 1792646121941, "cmd": "shot", "args": ["nations3"]}
+{"t": 1792646129189, "cmd": "click", "args": ["769", "208"]}
+{"t": 1792646132003, "cmd": "state", "args": []}
+{"t": 1792646132089, "cmd": "shot", "args": ["war_townford"]}
+{"t": 1792646132391, "cmd": "key", "args": ["o"]}
+{"t": 1792646132890, "cmd": "wait", "args": ["60"]}
+{"t": 1792646192947, "cmd": "events", "args": ["40"]}
+{"t": 1792646198665, "cmd": "wait", "args": ["60"]}
+{"t": 1792646258713, "cmd": "events", "args": ["30"]}
+{"t": 1792646258757, "cmd": "state", "args": []}
+{"t": 1792646258837, "cmd": "shot", "args": ["camp_war"]}
+{"t": 1792646264981, "cmd": "note", "args": ["--shot", "objective_clip", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: 'nbers 2/10 • Buildings 0/2' (Members)."]}
+{"t": 1792646265299, "cmd": "key", "args": ["o"]}
+{"t": 1792646267753, "cmd": "shot", "args": ["nations4"]}
+{"t": 1792646273824, "cmd": "click", "args": ["769", "199"]}
+{"t": 1792646276537, "cmd": "state", "args": []}
+{"t": 1792646276618, "cmd": "click", "args": ["561", "199"]}
+{"t": 1792646279333, "cmd": "state", "args": []}
+{"t": 1792646279412, "cmd": "click", "args": ["769", "199"]}
+{"t": 1792646282120, "cmd": "state", "args": []}
+{"t": 1792646282208, "cmd": "shot", "args": ["peace_townford"]}
+{"t": 1792646286829, "cmd": "key", "args": ["o"]}
+{"t": 1792646287279, "cmd": "events", "args": ["200"]}
+{"t": 1792646287323, "cmd": "state", "args": []}
+{"t": 1792646287401, "cmd": "stop", "args": []}
+{"t": 1792646320411, "cmd": "report", "args": []}
+{"t": 1792671893709, "cmd": "stop", "args": []}

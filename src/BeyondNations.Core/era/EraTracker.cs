@@ -104,6 +104,7 @@ namespace beyondnations {
         /** Called by Simulation every tick. */
         public void update(Simulation simulation) {
             applyRules(simulation);
+            warnOfSieges(simulation);
             // the player died with no heir (realm/Succession): the line, and the run, are over
             if (outcome == RunOutcome.NONE && simulation.getRealm().isRunOver()) {
                 end(simulation, RunOutcome.DEFEAT);
@@ -117,19 +118,22 @@ namespace beyondnations {
         /**
         * Puts the era's limits on the nation the player leads and lifts them
         * from every other nation, so a nation the player leaves or loses is
-        * free again.
+        * free again. The shelter from sieges, and the warning when it ends,
+        * cover the player's nation whether the player leads it or joined it:
+        * either way its village is the player's first home.
         */
         public void applyRules(Simulation simulation) {
             Player player = simulation.getPlayer();
-            Nation led = ObjectiveCatalog.playerNation(simulation);
-            if (led != null && led.getLeaderId() != player.getId()) {
-                led = null;
-            }
+            Nation home = ObjectiveCatalog.playerNation(simulation);
+            Nation led = home != null && home.getLeaderId() == player.getId() ? home : null;
+            bool sheltered = EraRules.isSheltered(era);
+            bool forewarned = getSiegeWarningTicksLeft(simulation) > 0;
             EntityRepository entities = simulation.getEntityRepository();
             foreach (Nation nation in simulation.getNationRepository().getNations()) {
                 bool limited = nation == led;
                 nation.setSettlementLimit(limited ? EraRules.settlementLimit(era) : 0);
-                nation.setSheltered(limited && EraRules.isSheltered(era));
+                nation.setSheltered(nation == home && sheltered);
+                nation.setForewarned(nation == home && forewarned);
                 foreach (EntityId settlementId in nation.getSettlements()) {
                     if (entities.getEntity(settlementId) is Settlement settlement) {
                         settlement.setBuildingEra(limited ? era : (Era?) null);
@@ -180,6 +184,10 @@ namespace beyondnations {
             List<string> unlocks = EraRules.describeUnlocks(next);
             if (unlocks.Count > 0) {
                 message += " Unlocked: " + string.Join(", ", unlocks) + ".";
+            }
+            if (EraRules.isSheltered(era - 1) && !EraRules.isSheltered(next)) {
+                int minutes = EraRules.SiegeWarningTicks / simulation.getTickCounter().getTicksPerSecond() / 60;
+                message += " Its shelter is ending: hostile neighbours may besiege its villages in " + minutes + " minutes.";
             }
             simulation.getPlayer().getStatus().update(message);
             Log.info(message);
@@ -243,6 +251,39 @@ namespace beyondnations {
             }
             if (result != RunOutcome.NONE && outcome == RunOutcome.NONE) {
                 end(simulation, result);
+            }
+        }
+
+        /**
+        * Ticks left of the warning the player is given when the Town era ends
+        * the shelter (EraRules.SiegeWarningTicks), or -1 while the nation is
+        * still sheltered or the warning is over. Worked out from the tick the
+        * Town era was reached, which is saved, so it needs no state of its own.
+        */
+        public int getSiegeWarningTicksLeft(Simulation simulation) {
+            int reached = reachedTicks[(int) Era.TOWN];
+            if (EraRules.isSheltered(era) || reached < 0) {
+                return -1;
+            }
+            int left = reached + EraRules.SiegeWarningTicks - simulation.getTickCounter().getTotalTicks();
+            return left > 0 ? left : -1;
+        }
+
+        /** A minute before the warning runs out, and when it does, the status line says so. */
+        private void warnOfSieges(Simulation simulation) {
+            int reached = reachedTicks[(int) Era.TOWN];
+            if (EraRules.isSheltered(era) || reached < 0 || ObjectiveCatalog.playerNation(simulation) == null) {
+                return;
+            }
+            int now = simulation.getTickCounter().getTotalTicks();
+            int lastMinute = 60 * simulation.getTickCounter().getTicksPerSecond();
+            if (EraRules.SiegeWarningTicks > lastMinute && now == reached + EraRules.SiegeWarningTicks - lastMinute) {
+                simulation.getPlayer().getStatus().update("In 1 minute hostile neighbours may besiege your villages. "
+                    + "Ally, gift, recruit or grow them into towns to hold them.");
+            }
+            else if (now == reached + EraRules.SiegeWarningTicks) {
+                simulation.getPlayer().getStatus().update("Your nation's shelter is over: hostile neighbours may now besiege its villages. "
+                    + "Towns are safe behind their palisades.");
             }
         }
 

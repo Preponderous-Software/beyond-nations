@@ -1,0 +1,79 @@
+{"type":"screen","tick":0,"wallTimeMs":1792645150722,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792645155645,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645167032,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792645176664,"how":"created","slot":"world-1450162717-20261022-045936","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1792645176667,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":514,"wallTimeMs":1792645199781,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":534,"wallTimeMs":1792645201646,"text":"No entities within range to interact with."}
+{"type":"status","tick":562,"wallTimeMs":1792645203496,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":590,"wallTimeMs":1792645205483,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":622,"wallTimeMs":1792645207209,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":654,"wallTimeMs":1792645208741,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":950,"wallTimeMs":1792645223379,"kind":"NationCreation","text":"Isabella Wood founded the nation of Westernburg. It is the first nation this world has known."}
+{"type":"chronicle","tick":1002,"wallTimeMs":1792645226057,"kind":"SettlementFounded","text":"Isabella Wood raised the first settlement of Westernburg."}
+{"type":"status","tick":1410,"wallTimeMs":1792645245632,"text":"No entities within range to interact with."}
+{"type":"status","tick":1442,"wallTimeMs":1792645247341,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1478,"wallTimeMs":1792645249101,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":1650,"wallTimeMs":1792645257454,"kind":"NationCreation","text":"The nation of Yellowfield was born, with Tilly Taylor at its head."}
+{"type":"chronicle","tick":1702,"wallTimeMs":1792645259795,"kind":"SettlementFounded","text":"Tilly Taylor raised the first settlement of Yellowfield."}
+{"type":"chronicle","tick":1850,"wallTimeMs":1792645267681,"kind":"StallBuilt","text":"Trade came to Westernburg: Isabella Wood built a stall."}
+{"type":"status","tick":1906,"wallTimeMs":1792645270556,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":2330,"wallTimeMs":1792645292362,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"objective_completed","tick":2350,"wallTimeMs":1792645293341,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2350}
+{"type":"status","tick":2350,"wallTimeMs":1792645293341,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":2350,"wallTimeMs":1792645293341,"kind":"NationCreation","text":"Peggy Smith declared the nation of Fortshire, though none had yet sworn to it."}
+{"type":"objective_completed","tick":2402,"wallTimeMs":1792645295869,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":2402,"wallTimeMs":1792645295869,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":2402,"wallTimeMs":1792645295869,"kind":"SettlementFounded","text":"Peggy Smith laid the first stones of Fortshire."}
+{"type":"chronicle","tick":2402,"wallTimeMs":1792645295869,"kind":"NationCreation","text":"Eve Lewis founded the nation of Fortressshire."}
+{"type":"chronicle","tick":2850,"wallTimeMs":1792645318319,"kind":"NationCreation","text":"The nation of Fortresstown was born, with Mike Davies at its head."}
+{"type":"chronicle","tick":2902,"wallTimeMs":1792645320956,"kind":"NationCreation","text":"Charlotte Williams founded the nation of Townport."}
+{"type":"chronicle","tick":2950,"wallTimeMs":1792645323329,"kind":"SettlementFounded","text":"Fortressshire put down roots: Eve Lewis founded its first settlement."}
+{"type":"chronicle","tick":3050,"wallTimeMs":1792645328203,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Westernburg."}
+{"type":"chronicle","tick":3050,"wallTimeMs":1792645328203,"kind":"NationCreation","text":"Mia Evans raised a banner and called it Greenford."}
+{"type":"chronicle","tick":3050,"wallTimeMs":1792645328203,"kind":"SettlementFounded","text":"Fortresstown put down roots: Mike Davies founded its first settlement."}
+{"type":"status","tick":3194,"wallTimeMs":1792645334896,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":3250,"wallTimeMs":1792645337526,"kind":"NationCreation","text":"Daisy Thomas founded the nation of Castleport."}
+{"type":"chronicle","tick":3302,"wallTimeMs":1792645339836,"kind":"SettlementFounded","text":"Daisy Thomas raised the first settlement of Castleport."}
+{"type":"status","tick":3342,"wallTimeMs":1792645341675,"text":"Created nation Farmham."}
+{"type":"chronicle","tick":3342,"wallTimeMs":1792645341675,"kind":"NationCreation","text":"Under your hand, the nation of Farmham was born."}
+{"type":"objective_completed","tick":3350,"wallTimeMs":1792645342049,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":948}
+{"type":"status","tick":3350,"wallTimeMs":1792645342049,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":3350,"wallTimeMs":1792645342049,"kind":"NationCreation","text":"The nation of Oldport was born, with Olivia White at its head."}
+{"type":"screen","tick":3494,"wallTimeMs":1792645348735,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":3494,"wallTimeMs":1792645358113,"count":1}
+{"type":"status","tick":3494,"wallTimeMs":1792645358113,"text":"Game saved."}
+{"type":"screen","tick":3494,"wallTimeMs":1792645365893,"from":"PAUSE","to":"SHARE"}
+{"type":"world","tick":3494,"wallTimeMs":1792645383950,"how":"loaded","slot":"world-1450162717-20261022-045936","seed":1450162717}
+{"type":"screen","tick":3498,"wallTimeMs":1792645384396,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":3602,"wallTimeMs":1792645389440,"kind":"NationCreation","text":"The nation of Farmford was born, with Xavier Johnson at its head."}
+{"type":"chronicle","tick":3850,"wallTimeMs":1792645400674,"kind":"NationCreation","text":"Xavier White founded the nation of Townburg."}
+{"type":"world","tick":3494,"wallTimeMs":1792645402914,"how":"loaded","slot":"world-1450162717-20261022-045936","seed":1450162717}
+{"type":"screen","tick":3498,"wallTimeMs":1792645403273,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":3602,"wallTimeMs":1792645408433,"kind":"NationCreation","text":"The nation of Farmford was born, with Xavier Johnson at its head."}
+{"type":"chronicle","tick":3850,"wallTimeMs":1792645419980,"kind":"NationCreation","text":"Xavier White founded the nation of Townburg."}
+{"type":"chronicle","tick":3902,"wallTimeMs":1792645422435,"kind":"NationCreation","text":"Wendy Johnson raised a banner and called it Redfield."}
+{"type":"chronicle","tick":4002,"wallTimeMs":1792645427014,"kind":"NationRelationChange","text":"Westernburg and Yellowfield have become rivals."}
+{"type":"chronicle","tick":4102,"wallTimeMs":1792645431726,"kind":"SettlementFounded","text":"Townburg put down roots: Xavier White founded its first settlement."}
+{"type":"chronicle","tick":4150,"wallTimeMs":1792645434001,"kind":"SettlementFounded","text":"Charlotte Williams raised the first settlement of Townport."}
+{"type":"chronicle","tick":4202,"wallTimeMs":1792645436477,"kind":"StallBuilt","text":"Trade came to Fortresstown: Mike Davies built a stall."}
+{"type":"screen","tick":0,"wallTimeMs":1792645441537,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792645442086,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645449460,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792645461754,"how":"created","slot":"world-1450162717-20261022-050421","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1792645461755,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":901,"wallTimeMs":1792645494841,"kind":"NationCreation","text":"Isabella Wood founded the nation of Westernham. It is the first nation this world has known."}
+{"type":"chronicle","tick":953,"wallTimeMs":1792645496874,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Westernham."}
+{"type":"chronicle","tick":1401,"wallTimeMs":1792645514627,"kind":"NationCreation","text":"Ruth Wilson raised a banner and called it Greentown."}
+{"type":"chronicle","tick":1453,"wallTimeMs":1792645516637,"kind":"StallBuilt","text":"Trade came to Westernham: Isabella Wood built a stall."}
+{"type":"chronicle","tick":1801,"wallTimeMs":1792645530729,"kind":"SettlementFounded","text":"Ruth Wilson laid the first stones of Greentown."}
+{"type":"screen","tick":0,"wallTimeMs":1792645555926,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792645556449,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792645559554,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792645565219,"how":"created","slot":"world-1450162717-20261022-050605","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1792645565221,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":902,"wallTimeMs":1792645599493,"kind":"NationCreation","text":"Isabella Wood founded the nation of Westernham. It is the first nation this world has known."}
+{"type":"chronicle","tick":950,"wallTimeMs":1792645601442,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Westernham."}
+{"type":"chronicle","tick":1402,"wallTimeMs":1792645618488,"kind":"NationCreation","text":"Ruth Wilson raised a banner and called it Greentown."}
+{"type":"chronicle","tick":1450,"wallTimeMs":1792645620262,"kind":"StallBuilt","text":"Trade came to Westernham: Isabella Wood built a stall."}
+{"type":"chronicle","tick":1802,"wallTimeMs":1792645633671,"kind":"SettlementFounded","text":"Ruth Wilson laid the first stones of Greentown."}

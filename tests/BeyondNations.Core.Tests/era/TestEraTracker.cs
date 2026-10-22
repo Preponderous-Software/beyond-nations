@@ -237,7 +237,159 @@ namespace beyondnationstests {
             eras.applyRules(simulation);
             Assert.Null(settlement.getBuildingEra());
             Assert.Equal(0, nation.getSettlementLimit());
+            // the shelter is the player's, led or not: it goes only when the player does
+            Assert.True(nation.isSheltered());
+            nation.removeMember(player.getId());
+            player.setNationId(null);
+            eras.applyRules(simulation);
             Assert.False(nation.isSheltered());
+        }
+
+        [Fact]
+        public void testANationThePlayerHasJoined_IsShelteredUntilTheTownEra_ButNotLimited() {
+            Nation nation = makePawnNation("Joinland");
+            Settlement settlement = addSettlement(nation, Vector3.Zero);
+            Nation stranger = makePawnNation("Farland");
+            nation.addMember(player.getId());
+            player.setNationId(nation.getId());
+            eras.applyRules(simulation);
+            Assert.True(nation.isSheltered());
+            Assert.False(stranger.isSheltered()); // a nation without the player is untouched
+            Assert.Equal(0, nation.getSettlementLimit());
+            Assert.Null(settlement.getBuildingEra());
+        }
+
+        /** A nation at the Town era with a village beside a far stronger pawn-led neighbour that is hostile to it. */
+        private Settlement[] makeTownEraNationBesideAHostileGiant(out Nation nation, out Nation attacker) {
+            nation = makeKingdomReadyNation();
+            Settlement target = simulation.getEntityRepository().getEntity(nation.getSettlement(EraRules.KingdomTowns)) as Settlement;
+            Assert.NotEqual(SettlementTier.TOWN, target.getTier());
+            attacker = makePawnNation("Ironhold");
+            Settlement base_ = addSettlement(attacker, target.getPosition() + new Vector3(0, 0, 150));
+            build(base_, SettlementTiers.TOWN_BUILDINGS);
+            addMembers(attacker, 120);
+            simulation.getNationRepository().getRelations().adjust(nation, attacker, -100);
+            eras.evaluate(simulation); // village
+            eras.evaluate(simulation); // town
+            Assert.Equal(Era.TOWN, eras.getEra());
+            return new[] { target, base_ };
+        }
+
+        /** Runs the clock on by a diplomacy round and runs the round, as the simulation would. */
+        private void passARound() {
+            for (int i = 0; i < Diplomacy.ROUND_TICKS; i++) {
+                simulation.getTickCounter().increment();
+                eras.update(simulation);
+            }
+            simulation.getDiplomacy().runRound();
+        }
+
+        [Fact]
+        public void testWhenTheTownEraComes_NoSiegeMayBeginUntilTheWarningHasRunOut() {
+            Nation nation;
+            Nation attacker;
+            Settlement[] sites = makeTownEraNationBesideAHostileGiant(out nation, out attacker);
+            Settlement target = sites[0];
+            Diplomacy diplomacy = simulation.getDiplomacy();
+            Assert.False(nation.isSheltered());
+            Assert.True(nation.isForewarned());
+            Assert.Equal(EraRules.SiegeWarningTicks, eras.getSiegeWarningTicksLeft(simulation));
+            // strong enough, but the player has been given warning
+            Assert.True(diplomacy.canBesiege(attacker, nation, sites[1], target));
+            Assert.False(diplomacy.mayBeginSiege(attacker, nation, target));
+
+            int rounds = 0;
+            while (eras.getSiegeWarningTicksLeft(simulation) > 0) {
+                passARound();
+                rounds++;
+                Assert.True(eras.getSiegeWarningTicksLeft(simulation) <= 0 || diplomacy.getBesieger(target) == null,
+                    "a siege began with " + eras.getSiegeWarningTicksLeft(simulation) + " ticks of warning left");
+            }
+            Assert.Equal(EraRules.SiegeWarningTicks / Diplomacy.ROUND_TICKS, rounds);
+            Assert.False(nation.isForewarned());
+            Assert.Equal(-1, eras.getSiegeWarningTicksLeft(simulation));
+            Assert.True(diplomacy.mayBeginSiege(attacker, nation, target));
+            passARound();
+            Assert.Equal(attacker, diplomacy.getBesieger(target));
+        }
+
+        [Fact]
+        public void testTheEraAnnouncement_IsNotLost_WhenTheReachTheEraObjectiveCompletesOnTheSameTick() {
+            // The Simulation evaluates the era and then the objective on the
+            // same tick, so "Reach the Town era" completes the moment the era
+            // is announced, and its message used to replace the announcement
+            // (and the siege warning in it) before a frame was drawn.
+            makeKingdomReadyNation();
+            eras.evaluate(simulation);
+            Assert.Equal(Era.VILLAGE, eras.getEra());
+            simulation.getTickCounter().increment();
+            ObjectiveTracker objectives = new ObjectiveTracker(new[] { ObjectiveCatalog.ambition(3, Era.VILLAGE) }, null);
+            Assert.Equal("Reach the Town era", objectives.getCurrent().getTitle());
+            Assert.False(objectives.evaluate(simulation));
+
+            // one step, as Simulation.fixedUpdate runs it
+            simulation.getTickCounter().increment();
+            player.getStatus().beginTick();
+            eras.evaluate(simulation);
+            Assert.True(objectives.evaluate(simulation));
+            player.getStatus().endTick();
+
+            string status = player.getStatus().getStatus();
+            Assert.StartsWith("A new era: Testland is now a Town.", status);
+            Assert.Contains("hostile neighbours may besiege its villages in 5 minutes", status);
+            Assert.Contains("Objective complete: Reach the Town era.", status);
+            Assert.DoesNotContain("Village.", status); // last second's announcement is not repeated
+        }
+
+        [Fact]
+        public void testTheSiegeWarning_IsOnTheStatusLine_AtTheTownEra_AMinuteBefore_AndAtItsEnd() {
+            Nation nation;
+            Nation attacker;
+            makeTownEraNationBesideAHostileGiant(out nation, out attacker);
+            Assert.StartsWith("A new era: Testland is now a Town.", player.getStatus().getStatus());
+            Assert.Contains("hostile neighbours may besiege its villages in 5 minutes", player.getStatus().getStatus());
+
+            int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
+            while (eras.getSiegeWarningTicksLeft(simulation) > 60 * ticksPerSecond) {
+                simulation.getTickCounter().increment();
+                eras.update(simulation);
+            }
+            Assert.StartsWith("In 1 minute hostile neighbours may besiege your villages.", player.getStatus().getStatus());
+            while (eras.getSiegeWarningTicksLeft(simulation) > 0) {
+                simulation.getTickCounter().increment();
+                eras.update(simulation);
+            }
+            Assert.StartsWith("Your nation's shelter is over: hostile neighbours may now besiege its villages.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testASiegeAlreadyUnderWay_GoesOn_DuringTheWarning() {
+            // the diplomacy showcase stages its siege, then the Town era
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation staged = new Simulation(config);
+            DiplomacyShowcase.Staged s = DiplomacyShowcase.stage(staged);
+            Assert.True(s.playerNation.isForewarned());
+            Assert.Equal(s.hostile, staged.getDiplomacy().getBesieger(s.playerSettlement));
+            int progress = staged.getDiplomacy().getSiegeProgress(s.playerSettlement);
+            staged.getDiplomacy().runRound();
+            Assert.Equal(progress + 1, staged.getDiplomacy().getSiegeProgress(s.playerSettlement));
+        }
+
+        [Fact]
+        public void testTheSiegeWarning_SurvivesASave() {
+            Nation nation;
+            Nation attacker;
+            makeTownEraNationBesideAHostileGiant(out nation, out attacker);
+            for (int i = 0; i < 1000; i++) {
+                simulation.getTickCounter().increment();
+            }
+            int left = eras.getSiegeWarningTicksLeft(simulation);
+            Assert.Equal(EraRules.SiegeWarningTicks - 1000, left);
+            Simulation loaded = SaveGame.decode(SaveGame.encode(simulation, "test"));
+            Assert.Equal(left, loaded.getEraTracker().getSiegeWarningTicksLeft(loaded));
+            Nation loadedNation = loaded.getNationRepository().getNation(loaded.getPlayer().getNationId());
+            Assert.True(loadedNation.isForewarned());
         }
 
         [Fact]
