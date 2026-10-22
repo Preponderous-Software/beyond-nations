@@ -25,7 +25,7 @@ namespace beyondnations.desktop.ui.boxes {
         private static readonly Vector4 DangerColour = new Vector4(1f, 0.4f, 0.35f, 1f);
         private static readonly Vector4 WarningColour = new Vector4(1f, 0.75f, 0.3f, 1f);
 
-        public const string ShelteredLine = "Sheltered: no siege can begin until the Town era.";
+        public const string ShelteredLine = EraRules.ShelterDescription;
 
         private const ImGuiWindowFlags PanelFlags =
             ImGuiWindowFlags.NoDecoration |
