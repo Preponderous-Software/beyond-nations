@@ -82,11 +82,16 @@ namespace beyondnations.desktop.ui.screens {
         * Whether the era keeps the player from having this building: inside a
         * settlement, by that settlement's era (set only for the nation the
         * player leads); out in the world, by the era of the nation the player
-        * leads. A pawn-led nation is never held back.
+        * leads, or, with no nation yet, by the Camp era a new one starts in.
+        * A pawn-led nation is never held back.
         */
         public static bool isLockedForPlayer(Simulation simulation, Settlement settlement, BuildingType type) {
             if (settlement != null) {
                 return !settlement.isBuildingUnlocked(type);
+            }
+            if (simulation.getPlayer().getNationId() == null) {
+                // playtest 0.6.0 s07: before founding, the screen said only "a Workshop (inside a settlement)"
+                return !EraRules.unlocksBuilding(Era.CAMP, type);
             }
             return NationDiplomacy.playerLeads(simulation.getPlayer(), simulation.getNationRepository())
                 && !EraRules.unlocksBuilding(simulation.getEraTracker().getEra(), type);

@@ -53,7 +53,8 @@ namespace beyondnationstests.desktop.ui {
             CraftingScreen.Row planks = rows.Find(r => r.Recipe == RecipeBook.Planks);
             Assert.Equal("Planks x2: 3 wood", planks.Heading);
             Assert.Contains("(needs a Workshop)", planks.Benefit);
-            Assert.Equal("Need a Workshop (inside a settlement)", planks.Status);
+            // with no nation yet, the Workshop is still locked by the Camp era (#356)
+            Assert.Equal("Locked: The Workshop is unlocked in the Village era.", planks.Status);
         }
 
         [Fact]
@@ -114,6 +115,16 @@ namespace beyondnationstests.desktop.ui {
             new ExitSettlementCommand(simulation.getEntityRepository()).execute(simulation.getPlayer());
 
             Assert.EndsWith("need a settlement with a Workshop; the Workshop is unlocked in the Village era.", CraftingScreen.getLocationLine(simulation));
+        }
+
+        [Fact]
+        public void testWorkshopLockedByEra_WithNoNationYet_SaysSoToo() {
+            Simulation simulation = newSimulation();
+            Assert.Null(simulation.getPlayer().getNationId());
+
+            Assert.EndsWith("need a settlement with a Workshop; the Workshop is unlocked in the Village era.", CraftingScreen.getLocationLine(simulation));
+            CraftingScreen.Row planks = CraftingScreen.getRows(simulation).Find(r => r.Recipe == RecipeBook.Planks);
+            Assert.Equal("Locked: The Workshop is unlocked in the Village era.", planks.Status);
         }
 
         [Fact]
