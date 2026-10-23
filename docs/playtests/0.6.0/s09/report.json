@@ -1,0 +1,145 @@
+{
+  "session": "s09",
+  "goal": "Accessibility and text audit, touching only what a mouse-and-keyboard player would: every screen and panel; cut-off, overlapping, unclear or misspelled text; contrast; anything only explained on hover. Pay special attention to: the HUD right column inside a settlement (Season panel vs Player Info, 'Next (K)' cost cut off, #350); whether command-bar buttons ever shift under the cursor between hover and click (#345); and whether drastic actions (war, raid, leaving a nation) ask for confirmation.",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 109,
+  "durationSec": 700,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Declaring war from the Nations screen (O) takes effect on a single click with no confirmation",
+      "detail": "On the Nations tab one click on 'War' next to Blackport declared war at once (relation -13 to -60, 'at war'). The same action in the command bar ('Declare War on Townfield') asks for a second click, and so do Leave Nation and Build Farm. I expected the Nations screen to use the same confirmation.",
+      "repro": "pt start --seed 109; create nation (N); press O; pt click 657 218 (War on first row)",
+      "screenshot": "shots/war1.png",
+      "tick": 7882
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "L key leaves/disbands the nation instantly, bypassing the Leave Nation button's confirmation",
+      "detail": "The red Leave Nation button needs a second click ('Click again to confirm: Leave Nation.'). Pressing L once disbanded the nation straight away ('You disbanded nation Bigland.') with no prompt. Repeated cleanly: N, wait 8 s, then a single L.",
+      "repro": "pt key n; pt wait 8; pt key l; pt state (nation:null)",
+      "screenshot": "shots/leave_key_single.png",
+      "tick": 1642
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "#345 still present: pawn-targeted command rows appear, vanish and retarget under a still cursor",
+      "detail": "With the pointer held at (100,414) and no input, the button under it changed over 18 s from 'Talk to Charlotte Johnson' to 'Talk to Abigail Evans'. An Order/Appoint row disappeared and 'Send Caravan' moved from y=383 to y=414 and back. Earlier, when a pawn walked into reach, a Talk/Gift/Order row was inserted and pushed 'Send Caravan' up. A click can land on the wrong pawn or the wrong action. Before/after shots: shots/shift1.png and shots/shift6.png.",
+      "repro": "inside own settlement with pawns wandering nearby: pt move 100 414; take a shot every 3 s",
+      "screenshot": "shots/shift_after.png",
+      "tick": 8690
+    },
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Click-twice confirmation resets when the command bar reflows, so 'Confirm' clicks only re-arm",
+      "detail": "Build Farm then Confirm Build Farm, clicked three times in the same spot, only gave 'Click again to confirm: Build Farm. (x3)'. Nothing was built and no shortage was reported (K reported 'Need 2 more wood'). Declare War on Townfield did the same thing ('(x2)') when a pawn row appeared between the two clicks. With a still layout, two clicks did confirm. Either the arm state is lost on reflow or the button is enabled when the action is unaffordable.",
+      "repro": "inside own settlement with Wood < 25: pt click 386 445 (Build Farm) three times",
+      "screenshot": "shots/farm3.png",
+      "tick": 7758
+    },
+    {
+      "severity": "major",
+      "category": "text",
+      "title": "#350 confirmed: right column inside a settlement clips 'Next (K)' cost and Season panel covers Player Info",
+      "detail": "Settlement Info shows 'Next (K): Farm, 25 wood, 10', cut at the screen edge so the stone count is lost (also 'Workshop, 15 wood,' in Townfield). Season (y~432) overlaps Player Info: Energy is hidden, and 'Role: LEADER' and 'Land: Townfield (Hostile)' peek out underneath. Once Market Info grows a 'Merchants:' list, Season is pushed to y=466 and runs off the bottom, and Player Info is entirely off-screen.",
+      "repro": "found a settlement, press E to enter; pt shot",
+      "screenshot": "shots/inside.png",
+      "tick": 6754
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Expanded Era box pushes Objective panel into the command bar; objective progress text clipped",
+      "detail": "Tapping the Era box pushes the Objective panel down until 'Send Caravan' and 'Build Stall' are drawn over its description. The Objective 7 progress bar always reads 'nbers 3/10 - Buildings 0/2' (the start of 'Members' is clipped). 'Village 0/1' inside the box and 'Village: 1/4' in its header use the same word for different counts.",
+      "repro": "after objective 6: pt click 110 58",
+      "screenshot": "shots/era.png",
+      "tick": 8978
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Command bar reflows after Create Nation: red Leave Nation lands exactly under the cursor",
+      "detail": "After clicking Create Nation (66,517) the bar rebuilds. Leave Nation now fills that spot and the Inventory panel jumps. Exiting a settlement also reflows the bar (Craft Axe ends up near where Exit Settlement was). Inventory Info sometimes moves from the left edge to mid-screen (220,227) over the world and stays there.",
+      "repro": "pt click 66 517; pt shot",
+      "screenshot": "shots/created.png",
+      "tick": 850
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Directions given ('lies 180 to the west') but there is no compass or heading on the HUD",
+      "detail": "The founding failure message is helpful but gives compass directions. Nothing on screen shows which way is west or south, so I found a site by trial and error.",
+      "repro": "with 50 wood press F near another settlement",
+      "screenshot": "shots/compass.png",
+      "tick": 6118
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "No tooltips anywhere: disabled buttons and jargon (PCIS, Defence, Chunk Size) never explained",
+      "detail": "Hovering disabled buttons (Plant Sapling, Enter Settlement, Build House) or labels gives nothing. 'PCIS', 'Defence 3', 'Chunk Size', 'Location Scale' and 'Lag Prevention' are never explained. Ally gives no hint that it needs +30 until you read the header line.",
+      "repro": "pt move 426 517; pt shot",
+      "screenshot": "shots/hover_disabled.png",
+      "tick": 482
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Low contrast: menus, disabled buttons and text drawn directly over the 3D scene",
+      "detail": "On the main menu and Config, white text sits on light-blue buttons over a light-blue background. Disabled command buttons are white on pale grey and almost unreadable. The Inventory screen (I), Laws descriptions, Nations rows and Share all draw text straight over the world with no solid backing. The huge world-space '2 here, 3/8 residents' label shows through behind every overlay.",
+      "repro": "pt key i; pt shot",
+      "screenshot": "shots/inventory.png",
+      "tick": 7930
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Pawns who joined the nation are still labelled '(Stranger)'",
+      "detail": "The Chronicle says 'Charlotte Johnson joined Easternville' and Abigail Evans is listed as our merchant, but both 'Talk to' buttons say '(Stranger) - Greedy'.",
+      "repro": "inside own settlement after pawns join",
+      "screenshot": "shots/shift_before.png",
+      "tick": 8010
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "At war, the enemy settlement can be entered and traded with; no Raid command exists",
+      "detail": "Right after declaring war I entered Townfield. It offered Purchase Food and Sell Resources as if at peace. No Raid command appeared anywhere, and nothing explains how to raid.",
+      "repro": "declare war via command bar near Townfield; press E",
+      "screenshot": "shots/enemy_inside.png",
+      "tick": 10966
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Chronicle HUD lines truncated mid-word; Controls page lists debug cheat keys",
+      "detail": "Chronicle preview lines end in '...' (e.g. 'It is th...'). The full view (Y) wraps properly. Controls page 3 lists F2-F6 spawn cheats to all players, and 'Era box (tap)' is vague. 'Export replay (USD)' reads as US dollars.",
+      "repro": "main menu > Controls > Next > Next",
+      "screenshot": "shots/controls3.png",
+      "tick": null
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 48.0,
+      "Eat something": 49.0,
+      "Create or join a nation": 50.0,
+      "Found a settlement": 127.0,
+      "Enter your settlement": 130.0,
+      "Build a market stall": 149.0
+    },
+    "drasticActionsWithoutConfirm": 2,
+    "drasticActionsWithConfirm": 2,
+    "rightColumnPanelsOverlapping": true,
+    "commandBarShiftsObserved": 4
+  },
+  "fun": 3,
+  "verdict": "The confirmation system for drastic actions exists but has gaps: Nations-screen War and the L key skip it, and NPC-driven reflows of the command bar reset or retarget it, so #345 is not fixed. The right column still overflows inside a settlement (#350), hiding Energy and the Hostile land warning. The content is good (era checklist, crafting screen, founding guidance), but the HUD needs fixed anchors and solid backgrounds before it is accessible."
+}

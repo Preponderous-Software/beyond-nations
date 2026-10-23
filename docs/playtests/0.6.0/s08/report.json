@@ -1,0 +1,66 @@
+{
+  "session": "s08",
+  "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 108,
+  "durationSec": 1590,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "First player world event arrives very late (tick 30554, about 10 game minutes); only one could be seen in a 30-minute session",
+      "detail": "Played normally from a new world (nation at tick 1402, settlement at 8302, house+farm by 12638) and then waited. No world event sheet appeared until tick 30554 (611 game seconds; ~26 real minutes at the 15-28 tps this machine gave). The first AI-nation world event in the chronicle was at tick 19754 (bountiful harvest in Westernland). With the next player event 10-15 game minutes later, a player sees one choice per ~quarter hour, so comparing consequences of different choices is not possible in a normal session. Expected the first event within the first few game minutes after founding a settlement, to introduce the system.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 108; space; click Start, Begin; gather 10 wood, N, gather 50 wood, F in open ground, enter settlement, K twice; wait until state.worldEvent is non-null (tick 30554)",
+      "screenshot": "shots/event1.png",
+      "tick": 30554
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Drought 'Buy grain' resolution does not confirm the promised 12 apples or where they went",
+      "detail": "The Drought sheet itself is clear: each option states its cost and its effect (option 1 shows in red why it is unavailable: needs 15 wood and 10 stone; the farms are dry a quarter day instead of a whole one). After clicking 'Buy grain from traders (25 coins)', 25 coins left my personal purse (401 -> 376) but the status/chronicle line only says 'you bought grain from passing traders to see it through'. The '12 apples go into the stores' never shows: my inventory stayed at 31 apples, and nothing points at the settlement stockpile. Option 3 says 'your people grow restless with you' with no number or indicator of what that means. Expected the result toast to restate the concrete effects (-25 coins, +12 apples to Newport's stockpile, farms idle until day X).",
+      "repro": "As above until the Drought sheet shows; click option 2 at (480,405); read the status bar and the inventory panel",
+      "screenshot": "shots/after1b.png",
+      "tick": 30554
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Found-settlement refusal gives compass directions but the HUD has no compass",
+      "detail": "Pressing F too close to another settlement says e.g. 'Open ground lies about 210 to the east', then '161 to the north', then 'south-east', 'north-west'. There is no compass, minimap or heading indicator on screen, so a player has to guess which way east is. It took about 7000 ticks (roughly 2.3 game minutes) of trial walking to find valid ground because the world near spawn is crowded with AI settlements. Expected a compass strip, a marker, or a relative direction ('ahead/behind/left').",
+      "repro": "Seed 108; after creating a nation with 50 wood, press F at (-150,253) and follow the hint",
+      "screenshot": "shots/nocompass.png",
+      "tick": 5486
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "'Build a market stall' objective completes when an NPC builds a stall in your settlement",
+      "detail": "Objective 6 (gather 20 wood and 5 stone, press B in your settlement) completed at tick 8602, about 150 ticks after I first entered my settlement and before I had the stone or pressed B. The chronicle shows Lily Taylor building a stall in Newport around then. When I later pressed B: 'Market is full. Cannot build stall.' The player never builds a stall and gets the reward.",
+      "repro": "Seed 108; found settlement; enter it with E; wait ~150 ticks without pressing B",
+      "screenshot": "shots/entered.png",
+      "tick": 8602
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Inside a settlement, Season panel overlaps Player Info and Settlement Info text is cut off",
+      "detail": "At 960x540, inside the settlement the Season panel sits over the Player Info panel and hides most of the Energy bar. Settlement Info 'Next (K): Farm, 25 wood, 10...' is cut off at the right edge. Later, during the event, Settlement Info shows 'Tier: Town (10 buildings)' while the era panel says Camp (1/4), Village 2/4 buildings, which reads as a contradiction.",
+      "repro": "Found a settlement and press E to enter it at 960x540",
+      "screenshot": "shots/overlap.png",
+      "tick": 8590
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 23.0, "Eat something": 24.04, "Create or join a nation": 28.04, "Found a settlement": 166.04, "Enter your settlement": 169.0, "Build a market stall": 172.04},
+    "playerWorldEventsOffered": 1,
+    "playerWorldEventChoicesTaken": 1,
+    "firstPlayerWorldEventGameSeconds": 611.08,
+    "firstNationWorldEventGameSeconds": 395.08
+  },
+  "fun": 3,
+  "verdict": "The world event sheet itself is good: it pauses the world, explains the situation in a sentence, and each option states its cost and effect, with unavailable options greyed and explained. But the first event took about 10 game minutes (26 real minutes here), so only one choice fit in the session and comparing choices was not possible. After a choice, the result message drops the concrete numbers it promised, so the player cannot check that the outcome was fair. Pace the first event earlier and have the result toast restate the effects."
+}

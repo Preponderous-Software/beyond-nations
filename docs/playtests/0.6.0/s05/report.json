@@ -1,0 +1,104 @@
+{
+  "session": "s05",
+  "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan. Note why any Sell attempt fails and whether the message says so (#354), and whether the game tells you before the Town era that Storehouse/caravans exist (#355).",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 105,
+  "durationSec": 937,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "#354 still open: Sell Resources failure message never says the stalls cannot afford to buy",
+      "detail": "In my own settlement (4/4 stalls, Market Info 'Total Coins: 1') holding 31 apples, 14 saplings, 14 stone and 1 wood, Sell Resources said '! No one is buying resources at this market or you do not have enough resources to sell.' I plainly had resources; the real reason (from the Market Info panel and Market.sellResources) is that no other stall has enough coins to pay. Same at the rival Village of Whiteport (Total Coins 0, tick 12926). Expected a specific reason such as 'The stalls here only hold 1 coin and cannot pay for anything you carry.' The buy side has the same either/or wording: Purchase Food with 437 coins said 'No one is selling food at this market or you do not have enough money' (tick 8246).",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 105; gather 50 wood; N; F away from others; E to enter; wait for a pawn stall; click Sell Resources (625,475) while Market Info shows Total Coins 0-1",
+      "screenshot": "shots/sell_poor.png",
+      "tick": 11966
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Storehouse and caravans cannot be reached in a 30-minute session: Town era needs Day 7",
+      "detail": "Send Caravan needs a Storehouse, which unlocks in the Town era. The Era box shows Village needs Day 3, and Town needs Day 7, 18 members, 2 settlements and 1000 funds. At the 15-21 ticks/s I saw, a game day is about 8-10 real minutes, so caravans are about an hour or more away. I could not build a Storehouse or send a caravan. Meanwhile an AI settlement (Whiteport) already showed 'Town (5 buildings)' with 'Next (K): Storehouse' on Day 1 while the world era was Camp.",
+      "repro": "As above; enter own settlement; click the Era box (110,58); click Send Caravan (Town era)",
+      "screenshot": "shots/era_panel.png",
+      "tick": 11800
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Early markets hold almost no coins, so selling only works after you pay the stall first",
+      "detail": "Every market I visited on Day 1 showed Total Coins 0-1, so Sell failed. At Whiteport the sell failed (tick 12926). I bought one apple for 27 (tick 12954) and then the sell worked for 25 (tick 13046). So the only way to sell was to fund the stall with my own coins first, which loses money. Prices also fell hard within one day: apples 42/37 -> 8/8 and wood 63/56 -> 11/11 between ticks 7694 and 17318. Trade does not earn money early in the game.",
+      "repro": "Enter Whiteport (or any market with Total Coins 0); Sell Resources (fails); Purchase Food; Sell Resources (succeeds)",
+      "screenshot": "shots/foreign_sell.png",
+      "tick": 13046
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Sell Resources picks the items itself and the message never says what was sold",
+      "detail": "Clicking Sell twice sold 2 of my 3 wood, which I needed for the House, for 11 each, while I held 35 apples and 16 saplings. An earlier sale took a sapling, and saplings have no price row in Market Info. The success message 'You sold resources to Eve Watson. Relationship increased to 1.' does not name the item or the price. Expected a picker or at least 'Sold 2 wood for 22 coins'.",
+      "repro": "In own settlement with wood, apples and saplings and a stall that has coins: click Sell Resources twice and compare the inventory",
+      "screenshot": "shots/sell_wood.png",
+      "tick": 17454
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "'Build a market stall' objective completed by an AI pawn's stall, not the player's",
+      "detail": "Objective 6 completed with +50 coins at tick 7802 when pawn Wendy Williams built a stall in my settlement. I had 16/20 wood and 0/5 stone and had not built anything. I built my own stall later (tick 11306), which gave no extra feedback. Expected the objective to need the player's own stall, or wording like 'Get a market stall going'.",
+      "repro": "Found a settlement, enter it with fewer than 20 wood; wait for a resident pawn to build a stall",
+      "screenshot": "shots/stall_objective_free.png",
+      "tick": 7802
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Found-settlement 'open ground' hint is overtaken by AI settlers and sends the player back and forth",
+      "detail": "F said 'Open ground lies about 40 to the north', then '20 to the north' (tick 5934). After walking about 16 north it said 'Too close to the Camp of Northernburg: 197 away... about 280 to the south-west' (tick 6158), because Northernburg was founded at tick 6050. A later hint said 340 south-east. It took about 1800 ticks of wandering to find a spot. The hints are useful, but the AI fills the map quickly.",
+      "repro": "Seed 105; after 50 wood near (-250,-45), press F repeatedly and follow the hints",
+      "screenshot": "shots/found_hint_flip.png",
+      "tick": 6158
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "HUD clipping and overlap inside settlements",
+      "detail": "The world-space nametag ('Camp of Uppershire / 4 here, 5/8 residents') draws huge across the top, behind the toast and the Chronicle. 'Next (K): House, 20 wood, 15...' is cut off at the Settlement Info edge. The Objective progress text is clipped on the left ('bers 5/10'). When a pawn is near, the Inventory panel moves on top of the tip.",
+      "repro": "Enter own settlement and look at the top of the screen and the side panels",
+      "screenshot": "shots/nametag_overlap.png",
+      "tick": 17858
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "#355 looks addressed: caravans and Storehouse are explained well before the Town era",
+      "detail": "Positive. In the Camp era the settlement action bar already shows 'Send Caravan (Town era)'. Clicking it says 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' Small gaps: the Controls screens (3 pages) do not mention trading, caravans or the Sell/Purchase buttons, and the Era box's Village unlocks do not mention the Storehouse.",
+      "repro": "Enter own settlement in the Camp era; click Send Caravan (Town era) at (553,445)",
+      "screenshot": "shots/caravan_hint_camp.png",
+      "tick": 8650
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 44.0,
+      "Eat something": 45.0,
+      "Create or join a nation": 55.0,
+      "Found a settlement": 150.0,
+      "Enter your settlement": 152.0,
+      "Build a market stall": 156.0
+    },
+    "sellAttempts": 7,
+    "sellFailures": 4,
+    "successfulSales": 3,
+    "successfulPurchases": 3,
+    "storehouseBuilt": 0,
+    "caravansSent": 0,
+    "fpsTypical": 5,
+    "tpsTypical": 20
+  },
+  "fun": 3,
+  "verdict": "Building a stall, buying and selling all work. The trade loop feels broken early because markets start nearly broke, so a sell only works after the player pays the stall first, and the failure message (#354) blames 'no buyers or not enough resources' when the stalls just have no coins. Caravans are now clearly signposted from the Camp era (#355 fixed), but the Storehouse sits behind a Day-7 Town era that a single session cannot reach."
+}

@@ -1,0 +1,64 @@
+{
+  "session": "s10",
+  "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches.",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": "Ironvale",
+  "durationSec": 412,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Shared seed reproduces the map but not the nations: a few player actions change NPC nation names/founders",
+      "detail": "Original Ironvale world (player chopped a tree and mined a rock before tick 850): chronicle tick 850 'Isabella Wood founded the nation of Upperfield', tick 1402 'Phoebe Davies declared the nation of Greenfield', tick 2150 'Bigtown' (Tina Johnson). New world from the Share-screen seed 1450162717, player idle: tick 901 'Isabella Wood founded the nation of Westernham', tick 1401 'Ruth Wilson raised a banner and called it Greentown'. A second idle world from the same seed matched the first idle one exactly, so the sim is deterministic per seed+inputs, and player gathering perturbs the NPC/name RNG. Terrain, trees, rocks, chickens, region and the first pawns all matched. A friend opening the shared link ('Share this world') will see different nation names and founders from the sharer's world, even if the sharer only chopped one tree. Expected: NPC naming/founding decisions isolated from the player's RNG draws, or the Share screen saying that only the starting map is shared.",
+      "repro": "pt start --seed Ironvale; Start; Begin; pt walkto tree; e x5; pt walkto rock; e x3; wait to tick 1500, read chronicle (Upperfield/Greenfield). Escape > Share (seed 1450162717). Main Menu > Start > clear box > type 1450162717 > Begin; idle to tick 1500: chronicle shows Westernham/Greentown.",
+      "screenshot": "shots/seedworld_chron.png",
+      "tick": 1401
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Trees and rocks near the player are stripped within seconds by NPCs, while objective 1 asks for 10 wood",
+      "detail": "Right after loading at tick 1842 the nearest tree was 17 m away and rocks were 46-110 m away. By tick ~1994 the 17 m and 46 m trees were gone, by 2138 the 89.9 m rock was gone, and by tick 2550 (about 14 game seconds) the nearest tree was 137 m away. No chopping was visible on screen, so they just vanish. The same thing happened identically on two separate loads, so it is the simulation and not a load bug. The player only had Wood 4/10 for 'Gather wood' and the area went from wooded to bare in seconds (Moor region, 'scarce in everything').",
+      "repro": "Save at tick 1838 at (-31,-133) as above; pt start --continue; pt state every 2 s; compare nearest.tree between tick 1842 and 2550.",
+      "screenshot": "shots/load_later.png",
+      "tick": 2550
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "New World seed box: Ctrl+A does not select all, so pasting a shared seed means backspacing the prefilled seed",
+      "detail": "The seed box is prefilled with the last seed ('Ironvale'). Ctrl+A (tried twice) did not select the text, and the next BackSpace deleted only one character, giving 'Ironval1450162717' (live preview helpfully showed 'is seed 1889372902', which made the mistake visible). Clearing it took ~8 BackSpaces. Possible harness caveat: xdotool modifier timing at a few fps.",
+      "repro": "Main Menu > Start; click seed box; pt key ctrl+a BackSpace; pt type 1450162717; shot.",
+      "screenshot": "shots/ctrla_noselect.png",
+      "tick": 2550
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Pause menu has no Load button (Load is only on the main menu)",
+      "detail": "The pause menu shows Resume, Save, Share, Controls, Main Menu and Quit. The game's own guidance says Escape opens a pause menu with Save, Load, Share and Main Menu. Loading needs Main Menu (which also saves first, and says so) > Load. That works, but the description is wrong or the button is missing.",
+      "repro": "In world: pt key Escape; shot.",
+      "screenshot": "shots/pause.png",
+      "tick": 1838
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "saveTick": 1838,
+    "loadTick": 1838,
+    "firstProbeTickAfterLoad": 1842,
+    "entityIdsMatchingAfterLoad": "all 17 nearest ids identical (trees, rocks, chickens, settlements; pawns moved <1 m in 4 ticks)",
+    "inventoryMatchAfterLoad": true,
+    "continueRunsDeterministic": 2,
+    "shareSeed": 1450162717,
+    "seedWordMapsTo": "Ironvale -> 1450162717",
+    "seededWorldTerrainMatch": true,
+    "seededWorldChronicleMatch": false,
+    "idleSeededWorldsMatchEachOther": true
+  },
+  "fun": 3,
+  "verdict": "Save/continue is solid. Save gives clear feedback ('Saved: Day 1 - no nation, 18:06'), Continue says 'Welcome back', and the loaded world matches the save exactly, down to entity IDs, inventory, position and heading. Two continues even replayed the same events at the same ticks. The Share screen's seed and link (with 'Link copied' feedback) reproduce the starting map exactly. But the nation history diverges as soon as the sharer does anything, so a friend will not see 'Upperfield' or 'Greenfield'. Decide whether sharing a world should also share its history."
+}

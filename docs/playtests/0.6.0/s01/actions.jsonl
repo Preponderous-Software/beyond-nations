@@ -1,0 +1,363 @@
+{"t": 1792713869352, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "101"]}
+{"t": 1792713878664, "cmd": "wait", "args": ["3"]}
+{"t": 1792713881803, "cmd": "shot", "args": ["title"]}
+{"t": 1792713887974, "cmd": "key", "args": ["space"]}
+{"t": 1792713888503, "cmd": "wait", "args": ["2"]}
+{"t": 1792713890614, "cmd": "shot", "args": ["menu"]}
+{"t": 1792713897685, "cmd": "click", "args": ["480", "418"]}
+{"t": 1792713898496, "cmd": "wait", "args": ["2"]}
+{"t": 1792713900584, "cmd": "shot", "args": ["controls"]}
+{"t": 1792713905912, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792713906695, "cmd": "wait", "args": ["1"]}
+{"t": 1792713907812, "cmd": "shot", "args": ["controls2"]}
+{"t": 1792713908020, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792713908819, "cmd": "wait", "args": ["1"]}
+{"t": 1792713909918, "cmd": "shot", "args": ["controls3"]}
+{"t": 1792713916811, "cmd": "note", "args": ["--shot", "controls_debug", "Main-menu Controls page 3 lists debug cheats (F2 generate land, F3-F6 spawn pawn/coins/wood, teleport pawns) to ordinary players with no warning that they are cheats; a new player may use them and trivialise the economy."]}
+{"t": 1792713917000, "cmd": "click", "args": ["480", "507"]}
+{"t": 1792713917824, "cmd": "wait", "args": ["1"]}
+{"t": 1792713918911, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713919687, "cmd": "wait", "args": ["2"]}
+{"t": 1792713921778, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792713928106, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713928913, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713929193, "cmd": "wait", "args": ["2"]}
+{"t": 1792713931289, "cmd": "shot", "args": ["world0"]}
+{"t": 1792713931583, "cmd": "state", "args": []}
+{"t": 1792713938111, "cmd": "click", "args": ["338", "388"]}
+{"t": 1792713938896, "cmd": "wait", "args": ["1"]}
+{"t": 1792713940003, "cmd": "face", "args": ["180"]}
+{"t": 1792713945307, "cmd": "shot", "args": ["turned"]}
+{"t": 1792713945559, "cmd": "state", "args": []}
+{"t": 1792713948959, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792713953011, "cmd": "key", "args": ["e"]}
+{"t": 1792713953529, "cmd": "wait", "args": ["2"]}
+{"t": 1792713955634, "cmd": "shot", "args": ["chop1"]}
+{"t": 1792713955867, "cmd": "state", "args": []}
+{"t": 1792713965016, "cmd": "events", "args": ["10"]}
+{"t": 1792713965118, "cmd": "note", "args": ["--shot", "apples_mismatch", "tick ~658: first chop says 'Gathered 5 wood and 2 apples from tree' but Inventory shows Apples: 1 and energy jumped 84->97; an apple was evidently eaten automatically with no message saying so. Also the tip advanced to 'Gather stone' while the objective is still Gather wood 5/10."]}
+{"t": 1792713969371, "cmd": "click", "args": ["338", "375"]}
+{"t": 1792713970175, "cmd": "key", "args": ["f"]}
+{"t": 1792713970710, "cmd": "wait", "args": ["1"]}
+{"t": 1792713971807, "cmd": "shot", "args": ["f_nonation"]}
+{"t": 1792713972071, "cmd": "state", "args": []}
+{"t": 1792713976005, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792713987432, "cmd": "key", "args": ["e"]}
+{"t": 1792713987952, "cmd": "wait", "args": ["1"]}
+{"t": 1792713989069, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714000537, "cmd": "key", "args": ["e"]}
+{"t": 1792714001061, "cmd": "wait", "args": ["1"]}
+{"t": 1792714002252, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714013029, "cmd": "key", "args": ["e"]}
+{"t": 1792714013543, "cmd": "wait", "args": ["1"]}
+{"t": 1792714014619, "cmd": "shot", "args": ["wood2"]}
+{"t": 1792714014839, "cmd": "state", "args": []}
+{"t": 1792714014926, "cmd": "events", "args": ["6"]}
+{"t": 1792714018097, "cmd": "events", "args": ["12"]}
+{"t": 1792714018224, "cmd": "key", "args": ["n"]}
+{"t": 1792714018713, "cmd": "wait", "args": ["2"]}
+{"t": 1792714020792, "cmd": "shot", "args": ["nation"]}
+{"t": 1792714021043, "cmd": "state", "args": []}
+{"t": 1792714029249, "cmd": "note", "args": ["--shot", "chronicle_trunc", "Chronicle panel truncates every line with '...' (e.g. 'You raised a banner and named your people Ea...'), so the name of my own new nation is cut off; nation was named Eastford automatically with no prompt to choose. Also the 'Eat something' objective (obj 2) completed in 48 ticks without me eating deliberately - apples are auto-eaten."]}
+{"t": 1792714029563, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714038803, "cmd": "key", "args": ["e"]}
+{"t": 1792714039386, "cmd": "wait", "args": ["1"]}
+{"t": 1792714040464, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714050457, "cmd": "key", "args": ["e"]}
+{"t": 1792714050954, "cmd": "wait", "args": ["1"]}
+{"t": 1792714052035, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714060624, "cmd": "key", "args": ["e"]}
+{"t": 1792714061137, "cmd": "wait", "args": ["1"]}
+{"t": 1792714062239, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714071325, "cmd": "key", "args": ["e"]}
+{"t": 1792714071858, "cmd": "wait", "args": ["1"]}
+{"t": 1792714072951, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714078333, "cmd": "key", "args": ["e"]}
+{"t": 1792714078843, "cmd": "wait", "args": ["1"]}
+{"t": 1792714079922, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714093273, "cmd": "key", "args": ["e"]}
+{"t": 1792714093805, "cmd": "wait", "args": ["1"]}
+{"t": 1792714094897, "cmd": "state", "args": []}
+{"t": 1792714099472, "cmd": "walkto", "args": ["settlement", "90"]}
+{"t": 1792714135312, "cmd": "state", "args": []}
+{"t": 1792714135412, "cmd": "key", "args": ["f"]}
+{"t": 1792714135982, "cmd": "wait", "args": ["1"]}
+{"t": 1792714137151, "cmd": "shot", "args": ["f_tooclose"]}
+{"t": 1792714137462, "cmd": "state", "args": []}
+{"t": 1792714144452, "cmd": "state", "args": ["--full"]}
+{"t": 1792714153287, "cmd": "note", "args": ["--shot", "f_refused", "#349 check: pressing F inside Newburg's land (3m from its well, tick ~4450) refuses with 'This land is claimed by Newburg. Found your settlement outside its borders. Open ground lies about 250 to the north.' Distance and direction ARE given (good). But: no unit on '250', and nothing on screen shows which way is north (no compass, no minimap, no heading in HUD), so the direction is hard to act on. The status toast also overlaps the 'Town of Newburg' label."]}
+{"t": 1792714153548, "cmd": "face", "args": ["-168"]}
+{"t": 1792714160191, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792714166424, "cmd": "state", "args": []}
+{"t": 1792714171191, "cmd": "face", "args": ["32"]}
+{"t": 1792714172856, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792714179067, "cmd": "state", "args": []}
+{"t": 1792714179148, "cmd": "key", "args": ["f"]}
+{"t": 1792714179683, "cmd": "wait", "args": ["1"]}
+{"t": 1792714180765, "cmd": "shot", "args": ["f2"]}
+{"t": 1792714181027, "cmd": "state", "args": []}
+{"t": 1792714192352, "cmd": "face", "args": ["79"]}
+{"t": 1792714195557, "cmd": "hold", "args": ["Shift_L+w", "5"]}
+{"t": 1792714200823, "cmd": "state", "args": []}
+{"t": 1792714200904, "cmd": "key", "args": ["f"]}
+{"t": 1792714201409, "cmd": "wait", "args": ["2"]}
+{"t": 1792714203491, "cmd": "shot", "args": ["f3"]}
+{"t": 1792714203770, "cmd": "state", "args": []}
+{"t": 1792714203848, "cmd": "events", "args": ["5"]}
+{"t": 1792714212534, "cmd": "face", "args": ["-128"]}
+{"t": 1792714216892, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792714229075, "cmd": "state", "args": []}
+{"t": 1792714229144, "cmd": "key", "args": ["f"]}
+{"t": 1792714229649, "cmd": "wait", "args": ["2"]}
+{"t": 1792714231732, "cmd": "shot", "args": ["f4"]}
+{"t": 1792714231990, "cmd": "state", "args": []}
+{"t": 1792714232071, "cmd": "events", "args": ["6"]}
+{"t": 1792714240820, "cmd": "note", "args": ["--shot", "founded", "Settlement founded at tick 6450 by following the refusal hint ('250 to the north') - the #349 hint worked. But the success toast leads with 'You are back on your own land.' rather than 'You founded Eastford', and the big floating settlement label ('Camp ... 1/8 residents') sits behind the toast/Chronicle panels and is unreadable. Also AI nations founded ~7 settlements in the first 2 game-minutes; a newcomer's first two F presses were refused because AIs had grabbed the land."]}
+{"t": 1792714241098, "cmd": "key", "args": ["e"]}
+{"t": 1792714241608, "cmd": "wait", "args": ["2"]}
+{"t": 1792714243705, "cmd": "shot", "args": ["inside"]}
+{"t": 1792714244006, "cmd": "state", "args": []}
+{"t": 1792714251495, "cmd": "note", "args": ["--shot", "inside_clutter", "Inside my settlement (tick ~6734) the HUD is overcrowded at 960x540: Settlement Info shows unexplained jargon 'PCIS: 0'; 'Next (K): Farm, 25 wood, 10...' is cut off at the panel edge; the Season panel overlaps Player Info (Role/Land lines peek out underneath); the big world label '...0 here, 2/8 residents' is clipped by the top of the screen and hidden behind panels. Withdraw Funds is enabled with Funds 0."]}
+{"t": 1792714251794, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714252306, "cmd": "wait", "args": ["1"]}
+{"t": 1792714253379, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792714254041, "cmd": "key", "args": ["e"]}
+{"t": 1792714254557, "cmd": "wait", "args": ["1"]}
+{"t": 1792714255636, "cmd": "shot", "args": ["rock1"]}
+{"t": 1792714255859, "cmd": "state", "args": []}
+{"t": 1792714263244, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714263821, "cmd": "wait", "args": ["1"]}
+{"t": 1792714264901, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792714326791, "cmd": "key", "args": ["e"]}
+{"t": 1792714327317, "cmd": "wait", "args": ["1"]}
+{"t": 1792714328390, "cmd": "state", "args": []}
+{"t": 1792714332895, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792714340491, "cmd": "key", "args": ["e"]}
+{"t": 1792714341015, "cmd": "wait", "args": ["1"]}
+{"t": 1792714342083, "cmd": "state", "args": []}
+{"t": 1792714342180, "cmd": "shot", "args": ["rock2"]}
+{"t": 1792714348362, "cmd": "note", "args": ["--shot", "rock2", "After entering my settlement (E), walking does nothing - pt walkto rock timed out with distance unchanged at 8.2 - until I pressed E again ('Exited settlement.'). Nothing on screen says movement is locked while inside or that E leaves; the new objective 6 ('Gather 20 wood and 5 stone ... then press B inside your settlement') sends you out to gather right after the game makes you enter."]}
+{"t": 1792714348689, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714356992, "cmd": "key", "args": ["e"]}
+{"t": 1792714357477, "cmd": "wait", "args": ["1"]}
+{"t": 1792714358552, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714377288, "cmd": "key", "args": ["e"]}
+{"t": 1792714377820, "cmd": "wait", "args": ["1"]}
+{"t": 1792714378904, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714387580, "cmd": "key", "args": ["e"]}
+{"t": 1792714388233, "cmd": "wait", "args": ["1"]}
+{"t": 1792714389336, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714402855, "cmd": "key", "args": ["e"]}
+{"t": 1792714403375, "cmd": "wait", "args": ["1"]}
+{"t": 1792714404445, "cmd": "state", "args": []}
+{"t": 1792714408535, "cmd": "key", "args": ["h"]}
+{"t": 1792714409033, "cmd": "wait", "args": ["2"]}
+{"t": 1792714411100, "cmd": "state", "args": []}
+{"t": 1792714411185, "cmd": "key", "args": ["e"]}
+{"t": 1792714411716, "cmd": "wait", "args": ["1"]}
+{"t": 1792714412823, "cmd": "key", "args": ["b"]}
+{"t": 1792714413326, "cmd": "wait", "args": ["2"]}
+{"t": 1792714415407, "cmd": "shot", "args": ["stall"]}
+{"t": 1792714415702, "cmd": "state", "args": []}
+{"t": 1792714415775, "cmd": "events", "args": ["6"]}
+{"t": 1792714425140, "cmd": "note", "args": ["--shot", "hud_overlap", "tick ~9802, inside settlement after building the stall: HUD panels collide - Inventory panel jumped to screen centre over the 'Objective complete' popup; the top toast is clipped to 'Objective com'; objective 7's progress bar reads 'bers 2/10 - Buildings 0/2' (start cut off) and its description is cut off mid-line ('...press K with wood and stone' clipped). Also three different village counters disagree in wording: era box 'Village: 0/4', objective 'Members 2/10 - Buildings 0/2', description 'Village 0/1. A settlement with 2 buildings is a village.' A new player cannot tell what the actual requirement is."]}
+{"t": 1792714425365, "cmd": "click", "args": ["110", "57"]}
+{"t": 1792714426207, "cmd": "wait", "args": ["2"]}
+{"t": 1792714428337, "cmd": "shot", "args": ["erabox"]}
+{"t": 1792714436816, "cmd": "click", "args": ["110", "57"]}
+{"t": 1792714437688, "cmd": "click", "args": ["217", "475"]}
+{"t": 1792714438539, "cmd": "wait", "args": ["1"]}
+{"t": 1792714439769, "cmd": "state", "args": []}
+{"t": 1792714439924, "cmd": "key", "args": ["k"]}
+{"t": 1792714440508, "cmd": "wait", "args": ["1"]}
+{"t": 1792714441701, "cmd": "shot", "args": ["k1"]}
+{"t": 1792714442151, "cmd": "state", "args": []}
+{"t": 1792714447461, "cmd": "key", "args": ["e"]}
+{"t": 1792714448054, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714482666, "cmd": "key", "args": ["e"]}
+{"t": 1792714483159, "cmd": "wait", "args": ["1"]}
+{"t": 1792714484273, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714492874, "cmd": "key", "args": ["e"]}
+{"t": 1792714493394, "cmd": "wait", "args": ["1"]}
+{"t": 1792714494492, "cmd": "key", "args": ["h"]}
+{"t": 1792714495068, "cmd": "wait", "args": ["2"]}
+{"t": 1792714497246, "cmd": "key", "args": ["k"]}
+{"t": 1792714497879, "cmd": "wait", "args": ["1"]}
+{"t": 1792714499008, "cmd": "state", "args": []}
+{"t": 1792714499138, "cmd": "shot", "args": ["k2"]}
+{"t": 1792714499459, "cmd": "key", "args": ["k"]}
+{"t": 1792714500060, "cmd": "wait", "args": ["2"]}
+{"t": 1792714502210, "cmd": "shot", "args": ["k3"]}
+{"t": 1792714502557, "cmd": "state", "args": []}
+{"t": 1792714507538, "cmd": "key", "args": ["e"]}
+{"t": 1792714508133, "cmd": "wait", "args": ["1"]}
+{"t": 1792714509335, "cmd": "state", "args": []}
+{"t": 1792714509485, "cmd": "key", "args": ["k"]}
+{"t": 1792714510095, "cmd": "wait", "args": ["1"]}
+{"t": 1792714511193, "cmd": "state", "args": []}
+{"t": 1792714511315, "cmd": "shot", "args": ["k4"]}
+{"t": 1792714511711, "cmd": "key", "args": ["k"]}
+{"t": 1792714512259, "cmd": "wait", "args": ["2"]}
+{"t": 1792714514356, "cmd": "shot", "args": ["k5"]}
+{"t": 1792714514783, "cmd": "state", "args": []}
+{"t": 1792714521754, "cmd": "click", "args": ["110", "57"]}
+{"t": 1792714522658, "cmd": "key", "args": ["y"]}
+{"t": 1792714523253, "cmd": "wait", "args": ["2"]}
+{"t": 1792714525421, "cmd": "shot", "args": ["chron_full"]}
+{"t": 1792714533596, "cmd": "note", "args": ["--shot", "chron_full", "Chronicle fills with AI-nation noise: 91 entries by tick ~11500 (under 4 game minutes) - rivalries, stalls, raids between nations I have never seen. Events that affect me (e.g. 'Eastford and Blackville have become rivals over their border', 'Relations between Newburg and Eastford are now friendly...') are truncated to '...' in the always-on recent view; only Y full view shows them."]}
+{"t": 1792714533953, "cmd": "key", "args": ["y"]}
+{"t": 1792714534524, "cmd": "key", "args": ["e"]}
+{"t": 1792714535071, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792714547943, "cmd": "key", "args": ["e"]}
+{"t": 1792714548505, "cmd": "wait", "args": ["2"]}
+{"t": 1792714550710, "cmd": "shot", "args": ["talk"]}
+{"t": 1792714551065, "cmd": "state", "args": []}
+{"t": 1792714556897, "cmd": "events", "args": ["4"]}
+{"t": 1792714556971, "cmd": "state", "args": []}
+{"t": 1792714560634, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792714569463, "cmd": "key", "args": ["e"]}
+{"t": 1792714569942, "cmd": "wait", "args": ["1"]}
+{"t": 1792714571017, "cmd": "shot", "args": ["talk2"]}
+{"t": 1792714571207, "cmd": "events", "args": ["3"]}
+{"t": 1792714577400, "cmd": "note", "args": ["--shot", "talk2", "tick 12582: Linda Lewis had just joined Eastford (chronicle 'Eastford welcomed Linda Lewis into its ranks') yet talking to her says 'Yes, leader? I hardly know you. Why should I follow you?' - mixed message about whether she is my follower. Earlier, talking to Zach Roberts the reply was overwritten by an 'Autosaved.' toast at the same moment, so I never saw it."]}
+{"t": 1792714577571, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714589054, "cmd": "key", "args": ["e"]}
+{"t": 1792714589519, "cmd": "wait", "args": ["1"]}
+{"t": 1792714590585, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714600296, "cmd": "key", "args": ["e"]}
+{"t": 1792714600770, "cmd": "wait", "args": ["1"]}
+{"t": 1792714601840, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714606863, "cmd": "key", "args": ["e"]}
+{"t": 1792714607325, "cmd": "wait", "args": ["1"]}
+{"t": 1792714608381, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714628764, "cmd": "key", "args": ["e"]}
+{"t": 1792714629243, "cmd": "wait", "args": ["1"]}
+{"t": 1792714630303, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792714630841, "cmd": "key", "args": ["e"]}
+{"t": 1792714631299, "cmd": "wait", "args": ["1"]}
+{"t": 1792714632349, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792714638863, "cmd": "key", "args": ["e"]}
+{"t": 1792714639334, "cmd": "wait", "args": ["1"]}
+{"t": 1792714640390, "cmd": "state", "args": []}
+{"t": 1792714645105, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714657856, "cmd": "key", "args": ["e"]}
+{"t": 1792714658335, "cmd": "wait", "args": ["1"]}
+{"t": 1792714659448, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792714671004, "cmd": "key", "args": ["e"]}
+{"t": 1792714671553, "cmd": "wait", "args": ["1"]}
+{"t": 1792714672660, "cmd": "key", "args": ["h"]}
+{"t": 1792714673166, "cmd": "wait", "args": ["2"]}
+{"t": 1792714675219, "cmd": "key", "args": ["e"]}
+{"t": 1792714675719, "cmd": "wait", "args": ["1"]}
+{"t": 1792714676802, "cmd": "key", "args": ["k"]}
+{"t": 1792714677305, "cmd": "wait", "args": ["1"]}
+{"t": 1792714678395, "cmd": "state", "args": []}
+{"t": 1792714678451, "cmd": "key", "args": ["k"]}
+{"t": 1792714678958, "cmd": "wait", "args": ["2"]}
+{"t": 1792714681085, "cmd": "shot", "args": ["house"]}
+{"t": 1792714681532, "cmd": "state", "args": []}
+{"t": 1792714684946, "cmd": "click", "args": ["110", "57"]}
+{"t": 1792714685669, "cmd": "wait", "args": ["1"]}
+{"t": 1792714686799, "cmd": "shot", "args": ["era2"]}
+{"t": 1792714693586, "cmd": "note", "args": ["--shot", "era2", "tick 16126: building the House pops 'The settlement is now a Village!' but the era box still says 'Era: Camp (1/4)' - settlement tier 'Village' and nation era 'Village' share a name, so it reads as if the Village era was reached when it was not. Remaining gates are Members 4/10 and 'Day 1/3' (a pure time gate, at least 20 game-minutes) - nothing a new player can do to speed up the Day gate, and Members needs 6 more recruits."]}
+{"t": 1792714693951, "cmd": "click", "args": ["110", "57"]}
+{"t": 1792714694706, "cmd": "key", "args": ["e"]}
+{"t": 1792714695197, "cmd": "state", "args": []}
+{"t": 1792714698996, "cmd": "state", "args": ["--full"]}
+{"t": 1792714702015, "cmd": "face", "args": ["-157"]}
+{"t": 1792714708571, "cmd": "hold", "args": ["w", "0.6"]}
+{"t": 1792714709306, "cmd": "state", "args": []}
+{"t": 1792714709393, "cmd": "key", "args": ["r"]}
+{"t": 1792714709981, "cmd": "wait", "args": ["1"]}
+{"t": 1792714711074, "cmd": "shot", "args": ["invite"]}
+{"t": 1792714711478, "cmd": "events", "args": ["4"]}
+{"t": 1792714714368, "cmd": "face", "args": ["88"]}
+{"t": 1792714718756, "cmd": "hold", "args": ["w", "0.5"]}
+{"t": 1792714719404, "cmd": "state", "args": []}
+{"t": 1792714719489, "cmd": "key", "args": ["r"]}
+{"t": 1792714720106, "cmd": "wait", "args": ["1"]}
+{"t": 1792714721169, "cmd": "events", "args": ["3"]}
+{"t": 1792714724718, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792714736486, "cmd": "key", "args": ["r"]}
+{"t": 1792714736964, "cmd": "wait", "args": ["1"]}
+{"t": 1792714738043, "cmd": "shot", "args": ["invite2"]}
+{"t": 1792714738449, "cmd": "events", "args": ["3"]}
+{"t": 1792714741216, "cmd": "state", "args": []}
+{"t": 1792714741265, "cmd": "events", "args": ["6"]}
+{"t": 1792714748851, "cmd": "note", "args": ["--shot", "invite2", "Recruiting (objective 7 'Befriend settlers and press R') is guesswork: no name tags over pawns, and the action bar labels my own members 'Talk to Grace Jones (Stranger)'. I pressed R on two pawns near my well and both were 'already a member of Eastford'. Nothing on screen says pawn colour = nation (green = mine), so I could not tell whom to invite."]}
+{"t": 1792714749251, "cmd": "key", "args": ["c"]}
+{"t": 1792714749788, "cmd": "wait", "args": ["1"]}
+{"t": 1792714750839, "cmd": "shot", "args": ["craft"]}
+{"t": 1792714751107, "cmd": "key", "args": ["c"]}
+{"t": 1792714751572, "cmd": "key", "args": ["o"]}
+{"t": 1792714752108, "cmd": "wait", "args": ["1"]}
+{"t": 1792714753236, "cmd": "shot", "args": ["nations"]}
+{"t": 1792714760272, "cmd": "note", "args": ["--shot", "nations", "O Nations screen at tick ~17600 (about 6 game minutes in): 33 nations exist, and my four neighbours (Blackville, Bigwood, Smallville, Southernwood) are all already 'Rival (-39)' toward me though I have never interacted with them; Bigwood is already a town. The AI world races far ahead of a new player, and rivalry arrives without any action from me. The giant world label ('3 here, 4/12 residen...') also shows through the modal overlay."]}
+{"t": 1792714760556, "cmd": "key", "args": ["o"]}
+{"t": 1792714761101, "cmd": "wait", "args": ["1"]}
+{"t": 1792714762204, "cmd": "state", "args": []}
+{"t": 1792714766081, "cmd": "key", "args": ["h"]}
+{"t": 1792714766605, "cmd": "wait", "args": ["1"]}
+{"t": 1792714767679, "cmd": "key", "args": ["e"]}
+{"t": 1792714768144, "cmd": "wait", "args": ["1"]}
+{"t": 1792714769203, "cmd": "shot", "args": ["inside2"]}
+{"t": 1792714769629, "cmd": "state", "args": []}
+{"t": 1792714775356, "cmd": "click", "args": ["217", "475"]}
+{"t": 1792714776196, "cmd": "wait", "args": ["1"]}
+{"t": 1792714777275, "cmd": "state", "args": []}
+{"t": 1792714777416, "cmd": "click", "args": ["625", "475"]}
+{"t": 1792714778244, "cmd": "wait", "args": ["1"]}
+{"t": 1792714779366, "cmd": "shot", "args": ["sell"]}
+{"t": 1792714779849, "cmd": "state", "args": []}
+{"t": 1792714785637, "cmd": "note", "args": ["--shot", "sell", "tick ~18000, inside my Village with 4 stalls and a price list (Stone 17/15, Apples 72/64): 'Sell Resources' with 85 stone, 38 apples, 10 wood fails with 'No one is buying resources at this market or you do not have enough resources to sell.' - an either/or message that does not say which, or how much is enough, while the Market Info panel shows buy prices that suggest selling should work."]}
+{"t": 1792714786044, "cmd": "key", "args": ["e"]}
+{"t": 1792714786647, "cmd": "key", "args": ["p"]}
+{"t": 1792714787184, "cmd": "wait", "args": ["1"]}
+{"t": 1792714788240, "cmd": "state", "args": []}
+{"t": 1792714790784, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1792714791957, "cmd": "key", "args": ["p"]}
+{"t": 1792714792437, "cmd": "wait", "args": ["1"]}
+{"t": 1792714793489, "cmd": "events", "args": ["4"]}
+{"t": 1792714793547, "cmd": "shot", "args": ["plant"]}
+{"t": 1792714799865, "cmd": "note", "args": ["--shot", "plant", "Near my well the floating settlement label ('residents') is drawn huge and covers a third of the screen; also pressing P planted a sapling (Saplings 26->24 across two presses) with no status message confirming it."]}
+{"t": 1792714800244, "cmd": "click", "args": ["433", "475"]}
+{"t": 1792714801030, "cmd": "wait", "args": ["1"]}
+{"t": 1792714802081, "cmd": "click", "args": ["545", "475"]}
+{"t": 1792714802848, "cmd": "wait", "args": ["1"]}
+{"t": 1792714803921, "cmd": "state", "args": []}
+{"t": 1792714808309, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714822849, "cmd": "key", "args": ["e"]}
+{"t": 1792714823296, "cmd": "wait", "args": ["1"]}
+{"t": 1792714824347, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792714830443, "cmd": "key", "args": ["e"]}
+{"t": 1792714830895, "cmd": "wait", "args": ["1"]}
+{"t": 1792714831946, "cmd": "state", "args": []}
+{"t": 1792714831989, "cmd": "key", "args": ["h"]}
+{"t": 1792714832442, "cmd": "wait", "args": ["1"]}
+{"t": 1792714833488, "cmd": "key", "args": ["e"]}
+{"t": 1792714833935, "cmd": "key", "args": ["k"]}
+{"t": 1792714834384, "cmd": "wait", "args": ["1"]}
+{"t": 1792714835433, "cmd": "key", "args": ["k"]}
+{"t": 1792714835893, "cmd": "wait", "args": ["1"]}
+{"t": 1792714836943, "cmd": "state", "args": []}
+{"t": 1792714839304, "cmd": "events", "args": ["10"]}
+{"t": 1792714839372, "cmd": "state", "args": []}
+{"t": 1792714844391, "cmd": "key", "args": ["e"]}
+{"t": 1792714844900, "cmd": "wait", "args": ["200"]}
+{"t": 1792715044939, "cmd": "state", "args": []}
+{"t": 1792715044984, "cmd": "events", "args": ["40"]}
+{"t": 1792715045031, "cmd": "events", "args": ["40"]}
+{"t": 1792715047566, "cmd": "shot", "args": ["sickness"]}
+{"t": 1792715047706, "cmd": "status", "args": []}
+{"t": 1792715052752, "cmd": "click", "args": ["480", "347"]}
+{"t": 1792715053484, "cmd": "wait", "args": ["2"]}
+{"t": 1792715055526, "cmd": "state", "args": []}
+{"t": 1792715059731, "cmd": "wait", "args": ["170"]}
+{"t": 1792715229777, "cmd": "state", "args": []}
+{"t": 1792715229819, "cmd": "events", "args": ["60"]}
+{"t": 1792715229868, "cmd": "events", "args": ["60"]}
+{"t": 1792715229930, "cmd": "shot", "args": ["final"]}
+{"t": 1792715236179, "cmd": "note", "args": ["--shot", "final", "tick 26022 (~8.7 game min): Village era progress stalled at Members 4/10 for ~7000 ticks despite a 2nd house (Residents 4/16) - 'homes with room draw newcomers' produced nobody, and no non-member pawn came near. Meanwhile 6 AI nations 'fell and were disbanded' via toasts about places I have never seen. Game ran at tps 13-25 (of 50) and fps 3-7 under shared load."]}
+{"t": 1792715236508, "cmd": "stop", "args": []}
+{"t": 1792715269923, "cmd": "report", "args": []}
+{"t": 1792726410796, "cmd": "stop", "args": []}

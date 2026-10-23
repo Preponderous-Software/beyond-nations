@@ -1,0 +1,670 @@
+{"type":"screen","tick":0,"wallTimeMs":1792730009964,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792730016010,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792730022044,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":120000,"wallTimeMs":1792730028388,"how":"created","slot":"world-103-20261023-043348","seed":103}
+{"type":"screen","tick":120000,"wallTimeMs":1792730028389,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":120440,"wallTimeMs":1792730037243,"text":"You are not in a nation."}
+{"type":"status","tick":120679,"wallTimeMs":1792730042027,"text":"Created nation Fortshire."}
+{"type":"chronicle","tick":120679,"wallTimeMs":1792730042027,"kind":"NationCreation","text":"You founded the nation of Fortshire. It is the first nation this world has known."}
+{"type":"status","tick":120802,"wallTimeMs":1792730044474,"text":"Not enough wood. Need 50 more."}
+{"type":"chronicle","tick":121150,"wallTimeMs":1792730051450,"kind":"NationCreation","text":"Alice Wood declared the nation of Upperville, though none had yet sworn to it."}
+{"type":"chronicle","tick":121200,"wallTimeMs":1792730052442,"kind":"SettlementFounded","text":"Upperville put down roots: Alice Wood founded its first settlement."}
+{"type":"status","tick":121326,"wallTimeMs":1792730054958,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":121867,"wallTimeMs":1792730065801,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":121902,"wallTimeMs":1792730066482,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1902}
+{"type":"status","tick":121902,"wallTimeMs":1792730066482,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":121951,"wallTimeMs":1792730067468,"number":2,"id":"eat","title":"Eat something","ticksTaken":49}
+{"type":"status","tick":121951,"wallTimeMs":1792730067468,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":122001,"wallTimeMs":1792730068477,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":50}
+{"type":"status","tick":122001,"wallTimeMs":1792730068477,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":122453,"wallTimeMs":1792730077514,"kind":"NationCreation","text":"The nation of Yellowshire was born, with Stan Williams at its head."}
+{"type":"status","tick":122502,"wallTimeMs":1792730078495,"text":"You enter the land of Upperville (Neutral)."}
+{"type":"status","tick":122660,"wallTimeMs":1792730081651,"text":"You leave the land of Upperville for the wilds."}
+{"type":"status","tick":122858,"wallTimeMs":1792730085618,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":122953,"wallTimeMs":1792730087517,"kind":"SettlementFounded","text":"Yellowshire put down roots: Stan Williams founded its first settlement."}
+{"type":"status","tick":123001,"wallTimeMs":1792730088488,"text":"You enter the land of Upperville (Neutral)."}
+{"type":"status","tick":123053,"wallTimeMs":1792730089522,"text":"You leave the land of Upperville for the wilds."}
+{"type":"status","tick":123128,"wallTimeMs":1792730091033,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":123480,"wallTimeMs":1792730098066,"text":"Gathered 5 wood and 3 apples from tree. (x2)"}
+{"type":"status","tick":123771,"wallTimeMs":1792730103872,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":124111,"wallTimeMs":1792730110695,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":124351,"wallTimeMs":1792730115495,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":124500,"wallTimeMs":1792730118492,"kind":"NationRelationChange","text":"Upperville and Yellowshire have become rivals over their border."}
+{"type":"status","tick":124555,"wallTimeMs":1792730119597,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":124802,"wallTimeMs":1792730124546,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":125149,"wallTimeMs":1792730131508,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":125315,"wallTimeMs":1792730134896,"text":"Too close to the Town of Yellowshire: 146 away, and settlements must be 250 apart. Open ground lies about 110 to the north-east."}
+{"type":"chronicle","tick":125851,"wallTimeMs":1792730147187,"kind":"NationCreation","text":"Mike Jones raised a banner and called it Greatburg."}
+{"type":"chronicle","tick":125903,"wallTimeMs":1792730148618,"kind":"SettlementFounded","text":"Mike Jones raised the first settlement of Greatburg."}
+{"type":"chronicle","tick":125903,"wallTimeMs":1792730148618,"kind":"NationCreation","text":"Ursula Williams declared the nation of Fortresston, though none had yet sworn to it."}
+{"type":"status","tick":125939,"wallTimeMs":1792730149626,"text":"Too close to the Town of Yellowshire: 178 away, and settlements must be 250 apart. Open ground lies about 211 to the east."}
+{"type":"save","tick":126003,"wallTimeMs":1792730153543,"count":1}
+{"type":"status","tick":126003,"wallTimeMs":1792730153543,"text":"Autosaved."}
+{"type":"chronicle","tick":126003,"wallTimeMs":1792730153543,"kind":"NationCreation","text":"Quinn Wood raised a banner and called it Blueburg."}
+{"type":"chronicle","tick":126351,"wallTimeMs":1792730164651,"kind":"SettlementFounded","text":"Quinn Wood raised the first settlement of Blueburg."}
+{"type":"status","tick":126443,"wallTimeMs":1792730167572,"text":"You enter the land of Upperville (Neutral)."}
+{"type":"status","tick":126495,"wallTimeMs":1792730169309,"text":"This land is claimed by Upperville. Found your settlement outside its borders. Open ground lies about 300 to the south-west."}
+{"type":"chronicle","tick":126651,"wallTimeMs":1792730174624,"kind":"SettlementFounded","text":"Ursula Williams laid the first stones of Fortresston."}
+{"type":"chronicle","tick":127103,"wallTimeMs":1792730185780,"kind":"StallBuilt","text":"A new stall opened in the market of Greatburg, built by Mike Jones."}
+{"type":"status","tick":127403,"wallTimeMs":1792730192333,"text":"You leave the land of Upperville for the wilds."}
+{"type":"status","tick":127423,"wallTimeMs":1792730192746,"text":"You enter the land of Yellowshire (Neutral)."}
+{"type":"status","tick":127605,"wallTimeMs":1792730196544,"text":"This land is claimed by Yellowshire. Found your settlement outside its borders. Open ground lies about 230 to the south-west."}
+{"type":"chronicle","tick":127901,"wallTimeMs":1792730202913,"kind":"StallBuilt","text":"Ursula Williams built a market stall in Fortresston."}
+{"type":"chronicle","tick":128052,"wallTimeMs":1792730205943,"kind":"StallBuilt","text":"A new stall opened in the market of Greatburg, built by Mike Jones."}
+{"type":"status","tick":128151,"wallTimeMs":1792730207924,"text":"You leave the land of Yellowshire for the wilds."}
+{"type":"chronicle","tick":128151,"wallTimeMs":1792730207924,"kind":"StallBuilt","text":"Trade came to Upperville: Alice Wood built a stall."}
+{"type":"chronicle","tick":128250,"wallTimeMs":1792730209909,"kind":"NationRelationChange","text":"Upperville and Yellowshire are now hostile over their border."}
+{"type":"chronicle","tick":128250,"wallTimeMs":1792730209909,"kind":"NationRelationChange","text":"Upperville and Greatburg have become rivals over their border."}
+{"type":"chronicle","tick":128250,"wallTimeMs":1792730209909,"kind":"NationRelationChange","text":"Yellowshire and Fortresston have become rivals over their border."}
+{"type":"status","tick":128276,"wallTimeMs":1792730210415,"text":"Too close to the Town of Yellowshire: 189 away, and settlements must be 250 apart. Open ground lies about 70 to the north-west."}
+{"type":"chronicle","tick":128501,"wallTimeMs":1792730214949,"kind":"NationRelationChange","text":"Upperville and Blueburg have become rivals over their border."}
+{"type":"chronicle","tick":128750,"wallTimeMs":1792730219963,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowshire, built by Stan Williams."}
+{"type":"chronicle","tick":128801,"wallTimeMs":1792730220987,"kind":"StallBuilt","text":"Mike Jones built a market stall in Greatburg."}
+{"type":"status","tick":128809,"wallTimeMs":1792730221152,"text":"Too close to the Town of Yellowshire: 237 away, and settlements must be 250 apart. Open ground lies about 20 to the west."}
+{"type":"chronicle","tick":129003,"wallTimeMs":1792730225049,"kind":"NationRelationChange","text":"Greatburg and Fortresston have become rivals over their border."}
+{"type":"status","tick":129199,"wallTimeMs":1792730229029,"text":"Settlement founded. Yellowshire and Fortresston resent a new settlement so near their land."}
+{"type":"chronicle","tick":129199,"wallTimeMs":1792730229029,"kind":"SettlementFounded","text":"You raised the first settlement of Fortshire."}
+{"type":"objective_completed","tick":129203,"wallTimeMs":1792730229116,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":7202}
+{"type":"status","tick":129203,"wallTimeMs":1792730229116,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"status","tick":129527,"wallTimeMs":1792730236892,"text":"Entered settlement."}
+{"type":"objective_completed","tick":129551,"wallTimeMs":1792730237456,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":348}
+{"type":"status","tick":129551,"wallTimeMs":1792730237456,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":129751,"wallTimeMs":1792730242245,"kind":"NationCreation","text":"The nation of Smallport was born, with Charlie Robinson at its head."}
+{"type":"chronicle","tick":129951,"wallTimeMs":1792730246973,"kind":"StallBuilt","text":"Trade came to Fortresston: Ursula Williams built a stall."}
+{"type":"chronicle","tick":130003,"wallTimeMs":1792730248162,"kind":"SettlementFounded","text":"Charlie Robinson laid the first stones of Smallport."}
+{"type":"chronicle","tick":130151,"wallTimeMs":1792730251585,"kind":"StallBuilt","text":"A new stall opened in the market of Greatburg, built by Mike Jones. The market is now full."}
+{"type":"chronicle","tick":130751,"wallTimeMs":1792730265718,"kind":"NationRelationChange","text":"Yellowshire and Fortresston are now hostile."}
+{"type":"chronicle","tick":130851,"wallTimeMs":1792730268171,"kind":"StallBuilt","text":"Stan Williams built a market stall in Yellowshire."}
+{"type":"chronicle","tick":130851,"wallTimeMs":1792730268171,"kind":"NationCreation","text":"Tina Brown declared the nation of Southernville, though none had yet sworn to it."}
+{"type":"chronicle","tick":131003,"wallTimeMs":1792730271724,"kind":"NationRelationChange","text":"Upperville and Blueburg are now hostile."}
+{"type":"chronicle","tick":131003,"wallTimeMs":1792730271724,"kind":"NationRaid","text":"Raiders from Upperville struck Blueburg, taking 4 wood, 5 stone."}
+{"type":"chronicle","tick":131003,"wallTimeMs":1792730271724,"kind":"NationRaid","text":"Yellowshire raided Fortresston and carried off 2 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":131251,"wallTimeMs":1792730277372,"kind":"SettlementFounded","text":"Southernville put down roots: Tina Brown founded its first settlement."}
+{"type":"status","tick":131503,"wallTimeMs":1792730283155,"text":"Yellowshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":131503,"wallTimeMs":1792730283155,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Ursula Williams."}
+{"type":"chronicle","tick":131503,"wallTimeMs":1792730283155,"kind":"NationRelationChange","text":"Fortshire and Yellowshire have become rivals over their border."}
+{"type":"save","tick":132003,"wallTimeMs":1792730294445,"count":2}
+{"type":"status","tick":132003,"wallTimeMs":1792730294445,"text":"Autosaved."}
+{"type":"chronicle","tick":132151,"wallTimeMs":1792730297649,"kind":"StallBuilt","text":"Trade came to Upperville: Alice Wood built a stall."}
+{"type":"chronicle","tick":132203,"wallTimeMs":1792730298788,"kind":"NationCreation","text":"Charlie Evans raised a banner and called it Fortressfield."}
+{"type":"status","tick":132251,"wallTimeMs":1792730299797,"text":"Smallport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":132251,"wallTimeMs":1792730299797,"kind":"NationRelationChange","text":"Fortshire and Smallport have become rivals over their border."}
+{"type":"chronicle","tick":132251,"wallTimeMs":1792730299797,"kind":"NationRelationChange","text":"Upperville and Smallport have become rivals over their border."}
+{"type":"status","tick":132751,"wallTimeMs":1792730310660,"text":"Exited settlement."}
+{"type":"chronicle","tick":132751,"wallTimeMs":1792730310660,"kind":"StallBuilt","text":"A new stall opened in the market of Blueburg, built by Quinn Wood."}
+{"type":"chronicle","tick":132851,"wallTimeMs":1792730312808,"kind":"StallBuilt","text":"Trade came to Yellowshire: Stan Williams built a stall."}
+{"type":"chronicle","tick":132903,"wallTimeMs":1792730313860,"kind":"StallBuilt","text":"Trade came to Fortresston: Ursula Williams built a stall."}
+{"type":"chronicle","tick":133001,"wallTimeMs":1792730316104,"kind":"NationRaid","text":"Raiders from Upperville struck Yellowshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":133021,"wallTimeMs":1792730316586,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":133233,"wallTimeMs":1792730321031,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":133503,"wallTimeMs":1792730326465,"text":"Southernville resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":133503,"wallTimeMs":1792730326465,"kind":"NationRelationChange","text":"Fortshire and Southernville have become rivals over their border."}
+{"type":"chronicle","tick":133550,"wallTimeMs":1792730327411,"kind":"SettlementFounded","text":"Fortressfield put down roots: Charlie Evans founded its first settlement."}
+{"type":"status","tick":133581,"wallTimeMs":1792730328036,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":133750,"wallTimeMs":1792730331455,"kind":"NationRelationChange","text":"Upperville and Fortresston swore an alliance."}
+{"type":"status","tick":133818,"wallTimeMs":1792730332851,"text":"Gathered 5 wood and 3 apples from tree. (x2)"}
+{"type":"chronicle","tick":134001,"wallTimeMs":1792730336523,"kind":"NationRelationChange","text":"Fortresston and Greatburg are now hostile."}
+{"type":"chronicle","tick":134001,"wallTimeMs":1792730336523,"kind":"NationRaid","text":"Raiders from Fortresston struck Yellowshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":134001,"wallTimeMs":1792730336523,"kind":"NationRaid","text":"Raiders from Fortresston struck Greatburg, taking 5 coins."}
+{"type":"chronicle","tick":134052,"wallTimeMs":1792730337542,"kind":"StallBuilt","text":"Ursula Williams built a market stall in Fortresston."}
+{"type":"status","tick":134089,"wallTimeMs":1792730338288,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":134101,"wallTimeMs":1792730338515,"kind":"StallBuilt","text":"A new stall opened in the market of Upperville, built by Alice Wood."}
+{"type":"status","tick":134500,"wallTimeMs":1792730346551,"text":"Upperville shares an enemy with you: relations are now Friendly (\u002B21)."}
+{"type":"chronicle","tick":134500,"wallTimeMs":1792730346551,"kind":"NationRelationChange","text":"Relations between Fortshire and Upperville are now friendly against a common enemy."}
+{"type":"status","tick":134518,"wallTimeMs":1792730346919,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":134751,"wallTimeMs":1792730351575,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowshire, built by Stan Williams."}
+{"type":"status","tick":134944,"wallTimeMs":1792730355446,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"chronicle","tick":135050,"wallTimeMs":1792730357584,"kind":"StallBuilt","text":"Trade came to Fortressfield: Charlie Evans built a stall."}
+{"type":"status","tick":135180,"wallTimeMs":1792730360173,"text":"Gathered 5 stone from rock. (x3)"}
+{"type":"chronicle","tick":135203,"wallTimeMs":1792730360638,"kind":"NationCreation","text":"Yvonne Thomas founded the nation of Upperland."}
+{"type":"status","tick":135252,"wallTimeMs":1792730361614,"text":"Greatburg has fallen and been disbanded."}
+{"type":"chronicle","tick":135252,"wallTimeMs":1792730361614,"kind":"SettlementCapture","text":"After a siege, a village of Greatburg fell to Fortresston."}
+{"type":"chronicle","tick":135252,"wallTimeMs":1792730361614,"kind":"NationDisband","text":"Greatburg dissolved, its name already half-forgotten."}
+{"type":"status","tick":135416,"wallTimeMs":1792730364896,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":135601,"wallTimeMs":1792730368603,"kind":"NationCreation","text":"Victor Wood founded the nation of Blackwood."}
+{"type":"chronicle","tick":135651,"wallTimeMs":1792730369606,"kind":"SettlementFounded","text":"Victor Wood laid the first stones of Blackwood."}
+{"type":"status","tick":135707,"wallTimeMs":1792730370733,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":135793,"wallTimeMs":1792730372447,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":135910,"wallTimeMs":1792730374787,"text":"You leave the land of Fortshire for the wilds."}
+{"type":"status","tick":135955,"wallTimeMs":1792730375689,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":136000,"wallTimeMs":1792730376584,"text":"Fortressfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":136000,"wallTimeMs":1792730376584,"kind":"NationRelationChange","text":"Fortshire and Fortressfield have become rivals over their border."}
+{"type":"status","tick":136030,"wallTimeMs":1792730377181,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":136100,"wallTimeMs":1792730378589,"kind":"SettlementFounded","text":"Yvonne Thomas raised the first settlement of Upperland."}
+{"type":"chronicle","tick":136153,"wallTimeMs":1792730379639,"kind":"NationCreation","text":"Natalie Wood raised a banner and called it Redshire."}
+{"type":"chronicle","tick":136153,"wallTimeMs":1792730379639,"kind":"NationCreation","text":"The nation of Fortwood was born, with Xavier Walker at its head."}
+{"type":"status","tick":136235,"wallTimeMs":1792730381292,"text":"Welcome home!"}
+{"type":"status","tick":136243,"wallTimeMs":1792730381479,"text":"You are back on your own land."}
+{"type":"chronicle","tick":136251,"wallTimeMs":1792730381648,"kind":"NationCreation","text":"The nation of Forttown was born, with Charlotte Johnson at its head."}
+{"type":"status","tick":136343,"wallTimeMs":1792730383714,"text":"Entered settlement."}
+{"type":"chronicle","tick":136351,"wallTimeMs":1792730383891,"kind":"SettlementFounded","text":"Natalie Wood raised the first settlement of Redshire."}
+{"type":"status","tick":136407,"wallTimeMs":1792730385177,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":136471,"wallTimeMs":1792730386602,"text":"Stall built."}
+{"type":"chronicle","tick":136471,"wallTimeMs":1792730386602,"kind":"StallBuilt","text":"Trade came to Fortshire: you built a stall."}
+{"type":"objective_completed","tick":136503,"wallTimeMs":1792730387327,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":6952}
+{"type":"status","tick":136503,"wallTimeMs":1792730387327,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":136503,"wallTimeMs":1792730387327,"kind":"NationCreation","text":"Stan Jones raised a banner and called it Whiteham."}
+{"type":"chronicle","tick":136651,"wallTimeMs":1792730390684,"kind":"SettlementFounded","text":"Xavier Walker laid the first stones of Fortwood."}
+{"type":"chronicle","tick":136651,"wallTimeMs":1792730390684,"kind":"NationCreation","text":"Una Thomas raised a banner and called it Redford."}
+{"type":"chronicle","tick":136703,"wallTimeMs":1792730391899,"kind":"SettlementFounded","text":"Forttown put down roots: Charlotte Johnson founded its first settlement."}
+{"type":"status","tick":136963,"wallTimeMs":1792730397889,"text":"Exited settlement."}
+{"type":"chronicle","tick":137202,"wallTimeMs":1792730402947,"kind":"SettlementFounded","text":"Una Thomas laid the first stones of Redford."}
+{"type":"status","tick":137224,"wallTimeMs":1792730403380,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":137250,"wallTimeMs":1792730403913,"kind":"NationRelationChange","text":"Southernville and Blackwood have become rivals over their border."}
+{"type":"chronicle","tick":137250,"wallTimeMs":1792730403913,"kind":"NationRelationChange","text":"Upperville and Smallport are now hostile."}
+{"type":"status","tick":137297,"wallTimeMs":1792730404842,"text":"Welcome home!"}
+{"type":"status","tick":137416,"wallTimeMs":1792730407255,"text":"Entered settlement."}
+{"type":"status","tick":137484,"wallTimeMs":1792730408697,"text":"A Farm needs 25 wood, 10 stone. Need 4 more wood, 0 more stone."}
+{"type":"status","tick":137552,"wallTimeMs":1792730410125,"text":"A Farm needs 25 wood, 10 stone. Need 4 more wood, 0 more stone. (x2)"}
+{"type":"chronicle","tick":137600,"wallTimeMs":1792730411069,"kind":"NationCreation","text":"Hank Thompson declared the nation of Easternford, though none had yet sworn to it."}
+{"type":"chronicle","tick":137703,"wallTimeMs":1792730413268,"kind":"WorldEvent","text":"A fever broke out in the Town of Upperville; Alice Wood paid a healer, and every patient recovered."}
+{"type":"chronicle","tick":137950,"wallTimeMs":1792730418235,"kind":"SettlementFounded","text":"Stan Jones raised the first settlement of Whiteham."}
+{"type":"save","tick":138000,"wallTimeMs":1792730419307,"count":3}
+{"type":"status","tick":138000,"wallTimeMs":1792730419307,"text":"Autosaved."}
+{"type":"chronicle","tick":138000,"wallTimeMs":1792730419307,"kind":"NationRelationChange","text":"Fortresston and Blackwood have become rivals over their border."}
+{"type":"chronicle","tick":138000,"wallTimeMs":1792730419307,"kind":"NationRaid","text":"Upperville raided Smallport and carried off 4 wood, 5 stone."}
+{"type":"chronicle","tick":138101,"wallTimeMs":1792730421358,"kind":"NationCreation","text":"Jasmine Williams raised a banner and called it Southfield."}
+{"type":"chronicle","tick":138153,"wallTimeMs":1792730422413,"kind":"SettlementFounded","text":"Easternford put down roots: Hank Thompson founded its first settlement."}
+{"type":"chronicle","tick":138500,"wallTimeMs":1792730429524,"kind":"NationRelationChange","text":"Blueburg and Forttown have become rivals over their border."}
+{"type":"chronicle","tick":138500,"wallTimeMs":1792730429524,"kind":"NationRelationChange","text":"Southernville and Upperland have become rivals over their border."}
+{"type":"chronicle","tick":138500,"wallTimeMs":1792730429524,"kind":"NationRelationChange","text":"Fortressfield and Upperland have become rivals over their border."}
+{"type":"chronicle","tick":138700,"wallTimeMs":1792730433670,"kind":"SettlementFounded","text":"Jasmine Williams laid the first stones of Southfield."}
+{"type":"chronicle","tick":138751,"wallTimeMs":1792730434712,"kind":"NationRelationChange","text":"Fortresston and Redshire have become rivals over their border."}
+{"type":"chronicle","tick":139003,"wallTimeMs":1792730442865,"kind":"NationRelationChange","text":"Blackwood and Fortwood have become rivals over their border."}
+{"type":"chronicle","tick":139003,"wallTimeMs":1792730442865,"kind":"NationRelationChange","text":"Redshire and Fortwood have become rivals over their border."}
+{"type":"chronicle","tick":139251,"wallTimeMs":1792730452200,"kind":"NationRelationChange","text":"Forttown and Redford have become rivals over their border."}
+{"type":"chronicle","tick":139403,"wallTimeMs":1792730458150,"kind":"NationCreation","text":"Samantha Walker founded the nation of Southburg."}
+{"type":"chronicle","tick":139751,"wallTimeMs":1792730471453,"kind":"NationCreation","text":"The nation of Westport was born, with Mia Williams at its head."}
+{"type":"chronicle","tick":139751,"wallTimeMs":1792730471453,"kind":"NationRelationChange","text":"Blackwood and Southernville are now hostile."}
+{"type":"status","tick":139919,"wallTimeMs":1792730477603,"text":"Exited settlement."}
+{"type":"chronicle","tick":140003,"wallTimeMs":1792730480489,"kind":"NationRaid","text":"Blackwood raided Southernville and carried off 2 wood, 5 stone."}
+{"type":"chronicle","tick":140102,"wallTimeMs":1792730482589,"kind":"SettlementFounded","text":"Westport put down roots: Mia Williams founded its first settlement."}
+{"type":"status","tick":140199,"wallTimeMs":1792730484533,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":140251,"wallTimeMs":1792730485580,"kind":"NationRelationChange","text":"Fortresston and Blueburg have become rivals over their border."}
+{"type":"chronicle","tick":140251,"wallTimeMs":1792730485580,"kind":"NationRelationChange","text":"Southernville and Whiteham have become rivals over their border."}
+{"type":"status","tick":140274,"wallTimeMs":1792730486046,"text":"Welcome home!"}
+{"type":"chronicle","tick":140302,"wallTimeMs":1792730486834,"kind":"SettlementFounded","text":"Samantha Walker laid the first stones of Southburg."}
+{"type":"status","tick":140362,"wallTimeMs":1792730488420,"text":"Entered settlement."}
+{"type":"status","tick":140418,"wallTimeMs":1792730489915,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":140470,"wallTimeMs":1792730491369,"text":"Farm built."}
+{"type":"chronicle","tick":140502,"wallTimeMs":1792730492273,"kind":"NationRelationChange","text":"Fortwood and Easternford have become rivals over their border."}
+{"type":"status","tick":141002,"wallTimeMs":1792730508738,"text":"Upperland shares an enemy with you: relations are now Friendly (\u002B20). Winter comes tomorrow. Lay in food while the farms still yield."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRelationChange","text":"Relations between Fortshire and Upperland are now friendly against a common enemy."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRelationChange","text":"Redshire and Southfield have become rivals over their border."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRelationChange","text":"Easternford and Southfield have become rivals over their border."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRelationChange","text":"Blueburg and Forttown are now hostile."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRaid","text":"Raiders from Upperville struck Yellowshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRaid","text":"Raiders from Upperville struck Blueburg, taking 2 coins, 5 stone."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRaid","text":"Fortresston raided Yellowshire and carried off 3 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRaid","text":"Blueburg raided Forttown and carried off 3 wood, 5 stone."}
+{"type":"chronicle","tick":141002,"wallTimeMs":1792730508738,"kind":"NationRaid","text":"Blackwood raided Southernville and carried off 5 stone."}
+{"type":"chronicle","tick":141450,"wallTimeMs":1792730520953,"kind":"NationCreation","text":"Eve Roberts raised a banner and called it Newfield."}
+{"type":"chronicle","tick":141502,"wallTimeMs":1792730522320,"kind":"SettlementFounded","text":"Newfield put down roots: Eve Roberts founded its first settlement."}
+{"type":"world_event_offered","tick":141554,"wallTimeMs":1792730523706,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Camp of Fortshire. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off (unavailable)","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":141554,"wallTimeMs":1792730558036,"text":"Exited settlement."}
+{"type":"status","tick":141554,"wallTimeMs":1792730564198,"text":"Bandits camped outside the Camp of Fortshire; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":141554,"wallTimeMs":1792730564198,"kind":"WorldEvent","text":"Bandits camped outside the Camp of Fortshire; you paid them 30 coins to go away."}
+{"type":"world_event_resolved","tick":141554,"wallTimeMs":1792730564198,"title":"Bandit camp","status":"Bandits camped outside the Camp of Fortshire; you paid them 30 coins to go away."}
+{"type":"status","tick":141930,"wallTimeMs":1792730573393,"text":"You leave the land of Fortshire for the wilds."}
+{"type":"chronicle","tick":142001,"wallTimeMs":1792730574841,"kind":"NationRelationChange","text":"Blueburg and Smallport have formed an alliance."}
+{"type":"status","tick":142090,"wallTimeMs":1792730576630,"text":"You enter the land of Smallport (Rival)."}
+{"type":"chronicle","tick":142501,"wallTimeMs":1792730585474,"kind":"NationRelationChange","text":"Fortwood and Westport have become rivals over their border."}
+{"type":"chronicle","tick":142753,"wallTimeMs":1792730593031,"kind":"NationRelationChange","text":"Fortwood and Southburg have become rivals over their border."}
+{"type":"status","tick":142785,"wallTimeMs":1792730593845,"text":"Bella Thomas (Stranger): \u0022Who are you? I\u0027m loyal to Smallport. I stand by my own.\u0022"}
+{"type":"chronicle","tick":143001,"wallTimeMs":1792730599177,"kind":"NationRelationChange","text":"Forttown and Redford are now hostile over their border."}
+{"type":"screen","tick":143049,"wallTimeMs":1792730600333,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":143053,"wallTimeMs":1792730616744,"from":"CONTROLS","to":"WORLD"}
+{"type":"status","tick":143113,"wallTimeMs":1792730618203,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":143253,"wallTimeMs":1792730621612,"kind":"NationRelationChange","text":"Yellowshire and Southernville swore an alliance."}
+{"type":"status","tick":143301,"wallTimeMs":1792730622758,"text":"Stan Walker (Stranger): \u0022I\u0027m loyal to Smallport.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":143501,"wallTimeMs":1792730627846,"kind":"NationRelationChange","text":"Southernville and Upperland are now hostile."}
+{"type":"chronicle","tick":143501,"wallTimeMs":1792730627846,"kind":"NationRelationChange","text":"Fortressfield and Upperland are now hostile."}
+{"type":"status","tick":143749,"wallTimeMs":1792730633883,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":143753,"wallTimeMs":1792730633972,"kind":"NationRelationChange","text":"Easternford and Newfield have become rivals over their border."}
+{"type":"chronicle","tick":143753,"wallTimeMs":1792730633972,"kind":"NationRelationChange","text":"Westport and Newfield have become rivals over their border."}
+{"type":"chronicle","tick":143753,"wallTimeMs":1792730633972,"kind":"NationRelationChange","text":"Fortresston and Redshire are now hostile."}
+{"type":"status","tick":143825,"wallTimeMs":1792730635474,"text":"Gathered 5 wood and 1 apple from tree. (x2)"}
+{"type":"save","tick":144000,"wallTimeMs":1792730639756,"count":4}
+{"type":"status","tick":144000,"wallTimeMs":1792730639756,"text":"Autosaved."}
+{"type":"chronicle","tick":144000,"wallTimeMs":1792730639756,"kind":"NationRelationChange","text":"Fortresston and Fortwood have formed an alliance."}
+{"type":"chronicle","tick":144000,"wallTimeMs":1792730639756,"kind":"NationRelationChange","text":"Fortwood and Blackwood are now hostile."}
+{"type":"chronicle","tick":144000,"wallTimeMs":1792730639756,"kind":"NationRelationChange","text":"Fortwood and Redshire are now hostile."}
+{"type":"chronicle","tick":144000,"wallTimeMs":1792730639756,"kind":"NationRaid","text":"Raiders from Southernville struck Blackwood, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":144000,"wallTimeMs":1792730639756,"kind":"NationRaid","text":"Fortwood raided Blackwood and carried off 5 stone."}
+{"type":"status","tick":144170,"wallTimeMs":1792730643217,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":144410,"wallTimeMs":1792730648044,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":144751,"wallTimeMs":1792730654895,"text":"Upperland has fallen and been disbanded."}
+{"type":"chronicle","tick":144751,"wallTimeMs":1792730654895,"kind":"SettlementCapture","text":"After a siege, a camp of Upperland fell to Southernville."}
+{"type":"chronicle","tick":144751,"wallTimeMs":1792730654895,"kind":"NationDisband","text":"Upperland faded from memory before it ever built a home."}
+{"type":"status","tick":144755,"wallTimeMs":1792730654964,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":145002,"wallTimeMs":1792730659915,"text":"Redshire has fallen and been disbanded."}
+{"type":"chronicle","tick":145002,"wallTimeMs":1792730659915,"kind":"NationRelationChange","text":"Fortresston and Blackwood are now hostile."}
+{"type":"chronicle","tick":145002,"wallTimeMs":1792730659915,"kind":"NationRaid","text":"Raiders from Fortresston struck Blackwood, taking 5 stone."}
+{"type":"chronicle","tick":145002,"wallTimeMs":1792730659915,"kind":"SettlementCapture","text":"Fortresston captured a camp from Redshire."}
+{"type":"chronicle","tick":145002,"wallTimeMs":1792730659915,"kind":"NationDisband","text":"Redshire is no more; it never raised so much as a hut."}
+{"type":"status","tick":145153,"wallTimeMs":1792730662952,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":145251,"wallTimeMs":1792730664916,"text":"Whiteham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":145251,"wallTimeMs":1792730664916,"kind":"NationRelationChange","text":"Relations between Fortshire and Whiteham are now friendly against a common enemy."}
+{"type":"chronicle","tick":145251,"wallTimeMs":1792730664916,"kind":"NationRelationChange","text":"Fortresston and Blueburg are now hostile."}
+{"type":"chronicle","tick":145251,"wallTimeMs":1792730664916,"kind":"NationRelationChange","text":"Southernville and Whiteham are now hostile."}
+{"type":"chronicle","tick":145501,"wallTimeMs":1792730669921,"kind":"NationRelationChange","text":"Fortwood and Easternford are now hostile."}
+{"type":"chronicle","tick":145703,"wallTimeMs":1792730673965,"kind":"NationCreation","text":"The nation of Bluefield was born, with Nancy Williams at its head."}
+{"type":"chronicle","tick":145751,"wallTimeMs":1792730674933,"kind":"SettlementFounded","text":"Bluefield put down roots: Nancy Williams founded its first settlement."}
+{"type":"chronicle","tick":145751,"wallTimeMs":1792730674933,"kind":"NationRelationChange","text":"Yellowshire and Fortressfield have formed an alliance."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1792730680090,"kind":"NationRelationChange","text":"Southfield and Easternford are now hostile."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1792730680090,"kind":"NationRaid","text":"Fortresston raided Blueburg and carried off 5 coins, 5 stone."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1792730680090,"kind":"NationRaid","text":"Raiders from Fortwood struck Easternford, taking 3 wood, 5 stone."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1792730680090,"kind":"NationRaid","text":"Raiders from Southfield struck Easternford, taking 1 stone."}
+{"type":"chronicle","tick":146150,"wallTimeMs":1792730683304,"kind":"NationCreation","text":"The nation of Blackport was born, with Fiona Lewis at its head."}
+{"type":"chronicle","tick":146453,"wallTimeMs":1792730689487,"kind":"SettlementFounded","text":"Fiona Lewis raised the first settlement of Blackport."}
+{"type":"status","tick":146503,"wallTimeMs":1792730690520,"text":"Whiteham has fallen and been disbanded."}
+{"type":"chronicle","tick":146503,"wallTimeMs":1792730690520,"kind":"SettlementCapture","text":"Southernville captured a camp from Whiteham."}
+{"type":"chronicle","tick":146503,"wallTimeMs":1792730690520,"kind":"NationDisband","text":"Whiteham is no more; it never raised so much as a hut."}
+{"type":"status","tick":146751,"wallTimeMs":1792730695722,"text":"Easternford has fallen and been disbanded."}
+{"type":"chronicle","tick":146751,"wallTimeMs":1792730695722,"kind":"NationRelationChange","text":"Yellowshire and Smallport have formed an alliance."}
+{"type":"chronicle","tick":146751,"wallTimeMs":1792730695722,"kind":"SettlementCapture","text":"After a siege, a camp of Easternford fell to Fortwood."}
+{"type":"chronicle","tick":146751,"wallTimeMs":1792730695722,"kind":"NationDisband","text":"Easternford is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1792730700745,"kind":"NationRelationChange","text":"Relations between Blueburg and Fortresston are now rival."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1792730700745,"kind":"NationRaid","text":"Yellowshire raided Upperville and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1792730700745,"kind":"NationRaid","text":"Smallport raided Upperville and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1792730700745,"kind":"NationRaid","text":"Raiders from Yellowshire struck Fortresston, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":147151,"wallTimeMs":1792730704057,"kind":"StallBuilt","text":"A new stall opened in the market of Upperville, built by Alice Wood."}
+{"type":"chronicle","tick":147251,"wallTimeMs":1792730706063,"kind":"NationRelationChange","text":"Fortresston and Blueburg are now hostile over their border."}
+{"type":"chronicle","tick":147402,"wallTimeMs":1792730709213,"kind":"StallBuilt","text":"A new stall opened in the market of Blueburg, built by Quinn Wood."}
+{"type":"chronicle","tick":147501,"wallTimeMs":1792730711205,"kind":"NationRelationChange","text":"Fortresston and Southernville swore an alliance."}
+{"type":"chronicle","tick":147501,"wallTimeMs":1792730711205,"kind":"NationRelationChange","text":"Fortwood and Westport are now hostile."}
+{"type":"chronicle","tick":147551,"wallTimeMs":1792730712203,"kind":"StallBuilt","text":"Trade came to Blackwood: Victor Wood built a stall."}
+{"type":"chronicle","tick":147752,"wallTimeMs":1792730716339,"kind":"NationRelationChange","text":"Fortwood and Southburg are now hostile."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRelationChange","text":"Upperville and Bluefield have become rivals over their border."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRelationChange","text":"Upperville and Forttown swore an alliance."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRelationChange","text":"Yellowshire and Blackwood have formed an alliance."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRelationChange","text":"Relations between Blueburg and Fortresston are now rival."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRaid","text":"Upperville raided Smallport and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRaid","text":"Forttown raided Blueburg and carried off 5 stone."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRaid","text":"Blackwood raided Fortwood and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRaid","text":"Raiders from Fortwood struck Westport, taking 1 wood, 4 stone."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1792730721448,"kind":"NationRaid","text":"Raiders from Forttown struck Redford, taking 2 stone."}
+{"type":"chronicle","tick":148152,"wallTimeMs":1792730724434,"kind":"StallBuilt","text":"Alice Wood built a market stall in Upperville."}
+{"type":"chronicle","tick":148152,"wallTimeMs":1792730724434,"kind":"StallBuilt","text":"Trade came to Redford: Una Thomas built a stall."}
+{"type":"chronicle","tick":148201,"wallTimeMs":1792730725422,"kind":"StallBuilt","text":"Trade came to Blueburg: Quinn Wood built a stall."}
+{"type":"chronicle","tick":148201,"wallTimeMs":1792730725422,"kind":"StallBuilt","text":"Trade came to Fortressfield: Charlie Evans built a stall."}
+{"type":"chronicle","tick":148201,"wallTimeMs":1792730725422,"kind":"StallBuilt","text":"Jasmine Williams built a market stall in Southfield."}
+{"type":"chronicle","tick":148302,"wallTimeMs":1792730727454,"kind":"StallBuilt","text":"Eve Roberts built a market stall in Newfield."}
+{"type":"chronicle","tick":148450,"wallTimeMs":1792730730427,"kind":"StallBuilt","text":"Trade came to Blackwood: Victor Wood built a stall."}
+{"type":"chronicle","tick":148551,"wallTimeMs":1792730732438,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Ursula Williams. The market is now full."}
+{"type":"chronicle","tick":148652,"wallTimeMs":1792730734465,"kind":"StallBuilt","text":"Nancy Williams built a market stall in Bluefield."}
+{"type":"chronicle","tick":148700,"wallTimeMs":1792730735446,"kind":"StallBuilt","text":"Mia Williams built a market stall in Westport."}
+{"type":"chronicle","tick":148752,"wallTimeMs":1792730736519,"kind":"NationRelationChange","text":"Smallport and Blackport have become rivals over their border."}
+{"type":"chronicle","tick":148752,"wallTimeMs":1792730736519,"kind":"NationRelationChange","text":"Fortressfield and Blackport have become rivals over their border."}
+{"type":"chronicle","tick":148752,"wallTimeMs":1792730736519,"kind":"NationRelationChange","text":"Bluefield and Blackport have become rivals over their border."}
+{"type":"chronicle","tick":148752,"wallTimeMs":1792730736519,"kind":"NationRelationChange","text":"Westport and Newfield are now hostile."}
+{"type":"chronicle","tick":148800,"wallTimeMs":1792730737516,"kind":"StallBuilt","text":"A new stall opened in the market of Fortwood, built by Xavier Walker."}
+{"type":"chronicle","tick":148952,"wallTimeMs":1792730740722,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressfield, built by Charlie Evans."}
+{"type":"status","tick":149000,"wallTimeMs":1792730741754,"text":"Southburg has fallen and been disbanded."}
+{"type":"chronicle","tick":149000,"wallTimeMs":1792730741754,"kind":"NationRelationChange","text":"Southernville and Fortwood have formed an alliance."}
+{"type":"chronicle","tick":149000,"wallTimeMs":1792730741754,"kind":"SettlementCapture","text":"Fortwood captured a camp from Southburg."}
+{"type":"chronicle","tick":149000,"wallTimeMs":1792730741754,"kind":"NationDisband","text":"Southburg faded from memory before it ever built a home."}
+{"type":"chronicle","tick":149000,"wallTimeMs":1792730741754,"kind":"NationRaid","text":"Westport raided Newfield and carried off 2 coins, 5 wood."}
+{"type":"chronicle","tick":149052,"wallTimeMs":1792730742887,"kind":"StallBuilt","text":"Trade came to Yellowshire: Stan Williams built a stall."}
+{"type":"chronicle","tick":149052,"wallTimeMs":1792730742887,"kind":"StallBuilt","text":"A new stall opened in the market of Fortwood, built by Hank Thompson."}
+{"type":"status","tick":149250,"wallTimeMs":1792730746834,"text":"Redford has fallen and been disbanded."}
+{"type":"chronicle","tick":149250,"wallTimeMs":1792730746834,"kind":"NationRelationChange","text":"Fortresston and Blueburg are now hostile over their border."}
+{"type":"chronicle","tick":149250,"wallTimeMs":1792730746834,"kind":"SettlementCapture","text":"After a siege, a village of Redford fell to Forttown."}
+{"type":"chronicle","tick":149250,"wallTimeMs":1792730746834,"kind":"NationDisband","text":"Redford is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":149350,"wallTimeMs":1792730748841,"kind":"StallBuilt","text":"Charlie Robinson built a market stall in Smallport."}
+{"type":"chronicle","tick":149350,"wallTimeMs":1792730748841,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Mia Williams."}
+{"type":"chronicle","tick":149450,"wallTimeMs":1792730750846,"kind":"NationCreation","text":"The nation of Oldtown was born, with Samantha Walker at its head."}
+{"type":"chronicle","tick":149500,"wallTimeMs":1792730751840,"kind":"NationRelationChange","text":"Fortresston and Forttown swore an alliance."}
+{"type":"chronicle","tick":149552,"wallTimeMs":1792730752879,"kind":"StallBuilt","text":"Nancy Williams built a market stall in Bluefield."}
+{"type":"chronicle","tick":149952,"wallTimeMs":1792730760876,"kind":"StallBuilt","text":"A new stall opened in the market of Upperville, built by Alice Wood."}
+{"type":"save","tick":150001,"wallTimeMs":1792730761930,"count":5}
+{"type":"status","tick":150001,"wallTimeMs":1792730761930,"text":"Autosaved."}
+{"type":"chronicle","tick":150001,"wallTimeMs":1792730761930,"kind":"NationRelationChange","text":"Blueburg and Blackwood have formed an alliance."}
+{"type":"chronicle","tick":150001,"wallTimeMs":1792730761930,"kind":"SettlementCapture","text":"After a siege, a village of Newfield fell to Westport."}
+{"type":"chronicle","tick":150001,"wallTimeMs":1792730761930,"kind":"NationDisband","text":"Newfield dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":150150,"wallTimeMs":1792730764899,"kind":"StallBuilt","text":"Trade came to Blackwood: Victor Wood built a stall."}
+{"type":"chronicle","tick":150250,"wallTimeMs":1792730766923,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Mia Williams."}
+{"type":"chronicle","tick":150450,"wallTimeMs":1792730771289,"kind":"StallBuilt","text":"Trade came to Blueburg: Quinn Wood built a stall."}
+{"type":"chronicle","tick":150454,"wallTimeMs":1792730771379,"kind":"LeadershipChange","text":"The rule of Smallport passed from Charlie Robinson to Zach Wood."}
+{"type":"chronicle","tick":150454,"wallTimeMs":1792730771379,"kind":"WorldEvent","text":"Zach Wood seized the leadership of Smallport without Blackport\u0027s help, and has not forgotten it."}
+{"type":"chronicle","tick":150550,"wallTimeMs":1792730773520,"kind":"StallBuilt","text":"A new stall opened in the market of Fortwood, built by Hank Thompson."}
+{"type":"chronicle","tick":150602,"wallTimeMs":1792730774672,"kind":"SettlementFounded","text":"Samantha Walker raised the first settlement of Oldtown."}
+{"type":"chronicle","tick":150950,"wallTimeMs":1792730782484,"kind":"StallBuilt","text":"Trade came to Blackport: Fiona Lewis built a stall."}
+{"type":"chronicle","tick":151050,"wallTimeMs":1792730784724,"kind":"StallBuilt","text":"Trade came to Yellowshire: Stan Williams built a stall."}
+{"type":"chronicle","tick":151103,"wallTimeMs":1792730785787,"kind":"StallBuilt","text":"Trade came to Westport: Mia Williams built a stall. The market is now full."}
+{"type":"chronicle","tick":151150,"wallTimeMs":1792730786773,"kind":"StallBuilt","text":"Trade came to Bluefield: Nancy Williams built a stall."}
+{"type":"status","tick":151250,"wallTimeMs":1792730788991,"text":"Blackport shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":151250,"wallTimeMs":1792730788991,"kind":"StallBuilt","text":"Alice Wood built a market stall in Upperville."}
+{"type":"chronicle","tick":151250,"wallTimeMs":1792730788991,"kind":"NationRelationChange","text":"Relations between Fortshire and Blackport are now friendly against a common enemy."}
+{"type":"chronicle","tick":151250,"wallTimeMs":1792730788991,"kind":"NationRelationChange","text":"Smallport and Blackport are now hostile."}
+{"type":"chronicle","tick":151401,"wallTimeMs":1792730792049,"kind":"StallBuilt","text":"A new stall opened in the market of Blackwood, built by Victor Wood."}
+{"type":"chronicle","tick":151501,"wallTimeMs":1792730794191,"kind":"NationRelationChange","text":"Fortwood and Southfield have become rivals over their border."}
+{"type":"chronicle","tick":151601,"wallTimeMs":1792730796390,"kind":"StallBuilt","text":"Trade came to Oldtown: Samantha Walker built a stall."}
+{"type":"chronicle","tick":151950,"wallTimeMs":1792730804036,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressfield, built by Charlie Evans."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1792730805120,"kind":"NationRaid","text":"Smallport raided Blackport and carried off 3 coins."}
+{"type":"chronicle","tick":152151,"wallTimeMs":1792730808316,"kind":"StallBuilt","text":"Trade came to Oldtown: Samantha Walker built a stall."}
+{"type":"chronicle","tick":152303,"wallTimeMs":1792730811684,"kind":"StallBuilt","text":"A new stall opened in the market of Blueburg, built by Quinn Wood."}
+{"type":"chronicle","tick":152303,"wallTimeMs":1792730811684,"kind":"NationCreation","text":"Phoebe Evans declared the nation of Bigham, though none had yet sworn to it."}
+{"type":"chronicle","tick":152351,"wallTimeMs":1792730812688,"kind":"StallBuilt","text":"Trade came to Bluefield: Nancy Williams built a stall. The market is now full."}
+{"type":"chronicle","tick":152450,"wallTimeMs":1792730814672,"kind":"StallBuilt","text":"Zach Wood built a market stall in Smallport."}
+{"type":"status","tick":152502,"wallTimeMs":1792730815750,"text":"Blackport has fallen and been disbanded."}
+{"type":"chronicle","tick":152502,"wallTimeMs":1792730815750,"kind":"NationRelationChange","text":"Blackwood and Westport swore an alliance."}
+{"type":"chronicle","tick":152502,"wallTimeMs":1792730815750,"kind":"SettlementCapture","text":"Smallport captured a camp from Blackport."}
+{"type":"chronicle","tick":152502,"wallTimeMs":1792730815750,"kind":"NationDisband","text":"Blackport is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":152602,"wallTimeMs":1792730817913,"kind":"SettlementFounded","text":"Phoebe Evans laid the first stones of Bigham."}
+{"type":"chronicle","tick":152650,"wallTimeMs":1792730818927,"kind":"StallBuilt","text":"A new stall opened in the market of Fortwood, built by Xavier Walker."}
+{"type":"chronicle","tick":152750,"wallTimeMs":1792730821137,"kind":"NationRelationChange","text":"Yellowshire and Blueburg have formed an alliance."}
+{"type":"chronicle","tick":152950,"wallTimeMs":1792730825455,"kind":"StallBuilt","text":"Trade came to Oldtown: Samantha Walker built a stall."}
+{"type":"chronicle","tick":153002,"wallTimeMs":1792730826558,"kind":"StallBuilt","text":"Charlie Evans built a market stall in Fortressfield."}
+{"type":"chronicle","tick":153002,"wallTimeMs":1792730826558,"kind":"NationRelationChange","text":"Fortwood and Oldtown have become rivals over their border."}
+{"type":"chronicle","tick":153002,"wallTimeMs":1792730826558,"kind":"NationRelationChange","text":"Upperville and Bluefield are now hostile."}
+{"type":"chronicle","tick":153002,"wallTimeMs":1792730826558,"kind":"NationRelationChange","text":"Relations between Bluefield and Upperville are now rival."}
+{"type":"chronicle","tick":153002,"wallTimeMs":1792730826558,"kind":"NationRaid","text":"Blueburg raided Upperville and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":153150,"wallTimeMs":1792730829904,"kind":"StallBuilt","text":"Alice Wood built a market stall in Upperville. The market is now full."}
+{"type":"chronicle","tick":153202,"wallTimeMs":1792730830958,"kind":"StallBuilt","text":"Trade came to Fortwood: Hank Thompson built a stall."}
+{"type":"chronicle","tick":153501,"wallTimeMs":1792730837309,"kind":"StallBuilt","text":"Tina Brown built a market stall in Southernville."}
+{"type":"chronicle","tick":153752,"wallTimeMs":1792730842480,"kind":"StallBuilt","text":"Xavier Walker built a market stall in Fortwood."}
+{"type":"chronicle","tick":153853,"wallTimeMs":1792730844507,"kind":"StallBuilt","text":"A new stall opened in the market of Oldtown, built by Samantha Walker. The market is now full."}
+{"type":"chronicle","tick":154000,"wallTimeMs":1792730847535,"kind":"StallBuilt","text":"Trade came to Fortressfield: Charlie Evans built a stall."}
+{"type":"chronicle","tick":154000,"wallTimeMs":1792730847535,"kind":"NationRelationChange","text":"Fortresston and Southfield have become rivals over their border."}
+{"type":"chronicle","tick":154200,"wallTimeMs":1792730851888,"kind":"StallBuilt","text":"Stan Williams built a market stall in Yellowshire."}
+{"type":"chronicle","tick":154200,"wallTimeMs":1792730851888,"kind":"StallBuilt","text":"A new stall opened in the market of Forttown, built by Charlotte Johnson."}
+{"type":"chronicle","tick":154252,"wallTimeMs":1792730853115,"kind":"StallBuilt","text":"A new stall opened in the market of Fortwood, built by Xavier Walker."}
+{"type":"chronicle","tick":154751,"wallTimeMs":1792730863861,"kind":"StallBuilt","text":"A new stall opened in the market of Blackwood, built by Victor Wood."}
+{"type":"chronicle","tick":154803,"wallTimeMs":1792730864904,"kind":"StallBuilt","text":"A new stall opened in the market of Southernville, built by Tina Brown."}
+{"type":"chronicle","tick":155003,"wallTimeMs":1792730869350,"kind":"NationRelationChange","text":"Upperville and Bluefield are now hostile over their border."}
+{"type":"chronicle","tick":155003,"wallTimeMs":1792730869350,"kind":"NationRelationChange","text":"Upperville and Bigham have become rivals over their border."}
+{"type":"chronicle","tick":155003,"wallTimeMs":1792730869350,"kind":"NationRelationChange","text":"Forttown and Bigham have become rivals over their border."}
+{"type":"chronicle","tick":155003,"wallTimeMs":1792730869350,"kind":"NationRaid","text":"Upperville raided Bluefield and carried off 5 coins."}
+{"type":"chronicle","tick":155051,"wallTimeMs":1792730870413,"kind":"StallBuilt","text":"Xavier Walker built a market stall in Fortwood."}
+{"type":"chronicle","tick":155253,"wallTimeMs":1792730874710,"kind":"StallBuilt","text":"A new stall opened in the market of Fortwood, built by Hank Thompson."}
+{"type":"chronicle","tick":155401,"wallTimeMs":1792730877966,"kind":"StallBuilt","text":"Trade came to Fortressfield: Charlie Evans built a stall."}
+{"type":"chronicle","tick":155853,"wallTimeMs":1792730888489,"kind":"StallBuilt","text":"Xavier Walker built a market stall in Fortwood."}
+{"type":"chronicle","tick":155901,"wallTimeMs":1792730889653,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Hank Wood."}
+{"type":"save","tick":156001,"wallTimeMs":1792730892130,"count":6}
+{"type":"status","tick":156001,"wallTimeMs":1792730892130,"text":"Autosaved."}
+{"type":"chronicle","tick":156001,"wallTimeMs":1792730892130,"kind":"NationRelationChange","text":"Relations between Bluefield and Upperville are now rival."}
+{"type":"chronicle","tick":156201,"wallTimeMs":1792730896780,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Ursula Williams."}
+{"type":"chronicle","tick":156201,"wallTimeMs":1792730896780,"kind":"StallBuilt","text":"Trade came to Southernville: Stan Jones built a stall."}
+{"type":"chronicle","tick":156301,"wallTimeMs":1792730899394,"kind":"StallBuilt","text":"Victor Wood built a market stall in Blackwood. The market is now full."}
+{"type":"chronicle","tick":156453,"wallTimeMs":1792730903307,"kind":"StallBuilt","text":"Tina Brown built a market stall in Southernville."}
+{"type":"chronicle","tick":156501,"wallTimeMs":1792730904454,"kind":"StallBuilt","text":"Trade came to Forttown: Charlotte Johnson built a stall."}
+{"type":"chronicle","tick":156501,"wallTimeMs":1792730904454,"kind":"NationRelationChange","text":"Fortwood and Southfield are now hostile."}
+{"type":"chronicle","tick":156553,"wallTimeMs":1792730905663,"kind":"StallBuilt","text":"A new stall opened in the market of Bigham, built by Phoebe Evans."}
+{"type":"chronicle","tick":156752,"wallTimeMs":1792730910157,"kind":"StallBuilt","text":"Trade came to Fortwood: Xavier Walker built a stall."}
+{"type":"chronicle","tick":156752,"wallTimeMs":1792730910157,"kind":"NationRelationChange","text":"Smallport and Fortressfield have become rivals over their border."}
+{"type":"chronicle","tick":157000,"wallTimeMs":1792730916324,"kind":"NationRelationChange","text":"Upperville and Bluefield are now hostile over their border."}
+{"type":"chronicle","tick":157000,"wallTimeMs":1792730916324,"kind":"NationRaid","text":"Fortwood raided Southfield and carried off 5 coins, 3 wood, 5 stone."}
+{"type":"chronicle","tick":157152,"wallTimeMs":1792730920196,"kind":"StallBuilt","text":"Hank Thompson built a market stall in Fortwood."}
+{"type":"chronicle","tick":157752,"wallTimeMs":1792730935373,"kind":"NationRelationChange","text":"Yellowshire and Bluefield swore an alliance."}
+{"type":"chronicle","tick":157752,"wallTimeMs":1792730935373,"kind":"NationRelationChange","text":"Blueburg and Bluefield swore an alliance."}
+{"type":"chronicle","tick":157752,"wallTimeMs":1792730935373,"kind":"NationRelationChange","text":"Blackwood and Southfield swore an alliance."}
+{"type":"chronicle","tick":157900,"wallTimeMs":1792730938908,"kind":"StallBuilt","text":"Trade came to Blueburg: Quinn Wood built a stall."}
+{"type":"chronicle","tick":158000,"wallTimeMs":1792730941475,"kind":"StallBuilt","text":"Trade came to Fortressfield: Charlie Evans built a stall. The market is now full."}
+{"type":"chronicle","tick":158000,"wallTimeMs":1792730941475,"kind":"StallBuilt","text":"Trade came to Forttown: Charlotte Johnson built a stall."}
+{"type":"chronicle","tick":158351,"wallTimeMs":1792730948776,"kind":"StallBuilt","text":"Tina Brown built a market stall in Southernville."}
+{"type":"chronicle","tick":158400,"wallTimeMs":1792730949765,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Ursula Williams. The market is now full."}
+{"type":"chronicle","tick":158400,"wallTimeMs":1792730949765,"kind":"StallBuilt","text":"Trade came to Fortwood: Xavier Walker built a stall. The market is now full."}
+{"type":"status","tick":158611,"wallTimeMs":1792730953991,"text":"You are back on your own land."}
+{"type":"status","tick":158723,"wallTimeMs":1792730956454,"text":"Entered settlement."}
+{"type":"chronicle","tick":158751,"wallTimeMs":1792730957076,"kind":"StallBuilt","text":"A new stall opened in the market of Bigham, built by Phoebe Evans."}
+{"type":"chronicle","tick":158803,"wallTimeMs":1792730958217,"kind":"StallBuilt","text":"Zach Wood built a market stall in Smallport."}
+{"type":"chronicle","tick":159003,"wallTimeMs":1792730962539,"kind":"NationRelationChange","text":"Fortresston and Southfield are now hostile."}
+{"type":"chronicle","tick":159003,"wallTimeMs":1792730962539,"kind":"NationRaid","text":"Fortresston raided Southfield and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":159051,"wallTimeMs":1792730963594,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"status","tick":159107,"wallTimeMs":1792730965036,"text":"House built. The settlement is now a Village!"}
+{"type":"chronicle","tick":159251,"wallTimeMs":1792730968713,"kind":"StallBuilt","text":"Jasmine Williams built a market stall in Southfield."}
+{"type":"status","tick":159347,"wallTimeMs":1792730970778,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"chronicle","tick":159603,"wallTimeMs":1792730976477,"kind":"StallBuilt","text":"Trade came to Forttown: Charlotte Johnson built a stall."}
+{"type":"chronicle","tick":160003,"wallTimeMs":1792730985441,"kind":"NationRelationChange","text":"Upperville and Bigham are now hostile."}
+{"type":"chronicle","tick":160003,"wallTimeMs":1792730985441,"kind":"NationRelationChange","text":"Blueburg and Bigham have formed an alliance."}
+{"type":"chronicle","tick":160003,"wallTimeMs":1792730985441,"kind":"NationRelationChange","text":"Forttown and Bigham are now hostile."}
+{"type":"chronicle","tick":160003,"wallTimeMs":1792730985441,"kind":"NationRaid","text":"Raiders from Upperville struck Bigham, taking 5 coins."}
+{"type":"chronicle","tick":160003,"wallTimeMs":1792730985441,"kind":"NationRaid","text":"Raiders from Forttown struck Bigham, taking 5 coins."}
+{"type":"chronicle","tick":160203,"wallTimeMs":1792730989863,"kind":"StallBuilt","text":"Stan Williams built a market stall in Yellowshire. The market is now full."}
+{"type":"chronicle","tick":160351,"wallTimeMs":1792730993021,"kind":"StallBuilt","text":"Trade came to Blueburg: Quinn Wood built a stall."}
+{"type":"chronicle","tick":160751,"wallTimeMs":1792731001512,"kind":"StallBuilt","text":"Trade came to Southernville: Tina Brown built a stall."}
+{"type":"chronicle","tick":161051,"wallTimeMs":1792731007803,"kind":"StallBuilt","text":"Charlotte Johnson built a market stall in Forttown."}
+{"type":"chronicle","tick":161051,"wallTimeMs":1792731007803,"kind":"StallBuilt","text":"Trade came to Fortwood: Hank Thompson built a stall. The market is now full."}
+{"type":"status","tick":161251,"wallTimeMs":1792731012004,"text":"Bigham has fallen and been disbanded."}
+{"type":"chronicle","tick":161251,"wallTimeMs":1792731012004,"kind":"NationRelationChange","text":"Southfield and Westport have formed an alliance."}
+{"type":"chronicle","tick":161251,"wallTimeMs":1792731012004,"kind":"SettlementCapture","text":"Upperville captured a village from Bigham."}
+{"type":"chronicle","tick":161251,"wallTimeMs":1792731012004,"kind":"NationDisband","text":"Bigham dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":161303,"wallTimeMs":1792731013088,"kind":"StallBuilt","text":"Trade came to Southfield: Jasmine Williams built a stall."}
+{"type":"chronicle","tick":161751,"wallTimeMs":1792731022392,"kind":"NationRelationChange","text":"Smallport and Fortressfield are now hostile."}
+{"type":"chronicle","tick":161851,"wallTimeMs":1792731024438,"kind":"StallBuilt","text":"Zach Wood built a market stall in Smallport."}
+{"type":"save","tick":162003,"wallTimeMs":1792731027675,"count":7}
+{"type":"status","tick":162003,"wallTimeMs":1792731027675,"text":"Autosaved."}
+{"type":"chronicle","tick":162003,"wallTimeMs":1792731027675,"kind":"NationRaid","text":"Smallport raided Fortressfield and carried off 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":162303,"wallTimeMs":1792731033944,"kind":"StallBuilt","text":"A new stall opened in the market of Southernville, built by Tina Brown."}
+{"type":"chronicle","tick":162503,"wallTimeMs":1792731038076,"kind":"StallBuilt","text":"Charlotte Johnson built a market stall in Forttown. The market is now full."}
+{"type":"chronicle","tick":162752,"wallTimeMs":1792731043195,"kind":"NationRelationChange","text":"Southfield and Oldtown have formed an alliance."}
+{"type":"chronicle","tick":162851,"wallTimeMs":1792731045206,"kind":"StallBuilt","text":"Trade came to Blueburg: Quinn Wood built a stall. The market is now full."}
+{"type":"chronicle","tick":162851,"wallTimeMs":1792731045206,"kind":"StallBuilt","text":"Jasmine Williams built a market stall in Southfield."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1792731048833,"kind":"NationRelationChange","text":"Blackwood and Oldtown swore an alliance."}
+{"type":"chronicle","tick":163254,"wallTimeMs":1792731056198,"kind":"WorldEvent","text":"Drought struck Fortresston; Ursula Williams had irrigation ditches dug, and the farms were dry only a little while."}
+{"type":"chronicle","tick":163750,"wallTimeMs":1792731068488,"kind":"NationRelationChange","text":"Blueburg and Southfield swore an alliance."}
+{"type":"chronicle","tick":163902,"wallTimeMs":1792731072171,"kind":"StallBuilt","text":"Tina Brown built a market stall in Southernville."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1792731074684,"kind":"NationRelationChange","text":"Yellowshire and Southfield have formed an alliance."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1792731074684,"kind":"NationRelationChange","text":"Fortwood and Oldtown are now hostile."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1792731074684,"kind":"NationRaid","text":"Southfield raided Fortwood and carried off 5 coins, 4 wood, 1 stone."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1792731074684,"kind":"NationRaid","text":"Raiders from Fortwood struck Oldtown, taking 5 coins."}
+{"type":"chronicle","tick":164250,"wallTimeMs":1792731081137,"kind":"StallBuilt","text":"Jasmine Williams built a market stall in Southfield."}
+{"type":"chronicle","tick":164802,"wallTimeMs":1792731094580,"kind":"StallBuilt","text":"Tina Brown built a market stall in Southernville. The market is now full."}
+{"type":"chronicle","tick":164950,"wallTimeMs":1792731098167,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Mia Williams."}
+{"type":"chronicle","tick":165150,"wallTimeMs":1792731103161,"kind":"StallBuilt","text":"A new stall opened in the market of Smallport, built by Zach Wood."}
+{"type":"chronicle","tick":166750,"wallTimeMs":1792731142173,"kind":"NationRelationChange","text":"Upperville and Fortressfield swore an alliance."}
+{"type":"chronicle","tick":167002,"wallTimeMs":1792731148348,"kind":"NationRaid","text":"Raiders from Fortressfield struck Smallport, taking 5 coins, 5 wood."}
+{"type":"save","tick":168002,"wallTimeMs":1792731172726,"count":8}
+{"type":"status","tick":168002,"wallTimeMs":1792731172726,"text":"Autosaved."}
+{"type":"chronicle","tick":168002,"wallTimeMs":1792731172726,"kind":"SettlementCapture","text":"After a siege, a village of Bluefield fell to Upperville."}
+{"type":"chronicle","tick":168002,"wallTimeMs":1792731172726,"kind":"NationDisband","text":"Bluefield dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":170754,"wallTimeMs":1792731240514,"kind":"WorldEvent","text":"Rain returned to Fortresston, and its farms grew green again."}
+{"type":"status","tick":171002,"wallTimeMs":1792731246577,"text":"Winter has come. No harvests, slow regrowth; the cold bites outdoors."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Yellowshire raided Upperville and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Upperville raided Smallport and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Yellowshire raided Fortresston and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Fortresston raided Blueburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Raiders from Fortresston struck Blackwood, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Raiders from Fortresston struck Southfield, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Raiders from Blueburg struck Forttown, taking 5 coins, 3 wood."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Raiders from Fortressfield struck Smallport, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Blackwood raided Fortwood and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Southfield raided Fortwood and carried off 5 coins, 2 wood."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Fortwood raided Westport and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1792731246577,"kind":"NationRaid","text":"Fortwood raided Oldtown and carried off 5 coins."}
+{"type":"world_event_offered","tick":172602,"wallTimeMs":1792731285807,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone (unavailable)","Decline"]}
+{"type":"status","tick":172602,"wallTimeMs":1792731320789,"text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"chronicle","tick":172602,"wallTimeMs":1792731320789,"kind":"WorldEvent","text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"world_event_resolved","tick":172602,"wallTimeMs":1792731320789,"title":"A travelling merchant","status":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"save","tick":174002,"wallTimeMs":1792731355639,"count":9}
+{"type":"status","tick":174002,"wallTimeMs":1792731355639,"text":"Autosaved."}
+{"type":"chronicle","tick":177602,"wallTimeMs":1792731445535,"kind":"StallBuilt","text":"Jasmine Williams built a market stall in Southfield."}
+{"type":"chronicle","tick":177702,"wallTimeMs":1792731448000,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Mia Williams. The market is now full."}
+{"type":"chronicle","tick":178730,"wallTimeMs":1792731473453,"kind":"Caravan","text":"A caravan from Blueburg sold 20 stone at the Town of Southfield for 434 coins."}
+{"type":"chronicle","tick":178850,"wallTimeMs":1792731476919,"kind":"StallBuilt","text":"Jasmine Williams built a market stall in Southfield."}
+{"type":"save","tick":180003,"wallTimeMs":1792731502367,"count":10}
+{"type":"status","tick":180003,"wallTimeMs":1792731502367,"text":"Autosaved."}
+{"type":"chronicle","tick":180103,"wallTimeMs":1792731504432,"kind":"StallBuilt","text":"Trade came to Smallport: Zach Wood built a stall. The market is now full."}
+{"type":"chronicle","tick":180351,"wallTimeMs":1792731509975,"kind":"StallBuilt","text":"A new stall opened in the market of Southfield, built by Jasmine Williams. The market is now full."}
+{"type":"status","tick":181082,"wallTimeMs":1792731525601,"text":"Exited settlement."}
+{"type":"status","tick":181723,"wallTimeMs":1792731538442,"text":"You leave the land of Fortshire for the wilds."}
+{"type":"status","tick":181882,"wallTimeMs":1792731541639,"text":"You enter the land of Smallport (Rival)."}
+{"type":"chronicle","tick":182103,"wallTimeMs":1792731546050,"kind":"LeadershipChange","text":"The rule of Blackwood passed from Victor Wood to Eve Wilson."}
+{"type":"chronicle","tick":182103,"wallTimeMs":1792731546050,"kind":"WorldEvent","text":"With Fortwood\u0027s gold behind them, Eve Wilson seized the leadership of Blackwood."}
+{"type":"status","tick":184001,"wallTimeMs":1792731584036,"text":"You leave the land of Smallport for the wilds."}
+{"type":"status","tick":184680,"wallTimeMs":1792731597609,"text":"You are back on your own land."}
+{"type":"status","tick":184941,"wallTimeMs":1792731602938,"text":"You leave the land of Fortshire for the wilds."}
+{"type":"status","tick":185335,"wallTimeMs":1792731610986,"text":"No entities within range to interact with."}
+{"type":"save","tick":186002,"wallTimeMs":1792731624690,"count":11}
+{"type":"status","tick":186002,"wallTimeMs":1792731624690,"text":"Autosaved."}
+{"type":"chronicle","tick":186002,"wallTimeMs":1792731624690,"kind":"NationRelationChange","text":"Relations between Fortshire and Fortressfield are now neutral against a common enemy."}
+{"type":"status","tick":186663,"wallTimeMs":1792731637915,"text":"No entities within range to interact with."}
+{"type":"status","tick":187978,"wallTimeMs":1792731664222,"text":"No entities within range to interact with."}
+{"type":"status","tick":189967,"wallTimeMs":1792731705362,"text":"Welcome home!"}
+{"type":"status","tick":189971,"wallTimeMs":1792731705444,"text":"You are back on your own land."}
+{"type":"chronicle","tick":190752,"wallTimeMs":1792731725392,"kind":"NationRelationChange","text":"Southernville and Fortressfield have become rivals over their border."}
+{"type":"save","tick":192002,"wallTimeMs":1792731765556,"count":12}
+{"type":"status","tick":192002,"wallTimeMs":1792731765556,"text":"Autosaved."}
+{"type":"chronicle","tick":195750,"wallTimeMs":1792731849185,"kind":"NationRelationChange","text":"Southernville and Fortressfield are now hostile."}
+{"type":"chronicle","tick":195902,"wallTimeMs":1792731852350,"kind":"WorldEvent","text":"A fever broke out in the Town of Southernville; Tina Brown paid a healer, and every patient recovered."}
+{"type":"chronicle","tick":196002,"wallTimeMs":1792731854438,"kind":"NationRaid","text":"Raiders from Southernville struck Fortressfield, taking 5 coins, 5 wood, 2 stone."}
+{"type":"status","tick":196582,"wallTimeMs":1792731866473,"text":"Stan Thompson has died."}
+{"type":"chronicle","tick":196582,"wallTimeMs":1792731866473,"kind":"PawnDeath","text":"Hunger claimed Stan Thompson of Fortwood within the walls."}
+{"type":"pawn_death","tick":196582,"wallTimeMs":1792731866473,"count":1,"total":1}
+{"type":"save","tick":198002,"wallTimeMs":1792731896147,"count":13}
+{"type":"status","tick":198002,"wallTimeMs":1792731896147,"text":"Autosaved."}
+{"type":"status","tick":198674,"wallTimeMs":1792731910311,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":199002,"wallTimeMs":1792731917313,"kind":"NationRaid","text":"Raiders from Upperville struck Blueburg, taking 5 coins."}
+{"type":"status","tick":199614,"wallTimeMs":1792731930188,"text":"Chronicle: recent entries."}
+{"type":"status","tick":199750,"wallTimeMs":1792731933028,"text":"Fortressfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":199750,"wallTimeMs":1792731933028,"kind":"NationRelationChange","text":"Relations between Fortshire and Fortressfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":200250,"wallTimeMs":1792731943621,"kind":"NationRelationChange","text":"Smallport and Southernville have formed an alliance."}
+{"type":"chronicle","tick":200501,"wallTimeMs":1792731948826,"kind":"NationRelationChange","text":"Fortressfield and Blackwood swore an alliance."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Yellowshire raided Upperville and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Upperville struck Blueburg, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Upperville raided Smallport and carried off 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Yellowshire struck Fortresston, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Fortresston struck Blueburg, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Fortresston raided Blackwood and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Fortresston raided Southfield and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Blueburg raided Forttown and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Fortressfield raided Smallport and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Southernville struck Fortressfield, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Blackwood raided Fortwood and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Southfield struck Fortwood, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Fortwood struck Westport, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1792731959343,"kind":"NationRaid","text":"Raiders from Fortwood struck Oldtown, taking 5 coins."}
+{"type":"save","tick":204002,"wallTimeMs":1792732022034,"count":14}
+{"type":"status","tick":204002,"wallTimeMs":1792732022034,"text":"Autosaved."}
+{"type":"status","tick":207495,"wallTimeMs":1792732094417,"text":"Hank Thompson has died."}
+{"type":"chronicle","tick":207495,"wallTimeMs":1792732094417,"kind":"PawnDeath","text":"Hank Thompson of Fortwood was found starved within the walls."}
+{"type":"pawn_death","tick":207495,"wallTimeMs":1792732094417,"count":1,"total":2}
+{"type":"chronicle","tick":208403,"wallTimeMs":1792732113620,"kind":"WorldEvent","text":"Bandits camped outside the Village of Southernville; Tina Brown raised a militia of Southernville and drove them off."}
+{"type":"chronicle","tick":208503,"wallTimeMs":1792732115692,"kind":"Caravan","text":"Upperville sent a caravan of 20 wood from the Town of Upperville to the Village of Fortshire."}
+{"type":"save","tick":210002,"wallTimeMs":1792732147537,"count":15}
+{"type":"status","tick":210002,"wallTimeMs":1792732147537,"text":"Autosaved."}
+{"type":"status","tick":211388,"wallTimeMs":1792732175299,"text":"Entered settlement."}
+{"type":"chronicle","tick":211432,"wallTimeMs":1792732176186,"kind":"Caravan","text":"A caravan from Upperville sold 1 wood at the Village of Fortshire for 86 coins."}
+{"type":"status","tick":212954,"wallTimeMs":1792732207136,"text":"Fiona Lewis has died."}
+{"type":"chronicle","tick":212954,"wallTimeMs":1792732207136,"kind":"PawnDeath","text":"Hunger claimed Fiona Lewis of Upperville within the walls."}
+{"type":"pawn_death","tick":212954,"wallTimeMs":1792732207136,"count":1,"total":3}
+{"type":"status","tick":213858,"wallTimeMs":1792732225883,"text":"Exited settlement."}
+{"type":"status","tick":213926,"wallTimeMs":1792732227334,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":214817,"wallTimeMs":1792732245401,"text":"Wendy Walker has died."}
+{"type":"chronicle","tick":214817,"wallTimeMs":1792732245401,"kind":"PawnDeath","text":"Wendy Walker of Upperville starved within the walls."}
+{"type":"pawn_death","tick":214817,"wallTimeMs":1792732245401,"count":1,"total":4}
+{"type":"status","tick":215113,"wallTimeMs":1792732251313,"text":"You leave the land of Fortshire for the wilds."}
+{"type":"world_event_offered","tick":215254,"wallTimeMs":1792732254139,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Village of Fortshire. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off (unavailable)","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":215254,"wallTimeMs":1792732256842,"text":"No entities within range to interact with."}
+{"type":"status","tick":215254,"wallTimeMs":1792732258291,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":215254,"wallTimeMs":1792732265132,"text":"Bandits camped outside the Village of Fortshire; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":215254,"wallTimeMs":1792732265132,"kind":"WorldEvent","text":"Bandits camped outside the Village of Fortshire; you paid them 30 coins to go away."}
+{"type":"world_event_resolved","tick":215254,"wallTimeMs":1792732265132,"title":"Bandit camp","status":"Bandits camped outside the Village of Fortshire; you paid them 30 coins to go away."}
+{"type":"status","tick":215762,"wallTimeMs":1792732275294,"text":"You enter the land of Yellowshire (Rival)."}
+{"type":"save","tick":216002,"wallTimeMs":1792732280203,"count":16}
+{"type":"status","tick":216002,"wallTimeMs":1792732280203,"text":"Autosaved."}
+{"type":"status","tick":216235,"wallTimeMs":1792732284966,"text":"Harriet Watson (Stranger): \u0022Who are you? I\u0027m loyal to Yellowshire. Idle hands make me itch.\u0022"}
+{"type":"status","tick":216291,"wallTimeMs":1792732286491,"text":"You gave Harriet Watson 10 coin. Harriet Watson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":217171,"wallTimeMs":1792732307688,"text":"You leave the land of Yellowshire for the wilds."}
+{"type":"chronicle","tick":217252,"wallTimeMs":1792732309313,"kind":"NationCreation","text":"Karl Roberts declared the nation of Whiteport, though none had yet sworn to it."}
+{"type":"status","tick":217512,"wallTimeMs":1792732314518,"text":"You enter the land of Fortresston (Neutral)."}
+{"type":"chronicle","tick":217600,"wallTimeMs":1792732316275,"kind":"SettlementFounded","text":"Karl Roberts laid the first stones of Whiteport."}
+{"type":"status","tick":218190,"wallTimeMs":1792732328072,"text":"No entities within range to interact with."}
+{"type":"status","tick":218390,"wallTimeMs":1792732332080,"text":"You leave the land of Fortresston for the wilds."}
+{"type":"status","tick":218980,"wallTimeMs":1792732343880,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 19 uses left."}
+{"type":"status","tick":219405,"wallTimeMs":1792732352369,"text":"Natalie Walker has died."}
+{"type":"chronicle","tick":219405,"wallTimeMs":1792732352369,"kind":"PawnDeath","text":"Natalie Walker of Fortresston was found starved within the walls."}
+{"type":"pawn_death","tick":219405,"wallTimeMs":1792732352369,"count":1,"total":5}
+{"type":"status","tick":219910,"wallTimeMs":1792732362476,"text":"Gathered 9 wood and 2 apples from tree (\u002B3 from your axe), 18 uses left."}
+{"type":"chronicle","tick":220001,"wallTimeMs":1792732364304,"kind":"NationRelationChange","text":"Westport and Whiteport have become rivals over their border."}
+{"type":"chronicle","tick":220001,"wallTimeMs":1792732364304,"kind":"NationRelationChange","text":"Oldtown and Whiteport have become rivals over their border."}
+{"type":"status","tick":220142,"wallTimeMs":1792732367113,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 17 uses left."}
+{"type":"status","tick":220441,"wallTimeMs":1792732373101,"text":"Gathered 9 wood and 3 apples from tree (\u002B3 from your axe), 16 uses left."}
+{"type":"chronicle","tick":220751,"wallTimeMs":1792732379291,"kind":"NationCreation","text":"Phoebe Johnson raised a banner and called it Fortresswood."}
+{"type":"chronicle","tick":220802,"wallTimeMs":1792732380308,"kind":"SettlementFounded","text":"Phoebe Johnson laid the first stones of Fortresswood."}
+{"type":"status","tick":220823,"wallTimeMs":1792732380734,"text":"You enter the land of Fortresswood (Neutral)."}
+{"type":"status","tick":220934,"wallTimeMs":1792732382958,"text":"Nancy Jones has died."}
+{"type":"chronicle","tick":220934,"wallTimeMs":1792732382958,"kind":"PawnDeath","text":"Nancy Jones of Fortwood died of hunger within the walls."}
+{"type":"pawn_death","tick":220934,"wallTimeMs":1792732382958,"count":1,"total":6}
+{"type":"status","tick":221000,"wallTimeMs":1792732384282,"text":"Gathered 9 wood and 3 apples from tree (\u002B3 from your axe), 15 uses left."}
+{"type":"chronicle","tick":221000,"wallTimeMs":1792732384282,"kind":"NationRaid","text":"Raiders from Westport struck Fortwood, taking 5 coins."}
+{"type":"chronicle","tick":221101,"wallTimeMs":1792732386306,"kind":"StallBuilt","text":"Karl Roberts built a market stall in Whiteport."}
+{"type":"status","tick":221174,"wallTimeMs":1792732387766,"text":"Bob Brown has died."}
+{"type":"chronicle","tick":221174,"wallTimeMs":1792732387766,"kind":"PawnDeath","text":"Bob Brown of Forttown was found starved within the walls."}
+{"type":"pawn_death","tick":221174,"wallTimeMs":1792732387766,"count":1,"total":7}
+{"type":"status","tick":221235,"wallTimeMs":1792732388973,"text":"Bob Brown and Grace White have died."}
+{"type":"chronicle","tick":221235,"wallTimeMs":1792732388973,"kind":"PawnDeath","text":"Grace White of Fortwood died of hunger within the walls."}
+{"type":"pawn_death","tick":221235,"wallTimeMs":1792732388973,"count":1,"total":8}
+{"type":"status","tick":221882,"wallTimeMs":1792732410844,"text":"Daisy Walker has died."}
+{"type":"chronicle","tick":221882,"wallTimeMs":1792732410844,"kind":"PawnDeath","text":"Hunger claimed Daisy Walker of Upperville within the walls."}
+{"type":"pawn_death","tick":221882,"wallTimeMs":1792732410844,"count":1,"total":9}
+{"type":"save","tick":222002,"wallTimeMs":1792732415189,"count":17}
+{"type":"status","tick":222002,"wallTimeMs":1792732415189,"text":"Autosaved."}
+{"type":"chronicle","tick":222002,"wallTimeMs":1792732415189,"kind":"StallBuilt","text":"A new stall opened in the market of Whiteport, built by Karl Roberts."}
+{"type":"chronicle","tick":222002,"wallTimeMs":1792732415189,"kind":"NationRaid","text":"Blueburg raided Upperville and carried off 5 coins."}
+{"type":"chronicle","tick":222002,"wallTimeMs":1792732415189,"kind":"NationRaid","text":"Blackwood raided Fortresston and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":222050,"wallTimeMs":1792732416888,"kind":"StallBuilt","text":"Phoebe Johnson built a market stall in Fortresswood."}
+{"type":"chronicle","tick":222851,"wallTimeMs":1792732438660,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresswood, built by Phoebe Johnson."}
+{"type":"status","tick":222925,"wallTimeMs":1792732440133,"text":"Grace Lewis has died."}
+{"type":"chronicle","tick":222925,"wallTimeMs":1792732440133,"kind":"PawnDeath","text":"Hunger claimed Grace Lewis of Upperville within the walls."}
+{"type":"pawn_death","tick":222925,"wallTimeMs":1792732440133,"count":1,"total":10}
+{"type":"chronicle","tick":223253,"wallTimeMs":1792732448090,"kind":"NationRelationChange","text":"Fortresston and Fortresswood have become rivals over their border."}
+{"type":"chronicle","tick":223301,"wallTimeMs":1792732449274,"kind":"StallBuilt","text":"Trade came to Whiteport: Karl Roberts built a stall."}
+{"type":"chronicle","tick":224452,"wallTimeMs":1792732472603,"kind":"StallBuilt","text":"A new stall opened in the market of Whiteport, built by Karl Roberts."}
+{"type":"chronicle","tick":224704,"wallTimeMs":1792732477639,"kind":"WorldEvent","text":"A fever broke out in the Town of Upperville; Alice Wood paid a healer, and every patient recovered."}
+{"type":"status","tick":224715,"wallTimeMs":1792732477869,"text":"Victor Taylor has died."}
+{"type":"chronicle","tick":224715,"wallTimeMs":1792732477869,"kind":"PawnDeath","text":"Victor Taylor of Yellowshire was found starved within the walls."}
+{"type":"pawn_death","tick":224715,"wallTimeMs":1792732477869,"count":1,"total":11}
+{"type":"chronicle","tick":225002,"wallTimeMs":1792732483695,"kind":"NationRelationChange","text":"Fortwood and Whiteport swore an alliance."}
+{"type":"chronicle","tick":225002,"wallTimeMs":1792732483695,"kind":"NationRelationChange","text":"Westport and Whiteport are now hostile."}
+{"type":"chronicle","tick":225002,"wallTimeMs":1792732483695,"kind":"NationRelationChange","text":"Oldtown and Whiteport are now hostile."}
+{"type":"chronicle","tick":225002,"wallTimeMs":1792732483695,"kind":"NationRelationChange","text":"Relations between Whiteport and Westport are now rival."}
+{"type":"chronicle","tick":225002,"wallTimeMs":1792732483695,"kind":"NationRaid","text":"Raiders from Oldtown struck Whiteport, taking 1 coins."}
+{"type":"status","tick":226250,"wallTimeMs":1792732509369,"text":"Whiteport has fallen and been disbanded."}
+{"type":"chronicle","tick":226250,"wallTimeMs":1792732509369,"kind":"SettlementCapture","text":"After a siege, a village of Whiteport fell to Oldtown."}
+{"type":"chronicle","tick":226250,"wallTimeMs":1792732509369,"kind":"NationDisband","text":"Whiteport is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":226752,"wallTimeMs":1792732519921,"kind":"StallBuilt","text":"A new stall opened in the market of Fortresston, built by Nancy Robinson."}
+{"type":"status","tick":227844,"wallTimeMs":1792732541989,"text":"Ursula Johnson has died."}
+{"type":"chronicle","tick":227844,"wallTimeMs":1792732541989,"kind":"PawnDeath","text":"Ursula Johnson of Fortresston died of hunger within the walls."}
+{"type":"pawn_death","tick":227844,"wallTimeMs":1792732541989,"count":1,"total":12}
+{"type":"save","tick":228003,"wallTimeMs":1792732545282,"count":18}
+{"type":"status","tick":228003,"wallTimeMs":1792732545282,"text":"Autosaved."}
+{"type":"chronicle","tick":228003,"wallTimeMs":1792732545282,"kind":"Caravan","text":"Blackwood sent a caravan of 5 stone from the Town of Blackwood to the Village of Fortshire."}
+{"type":"status","tick":228187,"wallTimeMs":1792732549008,"text":"Peggy Walker has died."}
+{"type":"chronicle","tick":228187,"wallTimeMs":1792732549008,"kind":"PawnDeath","text":"Peggy Walker of Upperville starved within the walls."}
+{"type":"pawn_death","tick":228187,"wallTimeMs":1792732549008,"count":1,"total":13}
+{"type":"status","tick":228542,"wallTimeMs":1792732556239,"text":"Peggy Walker and Hank Smith have died."}
+{"type":"chronicle","tick":228542,"wallTimeMs":1792732556239,"kind":"PawnDeath","text":"Hank Smith of Blueburg was found starved within the walls."}
+{"type":"pawn_death","tick":228542,"wallTimeMs":1792732556239,"count":1,"total":14}
+{"type":"status","tick":229051,"wallTimeMs":1792732566537,"text":"Oscar Walker has died."}
+{"type":"chronicle","tick":229051,"wallTimeMs":1792732566537,"kind":"PawnDeath","text":"Oscar Walker of Yellowshire was found starved within the walls."}
+{"type":"pawn_death","tick":229051,"wallTimeMs":1792732566537,"count":1,"total":15}
+{"type":"chronicle","tick":229550,"wallTimeMs":1792732576642,"kind":"NationJoin","text":"Fortshire welcomed Bella Lewis into its ranks."}
+{"type":"status","tick":230034,"wallTimeMs":1792732586366,"text":"Eve Thomas has died."}
+{"type":"chronicle","tick":230034,"wallTimeMs":1792732586366,"kind":"PawnDeath","text":"Eve Thomas of Southernville starved within the walls."}
+{"type":"pawn_death","tick":230034,"wallTimeMs":1792732586366,"count":1,"total":16}
+{"type":"chronicle","tick":230250,"wallTimeMs":1792732590757,"kind":"NationRelationChange","text":"Fortresston and Fortresswood are now hostile."}
+{"type":"chronicle","tick":230472,"wallTimeMs":1792732595287,"kind":"Caravan","text":"A caravan from Blackwood sold 2 stone at the Village of Fortshire for 74 coins."}
+{"type":"status","tick":231003,"wallTimeMs":1792732606084,"text":"Spring has come. Saplings grow, chickens hatch."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRelationChange","text":"Relations between Fortwood and Blackwood are now rival."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Raiders from Yellowshire struck Upperville, taking 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Raiders from Blueburg struck Upperville, taking 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Upperville raided Smallport and carried off 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Raiders from Yellowshire struck Fortresston, taking 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Raiders from Fortresston struck Blueburg, taking 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Blackwood raided Fortresston and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Fortresston raided Fortresswood and carried off 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Blueburg raided Forttown and carried off 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Raiders from Fortressfield struck Smallport, taking 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Southernville raided Fortressfield and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Southfield raided Fortwood and carried off 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Westport raided Fortwood and carried off 5 coins."}
+{"type":"chronicle","tick":231003,"wallTimeMs":1792732606084,"kind":"NationRaid","text":"Fortwood raided Oldtown and carried off 5 coins."}
+{"type":"status","tick":231502,"wallTimeMs":1792732616335,"text":"Fortresswood has fallen and been disbanded. You enter the land of Fortresston (Neutral)."}
+{"type":"chronicle","tick":231502,"wallTimeMs":1792732616335,"kind":"NationRelationChange","text":"Blackwood and Fortwood are now hostile over their border."}
+{"type":"chronicle","tick":231502,"wallTimeMs":1792732616335,"kind":"SettlementCapture","text":"Fortresston captured a camp from Fortresswood."}
+{"type":"chronicle","tick":231502,"wallTimeMs":1792732616335,"kind":"NationDisband","text":"Fortresswood faded from memory before it ever built a home."}
+{"type":"chronicle","tick":231502,"wallTimeMs":1792732616335,"kind":"SettlementCapture","text":"After a siege, a village of Fortwood fell to Southfield."}
+{"type":"chronicle","tick":232003,"wallTimeMs":1792732626651,"kind":"NationRelationChange","text":"Relations between Fortwood and Blackwood are now rival."}
+{"type":"chronicle","tick":232003,"wallTimeMs":1792732626651,"kind":"NationRaid","text":"Fortresston raided Southfield and carried off 5 coins."}

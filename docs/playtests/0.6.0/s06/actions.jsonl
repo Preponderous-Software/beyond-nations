@@ -1,0 +1,210 @@
+{"t": 1792713865246, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "106"]}
+{"t": 1792713873780, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1792713873921, "cmd": "key", "args": ["space"]}
+{"t": 1792713876482, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713879312, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792713884683, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713885479, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713888775, "cmd": "shot", "args": ["world0"]}
+{"t": 1792713888990, "cmd": "state", "args": []}
+{"t": 1792713897249, "cmd": "click", "args": ["425", "388"]}
+{"t": 1792713899037, "cmd": "key", "args": ["n"]}
+{"t": 1792713901543, "cmd": "shot", "args": ["nation1"]}
+{"t": 1792713901790, "cmd": "state", "args": []}
+{"t": 1792713901863, "cmd": "events", "args": ["5"]}
+{"t": 1792713908146, "cmd": "key", "args": ["f"]}
+{"t": 1792713910679, "cmd": "state", "args": []}
+{"t": 1792713910765, "cmd": "key", "args": ["o"]}
+{"t": 1792713913292, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792713917407, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792713920203, "cmd": "shot", "args": ["laws1"]}
+{"t": 1792713926029, "cmd": "click", "args": ["353", "175"]}
+{"t": 1792713927808, "cmd": "click", "args": ["225", "262"]}
+{"t": 1792713930616, "cmd": "shot", "args": ["laws2"]}
+{"t": 1792713930850, "cmd": "state", "args": ["--full"]}
+{"t": 1792713937646, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713938189, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792713951245, "cmd": "key", "args": ["e"]}
+{"t": 1792713952757, "cmd": "key", "args": ["e"]}
+{"t": 1792713954283, "cmd": "key", "args": ["e"]}
+{"t": 1792713955890, "cmd": "key", "args": ["e"]}
+{"t": 1792713957477, "cmd": "key", "args": ["e"]}
+{"t": 1792713959125, "cmd": "key", "args": ["e"]}
+{"t": 1792713960742, "cmd": "state", "args": []}
+{"t": 1792713965417, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713972053, "cmd": "key", "args": ["e"]}
+{"t": 1792713973097, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713987602, "cmd": "key", "args": ["e"]}
+{"t": 1792713988645, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713998633, "cmd": "key", "args": ["e"]}
+{"t": 1792713999751, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714016931, "cmd": "key", "args": ["e"]}
+{"t": 1792714017960, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714041603, "cmd": "key", "args": ["e"]}
+{"t": 1792714042643, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714047358, "cmd": "key", "args": ["e"]}
+{"t": 1792714048372, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714059963, "cmd": "key", "args": ["e"]}
+{"t": 1792714061057, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714069059, "cmd": "key", "args": ["e"]}
+{"t": 1792714070206, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714082392, "cmd": "key", "args": ["e"]}
+{"t": 1792714083398, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714089846, "cmd": "key", "args": ["e"]}
+{"t": 1792714090874, "cmd": "state", "args": []}
+{"t": 1792714093883, "cmd": "key", "args": ["f"]}
+{"t": 1792714097405, "cmd": "shot", "args": ["founded"]}
+{"t": 1792714097666, "cmd": "state", "args": []}
+{"t": 1792714097765, "cmd": "events", "args": ["6"]}
+{"t": 1792714101554, "cmd": "face", "args": ["-88"]}
+{"t": 1792714104205, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792714112368, "cmd": "key", "args": ["f"]}
+{"t": 1792714114901, "cmd": "state", "args": []}
+{"t": 1792714114998, "cmd": "state", "args": []}
+{"t": 1792714120581, "cmd": "hold", "args": ["Shift_L+w", "3.5"]}
+{"t": 1792714124285, "cmd": "key", "args": ["f"]}
+{"t": 1792714126834, "cmd": "state", "args": []}
+{"t": 1792714131967, "cmd": "shot", "args": ["settled"]}
+{"t": 1792714132306, "cmd": "state", "args": []}
+{"t": 1792714136037, "cmd": "key", "args": ["e"]}
+{"t": 1792714139610, "cmd": "shot", "args": ["inside1"]}
+{"t": 1792714139941, "cmd": "state", "args": []}
+{"t": 1792714147407, "cmd": "note", "args": ["--shot", "hud_overlap", "Inside own settlement: big floating world-label '0 here, 3/8 residents' bleeds behind the top HUD/chronicle; bottom-right Season panel overlaps Player Info (only 'Role: LEADER' row visible, Energy/Nation hidden). Tick ~5118."]}
+{"t": 1792714147728, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792714182691, "cmd": "state", "args": []}
+{"t": 1792714186090, "cmd": "key", "args": ["e"]}
+{"t": 1792714188590, "cmd": "shot", "args": ["talk1"]}
+{"t": 1792714188819, "cmd": "state", "args": []}
+{"t": 1792714195196, "cmd": "events", "args": ["12"]}
+{"t": 1792714198269, "cmd": "events", "args": ["60"]}
+{"t": 1792714198356, "cmd": "state", "args": []}
+{"t": 1792714205800, "cmd": "key", "args": ["e"]}
+{"t": 1792714208372, "cmd": "state", "args": []}
+{"t": 1792714208449, "cmd": "shot", "args": ["inside2"]}
+{"t": 1792714216522, "cmd": "note", "args": ["--shot", "e_exits_not_talk", "Inside own settlement with member Judy Taylor 2.4m away, pressing E printed 'Exited settlement.' (tick 5994) instead of talking; the on-screen Talk/Gift/Order buttons do work as a path, but E (the documented talk key) always prefers the settlement. Also pawn in my own nation is labelled '(Stranger)'. Objective bar text clipped: 'mbers 5/10'."]}
+{"t": 1792714216840, "cmd": "click", "args": ["155", "414"]}
+{"t": 1792714219629, "cmd": "shot", "args": ["talked"]}
+{"t": 1792714219910, "cmd": "state", "args": []}
+{"t": 1792714227733, "cmd": "note", "args": ["--shot", "button_shift", "Inside settlement the action-bar rows shift up/down as pawns wander in and out of 5m: a click aimed at 'Talk to Judy Taylor' (155,414) one frame later landed on 'Send Caravan (Town era)' as the Talk row vanished. At a few fps this makes the talk/gift buttons a misclick trap; a stable slot would help."]}
+{"t": 1792714228019, "cmd": "state", "args": []}
+{"t": 1792714230128, "cmd": "state", "args": []}
+{"t": 1792714232286, "cmd": "state", "args": []}
+{"t": 1792714234438, "cmd": "state", "args": []}
+{"t": 1792714236602, "cmd": "state", "args": []}
+{"t": 1792714238765, "cmd": "state", "args": []}
+{"t": 1792714240913, "cmd": "state", "args": []}
+{"t": 1792714243059, "cmd": "state", "args": []}
+{"t": 1792714245172, "cmd": "shot", "args": ["near"]}
+{"t": 1792714249092, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792714249748, "cmd": "shot", "args": ["near2"]}
+{"t": 1792714250026, "cmd": "state", "args": []}
+{"t": 1792714256176, "cmd": "click", "args": ["155", "414"]}
+{"t": 1792714257986, "cmd": "state", "args": []}
+{"t": 1792714258077, "cmd": "click", "args": ["371", "414"]}
+{"t": 1792714259886, "cmd": "state", "args": []}
+{"t": 1792714259965, "cmd": "shot", "args": ["gifted"]}
+{"t": 1792714266051, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1792714267198, "cmd": "state", "args": []}
+{"t": 1792714272136, "cmd": "state", "args": []}
+{"t": 1792714272266, "cmd": "click", "args": ["155", "414"]}
+{"t": 1792714273603, "cmd": "state", "args": []}
+{"t": 1792714273699, "cmd": "shot", "args": ["talk2"]}
+{"t": 1792714276979, "cmd": "events", "args": ["30"]}
+{"t": 1792714283007, "cmd": "note", "args": ["--shot", "talk_member_stranger", "Talk works via button: Judy Taylor, who the chronicle says 'joined Easternland' and who is a merchant in my own settlement, is labelled '(Stranger) - Loyal' and says 'Yes, leader? I hardly know you. Why should I follow you? I stand by my own.' Mixed message: is she in my nation or not? Tick 7558. Also huge floating caravan label text overprints the scene."]}
+{"t": 1792714283283, "cmd": "click", "args": ["371", "414"]}
+{"t": 1792714284551, "cmd": "state", "args": []}
+{"t": 1792714288208, "cmd": "state", "args": []}
+{"t": 1792714288336, "cmd": "click", "args": ["371", "414"]}
+{"t": 1792714289621, "cmd": "state", "args": []}
+{"t": 1792714289717, "cmd": "shot", "args": ["gift2"]}
+{"t": 1792714290020, "cmd": "events", "args": ["20"]}
+{"t": 1792714295374, "cmd": "key", "args": ["o"]}
+{"t": 1792714297888, "cmd": "shot", "args": ["nations2"]}
+{"t": 1792714298159, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792714300925, "cmd": "shot", "args": ["laws3"]}
+{"t": 1792714306389, "cmd": "click", "args": ["415", "45"]}
+{"t": 1792714309188, "cmd": "shot", "args": ["nations3"]}
+{"t": 1792714317192, "cmd": "note", "args": ["--shot", "no_heir_screen", "#358: Nations tab (O) shows only 'Easternland, 5 members, 1 camp. You lead it.'; Laws tab shows laws/defence/taxes; Settlement Info shows Residents 5/8. No screen lists who the members are, their loyalty, or who my heir is. High tax text says 'loyalty falls fast' but loyalty is never shown anywhere."]}
+{"t": 1792714317436, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714319034, "cmd": "click", "args": ["48", "20"]}
+{"t": 1792714321888, "cmd": "shot", "args": ["controls"]}
+{"t": 1792714327138, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792714330006, "cmd": "shot", "args": ["controls2"]}
+{"t": 1792714330348, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792714333169, "cmd": "shot", "args": ["controls3"]}
+{"t": 1792714339402, "cmd": "click", "args": ["480", "507"]}
+{"t": 1792714364089, "cmd": "key", "args": ["e"]}
+{"t": 1792714365694, "cmd": "state", "args": []}
+{"t": 1792714365818, "cmd": "face", "args": ["180"]}
+{"t": 1792714374768, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792714380992, "cmd": "state", "args": []}
+{"t": 1792714381205, "cmd": "state", "args": []}
+{"t": 1792714384939, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792714412555, "cmd": "shot", "args": ["pawnout"]}
+{"t": 1792714412799, "cmd": "key", "args": ["r"]}
+{"t": 1792714414356, "cmd": "state", "args": []}
+{"t": 1792714414424, "cmd": "events", "args": ["5"]}
+{"t": 1792714418140, "cmd": "key", "args": ["g"]}
+{"t": 1792714419661, "cmd": "events", "args": ["3"]}
+{"t": 1792714419734, "cmd": "state", "args": []}
+{"t": 1792714424283, "cmd": "hold", "args": ["Shift_L+w", "10"]}
+{"t": 1792714434584, "cmd": "state", "args": []}
+{"t": 1792714438937, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792714475215, "cmd": "key", "args": ["r"]}
+{"t": 1792714477254, "cmd": "shot", "args": ["invite1"]}
+{"t": 1792714477567, "cmd": "events", "args": ["4"]}
+{"t": 1792714482936, "cmd": "key", "args": ["h"]}
+{"t": 1792714485471, "cmd": "shot", "args": ["home"]}
+{"t": 1792714485849, "cmd": "state", "args": []}
+{"t": 1792714492265, "cmd": "note", "args": ["--shot", "teleport_home_ok", "H from ~170m out in Smallford land (x310,z-493) put me at the well (4m from settlement center) with member Oscar Johnson 3.6m away: Talk/Gift/Order buttons immediately available. Works. Only feedback is 'You are back on your own land.' -- no 'Teleported home' message. Tick ~10500."]}
+{"t": 1792714492614, "cmd": "key", "args": ["g"]}
+{"t": 1792714494173, "cmd": "events", "args": ["3"]}
+{"t": 1792714498701, "cmd": "key", "args": ["o"]}
+{"t": 1792714500753, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792714503230, "cmd": "click", "args": ["97", "175"]}
+{"t": 1792714505157, "cmd": "click", "args": ["97", "262"]}
+{"t": 1792714507522, "cmd": "shot", "args": ["repeal"]}
+{"t": 1792714508005, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714508596, "cmd": "state", "args": []}
+{"t": 1792714565858, "cmd": "state", "args": []}
+{"t": 1792714565911, "cmd": "events", "args": ["40"]}
+{"t": 1792714569431, "cmd": "events", "args": ["2000"]}
+{"t": 1792714569514, "cmd": "key", "args": ["o"]}
+{"t": 1792714571487, "cmd": "shot", "args": ["laws_after"]}
+{"t": 1792714571677, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714599750, "cmd": "events", "args": ["30"]}
+{"t": 1792714599804, "cmd": "shot", "args": ["after_repeal"]}
+{"t": 1792714606509, "cmd": "face", "args": ["90"]}
+{"t": 1792714608686, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792714614829, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792714655395, "cmd": "key", "args": ["r"]}
+{"t": 1792714657407, "cmd": "events", "args": ["4"]}
+{"t": 1792714657471, "cmd": "shot", "args": ["invite2"]}
+{"t": 1792714660364, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792714661030, "cmd": "key", "args": ["r"]}
+{"t": 1792714663025, "cmd": "events", "args": ["4"]}
+{"t": 1792714663097, "cmd": "shot", "args": ["invite3"]}
+{"t": 1792714671267, "cmd": "note", "args": ["--shot", "invite_loyal_ambiguous", "R (invite) on non-member Irene Thompson works with clear feedback: 'I'm loyal to Northshire.' (needs Loyal). But 'Loyal' is used both as a relationship tier needed for invite and as a personality trait in the Talk button ('Talk to Judy Taylor (Stranger) - Loyal'), so a member reads as 'Stranger, Loyal'. Confusing. Tick 14334."]}
+{"t": 1792714671722, "cmd": "key", "args": ["g"]}
+{"t": 1792714673246, "cmd": "key", "args": ["g"]}
+{"t": 1792714674767, "cmd": "key", "args": ["g"]}
+{"t": 1792714676285, "cmd": "key", "args": ["r"]}
+{"t": 1792714678360, "cmd": "events", "args": ["6"]}
+{"t": 1792714685324, "cmd": "key", "args": ["h"]}
+{"t": 1792714687324, "cmd": "key", "args": ["e"]}
+{"t": 1792714689883, "cmd": "shot", "args": ["sell0"]}
+{"t": 1792714690289, "cmd": "state", "args": []}
+{"t": 1792714695956, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792714698259, "cmd": "state", "args": []}
+{"t": 1792714704444, "cmd": "note", "args": ["--shot", "sell_fail", "Sell Resources in own settlement with 24 apples, 11 wood, 5 stone: 'No one is buying resources at this market or you do not have enough resources to sell.' -- the message does not say which, while the Market panel lists buy/sell prices for apples/wood/stone. Tick ~15100."]}
+{"t": 1792714704895, "cmd": "key", "args": ["y"]}
+{"t": 1792714706889, "cmd": "shot", "args": ["chron_full"]}
+{"t": 1792714707189, "cmd": "key", "args": ["y"]}
+{"t": 1792714714374, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714715887, "cmd": "note", "args": ["--shot", "no_death_path", "Ruler death could not be reached in a 30-min session: the only way the leader dies is starving (energy ~1 bar per in-game day, 10 game-min ~ 20 real min at 25 tps), the player auto-eats carried apples (24 here), and Sell Resources refuses to sell them, so there is no way to shed food. Heir is never shown before death, so a player cannot plan succession. Energy at tick ~15200: 91."]}
+{"t": 1792714716231, "cmd": "state", "args": []}
+{"t": 1792714716352, "cmd": "events", "args": ["3000"]}
+{"t": 1792714716408, "cmd": "events", "args": ["3000"]}
+{"t": 1792714720703, "cmd": "stop", "args": []}
+{"t": 1792714752161, "cmd": "report", "args": []}
+{"t": 1792726411102, "cmd": "stop", "args": []}

@@ -1,0 +1,77 @@
+{
+  "session": "s12",
+  "goal": "Re-verify the merchant crash fix (#367). Found a nation and settlement, set Borders Open (O > Laws), then go to a neighbouring settlement and recruit (gift with G until Loyal, then invite with R) at least one pawn that keeps a market stall there (a merchant); keep playing in and around both settlements for at least 5 game minutes afterwards, then save from the pause menu, pt stop, and pt start --continue and play 3 more game minutes. Report any crash (check pt status and the game log). Also note whether E at a tree you face chops it even with pawns nearby.",
+  "build": {"version": "0.5.0", "commit": "3246ba2"},
+  "seed": 102,
+  "durationSec": 1515,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "crash",
+      "title": "No crash recruiting a merchant: #367 fix holds through recruit, save and continue (short soak only)",
+      "detail": "I recruited Lowerville's merchant Abigail Watson (listed under Market Info > Merchants in Lowerville) with G until Loyal, then R at tick 30491. Status: 'Abigail Watson left Lowerville and joined Westshire! Members: 6. Lowerville resents it: relations Hostile (-54).' The game kept running at about 40-49 tps. I saved from the pause menu at tick 31951, ran pt stop, then pt start --continue. The world loaded ('Welcome back. Day 2 - Westshire.') and ran on to tick 36374. After the load, Westshire's Market Info lists Abigail Watson as a merchant, and Stalls for Sale went from 3 to 0. pt status never showed the game dead, and the log has no error or exception lines. I ran out of time, so the game ran only about 29 game seconds after the recruit before the save and about 84 game seconds after the continue. The goal asked for 5 and 3 game minutes, so this is a short soak.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 102; chop 50 wood; N; F in open ground; O > Laws > Borders Open; walk to Lowerville (approx -470,240), enter, read Market Info > Merchants; walkto that pawn; G repeatedly until '(Loyal)'; R; Escape > Save; pt stop; pt start --continue",
+      "screenshot": "shots/home_market2.png",
+      "tick": 30491
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Gifting a nation leader to Loyal costs ~150 coins, then R refuses; nothing warns that they lead a nation",
+      "detail": "Many chronicle stall-builder lines name nation leaders (Quinn Jones, Fiona Davies, Wendy Johnson...). I gave Fiona Davies 15 gifts (150 coins, about half my money) until she was Loyal, then pressed R: 'I lead Lowerville. I won't abandon my people.' Neither the gift line nor the pawn's label says she leads a nation. Only the Settlement Info panel inside her settlement shows it. Gifting is also pricey overall: Stranger to Loyal took 13-15 coin gifts (~130-150 coins) per pawn. One apple to a hungry pawn jumped her to Acquaintance at once, which was a nice touch.",
+      "repro": "seed 102; walk to Lowerville; walkto pawn Fiona Davies; G x15; R",
+      "screenshot": "shots/recruit.png",
+      "tick": 23928
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Pawn label 'Talk to X (Stranger) - Loyal' contradicts itself, even for your own merchant",
+      "detail": "Charlie Roberts is a Westshire merchant (listed under Merchants in my settlement) who says 'Yes, leader?'. His action button still reads 'Talk to Charlie Roberts (Stranger) - Loyal', and his reply is 'I hardly know you. Why should I follow you? I stand by my own.' A player can't tell whether he is in their nation, or what 'Loyal' refers to.",
+      "repro": "seed 102; after founding Westshire, walk to Charlie Roberts at the home well; E",
+      "screenshot": "shots/talk_charlie.png",
+      "tick": 20156
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Same settlement spot read 'Village of Farmfield' then 'Village of Greentown' with 0/12 residents and 6/6 stalls all for sale",
+      "detail": "At about (-200,173), the floating sign read 'Village of Farmfield, 0 here, 2/8 residents' at tick 8075. At tick 18440 the same spot showed 'Village of Greentown', 0 here, 0/12 residents, Stalls 6/6, Stalls for Sale 6, and no merchants. I saw no chronicle line in the recent panel explaining the change, so the recruit target (Farmfield's stall-builder Quinn Jones) disappeared without explanation.",
+      "repro": "seed 102; walk to the settlement 250m from Westshire at around (-200,173) at tick ~8000 and again at ~18400 (night)",
+      "screenshot": "shots/greentown_empty.png",
+      "tick": 18656
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement name sign floats huge across the top of the screen, overlapping the HUD",
+      "detail": "Near any settlement, the 'N here, X/Y residents' sign renders in giant letters behind the chronicle and pause title. Separately, after the continue the Inventory panel sat mid-screen over the world view. The probe reports player.settlement as the generic 'Settlement' for every town.",
+      "repro": "seed 102; stand at any well",
+      "screenshot": "shots/pause.png",
+      "tick": 31951
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Helpful 'too close' message when founding: names the nearby village and the direction of open ground",
+      "detail": "Pressing F too close to another settlement gives 'Too close to the Village of Northwood: 165 away, and settlements must be 250 apart. Open ground lies about 90 to the north.' That led me straight to a valid site in two hops. This is good. E at a tree I faced chopped it every time (5-6 wood plus apples per press). But no pawn was within 5 of me during those chops, so the 'pawns nearby' half of the goal is untested.",
+      "repro": "seed 102; chop 50 wood near spawn; F",
+      "screenshot": "shots/tree_e.png",
+      "tick": 4582
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 42.0, "Eat something": 43.1, "Create or join a nation": 44.0, "Found a settlement": 131.0, "Enter your settlement": 697.0, "Build a market stall": 698.0},
+    "merchantsRecruited": 1,
+    "recruitTick": 30491,
+    "gameSecondsAfterRecruitBeforeSave": 29.2,
+    "gameSecondsAfterContinue": 83.8,
+    "coinsSpentOnGifts": 280,
+    "crashes": 0
+  },
+  "fun": 3,
+  "verdict": "Recruiting an existing merchant (Abigail Watson, Lowerville) and then saving and continuing did not crash, and she survives the reload as a Westshire merchant, so #367 looks fixed, though the soak was much shorter than asked. The recruit loop is costly and opaque: most chronicle stall-builders are nation leaders who refuse R only after you have spent ~150 coins. Only the Market Info 'Merchants' list inside a settlement tells you who is a recruitable merchant, and pawn labels like '(Stranger) - Loyal' confuse more than they explain."
+}

@@ -1,0 +1,149 @@
+{"t": 1792713863229, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "107"]}
+{"t": 1792713870391, "cmd": "key", "args": ["space"]}
+{"t": 1792713872940, "cmd": "shot", "args": ["menu"]}
+{"t": 1792713880174, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713883005, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713883805, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713886116, "cmd": "key", "args": ["c"]}
+{"t": 1792713888629, "cmd": "shot", "args": ["craft1"]}
+{"t": 1792713888871, "cmd": "state", "args": []}
+{"t": 1792713897081, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713897586, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792713905911, "cmd": "key", "args": ["e"]}
+{"t": 1792713908445, "cmd": "state", "args": []}
+{"t": 1792713908532, "cmd": "events", "args": ["5"]}
+{"t": 1792713913107, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792713915682, "cmd": "key", "args": ["e"]}
+{"t": 1792713918218, "cmd": "state", "args": []}
+{"t": 1792713918326, "cmd": "events", "args": ["4"]}
+{"t": 1792713923277, "cmd": "key", "args": ["c"]}
+{"t": 1792713925784, "cmd": "shot", "args": ["craft2"]}
+{"t": 1792713930396, "cmd": "click", "args": ["480", "125"]}
+{"t": 1792713933189, "cmd": "shot", "args": ["craft3"]}
+{"t": 1792713933494, "cmd": "state", "args": []}
+{"t": 1792713939358, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713939919, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792713947366, "cmd": "key", "args": ["e"]}
+{"t": 1792713949929, "cmd": "state", "args": []}
+{"t": 1792713950012, "cmd": "events", "args": ["2"]}
+{"t": 1792713956737, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792713969647, "cmd": "key", "args": ["e"]}
+{"t": 1792713972245, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792713980890, "cmd": "key", "args": ["e"]}
+{"t": 1792713983424, "cmd": "events", "args": ["4"]}
+{"t": 1792713983526, "cmd": "state", "args": []}
+{"t": 1792713987948, "cmd": "key", "args": ["c"]}
+{"t": 1792713990494, "cmd": "click", "args": ["480", "187"]}
+{"t": 1792713993398, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713993974, "cmd": "walkto", "args": ["rock", "80"]}
+{"t": 1792714004670, "cmd": "key", "args": ["e"]}
+{"t": 1792714007253, "cmd": "events", "args": ["2"]}
+{"t": 1792714010137, "cmd": "walkto", "args": ["chicken", "90"]}
+{"t": 1792714042707, "cmd": "key", "args": ["e"]}
+{"t": 1792714045243, "cmd": "events", "args": ["3"]}
+{"t": 1792714045326, "cmd": "state", "args": []}
+{"t": 1792714048277, "cmd": "key", "args": ["c"]}
+{"t": 1792714050825, "cmd": "shot", "args": ["craft4"]}
+{"t": 1792714056855, "cmd": "note", "args": ["--shot", "cooked_meat_not_recognised", "Crafting screen: Cooked Meat (1 chicken meat, 1 wood) says 'Need 1 more chicken meat' while inventory holds chicken_meat:1 and wood:20, right after 'Harvested chicken meat.' Row is not craftable."]}
+{"t": 1792714057066, "cmd": "click", "args": ["480", "250"]}
+{"t": 1792714059851, "cmd": "state", "args": []}
+{"t": 1792714059960, "cmd": "events", "args": ["2"]}
+{"t": 1792714066454, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714066978, "cmd": "walkto", "args": ["chicken", "90"]}
+{"t": 1792714084555, "cmd": "key", "args": ["e"]}
+{"t": 1792714086111, "cmd": "key", "args": ["c"]}
+{"t": 1792714088620, "cmd": "shot", "args": ["craft5"]}
+{"t": 1792714088859, "cmd": "state", "args": []}
+{"t": 1792714092129, "cmd": "click", "args": ["480", "250"]}
+{"t": 1792714094926, "cmd": "shot", "args": ["craft6"]}
+{"t": 1792714095151, "cmd": "state", "args": []}
+{"t": 1792714095291, "cmd": "events", "args": ["3"]}
+{"t": 1792714109547, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714110125, "cmd": "key", "args": ["n"]}
+{"t": 1792714112630, "cmd": "shot", "args": ["nation"]}
+{"t": 1792714112893, "cmd": "state", "args": []}
+{"t": 1792714116296, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792714122480, "cmd": "key", "args": ["e"]}
+{"t": 1792714124564, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792714154597, "cmd": "key", "args": ["e"]}
+{"t": 1792714156641, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792714174492, "cmd": "key", "args": ["e"]}
+{"t": 1792714176502, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792714218700, "cmd": "key", "args": ["e"]}
+{"t": 1792714220708, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792714233118, "cmd": "key", "args": ["e"]}
+{"t": 1792714235131, "cmd": "state", "args": []}
+{"t": 1792714235201, "cmd": "events", "args": ["6"]}
+{"t": 1792714238219, "cmd": "key", "args": ["f"]}
+{"t": 1792714240708, "cmd": "events", "args": ["3"]}
+{"t": 1792714240796, "cmd": "shot", "args": ["found"]}
+{"t": 1792714245326, "cmd": "face", "args": ["90"]}
+{"t": 1792714248890, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792714253112, "cmd": "state", "args": []}
+{"t": 1792714256988, "cmd": "face", "args": ["180"]}
+{"t": 1792714264126, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792714276354, "cmd": "state", "args": []}
+{"t": 1792714276430, "cmd": "key", "args": ["f"]}
+{"t": 1792714278939, "cmd": "events", "args": ["3"]}
+{"t": 1792714283142, "cmd": "face", "args": ["90"]}
+{"t": 1792714286594, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792714289766, "cmd": "key", "args": ["f"]}
+{"t": 1792714292288, "cmd": "events", "args": ["4"]}
+{"t": 1792714292370, "cmd": "state", "args": []}
+{"t": 1792714295365, "cmd": "face", "args": ["180"]}
+{"t": 1792714300104, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792714308336, "cmd": "key", "args": ["f"]}
+{"t": 1792714310862, "cmd": "events", "args": ["4"]}
+{"t": 1792714310937, "cmd": "state", "args": []}
+{"t": 1792714314874, "cmd": "face", "args": ["-142"]}
+{"t": 1792714321073, "cmd": "hold", "args": ["w", "1.2"]}
+{"t": 1792714322436, "cmd": "key", "args": ["f"]}
+{"t": 1792714324945, "cmd": "events", "args": ["4"]}
+{"t": 1792714328120, "cmd": "face", "args": ["128"]}
+{"t": 1792714335383, "cmd": "hold", "args": ["w", "1.5"]}
+{"t": 1792714337015, "cmd": "key", "args": ["f"]}
+{"t": 1792714339531, "cmd": "events", "args": ["4"]}
+{"t": 1792714339648, "cmd": "state", "args": []}
+{"t": 1792714343437, "cmd": "face", "args": ["-158"]}
+{"t": 1792714348989, "cmd": "state", "args": []}
+{"t": 1792714352544, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1792714354702, "cmd": "key", "args": ["f"]}
+{"t": 1792714357211, "cmd": "events", "args": ["3"]}
+{"t": 1792714357286, "cmd": "state", "args": []}
+{"t": 1792714361267, "cmd": "events", "args": ["4"]}
+{"t": 1792714361337, "cmd": "shot", "args": ["after_f"]}
+{"t": 1792714365341, "cmd": "face", "args": ["90"]}
+{"t": 1792714370694, "cmd": "hold", "args": ["w", "1.5"]}
+{"t": 1792714372429, "cmd": "key", "args": ["f"]}
+{"t": 1792714376071, "cmd": "events", "args": ["3"]}
+{"t": 1792714376174, "cmd": "state", "args": []}
+{"t": 1792714381859, "cmd": "face", "args": ["180"]}
+{"t": 1792714390956, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1792714394325, "cmd": "key", "args": ["f"]}
+{"t": 1792714397985, "cmd": "events", "args": ["3"]}
+{"t": 1792714398099, "cmd": "state", "args": []}
+{"t": 1792714401379, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1792714401879, "cmd": "key", "args": ["e"]}
+{"t": 1792714404418, "cmd": "key", "args": ["k"]}
+{"t": 1792714406940, "cmd": "shot", "args": ["build"]}
+{"t": 1792714407180, "cmd": "state", "args": []}
+{"t": 1792714410208, "cmd": "events", "args": ["5"]}
+{"t": 1792714423878, "cmd": "key", "args": ["c"]}
+{"t": 1792714426439, "cmd": "shot", "args": ["craft_in_settlement"]}
+{"t": 1792714433336, "cmd": "note", "args": ["--shot", "workshop_locked_in_settlement", "Inside my Camp-era settlement the crafting screen correctly says the Workshop unlocks in the Village era; Planks/Bricks rows say 'Locked: ...'. #356 looks fixed here."]}
+{"t": 1792714433818, "cmd": "click", "args": ["480", "330"]}
+{"t": 1792714435657, "cmd": "events", "args": ["2"]}
+{"t": 1792714435758, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714436470, "cmd": "key", "args": ["e"]}
+{"t": 1792714439056, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1792714442205, "cmd": "key", "args": ["c"]}
+{"t": 1792714444809, "cmd": "shot", "args": ["craft_outside_nation"]}
+{"t": 1792714452343, "cmd": "click", "args": ["480", "140"]}
+{"t": 1792714455242, "cmd": "shot", "args": ["second_axe"]}
+{"t": 1792714455506, "cmd": "events", "args": ["2"]}
+{"t": 1792714455661, "cmd": "state", "args": []}
+{"t": 1792714464775, "cmd": "note", "args": ["--shot", "second_axe_ambiguous", "After crafting a second axe the row reads 'have 2 (12 uses left)': unclear whether the spare axe is 20 uses or both share 12."]}
+{"t": 1792714465202, "cmd": "state", "args": []}
+{"t": 1792714465368, "cmd": "stop", "args": []}
+{"t": 1792714490654, "cmd": "report", "args": []}
+{"t": 1792726411160, "cmd": "stop", "args": []}

@@ -204,6 +204,7 @@ copy in.
 Runs so far:
 
 - [0.5.0](playtests/0.5.0/README.md) (develop `df53ae3`, 2026-10-21): the first 10-agent run.
+- [0.6.0](playtests/0.6.0/README.md) (develop `ae87506` and `3246ba2`, 2026-10-22): the first run through playtester, plus two re-checks of the released build.
 
 ## Troubleshooting
 
