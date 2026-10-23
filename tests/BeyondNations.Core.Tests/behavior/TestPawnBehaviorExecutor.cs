@@ -12,11 +12,12 @@ namespace beyondnationstests {
         private EntityRepository entityRepository;
         private Environment environment;
         private PawnBehaviorExecutor executor;
+        private NationRepository nationRepository;
 
         public TestPawnBehaviorExecutor() {
             entityRepository = new EntityRepository(random);
             environment = new Environment(5, 5, entityRepository, random);
-            NationRepository nationRepository = new NationRepository(random);
+            nationRepository = new NationRepository(random);
             EventProducer eventProducer = new EventProducer(new EventRepository());
             executor = new PawnBehaviorExecutor(environment, nationRepository, eventProducer, entityRepository, random, new NationNameGenerator(random), new TickCounter());
         }
@@ -264,6 +265,139 @@ namespace beyondnationstests {
             Assert.Equal(3, stall.getNumItems(ItemType.WOOD));
             Assert.Equal(1, stall.getNumItems(ItemType.STONE));
             Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.WOOD));
+        }
+
+        /**
+        * A merchant of its own nation standing in a settlement where it keeps
+        * no stall (its stall, full of coin and food, is in another). The
+        * 0.6.0 release-candidate playtest (session s02, seed 102) crashed on
+        * such a merchant.
+        */
+        private Pawn merchantAwayFromItsStall(out Settlement elsewhere, out Stall stall) {
+            Pawn pawn = createPawn(100);
+            pawn.getInventory().clear();
+            Nation nation = new Nation("test", new EntityId(), random);
+            nationRepository.addNation(nation);
+            nation.addMember(pawn.getId());
+            nation.setRole(pawn.getId(), NationRole.MERCHANT);
+            pawn.setNationId(nation.getId());
+
+            Settlement home = new Settlement(new Vector3(0, 1, 0), nation.getId(), nation.getColor(), "Home", random);
+            entityRepository.addEntity(home);
+            home.getMarket().createStall();
+            stall = home.getMarket().getStallForSale();
+            stall.setOwnerId(pawn.getId());
+            stall.getInventory().addItem(ItemType.COIN, 100);
+            stall.getInventory().addItem(ItemType.APPLE, 6);
+
+            elsewhere = new Settlement(new Vector3(200, 1, 0), nation.getId(), nation.getColor(), "Elsewhere", random);
+            entityRepository.addEntity(elsewhere);
+            elsewhere.getMarket().createStall();
+            pawn.setCurrentSettlementId(elsewhere.getId());
+            return pawn;
+        }
+
+        /**
+            * Input: TRANSFER_ITEMS_TO_STALL for a merchant with wood and stone, in a settlement without its stall
+            * Expected output: no crash, nothing moves anywhere, and the pawn drops the behaviour
+        */
+        [Fact]
+        public void testTransferItemsToStall_NoStallInThisMarket_DoesNothing() {
+            Pawn pawn = merchantAwayFromItsStall(out Settlement elsewhere, out Stall stall);
+            pawn.getInventory().addItem(ItemType.WOOD, 10);
+            pawn.getInventory().addItem(ItemType.STONE, 6);
+            pawn.setCurrentBehaviorType(BehaviorType.TRANSFER_ITEMS_TO_STALL);
+
+            executor.executeBehavior(pawn, BehaviorType.TRANSFER_ITEMS_TO_STALL);
+
+            Assert.Equal(10, pawn.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(6, pawn.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal(100, stall.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(0, elsewhere.getMarket().getStalls()[0].getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(BehaviorType.NONE, pawn.getCurrentBehaviorType());
+        }
+
+        /**
+            * Input: COLLECT_PROFIT_FROM_STALL for a merchant in a settlement without its stall
+            * Expected output: no crash, no coin taken from anyone's stall, behaviour dropped
+        */
+        [Fact]
+        public void testCollectProfitFromStall_NoStallInThisMarket_DoesNothing() {
+            Pawn pawn = merchantAwayFromItsStall(out Settlement elsewhere, out Stall stall);
+            pawn.setCurrentBehaviorType(BehaviorType.COLLECT_PROFIT_FROM_STALL);
+
+            executor.executeBehavior(pawn, BehaviorType.COLLECT_PROFIT_FROM_STALL);
+
+            Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(100, stall.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(BehaviorType.NONE, pawn.getCurrentBehaviorType());
+        }
+
+        /**
+            * Input: COLLECT_FOOD_FROM_STALL for a merchant in a settlement without its stall
+            * Expected output: no crash, no food taken, behaviour dropped
+        */
+        [Fact]
+        public void testCollectFoodFromStall_NoStallInThisMarket_DoesNothing() {
+            Pawn pawn = merchantAwayFromItsStall(out Settlement elsewhere, out Stall stall);
+            pawn.setCurrentBehaviorType(BehaviorType.COLLECT_FOOD_FROM_STALL);
+
+            executor.executeBehavior(pawn, BehaviorType.COLLECT_FOOD_FROM_STALL);
+
+            Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(6, stall.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(BehaviorType.NONE, pawn.getCurrentBehaviorType());
+        }
+
+        /**
+            * Input: PURCHASE_STALL for a serf with coin, inside a foreign settlement with a stall for sale
+            * Expected output: no sale -- the stall stays for sale, the coin stays with the pawn and it stays a serf
+        */
+        [Fact]
+        public void testPurchaseStall_InAForeignSettlement_IsRefused() {
+            Pawn pawn = createPawn(100);
+            pawn.getInventory().setNumItems(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE * 2);
+            Nation own = new Nation("own", new EntityId(), random);
+            nationRepository.addNation(own);
+            own.addMember(pawn.getId());
+            pawn.setNationId(own.getId());
+            Nation foreign = new Nation("foreign", new EntityId(), random);
+            nationRepository.addNation(foreign);
+            Settlement foreignTown = new Settlement(new Vector3(0, 1, 0), foreign.getId(), foreign.getColor(), "Abroad", random);
+            entityRepository.addEntity(foreignTown);
+            foreignTown.getMarket().createStall();
+            pawn.setCurrentSettlementId(foreignTown.getId());
+
+            executor.executeBehavior(pawn, BehaviorType.PURCHASE_STALL);
+
+            Assert.Equal(1, foreignTown.getMarket().getNumStallsForSale());
+            Assert.Null(foreignTown.getMarket().getStall(pawn.getId()));
+            Assert.Equal(Stall.COIN_COST_TO_PURCHASE * 2, pawn.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(NationRole.SERF, own.getRole(pawn.getId()));
+        }
+
+        /**
+            * Input: PURCHASE_STALL for a serf with coin, inside its own nation's settlement with a stall for sale
+            * Expected output: it buys the stall and becomes a merchant
+        */
+        [Fact]
+        public void testPurchaseStall_InItsOwnNationsSettlement_Succeeds() {
+            Pawn pawn = createPawn(100);
+            pawn.getInventory().setNumItems(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE * 2);
+            Nation own = new Nation("own", new EntityId(), random);
+            nationRepository.addNation(own);
+            own.addMember(pawn.getId());
+            pawn.setNationId(own.getId());
+            Settlement home = new Settlement(new Vector3(0, 1, 0), own.getId(), own.getColor(), "Home", random);
+            entityRepository.addEntity(home);
+            home.getMarket().createStall();
+            pawn.setCurrentSettlementId(home.getId());
+
+            executor.executeBehavior(pawn, BehaviorType.PURCHASE_STALL);
+
+            Assert.NotNull(home.getMarket().getStall(pawn.getId()));
+            Assert.Equal(Stall.COIN_COST_TO_PURCHASE, pawn.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(NationRole.MERCHANT, own.getRole(pawn.getId()));
         }
 
         /**

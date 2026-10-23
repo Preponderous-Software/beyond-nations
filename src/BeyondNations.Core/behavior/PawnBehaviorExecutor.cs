@@ -472,6 +472,16 @@ namespace beyondnations {
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
 
+            // only in one of its own nation's settlements, as for the player
+            // (PurchaseStallCommand): a merchant whose stall is in a foreign
+            // market has no stall anywhere its nation lives
+            Nation nation = nationRepository.getNation(pawn.getNationId());
+            if (nation == null || !nation.getId().Equals(currentSettlement.getNationId())) {
+                Log.warning("Pawn " + pawn + " is trying to purchase a stall in another nation's settlement.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+
             // if no stalls for sale
             if (market.getNumStallsForSale() == 0) {
                 Log.warning("Pawn " + pawn + " is trying to purchase a stall but there are none for sale.");
@@ -490,7 +500,6 @@ namespace beyondnations {
             // assign ownership of stall to pawn
             Stall stall = market.getStallForSale();
             stall.setOwnerId(pawn.getId());
-            Nation nation = nationRepository.getNation(pawn.getNationId());
             nation.setRole(pawn.getId(), NationRole.MERCHANT);
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
@@ -504,9 +513,11 @@ namespace beyondnations {
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
 
-            // if no stalls owned
-            if (market.getStall(pawn.getId()) == null) {
-                Log.warning("Pawn " + pawn + " is trying to transfer items to a stall but does not own any stalls.");
+            // no stall of its own in this market (a merchant visiting elsewhere)
+            Stall stall = market.getStall(pawn.getId());
+            if (stall == null) {
+                Log.warning("Pawn " + pawn + " is trying to transfer items to a stall but owns none in this settlement.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
                 return;
             }
 
@@ -518,7 +529,6 @@ namespace beyondnations {
 
             // make what it can from the haul first (tools, cooked meat, and
             // planks and bricks where there is a workshop), then stock it all
-            Stall stall = market.getStall(pawn.getId());
             int crafted = MerchantCrafting.craftGoods(pawn.getInventory(), currentSettlement, stall.getInventory());
             if (crafted > 0) {
                 Log.info("Pawn " + pawn.getName() + " crafted " + crafted + " batches of goods for their stall.");
@@ -627,14 +637,15 @@ namespace beyondnations {
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
 
-            // if no stalls owned
-            if (market.getStall(pawn.getId()) == null) {
-                Log.warning("Pawn " + pawn + " is trying to collect profit from a stall but does not own any stalls.");
+            // no stall of its own in this market (a merchant visiting elsewhere)
+            Stall stall = market.getStall(pawn.getId());
+            if (stall == null) {
+                Log.warning("Pawn " + pawn + " is trying to collect profit from a stall but owns none in this settlement.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
                 return;
             }
 
             // collect profit
-            Stall stall = market.getStall(pawn.getId());
             int profit = stall.getInventory().getNumItems(ItemType.COIN);
             pawn.getInventory().addItem(ItemType.COIN, profit);
             stall.getInventory().removeItem(ItemType.COIN, profit);
@@ -651,14 +662,15 @@ namespace beyondnations {
             Settlement currentSettlement = (Settlement) entityRepository.getEntity(currentSettlementId);
             Market market = currentSettlement.getMarket();
 
-            // if no stalls owned
-            if (market.getStall(pawn.getId()) == null) {
-                Log.warning("Pawn " + pawn + " is trying to collect food from a stall but does not own any stalls.");
+            // no stall of its own in this market
+            Stall stall = market.getStall(pawn.getId());
+            if (stall == null) {
+                Log.warning("Pawn " + pawn + " is trying to collect food from a stall but owns none in this settlement.");
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
                 return;
             }
 
             // collect food
-            Stall stall = market.getStall(pawn.getId());
             ItemType? foodType = FoodItems.getMostNourishingFood(stall.getInventory());
             if (foodType == null) {
                 Log.warning("Pawn " + pawn + " is trying to collect food from their stall but it holds none.");

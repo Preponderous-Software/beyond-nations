@@ -443,6 +443,171 @@ namespace beyondnationstests {
             // cleanup
         }
 
+        /**
+        * Two nations, each with a settlement, and a pawn of the first. The
+        * 0.6.0 release-candidate playtest (session s02, seed 102) crashed when
+        * a merchant stood in a settlement where it kept no stall.
+        */
+        private class TwoNations {
+            public EntityRepository entityRepository;
+            public NationRepository nationRepository;
+            public Environment environment;
+            public Nation own;
+            public Nation foreign;
+            public Settlement home;
+            public Settlement colony;
+            public Settlement foreignTown;
+            public Pawn pawn;
+        }
+
+        private TwoNations makeTwoNations() {
+            TwoNations w = new TwoNations();
+            w.entityRepository = new EntityRepository(random);
+            w.environment = new Environment(5, 5, w.entityRepository, random);
+            w.nationRepository = new NationRepository(random);
+
+            Pawn ownLeader = new Pawn(new Vector3(0, 0, 0), "own leader", random);
+            w.entityRepository.addEntity(ownLeader);
+            w.own = new Nation("own", ownLeader.getId(), random);
+            w.nationRepository.addNation(w.own);
+            w.home = new Settlement(new Vector3(0, 0, 0), w.own.getId(), w.own.getColor(), w.own.getName(), random);
+            w.entityRepository.addEntity(w.home);
+            w.own.addSettlement(w.home.getId());
+            w.colony = new Settlement(new Vector3(200, 0, 0), w.own.getId(), w.own.getColor(), w.own.getName(), random);
+            w.entityRepository.addEntity(w.colony);
+            w.own.addSettlement(w.colony.getId());
+
+            Pawn foreignLeader = new Pawn(new Vector3(400, 0, 0), "foreign leader", random);
+            w.entityRepository.addEntity(foreignLeader);
+            w.foreign = new Nation("foreign", foreignLeader.getId(), random);
+            w.nationRepository.addNation(w.foreign);
+            w.foreignTown = new Settlement(new Vector3(400, 0, 0), w.foreign.getId(), w.foreign.getColor(), w.foreign.getName(), random);
+            w.entityRepository.addEntity(w.foreignTown);
+            w.foreign.addSettlement(w.foreignTown.getId());
+
+            w.pawn = new Pawn(new Vector3(0, 0, 0), "pawn", random);
+            w.pawn.getInventory().clear();
+            w.entityRepository.addEntity(w.pawn);
+            w.own.addMember(w.pawn.getId());
+            w.pawn.setNationId(w.own.getId());
+            w.pawn.setHomeSettlementId(w.home.getId());
+            return w;
+        }
+
+        private PawnBehaviorCalculator calculatorFor(TwoNations w) {
+            return new PawnBehaviorCalculator(w.environment, w.entityRepository, w.nationRepository, new GameConfig(), new TickCounter(), random);
+        }
+
+        /** Makes the pawn a merchant keeping a stall, well stocked with coin, in the given settlement. */
+        private Stall giveStall(TwoNations w, Settlement where) {
+            where.getMarket().createStall();
+            Stall stall = where.getMarket().getStallForSale();
+            stall.setOwnerId(w.pawn.getId());
+            stall.getInventory().addItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE * 10);
+            w.own.setRole(w.pawn.getId(), NationRole.MERCHANT);
+            return stall;
+        }
+
+        private static void assertIdlesOrLeaves(BehaviorType behaviorType) {
+            Assert.True(behaviorType == BehaviorType.EXIT_SETTLEMENT || behaviorType == BehaviorType.NONE,
+                "a merchant with no stall where it stands should idle or leave, not " + behaviorType);
+        }
+
+        /**
+            * Input: a merchant carrying wood and stone, visiting another of its nation's settlements (its stall is at home)
+            * Expected output: no crash and no stall work; it idles or leaves, like any visitor
+        */
+        [Fact]
+        public void testComputeBehaviorType_MerchantWithWoodVisitingASettlementWithoutItsStall_IdlesOrLeaves() {
+            TwoNations w = makeTwoNations();
+            giveStall(w, w.home);
+            w.pawn.getInventory().addItem(ItemType.WOOD, 5);
+            w.pawn.getInventory().addItem(ItemType.STONE, 5);
+            w.pawn.setCurrentSettlementId(w.colony.getId());
+            PawnBehaviorCalculator calculator = calculatorFor(w);
+
+            for (int i = 0; i < 50; i++) {
+                assertIdlesOrLeaves(calculator.computeBehaviorType(w.pawn));
+            }
+        }
+
+        /**
+            * Input: a merchant with nothing to stock, visiting another of its nation's settlements, its own stall full of coin
+            * Expected output: no crash (the 0.6.0 RC crash) and no profit to collect here; it idles or leaves
+        */
+        [Fact]
+        public void testComputeBehaviorType_MerchantWithoutWoodVisitingASettlementWithoutItsStall_IdlesOrLeaves() {
+            TwoNations w = makeTwoNations();
+            giveStall(w, w.home);
+            w.pawn.setCurrentSettlementId(w.colony.getId());
+            PawnBehaviorCalculator calculator = calculatorFor(w);
+
+            for (int i = 0; i < 50; i++) {
+                assertIdlesOrLeaves(calculator.computeBehaviorType(w.pawn));
+            }
+        }
+
+        /**
+            * Input: the state the playtest saved -- a merchant at home whose only stall is in a foreign market
+            * Expected output: no crash, with or without wood and stone; it idles or leaves
+        */
+        [Fact]
+        public void testComputeBehaviorType_MerchantAtHomeWithItsStallAbroad_IdlesOrLeaves() {
+            TwoNations w = makeTwoNations();
+            giveStall(w, w.foreignTown);
+            w.pawn.setCurrentSettlementId(w.home.getId());
+            PawnBehaviorCalculator calculator = calculatorFor(w);
+
+            assertIdlesOrLeaves(calculator.computeBehaviorType(w.pawn));
+            w.pawn.getInventory().addItem(ItemType.WOOD, 5);
+            assertIdlesOrLeaves(calculator.computeBehaviorType(w.pawn));
+        }
+
+        /**
+            * Input: a merchant in the settlement where its stall is, with wood
+            * Expected output: TRANSFER_ITEMS_TO_STALL, as before
+        */
+        [Fact]
+        public void testComputeBehaviorType_MerchantWithWoodAtItsStall_TransfersItems() {
+            TwoNations w = makeTwoNations();
+            giveStall(w, w.home);
+            w.pawn.getInventory().addItem(ItemType.WOOD, 5);
+            w.pawn.setCurrentSettlementId(w.home.getId());
+
+            Assert.Equal(BehaviorType.TRANSFER_ITEMS_TO_STALL, calculatorFor(w).computeBehaviorType(w.pawn));
+        }
+
+        /**
+            * Input: a serf with the coin for a stall, visiting a foreign settlement that has one for sale
+            * Expected output: it does not buy it -- how the playtest's merchant came to keep its stall abroad
+        */
+        [Fact]
+        public void testComputeBehaviorType_SerfInAForeignSettlementWithAStallForSale_DoesNotPurchaseIt() {
+            TwoNations w = makeTwoNations();
+            w.foreignTown.getMarket().createStall();
+            w.pawn.getInventory().addItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE * 2);
+            w.pawn.setCurrentSettlementId(w.foreignTown.getId());
+            PawnBehaviorCalculator calculator = calculatorFor(w);
+
+            for (int i = 0; i < 50; i++) {
+                Assert.NotEqual(BehaviorType.PURCHASE_STALL, calculator.computeBehaviorType(w.pawn));
+            }
+        }
+
+        /**
+            * Input: a serf with the coin for a stall, in its own nation's settlement with one for sale
+            * Expected output: PURCHASE_STALL
+        */
+        [Fact]
+        public void testComputeBehaviorType_SerfAtHomeWithAStallForSale_PurchasesIt() {
+            TwoNations w = makeTwoNations();
+            w.home.getMarket().createStall();
+            w.pawn.getInventory().addItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE * 2);
+            w.pawn.setCurrentSettlementId(w.home.getId());
+
+            Assert.Equal(BehaviorType.PURCHASE_STALL, calculatorFor(w).computeBehaviorType(w.pawn));
+        }
+
         [Fact]
         public void testComputeBehaviorType_InSettlementNoFoodAvailable_ShouldNotPurchaseFood() {
             // prepare world

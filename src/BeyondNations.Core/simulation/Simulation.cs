@@ -857,6 +857,9 @@ namespace beyondnations {
                     throw new SaveFormatException("the " + stream.Key + " random stream is corrupt", e);
                 }
             }
+            // a save from before 0.6.0 may hold a merchant whose stall is in a
+            // foreign market; put that right rather than carry it forward
+            StallOwnership.reconcile(entityRepository, nationRepository);
             // the era's limits on the player's nation are derived, not saved
             eraTracker.applyRules(this);
         }
