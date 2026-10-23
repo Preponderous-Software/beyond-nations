@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="$(DesktopDir)GameOptions.cs" Link="shared/GameOptions.cs" />
     <Compile Include="$(DesktopDir)input/BuildKey.cs" Link="shared/input/BuildKey.cs" />
+    <Compile Include="$(DesktopDir)input/LeaveNationKey.cs" Link="shared/input/LeaveNationKey.cs" />
     <Compile Include="$(DesktopDir)input/IInputSource.cs" Link="shared/input/IInputSource.cs" />
     <Compile Include="$(DesktopDir)input/InputService.cs" Link="shared/input/InputService.cs" />
     <Compile Include="$(DesktopDir)input/KeyBindings.cs" Link="shared/input/KeyBindings.cs" />

@@ -394,6 +394,34 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void theLeaveKeyAsksBeforeDisbanding_AndDisbandsOnTheSecondPress() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Player player = simulation.getPlayer();
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            LeaveNationKey key = new LeaveNationKey();
+
+            // playtest 0.6.0 s09: one press of L disbanded the nation (#368)
+            Assert.False(key.press(simulation, 1.0));
+            Assert.Equal(nation.getId(), player.getNationId());
+            Assert.Equal("Press L again to disband " + nation.getName() + ".", player.getStatus().getStatus());
+
+            // too late: asks again
+            Assert.False(key.press(simulation, 1.0 + ConfirmGate.DefaultWindowSeconds + 1.0));
+            Assert.NotNull(player.getNationId());
+
+            Assert.True(key.press(simulation, 6.5));
+            Assert.Null(player.getNationId());
+
+            // with no nation, the refusal shows at once
+            Assert.True(key.press(simulation, 7.0));
+            Assert.Equal("You are not a member of a nation.", player.getStatus().getStatus());
+        }
+
+        [Fact]
         public void theBuildKeyBuildsWhatTheSettlementBoxNames_NotSomethingCheaper() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
             Player player = simulation.getPlayer();
