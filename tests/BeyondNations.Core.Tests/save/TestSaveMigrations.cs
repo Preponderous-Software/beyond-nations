@@ -81,6 +81,26 @@ namespace beyondnationstests {
             Assert.Null(WorldComparer.difference(loaded, SaveGame.decode(SaveGame.encode(loaded, "test"))));
         }
 
+        /**
+        * Builds before pawn energy was capped let a pawn eat past a full bar
+        * (versions 2 to 5 hold pawns at about 103); they load at a full bar.
+        */
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        public void testEveryFixture_LoadsItsPawnsAtNoMoreThanAFullBar(int version) {
+            Simulation loaded = SaveGame.decode(File.ReadAllBytes(SaveFixtures.pathFor(version)));
+            List<Entity> pawns = loaded.getEntityRepository().getEntitiesOfType(EntityType.PAWN);
+            Assert.NotEmpty(pawns);
+            foreach (Entity entity in pawns) {
+                Assert.True(((Pawn) entity).getEnergy() <= Pawn.MaxEnergy,
+                    entity.getName() + " loaded at " + ((Pawn) entity).getEnergy());
+            }
+        }
+
         [Fact]
         public void testTheVersion1Fixture_ThroughTheMigrationChain_IsTheCurrentFormat() {
             byte[] file = File.ReadAllBytes(SaveFixtures.pathFor(1));

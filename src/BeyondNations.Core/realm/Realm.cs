@@ -251,7 +251,7 @@ namespace beyondnations {
             if (entry.isOn(LawType.RATIONING)) {
                 foreach (Pawn pawn in members) {
                     float saved = pawn.getMetabolism() * LAW_ROUND_TICKS * Laws.RATIONING_SAVED_PERCENT / 100f;
-                    pawn.setEnergy(Math.Min(100f, pawn.getEnergy() + saved));
+                    pawn.setEnergy(pawn.getEnergy() + saved);
                 }
                 if (lawRound % Laws.RATIONING_LOYALTY_EVERY == 0) {
                     loyaltyLost++;
