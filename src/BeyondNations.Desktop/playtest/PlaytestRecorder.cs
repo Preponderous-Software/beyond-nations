@@ -9,7 +9,8 @@ namespace beyondnations.desktop.playtest {
 
     /**
     * --playtest-out DIR: what a playtesting agent reads instead of guessing
-    * from screenshots (docs/PLAYTESTING.md, tools/playtest/).
+    * from screenshots (docs/PLAYTESTING.md; the format is the probe contract of the
+    * playtester harness that drives the game, tools/playtest/).
     *
     *   DIR/state.json    the current PlaytestState, rewritten about twice a
     *                     second by writing a temporary file and renaming it

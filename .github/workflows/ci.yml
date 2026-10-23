@@ -209,9 +209,13 @@ jobs:
             out/a.usdc
             out/game-a.usda
 
-  # The playtest kit (docs/PLAYTESTING.md): the report validator and the
-  # aggregator over a fixture run, plus a syntax check of the harness. Stdlib
-  # Python only, so this needs nothing installed and takes seconds.
+  # The playtest kit (docs/PLAYTESTING.md). The harness is playtester, pinned
+  # in tools/playtest/playtester.ref: with it, the beyond-nations profile is
+  # checked, the recorded --playtest-out events of every committed run are
+  # validated against playtester's probe contract, and a committed run is
+  # aggregated again. Until playtester's repository is public it cannot be
+  # installed here, and those steps are skipped with a notice (its own CI
+  # tests the harness, the aggregator and this profile's smoke script).
   playtest-tools:
     name: Playtest tools
     runs-on: ubuntu-latest
@@ -219,11 +223,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Aggregator and report validator
-        run: python3 -I tools/playtest/test_aggregate.py
-
-      - name: Harness syntax
+      - name: Harness shims
         run: |
           bash -n tools/playtest/pt.sh
           bash -n tools/playtest/smoke.sh
-          python3 -I -m py_compile tools/playtest/pthelper.py
+          grep -Eq '^[0-9a-f]{7,40}$' tools/playtest/playtester.ref
+
+      - name: Install the pinned playtester
+        id: playtester
+        env:
+          GIT_TERMINAL_PROMPT: "0"
+        run: |
+          ref=$(cat tools/playtest/playtester.ref)
+          if python3 -m pip install --quiet "git+https://github.com/dmccoystephenson/playtester@$ref"; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice title=Playtest tools::playtester@$ref could not be installed (its repository is not public yet), so the profile and probe checks were skipped."
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Profile, recorded probe output and aggregation
+        if: steps.playtester.outputs.available == 'true'
+        run: |
+          python3 -m playtester validate-profile beyond-nations
+          for events in docs/playtests/*/s*/events.jsonl; do
+            python3 -m playtester.probecheck --events-only "$events"
+          done
+          for run in docs/playtests/*/; do
+            copy="$RUNNER_TEMP/$(basename "$run")"
+            cp -r "$run" "$copy"
+            python3 -m playtester aggregate "$copy" --profile beyond-nations
+          done
