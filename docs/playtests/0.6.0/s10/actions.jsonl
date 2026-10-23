@@ -1,0 +1,166 @@
+{"t": 1792713863541, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "Ironvale"]}
+{"t": 1792713869402, "cmd": "key", "args": ["space"]}
+{"t": 1792713869944, "cmd": "shot", "args": ["title"]}
+{"t": 1792713877157, "cmd": "state", "args": []}
+{"t": 1792713882701, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713885501, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792713890493, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713891283, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713894600, "cmd": "shot", "args": ["world1"]}
+{"t": 1792713894837, "cmd": "state", "args": []}
+{"t": 1792713899141, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792713911471, "cmd": "key", "args": ["e"]}
+{"t": 1792713912984, "cmd": "key", "args": ["e"]}
+{"t": 1792713914500, "cmd": "key", "args": ["e"]}
+{"t": 1792713916016, "cmd": "key", "args": ["e"]}
+{"t": 1792713917520, "cmd": "key", "args": ["e"]}
+{"t": 1792713919026, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792713959566, "cmd": "key", "args": ["e"]}
+{"t": 1792713961307, "cmd": "key", "args": ["e"]}
+{"t": 1792713962938, "cmd": "key", "args": ["e"]}
+{"t": 1792713964591, "cmd": "state", "args": []}
+{"t": 1792713969448, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713969970, "cmd": "await", "args": ["PAUSE", "10"]}
+{"t": 1792713971460, "cmd": "shot", "args": ["pause"]}
+{"t": 1792713971704, "cmd": "state", "args": ["--full"]}
+{"t": 1792713976394, "cmd": "click", "args": ["480", "326"]}
+{"t": 1792713979140, "cmd": "shot", "args": ["saved"]}
+{"t": 1792713979365, "cmd": "events", "args": ["5"]}
+{"t": 1792713983774, "cmd": "click", "args": ["480", "367"]}
+{"t": 1792713986533, "cmd": "shot", "args": ["share"]}
+{"t": 1792713986764, "cmd": "state", "args": []}
+{"t": 1792713993119, "cmd": "click", "args": ["480", "299"]}
+{"t": 1792713995959, "cmd": "shot", "args": ["copylink"]}
+{"t": 1792713996229, "cmd": "events", "args": ["3"]}
+{"t": 1792713996315, "cmd": "state", "args": ["--full"]}
+{"t": 1792714001290, "cmd": "stop", "args": []}
+{"t": 1792714003611, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "Ironvale", "--continue"]}
+{"t": 1792714012153, "cmd": "state", "args": []}
+{"t": 1792714012249, "cmd": "shot", "args": ["continue1"]}
+{"t": 1792714024858, "cmd": "events", "args": ["8"]}
+{"t": 1792714024933, "cmd": "state", "args": ["--full"]}
+{"t": 1792714037660, "cmd": "stop", "args": []}
+{"t": 1792714039939, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "Ironvale", "--continue"]}
+{"t": 1792714041877, "cmd": "state", "args": ["--full"]}
+{"t": 1792714047820, "cmd": "shot", "args": ["load_early"]}
+{"t": 1792714048036, "cmd": "state", "args": ["--full"]}
+{"t": 1792714049662, "cmd": "state", "args": ["--full"]}
+{"t": 1792714051289, "cmd": "state", "args": ["--full"]}
+{"t": 1792714052953, "cmd": "state", "args": ["--full"]}
+{"t": 1792714054593, "cmd": "state", "args": ["--full"]}
+{"t": 1792714056202, "cmd": "state", "args": ["--full"]}
+{"t": 1792714057851, "cmd": "shot", "args": ["load_later"]}
+{"t": 1792714058179, "cmd": "events", "args": ["15"]}
+{"t": 1792714073950, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714074493, "cmd": "await", "args": ["PAUSE", "10"]}
+{"t": 1792714074816, "cmd": "click", "args": ["480", "448"]}
+{"t": 1792714078614, "cmd": "state", "args": []}
+{"t": 1792714078697, "cmd": "shot", "args": ["mainmenu"]}
+{"t": 1792714084897, "cmd": "click", "args": ["480", "310"]}
+{"t": 1792714087708, "cmd": "click", "args": ["480", "235"]}
+{"t": 1792714088468, "cmd": "key", "args": ["ctrl+a", "BackSpace"]}
+{"t": 1792714089486, "cmd": "type", "args": ["1450162717"]}
+{"t": 1792714091047, "cmd": "shot", "args": ["newworld_seed"]}
+{"t": 1792714097320, "cmd": "key", "args": ["ctrl+a"]}
+{"t": 1792714098439, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714099966, "cmd": "shot", "args": ["ctrla_retry"]}
+{"t": 1792714105716, "cmd": "note", "args": ["--shot", "ctrla_noselect", "New World seed box: Ctrl+A does not select all (tried twice; text stays, only following BackSpace deletes one char). Clearing the prefilled 'Ironvale' to paste a shared numeric seed needs ~8 backspaces. Harness caveat: may be xdotool modifier timing at low fps."]}
+{"t": 1792714105932, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714106445, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714106996, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714107504, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714108044, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714108564, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714109101, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714109620, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714110136, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714110651, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714111175, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714111678, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714112178, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714112746, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714113282, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714113783, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714114322, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714114864, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714115401, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714115912, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714116427, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714116946, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714117452, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714117976, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714118486, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1792714120022, "cmd": "type", "args": ["1450162717"]}
+{"t": 1792714121577, "cmd": "shot", "args": ["newworld_seed2"]}
+{"t": 1792714125629, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792714126445, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792714126561, "cmd": "state", "args": []}
+{"t": 1792714126657, "cmd": "shot", "args": ["seedworld"]}
+{"t": 1792714126918, "cmd": "events", "args": ["4"]}
+{"t": 1792714133085, "cmd": "state", "args": []}
+{"t": 1792714133234, "cmd": "shot", "args": ["seedworld_t100"]}
+{"t": 1792714140580, "cmd": "state", "args": []}
+{"t": 1792714142702, "cmd": "state", "args": []}
+{"t": 1792714144818, "cmd": "state", "args": []}
+{"t": 1792714146958, "cmd": "state", "args": []}
+{"t": 1792714149124, "cmd": "state", "args": []}
+{"t": 1792714151245, "cmd": "state", "args": []}
+{"t": 1792714153355, "cmd": "state", "args": []}
+{"t": 1792714155447, "cmd": "state", "args": []}
+{"t": 1792714157533, "cmd": "state", "args": []}
+{"t": 1792714159622, "cmd": "state", "args": []}
+{"t": 1792714161728, "cmd": "state", "args": []}
+{"t": 1792714163818, "cmd": "state", "args": []}
+{"t": 1792714165941, "cmd": "state", "args": []}
+{"t": 1792714168103, "cmd": "state", "args": []}
+{"t": 1792714170204, "cmd": "state", "args": []}
+{"t": 1792714172310, "cmd": "state", "args": []}
+{"t": 1792714174413, "cmd": "state", "args": []}
+{"t": 1792714176521, "cmd": "state", "args": []}
+{"t": 1792714178616, "cmd": "state", "args": []}
+{"t": 1792714180727, "cmd": "state", "args": []}
+{"t": 1792714182828, "cmd": "state", "args": []}
+{"t": 1792714184942, "cmd": "state", "args": []}
+{"t": 1792714187045, "cmd": "state", "args": []}
+{"t": 1792714187142, "cmd": "shot", "args": ["seedworld_chron"]}
+{"t": 1792714199878, "cmd": "note", "args": ["--shot", "seedworld_chron", "New world from Share seed 1450162717: terrain/trees/rocks/region identical to the original Ironvale world, but the chronicle diverges: tick 901 'Isabella Wood founded the nation of Westernham' (original: tick 850 'Upperfield'); tick 1401 'Ruth Wilson ... Greentown' (original: tick 1402 Phoebe Davies 'Greenfield'). Original run had player chopping/mining before tick 850; this run idle."]}
+{"t": 1792714200129, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714200672, "cmd": "await", "args": ["PAUSE", "10"]}
+{"t": 1792714200754, "cmd": "click", "args": ["480", "448"]}
+{"t": 1792714201506, "cmd": "await", "args": ["MAIN_MENU", "10"]}
+{"t": 1792714201787, "cmd": "click", "args": ["480", "310"]}
+{"t": 1792714204600, "cmd": "shot", "args": ["nw3"]}
+{"t": 1792714210205, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792714211011, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792714211538, "cmd": "state", "args": []}
+{"t": 1792714213673, "cmd": "state", "args": []}
+{"t": 1792714215773, "cmd": "state", "args": []}
+{"t": 1792714217884, "cmd": "state", "args": []}
+{"t": 1792714219974, "cmd": "state", "args": []}
+{"t": 1792714222114, "cmd": "state", "args": []}
+{"t": 1792714224203, "cmd": "state", "args": []}
+{"t": 1792714226324, "cmd": "state", "args": []}
+{"t": 1792714228441, "cmd": "state", "args": []}
+{"t": 1792714230573, "cmd": "state", "args": []}
+{"t": 1792714232693, "cmd": "state", "args": []}
+{"t": 1792714234837, "cmd": "state", "args": []}
+{"t": 1792714236944, "cmd": "state", "args": []}
+{"t": 1792714239035, "cmd": "state", "args": []}
+{"t": 1792714241150, "cmd": "state", "args": []}
+{"t": 1792714243253, "cmd": "state", "args": []}
+{"t": 1792714245380, "cmd": "state", "args": []}
+{"t": 1792714247470, "cmd": "state", "args": []}
+{"t": 1792714249583, "cmd": "state", "args": []}
+{"t": 1792714251688, "cmd": "state", "args": []}
+{"t": 1792714253804, "cmd": "state", "args": []}
+{"t": 1792714255929, "cmd": "state", "args": []}
+{"t": 1792714258005, "cmd": "state", "args": []}
+{"t": 1792714260105, "cmd": "state", "args": []}
+{"t": 1792714262247, "cmd": "state", "args": []}
+{"t": 1792714264354, "cmd": "state", "args": []}
+{"t": 1792714266494, "cmd": "state", "args": []}
+{"t": 1792714266653, "cmd": "shot", "args": ["idle2_chron"]}
+{"t": 1792714275236, "cmd": "note", "args": ["--shot", "idle2_chron", "Second idle new world from seed 1450162717 reproduces the first idle seeded world exactly (Westernham t901, Greentown t1401, stall t1453). History is deterministic per seed+inputs; a little player chopping/mining changed nation names in the original run."]}
+{"t": 1792714275467, "cmd": "stop", "args": []}
+{"t": 1792714297774, "cmd": "report", "args": []}
+{"t": 1792726411334, "cmd": "stop", "args": []}

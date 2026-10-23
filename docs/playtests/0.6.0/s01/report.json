@@ -1,0 +1,119 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion. Also found a settlement early and, if the game refuses ('too close' or similar), check that it tells you a distance and direction (issue #349).",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 101,
+  "durationSec": 1366,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Founding refusal names a direction ('to the north') but nothing on screen shows which way north is",
+      "detail": "#349 is fixed: pressing F inside Newburg's claim says 'This land is claimed by Newburg... Open ground lies about 250 to the north.', and near the Camp of Northernton it says 'Too close to the Camp of Northernton: 133 away, and settlements must be 250 apart. Open ground lies about 120 to the south-west.' Following the hint worked: the third F press succeeded. But the HUD has no compass, minimap or heading, so a player cannot tell which way 'north' or 'south-west' is. I only worked it out from state.json (north = +Z = yaw 0). The distance also has no unit.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 101; Start, Begin; chop ~10 trees to 50 wood; N; pt walkto settlement 90; pt key f",
+      "screenshot": "shots/f_refused.png",
+      "tick": 4450
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "AI nations claim the land and turn into rivals before a new player can found anything",
+      "detail": "Around 7 AI settlements existed by tick ~6000, and my first two F presses were refused because AIs had taken the spot (Southernwood was founded on the exact spot the first hint pointed to, about 100 ticks before I got there). By about 6 game minutes there were 33 nations, and all four of my neighbours were 'Rival (-39)' toward me without my having dealt with any of them. The chronicle and toasts fill with raids and nations falling, all about places I have never seen.",
+      "repro": "seed 101; play normally to tick ~17500; press O",
+      "screenshot": "shots/nations.png",
+      "tick": 17538
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "HUD panels overlap and clip at 960x540 once inside a settlement",
+      "detail": "Inside the settlement the Inventory panel jumps to the middle of the screen over the 'Objective complete' popup. The toast gets cut to 'Objective com'. The objective progress bar reads 'bers 2/10 - Buildings 0/2' and its description runs under the action buttons. 'Next (K): Farm, 25 wood, 10...' is cut off. The Season panel covers Player Info. The giant floating settlement label ('...4/16 residents') is clipped at the top, shows through modals, and near the well covers a third of the screen.",
+      "repro": "after founding: pt key e (enter), pt key b (build stall); screenshot",
+      "screenshot": "shots/hud_overlap.png",
+      "tick": 9802
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Three differently worded 'Village' counters, and 'settlement is now a Village!' while the era stays Camp",
+      "detail": "Objective 7 shows 'Members 2/10 - Buildings 0/2', the era box shows 'Village: 0/4', and the description says 'Village 0/1. A settlement with 2 buildings is a village.' After the second building the toast says 'The settlement is now a Village!', but the era is still 'Camp (1/4)'. The settlement tier and the nation era have the same name. There is also a pure time gate ('Day 1/3') that the objective text never mentions.",
+      "repro": "build stall, farm (K K) and house (K K); click the Era box",
+      "screenshot": "shots/era2.png",
+      "tick": 16126
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Recruiting for 'Members 4/10' is guesswork; members are labelled 'Stranger' and progress stalls",
+      "detail": "Pawns have no name tags, and nothing explains that pawn colour shows their nation. I pressed R on two nearby pawns and both replies were 'already a member of Eastford'. The action bar calls my own members 'Talk to Grace Jones (Stranger)', and Linda Lewis said 'I hardly know you. Why should I follow you?' right after joining. A second house ('homes with room draw newcomers') brought no one in about 7000 ticks: Members stayed 4/10 from tick ~16000 to 26000.",
+      "repro": "after the house: pt walkto pawn; pt key r; pt key e",
+      "screenshot": "shots/invite2.png",
+      "tick": 17230
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Sell Resources fails with an either/or message despite stalls and listed prices",
+      "detail": "Inside my Village (4 stalls, 'Stalls for Sale: 4', Stone 17/15 listed), Sell Resources with 85 stone, 38 apples and 10 wood says 'No one is buying resources at this market or you do not have enough resources to sell.' It does not say which of the two is true, or how much is enough.",
+      "repro": "enter own settlement after collecting the stockpile; click Sell Resources",
+      "screenshot": "shots/sell.png",
+      "tick": 18098
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Walking is locked inside a settlement with no explanation",
+      "detail": "After entering the settlement (E), W does nothing until E is pressed again ('Exited settlement.'). pt walkto rock timed out. H says 'Welcome home!' but leaves you outside, so the next K says 'You are not inside a settlement.' with no hint to press E.",
+      "repro": "pt key e at own well; pt walkto rock (times out); pt key h; pt key k",
+      "screenshot": "shots/rock2.png",
+      "tick": 8378
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Recent-chronicle lines truncated with '...', including my own nation's name",
+      "detail": "The always-on chronicle cuts lines off: 'You raised a banner and named your people Ea...'. Events about me ('Relations between Newburg and Eastford are...') are cut too. There were 91 entries by tick ~11500, mostly about other AI nations. The nation name was picked automatically, with no prompt.",
+      "repro": "pt key n; screenshot",
+      "screenshot": "shots/chronicle_trunc.png",
+      "tick": 2134
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Apples are eaten silently; 'Eat something' objective completes itself; energy never matters",
+      "detail": "The first chop said '5 wood and 2 apples', but the inventory showed 1 apple and energy jumped 84->97. The Eat objective completed 48 ticks after it appeared, without my doing anything. Energy stayed 90-99 the whole session with 40 apples in the bag. Planting a sapling (P) gives no status message.",
+      "repro": "chop first tree; watch Apples and Energy",
+      "screenshot": "shots/apples_mismatch.png",
+      "tick": 658
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Main-menu Controls page lists debug cheats (F2-F6) to ordinary players",
+      "detail": "Page 3 of the Controls screen lists spawn pawn, coins, wood and other cheats, with no warning that they are debug keys.",
+      "repro": "Main menu > Controls > Next > Next",
+      "screenshot": "shots/controls_debug.png",
+      "tick": null
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 26.04,
+      "Eat something": 27.0,
+      "Create or join a nation": 39.0,
+      "Found a settlement": 129.0,
+      "Enter your settlement": 134.04,
+      "Build a market stall": 196.04
+    },
+    "foundingAttemptsBeforeSuccess": 3,
+    "refusalsWithDistanceAndDirection": 3,
+    "nationsAtTick17500": 33,
+    "finalTick": 26170,
+    "membersAtEnd": 4
+  },
+  "fun": 3,
+  "verdict": "The opening is well paced: objectives, tips and the 'need N more wood' messages carried a total beginner from the title screen to a settlement with a stall, a farm and two houses in about 5 game minutes. The #349 founding hint works, though it needs a compass to be usable. After that the player stalls at 'Members 4/10' with no clear way to recruit. Meanwhile the AI world founds 33 nations, makes every neighbour a rival and floods the chronicle, and the 960x540 HUD overlaps and clips once you are inside a settlement."
+}

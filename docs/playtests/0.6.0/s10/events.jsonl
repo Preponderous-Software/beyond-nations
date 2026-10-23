@@ -1,0 +1,53 @@
+{"type":"screen","tick":0,"wallTimeMs":1792713864223,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792713869438,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792713883206,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792713891013,"how":"created","slot":"world-1450162717-20261023-000451","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1792713891014,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":566,"wallTimeMs":1792713911728,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":602,"wallTimeMs":1792713913107,"text":"No entities within range to interact with."}
+{"type":"status","tick":642,"wallTimeMs":1792713914701,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":678,"wallTimeMs":1792713916098,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":718,"wallTimeMs":1792713917683,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":850,"wallTimeMs":1792713922913,"kind":"NationCreation","text":"Isabella Wood founded the nation of Upperfield. It is the first nation this world has known."}
+{"type":"chronicle","tick":902,"wallTimeMs":1792713924868,"kind":"SettlementFounded","text":"Upperfield put down roots: Isabella Wood founded its first settlement."}
+{"type":"chronicle","tick":1402,"wallTimeMs":1792713946950,"kind":"NationCreation","text":"Phoebe Davies declared the nation of Greenfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":1450,"wallTimeMs":1792713948864,"kind":"SettlementFounded","text":"Greenfield put down roots: Phoebe Davies founded its first settlement."}
+{"type":"status","tick":1682,"wallTimeMs":1792713960037,"text":"Gemma Taylor (Stranger): \u0022Who are you? I don\u0027t belong to any nation. I mean to found my own. One day they\u0027ll tell stories about me.\u0022"}
+{"type":"status","tick":1702,"wallTimeMs":1792713961569,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":1726,"wallTimeMs":1792713963196,"text":"No entities within range to interact with."}
+{"type":"screen","tick":1838,"wallTimeMs":1792713969762,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":1838,"wallTimeMs":1792713977123,"count":1}
+{"type":"status","tick":1838,"wallTimeMs":1792713977123,"text":"Game saved."}
+{"type":"screen","tick":1838,"wallTimeMs":1792713984444,"from":"PAUSE","to":"SHARE"}
+{"type":"world","tick":1838,"wallTimeMs":1792714005062,"how":"loaded","slot":"world-1450162717-20261023-000451","seed":1450162717}
+{"type":"screen","tick":1842,"wallTimeMs":1792714005482,"from":null,"to":"WORLD"}
+{"type":"status","tick":2002,"wallTimeMs":1792714012877,"text":"You enter the land of Greenfield."}
+{"type":"chronicle","tick":2150,"wallTimeMs":1792714019078,"kind":"NationCreation","text":"The nation of Bigtown was born, with Tina Johnson at its head."}
+{"type":"world","tick":1838,"wallTimeMs":1792714041135,"how":"loaded","slot":"world-1450162717-20261023-000451","seed":1450162717}
+{"type":"screen","tick":1842,"wallTimeMs":1792714041553,"from":null,"to":"WORLD"}
+{"type":"status","tick":2002,"wallTimeMs":1792714048388,"text":"You enter the land of Greenfield."}
+{"type":"chronicle","tick":2150,"wallTimeMs":1792714054541,"kind":"NationCreation","text":"The nation of Bigtown was born, with Tina Johnson at its head."}
+{"type":"chronicle","tick":2550,"wallTimeMs":1792714074010,"kind":"SettlementFounded","text":"Tina Johnson laid the first stones of Bigtown."}
+{"type":"screen","tick":2550,"wallTimeMs":1792714074193,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":2550,"wallTimeMs":1792714075682,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":2550,"wallTimeMs":1792714075682,"count":1}
+{"type":"status","tick":2550,"wallTimeMs":1792714075682,"text":"Game saved."}
+{"type":"screen","tick":2550,"wallTimeMs":1792714085419,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792714126150,"how":"created","slot":"world-1450162717-20261023-000846","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1792714126150,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":901,"wallTimeMs":1792714161910,"kind":"NationCreation","text":"Isabella Wood founded the nation of Westernham. It is the first nation this world has known."}
+{"type":"chronicle","tick":953,"wallTimeMs":1792714163908,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Westernham."}
+{"type":"chronicle","tick":1401,"wallTimeMs":1792714180946,"kind":"NationCreation","text":"Ruth Wilson raised a banner and called it Greentown."}
+{"type":"chronicle","tick":1453,"wallTimeMs":1792714182774,"kind":"StallBuilt","text":"Trade came to Westernham: Isabella Wood built a stall."}
+{"type":"chronicle","tick":1801,"wallTimeMs":1792714196622,"kind":"SettlementFounded","text":"Ruth Wilson laid the first stones of Greentown."}
+{"type":"screen","tick":1873,"wallTimeMs":1792714200289,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":1873,"wallTimeMs":1792714201416,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":1873,"wallTimeMs":1792714201416,"count":2}
+{"type":"status","tick":1873,"wallTimeMs":1792714201416,"text":"Game saved."}
+{"type":"screen","tick":1873,"wallTimeMs":1792714202332,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792714210736,"how":"created","slot":"world-1450162717-20261023-001010","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1792714210736,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":901,"wallTimeMs":1792714242449,"kind":"NationCreation","text":"Isabella Wood founded the nation of Westernham. It is the first nation this world has known."}
+{"type":"chronicle","tick":953,"wallTimeMs":1792714244438,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Westernham."}
+{"type":"chronicle","tick":1401,"wallTimeMs":1792714261652,"kind":"NationCreation","text":"Ruth Wilson raised a banner and called it Greentown."}
+{"type":"chronicle","tick":1453,"wallTimeMs":1792714264388,"kind":"StallBuilt","text":"Trade came to Westernham: Isabella Wood built a stall."}

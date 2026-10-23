@@ -1,0 +1,218 @@
+{"t": 1792713864608, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "108"]}
+{"t": 1792713870291, "cmd": "key", "args": ["space"]}
+{"t": 1792713872832, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713875657, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792713882555, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713883386, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713883697, "cmd": "shot", "args": ["world1"]}
+{"t": 1792713883957, "cmd": "state", "args": []}
+{"t": 1792713898293, "cmd": "status", "args": []}
+{"t": 1792713898382, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792713907613, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1792713909037, "cmd": "state", "args": []}
+{"t": 1792713913803, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792713924030, "cmd": "key", "args": ["e"]}
+{"t": 1792713925552, "cmd": "key", "args": ["e"]}
+{"t": 1792713926057, "cmd": "state", "args": []}
+{"t": 1792713926130, "cmd": "shot", "args": ["wood"]}
+{"t": 1792713932970, "cmd": "key", "args": ["n"]}
+{"t": 1792713935502, "cmd": "shot", "args": ["nation"]}
+{"t": 1792713935767, "cmd": "state", "args": []}
+{"t": 1792713940022, "cmd": "key", "args": ["f"]}
+{"t": 1792713942535, "cmd": "shot", "args": ["found"]}
+{"t": 1792713942791, "cmd": "state", "args": []}
+{"t": 1792713946912, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713959780, "cmd": "key", "args": ["e"]}
+{"t": 1792713961016, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713961274, "cmd": "key", "args": ["e"]}
+{"t": 1792713962459, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713963160, "cmd": "key", "args": ["e"]}
+{"t": 1792713964326, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792713972837, "cmd": "key", "args": ["e"]}
+{"t": 1792713973900, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714004217, "cmd": "key", "args": ["e"]}
+{"t": 1792714005236, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714010598, "cmd": "key", "args": ["e"]}
+{"t": 1792714011632, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714029664, "cmd": "key", "args": ["e"]}
+{"t": 1792714030724, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714072153, "cmd": "key", "args": ["e"]}
+{"t": 1792714073188, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714074913, "cmd": "key", "args": ["e"]}
+{"t": 1792714075935, "cmd": "state", "args": []}
+{"t": 1792714079191, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714085082, "cmd": "key", "args": ["e"]}
+{"t": 1792714086069, "cmd": "key", "args": ["f"]}
+{"t": 1792714088580, "cmd": "shot", "args": ["founded"]}
+{"t": 1792714088838, "cmd": "state", "args": []}
+{"t": 1792714093565, "cmd": "key", "args": ["Return"]}
+{"t": 1792714094092, "cmd": "face", "args": ["90"]}
+{"t": 1792714098825, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792714107031, "cmd": "key", "args": ["f"]}
+{"t": 1792714109520, "cmd": "state", "args": []}
+{"t": 1792714113567, "cmd": "key", "args": ["f"]}
+{"t": 1792714116083, "cmd": "shot", "args": ["founded2"]}
+{"t": 1792714116346, "cmd": "state", "args": []}
+{"t": 1792714123920, "cmd": "note", "args": ["--shot", "nocompass", "Found-settlement refusal gives compass directions ('Open ground lies about 210 to the east', then '161 to the north') but the HUD has no compass or heading indicator, so the player cannot tell which way east/north is. Walked ~170 units in a guessed direction and got a different direction back. tick ~5306"]}
+{"t": 1792714124214, "cmd": "key", "args": ["Return"]}
+{"t": 1792714124707, "cmd": "face", "args": ["88"]}
+{"t": 1792714128353, "cmd": "hold", "args": ["Shift_L+w", "9"]}
+{"t": 1792714137589, "cmd": "key", "args": ["f"]}
+{"t": 1792714140187, "cmd": "state", "args": []}
+{"t": 1792714148540, "cmd": "face", "args": ["173"]}
+{"t": 1792714154919, "cmd": "hold", "args": ["Shift_L+w", "19"]}
+{"t": 1792714174095, "cmd": "key", "args": ["f"]}
+{"t": 1792714176604, "cmd": "state", "args": []}
+{"t": 1792714180163, "cmd": "face", "args": ["-60"]}
+{"t": 1792714183017, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1792714185204, "cmd": "key", "args": ["f"]}
+{"t": 1792714187787, "cmd": "shot", "args": ["settled"]}
+{"t": 1792714188023, "cmd": "state", "args": []}
+{"t": 1792714193849, "cmd": "face", "args": ["-125"]}
+{"t": 1792714199705, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792714205902, "cmd": "key", "args": ["f"]}
+{"t": 1792714208421, "cmd": "shot", "args": ["settled"]}
+{"t": 1792714208691, "cmd": "state", "args": []}
+{"t": 1792714216285, "cmd": "face", "args": ["-115"]}
+{"t": 1792714221146, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792714229338, "cmd": "key", "args": ["f"]}
+{"t": 1792714231851, "cmd": "state", "args": []}
+{"t": 1792714234996, "cmd": "hold", "args": ["Shift_L+w", "17"]}
+{"t": 1792714252175, "cmd": "key", "args": ["f"]}
+{"t": 1792714254667, "cmd": "state", "args": []}
+{"t": 1792714260030, "cmd": "key", "args": ["e"]}
+{"t": 1792714262640, "cmd": "state", "args": ["--full"]}
+{"t": 1792714262777, "cmd": "shot", "args": ["entered"]}
+{"t": 1792714269824, "cmd": "note", "args": ["--shot", "overlap", "Inside settlement, the Season panel overlaps the Player Info panel (Energy bar mostly hidden behind Season panel) and Settlement Info 'Next (K): Farm, 25 wood, 10...' is cut off at the panel's right edge. 960x540 window."]}
+{"t": 1792714270077, "cmd": "key", "args": ["e"]}
+{"t": 1792714271559, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1792714276095, "cmd": "key", "args": ["e"]}
+{"t": 1792714277095, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1792714288613, "cmd": "key", "args": ["e"]}
+{"t": 1792714289616, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1792714299217, "cmd": "key", "args": ["e"]}
+{"t": 1792714300245, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1792714312881, "cmd": "key", "args": ["e"]}
+{"t": 1792714313903, "cmd": "walkto", "args": ["rock", "30"]}
+{"t": 1792714330283, "cmd": "key", "args": ["e"]}
+{"t": 1792714331340, "cmd": "walkto", "args": ["rock", "30"]}
+{"t": 1792714349105, "cmd": "key", "args": ["e"]}
+{"t": 1792714350143, "cmd": "walkto", "args": ["rock", "30"]}
+{"t": 1792714361874, "cmd": "key", "args": ["e"]}
+{"t": 1792714362986, "cmd": "state", "args": []}
+{"t": 1792714366173, "cmd": "events", "args": ["15"]}
+{"t": 1792714371810, "cmd": "state", "args": []}
+{"t": 1792714371963, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1792714401796, "cmd": "key", "args": ["e"]}
+{"t": 1792714403334, "cmd": "key", "args": ["b"]}
+{"t": 1792714404899, "cmd": "key", "args": ["k"]}
+{"t": 1792714407408, "cmd": "shot", "args": ["inside2"]}
+{"t": 1792714407682, "cmd": "state", "args": []}
+{"t": 1792714412089, "cmd": "events", "args": ["200"]}
+{"t": 1792714417581, "cmd": "key", "args": ["e"]}
+{"t": 1792714418090, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792714435907, "cmd": "key", "args": ["e"]}
+{"t": 1792714437055, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792714446240, "cmd": "key", "args": ["e"]}
+{"t": 1792714447383, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1792714476852, "cmd": "key", "args": ["e"]}
+{"t": 1792714478418, "cmd": "key", "args": ["k"]}
+{"t": 1792714480017, "cmd": "key", "args": ["k"]}
+{"t": 1792714482579, "cmd": "state", "args": []}
+{"t": 1792714482649, "cmd": "events", "args": ["300"]}
+{"t": 1792714484970, "cmd": "state", "args": []}
+{"t": 1792714485096, "cmd": "shot", "args": ["k"]}
+{"t": 1792714494216, "cmd": "wait", "args": ["30"]}
+{"t": 1792714524343, "cmd": "state", "args": ["--full"]}
+{"t": 1792714524540, "cmd": "events", "args": ["400"]}
+{"t": 1792714524660, "cmd": "wait", "args": ["30"]}
+{"t": 1792714554723, "cmd": "state", "args": ["--full"]}
+{"t": 1792714554812, "cmd": "events", "args": ["400"]}
+{"t": 1792714554884, "cmd": "wait", "args": ["30"]}
+{"t": 1792714584932, "cmd": "state", "args": ["--full"]}
+{"t": 1792714585014, "cmd": "events", "args": ["400"]}
+{"t": 1792714585080, "cmd": "wait", "args": ["30"]}
+{"t": 1792714615133, "cmd": "state", "args": ["--full"]}
+{"t": 1792714615215, "cmd": "events", "args": ["400"]}
+{"t": 1792714615273, "cmd": "wait", "args": ["30"]}
+{"t": 1792714645323, "cmd": "state", "args": ["--full"]}
+{"t": 1792714645405, "cmd": "events", "args": ["400"]}
+{"t": 1792714645464, "cmd": "wait", "args": ["30"]}
+{"t": 1792714675574, "cmd": "state", "args": ["--full"]}
+{"t": 1792714675655, "cmd": "events", "args": ["400"]}
+{"t": 1792714675742, "cmd": "wait", "args": ["30"]}
+{"t": 1792714705803, "cmd": "state", "args": ["--full"]}
+{"t": 1792714705981, "cmd": "events", "args": ["400"]}
+{"t": 1792714706038, "cmd": "wait", "args": ["30"]}
+{"t": 1792714736080, "cmd": "state", "args": ["--full"]}
+{"t": 1792714736154, "cmd": "events", "args": ["400"]}
+{"t": 1792714740596, "cmd": "wait", "args": ["30"]}
+{"t": 1792714770716, "cmd": "state", "args": ["--full"]}
+{"t": 1792714770829, "cmd": "events", "args": ["100"]}
+{"t": 1792714770881, "cmd": "wait", "args": ["30"]}
+{"t": 1792714800937, "cmd": "state", "args": ["--full"]}
+{"t": 1792714801040, "cmd": "events", "args": ["100"]}
+{"t": 1792714801147, "cmd": "wait", "args": ["30"]}
+{"t": 1792714831194, "cmd": "state", "args": ["--full"]}
+{"t": 1792714831265, "cmd": "events", "args": ["100"]}
+{"t": 1792714831312, "cmd": "wait", "args": ["30"]}
+{"t": 1792714861369, "cmd": "state", "args": ["--full"]}
+{"t": 1792714861483, "cmd": "events", "args": ["100"]}
+{"t": 1792714861539, "cmd": "wait", "args": ["30"]}
+{"t": 1792714891602, "cmd": "state", "args": ["--full"]}
+{"t": 1792714891669, "cmd": "events", "args": ["100"]}
+{"t": 1792714891736, "cmd": "wait", "args": ["30"]}
+{"t": 1792714921772, "cmd": "state", "args": ["--full"]}
+{"t": 1792714921842, "cmd": "events", "args": ["100"]}
+{"t": 1792714921885, "cmd": "wait", "args": ["30"]}
+{"t": 1792714951930, "cmd": "state", "args": ["--full"]}
+{"t": 1792714952000, "cmd": "events", "args": ["100"]}
+{"t": 1792714952046, "cmd": "wait", "args": ["30"]}
+{"t": 1792714982088, "cmd": "state", "args": ["--full"]}
+{"t": 1792714982168, "cmd": "events", "args": ["100"]}
+{"t": 1792714982262, "cmd": "wait", "args": ["30"]}
+{"t": 1792715012336, "cmd": "state", "args": ["--full"]}
+{"t": 1792715012429, "cmd": "events", "args": ["100"]}
+{"t": 1792715012473, "cmd": "wait", "args": ["30"]}
+{"t": 1792715042516, "cmd": "state", "args": ["--full"]}
+{"t": 1792715042581, "cmd": "events", "args": ["100"]}
+{"t": 1792715042622, "cmd": "wait", "args": ["30"]}
+{"t": 1792715072659, "cmd": "state", "args": ["--full"]}
+{"t": 1792715072719, "cmd": "events", "args": ["100"]}
+{"t": 1792715072760, "cmd": "wait", "args": ["30"]}
+{"t": 1792715102795, "cmd": "state", "args": ["--full"]}
+{"t": 1792715102907, "cmd": "events", "args": ["100"]}
+{"t": 1792715102959, "cmd": "wait", "args": ["30"]}
+{"t": 1792715133047, "cmd": "state", "args": ["--full"]}
+{"t": 1792715133117, "cmd": "events", "args": ["100"]}
+{"t": 1792715133171, "cmd": "wait", "args": ["30"]}
+{"t": 1792715163256, "cmd": "state", "args": ["--full"]}
+{"t": 1792715163316, "cmd": "events", "args": ["100"]}
+{"t": 1792715167505, "cmd": "wait", "args": ["30"]}
+{"t": 1792715197539, "cmd": "state", "args": ["--full"]}
+{"t": 1792715197597, "cmd": "wait", "args": ["30"]}
+{"t": 1792715227639, "cmd": "state", "args": ["--full"]}
+{"t": 1792715227698, "cmd": "wait", "args": ["30"]}
+{"t": 1792715257730, "cmd": "state", "args": ["--full"]}
+{"t": 1792715257780, "cmd": "wait", "args": ["30"]}
+{"t": 1792715287822, "cmd": "state", "args": ["--full"]}
+{"t": 1792715287877, "cmd": "wait", "args": ["30"]}
+{"t": 1792715317911, "cmd": "state", "args": ["--full"]}
+{"t": 1792715317966, "cmd": "wait", "args": ["30"]}
+{"t": 1792715347999, "cmd": "state", "args": ["--full"]}
+{"t": 1792715348062, "cmd": "wait", "args": ["30"]}
+{"t": 1792715378098, "cmd": "state", "args": ["--full"]}
+{"t": 1792715378154, "cmd": "wait", "args": ["30"]}
+{"t": 1792715408200, "cmd": "state", "args": ["--full"]}
+{"t": 1792715408258, "cmd": "wait", "args": ["30"]}
+{"t": 1792715438296, "cmd": "state", "args": ["--full"]}
+{"t": 1792715441005, "cmd": "shot", "args": ["event1"]}
+{"t": 1792715444977, "cmd": "click", "args": ["480", "405"]}
+{"t": 1792715448681, "cmd": "shot", "args": ["after1"]}
+{"t": 1792715448822, "cmd": "state", "args": []}
+{"t": 1792715448860, "cmd": "events", "args": ["10"]}
+{"t": 1792715453847, "cmd": "note", "args": ["--shot", "after1b", "Chose 'Buy grain from traders (25 coins)': 25 coins left my purse (401->376) but the resolution message only says 'you bought grain from passing traders'; it does not confirm the promised 12 apples or say where they went (my inventory apples stayed 31). tick 30554"]}
+{"t": 1792715453971, "cmd": "stop", "args": []}
+{"t": 1792715456539, "cmd": "events", "args": ["2000"]}
+{"t": 1792715479998, "cmd": "report", "args": []}
+{"t": 1792726411215, "cmd": "stop", "args": []}

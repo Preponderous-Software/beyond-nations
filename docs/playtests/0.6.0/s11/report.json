@@ -1,0 +1,114 @@
+{
+  "session": "s11",
+  "goal": "Survive the first winter on the build that now includes #340 (pawn energy capped at a full bar, like the player's). Start with --season autumn. Found a settlement early, then watch NPC food through winter: count NPC hunger deaths (in your settlement and elsewhere, from the chronicle and events), note any warning before deaths, and whether you can feed residents (#353). Also note whether pressing E at a tree you face chops it even with pawns standing nearby (#376). To save real time, press Page Down a few times to shorten render distance if the world runs slowly.",
+  "build": {"version": "0.5.0", "commit": "3246ba2"},
+  "seed": 103,
+  "durationSec": 2652,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "First winter starves 16 NPCs across 7 nations, all 'within the walls'",
+      "detail": "Winter ran from tick 171002 to 231003. The first hunger death came at tick 196582 (Stan Thompson of Fortwood), 8.5 game minutes in. Deaths then sped up: 16 in total (Upperville 5, Fortwood 4, Fortresston 2, Yellowshire 2, Forttown, Blueburg and Southernville 1 each), and 10 of them came in the last 3 game minutes of winter. Every one died 'within the walls' of an established settlement, even though #340 is in this build. Settlements with farms still starved, so NPC winter food planning looks too weak. Expected: few or no deaths in towns with farms, or deaths spread out after visible shortages.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn; play through to tick ~231000; grep -iE 'starv|hunger' out/events.jsonl",
+      "screenshot": "shots/winter_end.png",
+      "tick": 196582
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "No warning before NPC hunger deaths; pawn hunger is not shown on screen",
+      "detail": "The only food warning in the whole run was a generic status line at tick 141002: 'Winter comes tomorrow. Lay in food while the farms still yield.' No status line, toast or chronicle entry said that any settlement was short of food or that any pawn was starving before a death. Deaths show up only as chronicle lines mixed in with raids and stall-building. Pawn energy and hunger never appear on screen. A player can only learn that a pawn is hungry by talking to it, and G (gift) picks the item by itself: a pawn that is not hungry got 10 coins, not food, even though I had 30 apples. Expected: a famine or low-food warning per settlement, and a way to see who is hungry.",
+      "repro": "same run; watch status and chronicle between tick 171002 and 196582; walk to a pawn, press e then g",
+      "screenshot": "shots/death1.png",
+      "tick": 196582
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Could not test feeding residents (#353): own settlement never got any NPC residents",
+      "detail": "I founded a settlement at tick 129199 and built a farm, a stall and a house; it became a Village with 1/12 residents. No newcomers arrived through the whole winter. Recruiting needs a Loyal relationship (R gave \"I'm loyal to Smallport.\" (needs Loyal)), which is far out of reach in the first season. The settlement panel's 'Purchase Food' button said 'No one is selling food at this market or you do not have enough money' even with 231 coins. No control or button feeds residents; 'Collect Stockpile (0)' stayed greyed out. So #353 could not be tested in a first-winter run.",
+      "repro": "found a settlement and build a house (K twice); wait through winter; Members stays 1/10",
+      "screenshot": "shots/purchase.png",
+      "tick": 159347
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement-founding hints give compass directions, but nothing on screen shows a compass",
+      "detail": "F hints such as 'Open ground lies about 110 to the north-east' and '300 to the south-west' are helpful, but there is no compass, map or north marker on the HUD. I had to work out directions from state.json x/z, and it took 6 F presses across 3 rejection reasons (too close, claimed land) to find legal ground. Expected: a compass strip or a marker toward the suggested spot.",
+      "repro": "pt start ... --seed 103 --season autumn; create nation (n); chop 10 trees; press f near (197,314)",
+      "screenshot": "shots/nocompass.png",
+      "tick": 125315
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Inside a settlement, W/A/S/D do nothing and no message says why",
+      "detail": "After H (teleport home) and E (enter), the player cannot walk. The walkto commands timed out twice and the player stayed at the same x/z for over a minute, with no message that you must press E or 'Exit Settlement' first. Expected: movement exits the settlement, or a hint appears.",
+      "repro": "h; e; hold w 3 -> position unchanged",
+      "screenshot": "shots/stuck.png",
+      "tick": 180847
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Trees give apples all winter, so the player never goes hungry while NPCs starve",
+      "detail": "The season panel says 'Winter: no harvests', but chopping trees in winter still gave 2-3 apples each (for example tick 218980: 'Gathered 7 wood and 3 apples'). My apples went from 30 to 41 during winter, and my energy never fell below 90. The player has no winter pressure while towns lose 16 people.",
+      "repro": "in winter, walkto tree; e",
+      "screenshot": "shots/winter_end.png",
+      "tick": 218980
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "#376 not verified: could not get a pawn within reach of a tree",
+      "detail": "Over 4 polling loops (more than 50 checks) I never had a pawn within 5 units of the tree in front of me. Pawns cleared the trees near towns quickly; trees in reach vanished as pawns chopped them. Every E press at a tree I faced chopped it (no pawn nearby), so the regression case is still untested.",
+      "repro": "walkto tree near Smallport/Yellowshire; poll pt state for pawn <5m",
+      "screenshot": "shots/gift2.png",
+      "tick": 221000
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress bar clips 'Members' to 'bers'; Settlement Info cuts off the building cost",
+      "detail": "Objective 7's progress bar shows 'bers 1/10 · Buildings 1/2'. The Settlement Info line 'Next (K): Farm, 25 wood, 10...' (later 'House, 20 wood, 1...') runs off the right edge at 960x540. After entering a settlement, the Inventory Info panel also jumped to the middle of the screen once.",
+      "repro": "found a settlement, enter it (e)",
+      "screenshot": "shots/clipped.png",
+      "tick": 159035
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Day numbering differs: chronicle 'Day 5' while the probe says day 4 and the season panel says 'day 1/2'",
+      "detail": "At the start the chronicle said 'Day 5, midday' while state.json said day 4 and the Season panel said 'Autumn - day 1/2'. The chronicle's day counts from 1 and the probe's from 0, and the season-relative day adds a third numbering.",
+      "repro": "start; compare chronicle to the Season panel",
+      "screenshot": "shots/where.png",
+      "tick": 126735
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 2438.0,
+      "Eat something": 2439.0,
+      "Create or join a nation": 2440.0,
+      "Found a settlement": 2584.1,
+      "Enter your settlement": 2591.0,
+      "Build a market stall": 2730.1
+    },
+    "npcHungerDeathsWinter": 16,
+    "npcHungerDeathsOwnSettlement": 0,
+    "ownSettlementResidents": 1,
+    "nationsWithHungerDeaths": 7,
+    "firstHungerDeathTick": 196582,
+    "winterStartTick": 171002,
+    "winterEndTick": 231003,
+    "starvationWarningsBeforeFirstDeath": 0,
+    "settlementFoundedTick": 129199
+  },
+  "fun": 3,
+  "verdict": "Early play feels good. The founding hints, the world events and the busy chronicle make the world feel alive, and founding by the start of autumn's second half is easy. Winter is brutal for NPC towns: 16 starved inside settlement walls across 7 nations, mostly in the last third of winter, and no warning came first. Meanwhile the player eats winter apples off trees and never feels the season. The own-settlement food goal (#353) could not be tested, because no NPC residents arrive in the first season, and #376 could not be set up, because pawns clear trees near towns."
+}

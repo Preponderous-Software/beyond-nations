@@ -1,0 +1,106 @@
+{
+  "session": "s02",
+  "goal": "Reach the Village era as fast as you can (it cannot come before day 3, about 17 minutes of game time); record the game time of every objective. Also note whether trees near spawn are gone before you reach them (#351) and how long you wait idle for the day-3 gate once every other requirement is met (#352).",
+  "build": {
+    "version": "0.5.0",
+    "commit": "ae87506"
+  },
+  "seed": 102,
+  "durationSec": 1360,
+  "outcome": "blocked",
+  "findings": [
+    {
+      "severity": "blocker",
+      "category": "crash",
+      "title": "NullReferenceException in PawnBehaviorCalculator:223 (merchant without a stall) crashes the game; the autosave crashes again",
+      "detail": "At tick ~25700 (day 2, night) the game window vanished: NullReferenceException at PawnBehaviorCalculator.computeBehaviorTypeInSettlementByDay line 223. In the MERCHANT branch, market.getStall(pawn.getId()) returns null and its result is used with no null check (lines 75 and 125 do check for null). It happened while I stood in Cityfield's settlement gifting coins to its members, about 2,700 ticks after I poached Oscar Jones from Cityfield with R. Which pawn triggered it is not proven: a merchant visiting a settlement where it has no stall, or a poached ex-stallholder, would both fit. 'pt start --continue' loaded the tick-24000 autosave, and the game crashed again at tick ~25748 with the same stack trace while I stood still, so the save cannot be played. Progress from the run was lost. Crash reports are in crash1.txt and crash2.txt.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 102; N at spawn; chop ~13 trees; walk NW and F to found; enter, craft axe/pickaxe, collect stockpile, K K (farm), K K (house); O > Laws > Borders Open; walk to Cityfield (settlement ~260m away), gift Oscar Jones coins (G) until Loyal, R; walk to Cityfield's other settlement and gift its members; crash ~tick 25700. Then: pt start ... --continue and wait ~1700 ticks for the same crash.",
+      "screenshot": "shots/after_crash_continue.png",
+      "tick": 25748
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Village needs 10 members, but no newcomers or births came in ~15,000 ticks and the world splits into dozens of 1-7 member nations",
+      "detail": "I had a Village settlement (2 buildings), 2 stalls and later 3 houses' worth of room (4/16 residents) from tick ~10600. The borders were Open from tick 16003. The member count still stayed at 4 until I poached a pawn. The game log shows no 'newcomer arrived' line at all up to the crash, and no births were recorded. The Nations screen listed 37 nations of 1-2 members at tick ~14000, then 29 as they disbanded. Pawns cannot be recruited from 1-member nations because they are leaders, and other members need Loyal (30 relationship = about 150 coins of gifts each, chasing a pawn that keeps walking off). At that cost, 6 more members is about 900 coins; I had 473. Pawn-led nations reach 'town' with 2-7 members, while the player needs 10 for a village. Members was the requirement that held me back, not the day-3 gate.",
+      "repro": "As above up to the Village settlement; set Borders Open; stand in the settlement from tick ~11000 to ~18000 and watch Members stay 4/10 (pt state objective.progress; pt log | grep -i newcomer).",
+      "screenshot": "shots/nl1.png",
+      "tick": 18000
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "#351 confirmed: the three trees nearest spawn are gone within ~19 game seconds, before the player can move",
+      "detail": "At tick 11 the nearest trees were 21.2m, 33.5m and 42.4m from spawn (0,0). At tick 955 the player had not moved, and all three were gone: the nearest tree was now 54.1m away. Every pawn was over 100m away at the start, so it is unclear what removed them. The first chop then needs a ~55m walk, and trees in the Moor start area are sparse (~4 wood each without an axe).",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 102; space; Start; Begin; pt state (note nearest trees); dismiss tip; pt state again ~20 game s later",
+      "screenshot": "shots/trees_gone.png",
+      "tick": 955
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Build key confirm (K then K) lapses at low fps; the repeated prompt just counts up (x2, x3)",
+      "detail": "The first K shows 'Press K again to build a House'. A second K pressed after reading the prompt (~4 s wall at 3-5 fps) re-arms the gate instead of building, and the status becomes 'Press K again... (x2)', then '(x3)'. Only presses less than 1 s apart built anything. The ConfirmGate window is 4 s of wall time, and the prompt never says the window has expired.",
+      "repro": "Inside own settlement with 20 wood/15 stone: pt key k; (wait ~4 s) pt key k -> prompt again; pt key k; sleep 0.6; pt key k -> House built",
+      "screenshot": "shots/k_confirm.png",
+      "tick": 10575
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Labels of the Borders law do not match its effect: 'Closed: strangers keep away', yet immigrants still come at the base rate",
+      "detail": "The Laws tab says 'Borders: Closed. Closed: strangers keep away.' In Realm.immigrationCooldown, closed borders give the base cooldown (9000 ticks), and open borders only halve it. A player reads 'Closed' as 'no immigrants' and would not know that Open is a 2x boost. The Open side also brings thieves ('Thieves slipped through the open borders... took 2 coins and 2 wood').",
+      "repro": "O > Laws",
+      "screenshot": "shots/laws.png",
+      "tick": 14175
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "The Gift button spends coins on nation leaders who can never be recruited, and gifting a walking pawn mostly misses",
+      "detail": "I gave Karl Smith coins before R revealed 'I lead Forttown. I won't abandon my people.' The command bar ('Talk to Karl Smith (Stranger) - Ambitious, Greedy') does not say he leads a nation. Pawns also walk out of the 5m range between presses: of 8 G presses, 3 landed ('There is no one within reach to give a gift to. (x5)'). Recruiting is the only way I found to raise members, and it took constant chasing.",
+      "repro": "Walk to Karl Smith at Forttown; G; R",
+      "screenshot": "shots/gift1.png",
+      "tick": 13827
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress bar clips its text on the left ('nbers 4/10 \u00b7 Buildings 0/2')",
+      "detail": "The 'Reach the Village era' progress bar shows 'nbers 4/10 \u00b7 Buildings 2/2', with the start of 'Members' cut off. When the era panel is expanded, the objective panel's hint text also runs under the command-bar buttons. Inside a settlement, the Season panel overlaps Player Info (the Relationships line is half hidden).",
+      "repro": "Reach objective 7; look at the top-left objective panel; click the Era header",
+      "screenshot": "shots/objective_text_cut.png",
+      "tick": 7895
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "The 'Build a market stall' objective completed when a pawn built a stall, not me",
+      "detail": "Objective 6 completed at tick 7551 with +50 coins while I had 17 wood and had not pressed B. Bella Wood had just built a stall in my settlement. That is generous, but the objective text 'press B inside your settlement' implies the player does it.",
+      "repro": "Found a settlement and enter it with <20 wood; wait ~200 ticks",
+      "screenshot": "shots/afteraxe.png",
+      "tick": 7551
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 68.06,
+      "Eat something": 69.02,
+      "Create or join a nation": 70.06,
+      "Found a settlement": 144.06,
+      "Enter your settlement": 147.02,
+      "Build a market stall": 151.02
+    },
+    "villageSettlementAtSec": 211.9,
+    "membersAtCrash": 5,
+    "membersTarget": 10,
+    "idleWaitForDay3GateSec": null,
+    "nearestTreeAfter19s_m": 54.1,
+    "crashes": 2,
+    "nearestTreeAtSpawn_m": 21.2
+  },
+  "fun": 3,
+  "verdict": "The opening is quick and readable. A nation, a settlement and 2 stalls were done by 151 s, and a village settlement by 212 s, with good status messages and a clear era checklist. After that the 10-member requirement stalls the run: no immigrants or births arrived, and members could only come from paid poaching. Then a NullReferenceException in the merchant behaviour (PawnBehaviorCalculator:223) crashed the game at tick ~25700 and crashed it again after loading the autosave. Village was never reached, so the #352 day-3 idle wait could not be measured."
+}

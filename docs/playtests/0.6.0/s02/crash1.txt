@@ -1,0 +1,17 @@
+Beyond Nations v0.5.0
+Time: 2026-10-22 18:24:40
+OS: Ubuntu 20.04.6 LTS
+
+[error] the game crashed: Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at beyondnations.PawnBehaviorCalculator.computeBehaviorTypeInSettlementByDay(Pawn pawn) in /root/beyond-nations/src/BeyondNations.Core/behavior/PawnBehaviorCalculator.cs:line 223
+   at beyondnations.PawnBehaviorCalculator.computeBehaviorTypeInSettlement(Pawn pawn) in /root/beyond-nations/src/BeyondNations.Core/behavior/PawnBehaviorCalculator.cs:line 64
+   at beyondnations.Simulation.fixedUpdate(Single fixedDeltaTime) in /root/beyond-nations/src/BeyondNations.Core/simulation/Simulation.cs:line 214
+   at beyondnations.desktop.Game.onUpdate(Double deltaTime) in /root/beyond-nations/src/BeyondNations.Desktop/Game.cs:line 405
+   at Silk.NET.Windowing.Internals.ViewImplementationBase.Run(Action onFrame)
+   at Silk.NET.Windowing.Glfw.GlfwWindow.Run(Action onFrame)
+   at Silk.NET.Windowing.WindowExtensions.Run(IView view)
+   at beyondnations.desktop.Game.run() in /root/beyond-nations/src/BeyondNations.Desktop/Game.cs:line 157
+   at beyondnations.desktop.Program.<>c__DisplayClass0_1.<Main>b__3() in /root/beyond-nations/src/BeyondNations.Desktop/Program.cs:line 47
+   at beyondnations.desktop.Program.runAndReport(Action run, Action dispose, Func`1 started, Action`1 error) in /root/beyond-nations/src/BeyondNations.Desktop/Program.cs:line 104
+[warn ] cleanup after the error above also failed: You cannot call `Reset` inside of the render loop!

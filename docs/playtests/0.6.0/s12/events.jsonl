@@ -1,0 +1,554 @@
+{"type":"screen","tick":0,"wallTimeMs":1792730004046,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792730009371,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792730012268,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792730018178,"how":"created","slot":"world-102-20261023-043338","seed":102}
+{"type":"screen","tick":0,"wallTimeMs":1792730018179,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":475,"wallTimeMs":1792730027770,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":547,"wallTimeMs":1792730029220,"text":"No entities within range to interact with."}
+{"type":"status","tick":617,"wallTimeMs":1792730030652,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":805,"wallTimeMs":1792730034437,"text":"Created nation Westshire."}
+{"type":"chronicle","tick":805,"wallTimeMs":1792730034437,"kind":"NationCreation","text":"You raised a banner and named your people Westshire. It is the first nation this world has known."}
+{"type":"status","tick":1028,"wallTimeMs":1792730038923,"text":"Not enough wood. Need 45 more."}
+{"type":"chronicle","tick":1250,"wallTimeMs":1792730043378,"kind":"NationCreation","text":"Dave Taylor founded the nation of Oldton."}
+{"type":"chronicle","tick":1302,"wallTimeMs":1792730044426,"kind":"SettlementFounded","text":"Oldton put down roots: Dave Taylor founded its first settlement."}
+{"type":"chronicle","tick":1302,"wallTimeMs":1792730044426,"kind":"NationCreation","text":"Tina Wilson founded the nation of Northwood."}
+{"type":"chronicle","tick":1453,"wallTimeMs":1792730047449,"kind":"SettlementFounded","text":"Tina Wilson raised the first settlement of Northwood."}
+{"type":"chronicle","tick":1700,"wallTimeMs":1792730052390,"kind":"NationCreation","text":"Lily Thomas founded the nation of Uppertown."}
+{"type":"status","tick":1710,"wallTimeMs":1792730052601,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2050,"wallTimeMs":1792730059407,"kind":"SettlementFounded","text":"Lily Thomas raised the first settlement of Uppertown."}
+{"type":"status","tick":2091,"wallTimeMs":1792730060214,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":2102,"wallTimeMs":1792730060440,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2102}
+{"type":"status","tick":2102,"wallTimeMs":1792730060440,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":2153,"wallTimeMs":1792730061457,"number":2,"id":"eat","title":"Eat something","ticksTaken":51}
+{"type":"status","tick":2153,"wallTimeMs":1792730061457,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":2201,"wallTimeMs":1792730062414,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":48}
+{"type":"status","tick":2201,"wallTimeMs":1792730062414,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":2304,"wallTimeMs":1792730064487,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":2381,"wallTimeMs":1792730066025,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":2701,"wallTimeMs":1792730072448,"kind":"NationCreation","text":"The nation of Farmfield was born, with Quinn Jones at its head."}
+{"type":"chronicle","tick":2750,"wallTimeMs":1792730073414,"kind":"SettlementFounded","text":"Quinn Jones laid the first stones of Farmfield."}
+{"type":"status","tick":2855,"wallTimeMs":1792730075532,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":3151,"wallTimeMs":1792730081459,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":3290,"wallTimeMs":1792730084240,"text":"You enter the land of Northwood (Neutral)."}
+{"type":"status","tick":3526,"wallTimeMs":1792730088955,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":3710,"wallTimeMs":1792730092655,"text":"You leave the land of Northwood for the wilds."}
+{"type":"status","tick":3721,"wallTimeMs":1792730092869,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":3751,"wallTimeMs":1792730093466,"kind":"NationRelationChange","text":"Oldton and Northwood have become rivals over their border."}
+{"type":"chronicle","tick":3851,"wallTimeMs":1792730095469,"kind":"StallBuilt","text":"A new stall opened in the market of Oldton, built by Dave Taylor."}
+{"type":"status","tick":4070,"wallTimeMs":1792730099871,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":4333,"wallTimeMs":1792730105142,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":4467,"wallTimeMs":1792730107827,"text":"Too close to the Village of Northwood: 165 away, and settlements must be 250 apart. Open ground lies about 90 to the north."}
+{"type":"chronicle","tick":4501,"wallTimeMs":1792730108501,"kind":"NationRelationChange","text":"Oldton and Uppertown have become rivals over their border."}
+{"type":"chronicle","tick":4751,"wallTimeMs":1792730113506,"kind":"StallBuilt","text":"A new stall opened in the market of Uppertown, built by Lily Thomas."}
+{"type":"chronicle","tick":4751,"wallTimeMs":1792730113506,"kind":"NationCreation","text":"Phoebe Williams founded the nation of Greentown."}
+{"type":"chronicle","tick":4803,"wallTimeMs":1792730114529,"kind":"SettlementFounded","text":"Phoebe Williams raised the first settlement of Greentown."}
+{"type":"chronicle","tick":5000,"wallTimeMs":1792730118477,"kind":"NationRelationChange","text":"Oldton and Farmfield have become rivals over their border."}
+{"type":"status","tick":5027,"wallTimeMs":1792730119027,"text":"Too close to the Village of Farmfield: 151 away, and settlements must be 250 apart. Open ground lies about 330 to the north-west."}
+{"type":"chronicle","tick":5702,"wallTimeMs":1792730132609,"kind":"StallBuilt","text":"A new stall opened in the market of Farmfield, built by Quinn Jones."}
+{"type":"status","tick":5883,"wallTimeMs":1792730136292,"text":"Too close to the Village of Farmfield: 149 away, and settlements must be 250 apart. Open ground lies about 141 to the north-west."}
+{"type":"save","tick":6000,"wallTimeMs":1792730138782,"count":1}
+{"type":"status","tick":6000,"wallTimeMs":1792730138782,"text":"Autosaved."}
+{"type":"chronicle","tick":6203,"wallTimeMs":1792730143215,"kind":"NationCreation","text":"Wendy Johnson founded the nation of Farmford."}
+{"type":"status","tick":6327,"wallTimeMs":1792730147188,"text":"Too close to the Village of Farmfield: 226 away, and settlements must be 250 apart. Open ground lies about 30 to the north-west."}
+{"type":"status","tick":6539,"wallTimeMs":1792730154765,"text":"Settlement founded. Farmfield and Greentown resent a new settlement so near their land."}
+{"type":"chronicle","tick":6539,"wallTimeMs":1792730154765,"kind":"SettlementFounded","text":"You laid the first stones of Westshire."}
+{"type":"status","tick":6543,"wallTimeMs":1792730154917,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":6551,"wallTimeMs":1792730155230,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4350}
+{"type":"status","tick":6551,"wallTimeMs":1792730155230,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":6551,"wallTimeMs":1792730155230,"kind":"StallBuilt","text":"Trade came to Farmfield: Quinn Jones built a stall."}
+{"type":"chronicle","tick":6551,"wallTimeMs":1792730155230,"kind":"NationJoin","text":"Eve Wilson swore fealty to Westshire."}
+{"type":"chronicle","tick":6551,"wallTimeMs":1792730155230,"kind":"NationJoin","text":"Westshire welcomed Irene Taylor into its ranks."}
+{"type":"screen","tick":6635,"wallTimeMs":1792730159586,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":6635,"wallTimeMs":1792730172455,"text":"Borders: Open proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":6639,"wallTimeMs":1792730178761,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":6903,"wallTimeMs":1792730185644,"kind":"StallBuilt","text":"Trade came to Westshire: Eve Wilson built a stall."}
+{"type":"chronicle","tick":6951,"wallTimeMs":1792730186882,"kind":"StallBuilt","text":"Eve Wilson built a market stall in Westshire."}
+{"type":"chronicle","tick":7003,"wallTimeMs":1792730188183,"kind":"NationRelationChange","text":"Oldton and Northwood are now hostile."}
+{"type":"chronicle","tick":7003,"wallTimeMs":1792730188183,"kind":"NationRaid","text":"Oldton raided Northwood and carried off 5 stone."}
+{"type":"chronicle","tick":7251,"wallTimeMs":1792730194533,"kind":"NationRelationChange","text":"Northwood and Greentown have become rivals over their border."}
+{"type":"chronicle","tick":7251,"wallTimeMs":1792730194533,"kind":"NationRelationChange","text":"Farmfield and Greentown have become rivals over their border."}
+{"type":"status","tick":7323,"wallTimeMs":1792730196069,"text":"You leave the land of Westshire for the wilds."}
+{"type":"chronicle","tick":7403,"wallTimeMs":1792730197738,"kind":"NationCreation","text":"Fiona Davies founded the nation of Lowerville."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1792730198795,"kind":"SettlementFounded","text":"Wendy Johnson laid the first stones of Farmford."}
+{"type":"status","tick":7491,"wallTimeMs":1792730199692,"text":"You enter the land of Farmfield (Neutral)."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1792730199953,"kind":"StallBuilt","text":"Trade came to Farmfield: Quinn Jones built a stall."}
+{"type":"chronicle","tick":7851,"wallTimeMs":1792730207182,"kind":"NationJoin","text":"Westshire welcomed Fiona Brown into its ranks."}
+{"type":"chronicle","tick":7903,"wallTimeMs":1792730208264,"kind":"SettlementFounded","text":"Fiona Davies raised the first settlement of Lowerville."}
+{"type":"chronicle","tick":8303,"wallTimeMs":1792730217260,"kind":"StallBuilt","text":"Quinn Jones built a market stall in Farmfield."}
+{"type":"screen","tick":8303,"wallTimeMs":1792730217343,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":8307,"wallTimeMs":1792730225630,"from":"PAUSE","to":"WORLD"}
+{"type":"chronicle","tick":8403,"wallTimeMs":1792730227763,"kind":"NationCreation","text":"Linda Brown founded the nation of Easternburg."}
+{"type":"status","tick":8435,"wallTimeMs":1792730228410,"text":"You gave Quinn Jones 10 coin. Quinn Jones (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":8501,"wallTimeMs":1792730229735,"text":"Westshire opened its borders to traders and newcomers."}
+{"type":"chronicle","tick":8501,"wallTimeMs":1792730229735,"kind":"Statecraft","text":"Westshire opened its borders to traders and newcomers."}
+{"type":"chronicle","tick":8800,"wallTimeMs":1792730235785,"kind":"NationCreation","text":"Isabella Thomas founded the nation of Northerntown."}
+{"type":"chronicle","tick":8852,"wallTimeMs":1792730236914,"kind":"NationCreation","text":"Wendy Watson founded the nation of Yellowton."}
+{"type":"chronicle","tick":8900,"wallTimeMs":1792730237926,"kind":"NationCreation","text":"Rachel Roberts declared the nation of Castleshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":8952,"wallTimeMs":1792730239055,"kind":"SettlementFounded","text":"Easternburg put down roots: Linda Brown founded its first settlement."}
+{"type":"status","tick":9000,"wallTimeMs":1792730240105,"text":"Farmfield resents your border: relations are now Rival (-20). Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":9000,"wallTimeMs":1792730240105,"kind":"NationRelationChange","text":"Westshire and Farmfield have become rivals over their border."}
+{"type":"chronicle","tick":9052,"wallTimeMs":1792730241287,"kind":"NationJoin","text":"Charlie Roberts swore fealty to Westshire."}
+{"type":"chronicle","tick":9252,"wallTimeMs":1792730245538,"kind":"NationRelationChange","text":"Greentown and Farmford have become rivals over their border."}
+{"type":"chronicle","tick":9352,"wallTimeMs":1792730247578,"kind":"NationCreation","text":"The nation of Cityport was born, with Abigail Thomas at its head."}
+{"type":"chronicle","tick":9400,"wallTimeMs":1792730248537,"kind":"SettlementFounded","text":"Wendy Watson laid the first stones of Yellowton."}
+{"type":"chronicle","tick":9501,"wallTimeMs":1792730250546,"kind":"NationRelationChange","text":"Oldton and Uppertown are now hostile."}
+{"type":"chronicle","tick":9550,"wallTimeMs":1792730251546,"kind":"StallBuilt","text":"A new stall opened in the market of Farmfield, built by Quinn Jones."}
+{"type":"status","tick":9750,"wallTimeMs":1792730255533,"text":"Farmford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792730255533,"kind":"NationRelationChange","text":"Westshire and Farmford have become rivals over their border."}
+{"type":"status","tick":9765,"wallTimeMs":1792730255852,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":9801,"wallTimeMs":1792730256577,"kind":"NationCreation","text":"The nation of Bigton was born, with Grace Wilson at its head."}
+{"type":"chronicle","tick":9801,"wallTimeMs":1792730256577,"kind":"SettlementFounded","text":"Isabella Thomas laid the first stones of Northerntown."}
+{"type":"chronicle","tick":9952,"wallTimeMs":1792730259702,"kind":"SettlementFounded","text":"Castleshire put down roots: Rachel Roberts founded its first settlement."}
+{"type":"status","tick":10000,"wallTimeMs":1792730260658,"text":"Farmfield sent 20 coins of tribute to your treasury. Relations with Farmfield are now Neutral (-16)."}
+{"type":"chronicle","tick":10000,"wallTimeMs":1792730260658,"kind":"StallBuilt","text":"Trade came to Lowerville: Fiona Davies built a stall."}
+{"type":"chronicle","tick":10000,"wallTimeMs":1792730260658,"kind":"NationRelationChange","text":"Oldton and Farmfield are now hostile."}
+{"type":"chronicle","tick":10000,"wallTimeMs":1792730260658,"kind":"NationRelationChange","text":"Relations between Farmfield and Westshire are now neutral."}
+{"type":"chronicle","tick":10000,"wallTimeMs":1792730260658,"kind":"NationRaid","text":"Oldton raided Uppertown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":10000,"wallTimeMs":1792730260658,"kind":"NationRaid","text":"Raiders from Oldton struck Farmfield, taking 5 coins."}
+{"type":"chronicle","tick":10051,"wallTimeMs":1792730261695,"kind":"SettlementFounded","text":"Bigton put down roots: Grace Wilson founded its first settlement."}
+{"type":"chronicle","tick":10251,"wallTimeMs":1792730266080,"kind":"NationRelationChange","text":"Uppertown and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":10251,"wallTimeMs":1792730266080,"kind":"NationRelationChange","text":"Farmfield and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":10303,"wallTimeMs":1792730267174,"kind":"StallBuilt","text":"Dave Taylor built a market stall in Oldton."}
+{"type":"status","tick":10503,"wallTimeMs":1792730271384,"text":"Lowerville resents your border: relations are now Rival (-20). Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792730271384,"kind":"NationRelationChange","text":"Westshire and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792730271384,"kind":"Caravan","text":"Greentown sent a caravan of 20 stone from the Town of Greentown to the Camp of Westshire."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1792730272390,"kind":"StallBuilt","text":"Fiona Davies built a market stall in Lowerville."}
+{"type":"chronicle","tick":10653,"wallTimeMs":1792730274472,"kind":"SettlementFounded","text":"Cityport put down roots: Abigail Thomas founded its first settlement."}
+{"type":"status","tick":10673,"wallTimeMs":1792730274897,"text":"You gave Lily Thompson 10 coin. Lily Thompson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":10753,"wallTimeMs":1792730276668,"text":"Uppertown has fallen and been disbanded."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792730276668,"kind":"NationCreation","text":"Victor Wood declared the nation of Greenport, though none had yet sworn to it."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792730276668,"kind":"SettlementCapture","text":"After a siege, a camp of Uppertown fell to Oldton."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792730276668,"kind":"NationDisband","text":"Uppertown dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":10953,"wallTimeMs":1792730280903,"kind":"StallBuilt","text":"A new stall opened in the market of Farmfield, built by Quinn Jones. The market is now full."}
+{"type":"chronicle","tick":11053,"wallTimeMs":1792730283225,"kind":"NationCreation","text":"Phoebe Wood founded the nation of Farmport."}
+{"type":"chronicle","tick":11153,"wallTimeMs":1792730285714,"kind":"StallBuilt","text":"A new stall opened in the market of Greentown, built by Phoebe Williams."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792730288105,"kind":"NationRelationChange","text":"Farmfield and Easternburg have become rivals over their border."}
+{"type":"chronicle","tick":11301,"wallTimeMs":1792730289165,"kind":"StallBuilt","text":"Trade came to Lowerville: Fiona Davies built a stall."}
+{"type":"chronicle","tick":11353,"wallTimeMs":1792730290324,"kind":"SettlementFounded","text":"Phoebe Wood raised the first settlement of Farmport."}
+{"type":"chronicle","tick":11353,"wallTimeMs":1792730290324,"kind":"NationCreation","text":"Tina Thomas raised a banner and called it Farmham."}
+{"type":"status","tick":11365,"wallTimeMs":1792730290600,"text":"You gave Quinn Jones 10 coin. Quinn Jones (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"chronicle","tick":11401,"wallTimeMs":1792730291470,"kind":"SettlementFounded","text":"Farmham put down roots: Tina Thomas founded its first settlement."}
+{"type":"status","tick":11437,"wallTimeMs":1792730292317,"text":"You gave Quinn Jones 10 coin. Quinn Jones (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Quinn Jones now knows you by name."}
+{"type":"chronicle","tick":11453,"wallTimeMs":1792730292694,"kind":"StallBuilt","text":"Trade came to Castleshire: Rachel Roberts built a stall."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792730293766,"kind":"StallBuilt","text":"A new stall opened in the market of Westshire, built by Charlie Roberts."}
+{"type":"chronicle","tick":11553,"wallTimeMs":1792730294977,"kind":"StallBuilt","text":"Trade came to Oldton: Dave Taylor built a stall."}
+{"type":"chronicle","tick":11553,"wallTimeMs":1792730294977,"kind":"StallBuilt","text":"Trade came to Easternburg: Linda Brown built a stall."}
+{"type":"chronicle","tick":11701,"wallTimeMs":1792730298320,"kind":"NationCreation","text":"Irene Roberts declared the nation of Littleham, though none had yet sworn to it."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792730299514,"kind":"StallBuilt","text":"Trade came to Yellowton: Wendy Watson built a stall."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792730299514,"kind":"NationRelationChange","text":"Farmford and Yellowton have become rivals over their border."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792730299514,"kind":"NationRelationChange","text":"Greentown and Farmford are now hostile."}
+{"type":"chronicle","tick":11901,"wallTimeMs":1792730303142,"kind":"NationCreation","text":"Una Walker founded the nation of Townville."}
+{"type":"chronicle","tick":11901,"wallTimeMs":1792730303142,"kind":"NationCreation","text":"The nation of Easternford was born, with Natalie Watson at its head."}
+{"type":"status","tick":11905,"wallTimeMs":1792730303231,"text":"You gave Lily Thompson 10 coin. Lily Thompson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":11977,"wallTimeMs":1792730304942,"text":"You gave Lily Thompson 10 coin. Lily Thompson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Lily Thompson now knows you by name."}
+{"type":"save","tick":12001,"wallTimeMs":1792730305568,"count":2}
+{"type":"status","tick":12001,"wallTimeMs":1792730305568,"text":"Autosaved."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792730305568,"kind":"StallBuilt","text":"Fiona Davies built a market stall in Lowerville. The market is now full."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792730305568,"kind":"NationRaid","text":"Raiders from Greentown struck Farmford, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792730305568,"kind":"Caravan","text":"Oldton sent a caravan of 16 wood from the Camp of Oldton to the Camp of Westshire."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792730305568,"kind":"Caravan","text":"Cityport sent a caravan of 20 stone from the Town of Cityport to the Camp of Westshire."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792730305568,"kind":"Caravan","text":"A caravan from Greentown sold 14 stone at the Camp of Westshire for 56 coins."}
+{"type":"chronicle","tick":12101,"wallTimeMs":1792730307817,"kind":"NationCreation","text":"Judy Williams declared the nation of Villageford, though none had yet sworn to it."}
+{"type":"chronicle","tick":12152,"wallTimeMs":1792730308853,"kind":"StallBuilt","text":"A new stall opened in the market of Easternburg, built by Linda Brown."}
+{"type":"status","tick":12232,"wallTimeMs":1792730310487,"text":"You gave Lily Thompson 10 coin. Lily Thompson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"chronicle","tick":12252,"wallTimeMs":1792730310899,"kind":"NationRelationChange","text":"Lowerville and Castleshire have become rivals over their border."}
+{"type":"chronicle","tick":12252,"wallTimeMs":1792730310899,"kind":"NationRelationChange","text":"Easternburg and Northerntown have become rivals over their border."}
+{"type":"chronicle","tick":12252,"wallTimeMs":1792730310899,"kind":"NationRelationChange","text":"Oldton and Greentown have formed an alliance."}
+{"type":"chronicle","tick":12252,"wallTimeMs":1792730310899,"kind":"NationRelationChange","text":"Greentown and Northwood are now hostile."}
+{"type":"chronicle","tick":12252,"wallTimeMs":1792730310899,"kind":"NationRelationChange","text":"Greentown and Farmfield are now hostile."}
+{"type":"chronicle","tick":12300,"wallTimeMs":1792730311894,"kind":"SettlementFounded","text":"Victor Wood raised the first settlement of Greenport."}
+{"type":"chronicle","tick":12452,"wallTimeMs":1792730315014,"kind":"NationCreation","text":"Katie Walker raised a banner and called it Cityham."}
+{"type":"chronicle","tick":12500,"wallTimeMs":1792730315983,"kind":"NationRelationChange","text":"Greentown and Bigton have become rivals over their border."}
+{"type":"chronicle","tick":12500,"wallTimeMs":1792730315983,"kind":"NationRelationChange","text":"Yellowton and Cityport have become rivals over their border."}
+{"type":"chronicle","tick":12500,"wallTimeMs":1792730315983,"kind":"NationRelationChange","text":"Yellowton and Bigton have become rivals over their border."}
+{"type":"chronicle","tick":12600,"wallTimeMs":1792730317978,"kind":"StallBuilt","text":"Linda Brown built a market stall in Easternburg."}
+{"type":"chronicle","tick":12600,"wallTimeMs":1792730317978,"kind":"StallBuilt","text":"Rachel Roberts built a market stall in Castleshire."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792730320988,"kind":"SettlementFounded","text":"Irene Roberts raised the first settlement of Littleham."}
+{"type":"chronicle","tick":12803,"wallTimeMs":1792730322038,"kind":"NationCreation","text":"The nation of Redburg was born, with Xavier Wilson at its head."}
+{"type":"chronicle","tick":12850,"wallTimeMs":1792730322984,"kind":"NationCreation","text":"Natalie Roberts founded the nation of Smallwood."}
+{"type":"chronicle","tick":12952,"wallTimeMs":1792730325055,"kind":"StallBuilt","text":"Trade came to Farmford: Wendy Johnson built a stall."}
+{"type":"chronicle","tick":13000,"wallTimeMs":1792730326290,"kind":"SettlementFounded","text":"Judy Williams laid the first stones of Villageford."}
+{"type":"chronicle","tick":13000,"wallTimeMs":1792730326290,"kind":"NationRaid","text":"Greentown raided Northwood and carried off 1 stone."}
+{"type":"chronicle","tick":13000,"wallTimeMs":1792730326290,"kind":"NationRaid","text":"Greentown raided Farmfield and carried off 5 coins."}
+{"type":"chronicle","tick":13052,"wallTimeMs":1792730327690,"kind":"SettlementFounded","text":"Katie Walker laid the first stones of Cityham."}
+{"type":"chronicle","tick":13252,"wallTimeMs":1792730333563,"kind":"SettlementFounded","text":"Xavier Wilson laid the first stones of Redburg."}
+{"type":"status","tick":13503,"wallTimeMs":1792730339329,"text":"Farmfield has fallen and been disbanded. You enter the land of Greentown (Neutral). Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792730339329,"kind":"StallBuilt","text":"A new stall opened in the market of Castleshire, built by Rachel Roberts."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792730339329,"kind":"SettlementCapture","text":"After a siege, a village of Farmfield fell to Greentown."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792730339329,"kind":"NationDisband","text":"Farmfield faded from memory before it ever built a home."}
+{"type":"chronicle","tick":13550,"wallTimeMs":1792730340291,"kind":"StallBuilt","text":"Trade came to Oldton: Dave Taylor built a stall."}
+{"type":"chronicle","tick":13550,"wallTimeMs":1792730340291,"kind":"SettlementFounded","text":"Townville put down roots: Una Walker founded its first settlement."}
+{"type":"chronicle","tick":13600,"wallTimeMs":1792730341288,"kind":"StallBuilt","text":"Trade came to Yellowton: Wendy Watson built a stall."}
+{"type":"chronicle","tick":13600,"wallTimeMs":1792730341288,"kind":"StallBuilt","text":"A new stall opened in the market of Easternburg, built by Linda Brown."}
+{"type":"status","tick":13652,"wallTimeMs":1792730342332,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792730344353,"kind":"NationCreation","text":"Fiona Smith raised a banner and called it Eastville."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792730344353,"kind":"StallBuilt","text":"A new stall opened in the market of Farmham, built by Tina Thomas."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792730344353,"kind":"NationRelationChange","text":"Oldton and Farmham have become rivals over their border."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792730344353,"kind":"NationRelationChange","text":"Northerntown and Farmport have become rivals over their border."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792730344353,"kind":"NationRelationChange","text":"Cityport and Greenport have become rivals over their border."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792730344353,"kind":"NationRelationChange","text":"Farmport and Farmham have become rivals over their border."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792730346375,"kind":"StallBuilt","text":"Trade came to Farmport: Phoebe Wood built a stall."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792730346375,"kind":"NationCreation","text":"Xavier Evans declared the nation of Westwood, though none had yet sworn to it."}
+{"type":"status","tick":13976,"wallTimeMs":1792730348872,"text":"You gave Quinn Jones 10 coin. Quinn Jones (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":14003,"wallTimeMs":1792730349410,"text":"Lowerville sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792730349410,"kind":"NationRelationChange","text":"Bigton and Greenport have become rivals over their border."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792730354413,"kind":"NationRelationChange","text":"Lowerville and Easternburg have become rivals over their border."}
+{"type":"chronicle","tick":14302,"wallTimeMs":1792730355508,"kind":"StallBuilt","text":"A new stall opened in the market of Greentown, built by Phoebe Williams."}
+{"type":"chronicle","tick":14350,"wallTimeMs":1792730356519,"kind":"NationCreation","text":"Fiona Watson raised a banner and called it Castleton."}
+{"type":"chronicle","tick":14401,"wallTimeMs":1792730357565,"kind":"StallBuilt","text":"A new stall opened in the market of Easternburg, built by Linda Brown."}
+{"type":"chronicle","tick":14502,"wallTimeMs":1792730359593,"kind":"NationRelationChange","text":"Farmham and Villageford have become rivals over their border."}
+{"type":"chronicle","tick":14502,"wallTimeMs":1792730359593,"kind":"NationRelationChange","text":"Farmford and Yellowton are now hostile."}
+{"type":"chronicle","tick":14552,"wallTimeMs":1792730360585,"kind":"StallBuilt","text":"Judy Williams built a market stall in Villageford."}
+{"type":"chronicle","tick":14602,"wallTimeMs":1792730361577,"kind":"StallBuilt","text":"Rachel Roberts built a market stall in Castleshire. The market is now full."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792730364566,"kind":"NationCreation","text":"Mike Lewis raised a banner and called it Castleford."}
+{"type":"chronicle","tick":14803,"wallTimeMs":1792730365596,"kind":"SettlementFounded","text":"Mike Lewis laid the first stones of Castleford."}
+{"type":"chronicle","tick":14851,"wallTimeMs":1792730366560,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Farmford."}
+{"type":"chronicle","tick":14900,"wallTimeMs":1792730367561,"kind":"NationCreation","text":"Nancy Johnson founded the nation of Citywood."}
+{"type":"status","tick":15002,"wallTimeMs":1792730369651,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792730369651,"kind":"NationRelationChange","text":"Farmport and Littleham have become rivals over their border."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792730369651,"kind":"NationRelationChange","text":"Cityport and Yellowton are now hostile."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792730369651,"kind":"NationRaid","text":"Raiders from Farmford struck Yellowton, taking 5 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792730369651,"kind":"NationRaid","text":"Raiders from Cityport struck Yellowton, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":15102,"wallTimeMs":1792730371658,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Wendy Watson."}
+{"type":"chronicle","tick":15141,"wallTimeMs":1792730372438,"kind":"Caravan","text":"A caravan from Oldton sold 6 wood at the Camp of Westshire for 42 coins."}
+{"type":"chronicle","tick":15151,"wallTimeMs":1792730372640,"kind":"StallBuilt","text":"Trade came to Oldton: Dave Taylor built a stall."}
+{"type":"chronicle","tick":15200,"wallTimeMs":1792730373620,"kind":"SettlementFounded","text":"Castleton put down roots: Fiona Watson founded its first settlement."}
+{"type":"chronicle","tick":15200,"wallTimeMs":1792730373620,"kind":"NationCreation","text":"Peggy Robinson founded the nation of Westham."}
+{"type":"chronicle","tick":15253,"wallTimeMs":1792730374679,"kind":"NationRelationChange","text":"Easternburg and Northerntown are now hostile."}
+{"type":"chronicle","tick":15353,"wallTimeMs":1792730376669,"kind":"SettlementFounded","text":"Nancy Johnson raised the first settlement of Citywood."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792730379653,"kind":"NationRelationChange","text":"Lowerville and Cityham have become rivals over their border."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792730379653,"kind":"NationRelationChange","text":"Easternburg and Redburg have become rivals over their border."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792730379653,"kind":"NationRelationChange","text":"Cityham and Redburg have become rivals over their border."}
+{"type":"status","tick":15585,"wallTimeMs":1792730381327,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":15602,"wallTimeMs":1792730381655,"kind":"NationCreation","text":"Tilly Lewis raised a banner and called it Newford."}
+{"type":"chronicle","tick":15602,"wallTimeMs":1792730381655,"kind":"SettlementFounded","text":"Xavier Evans raised the first settlement of Westwood."}
+{"type":"status","tick":15753,"wallTimeMs":1792730384684,"text":"You leave the land of Greentown for the wilds."}
+{"type":"chronicle","tick":15753,"wallTimeMs":1792730384684,"kind":"NationRelationChange","text":"Oldton and Northerntown have become rivals over their border."}
+{"type":"chronicle","tick":15867,"wallTimeMs":1792730386954,"kind":"Caravan","text":"A caravan from Cityport sold 4 stone at the Camp of Westshire for 12 coins."}
+{"type":"chronicle","tick":15903,"wallTimeMs":1792730387685,"kind":"NationCreation","text":"Irene Williams founded the nation of Smallton."}
+{"type":"chronicle","tick":15950,"wallTimeMs":1792730388637,"kind":"SettlementFounded","text":"Peggy Robinson laid the first stones of Westham."}
+{"type":"status","tick":16002,"wallTimeMs":1792730389692,"text":"Lowerville sent 20 coins of tribute to your treasury. Relations with Yellowton are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":16002,"wallTimeMs":1792730389692,"kind":"NationRelationChange","text":"Bigton and Townville have become rivals over their border."}
+{"type":"chronicle","tick":16002,"wallTimeMs":1792730389692,"kind":"NationRaid","text":"Easternburg raided Northerntown and carried off 4 wood."}
+{"type":"chronicle","tick":16002,"wallTimeMs":1792730389692,"kind":"NationRelationChange","text":"Relations between Westshire and Yellowton are now friendly."}
+{"type":"status","tick":16160,"wallTimeMs":1792730392908,"text":"You are back on your own land."}
+{"type":"chronicle","tick":16252,"wallTimeMs":1792730394745,"kind":"NationRelationChange","text":"Cityport and Greenport are now hostile."}
+{"type":"status","tick":16501,"wallTimeMs":1792730399785,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":16501,"wallTimeMs":1792730399785,"kind":"NationRelationChange","text":"Bigton and Greenport are now hostile."}
+{"type":"status","tick":16834,"wallTimeMs":1792730406515,"text":"You gave Irene Taylor 10 coin. Irene Taylor (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":16910,"wallTimeMs":1792730408138,"text":"You gave Irene Taylor 10 coin. Irene Taylor (Stranger): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"chronicle","tick":16950,"wallTimeMs":1792730408976,"kind":"SettlementFounded","text":"Irene Williams laid the first stones of Smallton."}
+{"type":"status","tick":16986,"wallTimeMs":1792730409808,"text":"You gave Irene Taylor 10 coin. Irene Taylor (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Irene Taylor now knows you by name."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792730410146,"kind":"NationRelationChange","text":"Farmham and Villageford are now hostile."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792730410146,"kind":"NationRaid","text":"Cityport raided Greenport and carried off 3 wood."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792730410146,"kind":"NationRaid","text":"Farmham raided Villageford and carried off 1 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":17050,"wallTimeMs":1792730411146,"kind":"SettlementFounded","text":"Tilly Lewis raised the first settlement of Newford."}
+{"type":"status","tick":17058,"wallTimeMs":1792730411320,"text":"You gave Irene Taylor 10 coin. Irene Taylor (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792730415785,"kind":"NationRelationChange","text":"Northwood and Castleford have become rivals over their border."}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792730415785,"kind":"NationRelationChange","text":"Farmford and Castleford have become rivals over their border."}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792730415785,"kind":"NationRelationChange","text":"Bigton and Castleford have become rivals over their border."}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792730415785,"kind":"NationRelationChange","text":"Greentown and Yellowton have formed an alliance."}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792730415785,"kind":"NationRelationChange","text":"Castleshire and Lowerville are now hostile."}
+{"type":"status","tick":17266,"wallTimeMs":1792730416266,"text":"You gave Charlie Roberts 10 coin. Charlie Roberts (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":17502,"wallTimeMs":1792730422901,"text":"Greenport has fallen and been disbanded."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792730422901,"kind":"NationRelationChange","text":"Oldton and Castleton have become rivals over their border."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792730422901,"kind":"NationRelationChange","text":"Villageford and Castleton have become rivals over their border."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792730422901,"kind":"NationRelationChange","text":"Greentown and Bigton are now hostile."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792730422901,"kind":"NationRelationChange","text":"Yellowton and Bigton are now hostile."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792730422901,"kind":"SettlementCapture","text":"After a siege, a village of Greenport fell to Cityport."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792730422901,"kind":"NationDisband","text":"Greenport dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":17752,"wallTimeMs":1792730429338,"kind":"NationRelationChange","text":"Northwood and Citywood have become rivals over their border."}
+{"type":"status","tick":17792,"wallTimeMs":1792730430162,"text":"You leave the land of Westshire for the wilds."}
+{"type":"status","tick":17962,"wallTimeMs":1792730433685,"text":"You enter the land of Greentown (Neutral)."}
+{"type":"save","tick":18000,"wallTimeMs":1792730434550,"count":3}
+{"type":"status","tick":18000,"wallTimeMs":1792730434550,"text":"Autosaved."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1792730434550,"kind":"NationRelationChange","text":"Lowerville and Westwood have become rivals over their border."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1792730434550,"kind":"NationRaid","text":"Greentown raided Bigton and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1792730434550,"kind":"NationRaid","text":"Raiders from Yellowton struck Farmford, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1792730434550,"kind":"NationRaid","text":"Castleshire raided Lowerville and carried off 5 coins."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1792730434550,"kind":"NationRaid","text":"Yellowton raided Cityport and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1792730434550,"kind":"NationRaid","text":"Yellowton raided Bigton and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":18252,"wallTimeMs":1792730442941,"kind":"NationRelationChange","text":"Townville and Westham have become rivals over their border."}
+{"type":"chronicle","tick":18252,"wallTimeMs":1792730442941,"kind":"NationRelationChange","text":"Castleford and Westham have become rivals over their border."}
+{"type":"chronicle","tick":18252,"wallTimeMs":1792730442941,"kind":"NationRelationChange","text":"Citywood and Westham have become rivals over their border."}
+{"type":"chronicle","tick":18252,"wallTimeMs":1792730442941,"kind":"NationRelationChange","text":"Northwood and Farmford swore an alliance."}
+{"type":"status","tick":18396,"wallTimeMs":1792730449339,"text":"Entered settlement."}
+{"type":"status","tick":18500,"wallTimeMs":1792730454514,"text":"Easternburg shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":18500,"wallTimeMs":1792730454514,"kind":"NationRelationChange","text":"Relations between Westshire and Easternburg are now friendly against a common enemy."}
+{"type":"status","tick":18660,"wallTimeMs":1792730462454,"text":"Exited settlement."}
+{"type":"chronicle","tick":18752,"wallTimeMs":1792730467124,"kind":"NationRelationChange","text":"Oldton and Farmham are now hostile."}
+{"type":"chronicle","tick":18752,"wallTimeMs":1792730467124,"kind":"NationRelationChange","text":"Northerntown and Farmport are now hostile."}
+{"type":"chronicle","tick":18752,"wallTimeMs":1792730467124,"kind":"NationRelationChange","text":"Farmham and Farmport are now hostile."}
+{"type":"status","tick":19000,"wallTimeMs":1792730479118,"text":"Lowerville sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":19000,"wallTimeMs":1792730479118,"kind":"NationRelationChange","text":"Oldton and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":19000,"wallTimeMs":1792730479118,"kind":"NationRaid","text":"Raiders from Oldton struck Farmham, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":19000,"wallTimeMs":1792730479118,"kind":"NationRaid","text":"Raiders from Northerntown struck Farmport, taking 5 coins."}
+{"type":"chronicle","tick":19000,"wallTimeMs":1792730479118,"kind":"NationRaid","text":"Farmham raided Farmport and carried off 5 coins."}
+{"type":"chronicle","tick":19252,"wallTimeMs":1792730486712,"kind":"NationRelationChange","text":"Castleshire and Smallton have become rivals over their border."}
+{"type":"chronicle","tick":19252,"wallTimeMs":1792730486712,"kind":"NationRelationChange","text":"Westwood and Smallton have become rivals over their border."}
+{"type":"chronicle","tick":19252,"wallTimeMs":1792730486712,"kind":"NationRelationChange","text":"Easternburg and Lowerville are now hostile."}
+{"type":"status","tick":19500,"wallTimeMs":1792730493895,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":19500,"wallTimeMs":1792730493895,"kind":"NationRelationChange","text":"Townville and Newford have become rivals over their border."}
+{"type":"status","tick":19628,"wallTimeMs":1792730497543,"text":"Welcome home!"}
+{"type":"status","tick":19632,"wallTimeMs":1792730497657,"text":"You are back on your own land."}
+{"type":"chronicle","tick":19752,"wallTimeMs":1792730501966,"kind":"NationRelationChange","text":"Oldton and Farmport have formed an alliance."}
+{"type":"chronicle","tick":19752,"wallTimeMs":1792730501966,"kind":"NationRelationChange","text":"Northerntown and Farmham have formed an alliance."}
+{"type":"status","tick":20000,"wallTimeMs":1792730511655,"text":"Cityham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRelationChange","text":"Relations between Westshire and Cityham are now friendly against a common enemy."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRelationChange","text":"Northwood and Bigton swore an alliance."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRelationChange","text":"Farmport and Littleham are now hostile."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRaid","text":"Raiders from Easternburg struck Lowerville, taking 5 coins."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRaid","text":"Raiders from Northerntown struck Easternburg, taking 5 coins, 4 wood, 3 stone."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRaid","text":"Raiders from Farmport struck Northerntown, taking 5 coins, 4 wood, 3 stone."}
+{"type":"chronicle","tick":20000,"wallTimeMs":1792730511655,"kind":"NationRaid","text":"Farmport raided Farmham and carried off 5 coins, 5 wood."}
+{"type":"status","tick":20092,"wallTimeMs":1792730513873,"text":"Charlie Roberts (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\u0022"}
+{"type":"chronicle","tick":20252,"wallTimeMs":1792730517656,"kind":"NationRelationChange","text":"Farmford and Lowerville swore an alliance."}
+{"type":"chronicle","tick":20352,"wallTimeMs":1792730519980,"kind":"WorldEvent","text":"A bountiful harvest came in across Castleton, and Fiona Watson filled the stores with 10 apples."}
+{"type":"chronicle","tick":20500,"wallTimeMs":1792730523335,"kind":"NationRelationChange","text":"Lowerville and Cityham are now hostile."}
+{"type":"chronicle","tick":20500,"wallTimeMs":1792730523335,"kind":"NationRelationChange","text":"Lowerville and Redburg have formed an alliance."}
+{"type":"chronicle","tick":20500,"wallTimeMs":1792730523335,"kind":"NationRelationChange","text":"Easternburg and Redburg are now hostile."}
+{"type":"chronicle","tick":20500,"wallTimeMs":1792730523335,"kind":"NationRelationChange","text":"Cityham and Redburg are now hostile."}
+{"type":"status","tick":21000,"wallTimeMs":1792730534426,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRelationChange","text":"Greentown and Easternburg have become rivals over their border."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRelationChange","text":"Relations between Easternburg and Greentown are now neutral."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRelationChange","text":"Bigton and Townville are now hostile."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRelationChange","text":"Relations between Cityham and Lowerville are now rival."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Raiders from Oldton struck Farmham, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Greentown raided Farmford and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Raiders from Greentown struck Bigton, taking 5 stone."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Yellowton raided Farmford and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Lowerville raided Easternburg and carried off 5 coins."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Lowerville raided Castleshire and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Northerntown raided Easternburg and carried off 5 coins."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Farmport raided Northerntown and carried off 5 coins."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Raiders from Yellowton struck Cityport, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Raiders from Yellowton struck Bigton, taking 5 stone."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Raiders from Bigton struck Townville, taking 1 wood, 5 stone."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Farmport raided Farmham and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1792730534426,"kind":"NationRaid","text":"Raiders from Farmham struck Villageford, taking 2 coins, 5 wood."}
+{"type":"status","tick":21143,"wallTimeMs":1792730537492,"text":"You leave the land of Westshire for the wilds."}
+{"type":"status","tick":21251,"wallTimeMs":1792730539857,"text":"Littleham has fallen and been disbanded."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1792730539857,"kind":"SettlementCapture","text":"After a siege, a camp of Littleham fell to Farmport."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1792730539857,"kind":"NationDisband","text":"Littleham faded from memory before it ever built a home."}
+{"type":"status","tick":21370,"wallTimeMs":1792730542476,"text":"You enter the land of Lowerville (Rival)."}
+{"type":"chronicle","tick":21502,"wallTimeMs":1792730545640,"kind":"NationRelationChange","text":"Lowerville and Northerntown swore an alliance."}
+{"type":"status","tick":21690,"wallTimeMs":1792730550239,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":21750,"wallTimeMs":1792730552121,"text":"Castleford shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":21750,"wallTimeMs":1792730552121,"kind":"NationRelationChange","text":"Relations between Westshire and Castleford are now friendly against a common enemy."}
+{"type":"status","tick":21882,"wallTimeMs":1792730555685,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":21926,"wallTimeMs":1792730556690,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Fiona Davies now knows you by name."}
+{"type":"status","tick":21974,"wallTimeMs":1792730557800,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22002,"wallTimeMs":1792730558419,"text":"Oldton shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":22002,"wallTimeMs":1792730558419,"kind":"NationRelationChange","text":"Relations between Westshire and Oldton are now friendly against a common enemy."}
+{"type":"chronicle","tick":22002,"wallTimeMs":1792730558419,"kind":"NationRelationChange","text":"Greentown and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":22002,"wallTimeMs":1792730558419,"kind":"NationRelationChange","text":"Cityport and Bigton have become rivals over their border."}
+{"type":"chronicle","tick":22002,"wallTimeMs":1792730558419,"kind":"NationRelationChange","text":"Relations between Lowerville and Greentown are now neutral."}
+{"type":"status","tick":22018,"wallTimeMs":1792730558792,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22066,"wallTimeMs":1792730559897,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22110,"wallTimeMs":1792730560931,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":22250,"wallTimeMs":1792730564762,"text":"Westwood shares an enemy with you: relations are now Friendly (\u002B20). Townville has fallen and been disbanded."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"NationRelationChange","text":"Relations between Westshire and Westwood are now friendly against a common enemy."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"NationRelationChange","text":"Northwood and Castleford are now hostile."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"NationRelationChange","text":"Farmford and Castleford are now hostile."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"NationRelationChange","text":"Yellowton and Castleford have formed an alliance."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"NationRelationChange","text":"Bigton and Castleford are now hostile."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"SettlementCapture","text":"Bigton captured a village from Townville."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792730564762,"kind":"NationDisband","text":"Townville faded from memory before it ever built a home."}
+{"type":"status","tick":22410,"wallTimeMs":1792730569116,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Fiona Davies now counts you as a friend!"}
+{"type":"chronicle","tick":22410,"wallTimeMs":1792730569116,"kind":"PawnRelationshipIncrease","text":"You and Fiona Davies of Lowerville have become friends."}
+{"type":"status","tick":22450,"wallTimeMs":1792730570193,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22502,"wallTimeMs":1792730571533,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":22502,"wallTimeMs":1792730571533,"kind":"NationRelationChange","text":"Oldton and Castleton are now hostile."}
+{"type":"chronicle","tick":22502,"wallTimeMs":1792730571533,"kind":"NationRelationChange","text":"Farmham and Castleton have formed an alliance."}
+{"type":"chronicle","tick":22502,"wallTimeMs":1792730571533,"kind":"NationRelationChange","text":"Castleton and Villageford are now hostile."}
+{"type":"status","tick":22510,"wallTimeMs":1792730571743,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22558,"wallTimeMs":1792730572833,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22606,"wallTimeMs":1792730573890,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"chronicle","tick":22750,"wallTimeMs":1792730577039,"kind":"NationRelationChange","text":"Northwood and Citywood are now hostile."}
+{"type":"chronicle","tick":23000,"wallTimeMs":1792730582443,"kind":"NationRelationChange","text":"Westham and Newford have become rivals over their border."}
+{"type":"chronicle","tick":23000,"wallTimeMs":1792730582443,"kind":"NationRelationChange","text":"Lowerville and Westwood are now hostile."}
+{"type":"chronicle","tick":23000,"wallTimeMs":1792730582443,"kind":"NationRaid","text":"Raiders from Castleton struck Villageford, taking 5 wood."}
+{"type":"chronicle","tick":23252,"wallTimeMs":1792730588730,"kind":"NationRelationChange","text":"Greentown and Easternburg have become rivals over their border."}
+{"type":"chronicle","tick":23252,"wallTimeMs":1792730588730,"kind":"NationRelationChange","text":"Northwood and Westham have formed an alliance."}
+{"type":"chronicle","tick":23252,"wallTimeMs":1792730588730,"kind":"NationRelationChange","text":"Westham and Castleford are now hostile."}
+{"type":"chronicle","tick":23252,"wallTimeMs":1792730588730,"kind":"NationRelationChange","text":"Westham and Citywood are now hostile."}
+{"type":"status","tick":23500,"wallTimeMs":1792730594650,"text":"Castleford has fallen and been disbanded."}
+{"type":"chronicle","tick":23500,"wallTimeMs":1792730594650,"kind":"NationRelationChange","text":"Northwood and Farmham have formed an alliance."}
+{"type":"chronicle","tick":23500,"wallTimeMs":1792730594650,"kind":"SettlementCapture","text":"Northwood captured a camp from Castleford."}
+{"type":"chronicle","tick":23500,"wallTimeMs":1792730594650,"kind":"NationDisband","text":"Castleford dissolved, its name already half-forgotten."}
+{"type":"status","tick":23520,"wallTimeMs":1792730595215,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":23560,"wallTimeMs":1792730596355,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":23596,"wallTimeMs":1792730597374,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 Fiona Davies is now loyal to you!"}
+{"type":"chronicle","tick":23596,"wallTimeMs":1792730597374,"kind":"PawnRelationshipIncrease","text":"Fiona Davies of Lowerville would follow you anywhere now."}
+{"type":"status","tick":23752,"wallTimeMs":1792730601768,"text":"Castleton has fallen and been disbanded."}
+{"type":"chronicle","tick":23752,"wallTimeMs":1792730601768,"kind":"NationRelationChange","text":"Easternburg and Farmport swore an alliance."}
+{"type":"chronicle","tick":23752,"wallTimeMs":1792730601768,"kind":"SettlementCapture","text":"Oldton captured a camp from Castleton."}
+{"type":"chronicle","tick":23752,"wallTimeMs":1792730601768,"kind":"NationDisband","text":"Castleton faded from memory before it ever built a home."}
+{"type":"status","tick":23868,"wallTimeMs":1792730604745,"text":"Fiona Davies (Loyal): \u0022I lead Lowerville. I won\u0027t abandon my people.\u0022"}
+{"type":"save","tick":24000,"wallTimeMs":1792730608020,"count":4}
+{"type":"status","tick":24000,"wallTimeMs":1792730608020,"text":"Autosaved."}
+{"type":"chronicle","tick":24000,"wallTimeMs":1792730608020,"kind":"NationRelationChange","text":"Relations between Lowerville and Oldton are now neutral."}
+{"type":"chronicle","tick":24000,"wallTimeMs":1792730608020,"kind":"NationRelationChange","text":"Easternburg and Castleshire have formed an alliance."}
+{"type":"chronicle","tick":24000,"wallTimeMs":1792730608020,"kind":"SettlementCapture","text":"Northwood captured a camp from Citywood."}
+{"type":"chronicle","tick":24000,"wallTimeMs":1792730608020,"kind":"NationDisband","text":"Citywood faded from memory before it ever built a home."}
+{"type":"status","tick":24252,"wallTimeMs":1792730613907,"text":"Westwood has fallen and been disbanded."}
+{"type":"chronicle","tick":24252,"wallTimeMs":1792730613907,"kind":"NationRelationChange","text":"Lowerville and Smallton swore an alliance."}
+{"type":"chronicle","tick":24252,"wallTimeMs":1792730613907,"kind":"NationRelationChange","text":"Castleshire and Smallton are now hostile."}
+{"type":"chronicle","tick":24252,"wallTimeMs":1792730613907,"kind":"NationRelationChange","text":"Smallton and Westwood are now hostile."}
+{"type":"chronicle","tick":24252,"wallTimeMs":1792730613907,"kind":"SettlementCapture","text":"Lowerville captured a camp from Westwood."}
+{"type":"chronicle","tick":24252,"wallTimeMs":1792730613907,"kind":"NationDisband","text":"Westwood is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":24500,"wallTimeMs":1792730619798,"kind":"NationRelationChange","text":"Lowerville and Cityham are now hostile over their border."}
+{"type":"chronicle","tick":24500,"wallTimeMs":1792730619798,"kind":"NationRelationChange","text":"Farmport and Villageford swore an alliance."}
+{"type":"chronicle","tick":24752,"wallTimeMs":1792730625707,"kind":"NationRelationChange","text":"Oldton and Northerntown are now hostile."}
+{"type":"status","tick":24980,"wallTimeMs":1792730631613,"text":"Entered settlement."}
+{"type":"status","tick":25000,"wallTimeMs":1792730632172,"text":"Redburg has fallen and been disbanded."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"NationRelationChange","text":"Oldton and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"NationRaid","text":"Raiders from Northwood struck Oldton, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"NationRaid","text":"Raiders from Greentown struck Northwood, taking 5 stone."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"NationRaid","text":"Raiders from Farmford struck Yellowton, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"NationRaid","text":"Lowerville raided Cityham and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"SettlementCapture","text":"After a siege, a village of Redburg fell to Easternburg."}
+{"type":"chronicle","tick":25000,"wallTimeMs":1792730632172,"kind":"NationDisband","text":"Redburg is no more; it never raised so much as a hut."}
+{"type":"status","tick":25252,"wallTimeMs":1792730639071,"text":"Exited settlement."}
+{"type":"status","tick":25368,"wallTimeMs":1792730642128,"text":"You gave Fiona Davies 10 coin. Fiona Davies (Loyal): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":25500,"wallTimeMs":1792730645461,"text":"Smallton has fallen and been disbanded. Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":25500,"wallTimeMs":1792730645461,"kind":"NationRelationChange","text":"Northwood and Northerntown swore an alliance."}
+{"type":"chronicle","tick":25500,"wallTimeMs":1792730645461,"kind":"SettlementCapture","text":"After a siege, a camp of Smallton fell to Castleshire."}
+{"type":"chronicle","tick":25500,"wallTimeMs":1792730645461,"kind":"NationDisband","text":"Smallton is no more; it never raised so much as a hut."}
+{"type":"status","tick":25800,"wallTimeMs":1792730653078,"text":"You gave Abigail Watson 1 apple. Abigail Watson (Acquaintance): \u0022Food! Thank you, I was starving!\u0022 Abigail Watson now knows you by name."}
+{"type":"chronicle","tick":26000,"wallTimeMs":1792730658155,"kind":"NationRelationChange","text":"Relations between Lowerville and Oldton are now neutral."}
+{"type":"chronicle","tick":26000,"wallTimeMs":1792730658155,"kind":"NationRaid","text":"Raiders from Northwood struck Greentown, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":27000,"wallTimeMs":1792730681745,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 1 wood."}
+{"type":"chronicle","tick":27000,"wallTimeMs":1792730681745,"kind":"NationRelationChange","text":"Oldton and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":27000,"wallTimeMs":1792730681745,"kind":"NationRelationChange","text":"Relations between Lowerville and Oldton are now neutral."}
+{"type":"chronicle","tick":27000,"wallTimeMs":1792730681745,"kind":"NationRelationChange","text":"Bigton and Cityport are now hostile."}
+{"type":"chronicle","tick":27000,"wallTimeMs":1792730681745,"kind":"NationRaid","text":"Raiders from Bigton struck Cityport, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":27151,"wallTimeMs":1792730684771,"kind":"StallBuilt","text":"A new stall opened in the market of Greentown, built by Phoebe Williams."}
+{"type":"chronicle","tick":27351,"wallTimeMs":1792730689580,"kind":"StallBuilt","text":"Trade came to Cityham: Katie Walker built a stall."}
+{"type":"chronicle","tick":27503,"wallTimeMs":1792730692943,"kind":"StallBuilt","text":"Linda Brown built a market stall in Easternburg. The market is now full."}
+{"type":"chronicle","tick":27852,"wallTimeMs":1792730700377,"kind":"StallBuilt","text":"A new stall opened in the market of Villageford, built by Judy Williams."}
+{"type":"world_event_offered","tick":27852,"wallTimeMs":1792730700377,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Camp of Westshire. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":27852,"wallTimeMs":1792731314778,"text":"Bandits camped outside the Camp of Westshire; you raised a militia of Westshire and drove them off."}
+{"type":"chronicle","tick":27852,"wallTimeMs":1792731314778,"kind":"WorldEvent","text":"Bandits camped outside the Camp of Westshire; you raised a militia of Westshire and drove them off."}
+{"type":"world_event_resolved","tick":27852,"wallTimeMs":1792731314778,"title":"Bandit camp","status":"Bandits camped outside the Camp of Westshire; you raised a militia of Westshire and drove them off."}
+{"type":"chronicle","tick":27901,"wallTimeMs":1792731315776,"kind":"StallBuilt","text":"Trade came to Oldton: Dave Taylor built a stall. The market is now full."}
+{"type":"chronicle","tick":27901,"wallTimeMs":1792731315776,"kind":"StallBuilt","text":"A new stall opened in the market of Cityport, built by Abigail Thomas."}
+{"type":"chronicle","tick":28001,"wallTimeMs":1792731317841,"kind":"NationRelationChange","text":"Westham and Newford are now hostile."}
+{"type":"chronicle","tick":28201,"wallTimeMs":1792731322181,"kind":"StallBuilt","text":"Trade came to Farmford: Wendy Johnson built a stall."}
+{"type":"chronicle","tick":28201,"wallTimeMs":1792731322181,"kind":"StallBuilt","text":"A new stall opened in the market of Northwood, built by Nancy Johnson."}
+{"type":"chronicle","tick":28252,"wallTimeMs":1792731323332,"kind":"NationRelationChange","text":"Greentown and Easternburg are now hostile."}
+{"type":"chronicle","tick":28252,"wallTimeMs":1792731323332,"kind":"SettlementCapture","text":"After a siege, a village of Cityport fell to Bigton."}
+{"type":"status","tick":28500,"wallTimeMs":1792731329284,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 0 wood."}
+{"type":"chronicle","tick":28500,"wallTimeMs":1792731329284,"kind":"StallBuilt","text":"A new stall opened in the market of Greentown, built by Phoebe Williams."}
+{"type":"chronicle","tick":28552,"wallTimeMs":1792731330368,"kind":"StallBuilt","text":"Trade came to Northwood: Tina Wilson built a stall."}
+{"type":"chronicle","tick":28651,"wallTimeMs":1792731332431,"kind":"StallBuilt","text":"Isabella Thomas built a market stall in Northerntown."}
+{"type":"chronicle","tick":28803,"wallTimeMs":1792731336332,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Farmford."}
+{"type":"status","tick":28951,"wallTimeMs":1792731340262,"text":"You gave Abigail Watson 1 apple. Abigail Watson (Acquaintance): \u0022Food! Thank you, I was starving!\u0022"}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792731341563,"kind":"NationRelationChange","text":"Oldton and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792731341563,"kind":"NationRelationChange","text":"Relations between Lowerville and Oldton are now neutral."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792731341563,"kind":"NationRaid","text":"Oldton raided Northerntown and carried off 1 coins."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792731341563,"kind":"NationRaid","text":"Greentown raided Easternburg and carried off 5 coins."}
+{"type":"chronicle","tick":29051,"wallTimeMs":1792731342731,"kind":"StallBuilt","text":"A new stall opened in the market of Villageford, built by Judy Williams."}
+{"type":"status","tick":29251,"wallTimeMs":1792731347087,"text":"Newford has fallen and been disbanded."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1792731347087,"kind":"StallBuilt","text":"Trade came to Westham: Peggy Robinson built a stall."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1792731347087,"kind":"SettlementCapture","text":"Westham captured a village from Newford."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1792731347087,"kind":"NationDisband","text":"Newford dissolved, its name already half-forgotten."}
+{"type":"status","tick":29275,"wallTimeMs":1792731347635,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":29483,"wallTimeMs":1792731352168,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Abigail Watson now counts you as a friend!"}
+{"type":"chronicle","tick":29483,"wallTimeMs":1792731352168,"kind":"PawnRelationshipIncrease","text":"Abigail Watson of Lowerville now counts you a friend."}
+{"type":"status","tick":29531,"wallTimeMs":1792731353257,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":29575,"wallTimeMs":1792731354240,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"chronicle","tick":29603,"wallTimeMs":1792731354841,"kind":"StallBuilt","text":"A new stall opened in the market of Cityham, built by Katie Walker."}
+{"type":"status","tick":29687,"wallTimeMs":1792731356607,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"chronicle","tick":29703,"wallTimeMs":1792731356930,"kind":"StallBuilt","text":"Trade came to Greentown: Phoebe Williams built a stall."}
+{"type":"chronicle","tick":29851,"wallTimeMs":1792731359888,"kind":"StallBuilt","text":"A new stall opened in the market of Farmport, built by Phoebe Wood."}
+{"type":"chronicle","tick":29903,"wallTimeMs":1792731360996,"kind":"StallBuilt","text":"Peggy Robinson built a market stall in Westham."}
+{"type":"status","tick":29923,"wallTimeMs":1792731361470,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x5)"}
+{"type":"chronicle","tick":29951,"wallTimeMs":1792731362159,"kind":"StallBuilt","text":"Trade came to Lowerville: Xavier Evans built a stall."}
+{"type":"status","tick":29963,"wallTimeMs":1792731362441,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x6)"}
+{"type":"save","tick":30003,"wallTimeMs":1792731363473,"count":5}
+{"type":"status","tick":30003,"wallTimeMs":1792731363473,"text":"Autosaved."}
+{"type":"status","tick":30067,"wallTimeMs":1792731364898,"text":"You gave Abigail Watson 10 coin. Abigail Watson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 Abigail Watson is now loyal to you!"}
+{"type":"chronicle","tick":30067,"wallTimeMs":1792731364898,"kind":"PawnRelationshipIncrease","text":"Abigail Watson of Lowerville is now loyal to you."}
+{"type":"chronicle","tick":30203,"wallTimeMs":1792731367757,"kind":"StallBuilt","text":"Fiona Watson built a market stall in Oldton."}
+{"type":"status","tick":30435,"wallTimeMs":1792731372878,"text":"Abigail Watson left Lowerville and joined Westshire! Members: 6. Lowerville resents it: relations Hostile (-54)."}
+{"type":"chronicle","tick":30435,"wallTimeMs":1792731372878,"kind":"NationLeave","text":"Abigail Watson walked away from Lowerville."}
+{"type":"chronicle","tick":30435,"wallTimeMs":1792731372878,"kind":"NationJoin","text":"Westshire welcomed Abigail Watson into its ranks."}
+{"type":"chronicle","tick":30435,"wallTimeMs":1792731372878,"kind":"NationRelationChange","text":"Westshire and Lowerville are now hostile."}
+{"type":"chronicle","tick":30451,"wallTimeMs":1792731373248,"kind":"StallBuilt","text":"A new stall opened in the market of Villageford, built by Judy Williams."}
+{"type":"status","tick":30503,"wallTimeMs":1792731374498,"text":"Lowerville has denounced your nation."}
+{"type":"chronicle","tick":30603,"wallTimeMs":1792731376943,"kind":"StallBuilt","text":"Wendy Watson built a market stall in Yellowton."}
+{"type":"chronicle","tick":30703,"wallTimeMs":1792731379421,"kind":"StallBuilt","text":"Phoebe Williams built a market stall in Greentown."}
+{"type":"chronicle","tick":30751,"wallTimeMs":1792731380546,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Farmford."}
+{"type":"chronicle","tick":30903,"wallTimeMs":1792731384130,"kind":"StallBuilt","text":"Trade came to Cityham: Katie Walker built a stall."}
+{"type":"status","tick":30919,"wallTimeMs":1792731384464,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":30975,"wallTimeMs":1792731385578,"text":"Welcome home!"}
+{"type":"status","tick":30983,"wallTimeMs":1792731385755,"text":"You are back on your own land."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792731386237,"kind":"StallBuilt","text":"A new stall opened in the market of Westham, built by Peggy Robinson."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792731386237,"kind":"NationRelationChange","text":"Oldton and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792731386237,"kind":"NationRelationChange","text":"Relations between Lowerville and Oldton are now neutral."}
+{"type":"chronicle","tick":31103,"wallTimeMs":1792731388550,"kind":"StallBuilt","text":"Tilly Lewis built a market stall in Westham."}
+{"type":"chronicle","tick":31251,"wallTimeMs":1792731391975,"kind":"StallBuilt","text":"A new stall opened in the market of Northwood, built by Tina Wilson."}
+{"type":"chronicle","tick":31251,"wallTimeMs":1792731391975,"kind":"StallBuilt","text":"A new stall opened in the market of Farmham, built by Tina Thomas."}
+{"type":"chronicle","tick":31303,"wallTimeMs":1792731393130,"kind":"StallBuilt","text":"Trade came to Northerntown: Isabella Thomas built a stall."}
+{"type":"chronicle","tick":31403,"wallTimeMs":1792731395324,"kind":"StallBuilt","text":"Trade came to Castleshire: Irene Williams built a stall."}
+{"type":"status","tick":31503,"wallTimeMs":1792731397629,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 0 wood."}
+{"type":"chronicle","tick":31803,"wallTimeMs":1792731404682,"kind":"StallBuilt","text":"Grace Wilson built a market stall in Bigton."}
+{"type":"chronicle","tick":31803,"wallTimeMs":1792731404682,"kind":"StallBuilt","text":"A new stall opened in the market of Cityham, built by Katie Walker."}
+{"type":"screen","tick":31951,"wallTimeMs":1792731408275,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":31951,"wallTimeMs":1792731415277,"count":6}
+{"type":"status","tick":31951,"wallTimeMs":1792731415277,"text":"Game saved."}
+{"type":"world","tick":31951,"wallTimeMs":1792731418726,"how":"loaded","slot":"world-102-20261023-043338","seed":102}
+{"type":"screen","tick":31955,"wallTimeMs":1792731418897,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":32003,"wallTimeMs":1792731420131,"kind":"StallBuilt","text":"Trade came to Westham: Peggy Robinson built a stall."}
+{"type":"chronicle","tick":32003,"wallTimeMs":1792731420131,"kind":"NationRelationChange","text":"Greentown and Cityport swore an alliance."}
+{"type":"chronicle","tick":32003,"wallTimeMs":1792731420131,"kind":"NationRaid","text":"Raiders from Cityport struck Yellowton, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":32003,"wallTimeMs":1792731420131,"kind":"NationRaid","text":"Cityport raided Bigton and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":32203,"wallTimeMs":1792731424941,"kind":"StallBuilt","text":"Trade came to Cityport: Abigail Thomas built a stall."}
+{"type":"chronicle","tick":32453,"wallTimeMs":1792731429973,"kind":"StallBuilt","text":"A new stall opened in the market of Westshire, built by Eve Wilson. The market is now full."}
+{"type":"chronicle","tick":32501,"wallTimeMs":1792731430957,"kind":"StallBuilt","text":"Trade came to Villageford: Judy Williams built a stall."}
+{"type":"chronicle","tick":32600,"wallTimeMs":1792731432915,"kind":"StallBuilt","text":"Trade came to Yellowton: Wendy Watson built a stall."}
+{"type":"chronicle","tick":32901,"wallTimeMs":1792731438952,"kind":"StallBuilt","text":"Trade came to Northwood: Tina Wilson built a stall."}
+{"type":"chronicle","tick":32901,"wallTimeMs":1792731438952,"kind":"StallBuilt","text":"A new stall opened in the market of Farmford, built by Wendy Johnson. The market is now full."}
+{"type":"status","tick":33002,"wallTimeMs":1792731440974,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRelationChange","text":"Oldton and Lowerville have become rivals over their border."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRelationChange","text":"Greentown and Northerntown have formed an alliance."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRelationChange","text":"Farmford and Easternburg swore an alliance."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRelationChange","text":"Relations between Lowerville and Oldton are now neutral."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRelationChange","text":"Easternburg and Bigton swore an alliance."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRaid","text":"Northerntown raided Oldton and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRaid","text":"Easternburg raided Lowerville and carried off 5 coins, 2 wood."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRaid","text":"Raiders from Northerntown struck Farmport, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":33002,"wallTimeMs":1792731440974,"kind":"NationRaid","text":"Raiders from Bigton struck Yellowton, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":33051,"wallTimeMs":1792731441936,"kind":"StallBuilt","text":"A new stall opened in the market of Westham, built by Peggy Robinson."}
+{"type":"chronicle","tick":33252,"wallTimeMs":1792731446005,"kind":"StallBuilt","text":"Phoebe Williams built a market stall in Greentown."}
+{"type":"chronicle","tick":33252,"wallTimeMs":1792731446005,"kind":"NationRelationChange","text":"Northwood and Easternburg have formed an alliance."}
+{"type":"chronicle","tick":33552,"wallTimeMs":1792731452005,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Wendy Watson."}
+{"type":"chronicle","tick":33652,"wallTimeMs":1792731453998,"kind":"StallBuilt","text":"Trade came to Bigton: Grace Wilson built a stall."}
+{"type":"chronicle","tick":33701,"wallTimeMs":1792731454991,"kind":"StallBuilt","text":"Katie Walker built a market stall in Cityham."}
+{"type":"chronicle","tick":33751,"wallTimeMs":1792731455986,"kind":"StallBuilt","text":"Trade came to Westham: Peggy Robinson built a stall."}
+{"type":"chronicle","tick":34251,"wallTimeMs":1792731466022,"kind":"SettlementCapture","text":"Easternburg captured a village from Lowerville."}
+{"type":"chronicle","tick":34450,"wallTimeMs":1792731470002,"kind":"StallBuilt","text":"A new stall opened in the market of Villageford, built by Judy Williams. The market is now full."}
+{"type":"status","tick":34502,"wallTimeMs":1792731471031,"text":"Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":34502,"wallTimeMs":1792731471031,"kind":"StallBuilt","text":"A new stall opened in the market of Cityport, built by Abigail Thomas."}
+{"type":"objective_completed","tick":34850,"wallTimeMs":1792731478723,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":2899}
+{"type":"status","tick":34850,"wallTimeMs":1792731478723,"text":"Objective complete: Enter your settlement."}
+{"type":"objective_completed","tick":34902,"wallTimeMs":1792731480042,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":52}
+{"type":"status","tick":34902,"wallTimeMs":1792731480042,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":35002,"wallTimeMs":1792731482628,"kind":"StallBuilt","text":"Trade came to Northwood: Tina Wilson built a stall."}
+{"type":"chronicle","tick":35002,"wallTimeMs":1792731482628,"kind":"StallBuilt","text":"Trade came to Bigton: Una Walker built a stall."}
+{"type":"chronicle","tick":35102,"wallTimeMs":1792731485140,"kind":"StallBuilt","text":"Peggy Robinson built a market stall in Westham."}
+{"type":"chronicle","tick":35150,"wallTimeMs":1792731486335,"kind":"StallBuilt","text":"A new stall opened in the market of Farmport, built by Phoebe Wood."}
+{"type":"chronicle","tick":35402,"wallTimeMs":1792731492958,"kind":"StallBuilt","text":"Tina Thomas built a market stall in Farmham."}
+{"type":"chronicle","tick":35450,"wallTimeMs":1792731494234,"kind":"StallBuilt","text":"A new stall opened in the market of Greentown, built by Phoebe Williams. The market is now full."}
+{"type":"chronicle","tick":35450,"wallTimeMs":1792731494234,"kind":"StallBuilt","text":"Trade came to Cityham: Katie Walker built a stall. The market is now full."}
+{"type":"status","tick":35750,"wallTimeMs":1792731501889,"text":"Lowerville has fallen and been disbanded."}
+{"type":"chronicle","tick":35750,"wallTimeMs":1792731501889,"kind":"SettlementCapture","text":"After a siege, a camp of Lowerville fell to Easternburg."}
+{"type":"chronicle","tick":35750,"wallTimeMs":1792731501889,"kind":"NationDisband","text":"Lowerville dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":35950,"wallTimeMs":1792731507008,"kind":"StallBuilt","text":"Grace Wilson built a market stall in Bigton."}
+{"type":"status","tick":36002,"wallTimeMs":1792731508420,"text":"Castleshire resents your border: relations will sour while your settlements stand this close. Thieves slipped through the open borders of Westshire and took 2 coins and 2 wood."}
+{"type":"chronicle","tick":36002,"wallTimeMs":1792731508420,"kind":"NationRaid","text":"Easternburg raided Northerntown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":36102,"wallTimeMs":1792731511038,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Wendy Watson."}
+{"type":"status","tick":36250,"wallTimeMs":1792731514940,"text":"Castleshire resents your border: relations will sour while your settlements stand this close. (x2)"}
+{"type":"chronicle","tick":36250,"wallTimeMs":1792731514940,"kind":"NationRelationChange","text":"Bigton and Westham have become rivals over their border."}
+{"type":"chronicle","tick":36302,"wallTimeMs":1792731516296,"kind":"StallBuilt","text":"Peggy Robinson built a market stall in Westham. The market is now full."}

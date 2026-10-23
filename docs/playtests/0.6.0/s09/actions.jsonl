@@ -1,0 +1,219 @@
+{"t": 1792713864507, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "109"]}
+{"t": 1792713871871, "cmd": "key", "args": ["space"]}
+{"t": 1792713873435, "cmd": "shot", "args": ["menu"]}
+{"t": 1792713883673, "cmd": "note", "args": ["--shot", "menu_contrast", "Main menu: white text on light blue buttons (#5c9fef-ish on #72a5e5 bg) - low contrast, button barely distinguishable from background"]}
+{"t": 1792713883877, "cmd": "click", "args": ["480", "419"]}
+{"t": 1792713885665, "cmd": "shot", "args": ["controls"]}
+{"t": 1792713890680, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792713892456, "cmd": "shot", "args": ["controls2"]}
+{"t": 1792713892656, "cmd": "click", "args": ["615", "507"]}
+{"t": 1792713894449, "cmd": "shot", "args": ["controls3"]}
+{"t": 1792713902921, "cmd": "note", "args": ["--shot", "controls3", "Controls page 3 lists Debug cheat keys (F2-F6 spawn coins/wood/pawns) to every player; button row off-centre once Next disappears. 'Era box (tap)' on page 2 is vague - which box, tap with what?"]}
+{"t": 1792713903088, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713904601, "cmd": "click", "args": ["480", "367"]}
+{"t": 1792713906368, "cmd": "shot", "args": ["config"]}
+{"t": 1792713912264, "cmd": "move", "args": ["528", "303"]}
+{"t": 1792713914364, "cmd": "shot", "args": ["config_hover"]}
+{"t": 1792713918909, "cmd": "note", "args": ["--shot", "config_hover", "Config: 'Chunk Size', 'Location Scale', 'Lag Prevention' are developer jargon with no explanation even on hover; low-contrast white-on-light-blue throughout; Back button same colour as background"]}
+{"t": 1792713919142, "cmd": "click", "args": ["480", "510"]}
+{"t": 1792713920931, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713922763, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792713927314, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713928138, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713931441, "cmd": "shot", "args": ["world1"]}
+{"t": 1792713931670, "cmd": "state", "args": []}
+{"t": 1792713937594, "cmd": "click", "args": ["338", "389"]}
+{"t": 1792713939388, "cmd": "move", "args": ["426", "517"]}
+{"t": 1792713941552, "cmd": "shot", "args": ["hover_disabled"]}
+{"t": 1792713947787, "cmd": "note", "args": ["--shot", "hover_disabled", "Hovering disabled 'Plant Sapling' / 'Enter Settlement' gives no tooltip saying why it is disabled (needs saplings / be near a settlement). Also tip 'Got it' button moved from y=389 (tip 1, two lines) to y=376 (tip 2, one line) - the button jumps as tip text height changes"]}
+{"t": 1792713948130, "cmd": "move", "args": ["66", "517"]}
+{"t": 1792713950300, "cmd": "shot", "args": ["hover_create"]}
+{"t": 1792713953831, "cmd": "click", "args": ["66", "517"]}
+{"t": 1792713956637, "cmd": "shot", "args": ["created"]}
+{"t": 1792713956972, "cmd": "state", "args": []}
+{"t": 1792713965354, "cmd": "note", "args": ["--shot", "created", "After clicking 'Create Nation' (66,517) the command bar reflows: the red 'Leave Nation' button now occupies the exact spot under the cursor, and the inventory panel jumps up. A double-click founds and immediately leaves the nation. Chronicle line truncated 'It is th...'"]}
+{"t": 1792713965751, "cmd": "click", "args": ["66", "517"]}
+{"t": 1792713968579, "cmd": "shot", "args": ["leave_click"]}
+{"t": 1792713968891, "cmd": "state", "args": []}
+{"t": 1792713974640, "cmd": "move", "args": ["480", "250"]}
+{"t": 1792713974751, "cmd": "wait", "args": ["6"]}
+{"t": 1792713980864, "cmd": "shot", "args": ["leave_timeout"]}
+{"t": 1792713981104, "cmd": "key", "args": ["l"]}
+{"t": 1792713983633, "cmd": "shot", "args": ["leave_key"]}
+{"t": 1792713983877, "cmd": "state", "args": []}
+{"t": 1792713990609, "cmd": "key", "args": ["n"]}
+{"t": 1792713991192, "cmd": "wait", "args": ["8"]}
+{"t": 1792713999318, "cmd": "state", "args": []}
+{"t": 1792713999462, "cmd": "key", "args": ["l"]}
+{"t": 1792714002162, "cmd": "note", "args": ["--shot", "leave_key_single", "Pressed N, waited 8s, pressed L once: see whether the nation is gone without confirmation"]}
+{"t": 1792714002585, "cmd": "state", "args": []}
+{"t": 1792714008016, "cmd": "key", "args": ["n"]}
+{"t": 1792714010520, "cmd": "key", "args": ["f"]}
+{"t": 1792714013050, "cmd": "shot", "args": ["found_try"]}
+{"t": 1792714013380, "cmd": "state", "args": []}
+{"t": 1792714018948, "cmd": "click", "args": ["425", "376"]}
+{"t": 1792714019721, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792714033290, "cmd": "key", "args": ["e"]}
+{"t": 1792714034832, "cmd": "key", "args": ["e"]}
+{"t": 1792714036392, "cmd": "key", "args": ["e"]}
+{"t": 1792714037917, "cmd": "state", "args": []}
+{"t": 1792714042118, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714051208, "cmd": "key", "args": ["e"]}
+{"t": 1792714052517, "cmd": "key", "args": ["e"]}
+{"t": 1792714053766, "cmd": "key", "args": ["e"]}
+{"t": 1792714054986, "cmd": "key", "args": ["e"]}
+{"t": 1792714056261, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714069943, "cmd": "key", "args": ["e"]}
+{"t": 1792714071199, "cmd": "key", "args": ["e"]}
+{"t": 1792714072440, "cmd": "key", "args": ["e"]}
+{"t": 1792714073657, "cmd": "key", "args": ["e"]}
+{"t": 1792714074894, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714081085, "cmd": "key", "args": ["e"]}
+{"t": 1792714082303, "cmd": "key", "args": ["e"]}
+{"t": 1792714083511, "cmd": "key", "args": ["e"]}
+{"t": 1792714084759, "cmd": "key", "args": ["e"]}
+{"t": 1792714085961, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714094872, "cmd": "key", "args": ["e"]}
+{"t": 1792714096111, "cmd": "key", "args": ["e"]}
+{"t": 1792714097352, "cmd": "key", "args": ["e"]}
+{"t": 1792714098554, "cmd": "key", "args": ["e"]}
+{"t": 1792714099769, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714114433, "cmd": "key", "args": ["e"]}
+{"t": 1792714115679, "cmd": "key", "args": ["e"]}
+{"t": 1792714116887, "cmd": "key", "args": ["e"]}
+{"t": 1792714118103, "cmd": "key", "args": ["e"]}
+{"t": 1792714119330, "cmd": "state", "args": []}
+{"t": 1792714122938, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714129985, "cmd": "key", "args": ["e"]}
+{"t": 1792714131243, "cmd": "key", "args": ["e"]}
+{"t": 1792714132511, "cmd": "key", "args": ["e"]}
+{"t": 1792714133777, "cmd": "key", "args": ["e"]}
+{"t": 1792714135061, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714146807, "cmd": "key", "args": ["e"]}
+{"t": 1792714148039, "cmd": "key", "args": ["e"]}
+{"t": 1792714149274, "cmd": "key", "args": ["e"]}
+{"t": 1792714150501, "cmd": "key", "args": ["e"]}
+{"t": 1792714151718, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714160084, "cmd": "key", "args": ["e"]}
+{"t": 1792714161300, "cmd": "key", "args": ["e"]}
+{"t": 1792714162524, "cmd": "key", "args": ["e"]}
+{"t": 1792714163751, "cmd": "key", "args": ["e"]}
+{"t": 1792714164962, "cmd": "state", "args": []}
+{"t": 1792714165037, "cmd": "shot", "args": ["pre_found"]}
+{"t": 1792714169668, "cmd": "click", "args": ["73", "476"]}
+{"t": 1792714172445, "cmd": "shot", "args": ["founded"]}
+{"t": 1792714172641, "cmd": "state", "args": []}
+{"t": 1792714177817, "cmd": "face", "args": ["54"]}
+{"t": 1792714180893, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792714193127, "cmd": "state", "args": []}
+{"t": 1792714193199, "cmd": "key", "args": ["f"]}
+{"t": 1792714195749, "cmd": "state", "args": []}
+{"t": 1792714200171, "cmd": "shot", "args": ["compass"]}
+{"t": 1792714209982, "cmd": "note", "args": ["--shot", "compass", "Founding failure says 'Open ground lies about 150 to the south' (and earlier 'to the west') but the HUD has no compass or heading indicator, so a player cannot tell which way south is. Also the right column shifts: Season panel top at y=300 in Forest (3-line wrapped region text) vs y=317 in Plains; bright 'Craft Pickaxe' button washes out over a yellow block"]}
+{"t": 1792714210320, "cmd": "face", "args": ["12"]}
+{"t": 1792714211518, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792714219744, "cmd": "key", "args": ["f"]}
+{"t": 1792714222294, "cmd": "state", "args": []}
+{"t": 1792714225751, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1792714225983, "cmd": "key", "args": ["e"]}
+{"t": 1792714229529, "cmd": "shot", "args": ["inside"]}
+{"t": 1792714229768, "cmd": "state", "args": []}
+{"t": 1792714240259, "cmd": "note", "args": ["--shot", "inside", "#350 confirmed: inside own settlement the right column overflows. Settlement Info 'Next (K): Farm, 25 wood, 10' is clipped at the screen edge (stone count/unit lost). Season panel (y~432) overlaps Player Info: 'LEADER' and 'Land: your own land' peek out underneath/below it at the bottom edge; Energy bar hidden. 'PCIS: 0' is unexplained jargon. Disabled buttons (Build Stall/House/Farm, Collect Stockpile) are white text on pale grey - nearly unreadable. A huge world-space label '0 here, 2/8 residents' renders behind the HUD"]}
+{"t": 1792714240507, "cmd": "move", "args": ["820", "146"]}
+{"t": 1792714242624, "cmd": "shot", "args": ["hover_next"]}
+{"t": 1792714248226, "cmd": "click", "args": ["386", "445"]}
+{"t": 1792714250995, "cmd": "shot", "args": ["farm1"]}
+{"t": 1792714251264, "cmd": "state", "args": []}
+{"t": 1792714260868, "cmd": "note", "args": ["--shot", "farm1", "#345: when pawn Abigail walked into reach, a new row 'Talk to... / Gift... / Order...' was inserted into the command bar, pushing 'Send Caravan' from y=414 to y=383 - a click aimed at Send Caravan now lands on 'Talk to Abigail'. Same frame the Inventory Info panel jumped from the left edge (10,258) to mid-screen (220,227) over the world. Build Farm uses click-twice confirm (good); 'Talk to Abigail Evans (Stranger) - Greedy' is the widest button, labels near truncation"]}
+{"t": 1792714261179, "cmd": "click", "args": ["386", "445"]}
+{"t": 1792714264093, "cmd": "shot", "args": ["farm2"]}
+{"t": 1792714264424, "cmd": "state", "args": []}
+{"t": 1792714269819, "cmd": "click", "args": ["386", "445"]}
+{"t": 1792714272619, "cmd": "state", "args": []}
+{"t": 1792714272719, "cmd": "shot", "args": ["farm3"]}
+{"t": 1792714278338, "cmd": "move", "args": ["480", "250"]}
+{"t": 1792714278419, "cmd": "key", "args": ["k"]}
+{"t": 1792714280421, "cmd": "state", "args": []}
+{"t": 1792714280498, "cmd": "key", "args": ["k"]}
+{"t": 1792714282507, "cmd": "state", "args": []}
+{"t": 1792714282581, "cmd": "shot", "args": ["farm_k"]}
+{"t": 1792714292294, "cmd": "note", "args": ["--shot", "farm3", "'Build Farm' button enabled though unaffordable (9 wood of 25). Clicking it then 'Confirm Build Farm' 3 times only ever re-arms ('Click again to confirm: Build Farm. (x3)') - the confirm click never builds nor reports the shortage. The K key path does report 'Need 2 more wood'. (Status says need 2 more while Inventory shows Wood 9 - stockpile must count, but nothing on screen says so.)"]}
+{"t": 1792714292591, "cmd": "note", "args": ["--shot", "farm_k", "Objective 7 progress bar text clipped at the left: 'nbers 3/10 - Buildings 0/2' ('Members' cut). Market Info grew a 'Merchants:' list, pushing Season panel to y=466 so it runs off the bottom of the screen ('rich in stone, poor in' cut) and Player Info (energy, role) is completely off-screen. Era box 'Village: 1/4' text overlapped by the yellow fill bar"]}
+{"t": 1792714297853, "cmd": "key", "args": ["o"]}
+{"t": 1792714300452, "cmd": "shot", "args": ["nations"]}
+{"t": 1792714300785, "cmd": "state", "args": []}
+{"t": 1792714306301, "cmd": "click", "args": ["657", "218"]}
+{"t": 1792714309089, "cmd": "shot", "args": ["war1"]}
+{"t": 1792714309406, "cmd": "state", "args": ["--full"]}
+{"t": 1792714316139, "cmd": "note", "args": ["--shot", "war1", "Nations screen (O): a single click on 'War' for Blackport declared war immediately (relation -13 -> -60, 'at war') with no confirmation, unlike Leave Nation / Build Farm which ask for a second click. Row then reflows (Ally+War removed, Peace appears mid-row). Also panel is a translucent overlay: text and buttons sit directly on the 3D scene, with the world-space '2 here, 3/8 residents' label showing through behind the tab bar; Ally button gives no hint it needs +30"]}
+{"t": 1792714316429, "cmd": "click", "args": ["543", "45"]}
+{"t": 1792714319224, "cmd": "shot", "args": ["laws"]}
+{"t": 1792714326053, "cmd": "note", "args": ["--shot", "laws", "Laws tab: small explanatory lines ('No tax: members keep their coin.') render as thin light text directly over the sandy plaza with no backing - low contrast; 'Defence 3.' appears with no explanation of what it means or what changes it"]}
+{"t": 1792714326363, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714327927, "cmd": "key", "args": ["c"]}
+{"t": 1792714330478, "cmd": "shot", "args": ["crafting"]}
+{"t": 1792714330843, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714332470, "cmd": "key", "args": ["i"]}
+{"t": 1792714335038, "cmd": "shot", "args": ["inventory"]}
+{"t": 1792714342236, "cmd": "note", "args": ["--shot", "inventory", "Inventory screen (I): plain white text drawn straight over the 3D well with no panel/backing - 'Apples: 26' sits on the blue/red well, hard to read; the screen shows less than the always-on HUD Inventory panel (no Chicken Meat line) so it adds nothing. Crafting screen (C) by contrast is clear, with good 'Ready / Need / Locked' colouring, but it repeats a stale status line about the Blackport war"]}
+{"t": 1792714342533, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714344046, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714346576, "cmd": "shot", "args": ["pause"]}
+{"t": 1792714351317, "cmd": "click", "args": ["480", "449"]}
+{"t": 1792714354097, "cmd": "shot", "args": ["mainmenu_click"]}
+{"t": 1792714354296, "cmd": "state", "args": []}
+{"t": 1792714360142, "cmd": "click", "args": ["480", "350"]}
+{"t": 1792714360916, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792714364224, "cmd": "shot", "args": ["continued"]}
+{"t": 1792714364572, "cmd": "state", "args": []}
+{"t": 1792714371822, "cmd": "move", "args": ["100", "414"]}
+{"t": 1792714375006, "cmd": "shot", "args": ["shift1"]}
+{"t": 1792714378320, "cmd": "shot", "args": ["shift2"]}
+{"t": 1792714381824, "cmd": "shot", "args": ["shift3"]}
+{"t": 1792714385318, "cmd": "shot", "args": ["shift4"]}
+{"t": 1792714388700, "cmd": "shot", "args": ["shift5"]}
+{"t": 1792714392196, "cmd": "shot", "args": ["shift6"]}
+{"t": 1792714408107, "cmd": "note", "args": ["--shot", "shift_after", "#345 still present: pointer held still at (100,414) for ~18s. shots/shift1.png shows it hovering 'Talk to Charlotte Johnson (Stranger)' with 'Order/Appoint Charlotte' row above; shots/shift6.png (this one) the same pixel now hovers 'Talk to Abigail Evans (Stranger)', the Order/Appoint row vanished and 'Send Caravan' moved back to y=383. Pawn-targeted buttons change target and position with no player input, so a click can hit the wrong pawn or wrong action. Also: Charlotte (chronicle: 'joined Easternville') and Abigail (listed as our merchant) are still labelled '(Stranger)'"]}
+{"t": 1792714412588, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792714415384, "cmd": "shot", "args": ["era"]}
+{"t": 1792714422133, "cmd": "note", "args": ["--shot", "era", "Tapping the Era box expands it (good content: checklist, unlocks, protection rules) but pushes the Objective panel down into the command bar: 'Send Caravan (Town era)' and 'Build Stall' are drawn over the objective's description text ('press K with wood and stone'), both unreadable. Expanded era '-' collapse affordance is a tiny glyph; 'Village 0/1' vs header 'Village: 1/4' is confusing (two different counts with the same label)"]}
+{"t": 1792714422385, "cmd": "click", "args": ["110", "58"]}
+{"t": 1792714424141, "cmd": "key", "args": ["y"]}
+{"t": 1792714426691, "cmd": "shot", "args": ["chron1"]}
+{"t": 1792714427336, "cmd": "key", "args": ["y"]}
+{"t": 1792714429997, "cmd": "shot", "args": ["chron2"]}
+{"t": 1792714436738, "cmd": "state", "args": ["--full"]}
+{"t": 1792714447499, "cmd": "key", "args": ["e"]}
+{"t": 1792714450140, "cmd": "shot", "args": ["exited"]}
+{"t": 1792714450464, "cmd": "face", "args": ["55"]}
+{"t": 1792714454352, "cmd": "hold", "args": ["Shift_L+w", "14"]}
+{"t": 1792714468603, "cmd": "state", "args": []}
+{"t": 1792714474793, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792714489238, "cmd": "shot", "args": ["townfield"]}
+{"t": 1792714493807, "cmd": "click", "args": ["497", "517"]}
+{"t": 1792714496663, "cmd": "shot", "args": ["war_bar"]}
+{"t": 1792714496993, "cmd": "state", "args": []}
+{"t": 1792714503584, "cmd": "click", "args": ["497", "517"]}
+{"t": 1792714507451, "cmd": "shot", "args": ["atwar"]}
+{"t": 1792714507866, "cmd": "state", "args": []}
+{"t": 1792714513043, "cmd": "events", "args": ["8"]}
+{"t": 1792714516135, "cmd": "shot", "args": ["atwar2"]}
+{"t": 1792714524963, "cmd": "click", "args": ["497", "517"]}
+{"t": 1792714527289, "cmd": "state", "args": []}
+{"t": 1792714527406, "cmd": "shot", "args": ["confirm_a"]}
+{"t": 1792714527674, "cmd": "click", "args": ["497", "517"]}
+{"t": 1792714530073, "cmd": "state", "args": []}
+{"t": 1792714530194, "cmd": "shot", "args": ["confirm_b"]}
+{"t": 1792714539129, "cmd": "note", "args": ["--shot", "confirm_b", "Command-bar confirm is fragile: first attempt at 'Declare War on Townfield' -> 'Confirm Declare War' -> second click at the same spot re-armed ('Click again to confirm... (x2)') because pawn Harriet walked into reach between clicks and a row was inserted; the stale orange 'Confirm Declare War' kept showing while the toast said something else. Retried with a still layout: two clicks 1.5s apart declared war ('Townfield takes up arms: war, 3 to your 3'). Same root cause likely behind the never-confirming 'Build Farm'. No Raid command appeared standing in Townfield's land at war (Land: Townfield (Hostile)); nothing tells the player how to raid"]}
+{"t": 1792714543821, "cmd": "key", "args": ["e"]}
+{"t": 1792714547477, "cmd": "shot", "args": ["enemy_inside"]}
+{"t": 1792714547906, "cmd": "state", "args": []}
+{"t": 1792714554536, "cmd": "note", "args": ["--shot", "enemy_inside", "Entered Townfield's settlement right after declaring war on it: allowed, and Purchase Food/Sell Resources are offered as if at peace; no Raid command anywhere. Right column repeats #350 here: 'Next (K): Workshop, 15 wood,' clipped, and Season panel (y=432) overlaps Player Info, whose 'Role: LEADER' / 'Land: Townfield (Hostile)' lines show under and below it - the Hostile warning is the part that gets cut off. 'Next (K)' is shown for a settlement the player does not lead. A pawn's world label ('Katie / Ambit... (gath') is cut by the Settlement Info panel"]}
+{"t": 1792714554796, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714556289, "cmd": "click", "args": ["480", "367"]}
+{"t": 1792714559026, "cmd": "shot", "args": ["share"]}
+{"t": 1792714564119, "cmd": "note", "args": ["--shot", "share", "Share screen: 'Export replay (USD)' - USD reads as US dollars to most players (it means the OpenUSD scene format); world-space settlement label bleeds through above the title"]}
+{"t": 1792714564370, "cmd": "events", "args": ["400"]}
+{"t": 1792714564451, "cmd": "stop", "args": []}
+{"t": 1792714599878, "cmd": "report", "args": []}
+{"t": 1792726411270, "cmd": "stop", "args": []}

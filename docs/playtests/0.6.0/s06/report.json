@@ -1,0 +1,113 @@
+{
+  "session": "s06",
+  "goal": "Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies. Also try talking to, gifting and inviting pawns standing next to you inside your own settlement (#344), use teleport home and check you land within reach of your people, and look for any screen that shows your nation's members, loyalty and heir (#358).",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 106,
+  "durationSec": 855,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "#358 not met: no screen shows nation members, their loyalty, or the heir",
+      "detail": "Nations tab (O) shows only 'Easternland, 5 members, 1 camp. You lead it.'; Laws tab shows laws, defence and tax totals; Settlement Info shows 'Residents 5/16' and a Merchants list. Nowhere lists who the members are, their loyalty to me, or who would succeed me. The High tax description says 'loyalty falls fast', yet loyalty is never visible, so the trade-off cannot be judged. Expected a members/court view with loyalty and the named heir (Succession.chooseHeir already computes one with a reason).",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 106; space; Start; Begin; n; gather 50 wood, f to found; o; click Nations and Laws tabs",
+      "screenshot": "shots/no_heir_screen.png",
+      "tick": 8006
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Ruler death and succession cannot be reached in a normal session",
+      "detail": "The only way the leader dies is starving: energy drains about one full bar per in-game day (10 game minutes, about 20 real minutes at the ~25 tps seen here), the player auto-eats any carried apples (24 from chopping trees), and Sell Resources refuses to sell them, so food cannot be shed. Energy stayed 91-96 the whole run. I could not see what happens when the ruler dies, and with no heir shown beforehand a player cannot plan for it either.",
+      "repro": "As above; play 15 min; watch Player Info energy; inside settlement click Sell Resources",
+      "screenshot": "shots/no_death_path.png",
+      "tick": 15270
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "#344 partly: E inside/at own settlement exits or enters it instead of talking to the adjacent pawn",
+      "detail": "Inside my settlement with member Judy Taylor 2.4-3 m away, pressing E printed 'Exited settlement.' (tick 5994). The settlement always wins the E priority, so the documented talk key never reaches pawns at home. The on-screen Talk / Gift / Order buttons, plus G (gift) and R (invite), do work: talk gave a line, and gift took 10 coins with 'Coins? That's generous of you.' The player cannot move inside the settlement, so you must wait for a pawn to wander within 5 m.",
+      "repro": "Found and enter settlement; pt walkto pawn; pt key e",
+      "screenshot": "shots/e_exits_not_talk.png",
+      "tick": 5994
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Action bar rows shift as pawns wander in and out of range, so clicks land on the wrong button",
+      "detail": "Inside the settlement the Talk/Gift/Order row appears and disappears as pawns move. A click aimed at 'Talk to Judy Taylor' (155,414) landed on 'Send Caravan (Town era)' one frame later. At a few fps this happened twice in a row. A fixed slot or a short grace period would help.",
+      "repro": "Enter own settlement; wait for a pawn within 5 m; click the Talk button",
+      "screenshot": "shots/button_shift.png",
+      "tick": 6742
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Own-nation members are labelled 'Stranger', and 'Loyal' means both a trait and a relationship tier",
+      "detail": "Judy Taylor joined Easternland (chronicle) and is a merchant in my settlement. Her button reads 'Talk to Judy Taylor (Stranger) - Loyal' and she says 'I hardly know you. Why should I follow you? I stand by my own.' Inviting a non-member says '(needs Loyal)'. So 'Loyal' is both a personality trait and the relationship tier needed to invite, and a member reads as 'Stranger, Loyal'.",
+      "repro": "Enter settlement; click Talk on a member; walk to a non-member; pt key r",
+      "screenshot": "shots/talk_member_stranger.png",
+      "tick": 7558
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'Open ground lies about N to the north/south' gives contradictory directions",
+      "detail": "Pressing F inside Smallshire's land said 'Open ground lies about 260 to the north.' After walking about 190 in that direction (-z), F said 'Open ground lies about 70 to the south.' Continuing the same way worked. One of the two compass words is wrong.",
+      "repro": "Seed 106: chop to 50 wood near x312 z-60; f; face to yaw ~168; hold Shift+w 8 s; f",
+      "screenshot": "shots/founded.png",
+      "tick": 4586
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Sell Resources failure message does not say why",
+      "detail": "With 24 apples, 11 wood and 5 stone in my own market, the message was 'No one is buying resources at this market or you do not have enough resources to sell.' The Market panel lists buy/sell prices for all three, so a player cannot tell what is wrong.",
+      "repro": "Enter own settlement; click Sell Resources",
+      "screenshot": "shots/sell_fail.png",
+      "tick": 15098
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement HUD overlap: floating 'N here, x/y residents' label and Season over Player Info",
+      "detail": "Inside the settlement a huge floating world label shows behind the chronicle and top HUD. The Season panel overlaps Player Info so only 'Role: LEADER' shows. The objective progress text is clipped to 'mbers 5/10'. The Inventory panel floats over the middle of the scene.",
+      "repro": "Enter own settlement",
+      "screenshot": "shots/hud_overlap.png",
+      "tick": 5258
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Law take-effect messages are glued onto unrelated status lines",
+      "detail": "Laws took effect correctly: High tax plus Conscription at tick 2502 (taxes 150 coins in total, Defence 7 with 2 conscripts); repealed at tick 10734 and lifted at 12502, with a countdown in the Laws tab. But the notice arrived appended to 'You enter the land of Yellowton (Neutral).' and to 'Westport shares an enemy with you...', so it is easy to miss. Also both changes landed about 5-10 s after the 30 s countdown hit zero.",
+      "repro": "o; Laws; High, On; Escape; wait 30 s; then None, Off",
+      "screenshot": "shots/after_repeal.png",
+      "tick": 12502
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Teleport home gives no 'teleported' feedback",
+      "detail": "H from about 170 m away put me at the well, 4 m from the settlement centre, with member Oscar Johnson 3.6 m away, so the Talk/Gift/Order buttons showed at once and gift worked. Good. The only message is 'You are back on your own land.'",
+      "repro": "Walk ~150 m from home; pt key h",
+      "screenshot": "shots/teleport_home_ok.png",
+      "tick": 10502
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 30.04, "Eat something": 31.0, "Create or join a nation": 32.04, "Found a settlement": 98.04, "Enter your settlement": 102.04, "Build a market stall": 106.04},
+    "lawsEnacted": 2,
+    "lawsRepealed": 2,
+    "taxCoinsCollected": 150,
+    "nationMembers": 5,
+    "teleportHomeDistanceToNearestPawnM": 3.6,
+    "rulerDeathsObserved": 0
+  },
+  "fun": 3,
+  "verdict": "Laws work and are readable: proclaim, countdown, take effect, show up in the chronicle, and repealing works too. Talk, gift and invite now work at home through buttons and G/R, and teleport home lands you among your people. But the reign itself is invisible: no screen names your members, their loyalty or your heir. Ruler death only comes from a day of starving that auto-eating prevents, so succession is out of reach in a normal session. 'Stranger' labels on your own members make the nation feel less like yours."
+}
