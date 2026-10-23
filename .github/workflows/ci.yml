@@ -213,9 +213,7 @@ jobs:
   # in tools/playtest/playtester.ref: with it, the beyond-nations profile is
   # checked, the recorded --playtest-out events of every committed run are
   # validated against playtester's probe contract, and a committed run is
-  # aggregated again. Until playtester's repository is public it cannot be
-  # installed here, and those steps are skipped with a notice (its own CI
-  # tests the harness, the aggregator and this profile's smoke script).
+  # aggregated again.
   playtest-tools:
     name: Playtest tools
     runs-on: ubuntu-latest
@@ -230,20 +228,11 @@ jobs:
           grep -Eq '^[0-9a-f]{7,40}$' tools/playtest/playtester.ref
 
       - name: Install the pinned playtester
-        id: playtester
         env:
           GIT_TERMINAL_PROMPT: "0"
-        run: |
-          ref=$(cat tools/playtest/playtester.ref)
-          if python3 -m pip install --quiet "git+https://github.com/dmccoystephenson/playtester@$ref"; then
-            echo "available=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "::notice title=Playtest tools::playtester@$ref could not be installed (its repository is not public yet), so the profile and probe checks were skipped."
-            echo "available=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: python3 -m pip install --quiet "git+https://github.com/Preponderous-Software/playtester@$(cat tools/playtest/playtester.ref)"
 
       - name: Profile, recorded probe output and aggregation
-        if: steps.playtester.outputs.available == 'true'
         run: |
           python3 -m playtester validate-profile beyond-nations
           for events in docs/playtests/*/s*/events.jsonl; do

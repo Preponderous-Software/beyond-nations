@@ -8,7 +8,7 @@ has two halves:
   writes what is on screen to `DIR/state.json` and `DIR/events.jsonl`
   (`src/BeyondNations.Desktop/playtest/`). Without the flag nothing is
   written and nothing else changes.
-- **The harness, in [playtester](https://github.com/dmccoystephenson/playtester):**
+- **The harness, in [playtester](https://github.com/Preponderous-Software/playtester):**
   `pt` runs one isolated session (its own virtual display, saves,
   screenshots and logs) and drives it with keys and clicks; the
   `beyond-nations` profile tells it how to build, start and steer this game;
@@ -39,7 +39,7 @@ Linux (or WSL2) with:
 
 ```bash
 sudo apt-get install -y xvfb xdotool imagemagick libgl1-mesa-dri libglfw3
-pip install "git+https://github.com/dmccoystephenson/playtester@$(cat tools/playtest/playtester.ref)"
+pip install "git+https://github.com/Preponderous-Software/playtester@$(cat tools/playtest/playtester.ref)"
 dotnet build src/BeyondNations.Desktop/BeyondNations.Desktop.csproj -c Release
 ```
 
