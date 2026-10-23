@@ -226,8 +226,10 @@ Runs so far:
 - **`walkto` says stuck** -- something is in the way, or the target keeps
   changing (pawns fell trees too). Look at a screenshot, `face 45`, walk a
   little and retry; `trace.jsonl` has every step it took.
-- **`e` does nothing near the tree** -- Interact picks a settlement, then a
-  pawn, then a tree within 5 units; a pawn standing by the tree wins.
+- **`e` does nothing near the tree** -- Interact picks a settlement's well
+  within 5 units first, then whatever within 5 units the player faces most
+  squarely (within 60 degrees); `face` the tree. With nothing in front, a
+  pawn in reach still wins over the tree.
 - **Something is still running afterwards** -- `pt.sh stop` for each session;
   then `pgrep -a Xvfb` and `pgrep -af 'BeyondNations.Desktop '`. Do not
   `pkill -f` a pattern your own shell's command line also contains.
