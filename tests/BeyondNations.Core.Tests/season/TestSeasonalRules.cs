@@ -238,14 +238,17 @@ namespace beyondnationstests {
             Assert.True(stallFoodLateWinter < stallFoodAtWinter / 2,
                 "the markets went from " + stallFoodAtWinter + " to " + stallFoodLateWinter + " food over winter");
 
-            // and still survivable: measured 100 pawns (the lag cap) all year and 5 deaths
+            // and still survivable: measured 100 pawns (the lag cap) all year and 12 deaths
+            // (5 before a pawn's energy stopped at a full bar, so a well-fed pawn no longer
+            // carries up to 34 spare energy into winter)
             Assert.True(fewestPawns >= 60, "the population fell to " + fewestPawns);
             Assert.True(simulation.getNumPawnDeaths() < 40, simulation.getNumPawnDeaths() + " pawns died in a year");
             Assert.True(simulation.getEntityRepository().getNumEntitiesOfType(EntityType.TREE) > 200, "spring brings the trees back");
 
             // and spring recovers rather than starving on: over the first half of the
-            // second spring, measured 0 deaths (6 before starving pawns foraged
-            // instead of walking back and forth to a market that could not feed them)
+            // second spring, measured 2 deaths (0 before pawn energy was capped at a
+            // full bar; 6 before starving pawns foraged instead of walking back and
+            // forth to a market that could not feed them)
             int deathsAtSpring = simulation.getNumPawnDeaths();
             for (int i = 0; i < TimeOfDay.DefaultTicksPerDay; i++) {
                 simulation.fixedUpdate(1f / 50f);

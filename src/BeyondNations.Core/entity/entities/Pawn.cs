@@ -24,7 +24,14 @@ namespace beyondnations {
         */
         public const float STARVING_ENERGY_THRESHOLD = 40f;
 
-        private float energy = 100.00f;
+        /**
+        * A full bar, the same as the player's. Nothing fills a pawn past it --
+        * a cooked meat eaten at 89 stops here rather than at 134 -- and a save
+        * from a build that allowed more loads with the bar at full.
+        */
+        public const float MaxEnergy = Player.MaxEnergy;
+
+        private float energy = MaxEnergy;
         private float metabolism;
 
         // map of entity id to integer representing relationship strength
@@ -139,7 +146,7 @@ namespace beyondnations {
         }
 
         public void setEnergy(float energy) {
-            this.energy = energy;
+            this.energy = System.Math.Min(energy, MaxEnergy);
         }
 
         /**
@@ -374,7 +381,7 @@ namespace beyondnations {
             targetEntity = reader.entity(SaveReader.property(element, "targetEntity"));
             currentBehaviorType = SaveReader.getEnum<BehaviorType>(element, "behavior");
             distanceThreshold = SaveReader.getInt(element, "distanceThreshold");
-            energy = SaveReader.getFloat(element, "energy");
+            energy = System.Math.Min(SaveReader.getFloat(element, "energy"), MaxEnergy);
             metabolism = SaveReader.getFloat(element, "metabolism");
             reader.readIdIntMap(element, "relationships", relationships);
             currentSettlementId = reader.getEntityId(element, "currentSettlementId");
