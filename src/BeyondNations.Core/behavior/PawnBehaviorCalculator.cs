@@ -177,7 +177,11 @@ namespace beyondnations {
             }
             else if (role == NationRole.SERF) {
                 // if enough coins and stall for sale
-                if (pawn.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE && market.getNumStallsForSale() > 0) {
+                // only in one of its own nation's settlements: a stall bought in a
+                // foreign market made a merchant whose stall was nowhere its
+                // nation lives, and the merchant crashed the game back home
+                if (pawn.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE && market.getNumStallsForSale() > 0
+                        && nation.getId().Equals(currentSettlement.getNationId())) {
                     return BehaviorType.PURCHASE_STALL;
                 }
                 else {
@@ -216,15 +220,21 @@ namespace beyondnations {
                 }
             }
             else if (role == NationRole.MERCHANT) {
-                // transfer items to stall if pawn has wood or stone
-                if (pawn.getInventory().getNumItems(ItemType.WOOD) > 0 || pawn.getInventory().getNumItems(ItemType.STONE) > 0) {
-                    return BehaviorType.TRANSFER_ITEMS_TO_STALL;
-                }
+                // A merchant's stall is in one market. Anywhere else -- another of
+                // its nation's settlements, or a foreign one -- it is a visitor with
+                // nothing to stock or collect, and it moves on in time.
                 Stall stall = market.getStall(pawn.getId());
-                if (stall.getInventory().hasItem(ItemType.COIN) && stall.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE * 2) {
-                    return BehaviorType.COLLECT_PROFIT_FROM_STALL;
+                if (stall != null) {
+                    // transfer items to stall if pawn has wood or stone
+                    if (pawn.getInventory().getNumItems(ItemType.WOOD) > 0 || pawn.getInventory().getNumItems(ItemType.STONE) > 0) {
+                        return BehaviorType.TRANSFER_ITEMS_TO_STALL;
+                    }
+                    if (stall.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE * 2) {
+                        return BehaviorType.COLLECT_PROFIT_FROM_STALL;
+                    }
                 }
-                
+
+
                 if (rollIdleExit(pawn)) {
                     return BehaviorType.EXIT_SETTLEMENT;
                 }

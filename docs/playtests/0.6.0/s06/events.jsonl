@@ -1,0 +1,342 @@
+{"type":"screen","tick":0,"wallTimeMs":1792713866495,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792713873959,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792713876996,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792713885220,"how":"created","slot":"world-106-20261023-000445","seed":106}
+{"type":"screen","tick":0,"wallTimeMs":1792713885222,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":422,"wallTimeMs":1792713899184,"text":"Created nation Easternland."}
+{"type":"chronicle","tick":422,"wallTimeMs":1792713899184,"kind":"NationCreation","text":"Under your hand, the nation of Easternland was born. It is the first nation this world has known."}
+{"type":"status","tick":690,"wallTimeMs":1792713908293,"text":"Not enough wood. Need 50 more."}
+{"type":"screen","tick":766,"wallTimeMs":1792713910976,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":766,"wallTimeMs":1792713926627,"text":"Taxes: High proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":766,"wallTimeMs":1792713928449,"text":"Conscription: On proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":770,"wallTimeMs":1792713937826,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":1002,"wallTimeMs":1792713947228,"kind":"NationCreation","text":"The nation of Westport was born, with Hank Davies at its head."}
+{"type":"chronicle","tick":1002,"wallTimeMs":1792713947228,"kind":"NationCreation","text":"Una Johnson founded the nation of Yellowton."}
+{"type":"chronicle","tick":1050,"wallTimeMs":1792713949368,"kind":"SettlementFounded","text":"Hank Davies raised the first settlement of Westport."}
+{"type":"status","tick":1098,"wallTimeMs":1792713951511,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":1130,"wallTimeMs":1792713952914,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":1166,"wallTimeMs":1792713954402,"text":"No entities within range to interact with."}
+{"type":"status","tick":1206,"wallTimeMs":1792713956158,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1234,"wallTimeMs":1792713957725,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":1258,"wallTimeMs":1792713959675,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":1466,"wallTimeMs":1792713972170,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"objective_completed","tick":1502,"wallTimeMs":1792713973995,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1502}
+{"type":"status","tick":1502,"wallTimeMs":1792713973995,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":1502,"wallTimeMs":1792713973995,"kind":"NationCreation","text":"Quinn Johnson founded the nation of Farmford."}
+{"type":"objective_completed","tick":1550,"wallTimeMs":1792713976366,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1550,"wallTimeMs":1792713976366,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":1602,"wallTimeMs":1792713978842,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":1602,"wallTimeMs":1792713978842,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":1650,"wallTimeMs":1792713981051,"kind":"SettlementFounded","text":"Quinn Johnson raised the first settlement of Farmford."}
+{"type":"chronicle","tick":1750,"wallTimeMs":1792713985274,"kind":"NationCreation","text":"Mia Thompson raised a banner and called it Smallshire."}
+{"type":"chronicle","tick":1802,"wallTimeMs":1792713987357,"kind":"SettlementFounded","text":"Una Johnson raised the first settlement of Yellowton."}
+{"type":"status","tick":1814,"wallTimeMs":1792713987843,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2042,"wallTimeMs":1792713998956,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":2202,"wallTimeMs":1792714007084,"kind":"NationCreation","text":"Ursula Thompson founded the nation of Westernford."}
+{"type":"chronicle","tick":2250,"wallTimeMs":1792714009284,"kind":"NationCreation","text":"Irene Taylor founded the nation of Southford."}
+{"type":"chronicle","tick":2350,"wallTimeMs":1792714013659,"kind":"SettlementFounded","text":"Southford put down roots: Irene Taylor founded its first settlement."}
+{"type":"status","tick":2434,"wallTimeMs":1792714017227,"text":"Gathered 6 wood and 2 apples from tree. (x2)"}
+{"type":"status","tick":2502,"wallTimeMs":1792714020200,"text":"You enter the land of Yellowton (Neutral). Taxes in Easternland rose to High. Conscription came into force in Easternland: its people drill to defend it."}
+{"type":"chronicle","tick":2502,"wallTimeMs":1792714020200,"kind":"Statecraft","text":"Taxes in Easternland rose to High."}
+{"type":"chronicle","tick":2502,"wallTimeMs":1792714020200,"kind":"Statecraft","text":"Conscription came into force in Easternland: its people drill to defend it."}
+{"type":"chronicle","tick":2602,"wallTimeMs":1792714025311,"kind":"SettlementFounded","text":"Smallshire put down roots: Mia Thompson founded its first settlement."}
+{"type":"chronicle","tick":2650,"wallTimeMs":1792714027556,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Hank Davies."}
+{"type":"status","tick":2902,"wallTimeMs":1792714039960,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":2946,"wallTimeMs":1792714041855,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":3002,"wallTimeMs":1792714044250,"kind":"NationRelationChange","text":"Westport and Farmford have become rivals over their border."}
+{"type":"status","tick":3086,"wallTimeMs":1792714047582,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3250,"wallTimeMs":1792714054401,"kind":"SettlementFounded","text":"Ursula Thompson raised the first settlement of Westernford."}
+{"type":"chronicle","tick":3302,"wallTimeMs":1792714056553,"kind":"NationCreation","text":"The nation of Fortressford was born, with Samantha Brown at its head."}
+{"type":"status","tick":3370,"wallTimeMs":1792714060217,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3402,"wallTimeMs":1792714061876,"kind":"NationCreation","text":"Wendy Williams declared the nation of Upperwood, though none had yet sworn to it."}
+{"type":"status","tick":3546,"wallTimeMs":1792714069383,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3602,"wallTimeMs":1792714072359,"kind":"SettlementFounded","text":"Fortressford put down roots: Samantha Brown founded its first settlement."}
+{"type":"chronicle","tick":3650,"wallTimeMs":1792714074511,"kind":"SettlementFounded","text":"Wendy Williams raised the first settlement of Upperwood."}
+{"type":"status","tick":3846,"wallTimeMs":1792714082575,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":3850,"wallTimeMs":1792714082733,"kind":"NationCreation","text":"Ella Lewis raised a banner and called it Farmland."}
+{"type":"status","tick":3942,"wallTimeMs":1792714086738,"text":"You enter the land of Smallshire (Neutral)."}
+{"type":"chronicle","tick":4002,"wallTimeMs":1792714089113,"kind":"NationRelationChange","text":"Yellowton and Southford have become rivals over their border."}
+{"type":"status","tick":4026,"wallTimeMs":1792714090009,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":4050,"wallTimeMs":1792714090888,"kind":"StallBuilt","text":"A new stall opened in the market of Upperwood, built by Wendy Williams."}
+{"type":"status","tick":4130,"wallTimeMs":1792714094040,"text":"This land is claimed by Smallshire. Found your settlement outside its borders. Open ground lies about 260 to the north."}
+{"type":"chronicle","tick":4250,"wallTimeMs":1792714099201,"kind":"NationRelationChange","text":"Westport and Yellowton have become rivals over their border."}
+{"type":"chronicle","tick":4302,"wallTimeMs":1792714101168,"kind":"StallBuilt","text":"Ursula Thompson built a market stall in Westernford."}
+{"type":"status","tick":4490,"wallTimeMs":1792714108674,"text":"You leave the land of Smallshire for the wilds."}
+{"type":"status","tick":4586,"wallTimeMs":1792714112506,"text":"Too close to the Village of Smallshire: 181 away, and settlements must be 250 apart. Open ground lies about 70 to the south."}
+{"type":"chronicle","tick":4702,"wallTimeMs":1792714117286,"kind":"NationCreation","text":"Dave Johnson founded the nation of Yellowland."}
+{"type":"chronicle","tick":4750,"wallTimeMs":1792714119261,"kind":"StallBuilt","text":"Trade came to Westernford: Ursula Thompson built a stall."}
+{"type":"chronicle","tick":4802,"wallTimeMs":1792714121285,"kind":"StallBuilt","text":"A new stall opened in the market of Smallshire, built by Mia Thompson."}
+{"type":"status","tick":4882,"wallTimeMs":1792714124448,"text":"You are back on your own land."}
+{"type":"chronicle","tick":4882,"wallTimeMs":1792714124448,"kind":"SettlementFounded","text":"Easternland put down roots: you founded its first settlement."}
+{"type":"objective_completed","tick":4902,"wallTimeMs":1792714125397,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3300}
+{"type":"status","tick":4902,"wallTimeMs":1792714125397,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":4950,"wallTimeMs":1792714127996,"kind":"NationJoin","text":"Judy Taylor joined Easternland."}
+{"type":"chronicle","tick":5002,"wallTimeMs":1792714131524,"kind":"NationRelationChange","text":"Westport and Smallshire have become rivals over their border."}
+{"type":"chronicle","tick":5050,"wallTimeMs":1792714134740,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressford, built by Samantha Brown."}
+{"type":"chronicle","tick":5050,"wallTimeMs":1792714134740,"kind":"NationJoin","text":"Mia Thomas threw in their lot with Easternland."}
+{"type":"status","tick":5074,"wallTimeMs":1792714136443,"text":"Entered settlement."}
+{"type":"objective_completed","tick":5102,"wallTimeMs":1792714138428,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":200}
+{"type":"status","tick":5102,"wallTimeMs":1792714138428,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":5102,"wallTimeMs":1792714138428,"kind":"NationJoin","text":"Easternland welcomed Oscar Johnson into its ranks."}
+{"type":"objective_completed","tick":5302,"wallTimeMs":1792714149564,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":200}
+{"type":"status","tick":5302,"wallTimeMs":1792714149564,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":5302,"wallTimeMs":1792714149564,"kind":"StallBuilt","text":"Trade came to Easternland: Oscar Johnson built a stall."}
+{"type":"chronicle","tick":5350,"wallTimeMs":1792714152150,"kind":"StallBuilt","text":"Mia Thomas built a market stall in Easternland."}
+{"type":"chronicle","tick":5350,"wallTimeMs":1792714152150,"kind":"NationJoin","text":"Easternland welcomed Tina Davies into its ranks."}
+{"type":"chronicle","tick":5402,"wallTimeMs":1792714154788,"kind":"StallBuilt","text":"A new stall opened in the market of Upperwood, built by Wendy Williams."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792714160037,"kind":"SettlementFounded","text":"Ella Lewis raised the first settlement of Farmland."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792714160037,"kind":"NationRelationChange","text":"Westernford and Southford have become rivals over their border."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792714160037,"kind":"NationRelationChange","text":"Farmford and Westport are now hostile."}
+{"type":"chronicle","tick":5550,"wallTimeMs":1792714162627,"kind":"StallBuilt","text":"Trade came to Westport: Hank Davies built a stall."}
+{"type":"status","tick":5994,"wallTimeMs":1792714186362,"text":"Exited settlement."}
+{"type":"save","tick":6002,"wallTimeMs":1792714186929,"count":1}
+{"type":"status","tick":6002,"wallTimeMs":1792714186929,"text":"Autosaved."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"StallBuilt","text":"Trade came to Smallshire: Mia Thompson built a stall."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"NationCreation","text":"The nation of Villagewood was born, with Oscar Thompson at its head."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"NationRelationChange","text":"Yellowton and Upperwood have become rivals over their border."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"NationRelationChange","text":"Westernford and Fortressford have become rivals over their border."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"NationRelationChange","text":"Westernford and Upperwood have become rivals over their border."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"NationRaid","text":"Farmford raided Westport and carried off 4 coins, 5 stone."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714186929,"kind":"Caravan","text":"Smallshire sent a caravan of 15 stone from the Village of Smallshire to the Camp of Easternland."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1792714189390,"kind":"StallBuilt","text":"Samantha Brown built a market stall in Fortressford."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1792714189390,"kind":"NationCreation","text":"Dave Roberts raised a banner and called it Smallford."}
+{"type":"chronicle","tick":6102,"wallTimeMs":1792714192180,"kind":"SettlementFounded","text":"Dave Roberts raised the first settlement of Smallford."}
+{"type":"chronicle","tick":6302,"wallTimeMs":1792714203475,"kind":"StallBuilt","text":"Trade came to Upperwood: Wendy Williams built a stall."}
+{"type":"status","tick":6350,"wallTimeMs":1792714206037,"text":"Entered settlement."}
+{"type":"chronicle","tick":6350,"wallTimeMs":1792714206037,"kind":"StallBuilt","text":"Hank Davies built a market stall in Westport."}
+{"type":"chronicle","tick":6450,"wallTimeMs":1792714211725,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Ursula Thompson."}
+{"type":"chronicle","tick":6450,"wallTimeMs":1792714211725,"kind":"NationCreation","text":"The nation of Castlefield was born, with Mike Wilson at its head."}
+{"type":"chronicle","tick":6450,"wallTimeMs":1792714211725,"kind":"NationCreation","text":"Tilly Thomas declared the nation of Upperville, though none had yet sworn to it."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1792714214656,"kind":"NationRelationChange","text":"Yellowton and Southford are now hostile."}
+{"type":"status","tick":6554,"wallTimeMs":1792714217514,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era."}
+{"type":"chronicle","tick":6650,"wallTimeMs":1792714222581,"kind":"StallBuilt","text":"Mia Thomas built a market stall in Easternland."}
+{"type":"chronicle","tick":6850,"wallTimeMs":1792714233416,"kind":"SettlementFounded","text":"Dave Johnson laid the first stones of Yellowland."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792714241387,"kind":"SettlementFounded","text":"Oscar Thompson laid the first stones of Villagewood."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792714241387,"kind":"NationRelationChange","text":"Yellowton and Smallshire have become rivals over their border."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792714241387,"kind":"NationRaid","text":"Raiders from Yellowton struck Southford, taking 3 wood, 5 stone."}
+{"type":"chronicle","tick":7050,"wallTimeMs":1792714243916,"kind":"StallBuilt","text":"A new stall opened in the market of Upperwood, built by Wendy Williams. The market is now full."}
+{"type":"status","tick":7250,"wallTimeMs":1792714254655,"text":"Yellowton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1792714254655,"kind":"NationRelationChange","text":"Easternland and Yellowton have become rivals over their border."}
+{"type":"status","tick":7290,"wallTimeMs":1792714256810,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era."}
+{"type":"chronicle","tick":7402,"wallTimeMs":1792714263878,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Hank Davies."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714269772,"kind":"StallBuilt","text":"Samantha Brown built a market stall in Fortressford."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714269772,"kind":"StallBuilt","text":"Oscar Thompson built a market stall in Villagewood."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714269772,"kind":"Caravan","text":"Yellowton sent a caravan of 20 stone from the Town of Yellowton to the Camp of Easternland."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714269772,"kind":"Caravan","text":"Farmford sent a caravan of 20 stone from the Town of Farmford to the Camp of Easternland."}
+{"type":"status","tick":7558,"wallTimeMs":1792714273200,"text":"Judy Taylor (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\u0022"}
+{"type":"chronicle","tick":7558,"wallTimeMs":1792714273200,"kind":"Caravan","text":"A caravan from Smallshire sold 13 stone at the Camp of Easternland for 110 coins."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1792714283049,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Ursula Thompson."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1792714283049,"kind":"NationRelationChange","text":"Westernford and Farmland have become rivals over their border."}
+{"type":"chronicle","tick":7802,"wallTimeMs":1792714285564,"kind":"SettlementFounded","text":"Upperville put down roots: Tilly Thomas founded its first settlement."}
+{"type":"status","tick":7874,"wallTimeMs":1792714289130,"text":"You gave Judy Taylor 10 coin. Judy Taylor (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"chronicle","tick":7950,"wallTimeMs":1792714292806,"kind":"StallBuilt","text":"Mia Thompson built a market stall in Smallshire."}
+{"type":"screen","tick":8006,"wallTimeMs":1792714295652,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":8010,"wallTimeMs":1792714317638,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":8046,"wallTimeMs":1792714319711,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":8046,"wallTimeMs":1792714340298,"from":"CONTROLS","to":"WORLD"}
+{"type":"chronicle","tick":8050,"wallTimeMs":1792714340518,"kind":"NationCreation","text":"The nation of Greenland was born, with Charlie Lewis at its head."}
+{"type":"chronicle","tick":8150,"wallTimeMs":1792714345828,"kind":"StallBuilt","text":"Trade came to Easternland: Tina Davies built a stall. The market is now full."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792714353266,"kind":"StallBuilt","text":"A new stall opened in the market of Villagewood, built by Oscar Thompson."}
+{"type":"chronicle","tick":8450,"wallTimeMs":1792714360411,"kind":"StallBuilt","text":"Trade came to Farmland: Ella Lewis built a stall."}
+{"type":"chronicle","tick":8450,"wallTimeMs":1792714360411,"kind":"StallBuilt","text":"Samantha Brown built a market stall in Fortressford."}
+{"type":"status","tick":8502,"wallTimeMs":1792714363893,"text":"Smallford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1792714363893,"kind":"NationRelationChange","text":"Easternland and Smallford have become rivals over their border."}
+{"type":"status","tick":8510,"wallTimeMs":1792714364421,"text":"Exited settlement."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1792714367173,"kind":"SettlementFounded","text":"Castlefield put down roots: Mike Wilson founded its first settlement."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792714377449,"kind":"StallBuilt","text":"Trade came to Yellowton: Una Johnson built a stall."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792714377449,"kind":"StallBuilt","text":"Trade came to Villagewood: Oscar Thompson built a stall."}
+{"type":"status","tick":8730,"wallTimeMs":1792714379092,"text":"You leave the land of Easternland for the wilds."}
+{"type":"chronicle","tick":8750,"wallTimeMs":1792714380422,"kind":"NationRelationChange","text":"Fortressford and Yellowland have become rivals over their border."}
+{"type":"chronicle","tick":8850,"wallTimeMs":1792714387079,"kind":"StallBuilt","text":"Hank Davies built a market stall in Westport."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792714396524,"kind":"NationCreation","text":"The nation of Easternfield was born, with Stan Taylor at its head."}
+{"type":"chronicle","tick":9050,"wallTimeMs":1792714399151,"kind":"SettlementFounded","text":"Charlie Lewis raised the first settlement of Greenland."}
+{"type":"status","tick":9062,"wallTimeMs":1792714399724,"text":"You are back on your own land."}
+{"type":"chronicle","tick":9170,"wallTimeMs":1792714404508,"kind":"Caravan","text":"A caravan from Yellowton sold 8 stone at the Camp of Easternland for 56 coins."}
+{"type":"chronicle","tick":9202,"wallTimeMs":1792714405931,"kind":"NationCreation","text":"Alice Wood founded the nation of Westernburg."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714408158,"kind":"StallBuilt","text":"Oscar Thompson built a market stall in Villagewood. The market is now full."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714408158,"kind":"NationRelationChange","text":"Farmford and Yellowland have become rivals over their border."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714408158,"kind":"NationRelationChange","text":"Upperwood and Villagewood have become rivals over their border."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714408158,"kind":"NationRelationChange","text":"Villagewood and Smallford have become rivals over their border."}
+{"type":"chronicle","tick":9302,"wallTimeMs":1792714410515,"kind":"StallBuilt","text":"Ursula Thompson built a market stall in Westernford."}
+{"type":"chronicle","tick":9350,"wallTimeMs":1792714412851,"kind":"NationCreation","text":"Ruth Johnson declared the nation of Newshire, though none had yet sworn to it."}
+{"type":"status","tick":9354,"wallTimeMs":1792714413045,"text":"Tina Davies is already a member of Easternland."}
+{"type":"status","tick":9470,"wallTimeMs":1792714418273,"text":"There is no one within reach to give a gift to."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792714419634,"kind":"StallBuilt","text":"A new stall opened in the market of Upperwood, built by Wendy Williams."}
+{"type":"chronicle","tick":9550,"wallTimeMs":1792714421677,"kind":"StallBuilt","text":"Trade came to Smallshire: Mia Thompson built a stall."}
+{"type":"chronicle","tick":9650,"wallTimeMs":1792714426263,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressford, built by Samantha Brown."}
+{"type":"status","tick":9682,"wallTimeMs":1792714428310,"text":"You leave the land of Easternland for the wilds."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792714433080,"kind":"StallBuilt","text":"A new stall opened in the market of Upperville, built by Tilly Thomas."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792714433080,"kind":"StallBuilt","text":"Charlie Lewis built a market stall in Greenland."}
+{"type":"chronicle","tick":9950,"wallTimeMs":1792714448191,"kind":"SettlementFounded","text":"Easternfield put down roots: Stan Taylor founded its first settlement."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792714452444,"kind":"StallBuilt","text":"Hank Davies built a market stall in Westport."}
+{"type":"status","tick":10070,"wallTimeMs":1792714457603,"text":"You enter the land of Smallford (Rival)."}
+{"type":"chronicle","tick":10102,"wallTimeMs":1792714459923,"kind":"StallBuilt","text":"Trade came to Castlefield: Mike Wilson built a stall."}
+{"type":"chronicle","tick":10250,"wallTimeMs":1792714469425,"kind":"NationRelationChange","text":"Villagewood and Upperville have become rivals over their border."}
+{"type":"chronicle","tick":10302,"wallTimeMs":1792714472386,"kind":"NationCreation","text":"The nation of Blueville was born, with Lily Lewis at its head."}
+{"type":"chronicle","tick":10302,"wallTimeMs":1792714472386,"kind":"NationCreation","text":"Frank Robinson founded the nation of Littleport."}
+{"type":"status","tick":10358,"wallTimeMs":1792714475594,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":10450,"wallTimeMs":1792714480996,"kind":"StallBuilt","text":"Trade came to Smallshire: Mia Thompson built a stall."}
+{"type":"chronicle","tick":10450,"wallTimeMs":1792714480996,"kind":"SettlementFounded","text":"Littleport put down roots: Frank Robinson founded its first settlement."}
+{"type":"status","tick":10502,"wallTimeMs":1792714483148,"text":"You are back on your own land."}
+{"type":"chronicle","tick":10550,"wallTimeMs":1792714486099,"kind":"StallBuilt","text":"Trade came to Farmford: Quinn Johnson built a stall."}
+{"type":"status","tick":10650,"wallTimeMs":1792714492939,"text":"You gave Oscar Johnson 10 coin. Oscar Johnson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"chronicle","tick":10702,"wallTimeMs":1792714496482,"kind":"StallBuilt","text":"Trade came to Upperwood: Wendy Williams built a stall. The market is now full."}
+{"type":"screen","tick":10734,"wallTimeMs":1792714499180,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":10734,"wallTimeMs":1792714504050,"text":"Taxes: None proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":10734,"wallTimeMs":1792714506300,"text":"Conscription: Off proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":10738,"wallTimeMs":1792714508226,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714509435,"kind":"NationRelationChange","text":"Yellowton and Westernford have formed an alliance."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714509435,"kind":"NationRelationChange","text":"Westernford and Southford are now hostile."}
+{"type":"chronicle","tick":10850,"wallTimeMs":1792714516972,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Una Johnson."}
+{"type":"chronicle","tick":10902,"wallTimeMs":1792714520681,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Hank Davies."}
+{"type":"chronicle","tick":10950,"wallTimeMs":1792714523989,"kind":"StallBuilt","text":"Trade came to Fortressford: Samantha Brown built a stall."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"StallBuilt","text":"Mike Wilson built a market stall in Castlefield."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Upperwood and Castlefield have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Farmland and Castlefield have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Castlefield and Upperville have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Westernford and Fortressford are now hostile."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Westernford and Upperwood are now hostile."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Relations between Fortressford and Westernford are now rival."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRelationChange","text":"Relations between Villagewood and Upperwood are now neutral."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714527433,"kind":"NationRaid","text":"Raiders from Westernford struck Upperwood, taking 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":11050,"wallTimeMs":1792714530739,"kind":"StallBuilt","text":"A new stall opened in the market of Upperville, built by Tilly Thomas."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1792714544873,"kind":"NationRelationChange","text":"Upperwood and Villagewood have become rivals over their border."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1792714544873,"kind":"NationRelationChange","text":"Fortressford and Yellowland are now hostile."}
+{"type":"chronicle","tick":11450,"wallTimeMs":1792714556403,"kind":"StallBuilt","text":"A new stall opened in the market of Smallshire, built by Mia Thompson."}
+{"type":"chronicle","tick":11450,"wallTimeMs":1792714556403,"kind":"SettlementFounded","text":"Blueville put down roots: Lily Lewis founded its first settlement."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792714558495,"kind":"StallBuilt","text":"Trade came to Farmland: Ella Lewis built a stall."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792714558495,"kind":"NationRelationChange","text":"Villagewood and Greenland have become rivals over their border."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792714558495,"kind":"NationRelationChange","text":"Castlefield and Greenland have become rivals over their border."}
+{"type":"screen","tick":11794,"wallTimeMs":1792714569710,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":11798,"wallTimeMs":1792714571828,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":11802,"wallTimeMs":1792714571966,"kind":"StallBuilt","text":"Trade came to Littleport: Frank Robinson built a stall."}
+{"type":"chronicle","tick":11950,"wallTimeMs":1792714577020,"kind":"StallBuilt","text":"Mike Wilson built a market stall in Castlefield."}
+{"type":"chronicle","tick":11978,"wallTimeMs":1792714577980,"kind":"Caravan","text":"A caravan from Farmford sold 14 stone at the Camp of Easternland for 70 coins."}
+{"type":"save","tick":12002,"wallTimeMs":1792714578940,"count":2}
+{"type":"status","tick":12002,"wallTimeMs":1792714578940,"text":"Autosaved."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRelationChange","text":"Relations between Easternland and Southford are now friendly against a common enemy."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRelationChange","text":"Relations between Easternland and Upperwood are now friendly against a common enemy."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRelationChange","text":"Relations between Westport and Yellowton are now neutral against a common enemy."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRelationChange","text":"Upperville and Easternfield have become rivals over their border."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRelationChange","text":"Relations between Smallshire and Yellowton are now neutral."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRaid","text":"Raiders from Westernford struck Southford, taking 5 wood."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714578940,"kind":"NationRaid","text":"Raiders from Fortressford struck Yellowland, taking 5 wood."}
+{"type":"chronicle","tick":12050,"wallTimeMs":1792714580578,"kind":"StallBuilt","text":"Trade came to Farmland: Ella Lewis built a stall."}
+{"type":"status","tick":12250,"wallTimeMs":1792714587473,"text":"Upperwood has fallen and been disbanded."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714587473,"kind":"StallBuilt","text":"Tilly Thomas built a market stall in Upperville."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714587473,"kind":"NationCreation","text":"The nation of Redport was born, with Quinn Williams at its head."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714587473,"kind":"NationCreation","text":"Linda Taylor raised a banner and called it Lowerton."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714587473,"kind":"NationRelationChange","text":"Westport and Yellowton have become rivals over their border."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714587473,"kind":"SettlementCapture","text":"Westernford captured a village from Upperwood."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714587473,"kind":"NationDisband","text":"Upperwood is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":12302,"wallTimeMs":1792714589197,"kind":"StallBuilt","text":"Trade came to Littleport: Frank Robinson built a stall."}
+{"type":"chronicle","tick":12302,"wallTimeMs":1792714589197,"kind":"SettlementFounded","text":"Linda Taylor raised the first settlement of Lowerton."}
+{"type":"chronicle","tick":12402,"wallTimeMs":1792714592557,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressford, built by Samantha Brown."}
+{"type":"chronicle","tick":12450,"wallTimeMs":1792714594223,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Una Johnson."}
+{"type":"status","tick":12502,"wallTimeMs":1792714595929,"text":"Westport shares an enemy with you: relations are now Friendly (\u002B20). Taxes were lifted in Easternland. Easternland stood down its conscripts."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714595929,"kind":"StallBuilt","text":"A new stall opened in the market of Westport, built by Hank Davies. The market is now full."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714595929,"kind":"StallBuilt","text":"A new stall opened in the market of Farmford, built by Quinn Johnson."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714595929,"kind":"NationCreation","text":"Alice Jones founded the nation of Northshire."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714595929,"kind":"NationRelationChange","text":"Relations between Easternland and Westport are now friendly against a common enemy."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714595929,"kind":"Statecraft","text":"Taxes were lifted in Easternland."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714595929,"kind":"Statecraft","text":"Easternland stood down its conscripts."}
+{"type":"chronicle","tick":12702,"wallTimeMs":1792714602707,"kind":"SettlementFounded","text":"Alice Jones laid the first stones of Northshire."}
+{"type":"chronicle","tick":12702,"wallTimeMs":1792714602707,"kind":"NationCreation","text":"Tilly Thompson founded the nation of Newfield."}
+{"type":"chronicle","tick":12702,"wallTimeMs":1792714602707,"kind":"NationCreation","text":"Tilly Jones declared the nation of Easternham, though none had yet sworn to it."}
+{"type":"status","tick":12750,"wallTimeMs":1792714604260,"text":"Littleport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714604260,"kind":"StallBuilt","text":"Charlie Lewis built a market stall in Greenland."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714604260,"kind":"NationRelationChange","text":"Easternland and Littleport have become rivals over their border."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714604260,"kind":"NationRelationChange","text":"Yellowton and Smallshire have become rivals over their border."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714604260,"kind":"NationRelationChange","text":"Upperville and Littleport have become rivals over their border."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714604260,"kind":"NationRelationChange","text":"Westernford and Farmland are now hostile."}
+{"type":"chronicle","tick":12802,"wallTimeMs":1792714605987,"kind":"StallBuilt","text":"A new stall opened in the market of Smallshire, built by Mia Thompson."}
+{"type":"chronicle","tick":12850,"wallTimeMs":1792714607579,"kind":"StallBuilt","text":"Frank Robinson built a market stall in Littleport."}
+{"type":"chronicle","tick":12902,"wallTimeMs":1792714609277,"kind":"StallBuilt","text":"A new stall opened in the market of Farmland, built by Ella Lewis. The market is now full."}
+{"type":"chronicle","tick":12902,"wallTimeMs":1792714609277,"kind":"NationCreation","text":"Daisy Williams declared the nation of Blackton, though none had yet sworn to it."}
+{"type":"chronicle","tick":12950,"wallTimeMs":1792714610544,"kind":"StallBuilt","text":"Trade came to Castlefield: Mike Wilson built a stall."}
+{"type":"chronicle","tick":12950,"wallTimeMs":1792714610544,"kind":"SettlementFounded","text":"Daisy Williams laid the first stones of Blackton."}
+{"type":"chronicle","tick":12950,"wallTimeMs":1792714610544,"kind":"NationCreation","text":"The nation of Villageville was born, with Nancy Watson at its head."}
+{"type":"chronicle","tick":12950,"wallTimeMs":1792714610544,"kind":"SettlementFounded","text":"Easternham put down roots: Tilly Jones founded its first settlement."}
+{"type":"chronicle","tick":12950,"wallTimeMs":1792714610544,"kind":"NationCreation","text":"The nation of Blackport was born, with Fiona Wilson at its head."}
+{"type":"status","tick":12970,"wallTimeMs":1792714611314,"text":"You leave the land of Easternland for the wilds."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714612458,"kind":"NationRelationChange","text":"Relations between Smallshire and Yellowton are now neutral."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714612458,"kind":"NationRaid","text":"Westernford raided Farmland and carried off 5 coins."}
+{"type":"chronicle","tick":13050,"wallTimeMs":1792714614132,"kind":"NationCreation","text":"The nation of Blackwood was born, with Yvonne Johnson at its head."}
+{"type":"chronicle","tick":13102,"wallTimeMs":1792714615993,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Ursula Thompson. The market is now full."}
+{"type":"chronicle","tick":13102,"wallTimeMs":1792714615993,"kind":"StallBuilt","text":"A new stall opened in the market of Easternfield, built by Stan Taylor."}
+{"type":"chronicle","tick":13102,"wallTimeMs":1792714615993,"kind":"NationCreation","text":"The nation of Southernwood was born, with Eve Taylor at its head."}
+{"type":"chronicle","tick":13102,"wallTimeMs":1792714615993,"kind":"SettlementFounded","text":"Yvonne Johnson raised the first settlement of Blackwood."}
+{"type":"chronicle","tick":13102,"wallTimeMs":1792714615993,"kind":"NationCreation","text":"Harriet Johnson founded the nation of Greatham."}
+{"type":"chronicle","tick":13150,"wallTimeMs":1792714617790,"kind":"SettlementFounded","text":"Villageville put down roots: Nancy Watson founded its first settlement."}
+{"type":"chronicle","tick":13202,"wallTimeMs":1792714619855,"kind":"NationCreation","text":"Fiona Johnson raised a banner and called it Greenshire."}
+{"type":"chronicle","tick":13250,"wallTimeMs":1792714621542,"kind":"SettlementFounded","text":"Fiona Johnson raised the first settlement of Greenshire."}
+{"type":"status","tick":13270,"wallTimeMs":1792714622247,"text":"You enter the land of Northshire (Neutral)."}
+{"type":"chronicle","tick":13302,"wallTimeMs":1792714623398,"kind":"StallBuilt","text":"Frank Robinson built a market stall in Littleport."}
+{"type":"chronicle","tick":13302,"wallTimeMs":1792714623398,"kind":"NationCreation","text":"The nation of Redville was born, with Ella Brown at its head."}
+{"type":"chronicle","tick":13350,"wallTimeMs":1792714624885,"kind":"StallBuilt","text":"Trade came to Smallford: Dave Roberts built a stall."}
+{"type":"chronicle","tick":13350,"wallTimeMs":1792714624885,"kind":"NationCreation","text":"Zach Jones raised a banner and called it Hamletport."}
+{"type":"chronicle","tick":13402,"wallTimeMs":1792714626409,"kind":"SettlementFounded","text":"Blackport put down roots: Fiona Wilson founded its first settlement."}
+{"type":"chronicle","tick":13450,"wallTimeMs":1792714627873,"kind":"NationCreation","text":"Xavier Smith declared the nation of Northernfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":13502,"wallTimeMs":1792714629492,"kind":"SettlementFounded","text":"Xavier Smith laid the first stones of Northernfield."}
+{"type":"chronicle","tick":13550,"wallTimeMs":1792714630924,"kind":"NationCreation","text":"Judy Smith founded the nation of Greenfield."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714637082,"kind":"NationRelationChange","text":"Easternfield and Blueville have become rivals over their border."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714637082,"kind":"NationRelationChange","text":"Blueville and Littleport have become rivals over their border."}
+{"type":"chronicle","tick":13850,"wallTimeMs":1792714640235,"kind":"StallBuilt","text":"Mia Thompson built a market stall in Smallshire. The market is now full."}
+{"type":"chronicle","tick":13850,"wallTimeMs":1792714640235,"kind":"SettlementFounded","text":"Eve Taylor raised the first settlement of Southernwood."}
+{"type":"chronicle","tick":13902,"wallTimeMs":1792714641825,"kind":"NationCreation","text":"Ruth Wilson founded the nation of Whiteport."}
+{"type":"chronicle","tick":13950,"wallTimeMs":1792714643232,"kind":"StallBuilt","text":"A new stall opened in the market of Upperville, built by Tilly Thomas."}
+{"type":"status","tick":14002,"wallTimeMs":1792714645117,"text":"Smallshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714645117,"kind":"SettlementFounded","text":"Ella Brown raised the first settlement of Redville."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714645117,"kind":"NationRelationChange","text":"Easternland and Smallshire have become rivals over their border."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714645117,"kind":"NationRelationChange","text":"Relations between Westport and Yellowton are now neutral."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714645117,"kind":"NationRelationChange","text":"Relations between Farmland and Westernford are now rival."}
+{"type":"chronicle","tick":14050,"wallTimeMs":1792714647100,"kind":"StallBuilt","text":"Trade came to Littleport: Frank Robinson built a stall."}
+{"type":"chronicle","tick":14150,"wallTimeMs":1792714651298,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerton, built by Linda Taylor."}
+{"type":"chronicle","tick":14150,"wallTimeMs":1792714651298,"kind":"SettlementFounded","text":"Tilly Thompson laid the first stones of Newfield."}
+{"type":"chronicle","tick":14202,"wallTimeMs":1792714653720,"kind":"StallBuilt","text":"Mike Wilson built a market stall in Castlefield."}
+{"type":"chronicle","tick":14202,"wallTimeMs":1792714653720,"kind":"StallBuilt","text":"A new stall opened in the market of Easternfield, built by Stan Taylor."}
+{"type":"status","tick":14234,"wallTimeMs":1792714655506,"text":"Irene Thompson (Stranger): \u0022I\u0027m loyal to Northshire.\u0022 (needs Loyal)"}
+{"type":"status","tick":14250,"wallTimeMs":1792714656423,"text":"Villagewood shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714656423,"kind":"StallBuilt","text":"A new stall opened in the market of Blueville, built by Lily Lewis."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714656423,"kind":"StallBuilt","text":"Trade came to Redville: Ella Brown built a stall."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714656423,"kind":"NationRelationChange","text":"Relations between Easternland and Villagewood are now friendly against a common enemy."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714656423,"kind":"NationRelationChange","text":"Farmford and Yellowland are now hostile."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714656423,"kind":"NationRelationChange","text":"Smallford and Villagewood are now hostile."}
+{"type":"status","tick":14334,"wallTimeMs":1792714661138,"text":"Irene Thompson (Stranger): \u0022I\u0027m loyal to Northshire.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":14450,"wallTimeMs":1792714667790,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Dave Roberts."}
+{"type":"chronicle","tick":14502,"wallTimeMs":1792714670828,"kind":"NationRelationChange","text":"Upperville and Easternfield are now hostile."}
+{"type":"status","tick":14518,"wallTimeMs":1792714671890,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":14542,"wallTimeMs":1792714673265,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"chronicle","tick":14550,"wallTimeMs":1792714673709,"kind":"StallBuilt","text":"A new stall opened in the market of Northernfield, built by Xavier Smith."}
+{"type":"status","tick":14570,"wallTimeMs":1792714674884,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":14598,"wallTimeMs":1792714676488,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":14650,"wallTimeMs":1792714679396,"kind":"StallBuilt","text":"Quinn Johnson built a market stall in Farmford."}
+{"type":"chronicle","tick":14650,"wallTimeMs":1792714679396,"kind":"StallBuilt","text":"Linda Taylor built a market stall in Lowerton."}
+{"type":"chronicle","tick":14650,"wallTimeMs":1792714679396,"kind":"SettlementFounded","text":"Judy Smith laid the first stones of Greenfield."}
+{"type":"chronicle","tick":14750,"wallTimeMs":1792714685074,"kind":"NationRelationChange","text":"Westernford and Farmland are now hostile over their border."}
+{"type":"chronicle","tick":14750,"wallTimeMs":1792714685074,"kind":"NationRelationChange","text":"Blueville and Lowerton have become rivals over their border."}
+{"type":"chronicle","tick":14750,"wallTimeMs":1792714685074,"kind":"NationRelationChange","text":"Farmford and Smallshire have formed an alliance."}
+{"type":"status","tick":14758,"wallTimeMs":1792714685630,"text":"Welcome home!"}
+{"type":"status","tick":14762,"wallTimeMs":1792714685819,"text":"You are back on your own land."}
+{"type":"status","tick":14790,"wallTimeMs":1792714687388,"text":"Entered settlement."}
+{"type":"chronicle","tick":14802,"wallTimeMs":1792714688085,"kind":"StallBuilt","text":"Trade came to Southford: Irene Taylor built a stall."}
+{"type":"chronicle","tick":14802,"wallTimeMs":1792714688085,"kind":"StallBuilt","text":"Charlie Lewis built a market stall in Greenland."}
+{"type":"chronicle","tick":14850,"wallTimeMs":1792714690868,"kind":"StallBuilt","text":"A new stall opened in the market of Redville, built by Ella Brown."}
+{"type":"chronicle","tick":14902,"wallTimeMs":1792714693793,"kind":"SettlementFounded","text":"Hamletport put down roots: Zach Jones founded its first settlement."}
+{"type":"status","tick":14954,"wallTimeMs":1792714696660,"text":"No one is buying resources at this market or you do not have enough resources to sell."}
+{"type":"status","tick":15002,"wallTimeMs":1792714699324,"text":"Northshire resents your border: relations are now Rival (-20). Littleport sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRelationChange","text":"Easternland and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRelationChange","text":"Yellowton and Smallshire have become rivals over their border."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRelationChange","text":"Westernford and Easternham have become rivals over their border."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRelationChange","text":"Lowerton and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRaid","text":"Farmford raided Yellowland and carried off 5 wood."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRaid","text":"Smallford raided Villagewood and carried off 5 coins."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714699324,"kind":"NationRaid","text":"Upperville raided Easternfield and carried off 5 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":15050,"wallTimeMs":1792714701996,"kind":"StallBuilt","text":"Samantha Brown built a market stall in Fortressford. The market is now full."}
+{"type":"chronicle","tick":15102,"wallTimeMs":1792714704864,"kind":"StallBuilt","text":"Dave Johnson built a market stall in Yellowland."}
+{"type":"chronicle","tick":15102,"wallTimeMs":1792714704864,"kind":"StallBuilt","text":"A new stall opened in the market of Northernfield, built by Xavier Smith."}
+{"type":"status","tick":15106,"wallTimeMs":1792714705131,"text":"Chronicle: full history."}
+{"type":"status","tick":15146,"wallTimeMs":1792714707409,"text":"Chronicle hidden."}
+{"type":"chronicle","tick":15250,"wallTimeMs":1792714713221,"kind":"NationRelationChange","text":"Farmford and Blackton have become rivals over their border."}
+{"type":"chronicle","tick":15250,"wallTimeMs":1792714713221,"kind":"NationRelationChange","text":"Easternham and Villageville have become rivals over their border."}
+{"type":"screen","tick":15270,"wallTimeMs":1792714714523,"from":"WORLD","to":"PAUSE"}

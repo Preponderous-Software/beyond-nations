@@ -1,0 +1,107 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter. Start with `--season autumn` (a fresh world otherwise reaches winter only after about 57 minutes of game time). Note how food and cold feel. Watch NPC food in your settlement: do residents starve, is there any warning, and can you feed them (#353)?",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 103,
+  "durationSec": 2933,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "NPCs starve in winter with no warning and no visible food/hunger state for settlement residents",
+      "detail": "From winter day 1 NPCs die of hunger (Fiona Robinson t195253, Nancy Williams t199797, Samantha Brown t200565, Jasmine Taylor t205649), several 'within the walls' of towns. Nothing before the deaths warned of hunger. The top toast only says '<name> has died.' with no nation or cause, so I could not tell whether it was one of my residents; only the truncated chronicle line says 'starved within the walls'. Settlement Info (Nation, Leader, PCIS, Funds, Tier, Residents) shows no food stock, and talking to residents never mentions hunger. Expected: a settlement food stock and a 'residents are going hungry' warning before anyone dies, and death toasts that name the nation and cause.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn; play to a settlement (N, gather 50 wood, F, E); wait inside the settlement until winter day 1 night (~tick 195000-206000); watch status toasts and chronicle",
+      "screenshot": "shots/deaths.png",
+      "tick": 200565
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "No way to feed a resident: Gift (G) only ever gives 10 coins",
+      "detail": "In winter I tried to feed residents of my settlement. G / 'Gift <pawn>' gave 10 coins ('Coins? That's generous of you.') with no option to give apples, even though I carried 19. 'Purchase Food' buys food for the player from a merchant. The world events ('Welcome them all (4 food)', 'Share a meal (1 food)') take food from the player's own apples, but outside those events I found no way to put food toward residents (#353).",
+      "repro": "pt start ... --season autumn; found and enter a settlement; in winter stand near a resident and press g (or click 'Gift <name>')",
+      "screenshot": "shots/giftcoins.png",
+      "tick": 176114
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Player winter is trivial: no energy drain inside the settlement, and auto-eat removes food decisions",
+      "detail": "Inside my settlement energy stayed at 92.4 for more than 25,000 ticks of winter. Outdoors, winter roughly doubled drain (an apple auto-eaten about every 2,000 ticks, against about 3,000 in autumn), but apples are auto-eaten, so the player never chooses to eat. Cold showed only as faster apple use; I never felt in danger. 'The cold bites outdoors' had no visible effect beyond that (no cold meter or warmth indicator).",
+      "repro": "pt start ... --season autumn; reach winter; compare player energy over pt wait 20 loops inside vs outside the settlement",
+      "screenshot": "shots/winter_out.png",
+      "tick": 175469
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Settlement action buttons reflow as pawns move, so two-click confirm actions misfire",
+      "detail": "The button row gains or loses 'Order/Talk/Gift <pawn>' buttons whenever the nearest pawn changes, so Build Farm/Build House move between the first click and the confirm click. My second click on 'Confirm Build Farm' re-armed the confirm instead of building ('Click again to confirm: Build Farm. (x2)'). A Gift click also landed on empty space after the pawn walked off.",
+      "repro": "enter a settlement with pawns milling around; click Build Farm, then click the same spot again to confirm",
+      "screenshot": "shots/reflow.png",
+      "tick": 129136
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "World event 'fed from your stores' gives no visible food store to judge the cost",
+      "detail": "'Wanderers at the gate' offered 'Welcome them all (4 food) - 2 new members, fed from your stores'. No panel shows any 'stores'. It turned out to take 4 apples from my own inventory (32 to 28). Expected the option to say where the food comes from, and how much is available.",
+      "repro": "play into autumn day 2 in a settlement; event fires around tick 141552",
+      "screenshot": "shots/wanderers.png",
+      "tick": 141552
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Three different day numbers for the same moment",
+      "detail": "The chronicle said 'Day 5, morning', the Season panel said 'Autumn - day 1/2, year 1' and state.json had day=4, all at the same time. This makes it hard to tell how long until winter.",
+      "repro": "pt start ... --season autumn; create a nation; compare the chronicle and Season panel",
+      "screenshot": "shots/daycount.png",
+      "tick": 121820
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Settlement HUD text clipped: objective progress, 'Next (K)' line, giant floating label",
+      "detail": "Inside the settlement, the objective progress text is cut off on the left ('mbers 9/10 * Buildings 2/2'). The Settlement Info 'Next (K): House, 20 wood, 1...' runs off the right. The floating '<n> here, x/y residents' label is huge and cut off by the top of the screen, behind the chronicle. Settlement Info also said 'Tier: Town' while the era badge said 'Camp (1/4)'.",
+      "repro": "found a settlement and press E to enter it",
+      "screenshot": "shots/cutoff.png",
+      "tick": 129008
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "Game speed drops to 12-20 tps under load; the Page Down render distance fix is not discoverable",
+      "detail": "With several sessions on the machine, tps sat at 12-20 (fps 3-5). Pressing Page Down six times took tps to about 28, and later to 40-50. Two in-game days of autumn plus winter take 40+ wall minutes even at full speed.",
+      "repro": "pt start ...; pt status; pt key Next Next Next Next Next Next; pt status",
+      "screenshot": "shots/lowrender.png",
+      "tick": 134216
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 8,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 2424.0,
+      "Eat something": 2425.0,
+      "Create or join a nation": 2433.0,
+      "Found a settlement": 2517.0,
+      "Enter your settlement": 2520.0,
+      "Build a market stall": 2528.0,
+      "Reach the Village era": 2731.0,
+      "Sell resources at market": 2805.0
+    },
+    "winterStartTick": 171002,
+    "lastTickObserved": 207701,
+    "winterDaysSurvived": 1.22,
+    "npcHungerDeathsWorldwide": 4,
+    "npcHungerDeathsInMySettlement": 0,
+    "hungerWarningsSeen": 0,
+    "applesUsedPerKiloTickOutdoorsAutumn": 0.33,
+    "applesUsedPerKiloTickOutdoorsWinter": 0.5,
+    "residentsAtEnd": 15
+  },
+  "fun": 3,
+  "verdict": "Getting to a settlement is quick and well signposted: the distance hint ('open ground about 220 to the south-east') is good, NPCs fill the town fast, and the world events are flavourful. The winter does not hold up. For the player it is trivial: no drain in town, and apples are auto-eaten. For NPCs it is invisible: no food stock, no warning, no way to feed a resident. People start starving 'within the walls' on winter day 1, and the only sign is a context-free '<name> has died.' toast. Only about 1.2 of the 2 winter days fit in the budget because the game ran slowly, so whether my own town survives the whole winter is untested."
+}

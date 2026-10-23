@@ -140,6 +140,8 @@ namespace beyondnationstests {
             [typeof(Diplomacy)] = new Entry {
                 Saved = new[] { "round", "siegeProgress", "besiegers" },
                 Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player", "realm" },
+                // reset every round; and only what the status line has already told
+                Transient = new[] { "shelteredRaidedThisRound", "toldPlayer" },
             },
             [typeof(PopulationGrowth)] = new Entry {
                 Saved = new[] { "random", "nameGenerator", "lastBirthTicks", "lastImmigrationTicks", "lastSettlerTicks", "numSettlers",

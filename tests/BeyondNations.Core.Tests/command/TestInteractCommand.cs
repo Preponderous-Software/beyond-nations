@@ -117,6 +117,190 @@ namespace beyondnationstests {
             Assert.False(player.isCurrentlyInSettlement());
         }
 
+        // pawns about a settlement (playtest 0.5.0, s01): drawn means reachable
+
+        private Settlement addSettlement(Vector3 position) {
+            Settlement settlement = new Settlement(position, new NationId(), Rgba.White, "Testland", random);
+            entityRepository.addEntity(settlement);
+            return settlement;
+        }
+
+        private Pawn addResident(Settlement settlement, Vector3 offset) {
+            Pawn pawn = new Pawn(settlement.getPosition() + offset, "Olivia", random);
+            entityRepository.addEntity(pawn);
+            SettlementLife.admit(pawn, settlement);
+            return pawn;
+        }
+
+        [Fact]
+        public void testExecute_PawnMillingOnPlaza_OutOfEnterReach_TalkedTo() {
+            // prepare: the well is 10 away, a resident strolls 3 away
+            Settlement settlement = addSettlement(new Vector3(10, 0, 0));
+            Pawn pawn = addResident(settlement, new Vector3(-7, 0, 0));
+
+            // run
+            command.execute(player);
+
+            // check
+            Assert.True(PawnRelations.hasMet(pawn, player));
+            Assert.False(player.isCurrentlyInSettlement());
+            Assert.StartsWith("Olivia", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_AtTheWellWithPawnNearby_EntersSettlement() {
+            // the well is the door: within reach of it, E enters even with a pawn closer
+            Settlement settlement = addSettlement(new Vector3(4, 0, 0));
+            Pawn pawn = addResident(settlement, new Vector3(-3, 0, 0));
+
+            command.execute(player);
+
+            Assert.True(player.isCurrentlyInSettlement());
+            Assert.False(PawnRelations.hasMet(pawn, player));
+        }
+
+        [Fact]
+        public void testExecute_InsideWithPawnInReach_LeavesSettlement() {
+            // inside, E always leaves; the pawn is reached by the bar, G and R
+            Settlement settlement = addSettlement(new Vector3(0, 0, 0));
+            new EnterSettlementCommand(entityRepository).execute(player, settlement);
+            Pawn pawn = addResident(settlement, new Vector3(3, 0, 0));
+
+            command.execute(player);
+
+            Assert.False(player.isCurrentlyInSettlement());
+            Assert.False(PawnRelations.hasMet(pawn, player));
+        }
+
+        // E acts on what the player faces (the player faces +Z at yaw 0):
+        // a settler passing a tree used to win every press
+
+        private AppleTree addTree(Vector3 position) {
+            AppleTree tree = new AppleTree(position, 5, random);
+            entityRepository.addEntity(tree);
+            return tree;
+        }
+
+        private Pawn addPawn(Vector3 position) {
+            Pawn pawn = new Pawn(position, "Olivia", random);
+            entityRepository.addEntity(pawn);
+            return pawn;
+        }
+
+        [Fact]
+        public void testExecute_FacingTreeWithPawnNearerAtShoulder_GathersTree() {
+            // the seed-5 pacing stall: the tree 2.5 ahead, a settler 1.2 away at the side
+            AppleTree tree = addTree(new Vector3(0, 0, 2.5f));
+            Pawn pawn = addPawn(new Vector3(1.2f, 0, -0.2f));
+
+            command.execute(player);
+
+            Assert.True(tree.isMarkedForDeletion());
+            Assert.True(player.getInventory().getNumItems(ItemType.WOOD) > 0);
+            Assert.False(PawnRelations.hasMet(pawn, player));
+            Assert.StartsWith("Gathered", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_FacingTreeWithPawnBehind_GathersTree() {
+            AppleTree tree = addTree(new Vector3(0, 0, 4));
+            Pawn pawn = addPawn(new Vector3(0, 0, -1));
+
+            command.execute(player);
+
+            Assert.True(tree.isMarkedForDeletion());
+            Assert.False(PawnRelations.hasMet(pawn, player));
+        }
+
+        [Fact]
+        public void testExecute_FacingPawnWithTreeBeside_TalksToPawn() {
+            AppleTree tree = addTree(new Vector3(2, 0, 0));
+            Pawn pawn = addPawn(new Vector3(0, 0, 3));
+
+            command.execute(player);
+
+            Assert.True(PawnRelations.hasMet(pawn, player));
+            Assert.False(tree.isMarkedForDeletion());
+        }
+
+        [Fact]
+        public void testExecute_TurnedToFacePawn_TalksInsteadOfGathering() {
+            // the same two things, the player turned from the tree to the pawn
+            AppleTree tree = addTree(new Vector3(0, 0, 3));
+            Pawn pawn = addPawn(new Vector3(3, 0, 0));
+            player.turn(System.MathF.PI / 2); // now facing +X
+
+            command.execute(player);
+
+            Assert.True(PawnRelations.hasMet(pawn, player));
+            Assert.False(tree.isMarkedForDeletion());
+        }
+
+        [Fact]
+        public void testExecute_BothInFront_NearerTheMiddleOfTheViewWins() {
+            AppleTree tree = addTree(new Vector3(0.3f, 0, 4));
+            Pawn pawn = addPawn(new Vector3(1.5f, 0, 1.5f)); // 45 degrees off, and nearer
+
+            command.execute(player);
+
+            Assert.True(tree.isMarkedForDeletion());
+            Assert.False(PawnRelations.hasMet(pawn, player));
+        }
+
+        [Fact]
+        public void testExecute_NothingInFront_PawnStillComesBeforeTree() {
+            // both behind the player: no facing to go by, so the old order stands
+            AppleTree tree = addTree(new Vector3(-2, 0, -2));
+            Pawn pawn = addPawn(new Vector3(2, 0, -2));
+
+            command.execute(player);
+
+            Assert.True(PawnRelations.hasMet(pawn, player));
+            Assert.False(tree.isMarkedForDeletion());
+        }
+
+        [Fact]
+        public void testExecute_OnlyTreeInReach_BehindPlayer_StillGathered() {
+            // facing only breaks ties: something in reach is never out of reach for being behind
+            AppleTree tree = addTree(new Vector3(0, 0, -3));
+
+            command.execute(player);
+
+            Assert.True(tree.isMarkedForDeletion());
+        }
+
+        [Fact]
+        public void testExecute_FacingRockWithChickenBeside_GathersRock() {
+            Rock rock = new Rock(new Vector3(0, 0, 3));
+            entityRepository.addEntity(rock);
+            Chicken chicken = new Chicken(new Vector3(3, 0, 0), random);
+            entityRepository.addEntity(chicken);
+
+            command.execute(player);
+
+            Assert.True(rock.isMarkedForDeletion());
+            Assert.False(chicken.isMarkedForDeletion());
+        }
+
+        [Fact]
+        public void testExecute_FacingTreeAtTheWell_StillEnters() {
+            // the well keeps its place ahead of everything else
+            Settlement settlement = addSettlement(new Vector3(3, 0, 0));
+            AppleTree tree = addTree(new Vector3(0, 0, 2));
+
+            command.execute(player);
+
+            Assert.True(player.isCurrentlyInSettlement());
+            Assert.False(tree.isMarkedForDeletion());
+        }
+
+        [Fact]
+        public void testHasTargetInRange_PawnMillingInsideSettlement_True() {
+            Settlement settlement = addSettlement(new Vector3(10, 0, 0));
+            addResident(settlement, new Vector3(-7, 0, 0));
+            Assert.True(command.hasTargetInRange(player));
+        }
+
         // hasTargetInRange: what a tap on the world (touch screens) checks first
 
         [Fact]

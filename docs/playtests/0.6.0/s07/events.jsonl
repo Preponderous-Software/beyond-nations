@@ -1,0 +1,126 @@
+{"type":"screen","tick":0,"wallTimeMs":1792713863879,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792713870433,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792713880687,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792713883558,"how":"created","slot":"world-107-20261023-000443","seed":107}
+{"type":"screen","tick":0,"wallTimeMs":1792713883560,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":74,"wallTimeMs":1792713886192,"from":"WORLD","to":"CRAFTING"}
+{"type":"screen","tick":78,"wallTimeMs":1792713897184,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":322,"wallTimeMs":1792713906069,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":590,"wallTimeMs":1792713915831,"text":"Gathered 5 stone from rock."}
+{"type":"screen","tick":790,"wallTimeMs":1792713923431,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":790,"wallTimeMs":1792713931178,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}
+{"type":"screen","tick":794,"wallTimeMs":1792713939597,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":994,"wallTimeMs":1792713947534,"text":"Gathered 7 wood and 1 apple from tree (\u002B3 from your axe), 19 uses left."}
+{"type":"chronicle","tick":1202,"wallTimeMs":1792713956092,"kind":"NationCreation","text":"Yvonne Brown declared the nation of Citytown, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"chronicle","tick":1250,"wallTimeMs":1792713959254,"kind":"SettlementFounded","text":"Yvonne Brown laid the first stones of Citytown."}
+{"type":"status","tick":1426,"wallTimeMs":1792713969873,"text":"Gathered 7 wood and 2 apples from tree (\u002B3 from your axe), 18 uses left."}
+{"type":"objective_completed","tick":1450,"wallTimeMs":1792713971096,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1450}
+{"type":"status","tick":1450,"wallTimeMs":1792713971096,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1502,"wallTimeMs":1792713973541,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1502,"wallTimeMs":1792713973541,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":1650,"wallTimeMs":1792713979915,"kind":"NationCreation","text":"Linda Wood raised a banner and called it Fortressland."}
+{"type":"status","tick":1678,"wallTimeMs":1792713981089,"text":"Gathered 7 wood and 2 apples from tree (\u002B3 from your axe), 17 uses left."}
+{"type":"screen","tick":1846,"wallTimeMs":1792713988207,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":1846,"wallTimeMs":1792713991331,"text":"Crafted 1 pickaxe (\u002B2 stone per rock, lasts 15 rocks)."}
+{"type":"screen","tick":1850,"wallTimeMs":1792713993784,"from":"CRAFTING","to":"WORLD"}
+{"type":"chronicle","tick":1850,"wallTimeMs":1792713993784,"kind":"SettlementFounded","text":"Linda Wood laid the first stones of Fortressland."}
+{"type":"chronicle","tick":1950,"wallTimeMs":1792713999202,"kind":"NationCreation","text":"Grace Smith founded the nation of Fortwood."}
+{"type":"chronicle","tick":2002,"wallTimeMs":1792714002139,"kind":"SettlementFounded","text":"Grace Smith raised the first settlement of Fortwood."}
+{"type":"status","tick":2054,"wallTimeMs":1792714004957,"text":"Gathered 7 stone from rock (\u002B2 from your pickaxe), 14 uses left."}
+{"type":"status","tick":2422,"wallTimeMs":1792714021231,"text":"You enter the land of Citytown."}
+{"type":"chronicle","tick":2450,"wallTimeMs":1792714022428,"kind":"NationCreation","text":"Yvonne Wood founded the nation of Smallland."}
+{"type":"chronicle","tick":2602,"wallTimeMs":1792714030481,"kind":"NationCreation","text":"Irene Williams raised a banner and called it Westernham."}
+{"type":"chronicle","tick":2650,"wallTimeMs":1792714032661,"kind":"SettlementFounded","text":"Yvonne Wood laid the first stones of Smallland."}
+{"type":"status","tick":2882,"wallTimeMs":1792714042865,"text":"Harvested chicken meat."}
+{"type":"screen","tick":3018,"wallTimeMs":1792714048503,"from":"WORLD","to":"CRAFTING"}
+{"type":"screen","tick":3022,"wallTimeMs":1792714066736,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":3414,"wallTimeMs":1792714084770,"text":"Harvested chicken meat."}
+{"type":"screen","tick":3446,"wallTimeMs":1792714086324,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":3446,"wallTimeMs":1792714092858,"text":"Crafted 1 cooked meat (45 energy each)."}
+{"type":"screen","tick":3450,"wallTimeMs":1792714109699,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":3466,"wallTimeMs":1792714110354,"text":"Created nation Redville."}
+{"type":"chronicle","tick":3466,"wallTimeMs":1792714110354,"kind":"NationCreation","text":"You founded the nation of Redville."}
+{"type":"objective_completed","tick":3502,"wallTimeMs":1792714111739,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":2000}
+{"type":"status","tick":3502,"wallTimeMs":1792714111739,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":3650,"wallTimeMs":1792714117680,"kind":"SettlementFounded","text":"Irene Williams raised the first settlement of Westernham."}
+{"type":"status","tick":3774,"wallTimeMs":1792714122695,"text":"Gathered 9 wood and 1 apple from tree (\u002B3 from your axe), 16 uses left."}
+{"type":"chronicle","tick":4102,"wallTimeMs":1792714139512,"kind":"StallBuilt","text":"Yvonne Brown built a market stall in Citytown."}
+{"type":"status","tick":4162,"wallTimeMs":1792714142336,"text":"You leave the land of Citytown for the wilds."}
+{"type":"chronicle","tick":4250,"wallTimeMs":1792714145961,"kind":"NationRelationChange","text":"Citytown and Fortressland have become rivals over their border."}
+{"type":"chronicle","tick":4250,"wallTimeMs":1792714145961,"kind":"NationRelationChange","text":"Citytown and Fortwood have become rivals over their border."}
+{"type":"status","tick":4462,"wallTimeMs":1792714154816,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 15 uses left."}
+{"type":"status","tick":4930,"wallTimeMs":1792714174683,"text":"Gathered 9 wood and 1 apple from tree (\u002B3 from your axe), 14 uses left."}
+{"type":"chronicle","tick":5002,"wallTimeMs":1792714177806,"kind":"NationRelationChange","text":"Citytown and Smallland have become rivals over their border."}
+{"type":"chronicle","tick":5050,"wallTimeMs":1792714179828,"kind":"NationCreation","text":"Abigail Wood declared the nation of Greatville, though none had yet sworn to it."}
+{"type":"chronicle","tick":5550,"wallTimeMs":1792714201025,"kind":"SettlementFounded","text":"Abigail Wood laid the first stones of Greatville."}
+{"type":"chronicle","tick":5550,"wallTimeMs":1792714201025,"kind":"NationCreation","text":"The nation of Castleburg was born, with Mia Wilson at its head."}
+{"type":"chronicle","tick":5802,"wallTimeMs":1792714211616,"kind":"SettlementFounded","text":"Castleburg put down roots: Mia Wilson founded its first settlement."}
+{"type":"chronicle","tick":5850,"wallTimeMs":1792714213576,"kind":"NationCreation","text":"Irene Davies founded the nation of Fortport."}
+{"type":"chronicle","tick":5902,"wallTimeMs":1792714216073,"kind":"StallBuilt","text":"A new stall opened in the market of Westernham, built by Irene Williams."}
+{"type":"status","tick":5966,"wallTimeMs":1792714218940,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 13 uses left."}
+{"type":"save","tick":6002,"wallTimeMs":1792714220609,"count":1}
+{"type":"status","tick":6002,"wallTimeMs":1792714220609,"text":"Autosaved."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792714220609,"kind":"NationRelationChange","text":"Citytown and Westernham have become rivals over their border."}
+{"type":"status","tick":6290,"wallTimeMs":1792714233018,"text":"You enter the land of Castleburg (Neutral)."}
+{"type":"status","tick":6298,"wallTimeMs":1792714233362,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 12 uses left."}
+{"type":"status","tick":6418,"wallTimeMs":1792714238476,"text":"This land is claimed by Castleburg. Found your settlement outside its borders. Open ground lies about 190 to the east."}
+{"type":"chronicle","tick":6602,"wallTimeMs":1792714246660,"kind":"SettlementFounded","text":"Irene Davies raised the first settlement of Fortport."}
+{"type":"chronicle","tick":6702,"wallTimeMs":1792714251082,"kind":"NationCreation","text":"Ursula Robinson declared the nation of Cityport, though none had yet sworn to it."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1792714253406,"kind":"NationCreation","text":"The nation of Lowerwood was born, with Yvonne Jones at its head."}
+{"type":"chronicle","tick":6850,"wallTimeMs":1792714258150,"kind":"NationCreation","text":"Mike Thomas declared the nation of Littleham, though none had yet sworn to it."}
+{"type":"chronicle","tick":6902,"wallTimeMs":1792714260661,"kind":"SettlementFounded","text":"Littleham put down roots: Mike Thomas founded its first settlement."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792714266106,"kind":"NationRelationChange","text":"Citytown and Fortressland are now hostile."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792714266106,"kind":"NationRaid","text":"Citytown raided Fortressland and carried off 5 wood, 5 stone."}
+{"type":"status","tick":7090,"wallTimeMs":1792714270040,"text":"You leave the land of Castleburg for the wilds."}
+{"type":"status","tick":7246,"wallTimeMs":1792714276669,"text":"Too close to the Camp of Littleham: 213 away, and settlements must be 250 apart. Open ground lies about 40 to the south."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1792714276820,"kind":"NationCreation","text":"The nation of Greenville was born, with Eve Johnson at its head."}
+{"type":"chronicle","tick":7450,"wallTimeMs":1792714284131,"kind":"SettlementFounded","text":"Lowerwood put down roots: Yvonne Jones founded its first settlement."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714285989,"kind":"NationRelationChange","text":"Fortwood and Westernham have become rivals over their border."}
+{"type":"status","tick":7606,"wallTimeMs":1792714289940,"text":"Too close to the Camp of Littleham: 134 away, and settlements must be 250 apart. Open ground lies about 120 to the south."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1792714293583,"kind":"StallBuilt","text":"Trade came to Castleburg: Mia Wilson built a stall."}
+{"type":"chronicle","tick":7902,"wallTimeMs":1792714302040,"kind":"StallBuilt","text":"A new stall opened in the market of Greatville, built by Abigail Wood."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792714306661,"kind":"NationRelationChange","text":"Westernham and Greatville have become rivals over their border."}
+{"type":"status","tick":8042,"wallTimeMs":1792714308577,"text":"Too close to the Town of Citytown: 247 away, and settlements must be 250 apart. Open ground lies about 11 to the north-east."}
+{"type":"chronicle","tick":8050,"wallTimeMs":1792714308924,"kind":"StallBuilt","text":"Irene Davies built a market stall in Fortport."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1792714311657,"kind":"StallBuilt","text":"Trade came to Westernham: Irene Williams built a stall."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1792714311657,"kind":"NationCreation","text":"Judy Taylor raised a banner and called it Redfield."}
+{"type":"status","tick":8250,"wallTimeMs":1792714319166,"text":"Fortressland has fallen and been disbanded."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1792714319166,"kind":"SettlementFounded","text":"Judy Taylor laid the first stones of Redfield."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1792714319166,"kind":"NationRelationChange","text":"Citytown and Castleburg have become rivals over their border."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1792714319166,"kind":"SettlementCapture","text":"After a siege, a village of Fortressland fell to Citytown."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1792714319166,"kind":"NationDisband","text":"Fortressland faded from memory before it ever built a home."}
+{"type":"status","tick":8318,"wallTimeMs":1792714322639,"text":"Too close to the Town of Citytown: 249 away, and settlements must be 250 apart. Open ground lies about 11 to the east."}
+{"type":"chronicle","tick":8402,"wallTimeMs":1792714326733,"kind":"SettlementFounded","text":"Ursula Robinson raised the first settlement of Cityport."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1792714335258,"kind":"NationCreation","text":"The nation of Littleton was born, with Peggy Wilson at its head."}
+{"type":"status","tick":8590,"wallTimeMs":1792714337225,"text":"Too close to the Town of Citytown: 235 away, and settlements must be 250 apart. Open ground lies about 21 to the north-east."}
+{"type":"chronicle","tick":8902,"wallTimeMs":1792714351497,"kind":"NationCreation","text":"Ruth Wilson raised a banner and called it Easternshire."}
+{"type":"status","tick":8990,"wallTimeMs":1792714354881,"text":"Too close to the Village of Castleburg: 236 away, and settlements must be 250 apart. Open ground lies about 20 to the east."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792714355324,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerwood, built by Yvonne Jones."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792714355324,"kind":"NationRelationChange","text":"Fortwood and Fortport have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792714355324,"kind":"NationRelationChange","text":"Greatville and Fortport have become rivals over their border."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714366658,"kind":"StallBuilt","text":"A new stall opened in the market of Fortport, built by Irene Davies."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714366658,"kind":"NationRelationChange","text":"Castleburg and Littleham have become rivals over their border."}
+{"type":"status","tick":9338,"wallTimeMs":1792714372712,"text":"Too close to the Village of Castleburg: 227 away, and settlements must be 250 apart. Open ground lies about 30 to the east."}
+{"type":"chronicle","tick":9350,"wallTimeMs":1792714373581,"kind":"SettlementFounded","text":"Littleton put down roots: Peggy Wilson founded its first settlement."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792714382787,"kind":"NationRelationChange","text":"Lowerwood and Littleham have become rivals over their border."}
+{"type":"chronicle","tick":9650,"wallTimeMs":1792714391040,"kind":"StallBuilt","text":"A new stall opened in the market of Citytown, built by Yvonne Brown."}
+{"type":"status","tick":9706,"wallTimeMs":1792714394810,"text":"Settlement founded. Citytown and Smallland and Castleburg and Littleham and Redfield resent a new settlement so near their land."}
+{"type":"chronicle","tick":9706,"wallTimeMs":1792714394810,"kind":"SettlementFounded","text":"You raised the first settlement of Redville."}
+{"type":"status","tick":9710,"wallTimeMs":1792714395084,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":9750,"wallTimeMs":1792714397405,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":6248}
+{"type":"status","tick":9750,"wallTimeMs":1792714397405,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"status","tick":9838,"wallTimeMs":1792714402089,"text":"Entered settlement."}
+{"type":"objective_completed","tick":9850,"wallTimeMs":1792714402615,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":100}
+{"type":"status","tick":9850,"wallTimeMs":1792714402615,"text":"Objective complete: Enter your settlement."}
+{"type":"status","tick":9894,"wallTimeMs":1792714404631,"text":"A Farm needs 25 wood, 10 stone. Need 16 more wood, 3 more stone."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792714409535,"kind":"StallBuilt","text":"Abigail Wood built a market stall in Greatville."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792714409535,"kind":"NationRelationChange","text":"Citytown and Smallland are now hostile."}
+{"type":"chronicle","tick":10102,"wallTimeMs":1792714414270,"kind":"StallBuilt","text":"A new stall opened in the market of Castleburg, built by Mia Wilson."}
+{"type":"chronicle","tick":10102,"wallTimeMs":1792714414270,"kind":"SettlementFounded","text":"Easternshire put down roots: Ruth Wilson founded its first settlement."}
+{"type":"chronicle","tick":10250,"wallTimeMs":1792714420776,"kind":"StallBuilt","text":"A new stall opened in the market of Fortport, built by Irene Davies."}
+{"type":"chronicle","tick":10302,"wallTimeMs":1792714423056,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerwood, built by Yvonne Jones."}
+{"type":"screen","tick":10322,"wallTimeMs":1792714424125,"from":"WORLD","to":"CRAFTING"}
+{"type":"screen","tick":10326,"wallTimeMs":1792714436156,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":10334,"wallTimeMs":1792714436750,"text":"Exited settlement."}
+{"type":"screen","tick":10410,"wallTimeMs":1792714442510,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":10410,"wallTimeMs":1792714453150,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}

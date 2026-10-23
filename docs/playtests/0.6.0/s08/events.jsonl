@@ -1,0 +1,475 @@
+{"type":"screen","tick":0,"wallTimeMs":1792713865833,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792713870323,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792713873342,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792713883113,"how":"created","slot":"world-108-20261023-000443","seed":108}
+{"type":"screen","tick":0,"wallTimeMs":1792713883116,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":718,"wallTimeMs":1792713907861,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":726,"wallTimeMs":1792713908191,"text":"No entities within range to interact with."}
+{"type":"status","tick":738,"wallTimeMs":1792713908661,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1138,"wallTimeMs":1792713924222,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1150,"wallTimeMs":1792713924664,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1150}
+{"type":"status","tick":1150,"wallTimeMs":1792713924664,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"status","tick":1178,"wallTimeMs":1792713925687,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":1202,"wallTimeMs":1792713926572,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1202,"wallTimeMs":1792713926572,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"status","tick":1354,"wallTimeMs":1792713933198,"text":"Created nation Newport."}
+{"type":"chronicle","tick":1354,"wallTimeMs":1792713933198,"kind":"NationCreation","text":"You founded the nation of Newport. It is the first nation this world has known."}
+{"type":"objective_completed","tick":1402,"wallTimeMs":1792713935565,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":200}
+{"type":"status","tick":1402,"wallTimeMs":1792713935565,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":1514,"wallTimeMs":1792713940312,"text":"Not enough wood. Need 40 more."}
+{"type":"chronicle","tick":1602,"wallTimeMs":1792713944057,"kind":"NationCreation","text":"Mia Thomas declared the nation of Lowerville, though none had yet sworn to it."}
+{"type":"chronicle","tick":1602,"wallTimeMs":1792713944057,"kind":"NationCreation","text":"Natalie Williams declared the nation of Westernfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":1650,"wallTimeMs":1792713945989,"kind":"SettlementFounded","text":"Mia Thomas laid the first stones of Lowerville."}
+{"type":"chronicle","tick":1702,"wallTimeMs":1792713948080,"kind":"SettlementFounded","text":"Westernfield put down roots: Natalie Williams founded its first settlement."}
+{"type":"status","tick":1950,"wallTimeMs":1792713960095,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":1974,"wallTimeMs":1792713961721,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":1998,"wallTimeMs":1792713963614,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":2174,"wallTimeMs":1792713973067,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2846,"wallTimeMs":1792714004504,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2994,"wallTimeMs":1792714010847,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":3430,"wallTimeMs":1792714029965,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":4002,"wallTimeMs":1792714055433,"kind":"NationCreation","text":"Olivia Smith founded the nation of Fortressfield."}
+{"type":"chronicle","tick":4002,"wallTimeMs":1792714055433,"kind":"NationRelationChange","text":"Lowerville and Westernfield have become rivals over their border."}
+{"type":"status","tick":4050,"wallTimeMs":1792714057586,"text":"You enter the land of Fortressfield (Neutral)."}
+{"type":"chronicle","tick":4050,"wallTimeMs":1792714057586,"kind":"NationCreation","text":"Mia Roberts founded the nation of Blackshire."}
+{"type":"chronicle","tick":4050,"wallTimeMs":1792714057586,"kind":"SettlementFounded","text":"Olivia Smith laid the first stones of Fortressfield."}
+{"type":"status","tick":4310,"wallTimeMs":1792714072442,"text":"No entities within range to interact with."}
+{"type":"status","tick":4370,"wallTimeMs":1792714075168,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":4602,"wallTimeMs":1792714084828,"kind":"NationCreation","text":"The nation of Castlefield was born, with Frank Brown at its head."}
+{"type":"status","tick":4614,"wallTimeMs":1792714085310,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":4638,"wallTimeMs":1792714086311,"text":"This land is claimed by Fortressfield. Found your settlement outside its borders. Open ground lies about 210 to the east."}
+{"type":"chronicle","tick":4902,"wallTimeMs":1792714097690,"kind":"StallBuilt","text":"Mia Thomas built a market stall in Lowerville."}
+{"type":"status","tick":5102,"wallTimeMs":1792714107122,"text":"You leave the land of Fortressfield for the wilds."}
+{"type":"chronicle","tick":5102,"wallTimeMs":1792714107122,"kind":"SettlementFounded","text":"Frank Brown raised the first settlement of Castlefield."}
+{"type":"chronicle","tick":5202,"wallTimeMs":1792714111520,"kind":"SettlementFounded","text":"Mia Roberts laid the first stones of Blackshire."}
+{"type":"status","tick":5254,"wallTimeMs":1792714113798,"text":"Too close to the Town of Fortressfield: 131 away, and settlements must be 250 apart. Open ground lies about 161 to the north."}
+{"type":"chronicle","tick":5602,"wallTimeMs":1792714129059,"kind":"NationCreation","text":"Isabella Brown raised a banner and called it Redwood."}
+{"type":"chronicle","tick":5702,"wallTimeMs":1792714135199,"kind":"SettlementFounded","text":"Redwood put down roots: Isabella Brown founded its first settlement."}
+{"type":"status","tick":5754,"wallTimeMs":1792714137789,"text":"Too close to the Camp of Castlefield: 94 away, and settlements must be 250 apart. Open ground lies about 160 to the south-east."}
+{"type":"save","tick":6002,"wallTimeMs":1792714149366,"count":1}
+{"type":"status","tick":6002,"wallTimeMs":1792714149366,"text":"Autosaved."}
+{"type":"status","tick":6242,"wallTimeMs":1792714159358,"text":"You enter the land of Fortressfield (Neutral)."}
+{"type":"status","tick":6422,"wallTimeMs":1792714167594,"text":"You leave the land of Fortressfield for the wilds."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1792714170792,"kind":"NationRelationChange","text":"Lowerville and Fortressfield have become rivals over their border."}
+{"type":"status","tick":6586,"wallTimeMs":1792714174244,"text":"Too close to the Village of Blackshire: 230 away, and settlements must be 250 apart. Open ground lies about 21 to the north-west."}
+{"type":"chronicle","tick":6602,"wallTimeMs":1792714174848,"kind":"StallBuilt","text":"Isabella Brown built a market stall in Redwood."}
+{"type":"chronicle","tick":6802,"wallTimeMs":1792714183222,"kind":"NationCreation","text":"Stan Taylor founded the nation of Upperland."}
+{"type":"chronicle","tick":6850,"wallTimeMs":1792714185336,"kind":"NationCreation","text":"Rachel Brown raised a banner and called it Fortressshire."}
+{"type":"status","tick":6854,"wallTimeMs":1792714185498,"text":"Too close to the Village of Blackshire: 198 away, and settlements must be 250 apart. Open ground lies about 60 to the north-west."}
+{"type":"chronicle","tick":6902,"wallTimeMs":1792714187429,"kind":"NationCreation","text":"Frank Thomas raised a banner and called it Hamletton."}
+{"type":"chronicle","tick":6902,"wallTimeMs":1792714187429,"kind":"SettlementFounded","text":"Rachel Brown laid the first stones of Fortressshire."}
+{"type":"chronicle","tick":6950,"wallTimeMs":1792714189409,"kind":"SettlementFounded","text":"Hamletton put down roots: Frank Thomas founded its first settlement."}
+{"type":"chronicle","tick":7050,"wallTimeMs":1792714193505,"kind":"StallBuilt","text":"Frank Brown built a market stall in Castlefield."}
+{"type":"chronicle","tick":7050,"wallTimeMs":1792714193505,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressfield, built by Olivia Smith."}
+{"type":"chronicle","tick":7050,"wallTimeMs":1792714193505,"kind":"NationCreation","text":"The nation of Upperford was born, with Tilly Thompson at its head."}
+{"type":"chronicle","tick":7102,"wallTimeMs":1792714195806,"kind":"SettlementFounded","text":"Tilly Thompson raised the first settlement of Upperford."}
+{"type":"chronicle","tick":7150,"wallTimeMs":1792714198411,"kind":"StallBuilt","text":"Trade came to Redwood: Isabella Brown built a stall."}
+{"type":"status","tick":7306,"wallTimeMs":1792714206102,"text":"Too close to the Town of Fortressfield: 162 away, and settlements must be 250 apart. Open ground lies about 350 to the north."}
+{"type":"chronicle","tick":7402,"wallTimeMs":1792714210662,"kind":"NationCreation","text":"Phoebe Davies founded the nation of Yellowfield."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714215888,"kind":"NationRelationChange","text":"Lowerville and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792714215888,"kind":"NationRelationChange","text":"Fortressfield and Castlefield have become rivals over their border."}
+{"type":"chronicle","tick":7550,"wallTimeMs":1792714218164,"kind":"SettlementFounded","text":"Stan Taylor raised the first settlement of Upperland."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1792714225048,"kind":"NationCreation","text":"Bob Thomas raised a banner and called it Villagefield."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1792714227425,"kind":"StallBuilt","text":"Isabella Brown built a market stall in Redwood."}
+{"type":"status","tick":7798,"wallTimeMs":1792714229652,"text":"Too close to the Village of Upperford: 104 away, and settlements must be 250 apart. Open ground lies about 281 to the north-west."}
+{"type":"status","tick":7942,"wallTimeMs":1792714236087,"text":"You enter the land of Upperford (Neutral)."}
+{"type":"status","tick":7990,"wallTimeMs":1792714238320,"text":"You leave the land of Upperford for the wilds."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792714238873,"kind":"NationRelationChange","text":"Fortressfield and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792714238873,"kind":"NationRelationChange","text":"Fortressfield and Redwood have become rivals over their border."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792714238873,"kind":"NationRelationChange","text":"Lowerville and Westernfield are now hostile."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792714238873,"kind":"NationRaid","text":"Raiders from Lowerville struck Westernfield, taking 4 wood, 2 stone."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1792714243454,"kind":"NationCreation","text":"The nation of Fortham was born, with Judy Jones at its head."}
+{"type":"status","tick":8298,"wallTimeMs":1792714252322,"text":"Settlement founded. Redwood and Upperford resent a new settlement so near their land."}
+{"type":"chronicle","tick":8298,"wallTimeMs":1792714252322,"kind":"SettlementFounded","text":"You raised the first settlement of Newport."}
+{"type":"objective_completed","tick":8302,"wallTimeMs":1792714252518,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":6900}
+{"type":"status","tick":8302,"wallTimeMs":1792714252518,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792714252518,"kind":"StallBuilt","text":"Trade came to Castlefield: Frank Brown built a stall."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792714252518,"kind":"NationJoin","text":"Lily Taylor threw in their lot with Newport."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792714252518,"kind":"NationJoin","text":"Linda Thompson swore fealty to Newport."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792714252518,"kind":"NationJoin","text":"Newport welcomed Zach Wilson into its ranks."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792714252518,"kind":"NationJoin","text":"Charlotte Williams swore fealty to Newport."}
+{"type":"chronicle","tick":8350,"wallTimeMs":1792714255186,"kind":"StallBuilt","text":"Olivia Smith built a market stall in Fortressfield."}
+{"type":"chronicle","tick":8402,"wallTimeMs":1792714257895,"kind":"StallBuilt","text":"Trade came to Redwood: Isabella Brown built a stall. The market is now full."}
+{"type":"chronicle","tick":8402,"wallTimeMs":1792714257895,"kind":"SettlementFounded","text":"Phoebe Davies raised the first settlement of Yellowfield."}
+{"type":"status","tick":8442,"wallTimeMs":1792714260186,"text":"Entered settlement."}
+{"type":"objective_completed","tick":8450,"wallTimeMs":1792714260777,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":148}
+{"type":"status","tick":8450,"wallTimeMs":1792714260777,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1792714264519,"kind":"NationCreation","text":"Ursula Walker declared the nation of Farmford, though none had yet sworn to it."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1792714267541,"kind":"StallBuilt","text":"Trade came to Westernfield: Natalie Williams built a stall."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1792714267541,"kind":"SettlementFounded","text":"Ursula Walker raised the first settlement of Farmford."}
+{"type":"status","tick":8598,"wallTimeMs":1792714270286,"text":"Exited settlement."}
+{"type":"objective_completed","tick":8602,"wallTimeMs":1792714270489,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":152}
+{"type":"status","tick":8602,"wallTimeMs":1792714270489,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":8602,"wallTimeMs":1792714270489,"kind":"StallBuilt","text":"Trade came to Newport: Linda Thompson built a stall."}
+{"type":"chronicle","tick":8650,"wallTimeMs":1792714273478,"kind":"StallBuilt","text":"Linda Thompson built a market stall in Newport."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792714276166,"kind":"StallBuilt","text":"Phoebe Davies built a market stall in Yellowfield."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792714276166,"kind":"NationCreation","text":"Tina Walker declared the nation of Easternham, though none had yet sworn to it."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792714276166,"kind":"StallBuilt","text":"A new stall opened in the market of Newport, built by Lily Taylor."}
+{"type":"status","tick":8706,"wallTimeMs":1792714276347,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":8802,"wallTimeMs":1792714280530,"kind":"NationCreation","text":"The nation of Westfield was born, with Olivia Roberts at its head."}
+{"type":"chronicle","tick":8850,"wallTimeMs":1792714282824,"kind":"NationCreation","text":"Bella Smith declared the nation of Easternshire, though none had yet sworn to it."}
+{"type":"status","tick":8986,"wallTimeMs":1792714288863,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":9050,"wallTimeMs":1792714291652,"kind":"StallBuilt","text":"Trade came to Hamletton: Frank Thomas built a stall."}
+{"type":"chronicle","tick":9050,"wallTimeMs":1792714291652,"kind":"NationJoin","text":"Newport welcomed Ursula Smith into its ranks."}
+{"type":"chronicle","tick":9102,"wallTimeMs":1792714293698,"kind":"StallBuilt","text":"Trade came to Yellowfield: Phoebe Davies built a stall."}
+{"type":"chronicle","tick":9202,"wallTimeMs":1792714297497,"kind":"NationCreation","text":"Ruth Lewis raised a banner and called it Bigville."}
+{"type":"status","tick":9250,"wallTimeMs":1792714299452,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714299452,"kind":"NationRelationChange","text":"Lowerville and Hamletton have become rivals over their border."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714299452,"kind":"NationRelationChange","text":"Westernfield and Upperland have become rivals over their border."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792714299452,"kind":"NationRelationChange","text":"Blackshire and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":9450,"wallTimeMs":1792714308741,"kind":"StallBuilt","text":"A new stall opened in the market of Farmford, built by Ursula Walker."}
+{"type":"chronicle","tick":9450,"wallTimeMs":1792714308741,"kind":"NationCreation","text":"Grace Robinson declared the nation of Southernshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792714311628,"kind":"SettlementFounded","text":"Easternshire put down roots: Bella Smith founded its first settlement."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792714311628,"kind":"NationRelationChange","text":"Fortressfield and Upperford have become rivals over their border."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792714311628,"kind":"NationRelationChange","text":"Upperland and Hamletton have become rivals over their border."}
+{"type":"status","tick":9526,"wallTimeMs":1792714312995,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":9550,"wallTimeMs":1792714314223,"kind":"SettlementFounded","text":"Bob Thomas laid the first stones of Villagefield."}
+{"type":"chronicle","tick":9702,"wallTimeMs":1792714321631,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Stan Taylor."}
+{"type":"chronicle","tick":9850,"wallTimeMs":1792714328880,"kind":"NationCreation","text":"Fiona Brown raised a banner and called it Westshire."}
+{"type":"status","tick":9878,"wallTimeMs":1792714330488,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":9902,"wallTimeMs":1792714331757,"kind":"NationCreation","text":"The nation of Southwood was born, with Katie Jones at its head."}
+{"type":"chronicle","tick":10050,"wallTimeMs":1792714339741,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowfield, built by Phoebe Davies."}
+{"type":"chronicle","tick":10102,"wallTimeMs":1792714342137,"kind":"StallBuilt","text":"Ursula Walker built a market stall in Farmford."}
+{"type":"status","tick":10258,"wallTimeMs":1792714349358,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"chronicle","tick":10350,"wallTimeMs":1792714353397,"kind":"StallBuilt","text":"Trade came to Fortressfield: Olivia Smith built a stall."}
+{"type":"status","tick":10382,"wallTimeMs":1792714354783,"text":"You leave the land of Newport for the wilds."}
+{"type":"chronicle","tick":10402,"wallTimeMs":1792714355622,"kind":"NationJoin","text":"Eve Brown swore fealty to Newport."}
+{"type":"chronicle","tick":10502,"wallTimeMs":1792714359791,"kind":"SettlementFounded","text":"Westshire put down roots: Fiona Brown founded its first settlement."}
+{"type":"chronicle","tick":10502,"wallTimeMs":1792714359791,"kind":"SettlementFounded","text":"Grace Robinson laid the first stones of Southernshire."}
+{"type":"chronicle","tick":10550,"wallTimeMs":1792714361987,"kind":"SettlementFounded","text":"Southwood put down roots: Katie Jones founded its first settlement."}
+{"type":"status","tick":10554,"wallTimeMs":1792714362261,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":10650,"wallTimeMs":1792714368190,"kind":"NationCreation","text":"The nation of Westernland was born, with Karl Robinson at its head."}
+{"type":"status","tick":10750,"wallTimeMs":1792714374728,"text":"Redwood resents your border: relations are now Rival (-20). Upperford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"StallBuilt","text":"Trade came to Yellowfield: Phoebe Davies built a stall. The market is now full."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"NationCreation","text":"Olivia White declared the nation of Eastford, though none had yet sworn to it."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"NationRelationChange","text":"Newport and Redwood have become rivals over their border."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"NationRelationChange","text":"Newport and Upperford have become rivals over their border."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"NationRelationChange","text":"Blackshire and Yellowfield have become rivals over their border."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"NationRelationChange","text":"Upperford and Yellowfield have become rivals over their border."}
+{"type":"chronicle","tick":10750,"wallTimeMs":1792714374728,"kind":"NationRelationChange","text":"Fortressfield and Castlefield are now hostile."}
+{"type":"chronicle","tick":10802,"wallTimeMs":1792714377428,"kind":"StallBuilt","text":"Ursula Walker built a market stall in Farmford."}
+{"type":"chronicle","tick":10802,"wallTimeMs":1792714377428,"kind":"StallBuilt","text":"A new stall opened in the market of Newport, built by Lily Taylor. The market is now full."}
+{"type":"status","tick":10942,"wallTimeMs":1792714386864,"text":"You are back on your own land."}
+{"type":"chronicle","tick":10950,"wallTimeMs":1792714387256,"kind":"StallBuilt","text":"Trade came to Villagefield: Bob Thomas built a stall."}
+{"type":"chronicle","tick":10950,"wallTimeMs":1792714387256,"kind":"NationCreation","text":"Gemma Wood raised a banner and called it Greatwood."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714390297,"kind":"StallBuilt","text":"Bella Smith built a market stall in Easternshire."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714390297,"kind":"NationRelationChange","text":"Westernfield and Farmford have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714390297,"kind":"NationRelationChange","text":"Fortressshire and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792714390297,"kind":"NationRelationChange","text":"Relations between Castlefield and Fortressfield are now rival."}
+{"type":"chronicle","tick":11102,"wallTimeMs":1792714396317,"kind":"SettlementFounded","text":"Karl Robinson raised the first settlement of Westernland."}
+{"type":"chronicle","tick":11102,"wallTimeMs":1792714396317,"kind":"NationCreation","text":"The nation of Littlewood was born, with Fiona Wilson at its head."}
+{"type":"status","tick":11214,"wallTimeMs":1792714402061,"text":"Entered settlement."}
+{"type":"status","tick":11246,"wallTimeMs":1792714403550,"text":"Market is full. Cannot build stall."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1792714403759,"kind":"NationCreation","text":"Abigail Smith raised a banner and called it Northernford."}
+{"type":"status","tick":11278,"wallTimeMs":1792714405065,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"chronicle","tick":11402,"wallTimeMs":1792714410837,"kind":"SettlementFounded","text":"Ruth Lewis raised the first settlement of Bigville."}
+{"type":"chronicle","tick":11402,"wallTimeMs":1792714410837,"kind":"NationJoin","text":"Gemma White swore fealty to Newport."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792714415715,"kind":"SettlementFounded","text":"Fortham put down roots: Judy Jones founded its first settlement."}
+{"type":"status","tick":11546,"wallTimeMs":1792714417831,"text":"Exited settlement."}
+{"type":"chronicle","tick":11550,"wallTimeMs":1792714418026,"kind":"SettlementFounded","text":"Greatwood put down roots: Gemma Wood founded its first settlement."}
+{"type":"chronicle","tick":11650,"wallTimeMs":1792714422302,"kind":"NationCreation","text":"Gemma Wilson raised a banner and called it Newham."}
+{"type":"chronicle","tick":11702,"wallTimeMs":1792714424560,"kind":"SettlementFounded","text":"Olivia White raised the first settlement of Eastford."}
+{"type":"chronicle","tick":11702,"wallTimeMs":1792714424560,"kind":"NationCreation","text":"Grace Watson raised a banner and called it Westton."}
+{"type":"status","tick":11750,"wallTimeMs":1792714427264,"text":"Easternshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792714427264,"kind":"StallBuilt","text":"Ursula Walker built a market stall in Farmford. The market is now full."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792714427264,"kind":"NationRelationChange","text":"Newport and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792714427264,"kind":"NationRelationChange","text":"Fortressfield and Castlefield are now hostile over their border."}
+{"type":"chronicle","tick":11802,"wallTimeMs":1792714430531,"kind":"SettlementFounded","text":"Northernford put down roots: Abigail Smith founded its first settlement."}
+{"type":"chronicle","tick":11802,"wallTimeMs":1792714430531,"kind":"NationCreation","text":"The nation of Newton was born, with Alice Thompson at its head."}
+{"type":"status","tick":11842,"wallTimeMs":1792714433101,"text":"You leave the land of Newport for the wilds."}
+{"type":"status","tick":11894,"wallTimeMs":1792714436376,"text":"Gathered 5 stone from rock."}
+{"type":"save","tick":12002,"wallTimeMs":1792714443067,"count":2}
+{"type":"status","tick":12002,"wallTimeMs":1792714443067,"text":"Autosaved."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714443067,"kind":"StallBuilt","text":"Bella Smith built a market stall in Easternshire."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714443067,"kind":"NationRelationChange","text":"Relations between Lowerville and Blackshire are now neutral against a common enemy."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714443067,"kind":"NationRelationChange","text":"Yellowfield and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714443067,"kind":"NationRelationChange","text":"Hamletton and Upperland are now hostile."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714443067,"kind":"NationRaid","text":"Fortressfield raided Castlefield and carried off 5 coins, 5 stone."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792714443067,"kind":"NationRaid","text":"Hamletton raided Upperland and carried off 3 coins, 5 wood."}
+{"type":"status","tick":12058,"wallTimeMs":1792714446576,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":12202,"wallTimeMs":1792714455475,"kind":"StallBuilt","text":"A new stall opened in the market of Eastford, built by Olivia White."}
+{"type":"chronicle","tick":12202,"wallTimeMs":1792714455475,"kind":"SettlementFounded","text":"Westton put down roots: Grace Watson founded its first settlement."}
+{"type":"chronicle","tick":12250,"wallTimeMs":1792714458647,"kind":"NationRelationChange","text":"Blackshire and Hamletton have become rivals over their border."}
+{"type":"chronicle","tick":12302,"wallTimeMs":1792714462202,"kind":"StallBuilt","text":"Tilly Thompson built a market stall in Upperford."}
+{"type":"chronicle","tick":12302,"wallTimeMs":1792714462202,"kind":"StallBuilt","text":"Trade came to Northernford: Abigail Smith built a stall."}
+{"type":"chronicle","tick":12450,"wallTimeMs":1792714472615,"kind":"StallBuilt","text":"Olivia Smith built a market stall in Fortressfield."}
+{"type":"chronicle","tick":12450,"wallTimeMs":1792714472615,"kind":"StallBuilt","text":"Trade came to Southwood: Katie Jones built a stall."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714476412,"kind":"StallBuilt","text":"A new stall opened in the market of Castlefield, built by Frank Brown."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714476412,"kind":"NationRelationChange","text":"Upperland and Westshire have become rivals over their border."}
+{"type":"chronicle","tick":12502,"wallTimeMs":1792714476412,"kind":"NationRelationChange","text":"Fortressfield and Blackshire are now hostile."}
+{"type":"status","tick":12514,"wallTimeMs":1792714477286,"text":"Entered settlement."}
+{"type":"status","tick":12534,"wallTimeMs":1792714478780,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"chronicle","tick":12550,"wallTimeMs":1792714480013,"kind":"StallBuilt","text":"Bob Thomas built a market stall in Villagefield."}
+{"type":"status","tick":12554,"wallTimeMs":1792714480263,"text":"Farm built."}
+{"type":"chronicle","tick":12650,"wallTimeMs":1792714485918,"kind":"StallBuilt","text":"Ruth Lewis built a market stall in Bigville."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714493239,"kind":"StallBuilt","text":"Grace Watson built a market stall in Westton."}
+{"type":"chronicle","tick":12750,"wallTimeMs":1792714493239,"kind":"NationRelationChange","text":"Yellowfield and Southernshire have become rivals over their border."}
+{"type":"chronicle","tick":12802,"wallTimeMs":1792714496963,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Stan Taylor."}
+{"type":"chronicle","tick":12802,"wallTimeMs":1792714496963,"kind":"SettlementFounded","text":"Alice Thompson raised the first settlement of Newton."}
+{"type":"chronicle","tick":12902,"wallTimeMs":1792714504857,"kind":"StallBuilt","text":"Trade came to Southernshire: Grace Robinson built a stall."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"StallBuilt","text":"A new stall opened in the market of Easternshire, built by Bella Smith."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"StallBuilt","text":"Trade came to Westton: Grace Watson built a stall."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"NationRelationChange","text":"Westernfield and Upperland are now hostile over their border."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"NationRelationChange","text":"Fortressshire and Southwood have become rivals over their border."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"NationRelationChange","text":"Fortressfield and Redwood are now hostile."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"NationRaid","text":"Fortressfield raided Blackshire and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":13002,"wallTimeMs":1792714514097,"kind":"NationRaid","text":"Fortressfield raided Redwood and carried off 5 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":13150,"wallTimeMs":1792714528230,"kind":"StallBuilt","text":"A new stall opened in the market of Eastford, built by Olivia White."}
+{"type":"status","tick":13250,"wallTimeMs":1792714537956,"text":"Fortressfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":13250,"wallTimeMs":1792714537956,"kind":"SettlementFounded","text":"Littlewood put down roots: Fiona Wilson founded its first settlement."}
+{"type":"chronicle","tick":13250,"wallTimeMs":1792714537956,"kind":"NationRelationChange","text":"Relations between Newport and Fortressfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":13450,"wallTimeMs":1792714554163,"kind":"StallBuilt","text":"Olivia White built a market stall in Eastford."}
+{"type":"status","tick":13502,"wallTimeMs":1792714556649,"text":"Westernland resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":13502,"wallTimeMs":1792714556649,"kind":"StallBuilt","text":"A new stall opened in the market of Bigville, built by Ruth Lewis."}
+{"type":"chronicle","tick":13502,"wallTimeMs":1792714556649,"kind":"NationRelationChange","text":"Newport and Westernland have become rivals over their border."}
+{"type":"chronicle","tick":13502,"wallTimeMs":1792714556649,"kind":"NationRelationChange","text":"Fortressshire and Villagefield are now hostile."}
+{"type":"chronicle","tick":13550,"wallTimeMs":1792714558894,"kind":"StallBuilt","text":"A new stall opened in the market of Newton, built by Alice Thompson."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714567993,"kind":"NationRelationChange","text":"Castlefield and Bigville have become rivals over their border."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714567993,"kind":"NationRelationChange","text":"Redwood and Bigville have become rivals over their border."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714567993,"kind":"NationRelationChange","text":"Upperland and Northernford have become rivals over their border."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714567993,"kind":"NationRelationChange","text":"Fortressshire and Fortham have become rivals over their border."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714567993,"kind":"NationRelationChange","text":"Hamletton and Fortham have become rivals over their border."}
+{"type":"chronicle","tick":13750,"wallTimeMs":1792714567993,"kind":"NationRelationChange","text":"Easternshire and Bigville have become rivals over their border."}
+{"type":"chronicle","tick":13802,"wallTimeMs":1792714570331,"kind":"StallBuilt","text":"A new stall opened in the market of Castlefield, built by Frank Brown."}
+{"type":"chronicle","tick":13902,"wallTimeMs":1792714574694,"kind":"StallBuilt","text":"A new stall opened in the market of Greatwood, built by Gemma Wood."}
+{"type":"chronicle","tick":13950,"wallTimeMs":1792714576893,"kind":"StallBuilt","text":"Trade came to Northernford: Abigail Smith built a stall."}
+{"type":"chronicle","tick":13950,"wallTimeMs":1792714576893,"kind":"StallBuilt","text":"Karl Robinson built a market stall in Westernland."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"StallBuilt","text":"Trade came to Southwood: Katie Jones built a stall."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"NationRelationChange","text":"Yellowfield and Eastford have become rivals over their border."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"NationRelationChange","text":"Villagefield and Greatwood have become rivals over their border."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"NationRelationChange","text":"Southernshire and Greatwood have become rivals over their border."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"NationRelationChange","text":"Southwood and Greatwood have become rivals over their border."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"NationRelationChange","text":"Westernland and Eastford have become rivals over their border."}
+{"type":"chronicle","tick":14002,"wallTimeMs":1792714579226,"kind":"NationRaid","text":"Fortressshire raided Villagefield and carried off 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":14050,"wallTimeMs":1792714581333,"kind":"StallBuilt","text":"Bob Thomas built a market stall in Villagefield."}
+{"type":"chronicle","tick":14102,"wallTimeMs":1792714583681,"kind":"StallBuilt","text":"Olivia White built a market stall in Eastford."}
+{"type":"chronicle","tick":14102,"wallTimeMs":1792714583681,"kind":"StallBuilt","text":"A new stall opened in the market of Westton, built by Grace Watson."}
+{"type":"chronicle","tick":14150,"wallTimeMs":1792714585832,"kind":"StallBuilt","text":"A new stall opened in the market of Southernshire, built by Grace Robinson."}
+{"type":"status","tick":14250,"wallTimeMs":1792714590240,"text":"Redwood has fallen and been disbanded."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714590240,"kind":"NationRelationChange","text":"Farmford and Northernford have become rivals over their border."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714590240,"kind":"NationRelationChange","text":"Blackshire and Fortressshire are now hostile."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714590240,"kind":"NationRelationChange","text":"Hamletton and Lowerville are now hostile."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714590240,"kind":"SettlementCapture","text":"After a siege, a village of Redwood fell to Fortressfield."}
+{"type":"chronicle","tick":14250,"wallTimeMs":1792714590240,"kind":"NationDisband","text":"Redwood faded from memory before it ever built a home."}
+{"type":"chronicle","tick":14350,"wallTimeMs":1792714594900,"kind":"StallBuilt","text":"Ruth Lewis built a market stall in Bigville."}
+{"type":"chronicle","tick":14350,"wallTimeMs":1792714594900,"kind":"StallBuilt","text":"Alice Thompson built a market stall in Newton."}
+{"type":"chronicle","tick":14502,"wallTimeMs":1792714601941,"kind":"NationRelationChange","text":"Castlefield and Westton have become rivals over their border."}
+{"type":"chronicle","tick":14502,"wallTimeMs":1792714601941,"kind":"NationRelationChange","text":"Fortressfield and Upperford are now hostile."}
+{"type":"chronicle","tick":14550,"wallTimeMs":1792714604122,"kind":"StallBuilt","text":"Fiona Wilson built a market stall in Littlewood."}
+{"type":"chronicle","tick":14650,"wallTimeMs":1792714608599,"kind":"StallBuilt","text":"Trade came to Upperland: Stan Taylor built a stall."}
+{"type":"chronicle","tick":14702,"wallTimeMs":1792714610829,"kind":"StallBuilt","text":"A new stall opened in the market of Greatwood, built by Gemma Wood."}
+{"type":"chronicle","tick":14750,"wallTimeMs":1792714612977,"kind":"StallBuilt","text":"Trade came to Fortressfield: Olivia Smith built a stall."}
+{"type":"chronicle","tick":14750,"wallTimeMs":1792714612977,"kind":"StallBuilt","text":"Trade came to Eastford: Olivia White built a stall."}
+{"type":"chronicle","tick":14750,"wallTimeMs":1792714612977,"kind":"StallBuilt","text":"Trade came to Westton: Grace Watson built a stall."}
+{"type":"chronicle","tick":14802,"wallTimeMs":1792714615312,"kind":"StallBuilt","text":"A new stall opened in the market of Villagefield, built by Bob Thomas."}
+{"type":"chronicle","tick":14802,"wallTimeMs":1792714615312,"kind":"StallBuilt","text":"Trade came to Easternshire: Bella Smith built a stall. The market is now full."}
+{"type":"chronicle","tick":14850,"wallTimeMs":1792714617516,"kind":"NationCreation","text":"Isabella Brown founded the nation of Blackville."}
+{"type":"chronicle","tick":14902,"wallTimeMs":1792714619933,"kind":"StallBuilt","text":"A new stall opened in the market of Southwood, built by Katie Jones."}
+{"type":"chronicle","tick":14950,"wallTimeMs":1792714622142,"kind":"StallBuilt","text":"A new stall opened in the market of Southernshire, built by Grace Robinson."}
+{"type":"chronicle","tick":14950,"wallTimeMs":1792714622142,"kind":"StallBuilt","text":"A new stall opened in the market of Newton, built by Alice Thompson."}
+{"type":"status","tick":15002,"wallTimeMs":1792714624521,"text":"Easternshire sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714624521,"kind":"NationRelationChange","text":"Upperland and Westshire are now hostile."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714624521,"kind":"NationRelationChange","text":"Relations between Upperford and Fortressfield are now rival."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714624521,"kind":"NationRaid","text":"Raiders from Hamletton struck Lowerville, taking 5 coins, 2 wood, 5 stone."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714624521,"kind":"NationRaid","text":"Blackshire raided Fortressshire and carried off 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714624521,"kind":"NationRaid","text":"Raiders from Upperland struck Westshire, taking 4 wood, 5 stone."}
+{"type":"chronicle","tick":15002,"wallTimeMs":1792714624521,"kind":"Caravan","text":"Blackshire sent a caravan of 16 wood from the Town of Blackshire to the Town of Newport."}
+{"type":"chronicle","tick":15050,"wallTimeMs":1792714626679,"kind":"StallBuilt","text":"Trade came to Littlewood: Fiona Wilson built a stall."}
+{"type":"chronicle","tick":15250,"wallTimeMs":1792714635895,"kind":"NationRelationChange","text":"Westernland and Newton have become rivals over their border."}
+{"type":"chronicle","tick":15502,"wallTimeMs":1792714647551,"kind":"StallBuilt","text":"Rachel Brown built a market stall in Fortressshire."}
+{"type":"chronicle","tick":15502,"wallTimeMs":1792714647551,"kind":"NationRelationChange","text":"Hamletton and Littlewood have become rivals over their border."}
+{"type":"chronicle","tick":15502,"wallTimeMs":1792714647551,"kind":"NationRelationChange","text":"Westshire and Littlewood have become rivals over their border."}
+{"type":"chronicle","tick":15502,"wallTimeMs":1792714647551,"kind":"NationRelationChange","text":"Upperford and Yellowfield are now hostile."}
+{"type":"status","tick":15750,"wallTimeMs":1792714660928,"text":"Yellowfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":15750,"wallTimeMs":1792714660928,"kind":"NationRelationChange","text":"Relations between Newport and Yellowfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":15750,"wallTimeMs":1792714660928,"kind":"NationRelationChange","text":"Fortressfield and Hamletton have formed an alliance."}
+{"type":"chronicle","tick":15750,"wallTimeMs":1792714660928,"kind":"NationRelationChange","text":"Fortressfield and Yellowfield swore an alliance."}
+{"type":"chronicle","tick":15750,"wallTimeMs":1792714660928,"kind":"NationRelationChange","text":"Yellowfield and Blackshire are now hostile."}
+{"type":"chronicle","tick":15950,"wallTimeMs":1792714672862,"kind":"StallBuilt","text":"Natalie Williams built a market stall in Westernfield."}
+{"type":"chronicle","tick":16002,"wallTimeMs":1792714675981,"kind":"NationRelationChange","text":"Relations between Westton and Castlefield are now neutral."}
+{"type":"chronicle","tick":16002,"wallTimeMs":1792714675981,"kind":"NationRaid","text":"Yellowfield raided Blackshire and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":16002,"wallTimeMs":1792714675981,"kind":"NationRaid","text":"Raiders from Yellowfield struck Upperford, taking 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":16250,"wallTimeMs":1792714690603,"kind":"NationRelationChange","text":"Westernfield and Fortressfield have formed an alliance."}
+{"type":"chronicle","tick":16250,"wallTimeMs":1792714690603,"kind":"NationRelationChange","text":"Upperland and Northernford are now hostile."}
+{"type":"chronicle","tick":16450,"wallTimeMs":1792714702627,"kind":"SettlementFounded","text":"Isabella Brown laid the first stones of Blackville."}
+{"type":"chronicle","tick":16502,"wallTimeMs":1792714705750,"kind":"NationRelationChange","text":"Castlefield and Westton have become rivals over their border."}
+{"type":"chronicle","tick":16502,"wallTimeMs":1792714705750,"kind":"NationRelationChange","text":"Blackshire and Villagefield have formed an alliance."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792714735263,"kind":"NationRelationChange","text":"Yellowfield and Villagefield are now hostile."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792714735263,"kind":"NationRaid","text":"Westernfield raided Lowerville and carried off 5 coins, 5 stone."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792714735263,"kind":"NationRaid","text":"Raiders from Westernfield struck Upperland, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792714735263,"kind":"NationRaid","text":"Raiders from Upperland struck Northernford, taking 5 coins."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792714735263,"kind":"NationRaid","text":"Villagefield raided Fortressshire and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1792714735263,"kind":"NationRaid","text":"Yellowfield raided Villagefield and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792714749119,"kind":"NationRelationChange","text":"Fortressfield and Upperford are now hostile over their border."}
+{"type":"chronicle","tick":17250,"wallTimeMs":1792714749119,"kind":"NationRelationChange","text":"Hamletton and Blackshire are now hostile."}
+{"type":"status","tick":17502,"wallTimeMs":1792714762875,"text":"Northernford has fallen and been disbanded."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792714762875,"kind":"NationRelationChange","text":"Lowerville and Castlefield swore an alliance."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792714762875,"kind":"SettlementCapture","text":"After a siege, a village of Northernford fell to Upperland."}
+{"type":"chronicle","tick":17502,"wallTimeMs":1792714762875,"kind":"NationDisband","text":"Northernford is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":17750,"wallTimeMs":1792714776630,"kind":"NationRelationChange","text":"Blackshire and Castlefield swore an alliance."}
+{"type":"chronicle","tick":17750,"wallTimeMs":1792714776630,"kind":"NationRelationChange","text":"Yellowfield and Southernshire are now hostile."}
+{"type":"save","tick":18002,"wallTimeMs":1792714791599,"count":3}
+{"type":"status","tick":18002,"wallTimeMs":1792714791599,"text":"Autosaved."}
+{"type":"chronicle","tick":18002,"wallTimeMs":1792714791599,"kind":"NationRelationChange","text":"Fortressshire and Hamletton have formed an alliance."}
+{"type":"chronicle","tick":18002,"wallTimeMs":1792714791599,"kind":"NationRelationChange","text":"Fortressshire and Southwood are now hostile."}
+{"type":"chronicle","tick":18002,"wallTimeMs":1792714791599,"kind":"NationRelationChange","text":"Relations between Southernshire and Yellowfield are now rival."}
+{"type":"chronicle","tick":18002,"wallTimeMs":1792714791599,"kind":"NationRaid","text":"Raiders from Fortressfield struck Upperford, taking 2 coins, 5 wood."}
+{"type":"chronicle","tick":18002,"wallTimeMs":1792714791599,"kind":"NationRaid","text":"Raiders from Hamletton struck Blackshire, taking 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":18002,"wallTimeMs":1792714791599,"kind":"NationRaid","text":"Raiders from Fortressshire struck Southwood, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":18250,"wallTimeMs":1792714805567,"text":"Bigville shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":18250,"wallTimeMs":1792714805567,"kind":"NationRelationChange","text":"Relations between Newport and Bigville are now friendly against a common enemy."}
+{"type":"chronicle","tick":18250,"wallTimeMs":1792714805567,"kind":"NationRelationChange","text":"Fortressfield and Lowerville are now hostile."}
+{"type":"chronicle","tick":18750,"wallTimeMs":1792714826561,"kind":"NationRelationChange","text":"Castlefield and Blackville have become rivals over their border."}
+{"type":"chronicle","tick":18750,"wallTimeMs":1792714826561,"kind":"NationRelationChange","text":"Fortressfield and Fortressshire have formed an alliance."}
+{"type":"chronicle","tick":18750,"wallTimeMs":1792714826561,"kind":"NationRelationChange","text":"Blackshire and Fortham swore an alliance."}
+{"type":"chronicle","tick":18750,"wallTimeMs":1792714826561,"kind":"NationRelationChange","text":"Fortressshire and Fortham are now hostile."}
+{"type":"chronicle","tick":18750,"wallTimeMs":1792714826561,"kind":"NationRelationChange","text":"Hamletton and Fortham are now hostile."}
+{"type":"chronicle","tick":18750,"wallTimeMs":1792714826561,"kind":"NationRelationChange","text":"Easternshire and Bigville are now hostile."}
+{"type":"status","tick":19002,"wallTimeMs":1792714836871,"text":"Eastford shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Relations between Newport and Eastford are now friendly against a common enemy."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Fortressshire and Greatwood swore an alliance."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Yellowfield and Greatwood swore an alliance."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Relations between Southwood and Fortressshire are now rival."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Westernland and Eastford are now hostile."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Greatwood and Southernshire are now hostile."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRelationChange","text":"Greatwood and Southwood are now hostile."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRaid","text":"Raiders from Fortressshire struck Blackshire, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRaid","text":"Easternshire raided Bigville and carried off 5 coins."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRaid","text":"Raiders from Greatwood struck Southernshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRaid","text":"Raiders from Greatwood struck Southwood, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1792714836871,"kind":"NationRaid","text":"Raiders from Westernland struck Eastford, taking 5 coins."}
+{"type":"chronicle","tick":19250,"wallTimeMs":1792714849632,"kind":"NationRelationChange","text":"Fortressfield and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":19250,"wallTimeMs":1792714849632,"kind":"NationRelationChange","text":"Castlefield and Upperford have formed an alliance."}
+{"type":"chronicle","tick":19334,"wallTimeMs":1792714853858,"kind":"Caravan","text":"A caravan from Blackshire sold 16 wood at the Town of Newport for 112 coins."}
+{"type":"chronicle","tick":19502,"wallTimeMs":1792714862803,"kind":"NationRelationChange","text":"Lowerville and Upperford swore an alliance."}
+{"type":"chronicle","tick":19750,"wallTimeMs":1792714875396,"kind":"NationRelationChange","text":"Yellowfield and Southernshire are now hostile over their border."}
+{"type":"chronicle","tick":19754,"wallTimeMs":1792714875626,"kind":"WorldEvent","text":"A bountiful harvest came in across Westernland; Karl Robinson sold the surplus for 28 coins."}
+{"type":"status","tick":20002,"wallTimeMs":1792714887159,"text":"Easternshire sent 20 coins of tribute to your treasury. Villagefield has fallen and been disbanded. Fortham has fallen and been disbanded. Bigville has fallen and been disbanded."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"NationRelationChange","text":"Fortressshire and Southwood are now hostile over their border."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"SettlementCapture","text":"After a siege, a village of Villagefield fell to Fortressshire."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"NationDisband","text":"Villagefield dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"SettlementCapture","text":"Fortressshire captured a village from Fortham."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"NationDisband","text":"Fortham faded from memory before it ever built a home."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"NationRaid","text":"Yellowfield raided Southernshire and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"SettlementCapture","text":"Easternshire captured a camp from Bigville."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1792714887159,"kind":"NationDisband","text":"Bigville faded from memory before it ever built a home."}
+{"type":"status","tick":20250,"wallTimeMs":1792714898615,"text":"Newton shares an enemy with you: relations are now Friendly (\u002B20). Eastford has fallen and been disbanded."}
+{"type":"chronicle","tick":20250,"wallTimeMs":1792714898615,"kind":"NationRelationChange","text":"Relations between Newport and Newton are now friendly against a common enemy."}
+{"type":"chronicle","tick":20250,"wallTimeMs":1792714898615,"kind":"NationRelationChange","text":"Upperford and Easternshire swore an alliance."}
+{"type":"chronicle","tick":20250,"wallTimeMs":1792714898615,"kind":"SettlementCapture","text":"After a siege, a village of Eastford fell to Westernland."}
+{"type":"chronicle","tick":20250,"wallTimeMs":1792714898615,"kind":"NationDisband","text":"Eastford is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":20502,"wallTimeMs":1792714909066,"kind":"NationRelationChange","text":"Upperland and Littlewood have formed an alliance."}
+{"type":"chronicle","tick":20502,"wallTimeMs":1792714909066,"kind":"NationRelationChange","text":"Littlewood and Westshire are now hostile."}
+{"type":"status","tick":21002,"wallTimeMs":1792714926919,"text":"Southernshire has fallen and been disbanded."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRelationChange","text":"Lowerville and Farmford have formed an alliance."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRelationChange","text":"Relations between Easternshire and Fortressfield are now neutral."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Westernfield raided Lowerville and carried off 2 coins."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Westernfield struck Upperland, taking 5 coins."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Fortressfield struck Blackshire, taking 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Fortressfield struck Castlefield, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Fortressfield struck Upperford, taking 2 coins, 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Fortressshire raided Blackshire and carried off 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Hamletton raided Blackshire and carried off 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Yellowfield struck Blackshire, taking 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Hamletton struck Upperland, taking 1 coins."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Fortressshire raided Southwood and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Yellowfield struck Upperford, taking 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Yellowfield raided Southernshire and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"SettlementCapture","text":"Yellowfield captured a village from Southernshire."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationDisband","text":"Southernshire dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":21002,"wallTimeMs":1792714926919,"kind":"NationRaid","text":"Raiders from Greatwood struck Southwood, taking 1 coins, 5 wood."}
+{"type":"chronicle","tick":21250,"wallTimeMs":1792714935712,"kind":"NationRelationChange","text":"Fortressfield and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":22002,"wallTimeMs":1792714963076,"kind":"NationRelationChange","text":"Hamletton and Yellowfield have formed an alliance."}
+{"type":"chronicle","tick":22002,"wallTimeMs":1792714963076,"kind":"NationRelationChange","text":"Relations between Easternshire and Fortressfield are now neutral."}
+{"type":"chronicle","tick":22250,"wallTimeMs":1792714974769,"kind":"NationRelationChange","text":"Blackshire and Upperland swore an alliance."}
+{"type":"chronicle","tick":22502,"wallTimeMs":1792714986966,"kind":"NationRelationChange","text":"Westernfield and Westshire swore an alliance."}
+{"type":"chronicle","tick":22502,"wallTimeMs":1792714986966,"kind":"NationRelationChange","text":"Hamletton and Littlewood are now hostile."}
+{"type":"chronicle","tick":23002,"wallTimeMs":1792715010461,"kind":"NationRelationChange","text":"Blackshire and Southwood swore an alliance."}
+{"type":"chronicle","tick":23002,"wallTimeMs":1792715010461,"kind":"NationRaid","text":"Hamletton raided Littlewood and carried off 5 coins."}
+{"type":"chronicle","tick":23002,"wallTimeMs":1792715010461,"kind":"NationRaid","text":"Raiders from Westshire struck Littlewood, taking 5 coins."}
+{"type":"chronicle","tick":23250,"wallTimeMs":1792715021880,"kind":"NationRelationChange","text":"Fortressfield and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":23250,"wallTimeMs":1792715021880,"kind":"NationRelationChange","text":"Upperford and Westernland swore an alliance."}
+{"type":"chronicle","tick":23250,"wallTimeMs":1792715021880,"kind":"NationRelationChange","text":"Easternshire and Westernland have formed an alliance."}
+{"type":"status","tick":23750,"wallTimeMs":1792715040378,"text":"Littlewood has fallen and been disbanded."}
+{"type":"chronicle","tick":23750,"wallTimeMs":1792715040378,"kind":"NationRelationChange","text":"Lowerville and Upperland swore an alliance."}
+{"type":"chronicle","tick":23750,"wallTimeMs":1792715040378,"kind":"NationRelationChange","text":"Castlefield and Blackville are now hostile."}
+{"type":"chronicle","tick":23750,"wallTimeMs":1792715040378,"kind":"SettlementCapture","text":"Hamletton captured a village from Littlewood."}
+{"type":"chronicle","tick":23750,"wallTimeMs":1792715040378,"kind":"NationDisband","text":"Littlewood is no more; it never raised so much as a hut."}
+{"type":"save","tick":24002,"wallTimeMs":1792715049263,"count":4}
+{"type":"status","tick":24002,"wallTimeMs":1792715049263,"text":"Autosaved."}
+{"type":"chronicle","tick":24002,"wallTimeMs":1792715049263,"kind":"NationRelationChange","text":"Relations between Easternshire and Fortressfield are now neutral."}
+{"type":"chronicle","tick":24002,"wallTimeMs":1792715049263,"kind":"NationRaid","text":"Upperland raided Westshire and carried off 5 coins."}
+{"type":"chronicle","tick":24250,"wallTimeMs":1792715059119,"kind":"NationRelationChange","text":"Westernfield and Hamletton have formed an alliance."}
+{"type":"status","tick":25002,"wallTimeMs":1792715089099,"text":"Blackville has fallen and been disbanded."}
+{"type":"chronicle","tick":25002,"wallTimeMs":1792715089099,"kind":"NationRelationChange","text":"Easternshire and Westton have become rivals over their border."}
+{"type":"chronicle","tick":25002,"wallTimeMs":1792715089099,"kind":"SettlementCapture","text":"After a siege, a camp of Blackville fell to Castlefield."}
+{"type":"chronicle","tick":25002,"wallTimeMs":1792715089099,"kind":"NationDisband","text":"Blackville is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":25250,"wallTimeMs":1792715100154,"kind":"NationRelationChange","text":"Fortressfield and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":25250,"wallTimeMs":1792715100154,"kind":"NationRelationChange","text":"Fortressfield and Westton swore an alliance."}
+{"type":"chronicle","tick":25250,"wallTimeMs":1792715100154,"kind":"NationRelationChange","text":"Blackshire and Upperford swore an alliance."}
+{"type":"chronicle","tick":26002,"wallTimeMs":1792715135900,"kind":"NationRelationChange","text":"Westernfield and Farmford are now hostile."}
+{"type":"chronicle","tick":26002,"wallTimeMs":1792715135900,"kind":"NationRelationChange","text":"Relations between Farmford and Westernfield are now rival."}
+{"type":"chronicle","tick":26002,"wallTimeMs":1792715135900,"kind":"NationRelationChange","text":"Relations between Easternshire and Fortressfield are now neutral."}
+{"type":"chronicle","tick":26002,"wallTimeMs":1792715135900,"kind":"NationRaid","text":"Raiders from Upperford struck Yellowfield, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":26250,"wallTimeMs":1792715148224,"kind":"NationRelationChange","text":"Westernland and Newton are now hostile."}
+{"type":"chronicle","tick":27002,"wallTimeMs":1792715186707,"kind":"NationRelationChange","text":"Lowerville and Blackshire have formed an alliance."}
+{"type":"chronicle","tick":27002,"wallTimeMs":1792715186707,"kind":"NationRaid","text":"Raiders from Blackshire struck Yellowfield, taking 5 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":27002,"wallTimeMs":1792715186707,"kind":"NationRaid","text":"Westernland raided Newton and carried off 5 coins."}
+{"type":"chronicle","tick":27150,"wallTimeMs":1792715194530,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Stan Taylor."}
+{"type":"chronicle","tick":27150,"wallTimeMs":1792715194530,"kind":"StallBuilt","text":"A new stall opened in the market of Westshire, built by Fiona Brown."}
+{"type":"chronicle","tick":27202,"wallTimeMs":1792715197110,"kind":"StallBuilt","text":"A new stall opened in the market of Newton, built by Alice Thompson."}
+{"type":"chronicle","tick":27250,"wallTimeMs":1792715199321,"kind":"NationRelationChange","text":"Fortressfield and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":27302,"wallTimeMs":1792715201681,"kind":"StallBuilt","text":"Trade came to Fortressfield: Olivia Smith built a stall."}
+{"type":"status","tick":27502,"wallTimeMs":1792715210581,"text":"Newton has fallen and been disbanded."}
+{"type":"chronicle","tick":27502,"wallTimeMs":1792715210581,"kind":"StallBuilt","text":"Grace Watson built a market stall in Westton."}
+{"type":"chronicle","tick":27502,"wallTimeMs":1792715210581,"kind":"NationRelationChange","text":"Castlefield and Westton are now hostile."}
+{"type":"chronicle","tick":27502,"wallTimeMs":1792715210581,"kind":"SettlementCapture","text":"Westernland captured a village from Newton."}
+{"type":"chronicle","tick":27502,"wallTimeMs":1792715210581,"kind":"NationDisband","text":"Newton is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":27750,"wallTimeMs":1792715221689,"kind":"StallBuilt","text":"Trade came to Westshire: Fiona Brown built a stall."}
+{"type":"chronicle","tick":27750,"wallTimeMs":1792715221689,"kind":"StallBuilt","text":"A new stall opened in the market of Greatwood, built by Gemma Wood."}
+{"type":"chronicle","tick":27850,"wallTimeMs":1792715226202,"kind":"StallBuilt","text":"Mia Thomas built a market stall in Lowerville."}
+{"type":"chronicle","tick":27850,"wallTimeMs":1792715226202,"kind":"StallBuilt","text":"A new stall opened in the market of Westton, built by Grace Watson. The market is now full."}
+{"type":"chronicle","tick":28002,"wallTimeMs":1792715233203,"kind":"NationRelationChange","text":"Westernfield and Farmford are now hostile over their border."}
+{"type":"chronicle","tick":28002,"wallTimeMs":1792715233203,"kind":"NationRelationChange","text":"Relations between Farmford and Westernfield are now rival."}
+{"type":"chronicle","tick":28002,"wallTimeMs":1792715233203,"kind":"NationRelationChange","text":"Relations between Easternshire and Fortressfield are now neutral."}
+{"type":"chronicle","tick":28002,"wallTimeMs":1792715233203,"kind":"NationRaid","text":"Raiders from Castlefield struck Westton, taking 5 coins."}
+{"type":"chronicle","tick":28050,"wallTimeMs":1792715235400,"kind":"StallBuilt","text":"Trade came to Castlefield: Frank Brown built a stall."}
+{"type":"chronicle","tick":28102,"wallTimeMs":1792715237676,"kind":"StallBuilt","text":"Katie Jones built a market stall in Southwood. The market is now full."}
+{"type":"chronicle","tick":28202,"wallTimeMs":1792715242018,"kind":"StallBuilt","text":"Trade came to Fortressshire: Rachel Brown built a stall."}
+{"type":"chronicle","tick":28250,"wallTimeMs":1792715243878,"kind":"StallBuilt","text":"A new stall opened in the market of Westernfield, built by Natalie Williams."}
+{"type":"chronicle","tick":28250,"wallTimeMs":1792715243878,"kind":"StallBuilt","text":"Trade came to Upperland: Stan Taylor built a stall."}
+{"type":"chronicle","tick":28302,"wallTimeMs":1792715245726,"kind":"StallBuilt","text":"Trade came to Upperford: Tilly Thompson built a stall."}
+{"type":"chronicle","tick":28302,"wallTimeMs":1792715245726,"kind":"StallBuilt","text":"A new stall opened in the market of Westshire, built by Fiona Brown."}
+{"type":"chronicle","tick":28550,"wallTimeMs":1792715252745,"kind":"StallBuilt","text":"Frank Thomas built a market stall in Hamletton."}
+{"type":"chronicle","tick":28850,"wallTimeMs":1792715262181,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Stan Taylor."}
+{"type":"chronicle","tick":28902,"wallTimeMs":1792715263988,"kind":"StallBuilt","text":"Judy Jones built a market stall in Fortressshire."}
+{"type":"chronicle","tick":28950,"wallTimeMs":1792715265629,"kind":"StallBuilt","text":"Gemma Wood built a market stall in Greatwood."}
+{"type":"chronicle","tick":29002,"wallTimeMs":1792715267411,"kind":"StallBuilt","text":"Trade came to Westshire: Fiona Brown built a stall."}
+{"type":"chronicle","tick":29002,"wallTimeMs":1792715267411,"kind":"NationRaid","text":"Fortressfield raided Lowerville and carried off 5 wood."}
+{"type":"chronicle","tick":29002,"wallTimeMs":1792715267411,"kind":"NationRaid","text":"Raiders from Hamletton struck Lowerville, taking 5 wood."}
+{"type":"chronicle","tick":29102,"wallTimeMs":1792715270421,"kind":"StallBuilt","text":"Trade came to Blackshire: Mia Roberts built a stall."}
+{"type":"chronicle","tick":29250,"wallTimeMs":1792715274102,"kind":"NationRelationChange","text":"Fortressfield and Easternshire have become rivals over their border."}
+{"type":"chronicle","tick":29402,"wallTimeMs":1792715278066,"kind":"StallBuilt","text":"A new stall opened in the market of Upperford, built by Tilly Thompson."}
+{"type":"chronicle","tick":29450,"wallTimeMs":1792715279297,"kind":"StallBuilt","text":"A new stall opened in the market of Castlefield, built by Frank Brown."}
+{"type":"chronicle","tick":29802,"wallTimeMs":1792715288177,"kind":"StallBuilt","text":"Trade came to Fortressfield: Olivia Smith built a stall."}
+{"type":"chronicle","tick":29902,"wallTimeMs":1792715290671,"kind":"StallBuilt","text":"Trade came to Upperford: Tilly Thompson built a stall. The market is now full."}
+{"type":"chronicle","tick":29950,"wallTimeMs":1792715291862,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerville, built by Mia Thomas."}
+{"type":"save","tick":30002,"wallTimeMs":1792715293214,"count":5}
+{"type":"status","tick":30002,"wallTimeMs":1792715293214,"text":"Autosaved."}
+{"type":"chronicle","tick":30002,"wallTimeMs":1792715293214,"kind":"NationRelationChange","text":"Relations between Newport and Westton are now friendly against a common enemy."}
+{"type":"chronicle","tick":30002,"wallTimeMs":1792715293214,"kind":"NationRelationChange","text":"Westernfield and Farmford are now hostile over their border."}
+{"type":"chronicle","tick":30002,"wallTimeMs":1792715293214,"kind":"NationRelationChange","text":"Relations between Easternshire and Fortressfield are now neutral."}
+{"type":"chronicle","tick":30002,"wallTimeMs":1792715293214,"kind":"NationRelationChange","text":"Easternshire and Westton are now hostile."}
+{"type":"chronicle","tick":30002,"wallTimeMs":1792715293214,"kind":"NationRaid","text":"Westernfield raided Farmford and carried off 5 coins."}
+{"type":"chronicle","tick":30002,"wallTimeMs":1792715293214,"kind":"NationRaid","text":"Raiders from Easternshire struck Westton, taking 5 coins."}
+{"type":"chronicle","tick":30102,"wallTimeMs":1792715295611,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressshire, built by Rachel Brown."}
+{"type":"chronicle","tick":30150,"wallTimeMs":1792715296807,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Stan Taylor."}
+{"type":"chronicle","tick":30302,"wallTimeMs":1792715300600,"kind":"StallBuilt","text":"Trade came to Greatwood: Gemma Wood built a stall."}
+{"type":"chronicle","tick":30450,"wallTimeMs":1792715304416,"kind":"StallBuilt","text":"Natalie Williams built a market stall in Westernfield."}
+{"type":"chronicle","tick":30502,"wallTimeMs":1792715305762,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletton, built by Frank Thomas."}
+{"type":"chronicle","tick":30550,"wallTimeMs":1792715307014,"kind":"StallBuilt","text":"Trade came to Westshire: Fiona Brown built a stall."}
+{"type":"chronicle","tick":30550,"wallTimeMs":1792715307014,"kind":"StallBuilt","text":"Trade came to Westernland: Karl Robinson built a stall."}
+{"type":"world_event_offered","tick":30554,"wallTimeMs":1792715307114,"title":"Drought","body":"No rain has fallen on Newport for weeks. Its 4 farms are drying out and will bring in nothing for a day.","options":["Dig irrigation ditches (15 wood, 10 stone) (unavailable)","Buy grain from traders (25 coins)","Ration and wait for rain"]}
+{"type":"status","tick":30554,"wallTimeMs":1792715445519,"text":"Drought struck Newport; you bought grain from passing traders to see it through."}
+{"type":"chronicle","tick":30554,"wallTimeMs":1792715445519,"kind":"WorldEvent","text":"Drought struck Newport; you bought grain from passing traders to see it through."}
+{"type":"world_event_resolved","tick":30554,"wallTimeMs":1792715445519,"title":"Drought","status":"Drought struck Newport; you bought grain from passing traders to see it through."}

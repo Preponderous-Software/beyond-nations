@@ -71,7 +71,7 @@ namespace beyondnationstests {
             new FoundSettlementCommand(world.nations, world.simulation.getEventProducer(), world.entities, world.simulation.getGameConfig(), world.simulation.getRandom())
                 .execute(world.player);
 
-            Assert.Equal("This land is claimed by Aland. Found your settlement outside its borders.", world.player.getStatus().getStatus());
+            Assert.Equal("This land is claimed by Aland. Found your settlement outside its borders. Open ground lies about 220 to the east.", world.player.getStatus().getStatus());
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD, world.player.getInventory().getNumItems(ItemType.WOOD));
         }
 

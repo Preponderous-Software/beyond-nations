@@ -1,87 +1,81 @@
 ---
 name: playtest
-description: Run a parallel AI playtest of Beyond Nations - build the desktop game once, spawn N subagents (default 10) that each play the real build headlessly toward a different goal through tools/playtest/pt.sh, then aggregate their report.json files into summary.md and offer to file issues for confirmed blocker/major findings. Use when asked to playtest the game, run playtesters, or find UX/balance/bug issues by playing.
+description: Run a parallel AI playtest of this game with playtester - build the game once, check the harness with a scripted smoke session, spawn N subagents (default 10) that each play the real build headlessly toward a different goal through the pt harness, then aggregate their report.json files into summary.md, commit the evidence and offer to file issues for confirmed blocker/major findings. Use when asked to playtest the game, run playtesters, or find UX/balance/bug issues by playing.
 ---
 
 # Playtest (coordinator)
 
-You coordinate; subagents play. The kit is documented in
-`docs/PLAYTESTING.md`; the subagent prompt is `tools/playtest/AGENT_PROMPT.md`.
-Do not play yourself and do not fix anything you find: the output is a
-summary and, if the owner agrees, issues.
+PROFILE=beyond-nations
+
+You coordinate; subagents play. The harness, the agent prompt, the report
+schema and the aggregator come from **playtester** (`pip install playtester`
+or `pip install -e <checkout>`; its docs/AGENT_PLAYTESTING.md explains the
+kit). This game's profile is `$PROFILE` (`pt profiles` lists the bundled
+ones; a path to a profile JSON file works too). Do not play yourself and do
+not fix anything you find: the output is a summary, committed evidence and,
+if the owner agrees, issues.
+
+`pt` below is the playtester command line. If it is not on `PATH`, use
+`python3 -m playtester` with the interpreter playtester is installed for.
 
 ## 1. Preflight
 
 ```bash
-export PATH=/root/.dotnet:$PATH            # wherever dotnet lives
-which Xvfb xdotool import python3          # docs/PLAYTESTING.md lists the packages
-pgrep -a Xvfb; pgrep -af 'BeyondNations.Desktop '   # anything already running?
+pt --version && pt profiles                   # playtester installed? which profiles?
+which Xvfb xdotool import python3             # system tools (docs/AGENT_PLAYTESTING.md)
+pt validate-profile $PROFILE                  # its build command and toolchain (build.requires)
+pgrep -a Xvfb                                 # anything already running?
 nproc; free -g; cat /proc/loadavg
 ```
 
-Pick N from the measured table in docs/PLAYTESTING.md: up to about 6
-sessions keeps each world near full speed on a 20-core box; 10 works, with
-the worlds running at roughly a third of real time. If the box is already
-busy, use fewer.
+Pick N from the cost table in playtester's docs/AGENT_PLAYTESTING.md and
+from `pt measure` on this machine (`pt measure 5 --profile $PROFILE --brief`):
+software rendering costs one to four cores a session, and a busy machine
+slows every game's world. If the box is already busy, use fewer.
 
 ## 2. Build once
 
-```bash
-dotnet build src/BeyondNations.Desktop/BeyondNations.Desktop.csproj -c Release
-```
+Run the profile's build command (`pt validate-profile $PROFILE` prints it)
+in this checkout, with its toolchain on `PATH`. Every session runs
+this one build. Record the commit: `git rev-parse --short HEAD`.
 
-Every session runs this one binary (`pt.sh` finds it). Record the commit:
-`git rev-parse --short HEAD`.
-
-## 3. Create the run directory
+## 3. Create the run directory and smoke the harness
 
 ```bash
-RUN=/tmp/bn-playtest/$(date +%Y%m%d-%H%M)
+RUN=/tmp/playtest-$PROFILE/$(date +%Y%m%d-%H%M)
 mkdir -p "$RUN"
+PT_ROOT="$RUN/_smoke" pt smoke --profile $PROFILE --game-dir "$PWD"
 ```
 
-Then quick-check the harness with one scripted session before spending
-agent time (about a minute):
-
-```bash
-PT_ROOT="$RUN/_smoke" PT_SESSION=smoke tools/playtest/smoke.sh 42
-```
-
-It must print `PASS`. If it fails, read `$RUN/_smoke/smoke/game.log` and fix
-the environment first (docs/PLAYTESTING.md, Troubleshooting).
+It must print `PASS` (a minute or two). If it fails, read
+`$RUN/_smoke/smoke/game.log` and the `fail.png` screenshot and fix the
+environment first (Troubleshooting in docs/AGENT_PLAYTESTING.md).
 
 ## 4. Choose goals
 
-Use the owner's goals if given; otherwise these ten, in this order (take the
-first N):
-
-1. Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion.
-2. Reach the Village era as fast as you can (it cannot come before day 3, about 17 minutes of game time); record the game time of every objective.
-3. Survive the first winter. Start with `--season autumn` (a fresh world otherwise reaches winter only after about 57 minutes of game time). Note how food and cold feel.
-4. Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O).
-5. Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan.
-6. Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies.
-7. Crafting: find and use every recipe on the crafting screen (C); are tools worth making?
-8. World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.
-9. Accessibility and text audit, touching only what a mouse-and-keyboard player would: every screen and panel; cut-off, overlapping, unclear or misspelled text; contrast; anything only explained on hover.
-10. Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches.
-
-Give each a distinct seed (e.g. 101..110) unless the goal needs the same
-world; goal 10 should use a seed given as text, e.g. `Ironvale`.
+Use the owner's goals if given; otherwise the profile's `goals`, in order
+(take the first N). Each has a time budget and usually a seed; give every
+session a distinct seed unless the goal needs the same world. Write goals
+the way docs/AGENT_PLAYTESTING.md ("Writing goals") describes: one focus,
+sized to game time, something to measure.
 
 ## 5. Spawn the playtesters
 
-Read `tools/playtest/AGENT_PROMPT.md`, take everything below its `---`, and
-fill in `{{GOAL}}`, `{{SESSION}}` (s01..sNN), `{{RUN_DIR}}` ($RUN, absolute),
-`{{SEED}}`, `{{TIME_BUDGET_MIN}}` and `{{REPO}}` (the absolute path of this
-checkout). Budget about 30 minutes, and 60 for goals 2 and 3: a day is 10
-minutes of game time, and with many sessions the worlds run slower than
-real time (docs/PLAYTESTING.md, resource table). Spawn all N subagents **in one message**, in
-parallel, general-purpose, each with its filled prompt. Do not give them
-worktree isolation: they must not modify the repo and need no copy of it.
+For each session `s01`..`sNN`, fill the agent prompt:
 
-Stagger nothing; `pt.sh start` takes a lock for the X display, so
-simultaneous starts are safe.
+```bash
+pt prompt --profile $PROFILE --goal-index 1 --session s01 --run-dir "$RUN" --game-dir "$PWD" > "$RUN/s01.prompt.md"
+# or with your own goal: --goal "..." --seed 101 --budget 30 [--start-args "--season autumn"]
+```
+
+Spawn all N subagents **in one message**, in parallel, general-purpose, each
+with the full text of its filled prompt. Do not give them worktree
+isolation: they must not modify the repository and need no copy of it.
+Stagger nothing; `pt start` takes a lock for the X display, so simultaneous
+starts are safe. Each agent keeps every file inside its own session
+directory (rule 7 of the prompt): in an early run, agents sharing a scratch
+directory overwrote each other's `pt` wrappers and sent keys to the wrong
+game.
 
 ## 6. Wait, then clean up
 
@@ -89,8 +83,8 @@ Wait for every subagent to report back (do not poll their files). Then make
 sure nothing is left running:
 
 ```bash
-for d in "$RUN"/s*/; do PT_ROOT="$RUN" PT_SESSION=$(basename "$d") tools/playtest/pt.sh stop; done
-pgrep -a Xvfb; pgrep -af 'BeyondNations.Desktop '
+for d in "$RUN"/s*/; do PT_ROOT="$RUN" PT_SESSION=$(basename "$d") pt stop; done
+pgrep -a Xvfb; pgrep -af "<the profile's process_name>"
 ```
 
 Never `pkill -f` a pattern that also matches your own shell.
@@ -98,30 +92,32 @@ Never `pkill -f` a pattern that also matches your own shell.
 ## 7. Aggregate and present
 
 ```bash
-python3 -I tools/playtest/aggregate.py "$RUN"
+pt aggregate "$RUN"
 ```
 
 Read `$RUN/summary.md` and present it: the outcome table, the blocker and
 major groups with their screenshots (open the PNGs and look before you
 vouch for a finding), and the problems section (missing or invalid reports,
-crashes). Say which findings more than one agent hit.
+crashes). Say which findings more than one agent hit, and check each
+group's "Also reported as" titles: grouping is a heuristic.
 
 ## 8. Commit the evidence
 
-Testing evidence goes into the repository, in a pull request to `develop`,
-under `docs/playtests/<version>/`, named after the version that was tested.
-A build of `develop` past the last release tag is experimental: name the
-directory for the **next expected version** (develop after 0.4.1 is `0.4.2`)
-and record the exact commit in its README. Whoever cuts the release renames
-the directory if the release turns out to be a different version
-(docs/RELEASING.md); the release workflow checks it.
+Testing evidence goes into this repository, in a pull request to the branch
+the project integrates into (`develop` where there is one), under the
+profile's `evidence_dir` (default `docs/playtests/`) in a directory named
+after the version that was tested. A build past the last release tag is
+experimental: name the directory for the **next expected version** and
+record the exact commit in its README. Whoever cuts the release renames the
+directory if the release turns out to be a different version.
 
 Copy in `summary.md`, `summary.json`, every session's `report.json`,
-`events.jsonl`, `findings.jsonl` and the screenshots that findings cite. Leave
-out `game.log`, `state.json`, the data folder and screenshots no finding uses.
-Keep the total small (shrink screenshots if needed). Write a README with the
-build, commit, date, goals, seeds, sessions and anything that went wrong in
-the run. Link the summary from docs/PLAYTESTING.md's run list.
+`session.json`, `actions.jsonl`, `findings.jsonl`, `out/events.jsonl` and the
+screenshots that findings cite. Leave out `game.log`, `state.json`, the
+`data/` folder, the filled prompts and screenshots no finding uses. Keep the
+total small (shrink screenshots if needed). Write a README with the build,
+commit, date, goals, seeds, budgets, sessions and anything that went wrong in
+the run.
 
 ## 9. Offer issues
 
@@ -130,10 +126,10 @@ screenshot and the repro is plausible), offer to file GitHub issues. Before
 filing, dedupe against open issues:
 
 ```bash
-gh issue list --repo Preponderous-Software/beyond-nations --state open --limit 200 --search "<key words>"
+gh issue list --state open --limit 200 --search "<key words>"
 ```
 
-Only after the owner says yes: one issue per finding group, with the
-title, detail, repro, seed, build commit, the session(s) that saw it, and the
-screenshots attached or described. Follow the repo's conventions for issue
-text (passive voice, attribution footer).
+Only after the owner says yes: one issue per finding group, with the title,
+detail, repro, seed, build commit, the session(s) that saw it, and the
+screenshots attached or described. Follow the repository's conventions for
+issue text.

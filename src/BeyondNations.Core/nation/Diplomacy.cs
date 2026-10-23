@@ -16,7 +16,10 @@ namespace beyondnations {
     *    other (-1 a round, -2 where their borders touch); allies warm (+1);
     *    two nations that are both rivals of the same third nation draw
     *    together (+1 per shared enemy). With nothing pushing it, a score eases
-    *    one point toward zero every few rounds.
+    *    one point toward zero every few rounds. While the player's nation is
+    *    sheltered (EraRules.isSheltered), friction alone stops at
+    *    SHELTERED_FRICTION_FLOOR (Rival), and whenever a change of named state
+    *    involves it, the player is told why (RelationCause).
     * 2. Each nation led by a pawn makes its choices: it agrees an alliance
     *    with another pawn-led nation once relations reach +40, pays tribute
     *    (20 coins from its treasury) to a hostile neighbour at least twice its
@@ -24,7 +27,9 @@ namespace beyondnations {
     *    A nation led by the player makes no choices; the player does.
     * 3. Hostility has stakes. Between two hostile neighbours the stronger
     *    raids the weaker's nearest settlement every few rounds (coins, wood
-    *    and stone from its treasury and stockpile), and if it is at least
+    *    and stone from its treasury and stockpile) -- a sheltered player's
+    *    nation at most once every SHELTERED_RAID_EVERY_ROUNDS, and a nation
+    *    the player leads only a nation it is at war with -- and if it is at least
     *    twice as strong (and no mere band: a strength of four or more) and
     *    its own nearest settlement is of at least the
     *    same tier, it lays siege to that settlement. A siege kept up for six
@@ -65,6 +70,25 @@ namespace beyondnations {
         public const int SIEGE_ROUNDS_TO_CAPTURE = 6;
         public const int MIN_SIEGE_STRENGTH = 4;
 
+        /**
+        * While the player's nation is sheltered (EraRules.isSheltered), border
+        * friction alone takes its relations with a neighbour no lower than
+        * this: Rival, short of Hostile (and of AI_DENOUNCE_AT, so no
+        * denunciation follows from it either). A new nation used to be
+        * Hostile with every neighbour within four minutes of founding, and
+        * raided from then on, without the player having done anything.
+        * What the player does (denouncing, poaching, robbing caravans, war)
+        * still counts in full.
+        */
+        public const int SHELTERED_FRICTION_FLOOR = -39;
+
+        /**
+        * While the player's nation is sheltered, it is raided at most once
+        * in this many rounds (two minutes), by whichever hostile neighbour
+        * comes first; other nations raid each other every RAID_EVERY_ROUNDS.
+        */
+        public const int SHELTERED_RAID_EVERY_ROUNDS = 24;
+
         private readonly NationRepository nationRepository;
         private readonly EntityRepository entityRepository;
         private readonly EventProducer eventProducer;
@@ -75,6 +99,12 @@ namespace beyondnations {
         private int round = 0;
         private readonly Dictionary<EntityId, int> siegeProgress = new Dictionary<EntityId, int>();
         private readonly Dictionary<EntityId, Nation> besiegers = new Dictionary<EntityId, Nation>();
+        // a sheltered nation has been raided this round (SHELTERED_RAID_EVERY_ROUNDS); only within a round
+        private bool shelteredRaidedThisRound = false;
+        // the named state last told to the player for each other nation, so a
+        // drift see-sawing across a boundary is not told over and over;
+        // transient: after a load the next change is told once more
+        private readonly Dictionary<NationId, NationRelationState> toldPlayer = new Dictionary<NationId, NationRelationState>();
 
         public Diplomacy(NationRepository nationRepository, EntityRepository entityRepository, EventProducer eventProducer, Player player) {
             this.nationRepository = nationRepository;
@@ -153,6 +183,7 @@ namespace beyondnations {
             }
 
             HashSet<EntityId> besiegedThisRound = new HashSet<EntityId>();
+            shelteredRaidedThisRound = false;
             for (int i = 0; i < nations.Count; i++) {
                 for (int j = i + 1; j < nations.Count; j++) {
                     if (exists(nations[i]) && exists(nations[j])) {
@@ -177,12 +208,14 @@ namespace beyondnations {
             if (allied) {
                 delta += ALLIANCE_WARMTH;
             }
+            int sharedEnemies = 0;
             foreach (Nation c in nations) {
                 if (c == a || c == b) {
                     continue;
                 }
                 if (relations.getState(a, c) <= NationRelationState.RIVAL && relations.getState(b, c) <= NationRelationState.RIVAL) {
                     delta += SHARED_ENEMY;
+                    sharedEnemies++;
                 }
             }
             if (delta == 0 && round % DRIFT_EVERY_ROUNDS == 0) {
@@ -193,7 +226,21 @@ namespace beyondnations {
                 // nations at war cannot warm, nations under a truce cannot grate
                 delta = realm.adjustDrift(a, b, delta);
             }
-            change(a, b, delta);
+            int before = relations.getScore(a, b);
+            if (delta < 0 && (a.isSheltered() || b.isSheltered())) {
+                // friction alone does not make a young player's nation hostile
+                delta = Math.Max(delta, Math.Min(0, SHELTERED_FRICTION_FLOOR - before));
+            }
+            // the only thing that sours a drift is the border; warmth is an alliance, a shared enemy or time
+            RelationCause cause = delta < 0 ? RelationCause.Border
+                : allied ? RelationCause.Alliance
+                : sharedEnemies > 0 ? RelationCause.SharedEnemy
+                : RelationCause.Easing;
+            change(a, b, delta, cause);
+            Nation other = isPlayersNation(a) ? b : (isPlayersNation(b) ? a : null);
+            if (other != null && delta < 0 && before >= 0 && relations.getScore(a, b) < 0) {
+                player.getStatus().update(cause.tellPlayer(other) + ": relations will sour while your settlements stand this close.");
+            }
         }
 
         // 2. pawn-led choices -------------------------------------------------------------------------------
@@ -260,9 +307,16 @@ namespace beyondnations {
             if (getStrength(attacker) <= getDefence(defender)) {
                 return;
             }
+            // a nation the player leads makes no choices of its own: its people
+            // take up arms only against a nation the player has declared war on
+            if (isLedByPlayer(attacker) && (realm == null || !realm.isAtWar(attacker, defender))) {
+                return;
+            }
 
-            if (round % RAID_EVERY_ROUNDS == 0) {
-                raid(attacker, defender, target, base_);
+            if (round % RAID_EVERY_ROUNDS == 0 && mayRaid(defender)) {
+                if (raid(attacker, defender, target, base_) && defender.isSheltered()) {
+                    shelteredRaidedThisRound = true;
+                }
             }
 
             if (canBesiege(attacker, defender, base_, target) && mayBeginSiege(attacker, defender, target)
@@ -296,7 +350,20 @@ namespace beyondnations {
             return !defender.isForewarned() || getBesieger(target) == attacker;
         }
 
-        private void raid(Nation raider, Nation victim, Settlement target, Settlement home) {
+        /**
+        * Whether a raid on this nation may come this round: any raid round,
+        * but a sheltered nation (the player's, before the Town era) is raided
+        * at most once every SHELTERED_RAID_EVERY_ROUNDS.
+        */
+        private bool mayRaid(Nation victim) {
+            if (!victim.isSheltered()) {
+                return true;
+            }
+            return round % SHELTERED_RAID_EVERY_ROUNDS == 0 && !shelteredRaidedThisRound;
+        }
+
+        /** Carries off what it can; returns false if there was nothing to take. */
+        private bool raid(Nation raider, Nation victim, Settlement target, Settlement home) {
             Inventory stock = target.getInventory();
             // open borders (realm/Laws) let raiders carry off more
             int multiplier = realm == null ? 1 : realm.raidLootMultiplier(victim);
@@ -304,7 +371,7 @@ namespace beyondnations {
             int wood = Math.Min(RAID_GOODS * multiplier, stock.getNumItems(ItemType.WOOD));
             int stone = Math.Min(RAID_GOODS * multiplier, stock.getNumItems(ItemType.STONE));
             if (coins + wood + stone == 0) {
-                return;
+                return false;
             }
             List<string> parts = new List<string>();
             if (coins > 0) {
@@ -325,11 +392,21 @@ namespace beyondnations {
             string loot = string.Join(", ", parts);
             eventProducer.produceNationRaidEvent(raider, victim, target, loot);
             if (isPlayersNation(victim)) {
-                player.getStatus().update(raider.getName() + " raided your " + describeSettlement(target) + ": " + loot + " taken.");
+                player.getStatus().update(raider.getName() + " raided your " + describeSettlement(target) + ": " + loot + " taken. Relations: "
+                    + nationRepository.getRelations().describe(raider, victim) + "; gifts or peace end raids.");
+            }
+            else if (isPlayersNation(raider) && isLedByPlayer(raider)) {
+                player.getStatus().update("Your people raided " + victim.getName() + " (at war with you): " + loot + " brought home.");
             }
             else if (isPlayersNation(raider)) {
-                player.getStatus().update("Your people raided " + victim.getName() + ": " + loot + " brought home.");
+                // the player joined this nation; its leader decides
+                NationRelations relations = nationRepository.getRelations();
+                int score = relations.getScore(raider, victim);
+                player.getStatus().update("Your nation's raiders struck " + victim.getName() + " ("
+                    + NationRelationStates.getName(relations.getState(raider, victim)) + ", " + (score > 0 ? "+" : "") + score + "): "
+                    + loot + " brought home.");
             }
+            return true;
         }
 
         private void besiege(Nation attacker, Nation defender, Settlement target) {
@@ -478,18 +555,29 @@ namespace beyondnations {
 
         /**
         * Moves a pair's score and, when the player's nation is one of the pair
-        * and the named state changed, says so on the status line.
+        * and the named state changed, says so on the status line -- with the
+        * cause, when there is one, there and in the chronicle.
         */
-        public void change(Nation a, Nation b, int delta) {
+        public void change(Nation a, Nation b, int delta, RelationCause cause = null) {
             NationRelations relations = nationRepository.getRelations();
             NationRelationState before = relations.getState(a, b);
-            NationRelationState after = relations.adjust(a, b, delta);
+            NationRelationState after = relations.adjust(a, b, delta, cause == null ? null : cause.getBetween());
             if (before == after) {
                 return;
             }
             Nation other = isPlayersNation(a) ? b : (isPlayersNation(b) ? a : null);
             if (other != null) {
-                player.getStatus().update("Relations with " + other.getName() + " are now " + NationRelationStates.getName(after) + ".");
+                NationRelationState told;
+                if (cause != null && toldPlayer.TryGetValue(other.getId(), out told) && told == after) {
+                    // a score see-sawing across a boundary (trade warming it, the
+                    // border souring it) is told once, not every time it crosses
+                    return;
+                }
+                toldPlayer[other.getId()] = after;
+                string standing = relations.describe(a, b);
+                player.getStatus().update(cause == null
+                    ? "Relations with " + other.getName() + " are now " + standing + "."
+                    : cause.tellPlayer(other) + ": relations are now " + standing + ".");
             }
         }
 
@@ -518,6 +606,11 @@ namespace beyondnations {
         public bool areNeighbours(Nation a, Nation b) {
             Frontier frontier = findFrontier(a, b);
             return frontier != null && frontier.distance <= Territory.NEIGHBOUR_DISTANCE;
+        }
+
+        /** Whether the player leads this nation (not merely belongs to it). */
+        public bool isLedByPlayer(Nation nation) {
+            return nation != null && nation.getLeaderId() != null && nation.getLeaderId().Equals(player.getId());
         }
 
         private bool isPlayersNation(Nation nation) {

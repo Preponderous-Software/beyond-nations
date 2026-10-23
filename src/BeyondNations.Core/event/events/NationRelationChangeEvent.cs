@@ -11,11 +11,23 @@ namespace beyondnations {
         private NationRelationState after;
 
         public NationRelationChangeEvent(Nation nation1, Nation nation2, NationRelationState before, NationRelationState after)
-                : base(EventType.NationRelationChange, describe(nation1, nation2, before, after)) {
+                : this(nation1, nation2, before, after, null) {
+        }
+
+        /** why, when known, is told at the end of the line: "... have become rivals over their border." */
+        public NationRelationChangeEvent(Nation nation1, Nation nation2, NationRelationState before, NationRelationState after, string why)
+                : base(EventType.NationRelationChange, withWhy(describe(nation1, nation2, before, after), why)) {
             this.nation1 = nation1;
             this.nation2 = nation2;
             this.before = before;
             this.after = after;
+        }
+
+        private static string withWhy(string description, string why) {
+            if (string.IsNullOrEmpty(why)) {
+                return description;
+            }
+            return description.TrimEnd('.') + " " + why + ".";
         }
 
         public static string describe(Nation nation1, Nation nation2, NationRelationState before, NationRelationState after) {

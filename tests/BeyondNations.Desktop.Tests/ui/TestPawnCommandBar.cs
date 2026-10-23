@@ -136,6 +136,42 @@ namespace beyondnationstests {
             Assert.Equal(GiftPawnCommand.COIN_GIFT_GAIN, PawnRelations.getRelationship(pawn, player));
         }
 
+        /**
+        * Playtest 0.5.0 (s01, s03, s06): inside their own settlement, with a
+        * resident strolling a few metres away, the bar offered nothing for it
+        * and G said nobody was in reach, so a leader could not befriend or
+        * feed their own people. The same holds for the touch bar, which
+        * shows these commands.
+        */
+        [Fact]
+        public void testInsideOwnSettlement_ResidentOnPlaza_BarOffersItAndGKeyGifts() {
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.COIN, 50);
+            Nation nation = playerNation(simulation);
+            Settlement settlement = new Settlement(player.getPosition(), nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());
+            simulation.getEntityRepository().addEntity(settlement);
+            nation.addSettlement(settlement.getId());
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
+            Pawn pawn = addPawnNextToPlayer(simulation);
+            pawn.setPosition(player.getPosition() + new Vector3(2.9f, 0, 0));
+            SettlementLife.admit(pawn, settlement);
+
+            List<string> commands = labels(simulation);
+            Assert.Contains("Talk to Ada (Stranger)", commands);
+            Assert.Contains("Gift Ada", commands);
+            Assert.Contains("Exit Settlement", commands);
+
+            FakeInputSource source = new FakeInputSource();
+            InputService inputService = new InputService(source);
+            source.press(Key.G);
+            inputService.update();
+            new PlayerInputController().update(simulation, inputService);
+
+            Assert.Equal(GiftPawnCommand.COIN_GIFT_GAIN, PawnRelations.getRelationship(pawn, player));
+        }
+
         [Fact]
         public void testRKey_InvitesNearestPawn() {
             Simulation simulation = createSimulation();

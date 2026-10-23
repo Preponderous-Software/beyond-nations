@@ -90,7 +90,8 @@ namespace beyondnations.pacing {
             foreach (PacingRunResult run in runs) {
                 int done = run.Objectives.FindAll(t => t.Completed).Count;
                 Console.WriteLine("seed " + run.Seed + ": " + done + " objectives in " + run.TicksRun + " ticks ("
-                    + PacingReport.clock((double) run.TicksRun / run.TicksPerSecond) + " of game time)");
+                    + PacingReport.clock((double) run.TicksRun / run.TicksPerSecond) + " of game time); raids on the player's nation " + run.RaidsOnPlayer
+                    + " (" + run.raidsOnPlayerPerHour().ToString("0.0") + " an hour; " + run.RaidsOnPlayerSheltered + " while sheltered), by it " + run.RaidsByPlayer);
             }
             Console.WriteLine(seeds.Count + " seeds in " + watch.Elapsed.TotalSeconds.ToString("0.0") + " s");
 

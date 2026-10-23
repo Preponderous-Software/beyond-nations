@@ -191,6 +191,16 @@ For example, a new system with state of its own goes in a new body section,
 with a new format and a step that adds the section empty (or with whatever a
 world that never had it should start with) -- as format 2 did for `realm`.
 
+**Repairs on load.** A bug can leave a world in a state that the format
+allows but the rules do not, and the autosave then carries it into every
+load. Such a state is put right as the save is loaded, without a format bump:
+the save itself is fine, only what it describes is not. Before 0.6.0 a serf
+could buy a stall in a foreign market and become a merchant whose stall was
+nowhere its nation lives, which crashed the game when it stood at home (the
+0.6.0 release-candidate playtest, seed 102). On load (`StallOwnership`), a
+stall kept by someone who is not of the settlement's nation is given up, and a
+merchant left with no stall in any of its nation's settlements is a serf again.
+
 ## How it is tested
 
 - **The round trip** (`TestSaveRoundTrip`, the key gate). A world is run for N

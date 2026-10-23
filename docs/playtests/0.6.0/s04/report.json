@@ -1,0 +1,105 @@
+{
+  "session": "s04",
+  "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O). Re-verify recent fixes: a new nation should not be raided or turn hostile in its first days without a shown reason (#346); the Nations screen must scroll to every nation (#347); standing on a neighbour's land, the command bar should offer War/Peace and not offer an alliance to a Hostile nation (#348).",
+  "build": {"version": "0.5.0", "commit": "ae87506"},
+  "seed": 104,
+  "durationSec": 1004,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Nations screen re-sorts rows instantly after an action, leaving the pointer on War/Denounce for your ally",
+      "detail": "Declaring war on Greatshire while scrolled to 'Nations 2-5' moved Greatshire to the top, out of view, and the pointer was left on 'War' for ally Castleton. The same happened after Denounce, which left the pointer on 'Denounce' for the ally. War has no confirmation, so a double-click, or a click that lands late at 5-7 fps, declares war on your ally. Expected: rows stay put until the screen is reopened, or War asks for confirmation.",
+      "repro": "pt start --seed 104; Begin; N; walk to Castleton land; O; Tribute Castleton x3, Ally; Denounce Greatshire (row 2) and note the pointer is now over Castleton Denounce; later scroll Down 1 and click War on Greatshire (row 1); the pointer is now on Castleton War",
+      "screenshot": "shots/truce_war.png",
+      "tick": 2794
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Tribute 'to your treasury' from AI nations is invisible; coins never change",
+      "detail": "Status said Smalltown (tick 11002) and Townport (13002, 15002) sent 20 coins of tribute to your treasury. Player coins stayed 224 from tick 8202 to 16190, and no nation treasury is shown on the HUD, Inventory or Nations screen. Expected: the coins appear somewhere the player can see and spend.",
+      "repro": "pt start --seed 104; create nation; found settlement near several neighbours; wait ~150 game s; watch status vs Coins",
+      "screenshot": "shots/nations_final.png",
+      "tick": 15002
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Reason for neighbour resentment after founding flashes for 8 ticks and is lost",
+      "detail": "'Settlement founded. Newfield and Yellowfield and Smalltown and Townport resent a new settlement so near their land' (tick 8154) is replaced at once by 'You are back on your own land' and 'Objective complete'. It is not in the chronicle, and the Nations rows show Neutral (-5)/(-11) with no reason. (The later 'resents your border' drops are in the chronicle.)",
+      "repro": "found a settlement within ~260 of several nations; read the status bar",
+      "screenshot": "shots/founded.png",
+      "tick": 8154
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Border rivals slide toward Hostile with no player action on day 1; an NPC nation raids under 2 game minutes after founding",
+      "detail": "#346 for the player nation held: through tick 16190 no nation turned Hostile to Fortburg or raided it, and each drop had a shown reason. But Oldham and Newfield went from -20 to -38/-39 by tick 16190, heading for Hostile within the first day. Between NPC nations, Northernford (founded tick 2702) became Castleton's border rival at 5502, then 'now hostile' with no reason on that line, and raided Castleton (the player's ally) at 8002.",
+      "repro": "pt start --seed 104; play to tick ~16000; grep Northernford in out/events.jsonl; O and scroll to the top",
+      "screenshot": "shots/nations_final.png",
+      "tick": 16190
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Peace message says 'the fighting has cost them enough' when no fighting happened",
+      "detail": "Peace was offered from the command bar about 20 game seconds after declaring war on a far-off nation, with no lands meeting and no combat. Greatshire accepted 'the fighting has cost them enough'. The button under the pointer also changed in place from 'Offer Peace' to 'Propose Alliance to Greatshire'.",
+      "repro": "declare war on Greatshire from O; walk onto Greatshire land; click 'Offer Peace to Greatshire'",
+      "screenshot": "shots/peace.png",
+      "tick": 2482
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Player can declare war mid-truce with no warning or cost",
+      "detail": "With 'truce 54 s' shown on Greatshire's row, clicking War started war again at once, with no warning and no penalty. The truce binds only the AI.",
+      "repro": "make peace with Greatshire; open O within 60 s; click War on Greatshire",
+      "screenshot": "shots/truce_war.png",
+      "tick": 2794
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Nations screen reopens at the old scroll position, not at the top where enemies are",
+      "detail": "Reopening O showed 'Nations 20-23 of 33' (four 1-member strangers) instead of the top rows (Greatshire at war, rival neighbours). 33 nations by mid-day 1 at 4 rows per page means 9 pages. The 'Scroll for more.' hint stays on the last page.",
+      "repro": "O; scroll to the end; Escape; wait; O",
+      "screenshot": "shots/nations4.png",
+      "tick": 10400
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "War message strength '2 to your 2' counts the ally but the header says 1 member",
+      "detail": "'Greatshire takes up arms: war, 2 to your 2' while the header says 'Fortburg, 1 member'; later '4 to your 4' with ally Castleton at 3. Nothing says allies are counted. Denounce is still offered on a nation already at war.",
+      "repro": "ally Castleton; declare war on Greatshire from O",
+      "screenshot": "shots/war.png",
+      "tick": 1454
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Inventory panel overlaps the command bar; world labels clipped/overlapping",
+      "detail": "At 960x540 the Inventory Info panel covers the 'Create Nation'/'Join Nation' buttons at the start. Settlement labels ('Village of Greatshire / 0 here, 2/8 residents') are clipped at the top of the screen, and pawn labels overlap. The world label says 'Village' while the Nations row said '1 camp'. The 'south-east' hint for open ground has no compass on screen to act on.",
+      "repro": "pt start --seed 104; Begin; screenshot",
+      "screenshot": "shots/overlap.png",
+      "tick": 6
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 66.04, "Eat something": 67.0, "Create or join a nation": 68.04, "Found a settlement": 164.04, "Enter your settlement": 168.04},
+    "nationsAtEnd": 38,
+    "alliancesFormed": 1,
+    "warsDeclared": 2,
+    "peacesMade": 1,
+    "hostileTowardPlayerUnprovoked": 0,
+    "raidsOnPlayer": 0,
+    "nationsScreenMaxListReached": "20-23 of 23"
+  },
+  "fun": 3,
+  "verdict": "Diplomacy reads clearly. Refusals say what is needed ('an alliance needs +30. Gifts help'), and Tribute → Ally → Denounce → War → Peace all worked. #346, #347 and #348 held: scroll reached every nation, hostile land offered Peace and no alliance, and Fortburg was not turned on without a reason on day 1. The biggest risk is the Nations screen re-sorting under the pointer with no confirmation on War, which makes it easy to declare war on your own ally. Tribute you receive also never shows up anywhere."
+}

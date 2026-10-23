@@ -1,18 +1,25 @@
 # Playtesting with agents
 
 A kit for having several AI agents play the real desktop build at once, each
-toward a different goal, and turning what they find into one summary:
+toward a different goal, and turning what they find into one summary. It
+has two halves:
 
-- the game writes what is on screen to files when started with
-  `--playtest-out DIR` (`state.json`, `events.jsonl`);
-- `tools/playtest/pt.sh` runs one isolated session (its own virtual display,
-  saves, screenshots and logs) and drives it with keys and clicks;
-- each agent follows `tools/playtest/AGENT_PROMPT.md` and writes a
-  `report.json` (`tools/playtest/report.schema.json`);
-- `tools/playtest/aggregate.py` merges a run into `summary.md` and
-  `summary.json`;
-- the `/playtest` project skill (`.claude/skills/playtest/SKILL.md`) is the
-  coordinator's procedure, start to finish.
+- **The game's half, here:** started with `--playtest-out DIR`, the game
+  writes what is on screen to `DIR/state.json` and `DIR/events.jsonl`
+  (`src/BeyondNations.Desktop/playtest/`). Without the flag nothing is
+  written and nothing else changes.
+- **The harness, in [playtester](https://github.com/dmccoystephenson/playtester):**
+  `pt` runs one isolated session (its own virtual display, saves,
+  screenshots and logs) and drives it with keys and clicks; the
+  `beyond-nations` profile tells it how to build, start and steer this game;
+  agents follow playtester's prompt, write a `report.json`, and `pt
+  aggregate` merges a run into `summary.md` and `summary.json`. Beyond
+  Nations was the first game the kit was built for; it was moved to
+  playtester so other games can use it too. This game's `--playtest-out`
+  output is what playtester's probe contract describes.
+- The `/playtest` project skill (`.claude/skills/playtest/SKILL.md`, installed
+  with `pt install-skill . --profile beyond-nations`) is the coordinator's
+  procedure, start to finish.
 
 The agents play the way a person does: they look at screenshots and press
 keys. `state.json` exists because steering by screenshot alone was slow and
@@ -24,18 +31,22 @@ walk to the nearest tree in a closed loop.
 
 Linux (or WSL2) with:
 
-- the .NET 8 SDK (`dotnet`; `DOTNET_ROOT` is set to `/root/.dotnet` by `pt.sh` when that exists)
-- `Xvfb`, `xdotool`, ImageMagick (`import`), `flock` and `setsid` (util-linux), Python 3.8 or newer
+- the .NET 8 SDK (`dotnet`; the profile sets `DOTNET_ROOT` to `~/.dotnet` when that exists)
+- `Xvfb`, `xdotool`, ImageMagick (`import`), Python 3.8 or newer
 - Mesa's llvmpipe (`libgl1-mesa-dri`) and the X11 client libraries the CI's
   strata-smoke job installs (see `.github/workflows/ci.yml`)
+- playtester, at the version pinned in `tools/playtest/playtester.ref`
 
 ```bash
 sudo apt-get install -y xvfb xdotool imagemagick libgl1-mesa-dri libglfw3
+pip install "git+https://github.com/dmccoystephenson/playtester@$(cat tools/playtest/playtester.ref)"
 dotnet build src/BeyondNations.Desktop/BeyondNations.Desktop.csproj -c Release
 ```
 
-Everything in `tools/playtest/` is bash or standard-library Python run with
-`python3 -I`; nothing is installed with pip.
+`tools/playtest/pt.sh` is a shim that runs playtester's `pt` with the
+`beyond-nations` profile against this checkout (`PT_PROFILE`, `PT_GAME_DIR`
+and `PT_ROOT=/tmp/bn-playtest` by default), so `tools/playtest/pt.sh <command>`
+and `pt <command>` run in this directory do the same thing.
 
 ## One session by hand
 
@@ -55,48 +66,34 @@ tools/playtest/pt.sh note --shot hud "the season box is cut off"
 tools/playtest/pt.sh stop
 ```
 
-`pt.sh help` lists every command. `tools/playtest/smoke.sh` is the same thing
-scripted: title, Start, Begin, then trees until the *Gather wood* objective
-completes, confirmed from `events.jsonl`. It prints `PASS` and is the quickest
-check that a machine can run the kit:
+`pt.sh help` lists every command; playtester's docs/AGENT_PLAYTESTING.md
+describes them. `tools/playtest/smoke.sh` is the profile's scripted session:
+title, Start, Begin, then trees until the *Gather wood* objective completes,
+confirmed from `events.jsonl`. It prints `PASS` and is the quickest check
+that a machine can run the kit:
 
 ```bash
-PT_SESSION=smoke tools/playtest/smoke.sh 42
+PT_SESSION=smoke tools/playtest/smoke.sh
 ```
 
-### Commands
-
-| Command | |
-| --- | --- |
-| `start [game args]` | claims a free display (`:100`-`:199`) under a lock, starts Xvfb and the game with `--playtest-out`, waits for the window and the first `state.json`; on failure prints the log tail and cleans up |
-| `stop` | stops the game, then its Xvfb (safe to repeat) |
-| `status` | running?, display, CPU, memory, fps |
-| `key K...`, `hold K SECS` | xdotool key names; combos as `Shift_L+w` |
-| `click X Y [BTN]`, `move X Y`, `drag X1 Y1 X2 Y2 SECS [BTN]`, `type TEXT` | window coordinates; a click hovers 0.3 s first |
-| `shot NAME` | `shots/NAME.png`; prints the path |
-| `state [--full]`, `events [N]`, `await SCREEN [SECS]` | read what the game wrote |
-| `face DEG` | turn DEG degrees (+ right), re-reading the yaw until within 8 degrees |
-| `walkto KIND [MAXSEC]` | the nearest `tree`, `rock`, `pawn`, `chicken`, `settlement` or `stall`: face it, walk in bursts sized from the distance, re-face, stop under 4 units (Interact reaches 5, `InteractCommand`) |
-| `note [--shot NAME] TEXT` | append to `findings.jsonl` |
-| `report` | validate `report.json` against the schema |
-| `log [N]`, `dir`, `wait SECS` | |
-
-`face` turns with A and D held for a computed time (the player turns 2
-degrees a tick, 100 a second) rather than with a mouse drag: a key held for
-a time turns by the same amount at any frame rate, while a drag's turn
-depends on how the motion was split between frames.
+In this game, `face` turns with A and D held for a computed time (the player
+turns 2 degrees a tick, 100 a second), and `walkto` knows `tree`, `rock`,
+`pawn`, `chicken`, `settlement` and `stall` and stops under 4 units
+(Interact reaches 5, `InteractCommand`).
 
 ## Running N in parallel
 
 Every session keeps to `$PT_ROOT/$PT_SESSION`, so any number can run at
-once; only the display number is shared, and it is claimed under a `flock`.
-The coordinator skill does the rest: build once, a run directory
-`/tmp/bn-playtest/<date-time>`, one subagent per goal with its own
-`PT_SESSION` (`s01`..) and seed, wait, aggregate. In Claude Code: `/playtest`.
+once; only the display number is shared, and it is claimed under a lock.
+Each session's saves and settings go to its own `XDG_DATA_HOME`
+(`AppDataPaths` honours it). The coordinator skill does the rest: build once,
+a run directory, one subagent per goal with its own `PT_SESSION` (`s01`..)
+and seed, wait, aggregate. In Claude Code: `/playtest`. The default goals are
+the profile's (`pt prompt --profile beyond-nations --goal-index N`).
 
 ### What it costs
 
-Measured with `tools/playtest/measure.py N` (sessions idle in a world:
+Measured with the first kit's `measure.py N`, now `pt.sh measure N` (sessions idle in a world:
 `--start-screen world --no-saves`, settled 30 s, sampled over 20 s; CPU from
 `/proc`, frame rate and measured tick rate from `state.json`). The machine
 is a 20-core, 24 GB WSL2 box, and it was not idle: other builds ran
@@ -153,22 +150,7 @@ events, a text and accessibility audit, and save/load plus seed sharing.
 
 ## Data layout
 
-```
-/tmp/bn-playtest/20261021-2200/          the run (PT_ROOT)
-  summary.md, summary.json               written by aggregate.py
-  s01/                                   one session (PT_SESSION)
-    session.json                         display, window, game args, version, commit
-    report.json                          the agent's report (report.schema.json)
-    findings.jsonl                       pt.sh note: raw notes as they were taken
-    actions.jsonl                        every pt.sh command with its time, for repro
-    trace.jsonl                          each step of face and walkto
-    shots/*.png                          screenshots
-    out/state.json                       the game's view now (--playtest-out)
-    out/events.jsonl                     what happened, in order
-    data/BeyondNations/                  XDG_DATA_HOME: saves, settings, crash reports
-    game.log, xvfb.log
-    display, game.pid, xvfb.pid, window  while running
-```
+A run is laid out as playtester's docs/AGENT_PLAYTESTING.md describes (`session.json`, `report.json`, `findings.jsonl`, `actions.jsonl`, `trace.jsonl`, `shots/`, `out/`, and `data/BeyondNations/` for this game's saves, settings and crash reports). What the game writes to `out/`:
 
 ### `state.json`
 
@@ -208,25 +190,7 @@ recorder only reads what the game already shows.
 
 ## Reading the summary
 
-`summary.md` has, in order:
-
-1. **Outcomes:** one row a session: goal, achieved/partial/blocked, fun
-   (1-5), minutes played, objectives, era and deaths (from `events.jsonl`, not
-   the agent's word), number of findings, verdict.
-2. **Findings:** grouped across agents. Titles are normalised (case,
-   punctuation, filler words) and grouped when they are near-duplicates, so
-   "Season panel clipped at the right edge" and "The season panel is clipped
-   at the right edge" are one entry reported by two agents. A group takes its
-   most severe report's title and severity and lists the other titles under
-   *Also reported as* (check those: the grouping is a heuristic). A finding
-   several agents hit independently is more likely to be real.
-3. **Objective timings:** game seconds to each objective in each session,
-   with the minimum, median and maximum.
-4. **Problems with the run:** missing or invalid reports and games that
-   crashed (a crash in `game.log` also becomes a blocker finding).
-
-`summary.json` has the same and more (every session's derived metrics, the
-agent's own metrics) for anything that wants to process it.
+`pt aggregate RUN` writes `summary.md` and `summary.json`: outcomes per session (objectives, era reached and deaths from `events.jsonl`, not the agent's word), findings grouped across agents (check each group's *Also reported as* titles: the grouping is a heuristic), objective timings in game time (tick / 50), and problems with the run (missing or invalid reports; a crash in `game.log` also becomes a blocker finding). playtester's docs/AGENT_PLAYTESTING.md has the details.
 
 ## Evidence in the repository
 
@@ -240,36 +204,33 @@ copy in.
 Runs so far:
 
 - [0.5.0](playtests/0.5.0/README.md) (develop `df53ae3`, 2026-10-21): the first 10-agent run.
+- [0.6.0](playtests/0.6.0/README.md) (develop `ae87506` and `3246ba2`, 2026-10-22): the first run through playtester, plus two re-checks of the released build.
 
 ## Troubleshooting
 
+- **`pt.sh: playtester is not installed`** -- install the pinned version
+  (Prerequisites).
 - **Xvfb exits at once, or the game cannot create a GL 4.5 context** --
   `LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe` must be set for both Xvfb
-  and the game; `pt.sh` exports them. Running Xvfb by hand without them aborts
-  on WSL2.
+  and the game; the harness exports them. Running Xvfb by hand without them
+  aborts on WSL2.
 - **`start` says the game did not come up** -- it prints the end of
   `game.log`. A missing `DOTNET_ROOT` (`You must install .NET to run this
   application`) is the usual cause; so is a build that is not there
   (`dotnet build ... -c Release`).
 - **Clicks on buttons do nothing** -- at a few frames a second ImGui only
   registers a click when the pointer has hovered for a few frames first.
-  `pt.sh click` hovers 0.3 s and holds the button 0.15 s; with ten sessions
-  on a busy box, retry once before calling it a bug.
-- **Screenshots are cut off** -- GLFW opens the window at +50+50 and with no
-  window manager nothing moves it; `pt.sh start` moves it to the origin and
-  makes the screen a little larger than the window. Use window coordinates
-  (`xdotool mousemove --window`), as `pt.sh` does, never screen ones.
+  `pt click` hovers 0.3 s and holds the button 0.15 s; with ten sessions on a
+  busy box, retry once before calling it a bug.
 - **Shift does nothing** -- the xdotool name is `Shift_L` (`hold Shift_L+w 2`
   sprints).
 - **`walkto` says stuck** -- something is in the way, or the target keeps
   changing (pawns fell trees too). Look at a screenshot, `face 45`, walk a
   little and retry; `trace.jsonl` has every step it took.
-- **`e` does nothing near the tree** -- Interact picks a settlement, then a
-  pawn, then a tree within 5 units; a pawn standing by the tree wins.
-- **Saves, settings or screenshots of different sessions mix** -- they cannot
-  while `XDG_DATA_HOME` is per session, which `pt.sh` sets (`AppDataPaths`
-  honours it). Do not run the game outside `pt.sh` against a session's
-  directory.
+- **`e` does nothing near the tree** -- Interact picks a settlement's well
+  within 5 units first, then whatever within 5 units the player faces most
+  squarely (within 60 degrees); `face` the tree. With nothing in front, a
+  pawn in reach still wins over the tree.
 - **Something is still running afterwards** -- `pt.sh stop` for each session;
   then `pgrep -a Xvfb` and `pgrep -af 'BeyondNations.Desktop '`. Do not
   `pkill -f` a pattern your own shell's command line also contains.

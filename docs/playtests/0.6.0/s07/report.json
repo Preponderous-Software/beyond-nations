@@ -1,0 +1,83 @@
+{
+ "session": "s07",
+ "goal": "Crafting: find and use every recipe on the crafting screen (C); are tools worth making? Note whether the crafting screen's directions (e.g. building a Workshop) are actually possible at your era (#356).",
+ "build": {
+  "version": "0.5.0",
+  "commit": "ae87506"
+ },
+ "seed": 107,
+ "durationSec": 602,
+ "outcome": "partial",
+ "findings": [
+  {
+   "severity": "minor",
+   "category": "balance",
+   "title": "Auto-eat consumes raw chicken meat before it can be cooked, and eats cooked meat at 89 energy, wasting most of it",
+   "detail": "I harvested chicken meat at energy 90.2 (tick 2882), then opened C. By tick 3018 the meat was gone, energy was 99.9, and the Cooked Meat row read 'Need 1 more chicken meat'. Player.cs eats the most nourishing food once energy drops below 90, so raw meat (25) is eaten ahead of the 8 apples I carried. Cooking only worked when I harvested at about 98 energy and pressed C straight away. The cooked meat (45) I made was then auto-eaten soon after energy dipped under 90, capping at 100 and wasting about 35 energy. As a result Cooked Meat is hard to make and almost pointless. Expected: auto-eat to skip ingredients (or prefer apples), or a toggle, and to eat only when the meal is not wasted.",
+   "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 107; play until energy is about 90; pt walkto chicken; pt key e; pt key c (Cooked Meat row says 'Need 1 more chicken meat'; pt state shows no chicken_meat and energy jumped)",
+   "screenshot": "shots/cooked_meat_not_recognised.png",
+   "tick": 3018
+  },
+  {
+   "severity": "minor",
+   "category": "text",
+   "title": "Before you have a nation, the crafting screen implies the Workshop can be built and leaves out that it is era-locked (#356 remainder)",
+   "detail": "At tick 74, with no nation, the header read 'Planks and bricks need a settlement with a Workshop' with no lock note. The Planks and Bricks rows read 'Need 3 more wood, a Workshop (inside a settlement)', which suggests that gathering and building a Workshop is enough. Once I led a nation (Camp era), both inside and outside the settlement correctly said 'Locked: The Workshop is unlocked in the Village era.' Pressing K in a Camp settlement offers a Farm, never a Workshop. Expected: the same lock note in the nationless state, since the era is already Camp.",
+   "repro": "pt start ... --seed 107; pt key space; click Start, Begin; pt key c",
+   "screenshot": "shots/craft1.png",
+   "tick": 74
+  },
+  {
+   "severity": "minor",
+   "category": "ux",
+   "title": "Finding open ground for F is a long hunt: each refusal points somewhere that is also too close to another settlement",
+   "detail": "With 59 wood I pressed F 7 times over about 3,300 ticks. The messages were: claimed by Castleburg, go 190 east; too close to Littleham, go 40 south; too close to Citytown, go 11 north-east; too close to Castleburg, go 20 east; and so on. Each hint accounts only for the nearest settlement. Expected: the hint to point to a spot that is clear of all settlements, or a map marker.",
+   "repro": "pt start ... --seed 107; gather 50 wood; N; walk to about (395,212); press F repeatedly and follow the hints",
+   "screenshot": "shots/after_f.png",
+   "tick": 8990
+  },
+  {
+   "severity": "polish",
+   "category": "text",
+   "title": "'Ready: you can make 1' on both Axe and Pickaxe although I could not afford both",
+   "detail": "With 6 wood and 5 stone, Axe (4w 2s) and Pickaxe (3w 3s) each said 'Ready: you can make 1'. After I crafted the axe, the Pickaxe row said 'Need 1 more wood'. Each row is right on its own, but nothing warns that the two compete for the same wood.",
+   "repro": "gather 1 tree and 1 rock; pt key c",
+   "screenshot": "shots/craft2.png",
+   "tick": 646
+  },
+  {
+   "severity": "polish",
+   "category": "text",
+   "title": "A second axe shows as 'have 2 (12 uses left)': unclear how many uses the spare has",
+   "detail": "After I crafted a second axe while the first had 12 uses left, the row read 'have 2 (12 uses left)'. A player cannot tell whether the spare has 20 uses or whether 12 is shared between both.",
+   "repro": "craft Axe twice; pt key c",
+   "screenshot": "shots/second_axe_ambiguous.png",
+   "tick": 10410
+  }
+ ],
+ "metrics": {
+  "objectivesCompleted": 5,
+  "deaths": 0,
+  "secondsToObjective": {
+   "Gather wood": 29.0,
+   "Eat something": 30.04,
+   "Create or join a nation": 70.04,
+   "Found a settlement": 195.0,
+   "Enter your settlement": 197.0
+  },
+  "recipesOnScreen": 5,
+  "recipesCrafted": 3,
+  "recipesLockedAtEra": 2,
+  "axesCrafted": 2,
+  "pickaxesCrafted": 1,
+  "cookedMeatCrafted": 1,
+  "woodPerTreeBare": "6 (one sample; with axe 7-8, i.e. base 4-5 + 3)",
+  "stonePerRockBare": 5,
+  "stonePerRockPickaxe": 7,
+  "axeWoodReturnPerCraft": 60,
+  "pickaxeStoneReturnPerCraft": 30,
+  "fPressesToFound": 7
+ },
+ "fun": 3,
+ "verdict": "Tools are clearly worth making: an axe costs 4 wood and 2 stone and returns about +60 wood (+3 per tree for 20 trees), and a pickaxe returns +30 stone. That makes them an obvious first craft rather than a real choice, and the feedback ('+3 from your axe, 19 uses left') is excellent. Planks and Bricks cannot be made in the Camp era. The crafting screen now says so clearly once you lead a nation (#356 is mostly fixed), but not before you join one. Cooked Meat is undercut by auto-eat, which eats the raw meat before you can cook it and wastes the cooked meal at 89 energy."
+}

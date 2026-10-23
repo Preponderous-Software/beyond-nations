@@ -187,11 +187,20 @@ namespace beyondnations {
         * this era. A new nation used to be besieged and taken within minutes
         * by neighbours twice its size (docs/PACING.md), and a nation the
         * player had joined still was; until the Town era, when its towns
-        * have palisades of their own, it is not. Raids still come.
+        * have palisades of their own, it is not. Raids still come, but
+        * rationed, and border friction alone cannot make a neighbour hostile
+        * (Diplomacy.SHELTERED_FRICTION_FLOOR, SHELTERED_RAID_EVERY_ROUNDS).
         */
         public static bool isSheltered(Era era) {
             return era < Era.TOWN;
         }
+
+        /**
+        * What the shelter means, for the era box: sieges are off, but raids
+        * are not, so it must not read as if the nation were safe.
+        */
+        public const string ShelterDescription =
+            "Sheltered until the Town era: no sieges, border quarrels stop at Rival, and raids come at most once every 2 minutes.";
 
         /**
         * When the shelter ends at the Town era, how long (in ticks: five

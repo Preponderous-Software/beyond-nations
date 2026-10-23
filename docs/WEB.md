@@ -190,12 +190,15 @@ SDK. Its plain-C# parts (the URL options, the key table and the browser input
 source) are covered by `tests/BeyondNations.Web.Tests`, which is in the solution
 and runs in `Build and test`.
 
-- **Strata**: `native/strata.targets` pins a Strata commit (its browser
-  build has no release yet), checks the source tarball's SHA-256 and runs
+- **Strata**: `native/strata.targets` pins the commit of a Strata release
+  (`v0.4.0`), checks the source tarball's SHA-256 and runs
   `native/build-strata.sh`, which builds it with the **workload's own
   Emscripten (3.1.34)**, not the newer one Strata's CI uses, so the objects
-  link with .NET's `wasm-ld`; with `-DSTRATA_WITH_SDL=OFF` (the page owns
-  the canvas) and `-DSTRATA_WASM_EXCEPTIONS=wasm` (the mode .NET 8 links the
+  link with .NET's `wasm-ld`. The release's own
+  `strata-<version>-wasm32-emscripten.tar.gz` is not used: it is built with
+  emsdk 6.0.11 and has SDL3 merged into `libstrata.a`, which the 3.1.34
+  toolchain cannot link. The source build is configured with
+  `-DSTRATA_WITH_SDL=OFF` (the page owns the canvas) and `-DSTRATA_WASM_EXCEPTIONS=wasm` (the mode .NET 8 links the
   module with). It needs CMake 3.24 or newer (`STRATA_CMAKE=/path/to/cmake`
   if the one on PATH is older). The archive is linked as `strata.a`, the name
   `[DllImport("strata")]` resolves to. `native/bnweb_gl.c` makes the

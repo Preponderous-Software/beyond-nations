@@ -1,0 +1,167 @@
+{"t": 1792713865281, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "104"]}
+{"t": 1792713877297, "cmd": "key", "args": ["space"]}
+{"t": 1792713879864, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713882688, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792713888626, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792713889436, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792713889726, "cmd": "shot", "args": ["world1"]}
+{"t": 1792713889953, "cmd": "state", "args": []}
+{"t": 1792713898190, "cmd": "note", "args": ["--shot", "overlap", "Inventory Info panel (bottom-left) overlaps the command bar: 'Create Nation' / 'Join Nation' buttons partly hidden behind it at 960x540; Season panel also covers right end of bar. tick ~6"]}
+{"t": 1792713898451, "cmd": "key", "args": ["n"]}
+{"t": 1792713900980, "cmd": "shot", "args": ["nation"]}
+{"t": 1792713901192, "cmd": "state", "args": []}
+{"t": 1792713901263, "cmd": "events", "args": ["10"]}
+{"t": 1792713905009, "cmd": "key", "args": ["o"]}
+{"t": 1792713907534, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792713907800, "cmd": "state", "args": []}
+{"t": 1792713913214, "cmd": "key", "args": ["Escape"]}
+{"t": 1792713914746, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792713931819, "cmd": "key", "args": ["e"]}
+{"t": 1792713933463, "cmd": "key", "args": ["e"]}
+{"t": 1792713934988, "cmd": "key", "args": ["e"]}
+{"t": 1792713936565, "cmd": "key", "args": ["e"]}
+{"t": 1792713938164, "cmd": "key", "args": ["e"]}
+{"t": 1792713939698, "cmd": "key", "args": ["e"]}
+{"t": 1792713941232, "cmd": "state", "args": []}
+{"t": 1792713944357, "cmd": "shot", "args": ["castleton_land"]}
+{"t": 1792713951534, "cmd": "click", "args": ["337", "376"]}
+{"t": 1792713953322, "cmd": "key", "args": ["o"]}
+{"t": 1792713955868, "cmd": "shot", "args": ["nations2"]}
+{"t": 1792713956186, "cmd": "events", "args": ["15"]}
+{"t": 1792713963913, "cmd": "click", "args": ["300", "218"]}
+{"t": 1792713966778, "cmd": "shot", "args": ["ally_try"]}
+{"t": 1792713967100, "cmd": "events", "args": ["5"]}
+{"t": 1792713970350, "cmd": "click", "args": ["123", "218"]}
+{"t": 1792713972648, "cmd": "click", "args": ["123", "218"]}
+{"t": 1792713974952, "cmd": "click", "args": ["123", "218"]}
+{"t": 1792713977331, "cmd": "shot", "args": ["after_tribute"]}
+{"t": 1792713977584, "cmd": "events", "args": ["6"]}
+{"t": 1792713980666, "cmd": "click", "args": ["300", "218"]}
+{"t": 1792713983467, "cmd": "shot", "args": ["allied"]}
+{"t": 1792713983769, "cmd": "events", "args": ["4"]}
+{"t": 1792713989238, "cmd": "click", "args": ["836", "284"]}
+{"t": 1792713992079, "cmd": "shot", "args": ["denounce"]}
+{"t": 1792713992357, "cmd": "events", "args": ["3"]}
+{"t": 1792714000694, "cmd": "note", "args": ["--shot", "denounce", "Nations screen re-sorts rows the instant an action is taken: after clicking Denounce on Greatshire (row 2), Greatshire jumps to row 1 and the pointer is left hovering 'Denounce' on ally Castleton. A second click (double-click, or a lagging frame at 7 fps) would denounce your ally. tick 1454"]}
+{"t": 1792714001012, "cmd": "click", "args": ["656", "218"]}
+{"t": 1792714003887, "cmd": "shot", "args": ["war"]}
+{"t": 1792714004180, "cmd": "events", "args": ["4"]}
+{"t": 1792714013774, "cmd": "note", "args": ["--shot", "war", "War declaration message says 'war, 2 to your 2' while the Nations header says Fortburg has 1 member; the count apparently includes ally Castleton but nothing says so. Also 'Denounce' is still offered against a nation already Hostile (-60) at war. tick 1454"]}
+{"t": 1792714014009, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714015519, "cmd": "state", "args": ["--full"]}
+{"t": 1792714019067, "cmd": "face", "args": ["125"]}
+{"t": 1792714024350, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792714036626, "cmd": "state", "args": []}
+{"t": 1792714039582, "cmd": "face", "args": ["22"]}
+{"t": 1792714040792, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
+{"t": 1792714043538, "cmd": "state", "args": []}
+{"t": 1792714043615, "cmd": "shot", "args": ["gs_land"]}
+{"t": 1792714052747, "cmd": "note", "args": ["--shot", "gs_land", "#348 re-verified OK: on Hostile Greatshire land the command bar shows 'Offer Peace to Greatshire', 'Gift', 'Denounce' and no alliance option. Separately: settlement label 'Village of Greatshire / 0 here, 2/8 residents' is clipped by the top of the screen, and the two pawn labels overlap ('Loyal' over 'Industrious'). The same settlement is '1 camp' on the Nations screen but 'Village of' in the world. tick 2102"]}
+{"t": 1792714053048, "cmd": "click", "args": ["337", "389"]}
+{"t": 1792714053805, "cmd": "key", "args": ["e"]}
+{"t": 1792714056328, "cmd": "shot", "args": ["enter_hostile"]}
+{"t": 1792714056588, "cmd": "events", "args": ["4"]}
+{"t": 1792714059928, "cmd": "shot", "args": ["pre_peace"]}
+{"t": 1792714060209, "cmd": "click", "args": ["105", "445"]}
+{"t": 1792714063100, "cmd": "shot", "args": ["peace"]}
+{"t": 1792714063485, "cmd": "events", "args": ["4"]}
+{"t": 1792714072586, "cmd": "note", "args": ["--shot", "peace", "Peace reason text is wrong: offered peace ~10 game seconds after declaring war, with no lands meeting and no fighting; status says 'Greatshire accepts peace (the fighting has cost them enough)'. Also the bar button under the pointer changes in place from 'Offer Peace' to 'Propose Alliance to Greatshire' (same morph hazard as the Nations screen). tick 2482"]}
+{"t": 1792714072838, "cmd": "click", "args": ["337", "402"]}
+{"t": 1792714077044, "cmd": "key", "args": ["o"]}
+{"t": 1792714079545, "cmd": "shot", "args": ["truce_nations"]}
+{"t": 1792714084645, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792714087441, "cmd": "shot", "args": ["scroll_down"]}
+{"t": 1792714093041, "cmd": "move", "args": ["480", "300"]}
+{"t": 1792714093166, "cmd": "scroll", "args": ["-3"]}
+{"t": 1792714095829, "cmd": "shot", "args": ["wheel_up"]}
+{"t": 1792714096061, "cmd": "scroll", "args": ["3"]}
+{"t": 1792714098757, "cmd": "shot", "args": ["wheel_down"]}
+{"t": 1792714106153, "cmd": "note", "args": ["--shot", "wheel_down", "#347 re-verified OK: with 5 nations the list shows 4 at a time ('Nations 1-4 of 5'); both the Up/Down buttons and the mouse wheel scroll to 'Nations 2-5 of 5' revealing Northernford. Small nit: hint still says 'Scroll for more.' when already at the end of the list."]}
+{"t": 1792714106432, "cmd": "click", "args": ["656", "218"]}
+{"t": 1792714109212, "cmd": "shot", "args": ["truce_war"]}
+{"t": 1792714109458, "cmd": "events", "args": ["3"]}
+{"t": 1792714120320, "cmd": "note", "args": ["--shot", "truce_war", "Declaring war on Greatshire (row 1 of the scrolled view 2-5) re-sorts it to the top, out of the scrolled view, so the player loses sight of the nation they just acted on, and the pointer now rests on 'War' for ALLY Castleton. There is no confirmation for War, so one extra click (or a double-click at 5-7 fps) declares war on your ally. Also: war was accepted against Greatshire with 54 s of truce left, without warning or penalty, so the truce does not bind the player. tick 2794"]}
+{"t": 1792714120547, "cmd": "click", "args": ["792", "161"]}
+{"t": 1792714123313, "cmd": "shot", "args": ["after_up"]}
+{"t": 1792714131683, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714132251, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714148585, "cmd": "key", "args": ["e"]}
+{"t": 1792714149642, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714156063, "cmd": "key", "args": ["e"]}
+{"t": 1792714157098, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714162577, "cmd": "key", "args": ["e"]}
+{"t": 1792714163621, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714171329, "cmd": "key", "args": ["e"]}
+{"t": 1792714172347, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714180579, "cmd": "key", "args": ["e"]}
+{"t": 1792714181608, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714202020, "cmd": "key", "args": ["e"]}
+{"t": 1792714203064, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714243433, "cmd": "key", "args": ["e"]}
+{"t": 1792714244448, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714245608, "cmd": "key", "args": ["e"]}
+{"t": 1792714246639, "cmd": "state", "args": []}
+{"t": 1792714250289, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714288046, "cmd": "key", "args": ["e"]}
+{"t": 1792714289039, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714296587, "cmd": "key", "args": ["e"]}
+{"t": 1792714297632, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792714329907, "cmd": "key", "args": ["e"]}
+{"t": 1792714331021, "cmd": "state", "args": []}
+{"t": 1792714331140, "cmd": "events", "args": ["30"]}
+{"t": 1792714335914, "cmd": "shot", "args": ["wood_mismatch"]}
+{"t": 1792714336188, "cmd": "key", "args": ["f"]}
+{"t": 1792714338745, "cmd": "shot", "args": ["found"]}
+{"t": 1792714339077, "cmd": "events", "args": ["4"]}
+{"t": 1792714339185, "cmd": "state", "args": []}
+{"t": 1792714346577, "cmd": "face", "args": ["7"]}
+{"t": 1792714347001, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792714353212, "cmd": "key", "args": ["f"]}
+{"t": 1792714355715, "cmd": "state", "args": []}
+{"t": 1792714360305, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792714363617, "cmd": "key", "args": ["f"]}
+{"t": 1792714366179, "cmd": "state", "args": []}
+{"t": 1792714366372, "cmd": "shot", "args": ["founded"]}
+{"t": 1792714370922, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1792714373222, "cmd": "key", "args": ["f"]}
+{"t": 1792714375788, "cmd": "state", "args": []}
+{"t": 1792714380801, "cmd": "shot", "args": ["founded"]}
+{"t": 1792714381173, "cmd": "events", "args": ["8"]}
+{"t": 1792714389583, "cmd": "key", "args": ["o"]}
+{"t": 1792714392181, "cmd": "shot", "args": ["nations3"]}
+{"t": 1792714400709, "cmd": "note", "args": ["--shot", "founded", "#346-related: on founding, the reason for neighbour resentment ('Newfield and Yellowfield and Smalltown and Townport resent a new settlement so near their land', tick 8154) is shown only as a status line and is replaced 8 ticks later by 'You are back on your own land' and then 'Objective complete'; it is not in the chronicle, and the Nations screen shows them at Neutral (-5)/(-11) with no reason. A player will likely never see why relations dropped. The reason exists but is not durably shown."]}
+{"t": 1792714400967, "cmd": "move", "args": ["480", "300"]}
+{"t": 1792714401067, "cmd": "scroll", "args": ["30"]}
+{"t": 1792714408963, "cmd": "shot", "args": ["scroll_end"]}
+{"t": 1792714413887, "cmd": "scroll", "args": ["10"]}
+{"t": 1792714417964, "cmd": "shot", "args": ["scroll_end2"]}
+{"t": 1792714418223, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792714419990, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792714421772, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792714423545, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792714425387, "cmd": "shot", "args": ["scroll_end3"]}
+{"t": 1792714433244, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714434850, "cmd": "key", "args": ["e"]}
+{"t": 1792714436399, "cmd": "wait", "args": ["90"]}
+{"t": 1792714526534, "cmd": "events", "args": ["60"]}
+{"t": 1792714526662, "cmd": "state", "args": []}
+{"t": 1792714541238, "cmd": "key", "args": ["o"]}
+{"t": 1792714543872, "cmd": "shot", "args": ["nations4"]}
+{"t": 1792714544220, "cmd": "key", "args": ["Escape"]}
+{"t": 1792714544765, "cmd": "wait", "args": ["120"]}
+{"t": 1792714664932, "cmd": "state", "args": []}
+{"t": 1792714676017, "cmd": "note", "args": ["--shot", "nations4", "Nations screen reopens at the last scroll position (Nations 20-23 of 33) instead of the top, where neighbours and enemies are sorted, so after reopening the player sees four irrelevant 1-member nations and must scroll up to find Greatshire (at war). Also: 33 nations exist by mid-day 1 (tick ~10500) with only 4 rows per page (9 pages); most are 1-member nations, which makes the list a long scroll. tick ~10400"]}
+{"t": 1792714676227, "cmd": "wait", "args": ["150"]}
+{"t": 1792714830827, "cmd": "key", "args": ["o"]}
+{"t": 1792714833283, "cmd": "move", "args": ["480", "300"]}
+{"t": 1792714833332, "cmd": "scroll", "args": ["-40"]}
+{"t": 1792714843135, "cmd": "scroll", "args": ["-40"]}
+{"t": 1792714853163, "cmd": "shot", "args": ["nations_final"]}
+{"t": 1792714853441, "cmd": "state", "args": []}
+{"t": 1792714859052, "cmd": "state", "args": ["--full"]}
+{"t": 1792714859097, "cmd": "state", "args": ["--full"]}
+{"t": 1792714868212, "cmd": "note", "args": ["--shot", "nations_final", "Tribute received is invisible: status says 'Smalltown sent 20 coins of tribute to your treasury' (tick 11002) and 'Townport sent 20 coins...' (13002, 15002), but Coins stays 224 from tick 8202 to 16190, and no nation treasury is shown on the HUD, Inventory or Nations screen (Nations header: 'Fortburg, 1 member, 1 camp'). The player cannot see or use the 60 coins they were told they received."]}
+{"t": 1792714868593, "cmd": "note", "args": ["--shot", "nations_final", "#346 watch: no nation turned Hostile to Fortburg or raided it through tick 16190 (day 1), and every drop came with a shown reason ('resents your border'). But border rivals keep sliding with no player action: Oldham -20 (tick 11502) to -38, Newfield -20 to -39 by tick 16190, approaching Hostile (Greatshire shows Hostile at -60) within the first game day. Between NPC nations, Northernford (founded tick 2702, 1 member) became 'rivals over their border' with Castleton at 5502, then 'now hostile' (no reason on that line) and raided Castleton at 8002, under 2 game minutes after founding."]}
+{"t": 1792714868849, "cmd": "stop", "args": []}
+{"t": 1792714898503, "cmd": "report", "args": []}
+{"t": 1792726410975, "cmd": "stop", "args": []}

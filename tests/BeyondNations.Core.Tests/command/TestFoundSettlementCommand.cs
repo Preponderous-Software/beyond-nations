@@ -107,7 +107,47 @@ namespace beyondnationstests {
             Assert.Equal(0, nation.getNumberOfSettlements());
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD, player.getInventory().getNumItems(ItemType.WOOD));
             Assert.Null(player.getHomeSettlementId());
-            Assert.Equal("Too close to another settlement.", player.getStatus().getStatus());
+            // which settlement, how far, the minimum and the way out (playtests 0.4.1: seven sessions guessed)
+            Assert.Equal("Too close to the Camp of Otherland: " + (gameConfig.getMinDistanceBetweenSettlements() - 1) + " away, and settlements must be "
+                + gameConfig.getMinDistanceBetweenSettlements() + " apart. Open ground lies about 10 to the west.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_TooClose_NamesTheNearestOfSeveral() {
+            makePlayerLeader();
+            player.setPosition(Vector3.Zero);
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            addSettlementAt(new Vector3(0, 0, 200));
+            Settlement nearest = addSettlementAt(new Vector3(0, 0, -120));
+
+            command.execute(player);
+
+            Assert.StartsWith("Too close to the " + nearest.getDisplayName() + ": 120 away", player.getStatus().getStatus());
+            // open ground lies east or west, clear of both
+            string status = player.getStatus().getStatus();
+            Assert.True(status.EndsWith(" to the east.") || status.EndsWith(" to the west."), status);
+        }
+
+        [Fact]
+        public void testNearestOpenSite_IsClearOfEverySettlement() {
+            makePlayerLeader();
+            addSettlementAt(new Vector3(100, 0, 0));
+            addSettlementAt(new Vector3(-100, 0, 0));
+            int min = gameConfig.getMinDistanceBetweenSettlements();
+
+            Vector3? site = SettlementSites.findNearestOpenSite(entityRepository, Vector3.Zero, min, player.getNationId());
+
+            Assert.NotNull(site);
+            Assert.True(SettlementSites.isOpen(entityRepository, site.Value, min, player.getNationId()));
+            Assert.Null(SettlementSites.findTooClose(entityRepository, site.Value, min));
+        }
+
+        [Fact]
+        public void testCompass_NorthIsPlusZ() {
+            Assert.Equal("north", Compass.describe(Vector3.Zero, new Vector3(0, 0, 10)));
+            Assert.Equal("east", Compass.describe(Vector3.Zero, new Vector3(10, 5, 0)));
+            Assert.Equal("south-west", Compass.describe(Vector3.Zero, new Vector3(-10, 0, -10)));
+            Assert.Equal("here", Compass.describe(Vector3.Zero, Vector3.Zero));
         }
 
         [Fact]

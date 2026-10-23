@@ -6,11 +6,18 @@ namespace beyondnations.desktop.ui.screens {
     /**
     * The nations screen, opened from the world with O (Realm on a touch
     * screen): every known nation, how big it is, and how it stands toward
-    * the player's own. A player who leads a nation gets four buttons per
-    * row -- send tribute, propose an alliance, declare war (or offer peace
-    * once at odds), denounce -- which is the whole of the player's
+    * the player's own. A player who leads a nation gets up to five buttons
+    * per row, each in a fixed slot -- send tribute, propose an alliance,
+    * offer peace, declare war, denounce -- offered by the same rules as the
+    * command bar (NationDiplomacy), which is the whole of the player's
     * diplomacy. A second tab, Laws, is the court: the nation's laws
     * (LawsPanel).
+    *
+    * The list puts the nations that matter first -- at war, at odds,
+    * neighbours, allies, then the rest nearest first -- and scrolls when
+    * there are more than fit: the mouse wheel, Up/Down and Page Up/Page
+    * Down (read by the host), a drag across the list, or the Up/Down
+    * buttons beside the count line for a thumb.
     *
     * Like the inventory screen it is laid over the world, which stops while
     * it is open. The text is produced by getHeaderLines() and getRows(),
@@ -33,6 +40,10 @@ namespace beyondnations.desktop.ui.screens {
 
         private readonly LawsPanel lawsPanel = new LawsPanel();
         private bool showingLaws = startOnLaws;
+        /** The first row of the list on screen; the list scrolls when the nations outnumber the screen. */
+        private int firstRow;
+        /** How far a drag across the list has gone toward the next row. */
+        private float dragCarry;
 
         /** One nation other than the player's, as a line of text and what can be done about it. */
         public class Row {
@@ -41,21 +52,37 @@ namespace beyondnations.desktop.ui.screens {
             public readonly bool canAct;
             public readonly bool allied;
             public readonly bool atWar;
-            /** At war or at odds: the War button becomes Peace. */
+            /** At war or at odds (OfferPeaceCommand.isApplicable): Peace is offered. */
             public readonly bool canOfferPeace;
+            /** Not allied, at war or at odds (NationDiplomacy.canProposeAlliance): Ally is offered. */
+            public readonly bool canProposeAlliance;
+            /** Not already at war (NationDiplomacy.canDeclareWar): War is offered, to a Rival too. */
+            public readonly bool canDeclareWar;
+            /** How much the nation matters to the player, most first: 0 at war, 1 at odds, 2 neighbour, 3 allied, 4 the rest. */
+            public readonly int rank;
+            /** From the player to the nation's nearest settlement; MaxValue for a nation without one. */
+            public readonly float distance;
 
-            public Row(Nation nation, string text, bool canAct, bool allied) : this(nation, text, canAct, allied, false, false) {
-            }
-
-            public Row(Nation nation, string text, bool canAct, bool allied, bool atWar, bool canOfferPeace) {
+            public Row(Nation nation, string text, bool canAct, bool allied, bool atWar, bool canOfferPeace,
+                    bool canProposeAlliance, bool canDeclareWar, int rank, float distance) {
                 this.nation = nation;
                 this.text = text;
                 this.canAct = canAct;
                 this.allied = allied;
                 this.atWar = atWar;
                 this.canOfferPeace = canOfferPeace;
+                this.canProposeAlliance = canProposeAlliance;
+                this.canDeclareWar = canDeclareWar;
+                this.rank = rank;
+                this.distance = distance;
             }
         }
+
+        private const int RankAtWar = 0;
+        private const int RankAtOdds = 1;
+        private const int RankNeighbour = 2;
+        private const int RankAllied = 3;
+        private const int RankRest = 4;
 
         public static List<string> getHeaderLines(Simulation simulation) {
             List<string> lines = new List<string>();
@@ -100,11 +127,17 @@ namespace beyondnations.desktop.ui.screens {
                 bool allied = false;
                 bool atWar = false;
                 bool peace = false;
+                bool ally = false;
+                bool war = false;
+                int rank = RankRest;
                 if (own != null) {
-                    text += ". " + nationRepository.getRelations().describe(own, nation);
-                    allied = nationRepository.getRelations().isAllied(own, nation);
+                    NationRelations relations = nationRepository.getRelations();
+                    text += ". " + relations.describe(own, nation);
+                    allied = relations.isAllied(own, nation);
                     atWar = realm.isAtWar(own, nation);
                     peace = OfferPeaceCommand.isApplicable(nationRepository, realm, own, nation);
+                    ally = NationDiplomacy.canProposeAlliance(nationRepository, realm, own, nation);
+                    war = NationDiplomacy.canDeclareWar(realm, own, nation);
                     if (atWar) {
                         text += ", at war";
                     }
@@ -112,13 +145,53 @@ namespace beyondnations.desktop.ui.screens {
                     if (truce > 0) {
                         text += ", truce " + (truce + TickCounter.DefaultTicksPerSecond - 1) / TickCounter.DefaultTicksPerSecond + " s";
                     }
-                    if (diplomacy.areNeighbours(own, nation)) {
+                    bool neighbour = diplomacy.areNeighbours(own, nation);
+                    if (neighbour) {
                         text += ", neighbour";
                     }
+                    rank = atWar ? RankAtWar
+                        : relations.getState(own, nation) <= NationRelationState.RIVAL ? RankAtOdds
+                        : neighbour ? RankNeighbour
+                        : allied ? RankAllied
+                        : RankRest;
                 }
-                rows.Add(new Row(nation, text, leads, allied, atWar, peace));
+                rows.Add(new Row(nation, text, leads, allied, atWar, peace, ally, war, rank, distanceTo(simulation, nation)));
             }
+            // the nations that matter first (playtest 0.4.1: with ~20 nations the
+            // oldest filled the screen and the player's real neighbours were never listed)
+            rows.Sort((a, b) => a.rank != b.rank ? a.rank.CompareTo(b.rank)
+                : a.distance != b.distance ? a.distance.CompareTo(b.distance)
+                : string.CompareOrdinal(a.nation.getName(), b.nation.getName()));
             return rows;
+        }
+
+        /** From the player to the nation's nearest settlement, on the ground; MaxValue without one. */
+        private static float distanceTo(Simulation simulation, Nation nation) {
+            float nearest = float.MaxValue;
+            System.Numerics.Vector3 position = simulation.getPlayer().getPosition();
+            foreach (Settlement settlement in simulation.getDiplomacy().getSettlements(nation)) {
+                nearest = System.MathF.Min(nearest, Territory.groundDistance(position, settlement.getPosition()));
+            }
+            return nearest;
+        }
+
+        /**
+        * The line over the list: which rows are shown, of how many, and how
+        * to see the rest. "Nations 1-7 of 20, neighbours and enemies first.
+        * Scroll for more."
+        */
+        public static string describeShown(int firstRow, int shown, int total, bool touch) {
+            string order = "neighbours and enemies first.";
+            if (shown >= total) {
+                return total + (total == 1 ? " other nation, " : " other nations, ") + order;
+            }
+            return "Nations " + (firstRow + 1) + "-" + (firstRow + shown) + " of " + total + ", " + order
+                + (touch ? " Drag or tap Up/Down for more." : " Scroll for more.");
+        }
+
+        /** The first row to show, kept so that the list never scrolls past its ends. */
+        public static int clampFirstRow(int firstRow, int total, int visible) {
+            return System.Math.Clamp(firstRow, 0, System.Math.Max(0, total - System.Math.Max(1, visible)));
         }
 
         /** "5 members, 2 settlements (best: village)", or "1 member, no settlement". */
@@ -215,6 +288,35 @@ namespace beyondnations.desktop.ui.screens {
             return y;
         }
 
+        /**
+        * Rows to move the list by, asked for by the host from the keyboard
+        * (Up/Down, Page Up/Page Down) and taken on the next frame.
+        */
+        private static int pendingScroll;
+
+        public static void scroll(int rows) {
+            pendingScroll += rows;
+        }
+
+        /** Rows that Page Up and Page Down move the list by. */
+        public const int PageRows = 5;
+
+        /** Up/Down move the list a row, Page Up/Page Down a page; the host calls this while the screen is open. */
+        public static void readScrollKeys(beyondnations.desktop.input.InputService input) {
+            if (input.wasPressedThisFrame(Silk.NET.Input.Key.Up)) {
+                scroll(-1);
+            }
+            if (input.wasPressedThisFrame(Silk.NET.Input.Key.Down)) {
+                scroll(1);
+            }
+            if (input.wasPressedThisFrame(Silk.NET.Input.Key.PageUp)) {
+                scroll(-PageRows);
+            }
+            if (input.wasPressedThisFrame(Silk.NET.Input.Key.PageDown)) {
+                scroll(PageRows);
+            }
+        }
+
         private System.Action drawNations(float width, float height, Simulation simulation, float y, float left, float lineHeight,
                 float buttonWidth, float buttonGap, float buttonHeight) {
             foreach (string line in getHeaderLines(simulation)) {
@@ -227,60 +329,138 @@ namespace beyondnations.desktop.ui.screens {
                 Overlay.textCentered(NoOtherNations, height / 32f, y, width);
             }
 
-            // four buttons to a row: beside the text on a wide screen, under it on a phone
-            float buttonsWidth = 4f * buttonWidth + 3f * buttonGap;
+            // five slots to a row, each always in the same place so a button
+            // never slides under the pointer: beside the text on a wide
+            // screen, under it on a phone
+            const int slots = 5;
+            float buttonsWidth = slots * buttonWidth + (slots - 1) * buttonGap;
             bool stacked = width - left * 2f - buttonsWidth < width * 0.45f;
             if (stacked) {
-                buttonWidth = (width - left * 2f - 3f * buttonGap) / 4f;
+                buttonWidth = (width - left * 2f - (slots - 1) * buttonGap) / slots;
                 buttonsWidth = width - left * 2f;
             }
             float buttonsX = width - left - buttonsWidth;
+            float textWidth = stacked ? width - left * 2f : buttonsX - left - buttonGap;
+            float textStep = lineHeight * 0.75f;
+            float fontSize = height / 34f;
+
+            // the count line and Up/Down sit above the list
+            float listTop = y + buttonHeight + buttonGap;
+            float listBottom = height - lineHeight * 3.2f;
+            float[] steps = new float[rows.Count];
+            for (int i = 0; i < rows.Count; i++) {
+                int textLines = System.Math.Min(3, TextWrap.wrap(rows[i].text, textWidth,
+                    line => ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(fontSize)).Count);
+                steps[i] = stacked
+                    ? textStep * textLines + buttonHeight + buttonGap * 2f
+                    : System.MathF.Max(textStep * textLines + buttonGap, buttonHeight + buttonGap);
+            }
+
+            // scrolling: the wheel, the keys (via the host), a drag across the list, or Up/Down
+            ImGuiIOPtr io = ImGui.GetIO();
+            int move = pendingScroll;
+            pendingScroll = 0;
+            if (io.MouseWheel != 0f) {
+                move += io.MouseWheel > 0f ? -1 : 1;
+            }
+            if (ImGui.IsMouseDragging(ImGuiMouseButton.Left) && io.MousePos.Y >= listTop && io.MousePos.Y <= listBottom) {
+                dragCarry -= io.MouseDelta.Y;
+                float rowHeight = System.MathF.Max(buttonHeight, lineHeight);
+                while (dragCarry >= rowHeight) {
+                    move++;
+                    dragCarry -= rowHeight;
+                }
+                while (dragCarry <= -rowHeight) {
+                    move--;
+                    dragCarry += rowHeight;
+                }
+            }
+            else {
+                dragCarry = 0f;
+            }
+            int lastPage = countFittingFromEnd(steps, listBottom - listTop);
+            firstRow = clampFirstRow(firstRow + move, rows.Count, lastPage);
+            int visible = countFitting(steps, firstRow, listBottom - listTop);
+
+            if (rows.Count > 0) {
+                bool overflow = visible < rows.Count;
+                float arrowWidth = overflow ? System.MathF.Min(UiScale.px(80f), (width - left * 2f) / 5f) : 0f;
+                float lineWidth = width - (overflow ? (arrowWidth + buttonGap) * 2f : 0f);
+                drawWrappedCentred(describeShown(firstRow, visible, rows.Count, TouchLayout.isActive()), height / 38f,
+                    y + (buttonHeight - lineHeight * 0.7f) * 0.5f, lineWidth, left, lineHeight * 0.7f, 1);
+                if (overflow) {
+                    float ax = width - left - arrowWidth * 2f - buttonGap;
+                    if (Overlay.buttonAt("Up##nations-up", ax, y, arrowWidth, buttonHeight)) {
+                        firstRow = clampFirstRow(firstRow - System.Math.Max(1, visible - 1), rows.Count, lastPage);
+                    }
+                    if (Overlay.buttonAt("Down##nations-down", ax + arrowWidth + buttonGap, y, arrowWidth, buttonHeight)) {
+                        firstRow = clampFirstRow(firstRow + System.Math.Max(1, visible - 1), rows.Count, lastPage);
+                    }
+                    visible = countFitting(steps, firstRow, listBottom - listTop);
+                }
+            }
+            y = listTop;
 
             System.Action pending = null;
             Player player = simulation.getPlayer();
             NationRepository nationRepository = simulation.getNationRepository();
             Realm realm = simulation.getRealm();
-            float textWidth = stacked ? width - left * 2f : buttonsX - left - buttonGap;
-            float textStep = lineHeight * 0.75f;
-            for (int i = 0; i < rows.Count; i++) {
+            int last = System.Math.Min(rows.Count, firstRow + visible);
+            for (int i = firstRow; i < last; i++) {
                 Row row = rows[i];
-                int textLines = System.Math.Min(3, TextWrap.wrap(row.text, textWidth,
-                    line => ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(height / 34f)).Count);
-                float rowStep = stacked
-                    ? textStep * textLines + buttonHeight + buttonGap * 2f
-                    : System.MathF.Max(textStep * textLines + buttonGap, buttonHeight + buttonGap);
-                if (y + rowStep > height - lineHeight * 3.2f) {
-                    break;
-                }
-                float textBottom = drawWrappedLeft(row.text, height / 34f, left, y, textWidth, textStep, 3);
+                float textBottom = drawWrappedLeft(row.text, fontSize, left, y, textWidth, textStep, 3);
                 if (row.canAct) {
                     float x = buttonsX;
                     float by = stacked ? textBottom : y;
+                    float slot = buttonWidth + buttonGap;
                     Nation target = row.nation;
                     if (Overlay.buttonAt("Tribute##gift" + i, x, by, buttonWidth, buttonHeight)) {
                         pending = () => new GiftNationCommand(nationRepository, simulation.getDiplomacy(), realm).execute(player, target);
                     }
-                    x += buttonWidth + buttonGap;
-                    if (!row.allied && !row.atWar && Overlay.buttonAt("Ally##ally" + i, x, by, buttonWidth, buttonHeight)) {
+                    if (row.canProposeAlliance && Overlay.buttonAt("Ally##ally" + i, x + slot, by, buttonWidth, buttonHeight)) {
                         pending = () => new ProposeAllianceCommand(nationRepository, realm).execute(player, target);
                     }
-                    x += buttonWidth + buttonGap;
-                    if (row.canOfferPeace) {
-                        if (Overlay.buttonAt("Peace##peace" + i, x, by, buttonWidth, buttonHeight)) {
-                            pending = () => new OfferPeaceCommand(nationRepository, realm).execute(player, target);
-                        }
+                    if (row.canOfferPeace && Overlay.buttonAt("Peace##peace" + i, x + slot * 2f, by, buttonWidth, buttonHeight)) {
+                        pending = () => new OfferPeaceCommand(nationRepository, realm).execute(player, target);
                     }
-                    else if (Overlay.buttonAt("War##war" + i, x, by, buttonWidth, buttonHeight)) {
+                    if (row.canDeclareWar && Overlay.buttonAt("War##war" + i, x + slot * 3f, by, buttonWidth, buttonHeight)) {
                         pending = () => new DeclareWarCommand(nationRepository, realm).execute(player, target);
                     }
-                    x += buttonWidth + buttonGap;
-                    if (Overlay.buttonAt("Denounce##denounce" + i, x, by, buttonWidth, buttonHeight)) {
+                    if (Overlay.buttonAt("Denounce##denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
                         pending = () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy()).execute(player, target);
                     }
                 }
-                y += rowStep;
+                y += steps[i];
             }
             return pending;
+        }
+
+        /** How many rows from first fit in the height; at least one, so a tall row is never stuck off screen. */
+        private static int countFitting(float[] steps, int first, float space) {
+            int count = 0;
+            float used = 0f;
+            for (int i = first; i < steps.Length; i++) {
+                if (count > 0 && used + steps[i] > space) {
+                    break;
+                }
+                used += steps[i];
+                count++;
+            }
+            return count;
+        }
+
+        /** How many rows at the end of the list fit in the height, which is how far down the list may scroll. */
+        private static int countFittingFromEnd(float[] steps, float space) {
+            int count = 0;
+            float used = 0f;
+            for (int i = steps.Length - 1; i >= 0; i--) {
+                if (count > 0 && used + steps[i] > space) {
+                    break;
+                }
+                used += steps[i];
+                count++;
+            }
+            return count;
         }
     }
 }
