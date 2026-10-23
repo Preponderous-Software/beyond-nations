@@ -26,6 +26,6 @@ if python3 -c 'import playtester.harness' >/dev/null 2>&1; then
   exec python3 -m playtester "$@"
 fi
 echo "pt.sh: playtester is not installed. Install the pinned version:" >&2
-echo "  pip install 'git+https://github.com/dmccoystephenson/playtester@$(cat "$HERE/playtester.ref")'" >&2
+echo "  pip install 'git+https://github.com/Preponderous-Software/playtester@$(cat "$HERE/playtester.ref")'" >&2
 echo "(docs/PLAYTESTING.md)" >&2
 exit 1
