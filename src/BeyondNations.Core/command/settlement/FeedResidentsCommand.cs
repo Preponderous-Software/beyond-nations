@@ -4,9 +4,16 @@ namespace beyondnations {
 
     /**
     * The player shares their food with the hungry pawns of their own nation
-    * standing in the same settlement, the starving first, one item each,
-    * the most nourishing first, until the hungry are fed or the food runs
-    * out (#353: in winter there was no way to feed residents at all).
+    * standing in the same settlement, the starving first, the most
+    * nourishing first, until the hungry are fed or the food runs out (#353:
+    * in winter there was no way to feed residents at all).
+    *
+    * It shares in rounds, one item to each pawn still short of
+    * Pawn.HUNGRY_ENERGY_THRESHOLD each round, so a press leaves no one it
+    * could feed still hungry. One item each used to leave most of them so
+    * (an apple is 15 energy, and hungry is under 80): "You fed 7", and four
+    * were hungry again on the next frame (playtest 0.6.3 s02). Scarce food
+    * still goes round before anyone gets a second helping.
     */
     public class FeedResidentsCommand {
         private readonly EntityRepository entityRepository;
@@ -43,22 +50,42 @@ namespace beyondnations {
                 return 0;
             }
             Inventory inventory = player.getInventory();
-            int fed = 0;
+            Dictionary<Pawn, float> expected = new Dictionary<Pawn, float>();
             foreach (Pawn pawn in hungry) {
-                ItemType? food = FoodItems.getMostNourishingFood(inventory);
-                if (!food.HasValue) {
-                    break;
+                expected[pawn] = pawn.getEnergy();
+            }
+            int fed = 0;
+            bool gave = true;
+            while (gave) {
+                gave = false;
+                foreach (Pawn pawn in hungry) {
+                    if (expected[pawn] >= Pawn.HUNGRY_ENERGY_THRESHOLD) {
+                        continue;
+                    }
+                    ItemType? food = FoodItems.getMostNourishingFood(inventory);
+                    if (!food.HasValue) {
+                        break;
+                    }
+                    inventory.removeItem(food.Value, 1);
+                    // into the pawn's pack: it eats on its next energy steps, as with a gift
+                    pawn.getInventory().addItem(food.Value, 1);
+                    if (expected[pawn] == pawn.getEnergy()) {
+                        fed++;
+                    }
+                    expected[pawn] += FoodItems.getEnergyRestored(food.Value);
+                    gave = true;
                 }
-                inventory.removeItem(food.Value, 1);
-                // into the pawn's pack: it eats on its next energy step, as with a gift
-                pawn.getInventory().addItem(food.Value, 1);
-                fed++;
             }
             if (fed == 0) {
                 player.getStatus().update(hungry.Count + (hungry.Count == 1 ? " resident here is" : " residents here are") + " hungry, and you have no food to share.");
                 return 0;
             }
-            int left = hungry.Count - fed;
+            int left = 0;
+            foreach (Pawn pawn in hungry) {
+                if (expected[pawn] < Pawn.HUNGRY_ENERGY_THRESHOLD) {
+                    left++;
+                }
+            }
             player.getStatus().update("You fed " + fed + (fed == 1 ? " resident" : " residents") + " in the " + settlement.getDisplayName() + "."
                 + (left > 0 ? " " + left + " still hungry: bring more food." : ""));
             return fed;
