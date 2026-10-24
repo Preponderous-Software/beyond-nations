@@ -141,7 +141,7 @@ namespace beyondnations.desktop.ui.screens {
             float centreBottom = layout.Margin;
             if (!stackCentre) {
                 float centreY = drawStatus(width, player, layout, layout.Margin);
-                centreBottom = drawHungerWarning(width, player, layout, centreY);
+                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, layout, centreY));
             }
 
             // Left column, from the top: the controls button (the touch path
@@ -182,7 +182,7 @@ namespace beyondnations.desktop.ui.screens {
                 // full width under the two of them.
                 float underBoxes = System.MathF.Max(leftTop, layout.Margin + playerBox.getExpectedHeight() + layout.Gap);
                 float centreY = drawStatus(width, player, layout, underBoxes);
-                centreBottom = drawHungerWarning(width, player, layout, centreY);
+                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, layout, centreY));
             }
 
             // On a short window with the debug box open there is no room for
@@ -429,6 +429,31 @@ namespace beyondnations.desktop.ui.screens {
             float bottom = y;
             ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
             if (ImGui.Begin("##hunger-warning", StatusFlags)) {
+                foreach (string line in wrapForCentre(warning, layout)) {
+                    Overlay.textColoured(colour, line);
+                }
+                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
+            }
+            ImGui.End();
+            return bottom;
+        }
+
+        /**
+        * The player's nation's hungry and starving pawns (ResidentHunger), under
+        * the player's own hunger warning: before #353 the first sign of a
+        * starving winter was the death notice.
+        */
+        private float drawResidentHungerWarning(float width, Simulation simulation, Layout layout, float y) {
+            Player player = simulation.getPlayer();
+            Nation nation = player.getNationId() == null ? null : simulation.getNationRepository().getNation(player.getNationId());
+            string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter());
+            if (warning == null) {
+                return y;
+            }
+            Vector4 colour = warning.Contains("starving") ? new Vector4(1f, 0.35f, 0.35f, 1f) : new Vector4(1f, 0.8f, 0.3f, 1f);
+            float bottom = y;
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            if (ImGui.Begin("##resident-hunger-warning", StatusFlags)) {
                 foreach (string line in wrapForCentre(warning, layout)) {
                     Overlay.textColoured(colour, line);
                 }

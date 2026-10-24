@@ -130,6 +130,14 @@ namespace beyondnations.desktop.ui {
             Market market = settlement.getMarket();
             bool leads = player.getId() == nation.getLeaderId();
 
+            // with the pawn buttons, last on the bar, so its coming and going moves nothing (#353)
+            FeedResidentsCommand feed = new FeedResidentsCommand(entityRepository);
+            int hungryHere = feed.countHungryHere(player);
+            if (hungryHere > 0) {
+                commands.Add(new WorldCommand("Feed Residents (" + hungryHere + " hungry)", CommandGroup.People, () => feed.execute(player))
+                    .setEnabled(FoodItems.hasFood(player.getInventory())));
+            }
+
             if (leads && market.getNumStalls() < market.getMaxNumStalls()) {
                 commands.Add(new WorldCommand("Build Stall", CommandGroup.Build, () =>
                     new BuildStallCommand(nationRepository, entityRepository, simulation.getEventProducer()).execute(player))
