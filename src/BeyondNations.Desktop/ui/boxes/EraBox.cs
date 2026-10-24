@@ -13,7 +13,8 @@ namespace beyondnations.desktop.ui.boxes {
     * While the player's nation is collapsing it says so, in red, with the
     * time left. While its shelter from sieges lasts the detail says so, and
     * once the Town era ends it the box counts down, in amber and without
-    * being opened, to when sieges can begin.
+    * being opened, to when sieges can begin -- or, while one of the player's
+    * settlements is already besieged, says so in red instead.
     *
     * What it says is decided by the static methods, which need no ImGui
     * frame and are what the tests check.
@@ -89,6 +90,26 @@ namespace beyondnations.desktop.ui.boxes {
             return "Sieges can begin in " + (seconds / 60) + ":" + (seconds % 60).ToString("00");
         }
 
+        /**
+        * "Your village: Besieged by Greenshire (2/6)!" for the first of the
+        * player's settlements under siege, or null. Shown in place of the
+        * countdown, which only holds off new sieges: with a siege already
+        * under way it read "Sieges can begin in 4:58" while the village fell
+        * (playtest 0.6.1 s01 and s04, #396).
+        */
+        public static string siegeUnderWay(Simulation simulation) {
+            Nation own = ObjectiveCatalog.playerNation(simulation);
+            if (own == null) {
+                return null;
+            }
+            foreach (Settlement settlement in simulation.getDiplomacy().getSettlements(own)) {
+                if (settlement.getSiegeText() != null) {
+                    return "Your " + SettlementTiers.getDisplayName(settlement.getTier()).ToLowerInvariant() + ": " + settlement.getSiegeText() + "!";
+                }
+            }
+            return null;
+        }
+
         /** The opened detail, one line each, with whether each requirement is met. */
         public static List<KeyValuePair<string, bool>> detailLines(Simulation simulation) {
             List<KeyValuePair<string, bool>> lines = new List<KeyValuePair<string, bool>>();
@@ -148,8 +169,14 @@ namespace beyondnations.desktop.ui.boxes {
                 if (warning != null) {
                     Overlay.textColoured(DangerColour, warning);
                 }
-                string siege = siegeWarning(simulation);
-                if (siege != null) {
+                string underWay = siegeUnderWay(simulation);
+                string siege = underWay == null ? siegeWarning(simulation) : null;
+                if (underWay != null) {
+                    ImGui.PushTextWrapPos(0f);
+                    Overlay.textColoured(DangerColour, underWay);
+                    ImGui.PopTextWrapPos();
+                }
+                else if (siege != null) {
                     Overlay.textColoured(WarningColour, siege);
                 }
                 if (expanded) {
