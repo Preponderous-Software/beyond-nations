@@ -83,6 +83,21 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testEraBox_NamesASiegeUnderWay_RatherThanTheCountdown() {
+            // playtest 0.6.1 s01: "Sieges can begin in 4:58" while the village was at 2/6 (#396)
+            Simulation simulation = makeSimulation();
+            DiplomacyShowcase.Staged staged = DiplomacyShowcase.stage(simulation);
+            Assert.NotNull(EraBox.siegeWarning(simulation));
+            string underWay = EraBox.siegeUnderWay(simulation);
+            Assert.NotNull(underWay);
+            Assert.StartsWith("Your village: Besieged by " + staged.hostile.getName() + " (", underWay);
+
+            Simulation quiet = makeSimulation();
+            SettlementShowcase.stage(quiet);
+            Assert.Null(EraBox.siegeUnderWay(quiet));
+        }
+
+        [Fact]
         public void testEraBox_TapsOpenAndClosed() {
             EraBox box = new EraBox();
             Assert.False(box.isExpanded());

@@ -351,6 +351,49 @@ namespace beyondnationstests {
             // cleanup
         }
 
+        /**
+        * A hungry pawn with no coin but wood a merchant will buy sells it, then
+        * buys food: pawns used to starve at home beside a market full of food,
+        * twenty-odd wood in the pack (seed 42's first spring, found while #402
+        * was checked).
+        */
+        [Fact]
+        public void testComputeBehaviorType_HungryWithNoCoinButGoods_SellsThenBuysFood() {
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn nationLeader = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(nationLeader);
+            Nation nation = new Nation("test", nationLeader.getId(), random);
+            nationRepository.addNation(nation);
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), nation.getId(), nation.getColor(), nation.getName(), random);
+            entityRepository.addEntity(settlement);
+
+            Pawn merchant = new Pawn(new Vector3(0, 0, 0), "merchant", random);
+            entityRepository.addEntity(merchant);
+            settlement.getMarket().createStall();
+            Stall stall = settlement.getMarket().getStallForSale();
+            stall.setOwnerId(merchant.getId());
+            stall.getInventory().addItem(ItemType.APPLE, 10);
+            stall.getInventory().addItem(ItemType.COIN, 500);
+
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "hungry", random);
+            pawn.setEnergy(10);
+            pawn.getInventory().clear();
+            pawn.getInventory().addItem(ItemType.WOOD, 20);
+            entityRepository.addEntity(pawn);
+            pawn.setHomeSettlementId(settlement.getId());
+            pawn.setCurrentSettlementId(settlement.getId());
+
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+            PawnBehaviorExecutor executor = new PawnBehaviorExecutor(environment, nationRepository, new EventProducer(new EventRepository()), entityRepository, random, new NationNameGenerator(random), new TickCounter());
+
+            Assert.Equal(BehaviorType.SELL_RESOURCES, calculator.computeBehaviorType(pawn));
+            executor.executeBehavior(pawn, BehaviorType.SELL_RESOURCES);
+            Assert.True(pawn.getInventory().getNumItems(ItemType.COIN) > 0);
+            Assert.Equal(BehaviorType.PURCHASE_FOOD, calculator.computeBehaviorType(pawn));
+        }
+
         [Fact]
         public void testComputeBehaviorType_InSettlement_ShouldSellResources() {
             // prepare world

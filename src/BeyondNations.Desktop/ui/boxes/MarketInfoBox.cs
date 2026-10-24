@@ -89,7 +89,12 @@ namespace beyondnations.desktop.ui.boxes {
                 }
             }
 
-            if (merchantNames.Count > 0) {
+            if (merchantNames.Count > 0 && isCompact()) {
+                // one line, not one a merchant: six merchants ran the column
+                // off the bottom of a 960x540 screen (playtest 0.6.1, #350)
+                lines.Add(describeMerchantsCompact(merchantNames));
+            }
+            else if (merchantNames.Count > 0) {
                 lines.Add("Merchants:");
                 foreach (string name in merchantNames) {
                     lines.Add("- " + name);
@@ -102,6 +107,13 @@ namespace beyondnations.desktop.ui.boxes {
             }
 
             return lines;
+        }
+
+        /** "Merchants: Ann, Bob +4", naming at most two. */
+        public static string describeMerchantsCompact(List<string> names) {
+            int shown = System.Math.Min(2, names.Count);
+            string line = "Merchants: " + string.Join(", ", names.GetRange(0, shown));
+            return names.Count > shown ? line + " +" + (names.Count - shown) : line;
         }
 
         /**

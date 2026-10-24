@@ -35,6 +35,13 @@ namespace beyondnations {
         // the player's laws (realm/): conscripts gather less
         private Realm realm;
 
+        // how far a new settlement must be from every other (site seeking, #402)
+        private GameConfig gameConfig;
+
+        public void setGameConfig(GameConfig gameConfig) {
+            this.gameConfig = gameConfig;
+        }
+
         public void setRealm(Realm realm) {
             this.realm = realm;
         }
@@ -728,17 +735,91 @@ namespace beyondnations {
         }
 
         /**
-        * Walks straight away from the nearest settlement, to where a new one
-        * may be founded.
+        * Walks to the nearest spot where a new settlement may be founded
+        * (findSettlementSite), or, before there is any config to say how far
+        * that is, away from the settlements around it.
         */
         private void executeSeekSettlementSiteBehavior(Pawn pawn) {
             pawn.setTargetEntity(null);
-            Vector3 away = computeAwayFromSettlements(pawn.getPosition(), entityRepository.getEntitiesOfType(EntityType.SETTLEMENT));
+            List<Entity> settlements = entityRepository.getEntitiesOfType(EntityType.SETTLEMENT);
+            Vector3 away = gameConfig == null
+                ? computeAwayFromSettlements(pawn.getPosition(), settlements)
+                : computeTowardSettlementSite(pawn.getPosition(), settlements, gameConfig.getMinDistanceBetweenSettlements());
             if (away == Vector3.Zero) {
                 return;
             }
             Vector3 horizontalVelocity = away * pawn.getSpeed();
             pawn.setVelocity(new Vector3(horizontalVelocity.X, pawn.getVelocity().Y, horizontalVelocity.Z));
+        }
+
+        /** How far past the minimum a sought site keeps from every settlement, so arriving there is far enough. */
+        public const float SiteMargin = 10f;
+
+        /** Rings searched for a site: every SiteSearchStep units out to SiteSearchRange, SiteSearchAngles points on each. */
+        public const float SiteSearchStep = 25f;
+        public const float SiteSearchRange = 2000f;
+        public const int SiteSearchAngles = 24;
+
+        /**
+        * The nearest point, searched on rings around the position, that is
+        * more than minDistance (plus SiteMargin) from every settlement; on the
+        * nearest ring with one, the point with the most room. Null when there
+        * is none within SiteSearchRange, and the position itself when it is
+        * already clear.
+        *
+        * Walking down the push away from nearby settlements
+        * (computeAwayFromSettlements) left founders standing still: a pawn
+        * at the edge of a settlement's reach (Territory.NEIGHBOUR_DISTANCE)
+        * stepped in, was pushed out, stepped back in, and turned every few
+        * ticks, and one ringed by settlements came to rest between them,
+        * still too near any to found. Their nations never founded at all
+        * (#402, found while #395 was diagnosed). A fixed point to walk to
+        * gets closer with every step.
+        */
+        public static Vector3? findSettlementSite(Vector3 position, List<Entity> settlements, float minDistance) {
+            float required = minDistance + SiteMargin;
+            if (clearance(position, settlements) > required) {
+                return position;
+            }
+            for (float radius = SiteSearchStep; radius <= SiteSearchRange; radius += SiteSearchStep) {
+                Vector3? best = null;
+                float bestRoom = required;
+                for (int i = 0; i < SiteSearchAngles; i++) {
+                    float angle = i * 2f * System.MathF.PI / SiteSearchAngles;
+                    Vector3 candidate = new Vector3(position.X + radius * System.MathF.Cos(angle), position.Y, position.Z + radius * System.MathF.Sin(angle));
+                    float room = clearance(candidate, settlements);
+                    if (room > bestRoom) {
+                        bestRoom = room;
+                        best = candidate;
+                    }
+                }
+                if (best != null) {
+                    return best;
+                }
+            }
+            return null;
+        }
+
+        /** The unit direction to findSettlementSite's point, or away from the settlements when there is none in range; zero once there. */
+        public static Vector3 computeTowardSettlementSite(Vector3 position, List<Entity> settlements, float minDistance) {
+            Vector3? site = findSettlementSite(position, settlements, minDistance);
+            if (site == null) {
+                return computeAwayFromSettlements(position, settlements);
+            }
+            Vector3 toward = site.Value - position;
+            toward.Y = 0;
+            return toward.LengthSquared() < 0.01f ? Vector3.Zero : VectorMath.normalized(toward);
+        }
+
+        /** The horizontal distance from the position to the nearest settlement (MaxValue with none). */
+        private static float clearance(Vector3 position, List<Entity> settlements) {
+            float nearest = float.MaxValue;
+            foreach (Entity settlement in settlements) {
+                float dx = position.X - settlement.getPosition().X;
+                float dz = position.Z - settlement.getPosition().Z;
+                nearest = System.MathF.Min(nearest, System.MathF.Sqrt(dx * dx + dz * dz));
+            }
+            return nearest;
         }
 
         /**

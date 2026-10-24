@@ -1,0 +1,116 @@
+{
+  "session": "s02",
+  "goal": "Survive the first winter and watch the other nations (#353, #395, #406): found or join a nation early, use the hunger warning and Feed Residents, and count hunger deaths from events.jsonl, noting which were nation leaders and where they died. The 0.6.1 run on this seed saw 5 NPC hunger deaths in two thirds of the winter, 4 of them leaders.",
+  "build": {"version": "0.6.1", "commit": "6ac1e3f"},
+  "seed": 103,
+  "durationSec": 1840,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Hunger banner count and Feed Residents button count never agree",
+      "detail": "Banner 'Fortton: 6 members hungry' while button said 'Feed Residents (5 hungry)' and the click then 'fed 8 residents'. At tick 193568 banner said 1, Feed fed 2. At tick ~231300 (first night of spring) button showed '(1 hungry)' with no banner at all; right after feeding 1 the button jumped to '(5 hungry)'. After feeding everyone present the banner can still say '1 member hungry' with no Feed button and no hint who or where that member is. Expected: one consistent count, and the banner to say how many are elsewhere.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season winter; found a nation (n) and settlement (f); gather apples from trees; return (h) and enter (e) every ~2500 ticks; compare the yellow banner with the Feed Residents button",
+      "screenshot": "shots/count_mismatch.png",
+      "tick": 209274
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement command bar reflows after Feed/Craft, putting a different command under the cursor",
+      "detail": "After clicking 'Feed Residents (1 hungry)' the button vanished and 'Talk to Bob Roberts (Stranger) - Glutton' took its place. After Craft Axe (no confirm), my second click landed on 'Send Caravan' (which then said a Storehouse is needed). Feed Residents also moves between row 2 and row 3 between visits. With the game at a few fps a repeated click hits the wrong command. Expected: stable positions for Feed Residents and build/craft commands.",
+      "repro": "enter settlement with hungry residents; click Feed Residents twice quickly; or click Craft Axe twice",
+      "screenshot": "shots/reflow.png",
+      "tick": 189648
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Objective 8 'Sell resources at market' blocked all winter: merchants have 2-3 coins",
+      "detail": "Sell Resources: 'No merchant here can pay: the richest has 2 coins, and your cheapest good (stone) sells for 3.' Market Info showed 4/4 stalls, 3 coins for the rest of winter (tick 200800 to ~231000). It only worked in spring when the stalls had 71-389 coins. The objective panel gives no hint that you need to wait or buy from merchants first.",
+      "repro": "reach objective 8 in winter; enter settlement; click Sell Resources",
+      "screenshot": "shots/sell_broke.png",
+      "tick": 200964
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Feeding residents is a constant once-a-minute chore",
+      "detail": "From tick 189456 to 235000 Feed Residents was used 19 times for 90+ feedings: 4-10 residents became hungry every ~2500 ticks (50 game s) in a 13-17 member town. It can be kept up because trees still drop 1-3 apples each in winter, but the loop is chop, H, walk in, E, Feed, every minute. Apples ran down from 37 to 18 until I crafted an axe. Residents never eat from the 260+ coin stockpile or the market themselves. Nothing gets automated as the town grows.",
+      "repro": "play as above for one winter day",
+      "screenshot": "shots/feed_chore.png",
+      "tick": 232423
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Disband epitaph says the nation 'never raised so much as a hut' right after its settlement was captured",
+      "detail": "Chronicle: 'After a siege, a camp of Southernfield fell to Castleport.' then 'Southernfield is no more; it never raised so much as a hut.' The same thing happened for Newport at tick 216252 ('a village of Newport fell to Newwood' then the same epitaph). Expected the epitaph to reflect that it had (and lost) a settlement.",
+      "repro": "watch chronicle (Y) / events.jsonl for NationDisband after SettlementCapture",
+      "screenshot": "shots/disband_text.png",
+      "tick": 193752
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Build House cost is never shown",
+      "detail": "'Build House' button and 'Click again to confirm: Build House.' show no price. It cost 20 wood + 15 stone. Settlement Info only lists 'Next (K): Farm, 25 wood, 10 stone'. Expected: the cost on the button or confirm prompt.",
+      "repro": "enter settlement; click Build House once and read the prompt",
+      "screenshot": "shots/house_cost.png",
+      "tick": 212535
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "World-space labels draw huge over the HUD in settlements",
+      "detail": "The settlement label ('16 here, 17/24 residents') fills the top band behind the status and chronicle panels in every settlement view. A nearby pawn's name/trait/activity label covered the Market Info panel. Caravan labels overlap the Era panel. Inside a settlement the Inventory panel also moves to the middle of the screen, and the Season panel overlaps Player Info.",
+      "repro": "enter your settlement; look at the top of the screen",
+      "screenshot": "shots/world_labels.png",
+      "tick": 235073
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress text clipped: 'nbers 5/10 · Buildings 0/2'",
+      "detail": "The 'Members x/10 · Buildings y/2' label is wider than its bar and loses its first letters.",
+      "repro": "reach objective 7 'Reach the Village era'",
+      "screenshot": "shots/clipped_progress.png",
+      "tick": 189252
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Wanderers event option 3 shows a blank gap where '--' should be",
+      "detail": "'they stay in these lands with no nation    and may found one of their own.' The source (WanderersEvent.cs) has ' -- ', which renders as blank space.",
+      "repro": "wait for 'Wanderers at the gate' world event",
+      "screenshot": "shots/wanderers_text.png",
+      "tick": 234501
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 8,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 3630.0,
+      "Eat something": 3631.04,
+      "Create or join a nation": 3632.0,
+      "Found a settlement": 3706.0,
+      "Enter your settlement": 3709.04,
+      "Build a market stall": 3710.0,
+      "Reach the Village era": 3991.04,
+      "Sell resources at market": 4641.02
+    },
+    "worldStartTick": 180000,
+    "springTick": 231001,
+    "npcHungerDeathsWinter": 3,
+    "npcHungerDeathsLeaders": 0,
+    "npcHungerDeathsWithinWalls": 3,
+    "hungerDeathList": "Grace Lewis of Castleport t223601 (ex-founder of disbanded Southernfield, not a leader at death); Stan Taylor of Newwood t228130; Victor Johnson of Newwood t230445; all 'within the walls'",
+    "playerFeedActions": 19,
+    "residentsFed": 90,
+    "fortonMembersAtEnd": 17
+  },
+  "fun": 3,
+  "verdict": "Starvation is clearly better than 0.6.1 on this seed. Over the whole rest of winter (tick 180000-231001) there were 3 NPC hunger deaths, none of them a sitting leader (vs 5, 4 leaders, in two thirds of winter), and all 3 died inside a settlement (Castleport 1, Newwood 2). The player's side works: the hunger banner shows even away from home, and Feed Residents does its job. But the banner and button counts never agree, the buttons shift around, and feeding every minute gets tedious. In winter the market cannot afford to buy anything, so objective 8 is stuck until spring."
+}

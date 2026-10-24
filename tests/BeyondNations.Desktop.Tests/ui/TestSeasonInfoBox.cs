@@ -61,9 +61,18 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(full.getLines().Count - 4, compact.getLines().Count);
             Assert.Equal(MarketInfoBox.PricesHeading, compact.getLines()[1]);
 
+            // the player box keeps whose the player is (playtest 0.6.1 s04)
             PlayerInfoBox player = new PlayerInfoBox(simulation.getPlayer(), simulation.getNationRepository(), simulation.getEntityRepository());
             player.setCompact(true);
-            Assert.Equal(new List<string> { "Energy: " + (int) simulation.getPlayer().getEnergy() }, player.getLines());
+            Assert.Equal(new List<string> { "Energy: " + (int) simulation.getPlayer().getEnergy(), "Nation: none" }, player.getLines());
+        }
+
+        [Fact]
+        public void testCompact_MerchantsTakeOneLine() {
+            Assert.Equal("Merchants: Ann", MarketInfoBox.describeMerchantsCompact(new List<string> { "Ann" }));
+            Assert.Equal("Merchants: Ann, Bob", MarketInfoBox.describeMerchantsCompact(new List<string> { "Ann", "Bob" }));
+            Assert.Equal("Merchants: Ann, Bob +4",
+                MarketInfoBox.describeMerchantsCompact(new List<string> { "Ann", "Bob", "Cy", "Di", "Ed", "Flo" }));
         }
 
         [Fact]

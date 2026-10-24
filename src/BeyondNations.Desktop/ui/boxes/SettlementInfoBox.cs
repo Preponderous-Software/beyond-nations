@@ -35,7 +35,8 @@ namespace beyondnations.desktop.ui.boxes {
                 lines.Add("Leader: " + leader.getType());
             }
 
-            lines.Add("PCIS: " + settlement.getCurrentlyPresentEntitiesCount());
+            // no "PCIS" (pawns currently in settlement): the floating label
+            // says "N here", and the F1 debug box keeps the count (#350)
             lines.Add("Funds: " + settlement.getInventory().getNumItems(ItemType.COIN));
             lines.Add("Tier: " + SettlementTiers.getDisplayName(settlement.getTier()) + " (" + settlement.getNumBuildings() + " buildings)");
             lines.Add("Residents: " + settlement.getResidentCount() + "/" + settlement.getResidentCap());

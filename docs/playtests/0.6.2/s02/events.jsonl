@@ -1,0 +1,474 @@
+{"type":"screen","tick":0,"wallTimeMs":1792864488332,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792864492369,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792864500548,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":180000,"wallTimeMs":1792864506185,"how":"created","slot":"world-103-20261024-175506","seed":103}
+{"type":"screen","tick":180000,"wallTimeMs":1792864506187,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":180280,"wallTimeMs":1792864515596,"text":"Created nation Fortton."}
+{"type":"chronicle","tick":180280,"wallTimeMs":1792864515596,"kind":"NationCreation","text":"You raised a banner and named your people Fortton. It is the first nation this world has known."}
+{"type":"status","tick":180764,"wallTimeMs":1792864532212,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":180792,"wallTimeMs":1792864533290,"text":"No entities within range to interact with."}
+{"type":"status","tick":180820,"wallTimeMs":1792864534376,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":180848,"wallTimeMs":1792864535466,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":180852,"wallTimeMs":1792864535611,"kind":"NationCreation","text":"Alice Wood founded the nation of Castleport."}
+{"type":"status","tick":180880,"wallTimeMs":1792864536655,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":180900,"wallTimeMs":1792864537382,"kind":"SettlementFounded","text":"Castleport put down roots: Alice Wood founded its first settlement."}
+{"type":"status","tick":180912,"wallTimeMs":1792864537829,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":180944,"wallTimeMs":1792864538916,"text":"No entities within range to interact with. (x6)"}
+{"type":"status","tick":180976,"wallTimeMs":1792864540117,"text":"No entities within range to interact with. (x7)"}
+{"type":"status","tick":181004,"wallTimeMs":1792864541109,"text":"No entities within range to interact with. (x8)"}
+{"type":"status","tick":181040,"wallTimeMs":1792864542281,"text":"No entities within range to interact with. (x9)"}
+{"type":"status","tick":181068,"wallTimeMs":1792864543331,"text":"No entities within range to interact with. (x10)"}
+{"type":"status","tick":181096,"wallTimeMs":1792864544347,"text":"No entities within range to interact with. (x11)"}
+{"type":"status","tick":181456,"wallTimeMs":1792864556687,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":181500,"wallTimeMs":1792864558104,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1500}
+{"type":"status","tick":181500,"wallTimeMs":1792864558104,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":181552,"wallTimeMs":1792864559791,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":181552,"wallTimeMs":1792864559791,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":181600,"wallTimeMs":1792864561211,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":48}
+{"type":"status","tick":181600,"wallTimeMs":1792864561211,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":181824,"wallTimeMs":1792864568062,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":182188,"wallTimeMs":1792864579874,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":182412,"wallTimeMs":1792864588170,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":182792,"wallTimeMs":1792864602985,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":182952,"wallTimeMs":1792864609067,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":183304,"wallTimeMs":1792864620906,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":183352,"wallTimeMs":1792864622226,"kind":"StallBuilt","text":"Trade came to Castleport: Alice Wood built a stall."}
+{"type":"chronicle","tick":183352,"wallTimeMs":1792864622226,"kind":"NationCreation","text":"Grace Lewis founded the nation of Southernfield."}
+{"type":"chronicle","tick":183600,"wallTimeMs":1792864630150,"kind":"SettlementFounded","text":"Grace Lewis raised the first settlement of Southernfield."}
+{"type":"status","tick":183756,"wallTimeMs":1792864634717,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":184196,"wallTimeMs":1792864647830,"text":"Gathered 6 wood and 1 apple from tree. (x2)"}
+{"type":"status","tick":184236,"wallTimeMs":1792864649304,"text":"Too close to the Camp of Southernfield: 164 away, and settlements must be 250 apart. Open ground lies about 90 to the south."}
+{"type":"status","tick":184624,"wallTimeMs":1792864664973,"text":"Too close to the Camp of Southernfield: 102 away, and settlements must be 250 apart. Open ground lies about 150 to the south."}
+{"type":"status","tick":185296,"wallTimeMs":1792864691751,"text":"Settlement founded. Castleport and Southernfield resent a new settlement so near their land."}
+{"type":"chronicle","tick":185296,"wallTimeMs":1792864691751,"kind":"SettlementFounded","text":"You raised the first settlement of Fortton."}
+{"type":"objective_completed","tick":185300,"wallTimeMs":1792864691947,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3700}
+{"type":"status","tick":185300,"wallTimeMs":1792864691947,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":185300,"wallTimeMs":1792864691947,"kind":"NationJoin","text":"Bob Roberts threw in their lot with Fortton."}
+{"type":"chronicle","tick":185300,"wallTimeMs":1792864691947,"kind":"NationJoin","text":"Jasmine Brown swore fealty to Fortton."}
+{"type":"status","tick":185444,"wallTimeMs":1792864699300,"text":"Entered settlement."}
+{"type":"objective_completed","tick":185452,"wallTimeMs":1792864699714,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":152}
+{"type":"status","tick":185452,"wallTimeMs":1792864699714,"text":"Objective complete: Enter your settlement."}
+{"type":"objective_completed","tick":185500,"wallTimeMs":1792864702202,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":48}
+{"type":"status","tick":185500,"wallTimeMs":1792864702202,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":185500,"wallTimeMs":1792864702202,"kind":"StallBuilt","text":"Trade came to Fortton: Jasmine Brown built a stall."}
+{"type":"chronicle","tick":185752,"wallTimeMs":1792864715336,"kind":"NationCreation","text":"Tina Roberts founded the nation of Newwood."}
+{"type":"chronicle","tick":185800,"wallTimeMs":1792864717994,"kind":"StallBuilt","text":"Jasmine Brown built a market stall in Fortton."}
+{"type":"save","tick":186000,"wallTimeMs":1792864728441,"count":1}
+{"type":"status","tick":186000,"wallTimeMs":1792864728441,"text":"Autosaved."}
+{"type":"chronicle","tick":186000,"wallTimeMs":1792864728441,"kind":"NationRelationChange","text":"Castleport and Southernfield have become rivals over their border."}
+{"type":"chronicle","tick":186252,"wallTimeMs":1792864741400,"kind":"SettlementFounded","text":"Tina Roberts raised the first settlement of Newwood."}
+{"type":"status","tick":186928,"wallTimeMs":1792864776743,"text":"Exited settlement."}
+{"type":"status","tick":187388,"wallTimeMs":1792864797819,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":187552,"wallTimeMs":1792864804867,"kind":"NationJoin","text":"Fortton welcomed Lily Roberts into its ranks."}
+{"type":"status","tick":187560,"wallTimeMs":1792864805182,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":187752,"wallTimeMs":1792864813776,"text":"Castleport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":187752,"wallTimeMs":1792864813776,"kind":"NationRelationChange","text":"Fortton and Castleport have become rivals over their border."}
+{"type":"status","tick":187764,"wallTimeMs":1792864814306,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":188036,"wallTimeMs":1792864826269,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":188216,"wallTimeMs":1792864833907,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":188500,"wallTimeMs":1792864845767,"text":"Newwood resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":188500,"wallTimeMs":1792864845767,"kind":"NationRelationChange","text":"Fortton and Newwood have become rivals over their border."}
+{"type":"chronicle","tick":188500,"wallTimeMs":1792864845767,"kind":"NationRelationChange","text":"Southernfield and Newwood have become rivals over their border."}
+{"type":"status","tick":188612,"wallTimeMs":1792864850058,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":188900,"wallTimeMs":1792864861229,"kind":"NationCreation","text":"The nation of Redfield was born, with Charlie Walker at its head."}
+{"type":"chronicle","tick":188952,"wallTimeMs":1792864863320,"kind":"SettlementFounded","text":"Charlie Walker laid the first stones of Redfield."}
+{"type":"chronicle","tick":189000,"wallTimeMs":1792864865195,"kind":"NationJoin","text":"Natalie Johnson threw in their lot with Fortton."}
+{"type":"chronicle","tick":189000,"wallTimeMs":1792864865195,"kind":"Caravan","text":"Southernfield sent a caravan of 20 stone from the Camp of Southernfield to the Camp of Fortton."}
+{"type":"status","tick":189272,"wallTimeMs":1792864876728,"text":"Entered settlement."}
+{"type":"status","tick":189456,"wallTimeMs":1792864885175,"text":"You fed 1 resident in the Camp of Fortton."}
+{"type":"status","tick":189672,"wallTimeMs":1792864894900,"text":"Click again to confirm: Build House."}
+{"type":"status","tick":189852,"wallTimeMs":1792864902536,"text":"House built."}
+{"type":"status","tick":190004,"wallTimeMs":1792864909001,"text":"You fed 1 resident in the Camp of Fortton."}
+{"type":"status","tick":190200,"wallTimeMs":1792864917454,"text":"Exited settlement."}
+{"type":"chronicle","tick":190452,"wallTimeMs":1792864928147,"kind":"StallBuilt","text":"Tina Roberts built a market stall in Newwood."}
+{"type":"chronicle","tick":190500,"wallTimeMs":1792864929970,"kind":"Caravan","text":"Redfield sent a caravan of 20 stone from the Village of Redfield to the Camp of Fortton."}
+{"type":"chronicle","tick":190552,"wallTimeMs":1792864931951,"kind":"NationJoin","text":"Fortton welcomed Irene Johnson into its ranks."}
+{"type":"chronicle","tick":190604,"wallTimeMs":1792864933848,"kind":"Caravan","text":"A caravan from Southernfield sold 8 stone at the Camp of Fortton for 24 coins."}
+{"type":"status","tick":190620,"wallTimeMs":1792864934509,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":190780,"wallTimeMs":1792864940450,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":190812,"wallTimeMs":1792864941632,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792864947993,"kind":"NationRelationChange","text":"Castleport and Southernfield are now hostile."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792864947993,"kind":"NationRaid","text":"Castleport raided Southernfield and carried off 2 wood, 5 stone."}
+{"type":"status","tick":191080,"wallTimeMs":1792864950724,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":191252,"wallTimeMs":1792864956479,"text":"Redfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":191252,"wallTimeMs":1792864956479,"kind":"StallBuilt","text":"Tina Roberts built a market stall in Newwood."}
+{"type":"chronicle","tick":191252,"wallTimeMs":1792864956479,"kind":"NationRelationChange","text":"Fortton and Redfield have become rivals over their border."}
+{"type":"status","tick":191280,"wallTimeMs":1792864957451,"text":"You are back on your own land."}
+{"type":"chronicle","tick":191352,"wallTimeMs":1792864959764,"kind":"StallBuilt","text":"A new stall opened in the market of Fortton, built by Jasmine Brown."}
+{"type":"status","tick":191388,"wallTimeMs":1792864960904,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":191572,"wallTimeMs":1792864966453,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":191860,"wallTimeMs":1792864975180,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"save","tick":192000,"wallTimeMs":1792864979371,"count":2}
+{"type":"status","tick":192000,"wallTimeMs":1792864979371,"text":"Autosaved."}
+{"type":"chronicle","tick":192020,"wallTimeMs":1792864979949,"kind":"Caravan","text":"A caravan from Redfield sold 2 stone at the Camp of Fortton for 6 coins."}
+{"type":"status","tick":192540,"wallTimeMs":1792864995117,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":192820,"wallTimeMs":1792865003129,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":193052,"wallTimeMs":1792865009668,"text":"Gathered 5 stone from rock. (x3)"}
+{"type":"status","tick":193084,"wallTimeMs":1792865010683,"text":"Welcome home!"}
+{"type":"status","tick":193092,"wallTimeMs":1792865011020,"text":"You are back on your own land."}
+{"type":"chronicle","tick":193200,"wallTimeMs":1792865014827,"kind":"NationCreation","text":"The nation of Northernshire was born, with Ursula Brown at its head."}
+{"type":"status","tick":193228,"wallTimeMs":1792865015817,"text":"Entered settlement."}
+{"type":"chronicle","tick":193252,"wallTimeMs":1792865016633,"kind":"NationRelationChange","text":"Castleport and Newwood swore an alliance."}
+{"type":"chronicle","tick":193352,"wallTimeMs":1792865020101,"kind":"SettlementFounded","text":"Northernshire put down roots: Ursula Brown founded its first settlement."}
+{"type":"status","tick":193404,"wallTimeMs":1792865021794,"text":"You fed 3 residents in the Camp of Fortton."}
+{"type":"chronicle","tick":193500,"wallTimeMs":1792865025523,"kind":"NationRelationChange","text":"Newwood and Southernfield are now hostile."}
+{"type":"chronicle","tick":193500,"wallTimeMs":1792865025523,"kind":"Caravan","text":"Southernfield sent a caravan of 17 stone from the Camp of Southernfield to the Camp of Fortton."}
+{"type":"status","tick":193568,"wallTimeMs":1792865028242,"text":"You fed 2 residents in the Camp of Fortton."}
+{"type":"chronicle","tick":193652,"wallTimeMs":1792865031689,"kind":"NationCreation","text":"Xavier Wood founded the nation of Bigfield."}
+{"type":"status","tick":193732,"wallTimeMs":1792865034805,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":193752,"wallTimeMs":1792865035590,"text":"Southernfield has fallen and been disbanded."}
+{"type":"chronicle","tick":193752,"wallTimeMs":1792865035590,"kind":"SettlementCapture","text":"After a siege, a camp of Southernfield fell to Castleport."}
+{"type":"chronicle","tick":193752,"wallTimeMs":1792865035590,"kind":"NationDisband","text":"Southernfield is no more; it never raised so much as a hut."}
+{"type":"status","tick":193788,"wallTimeMs":1792865036967,"text":"Farm built. The settlement is now a Village!"}
+{"type":"status","tick":194096,"wallTimeMs":1792865049331,"text":"Exited settlement."}
+{"type":"chronicle","tick":194352,"wallTimeMs":1792865058637,"kind":"NationJoin","text":"Una Smith threw in their lot with Fortton."}
+{"type":"chronicle","tick":194352,"wallTimeMs":1792865058637,"kind":"NationJoin","text":"Quinn Smith swore fealty to Fortton."}
+{"type":"chronicle","tick":194400,"wallTimeMs":1792865060011,"kind":"SettlementFounded","text":"Xavier Wood raised the first settlement of Bigfield."}
+{"type":"chronicle","tick":194552,"wallTimeMs":1792865064493,"kind":"NationJoin","text":"Eve Roberts joined Fortton."}
+{"type":"status","tick":194624,"wallTimeMs":1792865066546,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":194700,"wallTimeMs":1792865068643,"kind":"StallBuilt","text":"Jasmine Brown built a market stall in Fortton. The market is now full."}
+{"type":"status","tick":194812,"wallTimeMs":1792865071605,"text":"You leave the land of Fortton for the wilds."}
+{"type":"chronicle","tick":195000,"wallTimeMs":1792865076557,"kind":"Caravan","text":"Newwood sent a caravan of 20 stone from the Town of Newwood to the Village of Fortton."}
+{"type":"chronicle","tick":195000,"wallTimeMs":1792865076557,"kind":"Caravan","text":"Redfield sent a caravan of 20 stone from the Town of Redfield to the Village of Fortton."}
+{"type":"status","tick":195352,"wallTimeMs":1792865085848,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":195696,"wallTimeMs":1792865094905,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":195732,"wallTimeMs":1792865095883,"text":"You are back on your own land."}
+{"type":"status","tick":195752,"wallTimeMs":1792865096754,"text":"Northernshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":195752,"wallTimeMs":1792865096754,"kind":"NationRelationChange","text":"Fortton and Northernshire have become rivals over their border."}
+{"type":"status","tick":195796,"wallTimeMs":1792865098723,"text":"Entered settlement."}
+{"type":"status","tick":195972,"wallTimeMs":1792865106836,"text":"You fed 3 residents in the Village of Fortton."}
+{"type":"screen","tick":196172,"wallTimeMs":1792865116051,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":196176,"wallTimeMs":1792865122274,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":196212,"wallTimeMs":1792865123943,"text":"Exited settlement."}
+{"type":"chronicle","tick":196520,"wallTimeMs":1792865137007,"kind":"Caravan","text":"A caravan from Redfield sold 12 stone at the Village of Fortton for 36 coins."}
+{"type":"chronicle","tick":196528,"wallTimeMs":1792865137236,"kind":"Caravan","text":"A caravan from Newwood sold nothing at the Village of Fortton for 0 coins."}
+{"type":"status","tick":196752,"wallTimeMs":1792865143150,"text":"Bigfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":196752,"wallTimeMs":1792865143150,"kind":"NationRelationChange","text":"Fortton and Bigfield have become rivals over their border."}
+{"type":"status","tick":196892,"wallTimeMs":1792865146829,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":197392,"wallTimeMs":1792865159898,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":197588,"wallTimeMs":1792865165271,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":197704,"wallTimeMs":1792865168383,"kind":"WorldEvent","text":"Wanderers came to the Town of Castleport; Alice Wood took in only Xavier Evans, and the rest moved on."}
+{"type":"status","tick":197848,"wallTimeMs":1792865172648,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":197884,"wallTimeMs":1792865173734,"text":"Welcome home!"}
+{"type":"status","tick":197892,"wallTimeMs":1792865174081,"text":"You are back on your own land."}
+{"type":"status","tick":197948,"wallTimeMs":1792865176517,"text":"Entered settlement."}
+{"type":"save","tick":198000,"wallTimeMs":1792865178883,"count":3}
+{"type":"status","tick":198000,"wallTimeMs":1792865178883,"text":"Autosaved."}
+{"type":"status","tick":198128,"wallTimeMs":1792865184505,"text":"You fed 6 residents in the Village of Fortton."}
+{"type":"status","tick":198320,"wallTimeMs":1792865193052,"text":"Exited settlement."}
+{"type":"status","tick":198772,"wallTimeMs":1792865209613,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":199000,"wallTimeMs":1792865215990,"text":"Redfield sent 20 coins of tribute to your treasury."}
+{"type":"status","tick":199472,"wallTimeMs":1792865229674,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":199500,"wallTimeMs":1792865230503,"kind":"Caravan","text":"Newwood sent a caravan of 20 stone from the Town of Newwood to the Village of Fortton."}
+{"type":"chronicle","tick":199500,"wallTimeMs":1792865230503,"kind":"Caravan","text":"Redfield sent a caravan of 20 stone from the Town of Redfield to the Village of Fortton."}
+{"type":"objective_completed","tick":199552,"wallTimeMs":1792865232103,"number":7,"id":"grow-nation","title":"Reach the Village era","ticksTaken":14052}
+{"type":"era_changed","tick":199552,"wallTimeMs":1792865232103,"from":"Camp","to":"Village"}
+{"type":"status","tick":199552,"wallTimeMs":1792865232103,"text":"A new era: Fortton is now a Village. Unlocked: Workshop (craft planks and bricks), up to 3 settlements. Objective complete: Reach the Village era. \u002B100 coins."}
+{"type":"chronicle","tick":199552,"wallTimeMs":1792865232103,"kind":"NationJoin","text":"Rachel White threw in their lot with Fortton."}
+{"type":"status","tick":199692,"wallTimeMs":1792865236877,"text":"You enter the land of Castleport (Rival)."}
+{"type":"status","tick":199948,"wallTimeMs":1792865245633,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":200332,"wallTimeMs":1792865256614,"text":"You leave the land of Castleport for the wilds."}
+{"type":"status","tick":200348,"wallTimeMs":1792865257083,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":200396,"wallTimeMs":1792865258429,"text":"Welcome home!"}
+{"type":"status","tick":200400,"wallTimeMs":1792865258608,"text":"You are back on your own land."}
+{"type":"status","tick":200464,"wallTimeMs":1792865261478,"text":"Entered settlement."}
+{"type":"status","tick":200656,"wallTimeMs":1792865270302,"text":"You fed 4 residents in the Village of Fortton."}
+{"type":"status","tick":200792,"wallTimeMs":1792865276660,"text":"No merchant here can pay: the richest has 2 coins, and your cheapest good (stone) sells for 3."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792865286438,"kind":"NationRelationChange","text":"Castleport and Redfield swore an alliance."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792865286438,"kind":"NationRelationChange","text":"Newwood and Redfield have formed an alliance."}
+{"type":"chronicle","tick":201020,"wallTimeMs":1792865287372,"kind":"Caravan","text":"A caravan from Redfield sold 18 stone at the Village of Fortton for 54 coins."}
+{"type":"chronicle","tick":201028,"wallTimeMs":1792865287754,"kind":"Caravan","text":"A caravan from Newwood sold nothing at the Village of Fortton for 0 coins."}
+{"type":"status","tick":201056,"wallTimeMs":1792865289056,"text":"Exited settlement."}
+{"type":"status","tick":201532,"wallTimeMs":1792865307478,"text":"You leave the land of Fortton for the wilds."}
+{"type":"world_event_offered","tick":201552,"wallTimeMs":1792865308059,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone","Decline"]}
+{"type":"status","tick":201552,"wallTimeMs":1792865331287,"text":"No entities within range to interact with."}
+{"type":"status","tick":201552,"wallTimeMs":1792865375409,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":201552,"wallTimeMs":1792865419737,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":201552,"wallTimeMs":1792865462485,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":201552,"wallTimeMs":1792865463423,"text":"Welcome home!"}
+{"type":"status","tick":201552,"wallTimeMs":1792865466454,"text":"Entered settlement."}
+{"type":"status","tick":201552,"wallTimeMs":1792865475891,"text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"chronicle","tick":201552,"wallTimeMs":1792865475891,"kind":"WorldEvent","text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"world_event_resolved","tick":201552,"wallTimeMs":1792865475891,"title":"A travelling merchant","status":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"status","tick":201700,"wallTimeMs":1792865481840,"text":"You fed 2 residents in the Village of Fortton."}
+{"type":"status","tick":201764,"wallTimeMs":1792865484184,"text":"Exited settlement."}
+{"type":"status","tick":201772,"wallTimeMs":1792865484492,"text":"You are back on your own land."}
+{"type":"status","tick":202112,"wallTimeMs":1792865493736,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":202384,"wallTimeMs":1792865502021,"text":"Gathered 9 wood and 2 apples from tree (\u002B3 from your axe), 19 uses left."}
+{"type":"status","tick":202552,"wallTimeMs":1792865506978,"text":"You enter the land of Redfield (Rival)."}
+{"type":"status","tick":202860,"wallTimeMs":1792865513970,"text":"Gathered 9 wood and 3 apples from tree (\u002B3 from your axe), 18 uses left."}
+{"type":"status","tick":203152,"wallTimeMs":1792865520293,"text":"Gathered 7 wood and 1 apple from tree (\u002B3 from your axe), 17 uses left."}
+{"type":"status","tick":203220,"wallTimeMs":1792865521857,"text":"You leave the land of Redfield for the wilds."}
+{"type":"status","tick":203292,"wallTimeMs":1792865523504,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 16 uses left."}
+{"type":"status","tick":203336,"wallTimeMs":1792865524446,"text":"Welcome home!"}
+{"type":"status","tick":203340,"wallTimeMs":1792865524567,"text":"You are back on your own land."}
+{"type":"status","tick":203436,"wallTimeMs":1792865527514,"text":"Entered settlement."}
+{"type":"status","tick":203716,"wallTimeMs":1792865535617,"text":"You fed 5 residents in the Village of Fortton."}
+{"type":"status","tick":203964,"wallTimeMs":1792865542451,"text":"Exited settlement."}
+{"type":"save","tick":204000,"wallTimeMs":1792865543461,"count":4}
+{"type":"status","tick":204000,"wallTimeMs":1792865543461,"text":"Autosaved."}
+{"type":"status","tick":204351,"wallTimeMs":1792865551172,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":204565,"wallTimeMs":1792865555690,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 15 uses left."}
+{"type":"chronicle","tick":205200,"wallTimeMs":1792865568804,"kind":"NationCreation","text":"Wendy White founded the nation of Yellowham."}
+{"type":"chronicle","tick":205200,"wallTimeMs":1792865568804,"kind":"NationCreation","text":"Judy Evans raised a banner and called it Greenport."}
+{"type":"status","tick":205220,"wallTimeMs":1792865569209,"text":"You enter the land of Redfield (Rival)."}
+{"type":"chronicle","tick":205300,"wallTimeMs":1792865570812,"kind":"SettlementFounded","text":"Judy Evans raised the first settlement of Greenport."}
+{"type":"status","tick":205324,"wallTimeMs":1792865571308,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 14 uses left."}
+{"type":"chronicle","tick":205500,"wallTimeMs":1792865574811,"kind":"NationRelationChange","text":"Castleport and Northernshire have formed an alliance."}
+{"type":"status","tick":205793,"wallTimeMs":1792865580763,"text":"You leave the land of Redfield for the wilds."}
+{"type":"status","tick":205881,"wallTimeMs":1792865582651,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 13 uses left."}
+{"type":"status","tick":206093,"wallTimeMs":1792865587225,"text":"You enter the land of Redfield (Rival)."}
+{"type":"status","tick":206157,"wallTimeMs":1792865588677,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 12 uses left."}
+{"type":"status","tick":206197,"wallTimeMs":1792865589550,"text":"Welcome home!"}
+{"type":"status","tick":206201,"wallTimeMs":1792865589710,"text":"You are back on your own land."}
+{"type":"status","tick":206285,"wallTimeMs":1792865592560,"text":"Entered settlement."}
+{"type":"chronicle","tick":206501,"wallTimeMs":1792865600291,"kind":"NationRelationChange","text":"Castleport and Bigfield have formed an alliance."}
+{"type":"chronicle","tick":206501,"wallTimeMs":1792865600291,"kind":"NationRelationChange","text":"Newwood and Bigfield swore an alliance."}
+{"type":"status","tick":206513,"wallTimeMs":1792865600724,"text":"You fed 5 residents in the Village of Fortton."}
+{"type":"status","tick":206581,"wallTimeMs":1792865603069,"text":"Exited settlement."}
+{"type":"status","tick":207012,"wallTimeMs":1792865613978,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":207233,"wallTimeMs":1792865618736,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 11 uses left."}
+{"type":"status","tick":207753,"wallTimeMs":1792865629160,"text":"Greenport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":207753,"wallTimeMs":1792865629160,"kind":"NationRelationChange","text":"Fortton and Greenport have become rivals over their border."}
+{"type":"status","tick":207796,"wallTimeMs":1792865630024,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 10 uses left."}
+{"type":"status","tick":208221,"wallTimeMs":1792865638577,"text":"You enter the land of Newwood (Rival)."}
+{"type":"status","tick":208244,"wallTimeMs":1792865639046,"text":"Gathered 9 wood and 1 apple from tree (\u002B3 from your axe), 9 uses left."}
+{"type":"chronicle","tick":208551,"wallTimeMs":1792865645674,"kind":"NationJoin","text":"Daisy Davies threw in their lot with Fortton."}
+{"type":"status","tick":208826,"wallTimeMs":1792865651841,"text":"Gathered 9 wood and 1 apple from tree (\u002B3 from your axe), 8 uses left."}
+{"type":"status","tick":208866,"wallTimeMs":1792865652777,"text":"Welcome home!"}
+{"type":"status","tick":208870,"wallTimeMs":1792865652906,"text":"You are back on your own land."}
+{"type":"chronicle","tick":208902,"wallTimeMs":1792865653854,"kind":"SettlementFounded","text":"Wendy White raised the first settlement of Yellowham."}
+{"type":"status","tick":208950,"wallTimeMs":1792865655334,"text":"Entered settlement."}
+{"type":"status","tick":209318,"wallTimeMs":1792865664686,"text":"You fed 8 residents in the Village of Fortton."}
+{"type":"chronicle","tick":209402,"wallTimeMs":1792865666577,"kind":"NationCreation","text":"The nation of Newport was born, with Hank Williams at its head."}
+{"type":"chronicle","tick":209502,"wallTimeMs":1792865669011,"kind":"SettlementFounded","text":"Hank Williams laid the first stones of Newport."}
+{"type":"status","tick":209642,"wallTimeMs":1792865672379,"text":"Exited settlement."}
+{"type":"status","tick":209981,"wallTimeMs":1792865679673,"text":"You leave the land of Fortton for the wilds."}
+{"type":"save","tick":210001,"wallTimeMs":1792865680111,"count":5}
+{"type":"status","tick":210001,"wallTimeMs":1792865680111,"text":"Autosaved."}
+{"type":"chronicle","tick":210352,"wallTimeMs":1792865687133,"kind":"WorldEvent","text":"Hank Wood\u0027s claim to lead Castleport came to nothing, and Judy Evans kept well out of it."}
+{"type":"status","tick":210530,"wallTimeMs":1792865690699,"text":"Gathered 7 stone from rock (\u002B2 from your pickaxe), 14 uses left."}
+{"type":"chronicle","tick":210650,"wallTimeMs":1792865693113,"kind":"StallBuilt","text":"Judy Evans built a market stall in Greenport."}
+{"type":"chronicle","tick":210750,"wallTimeMs":1792865695111,"kind":"NationRelationChange","text":"Castleport and Yellowham have become rivals over their border."}
+{"type":"status","tick":210790,"wallTimeMs":1792865695921,"text":"Gathered 7 stone from rock (\u002B2 from your pickaxe), 13 uses left."}
+{"type":"chronicle","tick":211002,"wallTimeMs":1792865700186,"kind":"NationRelationChange","text":"Newwood and Newport have become rivals over their border."}
+{"type":"status","tick":211053,"wallTimeMs":1792865701212,"text":"Gathered 7 stone from rock (\u002B2 from your pickaxe), 12 uses left."}
+{"type":"chronicle","tick":211251,"wallTimeMs":1792865705698,"kind":"NationCreation","text":"Alice Roberts declared the nation of Villageton, though none had yet sworn to it."}
+{"type":"status","tick":211291,"wallTimeMs":1792865706612,"text":"Gathered 7 wood and 2 apples from tree (\u002B3 from your axe), 7 uses left."}
+{"type":"chronicle","tick":211403,"wallTimeMs":1792865709324,"kind":"StallBuilt","text":"Hank Williams built a market stall in Newport."}
+{"type":"chronicle","tick":211501,"wallTimeMs":1792865711297,"kind":"StallBuilt","text":"Trade came to Yellowham: Wendy White built a stall."}
+{"type":"chronicle","tick":211501,"wallTimeMs":1792865711297,"kind":"NationCreation","text":"Jasmine Lewis declared the nation of Northernham, though none had yet sworn to it."}
+{"type":"status","tick":211516,"wallTimeMs":1792865711605,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 6 uses left."}
+{"type":"status","tick":211559,"wallTimeMs":1792865712622,"text":"Welcome home!"}
+{"type":"status","tick":211563,"wallTimeMs":1792865712733,"text":"You are back on your own land."}
+{"type":"status","tick":211667,"wallTimeMs":1792865715578,"text":"Entered settlement."}
+{"type":"chronicle","tick":211751,"wallTimeMs":1792865718012,"kind":"SettlementFounded","text":"Alice Roberts raised the first settlement of Villageton."}
+{"type":"chronicle","tick":211751,"wallTimeMs":1792865718012,"kind":"NationRelationChange","text":"Castleport and Newport have become rivals over their border."}
+{"type":"status","tick":211943,"wallTimeMs":1792865723014,"text":"You fed 5 residents in the Town of Fortton."}
+{"type":"chronicle","tick":212003,"wallTimeMs":1792865724595,"kind":"SettlementFounded","text":"Jasmine Lewis raised the first settlement of Northernham."}
+{"type":"status","tick":212211,"wallTimeMs":1792865730089,"text":"Click again to confirm: Build House."}
+{"type":"status","tick":212291,"wallTimeMs":1792865732238,"text":"House built."}
+{"type":"status","tick":212551,"wallTimeMs":1792865739698,"text":"Exited settlement."}
+{"type":"chronicle","tick":212751,"wallTimeMs":1792865745143,"kind":"NationRelationChange","text":"Redfield and Bigfield have become rivals over their border."}
+{"type":"chronicle","tick":213253,"wallTimeMs":1792865755665,"kind":"NationRelationChange","text":"Castleport and Yellowham are now hostile."}
+{"type":"status","tick":213281,"wallTimeMs":1792865756255,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":213293,"wallTimeMs":1792865756500,"text":"You enter the land of Newwood (Rival)."}
+{"type":"status","tick":213416,"wallTimeMs":1792865759023,"text":"Gathered 7 wood and 1 apple from tree (\u002B3 from your axe), 5 uses left."}
+{"type":"chronicle","tick":213501,"wallTimeMs":1792865760720,"kind":"StallBuilt","text":"Jasmine Lewis built a market stall in Northernham."}
+{"type":"chronicle","tick":213501,"wallTimeMs":1792865760720,"kind":"NationRelationChange","text":"Newwood and Newport are now hostile."}
+{"type":"status","tick":214000,"wallTimeMs":1792865771044,"text":"Newport shares an enemy with you: relations are now Friendly (\u002B21)."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792865771044,"kind":"NationRelationChange","text":"Relations between Fortton and Newport are now friendly against a common enemy."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792865771044,"kind":"NationRelationChange","text":"Newwood and Villageton have become rivals over their border."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792865771044,"kind":"NationRaid","text":"Raiders from Castleport struck Yellowham, taking 5 coins, 2 stone."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792865771044,"kind":"NationRaid","text":"Raiders from Newwood struck Newport, taking 2 coins, 5 wood, 5 stone."}
+{"type":"status","tick":214160,"wallTimeMs":1792865774405,"text":"You leave the land of Newwood for the wilds."}
+{"type":"chronicle","tick":214252,"wallTimeMs":1792865776295,"kind":"NationRelationChange","text":"Castleport and Northernham have become rivals over their border."}
+{"type":"chronicle","tick":214252,"wallTimeMs":1792865776295,"kind":"NationRelationChange","text":"Newwood and Northernham have become rivals over their border."}
+{"type":"chronicle","tick":214503,"wallTimeMs":1792865781611,"kind":"StallBuilt","text":"Judy Evans built a market stall in Greenport."}
+{"type":"status","tick":214611,"wallTimeMs":1792865783879,"text":"You enter the land of Northernshire (Rival)."}
+{"type":"chronicle","tick":214851,"wallTimeMs":1792865788857,"kind":"StallBuilt","text":"Jasmine Lewis built a market stall in Northernham."}
+{"type":"status","tick":215108,"wallTimeMs":1792865794651,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 4 uses left."}
+{"type":"status","tick":215490,"wallTimeMs":1792865802473,"text":"You leave the land of Northernshire for the wilds."}
+{"type":"status","tick":215611,"wallTimeMs":1792865804902,"text":"Gathered 9 wood and 2 apples from tree (\u002B3 from your axe), 3 uses left."}
+{"type":"chronicle","tick":215702,"wallTimeMs":1792865806716,"kind":"StallBuilt","text":"Jasmine Lewis built a market stall in Northernham."}
+{"type":"status","tick":215752,"wallTimeMs":1792865807740,"text":"Yellowham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":215752,"wallTimeMs":1792865807740,"kind":"NationRelationChange","text":"Relations between Fortton and Yellowham are now friendly against a common enemy."}
+{"type":"status","tick":215801,"wallTimeMs":1792865808711,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 2 uses left."}
+{"type":"status","tick":215848,"wallTimeMs":1792865809651,"text":"Welcome home!"}
+{"type":"status","tick":215852,"wallTimeMs":1792865809754,"text":"You are back on your own land."}
+{"type":"status","tick":215956,"wallTimeMs":1792865812516,"text":"Entered settlement."}
+{"type":"save","tick":216000,"wallTimeMs":1792865813776,"count":6}
+{"type":"status","tick":216000,"wallTimeMs":1792865813776,"text":"Autosaved."}
+{"type":"chronicle","tick":216000,"wallTimeMs":1792865813776,"kind":"Caravan","text":"Castleport sent a caravan of 20 stone from the Camp of Castleport to the Town of Fortton."}
+{"type":"status","tick":216216,"wallTimeMs":1792865819546,"text":"You fed 10 residents in the Town of Fortton."}
+{"type":"status","tick":216252,"wallTimeMs":1792865820510,"text":"Newport has fallen and been disbanded."}
+{"type":"chronicle","tick":216252,"wallTimeMs":1792865820510,"kind":"SettlementCapture","text":"After a siege, a village of Newport fell to Newwood."}
+{"type":"chronicle","tick":216252,"wallTimeMs":1792865820510,"kind":"NationDisband","text":"Newport is no more; it never raised so much as a hut."}
+{"type":"status","tick":216504,"wallTimeMs":1792865827636,"text":"Exited settlement."}
+{"type":"chronicle","tick":216552,"wallTimeMs":1792865828893,"kind":"StallBuilt","text":"A new stall opened in the market of Northernham, built by Jasmine Lewis."}
+{"type":"status","tick":216753,"wallTimeMs":1792865833694,"text":"Northernham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":216753,"wallTimeMs":1792865833694,"kind":"NationRelationChange","text":"Relations between Fortton and Northernham are now friendly against a common enemy."}
+{"type":"status","tick":216857,"wallTimeMs":1792865835769,"text":"Gathered 8 wood and 1 apple from tree (\u002B3 from your axe), 1 uses left."}
+{"type":"status","tick":217222,"wallTimeMs":1792865843100,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":217270,"wallTimeMs":1792865844064,"text":"You enter the land of Newwood (Rival)."}
+{"type":"status","tick":217338,"wallTimeMs":1792865845491,"text":"Gathered 9 wood and 1 apple from tree (\u002B3 from your axe). Your axe wore out!"}
+{"type":"chronicle","tick":217502,"wallTimeMs":1792865848805,"kind":"NationRelationChange","text":"Newwood and Greenport have formed an alliance."}
+{"type":"chronicle","tick":217502,"wallTimeMs":1792865848805,"kind":"NationRelationChange","text":"Northernshire and Greenport swore an alliance."}
+{"type":"chronicle","tick":217502,"wallTimeMs":1792865848805,"kind":"NationRelationChange","text":"Bigfield and Greenport swore an alliance."}
+{"type":"chronicle","tick":217502,"wallTimeMs":1792865848805,"kind":"Caravan","text":"Bigfield sent a caravan of 20 stone from the Town of Bigfield to the Town of Fortton."}
+{"type":"chronicle","tick":217550,"wallTimeMs":1792865849826,"kind":"NationJoin","text":"Nancy Wilson threw in their lot with Fortton."}
+{"type":"chronicle","tick":217601,"wallTimeMs":1792865850898,"kind":"Caravan","text":"A caravan from Castleport sold 20 stone at the Town of Fortton for 60 coins."}
+{"type":"status","tick":217673,"wallTimeMs":1792865852413,"text":"You leave the land of Newwood for the wilds."}
+{"type":"chronicle","tick":217751,"wallTimeMs":1792865854055,"kind":"NationCreation","text":"Tina Davies founded the nation of Littleburg."}
+{"type":"chronicle","tick":217751,"wallTimeMs":1792865854055,"kind":"NationRelationChange","text":"Redfield and Bigfield are now hostile."}
+{"type":"status","tick":217759,"wallTimeMs":1792865854243,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":218002,"wallTimeMs":1792865859158,"kind":"NationRaid","text":"Raiders from Redfield struck Bigfield, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":218153,"wallTimeMs":1792865862182,"kind":"StallBuilt","text":"A new stall opened in the market of Greenport, built by Judy Evans."}
+{"type":"chronicle","tick":218200,"wallTimeMs":1792865863135,"kind":"SettlementFounded","text":"Tina Davies raised the first settlement of Littleburg."}
+{"type":"status","tick":218529,"wallTimeMs":1792865869748,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":218577,"wallTimeMs":1792865870722,"text":"Welcome home!"}
+{"type":"status","tick":218581,"wallTimeMs":1792865870851,"text":"You are back on your own land."}
+{"type":"status","tick":218681,"wallTimeMs":1792865873474,"text":"Entered settlement."}
+{"type":"chronicle","tick":218753,"wallTimeMs":1792865875311,"kind":"StallBuilt","text":"A new stall opened in the market of Northernham, built by Jasmine Lewis."}
+{"type":"status","tick":218977,"wallTimeMs":1792865881289,"text":"You fed 6 residents in the Town of Fortton."}
+{"type":"status","tick":219001,"wallTimeMs":1792865881923,"text":"Villageton shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":219001,"wallTimeMs":1792865881923,"kind":"NationRelationChange","text":"Relations between Fortton and Villageton are now friendly against a common enemy."}
+{"type":"status","tick":219065,"wallTimeMs":1792865883648,"text":"Exited settlement."}
+{"type":"chronicle","tick":219253,"wallTimeMs":1792865889353,"kind":"NationRelationChange","text":"Newwood and Northernham are now hostile."}
+{"type":"chronicle","tick":219529,"wallTimeMs":1792865896185,"kind":"Caravan","text":"A caravan from Bigfield sold 20 stone at the Town of Fortton for 60 coins."}
+{"type":"chronicle","tick":219653,"wallTimeMs":1792865899200,"kind":"StallBuilt","text":"Jasmine Lewis built a market stall in Northernham."}
+{"type":"status","tick":219741,"wallTimeMs":1792865901179,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":220001,"wallTimeMs":1792865907168,"kind":"NationRaid","text":"Newwood raided Northernham and carried off 5 coins."}
+{"type":"status","tick":220153,"wallTimeMs":1792865911240,"text":"You leave the land of Fortton for the wilds."}
+{"type":"chronicle","tick":220401,"wallTimeMs":1792865918950,"kind":"StallBuilt","text":"Jasmine Lewis built a market stall in Northernham."}
+{"type":"chronicle","tick":220501,"wallTimeMs":1792865922084,"kind":"NationRelationChange","text":"Northernshire and Littleburg have become rivals over their border."}
+{"type":"chronicle","tick":220501,"wallTimeMs":1792865922084,"kind":"NationRelationChange","text":"Bigfield and Littleburg have become rivals over their border."}
+{"type":"status","tick":220637,"wallTimeMs":1792865925359,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":221531,"wallTimeMs":1792865943515,"text":"You enter the land of Castleport (Rival)."}
+{"type":"status","tick":221939,"wallTimeMs":1792865952240,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"save","tick":222003,"wallTimeMs":1792865953631,"count":7}
+{"type":"status","tick":222003,"wallTimeMs":1792865953631,"text":"Autosaved."}
+{"type":"chronicle","tick":222003,"wallTimeMs":1792865953631,"kind":"SettlementCapture","text":"Newwood captured a village from Northernham."}
+{"type":"chronicle","tick":222003,"wallTimeMs":1792865953631,"kind":"NationDisband","text":"Northernham faded from memory before it ever built a home."}
+{"type":"status","tick":222301,"wallTimeMs":1792865959688,"text":"You leave the land of Castleport for the wilds."}
+{"type":"status","tick":222409,"wallTimeMs":1792865962069,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":222453,"wallTimeMs":1792865963030,"text":"You are back on your own land."}
+{"type":"chronicle","tick":222501,"wallTimeMs":1792865964351,"kind":"StallBuilt","text":"Trade came to Castleport: Ursula Williams built a stall."}
+{"type":"status","tick":222557,"wallTimeMs":1792865965897,"text":"Entered settlement."}
+{"type":"status","tick":222957,"wallTimeMs":1792865977177,"text":"You fed 10 residents in the Town of Fortton."}
+{"type":"status","tick":223001,"wallTimeMs":1792865978965,"text":"Littleburg shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":223001,"wallTimeMs":1792865978965,"kind":"NationRelationChange","text":"Relations between Fortton and Littleburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":223001,"wallTimeMs":1792865978965,"kind":"NationRaid","text":"Raiders from Bigfield struck Redfield, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":223013,"wallTimeMs":1792865979388,"text":"Exited settlement."}
+{"type":"status","tick":223453,"wallTimeMs":1792865992183,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":223501,"wallTimeMs":1792865993201,"text":"You enter the land of Redfield (Rival)."}
+{"type":"status","tick":223601,"wallTimeMs":1792865995420,"text":"Grace Lewis has died."}
+{"type":"chronicle","tick":223601,"wallTimeMs":1792865995420,"kind":"PawnDeath","text":"Grace Lewis of Castleport was found starved within the walls."}
+{"type":"pawn_death","tick":223601,"wallTimeMs":1792865995420,"count":1,"total":1}
+{"type":"status","tick":223653,"wallTimeMs":1792865996606,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":223797,"wallTimeMs":1792865999741,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":224000,"wallTimeMs":1792866003976,"kind":"NationRelationChange","text":"Newwood and Villageton are now hostile."}
+{"type":"chronicle","tick":224000,"wallTimeMs":1792866003976,"kind":"NationRelationChange","text":"Relations between Villageton and Newwood are now rival."}
+{"type":"status","tick":224133,"wallTimeMs":1792866006740,"text":"You leave the land of Redfield for the wilds."}
+{"type":"status","tick":224454,"wallTimeMs":1792866013268,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":225202,"wallTimeMs":1792866029383,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":225250,"wallTimeMs":1792866030422,"text":"You are back on your own land."}
+{"type":"chronicle","tick":225302,"wallTimeMs":1792866032064,"kind":"WorldEvent","text":"Bandits camped outside the Camp of Greenport; Judy Evans paid them 30 coins to go away."}
+{"type":"status","tick":225334,"wallTimeMs":1792866033127,"text":"Entered settlement."}
+{"type":"chronicle","tick":225502,"wallTimeMs":1792866038566,"kind":"NationRelationChange","text":"Northernshire and Littleburg are now hostile."}
+{"type":"chronicle","tick":225502,"wallTimeMs":1792866038566,"kind":"NationRelationChange","text":"Bigfield and Littleburg are now hostile."}
+{"type":"status","tick":225618,"wallTimeMs":1792866042452,"text":"You fed 9 residents in the Town of Fortton."}
+{"type":"status","tick":225686,"wallTimeMs":1792866044759,"text":"Exited settlement."}
+{"type":"status","tick":225969,"wallTimeMs":1792866052934,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":226000,"wallTimeMs":1792866053564,"kind":"NationRaid","text":"Raiders from Northernshire struck Littleburg, taking 2 wood."}
+{"type":"chronicle","tick":226352,"wallTimeMs":1792866060884,"kind":"NationCreation","text":"Yvonne Davies founded the nation of Cityfield."}
+{"type":"chronicle","tick":226553,"wallTimeMs":1792866065046,"kind":"NationJoin","text":"Eve Taylor swore fealty to Fortton."}
+{"type":"chronicle","tick":226603,"wallTimeMs":1792866066051,"kind":"SettlementFounded","text":"Yvonne Davies raised the first settlement of Cityfield."}
+{"type":"status","tick":226745,"wallTimeMs":1792866069111,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":227002,"wallTimeMs":1792866074415,"kind":"NationRelationChange","text":"Newwood and Yellowham have become rivals over their border."}
+{"type":"status","tick":227182,"wallTimeMs":1792866078307,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":227270,"wallTimeMs":1792866080253,"text":"You enter the land of Redfield (Rival)."}
+{"type":"status","tick":227498,"wallTimeMs":1792866085108,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":227934,"wallTimeMs":1792866095028,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":227966,"wallTimeMs":1792866095942,"text":"Welcome home!"}
+{"type":"status","tick":227970,"wallTimeMs":1792866096066,"text":"You are back on your own land."}
+{"type":"save","tick":228002,"wallTimeMs":1792866097152,"count":8}
+{"type":"status","tick":228002,"wallTimeMs":1792866097152,"text":"Autosaved."}
+{"type":"chronicle","tick":228002,"wallTimeMs":1792866097152,"kind":"NationRelationChange","text":"Newwood and Villageton are now hostile over their border."}
+{"type":"chronicle","tick":228002,"wallTimeMs":1792866097152,"kind":"NationRaid","text":"Newwood raided Villageton and carried off 5 wood, 5 stone."}
+{"type":"status","tick":228046,"wallTimeMs":1792866098569,"text":"Entered settlement."}
+{"type":"status","tick":228130,"wallTimeMs":1792866101207,"text":"Stan Taylor has died."}
+{"type":"chronicle","tick":228130,"wallTimeMs":1792866101207,"kind":"PawnDeath","text":"Hunger claimed Stan Taylor of Newwood within the walls."}
+{"type":"pawn_death","tick":228130,"wallTimeMs":1792866101207,"count":1,"total":2}
+{"type":"status","tick":228250,"wallTimeMs":1792866104855,"text":"Littleburg has fallen and been disbanded."}
+{"type":"chronicle","tick":228250,"wallTimeMs":1792866104855,"kind":"SettlementCapture","text":"Bigfield captured a village from Littleburg."}
+{"type":"chronicle","tick":228250,"wallTimeMs":1792866104855,"kind":"NationDisband","text":"Littleburg faded from memory before it ever built a home."}
+{"type":"status","tick":228434,"wallTimeMs":1792866110684,"text":"You fed 8 residents in the Town of Fortton."}
+{"type":"status","tick":228774,"wallTimeMs":1792866121342,"text":"You fed 2 residents in the Town of Fortton."}
+{"type":"status","tick":228862,"wallTimeMs":1792866124112,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}
+{"type":"status","tick":228930,"wallTimeMs":1792866126262,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era."}
+{"type":"chronicle","tick":229002,"wallTimeMs":1792866128498,"kind":"NationRelationChange","text":"Redfield and Cityfield have become rivals over their border."}
+{"type":"chronicle","tick":229002,"wallTimeMs":1792866128498,"kind":"NationRelationChange","text":"Greenport and Cityfield have become rivals over their border."}
+{"type":"status","tick":229138,"wallTimeMs":1792866132921,"text":"Exited settlement."}
+{"type":"status","tick":229562,"wallTimeMs":1792866142999,"text":"Gathered 9 wood and 3 apples from tree (\u002B3 from your axe), 19 uses left."}
+{"type":"status","tick":230090,"wallTimeMs":1792866154256,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 18 uses left."}
+{"type":"status","tick":230445,"wallTimeMs":1792866161790,"text":"Victor Johnson has died."}
+{"type":"chronicle","tick":230445,"wallTimeMs":1792866161790,"kind":"PawnDeath","text":"Victor Johnson of Newwood starved within the walls."}
+{"type":"pawn_death","tick":230445,"wallTimeMs":1792866161790,"count":1,"total":3}
+{"type":"status","tick":230473,"wallTimeMs":1792866162405,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 17 uses left."}
+{"type":"status","tick":230643,"wallTimeMs":1792866165907,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":230651,"wallTimeMs":1792866166082,"text":"You enter the land of Redfield (Rival)."}
+{"type":"status","tick":230753,"wallTimeMs":1792866168191,"text":"Villageton has fallen and been disbanded."}
+{"type":"chronicle","tick":230753,"wallTimeMs":1792866168191,"kind":"SettlementCapture","text":"After a siege, a village of Villageton fell to Newwood."}
+{"type":"chronicle","tick":230753,"wallTimeMs":1792866168191,"kind":"NationDisband","text":"Villageton faded from memory before it ever built a home."}
+{"type":"status","tick":230769,"wallTimeMs":1792866168584,"text":"Gathered 7 wood and 3 apples from tree (\u002B3 from your axe), 16 uses left."}
+{"type":"status","tick":230952,"wallTimeMs":1792866172339,"text":"You leave the land of Redfield for the wilds."}
+{"type":"chronicle","tick":230952,"wallTimeMs":1792866172339,"kind":"StallBuilt","text":"A new stall opened in the market of Newwood, built by Zach Lewis."}
+{"type":"status","tick":231001,"wallTimeMs":1792866173332,"text":"Spring has come. Saplings grow, chickens hatch."}
+{"type":"chronicle","tick":231001,"wallTimeMs":1792866173332,"kind":"NationRaid","text":"Castleport raided Yellowham and carried off 2 coins."}
+{"type":"chronicle","tick":231001,"wallTimeMs":1792866173332,"kind":"NationRaid","text":"Raiders from Bigfield struck Redfield, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":231107,"wallTimeMs":1792866175457,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 15 uses left."}
+{"type":"status","tick":231155,"wallTimeMs":1792866176422,"text":"Welcome home!"}
+{"type":"status","tick":231163,"wallTimeMs":1792866176659,"text":"You are back on your own land."}
+{"type":"status","tick":231259,"wallTimeMs":1792866179502,"text":"Entered settlement."}
+{"type":"status","tick":231503,"wallTimeMs":1792866187073,"text":"Cityfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":231503,"wallTimeMs":1792866187073,"kind":"NationRelationChange","text":"Relations between Fortton and Cityfield are now friendly against a common enemy."}
+{"type":"status","tick":231723,"wallTimeMs":1792866194089,"text":"You fed 1 resident in the Town of Fortton."}
+{"type":"chronicle","tick":231751,"wallTimeMs":1792866194955,"kind":"StallBuilt","text":"Victor Thompson built a market stall in Newwood."}
+{"type":"chronicle","tick":231803,"wallTimeMs":1792866196656,"kind":"StallBuilt","text":"A new stall opened in the market of Newwood, built by Victor Thompson."}
+{"type":"chronicle","tick":232003,"wallTimeMs":1792866203050,"kind":"NationRelationChange","text":"Newwood and Yellowham are now hostile."}
+{"type":"status","tick":232007,"wallTimeMs":1792866203170,"text":"You sold resources to Lily Roberts. Relationship increased to 1."}
+{"type":"objective_completed","tick":232051,"wallTimeMs":1792866204490,"number":8,"id":"sell-resources","title":"Sell resources at market","ticksTaken":32499}
+{"type":"status","tick":232051,"wallTimeMs":1792866204490,"text":"Objective complete: Sell resources at market. \u002B50 coins."}
+{"type":"status","tick":232431,"wallTimeMs":1792866216171,"text":"Exited settlement."}
+{"type":"chronicle","tick":232603,"wallTimeMs":1792866221240,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowham, built by Wendy White."}
+{"type":"status","tick":232739,"wallTimeMs":1792866224625,"text":"Gathered 9 wood and 3 apples from tree (\u002B3 from your axe), 14 uses left."}
+{"type":"status","tick":233295,"wallTimeMs":1792866236067,"text":"Gathered 7 wood and 1 apple from tree (\u002B3 from your axe), 13 uses left."}
+{"type":"status","tick":233431,"wallTimeMs":1792866238797,"text":"You leave the land of Fortton for the wilds."}
+{"type":"status","tick":233508,"wallTimeMs":1792866240329,"text":"Gathered 8 wood and 1 apple from tree (\u002B3 from your axe), 12 uses left."}
+{"type":"chronicle","tick":233750,"wallTimeMs":1792866245185,"kind":"StallBuilt","text":"A new stall opened in the market of Newwood, built by Una Wood."}
+{"type":"status","tick":233771,"wallTimeMs":1792866245591,"text":"You enter the land of Newwood (Rival)."}
+{"type":"status","tick":233930,"wallTimeMs":1792866248821,"text":"Gathered 9 wood and 2 apples from tree (\u002B3 from your axe), 11 uses left."}
+{"type":"save","tick":234002,"wallTimeMs":1792866250335,"count":9}
+{"type":"status","tick":234002,"wallTimeMs":1792866250335,"text":"Autosaved."}
+{"type":"chronicle","tick":234002,"wallTimeMs":1792866250335,"kind":"NationRelationChange","text":"Redfield and Cityfield are now hostile."}
+{"type":"chronicle","tick":234002,"wallTimeMs":1792866250335,"kind":"NationRelationChange","text":"Greenport and Cityfield are now hostile."}
+{"type":"chronicle","tick":234002,"wallTimeMs":1792866250335,"kind":"NationRaid","text":"Redfield raided Cityfield and carried off 3 wood, 5 stone."}
+{"type":"chronicle","tick":234002,"wallTimeMs":1792866250335,"kind":"NationRaid","text":"Greenport raided Cityfield and carried off 5 stone."}
+{"type":"chronicle","tick":234002,"wallTimeMs":1792866250335,"kind":"PawnSpawn","text":"Frank Roberts was born in Fortton."}
+{"type":"status","tick":234200,"wallTimeMs":1792866254306,"text":"You leave the land of Newwood for the wilds."}
+{"type":"status","tick":234330,"wallTimeMs":1792866256897,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 10 uses left."}
+{"type":"status","tick":234377,"wallTimeMs":1792866257845,"text":"Welcome home!"}
+{"type":"status","tick":234381,"wallTimeMs":1792866257974,"text":"You are back on your own land."}
+{"type":"status","tick":234473,"wallTimeMs":1792866260698,"text":"Entered settlement."}
+{"type":"world_event_offered","tick":234501,"wallTimeMs":1792866261600,"title":"Wanderers at the gate","body":"3 wanderers have come to the gates of the Town of Fortton, footsore and hungry. They ask to join Fortton.","options":["Welcome them all (6 food)","Take in only the strongest","Turn them away"]}
+{"type":"status","tick":234501,"wallTimeMs":1792866269763,"text":"Wanderers came to the Town of Fortton, and you welcomed them all: Tina Wilson, Lily Walker, Xavier Walker joined Fortton."}
+{"type":"chronicle","tick":234501,"wallTimeMs":1792866269763,"kind":"NationJoin","text":"Tina Wilson joined Fortton."}
+{"type":"chronicle","tick":234501,"wallTimeMs":1792866269763,"kind":"NationJoin","text":"Lily Walker swore fealty to Fortton."}
+{"type":"chronicle","tick":234501,"wallTimeMs":1792866269763,"kind":"NationJoin","text":"Xavier Walker swore fealty to Fortton."}
+{"type":"chronicle","tick":234501,"wallTimeMs":1792866269763,"kind":"WorldEvent","text":"Wanderers came to the Town of Fortton, and you welcomed them all: Tina Wilson, Lily Walker, Xavier Walker joined Fortton."}
+{"type":"world_event_resolved","tick":234501,"wallTimeMs":1792866269763,"title":"Wanderers at the gate","status":"Wanderers came to the Town of Fortton, and you welcomed them all: Tina Wilson, Lily Walker, Xavier Walker joined Fortton."}
+{"type":"status","tick":235101,"wallTimeMs":1792866286793,"text":"You fed 2 residents in the Town of Fortton."}
+{"type":"screen","tick":235181,"wallTimeMs":1792866289050,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":235181,"wallTimeMs":1792866294913,"count":10}
+{"type":"status","tick":235181,"wallTimeMs":1792866294913,"text":"Game saved."}

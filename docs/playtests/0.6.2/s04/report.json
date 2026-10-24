@@ -1,0 +1,121 @@
+{
+  "session": "s04",
+  "goal": "Play the first 20 minutes as a new player and watch the AI nations grow (#402): follow the objectives, and keep an eye on the chronicle and the Nations screen (O) for computer-run nations founding settlements. Note any pawns that seem stuck in place in the wilds, any nation that never founds, and anything confusing in the first minutes.",
+  "build": {"version": "0.6.1", "commit": "6ac1e3f"},
+  "seed": 1,
+  "durationSec": 992,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Chronicle says captured nations 'never raised so much as a hut' although they founded settlements",
+      "detail": "Farmton founded its settlement at tick 9053 and built stalls; at tick 19253 the chronicle reads 'After a siege, a village of Farmton fell to Bluetown.' then 'Farmton is no more; it never raised so much as a hut.' Same for Oldfield (founded 8501), Smallham (9353), Upperburg (9253) and Westville ('faded from memory before it ever built a home'). The never-founded epitaph looks chosen by settlement count at disband time (0 after the capture) instead of whether the nation ever founded. Expected an epitaph about falling to a siege.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 1; play normally ~20000 ticks; press Y for full chronicle and scroll to Day 1 night",
+      "screenshot": "shots/epitaph_full.png",
+      "tick": 19501
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Tutorial objective 'Build a market stall' is completed by an AI member, player never presses B",
+      "detail": "Objective 6 asks to gather 20 wood + 5 stone and press B in the settlement. While I was out chopping (4 wood), Eve Smith, who had auto-joined my nation, built a stall at tick 5301 and the objective completed with +50 coins. The player never learns B and gets no explanation of who did it. Expected the objective to require the player's own stall, or the toast to credit Eve Smith.",
+      "repro": "seed 1; create nation (N), found settlement (F), enter (E), exit and go chop trees; within ~250 ticks the objective completes on its own",
+      "screenshot": "shots/stall_by_npc.png",
+      "tick": 5301
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Found-settlement refusal gives compass directions but the HUD has no compass",
+      "detail": "Pressing F inside another nation's land says 'Open ground lies about 190 to the west' (later '180 to the north'). Nothing on screen shows which way west or north is, no compass, minimap or heading. I walked the wrong way into Eastburg's land and had to read the source to learn north = +Z. Expected a compass strip or a relative direction ('behind you, to the left').",
+      "repro": "seed 1; walk to (-178,-93) in Southshire land; press N then F with 50 wood",
+      "screenshot": "shots/no_compass.png",
+      "tick": 4589
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'The settlement is now a Village!' but 'Reach the Village era' stays incomplete",
+      "detail": "Building the house (2 buildings) shows 'House built. The settlement is now a Village!' and Settlement Info says Tier: Village, but objective 7 'Reach the Village era' stays open (Members 5/10) and the era badge still says Camp; the objective text says 'Village 0/1' while the era bar says 'Village: 2/4'. Three different 'Village' counters confuse a new player into thinking they finished.",
+      "repro": "seed 1; reach objective 7, build Farm then House with K inside the settlement",
+      "screenshot": "shots/village_confusion.png",
+      "tick": 15909
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "AI nations flood the world: 38 nations in 5 game minutes, chronicle drowned in rivalry lines",
+      "detail": "Nation creation: 12 in the first minute, 10 in the second, 14 in the third, 2 in the fourth (38 total by tick ~16000); every AI nation founded a settlement within 1-30 game seconds (good for #402, none failed to found). But the full chronicle had 133 entries by Day 1 afternoon and 495 by Day 2, most 'X and Y have become rivals over their border' and raid lines; the 5-line recent panel turns over every few seconds so the player's own news and foundings scroll away. By tick ~19500 eight nations had already been disbanded by sieges.",
+      "repro": "seed 1; play ~8000 ticks; press Y for full chronicle",
+      "screenshot": "shots/chronicle_spam.png",
+      "tick": 8229
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Relations with other nations rise to Friendly +100 without the player doing anything",
+      "detail": "By tick ~24000 Oldshire was Friendly (+100) and Redford +69 purely from 'shares an enemy with you' events; I never traded, gifted or talked with them. An alliance needs only +30, so diplomacy happens to the player rather than by them.",
+      "repro": "seed 1; found a settlement and play ~24000 ticks; press O and page down",
+      "screenshot": "shots/relations_drift.png",
+      "tick": 24278
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Nations screen (O) shows only 4 nations per page with inconsistent paging",
+      "detail": "With 21-29 nations the list shows 4 rows per page; Down moves by 3 or 2 rows (1-4, 4-7, 7-10, 9-12) so rows repeat, a click sometimes does not register, and the header says 'Scroll for more' even on the last page. Early on (no nation) rows have no relation or neighbour marker although the header says 'neighbours and enemies first'. Paging through 29 nations takes ~8 clicks.",
+      "repro": "seed 1; press O; click Down repeatedly",
+      "screenshot": "shots/nations_list.png",
+      "tick": 2185
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress bar text clipped: 'nbers 5/10' instead of 'Members 5/10'",
+      "detail": "The progress text is right-aligned and wider than the bar, so the start of 'Members' is cut off. Same screen: Inventory Info panel jumps to the middle of the screen over the well after entering the settlement.",
+      "repro": "seed 1; reach objective 7 and build one building",
+      "screenshot": "shots/objective_bar_clip.png",
+      "tick": 7857
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement floating label renders huge and cut off by the top of the screen",
+      "detail": "Standing at your own settlement, the label ('Camp of Westernshire / 4 here, 5/8 residents') is drawn in giant letters, clipped at the top edge and behind the chronicle panel, so the name cannot be read.",
+      "repro": "seed 1; found a settlement and stand next to the well in third person",
+      "screenshot": "shots/label_clip.png",
+      "tick": 5001
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "E at a settlement enters it instead of talking to the pawn you walked up to; own members shown as 'Stranger'",
+      "detail": "Pawns idle around the well, so walking up to one and pressing E enters the settlement. The 'Talk to Mike Johnson' button inside did not respond on my click. Members of my own nation are labelled '(Stranger)' (Eve Smith, Mike Johnson).",
+      "repro": "seed 1; after founding, pt walkto pawn near home; press e",
+      "screenshot": "shots/talk2.png",
+      "tick": 17729
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 19.06,
+      "Eat something": 20.02,
+      "Create or join a nation": 44.02,
+      "Found a settlement": 97.06,
+      "Enter your settlement": 101.06,
+      "Build a market stall": 106.02
+    },
+    "aiNationsCreated": 37,
+    "aiNationsNeverFounded": 0,
+    "aiNationsDisbandedByTick24000": 8,
+    "nationsAliveAtEnd": 29,
+    "stuckPawnsObserved": 0,
+    "finalTick": 24278,
+    "chronicleEntriesAtEnd": 495
+  },
+  "fun": 3,
+  "verdict": "#402 works: all 37 AI nations founded a settlement within seconds of declaring, and none of the ~15 pawns I tracked in the wilds were stuck. The problem now is scale. 38 nations in 5 game minutes flood the chronicle with rivalry and raid lines, relations climb to +100 with no action from the player, and sieges kill nations within a game day, with the wrong 'never raised a hut' epitaph. The early objectives move quickly, but an AI member can do the stall step for you, there is no compass for 'go west', and three different 'Village' counters confuse the new player."
+}

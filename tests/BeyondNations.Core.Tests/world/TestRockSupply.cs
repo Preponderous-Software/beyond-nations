@@ -104,6 +104,60 @@ namespace beyondnationstests {
             Assert.Equal(Vector3.Zero, PawnBehaviorExecutor.computeAwayFromSettlements(Vector3.Zero, new List<Entity>()));
         }
 
+        /**
+        * #402: ringed by settlements about 200 apart, every one nearer than the
+        * 250 a new settlement needs, the push away from them all came to rest
+        * in the middle, and the founder stood there until it starved. The
+        * site found is clear of every settlement, and the way to it holds
+        * from step to step.
+        */
+        [Fact]
+        public void testSiteSeeking_FromInsideARing_FindsAClearSiteAndKeepsHeadingThere() {
+            List<Entity> settlements = new List<Entity> { settlementAt(200, 0), settlementAt(-200, 0), settlementAt(0, 200), settlementAt(0, -200) };
+            Vector3 position = new Vector3(0, 1, 0);
+            Vector3? site = PawnBehaviorExecutor.findSettlementSite(position, settlements, 250f);
+            Assert.NotNull(site);
+            foreach (Entity settlement in settlements) {
+                Assert.True(Vector3.Distance(new Vector3(site.Value.X, 1, site.Value.Z), settlement.getPosition()) > 250f);
+            }
+
+            // walk it: every step gets closer to a clear site, and it arrives
+            for (int step = 0; step < 200; step++) {
+                Vector3 toward = PawnBehaviorExecutor.computeTowardSettlementSite(position, settlements, 250f);
+                if (toward == Vector3.Zero) {
+                    break;
+                }
+                position += toward * 5f;
+            }
+            Assert.Equal(position, PawnBehaviorExecutor.findSettlementSite(position, settlements, 250f));
+        }
+
+        /**
+        * #402: a founder about 450 units from a settlement (the reach of its
+        * push) turned round every few ticks as it stepped in and out of that
+        * reach. Heading for a site, it does not turn back.
+        */
+        [Fact]
+        public void testSiteSeeking_AtTheEdgeOfASettlementsReach_DoesNotTurnBack() {
+            List<Entity> settlements = new List<Entity> { settlementAt(0, 0), settlementAt(Territory.NEIGHBOUR_DISTANCE + 200, 0) };
+            Vector3 position = new Vector3(Territory.NEIGHBOUR_DISTANCE + 1, 1, 0);
+            Vector3 first = PawnBehaviorExecutor.computeTowardSettlementSite(position, settlements, 250f);
+            for (int step = 0; step < 20; step++) {
+                Vector3 toward = PawnBehaviorExecutor.computeTowardSettlementSite(position, settlements, 250f);
+                if (toward == Vector3.Zero) {
+                    break;
+                }
+                Assert.True(Vector3.Dot(first, toward) > 0f, "turned back at step " + step);
+                position += toward * 3f;
+            }
+        }
+
+        [Fact]
+        public void testSiteSeeking_AlreadyClear_StaysPut() {
+            List<Entity> settlements = new List<Entity> { settlementAt(0, 0) };
+            Assert.Equal(Vector3.Zero, PawnBehaviorExecutor.computeTowardSettlementSite(new Vector3(400, 1, 0), settlements, 250f));
+        }
+
         private static Settlement settlementAt(float x, float z) {
             return new Settlement(new Vector3(x, 1, z), new NationId(), Rgba.White, "S", new RandomSource(1));
         }

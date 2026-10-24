@@ -94,7 +94,7 @@ namespace beyondnations {
             this.claimRadius = claimRadius;
         }
 
-        /** "Besieged by Xland (2/6)", or null when nobody is laying siege. */
+        /** "Besieged by Xland (2/12)", or null when nobody is laying siege. */
         public string getSiegeText() {
             return siegeText;
         }

@@ -1,0 +1,84 @@
+{
+  "session": "s03",
+  "goal": "Audit the settlement HUD at 960x540 (#350, #397): inside your town with a busy market, check every right-column box fits without overlap (Market names merchants on one line, Player Info says your nation), open the Era box (+) and confirm its detail scrolls instead of covering the command bar, and try Sell Resources carrying only food (chicken or apples). Note anything clipped, overlapping or unclear, with screenshots.",
+  "build": {"version": "0.6.1", "commit": "6ac1e3f"},
+  "seed": 109,
+  "durationSec": 352,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Market Info 'Merchants:' line wraps onto two lines at 960x540",
+      "detail": "Inside Town of Cityfield (6/6 stalls) the Market Info box reads 'Merchants: Ruth Thompson,' then 'Xavier Thomas +4' on a second line. The goal (#350/#397) expects the merchants on one line. No box overlaps: Settlement Info, Market Info, Season and Player Info all fit in the right column, and Player Info shows 'Nation: Cityfield (LEADER)'.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 109 --stage-settlement; space; click Start, Begin; pt walkto settlement; pt key e; pt shot",
+      "screenshot": "shots/market_wrap.png",
+      "tick": 2203
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Sell Resources with only food fails, and the merchant purse that blocks it is never shown",
+      "detail": "With only 2 Chicken Meat, Sell Resources showed 'No merchant here can pay: the richest has 3 coins, and your cheapest good (chicken meat) sells for 31.' The message is clear and fits. But Market Info only shows the pooled total ('6/6 stalls, 6 coins'), so the player cannot tell from the HUD when a sale will work. Purses swung between 5 and 67 coins within a minute. A sale finally went through at tick 6235 (22 coins, one meat per click). Expected: Market Info shows the richest merchant's purse, or something like 'can buy up to N'.",
+      "repro": "(in town) pt walkto chicken; e; pt walkto settlement; e; click Sell Resources (625,476)",
+      "screenshot": "shots/sell_food_broke.png",
+      "tick": 3367
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Sell toast doesn't say what was sold or how many",
+      "detail": "After Purchase Food (1 apple for 5), Sell Resources sold that apple straight back and only said 'You sold resources to Frank Thompson. Relationship increased to 2.' plus a '+5 coins' float. It does not name the good or the quantity, so a player carrying several foods can't tell which one went. It also silently picks the cheapest good.",
+      "repro": "(in town, carrying chicken meat) click Purchase Food (505,476); click Sell Resources (625,476)",
+      "screenshot": "shots/sell_toast_vague.png",
+      "tick": 4931
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Left HUD column jumps as townsfolk walk in and out of range",
+      "detail": "The Inventory Info box moves between y~227 and y~288 as pawn Order/Talk command rows appear and disappear. With the Era detail open it moves into the centre (x 220-420) over the plaza. It never overlapped the command bar in my shots, but the movement is distracting.",
+      "repro": "(in town) wait near the plaza, take shots every 8 s; compare rows1.png and rows3.png",
+      "screenshot": "shots/rows1.png",
+      "tick": 5300
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "World-space 'Town of Cityfield / N here, residents' label is cut off and covered at the top",
+      "detail": "The big floating town label's first line is cut off by the top of the window. Status toasts and the Chronicle box draw over its second line (the residents count), so it is hard to read.",
+      "repro": "(in town) pt shot",
+      "screenshot": "shots/title_overlap.png",
+      "tick": 6443
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Harvested chicken meat vanishes silently (auto-eaten?) on first chicken",
+      "detail": "Pressing E on a chicken at energy 82 showed 'Harvested chicken meat.' but Inventory stayed at Chicken Meat: 0, and energy jumped to 99. Nothing said it was eaten. A later chicken at energy 97 did add meat. Separately, at spawn the probe listed a chicken 0.7 m away, but E said 'No entities within range'.",
+      "repro": "pt start ... --stage-settlement; enter world; pt key e (no entity); pt walkto chicken; pt key e; check Inventory Info",
+      "screenshot": "shots/meat_eaten.png",
+      "tick": 831
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Era (+) detail scrolls correctly and leaves the command bar uncovered (positive)",
+      "detail": "With three command rows showing (Order/Talk/Gift pawn rows), the open Era detail becomes a scroll region with a scrollbar. The mouse wheel scrolls it down to the 'Sheltered until the Town era...' text, and the Objective box stays above the command bar. With no pawn rows it grows to show everything. Works as #397 intends.",
+      "repro": "(in town) pt walkto pawn; click Era + (168,58); pt move 100 200; pt scroll 5",
+      "screenshot": "shots/era_scroll_ok.png",
+      "tick": 3307
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "rightColumnOverlaps": 0,
+    "merchantLineCount": 2,
+    "sellFoodAttemptsBeforeSuccess": 4,
+    "chickenMeatSalePrice": 22
+  },
+  "fun": 3,
+  "verdict": "The right column fits cleanly at 960x540: nothing overlaps, Player Info names the nation, and the Era detail scrolls without covering the command bar, so #397 holds. #350 is only partly met because the Merchants line still wraps to two lines. Selling food is the weak spot: merchants are usually too poor to buy chicken meat, and neither the HUD nor the sale toast says enough (no per-merchant purse, nothing about which good was sold)."
+}
