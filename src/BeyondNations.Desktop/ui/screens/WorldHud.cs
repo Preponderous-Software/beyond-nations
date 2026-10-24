@@ -59,6 +59,7 @@ namespace beyondnations.desktop.ui.screens {
         private string lastStatus;
         // the command bar button waiting for its second click
         private readonly ConfirmGate confirmGate = new ConfirmGate();
+        private readonly ButtonSettle buttonSettle = new ButtonSettle();
         private double lastStatusChangedAt;
         private double clock;
 
@@ -381,11 +382,14 @@ namespace beyondnations.desktop.ui.screens {
                         ImGui.PushStyleColor(ImGuiCol.ButtonHovered, DrasticHoverColour);
                         colours = 2;
                     }
-                    if (!command.isEnabled()) {
+                    // a button that has just appeared or moved waits a moment
+                    // before it takes a click (ButtonSettle)
+                    bool usable = command.isEnabled() && buttonSettle.isSettled(command.getLabel(), rect.X, rect.Y, now);
+                    if (!usable) {
                         ImGui.BeginDisabled();
                     }
                     // the id is the plain label, so arming keeps the same button
-                    if (ImGui.Button(text + "###" + command.getLabel(), new Vector2(rect.Width, rect.Height)) && command.isEnabled()) {
+                    if (ImGui.Button(text + "###" + command.getLabel(), new Vector2(rect.Width, rect.Height)) && usable) {
                         clicked = command;
                     }
                     if (tooltip != null && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
@@ -393,13 +397,14 @@ namespace beyondnations.desktop.ui.screens {
                         ImGui.TextUnformatted(tooltip);
                         ImGui.EndTooltip();
                     }
-                    if (!command.isEnabled()) {
+                    if (!usable) {
                         ImGui.EndDisabled();
                     }
                     if (colours > 0) {
                         ImGui.PopStyleColor(colours);
                     }
                 }
+                buttonSettle.endFrame();
                 // Run the command after the row is laid out, so that a command
                 // which changes what the bar offers cannot invalidate the list
                 // being iterated.
