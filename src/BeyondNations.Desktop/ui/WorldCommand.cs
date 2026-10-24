@@ -19,10 +19,15 @@ namespace beyondnations.desktop.ui {
         Stall,
         /** Crafting and buying tools. */
         Craft,
-        /** The pawn within reach. */
-        People,
         /** Caravans, foreign nations and bandits within reach. */
         Trade,
+        /**
+        * The pawn within reach. Last of the flowing groups: pawns walk in and
+        * out of reach and each brings different buttons and a different
+        * name, so at the end they move nothing else (playtest 0.6.0 s09:
+        * Send Caravan moved between rows as pawn rows came and went).
+        */
+        People,
         /**
         * Hostile or irreversible (raid, denounce, declare war, leave the
         * nation): its own row, and every click is confirmed. A new such

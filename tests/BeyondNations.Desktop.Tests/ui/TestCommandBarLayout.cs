@@ -422,6 +422,32 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void pawnsComingAndGoingMoveNoOtherButton() {
+            List<WorldCommand> withoutPawn = new List<WorldCommand> {
+                command("Enter Settlement", CommandGroup.Place),
+                command("Build Farm (25 wood, 10 stone)", CommandGroup.Build),
+                command("Send Caravan", CommandGroup.Trade),
+                command("Offer Peace to Newham", CommandGroup.Trade),
+                command("Leave Nation", CommandGroup.Drastic).requireConfirm(),
+            };
+            List<WorldCommand> withPawn = new List<WorldCommand>(withoutPawn) {
+                command("Talk to Charlotte Johnson (Friendly, greedy)", CommandGroup.People),
+                command("Order Charlotte Johnson: Gather Wood", CommandGroup.People),
+                command("Appoint Charlotte Johnson Merchant", CommandGroup.People),
+            };
+            CommandBarLayout.Settings settings = settingsFor(960f, 540f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> a = CommandBarLayout.order(withoutPawn);
+            List<WorldCommand> b = CommandBarLayout.order(withPawn);
+            CommandBarLayout.Result before = CommandBarLayout.compute(a, measure, settings);
+            CommandBarLayout.Result after = CommandBarLayout.compute(b, measure, settings);
+            for (int i = 0; i < a.Count; i++) {
+                int j = b.IndexOf(a[i]);
+                Assert.Equal(before.Buttons[i].X, after.Buttons[j].X);
+                Assert.Equal(before.Buttons[i].Y, after.Buttons[j].Y);
+            }
+        }
+
+        [Fact]
         public void theBuildKeyBuildsWhatTheSettlementBoxNames_NotSomethingCheaper() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
             Player player = simulation.getPlayer();
