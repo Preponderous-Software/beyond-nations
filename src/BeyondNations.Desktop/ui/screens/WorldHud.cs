@@ -172,7 +172,10 @@ namespace beyondnations.desktop.ui.screens {
             // inventory below is pushed down rather than drawn over it.
             // The era (Camp to Kingdom) and how near the next one is sit just
             // above it, compact unless tapped open.
-            leftTop = eraBox.draw(simulation, layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
+            // open, the era detail stops short of the tracker's room above the
+            // command bar rather than pushing the tracker over it (#397)
+            float eraMaxBottom = columnBottom - ObjectiveTrackerBox.getLastHeight() - layout.Gap * 2f;
+            leftTop = eraBox.draw(simulation, layout.LeftX, leftTop, layout.BoxWidth, eraMaxBottom) + layout.Gap;
             ObjectiveTrackerBox objectiveTracker = new ObjectiveTrackerBox(simulation);
             leftTop = objectiveTracker.draw(layout.LeftX, leftTop, layout.BoxWidth) + layout.Gap;
             PlayerInfoBox playerBox = new PlayerInfoBox(player, simulation.getNationRepository(), simulation.getEntityRepository());
