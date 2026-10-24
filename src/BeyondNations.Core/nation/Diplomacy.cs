@@ -32,8 +32,8 @@ namespace beyondnations {
     *    the player leads only a nation it is at war with -- and if it is at least
     *    twice as strong (and no mere band: a strength of four or more) and
     *    its own nearest settlement is of at least the
-    *    same tier, it lays siege to that settlement. A siege kept up for six
-    *    rounds in a row (thirty seconds) takes the settlement. Towns, behind
+    *    same tier, it lays siege to that settlement. A siege kept up for
+    *    twelve rounds in a row (a minute) takes the settlement. Towns, behind
     *    their palisades, cannot be besieged, nor can the player's nation
     *    before the Town era or, after it, until the player has had warning
     *    (EraRules.isSheltered, EraRules.SiegeWarningTicks). A nation that loses its last
@@ -67,7 +67,11 @@ namespace beyondnations {
         public const int RAID_EVERY_ROUNDS = 4;
         public const int RAID_COINS = 5;
         public const int RAID_GOODS = 5;
-        public const int SIEGE_ROUNDS_TO_CAPTURE = 6;
+        // 12 rounds, a minute: at 6 (thirty seconds) a besieged player had
+        // barely read the warning before the village fell (playtest 0.6.1 s01,
+        // #396). Saved progress is a plain round count, so a siege in an older
+        // save simply has longer to run.
+        public const int SIEGE_ROUNDS_TO_CAPTURE = 12;
         public const int MIN_SIEGE_STRENGTH = 4;
 
         /**

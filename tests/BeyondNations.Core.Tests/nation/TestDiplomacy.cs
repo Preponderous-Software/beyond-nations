@@ -157,7 +157,7 @@ namespace beyondnationstests {
 
             world.rounds(Diplomacy.SIEGE_ROUNDS_TO_CAPTURE - 1);
             Assert.Equal(Diplomacy.SIEGE_ROUNDS_TO_CAPTURE - 1, world.diplomacy.getSiegeProgress(target));
-            Assert.Equal("Besieged by Aland (5/6)", target.getSiegeText());
+            Assert.Equal("Besieged by Aland (" + (Diplomacy.SIEGE_ROUNDS_TO_CAPTURE - 1) + "/" + Diplomacy.SIEGE_ROUNDS_TO_CAPTURE + ")", target.getSiegeText());
             Assert.Contains("Besieged by Aland", target.getNameTagText());
 
             world.rounds(1);
