@@ -149,7 +149,8 @@ namespace beyondnationstests {
             Assert.Equal(1, command.execute(player));
             Assert.Equal(1, starving.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(0, hungry.getInventory().getNumItems(ItemType.APPLE));
-            Assert.EndsWith("1 still hungry: bring more food.", player.getStatus().getStatus());
+            // the starving one is still short of the threshold with one apple, as the hungry one is
+            Assert.EndsWith("2 still hungry: bring more food.", player.getStatus().getStatus());
 
             player.getInventory().addItem(ItemType.APPLE, 5);
             Assert.Equal(1, command.execute(player));
@@ -158,6 +159,40 @@ namespace beyondnationstests {
             Assert.Equal(0, fed.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(4, player.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(0, command.countHungryHere(player));
+        }
+
+        /**
+        * Playtest 0.6.3 s02: one item each left most residents hungry ("You
+        * fed 7", and four were hungry again on the next frame). A press gives
+        * each enough to reach the hungry threshold, round by round.
+        */
+        [Fact]
+        public void testFeed_GivesEachEnoughToStopBeingHungry_RoundByRound() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            Player player = simulation.getPlayer();
+            Pawn starving = addMember(simulation, nation, settlement, 20f, true);
+            Pawn hungry = addMember(simulation, nation, settlement, 70f, true);
+            int apple = FoodItems.getEnergyRestored(ItemType.APPLE);
+            player.getInventory().addItem(ItemType.APPLE, 20);
+            FeedResidentsCommand command = new FeedResidentsCommand(simulation.getEntityRepository());
+
+            Assert.Equal(2, command.execute(player));
+            int forStarving = (int) System.Math.Ceiling((Pawn.HUNGRY_ENERGY_THRESHOLD - 20f) / apple);
+            int forHungry = (int) System.Math.Ceiling((Pawn.HUNGRY_ENERGY_THRESHOLD - 70f) / apple);
+            Assert.Equal(forStarving, starving.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(forHungry, hungry.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(20 - forStarving - forHungry, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal("You fed 2 residents in the " + settlement.getDisplayName() + ".", player.getStatus().getStatus());
+
+            // with too little for both, it goes round before anyone gets seconds
+            Pawn a = addMember(simulation, nation, settlement, 20f, true);
+            Pawn b = addMember(simulation, nation, settlement, 20f, true);
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.APPLE, 3);
+            Assert.Equal(2, command.execute(player));
+            Assert.Equal(3, a.getInventory().getNumItems(ItemType.APPLE) + b.getInventory().getNumItems(ItemType.APPLE));
+            Assert.True(a.getInventory().getNumItems(ItemType.APPLE) >= 1 && b.getInventory().getNumItems(ItemType.APPLE) >= 1);
+            Assert.EndsWith("2 still hungry: bring more food.", player.getStatus().getStatus());
         }
 
         [Fact]
