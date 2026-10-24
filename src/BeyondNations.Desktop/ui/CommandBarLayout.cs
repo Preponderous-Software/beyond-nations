@@ -27,6 +27,14 @@ namespace beyondnations.desktop.ui {
     *   and a button that is confirmed by a second click is as wide as its
     *   "Confirm ..." label from the start, so a count ticking up or a button
     *   arming does not nudge its neighbours.
+    * - The pawn buttons (CommandGroup.People) start a row of their own, so
+    *   a button before them going away -- a caravan leaving -- cannot slide
+    *   Talk under the cursor, and the tool shortcuts (Craft Axe) come last
+    *   of all, after them, so their going moves nothing. Each pawn button is
+    *   measured with a
+    *   stand-in name (WorldCommand.getWidthLabel), so one pawn's long name
+    *   or warming tier moves nothing; a longer label is shortened with
+    *   "..." (fitLabel). Playtest 0.6.2 s02, finding 17.
     * - Nothing goes left of Left or right of Right: the caller keeps Right
     *   short of the right-hand column of boxes, and a label too long for the
     *   bar is clipped to it rather than running off the window.
@@ -97,15 +105,36 @@ namespace beyondnations.desktop.ui {
         }
 
         public static float buttonWidth(WorldCommand command, System.Func<string, float> measure, Settings settings) {
-            float text = measure(padCounts(command.getLabel()));
+            float text = measure(padCounts(command.getWidthLabel()));
             if (command.needsConfirm()) {
-                text = System.MathF.Max(text, measure(padCounts(getArmedLabel(command))));
+                text = System.MathF.Max(text, measure(padCounts(ConfirmPrefix + command.getWidthLabel())));
             }
             float width = System.MathF.Max(settings.MinButtonWidth, text + settings.TextPadding);
             if (settings.WidthStep > 0f) {
                 width = System.MathF.Ceiling(width / settings.WidthStep - 0.001f) * settings.WidthStep;
             }
             return System.MathF.Max(1f, System.MathF.Min(width, settings.Right - settings.Left));
+        }
+
+        public const string Ellipsis = "...";
+
+        /**
+        * The label shortened with "..." until it fits textWidth, or the label
+        * itself when it already fits. A pawn button is as wide as its
+        * stand-in name allows (WorldCommand.getWidthLabel), and a longer
+        * name is cut rather than widening the button.
+        */
+        public static string fitLabel(string label, System.Func<string, float> measure, float textWidth) {
+            if (measure(label) <= textWidth) {
+                return label;
+            }
+            for (int length = label.Length - 1; length > 0; length--) {
+                string cut = label.Substring(0, length).TrimEnd() + Ellipsis;
+                if (measure(cut) <= textWidth) {
+                    return cut;
+                }
+            }
+            return Ellipsis;
         }
 
         /**
@@ -119,12 +148,16 @@ namespace beyondnations.desktop.ui {
             float x = settings.Left;
             bool rowEmpty = true;
             bool any = false;
+            bool inPeople = false;
             for (int i = 0; i < commands.Count; i++) {
                 if ((commands[i].getGroup() == CommandGroup.Drastic) != drastic) {
                     continue;
                 }
                 float width = buttonWidth(commands[i], measure, settings);
-                if (!rowEmpty && x + settings.SpacingX + width > settings.Right) {
+                // the pawn buttons start a row of their own
+                bool firstPerson = !inPeople && commands[i].getGroup() == CommandGroup.People;
+                inPeople = inPeople || firstPerson;
+                if (!rowEmpty && (firstPerson || x + settings.SpacingX + width > settings.Right)) {
                     rowY -= settings.ButtonHeight + settings.SpacingY;
                     x = settings.Left;
                     rowEmpty = true;
