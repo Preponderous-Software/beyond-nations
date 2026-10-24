@@ -1,0 +1,229 @@
+{"t": 1792818426526, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "109", "--stage-diplomacy"]}
+{"t": 1792818431789, "cmd": "wait", "args": ["5"]}
+{"t": 1792818436885, "cmd": "state", "args": []}
+{"t": 1792818436979, "cmd": "shot", "args": ["start"]}
+{"t": 1792818441141, "cmd": "key", "args": ["space"]}
+{"t": 1792818441659, "cmd": "wait", "args": ["2"]}
+{"t": 1792818443746, "cmd": "state", "args": []}
+{"t": 1792818443845, "cmd": "shot", "args": ["menu"]}
+{"t": 1792818449109, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792818449875, "cmd": "wait", "args": ["2"]}
+{"t": 1792818451959, "cmd": "state", "args": []}
+{"t": 1792818452067, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792818455751, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792818456570, "cmd": "wait", "args": ["4"]}
+{"t": 1792818460648, "cmd": "state", "args": []}
+{"t": 1792818460732, "cmd": "shot", "args": ["world1"]}
+{"t": 1792818468104, "cmd": "click", "args": ["337", "388"]}
+{"t": 1792818468857, "cmd": "key", "args": ["h"]}
+{"t": 1792818469359, "cmd": "wait", "args": ["3"]}
+{"t": 1792818472448, "cmd": "state", "args": []}
+{"t": 1792818472520, "cmd": "shot", "args": ["home"]}
+{"t": 1792818476208, "cmd": "key", "args": ["e"]}
+{"t": 1792818476705, "cmd": "wait", "args": ["3"]}
+{"t": 1792818479790, "cmd": "state", "args": []}
+{"t": 1792818479858, "cmd": "shot", "args": ["inside1"]}
+{"t": 1792818494931, "cmd": "note", "args": ["--shot", "rightcol_clipped", "Inside own settlement at 960x540 (pt start --stage-diplomacy, H, E): right column bottom boxes are squeezed. Season box shows only 'Spring - day 1/2, year 1' (Region: Plains + 'good farming and game' lines lost). Player Info box shows only the Energy bar; Relationships, Nation, Role, Land lines are cut off. Season and Player Info boxes touch with no gap (Player Info title bar sits directly on Season box border)."]}
+{"t": 1792818495166, "cmd": "move", "args": ["850", "515"]}
+{"t": 1792818495250, "cmd": "scroll", "args": ["3"]}
+{"t": 1792818495917, "cmd": "wait", "args": ["1"]}
+{"t": 1792818496991, "cmd": "shot", "args": ["scroll_player"]}
+{"t": 1792818504306, "cmd": "events", "args": ["30"]}
+{"t": 1792818512578, "cmd": "note", "args": ["Contradictory siege text: at tick 620 the top-left Era box says 'Sieges can begin in 4:47' while a huge 'Besieged by Upperland' banner is shown and the status at tick 500 says 'Upperland is besieging your village (4/6)'. Village captured at tick 1000, 'Sieges can begin' countdown still had ~4:40 left. See shots/inside1.png."]}
+{"t": 1792818512657, "cmd": "note", "args": ["Chronicle at tick 1000 says 'Westerntown faded from memory before it ever built a home.' but Westerntown had a village (just captured). Wording is wrong for a nation that lost its settlement. See shots/scroll_player.png."]}
+{"t": 1792818512738, "cmd": "note", "args": ["Big 'Besieged by Upperland' banner drawn behind HUD at top is cut off ('Besieged by Upp') by the Settlement Info box and the screen edge at 960x540; only legible part is 'Besieged by Upp'. See shots/inside1.png, shots/crop_banner.png"]}
+{"t": 1792818516499, "cmd": "key", "args": ["e"]}
+{"t": 1792818517000, "cmd": "wait", "args": ["1"]}
+{"t": 1792818518088, "cmd": "hold", "args": ["w", "4"]}
+{"t": 1792818522239, "cmd": "key", "args": ["f"]}
+{"t": 1792818522736, "cmd": "wait", "args": ["3"]}
+{"t": 1792818525824, "cmd": "state", "args": []}
+{"t": 1792818525921, "cmd": "shot", "args": ["found"]}
+{"t": 1792818529130, "cmd": "key", "args": ["n"]}
+{"t": 1792818529620, "cmd": "wait", "args": ["2"]}
+{"t": 1792818531705, "cmd": "key", "args": ["f"]}
+{"t": 1792818532192, "cmd": "wait", "args": ["3"]}
+{"t": 1792818535288, "cmd": "state", "args": []}
+{"t": 1792818535371, "cmd": "shot", "args": ["found2"]}
+{"t": 1792818542019, "cmd": "click", "args": ["337", "375"]}
+{"t": 1792818542813, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818550268, "cmd": "key", "args": ["e"]}
+{"t": 1792818550771, "cmd": "wait", "args": ["1"]}
+{"t": 1792818551847, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818563480, "cmd": "key", "args": ["e"]}
+{"t": 1792818563971, "cmd": "wait", "args": ["1"]}
+{"t": 1792818565077, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818565726, "cmd": "key", "args": ["e"]}
+{"t": 1792818566204, "cmd": "wait", "args": ["1"]}
+{"t": 1792818567275, "cmd": "state", "args": []}
+{"t": 1792818570751, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818578349, "cmd": "key", "args": ["e"]}
+{"t": 1792818578841, "cmd": "wait", "args": ["1"]}
+{"t": 1792818579903, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818580539, "cmd": "key", "args": ["e"]}
+{"t": 1792818581027, "cmd": "wait", "args": ["1"]}
+{"t": 1792818582105, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818592109, "cmd": "key", "args": ["e"]}
+{"t": 1792818592609, "cmd": "wait", "args": ["1"]}
+{"t": 1792818593683, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818600056, "cmd": "key", "args": ["e"]}
+{"t": 1792818600544, "cmd": "wait", "args": ["1"]}
+{"t": 1792818601630, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818613562, "cmd": "key", "args": ["e"]}
+{"t": 1792818614049, "cmd": "wait", "args": ["1"]}
+{"t": 1792818615120, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818644268, "cmd": "key", "args": ["e"]}
+{"t": 1792818644765, "cmd": "wait", "args": ["1"]}
+{"t": 1792818645834, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818655023, "cmd": "key", "args": ["e"]}
+{"t": 1792818655544, "cmd": "wait", "args": ["1"]}
+{"t": 1792818656616, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818664008, "cmd": "key", "args": ["e"]}
+{"t": 1792818664484, "cmd": "wait", "args": ["1"]}
+{"t": 1792818665576, "cmd": "state", "args": []}
+{"t": 1792818669222, "cmd": "key", "args": ["f"]}
+{"t": 1792818669732, "cmd": "wait", "args": ["3"]}
+{"t": 1792818672803, "cmd": "state", "args": []}
+{"t": 1792818672877, "cmd": "key", "args": ["e"]}
+{"t": 1792818673377, "cmd": "wait", "args": ["3"]}
+{"t": 1792818676460, "cmd": "state", "args": []}
+{"t": 1792818676528, "cmd": "shot", "args": ["own_inside"]}
+{"t": 1792818680746, "cmd": "key", "args": ["f"]}
+{"t": 1792818681240, "cmd": "wait", "args": ["1"]}
+{"t": 1792818682315, "cmd": "shot", "args": ["tooclose"]}
+{"t": 1792818682574, "cmd": "state", "args": ["--full"]}
+{"t": 1792818690829, "cmd": "face", "args": ["114"]}
+{"t": 1792818694522, "cmd": "hold", "args": ["Shift_L+w", "10"]}
+{"t": 1792818704686, "cmd": "key", "args": ["f"]}
+{"t": 1792818705207, "cmd": "wait", "args": ["2"]}
+{"t": 1792818707297, "cmd": "state", "args": ["--full"]}
+{"t": 1792818712823, "cmd": "face", "args": ["-134"]}
+{"t": 1792818717166, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1792818718291, "cmd": "state", "args": []}
+{"t": 1792818724120, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792818732319, "cmd": "key", "args": ["f"]}
+{"t": 1792818732839, "cmd": "wait", "args": ["2"]}
+{"t": 1792818734922, "cmd": "state", "args": ["--full"]}
+{"t": 1792818741215, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792818753382, "cmd": "key", "args": ["f"]}
+{"t": 1792818753867, "cmd": "wait", "args": ["2"]}
+{"t": 1792818755938, "cmd": "state", "args": ["--full"]}
+{"t": 1792818760541, "cmd": "face", "args": ["53"]}
+{"t": 1792818761916, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792818774066, "cmd": "key", "args": ["f"]}
+{"t": 1792818774548, "cmd": "wait", "args": ["2"]}
+{"t": 1792818776645, "cmd": "state", "args": ["--full"]}
+{"t": 1792818781604, "cmd": "face", "args": ["34"]}
+{"t": 1792818784073, "cmd": "hold", "args": ["Shift_L+w", "11"]}
+{"t": 1792818795234, "cmd": "key", "args": ["f"]}
+{"t": 1792818795724, "cmd": "wait", "args": ["2"]}
+{"t": 1792818797801, "cmd": "state", "args": ["--full"]}
+{"t": 1792818801312, "cmd": "key", "args": ["e"]}
+{"t": 1792818801811, "cmd": "wait", "args": ["3"]}
+{"t": 1792818804877, "cmd": "state", "args": []}
+{"t": 1792818804937, "cmd": "shot", "args": ["own1"]}
+{"t": 1792818811381, "cmd": "wait", "args": ["4"]}
+{"t": 1792818815439, "cmd": "shot", "args": ["own2"]}
+{"t": 1792818837865, "cmd": "note", "args": ["--shot", "inv_tip_overlap", "Inside own new settlement (Blueham camp, tick ~9300): the Inventory Info box is moved out of the left column into a second column at x~220,y~258 (because the 4-line Objective 6 box is tall) and the centre Tip window ('Tip 3 of 5: Gather stone') is drawn over it, hiding Apples/Saplings/Chicken Meat values. The command bar starts just under it. Expected inventory and tip not to overlap."]}
+{"t": 1792818838058, "cmd": "note", "args": ["Large floating 3D label above the settlement well ('...0 here, 1/8 residents') is cut off by the top of the screen and by the Settlement Info box whenever you stand at the well after entering; only '0 here, 1/8 resident' fragments are visible. See shots/own2.png"]}
+{"t": 1792818844820, "cmd": "note", "args": ["Compact Player Info inside a FOREIGN settlement hides your own nation: after Westerntown fell I stood inside Upperland's village (tick ~1000); Settlement Info shows 'Nation: Upperland, Leader: Xavier Davies' and Player Info shows only the Energy bar, so nothing on screen says I am now nationless (Nation: none / Role: none) except the status line. The code comment's rationale ('the settlement box above already names the nation and leader') only holds in your own settlement. See shots/scroll_player.png"]}
+{"t": 1792818844887, "cmd": "click", "args": ["850", "500"]}
+{"t": 1792818845617, "cmd": "wait", "args": ["2"]}
+{"t": 1792818847676, "cmd": "shot", "args": ["click_player"]}
+{"t": 1792818847848, "cmd": "click", "args": ["850", "440"]}
+{"t": 1792818848598, "cmd": "wait", "args": ["2"]}
+{"t": 1792818850656, "cmd": "shot", "args": ["click_season"]}
+{"t": 1792818859318, "cmd": "note", "args": ["--shot", "tip_over_cmdbar", "Inside own settlement once a merchant arrives (tick ~10200) the command bar grows to 5 rows and its top two rows ('Order Fiona Wilson: Gather Wood', 'Talk to Fiona Wilson (Stranger) - Glutt...') run up behind/under the centre Tip window and next to the displaced Inventory box; the Tip covers the middle of the 'Talk to ...' button. Expected the tip to sit above the command bar."]}
+{"t": 1792818859505, "cmd": "click", "args": ["425", "375"]}
+{"t": 1792818860251, "cmd": "wait", "args": ["2"]}
+{"t": 1792818862318, "cmd": "shot", "args": ["notips"]}
+{"t": 1792818866953, "cmd": "click", "args": ["168", "58"]}
+{"t": 1792818867689, "cmd": "wait", "args": ["2"]}
+{"t": 1792818869752, "cmd": "shot", "args": ["era_open"]}
+{"t": 1792818875004, "cmd": "note", "args": ["--shot", "era_open_overlap", "Inside own settlement at 960x540, clicking the Era box '+' (168,58) expands it to ~18 lines; the Objective 8 box is pushed down to y~398 and drawn OVER the command bar: 'Build Workshop', 'Build Stall', 'Withdraw Funds' and 'Collect Stockpile (12)' are hidden or half-hidden behind it, and the inventory jumps to the centre column. Left column has no bottom bound against the command bar. Expected the objective box to be squeezed/compacted or the era panel to scroll."]}
+{"t": 1792818875182, "cmd": "click", "args": ["168", "58"]}
+{"t": 1792818875919, "cmd": "wait", "args": ["1"]}
+{"t": 1792818882201, "cmd": "key", "args": ["e"]}
+{"t": 1792818882671, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792818888737, "cmd": "key", "args": ["e"]}
+{"t": 1792818889206, "cmd": "wait", "args": ["1"]}
+{"t": 1792818890269, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792818895096, "cmd": "key", "args": ["e"]}
+{"t": 1792818895574, "cmd": "wait", "args": ["1"]}
+{"t": 1792818896640, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792818897348, "cmd": "key", "args": ["e"]}
+{"t": 1792818897843, "cmd": "wait", "args": ["1"]}
+{"t": 1792818898903, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792818899047, "cmd": "key", "args": ["e"]}
+{"t": 1792818899528, "cmd": "wait", "args": ["1"]}
+{"t": 1792818900588, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818906490, "cmd": "key", "args": ["e"]}
+{"t": 1792818906964, "cmd": "wait", "args": ["1"]}
+{"t": 1792818908029, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818917084, "cmd": "key", "args": ["e"]}
+{"t": 1792818917552, "cmd": "wait", "args": ["1"]}
+{"t": 1792818918621, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818924312, "cmd": "key", "args": ["e"]}
+{"t": 1792818924798, "cmd": "wait", "args": ["1"]}
+{"t": 1792818925860, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818931610, "cmd": "key", "args": ["e"]}
+{"t": 1792818932081, "cmd": "wait", "args": ["1"]}
+{"t": 1792818933143, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1792818933774, "cmd": "key", "args": ["e"]}
+{"t": 1792818934256, "cmd": "wait", "args": ["1"]}
+{"t": 1792818935317, "cmd": "state", "args": []}
+{"t": 1792818939434, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792818950565, "cmd": "key", "args": ["e"]}
+{"t": 1792818951036, "cmd": "wait", "args": ["1"]}
+{"t": 1792818952094, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1792818956088, "cmd": "key", "args": ["e"]}
+{"t": 1792818956546, "cmd": "wait", "args": ["1"]}
+{"t": 1792818957604, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1792818969959, "cmd": "key", "args": ["e"]}
+{"t": 1792818970413, "cmd": "wait", "args": ["2"]}
+{"t": 1792818972471, "cmd": "key", "args": ["b"]}
+{"t": 1792818972933, "cmd": "wait", "args": ["2"]}
+{"t": 1792818975005, "cmd": "key", "args": ["k"]}
+{"t": 1792818975494, "cmd": "wait", "args": ["3"]}
+{"t": 1792818978562, "cmd": "state", "args": []}
+{"t": 1792818978623, "cmd": "shot", "args": ["built"]}
+{"t": 1792818981828, "cmd": "key", "args": ["k"]}
+{"t": 1792818982295, "cmd": "wait", "args": ["3"]}
+{"t": 1792818985357, "cmd": "state", "args": []}
+{"t": 1792818985415, "cmd": "shot", "args": ["built2"]}
+{"t": 1792818992392, "cmd": "note", "args": ["--shot", "one_buildings", "Settlement Info box reads 'Tier: Camp (1 buildings)' after building the first Farm (tick ~14130): plural for a count of 1. Also the 'Farm built.' status line at top centre sits on top of the huge floating '2 here, 3/8 residents' / 'Camp of Blueham' world label, which is cut off by the top edge."]}
+{"t": 1792818992761, "cmd": "wait", "args": ["30"]}
+{"t": 1792819022832, "cmd": "shot", "args": ["later"]}
+{"t": 1792819023180, "cmd": "state", "args": []}
+{"t": 1792819028852, "cmd": "note", "args": ["Inventory Info box jumps between the left column and a second centre column as the command bar grows/shrinks when a merchant walks into/out of interact range (compare shots/built2.png at tick 14132 vs shots/later.png at tick 14952, nothing else changed). The box flips position every time a pawn passes, which is distracting; it also then covers the centre of the 3D view."]}
+{"t": 1792819028910, "cmd": "key", "args": ["y"]}
+{"t": 1792819029373, "cmd": "wait", "args": ["2"]}
+{"t": 1792819031437, "cmd": "shot", "args": ["chron_full"]}
+{"t": 1792819039419, "cmd": "note", "args": ["--shot", "chron_full_overlap", "Full chronicle (Y inside own settlement, tick ~15100) is a translucent window 160-800px wide that overlaps the right column by ~50px; the Settlement Info/Market Info text shows through behind the history lines ('Leader: You', 'Funds', prices), making both hard to read. Also 244 chronicle entries by day 1 dusk, nearly all AI-vs-AI 'have become rivals over their border'/'built a stall' noise, so your own nation's events are buried unless 'Only my nation' is ticked."]}
+{"t": 1792819039691, "cmd": "key", "args": ["y"]}
+{"t": 1792819040220, "cmd": "wait", "args": ["1"]}
+{"t": 1792819041274, "cmd": "shot", "args": ["chron2"]}
+{"t": 1792819041603, "cmd": "key", "args": ["y"]}
+{"t": 1792819042059, "cmd": "wait", "args": ["1"]}
+{"t": 1792819043118, "cmd": "shot", "args": ["chron3"]}
+{"t": 1792819043457, "cmd": "state", "args": []}
+{"t": 1792819050067, "cmd": "note", "args": ["--shot", "touching_boxes", "With two merchants listed, Market Info grows by one line and the compact Season box (y~432-480) sits flush on the Player Info title bar with no gap (tick ~15400), unlike the other boxes, which have an 8px gap. Season box is placed top-down from the market bottom instead of above the Player box."]}
+{"t": 1792819050381, "cmd": "key", "args": ["o"]}
+{"t": 1792819050855, "cmd": "wait", "args": ["2"]}
+{"t": 1792819052920, "cmd": "shot", "args": ["nations"]}
+{"t": 1792819059228, "cmd": "note", "args": ["--shot", "nations_label", "Nations screen (O) opened while standing at your own settlement well: the huge floating world label 'Camp of Blueham / 2 here, 3/8 residents' shows through the dimmed background right behind the '> Nations <' and 'Laws' tab buttons, clashing with them; and the stale status 'Chronicle: recent entries.' is drawn in the middle of the screen above the close hint. Expected world labels hidden or fully dimmed under the overlay."]}
+{"t": 1792819059477, "cmd": "key", "args": ["o"]}
+{"t": 1792819059943, "cmd": "wait", "args": ["1"]}
+{"t": 1792819060995, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792819061709, "cmd": "wait", "args": ["2"]}
+{"t": 1792819063777, "cmd": "shot", "args": ["sell"]}
+{"t": 1792819064091, "cmd": "state", "args": ["--full"]}
+{"t": 1792819075814, "cmd": "note", "args": ["--shot", "pcis", "Settlement Info shows 'PCIS: 2' — an undefined debug abbreviation (pawns currently in settlement, also used in the F1 debug box) in the player-facing box, and it duplicates the floating '2 here' label. In the 960x540 compact layout this jargon line is kept while the Season box drops Region and the Player box drops Nation/Role/Land/Relationships. Suggest dropping or renaming it ('Here now: 2') before cutting player lines. Also the Era box's 'Sieges can begin in m:ss' line simply vanishes when it hits 0:00 (tick ~15000) with no 'sieges are now possible' replacement."]}
+{"t": 1792819076165, "cmd": "click", "args": ["48", "19"]}
+{"t": 1792819076958, "cmd": "wait", "args": ["2"]}
+{"t": 1792819079241, "cmd": "shot", "args": ["controls"]}
+{"t": 1792819085685, "cmd": "key", "args": ["Escape"]}
+{"t": 1792819086173, "cmd": "events", "args": ["100"]}
+{"t": 1792819086277, "cmd": "stop", "args": []}
+{"t": 1792819121995, "cmd": "report", "args": []}
+{"t": 1792821185789, "cmd": "stop", "args": []}
