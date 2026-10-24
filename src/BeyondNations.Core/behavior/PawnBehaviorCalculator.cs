@@ -130,6 +130,13 @@ namespace beyondnations {
                 if (market.canPurchaseFood(pawn)) {
                     return BehaviorType.PURCHASE_FOOD;
                 }
+                // Too poor to buy, but carrying what a merchant here will buy:
+                // sell it, and buy food with the coins next time round. Pawns
+                // used to starve at home in a town whose market held a hundred
+                // food, each with twenty-odd wood in its pack and no coin.
+                if (market.describeWhyNoSale(pawn) == null) {
+                    return BehaviorType.SELL_RESOURCES;
+                }
                 if (isAtHome(pawn) && !canForage(pawn)) {
                     // nothing to buy and nothing out there (winter): stay in, where it burns less
                     return BehaviorType.NONE;
