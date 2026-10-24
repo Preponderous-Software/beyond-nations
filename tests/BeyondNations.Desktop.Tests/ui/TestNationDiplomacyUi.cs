@@ -51,6 +51,42 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testNationScreen_KeepsItsRowOrderWhileOpen() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            List<NationId> shown = new List<NationId>();
+            List<NationScreen.Row> before = NationScreen.keepOrder(NationScreen.getRows(simulation), shown);
+            Assert.Same(result.friendly, before[1].nation);
+
+            // war would sort the friendly nation to the top (playtest 0.6.0 s04:
+            // the list re-sorted and left the pointer on an ally's War button)
+            simulation.getRealm().declareWar(result.playerNation, result.friendly);
+            Assert.Same(result.friendly, NationScreen.getRows(simulation)[0].nation);
+
+            List<NationScreen.Row> after = NationScreen.keepOrder(NationScreen.getRows(simulation), shown);
+            Assert.Same(result.hostile, after[0].nation);
+            Assert.Same(result.friendly, after[1].nation);
+            Assert.True(after[1].atWar);
+
+            // reopened: sorted afresh
+            shown.Clear();
+            Assert.Same(result.friendly, NationScreen.keepOrder(NationScreen.getRows(simulation), shown)[0].nation);
+        }
+
+        [Fact]
+        public void testNationScreen_WarPromptWarnsOfATruce() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            Realm realm = simulation.getRealm();
+            Assert.Equal("Click War again to declare war on " + result.friendly.getName() + ".",
+                NationScreen.getWarPrompt(realm, result.playerNation, result.friendly, false));
+
+            realm.grantTruce(result.playerNation, result.friendly);
+            Assert.Equal("Tap War again to break the truce with " + result.friendly.getName() + " and declare war.",
+                NationScreen.getWarPrompt(realm, result.playerNation, result.friendly, true));
+        }
+
+        [Fact]
         public void testNationScreen_HeaderNamesTheSiege() {
             DiplomacyShowcase.Staged result;
             Simulation simulation = staged(out result);
