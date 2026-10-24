@@ -94,7 +94,7 @@ namespace beyondnationstests.desktop.ui {
             List<string> header = NationScreen.getHeaderLines(simulation);
 
             Assert.Equal("Your nation: " + result.playerNation.getName() + ", 3 members, 1 village. You lead it.", header[0]);
-            Assert.Contains("Your village: Besieged by " + result.hostile.getName() + " (2/6)!", header);
+            Assert.Contains("Your village: Besieged by " + result.hostile.getName() + " (2/" + Diplomacy.SIEGE_ROUNDS_TO_CAPTURE + ")!", header);
         }
 
         [Fact]
