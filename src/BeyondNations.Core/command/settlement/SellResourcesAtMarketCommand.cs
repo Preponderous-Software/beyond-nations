@@ -31,7 +31,7 @@ namespace beyondnations {
             
             EntityId stallOwnerId = market.sellResources(player);
             if (stallOwnerId == null) {
-                player.getStatus().update("No one is buying resources at this market or you do not have enough resources to sell.");
+                player.getStatus().update(market.describeWhyNoSale(player) ?? "No one at this market is buying what you carry.");
                 return;
             }
             player.recordMarketSale();

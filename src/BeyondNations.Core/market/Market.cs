@@ -322,6 +322,53 @@ namespace beyondnations {
         }
 
         /**
+        * Why sellResources would sell nothing to this entity, in one sentence
+        * for the status line (playtest 0.5.0 s05: every refusal used to read
+        * the same). Null when a sale would go through.
+        */
+        public string describeWhyNoSale(Entity entity) {
+            int cheapest = int.MaxValue;
+            ItemType cheapestType = ItemType.COIN;
+            foreach (ItemType itemType in Enum.GetValues(typeof(ItemType))) {
+                if (!isSoldInBulk(itemType) || !entity.getInventory().hasItem(itemType)) {
+                    continue;
+                }
+                int price = getSellPrice(itemType);
+                if (price < cheapest) {
+                    cheapest = price;
+                    cheapestType = itemType;
+                }
+            }
+            if (cheapest == int.MaxValue) {
+                return "You have nothing to sell: markets buy resources and food, not coins or tools.";
+            }
+            int buyers = 0;
+            bool ownsStall = false;
+            int richest = 0;
+            foreach (Stall stall in stalls) {
+                if (stall.getOwnerId() == null) {
+                    continue;
+                }
+                if (stall.getOwnerId() == entity.getId()) {
+                    ownsStall = true;
+                    continue;
+                }
+                buyers++;
+                richest = System.Math.Max(richest, stall.getInventory().getNumItems(ItemType.COIN));
+            }
+            if (buyers == 0) {
+                return ownsStall
+                    ? "The only stall here is yours, and you can't sell to yourself."
+                    : "No merchant keeps a stall here yet, so no one can buy.";
+            }
+            if (richest < cheapest) {
+                return "No merchant here can pay: the richest has " + richest + " coins, and your cheapest good ("
+                    + ItemNames.getSingularName(cheapestType) + ") sells for " + cheapest + ".";
+            }
+            return null;
+        }
+
+        /**
         * Whether selling resources hands this item over. Coin is the payment,
         * and tools are kept: a press of Sell Resources used to empty the
         * whole bag, which would have sold the player's axe with the wood.
