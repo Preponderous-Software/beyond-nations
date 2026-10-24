@@ -128,6 +128,7 @@ namespace beyondnations {
             diplomacy.setRealm(realm);
             populationGrowth.setRealm(realm);
             pawnBehaviorExecutor.setRealm(realm);
+            pawnBehaviorExecutor.setGameConfig(gameConfig);
             // droughts, bandits, claimants (worldevents/), on a stream of their own
             worldEvents = new WorldEvents(random.getSeed(), tickCounter.getTicksPerSecond());
             tradeCaravans = new TradeCaravans(entityRepository, nationRepository, eventProducer, player, timeOfDay, nationResources);
