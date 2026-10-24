@@ -448,6 +448,158 @@ namespace beyondnationstests.desktop.ui {
             }
         }
 
+        /** The leader's own town in playtest 0.6.2 s02 (shots/count_mismatch.png), at 960x540. */
+        private static List<WorldCommand> ownTownWithPawn(string talk, string pawnName) {
+            return new List<WorldCommand> {
+                command("Leave Nation", CommandGroup.Drastic),
+                command("Withdraw Funds", CommandGroup.Nation),
+                command("Collect Stockpile (212)", CommandGroup.Nation),
+                command("Exit Settlement", CommandGroup.Place),
+                command(WorldCommandBar.feedResidentsLabel(8), CommandGroup.Place),
+                command("Purchase Food", CommandGroup.Place),
+                command("Sell Resources", CommandGroup.Place),
+                command("Build House", CommandGroup.Build).requireConfirm(),
+                command("Build Farm", CommandGroup.Build).requireConfirm(),
+                command("Send Caravan (Town era)", CommandGroup.Trade),
+                command("Craft Axe", CommandGroup.Craft),
+                command(talk, CommandGroup.People).setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"),
+                command("Gift " + pawnName, CommandGroup.People).setWidthLabel("Gift " + WorldCommandBar.PawnNameSlot),
+                command("Order " + pawnName + ": Gather Wood", CommandGroup.People).setWidthLabel("Order " + WorldCommandBar.PawnNameSlot + ": Gather Wood"),
+            };
+        }
+
+        private static void assertSamePlaces(List<WorldCommand> a, List<WorldCommand> b, CommandBarLayout.Settings settings, System.Func<WorldCommand, bool> which) {
+            CommandBarLayout.Result before = CommandBarLayout.compute(a, measure, settings);
+            CommandBarLayout.Result after = CommandBarLayout.compute(b, measure, settings);
+            for (int i = 0; i < a.Count; i++) {
+                if (!which(a[i])) {
+                    continue;
+                }
+                int j = b.FindIndex(c => c.getGroup() == a[i].getGroup() && c.getLabel() == a[i].getLabel());
+                Assert.True(j >= 0, a[i].getLabel());
+                Assert.Equal(before.Buttons[i], after.Buttons[j]);
+            }
+        }
+
+        /**
+        * Playtest 0.6.2 s02 (finding 17): after Craft Axe the second click
+        * landed on Send Caravan. Craft is now last of all, after the pawn
+        * buttons, so its going moves nothing.
+        */
+        [Theory]
+        [MemberData(nameof(Screens))]
+        public void craftingTheAxeMovesNoOtherButton(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            List<WorldCommand> withCraft = CommandBarLayout.order(ownTownWithPawn("Talk to Irene Johnson (Stranger)", "Irene Johnson"));
+            List<WorldCommand> crafted = withCraft.FindAll(c => c.getLabel() != "Craft Axe");
+            Assert.Equal(withCraft.Count - 1, crafted.Count);
+            assertSamePlaces(withCraft, crafted, settings, c => c.getLabel() != "Craft Axe");
+            // and it is not under the pawn buttons, which a second click could then hit
+            List<WorldCommand> ordered = withCraft;
+            Assert.True(ordered.FindIndex(c => c.getLabel() == "Craft Axe") > ordered.FindLastIndex(c => c.getGroup() == CommandGroup.People));
+        }
+
+        /** s02 finding 17: Feed Residents going away put "Talk to Bob Roberts (Stranger) - Glutton" under the cursor. */
+        [Theory]
+        [MemberData(nameof(Screens))]
+        public void feedResidentsCountingDownToNoneMovesNothing(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            List<WorldCommand> hungry = CommandBarLayout.order(ownTownWithPawn("Talk to Bob Roberts (Stranger)", "Bob Roberts"));
+            List<WorldCommand> fed = hungry.ConvertAll(c => c.getLabel() == WorldCommandBar.feedResidentsLabel(8)
+                ? command(WorldCommandBar.feedResidentsLabel(0), CommandGroup.Place).setEnabled(false) : c);
+            CommandBarLayout.Result before = CommandBarLayout.compute(hungry, measure, settings);
+            CommandBarLayout.Result after = CommandBarLayout.compute(fed, measure, settings);
+            for (int i = 0; i < hungry.Count; i++) {
+                Assert.Equal(before.Buttons[i], after.Buttons[i]);
+            }
+        }
+
+        /** s02 finding 17: Talk's label carried the pawn's tier and traits, so its width, and Gift's place, changed with the pawn. */
+        [Theory]
+        [MemberData(nameof(Screens))]
+        public void anotherPawnOrAWarmerTierMovesNoButton(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            List<WorldCommand> ada = CommandBarLayout.order(ownTownWithPawn("Talk to Ada (Stranger)", "Ada"));
+            List<WorldCommand> long_ = CommandBarLayout.order(ownTownWithPawn("Talk to Bartholomew Fitzgerald-Hughes (Acquaintance)", "Bartholomew Fitzgerald-Hughes"));
+            CommandBarLayout.Result before = CommandBarLayout.compute(ada, measure, settings);
+            CommandBarLayout.Result after = CommandBarLayout.compute(long_, measure, settings);
+            Assert.Equal(ada.Count, long_.Count);
+            for (int i = 0; i < ada.Count; i++) {
+                Assert.Equal(before.Buttons[i], after.Buttons[i]);
+            }
+            // the long name is cut to its button rather than widening it
+            int talk = long_.FindIndex(c => c.getLabel().StartsWith("Talk to"));
+            string shown = CommandBarLayout.fitLabel(long_[talk].getLabel(), measure, after.Buttons[talk].Width - settings.TextPadding);
+            Assert.EndsWith(CommandBarLayout.Ellipsis, shown);
+            Assert.True(measure(shown) <= after.Buttons[talk].Width - settings.TextPadding);
+            Assert.Equal("Talk to Ada (Stranger)", CommandBarLayout.fitLabel("Talk to Ada (Stranger)", measure, before.Buttons[talk].Width - settings.TextPadding));
+        }
+
+        [Fact]
+        public void thePawnButtonsStartARowOfTheirOwn() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> commands = CommandBarLayout.order(new List<WorldCommand> {
+                command("Exit Settlement", CommandGroup.Place),
+                command("Talk to Ada (Stranger)", CommandGroup.People),
+            });
+            CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings);
+            Assert.Equal(settings.Left, result.Buttons[1].X);
+            Assert.True(result.Buttons[1].Bottom <= result.Buttons[0].Y);
+        }
+
+        // ---- the real bar ----
+
+        /** Feed Residents is always offered in the player's own settlement, disabled while no one here is hungry. */
+        [Fact]
+        public void inTheOwnSettlement_FeedResidentsHoldsItsPlace_AndCountsWhomItWillFeed() {
+            Simulation simulation = inOwnCamp(out Settlement settlement);
+            Player player = simulation.getPlayer();
+            CommandBarLayout.Settings settings = settingsFor(960f, 540f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> none = WorldCommandBar.getCommands(simulation);
+            WorldCommand feedNone = none.Find(c => c.getLabel() == WorldCommandBar.feedResidentsLabel(0));
+            Assert.NotNull(feedNone);
+            Assert.False(feedNone.isEnabled());
+            Assert.Equal(CommandGroup.Place, feedNone.getGroup());
+
+            // a hungry resident in the settlement, out of the player's reach
+            Pawn pawn = new Pawn(settlement.getPosition() + new Vector3(400, 0, 400), "Member", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(pawn);
+            pawn.setNationId(player.getNationId());
+            simulation.getNationRepository().getNation(player.getNationId()).addMember(pawn.getId());
+            pawn.getInventory().clear();
+            pawn.setEnergy(50f);
+            pawn.setCurrentSettlementId(settlement.getId());
+            player.getInventory().addItem(ItemType.APPLE, 3);
+
+            List<WorldCommand> one = WorldCommandBar.getCommands(simulation);
+            Assert.Equal(none.Count, one.Count);
+            int index = none.IndexOf(feedNone);
+            Assert.Equal(WorldCommandBar.feedResidentsLabel(1), one[index].getLabel());
+            Assert.True(one[index].isEnabled());
+            CommandBarLayout.Result before = CommandBarLayout.compute(none, measure, settings);
+            CommandBarLayout.Result after = CommandBarLayout.compute(one, measure, settings);
+            for (int i = 0; i < none.Count; i++) {
+                Assert.Equal(before.Buttons[i], after.Buttons[i]);
+            }
+
+            one[index].execute();
+            Assert.StartsWith("You fed 1 resident", player.getStatus().getStatus());
+            Assert.Equal(WorldCommandBar.feedResidentsLabel(0), WorldCommandBar.getCommands(simulation)[index].getLabel());
+        }
+
+        [Fact]
+        public void theTalkButtonNamesTheTier_NotTheTraits_AndIsMeasuredWithAStandInName() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(1234);
+            Simulation simulation = new Simulation(config);
+            Pawn pawn = new Pawn(simulation.getPlayer().getPosition() + new Vector3(0.5f, 0, 0), "Ada", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(pawn);
+            WorldCommand talk = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Talk to"));
+            Assert.Equal("Talk to Ada (Stranger)", talk.getLabel());
+            Assert.Equal("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")", talk.getWidthLabel());
+            Assert.Equal("Talk to " + PawnRelations.describeWithTraits(pawn, simulation.getPlayer()), talk.getTooltip());
+        }
+
         [Fact]
         public void theBuildKeyBuildsWhatTheSettlementBoxNames_NotSomethingCheaper() {
             Simulation simulation = inOwnCamp(out Settlement settlement);

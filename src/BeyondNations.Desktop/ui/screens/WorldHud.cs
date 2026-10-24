@@ -364,7 +364,10 @@ namespace beyondnations.desktop.ui.screens {
                     CommandBarLayout.Rect rect = placed.Buttons[i];
                     ImGui.SetCursorPos(new Vector2(rect.X - settings.Left + padding.X, rect.Y - placed.Top + padding.Y));
                     bool armed = command.needsConfirm() && confirmGate.isArmed(command.getLabel(), now);
-                    string text = armed ? CommandBarLayout.getArmedLabel(command) : command.getLabel();
+                    string full = armed ? CommandBarLayout.getArmedLabel(command) : command.getLabel();
+                    // a pawn's long name is cut to the button rather than widening it (CommandBarLayout)
+                    string text = CommandBarLayout.fitLabel(full, label => ImGui.CalcTextSize(label).X, rect.Width - settings.TextPadding);
+                    string tooltip = command.getTooltip() ?? (text != full ? full : null);
                     int colours = 0;
                     if (armed) {
                         ImGui.PushStyleColor(ImGuiCol.Button, ArmedColour);
@@ -381,6 +384,11 @@ namespace beyondnations.desktop.ui.screens {
                     // the id is the plain label, so arming keeps the same button
                     if (ImGui.Button(text + "###" + command.getLabel(), new Vector2(rect.Width, rect.Height)) && command.isEnabled()) {
                         clicked = command;
+                    }
+                    if (tooltip != null && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+                        ImGui.BeginTooltip();
+                        ImGui.TextUnformatted(tooltip);
+                        ImGui.EndTooltip();
                     }
                     if (!command.isEnabled()) {
                         ImGui.EndDisabled();
@@ -470,7 +478,9 @@ namespace beyondnations.desktop.ui.screens {
         private float drawResidentHungerWarning(float width, Simulation simulation, Layout layout, float y) {
             Player player = simulation.getPlayer();
             Nation nation = player.getNationId() == null ? null : simulation.getNationRepository().getNation(player.getNationId());
-            string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter());
+            // where the player stands, so the banner counts those here the way Feed Residents does
+            Settlement here = new FeedResidentsCommand(simulation.getEntityRepository()).getOwnSettlement(player);
+            string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter(), here);
             if (warning == null) {
                 return y;
             }
