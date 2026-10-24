@@ -32,7 +32,16 @@ namespace beyondnations.desktop.ui.boxes {
             List<string> lines = new List<string>(4);
             lines.Add("Energy: " + (int) player.getEnergy());
             if (isCompact()) {
-                // the energy bar alone: the settlement box above already names the nation and leader
+                // the energy bar and whose the player is, in one line: in a
+                // foreign settlement nothing else on screen said they had no
+                // nation (playtest 0.6.1 s04, #350)
+                if (player.getNationId() != null) {
+                    Nation own = nationRepository.getNation(player.getNationId());
+                    lines.Add("Nation: " + own.getName() + " (" + own.getRole(player.getId()) + ")");
+                }
+                else {
+                    lines.Add("Nation: none");
+                }
                 return lines;
             }
             lines.Add("Relationships: " + player.getRelationships().Count);
@@ -77,9 +86,13 @@ namespace beyondnations.desktop.ui.boxes {
                 top + style.FramePadding.Y));
             ImGui.TextUnformatted(label);
             ImGui.SetCursorPos(new Vector2(style.WindowPadding.X, top + barHeight + style.ItemSpacing.Y));
+            // wrapped, as InfoBox does, so a long nation name is not cut off
             List<string> lines = getLines();
+            float width = System.MathF.Max(40f, barWidth);
             for (int i = 1; i < lines.Count; i++) {
-                ImGui.TextUnformatted(lines[i]);
+                foreach (string part in TextWrap.wrap(lines[i], width, text => ImGui.CalcTextSize(text).X)) {
+                    ImGui.TextUnformatted(part);
+                }
             }
         }
     }
