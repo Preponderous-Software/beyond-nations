@@ -1,0 +1,239 @@
+{"t": 1792818426565, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "111", "--stage-diplomacy"]}
+{"t": 1792818435397, "cmd": "state", "args": []}
+{"t": 1792818435480, "cmd": "shot", "args": ["start"]}
+{"t": 1792818442125, "cmd": "key", "args": ["space"]}
+{"t": 1792818442652, "cmd": "wait", "args": ["2"]}
+{"t": 1792818444756, "cmd": "state", "args": []}
+{"t": 1792818444848, "cmd": "shot", "args": ["menu"]}
+{"t": 1792818449268, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792818450022, "cmd": "wait", "args": ["2"]}
+{"t": 1792818452104, "cmd": "state", "args": []}
+{"t": 1792818452187, "cmd": "shot", "args": ["nw"]}
+{"t": 1792818455538, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792818456305, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792818456610, "cmd": "wait", "args": ["2"]}
+{"t": 1792818458688, "cmd": "state", "args": []}
+{"t": 1792818458758, "cmd": "shot", "args": ["world"]}
+{"t": 1792818462249, "cmd": "click", "args": ["425", "389"]}
+{"t": 1792818463009, "cmd": "key", "args": ["o"]}
+{"t": 1792818463510, "cmd": "wait", "args": ["1"]}
+{"t": 1792818464590, "cmd": "state", "args": []}
+{"t": 1792818464668, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792818469883, "cmd": "click", "args": ["836", "302"]}
+{"t": 1792818470637, "cmd": "shot", "args": ["den1"]}
+{"t": 1792818470837, "cmd": "state", "args": []}
+{"t": 1792818475723, "cmd": "shot", "args": ["den1b"]}
+{"t": 1792818475952, "cmd": "events", "args": ["5"]}
+{"t": 1792818480994, "cmd": "click", "args": ["836", "302"]}
+{"t": 1792818482741, "cmd": "events", "args": ["4"]}
+{"t": 1792818482824, "cmd": "shot", "args": ["den2"]}
+{"t": 1792818487206, "cmd": "click", "args": ["836", "302"]}
+{"t": 1792818488972, "cmd": "events", "args": ["3"]}
+{"t": 1792818489052, "cmd": "shot", "args": ["den3"]}
+{"t": 1792818496696, "cmd": "note", "args": ["--shot", "den_confirm_ok", "Denounce two-click: second click 6.3s after arm confirmed (Southernfield +33 -> +8); a click 11.1s after re-armed instead, shown as 'Click Denounce again... (x2)'. Button label changes to 'Confirm' while status says 'Click Denounce again' - wording mismatch. Nations list order kept. Tick 196 (world paused while Nations open; window is wall-clock)."]}
+{"t": 1792818496899, "cmd": "click", "args": ["123", "237"]}
+{"t": 1792818499156, "cmd": "events", "args": ["4"]}
+{"t": 1792818499254, "cmd": "shot", "args": ["trib1"]}
+{"t": 1792818502784, "cmd": "click", "args": ["657", "237"]}
+{"t": 1792818505054, "cmd": "events", "args": ["2"]}
+{"t": 1792818505126, "cmd": "shot", "args": ["war1"]}
+{"t": 1792818510210, "cmd": "click", "args": ["657", "237"]}
+{"t": 1792818512465, "cmd": "events", "args": ["4"]}
+{"t": 1792818512531, "cmd": "shot", "args": ["war2"]}
+{"t": 1792818519202, "cmd": "note", "args": ["--shot", "war_truce_ok", "War on Greenshire during tribute truce: first click shows 'Click War again to break the truce with Greenshire and declare war.' (button reads Confirm); second click 7.46s later confirmed: 'Greenshire laughs at your declaration of war: they are 11 to your 3.' Row now 'at war', truce gone, War button removed, order kept."]}
+{"t": 1792818519429, "cmd": "click", "args": ["657", "302"]}
+{"t": 1792818521178, "cmd": "key", "args": ["Escape"]}
+{"t": 1792818522675, "cmd": "key", "args": ["o"]}
+{"t": 1792818524656, "cmd": "click", "args": ["657", "302"]}
+{"t": 1792818526913, "cmd": "events", "args": ["4"]}
+{"t": 1792818526993, "cmd": "shot", "args": ["war3"]}
+{"t": 1792818541902, "cmd": "move", "args": ["480", "400"]}
+{"t": 1792818543489, "cmd": "shot", "args": ["war_expired"]}
+{"t": 1792818548814, "cmd": "note", "args": ["--shot", "war_expired_stale", "After the 8 s confirm window lapses the War button correctly reverts from 'Confirm' to 'War', but the status line keeps saying 'Click War again to declare war on Southernfield. (x2)' - a stale instruction that is now false (clicking War again only re-arms). Also '(x2)' repeat counter reads like 'click twice'. Closing (Esc) and reopening O correctly disarmed the pending War."]}
+{"t": 1792818549054, "cmd": "state", "args": []}
+{"t": 1792818554836, "cmd": "key", "args": ["Escape"]}
+{"t": 1792818556323, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792818570170, "cmd": "state", "args": []}
+{"t": 1792818570271, "cmd": "shot", "args": ["pawn1"]}
+{"t": 1792818574189, "cmd": "face", "args": ["-50"]}
+{"t": 1792818576392, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1792818579516, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792818616040, "cmd": "state", "args": []}
+{"t": 1792818619313, "cmd": "shot", "args": ["bar1"]}
+{"t": 1792818619526, "cmd": "state", "args": []}
+{"t": 1792818621612, "cmd": "shot", "args": ["bar2"]}
+{"t": 1792818621835, "cmd": "state", "args": []}
+{"t": 1792818623920, "cmd": "shot", "args": ["bar3"]}
+{"t": 1792818624164, "cmd": "state", "args": []}
+{"t": 1792818626235, "cmd": "shot", "args": ["bar4"]}
+{"t": 1792818626442, "cmd": "state", "args": []}
+{"t": 1792818628536, "cmd": "shot", "args": ["bar5"]}
+{"t": 1792818628779, "cmd": "state", "args": []}
+{"t": 1792818630862, "cmd": "shot", "args": ["bar6"]}
+{"t": 1792818631085, "cmd": "state", "args": []}
+{"t": 1792818641464, "cmd": "events", "args": ["40"]}
+{"t": 1792818649500, "cmd": "shot", "args": ["nonation"]}
+{"t": 1792818656610, "cmd": "note", "args": ["--shot", "nonation", "Village captured 20 game seconds into the stage: tick 1000 'Greenshire has captured your village! Upperwood has fallen' - while the HUD at tick 68 promised 'Sieges can begin in 4:58' and the siege was already 2/6. Siege went 2/6 -> 4/6 (tick 500) -> captured (tick 1000) during the time it takes to open the Nations screen and walk a few metres; declaring war broke the 60 s truce, but the player had no realistic chance to act. Now 'Collapsing! 4:27 left', Nation: none. Expected the 'Sieges can begin in' countdown to be honoured or not shown."]}
+{"t": 1792818656823, "cmd": "key", "args": ["n"]}
+{"t": 1792818659330, "cmd": "events", "args": ["3"]}
+{"t": 1792818659423, "cmd": "shot", "args": ["n1"]}
+{"t": 1792818665775, "cmd": "click", "args": ["513", "517"]}
+{"t": 1792818668024, "cmd": "events", "args": ["2"]}
+{"t": 1792818668102, "cmd": "shot", "args": ["cbwar1"]}
+{"t": 1792818682221, "cmd": "shot", "args": ["cbwar2"]}
+{"t": 1792818682465, "cmd": "state", "args": []}
+{"t": 1792818686406, "cmd": "key", "args": ["l"]}
+{"t": 1792818688436, "cmd": "events", "args": ["2"]}
+{"t": 1792818688521, "cmd": "shot", "args": ["l1"]}
+{"t": 1792818692888, "cmd": "key", "args": ["l"]}
+{"t": 1792818694876, "cmd": "events", "args": ["4"]}
+{"t": 1792818694944, "cmd": "shot", "args": ["l2"]}
+{"t": 1792818702131, "cmd": "note", "args": ["--shot", "l2", "L as leader: first L shows 'Press L again to disband Greattown.' (status only; the Leave Nation button does not change to a Confirm state the way War does); second L 6.5 s later disbanded. Also visible here: pawn nameplates (large 'Kay Smith / Loyal, Industrious / (going home)') draw over the HUD panels and the 'Collapsing!' timer, making it unreadable."]}
+{"t": 1792818702342, "cmd": "key", "args": ["j"]}
+{"t": 1792818704371, "cmd": "events", "args": ["3"]}
+{"t": 1792818704440, "cmd": "shot", "args": ["j1"]}
+{"t": 1792818713096, "cmd": "key", "args": ["l"]}
+{"t": 1792818715118, "cmd": "events", "args": ["2"]}
+{"t": 1792818715215, "cmd": "shot", "args": ["lm1"]}
+{"t": 1792818720697, "cmd": "key", "args": ["l"]}
+{"t": 1792818722707, "cmd": "events", "args": ["3"]}
+{"t": 1792818722784, "cmd": "shot", "args": ["lm2"]}
+{"t": 1792818730283, "cmd": "note", "args": ["--shot", "lm2", "L as member: 'Press L again to leave Newshire.'; second L at 7.6 s confirmed (inside the 8 s window). Afterwards the banner reads 'Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends.' although the player has no nation (just left one), and the collapse timer reset to 4:59 - joining and leaving a nation refills the 5-minute clock."]}
+{"t": 1792818730513, "cmd": "key", "args": ["j"]}
+{"t": 1792818732028, "cmd": "move", "args": ["470", "476"]}
+{"t": 1792818732120, "cmd": "shot", "args": ["cb1"]}
+{"t": 1792818732341, "cmd": "state", "args": []}
+{"t": 1792818733421, "cmd": "shot", "args": ["cb2"]}
+{"t": 1792818733646, "cmd": "state", "args": []}
+{"t": 1792818734736, "cmd": "shot", "args": ["cb3"]}
+{"t": 1792818735005, "cmd": "state", "args": []}
+{"t": 1792818736082, "cmd": "shot", "args": ["cb4"]}
+{"t": 1792818736295, "cmd": "state", "args": []}
+{"t": 1792818737387, "cmd": "shot", "args": ["cb5"]}
+{"t": 1792818737635, "cmd": "state", "args": []}
+{"t": 1792818738729, "cmd": "shot", "args": ["cb6"]}
+{"t": 1792818738972, "cmd": "state", "args": []}
+{"t": 1792818740047, "cmd": "shot", "args": ["cb7"]}
+{"t": 1792818740283, "cmd": "state", "args": []}
+{"t": 1792818741380, "cmd": "shot", "args": ["cb8"]}
+{"t": 1792818741617, "cmd": "state", "args": []}
+{"t": 1792818742706, "cmd": "shot", "args": ["cb9"]}
+{"t": 1792818742943, "cmd": "state", "args": []}
+{"t": 1792818744033, "cmd": "shot", "args": ["cb10"]}
+{"t": 1792818744233, "cmd": "state", "args": []}
+{"t": 1792818749133, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792818768709, "cmd": "move", "args": ["470", "476"]}
+{"t": 1792818768792, "cmd": "shot", "args": ["cc1"]}
+{"t": 1792818769020, "cmd": "state", "args": []}
+{"t": 1792818769809, "cmd": "shot", "args": ["cc2"]}
+{"t": 1792818770036, "cmd": "state", "args": []}
+{"t": 1792818770820, "cmd": "shot", "args": ["cc3"]}
+{"t": 1792818771031, "cmd": "state", "args": []}
+{"t": 1792818771800, "cmd": "shot", "args": ["cc4"]}
+{"t": 1792818771974, "cmd": "state", "args": []}
+{"t": 1792818772749, "cmd": "shot", "args": ["cc5"]}
+{"t": 1792818772948, "cmd": "state", "args": []}
+{"t": 1792818773720, "cmd": "shot", "args": ["cc6"]}
+{"t": 1792818773981, "cmd": "state", "args": []}
+{"t": 1792818774764, "cmd": "shot", "args": ["cc7"]}
+{"t": 1792818774990, "cmd": "state", "args": []}
+{"t": 1792818775770, "cmd": "shot", "args": ["cc8"]}
+{"t": 1792818776012, "cmd": "state", "args": []}
+{"t": 1792818776804, "cmd": "shot", "args": ["cc9"]}
+{"t": 1792818777032, "cmd": "state", "args": []}
+{"t": 1792818777808, "cmd": "shot", "args": ["cc10"]}
+{"t": 1792818778067, "cmd": "state", "args": []}
+{"t": 1792818778838, "cmd": "shot", "args": ["cc11"]}
+{"t": 1792818779042, "cmd": "state", "args": []}
+{"t": 1792818779815, "cmd": "shot", "args": ["cc12"]}
+{"t": 1792818780044, "cmd": "state", "args": []}
+{"t": 1792818803571, "cmd": "shot", "args": ["cd1"]}
+{"t": 1792818803798, "cmd": "state", "args": []}
+{"t": 1792818804876, "cmd": "shot", "args": ["cd2"]}
+{"t": 1792818805056, "cmd": "state", "args": []}
+{"t": 1792818806136, "cmd": "shot", "args": ["cd3"]}
+{"t": 1792818806354, "cmd": "state", "args": []}
+{"t": 1792818807428, "cmd": "shot", "args": ["cd4"]}
+{"t": 1792818807661, "cmd": "state", "args": []}
+{"t": 1792818808737, "cmd": "shot", "args": ["cd5"]}
+{"t": 1792818808931, "cmd": "state", "args": []}
+{"t": 1792818809996, "cmd": "shot", "args": ["cd6"]}
+{"t": 1792818810194, "cmd": "state", "args": []}
+{"t": 1792818811276, "cmd": "shot", "args": ["cd7"]}
+{"t": 1792818811479, "cmd": "state", "args": []}
+{"t": 1792818812551, "cmd": "shot", "args": ["cd8"]}
+{"t": 1792818812750, "cmd": "state", "args": []}
+{"t": 1792818813826, "cmd": "shot", "args": ["cd9"]}
+{"t": 1792818814028, "cmd": "state", "args": []}
+{"t": 1792818815091, "cmd": "shot", "args": ["cd10"]}
+{"t": 1792818815270, "cmd": "state", "args": []}
+{"t": 1792818816337, "cmd": "shot", "args": ["cd11"]}
+{"t": 1792818816552, "cmd": "state", "args": []}
+{"t": 1792818817616, "cmd": "shot", "args": ["cd12"]}
+{"t": 1792818817859, "cmd": "state", "args": []}
+{"t": 1792818818920, "cmd": "shot", "args": ["cd13"]}
+{"t": 1792818819095, "cmd": "state", "args": []}
+{"t": 1792818820168, "cmd": "shot", "args": ["cd14"]}
+{"t": 1792818820369, "cmd": "state", "args": []}
+{"t": 1792818821432, "cmd": "shot", "args": ["cd15"]}
+{"t": 1792818821616, "cmd": "state", "args": []}
+{"t": 1792818822683, "cmd": "shot", "args": ["cd16"]}
+{"t": 1792818822880, "cmd": "state", "args": []}
+{"t": 1792818823948, "cmd": "shot", "args": ["cd17"]}
+{"t": 1792818824136, "cmd": "state", "args": []}
+{"t": 1792818825204, "cmd": "shot", "args": ["cd18"]}
+{"t": 1792818825394, "cmd": "state", "args": []}
+{"t": 1792818826462, "cmd": "shot", "args": ["cd19"]}
+{"t": 1792818826681, "cmd": "state", "args": []}
+{"t": 1792818827753, "cmd": "shot", "args": ["cd20"]}
+{"t": 1792818827952, "cmd": "state", "args": []}
+{"t": 1792818850985, "cmd": "note", "args": ["Command bar: the fixed rows (Enter Settlement / Teleport Home / Plant Sapling, and Leave Nation) never moved as pawns came and went - good. But the pawn buttons do move: 'Talk to X (Stranger) - traits' goes at the end of row 2 when the text is short (Mia Brown/Gregarious, Dave Davies/Loyal, Greedy) and jumps to the start of row 1 when it is long (Karl Smith/Loyal, Industrious; Irene Wilson/Greedy, Ambitious), and Gift/Invite slide from x=10 to x=386 accordingly. With the pointer at (470,476) Talk appeared and vanished under it as pawns walked by. See shots/cmdbar_jump.png and shots/cd_strip.png (ticks 3800-6544)."]}
+{"t": 1792818851048, "cmd": "key", "args": ["o"]}
+{"t": 1792818853010, "cmd": "shot", "args": ["o2"]}
+{"t": 1792818858009, "cmd": "key", "args": ["Escape"]}
+{"t": 1792818859500, "cmd": "key", "args": ["l"]}
+{"t": 1792818861477, "cmd": "key", "args": ["l"]}
+{"t": 1792818863459, "cmd": "key", "args": ["n"]}
+{"t": 1792818865428, "cmd": "events", "args": ["5"]}
+{"t": 1792818865488, "cmd": "key", "args": ["o"]}
+{"t": 1792818867462, "cmd": "shot", "args": ["o3"]}
+{"t": 1792818872296, "cmd": "click", "args": ["836", "284"]}
+{"t": 1792818875029, "cmd": "click", "args": ["836", "284"]}
+{"t": 1792818877260, "cmd": "events", "args": ["3"]}
+{"t": 1792818877324, "cmd": "shot", "args": ["o4"]}
+{"t": 1792818882753, "cmd": "click", "args": ["657", "349"]}
+{"t": 1792818884989, "cmd": "click", "args": ["836", "415"]}
+{"t": 1792818887216, "cmd": "click", "args": ["657", "349"]}
+{"t": 1792818889461, "cmd": "events", "args": ["4"]}
+{"t": 1792818889529, "cmd": "shot", "args": ["o5"]}
+{"t": 1792818894048, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792818895792, "cmd": "shot", "args": ["o6"]}
+{"t": 1792818896000, "cmd": "click", "args": ["793", "161"]}
+{"t": 1792818897743, "cmd": "shot", "args": ["o7"]}
+{"t": 1792818897965, "cmd": "events", "args": ["3"]}
+{"t": 1792818903237, "cmd": "click", "args": ["301", "349"]}
+{"t": 1792818905483, "cmd": "events", "args": ["2"]}
+{"t": 1792818909466, "cmd": "click", "args": ["657", "349"]}
+{"t": 1792818910214, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792818910961, "cmd": "click", "args": ["793", "161"]}
+{"t": 1792818911701, "cmd": "shot", "args": ["o8"]}
+{"t": 1792818911894, "cmd": "click", "args": ["657", "349"]}
+{"t": 1792818913824, "cmd": "events", "args": ["3"]}
+{"t": 1792818913897, "cmd": "shot", "args": ["o9"]}
+{"t": 1792818922637, "cmd": "note", "args": ["--shot", "order_kept", "Nations list kept its order while open through Denounce (Newshire 0 -> Rival -25) and War (Easttown 0 -> Hostile -60, at war), and while scrolling Down/Up; an armed War survived the scroll and confirmed 2.4 s later. Clicking another row's button re-arms rather than confirms (good). Ally at Neutral gives a clear refusal ('an alliance needs +30. Gifts help')."]}
+{"t": 1792818922856, "cmd": "key", "args": ["Escape"]}
+{"t": 1792818924350, "cmd": "key", "args": ["o"]}
+{"t": 1792818926328, "cmd": "shot", "args": ["o10"]}
+{"t": 1792818933386, "cmd": "key", "args": ["Escape"]}
+{"t": 1792818934858, "cmd": "key", "args": ["o"]}
+{"t": 1792818936821, "cmd": "click", "args": ["836", "415"]}
+{"t": 1792818937855, "cmd": "events", "args": ["1"]}
+{"t": 1792818945450, "cmd": "click", "args": ["836", "415"]}
+{"t": 1792818947381, "cmd": "events", "args": ["3"]}
+{"t": 1792818951057, "cmd": "click", "args": ["836", "415"]}
+{"t": 1792818952988, "cmd": "events", "args": ["2"]}
+{"t": 1792818953055, "cmd": "state", "args": []}
+{"t": 1792818956314, "cmd": "events", "args": ["200"]}
+{"t": 1792818956376, "cmd": "stop", "args": []}
+{"t": 1792818982962, "cmd": "report", "args": []}
+{"t": 1792821185627, "cmd": "stop", "args": []}

@@ -1,0 +1,107 @@
+{
+  "session": "s02",
+  "goal": "Survive the first winter and keep your nation's people alive (#353). Found or join a nation early. Record whether the HUD warns when members go hungry or starve, whether Feed Residents appears and works when you carry food home, and count hunger deaths (events) over the winter; the 0.6.0 run on this seed saw 16 NPC hunger deaths across 7 nations with no warning.",
+  "build": {"version": "0.6.0", "commit": "fc45ac8"},
+  "seed": 103,
+  "durationSec": 2697,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "AI nation leaders starve during winter: 4 of the 5 hunger deaths were nation leaders, 2 of them 'within the walls'",
+      "detail": "Over ticks 180000-219800 (winter day 1 and two thirds of day 2) the world logged 5 hunger deaths (pawn_death total=5), all in AI nations: Tina Brown, leader of Farmland (wilds, t206864, nation disbanded); Grace Lewis of Newport (wilds, t207460); Frank Taylor, leader of Blueport (within the walls, t212888); Bob Brown, leader of Westton (wilds, t214920); Wendy Walker, leader of Newport (within the walls, t218764). Down from 16 in the 0.6.0 run, but leaders are disproportionately the victims, and some starve inside their own settlement with markets around them. A leader death disbanded Farmland outright ('Tina Brown has died. Farmland has been disbanded.'). Expected AI leaders, who have coins and a market, to keep themselves fed, or at least not to make up 80% of the deaths.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season winter; Start, Begin; play ~40 min real time (tps ~15-30); grep PawnDeath out/events.jsonl",
+      "screenshot": "shots/w1.png",
+      "tick": 206864
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Feed Residents gives each hungry pawn one item, so the same member is hungry again within ~600 ticks",
+      "detail": "With 50-60 apples in my pack, each press of 'Feed Residents (1 hungry)' handed the pawn one apple (+15 energy, while 'hungry' is under 80). The amber 'Yellowton: 1 member hungry' line and the button were back about 600 ticks (12 game seconds) later: fed at 216844, hungry again by 217424; fed 217464, hungry again by 218548. Keeping the nation fed meant standing in town pressing Feed every few game seconds. Expected one press to feed each pawn until it is no longer hungry (or to say 'still hungry' when it is not).",
+      "repro": "Found a nation and a settlement, carry apples (chop trees), stay inside the settlement in winter; press Feed Residents whenever it appears; pt wait 30 and watch it come back",
+      "screenshot": "shots/nag_again.png",
+      "tick": 218548
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Command bar reflows when Feed Residents appears or disappears, so the next click lands on Talk/Build",
+      "detail": "The Feed button shows up in different places (297,414 in shots/c10.png; 115,414 in shots/c14.png) depending on which pawn buttons are present. When the last hungry pawn is fed it vanishes and 'Talk to Frank Robinson' slides into its spot (shots/fedagain.png). A second Feed click opened Phoebe Thompson's dialogue (t208124), and on another visit the rows shifted up and my 'Collect Stockpile' click built a Farm instead (t215560). The code comment on the button says it was put last 'so its coming and going moves nothing', but in play it does move things.",
+      "repro": "Inside your own settlement with 1 hungry resident: click Feed Residents twice in a row",
+      "screenshot": "shots/fedagain.png",
+      "tick": 211576
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'You fed N residents' confirmation is overwritten within 20 ticks by diplomacy status messages",
+      "detail": "At t198480 the status read 'You fed 2 residents in the Village of Yellowton.' and at t198500 it was replaced by 'Citywood shares an enemy with you: relations are now Friendly (+20).' On screen the only sign that feeding worked was the apple count dropping 42->40. The same happened at t214056 with Southernport/Oldville.",
+      "repro": "Press Feed Residents during a busy chronicle period (the night of day 7 on seed 103)",
+      "screenshot": "shots/c4fed.png",
+      "tick": 198500
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "H (teleport home) and E still act while a world-event sheet says 'The world waits while you decide'",
+      "detail": "The Bandit camp event sheet was up and the tick was frozen at 201552, but my H and E key presses still went through: the status showed 'Welcome home!' and then 'Entered settlement.' Expected world input to be blocked until an option is chosen.",
+      "repro": "When a world event sheet appears, press h then e; pt events shows 'Welcome home!' / 'Entered settlement.' at the frozen tick",
+      "screenshot": "shots/c6f.png",
+      "tick": 201552
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement becomes a Town but the Era box stays 'Camp (1/4)' and the objective still says 'Reach the Village era'",
+      "detail": "Once I had 3+ buildings the status said 'House built. The settlement is now a Town!' and Settlement Info showed 'Tier: Town', but the top-left Era read 'Camp (1/4)' and Objective 7 was still 'Reach the Village era' (Members 6/10). Settlement tier and nation era are named alike, which makes this confusing.",
+      "repro": "Build stall, house, farm, house in your first settlement; compare Era box with Settlement Info tier",
+      "screenshot": "shots/town.png",
+      "tick": 205192
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress bar text is clipped on the left ('nbers 6/10 · Buildings 2/2')",
+      "detail": "The progress text 'Members 6/10 · Buildings 2/2' is wider than the objective box and shows up as 'nbers ...'.",
+      "repro": "Reach Objective 7 (Reach the Village era)",
+      "screenshot": "shots/objective_clipped.png",
+      "tick": 187112
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Purchase Food fails with 315 coins while the market lists apple prices",
+      "detail": "Market Info listed 'Apples 70/63' and I had 315 coins, but Purchase Food said 'No one is selling food at this market or you do not have enough money to purchase food.' The message does not say which of the two is the problem, and the price list suggests apples are on sale.",
+      "repro": "Inside own settlement, click Purchase Food",
+      "screenshot": "shots/town.png",
+      "tick": 205212
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Inventory box jumps between the left edge and mid-screen as command rows come and go",
+      "detail": "Inventory Info sits at x=10 (shots/h2.png) or at x=220 over the scene (shots/h3.png) depending on how many command rows are showing. The Energy bar also overlaps the bottom of the Season box inside settlements.",
+      "repro": "Enter your settlement with and without pawns nearby",
+      "screenshot": "shots/h3.png",
+      "tick": 218548
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 3631.04, "Eat something": 3632.0, "Create or join a nation": 3633.04, "Found a settlement": 3725.04, "Enter your settlement": 3731.04, "Build a market stall": 3733.04},
+    "hungerDeathsWorld": 5,
+    "hungerDeathsOwnNation": 0,
+    "hungerDeathsNationLeaders": 4,
+    "nationsWithHungerDeaths": 4,
+    "feedResidentsPresses": 16,
+    
+    "ownNationMembersAtEnd": 7,
+    "winterTicksObserved": 39808,
+    "winterFractionObserved": 0.66
+  },
+  "fun": 3,
+  "verdict": "The #353 fix works: in winter an amber HUD line ('Yellowton: N members hungry. Bring food home and Feed Residents.') shows everywhere, a 'Feed Residents (N hungry)' button appears in town when you carry food, and my nation lost no one. World hunger deaths fell from 16 to 5 over two thirds of the winter, but 4 of those 5 were AI nation leaders (two starved inside their own walls), which disbands nations. Feeding is click-heavy: each press gives one apple per pawn, so the warning comes back every ~12 game seconds, and the button moves around in the reflowing command bar."
+}

@@ -1,0 +1,109 @@
+{
+  "session": "s03",
+  "goal": "As a new player, try crafting and trading before and after founding a nation (#356, #354). Before you have a nation, the crafting screen must say the Workshop is locked until the Village era rather than telling you to build one. At a market, try Sell Resources in several situations (nothing to sell, your own stall only, merchants too poor) and record whether each refusal tells you why.",
+  "build": {"version": "0.6.0", "commit": "fc45ac8"},
+  "seed": 107,
+  "durationSec": 1043,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Sell Resources is disabled when carrying only food/apples/saplings, though the market lists prices for them",
+      "detail": "With 5 chicken meat and no wood/stone, inside the Village of Greenham (Market Info shows 'Chicken Meat 57/51', 1 merchant), the Sell Resources button is greyed out and clicking it does nothing. The button's enable check only looks at wood/stone/planks/bricks, but the market itself (Market.isSoldInBulk) buys every non-coin, non-tool item, and the refusal text earlier even named 'sapling' as my cheapest good. Expected: the button is enabled for any sellable good, or explains why not.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 107; leave title, Start, Begin; pt walkto chicken; pt key e (x5 chickens); pt walkto stall 250; pt key e; click Sell Resources",
+      "screenshot": "shots/meat_disabled.png",
+      "tick": 6149
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Nothing-to-sell refusal is silent: Sell Resources just greys out with no tooltip or message",
+      "detail": "With an empty inventory inside the Town of Townham, Sell Resources is disabled; clicking or hovering gives no reason. The game has a good message for this ('You have nothing to sell: markets buy resources and food, not coins or tools.') but the disabled button makes it unreachable. Same pattern for Build Stall: greyed out with no cost shown; only pressing B reveals 'Not enough wood. Need 13 more.'",
+      "repro": "fresh seed 107 world; wait ~40s for pawns to found settlements; pt walkto settlement 250; pt key e; click Sell Resources (546,517)",
+      "screenshot": "shots/sell_empty2.png",
+      "tick": 2525
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Pawns fill the player's own new camp market (4/4 stalls) within about a minute, so the player can never build a stall there",
+      "detail": "After founding Citytown (tick 10502) the market went 0/4 to 4/4 stalls, all pawn-owned, before I could gather the 20 wood for B. B then says 'Market is full. Cannot build stall.' and none is for sale. As a result I could not set up the 'only my own stall' situation at all, so the 'The only stall here is yours' refusal went untested.",
+      "repro": "seed 107; N; gather 50 wood; travel to open ground; F; E to enter; gather 20 wood; H; E; B",
+      "screenshot": "shots/ownstall_full.png",
+      "tick": 14770
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Build a market stall' objective completes when a pawn builds a stall in your camp",
+      "detail": "Objective 6 'Build a market stall' completed at tick 11002 (+50 coins), 52 ticks after I entered my settlement, with no action from me: pawn Xavier Watson built a stall. The player is rewarded without ever learning B / the stall cost.",
+      "repro": "seed 107; found a settlement; enter it; wait a few seconds",
+      "screenshot": "shots/own_in.png",
+      "tick": 11002
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Successful sale message is immediately overwritten by diplomacy toasts",
+      "detail": "Selling in my own camp gave +65 coins (1 wood, 1 stone, 1 apple sold) but the 'You sold resources to X. Relationship increased...' status was replaced at once by 'Bigtown resents your border: relations are now Rival (-20).' Only a faint '+65 coins' float shows. The player can't see what was sold or to whom.",
+      "repro": "seed 107; in own camp with pawn merchants holding coins, click Sell Resources",
+      "screenshot": "shots/sell_ok2.png",
+      "tick": 13762
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective 4 hint tells a nationless player to 'wait for yours, or press L then N'",
+      "detail": "After disbanding my nation (L, L), Objective 4 'Found a settlement' reads 'Only a leader can found one. Wait for yours, or press L then N to lead.' I have no nation, so the hint should just say press N to start one.",
+      "repro": "seed 107; N; L; L; look at the objective panel",
+      "screenshot": "shots/obj_nonation.png",
+      "tick": 5046
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Camp-era crafting locked text omits that a foreign town's Workshop works",
+      "detail": "Out in the world, Planks/Bricks say 'Locked: The Workshop is unlocked in the Village era.' But inside the AI Town of Bigport with no nation, the header reads 'which has a Workshop: every recipe is open' and planks are craftable. The locked hint could mention visiting a settlement with a Workshop.",
+      "repro": "seed 107; walk to an AI town; E; C",
+      "screenshot": "shots/craft_foreign2.png",
+      "tick": 5194
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "No-stalls refusal says why but not what to do",
+      "detail": "Sell Resources in Bigport (0/8 stalls) shows 'This settlement does not have any stalls.' That's clear, but there's no pointer to a settlement that has stalls or to building one.",
+      "repro": "seed 107; enter the first AI settlement early (before its stall is built); click Sell Resources",
+      "screenshot": "shots/sell_nostalls2.png",
+      "tick": 3622
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Huge floating pawn labels and clipped settlement banner / objective bar",
+      "detail": "A nearby pawn's label 'Xavier Watson / Ambitious / (gathering resources)' covered the centre of the screen in very large text. The settlement banner ('Camp of Citytown / 0 here, 3/8 residents') is cut off at the top edge, and the Village objective bar reads 'mbers 4/10 • Buildings 0/2' (clipped on the left).",
+      "repro": "seed 107; found a settlement; stand near a pawn",
+      "screenshot": "shots/bigtext.png",
+      "tick": 10886
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 26.04,
+      "Eat something": 27.0,
+      "Create or join a nation": 56.04,
+      "Found a settlement": 210.04,
+      "Enter your settlement": 219.0,
+      "Build a market stall": 220.04
+    },
+    "sellRefusalsTested": 5,
+    "sellRefusalsExplained": 3,
+    "successfulSales": 1,
+    "coinsFromSale": 65
+  },
+  "fun": 3,
+  "verdict": "#356 is fixed: before a nation and in a Camp, the crafting screen says the Workshop unlocks in the Village era, and inside a town that has one it says every recipe is open. #354 is half done: when Sell Resources actually runs, its refusals are clear ('no stalls', 'No merchant here can pay: the richest has 0 coins, and your cheapest good (stone) sells for 18'). But the button greys out silently when you have nothing to sell, and it also greys out when you carry only food, apples or saplings, which the market does buy. Pawns grab every stall in your new camp so quickly that the player can't own one, so the 'only your own stall' refusal never came up."
+}
