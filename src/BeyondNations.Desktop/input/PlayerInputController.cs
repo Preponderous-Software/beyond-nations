@@ -101,6 +101,9 @@ namespace beyondnations.desktop.input {
         }
 
         private void applyActions(Simulation simulation, Player player, InputService inputService) {
+            // a "Press L/K again" prompt whose window has lapsed is taken back
+            leaveNationKey.update(player, clock.Elapsed.TotalSeconds);
+            buildKey.update(player, clock.Elapsed.TotalSeconds);
             if (inputService.wasPressedThisFrame(KeyBindings.Interact)) {
                 new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter())
                     .execute(player);

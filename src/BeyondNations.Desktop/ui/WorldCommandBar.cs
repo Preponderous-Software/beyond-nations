@@ -130,13 +130,17 @@ namespace beyondnations.desktop.ui {
             Market market = settlement.getMarket();
             bool leads = player.getId() == nation.getLeaderId();
 
-            // with the pawn buttons, last on the bar, so its coming and going moves nothing (#353)
+            // Always offered in the player's own settlement, with the place
+            // buttons, and disabled while no one here is hungry or the player
+            // has no food: playtest 0.6.2 s02 (finding 17) and 0.6.1 s02 saw it
+            // come and go among the pawn buttons, so a second click on it
+            // opened a pawn's dialogue. Its count is the number it will feed
+            // (FeedResidentsCommand.countHungryHere, the same list as execute)
+            // and is measured as three digits, so it never changes the width.
             FeedResidentsCommand feed = new FeedResidentsCommand(entityRepository);
             int hungryHere = feed.countHungryHere(player);
-            if (hungryHere > 0) {
-                commands.Add(new WorldCommand("Feed Residents (" + hungryHere + " hungry)", CommandGroup.People, () => feed.execute(player))
-                    .setEnabled(FoodItems.hasFood(player.getInventory())));
-            }
+            commands.Add(new WorldCommand(feedResidentsLabel(hungryHere), CommandGroup.Place, () => feed.execute(player))
+                .setEnabled(hungryHere > 0 && FoodItems.hasFood(player.getInventory())));
 
             if (leads && market.getNumStalls() < market.getMaxNumStalls()) {
                 commands.Add(new WorldCommand("Build Stall", CommandGroup.Build, () =>
@@ -191,6 +195,29 @@ namespace beyondnations.desktop.ui {
                     new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(stockpile > 0));
             }
+        }
+
+        /** "Feed Residents (3 hungry)" */
+        public static string feedResidentsLabel(int hungryHere) {
+            return "Feed Residents (" + hungryHere + " hungry)";
+        }
+
+        /**
+        * A name as long as most pawns', which the pawn buttons are measured
+        * with instead of the pawn's own: each is as wide for one pawn as for
+        * the next, so a different pawn stepping into reach, or the one there
+        * warming to the player, moves none of the others (playtest 0.6.2 s02
+        * finding 17). A longer name is shortened on the button with "...".
+        */
+        public const string PawnNameSlot = "Charlotte Williams";
+
+        /** The longest relationship tier name, which the Talk button is measured with. */
+        public const string TierNameSlot = "Acquaintance";
+
+        /** A pawn button: "Gift Ada", measured as "Gift Charlotte Williams". */
+        private static WorldCommand pawnCommand(string before, Pawn pawn, string after, System.Action action) {
+            return new WorldCommand(before + pawn.getName() + after, CommandGroup.People, action)
+                .setWidthLabel(before + PawnNameSlot + after);
         }
 
         /** "Build Farm" */
@@ -303,9 +330,10 @@ namespace beyondnations.desktop.ui {
 
         /**
         * Talk, gift and invite for the pawn within reach, plus the leader's
-        * levers when the player leads that pawn's nation. Each label names the
-        * pawn and how it feels about the player, so the bar doubles as the
+        * levers when the player leads that pawn's nation. Talk names the pawn
+        * and how it feels about the player, so the bar doubles as the
         * relationship readout for whoever is standing in front of the player.
+        * Every pawn button is measured with PawnNameSlot, not the pawn's name.
         */
         private static void addPawnCommands(Simulation simulation, List<WorldCommand> commands) {
             Player player = simulation.getPlayer();
@@ -317,26 +345,32 @@ namespace beyondnations.desktop.ui {
             EntityRepository entityRepository = simulation.getEntityRepository();
             EventProducer eventProducer = simulation.getEventProducer();
 
-            commands.Add(new WorldCommand("Talk to " + PawnRelations.describeWithTraits(pawn, player), CommandGroup.People, () =>
-                new TalkToPawnCommand(nationRepository, eventProducer, simulation.getTickCounter()).execute(player, pawn)));
+            // The traits stay off the button (they are on the pawn's name tag
+            // and in the button's tooltip): "Talk to Bob Roberts (Stranger) -
+            // Glutton" made the button, and every one after it, change width
+            // from pawn to pawn (playtest 0.6.2 s02 finding 17).
+            commands.Add(pawnCommand("Talk to ", pawn, " (" + PawnRelations.getTierName(pawn, player) + ")", () =>
+                new TalkToPawnCommand(nationRepository, eventProducer, simulation.getTickCounter()).execute(player, pawn))
+                .setWidthLabel("Talk to " + PawnNameSlot + " (" + TierNameSlot + ")")
+                .setTooltip("Talk to " + PawnRelations.describeWithTraits(pawn, player)));
 
             if (GiftPawnCommand.canGift(player)) {
-                commands.Add(new WorldCommand("Gift " + pawn.getName(), CommandGroup.People, () =>
+                commands.Add(pawnCommand("Gift ", pawn, "", () =>
                     new GiftPawnCommand(eventProducer).execute(player, pawn)));
             }
 
             if (InvitePawnToNationCommand.isApplicable(player, pawn)) {
-                commands.Add(new WorldCommand("Invite " + pawn.getName(), CommandGroup.People, () =>
+                commands.Add(pawnCommand("Invite ", pawn, "", () =>
                     new InvitePawnToNationCommand(nationRepository, eventProducer, entityRepository).execute(player, pawn)));
             }
 
             if (LeaderPawnCommands.playerLeads(player, pawn, nationRepository)) {
                 if (pawn.getOrder() == null) {
-                    commands.Add(new WorldCommand("Order " + pawn.getName() + ": Gather Wood", CommandGroup.People, () =>
+                    commands.Add(pawnCommand("Order ", pawn, ": Gather Wood", () =>
                         new OrderPawnToGatherCommand(nationRepository).execute(player, pawn)));
                 }
                 if (LeaderPawnCommands.canAppointMerchant(player, pawn, nationRepository, entityRepository)) {
-                    commands.Add(new WorldCommand("Appoint " + pawn.getName() + " Merchant", CommandGroup.People, () =>
+                    commands.Add(pawnCommand("Appoint ", pawn, " Merchant", () =>
                         new AppointMerchantCommand(nationRepository, entityRepository, eventProducer).execute(player, pawn)));
                 }
             }

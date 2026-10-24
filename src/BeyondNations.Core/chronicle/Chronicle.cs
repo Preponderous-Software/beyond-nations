@@ -256,6 +256,21 @@ namespace beyondnations {
             nations.Add(nation.getId());
             string n = nation.getName();
             int settlements = nation.getNumberOfSettlements();
+            Nation conqueror = e.getConqueror();
+            if (conqueror != null) {
+                // Disbanded by capture: it holds no settlement now, but it held
+                // one until a moment ago (0.6.2 playtest: a conquered nation was
+                // told it "never raised so much as a hut").
+                nations.Add(conqueror.getId());
+                string c = conqueror.getName();
+                string place = e.getLastSettlement() == null
+                    ? "settlement"
+                    : SettlementTiers.getDisplayName(e.getLastSettlement().getTier()).ToLowerInvariant();
+                return pick(e, n + "|" + c,
+                    n + " is no more; its last " + place + " fell to " + c + ".",
+                    "With its last " + place + " taken by " + c + ", " + n + " passed into history.",
+                    "The banners of " + n + " came down when " + c + " took its last " + place + ".");
+            }
             if (settlements > 0) {
                 return pick(e, n,
                     n + " has fallen; its settlements lie empty.",
