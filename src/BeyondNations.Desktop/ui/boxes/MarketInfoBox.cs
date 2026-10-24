@@ -60,11 +60,17 @@ namespace beyondnations.desktop.ui.boxes {
 
         public override List<string> getLines() {
             List<string> lines = new List<string>();
-            lines.Add("Stalls: " + market.getNumStalls() + "/" + market.getMaxNumStalls());
-            lines.Add("Stalls for Sale: " + market.getNumStallsForSale());
-            lines.Add("Total Coins: " + market.getTotalCoins());
-            lines.Add("Items Bought: " + market.getTotalNumItemsBought());
-            lines.Add("Items Sold: " + market.getTotalNumItemsSold());
+            if (isCompact()) {
+                // the totals in one short line; the merchants and prices are what a trader reads
+                lines.Add(market.getNumStalls() + "/" + market.getMaxNumStalls() + " stalls, " + market.getTotalCoins() + " coins");
+            }
+            else {
+                lines.Add("Stalls: " + market.getNumStalls() + "/" + market.getMaxNumStalls());
+                lines.Add("Stalls for Sale: " + market.getNumStallsForSale());
+                lines.Add("Total Coins: " + market.getTotalCoins());
+                lines.Add("Items Bought: " + market.getTotalNumItemsBought());
+                lines.Add("Items Sold: " + market.getTotalNumItemsSold());
+            }
 
             List<string> merchantNames = new List<string>();
             foreach (Stall stall in market.getStalls()) {
@@ -109,9 +115,12 @@ namespace beyondnations.desktop.ui.boxes {
             List<string> lines = getLines();
             List<ItemType> goods = getListedGoods();
             int firstPrice = lines.Count - goods.Count;
+            float width = System.MathF.Max(40f, ImGui.GetContentRegionAvail().X);
             for (int i = 0; i < lines.Count; i++) {
                 if (i < firstPrice) {
-                    ImGui.TextUnformatted(lines[i]);
+                    foreach (string part in TextWrap.wrap(lines[i], width, text => ImGui.CalcTextSize(text).X)) {
+                        ImGui.TextUnformatted(part);
+                    }
                     continue;
                 }
                 ItemType itemType = goods[i - firstPrice];
