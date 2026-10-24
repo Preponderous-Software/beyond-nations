@@ -1,0 +1,157 @@
+{"t": 1792864599414, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "111", "--stage-diplomacy"]}
+{"t": 1792864604259, "cmd": "wait", "args": ["3"]}
+{"t": 1792864607334, "cmd": "state", "args": []}
+{"t": 1792864607428, "cmd": "shot", "args": ["start"]}
+{"t": 1792864612362, "cmd": "key", "args": ["space"]}
+{"t": 1792864612857, "cmd": "wait", "args": ["2"]}
+{"t": 1792864614929, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864615691, "cmd": "wait", "args": ["2"]}
+{"t": 1792864617762, "cmd": "shot", "args": ["nw"]}
+{"t": 1792864617938, "cmd": "state", "args": []}
+{"t": 1792864626539, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864627314, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792864627394, "cmd": "wait", "args": ["2"]}
+{"t": 1792864629465, "cmd": "shot", "args": ["w0"]}
+{"t": 1792864629678, "cmd": "state", "args": []}
+{"t": 1792864640202, "cmd": "note", "args": ["--shot", "siege_red", "Era box shows 'Your village: Besieged by Greenshire (2/12)!' in red at tick ~68 - already at round 2 on spawn"]}
+{"t": 1792864640395, "cmd": "events", "args": ["20"]}
+{"t": 1792864640461, "cmd": "state", "args": ["--full"]}
+{"t": 1792864645898, "cmd": "click", "args": ["425", "389"]}
+{"t": 1792864646650, "cmd": "wait", "args": ["8"]}
+{"t": 1792864654740, "cmd": "state", "args": []}
+{"t": 1792864654818, "cmd": "shot", "args": ["poll1"]}
+{"t": 1792864655035, "cmd": "wait", "args": ["8"]}
+{"t": 1792864663105, "cmd": "state", "args": []}
+{"t": 1792864663206, "cmd": "shot", "args": ["poll2"]}
+{"t": 1792864663445, "cmd": "wait", "args": ["8"]}
+{"t": 1792864671526, "cmd": "state", "args": []}
+{"t": 1792864671654, "cmd": "shot", "args": ["poll3"]}
+{"t": 1792864671849, "cmd": "wait", "args": ["8"]}
+{"t": 1792864679928, "cmd": "state", "args": []}
+{"t": 1792864680005, "cmd": "shot", "args": ["poll4"]}
+{"t": 1792864680263, "cmd": "wait", "args": ["8"]}
+{"t": 1792864688348, "cmd": "state", "args": []}
+{"t": 1792864688459, "cmd": "shot", "args": ["poll5"]}
+{"t": 1792864688746, "cmd": "wait", "args": ["8"]}
+{"t": 1792864696856, "cmd": "state", "args": []}
+{"t": 1792864696986, "cmd": "shot", "args": ["poll6"]}
+{"t": 1792864697237, "cmd": "events", "args": ["10"]}
+{"t": 1792864703513, "cmd": "wait", "args": ["3"]}
+{"t": 1792864706609, "cmd": "state", "args": []}
+{"t": 1792864706766, "cmd": "shot", "args": ["poll7"]}
+{"t": 1792864707009, "cmd": "wait", "args": ["3"]}
+{"t": 1792864710098, "cmd": "state", "args": []}
+{"t": 1792864710186, "cmd": "shot", "args": ["poll8"]}
+{"t": 1792864710472, "cmd": "wait", "args": ["3"]}
+{"t": 1792864713629, "cmd": "state", "args": []}
+{"t": 1792864713727, "cmd": "shot", "args": ["poll9"]}
+{"t": 1792864713977, "cmd": "wait", "args": ["3"]}
+{"t": 1792864717064, "cmd": "state", "args": []}
+{"t": 1792864717202, "cmd": "shot", "args": ["poll10"]}
+{"t": 1792864717448, "cmd": "wait", "args": ["3"]}
+{"t": 1792864720526, "cmd": "state", "args": []}
+{"t": 1792864720622, "cmd": "shot", "args": ["poll11"]}
+{"t": 1792864720914, "cmd": "wait", "args": ["3"]}
+{"t": 1792864724003, "cmd": "state", "args": []}
+{"t": 1792864724071, "cmd": "shot", "args": ["poll12"]}
+{"t": 1792864724325, "cmd": "wait", "args": ["3"]}
+{"t": 1792864727450, "cmd": "state", "args": []}
+{"t": 1792864727541, "cmd": "shot", "args": ["poll13"]}
+{"t": 1792864727785, "cmd": "wait", "args": ["3"]}
+{"t": 1792864730913, "cmd": "state", "args": []}
+{"t": 1792864730982, "cmd": "shot", "args": ["poll14"]}
+{"t": 1792864731224, "cmd": "wait", "args": ["3"]}
+{"t": 1792864734352, "cmd": "state", "args": []}
+{"t": 1792864734462, "cmd": "shot", "args": ["poll15"]}
+{"t": 1792864734741, "cmd": "wait", "args": ["3"]}
+{"t": 1792864737809, "cmd": "state", "args": []}
+{"t": 1792864737896, "cmd": "shot", "args": ["poll16"]}
+{"t": 1792864738203, "cmd": "events", "args": ["15"]}
+{"t": 1792864750484, "cmd": "note", "args": ["Attempt 1 (no action): siege counter 2/12 at tick 68, 9/12 ~tick 1864, 11/12 ~2488 (top status still said 10/12), captured at tick 2500 (50 game s from world start, ~49 s from first seen round). Nation dissolved, 5-min collapse timer."]}
+{"t": 1792864754681, "cmd": "stop", "args": []}
+{"t": 1792864754961, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "111", "--stage-diplomacy"]}
+{"t": 1792864756438, "cmd": "wait", "args": ["3"]}
+{"t": 1792864759525, "cmd": "key", "args": ["space"]}
+{"t": 1792864760068, "cmd": "wait", "args": ["2"]}
+{"t": 1792864762155, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864762932, "cmd": "wait", "args": ["2"]}
+{"t": 1792864765060, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864765851, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792864766125, "cmd": "key", "args": ["o"]}
+{"t": 1792864766671, "cmd": "wait", "args": ["1"]}
+{"t": 1792864767761, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792864768140, "cmd": "state", "args": []}
+{"t": 1792864773264, "cmd": "click", "args": ["123", "237"]}
+{"t": 1792864774020, "cmd": "wait", "args": ["2"]}
+{"t": 1792864776093, "cmd": "shot", "args": ["trib1"]}
+{"t": 1792864776344, "cmd": "state", "args": []}
+{"t": 1792864782041, "cmd": "key", "args": ["o"]}
+{"t": 1792864782554, "cmd": "wait", "args": ["6"]}
+{"t": 1792864788653, "cmd": "state", "args": []}
+{"t": 1792864788742, "cmd": "shot", "args": ["b1"]}
+{"t": 1792864789021, "cmd": "wait", "args": ["6"]}
+{"t": 1792864795103, "cmd": "state", "args": []}
+{"t": 1792864795179, "cmd": "shot", "args": ["b2"]}
+{"t": 1792864795414, "cmd": "wait", "args": ["6"]}
+{"t": 1792864801498, "cmd": "state", "args": []}
+{"t": 1792864801592, "cmd": "shot", "args": ["b3"]}
+{"t": 1792864801849, "cmd": "wait", "args": ["6"]}
+{"t": 1792864808016, "cmd": "state", "args": []}
+{"t": 1792864808099, "cmd": "shot", "args": ["b4"]}
+{"t": 1792864808395, "cmd": "wait", "args": ["6"]}
+{"t": 1792864814485, "cmd": "state", "args": []}
+{"t": 1792864814552, "cmd": "shot", "args": ["b5"]}
+{"t": 1792864820263, "cmd": "events", "args": ["30"]}
+{"t": 1792864831788, "cmd": "note", "args": ["--shot", "lifted_silently", "After Tribute to Greenshire (tick 12), siege box flipped from red 'Besieged (2/12)' to amber 'Sieges can begin in 4:49' between tick 344 and 664 with no status/chronicle message saying the siege was lifted; tribute message only mentions raiders held off 60 s"]}
+{"t": 1792864832050, "cmd": "state", "args": []}
+{"t": 1792864832127, "cmd": "shot", "args": ["cd1"]}
+{"t": 1792864832406, "cmd": "wait", "args": ["20"]}
+{"t": 1792864852503, "cmd": "state", "args": []}
+{"t": 1792864852577, "cmd": "shot", "args": ["cd2"]}
+{"t": 1792864868478, "cmd": "stop", "args": []}
+{"t": 1792864868755, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "111", "--stage-diplomacy"]}
+{"t": 1792864870154, "cmd": "wait", "args": ["3"]}
+{"t": 1792864873238, "cmd": "key", "args": ["space"]}
+{"t": 1792864873849, "cmd": "wait", "args": ["2"]}
+{"t": 1792864875929, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864876710, "cmd": "wait", "args": ["2"]}
+{"t": 1792864878785, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864879601, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792864879889, "cmd": "wait", "args": ["25"]}
+{"t": 1792864904980, "cmd": "state", "args": []}
+{"t": 1792864905063, "cmd": "key", "args": ["o"]}
+{"t": 1792864905543, "cmd": "wait", "args": ["1"]}
+{"t": 1792864906611, "cmd": "shot", "args": ["ally0"]}
+{"t": 1792864912312, "cmd": "click", "args": ["301", "302"]}
+{"t": 1792864913064, "cmd": "wait", "args": ["2"]}
+{"t": 1792864915131, "cmd": "shot", "args": ["ally1"]}
+{"t": 1792864915398, "cmd": "state", "args": []}
+{"t": 1792864918887, "cmd": "key", "args": ["o"]}
+{"t": 1792864919422, "cmd": "wait", "args": ["6"]}
+{"t": 1792864925507, "cmd": "state", "args": []}
+{"t": 1792864925576, "cmd": "shot", "args": ["c1"]}
+{"t": 1792864925808, "cmd": "wait", "args": ["6"]}
+{"t": 1792864931941, "cmd": "state", "args": []}
+{"t": 1792864932052, "cmd": "shot", "args": ["c2"]}
+{"t": 1792864932283, "cmd": "wait", "args": ["6"]}
+{"t": 1792864938344, "cmd": "state", "args": []}
+{"t": 1792864938406, "cmd": "shot", "args": ["c3"]}
+{"t": 1792864938610, "cmd": "wait", "args": ["6"]}
+{"t": 1792864944679, "cmd": "state", "args": []}
+{"t": 1792864944750, "cmd": "shot", "args": ["c4"]}
+{"t": 1792864944930, "cmd": "wait", "args": ["6"]}
+{"t": 1792864951018, "cmd": "state", "args": []}
+{"t": 1792864951090, "cmd": "shot", "args": ["c5"]}
+{"t": 1792864951299, "cmd": "wait", "args": ["6"]}
+{"t": 1792864957367, "cmd": "state", "args": []}
+{"t": 1792864957437, "cmd": "shot", "args": ["c6"]}
+{"t": 1792864957666, "cmd": "wait", "args": ["6"]}
+{"t": 1792864963740, "cmd": "state", "args": []}
+{"t": 1792864963796, "cmd": "shot", "args": ["c7"]}
+{"t": 1792864963998, "cmd": "wait", "args": ["6"]}
+{"t": 1792864970071, "cmd": "state", "args": []}
+{"t": 1792864970141, "cmd": "shot", "args": ["c8"]}
+{"t": 1792864990016, "cmd": "note", "args": ["Run 3: Ally with Southernfield at tick 692 (siege 4/12) lifted the siege by tick 864, again with no 'siege lifted' message; Greenshire raids continued (ticks 1500+) since still Hostile. Inventory coins stay 216 while raid messages say coins taken."]}
+{"t": 1792864990075, "cmd": "stop", "args": []}
+{"t": 1792865009933, "cmd": "report", "args": []}
+{"t": 1792866349460, "cmd": "stop", "args": []}

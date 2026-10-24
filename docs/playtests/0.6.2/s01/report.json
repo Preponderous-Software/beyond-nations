@@ -1,0 +1,69 @@
+{
+  "session": "s01",
+  "goal": "Re-check sieges (#396, #404): your village starts besieged. Confirm the Era box (top left) names the siege in red (\"Your village: Besieged by X (n/12)!\") rather than a countdown, time how long the siege takes to go from its first round to capture if you do nothing, then in a second attempt (restart) hold the village with tribute, gifts or an alliance and say whether a minute is enough time to react.",
+  "build": {"version": "0.6.1", "commit": "6ac1e3f"},
+  "seed": 111,
+  "durationSec": 391,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Siege ends silently after Tribute or Ally: no 'siege lifted' message anywhere",
+      "detail": "Run 2: Tribute to Greenshire at tick 12 said only 'will hold off its raiders for 60 seconds'. Some time between tick 344 and 664 the red 'Besieged by Greenshire (2/12)!' line just became amber 'Sieges can begin in 4:49'. Run 3: Ally with Southernfield at tick 692 lifted the siege by tick 864, also with no status or chronicle line. A player who pays tribute has no confirmation the village is safe unless they spot the Era box changing colour. Expected a status and chronicle entry like 'Greenshire lifts its siege of your village'.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 111 --stage-diplomacy; enter world; pt key o; pt click 123 237 (Tribute, Greenshire); pt key o; pt wait 12; pt events 20",
+      "screenshot": "shots/lifted_silently.png",
+      "tick": 664
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Top status line shows a stale siege count (10/12) while Era box shows 11/12",
+      "detail": "With no action, the status banner said 'Greenshire is besieging your village (10/12)!' from tick 2000 until capture at 2500, while the Era box had already moved to 'Besieged by Greenshire (11/12)!'. Raid messages also overwrite the siege warning in the banner. Expected the banner to update each round, or not to show a count.",
+      "repro": "pt start ... --seed 111 --stage-diplomacy; enter world; do nothing; pt shot at about tick 2450",
+      "screenshot": "shots/stale_status.png",
+      "tick": 2488
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Raids say 'coins taken' but the player's Coins never change",
+      "detail": "Greenshire raids at ticks 500, 1500 and 2500 report 1-2 coins taken, but Inventory Coins stays 216. The coins presumably come from a nation treasury that isn't shown on the HUD, so raids feel like they have no effect. Expected the raided total to be visible somewhere (nation treasury in the Era/Kingdom box or the Nations screen).",
+      "repro": "pt start ... --seed 111 --stage-diplomacy; enter world; pt wait 40; compare Inventory Coins with the raid status",
+      "screenshot": "shots/raids_after_ally.png",
+      "tick": 1600
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Capture message is a five-sentence wall of text in the status banner",
+      "detail": "At capture (tick 2500) one banner holds the raid line, capture, nation fallen, 'without a nation', and the 5-minute collapse warning. The important part (found a settlement or win a follower within 5 minutes) comes last. The Era box's 'Collapsing! 4:58 left' is clear, though.",
+      "repro": "pt start ... --seed 111 --stage-diplomacy; enter world; pt wait 60; pt shot",
+      "screenshot": "shots/captured.png",
+      "tick": 2564
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Tribute's '60 seconds' truce doesn't match the 'Sieges can begin in 4:49' countdown shown afterwards",
+      "detail": "Tribute promises a 60 s hold-off, but the Era box then counts down from about 4:49. The countdown seems to end near tick 15000 (5 min from world start) in both runs (4:42 at tick 864, 4:35 at tick 1236), so it looks like a fixed grace window from world start rather than one tied to the truce. Two different timers for 'am I safe' is confusing.",
+      "repro": "run 2 above; compare the tribute message with the Era box countdown",
+      "screenshot": "shots/lifted_silently.png",
+      "tick": 1236
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "siegeRoundAtSpawn": 2,
+    "siegeCaptureTick": 2500,
+    "siegeSecondsFromSpawnToCapture": 50.0,
+    "siegeSecondsPerRound": 5.0,
+    "tributeCostCoins": 25,
+    "ticksToLiftAfterTribute": 500,
+    "ticksToLiftAfterAlly": 172
+  },
+  "fun": 3,
+  "verdict": "#396/#404 hold up. The Era box clearly names the siege in red ('Your village: Besieged by Greenshire (n/12)!'), not a countdown, and an undefended village falls at tick 2500, 50 game seconds after spawn (it starts at 2/12 and gains a round every 5 s). That is enough time to react: the Nations panel pauses the game, and Tribute (25 of 216 coins) or Ally (Southernfield is already at +31-33) each lift the siege in one click. The weak spot is feedback: the siege ends with no message, and the banner's count goes stale, so a player who acts can't easily tell that it worked."
+}
