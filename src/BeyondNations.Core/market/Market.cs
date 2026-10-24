@@ -377,6 +377,16 @@ namespace beyondnations {
             return itemType != ItemType.COIN && !Tools.isTool(itemType);
         }
 
+        /** Whether this inventory holds anything a market buys (isSoldInBulk): resources and food alike. */
+        public static bool hasAnythingToSell(Inventory inventory) {
+            foreach (ItemType itemType in Enum.GetValues(typeof(ItemType))) {
+                if (isSoldInBulk(itemType) && inventory.hasItem(itemType)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /**
         * The cheapest price one of these sells for here right now, or -1 when
         * no stall (other than the buyer's own) has one.

@@ -112,11 +112,11 @@ namespace beyondnations.desktop.ui {
                     new PurchaseFoodFromMarketCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(inventory.getNumItems(ItemType.COIN) > 0));
 
-                bool hasResources = inventory.getNumItems(ItemType.WOOD) > 0 || inventory.getNumItems(ItemType.STONE) > 0
-                    || inventory.getNumItems(ItemType.PLANKS) > 0 || inventory.getNumItems(ItemType.BRICKS) > 0;
+                // whatever the market buys, food included (playtest 0.6.1 s03: five
+                // chicken meat left the button greyed out)
                 commands.Add(new WorldCommand("Sell Resources", CommandGroup.Place, () =>
                     new SellResourcesAtMarketCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(hasResources));
+                    .setEnabled(Market.hasAnythingToSell(inventory)));
             }
 
             return CommandBarLayout.order(commands);

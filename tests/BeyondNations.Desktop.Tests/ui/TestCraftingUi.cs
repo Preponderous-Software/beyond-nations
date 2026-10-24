@@ -185,6 +185,26 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testSellResources_EnabledForFoodToo() {
+            GameConfig gameConfig = new GameConfig();
+            gameConfig.setWorldSeed(42);
+            Simulation simulation = new Simulation(gameConfig);
+            Settlement settlement = SettlementShowcase.stage(simulation);
+            Player player = simulation.getPlayer();
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
+            player.getInventory().clear();
+            Assert.False(find(simulation, "Sell Resources").isEnabled());
+
+            // playtest 0.6.1 s03: chicken meat alone left the button greyed out
+            player.getInventory().addItem(ItemType.CHICKEN_MEAT, 5);
+            Assert.True(find(simulation, "Sell Resources").isEnabled());
+
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.AXE, 1);
+            Assert.False(find(simulation, "Sell Resources").isEnabled());
+        }
+
+        [Fact]
         public void testInventoryBox_ListsCraftedItemsOnlyOnceHeld() {
             Inventory inventory = new Inventory(0);
             InventoryInfoBox box = new InventoryInfoBox(inventory);
