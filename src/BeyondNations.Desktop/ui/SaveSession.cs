@@ -108,7 +108,8 @@ namespace beyondnations.desktop.ui {
             }
             if (simulation.getTickCounter().getTotalTicks() - lastSaveTick >= AutosaveTicks) {
                 if (save(simulation, true)) {
-                    simulation.getPlayer().getStatus().update("Autosaved.");
+                    // a note: it never covers a message that matters (Status.note)
+                    simulation.getPlayer().getStatus().note("Autosaved.");
                 }
             }
         }

@@ -37,6 +37,8 @@ namespace beyondnations {
         private bool stepping = false;
         // the line was said during this step, so the next message joins it
         private bool joinable = false;
+        // the line is a note (note()), which any message may replace
+        private bool showingNote = false;
 
         public Status(TickCounter tickCounter, int ticksToExpire) {
             this.tickCounter = tickCounter;
@@ -61,6 +63,23 @@ namespace beyondnations {
                 duplicateMessageCount = 0;
             }
             replaceLine(status);
+        }
+
+        /**
+        * Says something only worth a glance, such as "Autosaved.": shown when
+        * the line is empty or holds another note, and otherwise dropped, so it
+        * never takes the place of a message that matters. The autosave on the
+        * tick the player's nation fell put "Autosaved." where "Greenshire has
+        * captured your village! ... You are without a nation." had been, and
+        * the player saw only the HUD change (playtest 0.6.3 s01).
+        */
+        public void note(string status) {
+            if (!string.IsNullOrEmpty(this.status) && !showingNote) {
+                return;
+            }
+            duplicateMessageCount = 0;
+            replaceLine(status);
+            showingNote = true;
         }
 
         /**
@@ -127,6 +146,7 @@ namespace beyondnations {
         }
 
         private void replaceLine(string status) {
+            showingNote = false;
             parts.Clear();
             parts.Add(status);
             this.status = status;
@@ -139,6 +159,7 @@ namespace beyondnations {
                 this.status = "";
                 parts.Clear();
                 joinable = false;
+                showingNote = false;
             }
         }
 

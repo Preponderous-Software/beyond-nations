@@ -24,6 +24,33 @@ namespace beyondnationstests {
 
         }
 
+        /**
+        * Playtest 0.6.3 s01: the autosave on the tick the player's nation
+        * fell put "Autosaved." where the capture message had been. A note
+        * shows only on an empty line or over another note.
+        */
+        [Fact]
+        public void testNote_NeverCoversAMessage() {
+            TickCounter tickCounter = new TickCounter();
+            Status status = new Status(tickCounter, 100);
+            status.update("Greenshire has captured your village!");
+            status.note("Autosaved.");
+            Assert.Equal("Greenshire has captured your village!", status.getStatus());
+
+            for (int i = 0; i < 101; i++) {
+                tickCounter.increment();
+            }
+            status.clearStatusIfExpired();
+            status.note("Autosaved.");
+            Assert.Equal("Autosaved.", status.getStatus());
+            status.note("Autosaved.");
+            Assert.Equal("Autosaved.", status.getStatus());
+
+            // any message replaces a note
+            status.update("Gathered 3 wood from tree");
+            Assert.Equal("Gathered 3 wood from tree", status.getStatus());
+        }
+
         [Fact]
         public void testUpdate() {
             // prepare
