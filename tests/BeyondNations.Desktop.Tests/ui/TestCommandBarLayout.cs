@@ -206,6 +206,60 @@ namespace beyondnationstests.desktop.ui {
             Assert.False(gate.press("Raid Caravan", 30.0));
         }
 
+        /**
+        * 0.6.1/0.6.2 playtests: after the window lapsed the button reverted
+        * but the status line still said "Click War again...", and asking
+        * again read "(x2)", like "click twice".
+        */
+        [Fact]
+        public void aLapsedConfirmTakesItsPromptBack_AndAskingAgainIsNotCounted() {
+            Status status = new Status(new TickCounter(), 1000);
+            ConfirmGate gate = new ConfirmGate(4.0);
+            Assert.False(gate.press("war", 10.0));
+            gate.prompt(status, "Click War again to declare war on Blackport.");
+
+            gate.update(13.0, status);
+            Assert.Equal("Click War again to declare war on Blackport.", status.getStatus());
+
+            gate.update(15.0, status);
+            Assert.Equal(ConfirmGate.LapsedMessage, status.getStatus());
+            Assert.False(gate.isArmed("war", 15.0));
+
+            // asking again after the lapse reads as the plain prompt
+            Assert.False(gate.press("war", 20.0));
+            gate.prompt(status, "Click War again to declare war on Blackport.");
+            Assert.False(gate.press("war", 30.0));
+            gate.prompt(status, "Click War again to declare war on Blackport.");
+            Assert.Equal("Click War again to declare war on Blackport.", status.getStatus());
+        }
+
+        [Fact]
+        public void aLapsedConfirmLeavesANewerMessageAlone() {
+            Status status = new Status(new TickCounter(), 1000);
+            ConfirmGate gate = new ConfirmGate(4.0);
+            Assert.False(gate.press("war", 10.0));
+            gate.prompt(status, "Click War again to declare war on Blackport.");
+            status.update("Greenshire has lifted its siege of your village.");
+
+            gate.update(20.0, status);
+
+            Assert.Equal("Greenshire has lifted its siege of your village.", status.getStatus());
+        }
+
+        [Fact]
+        public void aConfirmedPressLeavesTheActionsOwnMessage() {
+            Status status = new Status(new TickCounter(), 1000);
+            ConfirmGate gate = new ConfirmGate(4.0);
+            Assert.False(gate.press("war", 10.0));
+            gate.prompt(status, "Click War again to declare war on Blackport.");
+            Assert.True(gate.press("war", 11.0));
+
+            gate.update(30.0, status);
+
+            // nothing to take back: the prompt was spent by the confirmation
+            Assert.Equal("Click War again to declare war on Blackport.", status.getStatus());
+        }
+
         [Fact]
         public void hostileAndIrreversibleCommandsAskTwice() {
             Assert.True(command("Denounce Newham", CommandGroup.Drastic).needsConfirm());
@@ -409,10 +463,17 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(nation.getId(), player.getNationId());
             Assert.Equal("Press L again to disband " + nation.getName() + ".", player.getStatus().getStatus());
 
-            // too late: asks again
+            // once the window lapses, the prompt is taken back (0.6.2 playtest)
             double late = 1.0 + ConfirmGate.DefaultWindowSeconds + 1.0;
+            key.update(player, 1.0 + ConfirmGate.DefaultWindowSeconds - 1.0);
+            Assert.Equal("Press L again to disband " + nation.getName() + ".", player.getStatus().getStatus());
+            key.update(player, late - 0.5);
+            Assert.Equal(ConfirmGate.LapsedMessage, player.getStatus().getStatus());
+
+            // too late: asks again, without a "(x2)"
             Assert.False(key.press(simulation, late));
             Assert.NotNull(player.getNationId());
+            Assert.Equal("Press L again to disband " + nation.getName() + ".", player.getStatus().getStatus());
 
             Assert.True(key.press(simulation, late + 0.5));
             Assert.Null(player.getNationId());
@@ -489,6 +550,11 @@ namespace beyondnationstests.desktop.ui {
             Assert.False(key.press(simulation, 3.0));
             Assert.False(key.press(simulation, 30.0));
             Assert.Equal(1, settlement.getNumBuildings());
+            // re-asked after the lapse, not counted as "(x2)" (0.6.2 playtest)
+            string prompt = BuildKey.getConfirmPrompt(BuildingPlanner.suggestNext(settlement).Value);
+            Assert.Equal(prompt, player.getStatus().getStatus());
+            key.update(player, 30.0 + ConfirmGate.DefaultWindowSeconds + 1.0);
+            Assert.Equal(ConfirmGate.LapsedMessage, player.getStatus().getStatus());
         }
     }
 }

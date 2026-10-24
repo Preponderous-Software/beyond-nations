@@ -198,6 +198,70 @@ namespace beyondnationstests {
             Assert.Equal(defender.getId(), target.getNationId());
         }
 
+        /**
+        * The Era box's red siege line just turned amber when a siege of the
+        * player's village lifted, so nothing said the tribute, gift or
+        * alliance had worked (0.6.1/0.6.2 playtests).
+        */
+        [Fact]
+        public void testSiege_OfThePlayersSettlement_LiftingIsTold() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation attacker = world.pawnNation("Aland", 4);
+            Nation own = world.playerNation(2);
+            world.settlement(attacker, 0, 0);
+            Settlement target = world.settlement(own, 300, 0);
+            world.relations.adjust(attacker, own, -80);
+
+            world.rounds(2);
+            Assert.Equal(2, world.diplomacy.getSiegeProgress(target));
+
+            world.addMember(own);
+            world.rounds(1);
+
+            Assert.Equal(0, world.diplomacy.getSiegeProgress(target));
+            Assert.Equal("Aland has lifted its siege of your camp.", world.player.getStatus().getLatest());
+        }
+
+        [Fact]
+        public void testSiege_BetweenOtherNations_LiftsWithoutTellingThePlayer() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation attacker = world.pawnNation("Aland", 4);
+            Nation defender = world.pawnNation("Bshire", 2);
+            world.settlement(attacker, 0, 0);
+            world.settlement(defender, 300, 0);
+            world.relations.adjust(attacker, defender, -80);
+
+            world.rounds(2);
+            world.addMember(defender);
+            world.rounds(1);
+
+            Assert.DoesNotContain("lifted", world.player.getStatus().getStatus());
+        }
+
+        /**
+        * A conquered nation used to be told it "never raised so much as a
+        * hut", because the epitaph went by its settlement count at disband,
+        * which a capture had just made 0 (0.6.2 playtest).
+        */
+        [Fact]
+        public void testCapture_OfALastSettlement_GivesAConquestEpitaph() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation attacker = world.pawnNation("Aland", 4);
+            Nation defender = world.pawnNation("Bshire", 2);
+            world.settlement(attacker, 0, 0);
+            Settlement target = world.settlement(defender, 300, 0);
+
+            world.diplomacy.capture(target, defender, attacker);
+
+            ChronicleEntry epitaph = System.Linq.Enumerable.Single(world.simulation.getChronicle().getEntries(),
+                e => e.getEventType() == EventType.NationDisband);
+            Assert.Contains("Bshire", epitaph.getText());
+            Assert.Contains("Aland", epitaph.getText());
+            Assert.Contains("last camp", epitaph.getText());
+            Assert.DoesNotContain("hut", epitaph.getText());
+            Assert.True(epitaph.involvesNation(attacker.getId()));
+        }
+
         [Fact]
         public void testTowns_CannotBeBesieged() {
             DiplomacyFixture world = new DiplomacyFixture();

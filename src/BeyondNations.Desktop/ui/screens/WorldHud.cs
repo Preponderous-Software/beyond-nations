@@ -344,6 +344,9 @@ namespace beyondnations.desktop.ui.screens {
         * commands).
         */
         private float drawCommandButtons(float width, float barRight, float height, Simulation simulation, Layout layout) {
+            // a "Click again" prompt whose window has lapsed is taken back,
+            // even when its button has since gone from the bar
+            confirmGate.update(ImGui.GetTime(), simulation.getPlayer().getStatus());
             List<WorldCommand> commands = WorldCommandBar.getCommands(simulation);
             if (commands.Count == 0) {
                 return height - layout.Margin;
@@ -411,7 +414,7 @@ namespace beyondnations.desktop.ui.screens {
                 command.execute();
                 return;
             }
-            player.getStatus().update(getConfirmPrompt(command, TouchLayout.isActive()));
+            confirmGate.prompt(player.getStatus(), getConfirmPrompt(command, TouchLayout.isActive()));
         }
 
         /** "Click again to confirm: Raid Caravan." */

@@ -46,8 +46,8 @@ namespace beyondnations {
             Log.debug("Produced event: " + pawnSpawnEvent);
         }
 
-        public void produceNationDisbandEvent(Nation nation) {
-            NationDisbandEvent nationDisbandEvent = new NationDisbandEvent(nation);
+        public void produceNationDisbandEvent(Nation nation, Nation conqueror = null, Settlement lastSettlement = null) {
+            NationDisbandEvent nationDisbandEvent = new NationDisbandEvent(nation, conqueror, lastSettlement);
             eventRepository.addEvent(nationDisbandEvent);
             Log.debug("Produced event: " + nationDisbandEvent);
         }
