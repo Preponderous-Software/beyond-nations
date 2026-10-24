@@ -26,6 +26,7 @@ namespace beyondnations.desktop.input {
         private bool debugMode;
         private readonly ChronicleView chronicleView = new ChronicleView();
         private readonly BuildKey buildKey = new BuildKey();
+        private readonly LeaveNationKey leaveNationKey = new LeaveNationKey();
         private readonly System.Diagnostics.Stopwatch clock = System.Diagnostics.Stopwatch.StartNew();
 
         public MouseLook getMouseLook() {
@@ -132,8 +133,7 @@ namespace beyondnations.desktop.input {
                     .execute(player);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.LeaveNation)) {
-                new NationLeaveCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository())
-                    .execute(player);
+                leaveNationKey.press(simulation, clock.Elapsed.TotalSeconds);
             }
             if (inputService.wasPressedThisFrame(KeyBindings.FoundSettlement)) {
                 new FoundSettlementCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getGameConfig(), simulation.getRandom())
