@@ -100,7 +100,7 @@ namespace beyondnationstests {
                 Saved = new[] { "ticksToExpire", "status", "tickLastSet", "duplicateMessageCount" },
                 Derived = new[] { "tickCounter" },
                 // which messages share the line this step: the saved text is the line
-                Transient = new[] { "parts", "stepping", "joinable" },
+                Transient = new[] { "parts", "stepping", "joinable", "showingNote" },
             },
             [typeof(Inventory)] = saved("slots", "toolWear"),
             [typeof(ItemSlot)] = saved("itemStack"),

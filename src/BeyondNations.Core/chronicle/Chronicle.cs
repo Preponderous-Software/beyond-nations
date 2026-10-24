@@ -99,9 +99,31 @@ namespace beyondnations {
             totalRecorded++;
             entries.Add(entry);
             if (entries.Count > capacity) {
-                entries.RemoveAt(0);
+                entries.RemoveAt(indexToDrop());
             }
             return entry;
+        }
+
+        /**
+        * Which entry makes room for a new one: the oldest that is not about
+        * the player or the player's nation, and the oldest of all only when
+        * every kept entry is theirs. Pawn-led nations write forty to fifty
+        * lines a game minute, and dropping simply the oldest lost the
+        * player's own founding within minutes (playtest 0.6.3 s04: "Only my
+        * nation" fell from 16 lines to 5). Only which line goes changes, so
+        * the save is as it was.
+        */
+        private int indexToDrop() {
+            Player player = findPlayer() as Player;
+            if (player == null) {
+                return 0;
+            }
+            for (int i = 0; i < entries.Count - 1; i++) {
+                if (!entries[i].concerns(player)) {
+                    return i;
+                }
+            }
+            return 0;
         }
 
         private void onEvent(Event e) {
