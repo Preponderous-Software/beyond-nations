@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using Xunit;
 
@@ -39,6 +40,45 @@ namespace beyondnationstests {
 
         private void assertCurrent(string id) {
             Assert.Equal(id, tracker.getCurrent().getId());
+        }
+
+        /**
+        * Recruits one pawn, as a player would: gifts until it will come (a
+        * nationless pawn once it knows the player, another nation's member
+        * once Loyal), then an invitation. Nationless pawns are asked first;
+        * leaders never leave, and a Loyal-natured member may refuse, so it
+        * moves on to the next. Returns whether one joined.
+        */
+        private bool recruitAPawn() {
+            NationId own = player.getNationId();
+            List<Pawn> candidates = new List<Pawn>();
+            foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(EntityType.PAWN)) {
+                Pawn pawn = (Pawn) entity;
+                if (pawn.isMarkedForDeletion() || own.Equals(pawn.getNationId())) {
+                    continue;
+                }
+                Nation nation = pawn.getNationId() == null ? null : simulation.getNationRepository().getNation(pawn.getNationId());
+                if (nation != null && nation.getLeaderId().Equals(pawn.getId())) {
+                    continue;
+                }
+                candidates.Add(pawn);
+            }
+            candidates.Sort((a, b) => (a.getNationId() == null ? 0 : 1).CompareTo(b.getNationId() == null ? 0 : 1));
+            foreach (Pawn pawn in candidates) {
+                RelationshipTier needed = pawn.getNationId() == null
+                    ? InvitePawnToNationCommand.NATIONLESS_TIER_REQUIRED : InvitePawnToNationCommand.RIVAL_TIER_REQUIRED;
+                for (int i = 0; i < 40 && PawnRelations.getTier(pawn, player) < needed; i++) {
+                    if (player.getInventory().getNumItems(ItemType.COIN) < GiftPawnCommand.COIN_GIFT_AMOUNT) {
+                        return false;
+                    }
+                    new GiftPawnCommand(simulation.getEventProducer()).execute(player, pawn);
+                }
+                new InvitePawnToNationCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getEntityRepository()).execute(player, pawn);
+                if (own.Equals(pawn.getNationId())) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void interact() {
@@ -189,7 +229,15 @@ namespace beyondnationstests {
             interact();
             new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player);
             Assert.Equal(SettlementTier.VILLAGE, settlement.getTier());
+            // Settlers joining on their own once just made the 10 members; with
+            // founders now reaching their sites (#402) more nations share the
+            // wanderers, so after a while the player recruits, as a player
+            // would: gifts to a nationless pawn until it knows them, then an
+            // invitation (from a neighbour if no one is left without a nation).
             for (int second = 0; second < 1200 && tracker.getCurrent().getId() == "grow-nation"; second++) {
+                if (second >= 300 && second % 60 == 0 && ObjectiveCatalog.members(simulation) < EraRules.VillageMembers) {
+                    recruitAPawn();
+                }
                 tickOneSecond();
             }
             assertCurrent("sell-resources");
