@@ -1,0 +1,112 @@
+{"t": 1792864487987, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "109", "--stage-settlement"]}
+{"t": 1792864493006, "cmd": "wait", "args": ["5"]}
+{"t": 1792864498078, "cmd": "state", "args": []}
+{"t": 1792864498190, "cmd": "shot", "args": ["start"]}
+{"t": 1792864502109, "cmd": "key", "args": ["space"]}
+{"t": 1792864502651, "cmd": "wait", "args": ["3"]}
+{"t": 1792864505728, "cmd": "state", "args": []}
+{"t": 1792864505790, "cmd": "shot", "args": ["menu"]}
+{"t": 1792864509524, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864510284, "cmd": "wait", "args": ["3"]}
+{"t": 1792864513358, "cmd": "state", "args": []}
+{"t": 1792864513450, "cmd": "shot", "args": ["nw"]}
+{"t": 1792864516996, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864517765, "cmd": "wait", "args": ["6"]}
+{"t": 1792864523833, "cmd": "state", "args": []}
+{"t": 1792864529822, "cmd": "key", "args": ["e"]}
+{"t": 1792864530354, "cmd": "wait", "args": ["2"]}
+{"t": 1792864532419, "cmd": "state", "args": []}
+{"t": 1792864532499, "cmd": "shot", "args": ["chicken"]}
+{"t": 1792864540120, "cmd": "click", "args": ["338", "389"]}
+{"t": 1792864540868, "cmd": "walkto", "args": ["chicken", "30"]}
+{"t": 1792864550450, "cmd": "state", "args": []}
+{"t": 1792864550527, "cmd": "key", "args": ["e"]}
+{"t": 1792864551019, "cmd": "wait", "args": ["2"]}
+{"t": 1792864553087, "cmd": "state", "args": []}
+{"t": 1792864556477, "cmd": "wait", "args": ["2"]}
+{"t": 1792864558549, "cmd": "state", "args": []}
+{"t": 1792864558629, "cmd": "shot", "args": ["meat"]}
+{"t": 1792864566124, "cmd": "note", "args": ["--shot", "meat_eaten", "Pressed E on a chicken at tick ~771 with energy 82: toast says 'Harvested chicken meat.' but Inventory still shows Chicken Meat: 0; energy jumped to 99. Meat seems auto-eaten silently - the toast does not say it was eaten."]}
+{"t": 1792864566376, "cmd": "click", "args": ["338", "376"]}
+{"t": 1792864567125, "cmd": "walkto", "args": ["chicken", "40"]}
+{"t": 1792864581415, "cmd": "key", "args": ["e"]}
+{"t": 1792864581920, "cmd": "wait", "args": ["2"]}
+{"t": 1792864583993, "cmd": "state", "args": []}
+{"t": 1792864587663, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1792864602298, "cmd": "key", "args": ["e"]}
+{"t": 1792864602811, "cmd": "wait", "args": ["3"]}
+{"t": 1792864605889, "cmd": "state", "args": []}
+{"t": 1792864605975, "cmd": "shot", "args": ["inside"]}
+{"t": 1792864614372, "cmd": "note", "args": ["--shot", "market_wrap", "Inside Town of Cityfield at 960x540 (6/6 stalls): Market Info 'Merchants:' line wraps onto two lines ('Ruth Thompson, / Xavier Thomas +4') instead of fitting on one line as #350/#397 intend. Boxes do not overlap; Player Info reads 'Nation: Cityfield (LEADER)'."]}
+{"t": 1792864614619, "cmd": "click", "args": ["420", "376"]}
+{"t": 1792864615374, "cmd": "wait", "args": ["1"]}
+{"t": 1792864616453, "cmd": "click", "args": ["168", "58"]}
+{"t": 1792864617207, "cmd": "wait", "args": ["2"]}
+{"t": 1792864619274, "cmd": "shot", "args": ["era_open"]}
+{"t": 1792864625452, "cmd": "move", "args": ["100", "180"]}
+{"t": 1792864625543, "cmd": "scroll", "args": ["3"]}
+{"t": 1792864626196, "cmd": "wait", "args": ["1"]}
+{"t": 1792864627280, "cmd": "shot", "args": ["era_scrolled"]}
+{"t": 1792864633506, "cmd": "move", "args": ["480", "250"]}
+{"t": 1792864633581, "cmd": "wait", "args": ["2"]}
+{"t": 1792864635650, "cmd": "shot", "args": ["era_away"]}
+{"t": 1792864642715, "cmd": "move", "args": ["100", "200"]}
+{"t": 1792864642790, "cmd": "wait", "args": ["1"]}
+{"t": 1792864643858, "cmd": "scroll", "args": ["4"]}
+{"t": 1792864644686, "cmd": "wait", "args": ["1"]}
+{"t": 1792864645746, "cmd": "shot", "args": ["era_scroll2"]}
+{"t": 1792864652840, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1792864653043, "cmd": "move", "args": ["100", "200"]}
+{"t": 1792864653145, "cmd": "wait", "args": ["1"]}
+{"t": 1792864654239, "cmd": "shot", "args": ["era_pawn_a"]}
+{"t": 1792864654500, "cmd": "scroll", "args": ["5"]}
+{"t": 1792864655587, "cmd": "wait", "args": ["1"]}
+{"t": 1792864656698, "cmd": "shot", "args": ["era_pawn_b"]}
+{"t": 1792864656974, "cmd": "state", "args": []}
+{"t": 1792864665830, "cmd": "note", "args": ["--shot", "era_scroll_ok", "Era (+) detail open inside town with 3 command rows (Order/Talk pawn rows present): era detail is a scroll region (scrollbar at x~193); wheel scrolls it to 'once every 2 minutes.' and the command bar stays uncovered. Works as #397 intends. Side effect: Inventory Info box moves to the centre (x 220-420, y 227-357) over the town plaza view."]}
+{"t": 1792864666092, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792864666885, "cmd": "wait", "args": ["2"]}
+{"t": 1792864668996, "cmd": "shot", "args": ["sell"]}
+{"t": 1792864669298, "cmd": "state", "args": []}
+{"t": 1792864679045, "cmd": "note", "args": ["--shot", "sell_food_broke", "Sell Resources with only 2 Chicken Meat (tick 3367): red toast 'No merchant here can pay: the richest has 3 coins, and your cheapest good (chicken meat) sells for 31.' Message is clear and fits on two lines, but Market Info shows only the pooled '6/6 stalls, 6 coins' - the per-merchant purse that actually blocks the sale is never visible before clicking. And with a 6-stall market holding 6 coins total, food (worth 31+) cannot be sold at all early on."]}
+{"t": 1792864679314, "cmd": "wait", "args": ["60"]}
+{"t": 1792864739393, "cmd": "state", "args": []}
+{"t": 1792864739477, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792864740301, "cmd": "wait", "args": ["2"]}
+{"t": 1792864742394, "cmd": "shot", "args": ["sell2"]}
+{"t": 1792864742672, "cmd": "state", "args": []}
+{"t": 1792864749762, "cmd": "click", "args": ["505", "476"]}
+{"t": 1792864750554, "cmd": "wait", "args": ["2"]}
+{"t": 1792864752688, "cmd": "state", "args": []}
+{"t": 1792864752765, "cmd": "shot", "args": ["buyfood"]}
+{"t": 1792864753065, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792864753822, "cmd": "wait", "args": ["2"]}
+{"t": 1792864755891, "cmd": "state", "args": []}
+{"t": 1792864755978, "cmd": "shot", "args": ["sell3"]}
+{"t": 1792864766575, "cmd": "note", "args": ["--shot", "sell_toast_vague", "After Purchase Food (bought 1 apple for 5 coins), Sell Resources sold the apple back for 5 - toast says only 'You sold resources to Frank Thompson. Relationship increased to 2.' with a '+5 coins' float; it does not say WHAT was sold (apple vs chicken meat) or the quantity. Chicken meat stays unsellable (24 coins vs richest merchant 6)."]}
+{"t": 1792864766877, "cmd": "click", "args": ["168", "58"]}
+{"t": 1792864767687, "cmd": "wait", "args": ["1"]}
+{"t": 1792864768789, "cmd": "wait", "args": ["8"]}
+{"t": 1792864776917, "cmd": "shot", "args": ["rows1"]}
+{"t": 1792864777175, "cmd": "wait", "args": ["8"]}
+{"t": 1792864785258, "cmd": "shot", "args": ["rows2"]}
+{"t": 1792864785546, "cmd": "wait", "args": ["8"]}
+{"t": 1792864793624, "cmd": "shot", "args": ["rows3"]}
+{"t": 1792864793970, "cmd": "wait", "args": ["8"]}
+{"t": 1792864802055, "cmd": "shot", "args": ["rows4"]}
+{"t": 1792864809102, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792864809874, "cmd": "wait", "args": ["1"]}
+{"t": 1792864810980, "cmd": "state", "args": []}
+{"t": 1792864811059, "cmd": "wait", "args": ["15"]}
+{"t": 1792864826136, "cmd": "click", "args": ["625", "476"]}
+{"t": 1792864826901, "cmd": "wait", "args": ["1"]}
+{"t": 1792864828004, "cmd": "state", "args": []}
+{"t": 1792864828087, "cmd": "shot", "args": ["sold_meat"]}
+{"t": 1792864838702, "cmd": "note", "args": ["--shot", "title_overlap", "Inside town, the big world-space label 'Town of Cityfield / 7 here, 11/28 residents' sits at the top of the screen behind the status toast and the Chronicle box; its first line is cut off by the window top and the toast/chronicle draw over the second line, so the population count is hard to read."]}
+{"t": 1792864839026, "cmd": "note", "args": ["Left column jumps: Inventory Info box top moves between y~227 and y~288 (rows1 vs rows3 screenshots) as pawn Order/Talk rows appear and disappear when townsfolk walk past; with era detail open it hops into the centre column. Distracting while reading."]}
+{"t": 1792864839106, "cmd": "note", "args": ["First chicken: pt state listed 'Chicken 0.7m +90' at spawn (tick 143) but E gave 'No entities within range to interact with.' (see shots/chicken.png); after walkto (3.2 m) E worked."]}
+{"t": 1792864839186, "cmd": "events", "args": ["30"]}
+{"t": 1792864839288, "cmd": "state", "args": []}
+{"t": 1792864839404, "cmd": "stop", "args": []}
+{"t": 1792864861394, "cmd": "report", "args": []}
+{"t": 1792866349536, "cmd": "stop", "args": []}

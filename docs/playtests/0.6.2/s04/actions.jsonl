@@ -1,0 +1,332 @@
+{"t": 1792864488888, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "1"]}
+{"t": 1792864493876, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1792864493944, "cmd": "key", "args": ["space"]}
+{"t": 1792864494452, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1792864494725, "cmd": "shot", "args": ["menu"]}
+{"t": 1792864499902, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864500676, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1792864500787, "cmd": "shot", "args": ["newworld"]}
+{"t": 1792864504843, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792864505636, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792864505916, "cmd": "shot", "args": ["world0"]}
+{"t": 1792864506165, "cmd": "state", "args": []}
+{"t": 1792864511637, "cmd": "note", "args": ["--shot", "overlap0", "Inventory Info panel (bottom-left) overlaps the action button bar: 'Create Nation' and 'Join Nation' buttons are half hidden behind it; Season panel bottom-right also covers a button and its text is cut off at the bottom ('stone' line clipped)."]}
+{"t": 1792864511883, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864519752, "cmd": "key", "args": ["e"]}
+{"t": 1792864520242, "cmd": "wait", "args": ["2"]}
+{"t": 1792864522343, "cmd": "state", "args": []}
+{"t": 1792864525813, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864532991, "cmd": "key", "args": ["e"]}
+{"t": 1792864533504, "cmd": "wait", "args": ["1"]}
+{"t": 1792864534576, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864540841, "cmd": "key", "args": ["e"]}
+{"t": 1792864541354, "cmd": "wait", "args": ["1"]}
+{"t": 1792864542438, "cmd": "state", "args": []}
+{"t": 1792864542535, "cmd": "shot", "args": ["w1"]}
+{"t": 1792864548928, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792864575933, "cmd": "key", "args": ["e"]}
+{"t": 1792864576424, "cmd": "wait", "args": ["1"]}
+{"t": 1792864577495, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792864578093, "cmd": "key", "args": ["e"]}
+{"t": 1792864578594, "cmd": "wait", "args": ["1"]}
+{"t": 1792864579686, "cmd": "state", "args": []}
+{"t": 1792864579767, "cmd": "events", "args": ["15"]}
+{"t": 1792864585197, "cmd": "key", "args": ["e"]}
+{"t": 1792864585722, "cmd": "wait", "args": ["1"]}
+{"t": 1792864586812, "cmd": "shot", "args": ["rock1"]}
+{"t": 1792864587054, "cmd": "state", "args": []}
+{"t": 1792864590485, "cmd": "key", "args": ["o"]}
+{"t": 1792864590988, "cmd": "wait", "args": ["1"]}
+{"t": 1792864592058, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792864596266, "cmd": "click", "args": ["880", "124"]}
+{"t": 1792864597063, "cmd": "wait", "args": ["1"]}
+{"t": 1792864598133, "cmd": "shot", "args": ["nations2"]}
+{"t": 1792864605574, "cmd": "note", "args": ["--shot", "nations_list", "Nations screen (O) shows only 4 nations per page with big gaps between rows, while most of the screen is empty; 'Down' moves by 3 (1-4 then 4-7, Eastburg repeated) and the header still says 'Scroll for more' on the last page. Says 'neighbours and enemies first' but nothing marks which rows are neighbours or how far away they are. 7 AI nations at tick ~2100: Castlewood and Oldshire have no settlement yet."]}
+{"t": 1792864605825, "cmd": "key", "args": ["Escape"]}
+{"t": 1792864606334, "cmd": "key", "args": ["n"]}
+{"t": 1792864606839, "cmd": "wait", "args": ["1"]}
+{"t": 1792864607928, "cmd": "shot", "args": ["nation_created"]}
+{"t": 1792864608215, "cmd": "state", "args": []}
+{"t": 1792864611950, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864620299, "cmd": "key", "args": ["e"]}
+{"t": 1792864620802, "cmd": "wait", "args": ["1"]}
+{"t": 1792864621873, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864622512, "cmd": "key", "args": ["e"]}
+{"t": 1792864622987, "cmd": "wait", "args": ["1"]}
+{"t": 1792864624066, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864632310, "cmd": "key", "args": ["e"]}
+{"t": 1792864632785, "cmd": "wait", "args": ["1"]}
+{"t": 1792864633853, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864641373, "cmd": "key", "args": ["e"]}
+{"t": 1792864641848, "cmd": "wait", "args": ["1"]}
+{"t": 1792864642918, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864650268, "cmd": "key", "args": ["e"]}
+{"t": 1792864650799, "cmd": "wait", "args": ["1"]}
+{"t": 1792864651879, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864652544, "cmd": "key", "args": ["e"]}
+{"t": 1792864653057, "cmd": "wait", "args": ["1"]}
+{"t": 1792864654142, "cmd": "state", "args": []}
+{"t": 1792864657779, "cmd": "shot", "args": ["wood54"]}
+{"t": 1792864658033, "cmd": "state", "args": []}
+{"t": 1792864662311, "cmd": "key", "args": ["f"]}
+{"t": 1792864662822, "cmd": "wait", "args": ["1"]}
+{"t": 1792864663903, "cmd": "shot", "args": ["found1"]}
+{"t": 1792864664160, "cmd": "state", "args": []}
+{"t": 1792864668435, "cmd": "key", "args": ["Escape"]}
+{"t": 1792864668946, "cmd": "click", "args": ["337", "388"]}
+{"t": 1792864669718, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1792864671828, "cmd": "state", "args": []}
+{"t": 1792864674783, "cmd": "shot", "args": ["chk"]}
+{"t": 1792864674997, "cmd": "state", "args": []}
+{"t": 1792864677842, "cmd": "key", "args": ["Escape"]}
+{"t": 1792864678377, "cmd": "wait", "args": ["1"]}
+{"t": 1792864679448, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1792864681618, "cmd": "state", "args": []}
+{"t": 1792864685505, "cmd": "face", "args": ["-42"]}
+{"t": 1792864687626, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1792864699910, "cmd": "state", "args": []}
+{"t": 1792864700002, "cmd": "key", "args": ["f"]}
+{"t": 1792864700483, "cmd": "wait", "args": ["1"]}
+{"t": 1792864701568, "cmd": "shot", "args": ["found2"]}
+{"t": 1792864701814, "cmd": "state", "args": []}
+{"t": 1792864715464, "cmd": "note", "args": ["--shot", "no_compass", "Found-settlement refusal gives compass directions ('Open ground lies about 190 to the west', later '180 to the north') but the HUD has no compass, map or heading indicator, so a new player cannot tell which way west/north is. I walked the wrong way and ended up in another nation's land."]}
+{"t": 1792864715718, "cmd": "hold", "args": ["Shift_L+w", "9"]}
+{"t": 1792864724940, "cmd": "key", "args": ["f"]}
+{"t": 1792864725463, "cmd": "wait", "args": ["1"]}
+{"t": 1792864726538, "cmd": "state", "args": []}
+{"t": 1792864729637, "cmd": "events", "args": ["8"]}
+{"t": 1792864729736, "cmd": "shot", "args": ["founded"]}
+{"t": 1792864734893, "cmd": "note", "args": ["--shot", "label_clip", "Right after founding, the settlement's floating label ('...0 here, 3/8 residents') renders huge and is cut off by the top of the screen and overlaps the chronicle panel; the settlement name is unreadable."]}
+{"t": 1792864735125, "cmd": "key", "args": ["e"]}
+{"t": 1792864735655, "cmd": "wait", "args": ["2"]}
+{"t": 1792864737770, "cmd": "shot", "args": ["inside"]}
+{"t": 1792864738012, "cmd": "state", "args": []}
+{"t": 1792864743486, "cmd": "key", "args": ["e"]}
+{"t": 1792864744063, "cmd": "wait", "args": ["1"]}
+{"t": 1792864745167, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864761230, "cmd": "key", "args": ["e"]}
+{"t": 1792864761735, "cmd": "wait", "args": ["1"]}
+{"t": 1792864762819, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864771185, "cmd": "key", "args": ["e"]}
+{"t": 1792864771740, "cmd": "wait", "args": ["1"]}
+{"t": 1792864772847, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864783635, "cmd": "key", "args": ["e"]}
+{"t": 1792864784149, "cmd": "wait", "args": ["1"]}
+{"t": 1792864785240, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864791895, "cmd": "key", "args": ["e"]}
+{"t": 1792864792432, "cmd": "wait", "args": ["1"]}
+{"t": 1792864793522, "cmd": "state", "args": []}
+{"t": 1792864796863, "cmd": "events", "args": ["40"]}
+{"t": 1792864796951, "cmd": "events", "args": ["40"]}
+{"t": 1792864799996, "cmd": "events", "args": ["80"]}
+{"t": 1792864806052, "cmd": "note", "args": ["--shot", "stall_by_npc", "Objective 6 'Build a market stall' (gather 20 wood + 5 stone, press B) completed by itself at tick 5301 while I was out chopping with 4 wood: an AI member (Eve Smith, who auto-joined my nation) built the stall. The player never gets to learn B; the +50 coins reward arrives for nothing. Expected: objective requires the player's own stall, or says 'Eve Smith built one for you'."]}
+{"t": 1792864806329, "cmd": "key", "args": ["o"]}
+{"t": 1792864806867, "cmd": "wait", "args": ["1"]}
+{"t": 1792864807990, "cmd": "shot", "args": ["nations3"]}
+{"t": 1792864808223, "cmd": "click", "args": ["880", "124"]}
+{"t": 1792864809000, "cmd": "wait", "args": ["1"]}
+{"t": 1792864810093, "cmd": "shot", "args": ["nations4"]}
+{"t": 1792864810357, "cmd": "click", "args": ["880", "124"]}
+{"t": 1792864811127, "cmd": "wait", "args": ["1"]}
+{"t": 1792864812227, "cmd": "shot", "args": ["nations5"]}
+{"t": 1792864820579, "cmd": "click", "args": ["880", "161"]}
+{"t": 1792864821401, "cmd": "wait", "args": ["2"]}
+{"t": 1792864823506, "cmd": "shot", "args": ["n6"]}
+{"t": 1792864823744, "cmd": "scroll", "args": ["3"]}
+{"t": 1792864824428, "cmd": "wait", "args": ["2"]}
+{"t": 1792864826506, "cmd": "shot", "args": ["n7"]}
+{"t": 1792864832075, "cmd": "key", "args": ["Escape"]}
+{"t": 1792864832641, "cmd": "state", "args": ["--full"]}
+{"t": 1792864835774, "cmd": "status", "args": []}
+{"t": 1792864841372, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792864849016, "cmd": "key", "args": ["e"]}
+{"t": 1792864849531, "cmd": "wait", "args": ["1"]}
+{"t": 1792864850613, "cmd": "walkto", "args": ["rock"]}
+{"t": 1792864850857, "cmd": "key", "args": ["e"]}
+{"t": 1792864851341, "cmd": "wait", "args": ["1"]}
+{"t": 1792864852419, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792864866409, "cmd": "key", "args": ["e"]}
+{"t": 1792864866940, "cmd": "wait", "args": ["1"]}
+{"t": 1792864868018, "cmd": "state", "args": []}
+{"t": 1792864871801, "cmd": "key", "args": ["h"]}
+{"t": 1792864872292, "cmd": "wait", "args": ["2"]}
+{"t": 1792864874382, "cmd": "state", "args": []}
+{"t": 1792864874458, "cmd": "key", "args": ["e"]}
+{"t": 1792864874958, "cmd": "wait", "args": ["1"]}
+{"t": 1792864876066, "cmd": "key", "args": ["k"]}
+{"t": 1792864876579, "cmd": "wait", "args": ["2"]}
+{"t": 1792864878651, "cmd": "shot", "args": ["farm"]}
+{"t": 1792864878912, "cmd": "state", "args": []}
+{"t": 1792864882957, "cmd": "key", "args": ["k"]}
+{"t": 1792864883456, "cmd": "wait", "args": ["2"]}
+{"t": 1792864885535, "cmd": "shot", "args": ["farm2"]}
+{"t": 1792864885852, "cmd": "state", "args": []}
+{"t": 1792864892316, "cmd": "note", "args": ["--shot", "objective_bar_clip", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: reads 'nbers 5/10 • Buildings 1/2' instead of 'Members 5/10 • Buildings 1/2'. Same screen: Inventory Info panel has jumped to the middle of the screen (over the well) after entering the settlement, and the description says 'Village 0/1' while the era bar above says 'Village: 1/4' - two different counters both labelled Village."]}
+{"t": 1792864898016, "cmd": "click", "args": ["222", "476"]}
+{"t": 1792864898783, "cmd": "wait", "args": ["1"]}
+{"t": 1792864899890, "cmd": "state", "args": []}
+{"t": 1792864899984, "cmd": "key", "args": ["e"]}
+{"t": 1792864900568, "cmd": "wait", "args": ["1"]}
+{"t": 1792864901647, "cmd": "key", "args": ["y"]}
+{"t": 1792864902141, "cmd": "wait", "args": ["1"]}
+{"t": 1792864903218, "cmd": "shot", "args": ["chron"]}
+{"t": 1792864911073, "cmd": "note", "args": ["--shot", "chronicle_spam", "Chronicle full history has 133 entries by Day 1 afternoon (tick ~8000), most of them 'X and Y have become rivals over their border'. With 20+ AI nations packed together the rivalry lines drown out foundings and the player's own news; the 5-line recent panel turns over every few seconds."]}
+{"t": 1792864923261, "cmd": "key", "args": ["y"]}
+{"t": 1792864923766, "cmd": "key", "args": ["y"]}
+{"t": 1792864924254, "cmd": "wait", "args": ["1"]}
+{"t": 1792864925315, "cmd": "face", "args": ["180"]}
+{"t": 1792864931297, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792864939457, "cmd": "state", "args": []}
+{"t": 1792864939519, "cmd": "state", "args": []}
+{"t": 1792864947583, "cmd": "state", "args": []}
+{"t": 1792864955680, "cmd": "state", "args": []}
+{"t": 1792864963755, "cmd": "state", "args": []}
+{"t": 1792864971830, "cmd": "state", "args": []}
+{"t": 1792864979918, "cmd": "state", "args": []}
+{"t": 1792864992152, "cmd": "shot", "args": ["redshire"]}
+{"t": 1792864999888, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865004057, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865008209, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865012349, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865016480, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865020635, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865024803, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865028988, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865033180, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865037377, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1792865051015, "cmd": "key", "args": ["h"]}
+{"t": 1792865051492, "cmd": "wait", "args": ["2"]}
+{"t": 1792865053579, "cmd": "state", "args": []}
+{"t": 1792865058839, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865062047, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865065236, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865068415, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865071613, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865074775, "cmd": "look", "args": ["240", "0"]}
+{"t": 1792865074893, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865078090, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865081258, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865084431, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865087611, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865090786, "cmd": "look", "args": ["240", "0"]}
+{"t": 1792865090919, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865094076, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865097243, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865100411, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865103605, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865106774, "cmd": "look", "args": ["240", "0"]}
+{"t": 1792865106888, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865110067, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865113228, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865116399, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865119594, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1792865122807, "cmd": "look", "args": ["240", "0"]}
+{"t": 1792865131601, "cmd": "key", "args": ["h"]}
+{"t": 1792865132091, "cmd": "wait", "args": ["2"]}
+{"t": 1792865134149, "cmd": "key", "args": ["v"]}
+{"t": 1792865134615, "cmd": "wait", "args": ["2"]}
+{"t": 1792865136684, "cmd": "shot", "args": ["home3p"]}
+{"t": 1792865140029, "cmd": "key", "args": ["v"]}
+{"t": 1792865140508, "cmd": "hold", "args": ["a", "1.5"]}
+{"t": 1792865142107, "cmd": "wait", "args": ["1"]}
+{"t": 1792865143168, "cmd": "shot", "args": ["home2"]}
+{"t": 1792865148835, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792865159714, "cmd": "key", "args": ["e"]}
+{"t": 1792865160192, "cmd": "wait", "args": ["1"]}
+{"t": 1792865161252, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792865170963, "cmd": "key", "args": ["e"]}
+{"t": 1792865171423, "cmd": "wait", "args": ["1"]}
+{"t": 1792865172487, "cmd": "walkto", "args": ["tree"]}
+{"t": 1792865177459, "cmd": "key", "args": ["e"]}
+{"t": 1792865177951, "cmd": "wait", "args": ["1"]}
+{"t": 1792865179027, "cmd": "key", "args": ["h"]}
+{"t": 1792865179521, "cmd": "wait", "args": ["2"]}
+{"t": 1792865181580, "cmd": "state", "args": []}
+{"t": 1792865181642, "cmd": "key", "args": ["k"]}
+{"t": 1792865182123, "cmd": "wait", "args": ["1"]}
+{"t": 1792865183188, "cmd": "state", "args": []}
+{"t": 1792865186715, "cmd": "key", "args": ["e"]}
+{"t": 1792865187214, "cmd": "wait", "args": ["1"]}
+{"t": 1792865188282, "cmd": "key", "args": ["k"]}
+{"t": 1792865188780, "cmd": "wait", "args": ["1"]}
+{"t": 1792865189848, "cmd": "state", "args": []}
+{"t": 1792865189908, "cmd": "key", "args": ["k"]}
+{"t": 1792865190400, "cmd": "wait", "args": ["1"]}
+{"t": 1792865191462, "cmd": "state", "args": []}
+{"t": 1792865195867, "cmd": "note", "args": ["--shot", "village_confusion", "Building the House says 'House built. The settlement is now a Village!' but objective 7 'Reach the Village era' stays incomplete (Members 5/10, Buildings 2/2) and the era badge still says Camp. Settlement tier and nation era both use the word 'Village' with different requirements; a new player thinks they finished."]}
+{"t": 1792865196210, "cmd": "state", "args": []}
+{"t": 1792865209378, "cmd": "key", "args": ["e"]}
+{"t": 1792865209855, "cmd": "wait", "args": ["1"]}
+{"t": 1792865210909, "cmd": "walkto", "args": ["pawn"]}
+{"t": 1792865211221, "cmd": "key", "args": ["e"]}
+{"t": 1792865211692, "cmd": "wait", "args": ["1"]}
+{"t": 1792865212745, "cmd": "shot", "args": ["talk1"]}
+{"t": 1792865213077, "cmd": "state", "args": []}
+{"t": 1792865217019, "cmd": "key", "args": ["e"]}
+{"t": 1792865217486, "cmd": "wait", "args": ["1"]}
+{"t": 1792865218564, "cmd": "hold", "args": ["Shift_L+w", "5"]}
+{"t": 1792865223710, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792865264128, "cmd": "key", "args": ["e"]}
+{"t": 1792865264617, "cmd": "wait", "args": ["1"]}
+{"t": 1792865265702, "cmd": "shot", "args": ["talk2"]}
+{"t": 1792865266041, "cmd": "state", "args": []}
+{"t": 1792865271274, "cmd": "click", "args": ["190", "414"]}
+{"t": 1792865272004, "cmd": "wait", "args": ["1"]}
+{"t": 1792865273071, "cmd": "shot", "args": ["talk3"]}
+{"t": 1792865273420, "cmd": "state", "args": []}
+{"t": 1792865277880, "cmd": "key", "args": ["e"]}
+{"t": 1792865278358, "cmd": "hold", "args": ["d", "1"]}
+{"t": 1792865279477, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792865287632, "cmd": "state", "args": []}
+{"t": 1792865297243, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1792865327785, "cmd": "key", "args": ["e"]}
+{"t": 1792865328238, "cmd": "wait", "args": ["1"]}
+{"t": 1792865329279, "cmd": "shot", "args": ["talk4"]}
+{"t": 1792865329515, "cmd": "state", "args": []}
+{"t": 1792865341411, "cmd": "key", "args": ["y"]}
+{"t": 1792865341865, "cmd": "wait", "args": ["1"]}
+{"t": 1792865342909, "cmd": "shot", "args": ["epitaph_full"]}
+{"t": 1792865343092, "cmd": "key", "args": ["y"]}
+{"t": 1792865343544, "cmd": "key", "args": ["y"]}
+{"t": 1792865350832, "cmd": "note", "args": ["Chronicle epitaph is wrong for nations that DID found: 'After a siege, a village of Farmton fell to Bluetown.' immediately followed by 'Farmton is no more; it never raised so much as a hut.' Farmton founded its settlement at tick 9053 and built stalls; same for Oldfield (founded 8501), Smallham (9353), Westville ('faded from memory before it ever built a home'), Upperburg (founded 9253). The never-built epitaph seems to be chosen by settlement count at disband time (0 after capture) rather than whether the nation ever founded. Seen at tick ~19250-19500; screenshot shots/epitaph_full.png"]}
+{"t": 1792865350881, "cmd": "state", "args": []}
+{"t": 1792865354861, "cmd": "key", "args": ["r"]}
+{"t": 1792865355329, "cmd": "wait", "args": ["1"]}
+{"t": 1792865356381, "cmd": "state", "args": []}
+{"t": 1792865356432, "cmd": "shot", "args": ["recruit1"]}
+{"t": 1792865359876, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1792865367801, "cmd": "key", "args": ["r"]}
+{"t": 1792865368259, "cmd": "wait", "args": ["1"]}
+{"t": 1792865369311, "cmd": "state", "args": []}
+{"t": 1792865369364, "cmd": "key", "args": ["e"]}
+{"t": 1792865369821, "cmd": "wait", "args": ["1"]}
+{"t": 1792865370868, "cmd": "key", "args": ["r"]}
+{"t": 1792865371326, "cmd": "wait", "args": ["1"]}
+{"t": 1792865372376, "cmd": "state", "args": []}
+{"t": 1792865375169, "cmd": "events", "args": ["6"]}
+{"t": 1792865375216, "cmd": "shot", "args": ["recruit2"]}
+{"t": 1792865381985, "cmd": "hold", "args": ["Shift_L+s", "3"]}
+{"t": 1792865385100, "cmd": "hold", "args": ["a", "0.8"]}
+{"t": 1792865385990, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1792865392091, "cmd": "state", "args": []}
+{"t": 1792865436897, "cmd": "state", "args": []}
+{"t": 1792865440723, "cmd": "hold", "args": ["d", "1"]}
+{"t": 1792865441812, "cmd": "state", "args": []}
+{"t": 1792865445423, "cmd": "hold", "args": ["d", "0.7"]}
+{"t": 1792865446212, "cmd": "state", "args": []}
+{"t": 1792865446264, "cmd": "hold", "args": ["Shift_L+w", "9"]}
+{"t": 1792865455406, "cmd": "shot", "args": ["cluster"]}
+{"t": 1792865455631, "cmd": "state", "args": []}
+{"t": 1792865459651, "cmd": "hold", "args": ["d", "2"]}
+{"t": 1792865461730, "cmd": "hold", "args": ["w", "2.5"]}
+{"t": 1792865464339, "cmd": "shot", "args": ["cluster2"]}
+{"t": 1792865464583, "cmd": "state", "args": []}
+{"t": 1792865468604, "cmd": "key", "args": ["o"]}
+{"t": 1792865469056, "cmd": "wait", "args": ["2"]}
+{"t": 1792865471106, "cmd": "shot", "args": ["nations_final"]}
+{"t": 1792865476935, "cmd": "note", "args": ["--shot", "relations_drift", "Nations screen at tick ~24500 (Day 2): Oldshire Friendly (+100) and Redford Friendly (+69) although I never traded, gifted or talked with them; the 'shares an enemy with you' popups pushed them up. An alliance needs only +30, so diplomacy happens to the player rather than by the player. List shows 29 nations alive, 4 per page."]}
+{"t": 1792865477160, "cmd": "key", "args": ["Escape"]}
+{"t": 1792865477629, "cmd": "events", "args": ["200"]}
+{"t": 1792865477707, "cmd": "stop", "args": []}
+{"t": 1792865511768, "cmd": "report", "args": []}
+{"t": 1792866349569, "cmd": "stop", "args": []}
