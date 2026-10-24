@@ -444,12 +444,34 @@ namespace beyondnations {
                 }
             }
             foreach (EntityId id in lifted) {
+                Nation besieger;
+                besiegers.TryGetValue(id, out besieger);
                 siegeProgress.Remove(id);
                 besiegers.Remove(id);
                 Settlement settlement = entityRepository.getEntity(id) as Settlement;
                 if (settlement != null) {
                     settlement.setSiegeText(null);
+                    tellSiegeLifted(settlement, besieger);
                 }
+            }
+        }
+
+        /**
+        * Tells the player when a siege of one of their nation's settlements
+        * lifts (a capture never reaches here: it clears its own siege). The
+        * Era box's red siege line just turned into the amber countdown, so
+        * nothing said whether the tribute, gift or alliance had worked
+        * (0.6.1/0.6.2 playtests).
+        */
+        private void tellSiegeLifted(Settlement settlement, Nation besieger) {
+            if (player.getNationId() == null || !player.getNationId().Equals(settlement.getNationId())) {
+                return;
+            }
+            if (besieger != null && exists(besieger)) {
+                player.getStatus().update(besieger.getName() + " has lifted its siege of your " + describeSettlement(settlement) + ".");
+            }
+            else {
+                player.getStatus().update("The siege of your " + describeSettlement(settlement) + " has ended.");
             }
         }
 
@@ -505,18 +527,20 @@ namespace beyondnations {
             }
 
             if (from.getNumberOfSettlements() == 0) {
-                disband(from);
+                disband(from, to, settlement);
             }
             Territory.updateClaims(entityRepository);
         }
 
         /**
         * A nation with no settlement left is no nation: it is removed and
-        * every member, pawn or player, is left without one.
+        * every member, pawn or player, is left without one. conqueror and
+        * lastSettlement name the capture that ended it, when one did, so the
+        * chronicle can tell how it fell.
         */
-        public void disband(Nation nation) {
+        public void disband(Nation nation, Nation conqueror = null, Settlement lastSettlement = null) {
             nationRepository.removeNation(nation);
-            eventProducer.produceNationDisbandEvent(nation);
+            eventProducer.produceNationDisbandEvent(nation, conqueror, lastSettlement);
             foreach (EntityId memberId in nation.getMemberIds()) {
                 Entity member = entityRepository.getEntity(memberId);
                 Pawn pawn = member as Pawn;

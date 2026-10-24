@@ -182,5 +182,28 @@ namespace beyondnationstests {
             status.update("Said by a command.");
             Assert.Equal("Said by a command.", status.getStatus());
         }
+
+        /** A confirm prompt asked again is not counted: "(x2)" read as "click twice" (0.6.2 playtest). */
+        [Fact]
+        public void testPrompt_AskedAgain_IsNotCounted() {
+            Status status = new Status(new TickCounter(), 10);
+            status.prompt("Click again to confirm: Raid Caravan.");
+            status.prompt("Click again to confirm: Raid Caravan.");
+            Assert.Equal("Click again to confirm: Raid Caravan.", status.getStatus());
+        }
+
+        /** A lapsed prompt is taken back only while it is still the line (0.6.1/0.6.2 playtests). */
+        [Fact]
+        public void testWithdraw_OnlyReplacesTheMessageWhileItIsTheLine() {
+            Status status = new Status(new TickCounter(), 10);
+            status.prompt("Press L again to leave Bigland.");
+            Assert.True(status.withdraw("Press L again to leave Bigland.", "Not confirmed."));
+            Assert.Equal("Not confirmed.", status.getStatus());
+
+            status.prompt("Press L again to leave Bigland.");
+            status.update("Winter has come.");
+            Assert.False(status.withdraw("Press L again to leave Bigland.", "Not confirmed."));
+            Assert.Equal("Winter has come.", status.getStatus());
+        }
     }
 }

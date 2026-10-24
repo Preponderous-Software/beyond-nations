@@ -373,6 +373,8 @@ namespace beyondnations.desktop.ui.screens {
                 confirmGate.disarm();
             }
             lastDrawn = now;
+            // a "Click War/Denounce again" prompt whose window has lapsed is taken back
+            confirmGate.update(now, simulation.getPlayer().getStatus());
             List<Row> rows = keepOrder(getRows(simulation), shownOrder);
             if (rows.Count == 0) {
                 Overlay.textCentered(NoOtherNations, height / 32f, y, width);
@@ -478,14 +480,14 @@ namespace beyondnations.desktop.ui.screens {
                         Nation own = nationRepository.getNation(player.getNationId());
                         pending = confirmGate.press(warKey, now)
                             ? () => new DeclareWarCommand(nationRepository, realm).execute(player, target)
-                            : () => player.getStatus().update(getWarPrompt(realm, own, target, TouchLayout.isActive()));
+                            : () => confirmGate.prompt(player.getStatus(), getWarPrompt(realm, own, target, TouchLayout.isActive()));
                     }
                     string denounceKey = "denounce:" + target.getId();
                     string denounceLabel = confirmGate.isArmed(denounceKey, now) ? ArmedLabel : "Denounce";
                     if (Overlay.buttonAt(denounceLabel + "###denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
                         pending = confirmGate.press(denounceKey, now)
                             ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy()).execute(player, target)
-                            : () => player.getStatus().update((TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
+                            : () => confirmGate.prompt(player.getStatus(), (TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
                     }
                 }
                 y += steps[i];

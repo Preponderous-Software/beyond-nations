@@ -64,6 +64,37 @@ namespace beyondnations {
         }
 
         /**
+        * Says a "press again to confirm" prompt: like update, but asking again
+        * is never counted, since "Click again to confirm: Raid. (x2)" read as
+        * "click twice" (0.6.2 playtest).
+        */
+        public void prompt(string status) {
+            if (joinable) {
+                update(status);
+                return;
+            }
+            duplicateMessageCount = 0;
+            replaceLine(status);
+        }
+
+        /**
+        * Takes back a message that no longer holds, putting replacement in its
+        * place -- but only while it is still the whole line, so a newer
+        * message (or an expired, empty line) is left alone. Returns whether
+        * it was taken back. Used for a confirm prompt whose window lapsed
+        * (0.6.1/0.6.2 playtests: "Click War again..." outlived the armed
+        * button).
+        */
+        public bool withdraw(string message, string replacement) {
+            if (status != message) {
+                return false;
+            }
+            duplicateMessageCount = 0;
+            replaceLine(replacement);
+            return true;
+        }
+
+        /**
         * Replaces only the latest message, keeping any said beside it, for a
         * message that grows (DeathNotice's count); the line counts as set now.
         */
