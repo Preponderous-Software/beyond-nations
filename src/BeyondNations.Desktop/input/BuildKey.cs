@@ -44,8 +44,13 @@ namespace beyondnations.desktop.input {
             if (gate.press("build:" + type, now)) {
                 return command.execute(player, type);
             }
-            player.getStatus().update(getConfirmPrompt(type));
+            gate.prompt(player.getStatus(), getConfirmPrompt(type));
             return false;
+        }
+
+        /** Called every frame: takes the prompt back once its window lapses (see ConfirmGate). */
+        public void update(Player player, double now) {
+            gate.update(now, player.getStatus());
         }
 
         /** "Press K again to build a Farm (25 wood, 10 stone)." */

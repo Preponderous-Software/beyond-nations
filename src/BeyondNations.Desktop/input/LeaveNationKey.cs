@@ -29,8 +29,13 @@ namespace beyondnations.desktop.input {
                 command.execute(player);
                 return true;
             }
-            player.getStatus().update(getConfirmPrompt(nation, player));
+            gate.prompt(player.getStatus(), getConfirmPrompt(nation, player));
             return false;
+        }
+
+        /** Called every frame: takes the prompt back once its window lapses (see ConfirmGate). */
+        public void update(Player player, double now) {
+            gate.update(now, player.getStatus());
         }
 
         /** "Press L again to disband Bigland." / "Press L again to leave Bigland." */
