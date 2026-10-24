@@ -102,7 +102,7 @@ namespace beyondnationstests.desktop.ui {
             lines.Add(ObjectiveKeyNames.closeHint(NationScreen.CloseHint));
             lines.Add(ObjectiveKeyNames.closeHint(CraftingScreen.CloseHint, CraftingScreen.TouchHint));
             lines.Add(ObjectiveKeyNames.closeHint(ControlsScreen.CloseHint, ControlsScreen.TouchCloseHint));
-            lines.Add(ObjectiveKeyNames.resolve(ChroniclePanel.RecentHeading));
+            lines.Add(ObjectiveKeyNames.resolve(ChroniclePanel.recentHeading(ChronicleScope.YourNews)));
             lines.Add(ObjectiveKeyNames.resolve(ChroniclePanel.CycleHint));
             foreach (OnboardingHints.Step step in OnboardingHints.Steps) {
                 lines.Add(OnboardingHints.text(step, TouchLayout.isActive()));
@@ -156,7 +156,7 @@ namespace beyondnationstests.desktop.ui {
             List<string> lines = linesThatNameControls(simulation, staged, showcase);
             Assert.Contains("(Press I or Esc to close, C to craft)", lines);
             Assert.Contains("(Press O or Esc to close)", lines);
-            Assert.Contains("Chronicle  [Y: more]", lines);
+            Assert.Contains("Chronicle: your news  [Y: more]", lines);
             Assert.Contains(lines, line => line.EndsWith("Press O to see the nations."));
             Assert.Contains(lines, line => line.StartsWith("Next (K): "));
             Assert.Contains(lines, line => line.Contains("Press E at a tree"));
@@ -190,7 +190,7 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal("ESCAPE", namedKey("(Press ESCAPE to resume)"));
             Assert.Equal("Left Shift", namedKey("Hold Left Shift to run"));
             Assert.Equal("click", namedKey("Inside a settlement, click Sell Resources."));
-            Assert.Equal("Y", namedKey("Chronicle  [Y: more]"));
+            Assert.Equal("Y", namedKey("Chronicle: your news  [Y: more]"));
             Assert.Null(namedKey("A merchant's stall with coins buys wood and stone."));
             Assert.Null(namedKey("Tap Create Nation in the bar, then press Use."));
         }

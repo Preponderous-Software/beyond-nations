@@ -161,6 +161,9 @@ namespace beyondnations.desktop.input {
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleChronicle)) {
                 player.getStatus().update(ChronicleView.describe(chronicleView.cycle()));
             }
+            if (inputService.wasPressedThisFrame(KeyBindings.ToggleChronicleScope)) {
+                player.getStatus().update(ChronicleView.describe(chronicleView.toggleScope()));
+            }
             if (inputService.wasPressedThisFrame(KeyBindings.ToggleAutoWalk)) {
                 player.toggleAutoWalk();
             }

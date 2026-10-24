@@ -41,6 +41,8 @@ namespace beyondnations.desktop.input {
         public static readonly Key ToggleAutoWalk = Key.Insert;
         public static readonly Key ToggleCameraView = Key.V;
         public static readonly Key ToggleChronicle = Key.Y;
+        // Your news / all nations, next to Y (ChronicleScope).
+        public static readonly Key ToggleChronicleScope = Key.U;
         public static readonly Key IncreaseRenderDistance = Key.PageUp;
         public static readonly Key DecreaseRenderDistance = Key.PageDown;
         public static readonly Key Pause = Key.Escape;

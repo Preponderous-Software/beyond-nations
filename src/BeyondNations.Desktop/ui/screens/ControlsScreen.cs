@@ -93,6 +93,7 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(view, "Right mouse (hold)", "Steer and tilt the view"));
             rows.Add(new Row(view, keys(KeyBindings.ToggleCameraView), "First / third person"));
             rows.Add(new Row(view, keys(KeyBindings.ToggleChronicle), "Chronicle: recent, full history, hidden"));
+            rows.Add(new Row(view, keys(KeyBindings.ToggleChronicleScope), "Chronicle: your news / all nations"));
             rows.Add(new Row(view, "Era box (tap)", "Era: what the next needs, unlocks, victories"));
             rows.Add(new Row(view, keys(KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance), "Render distance up / down"));
             rows.Add(new Row(view, keys(KeyBindings.TakeScreenshot), "Screenshot"));
