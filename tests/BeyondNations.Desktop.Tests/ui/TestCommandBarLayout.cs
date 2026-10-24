@@ -410,14 +410,15 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal("Press L again to disband " + nation.getName() + ".", player.getStatus().getStatus());
 
             // too late: asks again
-            Assert.False(key.press(simulation, 1.0 + ConfirmGate.DefaultWindowSeconds + 1.0));
+            double late = 1.0 + ConfirmGate.DefaultWindowSeconds + 1.0;
+            Assert.False(key.press(simulation, late));
             Assert.NotNull(player.getNationId());
 
-            Assert.True(key.press(simulation, 6.5));
+            Assert.True(key.press(simulation, late + 0.5));
             Assert.Null(player.getNationId());
 
             // with no nation, the refusal shows at once
-            Assert.True(key.press(simulation, 7.0));
+            Assert.True(key.press(simulation, late + 1.0));
             Assert.Equal("You are not a member of a nation.", player.getStatus().getStatus());
         }
 

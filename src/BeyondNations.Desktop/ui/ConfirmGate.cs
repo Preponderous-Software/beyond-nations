@@ -13,7 +13,9 @@ namespace beyondnations.desktop.ui {
     * without a clock.
     */
     public class ConfirmGate {
-        public const double DefaultWindowSeconds = 4.0;
+        // 8 rather than 4: a second click that came 5 s later re-armed instead of
+        // confirming, for players who read the prompt first (playtest 0.6.0, #345)
+        public const double DefaultWindowSeconds = 8.0;
 
         private readonly double windowSeconds;
         private string armedKey;
