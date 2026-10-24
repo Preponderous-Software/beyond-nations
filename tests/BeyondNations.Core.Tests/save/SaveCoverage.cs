@@ -211,7 +211,7 @@ namespace beyondnationstests {
                 Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar" },
             },
             [typeof(PawnBehaviorExecutor)] = new Entry {
-                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar", "realm" },
+                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar", "realm", "gameConfig" },
             },
             // seasons and regions: no state of their own (docs/SAVES.md)
             [typeof(RegionMap)] = new Entry {
