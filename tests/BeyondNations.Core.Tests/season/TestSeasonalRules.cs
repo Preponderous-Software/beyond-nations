@@ -75,6 +75,37 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testWinterShelter_AStarvingPawnIndoorsRations() {
+            // playtest 0.5.0/0.6.0: dozens starved "within the walls" in one winter (#353)
+            float fedBurn = burnIndoorsOverOneTick(Season.WINTER, 60f);
+            float starvingBurn = burnIndoorsOverOneTick(Season.WINTER, 30f);
+            Assert.Equal(fedBurn * SeasonalRules.WINTER_SHELTER_MULTIPLIER, starvingBurn, 4);
+
+            // only in winter: the rest of the year a starving pawn burns as ever
+            Assert.Equal(burnIndoorsOverOneTick(Season.SPRING, 60f), burnIndoorsOverOneTick(Season.SPRING, 30f), 4);
+        }
+
+        private static float burnIndoorsOverOneTick(Season season, float energy) {
+            Simulation simulation = createSimulation(42);
+            jumpTo(simulation, season);
+            Nation nation = new Nation("Testland", simulation.getPlayer().getId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(nation);
+            Settlement settlement = new Settlement(new Vector3(5000, 1.5f, 5000), nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());
+            simulation.getEntityRepository().addEntity(settlement);
+            Pawn pawn = new Pawn(new Vector3(5000, 1.5f, 5000), "Test", new RandomSource(3));
+            pawn.setEnergy(energy);
+            pawn.getInventory().clear();
+            pawn.setCurrentSettlementId(settlement.getId());
+            simulation.getEntityRepository().addEntity(pawn);
+            Assert.Equal(energy < Pawn.STARVING_ENERGY_THRESHOLD, pawn.isStarving());
+            while (simulation.getTickCounter().getTotalTicks() % 5 == 4) {
+                simulation.getTickCounter().increment();
+            }
+            simulation.fixedUpdate(1f / 50f);
+            return energy - pawn.getEnergy();
+        }
+
+        [Fact]
         public void testChickens_HatchInSpring_ButNotInWinter() {
             Simulation spring = createSimulation(42);
             spring.fixedUpdate(1f / 50f);

@@ -1,0 +1,102 @@
+{
+  "session": "s04",
+  "goal": "Audit the HUD at 960x540 inside a settlement (#350): enter your settlement and check that every box in the right-hand column fits on screen without overlapping the others or the command bar, that long lines wrap instead of being cut off, and that nothing important is lost in the compact layout. Also note any other text that is clipped, overlaps, or is unclear, with screenshots.",
+  "build": {"version": "0.6.0", "commit": "fc45ac8"},
+  "seed": 109,
+  "durationSec": 660,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Expanding the Era box inside a settlement pushes the Objective box over the command bar",
+      "detail": "Inside own settlement at 960x540, clicking the Era box '+' expands it to ~18 lines. The Objective 8 box is pushed down to y~398 and drawn on top of the command bar: 'Build Workshop', 'Build Stall', 'Withdraw Funds' and 'Collect Stockpile (12)' are hidden or half-hidden. The left column has no bottom limit against the command bar (the #350 fix only covers the right column). Expected the objective box to compact or the era panel to scroll.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 109 --stage-diplomacy; title/Start/Begin; N; gather 50 wood; F away from other claims; E to enter; click Era '+' at (168,58)",
+      "screenshot": "shots/era_open_overlap.png",
+      "tick": 10920
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Compact right column drops your own Nation/Role/Land and Region, worst inside a foreign settlement",
+      "detail": "Right column fits on screen in every case I saw (no box runs off the bottom, #350 holds). But in compact mode Player Info shows only the Energy bar, and Season shows only 'Spring - day 1/2, year 1' (Region and 'good farming and game' are lost). Inside a FOREIGN settlement (Upperland's village after Westerntown fell at tick 1000), Settlement Info names Upperland and its leader, so nothing on screen says you are now nationless; the code's rationale ('the settlement box already names the nation and leader') only holds in your own settlement. Expected Nation/Role kept when the settlement isn't yours, or the box expandable by click (clicking it does nothing).",
+      "repro": "pt start ... --stage-diplomacy; Start/Begin; H; E (enter home village); wait until it is captured at tick 1000",
+      "screenshot": "shots/scroll_player.png",
+      "tick": 1000
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Inventory box jumps to a centre column and the Tip window covers it and the command bar",
+      "detail": "When the left column or the command bar is tall (4-line objective, or a merchant in reach adding 'Order ...'/'Talk to ...' rows), the Inventory Info box moves to x~220 over the 3D view. The centre Tip window ('Tip 3 of 5: Gather stone') is then drawn over the inventory's values and over the 'Talk to Fiona Wilson (Stranger) - Glutton, Loyal' command button. The box also flips back and forth every time a pawn walks into or out of reach (shots/built2.png vs shots/later.png).",
+      "repro": "found and enter your settlement with tips enabled; wait for a merchant to stand by you",
+      "screenshot": "shots/tip_over_cmdbar.png",
+      "tick": 10552
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'PCIS: N' debug jargon in Settlement Info survives compaction while player lines are cut",
+      "detail": "Settlement Info shows 'PCIS: 2' (pawns currently in settlement, the F1 debug box's term). A player can't read it, and it repeats the floating '2 here' label. At 960x540 this line is kept while Region, Nation, Role, Land and Relationships are dropped. Suggest removing or renaming it to free a line.",
+      "repro": "enter any settlement",
+      "screenshot": "shots/pcis.png",
+      "tick": 15884
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Siege countdown contradicts an active siege and vanishes silently",
+      "detail": "At tick 620 the Era box says 'Sieges can begin in 4:47' while a 'Besieged by Upperland' banner is shown and the status says 'Upperland is besieging your village (4/6)'. The village is captured at tick 1000 with the countdown still running. Later, in the new nation, the line just disappears at 0:00 (tick ~15000) with no 'sieges now possible' message. (Diplomacy staging may cause the first part.)",
+      "repro": "pt start ... --stage-diplomacy; Start/Begin; H; E",
+      "screenshot": "shots/inside1.png",
+      "tick": 620
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Season box sits flush on Player Info with no gap when the market box is long",
+      "detail": "With 2 merchants (or merchants plus 7 prices) the compact Season box is drawn down from the market box and touches the Player Info title bar, with no 8px gap. The other boxes keep the gap.",
+      "repro": "enter a settlement whose market lists 2 merchants",
+      "screenshot": "shots/touching_boxes.png",
+      "tick": 15400
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Huge floating settlement label clipped at top and bleeding through overlays",
+      "detail": "Standing at the well, the 3D label 'Camp of Blueham / 2 here, 3/8 residents' (and 'Besieged by Upp...') is cut off by the top edge and the Settlement Info box. The status line is drawn on top of it, and it shows through the Nations (O) and Controls screens behind their tabs and title. Stale status text 'Chronicle: recent entries.' also stays in the middle of the Nations screen.",
+      "repro": "enter your settlement; press O or click '? Controls'",
+      "screenshot": "shots/nations_label.png",
+      "tick": 15524
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Full chronicle window overlaps the right column with translucent see-through text",
+      "detail": "Y (full history) opens a translucent window from x 160 to 800 that covers about 50px of the right column. Settlement/Market text shows through behind the history lines. 244 entries by day 1 dusk, nearly all AI-vs-AI rivalries, bury the player's own events.",
+      "repro": "inside settlement press Y",
+      "screenshot": "shots/chron_full_overlap.png",
+      "tick": 15292
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "'Tier: Camp (1 buildings)' and wrong chronicle line for a captured nation",
+      "detail": "Settlement Info says '1 buildings' after the first Farm. The chronicle says 'Westerntown faded from memory before it ever built a home.' right after its village was captured.",
+      "repro": "build first building (K K); or let the staged siege capture the home village",
+      "screenshot": "shots/one_buildings.png",
+      "tick": 14288
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 7,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 58.0, "Eat something": 59.04, "Create or join a nation": 60.0, "Found a settlement": 182.0, "Enter your settlement": 184.0, "Build a market stall": 200.0, "Reach the Village era": 201.04},
+    "rightColumnOverflowsSeen": 0,
+    "rightColumnBoxesTouching": 1,
+    "leftColumnOverCommandBar": 1,
+    "settlementsEntered": 3
+  },
+  "fun": 3,
+  "verdict": "The #350 fix works for the right column: at 960x540 nothing runs off the bottom and long lines (status, settlement 'Next (K)', objective text) wrap well. But compaction cuts the wrong things: the player's Nation, Role and Land go while the 'PCIS' debug line stays, which hurts most inside someone else's settlement. The left column and centre have no such guard: expanding the Era box covers the command bar, and the inventory and tip overlap the buttons."
+}

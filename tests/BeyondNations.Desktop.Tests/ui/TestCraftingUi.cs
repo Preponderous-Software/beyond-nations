@@ -53,7 +53,8 @@ namespace beyondnationstests.desktop.ui {
             CraftingScreen.Row planks = rows.Find(r => r.Recipe == RecipeBook.Planks);
             Assert.Equal("Planks x2: 3 wood", planks.Heading);
             Assert.Contains("(needs a Workshop)", planks.Benefit);
-            Assert.Equal("Need a Workshop (inside a settlement)", planks.Status);
+            // with no nation yet, the Workshop is still locked by the Camp era (#356)
+            Assert.Equal("Locked: The Workshop is unlocked in the Village era.", planks.Status);
         }
 
         [Fact]
@@ -117,6 +118,16 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testWorkshopLockedByEra_WithNoNationYet_SaysSoToo() {
+            Simulation simulation = newSimulation();
+            Assert.Null(simulation.getPlayer().getNationId());
+
+            Assert.EndsWith("need a settlement with a Workshop; the Workshop is unlocked in the Village era.", CraftingScreen.getLocationLine(simulation));
+            CraftingScreen.Row planks = CraftingScreen.getRows(simulation).Find(r => r.Recipe == RecipeBook.Planks);
+            Assert.Equal("Locked: The Workshop is unlocked in the Village era.", planks.Status);
+        }
+
+        [Fact]
         public void testWorkshopUnlocked_StillSaysHowToBuildOne() {
             Simulation simulation = newSimulation();
             Settlement settlement = leadCampEraSettlement(simulation);
@@ -171,6 +182,26 @@ namespace beyondnationstests.desktop.ui {
             Assert.NotNull(buy);
             buy.execute();
             Assert.Equal(1, player.getInventory().getNumItems(ItemType.PICKAXE));
+        }
+
+        [Fact]
+        public void testSellResources_EnabledForFoodToo() {
+            GameConfig gameConfig = new GameConfig();
+            gameConfig.setWorldSeed(42);
+            Simulation simulation = new Simulation(gameConfig);
+            Settlement settlement = SettlementShowcase.stage(simulation);
+            Player player = simulation.getPlayer();
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
+            player.getInventory().clear();
+            Assert.False(find(simulation, "Sell Resources").isEnabled());
+
+            // playtest 0.6.1 s03: chicken meat alone left the button greyed out
+            player.getInventory().addItem(ItemType.CHICKEN_MEAT, 5);
+            Assert.True(find(simulation, "Sell Resources").isEnabled());
+
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.AXE, 1);
+            Assert.False(find(simulation, "Sell Resources").isEnabled());
         }
 
         [Fact]

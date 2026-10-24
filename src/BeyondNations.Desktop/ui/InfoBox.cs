@@ -28,9 +28,33 @@ namespace beyondnations.desktop.ui {
             ImGuiWindowFlags.NoInputs;
 
         private readonly string title;
+        private bool compact;
 
         protected InfoBox(string title) {
             this.title = title;
+        }
+
+        /**
+        * Fewer lines, for a column with no room for every box in full (a
+        * settlement's boxes at 960x540, playtest 0.5.0/0.6.0 #350). What a
+        * box leaves out is its own choice; by default nothing.
+        */
+        public InfoBox setCompact(bool compact) {
+            this.compact = compact;
+            return this;
+        }
+
+        public bool isCompact() {
+            return compact;
+        }
+
+        /** The height getLines() would take, one row each, before any wrapping. */
+        public float estimateHeight() {
+            return Overlay.lineHeight() * (getLines().Count + 1) + ImGui.GetStyle().WindowPadding.Y * 2f;
+        }
+
+        private string heightKey() {
+            return compact ? title + "#compact" : title;
         }
 
         public string getTitle() {
@@ -56,7 +80,7 @@ namespace beyondnations.desktop.ui {
             if (ImGui.Begin(title, BoxFlags)) {
                 drawBody();
                 float height = ImGui.GetWindowSize().Y;
-                lastHeights[title] = height;
+                lastHeights[heightKey()] = height;
                 bottom = ImGui.GetWindowPos().Y + height;
             }
             ImGui.End();
@@ -84,8 +108,8 @@ namespace beyondnations.desktop.ui {
         */
         public float getExpectedHeight() {
             float height;
-            if (!lastHeights.TryGetValue(title, out height)) {
-                height = Overlay.lineHeight() * (getLines().Count + 1) + ImGui.GetStyle().WindowPadding.Y * 2f;
+            if (!lastHeights.TryGetValue(heightKey(), out height)) {
+                height = estimateHeight();
             }
             return height;
         }
@@ -96,8 +120,13 @@ namespace beyondnations.desktop.ui {
         * this and still keeps getLines() for the text a test can check.
         */
         protected virtual void drawBody() {
+            // wrapped to the box, so a long line ("Next (K): Workshop, 15
+            // wood, 10 stone") is not cut off at the window's edge (#350)
+            float width = System.MathF.Max(40f, ImGui.GetContentRegionAvail().X);
             foreach (string line in getLines()) {
-                ImGui.TextUnformatted(line);
+                foreach (string part in TextWrap.wrap(line, width, text => ImGui.CalcTextSize(text).X)) {
+                    ImGui.TextUnformatted(part);
+                }
             }
         }
 

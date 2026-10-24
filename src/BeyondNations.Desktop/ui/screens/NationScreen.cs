@@ -42,6 +42,16 @@ namespace beyondnations.desktop.ui.screens {
         private bool showingLaws = startOnLaws;
         /** The first row of the list on screen; the list scrolls when the nations outnumber the screen. */
         private int firstRow;
+        // War and Denounce take two clicks, as on the command bar (#368)
+        private readonly ConfirmGate confirmGate = new ConfirmGate();
+        // the row order shown when the screen opened; kept until it is
+        // closed, so a click never re-sorts a row out from under the pointer
+        private readonly List<NationId> shownOrder = new List<NationId>();
+        // when the screen was last drawn: a longer gap means it was closed
+        private double lastDrawn = double.NegativeInfinity;
+        private const double ReopenGapSeconds = 1.0;
+        // "Confirm Denounce" would not fit a button; the status line names the action
+        public const string ArmedLabel = "Confirm";
         /** How far a drag across the list has gone toward the next row. */
         private float dragCarry;
 
@@ -163,6 +173,39 @@ namespace beyondnations.desktop.ui.screens {
                 : a.distance != b.distance ? a.distance.CompareTo(b.distance)
                 : string.CompareOrdinal(a.nation.getName(), b.nation.getName()));
             return rows;
+        }
+
+        /**
+        * The rows in the order last shown, with any nation not seen before at
+        * the end in its sorted place; order is updated to match. An empty
+        * order takes the rows' own (sorted) order.
+        */
+        public static List<Row> keepOrder(List<Row> rows, List<NationId> order) {
+            List<Row> kept = new List<Row>(rows.Count);
+            foreach (NationId id in order) {
+                Row row = rows.Find(r => r.nation.getId() == id);
+                if (row != null) {
+                    kept.Add(row);
+                }
+            }
+            foreach (Row row in rows) {
+                if (!kept.Contains(row)) {
+                    kept.Add(row);
+                }
+            }
+            order.Clear();
+            foreach (Row row in kept) {
+                order.Add(row.nation.getId());
+            }
+            return kept;
+        }
+
+        /** "Click again to declare war on Blackport." -- and to break a truce, when there is one. */
+        public static string getWarPrompt(Realm realm, Nation own, Nation target, bool touch) {
+            string click = touch ? "Tap" : "Click";
+            return own != null && realm.getTruceTicksLeft(own, target) > 0
+                ? click + " War again to break the truce with " + target.getName() + " and declare war."
+                : click + " War again to declare war on " + target.getName() + ".";
         }
 
         /** From the player to the nation's nearest settlement, on the ground; MaxValue without one. */
@@ -324,7 +367,13 @@ namespace beyondnations.desktop.ui.screens {
             }
             y += lineHeight * 0.3f;
 
-            List<Row> rows = getRows(simulation);
+            double now = ImGui.GetTime();
+            if (now - lastDrawn > ReopenGapSeconds) {
+                shownOrder.Clear();
+                confirmGate.disarm();
+            }
+            lastDrawn = now;
+            List<Row> rows = keepOrder(getRows(simulation), shownOrder);
             if (rows.Count == 0) {
                 Overlay.textCentered(NoOtherNations, height / 32f, y, width);
             }
@@ -423,11 +472,20 @@ namespace beyondnations.desktop.ui.screens {
                     if (row.canOfferPeace && Overlay.buttonAt("Peace##peace" + i, x + slot * 2f, by, buttonWidth, buttonHeight)) {
                         pending = () => new OfferPeaceCommand(nationRepository, realm).execute(player, target);
                     }
-                    if (row.canDeclareWar && Overlay.buttonAt("War##war" + i, x + slot * 3f, by, buttonWidth, buttonHeight)) {
-                        pending = () => new DeclareWarCommand(nationRepository, realm).execute(player, target);
+                    string warKey = "war:" + target.getId();
+                    string warLabel = confirmGate.isArmed(warKey, now) ? ArmedLabel : "War";
+                    if (row.canDeclareWar && Overlay.buttonAt(warLabel + "###war" + i, x + slot * 3f, by, buttonWidth, buttonHeight)) {
+                        Nation own = nationRepository.getNation(player.getNationId());
+                        pending = confirmGate.press(warKey, now)
+                            ? () => new DeclareWarCommand(nationRepository, realm).execute(player, target)
+                            : () => player.getStatus().update(getWarPrompt(realm, own, target, TouchLayout.isActive()));
                     }
-                    if (Overlay.buttonAt("Denounce##denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
-                        pending = () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy()).execute(player, target);
+                    string denounceKey = "denounce:" + target.getId();
+                    string denounceLabel = confirmGate.isArmed(denounceKey, now) ? ArmedLabel : "Denounce";
+                    if (Overlay.buttonAt(denounceLabel + "###denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
+                        pending = confirmGate.press(denounceKey, now)
+                            ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy()).execute(player, target)
+                            : () => player.getStatus().update((TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
                     }
                 }
                 y += steps[i];

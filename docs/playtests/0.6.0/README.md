@@ -1,6 +1,6 @@
 # Playtest evidence: 0.6.0
 
-The release-candidate playtest for 0.6.0, the first run through [playtester](https://github.com/dmccoystephenson/playtester) with its `beyond-nations` profile ([docs/PLAYTESTING.md](../../PLAYTESTING.md)). Ten AI agents each played the real desktop build headlessly toward a different goal, by looking at screenshots and driving the keyboard and mouse. Two more sessions then re-checked the build that was released.
+The release-candidate playtest for 0.6.0, the first run through [playtester](https://github.com/Preponderous-Software/playtester) with its `beyond-nations` profile ([docs/PLAYTESTING.md](../../PLAYTESTING.md)). Ten AI agents each played the real desktop build headlessly toward a different goal, by looking at screenshots and driving the keyboard and mouse. Two more sessions then re-checked the build that was released.
 
 | | |
 | --- | --- |

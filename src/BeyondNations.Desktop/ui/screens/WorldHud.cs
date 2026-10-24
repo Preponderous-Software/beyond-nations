@@ -141,7 +141,7 @@ namespace beyondnations.desktop.ui.screens {
             float centreBottom = layout.Margin;
             if (!stackCentre) {
                 float centreY = drawStatus(width, player, layout, layout.Margin);
-                centreBottom = drawHungerWarning(width, player, layout, centreY);
+                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, layout, centreY));
             }
 
             // Left column, from the top: the controls button (the touch path
@@ -182,7 +182,7 @@ namespace beyondnations.desktop.ui.screens {
                 // full width under the two of them.
                 float underBoxes = System.MathF.Max(leftTop, layout.Margin + playerBox.getExpectedHeight() + layout.Gap);
                 float centreY = drawStatus(width, player, layout, underBoxes);
-                centreBottom = drawHungerWarning(width, player, layout, centreY);
+                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, layout, centreY));
             }
 
             // On a short window with the debug box open there is no room for
@@ -205,19 +205,27 @@ namespace beyondnations.desktop.ui.screens {
             // the top while the player is inside a settlement, and the player
             // box sits at the bottom, never rising into them.
             float rightTop = layout.Margin;
+            SeasonInfoBox seasonBox = new SeasonInfoBox(simulation);
             if (player.isCurrentlyInSettlement()) {
                 Settlement settlement = (Settlement) simulation.getEntityRepository().getEntity(player.getCurrentSettlementId());
-                float settlementBottom = new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository())
-                    .draw(layout.RightX, rightTop, layout.BoxWidth);
-                rightTop = new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository())
-                    .draw(layout.RightX, settlementBottom + layout.Gap, layout.BoxWidth) + layout.Gap;
+                SettlementInfoBox settlementBox = new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository());
+                MarketInfoBox marketBox = new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository());
+                // four boxes do not fit a short window (960x540: the season box
+                // covered the player box and ran off the bottom, #350), so the
+                // market, season and player boxes drop their least needed lines
+                if (!stackCentre && !fitsInFull(rightColumnBottom - rightTop, layout.Gap, settlementBox, marketBox, seasonBox, playerBox)) {
+                    marketBox.setCompact(true);
+                    seasonBox.setCompact(true);
+                    playerBox.setCompact(true);
+                }
+                float settlementBottom = settlementBox.draw(layout.RightX, rightTop, layout.BoxWidth);
+                rightTop = marketBox.draw(layout.RightX, settlementBottom + layout.Gap, layout.BoxWidth) + layout.Gap;
             }
 
             float playerTop = stackCentre
                 ? drawAt(playerBox, layout.RightX, rightTop, layout.BoxWidth)
                 : playerBox.drawAbove(layout.RightX, rightColumnBottom, layout.BoxWidth, rightTop);
             // the season, the winter warning and the region, just above the player box
-            SeasonInfoBox seasonBox = new SeasonInfoBox(simulation);
             bool seasonUnderChronicle = stackCentre;
             if (stackCentre) {
                 // drawn below, under the chronicle strip
@@ -255,6 +263,19 @@ namespace beyondnations.desktop.ui.screens {
             CaravanDispatchPanel.draw(width, height, simulation, touch ? layout.Margin : centreBottom + layout.Gap);
 
             return action;
+        }
+
+        /**
+        * Whether the boxes, each with every line, fit one above another in
+        * height. Judged on full line counts, not last frame's heights, so a
+        * column that has just gone compact does not flip back next frame.
+        */
+        public static bool fitsInFull(float height, float gap, params InfoBox[] boxes) {
+            float needed = gap * (boxes.Length - 1);
+            foreach (InfoBox box in boxes) {
+                needed += box.estimateHeight();
+            }
+            return needed <= height;
         }
 
         /** Draws an info box from the top down; returns its top, as drawAbove does. */
@@ -429,6 +450,31 @@ namespace beyondnations.desktop.ui.screens {
             float bottom = y;
             ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
             if (ImGui.Begin("##hunger-warning", StatusFlags)) {
+                foreach (string line in wrapForCentre(warning, layout)) {
+                    Overlay.textColoured(colour, line);
+                }
+                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
+            }
+            ImGui.End();
+            return bottom;
+        }
+
+        /**
+        * The player's nation's hungry and starving pawns (ResidentHunger), under
+        * the player's own hunger warning: before #353 the first sign of a
+        * starving winter was the death notice.
+        */
+        private float drawResidentHungerWarning(float width, Simulation simulation, Layout layout, float y) {
+            Player player = simulation.getPlayer();
+            Nation nation = player.getNationId() == null ? null : simulation.getNationRepository().getNation(player.getNationId());
+            string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter());
+            if (warning == null) {
+                return y;
+            }
+            Vector4 colour = warning.Contains("starving") ? new Vector4(1f, 0.35f, 0.35f, 1f) : new Vector4(1f, 0.8f, 0.3f, 1f);
+            float bottom = y;
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            if (ImGui.Begin("##resident-hunger-warning", StatusFlags)) {
                 foreach (string line in wrapForCentre(warning, layout)) {
                     Overlay.textColoured(colour, line);
                 }

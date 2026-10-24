@@ -8,7 +8,7 @@ has two halves:
   writes what is on screen to `DIR/state.json` and `DIR/events.jsonl`
   (`src/BeyondNations.Desktop/playtest/`). Without the flag nothing is
   written and nothing else changes.
-- **The harness, in [playtester](https://github.com/dmccoystephenson/playtester):**
+- **The harness, in [playtester](https://github.com/Preponderous-Software/playtester):**
   `pt` runs one isolated session (its own virtual display, saves,
   screenshots and logs) and drives it with keys and clicks; the
   `beyond-nations` profile tells it how to build, start and steer this game;
@@ -39,7 +39,7 @@ Linux (or WSL2) with:
 
 ```bash
 sudo apt-get install -y xvfb xdotool imagemagick libgl1-mesa-dri libglfw3
-pip install "git+https://github.com/dmccoystephenson/playtester@$(cat tools/playtest/playtester.ref)"
+pip install "git+https://github.com/Preponderous-Software/playtester@$(cat tools/playtest/playtester.ref)"
 dotnet build src/BeyondNations.Desktop/BeyondNations.Desktop.csproj -c Release
 ```
 
@@ -205,6 +205,7 @@ Runs so far:
 
 - [0.5.0](playtests/0.5.0/README.md) (develop `df53ae3`, 2026-10-21): the first 10-agent run.
 - [0.6.0](playtests/0.6.0/README.md) (develop `ae87506` and `3246ba2`, 2026-10-22): the first run through playtester, plus two re-checks of the released build.
+- [0.6.1](playtests/0.6.1/README.md) (develop `fc45ac8`, 2026-10-23): four sessions re-checking the fixes since 0.6.0.
 
 ## Troubleshooting
 

@@ -1,0 +1,79 @@
+{
+  "session": "s01",
+  "goal": "Re-check the two-click confirmations (#345, #368): from the Nations screen (O) declare war on and denounce another nation, timing your second click; a second click up to 8 seconds after the first must confirm, not re-arm. Check the Nations list keeps its order while open, that a truce warning appears when war would break one, that L asks twice before you leave or disband, and that the command bar's buttons do not move under the cursor as pawns walk in and out of reach.",
+  "build": {"version": "0.6.0", "commit": "fc45ac8"},
+  "seed": 111,
+  "durationSec": 530,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Diplomacy stage: home village is captured ~20 game seconds in while the HUD says 'Sieges can begin in 4:58'",
+      "detail": "At tick 68 the HUD shows 'Sieges can begin in 4:58' while the Nations screen already says 'Your village: Besieged by Greenshire (2/6)!'. The siege went to 4/6 at tick 500 and at tick 1000 'Greenshire has captured your village! Upperwood has fallen ... You are without a nation.' In that time I had only opened the Nations screen (world paused), paid tribute, declared war (which broke the 60 s truce) and walked a few metres. Breaking the truce was my choice, but the player gets almost no time to react, and the 'Sieges can begin in' countdown contradicts a siege already in progress. Expected the countdown to hold, or not to be shown while a siege is running.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 111 --stage-diplomacy; space; click 480 315; click 480 315; read HUD + press o; (optionally tribute then War twice on Greenshire); Escape; walk ~20 s; pt events",
+      "screenshot": "shots/nonation.png",
+      "tick": 1000
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Command bar: Talk/Gift/Invite buttons jump between rows depending on the nearest pawn's trait text length",
+      "detail": "The fixed buttons (Enter Settlement / Teleport Home / Plant Sapling row and Leave Nation) never moved as pawns came and went, which is the main fix working. But the pawn buttons still move: 'Talk to X (Stranger) - traits' is placed at the end of row 2 (x~386) when its text is short (Mia Brown - Gregarious; Dave Davies - Loyal, Greedy) and at the start of row 1 when long (Karl Smith - Loyal, Industrious; Irene Wilson - Greedy, Ambitious), and Gift/Invite slide between x=10 and x~386 to match. With the pointer parked at (470,476) the Talk button appeared and disappeared under it, and Gift (which spends coins) can take the spot where Talk was a moment earlier.",
+      "repro": "stage-diplomacy seed 111; join a nation (j); pt walkto pawn; pt move 470 476; take a screenshot every second as pawns wander in and out of reach",
+      "screenshot": "shots/cmdbar_jump.png",
+      "tick": 6544
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Stale 'Click War again...' status remains after the 8 s confirm window lapses",
+      "detail": "After arming War (Nations screen) or 'Declare War on Greenshire' (command bar) and waiting more than 8 s, the button correctly reverts from 'Confirm' to 'War', but the status line keeps saying 'Click War again to declare war on Southernfield. (x2)' / 'Click again to confirm: Declare War on Greenshire.' That instruction is no longer true: a click now only re-arms. The '(x2)' repeat counter on a re-arm also reads like 'click twice'.",
+      "repro": "o; click War (657,302); wait 9 s; screenshot",
+      "screenshot": "shots/war_expired_stale.png",
+      "tick": 240
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Confirmation wording differs between the Nations screen, the command bar and the L key",
+      "detail": "Nations screen: the button becomes 'Confirm' but the status says 'Click Denounce again to denounce X'. Command bar: the button becomes 'Confirm Declare War on Greenshire' and the status says 'Click again to confirm: ...'. L: the status says 'Press L again to disband Greattown.' but the Leave Nation button does not change to a confirm state. Each one works, but the three styles do not match, and on the Nations screen the text tells you to click 'Denounce', a label that is no longer on the button.",
+      "repro": "o; click Denounce (836,302); screenshot; Escape; press l; screenshot",
+      "screenshot": "shots/den_confirm_ok.png",
+      "tick": 196
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'Your nation is collapsing!' shown after leaving a nation, and leave/join refills the 5-minute clock",
+      "detail": "After leaving Newshire as a member (no nation of my own), the banner reads 'Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends.' and the HUD timer jumps back to 4:59 (it was at ~4:07 before I joined). The player has no nation, so 'your nation' is confusing, and joining then leaving resets the deadline.",
+      "repro": "stage-diplomacy, after losing the village: j (join), l, l (leave); read banner + HUD timer",
+      "screenshot": "shots/lm2.png",
+      "tick": 4200
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "World nameplates and the settlement label draw over HUD panels",
+      "detail": "Large pawn nameplates ('Kay Smith / Loyal, Industrious / (going home)') render on top of the Objective panel and the red 'Collapsing!' timer, making both unreadable. The 'Town of Greenshire / N here, 16/32 residents' label also overlaps the status banner and shows through the Nations screen.",
+      "repro": "stand in Greenshire's town with pawns walking past the camera; screenshot",
+      "screenshot": "shots/l2.png",
+      "tick": 3584
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "denounceConfirmAtSec": 6.27,
+    "warConfirmAtSec_truceBroken": 7.46,
+    "leaveConfirmAtSec_L": 7.6,
+    "disbandConfirmAtSec_L": 6.5,
+    "reArmAtSec": 8.59,
+    "reArmAtSec_late": 11.15,
+    "nationsListReordersWhileOpen": 0,
+    "secondsUntilVillageCaptured": 20.0
+  },
+  "fun": 3,
+  "verdict": "The #345/#368 confirmations work as intended. Second clicks at 6.3, 7.5 and 7.6 s confirmed and clicks at 8.6 and 11.1 s re-armed. The truce warning appears, L asks twice to both leave and disband, the Nations list holds its order while open (it re-sorts on reopen), and the fixed command-bar rows stay put. Still to fix: the pawn Talk/Gift/Invite buttons still hop between rows as different pawns come into reach, and a stale 'click again' prompt stays on screen after the confirm window expires. The diplomacy stage also loses your only village about 20 seconds in, while the HUD promises almost 5 minutes before sieges begin."
+}

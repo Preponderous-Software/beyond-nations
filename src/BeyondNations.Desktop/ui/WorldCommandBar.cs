@@ -112,11 +112,11 @@ namespace beyondnations.desktop.ui {
                     new PurchaseFoodFromMarketCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(inventory.getNumItems(ItemType.COIN) > 0));
 
-                bool hasResources = inventory.getNumItems(ItemType.WOOD) > 0 || inventory.getNumItems(ItemType.STONE) > 0
-                    || inventory.getNumItems(ItemType.PLANKS) > 0 || inventory.getNumItems(ItemType.BRICKS) > 0;
+                // whatever the market buys, food included (playtest 0.6.1 s03: five
+                // chicken meat left the button greyed out)
                 commands.Add(new WorldCommand("Sell Resources", CommandGroup.Place, () =>
                     new SellResourcesAtMarketCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(hasResources));
+                    .setEnabled(Market.hasAnythingToSell(inventory)));
             }
 
             return CommandBarLayout.order(commands);
@@ -129,6 +129,14 @@ namespace beyondnations.desktop.ui {
             NationRepository nationRepository = simulation.getNationRepository();
             Market market = settlement.getMarket();
             bool leads = player.getId() == nation.getLeaderId();
+
+            // with the pawn buttons, last on the bar, so its coming and going moves nothing (#353)
+            FeedResidentsCommand feed = new FeedResidentsCommand(entityRepository);
+            int hungryHere = feed.countHungryHere(player);
+            if (hungryHere > 0) {
+                commands.Add(new WorldCommand("Feed Residents (" + hungryHere + " hungry)", CommandGroup.People, () => feed.execute(player))
+                    .setEnabled(FoodItems.hasFood(player.getInventory())));
+            }
 
             if (leads && market.getNumStalls() < market.getMaxNumStalls()) {
                 commands.Add(new WorldCommand("Build Stall", CommandGroup.Build, () =>

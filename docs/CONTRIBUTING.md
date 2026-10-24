@@ -21,9 +21,9 @@ The game takes arguments that make it checkable without a person watching it, wh
 | Switch | Effect |
 | --- | --- |
 | `--exit-after-frames N` | render N frames, then exit |
-| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `crafting` or `load` |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `crafting`, `load`, `new-world` (the seed for a new world) or `share` (the world's seed, share link and exports) |
 | `--ui-scale F` | draw the UI F times its design size, 1 to 4; by default the monitor's content scale (150 % in Windows display settings is 1.5) |
-| `--seed N` | fix the world seed, so a run is reproducible |
+| `--seed S` | fix the world seed, so a run is reproducible: a number, or any text, which is hashed to one (see [SHARING.md](./SHARING.md)) |
 | `--screenshot-after-frames N` | write a PNG and carry on |
 | `--render-stats` | report draw calls, instance counts and frame times on exit |
 | `--render-distance N` | start at this render distance; 0 keeps the configured one |
@@ -42,9 +42,12 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--stage-diplomacy` | open leading a nation between a friendly and a hostile, besieging neighbour, standing at the border |
 | `--stage-succession` | as `--stage-diplomacy`, with the player about to starve, so the first tick hands the rule to an heir and opens the succession screen |
 | `--stage-event` | open with a world event's choice sheet up (with `--stage-diplomacy`, wanderers at your village) |
+| `--stage-trade` | open leading a village that can send caravans, beside a trading neighbour's caravan on the road ahead |
+| `--stage-feel` | replay the feedback effects (chips, floating "+5 wood", buildings rising, the objective flash) every couple of seconds, for screenshots |
 | `--stage-victory`, `--stage-defeat` | open on the end-of-run screen of a staged run: a Prosperity victory in the Kingdom era, or a collapse |
 | `--playtest-out DIR` | write `state.json` (what is on screen, about twice a second) and `events.jsonl` (what happened) to DIR, for playtesting agents (see [PLAYTESTING.md](./PLAYTESTING.md)) |
 | `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
+| `--season NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` (default spring) |
 | `--help`, `-h` | list every switch |
 
 ### Troubleshooting

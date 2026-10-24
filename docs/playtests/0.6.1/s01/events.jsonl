@@ -1,0 +1,124 @@
+{"type":"screen","tick":0,"wallTimeMs":1792818427975,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792818442152,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792818449748,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792818456124,"how":"created","slot":"world-111-20261024-050736","seed":111}
+{"type":"screen","tick":0,"wallTimeMs":1792818456126,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":196,"wallTimeMs":1792818463159,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":196,"wallTimeMs":1792818470482,"text":"Click Denounce again to denounce Southernfield."}
+{"type":"status","tick":196,"wallTimeMs":1792818481636,"text":"Click Denounce again to denounce Southernfield. (x2)"}
+{"type":"status","tick":196,"wallTimeMs":1792818487905,"text":"You denounced Southernfield. Relations: Neutral (\u002B8)."}
+{"type":"chronicle","tick":196,"wallTimeMs":1792818487905,"kind":"NationRelationChange","text":"Relations between Upperwood and Southernfield are now neutral."}
+{"type":"status","tick":196,"wallTimeMs":1792818497551,"text":"Greenshire accepts your tribute of 25 coins and will hold off its raiders for 60 seconds. Relations: Hostile (-64)."}
+{"type":"status","tick":196,"wallTimeMs":1792818503349,"text":"Click War again to break the truce with Greenshire and declare war."}
+{"type":"status","tick":196,"wallTimeMs":1792818510806,"text":"Greenshire laughs at your declaration of war: they are 11 to your 3."}
+{"type":"chronicle","tick":196,"wallTimeMs":1792818510806,"kind":"Statecraft","text":"Upperwood declared war on Greenshire."}
+{"type":"status","tick":196,"wallTimeMs":1792818519964,"text":"Click War again to declare war on Southernfield."}
+{"type":"screen","tick":200,"wallTimeMs":1792818521276,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":240,"wallTimeMs":1792818522774,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":240,"wallTimeMs":1792818525327,"text":"Click War again to declare war on Southernfield. (x2)"}
+{"type":"screen","tick":244,"wallTimeMs":1792818554998,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":452,"wallTimeMs":1792818562144,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Southernfield."}
+{"type":"status","tick":500,"wallTimeMs":1792818563839,"text":"Greenshire raided your village: 1 coins taken. Relations: Hostile (-68); gifts or peace end raids. Greenshire is besieging your village (4/6)! Gift, ally or grow it to hold it."}
+{"type":"chronicle","tick":500,"wallTimeMs":1792818563839,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Dave Roberts."}
+{"type":"chronicle","tick":500,"wallTimeMs":1792818563839,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 1 coins."}
+{"type":"status","tick":820,"wallTimeMs":1792818576672,"text":"You enter the land of Greenshire (Hostile)."}
+{"type":"chronicle","tick":852,"wallTimeMs":1792818577968,"kind":"StallBuilt","text":"A new stall opened in the market of Southernfield, built by Wendy Johnson."}
+{"type":"status","tick":1000,"wallTimeMs":1792818583219,"text":"Greenshire has captured your village! Upperwood has fallen: it has no settlements left. You are without a nation. Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends."}
+{"type":"chronicle","tick":1000,"wallTimeMs":1792818583219,"kind":"SettlementCapture","text":"After a siege, a village of Upperwood fell to Greenshire."}
+{"type":"chronicle","tick":1000,"wallTimeMs":1792818583219,"kind":"NationDisband","text":"Upperwood dissolved, its name already half-forgotten."}
+{"type":"chronicle","tick":1152,"wallTimeMs":1792818589036,"kind":"StallBuilt","text":"A new stall opened in the market of Southernfield, built by Wendy Johnson. The market is now full."}
+{"type":"chronicle","tick":1600,"wallTimeMs":1792818605509,"kind":"NationCreation","text":"Isabella Wood raised a banner and called it Villageton."}
+{"type":"chronicle","tick":1852,"wallTimeMs":1792818615723,"kind":"NationCreation","text":"The nation of Newshire was born, with Charlie Brown at its head."}
+{"type":"chronicle","tick":2100,"wallTimeMs":1792818626373,"kind":"SettlementFounded","text":"Newshire put down roots: Charlie Brown founded its first settlement."}
+{"type":"chronicle","tick":2300,"wallTimeMs":1792818635001,"kind":"SettlementFounded","text":"Isabella Wood raised the first settlement of Villageton."}
+{"type":"chronicle","tick":2600,"wallTimeMs":1792818647951,"kind":"StallBuilt","text":"A new stall opened in the market of Villageton, built by Isabella Wood."}
+{"type":"chronicle","tick":2600,"wallTimeMs":1792818647951,"kind":"NationCreation","text":"The nation of Whiteham was born, with Charlotte Evans at its head."}
+{"type":"status","tick":2796,"wallTimeMs":1792818656922,"text":"Created nation Greattown."}
+{"type":"chronicle","tick":2796,"wallTimeMs":1792818656922,"kind":"NationCreation","text":"Under your hand, the nation of Greattown was born."}
+{"type":"chronicle","tick":2952,"wallTimeMs":1792818663846,"kind":"SettlementFounded","text":"Charlotte Evans raised the first settlement of Whiteham."}
+{"type":"status","tick":3012,"wallTimeMs":1792818666416,"text":"Click again to confirm: Declare War on Greenshire."}
+{"type":"chronicle","tick":3200,"wallTimeMs":1792818674912,"kind":"StallBuilt","text":"Trade came to Whiteham: Charlotte Evans built a stall."}
+{"type":"chronicle","tick":3400,"wallTimeMs":1792818684205,"kind":"NationCreation","text":"The nation of Greenport was born, with Eve Taylor at its head."}
+{"type":"status","tick":3452,"wallTimeMs":1792818686539,"text":"Press L again to disband Greattown."}
+{"type":"status","tick":3584,"wallTimeMs":1792818693028,"text":"You disbanded nation Greattown."}
+{"type":"chronicle","tick":3584,"wallTimeMs":1792818693028,"kind":"NationDisband","text":"Greattown faded from memory before it ever built a home."}
+{"type":"chronicle","tick":3600,"wallTimeMs":1792818693729,"kind":"StallBuilt","text":"Trade came to Villageton: Isabella Wood built a stall."}
+{"type":"chronicle","tick":3652,"wallTimeMs":1792818696123,"kind":"NationCreation","text":"Fiona Lewis declared the nation of Littleham, though none had yet sworn to it."}
+{"type":"chronicle","tick":3752,"wallTimeMs":1792818700716,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Dave Roberts."}
+{"type":"status","tick":3788,"wallTimeMs":1792818702452,"text":"You joined nation Newshire. Members: 2."}
+{"type":"chronicle","tick":3788,"wallTimeMs":1792818702452,"kind":"NationJoin","text":"Newshire took you in as one of its own."}
+{"type":"status","tick":3800,"wallTimeMs":1792818702992,"text":"Your nation stands again."}
+{"type":"chronicle","tick":3800,"wallTimeMs":1792818702992,"kind":"SettlementFounded","text":"Eve Taylor raised the first settlement of Greenport."}
+{"type":"chronicle","tick":4000,"wallTimeMs":1792818712381,"kind":"StallBuilt","text":"A new stall opened in the market of Greenport, built by Eve Taylor."}
+{"type":"status","tick":4016,"wallTimeMs":1792818713219,"text":"Press L again to leave Newshire."}
+{"type":"status","tick":4176,"wallTimeMs":1792818720819,"text":"You left nation Newshire. Members: 1."}
+{"type":"chronicle","tick":4176,"wallTimeMs":1792818720819,"kind":"NationLeave","text":"You left the nation of Newshire."}
+{"type":"status","tick":4200,"wallTimeMs":1792818721955,"text":"Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends."}
+{"type":"chronicle","tick":4252,"wallTimeMs":1792818724540,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Villageton."}
+{"type":"status","tick":4384,"wallTimeMs":1792818730677,"text":"You joined nation Greenport. Members: 3."}
+{"type":"chronicle","tick":4384,"wallTimeMs":1792818730677,"kind":"NationJoin","text":"You swore yourself to Greenport."}
+{"type":"status","tick":4400,"wallTimeMs":1792818731394,"text":"Your nation stands again."}
+{"type":"chronicle","tick":4500,"wallTimeMs":1792818736121,"kind":"NationCreation","text":"Isabella Thompson declared the nation of Castlewood, though none had yet sworn to it."}
+{"type":"chronicle","tick":4500,"wallTimeMs":1792818736121,"kind":"NationRelationChange","text":"Greenshire and Newshire have become rivals over their border."}
+{"type":"chronicle","tick":4500,"wallTimeMs":1792818736121,"kind":"NationRelationChange","text":"Southernfield and Newshire have become rivals over their border."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1792818748102,"kind":"SettlementFounded","text":"Fiona Lewis laid the first stones of Littleham."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1792818748102,"kind":"NationRelationChange","text":"Greenshire and Villageton have become rivals over their border."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1792818748102,"kind":"NationRelationChange","text":"Southernfield and Villageton have become rivals over their border."}
+{"type":"chronicle","tick":5100,"wallTimeMs":1792818763002,"kind":"SettlementFounded","text":"Isabella Thompson laid the first stones of Castlewood."}
+{"type":"chronicle","tick":5152,"wallTimeMs":1792818765438,"kind":"StallBuilt","text":"Charlotte Evans built a market stall in Whiteham."}
+{"type":"chronicle","tick":5252,"wallTimeMs":1792818770029,"kind":"StallBuilt","text":"A new stall opened in the market of Greenport, built by Eve Taylor."}
+{"type":"chronicle","tick":5252,"wallTimeMs":1792818770029,"kind":"NationRelationChange","text":"Villageton and Whiteham have become rivals over their border."}
+{"type":"chronicle","tick":5300,"wallTimeMs":1792818772121,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Dave Roberts."}
+{"type":"chronicle","tick":5300,"wallTimeMs":1792818772121,"kind":"NationCreation","text":"Una Wilson declared the nation of Lowerham, though none had yet sworn to it."}
+{"type":"chronicle","tick":5452,"wallTimeMs":1792818778926,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Villageton. The market is now full."}
+{"type":"chronicle","tick":5752,"wallTimeMs":1792818792766,"kind":"NationCreation","text":"Victor Smith founded the nation of Castleburg."}
+{"type":"chronicle","tick":5900,"wallTimeMs":1792818799752,"kind":"NationCreation","text":"Yvonne Smith raised a banner and called it Villagetown."}
+{"type":"chronicle","tick":5952,"wallTimeMs":1792818801952,"kind":"NationCreation","text":"Yvonne Davies raised a banner and called it Bigton."}
+{"type":"chronicle","tick":5952,"wallTimeMs":1792818801952,"kind":"StallBuilt","text":"Trade came to Castlewood: Isabella Thompson built a stall."}
+{"type":"save","tick":6000,"wallTimeMs":1792818804124,"count":1}
+{"type":"status","tick":6000,"wallTimeMs":1792818804124,"text":"Autosaved."}
+{"type":"chronicle","tick":6052,"wallTimeMs":1792818806395,"kind":"NationCreation","text":"The nation of Easttown was born, with Nancy Taylor at its head."}
+{"type":"chronicle","tick":6052,"wallTimeMs":1792818806395,"kind":"NationJoin","text":"Bella Wood threw in their lot with Greenport."}
+{"type":"chronicle","tick":6200,"wallTimeMs":1792818812703,"kind":"SettlementFounded","text":"Yvonne Smith laid the first stones of Villagetown."}
+{"type":"status","tick":6252,"wallTimeMs":1792818814882,"text":"Villageton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1792818814882,"kind":"StallBuilt","text":"Dave Roberts built a market stall in Greenshire."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1792818814882,"kind":"SettlementFounded","text":"Una Wilson laid the first stones of Lowerham."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1792818814882,"kind":"NationRelationChange","text":"Villageton and Greenport have become rivals over their border."}
+{"type":"chronicle","tick":6452,"wallTimeMs":1792818823049,"kind":"SettlementFounded","text":"Nancy Taylor raised the first settlement of Easttown."}
+{"type":"chronicle","tick":6500,"wallTimeMs":1792818824922,"kind":"NationRelationChange","text":"Relations between Villageton and Greenshire are now neutral."}
+{"type":"chronicle","tick":6552,"wallTimeMs":1792818827029,"kind":"SettlementFounded","text":"Victor Smith laid the first stones of Castleburg."}
+{"type":"chronicle","tick":6700,"wallTimeMs":1792818833204,"kind":"StallBuilt","text":"A new stall opened in the market of Greenport, built by Eve Taylor."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1792818835240,"kind":"NationRelationChange","text":"Greenshire and Villageton have become rivals over their border."}
+{"type":"chronicle","tick":6952,"wallTimeMs":1792818843292,"kind":"StallBuilt","text":"Abigail Evans built a market stall in Greenshire."}
+{"type":"chronicle","tick":6952,"wallTimeMs":1792818843292,"kind":"StallBuilt","text":"A new stall opened in the market of Castlewood, built by Isabella Thompson."}
+{"type":"status","tick":7000,"wallTimeMs":1792818845453,"text":"Littleham resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":7000,"wallTimeMs":1792818845453,"kind":"NationRelationChange","text":"Whiteham and Littleham have become rivals over their border."}
+{"type":"chronicle","tick":7000,"wallTimeMs":1792818845453,"kind":"NationRelationChange","text":"Greenport and Littleham have become rivals over their border."}
+{"type":"screen","tick":7140,"wallTimeMs":1792818851184,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":7144,"wallTimeMs":1792818858094,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":7180,"wallTimeMs":1792818859677,"text":"Press L again to leave Greenport."}
+{"type":"status","tick":7228,"wallTimeMs":1792818861735,"text":"You left nation Greenport. Members: 3."}
+{"type":"chronicle","tick":7228,"wallTimeMs":1792818861735,"kind":"NationLeave","text":"You turned your back on Greenport."}
+{"type":"status","tick":7252,"wallTimeMs":1792818862817,"text":"Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends."}
+{"type":"status","tick":7272,"wallTimeMs":1792818863623,"text":"Created nation Northernshire."}
+{"type":"chronicle","tick":7272,"wallTimeMs":1792818863623,"kind":"NationCreation","text":"You raised a banner and named your people Northernshire."}
+{"type":"screen","tick":7316,"wallTimeMs":1792818865623,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":7316,"wallTimeMs":1792818872933,"text":"Click Denounce again to denounce Newshire."}
+{"type":"status","tick":7316,"wallTimeMs":1792818875735,"text":"You denounced Newshire. Relations: Rival (-25)."}
+{"type":"chronicle","tick":7316,"wallTimeMs":1792818875735,"kind":"NationRelationChange","text":"Northernshire and Newshire have become rivals."}
+{"type":"status","tick":7316,"wallTimeMs":1792818883470,"text":"Click War again to declare war on Easttown."}
+{"type":"status","tick":7316,"wallTimeMs":1792818885563,"text":"Click Denounce again to denounce Southernfield."}
+{"type":"status","tick":7316,"wallTimeMs":1792818887864,"text":"Click War again to declare war on Easttown."}
+{"type":"status","tick":7316,"wallTimeMs":1792818903814,"text":"Easttown declines: relations are Neutral (0); an alliance needs \u002B30. Gifts help."}
+{"type":"status","tick":7316,"wallTimeMs":1792818910190,"text":"Click War again to declare war on Easttown."}
+{"type":"status","tick":7316,"wallTimeMs":1792818912473,"text":"Easttown laughs at your declaration of war: they are 2 to your 1. They are far off; war bites only where your lands meet."}
+{"type":"chronicle","tick":7316,"wallTimeMs":1792818912473,"kind":"NationRelationChange","text":"Northernshire and Easttown are now hostile."}
+{"type":"chronicle","tick":7316,"wallTimeMs":1792818912473,"kind":"Statecraft","text":"Northernshire declared war on Easttown."}
+{"type":"screen","tick":7320,"wallTimeMs":1792818923042,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":7352,"wallTimeMs":1792818924578,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":7356,"wallTimeMs":1792818933599,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":7388,"wallTimeMs":1792818935085,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":7388,"wallTimeMs":1792818937495,"text":"Click Denounce again to denounce Southernfield."}
+{"type":"status","tick":7388,"wallTimeMs":1792818946088,"text":"Click Denounce again to denounce Southernfield. (x2)"}
+{"type":"status","tick":7388,"wallTimeMs":1792818951647,"text":"You denounced Southernfield. Relations: Rival (-25)."}
+{"type":"chronicle","tick":7388,"wallTimeMs":1792818951647,"kind":"NationRelationChange","text":"Northernshire and Southernfield have become rivals."}

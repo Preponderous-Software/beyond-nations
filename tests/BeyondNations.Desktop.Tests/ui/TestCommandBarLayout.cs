@@ -394,6 +394,61 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void theLeaveKeyAsksBeforeDisbanding_AndDisbandsOnTheSecondPress() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Player player = simulation.getPlayer();
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            LeaveNationKey key = new LeaveNationKey();
+
+            // playtest 0.6.0 s09: one press of L disbanded the nation (#368)
+            Assert.False(key.press(simulation, 1.0));
+            Assert.Equal(nation.getId(), player.getNationId());
+            Assert.Equal("Press L again to disband " + nation.getName() + ".", player.getStatus().getStatus());
+
+            // too late: asks again
+            double late = 1.0 + ConfirmGate.DefaultWindowSeconds + 1.0;
+            Assert.False(key.press(simulation, late));
+            Assert.NotNull(player.getNationId());
+
+            Assert.True(key.press(simulation, late + 0.5));
+            Assert.Null(player.getNationId());
+
+            // with no nation, the refusal shows at once
+            Assert.True(key.press(simulation, late + 1.0));
+            Assert.Equal("You are not a member of a nation.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void pawnsComingAndGoingMoveNoOtherButton() {
+            List<WorldCommand> withoutPawn = new List<WorldCommand> {
+                command("Enter Settlement", CommandGroup.Place),
+                command("Build Farm (25 wood, 10 stone)", CommandGroup.Build),
+                command("Send Caravan", CommandGroup.Trade),
+                command("Offer Peace to Newham", CommandGroup.Trade),
+                command("Leave Nation", CommandGroup.Drastic).requireConfirm(),
+            };
+            List<WorldCommand> withPawn = new List<WorldCommand>(withoutPawn) {
+                command("Talk to Charlotte Johnson (Friendly, greedy)", CommandGroup.People),
+                command("Order Charlotte Johnson: Gather Wood", CommandGroup.People),
+                command("Appoint Charlotte Johnson Merchant", CommandGroup.People),
+            };
+            CommandBarLayout.Settings settings = settingsFor(960f, 540f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> a = CommandBarLayout.order(withoutPawn);
+            List<WorldCommand> b = CommandBarLayout.order(withPawn);
+            CommandBarLayout.Result before = CommandBarLayout.compute(a, measure, settings);
+            CommandBarLayout.Result after = CommandBarLayout.compute(b, measure, settings);
+            for (int i = 0; i < a.Count; i++) {
+                int j = b.IndexOf(a[i]);
+                Assert.Equal(before.Buttons[i].X, after.Buttons[j].X);
+                Assert.Equal(before.Buttons[i].Y, after.Buttons[j].Y);
+            }
+        }
+
+        [Fact]
         public void theBuildKeyBuildsWhatTheSettlementBoxNames_NotSomethingCheaper() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
             Player player = simulation.getPlayer();

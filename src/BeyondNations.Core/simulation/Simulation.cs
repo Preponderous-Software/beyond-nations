@@ -195,7 +195,9 @@ namespace beyondnations {
                             }
 
                             if (pawn.isCurrentlyInSettlement()) {
-                                pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism() * gameConfig.getSettlementMetabolismMultiplier());
+                                // a starving pawn sheltering in winter rations (SeasonalRules, #353)
+                                pawn.setEnergy(pawn.getEnergy() - pawn.getMetabolism() * gameConfig.getSettlementMetabolismMultiplier()
+                                    * SeasonalRules.shelterMultiplier(season, pawn.isStarving()));
                             }
                             else {
                                 // winter cold bites outdoors (SeasonalRules)

@@ -13,7 +13,8 @@ namespace beyondnations {
     * | Winter | nothing      | 3x slower| no             | x1.3 (cold)    |
     *
     * Plains farms harvest one apple more whenever farms harvest at all
-    * (RegionCatalog.farmBonus).
+    * (RegionCatalog.farmBonus). Indoors in winter, a starving pawn burns
+    * energy at a quarter of the rate (shelterMultiplier, #353).
     *
     * Two rules keep the good seasons from storing up a mild winter. Apples
     * spoil all year: a pawn's or a market stall's apples beyond a modest store
@@ -108,6 +109,21 @@ namespace beyondnations {
         /** The factor on energy burned outside a settlement. */
         public static float coldMultiplier(Season season) {
             return season == Season.WINTER ? WINTER_COLD_MULTIPLIER : 1f;
+        }
+
+        /**
+        * How much slower a starving pawn burns energy while it shelters in a
+        * settlement in winter: it huddles by the fire and rations what is left.
+        * In the 0.5.0 and 0.6.0 playtests pawns starved by the dozen "within
+        * the walls" in one winter (#353); at a quarter of the rate a pawn that
+        * gets home with its last reserves lasts out most of a winter, long
+        * enough for a farm in spring, a market apple or Feed Residents.
+        */
+        public const float WINTER_SHELTER_MULTIPLIER = 0.25f;
+
+        /** The factor on energy a pawn burns inside a settlement, after GameConfig's settlement multiplier. */
+        public static float shelterMultiplier(Season season, bool starving) {
+            return season == Season.WINTER && starving ? WINTER_SHELTER_MULTIPLIER : 1f;
         }
 
         /**

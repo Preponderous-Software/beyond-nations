@@ -1,0 +1,602 @@
+{"type":"screen","tick":0,"wallTimeMs":1792818427263,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792818431661,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792818440035,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":180000,"wallTimeMs":1792818447906,"how":"created","slot":"world-103-20261024-050727","seed":103}
+{"type":"screen","tick":180000,"wallTimeMs":1792818447908,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":180308,"wallTimeMs":1792818457756,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":180312,"wallTimeMs":1792818465695,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":180360,"wallTimeMs":1792818467182,"text":"Created nation Yellowton."}
+{"type":"chronicle","tick":180360,"wallTimeMs":1792818467182,"kind":"NationCreation","text":"Under your hand, the nation of Yellowton was born. It is the first nation this world has known."}
+{"type":"status","tick":180824,"wallTimeMs":1792818482296,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":180852,"wallTimeMs":1792818483308,"text":"No entities within range to interact with."}
+{"type":"status","tick":180884,"wallTimeMs":1792818484432,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":180916,"wallTimeMs":1792818485478,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":180948,"wallTimeMs":1792818486620,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":180980,"wallTimeMs":1792818487748,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":181012,"wallTimeMs":1792818488863,"text":"No entities within range to interact with. (x6)"}
+{"type":"status","tick":181044,"wallTimeMs":1792818489947,"text":"No entities within range to interact with. (x7)"}
+{"type":"status","tick":181076,"wallTimeMs":1792818491000,"text":"No entities within range to interact with. (x8)"}
+{"type":"status","tick":181112,"wallTimeMs":1792818492166,"text":"No entities within range to interact with. (x9)"}
+{"type":"status","tick":181144,"wallTimeMs":1792818493213,"text":"No entities within range to interact with. (x10)"}
+{"type":"status","tick":181180,"wallTimeMs":1792818494396,"text":"No entities within range to interact with. (x11)"}
+{"type":"chronicle","tick":181400,"wallTimeMs":1792818501992,"kind":"NationCreation","text":"Alice Wood declared the nation of Southerntown, though none had yet sworn to it."}
+{"type":"chronicle","tick":181452,"wallTimeMs":1792818503773,"kind":"SettlementFounded","text":"Southerntown put down roots: Alice Wood founded its first settlement."}
+{"type":"status","tick":181548,"wallTimeMs":1792818506872,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":181552,"wallTimeMs":1792818507007,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1552}
+{"type":"status","tick":181552,"wallTimeMs":1792818507007,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":181600,"wallTimeMs":1792818508629,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":181600,"wallTimeMs":1792818508629,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":181652,"wallTimeMs":1792818510309,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":181652,"wallTimeMs":1792818510309,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":181652,"wallTimeMs":1792818510309,"kind":"NationCreation","text":"The nation of Blueport was born, with Frank Taylor at its head."}
+{"type":"chronicle","tick":181852,"wallTimeMs":1792818516782,"kind":"SettlementFounded","text":"Frank Taylor raised the first settlement of Blueport."}
+{"type":"status","tick":181860,"wallTimeMs":1792818517057,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":182332,"wallTimeMs":1792818532241,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":183172,"wallTimeMs":1792818562971,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":183252,"wallTimeMs":1792818565972,"kind":"NationCreation","text":"The nation of Newport was born, with Wendy Walker at its head."}
+{"type":"chronicle","tick":183300,"wallTimeMs":1792818567720,"kind":"SettlementFounded","text":"Wendy Walker laid the first stones of Newport."}
+{"type":"chronicle","tick":183452,"wallTimeMs":1792818573115,"kind":"NationCreation","text":"Grace Lewis declared the nation of Bigtown, though none had yet sworn to it."}
+{"type":"status","tick":183588,"wallTimeMs":1792818577987,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":183852,"wallTimeMs":1792818587075,"kind":"SettlementFounded","text":"Grace Lewis laid the first stones of Bigtown."}
+{"type":"status","tick":183896,"wallTimeMs":1792818588800,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":184088,"wallTimeMs":1792818595521,"text":"Gathered 6 wood and 1 apple from tree. (x2)"}
+{"type":"chronicle","tick":184252,"wallTimeMs":1792818601082,"kind":"NationRelationChange","text":"Southerntown and Blueport have become rivals over their border."}
+{"type":"status","tick":184312,"wallTimeMs":1792818603326,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":184584,"wallTimeMs":1792818612942,"text":"Gathered 5 wood and 2 apples from tree. (x2)"}
+{"type":"status","tick":184712,"wallTimeMs":1792818617672,"text":"Too close to the Camp of Bigtown: 111 away, and settlements must be 250 apart. Open ground lies about 180 to the east."}
+{"type":"chronicle","tick":184952,"wallTimeMs":1792818626919,"kind":"StallBuilt","text":"Alice Wood built a market stall in Southerntown."}
+{"type":"status","tick":185300,"wallTimeMs":1792818639713,"text":"You enter the land of Newport (Neutral)."}
+{"type":"status","tick":185516,"wallTimeMs":1792818646778,"text":"This land is claimed by Newport. Found your settlement outside its borders. Open ground lies about 240 to the north-east."}
+{"type":"chronicle","tick":185752,"wallTimeMs":1792818654419,"kind":"NationRelationChange","text":"Southerntown and Newport have become rivals over their border."}
+{"type":"status","tick":185800,"wallTimeMs":1792818655992,"text":"You leave the land of Newport for the wilds."}
+{"type":"status","tick":185920,"wallTimeMs":1792818660080,"text":"Too close to the Camp of Newport: 190 away, and settlements must be 250 apart. Open ground lies about 70 to the north-east."}
+{"type":"save","tick":186000,"wallTimeMs":1792818663057,"count":1}
+{"type":"status","tick":186000,"wallTimeMs":1792818663057,"text":"Autosaved."}
+{"type":"status","tick":186212,"wallTimeMs":1792818670281,"text":"You are back on your own land."}
+{"type":"chronicle","tick":186212,"wallTimeMs":1792818670281,"kind":"SettlementFounded","text":"You raised the first settlement of Yellowton."}
+{"type":"objective_completed","tick":186252,"wallTimeMs":1792818672051,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4600}
+{"type":"status","tick":186252,"wallTimeMs":1792818672051,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":186252,"wallTimeMs":1792818672051,"kind":"NationJoin","text":"Alice Williams threw in their lot with Yellowton."}
+{"type":"chronicle","tick":186252,"wallTimeMs":1792818672051,"kind":"NationJoin","text":"Xavier Robinson threw in their lot with Yellowton."}
+{"type":"chronicle","tick":186252,"wallTimeMs":1792818672051,"kind":"NationJoin","text":"Phoebe Thompson joined Yellowton."}
+{"type":"chronicle","tick":186252,"wallTimeMs":1792818672051,"kind":"NationRelationChange","text":"Southerntown and Bigtown have become rivals over their border."}
+{"type":"chronicle","tick":186452,"wallTimeMs":1792818681139,"kind":"NationCreation","text":"Wendy Walker declared the nation of Hamletfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":186500,"wallTimeMs":1792818683484,"kind":"NationJoin","text":"Frank Robinson joined Yellowton."}
+{"type":"status","tick":186520,"wallTimeMs":1792818684449,"text":"Entered settlement."}
+{"type":"objective_completed","tick":186552,"wallTimeMs":1792818685866,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":300}
+{"type":"status","tick":186552,"wallTimeMs":1792818685866,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":186552,"wallTimeMs":1792818685866,"kind":"NationCreation","text":"Bella Davies raised a banner and called it Northernport."}
+{"type":"objective_completed","tick":186652,"wallTimeMs":1792818690920,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":100}
+{"type":"status","tick":186652,"wallTimeMs":1792818690920,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":186652,"wallTimeMs":1792818690920,"kind":"NationCreation","text":"Gemma Johnson raised a banner and called it Whiteham."}
+{"type":"chronicle","tick":186652,"wallTimeMs":1792818690920,"kind":"StallBuilt","text":"Trade came to Yellowton: Xavier Robinson built a stall."}
+{"type":"chronicle","tick":186700,"wallTimeMs":1792818693223,"kind":"SettlementFounded","text":"Gemma Johnson laid the first stones of Whiteham."}
+{"type":"status","tick":186836,"wallTimeMs":1792818699608,"text":"Collected 19 wood and 29 stone from the stockpile."}
+{"type":"status","tick":186948,"wallTimeMs":1792818705008,"text":"Stall built."}
+{"type":"chronicle","tick":186948,"wallTimeMs":1792818705008,"kind":"StallBuilt","text":"You built a market stall in Yellowton."}
+{"type":"status","tick":187136,"wallTimeMs":1792818714140,"text":"Collected 15 wood and 35 stone from the stockpile."}
+{"type":"status","tick":187424,"wallTimeMs":1792818728040,"text":"Exited settlement."}
+{"type":"chronicle","tick":187500,"wallTimeMs":1792818731428,"kind":"SettlementFounded","text":"Bella Davies raised the first settlement of Northernport."}
+{"type":"chronicle","tick":187500,"wallTimeMs":1792818731428,"kind":"NationCreation","text":"Jasmine Robinson declared the nation of Blackshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":187500,"wallTimeMs":1792818731428,"kind":"Caravan","text":"Whiteham sent a caravan of 20 stone from the Camp of Whiteham to the Camp of Yellowton."}
+{"type":"status","tick":187668,"wallTimeMs":1792818737957,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":187880,"wallTimeMs":1792818745682,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":187964,"wallTimeMs":1792818748519,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":188076,"wallTimeMs":1792818752582,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":188124,"wallTimeMs":1792818754273,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":188252,"wallTimeMs":1792818758647,"kind":"NationRelationChange","text":"Blueport and Southerntown are now hostile."}
+{"type":"chronicle","tick":188300,"wallTimeMs":1792818760305,"kind":"SettlementFounded","text":"Jasmine Robinson laid the first stones of Blackshire."}
+{"type":"status","tick":188460,"wallTimeMs":1792818765762,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":188500,"wallTimeMs":1792818767059,"text":"Blueport resents your border: relations are now Rival (-20). Newport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":188500,"wallTimeMs":1792818767059,"kind":"NationRelationChange","text":"Yellowton and Blueport have become rivals over their border."}
+{"type":"chronicle","tick":188500,"wallTimeMs":1792818767059,"kind":"NationRelationChange","text":"Yellowton and Newport have become rivals over their border."}
+{"type":"chronicle","tick":188552,"wallTimeMs":1792818769138,"kind":"SettlementFounded","text":"Hamletfield put down roots: Wendy Walker founded its first settlement."}
+{"type":"status","tick":188872,"wallTimeMs":1792818782053,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":189000,"wallTimeMs":1792818786780,"kind":"NationRelationChange","text":"Newport and Whiteham have become rivals over their border."}
+{"type":"chronicle","tick":189000,"wallTimeMs":1792818786780,"kind":"NationRelationChange","text":"Bigtown and Whiteham have become rivals over their border."}
+{"type":"chronicle","tick":189000,"wallTimeMs":1792818786780,"kind":"NationRaid","text":"Blueport raided Southerntown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":189000,"wallTimeMs":1792818786780,"kind":"Caravan","text":"Northernport sent a caravan of 5 stone from the Village of Northernport to the Camp of Yellowton."}
+{"type":"chronicle","tick":189052,"wallTimeMs":1792818788506,"kind":"NationJoin","text":"Bella Taylor swore fealty to Yellowton."}
+{"type":"status","tick":189156,"wallTimeMs":1792818792230,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":189252,"wallTimeMs":1792818796124,"kind":"NationCreation","text":"Linda Davies founded the nation of Easternburg."}
+{"type":"status","tick":189512,"wallTimeMs":1792818804984,"text":"You are back on your own land."}
+{"type":"chronicle","tick":189600,"wallTimeMs":1792818808140,"kind":"SettlementFounded","text":"Linda Davies raised the first settlement of Easternburg."}
+{"type":"chronicle","tick":189652,"wallTimeMs":1792818810028,"kind":"NationCreation","text":"Olivia Walker raised a banner and called it Redtown."}
+{"type":"status","tick":189752,"wallTimeMs":1792818813850,"text":"Entered settlement."}
+{"type":"chronicle","tick":189752,"wallTimeMs":1792818813850,"kind":"NationRelationChange","text":"Newport and Northernport have become rivals over their border."}
+{"type":"chronicle","tick":189800,"wallTimeMs":1792818815676,"kind":"NationCreation","text":"Fiona Wood raised a banner and called it Westernville."}
+{"type":"status","tick":189804,"wallTimeMs":1792818815830,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"chronicle","tick":189952,"wallTimeMs":1792818821421,"kind":"NationCreation","text":"Linda Williams declared the nation of Northernland, though none had yet sworn to it."}
+{"type":"status","tick":190048,"wallTimeMs":1792818824959,"text":"You fed 2 residents in the Camp of Yellowton."}
+{"type":"chronicle","tick":190052,"wallTimeMs":1792818825090,"kind":"NationCreation","text":"Karl Wilson declared the nation of Southernburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":190100,"wallTimeMs":1792818826844,"kind":"NationCreation","text":"Harriet Johnson declared the nation of Villageton, though none had yet sworn to it."}
+{"type":"chronicle","tick":190200,"wallTimeMs":1792818830673,"kind":"StallBuilt","text":"A new stall opened in the market of Easternburg, built by Linda Davies."}
+{"type":"status","tick":190232,"wallTimeMs":1792818831877,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":190296,"wallTimeMs":1792818834143,"text":"Click again to confirm: Build House."}
+{"type":"chronicle","tick":190300,"wallTimeMs":1792818834275,"kind":"SettlementFounded","text":"Northernland put down roots: Linda Williams founded its first settlement."}
+{"type":"chronicle","tick":190352,"wallTimeMs":1792818836122,"kind":"SettlementFounded","text":"Southernburg put down roots: Karl Wilson founded its first settlement."}
+{"type":"chronicle","tick":190400,"wallTimeMs":1792818837811,"kind":"NationCreation","text":"Mike Taylor raised a banner and called it Fortressford."}
+{"type":"status","tick":190448,"wallTimeMs":1792818839582,"text":"House built."}
+{"type":"chronicle","tick":190500,"wallTimeMs":1792818841412,"kind":"NationCreation","text":"Bob Brown declared the nation of Westton, though none had yet sworn to it."}
+{"type":"chronicle","tick":190500,"wallTimeMs":1792818841412,"kind":"Caravan","text":"Blueport sent a caravan of 20 stone from the Town of Blueport to the Camp of Yellowton."}
+{"type":"chronicle","tick":190500,"wallTimeMs":1792818841412,"kind":"Caravan","text":"Bigtown sent a caravan of 20 stone from the Camp of Bigtown to the Camp of Yellowton."}
+{"type":"chronicle","tick":190500,"wallTimeMs":1792818841412,"kind":"Caravan","text":"Hamletfield sent a caravan of 20 stone from the Camp of Hamletfield to the Camp of Yellowton."}
+{"type":"chronicle","tick":190568,"wallTimeMs":1792818844008,"kind":"Caravan","text":"A caravan from Whiteham sold 2 stone at the Camp of Yellowton for 16 coins."}
+{"type":"status","tick":190608,"wallTimeMs":1792818845683,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":190652,"wallTimeMs":1792818847300,"text":"Farm built. The settlement is now a Village!"}
+{"type":"chronicle","tick":190652,"wallTimeMs":1792818847300,"kind":"SettlementFounded","text":"Redtown put down roots: Olivia Walker founded its first settlement."}
+{"type":"chronicle","tick":190700,"wallTimeMs":1792818849043,"kind":"SettlementFounded","text":"Fiona Wood laid the first stones of Westernville."}
+{"type":"status","tick":190752,"wallTimeMs":1792818850909,"text":"Blackshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":190752,"wallTimeMs":1792818850909,"kind":"NationRelationChange","text":"Yellowton and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":190752,"wallTimeMs":1792818850909,"kind":"NationRelationChange","text":"Newport and Southerntown are now hostile."}
+{"type":"chronicle","tick":190800,"wallTimeMs":1792818852638,"kind":"NationCreation","text":"Katie Watson founded the nation of Southernport."}
+{"type":"chronicle","tick":190852,"wallTimeMs":1792818854473,"kind":"NationCreation","text":"Daisy Roberts declared the nation of Oldville, though none had yet sworn to it."}
+{"type":"chronicle","tick":190852,"wallTimeMs":1792818854473,"kind":"SettlementFounded","text":"Katie Watson raised the first settlement of Southernport."}
+{"type":"chronicle","tick":190952,"wallTimeMs":1792818858035,"kind":"NationCreation","text":"Charlotte Wood declared the nation of Hamletshire, though none had yet sworn to it."}
+{"type":"status","tick":191000,"wallTimeMs":1792818859959,"text":"Southerntown shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792818859959,"kind":"NationCreation","text":"Una Taylor raised a banner and called it Fortburg."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792818859959,"kind":"NationRelationChange","text":"Relations between Yellowton and Southerntown are now friendly against a common enemy."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792818859959,"kind":"NationRelationChange","text":"Hamletfield and Northernport have become rivals over their border."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792818859959,"kind":"NationRelationChange","text":"Hamletfield and Whiteham have become rivals over their border."}
+{"type":"chronicle","tick":191000,"wallTimeMs":1792818859959,"kind":"NationRaid","text":"Raiders from Newport struck Southerntown, taking 1 stone."}
+{"type":"status","tick":191040,"wallTimeMs":1792818861458,"text":"Exited settlement."}
+{"type":"chronicle","tick":191100,"wallTimeMs":1792818863740,"kind":"StallBuilt","text":"Fiona Wood built a market stall in Westernville."}
+{"type":"chronicle","tick":191252,"wallTimeMs":1792818869090,"kind":"NationRelationChange","text":"Bigtown and Southerntown are now hostile."}
+{"type":"chronicle","tick":191352,"wallTimeMs":1792818871883,"kind":"NationCreation","text":"The nation of Farmland was born, with Tina Brown at its head."}
+{"type":"chronicle","tick":191352,"wallTimeMs":1792818871883,"kind":"SettlementFounded","text":"Villageton put down roots: Harriet Johnson founded its first settlement."}
+{"type":"chronicle","tick":191400,"wallTimeMs":1792818873252,"kind":"SettlementFounded","text":"Oldville put down roots: Daisy Roberts founded its first settlement."}
+{"type":"chronicle","tick":191452,"wallTimeMs":1792818874744,"kind":"StallBuilt","text":"A new stall opened in the market of Redtown, built by Olivia Walker."}
+{"type":"status","tick":191484,"wallTimeMs":1792818875703,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":191552,"wallTimeMs":1792818877733,"kind":"NationCreation","text":"Phoebe Robinson founded the nation of Greenland."}
+{"type":"chronicle","tick":191744,"wallTimeMs":1792818883035,"kind":"Caravan","text":"A caravan from Northernport sold nothing at the Village of Yellowton for 0 coins."}
+{"type":"status","tick":191784,"wallTimeMs":1792818884229,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":191800,"wallTimeMs":1792818884680,"kind":"SettlementFounded","text":"Phoebe Robinson laid the first stones of Greenland."}
+{"type":"chronicle","tick":191800,"wallTimeMs":1792818884680,"kind":"NationCreation","text":"Nancy Smith raised a banner and called it Southernville."}
+{"type":"status","tick":191940,"wallTimeMs":1792818888836,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"save","tick":192000,"wallTimeMs":1792818890785,"count":2}
+{"type":"status","tick":192000,"wallTimeMs":1792818890785,"text":"Autosaved."}
+{"type":"chronicle","tick":192000,"wallTimeMs":1792818890785,"kind":"NationRelationChange","text":"Yellowton and Easternburg have become rivals over their border."}
+{"type":"status","tick":192012,"wallTimeMs":1792818891145,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":192052,"wallTimeMs":1792818892303,"kind":"NationCreation","text":"Wendy White founded the nation of Blueford."}
+{"type":"chronicle","tick":192100,"wallTimeMs":1792818893675,"kind":"StallBuilt","text":"Linda Davies built a market stall in Easternburg."}
+{"type":"chronicle","tick":192252,"wallTimeMs":1792818898628,"kind":"NationCreation","text":"Alice Jones raised a banner and called it Westernford."}
+{"type":"status","tick":192292,"wallTimeMs":1792818899929,"text":"You are back on your own land."}
+{"type":"chronicle","tick":192300,"wallTimeMs":1792818900175,"kind":"StallBuilt","text":"Trade came to Redtown: Olivia Walker built a stall."}
+{"type":"chronicle","tick":192300,"wallTimeMs":1792818900175,"kind":"StallBuilt","text":"A new stall opened in the market of Westernville, built by Fiona Wood."}
+{"type":"chronicle","tick":192300,"wallTimeMs":1792818900175,"kind":"SettlementFounded","text":"Alice Jones raised the first settlement of Westernford."}
+{"type":"chronicle","tick":192552,"wallTimeMs":1792818908984,"kind":"SettlementFounded","text":"Una Taylor laid the first stones of Fortburg."}
+{"type":"chronicle","tick":192600,"wallTimeMs":1792818910875,"kind":"NationCreation","text":"Katie Thompson raised a banner and called it Hamletland."}
+{"type":"status","tick":192628,"wallTimeMs":1792818911999,"text":"Entered settlement."}
+{"type":"chronicle","tick":192652,"wallTimeMs":1792818912960,"kind":"StallBuilt","text":"Trade came to Easternburg: Linda Davies built a stall."}
+{"type":"chronicle","tick":192752,"wallTimeMs":1792818917037,"kind":"StallBuilt","text":"A new stall opened in the market of Westernville, built by Fiona Wood."}
+{"type":"chronicle","tick":192752,"wallTimeMs":1792818917037,"kind":"NationRelationChange","text":"Hamletfield and Northernland have become rivals over their border."}
+{"type":"chronicle","tick":192752,"wallTimeMs":1792818917037,"kind":"NationRelationChange","text":"Hamletfield and Southernburg have become rivals over their border."}
+{"type":"chronicle","tick":192752,"wallTimeMs":1792818917037,"kind":"NationRelationChange","text":"Blackshire and Southernburg have become rivals over their border."}
+{"type":"status","tick":192824,"wallTimeMs":1792818919951,"text":"Exited settlement."}
+{"type":"chronicle","tick":192900,"wallTimeMs":1792818923085,"kind":"StallBuilt","text":"A new stall opened in the market of Redtown, built by Olivia Walker."}
+{"type":"chronicle","tick":192928,"wallTimeMs":1792818924257,"kind":"Caravan","text":"A caravan from Blueport sold 1 stone at the Village of Yellowton for 6 coins."}
+{"type":"chronicle","tick":192952,"wallTimeMs":1792818925347,"kind":"SettlementFounded","text":"Charlotte Wood laid the first stones of Hamletshire."}
+{"type":"status","tick":193000,"wallTimeMs":1792818927835,"text":"Redtown resents your border: relations are now Rival (-20). Westernville resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":193000,"wallTimeMs":1792818927835,"kind":"NationRelationChange","text":"Yellowton and Redtown have become rivals over their border."}
+{"type":"chronicle","tick":193000,"wallTimeMs":1792818927835,"kind":"NationRelationChange","text":"Yellowton and Westernville have become rivals over their border."}
+{"type":"chronicle","tick":193100,"wallTimeMs":1792818932382,"kind":"NationCreation","text":"Tilly Wilson raised a banner and called it Citywood."}
+{"type":"chronicle","tick":193252,"wallTimeMs":1792818937304,"kind":"StallBuilt","text":"Bella Davies built a market stall in Northernport."}
+{"type":"chronicle","tick":193252,"wallTimeMs":1792818937304,"kind":"NationRelationChange","text":"Bigtown and Southernport have become rivals over their border."}
+{"type":"chronicle","tick":193252,"wallTimeMs":1792818937304,"kind":"NationRelationChange","text":"Hamletfield and Southernport have become rivals over their border."}
+{"type":"status","tick":193336,"wallTimeMs":1792818940166,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":193492,"wallTimeMs":1792818944087,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":193500,"wallTimeMs":1792818944317,"text":"Whiteham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":193500,"wallTimeMs":1792818944317,"kind":"NationCreation","text":"Mia Williams declared the nation of Redton, though none had yet sworn to it."}
+{"type":"chronicle","tick":193500,"wallTimeMs":1792818944317,"kind":"NationRelationChange","text":"Relations between Yellowton and Whiteham are now friendly against a common enemy."}
+{"type":"status","tick":193544,"wallTimeMs":1792818945466,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":193552,"wallTimeMs":1792818945676,"kind":"StallBuilt","text":"A new stall opened in the market of Westernville, built by Fiona Wood. The market is now full."}
+{"type":"chronicle","tick":193600,"wallTimeMs":1792818946933,"kind":"StallBuilt","text":"A new stall opened in the market of Redtown, built by Olivia Walker. The market is now full."}
+{"type":"chronicle","tick":193700,"wallTimeMs":1792818949703,"kind":"StallBuilt","text":"A new stall opened in the market of Easternburg, built by Linda Davies. The market is now full."}
+{"type":"chronicle","tick":193700,"wallTimeMs":1792818949703,"kind":"SettlementFounded","text":"Katie Thompson laid the first stones of Hamletland."}
+{"type":"chronicle","tick":193700,"wallTimeMs":1792818949703,"kind":"SettlementFounded","text":"Tilly Wilson raised the first settlement of Citywood."}
+{"type":"chronicle","tick":193752,"wallTimeMs":1792818951381,"kind":"SettlementFounded","text":"Wendy White raised the first settlement of Blueford."}
+{"type":"chronicle","tick":193752,"wallTimeMs":1792818951381,"kind":"NationRelationChange","text":"Hamletfield and Oldville have become rivals over their border."}
+{"type":"chronicle","tick":193752,"wallTimeMs":1792818951381,"kind":"NationRelationChange","text":"Blackshire and Villageton have become rivals over their border."}
+{"type":"status","tick":193780,"wallTimeMs":1792818952282,"text":"You are back on your own land."}
+{"type":"chronicle","tick":193848,"wallTimeMs":1792818954447,"kind":"Caravan","text":"A caravan from Bigtown sold 1 stone at the Village of Yellowton for 5 coins."}
+{"type":"chronicle","tick":193852,"wallTimeMs":1792818954573,"kind":"SettlementFounded","text":"Mia Williams raised the first settlement of Redton."}
+{"type":"chronicle","tick":193952,"wallTimeMs":1792818957841,"kind":"SettlementFounded","text":"Southernville put down roots: Nancy Smith founded its first settlement."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRelationChange","text":"Southerntown and Whiteham swore an alliance."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRelationChange","text":"Whiteham and Newport are now hostile."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRelationChange","text":"Whiteham and Bigtown are now hostile."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRaid","text":"Raiders from Southerntown struck Blueport, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRaid","text":"Southerntown raided Newport and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRaid","text":"Southerntown raided Bigtown and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRaid","text":"Raiders from Whiteham struck Newport, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":194000,"wallTimeMs":1792818959472,"kind":"NationRaid","text":"Whiteham raided Bigtown and carried off 5 wood, 5 stone."}
+{"type":"status","tick":194176,"wallTimeMs":1792818966225,"text":"Entered settlement."}
+{"type":"chronicle","tick":194252,"wallTimeMs":1792818969475,"kind":"NationRelationChange","text":"Easternburg and Greenland have become rivals over their border."}
+{"type":"chronicle","tick":194252,"wallTimeMs":1792818969475,"kind":"NationRelationChange","text":"Redtown and Greenland have become rivals over their border."}
+{"type":"chronicle","tick":194252,"wallTimeMs":1792818969475,"kind":"NationRelationChange","text":"Westernville and Greenland have become rivals over their border."}
+{"type":"chronicle","tick":194352,"wallTimeMs":1792818973769,"kind":"StallBuilt","text":"A new stall opened in the market of Villageton, built by Harriet Johnson."}
+{"type":"status","tick":194356,"wallTimeMs":1792818973934,"text":"You fed 2 residents in the Village of Yellowton."}
+{"type":"status","tick":194496,"wallTimeMs":1792818980643,"text":"Click again to confirm: Build House."}
+{"type":"status","tick":194532,"wallTimeMs":1792818982426,"text":"House built."}
+{"type":"status","tick":194648,"wallTimeMs":1792818987944,"text":"Exited settlement."}
+{"type":"chronicle","tick":194652,"wallTimeMs":1792818988153,"kind":"StallBuilt","text":"A new stall opened in the market of Redton, built by Mia Williams."}
+{"type":"status","tick":194752,"wallTimeMs":1792818992947,"text":"Northernport shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":194752,"wallTimeMs":1792818992947,"kind":"NationRelationChange","text":"Relations between Yellowton and Northernport are now friendly against a common enemy."}
+{"type":"chronicle","tick":194752,"wallTimeMs":1792818992947,"kind":"NationRelationChange","text":"Easternburg and Westernford have become rivals over their border."}
+{"type":"chronicle","tick":194752,"wallTimeMs":1792818992947,"kind":"NationRelationChange","text":"Redtown and Westernford have become rivals over their border."}
+{"type":"chronicle","tick":194800,"wallTimeMs":1792818995088,"kind":"StallBuilt","text":"Bella Davies built a market stall in Northernport."}
+{"type":"chronicle","tick":194828,"wallTimeMs":1792818996329,"kind":"Caravan","text":"A caravan from Hamletfield sold 1 stone at the Village of Yellowton for 5 coins."}
+{"type":"status","tick":195000,"wallTimeMs":1792819001869,"text":"Easternburg sent 20 coins of tribute to your treasury. Westernville sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":195000,"wallTimeMs":1792819001869,"kind":"NationRelationChange","text":"Blackshire and Fortburg have become rivals over their border."}
+{"type":"chronicle","tick":195000,"wallTimeMs":1792819001869,"kind":"NationRelationChange","text":"Redtown and Fortburg have become rivals over their border."}
+{"type":"chronicle","tick":195100,"wallTimeMs":1792819004787,"kind":"StallBuilt","text":"Mia Williams built a market stall in Redton."}
+{"type":"status","tick":195164,"wallTimeMs":1792819006610,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":195252,"wallTimeMs":1792819009055,"text":"Bigtown has fallen and been disbanded."}
+{"type":"chronicle","tick":195252,"wallTimeMs":1792819009055,"kind":"NationCreation","text":"Victor Davies raised a banner and called it Townford."}
+{"type":"chronicle","tick":195252,"wallTimeMs":1792819009055,"kind":"NationRelationChange","text":"Westernville and Hamletshire have become rivals over their border."}
+{"type":"chronicle","tick":195252,"wallTimeMs":1792819009055,"kind":"NationRelationChange","text":"Blueford and Westernford have become rivals over their border."}
+{"type":"chronicle","tick":195252,"wallTimeMs":1792819009055,"kind":"SettlementCapture","text":"Southerntown captured a camp from Bigtown."}
+{"type":"chronicle","tick":195252,"wallTimeMs":1792819009055,"kind":"NationDisband","text":"Bigtown faded from memory before it ever built a home."}
+{"type":"chronicle","tick":195500,"wallTimeMs":1792819017439,"kind":"SettlementFounded","text":"Townford put down roots: Victor Davies founded its first settlement."}
+{"type":"chronicle","tick":195600,"wallTimeMs":1792819021017,"kind":"NationCreation","text":"Victor White founded the nation of Blueshire."}
+{"type":"status","tick":195692,"wallTimeMs":1792819024553,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":195704,"wallTimeMs":1792819024941,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":195852,"wallTimeMs":1792819029639,"kind":"NationCreation","text":"Judy Taylor founded the nation of Villagefield."}
+{"type":"status","tick":195920,"wallTimeMs":1792819031530,"text":"You are back on your own land."}
+{"type":"chronicle","tick":195952,"wallTimeMs":1792819032395,"kind":"SettlementFounded","text":"Judy Taylor laid the first stones of Villagefield."}
+{"type":"status","tick":196000,"wallTimeMs":1792819033777,"text":"Greenland shares an enemy with you: relations are now Friendly (\u002B21)."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Relations between Yellowton and Greenland are now friendly against a common enemy."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Blackshire and Citywood have become rivals over their border."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Redtown and Citywood have become rivals over their border."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Southernburg and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Villageton and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Blueford and Citywood have become rivals over their border."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Newport and Hamletfield swore an alliance."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Newport and Northernport are now hostile."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Hamletfield and Northernport are now hostile."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRelationChange","text":"Hamletfield and Whiteham are now hostile."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRaid","text":"Raiders from Newport struck Northernport, taking 4 coins, 5 stone."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRaid","text":"Newport raided Whiteham and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRaid","text":"Raiders from Hamletfield struck Northernport, taking 5 stone."}
+{"type":"chronicle","tick":196000,"wallTimeMs":1792819033777,"kind":"NationRaid","text":"Hamletfield raided Whiteham and carried off 5 wood, 5 stone."}
+{"type":"status","tick":196224,"wallTimeMs":1792819042282,"text":"Entered settlement."}
+{"type":"chronicle","tick":196252,"wallTimeMs":1792819043388,"kind":"NationRelationChange","text":"Southernport and Southernville have become rivals over their border."}
+{"type":"chronicle","tick":196252,"wallTimeMs":1792819043388,"kind":"NationRelationChange","text":"Oldville and Southernville have become rivals over their border."}
+{"type":"chronicle","tick":196252,"wallTimeMs":1792819043388,"kind":"NationRelationChange","text":"Hamletshire and Redton have become rivals over their border."}
+{"type":"chronicle","tick":196252,"wallTimeMs":1792819043388,"kind":"NationRelationChange","text":"Greenland and Redton have become rivals over their border."}
+{"type":"chronicle","tick":196500,"wallTimeMs":1792819052316,"kind":"SettlementFounded","text":"Blueshire put down roots: Victor White founded its first settlement."}
+{"type":"status","tick":196568,"wallTimeMs":1792819054693,"text":"Exited settlement."}
+{"type":"status","tick":197000,"wallTimeMs":1792819067933,"text":"Easternburg sent 20 coins of tribute to your treasury."}
+{"type":"status","tick":197020,"wallTimeMs":1792819068512,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":197224,"wallTimeMs":1792819074373,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":197252,"wallTimeMs":1792819075196,"text":"Westernford shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":197252,"wallTimeMs":1792819075196,"kind":"NationRelationChange","text":"Relations between Yellowton and Westernford are now friendly against a common enemy."}
+{"type":"chronicle","tick":197400,"wallTimeMs":1792819080334,"kind":"NationCreation","text":"Yvonne Thomas raised a banner and called it Cityburg."}
+{"type":"status","tick":197500,"wallTimeMs":1792819086563,"text":"Fortburg shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":197500,"wallTimeMs":1792819086563,"kind":"NationRelationChange","text":"Relations between Yellowton and Fortburg are now friendly against a common enemy."}
+{"type":"status","tick":197536,"wallTimeMs":1792819087740,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":197704,"wallTimeMs":1792819093331,"kind":"WorldEvent","text":"A fever broke out in the Town of Blueport; Frank Taylor shut the sick away until it passed."}
+{"type":"status","tick":197752,"wallTimeMs":1792819095221,"text":"Southernburg shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Relations between Yellowton and Southernburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Greenland and Townford have become rivals over their border."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Blueford and Townford have become rivals over their border."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Hamletfield and Northernland are now hostile."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Hamletfield and Southernburg are now hostile."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Blackshire and Southernburg are now hostile."}
+{"type":"chronicle","tick":197752,"wallTimeMs":1792819095221,"kind":"NationRelationChange","text":"Westernford and Blueford are now hostile."}
+{"type":"status","tick":197780,"wallTimeMs":1792819096375,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"save","tick":198000,"wallTimeMs":1792819104330,"count":3}
+{"type":"status","tick":198000,"wallTimeMs":1792819104330,"text":"Autosaved."}
+{"type":"chronicle","tick":198000,"wallTimeMs":1792819104330,"kind":"NationRaid","text":"Hamletfield raided Southernburg and carried off 4 stone."}
+{"type":"chronicle","tick":198000,"wallTimeMs":1792819104330,"kind":"NationRaid","text":"Westernford raided Blueford and carried off 5 wood."}
+{"type":"chronicle","tick":198000,"wallTimeMs":1792819104330,"kind":"Caravan","text":"Westernford sent a caravan of 20 stone from the Town of Westernford to the Village of Yellowton."}
+{"type":"status","tick":198020,"wallTimeMs":1792819105039,"text":"You are back on your own land."}
+{"type":"chronicle","tick":198252,"wallTimeMs":1792819113696,"kind":"NationRelationChange","text":"Southerntown and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":198252,"wallTimeMs":1792819113696,"kind":"NationRelationChange","text":"Southernport and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":198252,"wallTimeMs":1792819113696,"kind":"NationRelationChange","text":"Hamletfield and Southernport are now hostile."}
+{"type":"status","tick":198320,"wallTimeMs":1792819116721,"text":"Entered settlement."}
+{"type":"status","tick":198480,"wallTimeMs":1792819126011,"text":"You fed 2 residents in the Village of Yellowton."}
+{"type":"status","tick":198500,"wallTimeMs":1792819126818,"text":"Citywood shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":198500,"wallTimeMs":1792819126818,"kind":"NationRelationChange","text":"Relations between Yellowton and Citywood are now friendly against a common enemy."}
+{"type":"chronicle","tick":198500,"wallTimeMs":1792819126818,"kind":"NationRelationChange","text":"Redtown and Westernville swore an alliance."}
+{"type":"chronicle","tick":198552,"wallTimeMs":1792819129093,"kind":"SettlementFounded","text":"Yvonne Thomas raised the first settlement of Cityburg."}
+{"type":"status","tick":198752,"wallTimeMs":1792819137919,"text":"Villageton shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":198752,"wallTimeMs":1792819137919,"kind":"NationRelationChange","text":"Relations between Yellowton and Villageton are now friendly against a common enemy."}
+{"type":"chronicle","tick":198752,"wallTimeMs":1792819137919,"kind":"NationRelationChange","text":"Fortburg and Blueshire have become rivals over their border."}
+{"type":"chronicle","tick":198752,"wallTimeMs":1792819137919,"kind":"NationRelationChange","text":"Citywood and Blueshire have become rivals over their border."}
+{"type":"chronicle","tick":198752,"wallTimeMs":1792819137919,"kind":"NationRelationChange","text":"Hamletfield and Oldville are now hostile."}
+{"type":"chronicle","tick":198752,"wallTimeMs":1792819137919,"kind":"NationRelationChange","text":"Blackshire and Villageton are now hostile."}
+{"type":"status","tick":198808,"wallTimeMs":1792819140779,"text":"Exited settlement."}
+{"type":"status","tick":199000,"wallTimeMs":1792819150714,"text":"Southernburg has fallen and been disbanded."}
+{"type":"chronicle","tick":199000,"wallTimeMs":1792819150714,"kind":"NationRaid","text":"Hamletfield raided Southernport and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":199000,"wallTimeMs":1792819150714,"kind":"NationRaid","text":"Raiders from Hamletfield struck Oldville, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":199000,"wallTimeMs":1792819150714,"kind":"SettlementCapture","text":"After a siege, a village of Southernburg fell to Blackshire."}
+{"type":"chronicle","tick":199000,"wallTimeMs":1792819150714,"kind":"NationDisband","text":"Southernburg faded from memory before it ever built a home."}
+{"type":"chronicle","tick":199000,"wallTimeMs":1792819150714,"kind":"NationRaid","text":"Blackshire raided Villageton and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":199252,"wallTimeMs":1792819166637,"kind":"NationRelationChange","text":"Redtown and Greenland are now hostile."}
+{"type":"chronicle","tick":199252,"wallTimeMs":1792819166637,"kind":"NationRelationChange","text":"Westernville and Greenland are now hostile."}
+{"type":"status","tick":199260,"wallTimeMs":1792819166933,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":199572,"wallTimeMs":1792819177389,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":199720,"wallTimeMs":1792819181977,"text":"You enter the land of Blackshire (Rival)."}
+{"type":"chronicle","tick":199752,"wallTimeMs":1792819183009,"kind":"NationRelationChange","text":"Southerntown and Northernport have formed an alliance."}
+{"type":"chronicle","tick":199752,"wallTimeMs":1792819183009,"kind":"NationRelationChange","text":"Westernford and Easternburg are now hostile."}
+{"type":"status","tick":199792,"wallTimeMs":1792819184320,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792819190733,"kind":"NationRelationChange","text":"Blackshire and Fortburg are now hostile."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792819190733,"kind":"NationRelationChange","text":"Redtown and Fortburg are now hostile."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792819190733,"kind":"NationRaid","text":"Raiders from Blackshire struck Fortburg, taking 5 stone."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792819190733,"kind":"NationRaid","text":"Westernford raided Easternburg and carried off 5 coins, 1 stone."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792819190733,"kind":"NationRaid","text":"Raiders from Redtown struck Greenland, taking 5 wood."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792819190733,"kind":"NationRaid","text":"Raiders from Westernville struck Greenland, taking 5 wood."}
+{"type":"status","tick":200044,"wallTimeMs":1792819192163,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":200252,"wallTimeMs":1792819201688,"text":"Hamletshire shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":200252,"wallTimeMs":1792819201688,"kind":"NationRelationChange","text":"Relations between Yellowton and Hamletshire are now friendly against a common enemy."}
+{"type":"chronicle","tick":200252,"wallTimeMs":1792819201688,"kind":"NationRelationChange","text":"Redtown and Westernford are now hostile."}
+{"type":"chronicle","tick":200252,"wallTimeMs":1792819201688,"kind":"NationRelationChange","text":"Westernville and Hamletshire are now hostile."}
+{"type":"status","tick":200500,"wallTimeMs":1792819214027,"text":"Villageton has fallen and been disbanded. Greenland has fallen and been disbanded."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792819214027,"kind":"NationRelationChange","text":"Blueport and Blackshire swore an alliance."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792819214027,"kind":"SettlementCapture","text":"Blackshire captured a village from Villageton."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792819214027,"kind":"NationDisband","text":"Villageton is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792819214027,"kind":"SettlementCapture","text":"Redtown captured a village from Greenland."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792819214027,"kind":"NationDisband","text":"Greenland dissolved, its name already half-forgotten."}
+{"type":"status","tick":200620,"wallTimeMs":1792819221737,"text":"Entered settlement."}
+{"type":"status","tick":200748,"wallTimeMs":1792819230622,"text":"Exited settlement."}
+{"type":"chronicle","tick":200752,"wallTimeMs":1792819230836,"kind":"NationRelationChange","text":"Westernford and Citywood swore an alliance."}
+{"type":"status","tick":200776,"wallTimeMs":1792819231979,"text":"Welcome home!"}
+{"type":"status","tick":200780,"wallTimeMs":1792819232199,"text":"You are back on your own land."}
+{"type":"status","tick":200900,"wallTimeMs":1792819238449,"text":"Entered settlement."}
+{"type":"status","tick":201000,"wallTimeMs":1792819243694,"text":"Easternburg sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRelationChange","text":"Southerntown and Cityburg have become rivals over their border."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRelationChange","text":"Southernport and Cityburg have become rivals over their border."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRelationChange","text":"Blackshire and Citywood are now hostile."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRelationChange","text":"Redtown and Citywood are now hostile."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRelationChange","text":"Relations between Hamletshire and Westernville are now rival."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRelationChange","text":"Citywood and Blueford are now hostile."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Raiders from Blueport struck Southerntown, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Southerntown raided Newport and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Newport raided Northernport and carried off 4 coins."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Newport raided Whiteham and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Raiders from Hamletfield struck Whiteham, taking 1 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Hamletfield raided Southernport and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Raiders from Blackshire struck Citywood, taking 3 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Redtown raided Westernford and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":201000,"wallTimeMs":1792819243694,"kind":"NationRaid","text":"Redtown raided Citywood and carried off 5 stone."}
+{"type":"status","tick":201056,"wallTimeMs":1792819248173,"text":"You fed 1 resident in the Village of Yellowton."}
+{"type":"status","tick":201080,"wallTimeMs":1792819249348,"text":"You sold resources to Xavier Robinson. Relationship increased to 1."}
+{"type":"status","tick":201220,"wallTimeMs":1792819258837,"text":"Exited settlement."}
+{"type":"status","tick":201252,"wallTimeMs":1792819260285,"text":"Fortburg has fallen and been disbanded."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"NationRelationChange","text":"Redton and Townford have become rivals over their border."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"NationRelationChange","text":"Newport and Easternburg swore an alliance."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"NationRelationChange","text":"Hamletfield and Southernville have formed an alliance."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"NationRelationChange","text":"Southernville and Southernport are now hostile."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"NationRelationChange","text":"Southernville and Oldville are now hostile."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"SettlementCapture","text":"Blackshire captured a village from Fortburg."}
+{"type":"chronicle","tick":201252,"wallTimeMs":1792819260285,"kind":"NationDisband","text":"Fortburg faded from memory before it ever built a home."}
+{"type":"world_event_offered","tick":201552,"wallTimeMs":1792819276029,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Village of Yellowton. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":201552,"wallTimeMs":1792819283935,"text":"No entities within range to interact with."}
+{"type":"status","tick":201552,"wallTimeMs":1792819292370,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":201552,"wallTimeMs":1792819299005,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":201552,"wallTimeMs":1792819300873,"text":"Welcome home!"}
+{"type":"status","tick":201552,"wallTimeMs":1792819304252,"text":"Entered settlement."}
+{"type":"status","tick":201552,"wallTimeMs":1792819313720,"text":"Exited settlement."}
+{"type":"status","tick":201552,"wallTimeMs":1792819333351,"text":"Bandits camped outside the Village of Yellowton; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":201552,"wallTimeMs":1792819333351,"kind":"WorldEvent","text":"Bandits camped outside the Village of Yellowton; you paid them 30 coins to go away."}
+{"type":"world_event_resolved","tick":201552,"wallTimeMs":1792819333351,"title":"Bandit camp","status":"Bandits camped outside the Village of Yellowton; you paid them 30 coins to go away."}
+{"type":"status","tick":201616,"wallTimeMs":1792819402911,"text":"Entered settlement."}
+{"type":"status","tick":201644,"wallTimeMs":1792819404363,"text":"Exited settlement."}
+{"type":"chronicle","tick":201696,"wallTimeMs":1792819406877,"kind":"Caravan","text":"A caravan from Westernford sold 20 stone at the Village of Yellowton for 60 coins."}
+{"type":"status","tick":202000,"wallTimeMs":1792819435175,"text":"Blueford has fallen and been disbanded."}
+{"type":"chronicle","tick":202000,"wallTimeMs":1792819435175,"kind":"NationRelationChange","text":"Westernville and Redton swore an alliance."}
+{"type":"chronicle","tick":202000,"wallTimeMs":1792819435175,"kind":"NationRaid","text":"Westernford raided Easternburg and carried off 5 coins."}
+{"type":"chronicle","tick":202000,"wallTimeMs":1792819435175,"kind":"SettlementCapture","text":"After a siege, a village of Blueford fell to Westernford."}
+{"type":"chronicle","tick":202000,"wallTimeMs":1792819435175,"kind":"NationDisband","text":"Blueford is no more; it never raised so much as a hut."}
+{"type":"status","tick":202112,"wallTimeMs":1792819442493,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":202352,"wallTimeMs":1792819453324,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"chronicle","tick":202500,"wallTimeMs":1792819459601,"kind":"NationRelationChange","text":"Blueport and Newport swore an alliance."}
+{"type":"chronicle","tick":202500,"wallTimeMs":1792819459601,"kind":"NationRelationChange","text":"Northernport and Northernland swore an alliance."}
+{"type":"chronicle","tick":202500,"wallTimeMs":1792819459601,"kind":"NationRelationChange","text":"Whiteham and Northernland have formed an alliance."}
+{"type":"status","tick":202556,"wallTimeMs":1792819461720,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":202752,"wallTimeMs":1792819471456,"kind":"NationRelationChange","text":"Blueport and Redtown swore an alliance."}
+{"type":"chronicle","tick":202752,"wallTimeMs":1792819471456,"kind":"NationRelationChange","text":"Newport and Redtown have formed an alliance."}
+{"type":"chronicle","tick":202752,"wallTimeMs":1792819471456,"kind":"NationRelationChange","text":"Newport and Westernville have formed an alliance."}
+{"type":"chronicle","tick":202752,"wallTimeMs":1792819471456,"kind":"NationRelationChange","text":"Blackshire and Westernville have formed an alliance."}
+{"type":"status","tick":202840,"wallTimeMs":1792819474342,"text":"You enter the land of Easternburg (Rival)."}
+{"type":"status","tick":202848,"wallTimeMs":1792819474609,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRelationChange","text":"Westernford and Townford have become rivals over their border."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRelationChange","text":"Northernport and Southernport have formed an alliance."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRelationChange","text":"Easternburg and Redtown have formed an alliance."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRelationChange","text":"Northernland and Southernport have formed an alliance."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRaid","text":"Newport raided Southerntown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRaid","text":"Northernport raided Hamletfield and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRaid","text":"Raiders from Northernland struck Hamletfield, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRaid","text":"Raiders from Easternburg struck Westernford, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":203000,"wallTimeMs":1792819479619,"kind":"NationRaid","text":"Southernport raided Southernville and carried off 5 wood, 5 stone."}
+{"type":"status","tick":203032,"wallTimeMs":1792819480600,"text":"You are back on your own land."}
+{"type":"status","tick":203088,"wallTimeMs":1792819483158,"text":"Entered settlement."}
+{"type":"status","tick":203180,"wallTimeMs":1792819491784,"text":"You fed 1 resident in the Village of Yellowton."}
+{"type":"status","tick":203224,"wallTimeMs":1792819493803,"text":"Collected 0 wood and 14 stone from the stockpile."}
+{"type":"chronicle","tick":203252,"wallTimeMs":1792819495152,"kind":"NationRelationChange","text":"Southerntown and Villagefield are now hostile."}
+{"type":"chronicle","tick":203252,"wallTimeMs":1792819495152,"kind":"NationRelationChange","text":"Southernport and Villagefield are now hostile."}
+{"type":"status","tick":203328,"wallTimeMs":1792819501536,"text":"Exited settlement."}
+{"type":"chronicle","tick":203500,"wallTimeMs":1792819517574,"kind":"NationRelationChange","text":"Northernport and Oldville swore an alliance."}
+{"type":"chronicle","tick":203752,"wallTimeMs":1792819528497,"kind":"NationRelationChange","text":"Citywood and Blueshire are now hostile."}
+{"type":"status","tick":203908,"wallTimeMs":1792819536303,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"save","tick":204000,"wallTimeMs":1792819540802,"count":4}
+{"type":"status","tick":204000,"wallTimeMs":1792819540802,"text":"Autosaved."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"NationRelationChange","text":"Northernport and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"NationRelationChange","text":"Blackshire and Redtown have formed an alliance."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"SettlementCapture","text":"After a siege, a village of Southerntown fell to Blueport."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"SettlementCapture","text":"Newport captured a camp from Southerntown."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"NationDisband","text":"Southerntown is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"SettlementCapture","text":"After a siege, a camp of Whiteham fell to Newport."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"NationDisband","text":"Whiteham is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":204000,"wallTimeMs":1792819540802,"kind":"NationRaid","text":"Hamletfield raided Northernland and carried off 5 wood, 5 stone."}
+{"type":"status","tick":204356,"wallTimeMs":1792819563475,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":204680,"wallTimeMs":1792819583312,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":204832,"wallTimeMs":1792819590674,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":204884,"wallTimeMs":1792819593152,"text":"Welcome home!"}
+{"type":"status","tick":204892,"wallTimeMs":1792819593768,"text":"You are back on your own land."}
+{"type":"status","tick":204908,"wallTimeMs":1792819597706,"text":"Entered settlement."}
+{"type":"status","tick":204968,"wallTimeMs":1792819608132,"text":"You fed 1 resident in the Village of Yellowton."}
+{"type":"status","tick":204992,"wallTimeMs":1792819610520,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":205000,"wallTimeMs":1792819611282,"text":"Blueshire has fallen and been disbanded."}
+{"type":"chronicle","tick":205000,"wallTimeMs":1792819611282,"kind":"NationRelationChange","text":"Relations between Northernport and Blackshire are now neutral."}
+{"type":"chronicle","tick":205000,"wallTimeMs":1792819611282,"kind":"NationRaid","text":"Hamletfield raided Northernport and carried off 4 coins, 5 stone."}
+{"type":"chronicle","tick":205000,"wallTimeMs":1792819611282,"kind":"SettlementCapture","text":"After a siege, a camp of Blueshire fell to Citywood."}
+{"type":"chronicle","tick":205000,"wallTimeMs":1792819611282,"kind":"NationDisband","text":"Blueshire faded from memory before it ever built a home."}
+{"type":"status","tick":205012,"wallTimeMs":1792819612135,"text":"Farm built."}
+{"type":"status","tick":205048,"wallTimeMs":1792819614196,"text":"Click again to confirm: Build House."}
+{"type":"status","tick":205080,"wallTimeMs":1792819616252,"text":"House built. The settlement is now a Town!"}
+{"type":"status","tick":205208,"wallTimeMs":1792819631757,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"status","tick":205252,"wallTimeMs":1792819638353,"text":"Villagefield has fallen and been disbanded."}
+{"type":"chronicle","tick":205252,"wallTimeMs":1792819638353,"kind":"SettlementCapture","text":"After a siege, a village of Westernford fell to Redtown."}
+{"type":"chronicle","tick":205252,"wallTimeMs":1792819638353,"kind":"SettlementCapture","text":"After a siege, a camp of Villagefield fell to Southernport."}
+{"type":"chronicle","tick":205252,"wallTimeMs":1792819638353,"kind":"NationDisband","text":"Villagefield dissolved, its name already half-forgotten."}
+{"type":"status","tick":205272,"wallTimeMs":1792819639639,"text":"Exited settlement."}
+{"type":"chronicle","tick":205500,"wallTimeMs":1792819650158,"kind":"NationRelationChange","text":"Redtown and Hamletshire have become rivals over their border."}
+{"type":"status","tick":205612,"wallTimeMs":1792819655365,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":205632,"wallTimeMs":1792819656269,"text":"You enter the land of Blackshire (Rival)."}
+{"type":"status","tick":205644,"wallTimeMs":1792819656790,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":205752,"wallTimeMs":1792819661658,"kind":"NationRelationChange","text":"Hamletshire and Redton are now hostile over their border."}
+{"type":"status","tick":205884,"wallTimeMs":1792819667309,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":205996,"wallTimeMs":1792819672509,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":206000,"wallTimeMs":1792819672705,"kind":"NationRelationChange","text":"Northernport and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":206000,"wallTimeMs":1792819672705,"kind":"NationRelationChange","text":"Southernport and Cityburg are now hostile."}
+{"type":"chronicle","tick":206000,"wallTimeMs":1792819672705,"kind":"NationRelationChange","text":"Relations between Hamletshire and Redtown are now neutral."}
+{"type":"status","tick":206044,"wallTimeMs":1792819674525,"text":"Welcome home!"}
+{"type":"status","tick":206052,"wallTimeMs":1792819675045,"text":"You are back on your own land."}
+{"type":"status","tick":206092,"wallTimeMs":1792819677060,"text":"Entered settlement."}
+{"type":"chronicle","tick":206252,"wallTimeMs":1792819685776,"kind":"NationRelationChange","text":"Redton and Townford are now hostile."}
+{"type":"status","tick":206284,"wallTimeMs":1792819687638,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":206864,"wallTimeMs":1792819723258,"text":"Tina Brown has died. Farmland has been disbanded."}
+{"type":"chronicle","tick":206864,"wallTimeMs":1792819723258,"kind":"PawnDeath","text":"Hunger claimed Tina Brown, leader of Farmland, in the wilds."}
+{"type":"chronicle","tick":206864,"wallTimeMs":1792819723258,"kind":"NationDisband","text":"Farmland faded from memory before it ever built a home."}
+{"type":"pawn_death","tick":206864,"wallTimeMs":1792819723258,"count":1,"total":1}
+{"type":"status","tick":207252,"wallTimeMs":1792819761515,"text":"Cityburg has fallen and been disbanded."}
+{"type":"chronicle","tick":207252,"wallTimeMs":1792819761515,"kind":"SettlementCapture","text":"After a siege, a camp of Cityburg fell to Southernport."}
+{"type":"chronicle","tick":207252,"wallTimeMs":1792819761515,"kind":"NationDisband","text":"Cityburg faded from memory before it ever built a home."}
+{"type":"status","tick":207264,"wallTimeMs":1792819767383,"text":"You fed 2 residents in the Town of Yellowton."}
+{"type":"status","tick":207460,"wallTimeMs":1792819786551,"text":"Grace Lewis has died."}
+{"type":"chronicle","tick":207460,"wallTimeMs":1792819786551,"kind":"PawnDeath","text":"Grace Lewis of Newport died of hunger in the wilds."}
+{"type":"pawn_death","tick":207460,"wallTimeMs":1792819786551,"count":1,"total":2}
+{"type":"chronicle","tick":207500,"wallTimeMs":1792819788535,"kind":"NationRelationChange","text":"Redtown and Hamletshire have become rivals over their border."}
+{"type":"chronicle","tick":207652,"wallTimeMs":1792819795966,"kind":"StallBuilt","text":"A new stall opened in the market of Citywood, built by Tilly Wilson."}
+{"type":"chronicle","tick":208000,"wallTimeMs":1792819816507,"kind":"NationRelationChange","text":"Westernford and Townford are now hostile."}
+{"type":"chronicle","tick":208052,"wallTimeMs":1792819818928,"kind":"StallBuilt","text":"A new stall opened in the market of Northernport, built by Bella Davies."}
+{"type":"status","tick":208120,"wallTimeMs":1792819823523,"text":"Phoebe Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Idle hands make me itch.\u0022"}
+{"type":"chronicle","tick":209000,"wallTimeMs":1792819895153,"kind":"NationRelationChange","text":"Newport and Southernport have become rivals over their border."}
+{"type":"chronicle","tick":209000,"wallTimeMs":1792819895153,"kind":"NationRelationChange","text":"Newport and Oldville have become rivals over their border."}
+{"type":"chronicle","tick":209000,"wallTimeMs":1792819895153,"kind":"NationRaid","text":"Hamletfield raided Oldville and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":209000,"wallTimeMs":1792819895153,"kind":"NationRaid","text":"Southernville raided Oldville and carried off 5 wood."}
+{"type":"status","tick":209240,"wallTimeMs":1792819910789,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":209252,"wallTimeMs":1792819916543,"text":"Townford has fallen and been disbanded."}
+{"type":"chronicle","tick":209252,"wallTimeMs":1792819916543,"kind":"SettlementCapture","text":"After a siege, a camp of Townford fell to Westernford."}
+{"type":"chronicle","tick":209252,"wallTimeMs":1792819916543,"kind":"NationDisband","text":"Townford is no more; it never raised so much as a hut."}
+{"type":"chronicle","tick":209352,"wallTimeMs":1792819926445,"kind":"StallBuilt","text":"Trade came to Northernport: Bella Davies built a stall."}
+{"type":"status","tick":209652,"wallTimeMs":1792819952890,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"chronicle","tick":209752,"wallTimeMs":1792819961194,"kind":"NationRelationChange","text":"Southernport and Oldville have formed an alliance."}
+{"type":"save","tick":210000,"wallTimeMs":1792819986971,"count":5}
+{"type":"status","tick":210000,"wallTimeMs":1792819986971,"text":"Autosaved."}
+{"type":"chronicle","tick":210252,"wallTimeMs":1792820003565,"kind":"NationRelationChange","text":"Westernville and Hamletshire are now hostile over their border."}
+{"type":"chronicle","tick":210452,"wallTimeMs":1792820018067,"kind":"WorldEvent","text":"Bandits camped outside the Camp of Redton; Mia Williams paid them 30 coins to go away."}
+{"type":"status","tick":210592,"wallTimeMs":1792820028262,"text":"Exited settlement."}
+{"type":"chronicle","tick":210652,"wallTimeMs":1792820033133,"kind":"StallBuilt","text":"A new stall opened in the market of Northernport, built by Bella Davies."}
+{"type":"status","tick":210892,"wallTimeMs":1792820052081,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":210900,"wallTimeMs":1792820052723,"text":"You enter the land of Blackshire (Rival)."}
+{"type":"chronicle","tick":211000,"wallTimeMs":1792820062368,"kind":"NationRelationChange","text":"Blackshire and Northernport are now hostile."}
+{"type":"chronicle","tick":211000,"wallTimeMs":1792820062368,"kind":"NationRaid","text":"Westernville raided Hamletshire and carried off 3 coins, 5 wood, 5 stone."}
+{"type":"status","tick":211060,"wallTimeMs":1792820071185,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":211232,"wallTimeMs":1792820085658,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":211252,"wallTimeMs":1792820086747,"kind":"NationRelationChange","text":"Blackshire and Hamletland have become rivals over their border."}
+{"type":"status","tick":211432,"wallTimeMs":1792820096991,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":211460,"wallTimeMs":1792820098922,"text":"You are back on your own land."}
+{"type":"status","tick":211500,"wallTimeMs":1792820101604,"text":"Hamletshire has fallen and been disbanded."}
+{"type":"chronicle","tick":211500,"wallTimeMs":1792820101604,"kind":"SettlementCapture","text":"After a siege, a camp of Hamletshire fell to Westernville."}
+{"type":"chronicle","tick":211500,"wallTimeMs":1792820101604,"kind":"NationDisband","text":"Hamletshire faded from memory before it ever built a home."}
+{"type":"status","tick":211576,"wallTimeMs":1792820110005,"text":"You fed 2 residents in the Town of Yellowton."}
+{"type":"status","tick":211696,"wallTimeMs":1792820121633,"text":"Exited settlement."}
+{"type":"chronicle","tick":211852,"wallTimeMs":1792820136630,"kind":"StallBuilt","text":"Bella Davies built a market stall in Northernport."}
+{"type":"chronicle","tick":212000,"wallTimeMs":1792820147787,"kind":"NationRaid","text":"Blackshire raided Northernport and carried off 1 coins."}
+{"type":"status","tick":212112,"wallTimeMs":1792820157827,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":212220,"wallTimeMs":1792820168005,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":212372,"wallTimeMs":1792820181538,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":212524,"wallTimeMs":1792820200209,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":212548,"wallTimeMs":1792820202690,"text":"Welcome home!"}
+{"type":"status","tick":212552,"wallTimeMs":1792820203060,"text":"You are back on your own land."}
+{"type":"status","tick":212568,"wallTimeMs":1792820205134,"text":"Entered settlement."}
+{"type":"status","tick":212640,"wallTimeMs":1792820217912,"text":"Exited settlement."}
+{"type":"status","tick":212888,"wallTimeMs":1792820246004,"text":"Frank Taylor has died. Stan Williams is now the leader of Blueport."}
+{"type":"chronicle","tick":212888,"wallTimeMs":1792820246004,"kind":"PawnDeath","text":"Blueport mourns its leader, Frank Taylor, who starved within the walls."}
+{"type":"chronicle","tick":212888,"wallTimeMs":1792820246004,"kind":"LeadershipChange","text":"Stan Williams now leads Blueport."}
+{"type":"pawn_death","tick":212888,"wallTimeMs":1792820246004,"count":1,"total":3}
+{"type":"chronicle","tick":213000,"wallTimeMs":1792820253146,"kind":"StallBuilt","text":"Nancy Wilson built a market stall in Blueport."}
+{"type":"status","tick":213012,"wallTimeMs":1792820256636,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"chronicle","tick":213052,"wallTimeMs":1792820258641,"kind":"NationJoin","text":"Yellowton welcomed Fiona Thomas into its ranks."}
+{"type":"chronicle","tick":213100,"wallTimeMs":1792820260374,"kind":"StallBuilt","text":"Trade came to Northernport: Bella Davies built a stall."}
+{"type":"status","tick":213136,"wallTimeMs":1792820374791,"text":"No entities within range to interact with."}
+{"type":"status","tick":213576,"wallTimeMs":1792820421657,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":213752,"wallTimeMs":1792820434739,"kind":"NationRelationChange","text":"Newport and Southernville have formed an alliance."}
+{"type":"status","tick":213836,"wallTimeMs":1792820440498,"text":"Gathered 6 wood and 2 apples from tree. (x2)"}
+{"type":"status","tick":213864,"wallTimeMs":1792820442389,"text":"Welcome home!"}
+{"type":"status","tick":213872,"wallTimeMs":1792820443048,"text":"You are back on your own land."}
+{"type":"status","tick":213896,"wallTimeMs":1792820445244,"text":"Entered settlement."}
+{"type":"status","tick":213992,"wallTimeMs":1792820457729,"text":"You fed 2 residents in the Town of Yellowton."}
+{"type":"status","tick":214000,"wallTimeMs":1792820458421,"text":"Southernport shares an enemy with you: relations are now Friendly (\u002B20). Oldville shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792820458421,"kind":"StallBuilt","text":"Frank Robinson built a market stall in Yellowton."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792820458421,"kind":"NationRelationChange","text":"Relations between Yellowton and Southernport are now friendly against a common enemy."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792820458421,"kind":"NationRelationChange","text":"Relations between Yellowton and Oldville are now friendly against a common enemy."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792820458421,"kind":"NationRelationChange","text":"Newport and Southernport are now hostile."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792820458421,"kind":"NationRelationChange","text":"Newport and Oldville are now hostile."}
+{"type":"chronicle","tick":214000,"wallTimeMs":1792820458421,"kind":"NationRaid","text":"Newport raided Southernport and carried off 5 wood, 5 stone."}
+{"type":"status","tick":214124,"wallTimeMs":1792820471477,"text":"Collected 13 wood and 3 stone from the stockpile."}
+{"type":"status","tick":214136,"wallTimeMs":1792820483894,"text":"Exited settlement."}
+{"type":"status","tick":214592,"wallTimeMs":1792820512694,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"chronicle","tick":214752,"wallTimeMs":1792820529009,"kind":"NationRelationChange","text":"Northernport and Citywood swore an alliance."}
+{"type":"status","tick":214824,"wallTimeMs":1792820533400,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":214920,"wallTimeMs":1792820542602,"text":"Bob Brown has died. Westton has been disbanded."}
+{"type":"chronicle","tick":214920,"wallTimeMs":1792820542602,"kind":"PawnDeath","text":"Hunger claimed Bob Brown, leader of Westton, in the wilds."}
+{"type":"chronicle","tick":214920,"wallTimeMs":1792820542602,"kind":"NationDisband","text":"Westton is no more; it never raised so much as a hut."}
+{"type":"pawn_death","tick":214920,"wallTimeMs":1792820542602,"count":1,"total":4}
+{"type":"chronicle","tick":215000,"wallTimeMs":1792820547961,"kind":"NationRaid","text":"Southernville raided Southernport and carried off 5 wood."}
+{"type":"status","tick":215084,"wallTimeMs":1792820551816,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":215260,"wallTimeMs":1792820561045,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":215296,"wallTimeMs":1792820563078,"text":"Welcome home!"}
+{"type":"status","tick":215300,"wallTimeMs":1792820563330,"text":"You are back on your own land."}
+{"type":"status","tick":215328,"wallTimeMs":1792820565562,"text":"Entered settlement."}
+{"type":"status","tick":215460,"wallTimeMs":1792820577309,"text":"You fed 2 residents in the Town of Yellowton."}
+{"type":"chronicle","tick":215500,"wallTimeMs":1792820580117,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Alice Williams. The market is now full."}
+{"type":"status","tick":215532,"wallTimeMs":1792820582241,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":215560,"wallTimeMs":1792820584601,"text":"Farm built."}
+{"type":"status","tick":215668,"wallTimeMs":1792820591760,"text":"Exited settlement."}
+{"type":"chronicle","tick":215752,"wallTimeMs":1792820596629,"kind":"NationRelationChange","text":"Redtown and Redton have become rivals over their border."}
+{"type":"save","tick":216000,"wallTimeMs":1792820619660,"count":6}
+{"type":"status","tick":216000,"wallTimeMs":1792820619660,"text":"Autosaved."}
+{"type":"chronicle","tick":216000,"wallTimeMs":1792820619660,"kind":"NationRelationChange","text":"Relations between Redton and Redtown are now neutral."}
+{"type":"status","tick":216252,"wallTimeMs":1792820647574,"text":"Hamletland shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":216252,"wallTimeMs":1792820647574,"kind":"NationRelationChange","text":"Relations between Yellowton and Hamletland are now friendly against a common enemy."}
+{"type":"chronicle","tick":216252,"wallTimeMs":1792820647574,"kind":"NationRelationChange","text":"Blackshire and Hamletland are now hostile."}
+{"type":"status","tick":216320,"wallTimeMs":1792820659918,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":216332,"wallTimeMs":1792820662338,"text":"Xavier Robinson (Stranger): \u0022Yes, leader? I\u0027m out gathering for Yellowton. I stand by my own.\u0022"}
+{"type":"status","tick":216532,"wallTimeMs":1792820725892,"text":"Xavier Robinson (Stranger): \u0022Yes, leader? I\u0027m heading home. I stand by my own.\u0022"}
+{"type":"status","tick":216632,"wallTimeMs":1792820745005,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":216656,"wallTimeMs":1792820749118,"text":"Welcome home!"}
+{"type":"status","tick":216660,"wallTimeMs":1792820749899,"text":"You are back on your own land."}
+{"type":"status","tick":216672,"wallTimeMs":1792820752251,"text":"Entered settlement."}
+{"type":"chronicle","tick":216800,"wallTimeMs":1792820761464,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Judy Taylor."}
+{"type":"status","tick":216844,"wallTimeMs":1792820764216,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":216880,"wallTimeMs":1792820766181,"text":"Collected 12 wood and 0 stone from the stockpile."}
+{"type":"chronicle","tick":217252,"wallTimeMs":1792820805988,"kind":"NationRelationChange","text":"Newport and Blackshire have formed an alliance."}
+{"type":"status","tick":217464,"wallTimeMs":1792820830984,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":217500,"wallTimeMs":1792820835265,"text":"Hamletland has fallen and been disbanded."}
+{"type":"chronicle","tick":217500,"wallTimeMs":1792820835265,"kind":"SettlementCapture","text":"After a siege, a camp of Hamletland fell to Blackshire."}
+{"type":"chronicle","tick":217500,"wallTimeMs":1792820835265,"kind":"NationDisband","text":"Hamletland faded from memory before it ever built a home."}
+{"type":"chronicle","tick":217752,"wallTimeMs":1792820859070,"kind":"NationRelationChange","text":"Redtown and Redton have become rivals over their border."}
+{"type":"chronicle","tick":217800,"wallTimeMs":1792820865277,"kind":"StallBuilt","text":"Jasmine Wilson built a market stall in Blueport."}
+{"type":"chronicle","tick":218000,"wallTimeMs":1792820910846,"kind":"NationRelationChange","text":"Relations between Redton and Redtown are now neutral."}
+{"type":"status","tick":218716,"wallTimeMs":1792820966596,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":218764,"wallTimeMs":1792820969362,"text":"Wendy Walker has died. Gemma Wood is now the leader of Newport."}
+{"type":"chronicle","tick":218764,"wallTimeMs":1792820969362,"kind":"PawnDeath","text":"Hunger claimed Wendy Walker, leader of Newport, within the walls."}
+{"type":"chronicle","tick":218764,"wallTimeMs":1792820969362,"kind":"LeadershipChange","text":"Newport has a new leader: Gemma Wood."}
+{"type":"pawn_death","tick":218764,"wallTimeMs":1792820969362,"count":1,"total":5}
+{"type":"chronicle","tick":219752,"wallTimeMs":1792821104230,"kind":"NationRelationChange","text":"Redtown and Redton have become rivals over their border."}
+{"type":"screen","tick":219808,"wallTimeMs":1792821106680,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":219808,"wallTimeMs":1792821123729,"count":7}
+{"type":"status","tick":219808,"wallTimeMs":1792821123729,"text":"Game saved."}

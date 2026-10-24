@@ -254,6 +254,30 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testWhyNoSale_NamesTheReason() {
+            Market market = new Market(4, random);
+            Player player = new Player(5, 10, new TickCounter(), 500, 200, random);
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.AXE, 1);
+            Assert.StartsWith("You have nothing to sell", market.describeWhyNoSale(player));
+
+            player.getInventory().addItem(ItemType.WOOD, 3);
+            market.createStall();
+            Assert.StartsWith("No merchant keeps a stall here", market.describeWhyNoSale(player));
+
+            market.getStallForSale().setOwnerId(player.getId());
+            Assert.Equal("The only stall here is yours, and you can't sell to yourself.", market.describeWhyNoSale(player));
+
+            Pawn merchant = addMerchant(market, random);
+            Assert.Null(market.sellResources(player));
+            Assert.StartsWith("No merchant here can pay: the richest has 0 coins, and your cheapest good (wood) sells for ", market.describeWhyNoSale(player));
+
+            market.getStall(merchant.getId()).getInventory().addItem(ItemType.COIN, 5000);
+            Assert.Null(market.describeWhyNoSale(player));
+            Assert.Equal(merchant.getId(), market.sellResources(player));
+        }
+
+        [Fact]
         public void testSellResources_KeepsTools() {
             Market market = new Market(4, random);
             Pawn merchant = addMerchant(market, random);
