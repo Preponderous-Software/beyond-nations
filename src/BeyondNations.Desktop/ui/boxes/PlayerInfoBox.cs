@@ -31,6 +31,10 @@ namespace beyondnations.desktop.ui.boxes {
         public override List<string> getLines() {
             List<string> lines = new List<string>(4);
             lines.Add("Energy: " + (int) player.getEnergy());
+            if (isCompact()) {
+                // the energy bar alone: the settlement box above already names the nation and leader
+                return lines;
+            }
             lines.Add("Relationships: " + player.getRelationships().Count);
 
             if (player.getNationId() != null) {

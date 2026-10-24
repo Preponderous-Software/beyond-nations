@@ -36,6 +36,37 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testCompact_KeepsTheSeasonAndDropsTheRegion() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            SeasonInfoBox box = new SeasonInfoBox(simulation);
+            box.setCompact(true);
+
+            Assert.Equal(new List<string> { "Spring - day 1/" + SeasonCalendar.DAYS_PER_SEASON + ", year 1" }, box.getLines());
+        }
+
+        [Fact]
+        public void testCompact_TheMarketTotalsTakeOneLine_AndThePlayerBoxJustEnergy() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Market market = new Market(4, simulation.getRandom());
+            market.createStall();
+            MarketInfoBox full = new MarketInfoBox(market, simulation.getEntityRepository());
+            MarketInfoBox compact = new MarketInfoBox(market, simulation.getEntityRepository());
+            compact.setCompact(true);
+
+            Assert.Equal("1/4 stalls, 0 coins", compact.getLines()[0]);
+            Assert.Equal(full.getLines().Count - 4, compact.getLines().Count);
+            Assert.Equal(MarketInfoBox.PricesHeading, compact.getLines()[1]);
+
+            PlayerInfoBox player = new PlayerInfoBox(simulation.getPlayer(), simulation.getNationRepository(), simulation.getEntityRepository());
+            player.setCompact(true);
+            Assert.Equal(new List<string> { "Energy: " + (int) simulation.getPlayer().getEnergy() }, player.getLines());
+        }
+
+        [Fact]
         public void testTheWarning_CountsDownToWinter() {
             int winterStarts = 3 * SeasonCalendar.DAYS_PER_SEASON;
             Assert.Null(SeasonInfoBox.getWinterLine(calendarAtDay(0)));

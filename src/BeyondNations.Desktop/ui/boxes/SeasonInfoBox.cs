@@ -39,6 +39,10 @@ namespace beyondnations.desktop.ui.boxes {
                 lines.Add(warning);
             }
             Region region = regionMap.regionAt(player.getPosition());
+            if (isCompact()) {
+                // the season and the winter warning stay; the region lines go
+                return lines;
+            }
             lines.Add("Region: " + RegionCatalog.name(region));
             lines.Add(RegionCatalog.describe(region));
             return lines;
