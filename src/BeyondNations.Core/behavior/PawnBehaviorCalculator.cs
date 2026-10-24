@@ -317,7 +317,7 @@ namespace beyondnations {
                     else {
                         // it used to keep gathering here, and a founder that
                         // happened to stay close to a rival never built at all
-                        return BehaviorType.SEEK_SETTLEMENT_SITE;
+                        return seekSiteOrForage(pawn);
                     }
                 }
             }
@@ -327,7 +327,7 @@ namespace beyondnations {
                 if (pawn.getInventory().getNumItems(ItemType.WOOD) < Settlement.WOOD_COST_TO_BUILD) {
                     return BehaviorType.GATHER_RESOURCES;
                 }
-                return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : BehaviorType.SEEK_SETTLEMENT_SITE;
+                return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : seekSiteOrForage(pawn);
             }
 
             if (pawn.getHomeSettlementId() == null && numNationSettlements > 0) {
@@ -336,7 +336,7 @@ namespace beyondnations {
                 }
                 // every settlement is full: with the wood to hand, found another for the nation
                 if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD && nation.canFoundSettlement()) {
-                    return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : BehaviorType.SEEK_SETTLEMENT_SITE;
+                    return isFarEnoughToSettle(pawn) ? BehaviorType.CONSTRUCT_SETTLEMENT : seekSiteOrForage(pawn);
                 }
             }
 
@@ -344,6 +344,29 @@ namespace beyondnations {
                 return BehaviorType.GO_TO_HOME_SETTLEMENT;
             }
             return BehaviorType.GATHER_RESOURCES;
+        }
+
+        /**
+        * A pawn out to found a settlement -- a founding leader whose nation has
+        * no home yet, or a settler -- walks on to a site, unless it needs food
+        * and there is food to be had out here, when it forages first -- in
+        * winter, with the trees bare, the nearest chicken however far it is
+        * (PawnBehaviorExecutor.selectGatherTarget). It used to walk on
+        * whatever its hunger: with no home it never took the hungry pawn's way
+        * home, so a founder that had to walk far, or got caught between
+        * settlements, walked until it starved. In playtest 0.6.1 s02 (seed
+        * 103, started in winter) two of the five hunger deaths were leaders
+        * who died in the wilds before their nations "ever raised so much as a
+        * hut", and each nation was disbanded with them (#395). A founder with
+        * nothing at all to forage still walks on: a settlement of its own is
+        * the only shelter it has.
+        */
+        private BehaviorType seekSiteOrForage(Pawn pawn) {
+            bool foodOutHere = canForage(pawn) || environment.getNearestEntityOfType(pawn.getPosition(), EntityType.CHICKEN) != null;
+            if (pawn.needsFood() && foodOutHere) {
+                return BehaviorType.GATHER_RESOURCES;
+            }
+            return BehaviorType.SEEK_SETTLEMENT_SITE;
         }
 
         /**

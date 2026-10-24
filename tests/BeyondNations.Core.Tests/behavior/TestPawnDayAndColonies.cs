@@ -210,6 +210,71 @@ namespace beyondnationstests {
             Assert.Equal("(looking for land to settle)", serf.getCurrentBehaviorDescription());
         }
 
+        // --- a founder's hunger (#395) -----------------------------------------
+
+        /** A founding leader of a nation with no settlement yet, too close to a rival to build, in winter. */
+        private void foundingLeaderNearARivalInWinter() {
+            Pawn rivalLeader = new Pawn(Vector3.Zero, "Rival", random);
+            entityRepository.addEntity(rivalLeader);
+            Nation rival = new Nation("Rivalry", rivalLeader.getId(), random);
+            nationRepository.addNation(rival);
+            entityRepository.addEntity(new Settlement(Vector3.Zero, rival.getId(), rival.getColor(), rival.getName(), random));
+
+            TimeOfDay timeOfDay = new TimeOfDay(tickCounter, TimeOfDay.DefaultTicksPerDay, 0.5f);
+            SeasonCalendar calendar = new SeasonCalendar(timeOfDay);
+            calendar.advanceClockTo(tickCounter, Season.WINTER);
+            calculator.setSeasonCalendar(calendar);
+
+            leader.setPosition(new Vector3(100, 0, 0));
+            leader.getInventory().setNumItems(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            Assert.Equal(0, nation.getNumberOfSettlements());
+            Assert.Null(leader.getHomeSettlementId());
+        }
+
+        /**
+        * Playtest 0.6.1 s02 (seed 103, started in winter): two of the five
+        * hunger deaths were leaders who died in the wilds before their nations
+        * had a settlement, walking on to a site until they starved. A hungry
+        * founder now forages first -- in winter, with the trees bare, the
+        * nearest chicken however far it is.
+        */
+        [Fact]
+        public void testHungryFoundingLeader_ForagesBeforeWalkingOnToASite() {
+            foundingLeaderNearARivalInWinter();
+            // further than SeasonalRules.STORES_HUNT_RANGE: the only food there is
+            entityRepository.addEntity(new Chicken(new Vector3(100, 0, 300), random));
+            leader.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 30);
+            Assert.True(leader.needsFood());
+
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, calculator.computeBehaviorType(leader));
+            executor.executeBehavior(leader, BehaviorType.GATHER_RESOURCES);
+            Assert.Equal(EntityType.CHICKEN, leader.getTargetEntity().getType());
+
+            // well fed, it walks on to find land as before
+            leader.setEnergy(100);
+            Assert.Equal(BehaviorType.SEEK_SETTLEMENT_SITE, calculator.computeBehaviorType(leader));
+        }
+
+        [Fact]
+        public void testHungryFoundingLeader_WithNothingToForage_StillWalksOnToASite() {
+            foundingLeaderNearARivalInWinter();
+            leader.setEnergy(Pawn.STARVING_ENERGY_THRESHOLD - 10);
+
+            // no chicken anywhere and the trees bare: a settlement is its only shelter
+            Assert.Equal(BehaviorType.SEEK_SETTLEMENT_SITE, calculator.computeBehaviorType(leader));
+        }
+
+        [Fact]
+        public void testHungrySettler_ForagesBeforeWalkingOnToASite() {
+            fullSettlement();
+            Pawn serf = addSerf(new Vector3(50, 0, 0), null);
+            serf.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            entityRepository.addEntity(new Chicken(new Vector3(50, 0, 40), random));
+            serf.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 30);
+
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, calculator.computeBehaviorType(serf));
+        }
+
         [Fact]
         public void testHomelessMember_WithoutWood_KeepsGathering() {
             fullSettlement();
