@@ -24,7 +24,7 @@ namespace beyondnationstests {
             Assert.Equal(NationRelationState.HOSTILE, relations.getState(result.playerNation, result.hostile));
             Assert.Equal(NationRelationState.FRIENDLY, relations.getState(result.playerNation, result.friendly));
             Assert.Equal(2, simulation.getDiplomacy().getSiegeProgress(result.playerSettlement));
-            Assert.Equal("Besieged by " + result.hostile.getName() + " (2/6)", result.playerSettlement.getSiegeText());
+            Assert.Equal("Besieged by " + result.hostile.getName() + " (2/" + Diplomacy.SIEGE_ROUNDS_TO_CAPTURE + ")", result.playerSettlement.getSiegeText());
         }
 
         [Fact]

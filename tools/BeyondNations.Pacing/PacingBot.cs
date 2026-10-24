@@ -667,7 +667,13 @@ namespace beyondnations.pacing {
             return false;
         }
 
-        /** The nearest tree or rock with no settlement close enough for Interact to enter it instead. */
+        /**
+        * The nearest tree or rock with no settlement close enough for Interact
+        * to enter it instead: the well's reach plus the bot's, so nowhere the
+        * bot stops to gather is in reach of a well. At 6 units, seed 3 with
+        * minute-long sieges stopped by a tree 2.6 units off and within reach
+        * of a well, entered, left, and entered again for 2m 50s.
+        */
         private Entity nearestClearResource(EntityType source) {
             List<Entity> blockers = simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT);
             Entity best = null;
@@ -677,7 +683,7 @@ namespace beyondnations.pacing {
                     continue;
                 }
                 float distance = groundDistance(player.getPosition(), candidate.getPosition());
-                if (distance >= bestDistance || nearAny(candidate.getPosition(), blockers, 6)) {
+                if (distance >= bestDistance || nearAny(candidate.getPosition(), blockers, InteractCommand.Reach + ReachDistance + 0.5f)) {
                     continue;
                 }
                 bestDistance = distance;

@@ -127,7 +127,8 @@ namespace beyondnationstests {
             Assert.Equal(3, original.getDiplomacy().getSiegeProgress(staged.playerSettlement));
             Assert.NotNull(original.getDiplomacy().getBesieger(staged.playerSettlement));
 
-            Simulation copy = roundTrip(original, Diplomacy.ROUND_TICKS * 3 + 5, "mid-siege");
+            // the rounds left to capture, and a few ticks for the capture to land
+            Simulation copy = roundTrip(original, Diplomacy.ROUND_TICKS * (Diplomacy.SIEGE_ROUNDS_TO_CAPTURE - 3) + 5, "mid-siege");
 
             // the siege ran to its end in both: the village fell, the nation with it
             Assert.Equal(staged.hostile.getId(), staged.playerSettlement.getNationId());
