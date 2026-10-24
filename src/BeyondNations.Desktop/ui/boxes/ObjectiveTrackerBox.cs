@@ -123,10 +123,21 @@ namespace beyondnations.desktop.ui.boxes {
                     ImGui.PopStyleColor();
                 }
                 bottom = y + ImGui.GetWindowSize().Y;
+                lastHeight = ImGui.GetWindowSize().Y;
             }
             ImGui.End();
             return bottom;
         }
+
+        /**
+        * How tall the panel was when last drawn (0 before then), so the HUD
+        * can keep room for it under the era box (#397).
+        */
+        public static float getLastHeight() {
+            return lastHeight;
+        }
+
+        private static float lastHeight;
 
         /**
         * The toast, centred horizontally and no higher than minY, which the

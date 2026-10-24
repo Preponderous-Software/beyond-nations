@@ -124,9 +124,12 @@ namespace beyondnations.desktop.ui.boxes {
 
         /**
         * Draws the box at (x, y) and returns its bottom edge, as the other
-        * boxes do, so whatever is stacked under it starts there.
+        * boxes do, so whatever is stacked under it starts there. Open, the
+        * detail scrolls rather than taking the box below maxBottom: at
+        * 960x540 inside a settlement it pushed the objective tracker over
+        * the command bar (playtest 0.6.1 s04, #397).
         */
-        public float draw(Simulation simulation, float x, float y, float width) {
+        public float draw(Simulation simulation, float x, float y, float width, float maxBottom = float.MaxValue) {
             float bottom = y;
             ImGui.SetNextWindowPos(new Vector2(x, y), ImGuiCond.Always);
             ImGui.SetNextWindowSize(new Vector2(width, 0), ImGuiCond.Always);
@@ -153,16 +156,35 @@ namespace beyondnations.desktop.ui.boxes {
                     Overlay.textColoured(WarningColour, siege);
                 }
                 if (expanded) {
+                    List<KeyValuePair<string, bool>> lines = detailLines(simulation);
+                    float available = maxBottom - ImGui.GetCursorScreenPos().Y - ImGui.GetStyle().WindowPadding.Y;
+                    bool scrolls = detailHeight(lines, ImGui.GetContentRegionAvail().X) > available
+                        && available >= Overlay.lineHeight() * 3f;
+                    if (scrolls) {
+                        ImGui.BeginChild("##era-detail", new Vector2(-1f, available));
+                    }
                     ImGui.PushTextWrapPos(0f);
-                    foreach (KeyValuePair<string, bool> line in detailLines(simulation)) {
+                    foreach (KeyValuePair<string, bool> line in lines) {
                         Overlay.textColoured(line.Value ? MetColour : UnmetColour, line.Key);
                     }
                     ImGui.PopTextWrapPos();
+                    if (scrolls) {
+                        ImGui.EndChild();
+                    }
                 }
                 bottom = y + ImGui.GetWindowSize().Y;
             }
             ImGui.End();
             return bottom;
+        }
+
+        /** The height the detail lines take wrapped to this width, as ImGui lays them out. */
+        private static float detailHeight(List<KeyValuePair<string, bool>> lines, float wrapWidth) {
+            float height = 0f;
+            foreach (KeyValuePair<string, bool> line in lines) {
+                height += ImGui.CalcTextSize(line.Key, false, wrapWidth).Y + ImGui.GetStyle().ItemSpacing.Y;
+            }
+            return height;
         }
     }
 }
