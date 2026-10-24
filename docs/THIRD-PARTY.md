@@ -91,7 +91,7 @@ the simulation is meant to build and run with nothing but the .NET SDK.
 | | |
 | --- | --- |
 | Files | `runtimes/linux-x64/native/libstrata.so`, `runtimes/win-x64/native/strata.dll` in the build output |
-| Source | <https://github.com/Preponderous-Software/strata>, release `v0.4.0` (the browser build compiles the same release's source, commit `2e03be8`) |
+| Source | <https://github.com/Preponderous-Software/strata>, release `v0.6.0` (the browser build compiles the same release's source, commit `c2d7ee4`) |
 | Licence | MIT; its own third-party notices (SDL3, zlib licence; glm, glad, stb, MIT or public domain) are in `THIRD_PARTY_NOTICES.md` in the Strata release archive |
 | Integrity | Each file's SHA-256 is pinned in `BeyondNations.Desktop.csproj`, and the build refuses a download that does not match |
 
