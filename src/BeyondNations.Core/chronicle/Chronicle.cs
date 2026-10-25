@@ -43,6 +43,12 @@ namespace beyondnations {
         // nations is one line a day rather than one per raid
         private readonly HashSet<string> raidsToldToday = new HashSet<string>();
         private int raidDay = -1;
+        // the nations the player has founded or joined, read off the kept lines
+        // that name both (playerNations); worked out again whenever a line is
+        // added or the world is loaded, so nothing of it is saved
+        private readonly HashSet<NationId> playerNations = new HashSet<NationId>();
+        private EntityId playerNationsFor;
+        private int playerNationsAt = -1;
 
         public Chronicle(EventRepository eventRepository, EntityRepository entityRepository, NationRepository nationRepository,
                 TimeOfDay timeOfDay, TickCounter tickCounter, int seed, int capacity = DefaultCapacity) {
@@ -99,9 +105,83 @@ namespace beyondnations {
             totalRecorded++;
             entries.Add(entry);
             if (entries.Count > capacity) {
-                entries.RemoveAt(0);
+                entries.RemoveAt(indexToDrop());
             }
             return entry;
+        }
+
+        /**
+        * Which entry makes room for a new one: the oldest that is not about
+        * the player or the player's nation, and the oldest of all only when
+        * every kept entry is theirs. Pawn-led nations write forty to fifty
+        * lines a game minute, and dropping simply the oldest lost the
+        * player's own founding within minutes (playtest 0.6.3 s04: "Only my
+        * nation" fell from 16 lines to 5). Only which line goes changes, so
+        * the save is as it was.
+        */
+        private int indexToDrop() {
+            Player player = findPlayer() as Player;
+            if (player == null) {
+                return 0;
+            }
+            for (int i = 0; i < entries.Count - 1; i++) {
+                if (!concernsPlayer(entries[i], player)) {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        /**
+        * The nations the player has founded or joined: the one they are in
+        * now, and every nation named in a kept line that names the player too
+        * (founding and joining lines name both). Read off the lines, so a
+        * nation the player has lost is still theirs, and the save holds
+        * nothing new.
+        */
+        public HashSet<NationId> getPlayerNations(Player player) {
+            if (player == null) {
+                return new HashSet<NationId>();
+            }
+            if (!player.getId().Equals(playerNationsFor) || playerNationsAt != totalRecorded) {
+                playerNations.Clear();
+                foreach (ChronicleEntry entry in entries) {
+                    if (entry.involvesEntity(player.getId())) {
+                        playerNations.UnionWith(entry.getNationIds());
+                    }
+                }
+                playerNationsFor = player.getId();
+                playerNationsAt = totalRecorded;
+            }
+            HashSet<NationId> nations = new HashSet<NationId>(playerNations);
+            if (player.getNationId() != null) {
+                nations.Add(player.getNationId());
+            }
+            return nations;
+        }
+
+        /**
+        * Whether the line is the player's: about them, or about a nation they
+        * have founded or joined, even one since lost. ChronicleEntry.concerns
+        * asks only after the nation they are in now, so once their nation
+        * fell its siege, raids and capture were no longer theirs: "your news"
+        * lost them and "Only my nation" listed one line of 24 (playtest 0.6.3
+        * s07).
+        */
+        public bool concernsPlayer(ChronicleEntry entry, Player player) {
+            if (entry == null || player == null) {
+                return false;
+            }
+            if (entry.concerns(player)) {
+                return true;
+            }
+            HashSet<NationId> nations = getPlayerNations(player);
+            foreach (NationId id in entry.getNationIds()) {
+                if (nations.Contains(id)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void onEvent(Event e) {
@@ -256,6 +336,21 @@ namespace beyondnations {
             nations.Add(nation.getId());
             string n = nation.getName();
             int settlements = nation.getNumberOfSettlements();
+            Nation conqueror = e.getConqueror();
+            if (conqueror != null) {
+                // Disbanded by capture: it holds no settlement now, but it held
+                // one until a moment ago (0.6.2 playtest: a conquered nation was
+                // told it "never raised so much as a hut").
+                nations.Add(conqueror.getId());
+                string c = conqueror.getName();
+                string place = e.getLastSettlement() == null
+                    ? "settlement"
+                    : SettlementTiers.getDisplayName(e.getLastSettlement().getTier()).ToLowerInvariant();
+                return pick(e, n + "|" + c,
+                    n + " is no more; its last " + place + " fell to " + c + ".",
+                    "With its last " + place + " taken by " + c + ", " + n + " passed into history.",
+                    "The banners of " + n + " came down when " + c + " took its last " + place + ".");
+            }
             if (settlements > 0) {
                 return pick(e, n,
                     n + " has fallen; its settlements lie empty.",
@@ -651,6 +746,7 @@ namespace beyondnations {
             raidsToldToday.Clear();
             raidsToldToday.UnionWith(SaveReader.getStringList(element, "raidsToldToday"));
             raidDay = SaveReader.getInt(element, "raidDay");
+            playerNationsAt = -1;
         }
     }
 }

@@ -1,0 +1,325 @@
+{"type":"screen","tick":0,"wallTimeMs":1792883383633,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792883397069,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792883404141,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792883410231,"how":"created","slot":"world-111-20261024-231010","seed":111}
+{"type":"screen","tick":0,"wallTimeMs":1792883410233,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":451,"wallTimeMs":1792883421573,"kind":"StallBuilt","text":"A new stall opened in the market of Southernfield, built by Wendy Johnson."}
+{"type":"status","tick":503,"wallTimeMs":1792883422866,"text":"Greenshire raided your village: 1 coins taken. Relations: Hostile (-78); gifts or peace end raids."}
+{"type":"chronicle","tick":503,"wallTimeMs":1792883422866,"kind":"StallBuilt","text":"Trade came to Greenshire: Dave Roberts built a stall."}
+{"type":"chronicle","tick":503,"wallTimeMs":1792883422866,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 1 coins."}
+{"type":"chronicle","tick":851,"wallTimeMs":1792883431211,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Southernfield."}
+{"type":"chronicle","tick":1151,"wallTimeMs":1792883438639,"kind":"StallBuilt","text":"A new stall opened in the market of Southernfield, built by Wendy Johnson. The market is now full."}
+{"type":"chronicle","tick":1251,"wallTimeMs":1792883441076,"kind":"StallBuilt","text":"Dave Roberts built a market stall in Greenshire."}
+{"type":"status","tick":1503,"wallTimeMs":1792883447531,"text":"Greenshire raided your village: 2 coins taken. Relations: Hostile (-86); gifts or peace end raids."}
+{"type":"chronicle","tick":1503,"wallTimeMs":1792883447531,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 2 coins."}
+{"type":"chronicle","tick":1503,"wallTimeMs":1792883447531,"kind":"Caravan","text":"Southernfield sent a caravan of 20 wood from the Camp of Southernfield to the Village of Upperwood."}
+{"type":"chronicle","tick":1551,"wallTimeMs":1792883448759,"kind":"NationJoin","text":"Frank Brown joined Upperwood."}
+{"type":"chronicle","tick":1603,"wallTimeMs":1792883450120,"kind":"NationCreation","text":"Isabella Wood founded the nation of Castlefield."}
+{"type":"status","tick":2003,"wallTimeMs":1792883460446,"text":"Greenshire is besieging your village (10/12)! Gift, ally or grow it to hold it."}
+{"type":"chronicle","tick":2203,"wallTimeMs":1792883466055,"kind":"SettlementFounded","text":"Castlefield put down roots: Isabella Wood founded its first settlement."}
+{"type":"status","tick":2503,"wallTimeMs":1792883474128,"text":"Greenshire raided your village: 2 coins taken. Relations: Hostile (-94); gifts or peace end raids. Greenshire has captured your village! Upperwood has fallen: it has no settlements left. You are without a nation. Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends."}
+{"type":"chronicle","tick":2503,"wallTimeMs":1792883474128,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 2 coins."}
+{"type":"chronicle","tick":2503,"wallTimeMs":1792883474128,"kind":"SettlementCapture","text":"After a siege, a village of Upperwood fell to Greenshire."}
+{"type":"chronicle","tick":2503,"wallTimeMs":1792883474128,"kind":"NationDisband","text":"With its last village taken by Greenshire, Upperwood passed into history."}
+{"type":"chronicle","tick":2903,"wallTimeMs":1792883484668,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Dave Roberts. The market is now full."}
+{"type":"chronicle","tick":3051,"wallTimeMs":1792883488847,"kind":"NationCreation","text":"The nation of Castleford was born, with Charlie Brown at its head."}
+{"type":"status","tick":3111,"wallTimeMs":1792883490497,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":3151,"wallTimeMs":1792883491615,"kind":"NationCreation","text":"Wendy White declared the nation of Redburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":3503,"wallTimeMs":1792883501089,"kind":"SettlementFounded","text":"Charlie Brown raised the first settlement of Castleford."}
+{"type":"chronicle","tick":3751,"wallTimeMs":1792883507941,"kind":"SettlementFounded","text":"Wendy White laid the first stones of Redburg."}
+{"type":"chronicle","tick":4003,"wallTimeMs":1792883514789,"kind":"NationCreation","text":"Samantha Thompson declared the nation of Westernville, though none had yet sworn to it."}
+{"type":"chronicle","tick":4151,"wallTimeMs":1792883518669,"kind":"SettlementFounded","text":"Samantha Thompson raised the first settlement of Westernville."}
+{"type":"chronicle","tick":4503,"wallTimeMs":1792883528145,"kind":"NationRelationChange","text":"Greenshire and Castlefield have become rivals over their border."}
+{"type":"chronicle","tick":4503,"wallTimeMs":1792883528145,"kind":"NationRelationChange","text":"Southernfield and Castlefield have become rivals over their border."}
+{"type":"chronicle","tick":4551,"wallTimeMs":1792883529462,"kind":"NationCreation","text":"Bella Johnson raised a banner and called it Oldport."}
+{"type":"chronicle","tick":4651,"wallTimeMs":1792883532046,"kind":"StallBuilt","text":"A new stall opened in the market of Westernville, built by Samantha Thompson."}
+{"type":"chronicle","tick":4751,"wallTimeMs":1792883534659,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Castlefield."}
+{"type":"chronicle","tick":5203,"wallTimeMs":1792883546432,"kind":"StallBuilt","text":"Charlie Brown built a market stall in Castleford."}
+{"type":"chronicle","tick":5203,"wallTimeMs":1792883546432,"kind":"SettlementFounded","text":"Bella Johnson raised the first settlement of Oldport."}
+{"type":"chronicle","tick":5703,"wallTimeMs":1792883559312,"kind":"StallBuilt","text":"Trade came to Westernville: Samantha Thompson built a stall."}
+{"type":"chronicle","tick":5751,"wallTimeMs":1792883560540,"kind":"NationRelationChange","text":"Southernfield and Castleford have become rivals over their border."}
+{"type":"save","tick":6003,"wallTimeMs":1792883567064,"count":1}
+{"type":"status","tick":6003,"wallTimeMs":1792883567064,"text":"Autosaved."}
+{"type":"chronicle","tick":6003,"wallTimeMs":1792883567064,"kind":"NationRelationChange","text":"Castlefield and Redburg have become rivals over their border."}
+{"type":"chronicle","tick":6003,"wallTimeMs":1792883567064,"kind":"NationRelationChange","text":"Castleford and Redburg have become rivals over their border."}
+{"type":"chronicle","tick":6051,"wallTimeMs":1792883568264,"kind":"NationCreation","text":"Zach Smith founded the nation of Castleport."}
+{"type":"chronicle","tick":6351,"wallTimeMs":1792883576384,"kind":"StallBuilt","text":"Wendy White built a market stall in Redburg."}
+{"type":"chronicle","tick":6351,"wallTimeMs":1792883576384,"kind":"SettlementFounded","text":"Zach Smith laid the first stones of Castleport."}
+{"type":"chronicle","tick":6503,"wallTimeMs":1792883580913,"kind":"StallBuilt","text":"A new stall opened in the market of Castlefield, built by Isabella Wood."}
+{"type":"chronicle","tick":6503,"wallTimeMs":1792883580913,"kind":"NationRelationChange","text":"Southernfield and Westernville have become rivals over their border."}
+{"type":"chronicle","tick":6603,"wallTimeMs":1792883583682,"kind":"NationCreation","text":"Wendy Evans declared the nation of Easternham, though none had yet sworn to it."}
+{"type":"chronicle","tick":7003,"wallTimeMs":1792883594782,"kind":"StallBuilt","text":"Zach Smith built a market stall in Castleport."}
+{"type":"chronicle","tick":7103,"wallTimeMs":1792883597479,"kind":"StallBuilt","text":"Trade came to Castleford: Charlie Brown built a stall."}
+{"type":"chronicle","tick":7203,"wallTimeMs":1792883600108,"kind":"StallBuilt","text":"Samantha Thompson built a market stall in Westernville."}
+{"type":"chronicle","tick":7303,"wallTimeMs":1792883602783,"kind":"NationCreation","text":"Xavier Davies raised a banner and called it Fortressville."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1792883606734,"kind":"SettlementFounded","text":"Easternham put down roots: Wendy Evans founded its first settlement."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1792883608204,"kind":"NationRelationChange","text":"Redburg and Oldport have become rivals over their border."}
+{"type":"chronicle","tick":7551,"wallTimeMs":1792883609571,"kind":"StallBuilt","text":"A new stall opened in the market of Redburg, built by Wendy White."}
+{"type":"chronicle","tick":7651,"wallTimeMs":1792883612334,"kind":"SettlementFounded","text":"Xavier Davies raised the first settlement of Fortressville."}
+{"type":"chronicle","tick":7951,"wallTimeMs":1792883620432,"kind":"StallBuilt","text":"A new stall opened in the market of Oldport, built by Bella Johnson."}
+{"type":"chronicle","tick":8203,"wallTimeMs":1792883627090,"kind":"StallBuilt","text":"A new stall opened in the market of Westernville, built by Samantha Thompson. The market is now full."}
+{"type":"chronicle","tick":8251,"wallTimeMs":1792883628319,"kind":"StallBuilt","text":"A new stall opened in the market of Castleford, built by Charlie Brown."}
+{"type":"chronicle","tick":8251,"wallTimeMs":1792883628319,"kind":"NationCreation","text":"Judy Smith raised a banner and called it Southernwood."}
+{"type":"chronicle","tick":8251,"wallTimeMs":1792883628319,"kind":"NationCreation","text":"Nancy Williams raised a banner and called it Southport."}
+{"type":"chronicle","tick":8303,"wallTimeMs":1792883629742,"kind":"SettlementFounded","text":"Southernwood put down roots: Judy Smith founded its first settlement."}
+{"type":"chronicle","tick":8403,"wallTimeMs":1792883632400,"kind":"StallBuilt","text":"Trade came to Redburg: Wendy White built a stall."}
+{"type":"chronicle","tick":8403,"wallTimeMs":1792883632400,"kind":"NationCreation","text":"The nation of Redton was born, with Wendy Jones at its head."}
+{"type":"chronicle","tick":8451,"wallTimeMs":1792883633678,"kind":"StallBuilt","text":"Trade came to Castlefield: Isabella Wood built a stall."}
+{"type":"chronicle","tick":8451,"wallTimeMs":1792883633678,"kind":"NationCreation","text":"The nation of Greenfield was born, with Charlie Williams at its head."}
+{"type":"chronicle","tick":8451,"wallTimeMs":1792883633678,"kind":"SettlementFounded","text":"Wendy Jones raised the first settlement of Redton."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792883635041,"kind":"NationCreation","text":"The nation of Upperland was born, with Lily Evans at its head."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792883641674,"kind":"NationRelationChange","text":"Redburg and Castleport have become rivals over their border."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1792883648511,"kind":"SettlementFounded","text":"Nancy Williams raised the first settlement of Southport."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1792883648511,"kind":"SettlementFounded","text":"Lily Evans laid the first stones of Upperland."}
+{"type":"chronicle","tick":9103,"wallTimeMs":1792883651270,"kind":"NationCreation","text":"The nation of Hamlettown was born, with Abigail Smith at its head."}
+{"type":"chronicle","tick":9103,"wallTimeMs":1792883651270,"kind":"StallBuilt","text":"A new stall opened in the market of Redton, built by Wendy Jones."}
+{"type":"chronicle","tick":9151,"wallTimeMs":1792883652637,"kind":"StallBuilt","text":"Judy Smith built a market stall in Southernwood."}
+{"type":"chronicle","tick":9203,"wallTimeMs":1792883654138,"kind":"StallBuilt","text":"A new stall opened in the market of Oldport, built by Bella Johnson."}
+{"type":"chronicle","tick":9351,"wallTimeMs":1792883658412,"kind":"StallBuilt","text":"Trade came to Redburg: Wendy White built a stall. The market is now full."}
+{"type":"chronicle","tick":9351,"wallTimeMs":1792883658412,"kind":"NationCreation","text":"The nation of Villageshire was born, with Xavier Wood at its head."}
+{"type":"chronicle","tick":9403,"wallTimeMs":1792883659895,"kind":"NationCreation","text":"The nation of Smallford was born, with Harriet Davies at its head."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792883662675,"kind":"SettlementFounded","text":"Harriet Davies laid the first stones of Smallford."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792883662675,"kind":"NationRelationChange","text":"Southernfield and Castlefield are now hostile."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792883662675,"kind":"NationRelationChange","text":"Relations between Castlefield and Southernfield are now rival."}
+{"type":"chronicle","tick":9551,"wallTimeMs":1792883663981,"kind":"StallBuilt","text":"Charlie Brown built a market stall in Castleford. The market is now full."}
+{"type":"chronicle","tick":9551,"wallTimeMs":1792883663981,"kind":"StallBuilt","text":"Zach Smith built a market stall in Castleport."}
+{"type":"chronicle","tick":9651,"wallTimeMs":1792883666701,"kind":"NationCreation","text":"Bella Taylor founded the nation of Greatshire."}
+{"type":"chronicle","tick":9751,"wallTimeMs":1792883669483,"kind":"NationRelationChange","text":"Oldport and Easternham have become rivals over their border."}
+{"type":"chronicle","tick":9751,"wallTimeMs":1792883669483,"kind":"NationRelationChange","text":"Castleport and Easternham have become rivals over their border."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792883670849,"kind":"NationCreation","text":"Jasmine Robinson founded the nation of Towntown."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792883670849,"kind":"SettlementFounded","text":"Hamlettown put down roots: Abigail Smith founded its first settlement."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792883670849,"kind":"NationCreation","text":"Samantha Taylor founded the nation of Townburg."}
+{"type":"chronicle","tick":9803,"wallTimeMs":1792883670849,"kind":"NationCreation","text":"Tilly Johnson founded the nation of Greenville."}
+{"type":"chronicle","tick":9851,"wallTimeMs":1792883672186,"kind":"NationCreation","text":"Yvonne White declared the nation of Westburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":9951,"wallTimeMs":1792883674951,"kind":"NationCreation","text":"Fiona Williams raised a banner and called it Farmtown."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationCreation","text":"The nation of Southshire was born, with Katie Johnson at its head."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationCreation","text":"Phoebe Thomas founded the nation of Northernport."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationCreation","text":"Charlotte Smith raised a banner and called it Fortressshire."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationRelationChange","text":"Castlefield and Fortressville have become rivals over their border."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationRelationChange","text":"Castleford and Westernville have become rivals over their border."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationRelationChange","text":"Castleford and Fortressville have become rivals over their border."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792883676334,"kind":"NationRelationChange","text":"Castleport and Fortressville have become rivals over their border."}
+{"type":"chronicle","tick":10051,"wallTimeMs":1792883677656,"kind":"NationCreation","text":"Ruth Wood raised a banner and called it Upperton."}
+{"type":"chronicle","tick":10103,"wallTimeMs":1792883679039,"kind":"SettlementFounded","text":"Tilly Johnson laid the first stones of Greenville."}
+{"type":"chronicle","tick":10103,"wallTimeMs":1792883679039,"kind":"NationCreation","text":"The nation of Northernham was born, with Oscar Roberts at its head."}
+{"type":"chronicle","tick":10103,"wallTimeMs":1792883679039,"kind":"NationCreation","text":"Bella Davies declared the nation of Smallland, though none had yet sworn to it."}
+{"type":"chronicle","tick":10151,"wallTimeMs":1792883680308,"kind":"SettlementFounded","text":"Charlie Williams raised the first settlement of Greenfield."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792883681641,"kind":"StallBuilt","text":"Trade came to Fortressville: Xavier Davies built a stall."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792883681641,"kind":"SettlementFounded","text":"Towntown put down roots: Jasmine Robinson founded its first settlement."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792883681641,"kind":"SettlementFounded","text":"Fiona Williams laid the first stones of Farmtown."}
+{"type":"chronicle","tick":10251,"wallTimeMs":1792883682962,"kind":"SettlementFounded","text":"Samantha Taylor raised the first settlement of Townburg."}
+{"type":"chronicle","tick":10303,"wallTimeMs":1792883684424,"kind":"NationCreation","text":"Oscar Watson founded the nation of Redham."}
+{"type":"chronicle","tick":10351,"wallTimeMs":1792883685681,"kind":"StallBuilt","text":"Judy Smith built a market stall in Southernwood."}
+{"type":"chronicle","tick":10403,"wallTimeMs":1792883687078,"kind":"StallBuilt","text":"Nancy Williams built a market stall in Southport."}
+{"type":"chronicle","tick":10403,"wallTimeMs":1792883687078,"kind":"SettlementFounded","text":"Katie Johnson raised the first settlement of Southshire."}
+{"type":"chronicle","tick":10451,"wallTimeMs":1792883688369,"kind":"StallBuilt","text":"Tilly Johnson built a market stall in Greenville."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792883689765,"kind":"SettlementFounded","text":"Phoebe Thomas laid the first stones of Northernport."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1792883691005,"kind":"StallBuilt","text":"Dave Roberts built a market stall in Greenshire."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1792883691005,"kind":"StallBuilt","text":"Trade came to Castleport: Zach Smith built a stall."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1792883691005,"kind":"SettlementFounded","text":"Northernham put down roots: Oscar Roberts founded its first settlement."}
+{"type":"chronicle","tick":10603,"wallTimeMs":1792883692383,"kind":"StallBuilt","text":"Trade came to Oldport: Bella Johnson built a stall."}
+{"type":"chronicle","tick":10603,"wallTimeMs":1792883692383,"kind":"NationCreation","text":"Bella Watson founded the nation of Farmfield."}
+{"type":"chronicle","tick":10651,"wallTimeMs":1792883693620,"kind":"NationCreation","text":"Olivia Taylor founded the nation of Farmton."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792883696259,"kind":"NationRelationChange","text":"Oldport and Southernwood have become rivals over their border."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792883696259,"kind":"NationRelationChange","text":"Easternham and Redton have become rivals over their border."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792883696259,"kind":"NationRelationChange","text":"Fortressville and Upperland have become rivals over their border."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792883696259,"kind":"NationRelationChange","text":"Southernwood and Redton have become rivals over their border."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792883696259,"kind":"NationRelationChange","text":"Southernfield and Westernville are now hostile."}
+{"type":"chronicle","tick":10803,"wallTimeMs":1792883697620,"kind":"SettlementFounded","text":"Oscar Watson raised the first settlement of Redham."}
+{"type":"chronicle","tick":10851,"wallTimeMs":1792883698891,"kind":"SettlementFounded","text":"Ruth Wood laid the first stones of Upperton."}
+{"type":"chronicle","tick":10951,"wallTimeMs":1792883701465,"kind":"SettlementFounded","text":"Bella Taylor raised the first settlement of Greatshire."}
+{"type":"chronicle","tick":10951,"wallTimeMs":1792883701465,"kind":"NationCreation","text":"The nation of Westernport was born, with Ursula Jones at its head."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792883703095,"kind":"NationRelationChange","text":"Southernfield and Redburg have formed an alliance."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792883703095,"kind":"NationRelationChange","text":"Redburg and Castlefield are now hostile."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792883703095,"kind":"NationRelationChange","text":"Redburg and Castleford are now hostile."}
+{"type":"chronicle","tick":11051,"wallTimeMs":1792883704461,"kind":"StallBuilt","text":"Judy Smith built a market stall in Southernwood."}
+{"type":"chronicle","tick":11103,"wallTimeMs":1792883705888,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Harriet Davies."}
+{"type":"chronicle","tick":11151,"wallTimeMs":1792883707213,"kind":"StallBuilt","text":"A new stall opened in the market of Castlefield, built by Isabella Wood. The market is now full."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792883710021,"kind":"StallBuilt","text":"Trade came to Northernport: Phoebe Thomas built a stall."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792883710021,"kind":"NationRelationChange","text":"Southernwood and Southport have become rivals over their border."}
+{"type":"chronicle","tick":11303,"wallTimeMs":1792883711383,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressville, built by Xavier Davies."}
+{"type":"chronicle","tick":11303,"wallTimeMs":1792883711383,"kind":"StallBuilt","text":"A new stall opened in the market of Southshire, built by Katie Johnson."}
+{"type":"chronicle","tick":11351,"wallTimeMs":1792883712693,"kind":"StallBuilt","text":"Zach Smith built a market stall in Castleport."}
+{"type":"chronicle","tick":11403,"wallTimeMs":1792883714144,"kind":"SettlementFounded","text":"Smallland put down roots: Bella Davies founded its first settlement."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"StallBuilt","text":"A new stall opened in the market of Hamlettown, built by Abigail Smith."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"StallBuilt","text":"Trade came to Townburg: Samantha Taylor built a stall."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"NationRelationChange","text":"Southernfield and Castlefield are now hostile over their border."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"NationRelationChange","text":"Relations between Westernville and Southernfield are now rival."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"NationRaid","text":"Southernfield raided Castlefield and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"NationRaid","text":"Redburg raided Castlefield and carried off 2 coins, 5 wood."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792883716566,"kind":"NationRaid","text":"Redburg raided Castleford and carried off 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":11651,"wallTimeMs":1792883720232,"kind":"NationCreation","text":"Katie Thomas raised a banner and called it Lowerford."}
+{"type":"chronicle","tick":11703,"wallTimeMs":1792883721432,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Harriet Davies."}
+{"type":"chronicle","tick":11703,"wallTimeMs":1792883721432,"kind":"SettlementFounded","text":"Yvonne White raised the first settlement of Westburg."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792883722572,"kind":"NationRelationChange","text":"Redburg and Smallford have become rivals over their border."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792883722572,"kind":"NationRelationChange","text":"Westernville and Farmtown have become rivals over their border."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792883722572,"kind":"NationRelationChange","text":"Southernwood and Smallford have become rivals over their border."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792883722572,"kind":"NationRelationChange","text":"Southport and Greenfield have become rivals over their border."}
+{"type":"chronicle","tick":11803,"wallTimeMs":1792883723760,"kind":"StallBuilt","text":"A new stall opened in the market of Greenfield, built by Charlie Williams."}
+{"type":"chronicle","tick":11803,"wallTimeMs":1792883723760,"kind":"StallBuilt","text":"Lily Evans built a market stall in Upperland."}
+{"type":"chronicle","tick":11851,"wallTimeMs":1792883724878,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Samantha Taylor."}
+{"type":"chronicle","tick":11851,"wallTimeMs":1792883724878,"kind":"SettlementFounded","text":"Charlotte Smith raised the first settlement of Fortressshire."}
+{"type":"chronicle","tick":11903,"wallTimeMs":1792883725996,"kind":"StallBuilt","text":"Trade came to Southernwood: Judy Smith built a stall."}
+{"type":"chronicle","tick":11903,"wallTimeMs":1792883725996,"kind":"StallBuilt","text":"Katie Johnson built a market stall in Southshire."}
+{"type":"save","tick":12003,"wallTimeMs":1792883728318,"count":2}
+{"type":"status","tick":12003,"wallTimeMs":1792883728318,"text":"Autosaved."}
+{"type":"chronicle","tick":12003,"wallTimeMs":1792883728318,"kind":"StallBuilt","text":"Trade came to Farmtown: Fiona Williams built a stall."}
+{"type":"chronicle","tick":12003,"wallTimeMs":1792883728318,"kind":"SettlementFounded","text":"Ursula Jones raised the first settlement of Westernport."}
+{"type":"chronicle","tick":12203,"wallTimeMs":1792883732920,"kind":"StallBuilt","text":"Trade came to Northernport: Phoebe Thomas built a stall."}
+{"type":"chronicle","tick":12203,"wallTimeMs":1792883732920,"kind":"StallBuilt","text":"Trade came to Redham: Oscar Watson built a stall."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792883733988,"kind":"SettlementFounded","text":"Katie Thomas laid the first stones of Lowerford."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792883733988,"kind":"StallBuilt","text":"Tilly Johnson built a market stall in Greenville."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792883733988,"kind":"NationRelationChange","text":"Easternham and Hamlettown have become rivals over their border."}
+{"type":"chronicle","tick":12351,"wallTimeMs":1792883736166,"kind":"StallBuilt","text":"Bella Johnson built a market stall in Oldport."}
+{"type":"chronicle","tick":12403,"wallTimeMs":1792883737296,"kind":"SettlementFounded","text":"Bella Watson raised the first settlement of Farmfield."}
+{"type":"chronicle","tick":12451,"wallTimeMs":1792883738356,"kind":"StallBuilt","text":"Harriet Davies built a market stall in Smallford."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"StallBuilt","text":"Trade came to Upperton: Ruth Wood built a stall."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"StallBuilt","text":"A new stall opened in the market of Northernham, built by Oscar Roberts."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Greenshire and Greenville have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Redburg and Greenville have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Southernwood and Townburg have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Southport and Redham have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Redton and Greenfield have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Redton and Towntown have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Upperland and Farmtown have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Hamlettown and Towntown have become rivals over their border."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Castleford and Fortressville are now hostile."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Redburg and Oldport are now hostile."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRelationChange","text":"Relations between Oldport and Redburg are now rival."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792883739577,"kind":"NationRaid","text":"Raiders from Castleford struck Fortressville, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":12551,"wallTimeMs":1792883740632,"kind":"StallBuilt","text":"A new stall opened in the market of Northernport, built by Phoebe Thomas."}
+{"type":"chronicle","tick":12603,"wallTimeMs":1792883741781,"kind":"SettlementFounded","text":"Villageshire put down roots: Xavier Wood founded its first settlement."}
+{"type":"chronicle","tick":12603,"wallTimeMs":1792883741781,"kind":"StallBuilt","text":"Trade came to Redham: Oscar Watson built a stall."}
+{"type":"chronicle","tick":12703,"wallTimeMs":1792883743991,"kind":"StallBuilt","text":"A new stall opened in the market of Greenshire, built by Dave Roberts. The market is now full."}
+{"type":"chronicle","tick":12703,"wallTimeMs":1792883743991,"kind":"StallBuilt","text":"Xavier Davies built a market stall in Fortressville."}
+{"type":"chronicle","tick":12703,"wallTimeMs":1792883743991,"kind":"StallBuilt","text":"Trade came to Fortressshire: Charlotte Smith built a stall."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792883745024,"kind":"StallBuilt","text":"Judy Smith built a market stall in Southernwood."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792883745024,"kind":"StallBuilt","text":"A new stall opened in the market of Greatshire, built by Bella Taylor."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792883745024,"kind":"NationRelationChange","text":"Fortressville and Southshire have become rivals over their border."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792883745024,"kind":"NationRelationChange","text":"Southernwood and Northernport have become rivals over their border."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1792883747124,"kind":"StallBuilt","text":"Trade came to Southshire: Katie Johnson built a stall."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1792883747124,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Samantha Taylor."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1792883747124,"kind":"StallBuilt","text":"Trade came to Upperton: Ruth Wood built a stall."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1792883747124,"kind":"SettlementFounded","text":"Farmton put down roots: Olivia Taylor founded its first settlement."}
+{"type":"chronicle","tick":12903,"wallTimeMs":1792883748179,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Lily Evans."}
+{"type":"chronicle","tick":12903,"wallTimeMs":1792883748179,"kind":"StallBuilt","text":"Trade came to Redham: Oscar Watson built a stall."}
+{"type":"chronicle","tick":12951,"wallTimeMs":1792883749192,"kind":"StallBuilt","text":"A new stall opened in the market of Villageshire, built by Xavier Wood."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792883750694,"kind":"NationRelationChange","text":"Greenshire and Northernham have become rivals over their border."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792883750694,"kind":"NationRelationChange","text":"Easternham and Oldport are now hostile."}
+{"type":"chronicle","tick":13051,"wallTimeMs":1792883752092,"kind":"StallBuilt","text":"Phoebe Thomas built a market stall in Northernport. The market is now full."}
+{"type":"chronicle","tick":13103,"wallTimeMs":1792883753569,"kind":"StallBuilt","text":"Trade came to Castleport: Zach Smith built a stall."}
+{"type":"chronicle","tick":13103,"wallTimeMs":1792883753569,"kind":"StallBuilt","text":"Tilly Johnson built a market stall in Greenville."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"StallBuilt","text":"Trade came to Hamlettown: Abigail Smith built a stall."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Upperland and Greatshire have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Smallford and Upperton have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Greatshire and Southshire have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Townburg and Redham have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Greenville and Upperton have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Northernport and Upperton have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792883757782,"kind":"NationRelationChange","text":"Upperton and Northernham have become rivals over their border."}
+{"type":"chronicle","tick":13303,"wallTimeMs":1792883759220,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Samantha Taylor."}
+{"type":"chronicle","tick":13303,"wallTimeMs":1792883759220,"kind":"StallBuilt","text":"Trade came to Northernham: Oscar Roberts built a stall."}
+{"type":"chronicle","tick":13351,"wallTimeMs":1792883760473,"kind":"StallBuilt","text":"Trade came to Smallford: Harriet Davies built a stall. The market is now full."}
+{"type":"chronicle","tick":13351,"wallTimeMs":1792883760473,"kind":"StallBuilt","text":"A new stall opened in the market of Westburg, built by Yvonne White."}
+{"type":"chronicle","tick":13451,"wallTimeMs":1792883762799,"kind":"StallBuilt","text":"Charlie Williams built a market stall in Greenfield."}
+{"type":"chronicle","tick":13451,"wallTimeMs":1792883762799,"kind":"StallBuilt","text":"Trade came to Farmfield: Bella Watson built a stall."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792883764030,"kind":"NationRaid","text":"Easternham raided Oldport and carried off 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":13551,"wallTimeMs":1792883765182,"kind":"StallBuilt","text":"Bella Johnson built a market stall in Oldport."}
+{"type":"chronicle","tick":13551,"wallTimeMs":1792883765182,"kind":"StallBuilt","text":"Trade came to Fortressville: Xavier Davies built a stall. The market is now full."}
+{"type":"chronicle","tick":13603,"wallTimeMs":1792883766441,"kind":"StallBuilt","text":"A new stall opened in the market of Redham, built by Oscar Watson."}
+{"type":"chronicle","tick":13651,"wallTimeMs":1792883767594,"kind":"StallBuilt","text":"Bella Taylor built a market stall in Greatshire."}
+{"type":"chronicle","tick":13703,"wallTimeMs":1792883768782,"kind":"StallBuilt","text":"Trade came to Southport: Nancy Williams built a stall."}
+{"type":"chronicle","tick":13703,"wallTimeMs":1792883768782,"kind":"StallBuilt","text":"A new stall opened in the market of Redton, built by Wendy Jones."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792883769886,"kind":"NationRelationChange","text":"Greenshire and Smallland have become rivals over their border."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792883769886,"kind":"NationRelationChange","text":"Southernfield and Smallland have become rivals over their border."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792883772181,"kind":"StallBuilt","text":"A new stall opened in the market of Southernwood, built by Judy Smith. The market is now full."}
+{"type":"chronicle","tick":13903,"wallTimeMs":1792883773417,"kind":"StallBuilt","text":"A new stall opened in the market of Southshire, built by Katie Johnson. The market is now full."}
+{"type":"chronicle","tick":13903,"wallTimeMs":1792883773417,"kind":"StallBuilt","text":"Ruth Wood built a market stall in Upperton."}
+{"type":"chronicle","tick":13903,"wallTimeMs":1792883773417,"kind":"StallBuilt","text":"Ursula Jones built a market stall in Westernport."}
+{"type":"chronicle","tick":13903,"wallTimeMs":1792883773417,"kind":"StallBuilt","text":"A new stall opened in the market of Greenville, built by Tilly Johnson. The market is now full."}
+{"type":"chronicle","tick":13951,"wallTimeMs":1792883774611,"kind":"StallBuilt","text":"Trade came to Farmfield: Bella Watson built a stall."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792883775936,"kind":"NationRelationChange","text":"Greatshire and Westburg have become rivals over their border."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792883775936,"kind":"NationRelationChange","text":"Westburg and Farmtown have become rivals over their border."}
+{"type":"chronicle","tick":14051,"wallTimeMs":1792883777065,"kind":"StallBuilt","text":"Trade came to Westburg: Yvonne White built a stall."}
+{"type":"chronicle","tick":14051,"wallTimeMs":1792883777065,"kind":"StallBuilt","text":"Trade came to Townburg: Samantha Taylor built a stall."}
+{"type":"chronicle","tick":14051,"wallTimeMs":1792883777065,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressshire, built by Charlotte Smith."}
+{"type":"chronicle","tick":14103,"wallTimeMs":1792883778364,"kind":"StallBuilt","text":"Oscar Watson built a market stall in Redham."}
+{"type":"chronicle","tick":14203,"wallTimeMs":1792883780895,"kind":"StallBuilt","text":"A new stall opened in the market of Smallland, built by Bella Davies."}
+{"type":"status","tick":14251,"wallTimeMs":1792883782066,"text":"Castlefield has fallen and been disbanded."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Greenshire and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Redburg and Oldport are now hostile over their border."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Redton and Westernport have become rivals over their border."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Greenshire and Redburg have formed an alliance."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Westernville and Farmtown are now hostile."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Easternham and Castleport are now hostile."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationRelationChange","text":"Southport and Greenfield are now hostile."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"SettlementCapture","text":"After a siege, a village of Castlefield fell to Southernfield."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792883782066,"kind":"NationDisband","text":"The banners of Castlefield came down when Southernfield took its last village."}
+{"type":"chronicle","tick":14303,"wallTimeMs":1792883783321,"kind":"StallBuilt","text":"A new stall opened in the market of Upperton, built by Ruth Wood."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRelationChange","text":"Fortressville and Upperland are now hostile over their border."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRelationChange","text":"Hamlettown and Lowerford have become rivals over their border."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRelationChange","text":"Castleford and Castleport swore an alliance."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRelationChange","text":"Castleport and Fortressville are now hostile."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRaid","text":"Raiders from Redburg struck Oldport, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRaid","text":"Raiders from Westernville struck Farmtown, taking 5 coins, 2 wood."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRaid","text":"Raiders from Castleport struck Easternham, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRaid","text":"Castleport raided Fortressville and carried off 3 coins, 5 wood."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792883788208,"kind":"NationRaid","text":"Raiders from Southport struck Greenfield, taking 5 coins, 1 wood."}
+{"type":"chronicle","tick":14551,"wallTimeMs":1792883789433,"kind":"StallBuilt","text":"Trade came to Westernport: Ursula Jones built a stall."}
+{"type":"chronicle","tick":14603,"wallTimeMs":1792883790661,"kind":"StallBuilt","text":"Wendy Jones built a market stall in Redton."}
+{"type":"chronicle","tick":14651,"wallTimeMs":1792883791837,"kind":"StallBuilt","text":"A new stall opened in the market of Northernham, built by Oscar Roberts."}
+{"type":"chronicle","tick":14651,"wallTimeMs":1792883791837,"kind":"StallBuilt","text":"Trade came to Farmfield: Bella Watson built a stall."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792883794211,"kind":"StallBuilt","text":"A new stall opened in the market of Farmtown, built by Fiona Williams."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792883794211,"kind":"StallBuilt","text":"Bella Taylor built a market stall in Greatshire."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792883794211,"kind":"StallBuilt","text":"Samantha Taylor built a market stall in Townburg. The market is now full."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792883794211,"kind":"StallBuilt","text":"Trade came to Lowerford: Katie Thomas built a stall."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792883794211,"kind":"NationRelationChange","text":"Greenshire and Farmfield have become rivals over their border."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792883794211,"kind":"NationRelationChange","text":"Redburg and Easternham swore an alliance."}
+{"type":"chronicle","tick":14803,"wallTimeMs":1792883795431,"kind":"StallBuilt","text":"Oscar Watson built a market stall in Redham. The market is now full."}
+{"type":"chronicle","tick":14851,"wallTimeMs":1792883796529,"kind":"StallBuilt","text":"Olivia Taylor built a market stall in Farmton."}
+{"type":"chronicle","tick":14951,"wallTimeMs":1792883798791,"kind":"StallBuilt","text":"A new stall opened in the market of Oldport, built by Bella Johnson. The market is now full."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792883800012,"kind":"NationRelationChange","text":"Villageshire and Greenville have become rivals over their border."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792883800012,"kind":"NationRelationChange","text":"Villageshire and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792883800012,"kind":"NationRelationChange","text":"Villageshire and Northernham have become rivals over their border."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792883800012,"kind":"NationRelationChange","text":"Castleford and Westernville are now hostile."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792883800012,"kind":"NationRelationChange","text":"Southport and Redham are now hostile."}
+{"type":"chronicle","tick":15051,"wallTimeMs":1792883801103,"kind":"StallBuilt","text":"A new stall opened in the market of Westburg, built by Yvonne White."}
+{"type":"chronicle","tick":15203,"wallTimeMs":1792883804546,"kind":"StallBuilt","text":"A new stall opened in the market of Smallland, built by Bella Davies."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792883805718,"kind":"StallBuilt","text":"Trade came to Upperton: Ruth Wood built a stall."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792883805718,"kind":"NationRelationChange","text":"Villageshire and Farmton have become rivals over their border."}
+{"type":"chronicle","tick":15351,"wallTimeMs":1792883808079,"kind":"StallBuilt","text":"A new stall opened in the market of Castleport, built by Zach Smith."}
+{"type":"chronicle","tick":15403,"wallTimeMs":1792883809309,"kind":"StallBuilt","text":"Trade came to Hamlettown: Abigail Smith built a stall."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792883811521,"kind":"NationRelationChange","text":"Relations between Redham and Southport are now rival."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792883811521,"kind":"NationRaid","text":"Castleford raided Westernville and carried off 5 coins, 2 wood."}
+{"type":"chronicle","tick":15752,"wallTimeMs":1792883816766,"kind":"NationRelationChange","text":"Oldport and Southernwood are now hostile."}
+{"type":"chronicle","tick":15752,"wallTimeMs":1792883816766,"kind":"NationRelationChange","text":"Oldport and Redton have formed an alliance."}
+{"type":"chronicle","tick":15752,"wallTimeMs":1792883816766,"kind":"NationRelationChange","text":"Easternham and Redton are now hostile."}
+{"type":"chronicle","tick":15752,"wallTimeMs":1792883816766,"kind":"NationRelationChange","text":"Redton and Southernwood are now hostile."}
+{"type":"chronicle","tick":16000,"wallTimeMs":1792883822103,"kind":"NationRelationChange","text":"Southport and Redham are now hostile over their border."}
+{"type":"chronicle","tick":16252,"wallTimeMs":1792883827632,"kind":"NationRelationChange","text":"Redburg and Southernwood have formed an alliance."}
+{"type":"chronicle","tick":16502,"wallTimeMs":1792883832927,"kind":"NationRelationChange","text":"Relations between Redton and Easternham are now rival."}
+{"type":"chronicle","tick":16502,"wallTimeMs":1792883832927,"kind":"NationRelationChange","text":"Relations between Redham and Southport are now rival."}
+{"type":"chronicle","tick":16502,"wallTimeMs":1792883832927,"kind":"NationRaid","text":"Southernwood raided Oldport and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":16502,"wallTimeMs":1792883832927,"kind":"NationRaid","text":"Raiders from Southernwood struck Redton, taking 5 coins."}
+{"type":"chronicle","tick":16753,"wallTimeMs":1792883838335,"kind":"NationRelationChange","text":"Southernwood and Smallford are now hostile."}
+{"type":"status","tick":17000,"wallTimeMs":1792883843605,"text":"Farmtown has fallen and been disbanded. Greenfield has fallen and been disbanded."}
+{"type":"chronicle","tick":17000,"wallTimeMs":1792883843605,"kind":"NationRelationChange","text":"Southport and Redham are now hostile over their border."}
+{"type":"chronicle","tick":17000,"wallTimeMs":1792883843605,"kind":"SettlementCapture","text":"Westernville captured a village from Farmtown."}
+{"type":"chronicle","tick":17000,"wallTimeMs":1792883843605,"kind":"NationDisband","text":"With its last village taken by Westernville, Farmtown passed into history."}
+{"type":"chronicle","tick":17000,"wallTimeMs":1792883843605,"kind":"SettlementCapture","text":"After a siege, a village of Greenfield fell to Southport."}
+{"type":"chronicle","tick":17000,"wallTimeMs":1792883843605,"kind":"NationDisband","text":"With its last village taken by Southport, Greenfield passed into history."}
+{"type":"screen","tick":17503,"wallTimeMs":1792883854081,"from":"WORLD","to":"END_OF_RUN"}
+{"type":"status","tick":17503,"wallTimeMs":1792883854081,"text":"Upperwood collapsed, and its story ends."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRelationChange","text":"Castleford and Oldport swore an alliance."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRelationChange","text":"Redburg and Greenville are now hostile."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRelationChange","text":"Easternham and Towntown have formed an alliance."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRelationChange","text":"Relations between Smallford and Redburg are now neutral."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRelationChange","text":"Towntown and Redton are now hostile."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRelationChange","text":"Towntown and Hamlettown are now hostile."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Raiders from Redburg struck Greenville, taking 3 coins, 1 wood, 5 stone."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Raiders from Oldport struck Southernwood, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Easternham raided Castleport and carried off 3 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Raiders from Southernwood struck Smallford, taking 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Southport raided Redham and carried off 5 coins."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Raiders from Towntown struck Redton, taking 1 coins."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792883854081,"kind":"NationRaid","text":"Raiders from Towntown struck Hamlettown, taking 5 coins, 3 wood."}

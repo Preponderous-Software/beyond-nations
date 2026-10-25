@@ -50,10 +50,85 @@ namespace beyondnationstests {
 
             addMember(simulation, nation, settlement, 70f, true);
             Assert.Null(ResidentHunger.describeWarning(entities, nation, false));
-            Assert.Equal(nation.getName() + ": 1 member hungry. Bring food home and Feed Residents.", ResidentHunger.describeWarning(entities, nation, true));
+            Assert.Equal(nation.getName() + ": 1 member hungry: in the " + settlement.getDisplayName() + ". Bring food home and Feed Residents.",
+                ResidentHunger.describeWarning(entities, nation, true));
 
             addMember(simulation, nation, settlement, 20f, false);
-            Assert.Equal(nation.getName() + ": 2 members hungry, 1 starving. Bring food home and Feed Residents.", ResidentHunger.describeWarning(entities, nation, false));
+            Assert.Equal(nation.getName() + ": 2 members hungry, 1 starving: 1 in the " + settlement.getDisplayName() + ", 1 outside the walls. Bring food home and Feed Residents.",
+                ResidentHunger.describeWarning(entities, nation, false));
+        }
+
+        /**
+        * Playtest 0.6.2 s02 (finding 8): the banner said 6 hungry, the button
+        * 5, because one counted every member and the other only those
+        * present, and nothing said so. Standing in the settlement, the
+        * banner's "here" is the button's count.
+        */
+        [Fact]
+        public void testWarning_InTheSettlement_SplitsThoseHereFromThoseAway_AndHereIsTheButtonsCount() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            EntityRepository entities = simulation.getEntityRepository();
+            Player player = simulation.getPlayer();
+            addMember(simulation, nation, settlement, 70f, true);
+            addMember(simulation, nation, settlement, 20f, true);
+            addMember(simulation, nation, settlement, 70f, false);
+            FeedResidentsCommand command = new FeedResidentsCommand(entities);
+
+            Assert.Equal(2, command.countHungryHere(player));
+            Assert.Equal(nation.getName() + ": 3 members hungry, 1 starving: 2 here, 1 outside the walls. Feed Residents feeds the 2 here.",
+                ResidentHunger.describeWarning(entities, nation, true, command.getOwnSettlement(player)));
+        }
+
+        /** s02: "Feed Residents (1 hungry)" with no banner, on the first night of spring. */
+        [Fact]
+        public void testWarning_ShowsWheneverTheButtonHasSomeoneToFeed_EvenOutsideWinter() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            EntityRepository entities = simulation.getEntityRepository();
+            Player player = simulation.getPlayer();
+            addMember(simulation, nation, settlement, 70f, true);
+            FeedResidentsCommand command = new FeedResidentsCommand(entities);
+
+            Assert.Equal(1, command.countHungryHere(player));
+            Assert.Equal(nation.getName() + ": 1 member hungry: here. Feed Residents feeds the 1 here.",
+                ResidentHunger.describeWarning(entities, nation, false, command.getOwnSettlement(player)));
+            // away from home, a merely hungry member outside winter is still no alarm
+            Assert.Null(ResidentHunger.describeWarning(entities, nation, false));
+        }
+
+        /** s02: after feeding everyone present the banner said "1 member hungry" with no hint where. */
+        [Fact]
+        public void testWarning_AfterFeedingEveryoneHere_SaysWhereTheRestAre() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            EntityRepository entities = simulation.getEntityRepository();
+            Player player = simulation.getPlayer();
+            addMember(simulation, nation, settlement, 70f, true);
+            addMember(simulation, nation, settlement, 70f, false);
+            player.getInventory().addItem(ItemType.APPLE, 5);
+            FeedResidentsCommand command = new FeedResidentsCommand(entities);
+            Assert.Equal(1, command.execute(player));
+
+            Assert.Equal(0, command.countHungryHere(player));
+            Assert.Equal(nation.getName() + ": 1 member hungry: outside the walls. Only those here can be fed: they must come home.",
+                ResidentHunger.describeWarning(entities, nation, true, command.getOwnSettlement(player)));
+        }
+
+        /** s02: the button said 5 and the click "fed 8". With food enough, the click feeds exactly the button's count. */
+        [Fact]
+        public void testFeed_FeedsExactlyTheButtonsCount() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            Player player = simulation.getPlayer();
+            for (int i = 0; i < 5; i++) {
+                addMember(simulation, nation, settlement, i % 2 == 0 ? 70f : 20f, true);
+            }
+            addMember(simulation, nation, settlement, 20f, false);
+            addMember(simulation, nation, settlement, 95f, true);
+            player.getInventory().addItem(ItemType.APPLE, 20);
+            FeedResidentsCommand command = new FeedResidentsCommand(simulation.getEntityRepository());
+
+            int onTheButton = command.countHungryHere(player);
+            Assert.Equal(5, onTheButton);
+            Assert.Equal(onTheButton, command.execute(player));
+            Assert.StartsWith("You fed 5 residents", player.getStatus().getStatus());
         }
 
         [Fact]
@@ -74,7 +149,8 @@ namespace beyondnationstests {
             Assert.Equal(1, command.execute(player));
             Assert.Equal(1, starving.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(0, hungry.getInventory().getNumItems(ItemType.APPLE));
-            Assert.EndsWith("1 still hungry: bring more food.", player.getStatus().getStatus());
+            // the starving one is still short of the threshold with one apple, as the hungry one is
+            Assert.EndsWith("2 still hungry: bring more food.", player.getStatus().getStatus());
 
             player.getInventory().addItem(ItemType.APPLE, 5);
             Assert.Equal(1, command.execute(player));
@@ -83,6 +159,40 @@ namespace beyondnationstests {
             Assert.Equal(0, fed.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(4, player.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(0, command.countHungryHere(player));
+        }
+
+        /**
+        * Playtest 0.6.3 s02: one item each left most residents hungry ("You
+        * fed 7", and four were hungry again on the next frame). A press gives
+        * each enough to reach the hungry threshold, round by round.
+        */
+        [Fact]
+        public void testFeed_GivesEachEnoughToStopBeingHungry_RoundByRound() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            Player player = simulation.getPlayer();
+            Pawn starving = addMember(simulation, nation, settlement, 20f, true);
+            Pawn hungry = addMember(simulation, nation, settlement, 70f, true);
+            int apple = FoodItems.getEnergyRestored(ItemType.APPLE);
+            player.getInventory().addItem(ItemType.APPLE, 20);
+            FeedResidentsCommand command = new FeedResidentsCommand(simulation.getEntityRepository());
+
+            Assert.Equal(2, command.execute(player));
+            int forStarving = (int) System.Math.Ceiling((Pawn.HUNGRY_ENERGY_THRESHOLD - 20f) / apple);
+            int forHungry = (int) System.Math.Ceiling((Pawn.HUNGRY_ENERGY_THRESHOLD - 70f) / apple);
+            Assert.Equal(forStarving, starving.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(forHungry, hungry.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(20 - forStarving - forHungry, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal("You fed 2 residents in the " + settlement.getDisplayName() + ".", player.getStatus().getStatus());
+
+            // with too little for both, it goes round before anyone gets seconds
+            Pawn a = addMember(simulation, nation, settlement, 20f, true);
+            Pawn b = addMember(simulation, nation, settlement, 20f, true);
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.APPLE, 3);
+            Assert.Equal(2, command.execute(player));
+            Assert.Equal(3, a.getInventory().getNumItems(ItemType.APPLE) + b.getInventory().getNumItems(ItemType.APPLE));
+            Assert.True(a.getInventory().getNumItems(ItemType.APPLE) >= 1 && b.getInventory().getNumItems(ItemType.APPLE) >= 1);
+            Assert.EndsWith("2 still hungry: bring more food.", player.getStatus().getStatus());
         }
 
         [Fact]

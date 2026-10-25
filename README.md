@@ -92,6 +92,7 @@ The following controls are available in the game:
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
 | `Y` | Cycle the chronicle: recent entries (top of the screen) → full scrollable history → hidden |
+| `U` | Switch the chronicle between your news (you, your nation, its neighbours, and nations founded or fallen) and every nation; the full chronicle has the same switch |
 | Era box (top left; click or tap) | Open / close what the next era needs, what it unlocks and how close each victory is |
 | `Right Mouse Button` (hold) + move the mouse | Steer: left/right turns you (W then walks that way), up/down tilts the camera |
 | `Page Up` | Increase render distance |

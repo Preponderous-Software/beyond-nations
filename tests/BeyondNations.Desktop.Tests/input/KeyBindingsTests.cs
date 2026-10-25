@@ -44,6 +44,7 @@ namespace beyondnationstests.desktop.input {
             Assert.Equal(Key.Insert, KeyBindings.ToggleAutoWalk);
             Assert.Equal(Key.V, KeyBindings.ToggleCameraView);
             Assert.Equal(Key.Y, KeyBindings.ToggleChronicle);
+            Assert.Equal(Key.U, KeyBindings.ToggleChronicleScope);
             Assert.Equal(Key.PageUp, KeyBindings.IncreaseRenderDistance);
             Assert.Equal(Key.PageDown, KeyBindings.DecreaseRenderDistance);
             Assert.Equal(Key.Escape, KeyBindings.Pause);
@@ -73,7 +74,7 @@ namespace beyondnationstests.desktop.input {
                 KeyBindings.CreateNewNation, KeyBindings.JoinNation, KeyBindings.LeaveNation,
                 KeyBindings.FoundSettlement, KeyBindings.PlantSapling, KeyBindings.TeleportToHomeSettlement,
                 KeyBindings.BuildStall, KeyBindings.BuildBuilding, KeyBindings.ToggleInventory, KeyBindings.ToggleCrafting, KeyBindings.ToggleAutoWalk,
-                KeyBindings.ToggleCameraView, KeyBindings.ToggleChronicle,
+                KeyBindings.ToggleCameraView, KeyBindings.ToggleChronicle, KeyBindings.ToggleChronicleScope,
                 KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance, KeyBindings.Pause, KeyBindings.ShowControls,
                 KeyBindings.ToggleDebugMode, KeyBindings.GenerateNearbyLand, KeyBindings.SpawnNewPawn,
                 KeyBindings.SpawnMoney, KeyBindings.SpawnWood, KeyBindings.TeleportAllToPlayer,

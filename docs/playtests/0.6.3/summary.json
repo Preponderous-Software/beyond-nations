@@ -1,0 +1,1639 @@
+{
+  "runDir": "/tmp/playtest-beyond-nations/20261024-1610",
+  "generated": "2026-10-24 17:56",
+  "sessions": [
+    {
+      "session": "s01",
+      "profile": "beyond-nations",
+      "goal": "Re-check siege and confirmation messages (#409): lift the starting siege with tribute or an alliance and confirm the status line says the siege was lifted; let a two-click confirmation (War on the Nations screen, or L) lapse past 8 seconds and confirm the 'click again' prompt is taken back with no '(x2)'; if a nation is conquered out of existence, read its epitaph in the chronicle (Y) and say whether it fits.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 828,
+      "seed": 111,
+      "build": {
+        "version": "0.6.2",
+        "commit": "edb1a62"
+      },
+      "verdict": "The #409 fixes hold up. Tribute to Greenshire produced 'Greenshire has lifted its siege of your village.' (tick 503). War and L confirmations both lapse after 8 s wall-clock with 'Not confirmed in time, so nothing was done.' and no (x2). The conquest epitaph 'The banners of Upperwood came down when Greenshire took its last village.' fits. The biggest remaining gap is the moment your own nation dies: the status line says 'Autosaved.' while a stranger's fall gets announced, and 'Your news' then forgets your nation's history.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 4,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 122.06,
+          "Eat something": 123.02,
+          "Create or join a nation": 124.06,
+          "Found a settlement": 125.02
+        },
+        "siegeLiftedStatusTick": 503,
+        "tributeTick": 267,
+        "warConfirmLapseWallSec": 8.0,
+        "leaveConfirmLapseWallSec": 8.0,
+        "leaveConfirmLapseGameTicks": 256,
+        "playerNationConqueredTick": 18003
+      },
+      "derived": {
+        "objectivesCompleted": 4,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 122.1,
+            "wallSeconds": 300.0,
+            "tick": 6103
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 123.0,
+            "wallSeconds": 301.5,
+            "tick": 6151
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 124.1,
+            "wallSeconds": 303.0,
+            "tick": 6203
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 125.0,
+            "wallSeconds": 304.4,
+            "tick": 6251
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 3,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 13,
+          "world": 1,
+          "status": 64,
+          "chronicle": 296,
+          "save": 3,
+          "objective_completed": 4
+        },
+        "lastTick": 21059
+      },
+      "ticksPerSecond": 50,
+      "notes": 10,
+      "crash": null
+    },
+    {
+      "session": "s02",
+      "profile": "beyond-nations",
+      "goal": "Survive the first winter and check the hunger readouts agree (#410): found or join a nation early; each time you feed, compare the HUD hunger banner (here vs elsewhere), the 'Feed Residents (N hungry)' button and the 'You fed N' result, and say whether they make sense together. Count hunger deaths from events.jsonl and note which were leaders.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 2097,
+      "seed": 103,
+      "build": {
+        "version": "0.6.2",
+        "commit": "edb1a62"
+      },
+      "verdict": "The hunger readouts mostly agree: the banner ('N hungry: X here, Y outside the walls' / 'all in the Town of Yellowton' when away) and the Feed Residents (N hungry) button matched every time, and 'You fed N' always equalled the button count. The problem is what 'fed' means: several times the banner showed new hungry people the very next frame, once adding up to 11 feedings for 8 people present, so 'You fed 7' does not mean they are fed. Winter itself was easy for the player (trees give apples despite 'no harvests'; 0 deaths), while AI nations lost 12 to hunger, including 4 leaders.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 9,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 31.0,
+          "Eat something": 32.0,
+          "Create or join a nation": 33.0,
+          "Found a settlement": 139.0,
+          "Enter your settlement": 142.0,
+          "Build a market stall": 144.0,
+          "Reach the Village era": 900.0,
+          "Sell resources at market": 970.0,
+          "Found a second settlement": 1023.0
+        },
+        "secondsToObjectiveNote": "game seconds since world start (world tick 180000)",
+        "springReachedTick": 231002,
+        "feedClicks": 20,
+        "feedsWhereBannerButtonResultAgreed": 20,
+        "feedsFollowedImmediatelyByMoreHungryThanPresentAllows": 2,
+        "hungerDeathsTotal": 12,
+        "hungerDeathsLeaders": 4,
+        "hungerDeathsOwnNation": 0,
+        "applesSpentFeeding": 69
+      },
+      "derived": {
+        "objectivesCompleted": 9,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 3631.0,
+            "wallSeconds": 43.8,
+            "tick": 181552
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 3632.0,
+            "wallSeconds": 45.2,
+            "tick": 181600
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 3633.0,
+            "wallSeconds": 46.6,
+            "tick": 181652
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 3739.0,
+            "wallSeconds": 204.3,
+            "tick": 186952
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 3742.0,
+            "wallSeconds": 209.5,
+            "tick": 187100
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 3744.0,
+            "wallSeconds": 213.2,
+            "tick": 187200
+          },
+          {
+            "number": 7,
+            "title": "Reach the Village era",
+            "seconds": 4500.0,
+            "wallSeconds": 1705.7,
+            "tick": 225002
+          },
+          {
+            "number": 8,
+            "title": "Sell resources at market",
+            "seconds": 4570.0,
+            "wallSeconds": 1805.1,
+            "tick": 228502
+          },
+          {
+            "number": 9,
+            "title": "Found a second settlement",
+            "seconds": 4623.0,
+            "wallSeconds": 1889.3,
+            "tick": 231150
+          }
+        ],
+        "progressReached": "Village",
+        "deaths": 0,
+        "saves": 9,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 209,
+          "chronicle": 372,
+          "objective_completed": 9,
+          "save": 9,
+          "pawn_death": 12,
+          "world_event_offered": 2,
+          "world_event_resolved": 2,
+          "era_changed": 1
+        },
+        "lastTick": 235750
+      },
+      "ticksPerSecond": 50,
+      "notes": 11,
+      "crash": null
+    },
+    {
+      "session": "s03",
+      "profile": "beyond-nations",
+      "goal": "Try to make the command bar move under your cursor (#410): inside and outside your town, watch the buttons as pawns walk in and out of reach, as Feed Residents becomes enabled or disabled, and after crafting or buying a tool; click quickly twice on buttons and report any time a click lands on a different command than intended, with screenshots. Also check the Talk button shows the pawn's standing but not its traits.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 737,
+      "seed": 109,
+      "build": {
+        "version": "0.6.2",
+        "commit": "edb1a62"
+      },
+      "verdict": "The #410 command bar is much steadier than before. Widths no longer change with pawn names, counts or tiers, the Drastic row stays where it is, Craft Axe goes last so a double-click on it does nothing, and Talk shows only the standing ('Talk to X (Stranger)'), with the traits in the tooltip. But the bar still moves under the cursor in three ways: the Craft/Buy group comes after the pawn rows, rows stack upward so a disappearing lower row (caravan, pawns) moves everything above it, and Enter/Exit Settlement are not in the same slot. All of these produced real misclicks, the worst being an unconfirmed 299-coin pickaxe purchase. Feed Residents stayed in a fixed, disabled slot the whole time, but no resident got hungry in about 5 game minutes, so I never saw it switch to enabled.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 71.0,
+          "Eat something": 72.1,
+          "Create or join a nation": 73.0,
+          "Found a settlement": 74.1,
+          "Enter your settlement": 106.1,
+          "Build a market stall": 107.0
+        },
+        "misdirectedClicks": 4,
+        "coinsLostToMisclicks": 299,
+        "feedResidentsEverEnabled": 0
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 71.0,
+            "wallSeconds": 142.5,
+            "tick": 3551
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 72.1,
+            "wallSeconds": 144.2,
+            "tick": 3603
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 73.0,
+            "wallSeconds": 145.8,
+            "tick": 3651
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 74.1,
+            "wallSeconds": 147.5,
+            "tick": 3703
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 106.1,
+            "wallSeconds": 211.4,
+            "tick": 5303
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 107.0,
+            "wallSeconds": 213.5,
+            "tick": 5351
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "chronicle": 227,
+          "status": 43,
+          "objective_completed": 6,
+          "save": 2
+        },
+        "lastTick": 15751
+      },
+      "ticksPerSecond": 50,
+      "notes": 9,
+      "crash": null
+    },
+    {
+      "session": "s04",
+      "profile": "beyond-nations",
+      "goal": "As a new player, use the chronicle (#411): play the first 15 minutes, then open the full chronicle (Y) and the strip; check that by default it shows your news (your nation, neighbours, foundings) and that the switch (buttons or U) shows all nations. Say whether your own news is easy to find, and whether anything important is hidden by the default.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 841,
+      "seed": 1,
+      "build": {
+        "version": "0.6.2",
+        "commit": "edb1a62"
+      },
+      "verdict": "The switch works: the Your news and All nations buttons and U toggle, the toast confirms each change, own entries are highlighted yellow with '*', and foundings show by default. But 'Your news' is too broad to be useful (about 73% of everything, because about 20 nations count as neighbours). The shared 200-entry cap deletes the player's own founding story within about 7 game minutes. Building a Village never appears in the chronicle at all. Give the player's nation priority in both the filter and the retention, and chronicle player milestones.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 47.1,
+          "Eat something": 48.0,
+          "Create or join a nation": 64.0,
+          "Found a settlement": 120.0,
+          "Enter your settlement": 125.1,
+          "Build a market stall": 131.1
+        },
+        "chronicleEntriesTotalAtEnd": 376,
+        "chronicleKeptCap": 200,
+        "yourNewsListedOfTotal_tick12400": "100/137",
+        "onlyMyNationListed_tick12400": 16,
+        "onlyMyNationListed_tick21000": 5,
+        "yourNewsListed_tick21000": 111
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 47.1,
+            "wallSeconds": 71.7,
+            "tick": 2353
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 48.0,
+            "wallSeconds": 73.3,
+            "tick": 2401
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 64.0,
+            "wallSeconds": 100.9,
+            "tick": 3201
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 120.0,
+            "wallSeconds": 199.8,
+            "tick": 6001
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 125.1,
+            "wallSeconds": 210.1,
+            "tick": 6253
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 131.1,
+            "wallSeconds": 222.2,
+            "tick": 6553
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 3,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 112,
+          "chronicle": 376,
+          "objective_completed": 6,
+          "save": 3
+        },
+        "lastTick": 21277
+      },
+      "ticksPerSecond": 50,
+      "notes": 8,
+      "crash": null
+    },
+    {
+      "session": "s05",
+      "profile": "beyond-nations",
+      "goal": "Play toward the Village era as fast as you can on a fresh world and record the game time of each objective; note any regression, confusion, crash or stuck state along the way.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 2030,
+      "seed": 2026,
+      "build": {
+        "version": "0.6.2",
+        "commit": "edb1a62"
+      },
+      "verdict": "The opening is quick and well signposted: settlement founded at 146 s, and the era panel says exactly what the Village needs. The middle is where it drags. Members 10/10 means poaching AI pawns through an opaque gift grind that wastes gifts on leaders and 'Loyal by nature' pawns. After that the Day 3 timer adds ~3.5 game minutes of waiting with nothing to do. AI nations racing to claim land, and hints in compass words with no compass, made founding the first settlement fiddly.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 8,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 20.02,
+          "Eat something": 21.06,
+          "Create or join a nation": 27.06,
+          "Found a settlement": 146.02,
+          "Enter your settlement": 151.06,
+          "Build a market stall": 152.02,
+          "Reach the Village era": 1020.06,
+          "Sell resources at market": 1021.02
+        },
+        "villageEraTick": 51003,
+        "foundingAttempts": 4,
+        "membersRecruitedByGifting": 4,
+        "allNonDayRequirementsMetTick": 40300,
+        "averageTps": 27
+      },
+      "derived": {
+        "objectivesCompleted": 8,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 20.0,
+            "wallSeconds": 28.2,
+            "tick": 1001
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 21.1,
+            "wallSeconds": 29.7,
+            "tick": 1053
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 27.1,
+            "wallSeconds": 38.1,
+            "tick": 1353
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 146.0,
+            "wallSeconds": 223.1,
+            "tick": 7301
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 151.1,
+            "wallSeconds": 234.2,
+            "tick": 7553
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 152.0,
+            "wallSeconds": 236.4,
+            "tick": 7601
+          },
+          {
+            "number": 7,
+            "title": "Reach the Village era",
+            "seconds": 1020.1,
+            "wallSeconds": 1889.3,
+            "tick": 51003
+          },
+          {
+            "number": 8,
+            "title": "Sell resources at market",
+            "seconds": 1021.0,
+            "wallSeconds": 1890.9,
+            "tick": 51051
+          }
+        ],
+        "progressReached": "Village",
+        "deaths": 0,
+        "saves": 8,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 6,
+          "world": 1,
+          "status": 334,
+          "objective_completed": 8,
+          "chronicle": 772,
+          "save": 8,
+          "world_event_offered": 1,
+          "world_event_resolved": 1,
+          "era_changed": 1
+        },
+        "lastTick": 51643
+      },
+      "ticksPerSecond": 50,
+      "notes": 9,
+      "crash": null
+    },
+    {
+      "session": "s06",
+      "profile": "beyond-nations",
+      "goal": "Re-check that command bar buttons no longer take a click meant for something else (#412): inside and outside your town, hover a button and click as pawns walk in or out of reach, double-click Enter Settlement, Exit Settlement and Craft Axe, and watch for buttons that briefly grey out after appearing. Report any click that landed on a different command, and whether the half-second wait ever got in the way.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 428,
+      "seed": 109,
+      "build": {
+        "version": "0.6.2",
+        "commit": "7f89db5"
+      },
+      "verdict": "#412 holds for real double-clicks. Every quick double-click on Enter Settlement, Exit Settlement and Craft Axe (where Craft Pickaxe slides under the cursor) was swallowed, and 65 clicks on pawn buttons while pawns came and went never hit another command. The wait never got in the way. But a slower second click (about 0.8 s or more, likely at this frame rate) still hits whatever replaces the button: twice it emptied the treasury through the unconfirmed Withdraw Funds, and once it silently planted a sapling. Consider not putting a different command in the slot a button just left, or giving Withdraw Funds a confirm.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 139.0,
+          "Eat something": 140.04,
+          "Create or join a nation": 141.0,
+          "Found a settlement": 142.04,
+          "Enter your settlement": 180.04,
+          "Build a market stall": 181.0
+        },
+        "fastDoubleClicksSwallowed": 7,
+        "slowSecondClicksMisfired": 3,
+        "pawnHoverClicksMisfired": 0,
+        "pawnHoverClicksTotal": 65,
+        "misfireThresholdMsApprox": 800
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 139.0,
+            "wallSeconds": 231.0,
+            "tick": 6950
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 140.0,
+            "wallSeconds": 232.5,
+            "tick": 7002
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 141.0,
+            "wallSeconds": 233.9,
+            "tick": 7050
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 142.0,
+            "wallSeconds": 235.3,
+            "tick": 7102
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 180.0,
+            "wallSeconds": 291.0,
+            "tick": 9002
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 181.0,
+            "wallSeconds": 292.7,
+            "tick": 9050
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "chronicle": 221,
+          "status": 111,
+          "save": 2,
+          "objective_completed": 6
+        },
+        "lastTick": 12002
+      },
+      "ticksPerSecond": 50,
+      "notes": 4,
+      "crash": null
+    },
+    {
+      "session": "s07",
+      "profile": "beyond-nations",
+      "goal": "Re-check what the player is told (#413): let Greenshire take your village (do nothing for a minute) and record exactly what the status line says when your nation falls; then open the chronicle (Y) and check your own nation's history (founding, tribute, siege, capture) is still listed.",
+      "outcome": "achieved",
+      "fun": 2,
+      "durationSec": 510,
+      "seed": 111,
+      "build": {
+        "version": "0.6.2",
+        "commit": "7f89db5"
+      },
+      "verdict": "The fall itself is clearly announced, but the status line is a five-line run-on that leads with a stale raid notice and then says both 'you are without a nation' and 'your nation is collapsing'. The #413 chronicle fix does not hold: once your nation falls, 'Your news' and 'Only my nation' filter out its raids, siege capture and join history (Only my nation keeps just the founding). The Defeat screen history is better but still never records that Greenshire captured the village.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 0,
+        "deaths": 0,
+        "secondsToObjective": {},
+        "captureTick": 2503,
+        "captureGameSeconds": 50.1,
+        "endOfRunTick": 17503,
+        "yourNewsEntriesAfterFall": 7,
+        "onlyMyNationEntriesAfterFall": 1
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 5,
+          "world": 1,
+          "chronicle": 307,
+          "status": 10,
+          "save": 2
+        },
+        "lastTick": 17503
+      },
+      "ticksPerSecond": 50,
+      "notes": 4,
+      "crash": null
+    },
+    {
+      "session": "s08",
+      "profile": "beyond-nations",
+      "goal": null,
+      "outcome": "no report",
+      "fun": null,
+      "durationSec": null,
+      "seed": "103",
+      "build": {
+        "version": "0.6.2",
+        "commit": "7f89db5"
+      },
+      "verdict": null,
+      "reportValid": false,
+      "reported": {},
+      "derived": {
+        "objectivesCompleted": 7,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 3629.0,
+            "wallSeconds": 33.3,
+            "tick": 181451
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 3630.1,
+            "wallSeconds": 34.4,
+            "tick": 181503
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 3631.0,
+            "wallSeconds": 35.5,
+            "tick": 181551
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 3691.0,
+            "wallSeconds": 108.8,
+            "tick": 184551
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 3695.0,
+            "wallSeconds": 114.5,
+            "tick": 184751
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 3696.1,
+            "wallSeconds": 116.2,
+            "tick": 184803
+          },
+          {
+            "number": 7,
+            "title": "Reach the Village era",
+            "seconds": 3772.0,
+            "wallSeconds": 223.8,
+            "tick": 188602
+          }
+        ],
+        "progressReached": "Village",
+        "deaths": 0,
+        "saves": 3,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 89,
+          "chronicle": 130,
+          "objective_completed": 7,
+          "save": 3,
+          "era_changed": 1,
+          "world_event_offered": 1
+        },
+        "lastTick": 201551
+      },
+      "ticksPerSecond": 50,
+      "notes": 3,
+      "crash": null
+    }
+  ],
+  "severityCounts": {
+    "blocker": 0,
+    "major": 7,
+    "minor": 32,
+    "polish": 11
+  },
+  "findingReports": 50,
+  "findings": [
+    {
+      "title": "Double-click on Enter Settlement withdraws settlement funds (Withdraw Funds takes its slot inside)",
+      "severity": "major",
+      "categories": [
+        "bug",
+        "ux"
+      ],
+      "sessions": [
+        "s03",
+        "s06"
+      ],
+      "reports": 2,
+      "detail": "Outside, Enter Settlement is the first button on the bottom row at (10-137, 476). Inside my own town, the Nation group comes first, so Withdraw Funds is in that slot and Exit Settlement is third. A quick double-click on Enter Settlement entered the town and then ran 'Withdrew 9 coins from settlement' (coins 339 -> 348). I expected Exit Settlement in Enter's slot (they are the same toggle), or the second click to do nothing.",
+      "repro": "pt start ... --stage-settlement; be outside own town within 50m; pt click 74 476; pt click 74 476; pt events 3",
+      "screenshots": [
+        "s03/shots/dbl_enter_withdraw.png",
+        "s06/shots/withdraw_after_enter.png"
+      ],
+      "alsoTitled": [
+        "A slow second click on Enter Settlement still lands on Withdraw Funds, which takes the same slot and asks for no confirmation"
+      ]
+    },
+    {
+      "title": "'You fed N' reports residents as fed who are still counted hungry right after (fed 7 then 4 more with 8 present)",
+      "severity": "major",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Tick 217390 in the Town of Yellowton: banner '7 members hungry: all here', button 'Feed Residents (7 hungry)'; click -> 'You fed 7 residents' (apples 15->8). The very next frame the banner says '4 members hungry: all here' and the button 'Feed Residents (4 hungry)'. A second click at 217562 -> 'You fed 4 residents' (apples 8->4). 11 feedings in 172 ticks while the nameplate reads '8 here, 9/20 residents', so at least 3 people were reported fed but stayed hungry. The same pattern (smaller) at 206038 (fed 6, then 3 more, 8 here), 221790 (7 then 1) and 224798 (3 then 1). Banner and button always agree with each other; it is the 'You fed N' result that does not mean 'N are no longer hungry'. Expected: one click leaves 0 hungry among those present, or the result says some still need food.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season winter; N to create a nation; gather 50 wood, F to found, E to enter; build 2-3 houses (K K); leave for ~2000 ticks, H home, E, click Feed Residents (553,476) and look at the banner/button straight after",
+      "screenshots": [
+        "s02/shots/feed13.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Chronicle 'Your news' and 'Only my nation' drop your fallen nation's raids, siege and capture once it falls",
+      "severity": "major",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "Before the fall the recent feed starred 'Upperwood and Greenshire are now hostile', 'Greenshire raided Upperwood...', 'Frank Brown joined Upperwood'. After capture (tick 2503), Y > 'Your news' lists 7 of 22 entries: the founding and 'Upperwood passed into history' remain, but hostility, both raids, the join, the caravan and 'After a siege, a village of Upperwood fell to Greenshire' are gone. All nations + 'Only my nation' is worse: '24 entries. Listing 1.' (founding only). The filter seems keyed on the player's current nation (now none). Expected: your own nation's history stays listed after it falls. Unfiltered 'All nations' still shows them, unstarred.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 111 --stage-diplomacy; space; click Start, Begin; wait ~50 s doing nothing until capture at tick 2503; pt key y; then click 'All nations' and tick 'Only my nation'",
+      "screenshots": [
+        "s07/shots/chron_yours.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Chronicle's shared 200-entry cap evicts the player's own founding history within ~7 game minutes",
+      "severity": "major",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "At tick ~21000 the full chronicle header reads '335 entries; the latest 200 are kept.' With 'Only my nation' ticked it lists 5 entries; at tick ~12400 the same view listed 16. 'You raised a banner and named your people Westford', 'You laid the first stones of Westford', Daisy Davies/Smith joining and their stalls are all gone. About 40-50 NPC entries per game minute (mostly other nations' raids, rivalries and foundings) fill the cap, which all nations share, so the player's oldest and most personal entries are the first to go. Expected the player's own nation's entries to be kept, or a separate cap for them.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 1; create a nation (N), found a settlement (F) by tick ~6000; play until tick ~21000; Y to open the full chronicle; tick 'Only my nation'",
+      "screenshots": [
+        "s04/shots/own_history_evicted.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Members 10/10 Village gate forces poaching AI pawns via long gift grinds, with gifts wasted on Loyal or unrecruitable pawns",
+      "severity": "major",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "No unaffiliated settlers could be found; every nearby pawn belonged to my nation or an AI nation. Recruiting means gifting a foreign pawn from Stranger through Acquaintance and Friend to Loyal, about 6-8 gifts each (10 coins, then 1 apple, then 5 wood per gift), and then pressing R. Gifts are still accepted (and spent) after a pawn is already Loyal (second apple to Harriet Roberts). Frank Wilson took gifts all the way to Loyal and only then said 'Fortresstown is my home... (Loyal by nature)', so the trait that blocks recruiting is not warned about before you spend. The nation leader (Charlie Thompson) also accepts gifts although he can never be recruited. Pawns wander out of the 5 m reach between gifts. Recruiting 6 members took about 18,000 ticks and drained all my coins and apples.",
+      "repro": "pt start --seed 2026; found a settlement; walk to a nearby AI town (Fortresstown); pt walkto pawn; pt key r (says 'needs Loyal'); pt key g repeatedly; pt key r",
+      "screenshots": [
+        "s05/shots/inv4.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Pawn leaving reach drops Buy Pickaxe/Buy Axe into Talk's slot; a click meant for Talk spent 299 coins",
+      "severity": "major",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "Inside my own town the Craft group (Buy Axe/Buy Pickaxe) is laid out after the People group, and rows stack upward. With a pawn in reach Talk is at (10-313, 414) and the Buy buttons sit on the Order row above; with no pawn, the Buy buttons fall to y=414 starting at x=10, exactly where Talk was. I hovered Talk at (65,414), the pawn walked out of reach, I clicked, and got 'Bought 1 pickaxe for 299 coins from Frank Thompson' (coins 348 -> 49). The purchase is not confirmed. The reverse happens too: hovering Buy Axe at (65,414) with no pawn, a pawn walking in put 'Talk to Victor Taylor (Stranger)' under the cursor (shots/pawn_in_over_buy.png). Expected: putting the Craft group last stops it moving when a Craft button is removed, but because it comes after People it moves every time a pawn comes or goes. It needs its own fixed slot, or the People rows need to sit above it.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 109 --stage-settlement; Start, Begin; click Enter Settlement (74,476); with 339 coins Buy Axe/Buy Pickaxe show; pt move 65 414 and wait for a pawn to walk out of reach (pt state nearest pawn > 5m); pt click 65 414",
+      "screenshots": [
+        "s03/shots/pawn_out_click.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Player's own nation conquered with no status message; a stranger's fall gets one",
+      "severity": "major",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "Greenshire's 12-round siege took Upperwood's (the player's) last village at tick 18003. The status line at that tick said only 'Autosaved.'; no 'Greenshire took your village / Upperwood is no more' line. 248 ticks later the status announced 'Cityton has fallen and been disbanded.' for an unrelated nation. The HUD silently flips to Nation: none, Create/Join Nation buttons, and a red, unexplained 'Collapsing! 4:40 left' timer; Objective 5 still says 'Enter your settlement' though the player has none. Expected a loud, explicit status (and ideally a sheet) when your own nation is destroyed.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 111 --stage-diplomacy; Start, Begin; Tribute Greenshire once; play/wait ~15000 ticks until 'Your nation's shelter is over'; let Greenshire's siege reach 12/12 (tick ~18003); read status line / events.",
+      "screenshots": [
+        "s01/shots/conquered_hud.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Objective 'Build a market stall' completes when an AI pawn builds one",
+      "severity": "minor",
+      "categories": [
+        "balance",
+        "ux"
+      ],
+      "sessions": [
+        "s02",
+        "s04",
+        "s05"
+      ],
+      "reports": 3,
+      "detail": "Objective 6 completed at tick 187200 because Victor Evans built a stall while I had 8/20 wood; the text said 'press B inside your settlement'. The Market panel also lists merchants that do not match the chronicle's builders.",
+      "repro": "found settlement, enter, wait",
+      "screenshots": [
+        "s02/shots/stall.png",
+        "s04/shots/strip2.png",
+        "s05/shots/stall-free.png"
+      ],
+      "alsoTitled": [
+        "'Build a market stall' objective is completed by an NPC, not the player",
+        "Tutorial objectives 'Eat something' and 'Build a market stall' complete without the player doing them"
+      ]
+    },
+    {
+      "title": "Double-click on Exit Settlement plants a sapling in the town square, with no message",
+      "severity": "minor",
+      "categories": [
+        "bug",
+        "ux"
+      ],
+      "sessions": [
+        "s03",
+        "s06"
+      ],
+      "reports": 3,
+      "detail": "Exit Settlement is at (314-441, 476) inside town; outside, Plant Sapling sits in that slot. When I double-clicked Exit, saplings went 2 -> 1 and a tree appeared next to the well in the town square. The status line only said 'Exited settlement.', so nothing tells the player why a tree is there.",
+      "repro": "carry saplings; inside own town pt click 377 476; pt click 377 476",
+      "screenshots": [
+        "s03/shots/dbl_exit.png",
+        "s06/shots/slow_exit_planted.png",
+        "s06/shots/slow_exit_planted.png"
+      ],
+      "alsoTitled": [
+        "A slow second click on Exit Settlement lands on Plant Sapling outside and silently uses up the sapling",
+        "Planting a sapling gives no status message"
+      ]
+    },
+    {
+      "title": "Inventory Info panel jumps from the left column to the middle of the screen whenever pawn rows appear",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s03",
+        "s06"
+      ],
+      "reports": 2,
+      "detail": "In town with no pawn in reach, Inventory Info is in the left column (x~10). When a pawn steps into reach and the bar gains its rows, the panel moves to x~220, y~195, over the 3D view, and it goes back when the pawn leaves. It also hops between in-town and out-of-town layouts.",
+      "repro": "stand in own town; compare screenshots with and without a pawn within 5m",
+      "screenshots": [
+        "s03/shots/feedpoll5.png",
+        "s06/shots/loop14.png"
+      ],
+      "alsoTitled": [
+        "Inventory panel jumps to the middle of the screen when pawn rows grow the command bar inside town"
+      ]
+    },
+    {
+      "title": "AI nations starve heavily in winter: 12 hunger deaths, 4 of them leaders",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "12 PawnDeath (all hunger, all 'within the walls') in AI nations, none in mine. Leaders: Frank Taylor (Bigfield), Xavier Thomas (Smallshire), Wendy Walker and then her successor Grace Lewis 2800 ticks later (Bigville). AI settlements cannot feed themselves while trees still give apples.",
+      "repro": "grep PawnDeath out/events.jsonl after a winter run with seed 103",
+      "screenshots": [
+        "s02/shots/final_state.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Action button rows overflow the window bottom in a settlement, hiding Feed Residents",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "In the second settlement with a pawn nearby the action panel grows to 5 rows; the bottom row (Withdraw Funds / Collect Stockpile / Exit Settlement / Feed Residents) is cut off by the 540px window edge and Leave Nation disappears. Feed Residents is the key winter action.",
+      "repro": "after reaching Village era, found a 2nd settlement (F 250+ away), enter it (E) and wait for a pawn to come near",
+      "screenshots": [
+        "s02/shots/t33.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "After conquest, Chronicle 'Your news' loses all of the fallen nation's history",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "Once nationless, 'Your news' lists 14 entries (other nations' foundings + the two epitaphs). Upperwood's tribute, war declaration, raids, siege and the 'After a siege, a village of Upperwood fell to Greenshire' capture line are all gone from it. Expected 'Your news' to keep the player's past nation's entries.",
+      "repro": "As the major finding above; after the conquest press Y and pick 'Your news'.",
+      "screenshots": [
+        "s01/shots/epitaph_yournews.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Build House / Build Farm buttons are removed (not disabled) when the town has no room, so their neighbours slide left",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "When the town grew from 7 to 10 buildings, Build House disappeared and Build Farm and Send Caravan slid left into its slot. At 11 buildings Build Farm also went, and Send Caravan moved from x~450 to x~297. The code disables buttons that are 'only unavailable for now', but a Build button for a full town is removed, which moves the Trade buttons after it.",
+      "repro": "stay in own town while the town grows (stage-settlement town reaches 11 buildings in a few game minutes); watch the Purchase Food row",
+      "screenshots": [
+        "s03/shots/build_house_gone.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Chronicle strip lines cut off with '...' before the key fact",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "At 960x540 the 5-line strip truncates almost every line, often at the important part: 'Relations between Westford and Littleland are n...' (friendly or rival is cut off), 'You raised a banner and named your people We...', 'The nation of Westland was born, with Yvonne J...'. There is no wrap or hover. The full view (Y) wraps correctly.",
+      "repro": "seed 1; play past tick ~3000; read the strip under the top bar",
+      "screenshots": [
+        "s04/shots/strip_ignores_onlymine.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Collapse countdown runs silently: no status reminder during the 5 minutes",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "After the fall the status line went blank (only 'Autosaved.' and another nation's fall) for the whole 5-minute window; only the small red HUD 'Collapsing! m:ss left' tracked it. Siege used status progress (10/12); collapse could too.",
+      "repro": "as above; poll status between ticks 2503 and 17503",
+      "screenshots": [
+        "s07/shots/ending_history.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Day 3 gate dominates the Village speed-run; all other requirements were done ~10,700 ticks earlier",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "Village 1/1, Members 10/10 and Stalls 2/2 were all met by tick ~40,300, but the era only changed at tick 51,003 when Day 3 started. There was nothing to do to speed it up. The hint 'An era is not built in a day: hold on' is clear, but the wait felt dead. Meanwhile AI Fortresstown was already a Town with 7 buildings on day 2.",
+      "repro": "Complete the Village requirements early; watch the Era panel until Day 3",
+      "screenshots": [
+        "s05/shots/members10.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Death toasts for foreign pawns lack the nation and re-announce earlier deaths",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Toasts such as 'Olivia Thomas has died.' appear for other nations' pawns with no nation named. Zach Lewis is announced at 224046, again in 'Zach Lewis and Jasmine Watson have died.' at 224410, then '3 pawns have died. Isabella Roberts is now the leader of Smallshire.' at 224534.",
+      "repro": "play through winter; watch the top toast",
+      "screenshots": [
+        "s02/shots/t27.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Default 'Your news' barely filters: 73% of all entries, so own news is drowned out",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "Full chronicle (Y), default 'Your news': 'Listing 100' of 137 entries at tick ~12400, and 111 of the 200 kept at tick ~21000. Most of it is other nations' rivalries, alliances, raids and stalls (e.g. 'Raiders from Westburg struck Northernland', 'Castleton and Blueton have become rivals'). About 20 NPC nations appear on day 1, so 'neighbours' ends up meaning nearly everyone. My own entries are highlighted yellow with '*', which helps, but there are only a few among about 100 lines. The 'Only my nation' checkbox (16 of 137) is the view that makes my news easy to find, but it is off by default and is a second control stacked on the Your news / All nations switch.",
+      "repro": "seed 1; play to tick ~12000 as leader of a nation with a settlement; Y; compare 'Listing N' for Your news, All nations (U) and 'Only my nation'",
+      "screenshots": [
+        "s04/shots/full_yours2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Defeat screen 'History of Upperwood' omits the capture and who took the village",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "End-of-run history lists founding, hostility, two raids, caravan, join, 'Upperwood lost its last settlement', collapse; but not the third raid nor 'After a siege, a village of Upperwood fell to Greenshire'. The history never says Greenshire took it. No siege-start entry exists anywhere in the chronicle, and no tribute demand happened in this run, so 'tribute' could not be checked.",
+      "repro": "as above, then keep waiting ~5 game minutes until END_OF_RUN (tick 17503)",
+      "screenshots": [
+        "s07/shots/ending_history.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Fall status line glues a stale raid notice onto the capture news and contradicts itself",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "Verbatim status at tick 2503: 'Greenshire raided your village: 2 coins taken. Relations: Hostile (-94); gifts or peace end raids. Greenshire has captured your village! Upperwood has fallen: it has no settlements left. You are without a nation. Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends.' It wraps to 5 lines; advice about gifts ending raids is moot once you have lost; 'Upperwood has fallen... You are without a nation' then 'Your nation is collapsing!' is contradictory (Player Info says Nation: none, yet a HUD timer 'Collapsing! 4:59 left' runs and Kingdom 0/5 / Era Town (3/4) stay shown). Expected: a capture message leading, and one clear statement of what is left to do.",
+      "repro": "as above; read the status bar at tick 2503",
+      "screenshots": [
+        "s07/shots/fall_status.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Founding: AI nations claim the 'open ground' the rejection hint points to, and compass directions have no on-screen compass",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "Pressing F with 50 wood was rejected 3 times ('Too close to the Village of Yellowport... Open ground lies about 120 to the south', then Northville, then Westford). Each time an AI nation had founded a camp where the hint pointed (Westford was founded at tick 6453 while I walked there). The hints use compass words (south, south-east, north-west), but there is no compass or north marker on screen, so a player cannot tell which way to go. It took 4 attempts and about 2,650 ticks to place the first settlement. The rejection toast is also quickly overwritten by 'Autosaved.'.",
+      "repro": "pt start --seed 2026; chop to 50 wood near spawn heading toward (118,-269); pt key f; follow the hint direction; pt key f",
+      "screenshots": [
+        "s05/shots/found3.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Frank Wilson refused to join as 'Loyal by nature' but later appears as a member at my settlement",
+      "severity": "minor",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "At tick ~36000 Frank Wilson said 'Fortresstown is my home. I won't turn my back on it. (Loyal by nature)'. At tick ~52000 he stood at my settlement with 'Order Frank Wilson: Gather Wood' and 'Talk to Frank Wilson (Loyal)' buttons, as if he had joined after all. No join message was seen. This is either inconsistent or a misleading button.",
+      "repro": "See the recruiting finding; teleport home after Members 10/10",
+      "screenshots": [
+        "s05/shots/village.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "H (Teleport Home) can land outside interact range, so H then E fails",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "H put me at (774.7,-12.7), ~9 units from the settlement centre; E said 'No entities within range to interact with.' and the 'Enter Settlement' button looked enabled but also failed. Other times H+E worked.",
+      "repro": "from far away press h, then e",
+      "screenshots": [
+        "s02/shots/home_out_of_reach.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations header 'An alliance needs +30' hides the size rule (+60 for a small partner)",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "At Friendly (+35) Southernfield declined: 'they are 8 to your 4 and want relations of +60 before taking on so small a partner'. The header still says an alliance needs +30, so the player spends a 25-coin gift chasing the wrong number. Expected the per-nation threshold on the row or Ally button.",
+      "repro": "pt start ... --stage-diplomacy; O; Ally on Southernfield (declines at +25); Tribute Southernfield (+35); Ally again.",
+      "screenshots": [
+        "s01/shots/ally1.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Pawn action buttons are drawn over the Objective and Inventory panels inside a settlement",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "Inside my settlement with a pawn in reach, a second set of buttons (Order X: Gather Wood, Talk to X, Gift X, Appoint X Merchant, Craft Axe, Craft Pickaxe, Send Caravan) appears on top of the Objective 7 panel and the Inventory panel, so neither can be read.",
+      "repro": "Found a settlement; pt key e inside it while a pawn stands within 5 m",
+      "screenshots": [
+        "s05/shots/k2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Pawn nameplates and buttons do not show nation membership, so recruit targets cannot be found",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "Nameplates show name, trait and activity only. The talk button reads 'Talk to Frank Lewis (Stranger)' for a pawn who is already in my nation. Pressing R on nearby pawns kept returning '! Frank Lewis is already a member of Townton.' Nothing on screen marks who is recruitable or which nation a pawn belongs to.",
+      "repro": "After founding: pt walkto pawn; pt key r",
+      "screenshots": [
+        "s05/shots/invite2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Player's own milestones (Farm/House built, settlement became a Village) never reach the chronicle",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "K,K built a Farm ('Farm built.', tick 11217), and a House made Westford a Village ('House built. The settlement is now a Village!', tick 13901). Neither wrote a chronicle entry. At those moments the 'your news' strip showed only other nations' raids and rivalries. NPC stalls ('A new stall opened in the market of Bluewood') and NPC settlement foundings are chronicled. Expected '* Westford grew into a Village' highlighted in my news.",
+      "repro": "seed 1; found settlement; gather 25 wood/10 stone; inside settlement K K (Farm); then 20 wood/15 stone K K (House); watch strip and Y full view",
+      "screenshots": [
+        "s04/shots/village_not_chronicled.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Player's own offensive siege ends silently and its progress is never shown",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "Declared war on Castlefield (2 members, camp) at tick 2239; status 'Your nation is besieging Castlefield's camp.' at 2251, then nothing. Castlefield grew to 5 members/a village, out-strengthened us and started raiding us at tick 3503. No status or chronicle line said our siege broke, and our own x/12 siege progress is shown nowhere (HUD or Nations screen). Expected a progress readout and a 'your siege of X was broken' message.",
+      "repro": "pt start ... --stage-diplomacy; O; War, Confirm on Castlefield (after it appears ~tick 1600); Esc; wait ~2000 ticks; O.",
+      "screenshots": [
+        "s01/shots/war_castle.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Purchase Food error gives two possible reasons and contradicts the listed apple price",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "At my own market with 231 coins: 'No one is selling food at this market or you do not have enough money to purchase food.' The Market panel lists Apples at 80 buy. The player cannot tell which reason applies.",
+      "repro": "inside own settlement in winter click Purchase Food (66,445)",
+      "screenshots": [
+        "s02/shots/purchase_food_ambiguous.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Season panel says 'Winter: no harvests' but trees yield apples all winter",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Every tree chopped in winter gave 1-3 apples ('Gathered 6 wood and 3 apples from tree'); trees were my whole food supply. Either the label is misleading or winter food is unintentionally easy.",
+      "repro": "start with --season winter; walkto tree; e",
+      "screenshots": [
+        "s02/shots/winter_apples.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Settlement tier 'Town' vs nation era 'Camp' read as contradictory",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "After a 3rd house: 'The settlement is now a Town!' and 'Tier: Town (5 buildings)', but the Era panel still says 'Camp (1/4)' and Objective 7 still asks to 'Reach the Village era'.",
+      "repro": "build 3 houses + farm in the first settlement before 10 members",
+      "screenshots": [
+        "s02/shots/tier_vs_era.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Strip ignores 'Only my nation' and churns too fast for own entries to stay visible",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "With 'Only my nation' ticked in the full view, the strip still says 'your news' and shows other nations ('Wendy Davies raised a banner...', 'Smallshire and Castleton are now hostile...'). Because there are so many entries (335 in ~7 game min), my own highlighted line is pushed off the 5-line strip within seconds. Example: 'You laid the first stones of Westford' was gone within one batch of rivalries.",
+      "repro": "Y to full, tick 'Only my nation', Close, Y to recent strip",
+      "screenshots": [
+        "s04/shots/strip_ignores_onlymine.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "When a caravan leaves, the Trade row disappears and every pawn/craft row drops a row",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "Outside town near a Fortressshire caravan, the rows were Place / Escort Caravan / Talk+Gift / Order+Craft Axe. When the caravan moved off, the Trade row vanished and every row above it shifted down by one: Talk 414->445, Order 383->414, Craft Axe (337,383)->(337,414). A click aimed at Talk lands on 'Order <pawn>: Gather Wood', and my double-click on Craft Axe hit empty space. The People row starting a new row stops sideways shifts, but rows still stack upward, so a lower group going away moves everything above it.",
+      "repro": "pt start ... --stage-settlement; Teleport Home while a caravan is by the town; note the Talk position; wait for the caravan to leave",
+      "screenshots": [
+        "s03/shots/dbl_craft.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Objective progress bar label clipped on the left ('nbers 9/10 • Buildings 2/2')",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s02",
+        "s03"
+      ],
+      "reports": 2,
+      "detail": "Objective 7 bar text is right-aligned and overflows to the left, showing 'nbers' instead of 'Members'. The settlement nameplate ('8 here, 9/16 residents') also renders huge across the top HUD.",
+      "repro": "reach objective 7",
+      "screenshots": [
+        "s02/shots/obj7_clipped.png",
+        "s03/shots/objective_clipped.png"
+      ],
+      "alsoTitled": [
+        "Objective 7 progress bar text clipped on the left ('pers 10/10 • Buildings 2/2')"
+      ]
+    },
+    {
+      "title": "Settlement's floating label renders huge and clipped across the top of the screen",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s04",
+        "s05"
+      ],
+      "reports": 2,
+      "detail": "Near the well, the settlement label ('0 here, 1/8 residents', later '2 here, 3/16 residents') is drawn in giant letters across the top of the screen, behind the chronicle strip and the toast.",
+      "repro": "found a settlement and stand at its well",
+      "screenshots": [
+        "s04/shots/settlement_label_huge.png",
+        "s05/shots/found4.png"
+      ],
+      "alsoTitled": [
+        "Settlement floating label is huge and overlaps the top HUD"
+      ]
+    },
+    {
+      "title": "A button that is still settling looks the same as one that is unavailable",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "During the 0.5 s wait, buttons are drawn with the same grey as unavailable ones such as Sell Resources and Build Farm (shots/dbl_exit.png: the whole outside bar is grey for a moment after Exit). This is easy to see and never got in the way: pawn-row Talk buttons became usable about 1 s after a new pawn's row appeared. But a player cannot tell 'wait a moment' from 'you can't do this'.",
+      "repro": "click Exit Settlement and pt shot immediately",
+      "screenshots": [
+        "s06/shots/dbl_exit.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Chronicle plural error 'taking 1 coins'; odd nation names; 32 nations standing after day 1",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "'Raiders from Greenshire struck Upperwood, taking 1 coins.' Generated names 'Towntown', 'Hamlettown' read as placeholders. Defeat screen 'Nations still standing: 32' after one day seems very high for the world.",
+      "repro": "as above; read the chronicle / pt events",
+      "screenshots": [
+        "s07/shots/ending_history.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "First War click relabels the button 'Confirm' but the prompt says 'Click War again'",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "After one click on War (Nations screen) the button reads 'Confirm' while the status says 'Click War again to declare war on Southernfield.' There is no War button left to click. Expected 'Click Confirm...' or the label left as War.",
+      "repro": "pt start ... --stage-diplomacy; O; click War on Southernfield once.",
+      "screenshots": [
+        "s01/shots/war1.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "First tree toast says 3 apples but only 2 are added",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "'Gathered 5 wood and 3 apples from tree.' while the floating text says '+2 apples' and the inventory shows 2. One was probably auto-eaten (energy 84 to 98), but nothing says so.",
+      "repro": "pt start --seed 2026; pt walkto tree; pt key e",
+      "screenshots": [
+        "s05/shots/apples-mismatch.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Own member called 'Stranger' and asks why they should follow you",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "Daisy Davies had joined Westford ('Westford welcomed Daisy Davies into its ranks') and runs its market. Talking to her shows 'Daisy Davies (Stranger): \"Yes, leader? I hardly know you. Why should I follow you?\"'. The objective progress label 'Members 3/10' is also cut off ('nbers 3/10') in the objective bar.",
+      "repro": "after Daisy joins, walkto pawn; e",
+      "screenshots": [
+        "s04/shots/recruit.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Raid message pluralization: '1 coins taken'",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "Status and chronicle say 'Castlefield raided your village: 1 coins taken.' and 'Raiders from Castlefield struck Upperwood, taking 1 coins.' Expected '1 coin'. Similar: chronicle 'A caravan from Southernfield sold nothing at the Village of Upperwood for 0 coins.' (tick 3027) is noise.",
+      "repro": "As above, at war with Castlefield; read raid status at tick 15503.",
+      "screenshots": [
+        "s01/shots/siege4.png"
+      ],
+      "alsoTitled": []
+    }
+  ],
+  "objectiveTimings": [
+    {
+      "number": 1,
+      "title": "Gather wood",
+      "seconds": {
+        "s01": 122.1,
+        "s02": 3631.0,
+        "s03": 71.0,
+        "s04": 47.1,
+        "s05": 20.0,
+        "s06": 139.0,
+        "s08": 3629.0
+      },
+      "sessions": 7,
+      "min": 20.0,
+      "median": 122.1,
+      "max": 3631.0
+    },
+    {
+      "number": 2,
+      "title": "Eat something",
+      "seconds": {
+        "s01": 123.0,
+        "s02": 3632.0,
+        "s03": 72.1,
+        "s04": 48.0,
+        "s05": 21.1,
+        "s06": 140.0,
+        "s08": 3630.1
+      },
+      "sessions": 7,
+      "min": 21.1,
+      "median": 123.0,
+      "max": 3632.0
+    },
+    {
+      "number": 3,
+      "title": "Create or join a nation",
+      "seconds": {
+        "s01": 124.1,
+        "s02": 3633.0,
+        "s03": 73.0,
+        "s04": 64.0,
+        "s05": 27.1,
+        "s06": 141.0,
+        "s08": 3631.0
+      },
+      "sessions": 7,
+      "min": 27.1,
+      "median": 124.1,
+      "max": 3633.0
+    },
+    {
+      "number": 4,
+      "title": "Found a settlement",
+      "seconds": {
+        "s01": 125.0,
+        "s02": 3739.0,
+        "s03": 74.1,
+        "s04": 120.0,
+        "s05": 146.0,
+        "s06": 142.0,
+        "s08": 3691.0
+      },
+      "sessions": 7,
+      "min": 74.1,
+      "median": 142.0,
+      "max": 3739.0
+    },
+    {
+      "number": 5,
+      "title": "Enter your settlement",
+      "seconds": {
+        "s02": 3742.0,
+        "s03": 106.1,
+        "s04": 125.1,
+        "s05": 151.1,
+        "s06": 180.0,
+        "s08": 3695.0
+      },
+      "sessions": 6,
+      "min": 106.1,
+      "median": 165.55,
+      "max": 3742.0
+    },
+    {
+      "number": 6,
+      "title": "Build a market stall",
+      "seconds": {
+        "s02": 3744.0,
+        "s03": 107.0,
+        "s04": 131.1,
+        "s05": 152.0,
+        "s06": 181.0,
+        "s08": 3696.1
+      },
+      "sessions": 6,
+      "min": 107.0,
+      "median": 166.5,
+      "max": 3744.0
+    },
+    {
+      "number": 7,
+      "title": "Reach the Village era",
+      "seconds": {
+        "s02": 4500.0,
+        "s05": 1020.1,
+        "s08": 3772.0
+      },
+      "sessions": 3,
+      "min": 1020.1,
+      "median": 3772.0,
+      "max": 4500.0
+    },
+    {
+      "number": 8,
+      "title": "Sell resources at market",
+      "seconds": {
+        "s02": 4570.0,
+        "s05": 1021.0
+      },
+      "sessions": 2,
+      "min": 1021.0,
+      "median": 2795.5,
+      "max": 4570.0
+    },
+    {
+      "number": 9,
+      "title": "Found a second settlement",
+      "seconds": {
+        "s02": 4623.0
+      },
+      "sessions": 1,
+      "min": 4623.0,
+      "median": 4623.0,
+      "max": 4623.0
+    }
+  ],
+  "problems": [
+    "s08: report.json missing"
+  ]
+}

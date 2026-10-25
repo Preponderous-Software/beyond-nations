@@ -207,6 +207,7 @@ Runs so far:
 - [0.6.0](playtests/0.6.0/README.md) (develop `ae87506` and `3246ba2`, 2026-10-22): the first run through playtester, plus two re-checks of the released build.
 - [0.6.1](playtests/0.6.1/README.md) (develop `fc45ac8`, 2026-10-23): four sessions re-checking the fixes since 0.6.0.
 - [0.6.2](playtests/0.6.2/README.md) (develop `6ac1e3f`, 2026-10-24): four sessions re-checking the fixes since 0.6.1.
+- [0.6.3](playtests/0.6.3/README.md) (develop `edb1a62` and `7f89db5`, 2026-10-24): five sessions on the fixes since 0.6.2, then three re-checks of the fixes they led to.
 
 ## Troubleshooting
 

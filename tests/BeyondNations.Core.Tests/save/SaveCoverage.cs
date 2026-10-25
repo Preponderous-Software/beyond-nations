@@ -100,7 +100,7 @@ namespace beyondnationstests {
                 Saved = new[] { "ticksToExpire", "status", "tickLastSet", "duplicateMessageCount" },
                 Derived = new[] { "tickCounter" },
                 // which messages share the line this step: the saved text is the line
-                Transient = new[] { "parts", "stepping", "joinable" },
+                Transient = new[] { "parts", "stepping", "joinable", "showingNote" },
             },
             [typeof(Inventory)] = saved("slots", "toolWear"),
             [typeof(ItemSlot)] = saved("itemStack"),
@@ -180,6 +180,8 @@ namespace beyondnationstests {
             [typeof(ObjectiveProgress)] = saved("complete", "label", "current", "target", "secondLabel", "secondCurrent", "secondTarget"),
             [typeof(Chronicle)] = new Entry {
                 Saved = new[] { "entries", "totalRecorded", "nationsFounded", "raidsToldToday", "raidDay" },
+                // the player's nations, read off the kept lines again after a load (getPlayerNations)
+                Transient = new[] { "playerNations", "playerNationsFor", "playerNationsAt" },
                 Derived = new[] { "entityRepository", "nationRepository", "timeOfDay", "tickCounter", "seed", "capacity" },
             },
             [typeof(ChronicleEntry)] = saved("sequence", "eventType", "tick", "day", "partOfDay", "text", "nationIds", "entityIds"),

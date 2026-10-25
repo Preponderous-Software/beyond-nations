@@ -307,7 +307,9 @@ namespace beyondnations {
                     continue;
                 }
                 lastChronicleSequence = entry.getSequence();
-                if (entry.concerns(player)) {
+                // the nation's own lines even once it has fallen: its capture
+                // used to be left out of the Defeat screen's history (0.6.3 s07)
+                if (chronicle.concernsPlayer(entry, player)) {
                     addHistory(HistoryEntry.of(entry));
                 }
             }

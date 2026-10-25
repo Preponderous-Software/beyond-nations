@@ -1,0 +1,67 @@
+{
+  "session": "s07",
+  "goal": "Re-check what the player is told (#413): let Greenshire take your village (do nothing for a minute) and record exactly what the status line says when your nation falls; then open the chronicle (Y) and check your own nation's history (founding, tribute, siege, capture) is still listed.",
+  "build": {"version": "0.6.2", "commit": "7f89db5"},
+  "seed": 111,
+  "durationSec": 510,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Chronicle 'Your news' and 'Only my nation' drop your fallen nation's raids, siege and capture once it falls",
+      "detail": "Before the fall the recent feed starred 'Upperwood and Greenshire are now hostile', 'Greenshire raided Upperwood...', 'Frank Brown joined Upperwood'. After capture (tick 2503), Y > 'Your news' lists 7 of 22 entries: the founding and 'Upperwood passed into history' remain, but hostility, both raids, the join, the caravan and 'After a siege, a village of Upperwood fell to Greenshire' are gone. All nations + 'Only my nation' is worse: '24 entries. Listing 1.' (founding only). The filter seems keyed on the player's current nation (now none). Expected: your own nation's history stays listed after it falls. Unfiltered 'All nations' still shows them, unstarred.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 111 --stage-diplomacy; space; click Start, Begin; wait ~50 s doing nothing until capture at tick 2503; pt key y; then click 'All nations' and tick 'Only my nation'",
+      "screenshot": "shots/chron_yours.png",
+      "tick": 3183
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Fall status line glues a stale raid notice onto the capture news and contradicts itself",
+      "detail": "Verbatim status at tick 2503: 'Greenshire raided your village: 2 coins taken. Relations: Hostile (-94); gifts or peace end raids. Greenshire has captured your village! Upperwood has fallen: it has no settlements left. You are without a nation. Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends.' It wraps to 5 lines; advice about gifts ending raids is moot once you have lost; 'Upperwood has fallen... You are without a nation' then 'Your nation is collapsing!' is contradictory (Player Info says Nation: none, yet a HUD timer 'Collapsing! 4:59 left' runs and Kingdom 0/5 / Era Town (3/4) stay shown). Expected: a capture message leading, and one clear statement of what is left to do.",
+      "repro": "as above; read the status bar at tick 2503",
+      "screenshot": "shots/fall_status.png",
+      "tick": 2503
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Defeat screen 'History of Upperwood' omits the capture and who took the village",
+      "detail": "End-of-run history lists founding, hostility, two raids, caravan, join, 'Upperwood lost its last settlement', collapse; but not the third raid nor 'After a siege, a village of Upperwood fell to Greenshire'. The history never says Greenshire took it. No siege-start entry exists anywhere in the chronicle, and no tribute demand happened in this run, so 'tribute' could not be checked.",
+      "repro": "as above, then keep waiting ~5 game minutes until END_OF_RUN (tick 17503)",
+      "screenshot": "shots/ending_history.png",
+      "tick": 17503
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Collapse countdown runs silently: no status reminder during the 5 minutes",
+      "detail": "After the fall the status line went blank (only 'Autosaved.' and another nation's fall) for the whole 5-minute window; only the small red HUD 'Collapsing! m:ss left' tracked it. Siege used status progress (10/12); collapse could too.",
+      "repro": "as above; poll status between ticks 2503 and 17503",
+      "screenshot": "shots/ending_history.png",
+      "tick": 9000
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Chronicle plural error 'taking 1 coins'; odd nation names; 32 nations standing after day 1",
+      "detail": "'Raiders from Greenshire struck Upperwood, taking 1 coins.' Generated names 'Towntown', 'Hamlettown' read as placeholders. Defeat screen 'Nations still standing: 32' after one day seems very high for the world.",
+      "repro": "as above; read the chronicle / pt events",
+      "screenshot": "shots/ending_history.png",
+      "tick": 17503
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "captureTick": 2503,
+    "captureGameSeconds": 50.1,
+    "endOfRunTick": 17503,
+    "yourNewsEntriesAfterFall": 7,
+    "onlyMyNationEntriesAfterFall": 1
+  },
+  "fun": 2,
+  "verdict": "The fall itself is clearly announced, but the status line is a five-line run-on that leads with a stale raid notice and then says both 'you are without a nation' and 'your nation is collapsing'. The #413 chronicle fix does not hold: once your nation falls, 'Your news' and 'Only my nation' filter out its raids, siege capture and join history (Only my nation keeps just the founding). The Defeat screen history is better but still never records that Greenshire captured the village."
+}

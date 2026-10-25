@@ -92,7 +92,7 @@ namespace beyondnations {
                     md.Append("### Day ").Append(entry.getDay()).Append("\n\n");
                 }
                 md.Append("- *").Append(entry.getPartOfDay()).Append("*: ");
-                md.Append(entry.concerns(player) ? "**" + entry.getText() + "**" : entry.getText());
+                md.Append(chronicle.concernsPlayer(entry, player) ? "**" + entry.getText() + "**" : entry.getText());
                 md.Append('\n');
             }
             return md.ToString();

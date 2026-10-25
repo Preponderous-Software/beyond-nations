@@ -1,0 +1,236 @@
+{"type":"screen","tick":0,"wallTimeMs":1792883384687,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792883398383,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792883399375,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":180000,"wallTimeMs":1792883406582,"how":"created","slot":"world-103-20261024-231006","seed":103}
+{"type":"screen","tick":180000,"wallTimeMs":1792883406584,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":180371,"wallTimeMs":1792883414969,"text":"Created nation Yellowton."}
+{"type":"chronicle","tick":180371,"wallTimeMs":1792883414969,"kind":"NationCreation","text":"Under your hand, the nation of Yellowton was born. It is the first nation this world has known."}
+{"type":"status","tick":180439,"wallTimeMs":1792883416480,"text":"Not enough wood. Need 50 more."}
+{"type":"status","tick":180991,"wallTimeMs":1792883428817,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":181011,"wallTimeMs":1792883429301,"text":"No entities within range to interact with."}
+{"type":"status","tick":181031,"wallTimeMs":1792883429811,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":181047,"wallTimeMs":1792883430191,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":181051,"wallTimeMs":1792883430280,"kind":"NationCreation","text":"Alice Wood founded the nation of Greatfield."}
+{"type":"status","tick":181067,"wallTimeMs":1792883430663,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":181103,"wallTimeMs":1792883431555,"kind":"SettlementFounded","text":"Alice Wood raised the first settlement of Greatfield."}
+{"type":"status","tick":181439,"wallTimeMs":1792883439583,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":181451,"wallTimeMs":1792883439833,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1451}
+{"type":"status","tick":181451,"wallTimeMs":1792883439833,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":181503,"wallTimeMs":1792883440993,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":181503,"wallTimeMs":1792883440993,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":181551,"wallTimeMs":1792883442086,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":48}
+{"type":"status","tick":181551,"wallTimeMs":1792883442086,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":181847,"wallTimeMs":1792883448892,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":181903,"wallTimeMs":1792883450166,"kind":"NationCreation","text":"Stan Williams founded the nation of Oldham."}
+{"type":"chronicle","tick":182151,"wallTimeMs":1792883455965,"kind":"SettlementFounded","text":"Stan Williams raised the first settlement of Oldham."}
+{"type":"status","tick":182159,"wallTimeMs":1792883456169,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":182455,"wallTimeMs":1792883463467,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":182651,"wallTimeMs":1792883468303,"kind":"NationCreation","text":"Wendy Walker declared the nation of Northernburg, though none had yet sworn to it."}
+{"type":"status","tick":182703,"wallTimeMs":1792883469469,"text":"You enter the land of Northernburg (Neutral)."}
+{"type":"chronicle","tick":182703,"wallTimeMs":1792883469469,"kind":"SettlementFounded","text":"Northernburg put down roots: Wendy Walker founded its first settlement."}
+{"type":"status","tick":182771,"wallTimeMs":1792883471266,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":182803,"wallTimeMs":1792883472118,"kind":"NationCreation","text":"Bob Thompson declared the nation of Greenford, though none had yet sworn to it."}
+{"type":"status","tick":182811,"wallTimeMs":1792883472346,"text":"Gathered 6 wood and 3 apples from tree. (x2)"}
+{"type":"status","tick":183047,"wallTimeMs":1792883478424,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":183199,"wallTimeMs":1792883482206,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":183203,"wallTimeMs":1792883482299,"kind":"SettlementFounded","text":"Greenford put down roots: Bob Thompson founded its first settlement."}
+{"type":"chronicle","tick":183303,"wallTimeMs":1792883484714,"kind":"NationCreation","text":"Grace Lewis raised a banner and called it Northshire."}
+{"type":"chronicle","tick":183503,"wallTimeMs":1792883489855,"kind":"NationCreation","text":"Nancy Wilson raised a banner and called it Upperfield."}
+{"type":"status","tick":183551,"wallTimeMs":1792883491156,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":183551,"wallTimeMs":1792883491156,"kind":"SettlementFounded","text":"Nancy Wilson laid the first stones of Upperfield."}
+{"type":"chronicle","tick":183851,"wallTimeMs":1792883498877,"kind":"NationCreation","text":"Katie Watson raised a banner and called it Greatport."}
+{"type":"status","tick":183923,"wallTimeMs":1792883500582,"text":"You leave the land of Northernburg for the wilds."}
+{"type":"status","tick":183939,"wallTimeMs":1792883500942,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":183959,"wallTimeMs":1792883501395,"text":"Too close to the Camp of Northernburg: 71 away, and settlements must be 250 apart. Open ground lies about 180 to the east."}
+{"type":"chronicle","tick":184251,"wallTimeMs":1792883507973,"kind":"NationRelationChange","text":"Greatfield and Oldham have become rivals over their border."}
+{"type":"chronicle","tick":184351,"wallTimeMs":1792883510312,"kind":"SettlementFounded","text":"Greatport put down roots: Katie Watson founded its first settlement."}
+{"type":"chronicle","tick":184503,"wallTimeMs":1792883514150,"kind":"NationCreation","text":"Tilly Watson founded the nation of Northford."}
+{"type":"status","tick":184515,"wallTimeMs":1792883514425,"text":"Settlement founded. Northernburg and Greenford resent a new settlement so near their land."}
+{"type":"chronicle","tick":184515,"wallTimeMs":1792883514425,"kind":"SettlementFounded","text":"You laid the first stones of Yellowton."}
+{"type":"status","tick":184523,"wallTimeMs":1792883514641,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":184551,"wallTimeMs":1792883515424,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3000}
+{"type":"status","tick":184551,"wallTimeMs":1792883515424,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":184551,"wallTimeMs":1792883515424,"kind":"NationJoin","text":"Yellowton welcomed Stan Taylor into its ranks."}
+{"type":"chronicle","tick":184551,"wallTimeMs":1792883515424,"kind":"NationJoin","text":"Yellowton welcomed Ursula Wilson into its ranks."}
+{"type":"chronicle","tick":184551,"wallTimeMs":1792883515424,"kind":"NationJoin","text":"Yellowton welcomed Dave Taylor into its ranks."}
+{"type":"chronicle","tick":184551,"wallTimeMs":1792883515424,"kind":"NationJoin","text":"Yellowton welcomed Bella Evans into its ranks."}
+{"type":"chronicle","tick":184603,"wallTimeMs":1792883516876,"kind":"StallBuilt","text":"Nancy Wilson built a market stall in Upperfield."}
+{"type":"status","tick":184715,"wallTimeMs":1792883520090,"text":"Entered settlement."}
+{"type":"objective_completed","tick":184751,"wallTimeMs":1792883521127,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":200}
+{"type":"status","tick":184751,"wallTimeMs":1792883521127,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":184751,"wallTimeMs":1792883521127,"kind":"SettlementFounded","text":"Grace Lewis laid the first stones of Northshire."}
+{"type":"chronicle","tick":184751,"wallTimeMs":1792883521127,"kind":"StallBuilt","text":"Ursula Wilson built a market stall in Yellowton."}
+{"type":"objective_completed","tick":184803,"wallTimeMs":1792883522735,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":52}
+{"type":"status","tick":184803,"wallTimeMs":1792883522735,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":184851,"wallTimeMs":1792883524180,"kind":"NationCreation","text":"Lily Roberts declared the nation of Northham, though none had yet sworn to it."}
+{"type":"chronicle","tick":185003,"wallTimeMs":1792883528700,"kind":"NationRelationChange","text":"Greatfield and Northernburg have become rivals over their border."}
+{"type":"status","tick":185015,"wallTimeMs":1792883529047,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"chronicle","tick":185103,"wallTimeMs":1792883531679,"kind":"StallBuilt","text":"Ursula Wilson built a market stall in Yellowton."}
+{"type":"chronicle","tick":185151,"wallTimeMs":1792883533154,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowton, built by Stan Taylor."}
+{"type":"chronicle","tick":185151,"wallTimeMs":1792883533154,"kind":"SettlementFounded","text":"Tilly Watson laid the first stones of Northford."}
+{"type":"chronicle","tick":185351,"wallTimeMs":1792883539187,"kind":"StallBuilt","text":"Trade came to Upperfield: Nancy Wilson built a stall."}
+{"type":"chronicle","tick":185451,"wallTimeMs":1792883542251,"kind":"SettlementFounded","text":"Lily Roberts raised the first settlement of Northham."}
+{"type":"chronicle","tick":185451,"wallTimeMs":1792883542251,"kind":"NationJoin","text":"Mia Wood threw in their lot with Yellowton."}
+{"type":"status","tick":185459,"wallTimeMs":1792883542507,"text":"You gave Ursula Wilson 10 coin. Ursula Wilson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"chronicle","tick":185503,"wallTimeMs":1792883543815,"kind":"NationRelationChange","text":"Greatfield and Greenford have become rivals over their border."}
+{"type":"chronicle","tick":185803,"wallTimeMs":1792883552627,"kind":"StallBuilt","text":"Stan Taylor built a market stall in Yellowton. The market is now full."}
+{"type":"chronicle","tick":185951,"wallTimeMs":1792883557028,"kind":"StallBuilt","text":"A new stall opened in the market of Upperfield, built by Nancy Wilson."}
+{"type":"save","tick":186003,"wallTimeMs":1792883558614,"count":1}
+{"type":"status","tick":186003,"wallTimeMs":1792883558614,"text":"Autosaved."}
+{"type":"chronicle","tick":186003,"wallTimeMs":1792883558614,"kind":"NationRelationChange","text":"Oldham and Upperfield have become rivals over their border."}
+{"type":"chronicle","tick":186003,"wallTimeMs":1792883558614,"kind":"Caravan","text":"Northernburg sent a caravan of 20 stone from the Camp of Northernburg to the Camp of Yellowton."}
+{"type":"chronicle","tick":186051,"wallTimeMs":1792883560046,"kind":"NationJoin","text":"Lily Brown threw in their lot with Yellowton."}
+{"type":"chronicle","tick":186603,"wallTimeMs":1792883576669,"kind":"NationJoin","text":"Judy White threw in their lot with Yellowton."}
+{"type":"chronicle","tick":186703,"wallTimeMs":1792883580062,"kind":"StallBuilt","text":"Lily Roberts built a market stall in Northham."}
+{"type":"chronicle","tick":186751,"wallTimeMs":1792883581680,"kind":"NationRelationChange","text":"Greatfield and Greatport have become rivals over their border."}
+{"type":"chronicle","tick":186751,"wallTimeMs":1792883581680,"kind":"NationRelationChange","text":"Oldham and Greatfield are now hostile."}
+{"type":"chronicle","tick":186903,"wallTimeMs":1792883586189,"kind":"StallBuilt","text":"Grace Lewis built a market stall in Northshire."}
+{"type":"status","tick":187003,"wallTimeMs":1792883589386,"text":"Northernburg resents your border: relations are now Rival (-20). Greenford resents your border: relations are now Rival (-20). Northshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":187003,"wallTimeMs":1792883589386,"kind":"NationRelationChange","text":"Yellowton and Northernburg have become rivals over their border."}
+{"type":"chronicle","tick":187003,"wallTimeMs":1792883589386,"kind":"NationRelationChange","text":"Yellowton and Greenford have become rivals over their border."}
+{"type":"chronicle","tick":187003,"wallTimeMs":1792883589386,"kind":"NationRelationChange","text":"Yellowton and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":187003,"wallTimeMs":1792883589386,"kind":"NationRelationChange","text":"Greatfield and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":187003,"wallTimeMs":1792883589386,"kind":"NationRelationChange","text":"Northshire and Upperfield have become rivals over their border."}
+{"type":"chronicle","tick":187003,"wallTimeMs":1792883589386,"kind":"NationRaid","text":"Oldham raided Greatfield and carried off 5 wood, 5 stone."}
+{"type":"status","tick":187503,"wallTimeMs":1792883604305,"text":"Northford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":187503,"wallTimeMs":1792883604305,"kind":"NationRelationChange","text":"Yellowton and Northford have become rivals over their border."}
+{"type":"chronicle","tick":187503,"wallTimeMs":1792883604305,"kind":"Caravan","text":"Greenford sent a caravan of 20 stone from the Village of Greenford to the Camp of Yellowton."}
+{"type":"status","tick":187523,"wallTimeMs":1792883604887,"text":"Exited settlement."}
+{"type":"chronicle","tick":187543,"wallTimeMs":1792883605480,"kind":"Caravan","text":"A caravan from Northernburg sold 7 stone at the Camp of Yellowton for 28 coins."}
+{"type":"chronicle","tick":187551,"wallTimeMs":1792883605699,"kind":"StallBuilt","text":"A new stall opened in the market of Northham, built by Lily Roberts."}
+{"type":"chronicle","tick":187751,"wallTimeMs":1792883611359,"kind":"NationRelationChange","text":"Northshire and Northham have become rivals over their border."}
+{"type":"chronicle","tick":187751,"wallTimeMs":1792883611359,"kind":"NationRelationChange","text":"Northford and Northham have become rivals over their border."}
+{"type":"status","tick":187883,"wallTimeMs":1792883614423,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":188323,"wallTimeMs":1792883624457,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"chronicle","tick":188502,"wallTimeMs":1792883628193,"kind":"NationJoin","text":"Olivia Wilson threw in their lot with Yellowton."}
+{"type":"objective_completed","tick":188602,"wallTimeMs":1792883630350,"number":7,"id":"grow-nation","title":"Reach the Village era","ticksTaken":3799}
+{"type":"era_changed","tick":188602,"wallTimeMs":1792883630350,"from":"Camp","to":"Village"}
+{"type":"status","tick":188602,"wallTimeMs":1792883630350,"text":"A new era: Yellowton is now a Village. Unlocked: Workshop (craft planks and bricks), up to 3 settlements. Objective complete: Reach the Village era. \u002B100 coins."}
+{"type":"chronicle","tick":188602,"wallTimeMs":1792883630350,"kind":"NationJoin","text":"Frank Roberts threw in their lot with Yellowton."}
+{"type":"status","tick":188642,"wallTimeMs":1792883631212,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":188750,"wallTimeMs":1792883633463,"text":"Greatfield shares an enemy with you: relations are now Friendly (\u002B21)."}
+{"type":"chronicle","tick":188750,"wallTimeMs":1792883633463,"kind":"NationRelationChange","text":"Relations between Yellowton and Greatfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":188802,"wallTimeMs":1792883634619,"kind":"NationCreation","text":"Xavier Thompson declared the nation of Westernfield, though none had yet sworn to it."}
+{"type":"status","tick":188986,"wallTimeMs":1792883638867,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":189010,"wallTimeMs":1792883639462,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":189102,"wallTimeMs":1792883641590,"kind":"StallBuilt","text":"Stan Williams built a market stall in Oldham."}
+{"type":"status","tick":189182,"wallTimeMs":1792883643480,"text":"You are back on your own land."}
+{"type":"chronicle","tick":189350,"wallTimeMs":1792883649095,"kind":"SettlementFounded","text":"Xavier Thompson raised the first settlement of Westernfield."}
+{"type":"status","tick":189478,"wallTimeMs":1792883653230,"text":"Entered settlement."}
+{"type":"chronicle","tick":189638,"wallTimeMs":1792883658449,"kind":"Caravan","text":"A caravan from Greenford sold 6 stone at the Town of Yellowton for 18 coins."}
+{"type":"status","tick":189814,"wallTimeMs":1792883664264,"text":"You fed 2 residents in the Town of Yellowton."}
+{"type":"status","tick":190002,"wallTimeMs":1792883670440,"text":"Northernburg sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":190002,"wallTimeMs":1792883670440,"kind":"NationRelationChange","text":"Northernburg and Greatfield are now hostile."}
+{"type":"chronicle","tick":190050,"wallTimeMs":1792883672050,"kind":"StallBuilt","text":"Trade came to Northshire: Grace Lewis built a stall."}
+{"type":"status","tick":190250,"wallTimeMs":1792883678644,"text":"Northham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":190250,"wallTimeMs":1792883678644,"kind":"NationRelationChange","text":"Relations between Yellowton and Northham are now friendly against a common enemy."}
+{"type":"chronicle","tick":190502,"wallTimeMs":1792883686889,"kind":"NationRelationChange","text":"Greenford and Greatfield are now hostile."}
+{"type":"chronicle","tick":190502,"wallTimeMs":1792883686889,"kind":"Caravan","text":"Northernburg sent a caravan of 20 stone from the Camp of Northernburg to the Town of Yellowton."}
+{"type":"chronicle","tick":190950,"wallTimeMs":1792883701699,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Grace Lewis."}
+{"type":"chronicle","tick":191002,"wallTimeMs":1792883703765,"kind":"NationRaid","text":"Raiders from Northernburg struck Greatfield, taking 5 wood."}
+{"type":"chronicle","tick":191002,"wallTimeMs":1792883703765,"kind":"NationRaid","text":"Greenford raided Greatfield and carried off 5 wood."}
+{"type":"chronicle","tick":191350,"wallTimeMs":1792883715946,"kind":"NationCreation","text":"The nation of Bigton was born, with Zach Watson at its head."}
+{"type":"chronicle","tick":191450,"wallTimeMs":1792883719482,"kind":"SettlementFounded","text":"Bigton put down roots: Zach Watson founded its first settlement."}
+{"type":"status","tick":191454,"wallTimeMs":1792883719605,"text":"You fed 4 residents in the Town of Yellowton."}
+{"type":"chronicle","tick":191502,"wallTimeMs":1792883721127,"kind":"NationRelationChange","text":"Greatfield and Upperfield swore an alliance."}
+{"type":"status","tick":191750,"wallTimeMs":1792883729031,"text":"Westernfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":191750,"wallTimeMs":1792883729031,"kind":"NationRelationChange","text":"Yellowton and Westernfield have become rivals over their border."}
+{"type":"chronicle","tick":191750,"wallTimeMs":1792883729031,"kind":"NationRelationChange","text":"Greatfield and Greatport are now hostile."}
+{"type":"chronicle","tick":191750,"wallTimeMs":1792883729031,"kind":"NationRelationChange","text":"Greenford and Northshire swore an alliance."}
+{"type":"save","tick":192002,"wallTimeMs":1792883737006,"count":2}
+{"type":"status","tick":192002,"wallTimeMs":1792883737006,"text":"Upperfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"NationRelationChange","text":"Relations between Yellowton and Upperfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"NationRelationChange","text":"Northshire and Greatfield are now hostile."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"NationRelationChange","text":"Northshire and Upperfield are now hostile."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"NationRaid","text":"Raiders from Greatfield struck Northernburg, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"NationRaid","text":"Raiders from Northshire struck Greatfield, taking 5 wood."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"NationRaid","text":"Raiders from Northshire struck Upperfield, taking 5 coins."}
+{"type":"chronicle","tick":192002,"wallTimeMs":1792883737006,"kind":"Caravan","text":"Greenford sent a caravan of 20 stone from the Village of Greenford to the Town of Yellowton."}
+{"type":"chronicle","tick":192042,"wallTimeMs":1792883738285,"kind":"Caravan","text":"A caravan from Northernburg sold 20 stone at the Town of Yellowton for 60 coins."}
+{"type":"chronicle","tick":192202,"wallTimeMs":1792883743487,"kind":"NationCreation","text":"The nation of Easternburg was born, with Una Lewis at its head."}
+{"type":"status","tick":192434,"wallTimeMs":1792883750809,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"chronicle","tick":192450,"wallTimeMs":1792883751334,"kind":"StallBuilt","text":"A new stall opened in the market of Oldham, built by Stan Williams."}
+{"type":"chronicle","tick":192702,"wallTimeMs":1792883759140,"kind":"SettlementFounded","text":"Easternburg put down roots: Una Lewis founded its first settlement."}
+{"type":"status","tick":192758,"wallTimeMs":1792883760936,"text":"You fed 1 resident in the Town of Yellowton. (x2)"}
+{"type":"chronicle","tick":193002,"wallTimeMs":1792883769415,"kind":"NationRelationChange","text":"Oldham and Upperfield are now hostile."}
+{"type":"chronicle","tick":193002,"wallTimeMs":1792883769415,"kind":"NationRaid","text":"Raiders from Oldham struck Upperfield, taking 5 coins."}
+{"type":"status","tick":193122,"wallTimeMs":1792883774994,"text":"You fed 2 residents in the Town of Yellowton."}
+{"type":"status","tick":193346,"wallTimeMs":1792883785142,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"chronicle","tick":193502,"wallTimeMs":1792883790991,"kind":"Caravan","text":"Greatfield sent a caravan of 20 wood from the Town of Greatfield to the Town of Yellowton."}
+{"type":"status","tick":193750,"wallTimeMs":1792883800092,"text":"Bigton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":193750,"wallTimeMs":1792883800092,"kind":"NationRelationChange","text":"Yellowton and Bigton have become rivals over their border."}
+{"type":"status","tick":194002,"wallTimeMs":1792883809469,"text":"Northernburg sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":194138,"wallTimeMs":1792883814126,"kind":"Caravan","text":"A caravan from Greenford sold 19 stone at the Town of Yellowton for 57 coins."}
+{"type":"chronicle","tick":194250,"wallTimeMs":1792883817822,"kind":"NationCreation","text":"The nation of Redham was born, with Natalie Taylor at its head."}
+{"type":"status","tick":194486,"wallTimeMs":1792883825854,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":194502,"wallTimeMs":1792883826429,"text":"Greatport has fallen and been disbanded."}
+{"type":"chronicle","tick":194502,"wallTimeMs":1792883826429,"kind":"SettlementCapture","text":"Greatfield captured a camp from Greatport."}
+{"type":"chronicle","tick":194502,"wallTimeMs":1792883826429,"kind":"NationDisband","text":"Greatport is no more; its last camp fell to Greatfield."}
+{"type":"chronicle","tick":194750,"wallTimeMs":1792883834536,"kind":"NationRelationChange","text":"Northshire and Northham are now hostile."}
+{"type":"chronicle","tick":194802,"wallTimeMs":1792883836301,"kind":"SettlementFounded","text":"Natalie Taylor raised the first settlement of Redham."}
+{"type":"status","tick":195002,"wallTimeMs":1792883842942,"text":"Northernburg sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":195002,"wallTimeMs":1792883842942,"kind":"NationRelationChange","text":"Greatfield and Easternburg have become rivals over their border."}
+{"type":"chronicle","tick":195002,"wallTimeMs":1792883842942,"kind":"NationRaid","text":"Northshire raided Northham and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":195050,"wallTimeMs":1792883844564,"kind":"NationJoin","text":"Yellowton welcomed Bob Williams into its ranks."}
+{"type":"chronicle","tick":195202,"wallTimeMs":1792883849671,"kind":"StallBuilt","text":"Una Lewis built a market stall in Easternburg."}
+{"type":"chronicle","tick":195250,"wallTimeMs":1792883851258,"kind":"NationRelationChange","text":"Northford and Northham are now hostile over their border."}
+{"type":"chronicle","tick":195250,"wallTimeMs":1792883851258,"kind":"NationRelationChange","text":"Oldham and Greenford swore an alliance."}
+{"type":"status","tick":195418,"wallTimeMs":1792883856724,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"status","tick":195502,"wallTimeMs":1792883859532,"text":"Northernburg has fallen and been disbanded."}
+{"type":"chronicle","tick":195502,"wallTimeMs":1792883859532,"kind":"SettlementCapture","text":"Greatfield captured a camp from Northernburg."}
+{"type":"chronicle","tick":195502,"wallTimeMs":1792883859532,"kind":"NationDisband","text":"With its last camp taken by Greatfield, Northernburg passed into history."}
+{"type":"status","tick":195930,"wallTimeMs":1792883874136,"text":"You fed 1 resident in the Town of Yellowton."}
+{"type":"chronicle","tick":196002,"wallTimeMs":1792883876667,"kind":"NationRaid","text":"Raiders from Greatfield struck Northshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":196002,"wallTimeMs":1792883876667,"kind":"NationRaid","text":"Raiders from Upperfield struck Northshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":196002,"wallTimeMs":1792883876667,"kind":"NationRaid","text":"Raiders from Northford struck Northham, taking 5 coins, 5 wood."}
+{"type":"status","tick":196238,"wallTimeMs":1792883884772,"text":"You fed 1 resident in the Town of Yellowton. (x2)"}
+{"type":"status","tick":196470,"wallTimeMs":1792883891807,"text":"You fed 1 resident in the Town of Yellowton. (x3)"}
+{"type":"chronicle","tick":197026,"wallTimeMs":1792883908610,"kind":"Caravan","text":"A caravan from Greatfield sold nothing at the Town of Yellowton for 0 coins."}
+{"type":"status","tick":197250,"wallTimeMs":1792883915209,"text":"Redham resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":197250,"wallTimeMs":1792883915209,"kind":"NationRelationChange","text":"Yellowton and Redham have become rivals over their border."}
+{"type":"chronicle","tick":197250,"wallTimeMs":1792883915209,"kind":"NationRelationChange","text":"Northham and Redham have become rivals over their border."}
+{"type":"chronicle","tick":197250,"wallTimeMs":1792883915209,"kind":"NationRelationChange","text":"Greenford and Northford have formed an alliance."}
+{"type":"status","tick":197502,"wallTimeMs":1792883922759,"text":"Northham has fallen and been disbanded."}
+{"type":"chronicle","tick":197502,"wallTimeMs":1792883922759,"kind":"SettlementCapture","text":"Northshire captured a village from Northham."}
+{"type":"chronicle","tick":197502,"wallTimeMs":1792883922759,"kind":"NationDisband","text":"The banners of Northham came down when Northshire took its last village."}
+{"type":"status","tick":197602,"wallTimeMs":1792883925755,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"status","tick":197662,"wallTimeMs":1792883927523,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x2)"}
+{"type":"status","tick":197690,"wallTimeMs":1792883928293,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x3)"}
+{"type":"chronicle","tick":197702,"wallTimeMs":1792883928639,"kind":"WorldEvent","text":"Wanderers came to the Town of Greatfield; Alice Wood took in only Zach Taylor, and the rest moved on."}
+{"type":"status","tick":197950,"wallTimeMs":1792883936007,"text":"Exited settlement."}
+{"type":"save","tick":198002,"wallTimeMs":1792883937628,"count":3}
+{"type":"status","tick":198559,"wallTimeMs":1792883950758,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":198923,"wallTimeMs":1792883958039,"text":"You leave the land of Yellowton for the wilds."}
+{"type":"status","tick":198962,"wallTimeMs":1792883958830,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":199197,"wallTimeMs":1792883963556,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":199420,"wallTimeMs":1792883968027,"text":"You enter the land of Northford (Rival)."}
+{"type":"status","tick":199601,"wallTimeMs":1792883971676,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":199888,"wallTimeMs":1792883977612,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792883979851,"kind":"NationRelationChange","text":"Greatfield and Easternburg are now hostile."}
+{"type":"chronicle","tick":200000,"wallTimeMs":1792883979851,"kind":"NationRaid","text":"Raiders from Greatfield struck Easternburg, taking 5 coins."}
+{"type":"status","tick":200109,"wallTimeMs":1792883982035,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":200350,"wallTimeMs":1792883986889,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":200378,"wallTimeMs":1792883987464,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792883989943,"kind":"NationRelationChange","text":"Greatfield and Northford have become rivals over their border."}
+{"type":"chronicle","tick":200500,"wallTimeMs":1792883989943,"kind":"SettlementCapture","text":"Greenford captured a camp from Greatfield."}
+{"type":"status","tick":200713,"wallTimeMs":1792883994223,"text":"You leave the land of Northford for the wilds."}
+{"type":"status","tick":200729,"wallTimeMs":1792883994538,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":200783,"wallTimeMs":1792883995619,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRelationChange","text":"Relations between Greatfield and Northford are now neutral as old feelings faded."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRaid","text":"Raiders from Oldham struck Greatfield, taking 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRaid","text":"Raiders from Greenford struck Greatfield, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRaid","text":"Northshire raided Greatfield and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRaid","text":"Raiders from Greatfield struck Easternburg, taking 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRaid","text":"Oldham raided Upperfield and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"NationRaid","text":"Northshire raided Upperfield and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1792884000037,"kind":"Caravan","text":"Greatfield sent a caravan of 20 wood from the Town of Greatfield to the Town of Yellowton."}
+{"type":"status","tick":201129,"wallTimeMs":1792884002639,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":201288,"wallTimeMs":1792884005828,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":201502,"wallTimeMs":1792884010116,"kind":"NationRelationChange","text":"Greenford and Westernfield swore an alliance."}
+{"type":"chronicle","tick":201502,"wallTimeMs":1792884010116,"kind":"NationRelationChange","text":"Northshire and Westernfield have formed an alliance."}
+{"type":"chronicle","tick":201502,"wallTimeMs":1792884010116,"kind":"NationRelationChange","text":"Northford and Westernfield swore an alliance."}
+{"type":"status","tick":201520,"wallTimeMs":1792884010469,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"world_event_offered","tick":201551,"wallTimeMs":1792884011110,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone","Decline"]}
+{"type":"status","tick":201551,"wallTimeMs":1792884075955,"text":"No entities within range to interact with."}
+{"type":"status","tick":201551,"wallTimeMs":1792884141319,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":201551,"wallTimeMs":1792884206373,"text":"No entities within range to interact with. (x3)"}

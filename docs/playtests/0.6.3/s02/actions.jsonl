@@ -1,0 +1,501 @@
+{"t": 1792879910516, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "103", "--season", "winter"]}
+{"t": 1792879916049, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1792879916140, "cmd": "key", "args": ["space"]}
+{"t": 1792879916649, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1792879916739, "cmd": "shot", "args": ["menu"]}
+{"t": 1792879919891, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792879920655, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1792879921144, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792879921905, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1792879922186, "cmd": "wait", "args": ["3"]}
+{"t": 1792879925272, "cmd": "shot", "args": ["world0"]}
+{"t": 1792879925485, "cmd": "state", "args": []}
+{"t": 1792879929493, "cmd": "click", "args": ["425", "388"]}
+{"t": 1792879930239, "cmd": "state", "args": ["--full"]}
+{"t": 1792879933454, "cmd": "key", "args": ["n"]}
+{"t": 1792879933927, "cmd": "wait", "args": ["1"]}
+{"t": 1792879934994, "cmd": "shot", "args": ["nation"]}
+{"t": 1792879935185, "cmd": "events", "args": ["10"]}
+{"t": 1792879939963, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792879946977, "cmd": "key", "args": ["e"]}
+{"t": 1792879947976, "cmd": "key", "args": ["e"]}
+{"t": 1792879948965, "cmd": "key", "args": ["e"]}
+{"t": 1792879949939, "cmd": "key", "args": ["e"]}
+{"t": 1792879950923, "cmd": "key", "args": ["e"]}
+{"t": 1792879951904, "cmd": "key", "args": ["e"]}
+{"t": 1792879952893, "cmd": "state", "args": []}
+{"t": 1792879956301, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792879964172, "cmd": "key", "args": ["e"]}
+{"t": 1792879965145, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792879970486, "cmd": "key", "args": ["e"]}
+{"t": 1792879971461, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792879980683, "cmd": "key", "args": ["e"]}
+{"t": 1792879981671, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1792879988141, "cmd": "key", "args": ["e"]}
+{"t": 1792879988615, "cmd": "state", "args": []}
+{"t": 1792879988680, "cmd": "events", "args": ["8"]}
+{"t": 1792879992796, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880022922, "cmd": "key", "args": ["e"]}
+{"t": 1792880023791, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880029557, "cmd": "key", "args": ["e"]}
+{"t": 1792880030422, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880035192, "cmd": "key", "args": ["e"]}
+{"t": 1792880036066, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880038826, "cmd": "key", "args": ["e"]}
+{"t": 1792880039695, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880052932, "cmd": "key", "args": ["e"]}
+{"t": 1792880053821, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880068057, "cmd": "key", "args": ["e"]}
+{"t": 1792880068932, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880079420, "cmd": "key", "args": ["e"]}
+{"t": 1792880080299, "cmd": "state", "args": []}
+{"t": 1792880082890, "cmd": "key", "args": ["f"]}
+{"t": 1792880083369, "cmd": "wait", "args": ["1"]}
+{"t": 1792880084439, "cmd": "shot", "args": ["found"]}
+{"t": 1792880084651, "cmd": "events", "args": ["6"]}
+{"t": 1792880088473, "cmd": "face", "args": ["-64"]}
+{"t": 1792880090298, "cmd": "hold", "args": ["w", "7"]}
+{"t": 1792880097404, "cmd": "key", "args": ["f"]}
+{"t": 1792880097886, "cmd": "wait", "args": ["1"]}
+{"t": 1792880098947, "cmd": "events", "args": ["3"]}
+{"t": 1792880099009, "cmd": "state", "args": []}
+{"t": 1792880103715, "cmd": "state", "args": ["--full"]}
+{"t": 1792880107110, "cmd": "face", "args": ["61"]}
+{"t": 1792880109461, "cmd": "hold", "args": ["w", "8"]}
+{"t": 1792880117593, "cmd": "key", "args": ["f"]}
+{"t": 1792880118115, "cmd": "wait", "args": ["1"]}
+{"t": 1792880119177, "cmd": "events", "args": ["2"]}
+{"t": 1792880121955, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1792880125061, "cmd": "key", "args": ["f"]}
+{"t": 1792880125529, "cmd": "wait", "args": ["1"]}
+{"t": 1792880126587, "cmd": "events", "args": ["3"]}
+{"t": 1792880126642, "cmd": "shot", "args": ["founded"]}
+{"t": 1792880130312, "cmd": "key", "args": ["e"]}
+{"t": 1792880130809, "cmd": "wait", "args": ["2"]}
+{"t": 1792880132880, "cmd": "shot", "args": ["inside"]}
+{"t": 1792880133073, "cmd": "state", "args": []}
+{"t": 1792880136718, "cmd": "state", "args": ["--full"]}
+{"t": 1792880139892, "cmd": "events", "args": ["8"]}
+{"t": 1792880139965, "cmd": "shot", "args": ["stall"]}
+{"t": 1792880146969, "cmd": "note", "args": ["--shot", "obj7_clipped", "Objective 7 progress bar text clipped on the left: shows 'nbers 6/10 • Buildings 0/2' instead of 'Members 6/10 ...'. Also the Inventory panel jumped to the screen centre over the scene after the market panel grew. tick ~187300"]}
+{"t": 1792880147146, "cmd": "note", "args": ["Objective 6 'Build a market stall' completed at tick 187200 because pawn Victor Evans built a stall in my settlement, while I had only 8/20 wood. The objective text says 'press B inside your settlement' - the player never did it. Also the Market panel lists merchants Victor Evans, Charlotte Watson while the chronicle says Irene Lewis built the second stall."]}
+{"t": 1792880150373, "cmd": "click", "args": ["217", "476"]}
+{"t": 1792880151110, "cmd": "wait", "args": ["1"]}
+{"t": 1792880152183, "cmd": "events", "args": ["3"]}
+{"t": 1792880152305, "cmd": "state", "args": []}
+{"t": 1792880155655, "cmd": "key", "args": ["k"]}
+{"t": 1792880156143, "cmd": "wait", "args": ["1"]}
+{"t": 1792880157201, "cmd": "events", "args": ["3"]}
+{"t": 1792880157271, "cmd": "wait", "args": ["20"]}
+{"t": 1792880177339, "cmd": "shot", "args": ["t1"]}
+{"t": 1792880180919, "cmd": "key", "args": ["k", "k"]}
+{"t": 1792880181810, "cmd": "wait", "args": ["2"]}
+{"t": 1792880183875, "cmd": "events", "args": ["4"]}
+{"t": 1792880187648, "cmd": "wait", "args": ["30"]}
+{"t": 1792880217721, "cmd": "shot", "args": ["t2"]}
+{"t": 1792880217953, "cmd": "events", "args": ["6"]}
+{"t": 1792880221249, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880222015, "cmd": "wait", "args": ["1"]}
+{"t": 1792880223074, "cmd": "shot", "args": ["feed1"]}
+{"t": 1792880223299, "cmd": "events", "args": ["3"]}
+{"t": 1792880223374, "cmd": "state", "args": []}
+{"t": 1792880228524, "cmd": "wait", "args": ["25"]}
+{"t": 1792880253587, "cmd": "shot", "args": ["t3"]}
+{"t": 1792880257927, "cmd": "key", "args": ["e"]}
+{"t": 1792880258403, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880302869, "cmd": "key", "args": ["e"]}
+{"t": 1792880303746, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880308298, "cmd": "key", "args": ["e"]}
+{"t": 1792880309176, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880320715, "cmd": "key", "args": ["e"]}
+{"t": 1792880321598, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880337914, "cmd": "key", "args": ["e"]}
+{"t": 1792880338800, "cmd": "shot", "args": ["t4"]}
+{"t": 1792880339009, "cmd": "events", "args": ["8"]}
+{"t": 1792880342484, "cmd": "key", "args": ["h"]}
+{"t": 1792880342972, "cmd": "wait", "args": ["2"]}
+{"t": 1792880345036, "cmd": "key", "args": ["e"]}
+{"t": 1792880345519, "cmd": "wait", "args": ["2"]}
+{"t": 1792880347579, "cmd": "shot", "args": ["t5"]}
+{"t": 1792880347813, "cmd": "state", "args": []}
+{"t": 1792880351361, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880352101, "cmd": "wait", "args": ["1"]}
+{"t": 1792880353167, "cmd": "shot", "args": ["feed2"]}
+{"t": 1792880353391, "cmd": "events", "args": ["3"]}
+{"t": 1792880353456, "cmd": "state", "args": []}
+{"t": 1792880358078, "cmd": "click", "args": ["473", "445"]}
+{"t": 1792880358805, "cmd": "wait", "args": ["1"]}
+{"t": 1792880359878, "cmd": "click", "args": ["473", "445"]}
+{"t": 1792880360603, "cmd": "wait", "args": ["1"]}
+{"t": 1792880361669, "cmd": "events", "args": ["4"]}
+{"t": 1792880364321, "cmd": "events", "args": ["6"]}
+{"t": 1792880364382, "cmd": "shot", "args": ["t6"]}
+{"t": 1792880372511, "cmd": "click", "args": ["217", "476"]}
+{"t": 1792880373262, "cmd": "wait", "args": ["30"]}
+{"t": 1792880403325, "cmd": "shot", "args": ["t7"]}
+{"t": 1792880403700, "cmd": "events", "args": ["30"]}
+{"t": 1792880403775, "cmd": "state", "args": []}
+{"t": 1792880407913, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880408645, "cmd": "wait", "args": ["1"]}
+{"t": 1792880409703, "cmd": "shot", "args": ["feed3"]}
+{"t": 1792880410075, "cmd": "events", "args": ["4"]}
+{"t": 1792880410143, "cmd": "state", "args": []}
+{"t": 1792880415092, "cmd": "key", "args": ["k", "k"]}
+{"t": 1792880415974, "cmd": "wait", "args": ["1"]}
+{"t": 1792880417041, "cmd": "events", "args": ["3"]}
+{"t": 1792880423610, "cmd": "wait", "args": ["40"]}
+{"t": 1792880463683, "cmd": "shot", "args": ["t8"]}
+{"t": 1792880469095, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880469859, "cmd": "wait", "args": ["1"]}
+{"t": 1792880470918, "cmd": "shot", "args": ["feed4"]}
+{"t": 1792880471287, "cmd": "events", "args": ["4"]}
+{"t": 1792880471357, "cmd": "state", "args": []}
+{"t": 1792880477842, "cmd": "key", "args": ["e"]}
+{"t": 1792880478336, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880500115, "cmd": "key", "args": ["e"]}
+{"t": 1792880501001, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880526541, "cmd": "key", "args": ["e"]}
+{"t": 1792880527433, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880541378, "cmd": "key", "args": ["e"]}
+{"t": 1792880542268, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880554122, "cmd": "key", "args": ["e"]}
+{"t": 1792880555002, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880565470, "cmd": "key", "args": ["e"]}
+{"t": 1792880566355, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880582642, "cmd": "key", "args": ["e"]}
+{"t": 1792880583547, "cmd": "shot", "args": ["t9"]}
+{"t": 1792880583981, "cmd": "state", "args": []}
+{"t": 1792880589803, "cmd": "note", "args": ["--shot", "winter_apples", "Season panel says 'Winter: no harvests' but chopping trees in winter still yields apples (e.g. 'Gathered 6 wood and 3 apples from tree' at tick ~199200); 14->28 apples from 6 trees. Either the label is misleading or winter food is unintentionally easy - trees are the whole winter food supply."]}
+{"t": 1792880590231, "cmd": "key", "args": ["h"]}
+{"t": 1792880590725, "cmd": "wait", "args": ["2"]}
+{"t": 1792880592783, "cmd": "key", "args": ["e"]}
+{"t": 1792880593266, "cmd": "wait", "args": ["2"]}
+{"t": 1792880595338, "cmd": "shot", "args": ["t10"]}
+{"t": 1792880599111, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880599846, "cmd": "wait", "args": ["1"]}
+{"t": 1792880600913, "cmd": "shot", "args": ["feed5"]}
+{"t": 1792880601287, "cmd": "events", "args": ["4"]}
+{"t": 1792880601360, "cmd": "state", "args": []}
+{"t": 1792880601426, "cmd": "click", "args": ["473", "445"]}
+{"t": 1792880602151, "cmd": "wait", "args": ["1"]}
+{"t": 1792880603219, "cmd": "click", "args": ["473", "445"]}
+{"t": 1792880603968, "cmd": "wait", "args": ["1"]}
+{"t": 1792880605038, "cmd": "events", "args": ["3"]}
+{"t": 1792880610177, "cmd": "wait", "args": ["45"]}
+{"t": 1792880655234, "cmd": "shot", "args": ["t11"]}
+{"t": 1792880655556, "cmd": "state", "args": []}
+{"t": 1792880659998, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880660716, "cmd": "wait", "args": ["1"]}
+{"t": 1792880661767, "cmd": "shot", "args": ["feed6"]}
+{"t": 1792880662082, "cmd": "events", "args": ["4"]}
+{"t": 1792880662133, "cmd": "state", "args": []}
+{"t": 1792880667738, "cmd": "click", "args": ["217", "476"]}
+{"t": 1792880668461, "cmd": "key", "args": ["e"]}
+{"t": 1792880668926, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880749214, "cmd": "key", "args": ["e"]}
+{"t": 1792880750087, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880795300, "cmd": "wait", "args": ["20"]}
+{"t": 1792880818420, "cmd": "wait", "args": ["25"]}
+{"t": 1792880831934, "cmd": "key", "args": ["e"]}
+{"t": 1792880832793, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880843470, "cmd": "state", "args": []}
+{"t": 1792880847407, "cmd": "shot", "args": ["event1"]}
+{"t": 1792880847574, "cmd": "state", "args": ["--full"]}
+{"t": 1792880856890, "cmd": "key", "args": ["e"]}
+{"t": 1792880856899, "cmd": "click", "args": ["480", "382"]}
+{"t": 1792880857609, "cmd": "wait", "args": ["1"]}
+{"t": 1792880857744, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880858657, "cmd": "events", "args": ["3"]}
+{"t": 1792880862005, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880887010, "cmd": "key", "args": ["e"]}
+{"t": 1792880887873, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880894164, "cmd": "key", "args": ["e"]}
+{"t": 1792880894165, "cmd": "key", "args": ["e"]}
+{"t": 1792880895024, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880895027, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880906060, "cmd": "key", "args": ["e"]}
+{"t": 1792880906063, "cmd": "key", "args": ["e"]}
+{"t": 1792880906930, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880906933, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880916432, "cmd": "key", "args": ["e"]}
+{"t": 1792880916441, "cmd": "key", "args": ["e"]}
+{"t": 1792880917288, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880917302, "cmd": "state", "args": []}
+{"t": 1792880920188, "cmd": "shot", "args": ["t13"]}
+{"t": 1792880920507, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792880925776, "cmd": "key", "args": ["e"]}
+{"t": 1792880926633, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1792880941842, "cmd": "key", "args": ["e"]}
+{"t": 1792880941862, "cmd": "key", "args": ["e"]}
+{"t": 1792880942896, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792880942896, "cmd": "shot", "args": ["t12"]}
+{"t": 1792880943437, "cmd": "state", "args": []}
+{"t": 1792880951825, "cmd": "key", "args": ["e"]}
+{"t": 1792880952704, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792880957334, "cmd": "key", "args": ["e"]}
+{"t": 1792880958200, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792880968089, "cmd": "key", "args": ["e"]}
+{"t": 1792880968976, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792880975066, "cmd": "key", "args": ["e"]}
+{"t": 1792880975947, "cmd": "state", "args": []}
+{"t": 1792880979325, "cmd": "key", "args": ["f"]}
+{"t": 1792880979787, "cmd": "wait", "args": ["1"]}
+{"t": 1792880980847, "cmd": "events", "args": ["4"]}
+{"t": 1792880984671, "cmd": "key", "args": ["h"]}
+{"t": 1792880985142, "cmd": "wait", "args": ["2"]}
+{"t": 1792880987197, "cmd": "key", "args": ["e"]}
+{"t": 1792880987668, "cmd": "wait", "args": ["2"]}
+{"t": 1792880989731, "cmd": "shot", "args": ["t14"]}
+{"t": 1792880993285, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792880994015, "cmd": "wait", "args": ["1"]}
+{"t": 1792880995071, "cmd": "shot", "args": ["feed7"]}
+{"t": 1792880995455, "cmd": "events", "args": ["4"]}
+{"t": 1792880995533, "cmd": "state", "args": []}
+{"t": 1792881000241, "cmd": "state", "args": []}
+{"t": 1792881000302, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881001034, "cmd": "wait", "args": ["1"]}
+{"t": 1792881002098, "cmd": "shot", "args": ["feed8"]}
+{"t": 1792881002462, "cmd": "events", "args": ["4"]}
+{"t": 1792881002525, "cmd": "state", "args": []}
+{"t": 1792881012188, "cmd": "note", "args": ["--shot", "feed7_rehungry", "Feed Residents only feeds members already hungry. At tick 206038 'You fed 6 residents' and the same frame-second the banner says '3 members hungry: all here' and the button 'Feed Residents (3 hungry)' (screenshot). A second click fed the other 3 at tick 206190. The three readouts agree with each other, but a player expects one Feed click to feed everyone present; feeding the nearly-hungry too (or saying 'X more will be hungry soon') would avoid the double-click and the impression the feed failed."]}
+{"t": 1792881012544, "cmd": "note", "args": ["--shot", "nameplate_overlap", "Settlement nameplate '8 here, 9/16 residents' renders in huge world-space text across the top of the screen over the HUD ('? Controls' button and Era panel) when standing inside the settlement. It is clipped and hard to read. Seen throughout ticks 187000-206000."]}
+{"t": 1792881017746, "cmd": "key", "args": ["k", "k"]}
+{"t": 1792881018629, "cmd": "wait", "args": ["1"]}
+{"t": 1792881019691, "cmd": "events", "args": ["3"]}
+{"t": 1792881019758, "cmd": "wait", "args": ["40"]}
+{"t": 1792881059817, "cmd": "shot", "args": ["t15"]}
+{"t": 1792881063629, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881064362, "cmd": "wait", "args": ["1"]}
+{"t": 1792881065432, "cmd": "shot", "args": ["feed9"]}
+{"t": 1792881065809, "cmd": "events", "args": ["4"]}
+{"t": 1792881065874, "cmd": "state", "args": []}
+{"t": 1792881072612, "cmd": "note", "args": ["--shot", "tier_vs_era", "After building a 3rd house (tick 206558) the status says 'The settlement is now a Town!' and Settlement Info shows 'Tier: Town (5 buildings)' with a 'Send Caravan (Town era)' button, yet the Era panel still says 'Camp (1/4)' and Objective 7 still asks to 'Reach the Village era' (Members 9/10). Two parallel ladders named Village/Town (settlement tier vs nation era) read as contradictory."]}
+{"t": 1792881076474, "cmd": "wait", "args": ["45"]}
+{"t": 1792881121522, "cmd": "shot", "args": ["t16"]}
+{"t": 1792881121696, "cmd": "state", "args": []}
+{"t": 1792881125204, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881125922, "cmd": "wait", "args": ["1"]}
+{"t": 1792881126970, "cmd": "shot", "args": ["feed10"]}
+{"t": 1792881127132, "cmd": "events", "args": ["4"]}
+{"t": 1792881127187, "cmd": "state", "args": []}
+{"t": 1792881131330, "cmd": "click", "args": ["66", "445"]}
+{"t": 1792881132040, "cmd": "wait", "args": ["1"]}
+{"t": 1792881133096, "cmd": "shot", "args": ["purchase"]}
+{"t": 1792881133273, "cmd": "events", "args": ["3"]}
+{"t": 1792881133325, "cmd": "state", "args": []}
+{"t": 1792881138814, "cmd": "note", "args": ["--shot", "purchase_food_ambiguous", "Purchase Food at my own Town market (tick 209286) fails with 'No one is selling food at this market or you do not have enough money to purchase food.' I had 231 coins and the Market panel lists Apples at 80 buy; the message does not say which of the two reasons applies, and listing an apple price when nobody sells apples is misleading. In winter with 'no harvests' this is the only alternative food source a player would try."]}
+{"t": 1792881138993, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881139708, "cmd": "wait", "args": ["1"]}
+{"t": 1792881140757, "cmd": "events", "args": ["3"]}
+{"t": 1792881140803, "cmd": "state", "args": []}
+{"t": 1792881143203, "cmd": "shot", "args": ["t17"]}
+{"t": 1792881146638, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881147353, "cmd": "wait", "args": ["1"]}
+{"t": 1792881148407, "cmd": "shot", "args": ["feed11"]}
+{"t": 1792881148567, "cmd": "events", "args": ["3"]}
+{"t": 1792881148620, "cmd": "state", "args": []}
+{"t": 1792881154792, "cmd": "wait", "args": ["45"]}
+{"t": 1792881199842, "cmd": "shot", "args": ["t18"]}
+{"t": 1792881200001, "cmd": "state", "args": []}
+{"t": 1792881203806, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881204517, "cmd": "wait", "args": ["1"]}
+{"t": 1792881205568, "cmd": "events", "args": ["3"]}
+{"t": 1792881205621, "cmd": "state", "args": []}
+{"t": 1792881205669, "cmd": "shot", "args": ["feed12"]}
+{"t": 1792881210106, "cmd": "key", "args": ["e"]}
+{"t": 1792881210560, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792881230575, "cmd": "key", "args": ["e"]}
+{"t": 1792881231427, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792881251436, "cmd": "key", "args": ["e"]}
+{"t": 1792881252298, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792881272300, "cmd": "key", "args": ["e"]}
+{"t": 1792881273164, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1792881293163, "cmd": "key", "args": ["e"]}
+{"t": 1792881294020, "cmd": "shot", "args": ["t19"]}
+{"t": 1792881294165, "cmd": "state", "args": []}
+{"t": 1792881297856, "cmd": "key", "args": ["h"]}
+{"t": 1792881298312, "cmd": "wait", "args": ["2"]}
+{"t": 1792881300370, "cmd": "key", "args": ["e"]}
+{"t": 1792881300853, "cmd": "wait", "args": ["2"]}
+{"t": 1792881302903, "cmd": "shot", "args": ["t20"]}
+{"t": 1792881303060, "cmd": "state", "args": []}
+{"t": 1792881308849, "cmd": "note", "args": ["--shot", "home_out_of_reach", "Pressed H (Teleport Home) then E at tick ~215200: E says 'No entities within range to interact with.' H placed me at (774.7,-12.7), ~9 units from the settlement centre (773,-3), outside the 5-unit interact range. Earlier the same H+E worked. Expected H to land within reach so E enters immediately."]}
+{"t": 1792881309004, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1792881329014, "cmd": "key", "args": ["e"]}
+{"t": 1792881329474, "cmd": "wait", "args": ["2"]}
+{"t": 1792881331545, "cmd": "shot", "args": ["t21"]}
+{"t": 1792881335095, "cmd": "click", "args": ["66", "476"]}
+{"t": 1792881335814, "cmd": "wait", "args": ["2"]}
+{"t": 1792881337857, "cmd": "shot", "args": ["t22"]}
+{"t": 1792881337997, "cmd": "events", "args": ["3"]}
+{"t": 1792881341185, "cmd": "state", "args": ["--full"]}
+{"t": 1792881344938, "cmd": "face", "args": ["30"]}
+{"t": 1792881346100, "cmd": "hold", "args": ["w", "0.7"]}
+{"t": 1792881346897, "cmd": "state", "args": ["--full"]}
+{"t": 1792881351686, "cmd": "face", "args": ["80"]}
+{"t": 1792881354503, "cmd": "hold", "args": ["w", "0.6"]}
+{"t": 1792881355195, "cmd": "state", "args": ["--full"]}
+{"t": 1792881358203, "cmd": "face", "args": ["26"]}
+{"t": 1792881359708, "cmd": "hold", "args": ["w", "0.5"]}
+{"t": 1792881360295, "cmd": "state", "args": ["--full"]}
+{"t": 1792881360357, "cmd": "key", "args": ["e"]}
+{"t": 1792881360803, "cmd": "wait", "args": ["1"]}
+{"t": 1792881361859, "cmd": "events", "args": ["2"]}
+{"t": 1792881365328, "cmd": "hold", "args": ["w", "0.35"]}
+{"t": 1792881365775, "cmd": "state", "args": ["--full"]}
+{"t": 1792881365825, "cmd": "key", "args": ["e"]}
+{"t": 1792881366284, "cmd": "wait", "args": ["1"]}
+{"t": 1792881367358, "cmd": "events", "args": ["2"]}
+{"t": 1792881367428, "cmd": "shot", "args": ["t23"]}
+{"t": 1792881370518, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881371249, "cmd": "wait", "args": ["1"]}
+{"t": 1792881372318, "cmd": "events", "args": ["3"]}
+{"t": 1792881372378, "cmd": "state", "args": []}
+{"t": 1792881372427, "cmd": "shot", "args": ["feed13"]}
+{"t": 1792881377036, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881377746, "cmd": "wait", "args": ["1"]}
+{"t": 1792881378800, "cmd": "events", "args": ["3"]}
+{"t": 1792881378858, "cmd": "state", "args": []}
+{"t": 1792881378913, "cmd": "shot", "args": ["feed14"]}
+{"t": 1792881390052, "cmd": "note", "args": ["--shot", "feed_double_count", "Hunger readouts disagree with 'You fed N' (#410). Tick 217390: banner '7 members hungry: all here', button 'Feed Residents (7 hungry)', click -> 'You fed 7 residents in the Town of Yellowton' (apples 15->8). The very next frame the banner says '4 members hungry: all here' and the button 'Feed Residents (4 hungry)' (shot feed13.png). Second click at 217562 -> 'You fed 4 residents' (apples 8->4). That is 11 feedings in 172 ticks for a settlement whose nameplate says '8 here, 9/20 residents', so at least 3 people were reported as fed while still hungry. Expected: after 'You fed 7' those 7 are no longer hungry (or the message says they are still hungry / need more), and the hungry count never exceeds the residents present. Same pattern at tick 206038 (fed 6, then 3 more, with 8 here)."]}
+{"t": 1792881394054, "cmd": "click", "args": ["217", "476"]}
+{"t": 1792881394771, "cmd": "wait", "args": ["1"]}
+{"t": 1792881395834, "cmd": "events", "args": ["2"]}
+{"t": 1792881399289, "cmd": "key", "args": ["e"]}
+{"t": 1792881399753, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881416345, "cmd": "key", "args": ["e"]}
+{"t": 1792881417207, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881427616, "cmd": "key", "args": ["e"]}
+{"t": 1792881428479, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881437674, "cmd": "key", "args": ["e"]}
+{"t": 1792881438530, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881442042, "cmd": "key", "args": ["e"]}
+{"t": 1792881442897, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881449235, "cmd": "key", "args": ["e"]}
+{"t": 1792881450101, "cmd": "state", "args": []}
+{"t": 1792881453166, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881461489, "cmd": "key", "args": ["e"]}
+{"t": 1792881462356, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881475543, "cmd": "key", "args": ["e"]}
+{"t": 1792881476397, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881486977, "cmd": "key", "args": ["e"]}
+{"t": 1792881487851, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881492615, "cmd": "key", "args": ["e"]}
+{"t": 1792881493474, "cmd": "shot", "args": ["t24"]}
+{"t": 1792881493623, "cmd": "state", "args": []}
+{"t": 1792881498169, "cmd": "key", "args": ["h"]}
+{"t": 1792881498626, "cmd": "wait", "args": ["2"]}
+{"t": 1792881500680, "cmd": "key", "args": ["e"]}
+{"t": 1792881501145, "cmd": "wait", "args": ["1"]}
+{"t": 1792881502198, "cmd": "events", "args": ["3"]}
+{"t": 1792881502251, "cmd": "state", "args": ["--full"]}
+{"t": 1792881505249, "cmd": "shot", "args": ["t25"]}
+{"t": 1792881505444, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881506170, "cmd": "wait", "args": ["1"]}
+{"t": 1792881507217, "cmd": "events", "args": ["3"]}
+{"t": 1792881507279, "cmd": "state", "args": []}
+{"t": 1792881507327, "cmd": "shot", "args": ["feed15"]}
+{"t": 1792881510580, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881511297, "cmd": "wait", "args": ["1"]}
+{"t": 1792881512358, "cmd": "events", "args": ["3"]}
+{"t": 1792881512413, "cmd": "state", "args": []}
+{"t": 1792881512464, "cmd": "shot", "args": ["feed16"]}
+{"t": 1792881517757, "cmd": "click", "args": ["217", "476"]}
+{"t": 1792881518470, "cmd": "key", "args": ["k", "k"]}
+{"t": 1792881519331, "cmd": "wait", "args": ["1"]}
+{"t": 1792881520385, "cmd": "events", "args": ["4"]}
+{"t": 1792881520443, "cmd": "wait", "args": ["40"]}
+{"t": 1792881560491, "cmd": "shot", "args": ["t26"]}
+{"t": 1792881560677, "cmd": "state", "args": []}
+{"t": 1792881564205, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881564911, "cmd": "wait", "args": ["1"]}
+{"t": 1792881565972, "cmd": "events", "args": ["3"]}
+{"t": 1792881566021, "cmd": "state", "args": []}
+{"t": 1792881566077, "cmd": "shot", "args": ["feed17"]}
+{"t": 1792881570810, "cmd": "wait", "args": ["45"]}
+{"t": 1792881615861, "cmd": "shot", "args": ["t27"]}
+{"t": 1792881616148, "cmd": "state", "args": []}
+{"t": 1792881619089, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881619808, "cmd": "wait", "args": ["1"]}
+{"t": 1792881620851, "cmd": "events", "args": ["3"]}
+{"t": 1792881620900, "cmd": "state", "args": []}
+{"t": 1792881620954, "cmd": "shot", "args": ["feed18"]}
+{"t": 1792881624115, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881624824, "cmd": "wait", "args": ["1"]}
+{"t": 1792881625867, "cmd": "events", "args": ["3"]}
+{"t": 1792881625911, "cmd": "state", "args": []}
+{"t": 1792881625956, "cmd": "shot", "args": ["feed19"]}
+{"t": 1792881631434, "cmd": "key", "args": ["e"]}
+{"t": 1792881631889, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881646547, "cmd": "key", "args": ["e"]}
+{"t": 1792881647406, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881662947, "cmd": "key", "args": ["e"]}
+{"t": 1792881663806, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881668093, "cmd": "key", "args": ["e"]}
+{"t": 1792881668949, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881674672, "cmd": "key", "args": ["e"]}
+{"t": 1792881675535, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881682776, "cmd": "key", "args": ["e"]}
+{"t": 1792881683632, "cmd": "state", "args": []}
+{"t": 1792881687333, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881693141, "cmd": "key", "args": ["e"]}
+{"t": 1792881694000, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881701533, "cmd": "key", "args": ["e"]}
+{"t": 1792881702402, "cmd": "walkto", "args": ["tree", "150"]}
+{"t": 1792881702625, "cmd": "key", "args": ["e"]}
+{"t": 1792881703482, "cmd": "shot", "args": ["t28"]}
+{"t": 1792881703769, "cmd": "state", "args": []}
+{"t": 1792881708842, "cmd": "key", "args": ["h"]}
+{"t": 1792881709294, "cmd": "wait", "args": ["2"]}
+{"t": 1792881711342, "cmd": "key", "args": ["e"]}
+{"t": 1792881711802, "cmd": "wait", "args": ["1"]}
+{"t": 1792881712850, "cmd": "events", "args": ["2"]}
+{"t": 1792881712895, "cmd": "shot", "args": ["t29"]}
+{"t": 1792881716688, "cmd": "click", "args": ["553", "476"]}
+{"t": 1792881717397, "cmd": "wait", "args": ["1"]}
+{"t": 1792881718441, "cmd": "events", "args": ["3"]}
+{"t": 1792881718488, "cmd": "state", "args": []}
+{"t": 1792881718531, "cmd": "shot", "args": ["feed20"]}
+{"t": 1792881725042, "cmd": "click", "args": ["185", "445"]}
+{"t": 1792881725774, "cmd": "wait", "args": ["1"]}
+{"t": 1792881726838, "cmd": "events", "args": ["3"]}
+{"t": 1792881726897, "cmd": "wait", "args": ["40"]}
+{"t": 1792881766946, "cmd": "shot", "args": ["t30"]}
+{"t": 1792881767227, "cmd": "state", "args": []}
+{"t": 1792881774160, "cmd": "key", "args": ["e"]}
+{"t": 1792881774613, "cmd": "hold", "args": ["Shift_L+w", "9"]}
+{"t": 1792881783741, "cmd": "key", "args": ["f"]}
+{"t": 1792881784224, "cmd": "wait", "args": ["1"]}
+{"t": 1792881785296, "cmd": "events", "args": ["4"]}
+{"t": 1792881785368, "cmd": "state", "args": []}
+{"t": 1792881789393, "cmd": "key", "args": ["h"]}
+{"t": 1792881789855, "cmd": "wait", "args": ["1"]}
+{"t": 1792881790902, "cmd": "face", "args": ["180"]}
+{"t": 1792881796866, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1792881804986, "cmd": "key", "args": ["f"]}
+{"t": 1792881805441, "cmd": "wait", "args": ["1"]}
+{"t": 1792881806490, "cmd": "events", "args": ["4"]}
+{"t": 1792881806548, "cmd": "state", "args": []}
+{"t": 1792881809549, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1792881810642, "cmd": "key", "args": ["f"]}
+{"t": 1792881811098, "cmd": "wait", "args": ["1"]}
+{"t": 1792881812146, "cmd": "events", "args": ["4"]}
+{"t": 1792881812202, "cmd": "shot", "args": ["second"]}
+{"t": 1792881816912, "cmd": "key", "args": ["e"]}
+{"t": 1792881817374, "cmd": "wait", "args": ["35"]}
+{"t": 1792881852420, "cmd": "shot", "args": ["t31"]}
+{"t": 1792881856599, "cmd": "wait", "args": ["40"]}
+{"t": 1792881896641, "cmd": "shot", "args": ["t32"]}
+{"t": 1792881896774, "cmd": "state", "args": []}
+{"t": 1792881899715, "cmd": "click", "args": ["480", "348"]}
+{"t": 1792881900431, "cmd": "wait", "args": ["40"]}
+{"t": 1792881940475, "cmd": "shot", "args": ["t33"]}
+{"t": 1792881940711, "cmd": "state", "args": []}
+{"t": 1792881946440, "cmd": "note", "args": ["--shot", "buttons_offscreen", "In the second settlement (Camp of Yellowton, tick ~233900) with a pawn nearby, the action buttons grow to 5 rows and the bottom row (Withdraw Funds / Collect Stockpile / Exit Settlement / Feed Residents) is cut off by the bottom of the 960x540 window, and Leave Nation disappears. The Feed Residents button - the main winter action - is unreadable/unclickable in this state."]}
+{"t": 1792881946696, "cmd": "wait", "args": ["45"]}
+{"t": 1792881991742, "cmd": "shot", "args": ["t34"]}
+{"t": 1792882007517, "cmd": "note", "args": ["--shot", "final_state", "End state tick ~235000: Spring year 2 reached at tick 231002; Yellowton 12 members, 0 deaths. 12 hunger deaths in AI nations (4 were leaders: Frank Taylor/Bigfield, Xavier Thomas/Smallshire, Wendy Walker and her successor Grace Lewis/Bigville)."]}
+{"t": 1792882007779, "cmd": "stop", "args": []}
+{"t": 1792882038756, "cmd": "report", "args": []}
+{"t": 1792882043555, "cmd": "report", "args": []}
+{"t": 1792883362179, "cmd": "stop", "args": []}

@@ -388,6 +388,35 @@ namespace beyondnationstests {
             Assert.Equal(3, chronicle.getRecent(10).Count);
         }
 
+        /**
+        * Playtest 0.6.3 s04: the shared 200 lines filled with pawn-led
+        * nations' news and the player's own founding was dropped within
+        * minutes. The player's lines are kept; others make room.
+        */
+        [Fact]
+        public void testCapacity_KeepsThePlayersOwnLines() {
+            RandomSource random = new RandomSource(1);
+            EntityRepository entities = new EntityRepository(random);
+            NationRepository nations = new NationRepository(random);
+            EventRepository events = new EventRepository();
+            Player player = new Player(5, 10, new TickCounter(), 500, 200, random);
+            entities.addEntity(player);
+            Nation own = new Nation("Ownland", player.getId(), random);
+            nations.addNation(own);
+            player.setNationId(own.getId());
+            Chronicle chronicle = new Chronicle(events, entities, nations, null, null, 1, capacity: 3);
+
+            events.addEvent(new NationDisbandEvent(own));
+            for (int i = 0; i < 5; i++) {
+                events.addEvent(new NationDisbandEvent(new Nation("Nation" + i, new EntityId(), random)));
+            }
+
+            Assert.Equal(3, chronicle.getCount());
+            Assert.Contains("Ownland", chronicle.getEntries()[0].getText());
+            Assert.Contains("Nation3", chronicle.getEntries()[1].getText());
+            Assert.Contains("Nation4", chronicle.getEntries()[2].getText());
+        }
+
         [Fact]
         public void testTimestamp_FollowsTheInGameClock() {
             RandomSource random = new RandomSource(1);

@@ -1,0 +1,67 @@
+{
+  "session": "s06",
+  "goal": "Re-check that command bar buttons no longer take a click meant for something else (#412): inside and outside your town, hover a button and click as pawns walk in or out of reach, double-click Enter Settlement, Exit Settlement and Craft Axe, and watch for buttons that briefly grey out after appearing. Report any click that landed on a different command, and whether the half-second wait ever got in the way.",
+  "build": {"version": "0.6.2", "commit": "7f89db5"},
+  "seed": 109,
+  "durationSec": 428,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "A slow second click on Enter Settlement still lands on Withdraw Funds, which takes the same slot and asks for no confirmation",
+      "detail": "Fast double-clicks (about 0.12 to 0.77 s between presses) are swallowed: the new bar is drawn grey and the second press does nothing. But a slower second click (about 0.8 s and 0.97 s between presses, both tried) landed on Withdraw Funds, which appears exactly where Enter Settlement was. It withdrew the whole treasury twice ('Withdrew 6 coins' at tick 1006, 'Withdrew 22 coins' at tick 9402). The 0.5 s wait counts from the first frame the button is drawn. At 6 to 7 fps that adds a frame or two, so the real protection is about 0.75 s of press-to-press time. A hesitant player who clicks again because the low frame rate made the first click seem to do nothing gets past that. Expected: a stray click should not empty the treasury, so either Withdraw Funds should not sit in Enter Settlement's slot or it should need a confirm.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 109 --stage-settlement; title, Start, Begin; pt walkto settlement; pt move 73 476; pt mousehold 0.05; pt wait 0.8; pt mousehold 0.05; pt events 4",
+      "screenshot": "shots/withdraw_after_enter.png",
+      "tick": 9402
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "A slow second click on Exit Settlement lands on Plant Sapling outside and silently uses up the sapling",
+      "detail": "With 1 sapling, I hovered Exit Settlement at (355,476) and pressed twice, about 0.95 s apart. The first press exited (tick 11518). Outside, Plant Sapling (x 266 to 378) is under that spot, so the second press planted the sapling (Saplings 1 -> 0). No status message appeared and the banner still read 'Exited settlement.', so a player would not know what happened. Same cause as the Withdraw Funds finding: the wait is shorter than a hesitant second click.",
+      "repro": "(with 1 sapling, inside the settlement) pt move 355 476; pt wait 1; pt mousehold 0.05; pt wait 0.8; pt mousehold 0.05; pt state  -> sapling gone",
+      "screenshot": "shots/slow_exit_planted.png",
+      "tick": 11518
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Planting a sapling gives no status message",
+      "detail": "Planting succeeds silently: no 'Planted a sapling' line and no floating '+' text. PlantSaplingCommand only prints the 'You don't have any saplings.' failure. This makes the accidental plant above invisible, and an intended plant is just as silent.",
+      "repro": "with a sapling: click Plant Sapling; watch the status banner and pt events",
+      "screenshot": "shots/slow_exit_planted.png",
+      "tick": 11518
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "A button that is still settling looks the same as one that is unavailable",
+      "detail": "During the 0.5 s wait, buttons are drawn with the same grey as unavailable ones such as Sell Resources and Build Farm (shots/dbl_exit.png: the whole outside bar is grey for a moment after Exit). This is easy to see and never got in the way: pawn-row Talk buttons became usable about 1 s after a new pawn's row appeared. But a player cannot tell 'wait a moment' from 'you can't do this'.",
+      "repro": "click Exit Settlement and pt shot immediately",
+      "screenshot": "shots/dbl_exit.png",
+      "tick": 1450
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Inventory panel jumps to the middle of the screen when pawn rows grow the command bar inside town",
+      "detail": "Inside the settlement, once the Order/Talk/Gift rows were showing, the Inventory Info panel moved from the left edge to about (220,195). It sits over the town square and the pawns you are trying to click. A Talk tooltip also covers Sell Resources and Build Farm while you hover.",
+      "repro": "enter settlement; stand where pawns pass; pt shot",
+      "screenshot": "shots/loop14.png",
+      "tick": 10700
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 139.0, "Eat something": 140.04, "Create or join a nation": 141.0, "Found a settlement": 142.04, "Enter your settlement": 180.04, "Build a market stall": 181.0},
+    "fastDoubleClicksSwallowed": 7,
+    "slowSecondClicksMisfired": 3,
+    "pawnHoverClicksMisfired": 0,
+    "pawnHoverClicksTotal": 65,
+    "misfireThresholdMsApprox": 800
+  },
+  "fun": 3,
+  "verdict": "#412 holds for real double-clicks. Every quick double-click on Enter Settlement, Exit Settlement and Craft Axe (where Craft Pickaxe slides under the cursor) was swallowed, and 65 clicks on pawn buttons while pawns came and went never hit another command. The wait never got in the way. But a slower second click (about 0.8 s or more, likely at this frame rate) still hits whatever replaces the button: twice it emptied the treasury through the unconfirmed Withdraw Funds, and once it silently planted a sapling. Consider not putting a different command in the slot a button just left, or giving Withdraw Funds a confirm."
+}
