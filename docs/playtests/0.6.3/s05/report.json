@@ -1,0 +1,112 @@
+{
+  "session": "s05",
+  "goal": "Play toward the Village era as fast as you can on a fresh world and record the game time of each objective; note any regression, confusion, crash or stuck state along the way.",
+  "build": {"version": "0.6.2", "commit": "edb1a62"},
+  "seed": 2026,
+  "durationSec": 2030,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Members 10/10 Village gate forces poaching AI pawns via long gift grinds, with gifts wasted on Loyal or unrecruitable pawns",
+      "detail": "No unaffiliated settlers could be found; every nearby pawn belonged to my nation or an AI nation. Recruiting means gifting a foreign pawn from Stranger through Acquaintance and Friend to Loyal, about 6-8 gifts each (10 coins, then 1 apple, then 5 wood per gift), and then pressing R. Gifts are still accepted (and spent) after a pawn is already Loyal (second apple to Harriet Roberts). Frank Wilson took gifts all the way to Loyal and only then said 'Fortresstown is my home... (Loyal by nature)', so the trait that blocks recruiting is not warned about before you spend. The nation leader (Charlie Thompson) also accepts gifts although he can never be recruited. Pawns wander out of the 5 m reach between gifts. Recruiting 6 members took about 18,000 ticks and drained all my coins and apples.",
+      "repro": "pt start --seed 2026; found a settlement; walk to a nearby AI town (Fortresstown); pt walkto pawn; pt key r (says 'needs Loyal'); pt key g repeatedly; pt key r",
+      "screenshot": "shots/inv4.png",
+      "tick": 31875
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Founding: AI nations claim the 'open ground' the rejection hint points to, and compass directions have no on-screen compass",
+      "detail": "Pressing F with 50 wood was rejected 3 times ('Too close to the Village of Yellowport... Open ground lies about 120 to the south', then Northville, then Westford). Each time an AI nation had founded a camp where the hint pointed (Westford was founded at tick 6453 while I walked there). The hints use compass words (south, south-east, north-west), but there is no compass or north marker on screen, so a player cannot tell which way to go. It took 4 attempts and about 2,650 ticks to place the first settlement. The rejection toast is also quickly overwritten by 'Autosaved.'.",
+      "repro": "pt start --seed 2026; chop to 50 wood near spawn heading toward (118,-269); pt key f; follow the hint direction; pt key f",
+      "screenshot": "shots/found3.png",
+      "tick": 7041
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Pawn action buttons are drawn over the Objective and Inventory panels inside a settlement",
+      "detail": "Inside my settlement with a pawn in reach, a second set of buttons (Order X: Gather Wood, Talk to X, Gift X, Appoint X Merchant, Craft Axe, Craft Pickaxe, Send Caravan) appears on top of the Objective 7 panel and the Inventory panel, so neither can be read.",
+      "repro": "Found a settlement; pt key e inside it while a pawn stands within 5 m",
+      "screenshot": "shots/k2.png",
+      "tick": 13177
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Tutorial objectives 'Eat something' and 'Build a market stall' complete without the player doing them",
+      "detail": "Objective 2 'Eat something' completed 52 ticks after objective 1 (tick 1053) with no player action, because apples seem to be eaten automatically. Objective 6 'Build a market stall' completed at tick 7601 because an NPC (Harriet Thomas) built a stall in my settlement at tick 7501. I never learned the B key, and the panel text 'Gather 20 wood and 5 stone' was clipped. Objective 8 'Sell resources at market' completed 48 ticks after the Village era from an earlier sale. The tutorial teaches less than it appears to.",
+      "repro": "pt start --seed 2026; chop 2 trees; watch the objective panel; found a settlement and enter it",
+      "screenshot": "shots/stall-free.png",
+      "tick": 7601
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Pawn nameplates and buttons do not show nation membership, so recruit targets cannot be found",
+      "detail": "Nameplates show name, trait and activity only. The talk button reads 'Talk to Frank Lewis (Stranger)' for a pawn who is already in my nation. Pressing R on nearby pawns kept returning '! Frank Lewis is already a member of Townton.' Nothing on screen marks who is recruitable or which nation a pawn belongs to.",
+      "repro": "After founding: pt walkto pawn; pt key r",
+      "screenshot": "shots/invite2.png",
+      "tick": 15665
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Day 3 gate dominates the Village speed-run; all other requirements were done ~10,700 ticks earlier",
+      "detail": "Village 1/1, Members 10/10 and Stalls 2/2 were all met by tick ~40,300, but the era only changed at tick 51,003 when Day 3 started. There was nothing to do to speed it up. The hint 'An era is not built in a day: hold on' is clear, but the wait felt dead. Meanwhile AI Fortresstown was already a Town with 7 buildings on day 2.",
+      "repro": "Complete the Village requirements early; watch the Era panel until Day 3",
+      "screenshot": "shots/members10.png",
+      "tick": 40307
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Frank Wilson refused to join as 'Loyal by nature' but later appears as a member at my settlement",
+      "detail": "At tick ~36000 Frank Wilson said 'Fortresstown is my home. I won't turn my back on it. (Loyal by nature)'. At tick ~52000 he stood at my settlement with 'Order Frank Wilson: Gather Wood' and 'Talk to Frank Wilson (Loyal)' buttons, as if he had joined after all. No join message was seen. This is either inconsistent or a misleading button.",
+      "repro": "See the recruiting finding; teleport home after Members 10/10",
+      "screenshot": "shots/village.png",
+      "tick": 52451
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "First tree toast says 3 apples but only 2 are added",
+      "detail": "'Gathered 5 wood and 3 apples from tree.' while the floating text says '+2 apples' and the inventory shows 2. One was probably auto-eaten (energy 84 to 98), but nothing says so.",
+      "repro": "pt start --seed 2026; pt walkto tree; pt key e",
+      "screenshot": "shots/apples-mismatch.png",
+      "tick": 501
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement floating label is huge and overlaps the top HUD",
+      "detail": "The world-space label ('Village of Townton / N here, x/y residents') renders at a very large size behind the status toast and chronicle at the top of the screen, half off-screen.",
+      "repro": "Found a settlement and stand by it",
+      "screenshot": "shots/found4.png",
+      "tick": 7321
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 8,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 20.02,
+      "Eat something": 21.06,
+      "Create or join a nation": 27.06,
+      "Found a settlement": 146.02,
+      "Enter your settlement": 151.06,
+      "Build a market stall": 152.02,
+      "Reach the Village era": 1020.06,
+      "Sell resources at market": 1021.02
+    },
+    "villageEraTick": 51003,
+    "foundingAttempts": 4,
+    "membersRecruitedByGifting": 4,
+    "allNonDayRequirementsMetTick": 40300,
+    "averageTps": 27
+  },
+  "fun": 3,
+  "verdict": "The opening is quick and well signposted: settlement founded at 146 s, and the era panel says exactly what the Village needs. The middle is where it drags. Members 10/10 means poaching AI pawns through an opaque gift grind that wastes gifts on leaders and 'Loyal by nature' pawns. After that the Day 3 timer adds ~3.5 game minutes of waiting with nothing to do. AI nations racing to claim land, and hints in compass words with no compass, made founding the first settlement fiddly."
+}

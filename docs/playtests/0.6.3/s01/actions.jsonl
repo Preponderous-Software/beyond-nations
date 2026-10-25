@@ -1,0 +1,182 @@
+{"t": 1792879911693, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "111", "--stage-diplomacy"]}
+{"t": 1792879921985, "cmd": "state", "args": []}
+{"t": 1792879922064, "cmd": "shot", "args": ["start"]}
+{"t": 1792879927029, "cmd": "key", "args": ["space"]}
+{"t": 1792879927539, "cmd": "wait", "args": ["2"]}
+{"t": 1792879929601, "cmd": "state", "args": []}
+{"t": 1792879929674, "cmd": "shot", "args": ["menu"]}
+{"t": 1792879933767, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792879934504, "cmd": "wait", "args": ["2"]}
+{"t": 1792879936572, "cmd": "state", "args": []}
+{"t": 1792879936639, "cmd": "shot", "args": ["nw"]}
+{"t": 1792879942076, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792879942824, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792879942885, "cmd": "wait", "args": ["2"]}
+{"t": 1792879944958, "cmd": "state", "args": []}
+{"t": 1792879945018, "cmd": "shot", "args": ["world0"]}
+{"t": 1792879949888, "cmd": "click", "args": ["338", "389"]}
+{"t": 1792879950628, "cmd": "key", "args": ["o"]}
+{"t": 1792879951124, "cmd": "wait", "args": ["2"]}
+{"t": 1792879953193, "cmd": "state", "args": []}
+{"t": 1792879953266, "cmd": "shot", "args": ["nations1"]}
+{"t": 1792879959334, "cmd": "click", "args": ["656", "302"]}
+{"t": 1792879960070, "cmd": "wait", "args": ["1"]}
+{"t": 1792879961134, "cmd": "shot", "args": ["war1"]}
+{"t": 1792879966104, "cmd": "move", "args": ["480", "400"]}
+{"t": 1792879966174, "cmd": "wait", "args": ["10"]}
+{"t": 1792879976240, "cmd": "shot", "args": ["war_lapse"]}
+{"t": 1792879976426, "cmd": "state", "args": []}
+{"t": 1792879976489, "cmd": "events", "args": ["10"]}
+{"t": 1792879982743, "cmd": "note", "args": ["--shot", "war_lapse_ok", "PASS #409: War on Southernfield clicked once -> button 'Confirm', status 'Click War again to declare war on Southernfield.'; after 8s real time (Nations screen, game paused tick 267) status became 'Not confirmed in time, so nothing was done.' with no (x2); button reverted to War."]}
+{"t": 1792879982931, "cmd": "click", "args": ["656", "302"]}
+{"t": 1792879983655, "cmd": "move", "args": ["480", "400"]}
+{"t": 1792879983715, "cmd": "wait", "args": ["10"]}
+{"t": 1792879993777, "cmd": "shot", "args": ["war_lapse2"]}
+{"t": 1792879993965, "cmd": "events", "args": ["3"]}
+{"t": 1792879999868, "cmd": "note", "args": ["--shot", "war_confirm_label", "Polish: after first War click the button relabels to 'Confirm' but the status says 'Click War again to declare war on Southernfield.' - the War button no longer exists to click; text should say 'Click Confirm' (or keep label War)."]}
+{"t": 1792880000053, "cmd": "click", "args": ["123", "237"]}
+{"t": 1792880000801, "cmd": "wait", "args": ["1"]}
+{"t": 1792880001865, "cmd": "shot", "args": ["tribute1"]}
+{"t": 1792880002063, "cmd": "events", "args": ["4"]}
+{"t": 1792880002137, "cmd": "state", "args": []}
+{"t": 1792880007107, "cmd": "key", "args": ["Escape"]}
+{"t": 1792880007592, "cmd": "wait", "args": ["3"]}
+{"t": 1792880010654, "cmd": "shot", "args": ["after_tribute"]}
+{"t": 1792880010855, "cmd": "state", "args": []}
+{"t": 1792880010921, "cmd": "events", "args": ["5"]}
+{"t": 1792880016511, "cmd": "click", "args": ["418", "376"]}
+{"t": 1792880017251, "cmd": "wait", "args": ["15"]}
+{"t": 1792880032312, "cmd": "shot", "args": ["after_tribute2"]}
+{"t": 1792880032483, "cmd": "state", "args": []}
+{"t": 1792880032547, "cmd": "state", "args": ["--full"]}
+{"t": 1792880037180, "cmd": "events", "args": ["15"]}
+{"t": 1792880043936, "cmd": "note", "args": ["PASS #409 siege lift: after Tribute to Greenshire (Nations screen, tick 267) and closing the screen, status 'Greenshire has lifted its siege of your village.' appeared at tick 503 (events.jsonl); HUD changed from 'Besieged by Greenshire (3/12)!' to 'Sieges can begin in 4:37'. Lift is not instant: while still on the Nations screen the header kept 'Besieged by Greenshire (3/12)!' after the tribute."]}
+{"t": 1792880043993, "cmd": "key", "args": ["l"]}
+{"t": 1792880044460, "cmd": "wait", "args": ["1"]}
+{"t": 1792880045522, "cmd": "shot", "args": ["l1"]}
+{"t": 1792880045720, "cmd": "events", "args": ["2"]}
+{"t": 1792880048779, "cmd": "shot", "args": ["l_mid"]}
+{"t": 1792880057966, "cmd": "shot", "args": ["l_lapse"]}
+{"t": 1792880058155, "cmd": "events", "args": ["6"]}
+{"t": 1792880058214, "cmd": "state", "args": []}
+{"t": 1792880067603, "cmd": "note", "args": ["--shot", "l_lapse_ok", "PASS #409: pressed L once (tick 1511) -> 'Press L again to leave Upperwood.'; after 8 s wall time (tick 1767, only ~5 s game time at tps~32) status became 'Not confirmed in time, so nothing was done.', no (x2), still in Upperwood. Note the window is wall-clock, not game time."]}
+{"t": 1792880067788, "cmd": "key", "args": ["o"]}
+{"t": 1792880068256, "cmd": "wait", "args": ["2"]}
+{"t": 1792880070317, "cmd": "click", "args": ["301", "302"]}
+{"t": 1792880071042, "cmd": "wait", "args": ["1"]}
+{"t": 1792880072100, "cmd": "shot", "args": ["ally1"]}
+{"t": 1792880072282, "cmd": "events", "args": ["4"]}
+{"t": 1792880079763, "cmd": "click", "args": ["301", "284"]}
+{"t": 1792880080489, "cmd": "wait", "args": ["1"]}
+{"t": 1792880081550, "cmd": "events", "args": ["3"]}
+{"t": 1792880081610, "cmd": "click", "args": ["123", "284"]}
+{"t": 1792880082345, "cmd": "wait", "args": ["1"]}
+{"t": 1792880083423, "cmd": "click", "args": ["301", "284"]}
+{"t": 1792880084178, "cmd": "wait", "args": ["1"]}
+{"t": 1792880085250, "cmd": "events", "args": ["4"]}
+{"t": 1792880085328, "cmd": "shot", "args": ["ally2"]}
+{"t": 1792880091636, "cmd": "note", "args": ["--shot", "ally2", "Minor text/ux: Nations header says 'An alliance needs +30', but at Friendly (+35) Southernfield declines: 'they are 8 to your 4 and want relations of +60 before taking on so small a partner'. The size rule is invisible until you spend 25 coins and try; the header (or the Ally button tooltip) should state the real threshold per nation."]}
+{"t": 1792880105119, "cmd": "click", "args": ["656", "349"]}
+{"t": 1792880105867, "cmd": "wait", "args": ["1"]}
+{"t": 1792880106942, "cmd": "click", "args": ["656", "349"]}
+{"t": 1792880107676, "cmd": "wait", "args": ["1"]}
+{"t": 1792880108742, "cmd": "shot", "args": ["war_castle"]}
+{"t": 1792880108990, "cmd": "events", "args": ["5"]}
+{"t": 1792880112711, "cmd": "key", "args": ["Escape"]}
+{"t": 1792880113203, "cmd": "wait", "args": ["60"]}
+{"t": 1792880173273, "cmd": "events", "args": ["30"]}
+{"t": 1792880173343, "cmd": "shot", "args": ["siege_mid"]}
+{"t": 1792880181488, "cmd": "key", "args": ["o"]}
+{"t": 1792880181966, "cmd": "wait", "args": ["2"]}
+{"t": 1792880184036, "cmd": "shot", "args": ["nations_war"]}
+{"t": 1792880184262, "cmd": "key", "args": ["Escape"]}
+{"t": 1792880194395, "cmd": "state", "args": []}
+{"t": 1792880194457, "cmd": "note", "args": ["--shot", "nations_war", "Minor ux: declared war on Castlefield (2 members, camp) at tick 2239; status 'Your nation is besieging Castlefield's camp.' at 2251, then nothing. By tick ~4300 Castlefield is 5 members/1 village, out-strengthens us (5 v 4) and raids us (tick 3503); our siege silently ended - no 'your siege of Castlefield broke/was abandoned' status or chronicle line, and our own siege progress (x/12) is never shown on HUD or Nations screen. The player learns their offensive failed only by noticing the raid."]}
+{"t": 1792880201642, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792880213969, "cmd": "key", "args": ["e"]}
+{"t": 1792880214437, "cmd": "wait", "args": ["1"]}
+{"t": 1792880215507, "cmd": "key", "args": ["e"]}
+{"t": 1792880215980, "cmd": "wait", "args": ["1"]}
+{"t": 1792880217039, "cmd": "key", "args": ["e"]}
+{"t": 1792880217513, "cmd": "wait", "args": ["1"]}
+{"t": 1792880218583, "cmd": "key", "args": ["e"]}
+{"t": 1792880219075, "cmd": "wait", "args": ["1"]}
+{"t": 1792880220166, "cmd": "key", "args": ["e"]}
+{"t": 1792880220652, "cmd": "wait", "args": ["1"]}
+{"t": 1792880221733, "cmd": "key", "args": ["e"]}
+{"t": 1792880222234, "cmd": "wait", "args": ["1"]}
+{"t": 1792880223325, "cmd": "state", "args": []}
+{"t": 1792880227093, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792880241569, "cmd": "key", "args": ["e"]}
+{"t": 1792880242054, "cmd": "wait", "args": ["1"]}
+{"t": 1792880243116, "cmd": "key", "args": ["e"]}
+{"t": 1792880243616, "cmd": "wait", "args": ["1"]}
+{"t": 1792880244698, "cmd": "key", "args": ["e"]}
+{"t": 1792880245185, "cmd": "wait", "args": ["1"]}
+{"t": 1792880246251, "cmd": "key", "args": ["e"]}
+{"t": 1792880246722, "cmd": "wait", "args": ["1"]}
+{"t": 1792880247785, "cmd": "key", "args": ["e"]}
+{"t": 1792880248263, "cmd": "wait", "args": ["1"]}
+{"t": 1792880249333, "cmd": "key", "args": ["e"]}
+{"t": 1792880249812, "cmd": "wait", "args": ["1"]}
+{"t": 1792880250874, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1792880259710, "cmd": "key", "args": ["e"]}
+{"t": 1792880260187, "cmd": "wait", "args": ["1"]}
+{"t": 1792880261260, "cmd": "key", "args": ["e"]}
+{"t": 1792880261729, "cmd": "wait", "args": ["1"]}
+{"t": 1792880262786, "cmd": "key", "args": ["e"]}
+{"t": 1792880263288, "cmd": "wait", "args": ["1"]}
+{"t": 1792880264351, "cmd": "key", "args": ["e"]}
+{"t": 1792880264821, "cmd": "wait", "args": ["1"]}
+{"t": 1792880265902, "cmd": "key", "args": ["e"]}
+{"t": 1792880266376, "cmd": "wait", "args": ["1"]}
+{"t": 1792880267440, "cmd": "key", "args": ["e"]}
+{"t": 1792880267906, "cmd": "wait", "args": ["1"]}
+{"t": 1792880268962, "cmd": "state", "args": []}
+{"t": 1792880269034, "cmd": "events", "args": ["40"]}
+{"t": 1792880273715, "cmd": "wait", "args": ["60"]}
+{"t": 1792880333786, "cmd": "events", "args": ["60"]}
+{"t": 1792880333854, "cmd": "shot", "args": ["hud2"]}
+{"t": 1792880338314, "cmd": "wait", "args": ["90"]}
+{"t": 1792880432553, "cmd": "shot", "args": ["hud3"]}
+{"t": 1792880432737, "cmd": "state", "args": []}
+{"t": 1792880442395, "cmd": "wait", "args": ["75"]}
+{"t": 1792880517459, "cmd": "shot", "args": ["siege2"]}
+{"t": 1792880517856, "cmd": "state", "args": []}
+{"t": 1792880523829, "cmd": "wait", "args": ["45"]}
+{"t": 1792880568895, "cmd": "shot", "args": ["siege3"]}
+{"t": 1792880569235, "cmd": "state", "args": []}
+{"t": 1792880574870, "cmd": "note", "args": ["--shot", "siege3", "Polish text: status reads 'Castlefield raided your village: 1 coins taken.' - should be '1 coin'."]}
+{"t": 1792880575236, "cmd": "wait", "args": ["70"]}
+{"t": 1792880645300, "cmd": "shot", "args": ["siege4"]}
+{"t": 1792880649148, "cmd": "wait", "args": ["25"]}
+{"t": 1792880674206, "cmd": "shot", "args": ["conquered"]}
+{"t": 1792880674542, "cmd": "state", "args": []}
+{"t": 1792880685080, "cmd": "key", "args": ["y"]}
+{"t": 1792880685543, "cmd": "wait", "args": ["2"]}
+{"t": 1792880687609, "cmd": "shot", "args": ["chron1"]}
+{"t": 1792880687823, "cmd": "state", "args": []}
+{"t": 1792880695041, "cmd": "click", "args": ["367", "106"]}
+{"t": 1792880695777, "cmd": "wait", "args": ["2"]}
+{"t": 1792880697858, "cmd": "shot", "args": ["chron_all"]}
+{"t": 1792880707859, "cmd": "click", "args": ["318", "130"]}
+{"t": 1792880708586, "cmd": "key", "args": ["y"]}
+{"t": 1792880709060, "cmd": "wait", "args": ["1"]}
+{"t": 1792880710119, "cmd": "key", "args": ["Escape"]}
+{"t": 1792880710589, "cmd": "wait", "args": ["1"]}
+{"t": 1792880711648, "cmd": "key", "args": ["Escape"]}
+{"t": 1792880712111, "cmd": "wait", "args": ["1"]}
+{"t": 1792880713164, "cmd": "note", "args": ["--shot", "chron1", "PASS epitaph: Greenshire took Upperwood's (my) last village at tick 18003 after the 12-round siege. Chronicle (Y) epitaph: 'The banners of Upperwood came down when Greenshire took its last village.' Fits: it was a village, the conqueror is named correctly, no 'never raised a hut' text. Same for Cityton/Castlefield at 18251. Note: the preceding 'After a siege, a village of Upperwood fell to Greenshire.' entry is missing from the 'Your news' view (only the epitaph shows there)."]}
+{"t": 1792880713478, "cmd": "note", "args": ["--shot", "conquered", "Major ux: when MY nation was conquered (tick 18003) the status line only said 'Autosaved.'; no 'Greenshire took your village - Upperwood is no more' status. 248 ticks later the status announced 'Cityton has fallen and been disbanded.' - a stranger's nation gets a status line, mine does not. The HUD silently flips to Nation: none, Create/Join Nation buttons, and a red unexplained 'Collapsing! 4:40 left' era timer. Objective 5 still says 'Enter your settlement' though I no longer have one."]}
+{"t": 1792880721670, "cmd": "shot", "args": ["conquered_hud"]}
+{"t": 1792880721984, "cmd": "key", "args": ["y"]}
+{"t": 1792880722447, "cmd": "wait", "args": ["2"]}
+{"t": 1792880724503, "cmd": "shot", "args": ["epitaph_yournews"]}
+{"t": 1792880729585, "cmd": "click", "args": ["267", "106"]}
+{"t": 1792880730322, "cmd": "wait", "args": ["2"]}
+{"t": 1792880732381, "cmd": "shot", "args": ["epitaph_yournews"]}
+{"t": 1792880740410, "cmd": "note", "args": ["Minor ux: after my nation was conquered, Chronicle 'Your news' lists only 14 entries (other nations' foundings + the two epitaphs); all of Upperwood's own history (my tribute, my war on Castlefield, raids on my village, the siege) vanished from 'Your news' because I am now nationless. The story of my fallen nation is unreadable except by digging through 'All nations' (200 kept)."]}
+{"t": 1792880740461, "cmd": "key", "args": ["Escape"]}
+{"t": 1792880740944, "cmd": "stop", "args": []}
+{"t": 1792880767038, "cmd": "report", "args": []}
+{"t": 1792883362138, "cmd": "stop", "args": []}

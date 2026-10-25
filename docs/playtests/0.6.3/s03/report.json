@@ -1,0 +1,83 @@
+{
+  "session": "s03",
+  "goal": "Try to make the command bar move under your cursor (#410): inside and outside your town, watch the buttons as pawns walk in and out of reach, as Feed Residents becomes enabled or disabled, and after crafting or buying a tool; click quickly twice on buttons and report any time a click lands on a different command than intended, with screenshots. Also check the Talk button shows the pawn's standing but not its traits.",
+  "build": {"version": "0.6.2", "commit": "edb1a62"},
+  "seed": 109,
+  "durationSec": 737,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Pawn leaving reach drops Buy Pickaxe/Buy Axe into Talk's slot; a click meant for Talk spent 299 coins",
+      "detail": "Inside my own town the Craft group (Buy Axe/Buy Pickaxe) is laid out after the People group, and rows stack upward. With a pawn in reach Talk is at (10-313, 414) and the Buy buttons sit on the Order row above; with no pawn, the Buy buttons fall to y=414 starting at x=10, exactly where Talk was. I hovered Talk at (65,414), the pawn walked out of reach, I clicked, and got 'Bought 1 pickaxe for 299 coins from Frank Thompson' (coins 348 -> 49). The purchase is not confirmed. The reverse happens too: hovering Buy Axe at (65,414) with no pawn, a pawn walking in put 'Talk to Victor Taylor (Stranger)' under the cursor (shots/pawn_in_over_buy.png). Expected: putting the Craft group last stops it moving when a Craft button is removed, but because it comes after People it moves every time a pawn comes or goes. It needs its own fixed slot, or the People rows need to sit above it.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 109 --stage-settlement; Start, Begin; click Enter Settlement (74,476); with 339 coins Buy Axe/Buy Pickaxe show; pt move 65 414 and wait for a pawn to walk out of reach (pt state nearest pawn > 5m); pt click 65 414",
+      "screenshot": "shots/pawn_out_click.png",
+      "tick": 2463
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Double-click on Enter Settlement withdraws settlement funds (Withdraw Funds takes its slot inside)",
+      "detail": "Outside, Enter Settlement is the first button on the bottom row at (10-137, 476). Inside my own town, the Nation group comes first, so Withdraw Funds is in that slot and Exit Settlement is third. A quick double-click on Enter Settlement entered the town and then ran 'Withdrew 9 coins from settlement' (coins 339 -> 348). I expected Exit Settlement in Enter's slot (they are the same toggle), or the second click to do nothing.",
+      "repro": "pt start ... --stage-settlement; be outside own town within 50m; pt click 74 476; pt click 74 476; pt events 3",
+      "screenshot": "shots/dbl_enter_withdraw.png",
+      "tick": 1703
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Double-click on Exit Settlement plants a sapling in the town square, with no message",
+      "detail": "Exit Settlement is at (314-441, 476) inside town; outside, Plant Sapling sits in that slot. When I double-clicked Exit, saplings went 2 -> 1 and a tree appeared next to the well in the town square. The status line only said 'Exited settlement.', so nothing tells the player why a tree is there.",
+      "repro": "carry saplings; inside own town pt click 377 476; pt click 377 476",
+      "screenshot": "shots/dbl_exit.png",
+      "tick": 8531
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "When a caravan leaves, the Trade row disappears and every pawn/craft row drops a row",
+      "detail": "Outside town near a Fortressshire caravan, the rows were Place / Escort Caravan / Talk+Gift / Order+Craft Axe. When the caravan moved off, the Trade row vanished and every row above it shifted down by one: Talk 414->445, Order 383->414, Craft Axe (337,383)->(337,414). A click aimed at Talk lands on 'Order <pawn>: Gather Wood', and my double-click on Craft Axe hit empty space. The People row starting a new row stops sideways shifts, but rows still stack upward, so a lower group going away moves everything above it.",
+      "repro": "pt start ... --stage-settlement; Teleport Home while a caravan is by the town; note the Talk position; wait for the caravan to leave",
+      "screenshot": "shots/dbl_craft.png",
+      "tick": 4700
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Build House / Build Farm buttons are removed (not disabled) when the town has no room, so their neighbours slide left",
+      "detail": "When the town grew from 7 to 10 buildings, Build House disappeared and Build Farm and Send Caravan slid left into its slot. At 11 buildings Build Farm also went, and Send Caravan moved from x~450 to x~297. The code disables buttons that are 'only unavailable for now', but a Build button for a full town is removed, which moves the Trade buttons after it.",
+      "repro": "stay in own town while the town grows (stage-settlement town reaches 11 buildings in a few game minutes); watch the Purchase Food row",
+      "screenshot": "shots/build_house_gone.png",
+      "tick": 6587
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Inventory Info panel jumps from the left column to the middle of the screen whenever pawn rows appear",
+      "detail": "In town with no pawn in reach, Inventory Info is in the left column (x~10). When a pawn steps into reach and the bar gains its rows, the panel moves to x~220, y~195, over the 3D view, and it goes back when the pawn leaves. It also hops between in-town and out-of-town layouts.",
+      "repro": "stand in own town; compare screenshots with and without a pawn within 5m",
+      "screenshot": "shots/feedpoll5.png",
+      "tick": 13755
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress bar text clipped on the left ('pers 10/10 • Buildings 2/2')",
+      "detail": "The progress bar for 'Reach the Village era' cuts off the start of its text, so it reads 'pers 10/10 • Buildings 2/2'.",
+      "repro": "play until objective 7 'Reach the Village era'",
+      "screenshot": "shots/objective_clipped.png",
+      "tick": 6791
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 71.0, "Eat something": 72.1, "Create or join a nation": 73.0, "Found a settlement": 74.1, "Enter your settlement": 106.1, "Build a market stall": 107.0},
+    "misdirectedClicks": 4,
+    "coinsLostToMisclicks": 299,
+    "feedResidentsEverEnabled": 0
+  },
+  "fun": 3,
+  "verdict": "The #410 command bar is much steadier than before. Widths no longer change with pawn names, counts or tiers, the Drastic row stays where it is, Craft Axe goes last so a double-click on it does nothing, and Talk shows only the standing ('Talk to X (Stranger)'), with the traits in the tooltip. But the bar still moves under the cursor in three ways: the Craft/Buy group comes after the pawn rows, rows stack upward so a disappearing lower row (caravan, pawns) moves everything above it, and Enter/Exit Settlement are not in the same slot. All of these produced real misclicks, the worst being an unconfirmed 299-coin pickaxe purchase. Feed Residents stayed in a fixed, disabled slot the whole time, but no resident got hungry in about 5 game minutes, so I never saw it switch to enabled."
+}

@@ -1,0 +1,77 @@
+{
+  "session": "s01",
+  "goal": "Re-check siege and confirmation messages (#409): lift the starting siege with tribute or an alliance and confirm the status line says the siege was lifted; let a two-click confirmation (War on the Nations screen, or L) lapse past 8 seconds and confirm the 'click again' prompt is taken back with no '(x2)'; if a nation is conquered out of existence, read its epitaph in the chronicle (Y) and say whether it fits.",
+  "build": {"version": "0.6.2", "commit": "edb1a62"},
+  "seed": 111,
+  "durationSec": 828,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Player's own nation conquered with no status message; a stranger's fall gets one",
+      "detail": "Greenshire's 12-round siege took Upperwood's (the player's) last village at tick 18003. The status line at that tick said only 'Autosaved.'; no 'Greenshire took your village / Upperwood is no more' line. 248 ticks later the status announced 'Cityton has fallen and been disbanded.' for an unrelated nation. The HUD silently flips to Nation: none, Create/Join Nation buttons, and a red, unexplained 'Collapsing! 4:40 left' timer; Objective 5 still says 'Enter your settlement' though the player has none. Expected a loud, explicit status (and ideally a sheet) when your own nation is destroyed.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 111 --stage-diplomacy; Start, Begin; Tribute Greenshire once; play/wait ~15000 ticks until 'Your nation's shelter is over'; let Greenshire's siege reach 12/12 (tick ~18003); read status line / events.",
+      "screenshot": "shots/conquered_hud.png",
+      "tick": 18003
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Player's own offensive siege ends silently and its progress is never shown",
+      "detail": "Declared war on Castlefield (2 members, camp) at tick 2239; status 'Your nation is besieging Castlefield's camp.' at 2251, then nothing. Castlefield grew to 5 members/a village, out-strengthened us and started raiding us at tick 3503. No status or chronicle line said our siege broke, and our own x/12 siege progress is shown nowhere (HUD or Nations screen). Expected a progress readout and a 'your siege of X was broken' message.",
+      "repro": "pt start ... --stage-diplomacy; O; War, Confirm on Castlefield (after it appears ~tick 1600); Esc; wait ~2000 ticks; O.",
+      "screenshot": "shots/war_castle.png",
+      "tick": 2251
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Nations header 'An alliance needs +30' hides the size rule (+60 for a small partner)",
+      "detail": "At Friendly (+35) Southernfield declined: 'they are 8 to your 4 and want relations of +60 before taking on so small a partner'. The header still says an alliance needs +30, so the player spends a 25-coin gift chasing the wrong number. Expected the per-nation threshold on the row or Ally button.",
+      "repro": "pt start ... --stage-diplomacy; O; Ally on Southernfield (declines at +25); Tribute Southernfield (+35); Ally again.",
+      "screenshot": "shots/ally1.png",
+      "tick": 2239
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "After conquest, Chronicle 'Your news' loses all of the fallen nation's history",
+      "detail": "Once nationless, 'Your news' lists 14 entries (other nations' foundings + the two epitaphs). Upperwood's tribute, war declaration, raids, siege and the 'After a siege, a village of Upperwood fell to Greenshire' capture line are all gone from it. Expected 'Your news' to keep the player's past nation's entries.",
+      "repro": "As the major finding above; after the conquest press Y and pick 'Your news'.",
+      "screenshot": "shots/epitaph_yournews.png",
+      "tick": 20159
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "First War click relabels the button 'Confirm' but the prompt says 'Click War again'",
+      "detail": "After one click on War (Nations screen) the button reads 'Confirm' while the status says 'Click War again to declare war on Southernfield.' There is no War button left to click. Expected 'Click Confirm...' or the label left as War.",
+      "repro": "pt start ... --stage-diplomacy; O; click War on Southernfield once.",
+      "screenshot": "shots/war1.png",
+      "tick": 267
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Raid message pluralization: '1 coins taken'",
+      "detail": "Status and chronicle say 'Castlefield raided your village: 1 coins taken.' and 'Raiders from Castlefield struck Upperwood, taking 1 coins.' Expected '1 coin'. Similar: chronicle 'A caravan from Southernfield sold nothing at the Village of Upperwood for 0 coins.' (tick 3027) is noise.",
+      "repro": "As above, at war with Castlefield; read raid status at tick 15503.",
+      "screenshot": "shots/siege4.png",
+      "tick": 15503
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 4,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 122.06, "Eat something": 123.02, "Create or join a nation": 124.06, "Found a settlement": 125.02},
+    "siegeLiftedStatusTick": 503,
+    "tributeTick": 267,
+    "warConfirmLapseWallSec": 8.0,
+    "leaveConfirmLapseWallSec": 8.0,
+    "leaveConfirmLapseGameTicks": 256,
+    "playerNationConqueredTick": 18003
+  },
+  "fun": 3,
+  "verdict": "The #409 fixes hold up. Tribute to Greenshire produced 'Greenshire has lifted its siege of your village.' (tick 503). War and L confirmations both lapse after 8 s wall-clock with 'Not confirmed in time, so nothing was done.' and no (x2). The conquest epitaph 'The banners of Upperwood came down when Greenshire took its last village.' fits. The biggest remaining gap is the moment your own nation dies: the status line says 'Autosaved.' while a stranger's fall gets announced, and 'Your news' then forgets your nation's history."
+}

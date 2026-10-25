@@ -1,0 +1,381 @@
+{"type":"screen","tick":0,"wallTimeMs":1792879912710,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792879927053,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792879934238,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792879942633,"how":"created","slot":"world-111-20261024-221222","seed":111}
+{"type":"screen","tick":0,"wallTimeMs":1792879942634,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":267,"wallTimeMs":1792879950822,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":267,"wallTimeMs":1792879959923,"text":"Click War again to declare war on Southernfield."}
+{"type":"status","tick":267,"wallTimeMs":1792879967923,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":267,"wallTimeMs":1792879983542,"text":"Click War again to declare war on Southernfield."}
+{"type":"status","tick":267,"wallTimeMs":1792879991638,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":267,"wallTimeMs":1792880000694,"text":"Greenshire accepts your tribute of 25 coins and will hold off its raiders for 60 seconds. Relations: Hostile (-66)."}
+{"type":"screen","tick":271,"wallTimeMs":1792880007174,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":451,"wallTimeMs":1792880012404,"kind":"StallBuilt","text":"A new stall opened in the market of Southernfield, built by Wendy Johnson."}
+{"type":"status","tick":503,"wallTimeMs":1792880013906,"text":"Greenshire has lifted its siege of your village."}
+{"type":"chronicle","tick":503,"wallTimeMs":1792880013906,"kind":"StallBuilt","text":"Trade came to Greenshire: Dave Roberts built a stall."}
+{"type":"chronicle","tick":851,"wallTimeMs":1792880024328,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Southernfield."}
+{"type":"chronicle","tick":1151,"wallTimeMs":1792880033167,"kind":"StallBuilt","text":"Wendy Johnson built a market stall in Southernfield. The market is now full."}
+{"type":"chronicle","tick":1251,"wallTimeMs":1792880036132,"kind":"StallBuilt","text":"Trade came to Greenshire: Dave Roberts built a stall."}
+{"type":"chronicle","tick":1503,"wallTimeMs":1792880043835,"kind":"Caravan","text":"Southernfield sent a caravan of 20 wood from the Camp of Southernfield to the Village of Upperwood."}
+{"type":"status","tick":1511,"wallTimeMs":1792880044078,"text":"Press L again to leave Upperwood."}
+{"type":"chronicle","tick":1551,"wallTimeMs":1792880045322,"kind":"NationJoin","text":"Upperwood welcomed Frank Brown into its ranks."}
+{"type":"chronicle","tick":1603,"wallTimeMs":1792880046933,"kind":"NationCreation","text":"The nation of Castlefield was born, with Isabella Wood at its head."}
+{"type":"status","tick":1767,"wallTimeMs":1792880052095,"text":"Not confirmed in time, so nothing was done."}
+{"type":"chronicle","tick":2203,"wallTimeMs":1792880066614,"kind":"SettlementFounded","text":"Isabella Wood raised the first settlement of Castlefield."}
+{"type":"screen","tick":2239,"wallTimeMs":1792880067915,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":2239,"wallTimeMs":1792880080371,"text":"Southernfield declines: relations are Friendly (\u002B25); an alliance needs \u002B30. Gifts help."}
+{"type":"status","tick":2239,"wallTimeMs":1792880082164,"text":"Southernfield accepts your gift of 25 coins. Relations: Friendly (\u002B35)."}
+{"type":"status","tick":2239,"wallTimeMs":1792880084058,"text":"Southernfield declines: they are 8 to your 4 and want relations of \u002B60 before taking on so small a partner (now Friendly (\u002B35))."}
+{"type":"status","tick":2239,"wallTimeMs":1792880105737,"text":"Click War again to declare war on Castlefield."}
+{"type":"status","tick":2239,"wallTimeMs":1792880107588,"text":"Castlefield falls back behind its walls: war, and they are only 2 to your 4."}
+{"type":"chronicle","tick":2239,"wallTimeMs":1792880107588,"kind":"NationRelationChange","text":"Upperwood and Castlefield are now hostile."}
+{"type":"chronicle","tick":2239,"wallTimeMs":1792880107588,"kind":"Statecraft","text":"Upperwood declared war on Castlefield."}
+{"type":"screen","tick":2243,"wallTimeMs":1792880112889,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":2251,"wallTimeMs":1792880113283,"text":"Your nation is besieging Castlefield\u0027s camp."}
+{"type":"chronicle","tick":2903,"wallTimeMs":1792880135118,"kind":"StallBuilt","text":"Dave Roberts built a market stall in Greenshire. The market is now full."}
+{"type":"chronicle","tick":2951,"wallTimeMs":1792880136728,"kind":"NationCreation","text":"Charlie Brown founded the nation of Northfield."}
+{"type":"chronicle","tick":3027,"wallTimeMs":1792880139352,"kind":"Caravan","text":"A caravan from Southernfield sold nothing at the Village of Upperwood for 0 coins."}
+{"type":"chronicle","tick":3303,"wallTimeMs":1792880148166,"kind":"StallBuilt","text":"A new stall opened in the market of Castlefield, built by Isabella Wood."}
+{"type":"chronicle","tick":3403,"wallTimeMs":1792880151519,"kind":"SettlementFounded","text":"Charlie Brown laid the first stones of Northfield."}
+{"type":"status","tick":3503,"wallTimeMs":1792880155212,"text":"Greenshire raided your village: 5 coins, 2 wood, 2 stone taken. Relations: Hostile (-68); gifts or peace end raids. Castlefield raided your village: 2 coins taken. Relations: Hostile (-66); gifts or peace end raids."}
+{"type":"chronicle","tick":3503,"wallTimeMs":1792880155212,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 5 coins, 2 wood, 2 stone."}
+{"type":"chronicle","tick":3503,"wallTimeMs":1792880155212,"kind":"NationRaid","text":"Castlefield raided Upperwood and carried off 2 coins."}
+{"type":"chronicle","tick":4003,"wallTimeMs":1792880172113,"kind":"NationCreation","text":"Rachel Wilson declared the nation of Westham, though none had yet sworn to it."}
+{"type":"chronicle","tick":4203,"wallTimeMs":1792880179162,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Castlefield."}
+{"type":"chronicle","tick":4251,"wallTimeMs":1792880181410,"kind":"NationCreation","text":"Alice Watson founded the nation of Southland."}
+{"type":"screen","tick":4251,"wallTimeMs":1792880181613,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":4255,"wallTimeMs":1792880184392,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":4303,"wallTimeMs":1792880186024,"kind":"SettlementFounded","text":"Rachel Wilson raised the first settlement of Westham."}
+{"type":"status","tick":4503,"wallTimeMs":1792880192622,"text":"Greenshire raided your village: 2 coins taken. Relations: Hostile (-76); gifts or peace end raids."}
+{"type":"chronicle","tick":4503,"wallTimeMs":1792880192622,"kind":"NationRelationChange","text":"Southernfield and Castlefield have become rivals over their border."}
+{"type":"chronicle","tick":4503,"wallTimeMs":1792880192622,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 2 coins."}
+{"type":"chronicle","tick":4903,"wallTimeMs":1792880205592,"kind":"SettlementFounded","text":"Alice Watson raised the first settlement of Southland."}
+{"type":"status","tick":5191,"wallTimeMs":1792880214146,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":5239,"wallTimeMs":1792880215638,"text":"No entities within range to interact with."}
+{"type":"status","tick":5287,"wallTimeMs":1792880217177,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":5335,"wallTimeMs":1792880218802,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":5379,"wallTimeMs":1792880220256,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":5427,"wallTimeMs":1792880221968,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":5503,"wallTimeMs":1792880224489,"text":"Greenshire raided your village: 2 coins taken. Relations: Hostile (-84); gifts or peace end raids."}
+{"type":"chronicle","tick":5503,"wallTimeMs":1792880224489,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Castlefield."}
+{"type":"chronicle","tick":5503,"wallTimeMs":1792880224489,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 2 coins."}
+{"type":"chronicle","tick":5651,"wallTimeMs":1792880229397,"kind":"StallBuilt","text":"Trade came to Westham: Rachel Wilson built a stall."}
+{"type":"chronicle","tick":5651,"wallTimeMs":1792880229397,"kind":"NationCreation","text":"Charlotte Walker declared the nation of Southernburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":5651,"wallTimeMs":1792880229397,"kind":"NationCreation","text":"The nation of Northport was born, with Tina Walker at its head."}
+{"type":"chronicle","tick":5703,"wallTimeMs":1792880231092,"kind":"SettlementFounded","text":"Southernburg put down roots: Charlotte Walker founded its first settlement."}
+{"type":"chronicle","tick":5751,"wallTimeMs":1792880232621,"kind":"NationRelationChange","text":"Southernfield and Northfield have become rivals over their border."}
+{"type":"chronicle","tick":5903,"wallTimeMs":1792880236934,"kind":"NationCreation","text":"Tilly Lewis declared the nation of Yellowville, though none had yet sworn to it."}
+{"type":"chronicle","tick":5951,"wallTimeMs":1792880238239,"kind":"NationCreation","text":"Rachel Brown declared the nation of Redtown, though none had yet sworn to it."}
+{"type":"save","tick":6003,"wallTimeMs":1792880239750,"count":1}
+{"type":"status","tick":6003,"wallTimeMs":1792880239750,"text":"Autosaved."}
+{"type":"status","tick":6071,"wallTimeMs":1792880241727,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":6103,"wallTimeMs":1792880242664,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":6103}
+{"type":"status","tick":6103,"wallTimeMs":1792880242664,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":6103,"wallTimeMs":1792880242664,"kind":"NationCreation","text":"Alice Wilson founded the nation of Hamletham."}
+{"type":"chronicle","tick":6103,"wallTimeMs":1792880242664,"kind":"SettlementFounded","text":"Rachel Brown laid the first stones of Redtown."}
+{"type":"status","tick":6123,"wallTimeMs":1792880243250,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":6151,"wallTimeMs":1792880244103,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":6151,"wallTimeMs":1792880244103,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"status","tick":6175,"wallTimeMs":1792880244827,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":6203,"wallTimeMs":1792880245626,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":6203,"wallTimeMs":1792880245626,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":6203,"wallTimeMs":1792880245626,"kind":"SettlementFounded","text":"Northport put down roots: Tina Walker founded its first settlement."}
+{"type":"status","tick":6227,"wallTimeMs":1792880246332,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":6251,"wallTimeMs":1792880246993,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":48}
+{"type":"status","tick":6251,"wallTimeMs":1792880246993,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":6251,"wallTimeMs":1792880246993,"kind":"NationRelationChange","text":"Northfield and Southland have become rivals over their border."}
+{"type":"status","tick":6283,"wallTimeMs":1792880247893,"text":"No entities within range to interact with."}
+{"type":"status","tick":6339,"wallTimeMs":1792880249482,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":6351,"wallTimeMs":1792880249828,"kind":"NationCreation","text":"Gemma Brown raised a banner and called it Oldham."}
+{"type":"chronicle","tick":6403,"wallTimeMs":1792880251250,"kind":"SettlementFounded","text":"Gemma Brown raised the first settlement of Oldham."}
+{"type":"chronicle","tick":6451,"wallTimeMs":1792880252555,"kind":"StallBuilt","text":"Trade came to Westham: Rachel Wilson built a stall."}
+{"type":"chronicle","tick":6451,"wallTimeMs":1792880252555,"kind":"SettlementFounded","text":"Tilly Lewis raised the first settlement of Yellowville."}
+{"type":"status","tick":6503,"wallTimeMs":1792880254087,"text":"Greenshire raided your village: 2 coins, 5 wood, 5 stone taken. Relations: Hostile (-92); gifts or peace end raids. Castlefield raided your village: 5 wood, 3 stone taken. Relations: Hostile (-78); gifts or peace end raids."}
+{"type":"chronicle","tick":6503,"wallTimeMs":1792880254087,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 2 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":6503,"wallTimeMs":1792880254087,"kind":"NationRaid","text":"Castlefield raided Upperwood and carried off 5 wood, 3 stone."}
+{"type":"chronicle","tick":6551,"wallTimeMs":1792880255520,"kind":"SettlementFounded","text":"Alice Wilson laid the first stones of Hamletham."}
+{"type":"status","tick":6691,"wallTimeMs":1792880259820,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":6743,"wallTimeMs":1792880261426,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":6751,"wallTimeMs":1792880261670,"kind":"StallBuilt","text":"Charlie Brown built a market stall in Northfield."}
+{"type":"chronicle","tick":6751,"wallTimeMs":1792880261670,"kind":"NationRelationChange","text":"Southernfield and Westham have become rivals over their border."}
+{"type":"status","tick":6791,"wallTimeMs":1792880262895,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":6843,"wallTimeMs":1792880264509,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":6891,"wallTimeMs":1792880266002,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":6943,"wallTimeMs":1792880267596,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":6951,"wallTimeMs":1792880267831,"kind":"StallBuilt","text":"Isabella Wood built a market stall in Castlefield. The market is now full."}
+{"type":"chronicle","tick":7103,"wallTimeMs":1792880272588,"kind":"StallBuilt","text":"Tina Walker built a market stall in Northport."}
+{"type":"chronicle","tick":7251,"wallTimeMs":1792880277228,"kind":"NationRelationChange","text":"Castlefield and Southland have become rivals over their border."}
+{"type":"chronicle","tick":7303,"wallTimeMs":1792880278844,"kind":"NationCreation","text":"Frank Williams raised a banner and called it Castleham."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1792880283507,"kind":"StallBuilt","text":"A new stall opened in the market of Oldham, built by Gemma Brown."}
+{"type":"status","tick":7503,"wallTimeMs":1792880285133,"text":"Greenshire raided your village: 2 coins, 4 wood taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1792880285133,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 2 coins, 4 wood."}
+{"type":"chronicle","tick":7551,"wallTimeMs":1792880286642,"kind":"NationCreation","text":"Tina Thompson declared the nation of Oldtown, though none had yet sworn to it."}
+{"type":"chronicle","tick":7551,"wallTimeMs":1792880286642,"kind":"NationCreation","text":"Yvonne Evans declared the nation of Cityton, though none had yet sworn to it."}
+{"type":"chronicle","tick":7751,"wallTimeMs":1792880293407,"kind":"SettlementFounded","text":"Yvonne Evans raised the first settlement of Cityton."}
+{"type":"chronicle","tick":7803,"wallTimeMs":1792880295003,"kind":"StallBuilt","text":"Tina Walker built a market stall in Northport."}
+{"type":"chronicle","tick":8003,"wallTimeMs":1792880301608,"kind":"StallBuilt","text":"Trade came to Upperwood: Frank Brown built a stall."}
+{"type":"chronicle","tick":8003,"wallTimeMs":1792880301608,"kind":"NationRelationChange","text":"Southland and Southernburg have become rivals over their border."}
+{"type":"chronicle","tick":8051,"wallTimeMs":1792880303306,"kind":"StallBuilt","text":"Trade came to Oldham: Gemma Brown built a stall."}
+{"type":"chronicle","tick":8103,"wallTimeMs":1792880305126,"kind":"StallBuilt","text":"Trade came to Northfield: Charlie Brown built a stall."}
+{"type":"chronicle","tick":8103,"wallTimeMs":1792880305126,"kind":"StallBuilt","text":"Trade came to Yellowville: Tilly Lewis built a stall."}
+{"type":"chronicle","tick":8403,"wallTimeMs":1792880315425,"kind":"StallBuilt","text":"Trade came to Hamletham: Alice Wilson built a stall."}
+{"type":"status","tick":8503,"wallTimeMs":1792880318736,"text":"Redtown resents your border: relations are now Rival (-20). Greenshire raided your village: 3 coins, 5 wood, 5 stone taken. Relations: Hostile (-100); gifts or peace end raids. Castlefield raided your village: 5 wood taken. Relations: Hostile (-86); gifts or peace end raids."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792880318736,"kind":"SettlementFounded","text":"Castleham put down roots: Frank Williams founded its first settlement."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792880318736,"kind":"NationRelationChange","text":"Upperwood and Redtown have become rivals over their border."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792880318736,"kind":"NationRelationChange","text":"Northfield and Westham have become rivals over their border."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792880318736,"kind":"NationRelationChange","text":"Southernburg and Northport have become rivals over their border."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792880318736,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 3 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":8503,"wallTimeMs":1792880318736,"kind":"NationRaid","text":"Castlefield raided Upperwood and carried off 5 wood."}
+{"type":"chronicle","tick":8603,"wallTimeMs":1792880322049,"kind":"NationCreation","text":"Katie Johnson founded the nation of Whiteshire."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"StallBuilt","text":"A new stall opened in the market of Northport, built by Tina Walker."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"NationRelationChange","text":"Castlefield and Oldham have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"NationRelationChange","text":"Northfield and Oldham have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"NationRelationChange","text":"Southland and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"NationRelationChange","text":"Southernburg and Oldham have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"NationRelationChange","text":"Northport and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1792880326859,"kind":"NationRelationChange","text":"Northfield and Southland are now hostile."}
+{"type":"chronicle","tick":8851,"wallTimeMs":1792880330158,"kind":"SettlementFounded","text":"Tina Thompson raised the first settlement of Oldtown."}
+{"type":"chronicle","tick":8851,"wallTimeMs":1792880330158,"kind":"StallBuilt","text":"Trade came to Oldham: Gemma Brown built a stall."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1792880335364,"kind":"NationRelationChange","text":"Southernburg and Hamletham have become rivals over their border."}
+{"type":"chronicle","tick":9151,"wallTimeMs":1792880340487,"kind":"StallBuilt","text":"Trade came to Northfield: Charlie Brown built a stall."}
+{"type":"chronicle","tick":9203,"wallTimeMs":1792880342228,"kind":"StallBuilt","text":"A new stall opened in the market of Cityton, built by Yvonne Evans."}
+{"type":"status","tick":9503,"wallTimeMs":1792880352418,"text":"Greenshire raided your village: 4 coins, 2 wood taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792880352418,"kind":"SettlementFounded","text":"Katie Johnson laid the first stones of Whiteshire."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792880352418,"kind":"NationRelationChange","text":"Southernfield and Castlefield are now hostile."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792880352418,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 4 coins, 2 wood."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792880352418,"kind":"NationRaid","text":"Southernfield raided Castlefield and carried off 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1792880352418,"kind":"NationRaid","text":"Northfield raided Southland and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":9603,"wallTimeMs":1792880355667,"kind":"StallBuilt","text":"Gemma Brown built a market stall in Oldham. The market is now full."}
+{"type":"chronicle","tick":9651,"wallTimeMs":1792880357237,"kind":"StallBuilt","text":"Trade came to Hamletham: Alice Wilson built a stall."}
+{"type":"chronicle","tick":9703,"wallTimeMs":1792880358969,"kind":"StallBuilt","text":"Rachel Wilson built a market stall in Westham."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792880369345,"kind":"NationRelationChange","text":"Greenshire and Redtown have become rivals over their border."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792880369345,"kind":"NationRelationChange","text":"Greenshire and Cityton have become rivals over their border."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1792880369345,"kind":"NationRelationChange","text":"Castlefield and Cityton have become rivals over their border."}
+{"type":"chronicle","tick":10051,"wallTimeMs":1792880370993,"kind":"StallBuilt","text":"Yvonne Evans built a market stall in Cityton."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792880376266,"kind":"StallBuilt","text":"A new stall opened in the market of Southernburg, built by Charlotte Walker."}
+{"type":"chronicle","tick":10203,"wallTimeMs":1792880376266,"kind":"StallBuilt","text":"Tina Walker built a market stall in Northport. The market is now full."}
+{"type":"chronicle","tick":10351,"wallTimeMs":1792880381601,"kind":"StallBuilt","text":"A new stall opened in the market of Castleham, built by Frank Williams."}
+{"type":"chronicle","tick":10403,"wallTimeMs":1792880383405,"kind":"NationCreation","text":"Bella Davies founded the nation of Farmham."}
+{"type":"status","tick":10503,"wallTimeMs":1792880386848,"text":"Greenshire raided your village: 4 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1792880386848,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 4 coins."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1792880388483,"kind":"NationJoin","text":"Ella Walker threw in their lot with Upperwood."}
+{"type":"chronicle","tick":10651,"wallTimeMs":1792880392006,"kind":"StallBuilt","text":"A new stall opened in the market of Southland, built by Alice Watson."}
+{"type":"chronicle","tick":10651,"wallTimeMs":1792880392006,"kind":"NationCreation","text":"Daisy Roberts founded the nation of Redford."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792880395419,"kind":"NationRelationChange","text":"Southernburg and Castleham have become rivals over their border."}
+{"type":"chronicle","tick":10751,"wallTimeMs":1792880395419,"kind":"NationRelationChange","text":"Castleham and Cityton have become rivals over their border."}
+{"type":"chronicle","tick":10851,"wallTimeMs":1792880398624,"kind":"NationCreation","text":"Ella Lewis declared the nation of Westland, though none had yet sworn to it."}
+{"type":"chronicle","tick":10903,"wallTimeMs":1792880400263,"kind":"StallBuilt","text":"Yvonne Evans built a market stall in Cityton."}
+{"type":"chronicle","tick":10951,"wallTimeMs":1792880401776,"kind":"StallBuilt","text":"A new stall opened in the market of Westham, built by Rachel Wilson. The market is now full."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1792880403453,"kind":"SettlementFounded","text":"Redford put down roots: Daisy Roberts founded its first settlement."}
+{"type":"chronicle","tick":11151,"wallTimeMs":1792880408080,"kind":"StallBuilt","text":"Trade came to Hamletham: Alice Wilson built a stall."}
+{"type":"status","tick":11251,"wallTimeMs":1792880411318,"text":"Oldtown resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":11251,"wallTimeMs":1792880411318,"kind":"NationRelationChange","text":"Upperwood and Oldtown have become rivals over their border."}
+{"type":"chronicle","tick":11303,"wallTimeMs":1792880413028,"kind":"NationCreation","text":"Wendy Watson raised a banner and called it Redville."}
+{"type":"chronicle","tick":11351,"wallTimeMs":1792880414584,"kind":"NationCreation","text":"The nation of Villageland was born, with Linda Evans at its head."}
+{"type":"chronicle","tick":11403,"wallTimeMs":1792880416241,"kind":"SettlementFounded","text":"Linda Evans raised the first settlement of Villageland."}
+{"type":"chronicle","tick":11451,"wallTimeMs":1792880417773,"kind":"NationCreation","text":"The nation of Farmland was born, with Quinn Davies at its head."}
+{"type":"status","tick":11503,"wallTimeMs":1792880419403,"text":"Greenshire raided your village: 4 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792880419403,"kind":"NationRelationChange","text":"Greenshire and Whiteshire have become rivals over their border."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1792880419403,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 4 coins."}
+{"type":"chronicle","tick":11551,"wallTimeMs":1792880420856,"kind":"SettlementFounded","text":"Bella Davies laid the first stones of Farmham."}
+{"type":"chronicle","tick":11603,"wallTimeMs":1792880423003,"kind":"StallBuilt","text":"Frank Williams built a market stall in Castleham."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792880427549,"kind":"NationRelationChange","text":"Oldtown and Whiteshire have become rivals over their border."}
+{"type":"chronicle","tick":11751,"wallTimeMs":1792880427549,"kind":"NationRelationChange","text":"Southernfield and Southland swore an alliance."}
+{"type":"chronicle","tick":11951,"wallTimeMs":1792880433386,"kind":"SettlementFounded","text":"Quinn Davies raised the first settlement of Farmland."}
+{"type":"save","tick":12003,"wallTimeMs":1792880435800,"count":2}
+{"type":"status","tick":12003,"wallTimeMs":1792880435800,"text":"Autosaved."}
+{"type":"chronicle","tick":12051,"wallTimeMs":1792880437478,"kind":"StallBuilt","text":"Tina Jones built a market stall in Upperwood."}
+{"type":"chronicle","tick":12151,"wallTimeMs":1792880441244,"kind":"StallBuilt","text":"Tilly Lewis built a market stall in Yellowville."}
+{"type":"chronicle","tick":12151,"wallTimeMs":1792880441244,"kind":"NationCreation","text":"The nation of Farmville was born, with Ruth Watson at its head."}
+{"type":"chronicle","tick":12203,"wallTimeMs":1792880442752,"kind":"NationCreation","text":"Eve Johnson raised a banner and called it Lowerton."}
+{"type":"status","tick":12251,"wallTimeMs":1792880444128,"text":"Southland shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792880444128,"kind":"NationRelationChange","text":"Relations between Upperwood and Southland are now friendly against a common enemy."}
+{"type":"chronicle","tick":12251,"wallTimeMs":1792880444128,"kind":"NationRelationChange","text":"Southland and Castlefield are now hostile."}
+{"type":"chronicle","tick":12351,"wallTimeMs":1792880449520,"kind":"StallBuilt","text":"Yvonne Evans built a market stall in Cityton. The market is now full."}
+{"type":"chronicle","tick":12403,"wallTimeMs":1792880451142,"kind":"SettlementFounded","text":"Ella Lewis raised the first settlement of Westland."}
+{"type":"chronicle","tick":12451,"wallTimeMs":1792880452634,"kind":"StallBuilt","text":"Trade came to Hamletham: Alice Wilson built a stall. The market is now full."}
+{"type":"status","tick":12503,"wallTimeMs":1792880454224,"text":"Cityton shares an enemy with you: relations are now Friendly (\u002B20). Greenshire raided your village: 5 coins, 4 wood taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792880454224,"kind":"NationRelationChange","text":"Relations between Upperwood and Cityton are now friendly against a common enemy."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792880454224,"kind":"NationRelationChange","text":"Relations between Castlefield and Southland are now rival."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792880454224,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 5 coins, 4 wood."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1792880454224,"kind":"NationRaid","text":"Southland raided Northfield and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":12651,"wallTimeMs":1792880458802,"kind":"StallBuilt","text":"Katie Johnson built a market stall in Whiteshire."}
+{"type":"chronicle","tick":12651,"wallTimeMs":1792880458802,"kind":"SettlementFounded","text":"Farmville put down roots: Ruth Watson founded its first settlement."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1792880461805,"kind":"StallBuilt","text":"Frank Williams built a market stall in Castleham."}
+{"type":"chronicle","tick":12803,"wallTimeMs":1792880463479,"kind":"SettlementFounded","text":"Wendy Watson raised the first settlement of Redville."}
+{"type":"status","tick":13003,"wallTimeMs":1792880470800,"text":"Southernfield resents your border: relations are now Neutral (\u002B19)."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1792880470800,"kind":"NationRelationChange","text":"Relations between Upperwood and Southernfield are now neutral over their border."}
+{"type":"chronicle","tick":13103,"wallTimeMs":1792880475040,"kind":"StallBuilt","text":"Alice Watson built a market stall in Southland."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792880480853,"kind":"NationRelationChange","text":"Castleham and Redford have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1792880480853,"kind":"NationRelationChange","text":"Whiteshire and Redford have become rivals over their border."}
+{"type":"chronicle","tick":13403,"wallTimeMs":1792880486277,"kind":"StallBuilt","text":"Charlie Brown built a market stall in Northfield. The market is now full."}
+{"type":"status","tick":13503,"wallTimeMs":1792880489698,"text":"Greenshire raided your village: 5 coins taken. Relations: Hostile (-100); gifts or peace end raids. Castlefield raided your village: 1 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"StallBuilt","text":"Wendy Watson built a market stall in Redville."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRelationChange","text":"Castlefield and Southernburg have formed an alliance."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRelationChange","text":"Relations between Northfield and Southernfield are now neutral."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRelationChange","text":"Northfield and Westham are now hostile."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRelationChange","text":"Northfield and Southernburg swore an alliance."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 5 coins."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRaid","text":"Castlefield raided Upperwood and carried off 1 coins."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"NationRaid","text":"Northfield raided Westham and carried off 4 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":13503,"wallTimeMs":1792880489698,"kind":"Caravan","text":"Northfield sent a caravan of 20 wood from the Town of Northfield to the Village of Upperwood."}
+{"type":"chronicle","tick":13551,"wallTimeMs":1792880491360,"kind":"StallBuilt","text":"Ruth Watson built a market stall in Farmville."}
+{"type":"status","tick":13751,"wallTimeMs":1792880503172,"text":"Oldham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationCreation","text":"The nation of Southernland was born, with Jasmine White at its head."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Relations between Upperwood and Oldham are now friendly against a common enemy."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Southernfield and Villageland have become rivals over their border."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Northfield and Oldham are now hostile."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Southland and Northport swore an alliance."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Southland and Yellowville are now hostile."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Southernburg and Oldham are now hostile."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1792880503172,"kind":"NationRelationChange","text":"Northport and Yellowville are now hostile."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792880508729,"kind":"StallBuilt","text":"Frank Williams built a market stall in Castleham. The market is now full."}
+{"type":"chronicle","tick":13851,"wallTimeMs":1792880508729,"kind":"SettlementFounded","text":"Jasmine White raised the first settlement of Southernland."}
+{"type":"chronicle","tick":13951,"wallTimeMs":1792880511070,"kind":"SettlementFounded","text":"Eve Johnson raised the first settlement of Lowerton."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"StallBuilt","text":"Trade came to Farmville: Ruth Watson built a stall."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"NationRelationChange","text":"Greenshire and Farmham have become rivals over their border."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"NationRelationChange","text":"Redtown and Oldtown have become rivals over their border."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"NationRelationChange","text":"Oldtown and Farmham have become rivals over their border."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"NationRelationChange","text":"Farmham and Redford have become rivals over their border."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"NationRelationChange","text":"Greenshire and Whiteshire are now hostile."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1792880512408,"kind":"NationRelationChange","text":"Southernfield and Oldham have formed an alliance."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792880522031,"kind":"StallBuilt","text":"Trade came to Farmland: Quinn Davies built a stall."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792880522031,"kind":"NationCreation","text":"The nation of Bigburg was born, with Judy Smith at its head."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792880522031,"kind":"NationRelationChange","text":"Westham and Farmland have become rivals over their border."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1792880522031,"kind":"NationRelationChange","text":"Villageland and Farmland have become rivals over their border."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1792880525401,"kind":"StallBuilt","text":"Trade came to Redford: Daisy Roberts built a stall."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1792880525401,"kind":"StallBuilt","text":"A new stall opened in the market of Villageland, built by Linda Evans."}
+{"type":"chronicle","tick":14403,"wallTimeMs":1792880527179,"kind":"StallBuilt","text":"Alice Watson built a market stall in Southland."}
+{"type":"chronicle","tick":14451,"wallTimeMs":1792880528813,"kind":"StallBuilt","text":"Jasmine White built a market stall in Southernland."}
+{"type":"status","tick":14503,"wallTimeMs":1792880530641,"text":"Greenshire raided your village: 5 coins taken. Relations: Hostile (-100); gifts or peace end raids. Castlefield raided your village: 1 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Raiders from Greenshire struck Upperwood, taking 5 coins."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Castlefield raided Upperwood and carried off 1 coins."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Greenshire raided Whiteshire and carried off 4 coins, 5 wood."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Raiders from Northfield struck Oldham, taking 5 coins."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Southland raided Yellowville and carried off 5 coins, 1 stone."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Southernburg raided Oldham and carried off 5 coins."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1792880530641,"kind":"NationRaid","text":"Raiders from Northport struck Yellowville, taking 5 coins."}
+{"type":"chronicle","tick":14551,"wallTimeMs":1792880532250,"kind":"StallBuilt","text":"Katie Johnson built a market stall in Whiteshire."}
+{"type":"chronicle","tick":14603,"wallTimeMs":1792880533959,"kind":"NationCreation","text":"Quinn Evans declared the nation of Greatford, though none had yet sworn to it."}
+{"type":"chronicle","tick":14603,"wallTimeMs":1792880533959,"kind":"SettlementFounded","text":"Judy Smith laid the first stones of Bigburg."}
+{"type":"chronicle","tick":14703,"wallTimeMs":1792880537230,"kind":"SettlementFounded","text":"Quinn Evans laid the first stones of Greatford."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792880538821,"kind":"NationRelationChange","text":"Whiteshire and Westland have become rivals over their border."}
+{"type":"chronicle","tick":14751,"wallTimeMs":1792880538821,"kind":"NationRelationChange","text":"Farmham and Westland have become rivals over their border."}
+{"type":"status","tick":15003,"wallTimeMs":1792880546967,"text":"Your nation\u0027s shelter is over: hostile neighbours may now besiege its villages. Towns are safe behind their palisades."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792880546967,"kind":"StallBuilt","text":"Yvonne Evans built a market stall in Cityton."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792880546967,"kind":"StallBuilt","text":"Jasmine White built a market stall in Southernland."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792880546967,"kind":"NationRelationChange","text":"Castleham and Farmville have become rivals over their border."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1792880546967,"kind":"NationRelationChange","text":"Southernburg and Southland are now hostile."}
+{"type":"chronicle","tick":15203,"wallTimeMs":1792880553435,"kind":"StallBuilt","text":"Trade came to Southernburg: Charlotte Walker built a stall."}
+{"type":"status","tick":15251,"wallTimeMs":1792880555030,"text":"Redtown shares an enemy with you: relations are now Neutral (-19). Greenshire is besieging your village (1/12)! Gift, ally or grow it to hold it."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792880555030,"kind":"StallBuilt","text":"Eve Johnson built a market stall in Lowerton."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792880555030,"kind":"NationRelationChange","text":"Relations between Upperwood and Redtown are now neutral against a common enemy."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792880555030,"kind":"NationRelationChange","text":"Redville and Villageland have become rivals over their border."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1792880555030,"kind":"NationRelationChange","text":"Southernfield and Westham are now hostile."}
+{"type":"chronicle","tick":15403,"wallTimeMs":1792880560225,"kind":"StallBuilt","text":"Trade came to Redtown: Rachel Brown built a stall."}
+{"type":"status","tick":15503,"wallTimeMs":1792880563514,"text":"Greenshire raided your village: 5 coins taken. Relations: Hostile (-100); gifts or peace end raids. Castlefield raided your village: 1 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792880563514,"kind":"NationRelationChange","text":"Castlefield and Cityton are now hostile."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792880563514,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 5 coins."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792880563514,"kind":"NationRaid","text":"Raiders from Castlefield struck Upperwood, taking 1 coins."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792880563514,"kind":"NationRaid","text":"Raiders from Southernfield struck Westham, taking 4 coins, 5 wood."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792880563514,"kind":"NationRaid","text":"Raiders from Castlefield struck Cityton, taking 3 coins."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1792880563514,"kind":"NationRaid","text":"Southernburg raided Southland and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":15651,"wallTimeMs":1792880568304,"kind":"NationCreation","text":"Daisy Robinson declared the nation of Bigtown, though none had yet sworn to it."}
+{"type":"chronicle","tick":15751,"wallTimeMs":1792880571416,"kind":"NationRelationChange","text":"Castleham and Cityton are now hostile."}
+{"type":"chronicle","tick":15803,"wallTimeMs":1792880573031,"kind":"StallBuilt","text":"Trade came to Westland: Ella Lewis built a stall."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1792880579310,"kind":"NationRelationChange","text":"Southland and Oldham have formed an alliance."}
+{"type":"chronicle","tick":16251,"wallTimeMs":1792880587554,"kind":"NationRelationChange","text":"Castlefield and Southland are now hostile over their border."}
+{"type":"chronicle","tick":16251,"wallTimeMs":1792880587554,"kind":"NationRelationChange","text":"Northfield and Southernland have become rivals over their border."}
+{"type":"chronicle","tick":16251,"wallTimeMs":1792880587554,"kind":"NationRelationChange","text":"Yellowville and Southernland have become rivals over their border."}
+{"type":"chronicle","tick":16251,"wallTimeMs":1792880587554,"kind":"NationRelationChange","text":"Redford and Lowerton have become rivals over their border."}
+{"type":"chronicle","tick":16251,"wallTimeMs":1792880587554,"kind":"NationRelationChange","text":"Westland and Lowerton have become rivals over their border."}
+{"type":"chronicle","tick":16251,"wallTimeMs":1792880587554,"kind":"NationRelationChange","text":"Farmville and Lowerton have become rivals over their border."}
+{"type":"status","tick":16503,"wallTimeMs":1792880595895,"text":"Farmham shares an enemy with you: relations are now Friendly (\u002B20). Greenshire raided your village: 5 coins taken. Relations: Hostile (-100); gifts or peace end raids. Castlefield raided your village: 1 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":16503,"wallTimeMs":1792880595895,"kind":"NationRelationChange","text":"Relations between Upperwood and Farmham are now friendly against a common enemy."}
+{"type":"chronicle","tick":16503,"wallTimeMs":1792880595895,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 5 coins."}
+{"type":"chronicle","tick":16503,"wallTimeMs":1792880595895,"kind":"NationRaid","text":"Raiders from Castlefield struck Upperwood, taking 1 coins."}
+{"type":"chronicle","tick":16503,"wallTimeMs":1792880595895,"kind":"NationRaid","text":"Raiders from Southland struck Castlefield, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":16503,"wallTimeMs":1792880595895,"kind":"NationRaid","text":"Oldham raided Northfield and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":16503,"wallTimeMs":1792880595895,"kind":"NationRaid","text":"Raiders from Castleham struck Cityton, taking 5 coins."}
+{"type":"chronicle","tick":16559,"wallTimeMs":1792880597754,"kind":"Caravan","text":"A caravan from Northfield sold 8 wood at the Village of Upperwood for 56 coins."}
+{"type":"chronicle","tick":16751,"wallTimeMs":1792880604213,"kind":"NationRelationChange","text":"Whiteshire and Oldtown are now hostile."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792880612596,"kind":"NationRelationChange","text":"Southland and Bigburg have become rivals over their border."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792880612596,"kind":"NationRelationChange","text":"Redville and Greatford have become rivals over their border."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792880612596,"kind":"NationRelationChange","text":"Farmland and Greatford have become rivals over their border."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792880612596,"kind":"NationRelationChange","text":"Southernland and Bigburg have become rivals over their border."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792880612596,"kind":"NationRelationChange","text":"Greenshire and Redtown are now hostile."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1792880612596,"kind":"NationRelationChange","text":"Redtown and Oldtown are now hostile."}
+{"type":"chronicle","tick":17103,"wallTimeMs":1792880615903,"kind":"SettlementFounded","text":"Daisy Robinson laid the first stones of Bigtown."}
+{"type":"status","tick":17503,"wallTimeMs":1792880629894,"text":"Greenshire raided your village: 5 coins taken. Relations: Hostile (-100); gifts or peace end raids. Greenshire is besieging your village (10/12)! Gift, ally or grow it to hold it. Castlefield raided your village: 1 coins taken. Relations: Hostile (-100); gifts or peace end raids."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792880629894,"kind":"NationRelationChange","text":"Northfield and Yellowville have formed an alliance."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792880629894,"kind":"NationRelationChange","text":"Redtown and Whiteshire swore an alliance."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792880629894,"kind":"NationRaid","text":"Greenshire raided Upperwood and carried off 5 coins."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792880629894,"kind":"NationRaid","text":"Raiders from Castlefield struck Upperwood, taking 1 coins."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792880629894,"kind":"NationRaid","text":"Greenshire raided Redtown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":17503,"wallTimeMs":1792880629894,"kind":"NationRaid","text":"Yellowville raided Northport and carried off 5 coins."}
+{"type":"chronicle","tick":17751,"wallTimeMs":1792880638159,"kind":"NationRelationChange","text":"Oldham and Castlefield are now hostile."}
+{"type":"save","tick":18003,"wallTimeMs":1792880646453,"count":3}
+{"type":"status","tick":18003,"wallTimeMs":1792880646453,"text":"Autosaved."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1792880646453,"kind":"NationRelationChange","text":"Southernburg and Hamletham are now hostile."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1792880646453,"kind":"SettlementCapture","text":"After a siege, a village of Upperwood fell to Greenshire."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1792880646453,"kind":"NationDisband","text":"The banners of Upperwood came down when Greenshire took its last village."}
+{"type":"status","tick":18251,"wallTimeMs":1792880653960,"text":"Cityton has fallen and been disbanded."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1792880653960,"kind":"NationRelationChange","text":"Greenshire and Oldtown swore an alliance."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1792880653960,"kind":"NationRelationChange","text":"Westham and Southland have formed an alliance."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1792880653960,"kind":"NationRelationChange","text":"Castleham and Redford are now hostile."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1792880653960,"kind":"NationRelationChange","text":"Whiteshire and Redford are now hostile."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1792880653960,"kind":"SettlementCapture","text":"After a siege, a village of Cityton fell to Castlefield."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1792880653960,"kind":"NationDisband","text":"The banners of Cityton came down when Castlefield took its last village."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRelationChange","text":"Westham and Oldham swore an alliance."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRelationChange","text":"Northport and Oldham swore an alliance."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRelationChange","text":"Relations between Hamletham and Southernburg are now rival."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Oldham raided Castlefield and carried off 5 coins."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Southland raided Southernburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Oldham raided Southernburg and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Raiders from Oldtown struck Redtown, taking 3 coins, 2 wood, 5 stone."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Castleham raided Redford and carried off 5 coins."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Oldtown raided Whiteshire and carried off 5 wood."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1792880661022,"kind":"NationRaid","text":"Whiteshire raided Redford and carried off 4 coins."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880668051,"kind":"NationRelationChange","text":"Greenshire and Redford have formed an alliance."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880668051,"kind":"NationRelationChange","text":"Southernfield and Villageland are now hostile."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880668051,"kind":"NationRelationChange","text":"Castlefield and Yellowville have formed an alliance."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880668051,"kind":"NationRelationChange","text":"Hamletham and Oldham swore an alliance."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880668051,"kind":"NationRelationChange","text":"Oldtown and Redford swore an alliance."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880675377,"kind":"NationRelationChange","text":"Greenshire and Farmham are now hostile."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880675377,"kind":"NationRelationChange","text":"Southland and Hamletham have formed an alliance."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880675377,"kind":"NationRelationChange","text":"Redtown and Farmham swore an alliance."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880675377,"kind":"NationRelationChange","text":"Oldtown and Farmham are now hostile."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880675377,"kind":"NationRelationChange","text":"Redford and Farmham are now hostile."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880682875,"kind":"NationRelationChange","text":"Southernfield and Farmland have formed an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880682875,"kind":"NationRelationChange","text":"Westham and Farmland are now hostile."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880682875,"kind":"NationRelationChange","text":"Whiteshire and Farmham swore an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880682875,"kind":"NationRelationChange","text":"Farmland and Villageland are now hostile."}
+{"type":"status","tick":19323,"wallTimeMs":1792880685962,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRelationChange","text":"Northport and Bigtown have become rivals over their border."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRelationChange","text":"Bigburg and Bigtown have become rivals over their border."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRelationChange","text":"Relations between Castleham and Redford are now rival."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRaid","text":"Raiders from Southernfield struck Villageland, taking 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRaid","text":"Raiders from Westham struck Farmland, taking 5 coins, 4 wood, 3 stone."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRaid","text":"Redford raided Whiteshire and carried off 5 wood."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880691743,"kind":"NationRaid","text":"Raiders from Farmland struck Villageland, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880699454,"kind":"NationRelationChange","text":"Greenshire and Westland swore an alliance."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880699454,"kind":"NationRelationChange","text":"Oldtown and Westland swore an alliance."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880699454,"kind":"NationRelationChange","text":"Westland and Whiteshire are now hostile."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880699454,"kind":"NationRelationChange","text":"Westland and Farmham are now hostile."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880707030,"kind":"NationRelationChange","text":"Southernburg and Hamletham are now hostile over their border."}
+{"type":"status","tick":20055,"wallTimeMs":1792880708659,"text":"Chronicle: recent entries."}
+{"type":"screen","tick":20099,"wallTimeMs":1792880710170,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":20103,"wallTimeMs":1792880711665,"from":"PAUSE","to":"WORLD"}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880715984,"kind":"NationRelationChange","text":"Castleham and Redford are now hostile over their border."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880715984,"kind":"NationRelationChange","text":"Redville and Villageland are now hostile."}
+{"type":"status","tick":20459,"wallTimeMs":1792880722061,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880723403,"kind":"NationRelationChange","text":"Northport and Castleham swore an alliance."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880723403,"kind":"NationRelationChange","text":"Relations between Hamletham and Southernburg are now rival."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880723403,"kind":"NationRelationChange","text":"Relations between Castleham and Southernburg are now neutral."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880723403,"kind":"NationRelationChange","text":"Relations between Castleham and Redford are now rival."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880723403,"kind":"NationRaid","text":"Westland raided Whiteshire and carried off 5 wood."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880723403,"kind":"NationRaid","text":"Raiders from Redville struck Villageland, taking 5 wood."}
+{"type":"chronicle","tick":20751,"wallTimeMs":1792880730990,"kind":"NationRelationChange","text":"Southernburg and Castleham have become rivals over their border."}
+{"type":"chronicle","tick":20851,"wallTimeMs":1792880734091,"kind":"WorldEvent","text":"Bandits made camp outside the Camp of Westland, and Ella Lewis barred the gates to wait them out."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880738691,"kind":"NationRelationChange","text":"Southland and Castleham swore an alliance."}
+{"type":"screen","tick":21059,"wallTimeMs":1792880740479,"from":"WORLD","to":"PAUSE"}

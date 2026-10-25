@@ -1,0 +1,345 @@
+{"type":"screen","tick":0,"wallTimeMs":1792883382889,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792883395795,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792883402426,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792883408212,"how":"created","slot":"world-109-20261024-231008","seed":109}
+{"type":"screen","tick":0,"wallTimeMs":1792883408213,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":402,"wallTimeMs":1792883420345,"kind":"NationJoin","text":"Frank Thompson threw in their lot with Cityfield."}
+{"type":"chronicle","tick":702,"wallTimeMs":1792883428826,"kind":"NationCreation","text":"The nation of Whitetown was born, with Grace Wood at its head."}
+{"type":"status","tick":982,"wallTimeMs":1792883438065,"text":"Entered settlement."}
+{"type":"status","tick":1006,"wallTimeMs":1792883438867,"text":"Withdrew 6 coins from settlement."}
+{"type":"chronicle","tick":1050,"wallTimeMs":1792883440388,"kind":"SettlementFounded","text":"Grace Wood laid the first stones of Whitetown."}
+{"type":"status","tick":1450,"wallTimeMs":1792883453910,"text":"Exited settlement."}
+{"type":"chronicle","tick":1502,"wallTimeMs":1792883455756,"kind":"NationCreation","text":"The nation of Lowerburg was born, with Linda Thomas at its head."}
+{"type":"chronicle","tick":1550,"wallTimeMs":1792883457418,"kind":"NationJoin","text":"Gemma Johnson threw in their lot with Cityfield."}
+{"type":"chronicle","tick":1602,"wallTimeMs":1792883459280,"kind":"NationCreation","text":"The nation of Fortressshire was born, with Charlie Jones at its head."}
+{"type":"status","tick":1626,"wallTimeMs":1792883460087,"text":"Entered settlement."}
+{"type":"chronicle","tick":1750,"wallTimeMs":1792883464588,"kind":"SettlementFounded","text":"Charlie Jones laid the first stones of Fortressshire."}
+{"type":"chronicle","tick":1850,"wallTimeMs":1792883468156,"kind":"NationJoin","text":"Stan Johnson swore fealty to Cityfield."}
+{"type":"chronicle","tick":1950,"wallTimeMs":1792883471621,"kind":"StallBuilt","text":"Trade came to Fortressshire: Charlie Jones built a stall."}
+{"type":"status","tick":1978,"wallTimeMs":1792883472637,"text":"Exited settlement."}
+{"type":"chronicle","tick":2050,"wallTimeMs":1792883475106,"kind":"SettlementFounded","text":"Linda Thomas laid the first stones of Lowerburg."}
+{"type":"chronicle","tick":2102,"wallTimeMs":1792883476941,"kind":"StallBuilt","text":"Trade came to Whitetown: Grace Wood built a stall."}
+{"type":"status","tick":2270,"wallTimeMs":1792883482680,"text":"Entered settlement."}
+{"type":"status","tick":2330,"wallTimeMs":1792883484721,"text":"Exited settlement."}
+{"type":"chronicle","tick":2402,"wallTimeMs":1792883487240,"kind":"NationCreation","text":"Yvonne Thomas declared the nation of Westernton, though none had yet sworn to it."}
+{"type":"status","tick":2406,"wallTimeMs":1792883487401,"text":"Entered settlement."}
+{"type":"status","tick":2462,"wallTimeMs":1792883489454,"text":"Exited settlement."}
+{"type":"chronicle","tick":2550,"wallTimeMs":1792883492584,"kind":"NationCreation","text":"Ruth White founded the nation of Upperland."}
+{"type":"chronicle","tick":2702,"wallTimeMs":1792883497866,"kind":"NationCreation","text":"Karl White raised a banner and called it Westham."}
+{"type":"chronicle","tick":2750,"wallTimeMs":1792883499514,"kind":"SettlementFounded","text":"Westham put down roots: Karl White founded its first settlement."}
+{"type":"status","tick":2830,"wallTimeMs":1792883502280,"text":"Entered settlement."}
+{"type":"chronicle","tick":2850,"wallTimeMs":1792883503008,"kind":"NationCreation","text":"Nancy Wilson raised a banner and called it Redburg."}
+{"type":"chronicle","tick":2950,"wallTimeMs":1792883506663,"kind":"NationCreation","text":"Lily Smith declared the nation of Westernham, though none had yet sworn to it."}
+{"type":"status","tick":3002,"wallTimeMs":1792883508524,"text":"Whitetown resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":3002,"wallTimeMs":1792883508524,"kind":"NationCreation","text":"Natalie Robinson founded the nation of Upperfield."}
+{"type":"chronicle","tick":3002,"wallTimeMs":1792883508524,"kind":"NationRelationChange","text":"Cityfield and Whitetown have become rivals over their border."}
+{"type":"chronicle","tick":3002,"wallTimeMs":1792883508524,"kind":"Caravan","text":"Fortressshire sent a caravan of 20 wood from the Village of Fortressshire to the Town of Cityfield."}
+{"type":"status","tick":3046,"wallTimeMs":1792883510061,"text":"Bob Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022"}
+{"type":"status","tick":3070,"wallTimeMs":1792883510944,"text":"Bob Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x2)"}
+{"type":"status","tick":3090,"wallTimeMs":1792883511641,"text":"Bob Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x3)"}
+{"type":"chronicle","tick":3102,"wallTimeMs":1792883512061,"kind":"SettlementFounded","text":"Ruth White raised the first settlement of Upperland."}
+{"type":"chronicle","tick":3102,"wallTimeMs":1792883512061,"kind":"SettlementFounded","text":"Westernton put down roots: Yvonne Thomas founded its first settlement."}
+{"type":"status","tick":3114,"wallTimeMs":1792883512483,"text":"Bob Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x4)"}
+{"type":"status","tick":3158,"wallTimeMs":1792883513990,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"status","tick":3178,"wallTimeMs":1792883514730,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x2)"}
+{"type":"status","tick":3202,"wallTimeMs":1792883515560,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x3)"}
+{"type":"chronicle","tick":3202,"wallTimeMs":1792883515560,"kind":"SettlementFounded","text":"Redburg put down roots: Nancy Wilson founded its first settlement."}
+{"type":"status","tick":3222,"wallTimeMs":1792883516279,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x4)"}
+{"type":"status","tick":3242,"wallTimeMs":1792883516992,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x5)"}
+{"type":"status","tick":3266,"wallTimeMs":1792883517813,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x6)"}
+{"type":"status","tick":3290,"wallTimeMs":1792883518623,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x7)"}
+{"type":"status","tick":3310,"wallTimeMs":1792883519376,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x8)"}
+{"type":"status","tick":3330,"wallTimeMs":1792883520125,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x9)"}
+{"type":"status","tick":3350,"wallTimeMs":1792883520837,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x10)"}
+{"type":"status","tick":3374,"wallTimeMs":1792883521724,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x11)"}
+{"type":"status","tick":3394,"wallTimeMs":1792883522472,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x12)"}
+{"type":"status","tick":3414,"wallTimeMs":1792883523208,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x13)"}
+{"type":"status","tick":3434,"wallTimeMs":1792883523934,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x14)"}
+{"type":"status","tick":3478,"wallTimeMs":1792883525468,"text":"Eve Wood (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022"}
+{"type":"status","tick":3502,"wallTimeMs":1792883526332,"text":"Eve Wood (Stranger): \u0022Yes, leader? I\u0027m out gathering for Cityfield. Is it supper time yet?\u0022"}
+{"type":"chronicle","tick":3602,"wallTimeMs":1792883529940,"kind":"StallBuilt","text":"A new stall opened in the market of Whitetown, built by Grace Wood."}
+{"type":"chronicle","tick":3602,"wallTimeMs":1792883529940,"kind":"SettlementFounded","text":"Lily Smith raised the first settlement of Westernham."}
+{"type":"status","tick":3750,"wallTimeMs":1792883535179,"text":"Fortressshire resents your border: relations are now Rival (-21)."}
+{"type":"chronicle","tick":3750,"wallTimeMs":1792883535179,"kind":"NationRelationChange","text":"Cityfield and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":3750,"wallTimeMs":1792883535179,"kind":"NationRelationChange","text":"Whitetown and Fortressshire have become rivals over their border."}
+{"type":"status","tick":3862,"wallTimeMs":1792883539231,"text":"Exited settlement."}
+{"type":"chronicle","tick":3950,"wallTimeMs":1792883542376,"kind":"StallBuilt","text":"Yvonne Thomas built a market stall in Westernton."}
+{"type":"status","tick":4002,"wallTimeMs":1792883544124,"text":"Lowerburg resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":4002,"wallTimeMs":1792883544124,"kind":"NationCreation","text":"Oscar Johnson raised a banner and called it Smallton."}
+{"type":"chronicle","tick":4002,"wallTimeMs":1792883544124,"kind":"NationRelationChange","text":"Cityfield and Lowerburg have become rivals over their border."}
+{"type":"chronicle","tick":4102,"wallTimeMs":1792883547631,"kind":"StallBuilt","text":"Trade came to Westham: Karl White built a stall."}
+{"type":"chronicle","tick":4250,"wallTimeMs":1792883553073,"kind":"NationRelationChange","text":"Lowerburg and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":4302,"wallTimeMs":1792883555263,"kind":"SettlementFounded","text":"Natalie Robinson laid the first stones of Upperfield."}
+{"type":"chronicle","tick":4402,"wallTimeMs":1792883559196,"kind":"NationCreation","text":"Olivia Smith raised a banner and called it Yellowland."}
+{"type":"status","tick":4426,"wallTimeMs":1792883560042,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022"}
+{"type":"chronicle","tick":4450,"wallTimeMs":1792883560918,"kind":"StallBuilt","text":"A new stall opened in the market of Westernton, built by Yvonne Thomas."}
+{"type":"status","tick":4470,"wallTimeMs":1792883561625,"text":"Victor Taylor (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Idle hands make me itch.\u0022"}
+{"type":"status","tick":4490,"wallTimeMs":1792883562365,"text":"Victor Taylor (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Idle hands make me itch.\u0022 (x2)"}
+{"type":"chronicle","tick":4502,"wallTimeMs":1792883562796,"kind":"SettlementFounded","text":"Oscar Johnson laid the first stones of Smallton."}
+{"type":"chronicle","tick":4502,"wallTimeMs":1792883562796,"kind":"Caravan","text":"Upperland sent a caravan of 18 wood from the Village of Upperland to the Town of Cityfield."}
+{"type":"chronicle","tick":4502,"wallTimeMs":1792883562796,"kind":"Caravan","text":"Redburg sent a caravan of 10 stone from the Village of Redburg to the Town of Cityfield."}
+{"type":"status","tick":4530,"wallTimeMs":1792883563883,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022"}
+{"type":"chronicle","tick":4550,"wallTimeMs":1792883564654,"kind":"StallBuilt","text":"Grace Wood built a market stall in Whitetown."}
+{"type":"status","tick":4554,"wallTimeMs":1792883564797,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x2)"}
+{"type":"status","tick":4574,"wallTimeMs":1792883565530,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x3)"}
+{"type":"status","tick":4594,"wallTimeMs":1792883566291,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x4)"}
+{"type":"chronicle","tick":4598,"wallTimeMs":1792883566443,"kind":"Caravan","text":"A caravan from Fortressshire sold 4 wood at the Town of Cityfield for 40 coins."}
+{"type":"status","tick":4614,"wallTimeMs":1792883567051,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x5)"}
+{"type":"status","tick":4634,"wallTimeMs":1792883567808,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x6)"}
+{"type":"status","tick":4654,"wallTimeMs":1792883568559,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x7)"}
+{"type":"status","tick":4674,"wallTimeMs":1792883569340,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x8)"}
+{"type":"status","tick":4694,"wallTimeMs":1792883570080,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x9)"}
+{"type":"chronicle","tick":4702,"wallTimeMs":1792883570384,"kind":"StallBuilt","text":"Trade came to Upperland: Ruth White built a stall."}
+{"type":"status","tick":4714,"wallTimeMs":1792883570824,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x10)"}
+{"type":"status","tick":4738,"wallTimeMs":1792883571685,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x11)"}
+{"type":"status","tick":4758,"wallTimeMs":1792883572430,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x12)"}
+{"type":"status","tick":4778,"wallTimeMs":1792883573219,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x13)"}
+{"type":"status","tick":4798,"wallTimeMs":1792883574025,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x14)"}
+{"type":"status","tick":4818,"wallTimeMs":1792883574817,"text":"Frank Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Is it supper time yet?\u0022 (x15)"}
+{"type":"chronicle","tick":4850,"wallTimeMs":1792883576104,"kind":"StallBuilt","text":"Yvonne Thomas built a market stall in Westernton."}
+{"type":"chronicle","tick":4902,"wallTimeMs":1792883578290,"kind":"NationCreation","text":"The nation of Oldwood was born, with Una Thomas at its head."}
+{"type":"status","tick":5002,"wallTimeMs":1792883582473,"text":"Westham resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":5002,"wallTimeMs":1792883582473,"kind":"NationRelationChange","text":"Cityfield and Westham have become rivals over their border."}
+{"type":"chronicle","tick":5002,"wallTimeMs":1792883582473,"kind":"NationRelationChange","text":"Lowerburg and Redburg have become rivals over their border."}
+{"type":"chronicle","tick":5250,"wallTimeMs":1792883592079,"kind":"NationRelationChange","text":"Lowerburg and Westernham have become rivals over their border."}
+{"type":"chronicle","tick":5350,"wallTimeMs":1792883595746,"kind":"StallBuilt","text":"Trade came to Fortressshire: Charlie Jones built a stall."}
+{"type":"chronicle","tick":5350,"wallTimeMs":1792883595746,"kind":"SettlementFounded","text":"Olivia Smith laid the first stones of Yellowland."}
+{"type":"chronicle","tick":5450,"wallTimeMs":1792883598741,"kind":"SettlementFounded","text":"Oldwood put down roots: Una Thomas founded its first settlement."}
+{"type":"status","tick":5502,"wallTimeMs":1792883600118,"text":"Westernton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792883600118,"kind":"StallBuilt","text":"Trade came to Whitetown: Grace Wood built a stall. The market is now full."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792883600118,"kind":"NationRelationChange","text":"Cityfield and Westernton have become rivals over their border."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792883600118,"kind":"NationRelationChange","text":"Whitetown and Upperland have become rivals over their border."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1792883600118,"kind":"NationRelationChange","text":"Whitetown and Westham have become rivals over their border."}
+{"type":"chronicle","tick":5702,"wallTimeMs":1792883605243,"kind":"NationCreation","text":"Wendy Williams raised a banner and called it Bigford."}
+{"type":"status","tick":5714,"wallTimeMs":1792883605567,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":5762,"wallTimeMs":1792883606864,"text":"No entities within range to interact with."}
+{"type":"status","tick":5814,"wallTimeMs":1792883608237,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":5862,"wallTimeMs":1792883609464,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":5914,"wallTimeMs":1792883610776,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":5950,"wallTimeMs":1792883611684,"kind":"NationCreation","text":"The nation of Newport was born, with Yvonne Davies at its head."}
+{"type":"status","tick":5966,"wallTimeMs":1792883612098,"text":"No entities within range to interact with. (x5)"}
+{"type":"save","tick":6002,"wallTimeMs":1792883613124,"count":1}
+{"type":"status","tick":6002,"wallTimeMs":1792883613124,"text":"Fortressshire shares an enemy with you: relations are now Neutral (-19)."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792883613124,"kind":"NationRelationChange","text":"Relations between Cityfield and Fortressshire are now neutral against a common enemy."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1792883613124,"kind":"Caravan","text":"Oldwood sent a caravan of 16 wood from the Camp of Oldwood to the Town of Cityfield."}
+{"type":"chronicle","tick":6150,"wallTimeMs":1792883616973,"kind":"StallBuilt","text":"Trade came to Westernton: Yvonne Thomas built a stall."}
+{"type":"chronicle","tick":6302,"wallTimeMs":1792883620832,"kind":"SettlementFounded","text":"Bigford put down roots: Wendy Williams founded its first settlement."}
+{"type":"chronicle","tick":6402,"wallTimeMs":1792883623377,"kind":"StallBuilt","text":"Una Thomas built a market stall in Oldwood."}
+{"type":"chronicle","tick":6402,"wallTimeMs":1792883623377,"kind":"StallBuilt","text":"A new stall opened in the market of Smallton, built by Oscar Johnson."}
+{"type":"chronicle","tick":6450,"wallTimeMs":1792883624747,"kind":"NationCreation","text":"The nation of Castleton was born, with Ella Lewis at its head."}
+{"type":"status","tick":6462,"wallTimeMs":1792883625124,"text":"You leave the land of Cityfield for the wilds."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1792883626311,"kind":"NationRelationChange","text":"Fortressshire and Upperland have become rivals over their border."}
+{"type":"chronicle","tick":6550,"wallTimeMs":1792883627689,"kind":"SettlementFounded","text":"Newport put down roots: Yvonne Davies founded its first settlement."}
+{"type":"status","tick":6566,"wallTimeMs":1792883628182,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":6610,"wallTimeMs":1792883629464,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":6702,"wallTimeMs":1792883632150,"kind":"StallBuilt","text":"A new stall opened in the market of Westernham, built by Lily Smith."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1792883633494,"kind":"NationRelationChange","text":"Westernton and Upperfield have become rivals over their border."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1792883633494,"kind":"NationRelationChange","text":"Westham and Upperfield have become rivals over their border."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1792883633494,"kind":"NationRelationChange","text":"Redburg and Smallton have become rivals over their border."}
+{"type":"status","tick":6946,"wallTimeMs":1792883639042,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":6950,"wallTimeMs":1792883639164,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":6950}
+{"type":"status","tick":6950,"wallTimeMs":1792883639164,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"status","tick":6990,"wallTimeMs":1792883640322,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":7002,"wallTimeMs":1792883640676,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":7002,"wallTimeMs":1792883640676,"text":"Whitetown sent 20 coins of tribute to your treasury. Westernton sent 20 coins of tribute to your treasury. Relations with Westernton are now Neutral (-18). Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792883640676,"kind":"StallBuilt","text":"Trade came to Yellowland: Olivia Smith built a stall."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792883640676,"kind":"NationRelationChange","text":"Upperland and Yellowland have become rivals over their border."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1792883640676,"kind":"NationRelationChange","text":"Relations between Westernton and Cityfield are now neutral."}
+{"type":"objective_completed","tick":7050,"wallTimeMs":1792883642074,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":48}
+{"type":"status","tick":7050,"wallTimeMs":1792883642074,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":7050,"wallTimeMs":1792883642074,"kind":"StallBuilt","text":"Trade came to Smallton: Oscar Johnson built a stall."}
+{"type":"chronicle","tick":7050,"wallTimeMs":1792883642074,"kind":"NationCreation","text":"Abigail Smith raised a banner and called it Greatland."}
+{"type":"objective_completed","tick":7102,"wallTimeMs":1792883643557,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":52}
+{"type":"status","tick":7102,"wallTimeMs":1792883643557,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":7102,"wallTimeMs":1792883643557,"kind":"NationCreation","text":"Ella Thomas founded the nation of Upperburg."}
+{"type":"chronicle","tick":7102,"wallTimeMs":1792883643557,"kind":"NationCreation","text":"The nation of Hamlettown was born, with Una Evans at its head."}
+{"type":"chronicle","tick":7150,"wallTimeMs":1792883644947,"kind":"SettlementFounded","text":"Ella Thomas raised the first settlement of Upperburg."}
+{"type":"chronicle","tick":7150,"wallTimeMs":1792883644947,"kind":"SettlementFounded","text":"Greatland put down roots: Abigail Smith founded its first settlement."}
+{"type":"chronicle","tick":7202,"wallTimeMs":1792883646479,"kind":"NationCreation","text":"The nation of Blueville was born, with Yvonne Johnson at its head."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1792883647881,"kind":"StallBuilt","text":"Charlie Jones built a market stall in Fortressshire."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1792883647881,"kind":"StallBuilt","text":"Trade came to Westernton: Yvonne Thomas built a stall."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1792883647881,"kind":"NationCreation","text":"Jasmine Wood founded the nation of Fortshire."}
+{"type":"chronicle","tick":7294,"wallTimeMs":1792883649123,"kind":"Caravan","text":"A caravan from Upperland sold 11 wood at the Town of Cityfield for 77 coins."}
+{"type":"chronicle","tick":7302,"wallTimeMs":1792883649363,"kind":"SettlementFounded","text":"Una Evans laid the first stones of Hamlettown."}
+{"type":"chronicle","tick":7450,"wallTimeMs":1792883653462,"kind":"SettlementFounded","text":"Castleton put down roots: Ella Lewis founded its first settlement."}
+{"type":"chronicle","tick":7454,"wallTimeMs":1792883653586,"kind":"Caravan","text":"A caravan from Redburg sold 1 stone at the Town of Cityfield for 4 coins."}
+{"type":"status","tick":7466,"wallTimeMs":1792883653947,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":7502,"wallTimeMs":1792883654973,"text":"Westernton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792883654973,"kind":"StallBuilt","text":"Una Evans built a market stall in Hamlettown."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792883654973,"kind":"NationRelationChange","text":"Cityfield and Westernton have become rivals over their border."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792883654973,"kind":"NationRelationChange","text":"Lowerburg and Redburg are now hostile."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1792883654973,"kind":"NationRelationChange","text":"Fortressshire and Lowerburg are now hostile."}
+{"type":"status","tick":7510,"wallTimeMs":1792883655194,"text":"No entities within range to interact with."}
+{"type":"status","tick":7558,"wallTimeMs":1792883656566,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":7602,"wallTimeMs":1792883657812,"kind":"NationCreation","text":"Mia Brown declared the nation of Newshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":7602,"wallTimeMs":1792883657812,"kind":"NationCreation","text":"Lily Taylor declared the nation of Upperham, though none had yet sworn to it."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1792883660512,"kind":"StallBuilt","text":"Trade came to Westernham: Lily Smith built a stall."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1792883660512,"kind":"SettlementFounded","text":"Blueville put down roots: Yvonne Johnson founded its first settlement."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1792883661881,"kind":"NationRelationChange","text":"Upperland and Oldwood have become rivals over their border."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1792883661881,"kind":"NationRelationChange","text":"Redburg and Yellowland have become rivals over their border."}
+{"type":"chronicle","tick":7802,"wallTimeMs":1792883663340,"kind":"StallBuilt","text":"A new stall opened in the market of Oldwood, built by Una Thomas."}
+{"type":"chronicle","tick":7802,"wallTimeMs":1792883663340,"kind":"NationCreation","text":"Judy Jones raised a banner and called it Westland."}
+{"type":"chronicle","tick":7950,"wallTimeMs":1792883667428,"kind":"StallBuilt","text":"A new stall opened in the market of Westernton, built by Yvonne Thomas. The market is now full."}
+{"type":"chronicle","tick":7950,"wallTimeMs":1792883667428,"kind":"StallBuilt","text":"Trade came to Yellowland: Olivia Smith built a stall."}
+{"type":"chronicle","tick":7950,"wallTimeMs":1792883667428,"kind":"StallBuilt","text":"A new stall opened in the market of Greatland, built by Abigail Smith."}
+{"type":"status","tick":7990,"wallTimeMs":1792883668547,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792883668906,"kind":"StallBuilt","text":"A new stall opened in the market of Smallton, built by Oscar Johnson."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792883668906,"kind":"NationRelationChange","text":"Fortressshire and Whitetown are now hostile."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792883668906,"kind":"NationRaid","text":"Raiders from Fortressshire struck Whitetown, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792883668906,"kind":"NationRaid","text":"Fortressshire raided Lowerburg and carried off 2 wood, 5 stone."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1792883668906,"kind":"NationRaid","text":"Raiders from Lowerburg struck Redburg, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":8050,"wallTimeMs":1792883670254,"kind":"SettlementFounded","text":"Lily Taylor raised the first settlement of Upperham."}
+{"type":"chronicle","tick":8050,"wallTimeMs":1792883670254,"kind":"NationCreation","text":"Olivia Lewis raised a banner and called it Oldford."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1792883671655,"kind":"StallBuilt","text":"A new stall opened in the market of Upperland, built by Ruth White."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1792883671655,"kind":"SettlementFounded","text":"Olivia Lewis raised the first settlement of Oldford."}
+{"type":"chronicle","tick":8150,"wallTimeMs":1792883673009,"kind":"StallBuilt","text":"Yvonne Davies built a market stall in Newport."}
+{"type":"chronicle","tick":8150,"wallTimeMs":1792883673009,"kind":"SettlementFounded","text":"Judy Jones laid the first stones of Westland."}
+{"type":"chronicle","tick":8202,"wallTimeMs":1792883674463,"kind":"StallBuilt","text":"A new stall opened in the market of Hamlettown, built by Una Evans."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1792883675796,"kind":"NationCreation","text":"The nation of Hamletshire was born, with Bob Walker at its head."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792883677260,"kind":"StallBuilt","text":"Charlie Jones built a market stall in Fortressshire. The market is now full."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1792883677260,"kind":"NationCreation","text":"The nation of Hamletport was born, with Tilly Johnson at its head."}
+{"type":"status","tick":8510,"wallTimeMs":1792883682953,"text":"Crafted 1 pickaxe (\u002B2 stone per rock, lasts 15 rocks)."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1792883684112,"kind":"StallBuilt","text":"Trade came to Westham: Karl White built a stall."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1792883684112,"kind":"StallBuilt","text":"Trade came to Blueville: Yvonne Johnson built a stall."}
+{"type":"chronicle","tick":8602,"wallTimeMs":1792883685572,"kind":"SettlementFounded","text":"Tilly Johnson laid the first stones of Hamletport."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792883688390,"kind":"StallBuilt","text":"Trade came to Greatland: Abigail Smith built a stall."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1792883688390,"kind":"SettlementFounded","text":"Bob Walker raised the first settlement of Hamletshire."}
+{"type":"status","tick":8714,"wallTimeMs":1792883688728,"text":"Welcome home!"}
+{"type":"status","tick":8722,"wallTimeMs":1792883689025,"text":"You are back on your own land."}
+{"type":"chronicle","tick":8750,"wallTimeMs":1792883690019,"kind":"NationRelationChange","text":"Redburg and Bigford have become rivals over their border."}
+{"type":"chronicle","tick":8750,"wallTimeMs":1792883690019,"kind":"NationRelationChange","text":"Westernham and Bigford have become rivals over their border."}
+{"type":"chronicle","tick":8802,"wallTimeMs":1792883691906,"kind":"StallBuilt","text":"Trade came to Redburg: Nancy Wilson built a stall."}
+{"type":"chronicle","tick":8802,"wallTimeMs":1792883691906,"kind":"SettlementFounded","text":"Fortshire put down roots: Jasmine Wood founded its first settlement."}
+{"type":"chronicle","tick":8802,"wallTimeMs":1792883691906,"kind":"NationCreation","text":"Tilly Robinson declared the nation of Smallford, though none had yet sworn to it."}
+{"type":"chronicle","tick":8950,"wallTimeMs":1792883697234,"kind":"NationCreation","text":"Xavier Evans declared the nation of Littleford, though none had yet sworn to it."}
+{"type":"status","tick":8970,"wallTimeMs":1792883697989,"text":"Entered settlement."}
+{"type":"objective_completed","tick":9002,"wallTimeMs":1792883699184,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":1900}
+{"type":"status","tick":9002,"wallTimeMs":1792883699184,"text":"Westham shares an enemy with you: relations are now Neutral (-19). Westernton sent 20 coins of tribute to your treasury. Relations with Westernton are now Neutral (-18). Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Relations between Cityfield and Westham are now neutral against a common enemy."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Whitetown and Newport have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Westernham and Upperburg have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Oldwood and Newport have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Bigford and Upperburg have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Whitetown and Lowerburg have formed an alliance."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRelationChange","text":"Relations between Westernton and Cityfield are now neutral."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRaid","text":"Raiders from Whitetown struck Fortressshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1792883699184,"kind":"NationRaid","text":"Lowerburg raided Fortressshire and carried off 5 coins, 5 wood, 3 stone."}
+{"type":"status","tick":9034,"wallTimeMs":1792883700394,"text":"Exited settlement."}
+{"type":"objective_completed","tick":9050,"wallTimeMs":1792883700959,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":48}
+{"type":"status","tick":9050,"wallTimeMs":1792883700959,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":9102,"wallTimeMs":1792883703112,"kind":"StallBuilt","text":"Lily Smith built a market stall in Westernham."}
+{"type":"status","tick":9106,"wallTimeMs":1792883703270,"text":"Entered settlement."}
+{"type":"chronicle","tick":9150,"wallTimeMs":1792883705042,"kind":"StallBuilt","text":"Trade came to Yellowland: Olivia Smith built a stall."}
+{"type":"chronicle","tick":9150,"wallTimeMs":1792883705042,"kind":"StallBuilt","text":"Yvonne Davies built a market stall in Newport."}
+{"type":"chronicle","tick":9150,"wallTimeMs":1792883705042,"kind":"NationCreation","text":"The nation of Townshire was born, with Olivia Walker at its head."}
+{"type":"status","tick":9166,"wallTimeMs":1792883705675,"text":"Exited settlement."}
+{"type":"status","tick":9242,"wallTimeMs":1792883708792,"text":"Entered settlement."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792883709118,"kind":"SettlementFounded","text":"Mia Brown laid the first stones of Newshire."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1792883709118,"kind":"StallBuilt","text":"Trade came to Upperham: Lily Taylor built a stall."}
+{"type":"status","tick":9306,"wallTimeMs":1792883711295,"text":"Exited settlement."}
+{"type":"chronicle","tick":9350,"wallTimeMs":1792883713122,"kind":"StallBuilt","text":"Karl White built a market stall in Westham."}
+{"type":"chronicle","tick":9350,"wallTimeMs":1792883713122,"kind":"StallBuilt","text":"Trade came to Hamlettown: Una Evans built a stall."}
+{"type":"status","tick":9378,"wallTimeMs":1792883714270,"text":"Entered settlement."}
+{"type":"status","tick":9402,"wallTimeMs":1792883715205,"text":"Withdrew 22 coins from settlement."}
+{"type":"status","tick":9450,"wallTimeMs":1792883716954,"text":"Exited settlement."}
+{"type":"chronicle","tick":9450,"wallTimeMs":1792883716954,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletport, built by Tilly Johnson."}
+{"type":"status","tick":9502,"wallTimeMs":1792883719063,"text":"Westernton resents your border: relations are now Rival (-20). Redburg shares an enemy with you: relations are now Friendly (\u002B20). Greatland resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792883719063,"kind":"NationRelationChange","text":"Cityfield and Westernton have become rivals over their border."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792883719063,"kind":"NationRelationChange","text":"Relations between Cityfield and Redburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792883719063,"kind":"NationRelationChange","text":"Cityfield and Greatland have become rivals over their border."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1792883719063,"kind":"NationRelationChange","text":"Upperland and Yellowland are now hostile."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792883728117,"kind":"StallBuilt","text":"Oscar Johnson built a market stall in Smallton."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792883728117,"kind":"NationRelationChange","text":"Whitetown and Hamlettown have become rivals over their border."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792883728117,"kind":"NationRelationChange","text":"Oldwood and Castleton have become rivals over their border."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792883728117,"kind":"NationRelationChange","text":"Castleton and Hamlettown have become rivals over their border."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1792883728117,"kind":"NationRelationChange","text":"Lowerburg and Westernham are now hostile."}
+{"type":"chronicle","tick":9802,"wallTimeMs":1792883729987,"kind":"StallBuilt","text":"Trade came to Greatland: Abigail Smith built a stall."}
+{"type":"chronicle","tick":9850,"wallTimeMs":1792883731756,"kind":"StallBuilt","text":"A new stall opened in the market of Castleton, built by Ella Lewis."}
+{"type":"chronicle","tick":9902,"wallTimeMs":1792883733650,"kind":"StallBuilt","text":"Trade came to Blueville: Yvonne Johnson built a stall."}
+{"type":"status","tick":10002,"wallTimeMs":1792883737271,"text":"Upperland shares an enemy with you: relations are now Friendly (\u002B20). Blueville resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"StallBuilt","text":"A new stall opened in the market of Westernham, built by Lily Smith."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"SettlementFounded","text":"Townshire put down roots: Olivia Walker founded its first settlement."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRelationChange","text":"Relations between Cityfield and Upperland are now friendly against a common enemy."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRelationChange","text":"Cityfield and Blueville have become rivals over their border."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRelationChange","text":"Westernham and Blueville have become rivals over their border."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRelationChange","text":"Newport and Hamlettown have become rivals over their border."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRelationChange","text":"Upperburg and Westland have become rivals over their border."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRelationChange","text":"Whitetown and Upperland are now hostile."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRaid","text":"Raiders from Whitetown struck Upperland, taking 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRaid","text":"Raiders from Lowerburg struck Westernham, taking 5 coins, 1 wood, 5 stone."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1792883737271,"kind":"NationRaid","text":"Raiders from Upperland struck Yellowland, taking 5 coins, 5 wood."}
+{"type":"status","tick":10202,"wallTimeMs":1792883744481,"text":"Entered settlement."}
+{"type":"status","tick":10250,"wallTimeMs":1792883746171,"text":"Westernham shares an enemy with you: relations are now Friendly (\u002B21). Upperfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":10250,"wallTimeMs":1792883746171,"kind":"NationRelationChange","text":"Relations between Cityfield and Westernham are now friendly against a common enemy."}
+{"type":"chronicle","tick":10250,"wallTimeMs":1792883746171,"kind":"NationRelationChange","text":"Relations between Cityfield and Upperfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":10350,"wallTimeMs":1792883749760,"kind":"StallBuilt","text":"A new stall opened in the market of Upperfield, built by Natalie Robinson."}
+{"type":"chronicle","tick":10350,"wallTimeMs":1792883749760,"kind":"StallBuilt","text":"A new stall opened in the market of Oldwood, built by Una Thomas."}
+{"type":"chronicle","tick":10350,"wallTimeMs":1792883749760,"kind":"StallBuilt","text":"Trade came to Upperburg: Ella Thomas built a stall."}
+{"type":"chronicle","tick":10402,"wallTimeMs":1792883751646,"kind":"SettlementFounded","text":"Littleford put down roots: Xavier Evans founded its first settlement."}
+{"type":"chronicle","tick":10402,"wallTimeMs":1792883751646,"kind":"Caravan","text":"A caravan from Oldwood sold 6 wood at the Town of Cityfield for 42 coins."}
+{"type":"status","tick":10494,"wallTimeMs":1792883755047,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"chronicle","tick":10502,"wallTimeMs":1792883755340,"kind":"StallBuilt","text":"Trade came to Upperland: Ruth White built a stall."}
+{"type":"chronicle","tick":10502,"wallTimeMs":1792883755340,"kind":"NationRelationChange","text":"Newport and Upperham have become rivals over their border."}
+{"type":"chronicle","tick":10502,"wallTimeMs":1792883755340,"kind":"NationRelationChange","text":"Castleton and Upperham have become rivals over their border."}
+{"type":"chronicle","tick":10502,"wallTimeMs":1792883755340,"kind":"NationRelationChange","text":"Castleton and Oldford have become rivals over their border."}
+{"type":"status","tick":10530,"wallTimeMs":1792883756325,"text":"Xavier Thomas (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"status","tick":10550,"wallTimeMs":1792883757028,"text":"Xavier Thomas (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x2)"}
+{"type":"status","tick":10566,"wallTimeMs":1792883757576,"text":"Xavier Thomas (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x3)"}
+{"type":"status","tick":10586,"wallTimeMs":1792883758292,"text":"Xavier Thomas (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x4)"}
+{"type":"status","tick":10606,"wallTimeMs":1792883758954,"text":"Xavier Thomas (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x5)"}
+{"type":"status","tick":10650,"wallTimeMs":1792883760483,"text":"Gemma Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"chronicle","tick":10650,"wallTimeMs":1792883760483,"kind":"StallBuilt","text":"Judy Jones built a market stall in Westland."}
+{"type":"chronicle","tick":10650,"wallTimeMs":1792883760483,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletport, built by Tilly Johnson."}
+{"type":"status","tick":10670,"wallTimeMs":1792883761187,"text":"Gemma Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x2)"}
+{"type":"status","tick":10686,"wallTimeMs":1792883761750,"text":"Gemma Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x3)"}
+{"type":"chronicle","tick":10702,"wallTimeMs":1792883762323,"kind":"StallBuilt","text":"Olivia Lewis built a market stall in Oldford."}
+{"type":"status","tick":10706,"wallTimeMs":1792883762456,"text":"Gemma Johnson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x4)"}
+{"type":"status","tick":10766,"wallTimeMs":1792883764623,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"status","tick":10782,"wallTimeMs":1792883765197,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x2)"}
+{"type":"status","tick":10802,"wallTimeMs":1792883765909,"text":"Ruth Thompson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022 (x3)"}
+{"type":"chronicle","tick":10850,"wallTimeMs":1792883767620,"kind":"SettlementFounded","text":"Tilly Robinson laid the first stones of Smallford."}
+{"type":"status","tick":10858,"wallTimeMs":1792883767893,"text":"Victor Taylor (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Idle hands make me itch.\u0022"}
+{"type":"chronicle","tick":10950,"wallTimeMs":1792883771116,"kind":"StallBuilt","text":"A new stall opened in the market of Westernham, built by Lily Smith."}
+{"type":"chronicle","tick":10950,"wallTimeMs":1792883771116,"kind":"StallBuilt","text":"Trade came to Yellowland: Olivia Smith built a stall. The market is now full."}
+{"type":"chronicle","tick":10950,"wallTimeMs":1792883771116,"kind":"StallBuilt","text":"A new stall opened in the market of Greatland, built by Abigail Smith. The market is now full."}
+{"type":"status","tick":11002,"wallTimeMs":1792883772968,"text":"Westernton sent 20 coins of tribute to your treasury. Relations with Westernton are now Neutral (-18)."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792883772968,"kind":"StallBuilt","text":"Trade came to Blueville: Yvonne Johnson built a stall."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792883772968,"kind":"NationRelationChange","text":"Oldwood and Hamletshire have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792883772968,"kind":"NationRelationChange","text":"Castleton and Hamletport have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792883772968,"kind":"NationRelationChange","text":"Oldford and Hamletshire have become rivals over their border."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792883772968,"kind":"NationRelationChange","text":"Relations between Westernton and Cityfield are now neutral."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1792883772968,"kind":"NationRelationChange","text":"Relations between Upperland and Whitetown are now rival."}
+{"type":"chronicle","tick":11050,"wallTimeMs":1792883774772,"kind":"StallBuilt","text":"Trade came to Littleford: Xavier Evans built a stall."}
+{"type":"chronicle","tick":11202,"wallTimeMs":1792883780251,"kind":"StallBuilt","text":"Una Evans built a market stall in Hamlettown. The market is now full."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1792883781990,"kind":"NationRelationChange","text":"Bigford and Fortshire have become rivals over their border."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1792883781990,"kind":"NationRelationChange","text":"Fortshire and Westland have become rivals over their border."}
+{"type":"chronicle","tick":11350,"wallTimeMs":1792883785427,"kind":"StallBuilt","text":"A new stall opened in the market of Newport, built by Yvonne Davies."}
+{"type":"status","tick":11502,"wallTimeMs":1792883790745,"text":"Westernton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792883790745,"kind":"NationRelationChange","text":"Cityfield and Westernton have become rivals over their border."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792883790745,"kind":"NationRelationChange","text":"Westernton and Newshire have become rivals over their border."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792883790745,"kind":"NationRelationChange","text":"Greatland and Newshire have become rivals over their border."}
+{"type":"chronicle","tick":11502,"wallTimeMs":1792883790745,"kind":"NationRelationChange","text":"Fortressshire and Upperland are now hostile."}
+{"type":"status","tick":11518,"wallTimeMs":1792883791298,"text":"Exited settlement."}
+{"type":"chronicle","tick":11550,"wallTimeMs":1792883792385,"kind":"StallBuilt","text":"Trade came to Westland: Judy Jones built a stall."}
+{"type":"chronicle","tick":11550,"wallTimeMs":1792883792385,"kind":"StallBuilt","text":"Trade came to Newshire: Mia Brown built a stall."}
+{"type":"chronicle","tick":11602,"wallTimeMs":1792883794073,"kind":"StallBuilt","text":"Trade came to Smallton: Oscar Johnson built a stall."}
+{"type":"chronicle","tick":11602,"wallTimeMs":1792883794073,"kind":"StallBuilt","text":"A new stall opened in the market of Littleford, built by Xavier Evans."}
+{"type":"chronicle","tick":11650,"wallTimeMs":1792883795649,"kind":"StallBuilt","text":"Trade came to Upperburg: Ella Thomas built a stall."}
+{"type":"chronicle","tick":11650,"wallTimeMs":1792883795649,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletport, built by Tilly Johnson."}
+{"type":"chronicle","tick":11702,"wallTimeMs":1792883797398,"kind":"StallBuilt","text":"Karl White built a market stall in Westham."}
+{"type":"chronicle","tick":11702,"wallTimeMs":1792883797398,"kind":"StallBuilt","text":"Trade came to Oldford: Olivia Lewis built a stall."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792883798975,"kind":"StallBuilt","text":"A new stall opened in the market of Castleton, built by Ella Lewis."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792883798975,"kind":"NationRelationChange","text":"Westernton and Upperfield are now hostile."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792883798975,"kind":"NationRelationChange","text":"Westham and Upperfield are now hostile."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1792883798975,"kind":"NationRelationChange","text":"Smallton and Redburg are now hostile."}
+{"type":"chronicle","tick":11850,"wallTimeMs":1792883802278,"kind":"StallBuilt","text":"A new stall opened in the market of Oldwood, built by Una Thomas. The market is now full."}
+{"type":"chronicle","tick":11850,"wallTimeMs":1792883802278,"kind":"StallBuilt","text":"Lily Taylor built a market stall in Upperham."}
+{"type":"save","tick":12002,"wallTimeMs":1792883807381,"count":2}
+{"type":"status","tick":12002,"wallTimeMs":1792883807381,"text":"Greatland sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"NationRelationChange","text":"Whitetown and Upperland are now hostile over their border."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"NationRelationChange","text":"Relations between Whitetown and Hamlettown are now neutral against a common enemy."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"NationRelationChange","text":"Relations between Westernham and Bigford are now neutral against a common enemy."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"NationRaid","text":"Fortressshire raided Upperland and carried off 5 wood."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"NationRaid","text":"Raiders from Westernton struck Upperfield, taking 4 coins."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"NationRaid","text":"Smallton raided Redburg and carried off 5 wood."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1792883807381,"kind":"Caravan","text":"Yellowland sent a caravan of 20 wood from the Village of Yellowland to the Town of Cityfield."}

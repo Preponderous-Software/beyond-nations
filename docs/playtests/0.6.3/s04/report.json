@@ -1,0 +1,102 @@
+{
+  "session": "s04",
+  "goal": "As a new player, use the chronicle (#411): play the first 15 minutes, then open the full chronicle (Y) and the strip; check that by default it shows your news (your nation, neighbours, foundings) and that the switch (buttons or U) shows all nations. Say whether your own news is easy to find, and whether anything important is hidden by the default.",
+  "build": {"version": "0.6.2", "commit": "edb1a62"},
+  "seed": 1,
+  "durationSec": 841,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Chronicle's shared 200-entry cap evicts the player's own founding history within ~7 game minutes",
+      "detail": "At tick ~21000 the full chronicle header reads '335 entries; the latest 200 are kept.' With 'Only my nation' ticked it lists 5 entries; at tick ~12400 the same view listed 16. 'You raised a banner and named your people Westford', 'You laid the first stones of Westford', Daisy Davies/Smith joining and their stalls are all gone. About 40-50 NPC entries per game minute (mostly other nations' raids, rivalries and foundings) fill the cap, which all nations share, so the player's oldest and most personal entries are the first to go. Expected the player's own nation's entries to be kept, or a separate cap for them.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 1; create a nation (N), found a settlement (F) by tick ~6000; play until tick ~21000; Y to open the full chronicle; tick 'Only my nation'",
+      "screenshot": "shots/own_history_evicted.png",
+      "tick": 21353
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Default 'Your news' barely filters: 73% of all entries, so own news is drowned out",
+      "detail": "Full chronicle (Y), default 'Your news': 'Listing 100' of 137 entries at tick ~12400, and 111 of the 200 kept at tick ~21000. Most of it is other nations' rivalries, alliances, raids and stalls (e.g. 'Raiders from Westburg struck Northernland', 'Castleton and Blueton have become rivals'). About 20 NPC nations appear on day 1, so 'neighbours' ends up meaning nearly everyone. My own entries are highlighted yellow with '*', which helps, but there are only a few among about 100 lines. The 'Only my nation' checkbox (16 of 137) is the view that makes my news easy to find, but it is off by default and is a second control stacked on the Your news / All nations switch.",
+      "repro": "seed 1; play to tick ~12000 as leader of a nation with a settlement; Y; compare 'Listing N' for Your news, All nations (U) and 'Only my nation'",
+      "screenshot": "shots/full_yours2.png",
+      "tick": 12300
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Player's own milestones (Farm/House built, settlement became a Village) never reach the chronicle",
+      "detail": "K,K built a Farm ('Farm built.', tick 11217), and a House made Westford a Village ('House built. The settlement is now a Village!', tick 13901). Neither wrote a chronicle entry. At those moments the 'your news' strip showed only other nations' raids and rivalries. NPC stalls ('A new stall opened in the market of Bluewood') and NPC settlement foundings are chronicled. Expected '* Westford grew into a Village' highlighted in my news.",
+      "repro": "seed 1; found settlement; gather 25 wood/10 stone; inside settlement K K (Farm); then 20 wood/15 stone K K (House); watch strip and Y full view",
+      "screenshot": "shots/village_not_chronicled.png",
+      "tick": 13901
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Chronicle strip lines cut off with '...' before the key fact",
+      "detail": "At 960x540 the 5-line strip truncates almost every line, often at the important part: 'Relations between Westford and Littleland are n...' (friendly or rival is cut off), 'You raised a banner and named your people We...', 'The nation of Westland was born, with Yvonne J...'. There is no wrap or hover. The full view (Y) wraps correctly.",
+      "repro": "seed 1; play past tick ~3000; read the strip under the top bar",
+      "screenshot": "shots/strip_ignores_onlymine.png",
+      "tick": 12749
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Strip ignores 'Only my nation' and churns too fast for own entries to stay visible",
+      "detail": "With 'Only my nation' ticked in the full view, the strip still says 'your news' and shows other nations ('Wendy Davies raised a banner...', 'Smallshire and Castleton are now hostile...'). Because there are so many entries (335 in ~7 game min), my own highlighted line is pushed off the 5-line strip within seconds. Example: 'You laid the first stones of Westford' was gone within one batch of rivalries.",
+      "repro": "Y to full, tick 'Only my nation', Close, Y to recent strip",
+      "screenshot": "shots/strip_ignores_onlymine.png",
+      "tick": 12749
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "'Build a market stall' objective is completed by an NPC, not the player",
+      "detail": "Right after I entered my new settlement, Daisy Davies joined Westford and built a stall (tick 6553). That completed objective 6 'Build a market stall' while I had 7 wood and had done nothing. The tutorial step taught nothing.",
+      "repro": "seed 1; found settlement at tick ~6000; enter it; wait ~300 ticks",
+      "screenshot": "shots/strip2.png",
+      "tick": 6553
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement's floating label renders huge and clipped across the top of the screen",
+      "detail": "Near the well, the settlement label ('0 here, 1/8 residents', later '2 here, 3/16 residents') is drawn in giant letters across the top of the screen, behind the chronicle strip and the toast.",
+      "repro": "found a settlement and stand at its well",
+      "screenshot": "shots/settlement_label_huge.png",
+      "tick": 6209
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Own member called 'Stranger' and asks why they should follow you",
+      "detail": "Daisy Davies had joined Westford ('Westford welcomed Daisy Davies into its ranks') and runs its market. Talking to her shows 'Daisy Davies (Stranger): \"Yes, leader? I hardly know you. Why should I follow you?\"'. The objective progress label 'Members 3/10' is also cut off ('nbers 3/10') in the objective bar.",
+      "repro": "after Daisy joins, walkto pawn; e",
+      "screenshot": "shots/recruit.png",
+      "tick": 15793
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 47.1,
+      "Eat something": 48.0,
+      "Create or join a nation": 64.0,
+      "Found a settlement": 120.0,
+      "Enter your settlement": 125.1,
+      "Build a market stall": 131.1
+    },
+    "chronicleEntriesTotalAtEnd": 376,
+    "chronicleKeptCap": 200,
+    "yourNewsListedOfTotal_tick12400": "100/137",
+    "onlyMyNationListed_tick12400": 16,
+    "onlyMyNationListed_tick21000": 5,
+    "yourNewsListed_tick21000": 111
+  },
+  "fun": 3,
+  "verdict": "The switch works: the Your news and All nations buttons and U toggle, the toast confirms each change, own entries are highlighted yellow with '*', and foundings show by default. But 'Your news' is too broad to be useful (about 73% of everything, because about 20 nations count as neighbours). The shared 200-entry cap deletes the player's own founding story within about 7 game minutes. Building a Village never appears in the chronicle at all. Give the player's nation priority in both the filter and the retention, and chronicle player milestones."
+}

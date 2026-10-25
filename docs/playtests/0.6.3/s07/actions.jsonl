@@ -1,0 +1,105 @@
+{"t": 1792883382827, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "111", "--stage-diplomacy"]}
+{"t": 1792883387806, "cmd": "wait", "args": ["5"]}
+{"t": 1792883392872, "cmd": "state", "args": []}
+{"t": 1792883392937, "cmd": "shot", "args": ["start"]}
+{"t": 1792883397053, "cmd": "key", "args": ["space"]}
+{"t": 1792883397525, "cmd": "wait", "args": ["2"]}
+{"t": 1792883399585, "cmd": "state", "args": []}
+{"t": 1792883399653, "cmd": "shot", "args": ["menu"]}
+{"t": 1792883403672, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792883404402, "cmd": "wait", "args": ["2"]}
+{"t": 1792883406463, "cmd": "state", "args": []}
+{"t": 1792883406516, "cmd": "shot", "args": ["nw"]}
+{"t": 1792883409699, "cmd": "click", "args": ["480", "315"]}
+{"t": 1792883410421, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1792883410478, "cmd": "wait", "args": ["3"]}
+{"t": 1792883413531, "cmd": "state", "args": []}
+{"t": 1792883413593, "cmd": "shot", "args": ["world0"]}
+{"t": 1792883417590, "cmd": "click", "args": ["338", "389"]}
+{"t": 1792883418318, "cmd": "wait", "args": ["10"]}
+{"t": 1792883428378, "cmd": "state", "args": []}
+{"t": 1792883428445, "cmd": "wait", "args": ["10"]}
+{"t": 1792883438492, "cmd": "state", "args": []}
+{"t": 1792883438539, "cmd": "wait", "args": ["10"]}
+{"t": 1792883448594, "cmd": "state", "args": []}
+{"t": 1792883448644, "cmd": "wait", "args": ["10"]}
+{"t": 1792883458700, "cmd": "state", "args": []}
+{"t": 1792883461401, "cmd": "shot", "args": ["siege1"]}
+{"t": 1792883461553, "cmd": "events", "args": ["15"]}
+{"t": 1792883465822, "cmd": "wait", "args": ["2"]}
+{"t": 1792883467877, "cmd": "state", "args": []}
+{"t": 1792883467964, "cmd": "wait", "args": ["2"]}
+{"t": 1792883470025, "cmd": "state", "args": []}
+{"t": 1792883470103, "cmd": "wait", "args": ["2"]}
+{"t": 1792883472157, "cmd": "state", "args": []}
+{"t": 1792883472237, "cmd": "wait", "args": ["2"]}
+{"t": 1792883474291, "cmd": "state", "args": []}
+{"t": 1792883474377, "cmd": "shot", "args": ["fall"]}
+{"t": 1792883481021, "cmd": "state", "args": ["--full"]}
+{"t": 1792883481073, "cmd": "events", "args": ["8"]}
+{"t": 1792883487336, "cmd": "note", "args": ["--shot", "fall_status", "Tick 2503: on capture the status line reads verbatim: 'Greenshire raided your village: 2 coins taken. Relations: Hostile (-94); gifts or peace end raids. Greenshire has captured your village! Upperwood has fallen: it has no settlements left. You are without a nation. Your nation is collapsing! Found a settlement or win a follower within 5 minutes, or your story ends.' Five lines; a stale raid message is glued in front of the capture news; 'Upperwood has fallen ... You are without a nation' then 'Your nation is collapsing!' contradicts itself. HUD: 'Collapsing! 4:59 left' and Kingdom 0/5, Era Town (3/4) still shown."]}
+{"t": 1792883490344, "cmd": "key", "args": ["y"]}
+{"t": 1792883490802, "cmd": "wait", "args": ["2"]}
+{"t": 1792883492860, "cmd": "state", "args": []}
+{"t": 1792883492911, "cmd": "shot", "args": ["chron1"]}
+{"t": 1792883499555, "cmd": "note", "args": ["--shot", "chron_yours", "Tick ~3183: chronicle (Y) 'Your news' after the fall lists only 7 of 22 entries: own founding + 'Upperwood passed into history', plus other nations' foundings. Missing: 'Upperwood and Greenshire are now hostile', both Greenshire raids on Upperwood, 'Frank Brown joined Upperwood', the Southernfield caravan to Upperwood, and 'After a siege, a village of Upperwood fell to Greenshire' (the capture). Those were starred in the recent feed before the fall. No siege-start entry exists at all; no tribute event occurred in this run."]}
+{"t": 1792883499697, "cmd": "click", "args": ["368", "106"]}
+{"t": 1792883500405, "cmd": "wait", "args": ["2"]}
+{"t": 1792883502462, "cmd": "shot", "args": ["chron_all"]}
+{"t": 1792883505751, "cmd": "click", "args": ["178", "129"]}
+{"t": 1792883506457, "cmd": "wait", "args": ["2"]}
+{"t": 1792883508510, "cmd": "shot", "args": ["chron_mine"]}
+{"t": 1792883514335, "cmd": "note", "args": ["--shot", "chron_mine2", "Chronicle, All nations + 'Only my nation' ticked after the fall: '24 entries. Listing 1.' Only the founding remains. The raids, the siege capture and 'Upperwood passed into history' all name Upperwood but are filtered out. All nations (unfiltered) does still list them, unstarred."]}
+{"t": 1792883514481, "cmd": "click", "args": ["178", "129"]}
+{"t": 1792883515204, "cmd": "click", "args": ["318", "129"]}
+{"t": 1792883515925, "cmd": "wait", "args": ["1"]}
+{"t": 1792883522151, "cmd": "wait", "args": ["15"]}
+{"t": 1792883537207, "cmd": "state", "args": []}
+{"t": 1792883537283, "cmd": "wait", "args": ["15"]}
+{"t": 1792883552337, "cmd": "state", "args": []}
+{"t": 1792883552425, "cmd": "wait", "args": ["15"]}
+{"t": 1792883567472, "cmd": "state", "args": []}
+{"t": 1792883567555, "cmd": "wait", "args": ["15"]}
+{"t": 1792883582608, "cmd": "state", "args": []}
+{"t": 1792883582685, "cmd": "wait", "args": ["15"]}
+{"t": 1792883597738, "cmd": "state", "args": []}
+{"t": 1792883597820, "cmd": "wait", "args": ["15"]}
+{"t": 1792883612873, "cmd": "state", "args": []}
+{"t": 1792883612959, "cmd": "wait", "args": ["15"]}
+{"t": 1792883628011, "cmd": "state", "args": []}
+{"t": 1792883628093, "cmd": "wait", "args": ["15"]}
+{"t": 1792883643140, "cmd": "state", "args": []}
+{"t": 1792883643226, "cmd": "wait", "args": ["15"]}
+{"t": 1792883658275, "cmd": "state", "args": []}
+{"t": 1792883658358, "cmd": "wait", "args": ["15"]}
+{"t": 1792883673401, "cmd": "state", "args": []}
+{"t": 1792883673486, "cmd": "wait", "args": ["15"]}
+{"t": 1792883688538, "cmd": "state", "args": []}
+{"t": 1792883688620, "cmd": "wait", "args": ["15"]}
+{"t": 1792883703676, "cmd": "state", "args": []}
+{"t": 1792883703763, "cmd": "wait", "args": ["15"]}
+{"t": 1792883718816, "cmd": "state", "args": []}
+{"t": 1792883718917, "cmd": "wait", "args": ["15"]}
+{"t": 1792883733972, "cmd": "state", "args": []}
+{"t": 1792883734052, "cmd": "wait", "args": ["15"]}
+{"t": 1792883749103, "cmd": "state", "args": []}
+{"t": 1792883749181, "cmd": "wait", "args": ["15"]}
+{"t": 1792883764228, "cmd": "state", "args": []}
+{"t": 1792883764309, "cmd": "wait", "args": ["15"]}
+{"t": 1792883779363, "cmd": "state", "args": []}
+{"t": 1792883779440, "cmd": "wait", "args": ["15"]}
+{"t": 1792883794486, "cmd": "state", "args": []}
+{"t": 1792883794566, "cmd": "wait", "args": ["15"]}
+{"t": 1792883809616, "cmd": "state", "args": []}
+{"t": 1792883809697, "cmd": "wait", "args": ["15"]}
+{"t": 1792883824741, "cmd": "state", "args": []}
+{"t": 1792883824810, "cmd": "wait", "args": ["15"]}
+{"t": 1792883839856, "cmd": "state", "args": []}
+{"t": 1792883839925, "cmd": "wait", "args": ["15"]}
+{"t": 1792883854972, "cmd": "state", "args": []}
+{"t": 1792883855031, "cmd": "shot", "args": ["ending"]}
+{"t": 1792883862666, "cmd": "note", "args": ["--shot", "ending_history", "Tick 17503 END_OF_RUN 'Defeat'. History of Upperwood lists founding, hostility, first two raids, caravan, Frank Brown joined, 'lost its last settlement', collapse; but NOT the third raid (tick 2503) nor the capture line 'After a siege, a village of Upperwood fell to Greenshire' -- the history never says who took it. No siege-start entry. 'taking 1 coins' plural error. 'Nations still standing: 32' after one day looks implausibly high. Also nationless-but-'collapsing' 5 min timer passed with only 'None' status, no countdown reminders in status line."]}
+{"t": 1792883862788, "cmd": "events", "args": ["5"]}
+{"t": 1792883883123, "cmd": "stop", "args": []}
+{"t": 1792883883367, "cmd": "report", "args": []}
+{"t": 1792885291473, "cmd": "stop", "args": []}
