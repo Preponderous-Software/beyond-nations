@@ -157,6 +157,11 @@ namespace beyondnations.desktop.ui {
             return (entry.concerns(player) ? MineMarker : "") + entry.getLine();
         }
 
+        /** As displayLine, but marked by the focus, which knows the nations the player has lost as well. */
+        public static string displayLine(ChronicleEntry entry, ChronicleFocus focus) {
+            return (focus.isPlayers(entry) ? MineMarker : "") + entry.getLine();
+        }
+
         /** Entries to list, oldest first; only the player's own when onlyMine. */
         public static List<ChronicleEntry> select(IReadOnlyList<ChronicleEntry> entries, Player player, bool onlyMine) {
             List<ChronicleEntry> selected = new List<ChronicleEntry>();
@@ -176,7 +181,7 @@ namespace beyondnations.desktop.ui {
         public static List<ChronicleEntry> select(IReadOnlyList<ChronicleEntry> entries, Player player, ChronicleFocus focus, ChronicleScope scope, bool onlyMine) {
             List<ChronicleEntry> selected = new List<ChronicleEntry>();
             foreach (ChronicleEntry entry in entries) {
-                if (inScope(entry, focus, scope) && (!onlyMine || entry.concerns(player))) {
+                if (inScope(entry, focus, scope) && (!onlyMine || (focus != null ? focus.isPlayers(entry) : entry.concerns(player)))) {
                     selected.Add(entry);
                 }
             }
@@ -294,8 +299,8 @@ namespace beyondnations.desktop.ui {
                     // Newest first, so the strip reads top-down from now.
                     ChronicleEntry entry = recent[i];
                     float alpha = fadeAlpha(nowTick - entry.getTick());
-                    bool mine = entry.concerns(player);
-                    string line = fitToWidth(displayLine(entry, player), lineWidth, s => ImGui.CalcTextSize(s).X);
+                    bool mine = focus != null ? focus.isPlayers(entry) : entry.concerns(player);
+                    string line = fitToWidth(focus != null ? displayLine(entry, focus) : displayLine(entry, player), lineWidth, s => ImGui.CalcTextSize(s).X);
                     drawStampedLine(line, mine ? MineMarker.Length + entry.getTimestamp().Length : entry.getTimestamp().Length, mine, alpha);
                 }
                 bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
@@ -335,7 +340,7 @@ namespace beyondnations.desktop.ui {
                     bool atBottom = ImGui.GetScrollY() >= ImGui.GetScrollMaxY() - 4f;
                     ImGui.PushTextWrapPos(0f);
                     foreach (ChronicleEntry entry in entries) {
-                        bool mine = entry.concerns(player);
+                        bool mine = focus != null ? focus.isPlayers(entry) : entry.concerns(player);
                         Overlay.textColoured(StampColour, (mine ? MineMarker : "") + entry.getTimestamp());
                         ImGui.SameLine();
                         Overlay.textColoured(mine ? MineColour : TextColour, entry.getText());

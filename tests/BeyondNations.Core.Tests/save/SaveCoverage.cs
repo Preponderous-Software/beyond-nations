@@ -180,6 +180,8 @@ namespace beyondnationstests {
             [typeof(ObjectiveProgress)] = saved("complete", "label", "current", "target", "secondLabel", "secondCurrent", "secondTarget"),
             [typeof(Chronicle)] = new Entry {
                 Saved = new[] { "entries", "totalRecorded", "nationsFounded", "raidsToldToday", "raidDay" },
+                // the player's nations, read off the kept lines again after a load (getPlayerNations)
+                Transient = new[] { "playerNations", "playerNationsFor", "playerNationsAt" },
                 Derived = new[] { "entityRepository", "nationRepository", "timeOfDay", "tickCounter", "seed", "capacity" },
             },
             [typeof(ChronicleEntry)] = saved("sequence", "eventType", "tick", "day", "partOfDay", "text", "nationIds", "entityIds"),

@@ -38,11 +38,17 @@ namespace beyondnations {
         private readonly EntityId playerId;
         private readonly NationId nationId;
         private readonly HashSet<NationId> neighbours;
+        // every nation the player has founded or joined (Chronicle.getPlayerNations)
+        private readonly HashSet<NationId> playerNations;
 
-        public ChronicleFocus(EntityId playerId, NationId nationId, IEnumerable<NationId> neighbours) {
+        public ChronicleFocus(EntityId playerId, NationId nationId, IEnumerable<NationId> neighbours, IEnumerable<NationId> playerNations = null) {
             this.playerId = playerId;
             this.nationId = nationId;
             this.neighbours = neighbours == null ? new HashSet<NationId>() : new HashSet<NationId>(neighbours);
+            this.playerNations = playerNations == null ? new HashSet<NationId>() : new HashSet<NationId>(playerNations);
+            if (nationId != null) {
+                this.playerNations.Add(nationId);
+            }
         }
 
         /** The focus for the simulation's player as the world stands now. */
@@ -53,8 +59,10 @@ namespace beyondnations {
             }
             NationRepository nationRepository = simulation.getNationRepository();
             Nation own = player.getNationId() == null ? null : nationRepository.getNation(player.getNationId());
+            Chronicle chronicle = simulation.getChronicle();
             return new ChronicleFocus(player.getId(), player.getNationId(),
-                findNeighbours(own, nationRepository, simulation.getDiplomacy(), simulation.getRealm()));
+                findNeighbours(own, nationRepository, simulation.getDiplomacy(), simulation.getRealm()),
+                chronicle == null ? null : chronicle.getPlayerNations(player));
         }
 
         /** The nations whose news counts as the player's (see the class comment). Empty with no nation. */
@@ -95,12 +103,33 @@ namespace beyondnations {
             return id != null && neighbours.Contains(id);
         }
 
+        /**
+        * Whether the entry is the player's own: about them, or about a nation
+        * they have founded or joined, even one since lost (playtest 0.6.3 s07:
+        * once their nation fell, its siege, raids and capture left "your
+        * news").
+        */
+        public bool isPlayers(ChronicleEntry entry) {
+            if (entry == null) {
+                return false;
+            }
+            if (entry.involvesEntity(playerId)) {
+                return true;
+            }
+            foreach (NationId id in entry.getNationIds()) {
+                if (playerNations.Contains(id)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /** Whether the entry is the player's news. */
         public bool includes(ChronicleEntry entry) {
             if (entry == null) {
                 return false;
             }
-            if (isWorldNews(entry) || entry.involvesEntity(playerId) || entry.involvesNation(nationId)) {
+            if (isWorldNews(entry) || isPlayers(entry)) {
                 return true;
             }
             foreach (NationId id in entry.getNationIds()) {

@@ -48,6 +48,31 @@ namespace beyondnationstests {
             }
         }
 
+        /**
+        * Playtest 0.6.3 s07: once the player's nation fell, its siege, raids
+        * and capture were no longer "your news", and "Only my nation" listed
+        * one line of 24. A nation the player founded stays theirs.
+        */
+        [Fact]
+        public void testALostNation_StaysYourNews() {
+            World world = new World();
+            Simulation simulation = world.fixture.simulation;
+            Player player = simulation.getPlayer();
+            Chronicle chronicle = simulation.getChronicle();
+            // the founding line names the player and the nation
+            chronicle.record(new NationCreationEvent(world.own));
+            Settlement village = (Settlement) simulation.getEntityRepository().getEntity(world.own.getSettlements()[0]);
+            ChronicleEntry raid = chronicle.record(new NationRaidEvent(world.farA, world.own, village, "5 coins"));
+            Assert.NotNull(raid);
+            player.setNationId(null);
+
+            Assert.False(raid.concerns(player));
+            Assert.True(chronicle.concernsPlayer(raid, player));
+            Assert.True(world.focus().isPlayers(raid));
+            Assert.True(world.focus().includes(raid));
+            Assert.False(world.focus().isPlayers(between(world.farA, world.farB)));
+        }
+
         [Fact]
         public void testOwnNation_IsYourNews() {
             World world = new World();
