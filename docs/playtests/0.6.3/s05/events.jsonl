@@ -1,0 +1,1132 @@
+{"type":"screen","tick":0,"wallTimeMs":1792879911611,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1792879917112,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1792879923423,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1792879929576,"how":"created","slot":"world-2026-20261024-221209","seed":2026}
+{"type":"screen","tick":0,"wallTimeMs":1792879929577,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":477,"wallTimeMs":1792879942162,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":993,"wallTimeMs":1792879957580,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"objective_completed","tick":1001,"wallTimeMs":1792879957796,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1001}
+{"type":"status","tick":1001,"wallTimeMs":1792879957796,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1053,"wallTimeMs":1792879959262,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1053,"wallTimeMs":1792879959262,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"status","tick":1321,"wallTimeMs":1792879966748,"text":"Created nation Townton."}
+{"type":"chronicle","tick":1321,"wallTimeMs":1792879966748,"kind":"NationCreation","text":"Under your hand, the nation of Townton was born. It is the first nation this world has known."}
+{"type":"objective_completed","tick":1353,"wallTimeMs":1792879967646,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":300}
+{"type":"status","tick":1353,"wallTimeMs":1792879967646,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":1353,"wallTimeMs":1792879967646,"kind":"NationCreation","text":"The nation of Bigland was born, with Stan White at its head."}
+{"type":"chronicle","tick":1401,"wallTimeMs":1792879968965,"kind":"SettlementFounded","text":"Stan White laid the first stones of Bigland."}
+{"type":"chronicle","tick":1601,"wallTimeMs":1792879974677,"kind":"NationCreation","text":"Zach Lewis raised a banner and called it Northland."}
+{"type":"chronicle","tick":1701,"wallTimeMs":1792879977979,"kind":"NationCreation","text":"The nation of Yellowville was born, with Bob Thomas at its head."}
+{"type":"chronicle","tick":1753,"wallTimeMs":1792879979735,"kind":"SettlementFounded","text":"Yellowville put down roots: Bob Thomas founded its first settlement."}
+{"type":"status","tick":2097,"wallTimeMs":1792879990103,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2201,"wallTimeMs":1792879993286,"kind":"NationCreation","text":"Ruth Roberts declared the nation of Whitefield, though none had yet sworn to it."}
+{"type":"chronicle","tick":2253,"wallTimeMs":1792879994876,"kind":"SettlementFounded","text":"Ruth Roberts laid the first stones of Whitefield."}
+{"type":"chronicle","tick":2401,"wallTimeMs":1792879999585,"kind":"SettlementFounded","text":"Northland put down roots: Zach Lewis founded its first settlement."}
+{"type":"status","tick":2413,"wallTimeMs":1792880000016,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":2609,"wallTimeMs":1792880006378,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":2853,"wallTimeMs":1792880013783,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Stan White."}
+{"type":"chronicle","tick":2853,"wallTimeMs":1792880013783,"kind":"NationCreation","text":"The nation of Yellowport was born, with Xavier Jones at its head."}
+{"type":"chronicle","tick":2901,"wallTimeMs":1792880015203,"kind":"SettlementFounded","text":"Yellowport put down roots: Xavier Jones founded its first settlement."}
+{"type":"chronicle","tick":2953,"wallTimeMs":1792880016759,"kind":"NationCreation","text":"Isabella Taylor raised a banner and called it Townfield."}
+{"type":"status","tick":3009,"wallTimeMs":1792880018549,"text":"Gathered 4 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":3301,"wallTimeMs":1792880027504,"kind":"SettlementFounded","text":"Isabella Taylor raised the first settlement of Townfield."}
+{"type":"status","tick":3501,"wallTimeMs":1792880033523,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":4001,"wallTimeMs":1792880048362,"kind":"NationRelationChange","text":"Bigland and Yellowville have become rivals over their border."}
+{"type":"status","tick":4129,"wallTimeMs":1792880052527,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":4177,"wallTimeMs":1792880054311,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":4253,"wallTimeMs":1792880056899,"kind":"NationRelationChange","text":"Bigland and Northland have become rivals over their border."}
+{"type":"status","tick":4501,"wallTimeMs":1792880064611,"text":"Gathered 5 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":4501,"wallTimeMs":1792880064611,"kind":"NationRelationChange","text":"Bigland and Yellowport have become rivals over their border."}
+{"type":"chronicle","tick":4501,"wallTimeMs":1792880064611,"kind":"NationRelationChange","text":"Yellowville and Whitefield have become rivals over their border."}
+{"type":"status","tick":4649,"wallTimeMs":1792880069048,"text":"Too close to the Village of Yellowport: 141 away, and settlements must be 250 apart. Open ground lies about 120 to the south."}
+{"type":"chronicle","tick":4801,"wallTimeMs":1792880073361,"kind":"StallBuilt","text":"Xavier Jones built a market stall in Yellowport."}
+{"type":"status","tick":5205,"wallTimeMs":1792880085774,"text":"Too close to the Village of Yellowport: 114 away, and settlements must be 250 apart. Open ground lies about 141 to the south-east."}
+{"type":"chronicle","tick":5253,"wallTimeMs":1792880087325,"kind":"NationRelationChange","text":"Whitefield and Yellowport have become rivals over their border."}
+{"type":"chronicle","tick":5553,"wallTimeMs":1792880096714,"kind":"NationCreation","text":"Ursula Jones declared the nation of Northville, though none had yet sworn to it."}
+{"type":"chronicle","tick":5601,"wallTimeMs":1792880098135,"kind":"StallBuilt","text":"Trade came to Bigland: Stan White built a stall."}
+{"type":"chronicle","tick":5753,"wallTimeMs":1792880102899,"kind":"NationRelationChange","text":"Yellowville and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":5853,"wallTimeMs":1792880105930,"kind":"SettlementFounded","text":"Ursula Jones laid the first stones of Northville."}
+{"type":"status","tick":5949,"wallTimeMs":1792880109103,"text":"Too close to the Camp of Northville: 118 away, and settlements must be 250 apart. Open ground lies about 140 to the south-west."}
+{"type":"save","tick":6001,"wallTimeMs":1792880110673,"count":1}
+{"type":"status","tick":6001,"wallTimeMs":1792880110673,"text":"Autosaved."}
+{"type":"chronicle","tick":6401,"wallTimeMs":1792880123271,"kind":"NationCreation","text":"The nation of Westford was born, with Grace Taylor at its head."}
+{"type":"chronicle","tick":6453,"wallTimeMs":1792880124877,"kind":"SettlementFounded","text":"Westford put down roots: Grace Taylor founded its first settlement."}
+{"type":"status","tick":6573,"wallTimeMs":1792880128522,"text":"Too close to the Camp of Westford: 142 away, and settlements must be 250 apart. Open ground lies about 110 to the west."}
+{"type":"chronicle","tick":6601,"wallTimeMs":1792880129422,"kind":"NationCreation","text":"Bella Thomas raised a banner and called it Greenburg."}
+{"type":"chronicle","tick":6753,"wallTimeMs":1792880134462,"kind":"NationRelationChange","text":"Bigland and Northland are now hostile."}
+{"type":"chronicle","tick":6853,"wallTimeMs":1792880137802,"kind":"StallBuilt","text":"Grace Taylor built a market stall in Westford."}
+{"type":"chronicle","tick":7001,"wallTimeMs":1792880142718,"kind":"NationRelationChange","text":"Bigland and Yellowport are now hostile."}
+{"type":"chronicle","tick":7001,"wallTimeMs":1792880142718,"kind":"NationRaid","text":"Bigland raided Northland and carried off 5 stone."}
+{"type":"chronicle","tick":7001,"wallTimeMs":1792880142718,"kind":"NationRaid","text":"Bigland raided Yellowport and carried off 5 coins."}
+{"type":"status","tick":7041,"wallTimeMs":1792880143947,"text":"Too close to the Camp of Westford: 241 away, and settlements must be 250 apart. Open ground lies about 11 to the north-west."}
+{"type":"chronicle","tick":7053,"wallTimeMs":1792880144318,"kind":"NationCreation","text":"Hank Johnson raised a banner and called it Blackford."}
+{"type":"chronicle","tick":7153,"wallTimeMs":1792880147461,"kind":"SettlementFounded","text":"Greenburg put down roots: Bella Thomas founded its first settlement."}
+{"type":"chronicle","tick":7253,"wallTimeMs":1792880150692,"kind":"NationCreation","text":"Frank Wood founded the nation of Newford."}
+{"type":"status","tick":7281,"wallTimeMs":1792880151709,"text":"You are back on your own land."}
+{"type":"chronicle","tick":7281,"wallTimeMs":1792880151709,"kind":"SettlementFounded","text":"You laid the first stones of Townton."}
+{"type":"objective_completed","tick":7301,"wallTimeMs":1792880152711,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":5948}
+{"type":"status","tick":7301,"wallTimeMs":1792880152711,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":7301,"wallTimeMs":1792880152711,"kind":"NationJoin","text":"Harriet Thomas swore fealty to Townton."}
+{"type":"chronicle","tick":7301,"wallTimeMs":1792880152711,"kind":"NationJoin","text":"Townton welcomed Gemma Williams into its ranks."}
+{"type":"chronicle","tick":7301,"wallTimeMs":1792880152711,"kind":"NationJoin","text":"Townton welcomed Frank Lewis into its ranks."}
+{"type":"chronicle","tick":7353,"wallTimeMs":1792880155142,"kind":"NationCreation","text":"Charlie Thompson founded the nation of Fortresstown."}
+{"type":"chronicle","tick":7401,"wallTimeMs":1792880157291,"kind":"NationCreation","text":"Wendy Watson raised a banner and called it Blueland."}
+{"type":"chronicle","tick":7501,"wallTimeMs":1792880161587,"kind":"NationCreation","text":"Isabella Wilson raised a banner and called it Blackport."}
+{"type":"chronicle","tick":7501,"wallTimeMs":1792880161587,"kind":"NationCreation","text":"Fiona Jones raised a banner and called it Smalltown."}
+{"type":"chronicle","tick":7501,"wallTimeMs":1792880161587,"kind":"SettlementFounded","text":"Wendy Watson laid the first stones of Blueland."}
+{"type":"chronicle","tick":7501,"wallTimeMs":1792880161587,"kind":"StallBuilt","text":"Harriet Thomas built a market stall in Townton."}
+{"type":"status","tick":7505,"wallTimeMs":1792880161774,"text":"Entered settlement."}
+{"type":"objective_completed","tick":7553,"wallTimeMs":1792880163822,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":252}
+{"type":"status","tick":7553,"wallTimeMs":1792880163822,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":7553,"wallTimeMs":1792880163822,"kind":"StallBuilt","text":"A new stall opened in the market of Whitefield, built by Ruth Roberts."}
+{"type":"objective_completed","tick":7601,"wallTimeMs":1792880165956,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":48}
+{"type":"status","tick":7601,"wallTimeMs":1792880165956,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":7753,"wallTimeMs":1792880172727,"kind":"SettlementFounded","text":"Fiona Jones laid the first stones of Smalltown."}
+{"type":"chronicle","tick":7801,"wallTimeMs":1792880174999,"kind":"SettlementFounded","text":"Frank Wood raised the first settlement of Newford."}
+{"type":"chronicle","tick":7853,"wallTimeMs":1792880177392,"kind":"StallBuilt","text":"A new stall opened in the market of Northland, built by Zach Lewis."}
+{"type":"chronicle","tick":7853,"wallTimeMs":1792880177392,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Stan White."}
+{"type":"chronicle","tick":7853,"wallTimeMs":1792880177392,"kind":"StallBuilt","text":"Trade came to Yellowport: Xavier Jones built a stall."}
+{"type":"status","tick":7881,"wallTimeMs":1792880178641,"text":"Collected 7 wood and 15 stone from the stockpile."}
+{"type":"chronicle","tick":7901,"wallTimeMs":1792880179591,"kind":"NationCreation","text":"Daisy Thompson founded the nation of Greatford."}
+{"type":"chronicle","tick":8053,"wallTimeMs":1792880187085,"kind":"NationCreation","text":"Irene Robinson raised a banner and called it Southerntown."}
+{"type":"screen","tick":8121,"wallTimeMs":1792880189984,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":8125,"wallTimeMs":1792880209831,"from":"CONTROLS","to":"WORLD"}
+{"type":"chronicle","tick":8153,"wallTimeMs":1792880210995,"kind":"SettlementFounded","text":"Irene Robinson laid the first stones of Southerntown."}
+{"type":"status","tick":8161,"wallTimeMs":1792880211332,"text":"Exited settlement."}
+{"type":"chronicle","tick":8253,"wallTimeMs":1792880215082,"kind":"NationRelationChange","text":"Bigland and Northville have become rivals over their border."}
+{"type":"chronicle","tick":8253,"wallTimeMs":1792880215082,"kind":"NationRelationChange","text":"Yellowport and Northville have become rivals over their border."}
+{"type":"chronicle","tick":8401,"wallTimeMs":1792880220697,"kind":"StallBuilt","text":"Trade came to Southerntown: Irene Robinson built a stall."}
+{"type":"status","tick":8441,"wallTimeMs":1792880222223,"text":"You leave the land of Townton for the wilds."}
+{"type":"chronicle","tick":8553,"wallTimeMs":1792880225803,"kind":"SettlementFounded","text":"Charlie Thompson laid the first stones of Fortresstown."}
+{"type":"chronicle","tick":8701,"wallTimeMs":1792880231023,"kind":"NationCreation","text":"Olivia Brown founded the nation of Castlewood."}
+{"type":"chronicle","tick":8701,"wallTimeMs":1792880231023,"kind":"StallBuilt","text":"Trade came to Southerntown: Irene Robinson built a stall."}
+{"type":"chronicle","tick":8753,"wallTimeMs":1792880232785,"kind":"NationCreation","text":"Nancy Lewis declared the nation of Bluewood, though none had yet sworn to it."}
+{"type":"chronicle","tick":8753,"wallTimeMs":1792880232785,"kind":"NationRelationChange","text":"Yellowport and Westford have become rivals over their border."}
+{"type":"chronicle","tick":8853,"wallTimeMs":1792880236138,"kind":"SettlementFounded","text":"Daisy Thompson laid the first stones of Greatford."}
+{"type":"chronicle","tick":8953,"wallTimeMs":1792880239288,"kind":"NationCreation","text":"Grace Thompson founded the nation of Farmport."}
+{"type":"chronicle","tick":9001,"wallTimeMs":1792880240846,"kind":"SettlementFounded","text":"Castlewood put down roots: Olivia Brown founded its first settlement."}
+{"type":"chronicle","tick":9001,"wallTimeMs":1792880240846,"kind":"NationRelationChange","text":"Relations between Bigland and Northville are now neutral against a common enemy."}
+{"type":"chronicle","tick":9001,"wallTimeMs":1792880240846,"kind":"NationRelationChange","text":"Northland and Blueland have become rivals over their border."}
+{"type":"chronicle","tick":9001,"wallTimeMs":1792880240846,"kind":"NationRelationChange","text":"Bigland and Yellowville are now hostile."}
+{"type":"chronicle","tick":9001,"wallTimeMs":1792880240846,"kind":"NationRaid","text":"Raiders from Bigland struck Yellowville, taking 1 wood, 5 stone."}
+{"type":"chronicle","tick":9153,"wallTimeMs":1792880246041,"kind":"NationCreation","text":"Lily Lewis declared the nation of Lowerland, though none had yet sworn to it."}
+{"type":"chronicle","tick":9201,"wallTimeMs":1792880247619,"kind":"NationCreation","text":"Grace Thomas declared the nation of Newtown, though none had yet sworn to it."}
+{"type":"chronicle","tick":9201,"wallTimeMs":1792880247619,"kind":"NationCreation","text":"Oscar Thompson declared the nation of Fortfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":9201,"wallTimeMs":1792880247619,"kind":"SettlementFounded","text":"Lily Lewis laid the first stones of Lowerland."}
+{"type":"chronicle","tick":9201,"wallTimeMs":1792880247619,"kind":"NationCreation","text":"Jasmine Taylor founded the nation of Eastland."}
+{"type":"status","tick":9213,"wallTimeMs":1792880248036,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":9253,"wallTimeMs":1792880249409,"kind":"NationCreation","text":"Tilly Roberts declared the nation of Smallford, though none had yet sworn to it."}
+{"type":"chronicle","tick":9253,"wallTimeMs":1792880249409,"kind":"NationRelationChange","text":"Northland and Yellowville have become rivals over their border."}
+{"type":"status","tick":9273,"wallTimeMs":1792880250071,"text":"You enter the land of Newford (Neutral)."}
+{"type":"chronicle","tick":9301,"wallTimeMs":1792880251005,"kind":"StallBuilt","text":"Stan White built a market stall in Bigland."}
+{"type":"chronicle","tick":9301,"wallTimeMs":1792880251005,"kind":"SettlementFounded","text":"Nancy Lewis laid the first stones of Bluewood."}
+{"type":"chronicle","tick":9353,"wallTimeMs":1792880252763,"kind":"StallBuilt","text":"Irene Robinson built a market stall in Southerntown."}
+{"type":"chronicle","tick":9501,"wallTimeMs":1792880257741,"kind":"NationRelationChange","text":"Northland and Greenburg have become rivals over their border."}
+{"type":"chronicle","tick":9501,"wallTimeMs":1792880257741,"kind":"NationRelationChange","text":"Yellowville and Greenburg have become rivals over their border."}
+{"type":"chronicle","tick":9553,"wallTimeMs":1792880259428,"kind":"NationCreation","text":"Yvonne White raised a banner and called it Towntown."}
+{"type":"chronicle","tick":9601,"wallTimeMs":1792880261045,"kind":"SettlementFounded","text":"Newtown put down roots: Grace Thomas founded its first settlement."}
+{"type":"chronicle","tick":9701,"wallTimeMs":1792880264302,"kind":"SettlementFounded","text":"Blackford put down roots: Hank Johnson founded its first settlement."}
+{"type":"chronicle","tick":9701,"wallTimeMs":1792880264302,"kind":"StallBuilt","text":"Irene Robinson built a market stall in Southerntown. The market is now full."}
+{"type":"chronicle","tick":9701,"wallTimeMs":1792880264302,"kind":"SettlementFounded","text":"Eastland put down roots: Jasmine Taylor founded its first settlement."}
+{"type":"status","tick":9753,"wallTimeMs":1792880266111,"text":"Whitefield resents your border: relations are now Rival (-20). Northville resents your border: relations are now Rival (-20). Westford resents your border: relations are now Rival (-20). Yellowport has fallen and been disbanded."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792880266111,"kind":"NationRelationChange","text":"Townton and Whitefield have become rivals over their border."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792880266111,"kind":"NationRelationChange","text":"Townton and Northville have become rivals over their border."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792880266111,"kind":"NationRelationChange","text":"Townton and Westford have become rivals over their border."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792880266111,"kind":"SettlementCapture","text":"Bigland captured a village from Yellowport."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1792880266111,"kind":"NationDisband","text":"With its last village taken by Bigland, Yellowport passed into history."}
+{"type":"chronicle","tick":9801,"wallTimeMs":1792880267749,"kind":"SettlementFounded","text":"Smallford put down roots: Tilly Roberts founded its first settlement."}
+{"type":"status","tick":9841,"wallTimeMs":1792880269159,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":9853,"wallTimeMs":1792880269584,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortresstown."}
+{"type":"chronicle","tick":9901,"wallTimeMs":1792880271206,"kind":"NationCreation","text":"Phoebe Jones raised a banner and called it Smallburg."}
+{"type":"chronicle","tick":9953,"wallTimeMs":1792880272880,"kind":"StallBuilt","text":"Trade came to Whitefield: Ruth Roberts built a stall."}
+{"type":"chronicle","tick":9953,"wallTimeMs":1792880272880,"kind":"StallBuilt","text":"Stan White built a market stall in Bigland."}
+{"type":"chronicle","tick":9953,"wallTimeMs":1792880272880,"kind":"SettlementFounded","text":"Phoebe Jones laid the first stones of Smallburg."}
+{"type":"status","tick":10001,"wallTimeMs":1792880274501,"text":"Bigland resents your border: relations will sour while your settlements stand this close."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792880274501,"kind":"NationCreation","text":"Mike Smith raised a banner and called it Fortham."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792880274501,"kind":"NationCreation","text":"Bob Walker declared the nation of Smallport, though none had yet sworn to it."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792880274501,"kind":"NationRelationChange","text":"Bigland and Northville have become rivals over their border."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1792880274501,"kind":"NationRelationChange","text":"Northland and Smalltown have become rivals over their border."}
+{"type":"chronicle","tick":10053,"wallTimeMs":1792880276207,"kind":"StallBuilt","text":"Olivia Brown built a market stall in Castlewood."}
+{"type":"chronicle","tick":10053,"wallTimeMs":1792880276207,"kind":"SettlementFounded","text":"Fortfield put down roots: Oscar Thompson founded its first settlement."}
+{"type":"chronicle","tick":10053,"wallTimeMs":1792880276207,"kind":"NationCreation","text":"The nation of Blueham was born, with Frank Robinson at its head."}
+{"type":"chronicle","tick":10053,"wallTimeMs":1792880276207,"kind":"SettlementFounded","text":"Bob Walker laid the first stones of Smallport."}
+{"type":"status","tick":10097,"wallTimeMs":1792880277617,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":10201,"wallTimeMs":1792880281074,"kind":"NationCreation","text":"Samantha Watson declared the nation of Northernport, though none had yet sworn to it."}
+{"type":"status","tick":10253,"wallTimeMs":1792880282846,"text":"Newford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":10253,"wallTimeMs":1792880282846,"kind":"SettlementFounded","text":"Yvonne White laid the first stones of Towntown."}
+{"type":"chronicle","tick":10253,"wallTimeMs":1792880282846,"kind":"NationRelationChange","text":"Townton and Newford have become rivals over their border."}
+{"type":"chronicle","tick":10253,"wallTimeMs":1792880282846,"kind":"NationRelationChange","text":"Northville and Westford have become rivals over their border."}
+{"type":"chronicle","tick":10353,"wallTimeMs":1792880286229,"kind":"StallBuilt","text":"Phoebe Jones built a market stall in Smallburg."}
+{"type":"chronicle","tick":10401,"wallTimeMs":1792880288003,"kind":"StallBuilt","text":"Bella Thomas built a market stall in Greenburg."}
+{"type":"chronicle","tick":10401,"wallTimeMs":1792880288003,"kind":"StallBuilt","text":"Trade came to Newford: Frank Wood built a stall."}
+{"type":"chronicle","tick":10401,"wallTimeMs":1792880288003,"kind":"NationCreation","text":"Quinn Johnson raised a banner and called it Bigford."}
+{"type":"chronicle","tick":10453,"wallTimeMs":1792880289922,"kind":"SettlementFounded","text":"Farmport put down roots: Grace Thompson founded its first settlement."}
+{"type":"status","tick":10465,"wallTimeMs":1792880290488,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":10501,"wallTimeMs":1792880292111,"kind":"StallBuilt","text":"Jasmine Taylor built a market stall in Eastland."}
+{"type":"chronicle","tick":10501,"wallTimeMs":1792880292111,"kind":"NationRelationChange","text":"Bigland and Southerntown have become rivals over their border."}
+{"type":"chronicle","tick":10501,"wallTimeMs":1792880292111,"kind":"NationRelationChange","text":"Westford and Fortresstown have become rivals over their border."}
+{"type":"chronicle","tick":10553,"wallTimeMs":1792880293977,"kind":"StallBuilt","text":"Trade came to Westford: Grace Taylor built a stall."}
+{"type":"chronicle","tick":10553,"wallTimeMs":1792880293977,"kind":"StallBuilt","text":"Frank Lewis built a market stall in Townton."}
+{"type":"chronicle","tick":10553,"wallTimeMs":1792880293977,"kind":"StallBuilt","text":"Tilly Roberts built a market stall in Smallford."}
+{"type":"chronicle","tick":10553,"wallTimeMs":1792880293977,"kind":"SettlementFounded","text":"Blueham put down roots: Frank Robinson founded its first settlement."}
+{"type":"chronicle","tick":10553,"wallTimeMs":1792880293977,"kind":"NationCreation","text":"The nation of Northshire was born, with Ella Wilson at its head."}
+{"type":"chronicle","tick":10601,"wallTimeMs":1792880295648,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Linda Thomas."}
+{"type":"chronicle","tick":10601,"wallTimeMs":1792880295648,"kind":"NationCreation","text":"The nation of Oldshire was born, with Charlie Walker at its head."}
+{"type":"status","tick":10677,"wallTimeMs":1792880298451,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":10701,"wallTimeMs":1792880299312,"kind":"StallBuilt","text":"A new stall opened in the market of Northland, built by Zach Lewis."}
+{"type":"chronicle","tick":10701,"wallTimeMs":1792880299312,"kind":"SettlementFounded","text":"Quinn Johnson raised the first settlement of Bigford."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792880301235,"kind":"NationCreation","text":"Mia Brown raised a banner and called it Upperfield."}
+{"type":"chronicle","tick":10753,"wallTimeMs":1792880301235,"kind":"NationRelationChange","text":"Yellowville and Townfield are now hostile."}
+{"type":"chronicle","tick":10801,"wallTimeMs":1792880303057,"kind":"StallBuilt","text":"Trade came to Blackford: Hank Johnson built a stall."}
+{"type":"chronicle","tick":10801,"wallTimeMs":1792880303057,"kind":"StallBuilt","text":"Trade came to Bluewood: Nancy Lewis built a stall."}
+{"type":"status","tick":10885,"wallTimeMs":1792880306178,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":10953,"wallTimeMs":1792880308725,"kind":"StallBuilt","text":"Lily Lewis built a market stall in Lowerland."}
+{"type":"chronicle","tick":10953,"wallTimeMs":1792880308725,"kind":"StallBuilt","text":"Trade came to Eastland: Jasmine Taylor built a stall."}
+{"type":"chronicle","tick":11001,"wallTimeMs":1792880310574,"kind":"StallBuilt","text":"A new stall opened in the market of Townton, built by Gemma Williams."}
+{"type":"chronicle","tick":11001,"wallTimeMs":1792880310574,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":11001,"wallTimeMs":1792880310574,"kind":"NationRelationChange","text":"Newford and Fortresstown have become rivals over their border."}
+{"type":"chronicle","tick":11001,"wallTimeMs":1792880310574,"kind":"NationRaid","text":"Raiders from Yellowville struck Townfield, taking 5 wood, 5 stone."}
+{"type":"status","tick":11045,"wallTimeMs":1792880312271,"text":"Gathered 4 wood and 3 apples from tree. (x2)"}
+{"type":"chronicle","tick":11053,"wallTimeMs":1792880312566,"kind":"StallBuilt","text":"Yvonne White built a market stall in Towntown."}
+{"type":"chronicle","tick":11201,"wallTimeMs":1792880317779,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Tilly Roberts."}
+{"type":"chronicle","tick":11201,"wallTimeMs":1792880317779,"kind":"StallBuilt","text":"A new stall opened in the market of Smallburg, built by Phoebe Jones."}
+{"type":"chronicle","tick":11201,"wallTimeMs":1792880317779,"kind":"SettlementFounded","text":"Samantha Watson raised the first settlement of Northernport."}
+{"type":"status","tick":11253,"wallTimeMs":1792880319644,"text":"Castlewood resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792880319644,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortresstown."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792880319644,"kind":"SettlementFounded","text":"Mike Smith laid the first stones of Fortham."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792880319644,"kind":"NationRelationChange","text":"Townton and Castlewood have become rivals over their border."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792880319644,"kind":"NationRelationChange","text":"Yellowville and Greatford have become rivals over their border."}
+{"type":"chronicle","tick":11253,"wallTimeMs":1792880319644,"kind":"NationRelationChange","text":"Smalltown and Greatford have become rivals over their border."}
+{"type":"status","tick":11269,"wallTimeMs":1792880320225,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":11301,"wallTimeMs":1792880321394,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Stan White."}
+{"type":"chronicle","tick":11301,"wallTimeMs":1792880321394,"kind":"NationCreation","text":"The nation of Northfield was born, with Natalie Brown at its head."}
+{"type":"status","tick":11317,"wallTimeMs":1792880321976,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":11401,"wallTimeMs":1792880324883,"kind":"StallBuilt","text":"A new stall opened in the market of Blueland, built by Wendy Watson."}
+{"type":"chronicle","tick":11453,"wallTimeMs":1792880326807,"kind":"StallBuilt","text":"Ursula Jones built a market stall in Northville."}
+{"type":"chronicle","tick":11453,"wallTimeMs":1792880326807,"kind":"StallBuilt","text":"Frank Wood built a market stall in Newford."}
+{"type":"chronicle","tick":11453,"wallTimeMs":1792880326807,"kind":"StallBuilt","text":"Trade came to Farmport: Grace Thompson built a stall."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792880328708,"kind":"NationRelationChange","text":"Southerntown and Lowerland have become rivals over their border."}
+{"type":"chronicle","tick":11501,"wallTimeMs":1792880328708,"kind":"NationRelationChange","text":"Blueland and Northland are now hostile."}
+{"type":"chronicle","tick":11553,"wallTimeMs":1792880330893,"kind":"SettlementFounded","text":"Isabella Wilson raised the first settlement of Blackport."}
+{"type":"chronicle","tick":11553,"wallTimeMs":1792880330893,"kind":"StallBuilt","text":"Trade came to Eastland: Jasmine Taylor built a stall."}
+{"type":"status","tick":11565,"wallTimeMs":1792880331398,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":11605,"wallTimeMs":1792880333179,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":11645,"wallTimeMs":1792880334911,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":11653,"wallTimeMs":1792880335247,"kind":"StallBuilt","text":"Trade came to Bluewood: Nancy Lewis built a stall."}
+{"type":"chronicle","tick":11701,"wallTimeMs":1792880337289,"kind":"StallBuilt","text":"Trade came to Smallburg: Phoebe Jones built a stall."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792880339346,"kind":"StallBuilt","text":"A new stall opened in the market of Blackford, built by Hank Johnson."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792880339346,"kind":"StallBuilt","text":"Trade came to Smallford: Tilly Roberts built a stall."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792880339346,"kind":"NationRelationChange","text":"Northville and Bluewood have become rivals over their border."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1792880339346,"kind":"NationRelationChange","text":"Southerntown and Bluewood have become rivals over their border."}
+{"type":"chronicle","tick":11853,"wallTimeMs":1792880342849,"kind":"SettlementFounded","text":"Natalie Brown raised the first settlement of Northfield."}
+{"type":"chronicle","tick":11953,"wallTimeMs":1792880346623,"kind":"StallBuilt","text":"Trade came to Newtown: Grace Thomas built a stall."}
+{"type":"chronicle","tick":11953,"wallTimeMs":1792880346623,"kind":"StallBuilt","text":"Lily Lewis built a market stall in Lowerland."}
+{"type":"save","tick":12001,"wallTimeMs":1792880348652,"count":2}
+{"type":"status","tick":12001,"wallTimeMs":1792880348652,"text":"Autosaved."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"StallBuilt","text":"Trade came to Eastland: Jasmine Taylor built a stall. The market is now full."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"NationRelationChange","text":"Relations between Bigland and Yellowville are now rival against a common enemy."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"NationRelationChange","text":"Relations between Northland and Yellowville are now neutral against a common enemy."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"NationRelationChange","text":"Westford and Eastland have become rivals over their border."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"NationRelationChange","text":"Blackford and Newford have become rivals over their border."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"NationRelationChange","text":"Blackford and Eastland have become rivals over their border."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1792880348652,"kind":"NationRelationChange","text":"Smalltown and Newtown have become rivals over their border."}
+{"type":"status","tick":12073,"wallTimeMs":1792880351470,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":12101,"wallTimeMs":1792880352521,"kind":"StallBuilt","text":"A new stall opened in the market of Newford, built by Frank Wood."}
+{"type":"chronicle","tick":12101,"wallTimeMs":1792880352521,"kind":"StallBuilt","text":"Trade came to Farmport: Grace Thompson built a stall."}
+{"type":"chronicle","tick":12153,"wallTimeMs":1792880354373,"kind":"SettlementFounded","text":"Charlie Walker laid the first stones of Oldshire."}
+{"type":"chronicle","tick":12201,"wallTimeMs":1792880355941,"kind":"StallBuilt","text":"Yvonne White built a market stall in Towntown."}
+{"type":"chronicle","tick":12253,"wallTimeMs":1792880357700,"kind":"NationRelationChange","text":"Bigland and Yellowville are now hostile over their border."}
+{"type":"chronicle","tick":12253,"wallTimeMs":1792880357700,"kind":"NationRelationChange","text":"Whitefield and Smallburg have become rivals over their border."}
+{"type":"chronicle","tick":12253,"wallTimeMs":1792880357700,"kind":"NationRelationChange","text":"Southerntown and Smallford have become rivals over their border."}
+{"type":"chronicle","tick":12253,"wallTimeMs":1792880357700,"kind":"NationRelationChange","text":"Castlewood and Smallburg have become rivals over their border."}
+{"type":"status","tick":12293,"wallTimeMs":1792880359059,"text":"You leave the land of Newford for the wilds."}
+{"type":"chronicle","tick":12301,"wallTimeMs":1792880359332,"kind":"StallBuilt","text":"Tilly Roberts built a market stall in Smallford. The market is now full."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"StallBuilt","text":"Trade came to Smallburg: Phoebe Jones built a stall. The market is now full."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"NationRelationChange","text":"Bigland and Fortfield have become rivals over their border."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"NationRelationChange","text":"Westford and Towntown have become rivals over their border."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"NationRelationChange","text":"Bluewood and Towntown have become rivals over their border."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"NationRelationChange","text":"Lowerland and Fortfield have become rivals over their border."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"NationRelationChange","text":"Smallburg and Smallport have become rivals over their border."}
+{"type":"chronicle","tick":12501,"wallTimeMs":1792880366076,"kind":"NationRelationChange","text":"Bigland and Northville are now hostile."}
+{"type":"status","tick":12521,"wallTimeMs":1792880366761,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":12553,"wallTimeMs":1792880367863,"kind":"StallBuilt","text":"A new stall opened in the market of Whitefield, built by Ruth Roberts."}
+{"type":"chronicle","tick":12601,"wallTimeMs":1792880369520,"kind":"StallBuilt","text":"A new stall opened in the market of Blueland, built by Wendy Watson."}
+{"type":"chronicle","tick":12653,"wallTimeMs":1792880371256,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortresstown."}
+{"type":"chronicle","tick":12653,"wallTimeMs":1792880371256,"kind":"SettlementFounded","text":"Mia Brown raised the first settlement of Upperfield."}
+{"type":"chronicle","tick":12701,"wallTimeMs":1792880372892,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerland, built by Lily Lewis."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"StallBuilt","text":"Frank Wood built a market stall in Newford."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"StallBuilt","text":"Trade came to Bluewood: Nancy Lewis built a stall."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"StallBuilt","text":"A new stall opened in the market of Farmport, built by Grace Thompson."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"StallBuilt","text":"Quinn Johnson built a market stall in Bigford."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"NationRelationChange","text":"Blackford and Farmport have become rivals over their border."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"NationRelationChange","text":"Fortresstown and Farmport have become rivals over their border."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"NationRelationChange","text":"Castlewood and Farmport have become rivals over their border."}
+{"type":"chronicle","tick":12753,"wallTimeMs":1792880374724,"kind":"NationRelationChange","text":"Fortham and Smallport have become rivals over their border."}
+{"type":"chronicle","tick":12853,"wallTimeMs":1792880378462,"kind":"StallBuilt","text":"Daisy Thompson built a market stall in Greatford."}
+{"type":"status","tick":12857,"wallTimeMs":1792880378615,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":12901,"wallTimeMs":1792880380353,"kind":"StallBuilt","text":"Trade came to Blackford: Hank Johnson built a stall."}
+{"type":"chronicle","tick":12901,"wallTimeMs":1792880380353,"kind":"StallBuilt","text":"A new stall opened in the market of Towntown, built by Yvonne White."}
+{"type":"status","tick":12905,"wallTimeMs":1792880380511,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":12953,"wallTimeMs":1792880382510,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":12985,"wallTimeMs":1792880384098,"text":"Welcome home!"}
+{"type":"status","tick":12993,"wallTimeMs":1792880384608,"text":"You are back on your own land."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"StallBuilt","text":"Trade came to Townfield: Isabella Taylor built a stall."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"StallBuilt","text":"Charlie Walker built a market stall in Oldshire."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"SettlementFounded","text":"Northshire put down roots: Ella Wilson founded its first settlement."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRelationChange","text":"Townfield and Blueham have become rivals over their border."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRelationChange","text":"Greatford and Blueham have become rivals over their border."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRelationChange","text":"Castlewood and Bigford have become rivals over their border."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRelationChange","text":"Smallport and Bigford have become rivals over their border."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRelationChange","text":"Northland and Greenburg are now hostile."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRelationChange","text":"Fortresstown and Westford are now hostile."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRaid","text":"Raiders from Bigland struck Northville, taking 4 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRaid","text":"Raiders from Northland struck Greenburg, taking 5 coins."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRaid","text":"Blueland raided Northland and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":13001,"wallTimeMs":1792880385113,"kind":"NationRaid","text":"Fortresstown raided Westford and carried off 5 coins, 5 wood, 2 stone."}
+{"type":"chronicle","tick":13053,"wallTimeMs":1792880388318,"kind":"StallBuilt","text":"Samantha Watson built a market stall in Northernport."}
+{"type":"chronicle","tick":13101,"wallTimeMs":1792880391239,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Linda Thomas."}
+{"type":"status","tick":13109,"wallTimeMs":1792880391727,"text":"Entered settlement."}
+{"type":"status","tick":13141,"wallTimeMs":1792880393681,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"chronicle","tick":13153,"wallTimeMs":1792880394418,"kind":"StallBuilt","text":"Linda Thomas built a market stall in Bigland."}
+{"type":"chronicle","tick":13153,"wallTimeMs":1792880394418,"kind":"StallBuilt","text":"A new stall opened in the market of Westford, built by Grace Taylor."}
+{"type":"chronicle","tick":13153,"wallTimeMs":1792880394418,"kind":"StallBuilt","text":"Trade came to Upperfield: Mia Brown built a stall."}
+{"type":"status","tick":13177,"wallTimeMs":1792880395857,"text":"Farm built."}
+{"type":"chronicle","tick":13253,"wallTimeMs":1792880400197,"kind":"StallBuilt","text":"Wendy Watson built a market stall in Blueland."}
+{"type":"chronicle","tick":13253,"wallTimeMs":1792880400197,"kind":"StallBuilt","text":"Quinn Johnson built a market stall in Bigford."}
+{"type":"chronicle","tick":13253,"wallTimeMs":1792880400197,"kind":"NationRelationChange","text":"Yellowville and Greenburg are now hostile."}
+{"type":"chronicle","tick":13301,"wallTimeMs":1792880402945,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Natalie Brown."}
+{"type":"chronicle","tick":13301,"wallTimeMs":1792880402945,"kind":"StallBuilt","text":"Trade came to Smallport: Bob Walker built a stall."}
+{"type":"status","tick":13321,"wallTimeMs":1792880404139,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"chronicle","tick":13353,"wallTimeMs":1792880405681,"kind":"StallBuilt","text":"A new stall opened in the market of Blackport, built by Isabella Wilson."}
+{"type":"chronicle","tick":13353,"wallTimeMs":1792880405681,"kind":"StallBuilt","text":"Trade came to Fortham: Mike Smith built a stall."}
+{"type":"status","tick":13357,"wallTimeMs":1792880405871,"text":"House built. The settlement is now a Village!"}
+{"type":"chronicle","tick":13401,"wallTimeMs":1792880407953,"kind":"StallBuilt","text":"Trade came to Bigland: Stan White built a stall."}
+{"type":"chronicle","tick":13401,"wallTimeMs":1792880407953,"kind":"StallBuilt","text":"A new stall opened in the market of Townton, built by Frank Lewis. The market is now full."}
+{"type":"chronicle","tick":13453,"wallTimeMs":1792880410472,"kind":"StallBuilt","text":"A new stall opened in the market of Northville, built by Ursula Jones."}
+{"type":"status","tick":13501,"wallTimeMs":1792880412932,"text":"Northville shares an enemy with you: relations are now Neutral (-19)."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"StallBuilt","text":"A new stall opened in the market of Farmport, built by Grace Thompson. The market is now full."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"StallBuilt","text":"Trade came to Northernport: Samantha Watson built a stall."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"NationRelationChange","text":"Relations between Townton and Northville are now neutral against a common enemy."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"NationRelationChange","text":"Relations between Yellowville and Townfield are now rival against a common enemy."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"NationRelationChange","text":"Townfield and Fortham have become rivals over their border."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"NationRelationChange","text":"Greatford and Fortham have become rivals over their border."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"NationRelationChange","text":"Smallburg and Northernport have become rivals over their border."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1792880412932,"kind":"NationRelationChange","text":"Northernport and Bigford have become rivals over their border."}
+{"type":"status","tick":13525,"wallTimeMs":1792880414123,"text":"Collected 16 wood and 15 stone from the stockpile."}
+{"type":"status","tick":13549,"wallTimeMs":1792880415318,"text":"Exited settlement."}
+{"type":"chronicle","tick":13601,"wallTimeMs":1792880417833,"kind":"StallBuilt","text":"A new stall opened in the market of Whitefield, built by Ruth Roberts."}
+{"type":"status","tick":13753,"wallTimeMs":1792880424738,"text":"Bigland resents your border: relations will sour while your settlements stand this close."}
+{"type":"chronicle","tick":13753,"wallTimeMs":1792880424738,"kind":"StallBuilt","text":"Oscar Thompson built a market stall in Fortfield."}
+{"type":"chronicle","tick":13801,"wallTimeMs":1792880426868,"kind":"StallBuilt","text":"Frank Wood built a market stall in Newford."}
+{"type":"chronicle","tick":13901,"wallTimeMs":1792880431358,"kind":"StallBuilt","text":"Hank Johnson built a market stall in Blackford."}
+{"type":"chronicle","tick":13953,"wallTimeMs":1792880435232,"kind":"StallBuilt","text":"A new stall opened in the market of Towntown, built by Yvonne White. The market is now full."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792880437527,"kind":"StallBuilt","text":"Nancy Lewis built a market stall in Bluewood. The market is now full."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792880437527,"kind":"NationRelationChange","text":"Blackford and Blackport have become rivals over their border."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792880437527,"kind":"NationRelationChange","text":"Relations between Smallford and Southerntown are now neutral."}
+{"type":"chronicle","tick":14001,"wallTimeMs":1792880437527,"kind":"NationRelationChange","text":"Relations between Smallburg and Whitefield are now neutral."}
+{"type":"chronicle","tick":14101,"wallTimeMs":1792880442385,"kind":"StallBuilt","text":"Trade came to Greenburg: Bella Thomas built a stall."}
+{"type":"chronicle","tick":14153,"wallTimeMs":1792880447001,"kind":"StallBuilt","text":"Trade came to Townfield: Isabella Taylor built a stall."}
+{"type":"status","tick":14157,"wallTimeMs":1792880447845,"text":"Frank Lewis is already a member of Townton."}
+{"type":"chronicle","tick":14201,"wallTimeMs":1792880450045,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortresstown."}
+{"type":"chronicle","tick":14201,"wallTimeMs":1792880450045,"kind":"StallBuilt","text":"Trade came to Newford: Frank Wood built a stall. The market is now full."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"StallBuilt","text":"A new stall opened in the market of Blackport, built by Isabella Wilson."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"StallBuilt","text":"Trade came to Northfield: Natalie Brown built a stall."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"NationRelationChange","text":"Whitefield and Smallburg have become rivals over their border."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"NationRelationChange","text":"Southerntown and Smallford have become rivals over their border."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"NationRelationChange","text":"Smallport and Northfield have become rivals over their border."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"NationRelationChange","text":"Northernport and Northfield have become rivals over their border."}
+{"type":"chronicle","tick":14253,"wallTimeMs":1792880452485,"kind":"NationRelationChange","text":"Northville and Westford are now hostile."}
+{"type":"chronicle","tick":14301,"wallTimeMs":1792880454687,"kind":"StallBuilt","text":"Zach Lewis built a market stall in Northland."}
+{"type":"chronicle","tick":14353,"wallTimeMs":1792880457107,"kind":"StallBuilt","text":"A new stall opened in the market of Greatford, built by Daisy Thompson."}
+{"type":"chronicle","tick":14453,"wallTimeMs":1792880461897,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Linda Thomas."}
+{"type":"chronicle","tick":14501,"wallTimeMs":1792880464321,"kind":"StallBuilt","text":"Wendy Watson built a market stall in Blueland."}
+{"type":"chronicle","tick":14501,"wallTimeMs":1792880464321,"kind":"NationRelationChange","text":"Northernport and Oldshire have become rivals over their border."}
+{"type":"chronicle","tick":14501,"wallTimeMs":1792880464321,"kind":"NationRelationChange","text":"Bigland and Greenburg swore an alliance."}
+{"type":"chronicle","tick":14553,"wallTimeMs":1792880466890,"kind":"StallBuilt","text":"A new stall opened in the market of Bigford, built by Quinn Johnson."}
+{"type":"chronicle","tick":14601,"wallTimeMs":1792880469254,"kind":"StallBuilt","text":"Trade came to Lowerland: Lily Lewis built a stall."}
+{"type":"chronicle","tick":14653,"wallTimeMs":1792880471641,"kind":"StallBuilt","text":"Trade came to Oldshire: Charlie Walker built a stall."}
+{"type":"chronicle","tick":14653,"wallTimeMs":1792880471641,"kind":"StallBuilt","text":"Trade came to Upperfield: Mia Brown built a stall."}
+{"type":"chronicle","tick":14701,"wallTimeMs":1792880473478,"kind":"StallBuilt","text":"Trade came to Whitefield: Ruth Roberts built a stall."}
+{"type":"chronicle","tick":14701,"wallTimeMs":1792880473478,"kind":"StallBuilt","text":"Grace Taylor built a market stall in Westford. The market is now full."}
+{"type":"chronicle","tick":14701,"wallTimeMs":1792880473478,"kind":"StallBuilt","text":"A new stall opened in the market of Northernport, built by Samantha Watson."}
+{"type":"status","tick":14753,"wallTimeMs":1792880475611,"text":"Yellowville shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":14753,"wallTimeMs":1792880475611,"kind":"StallBuilt","text":"A new stall opened in the market of Smallport, built by Bob Walker."}
+{"type":"chronicle","tick":14753,"wallTimeMs":1792880475611,"kind":"NationRelationChange","text":"Relations between Townton and Yellowville are now friendly against a common enemy."}
+{"type":"chronicle","tick":14801,"wallTimeMs":1792880477391,"kind":"StallBuilt","text":"Trade came to Newtown: Grace Thomas built a stall."}
+{"type":"chronicle","tick":14853,"wallTimeMs":1792880479270,"kind":"StallBuilt","text":"Trade came to Fortham: Mike Smith built a stall."}
+{"type":"status","tick":15001,"wallTimeMs":1792880483996,"text":"Smallburg shares an enemy with you: relations are now Friendly (\u002B21)."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"StallBuilt","text":"A new stall opened in the market of Bigland, built by Stan White. The market is now full."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRelationChange","text":"Relations between Townton and Smallburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRelationChange","text":"Fortresstown and Eastland have become rivals over their border."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRelationChange","text":"Smallport and Upperfield have become rivals over their border."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRelationChange","text":"Northernport and Upperfield have become rivals over their border."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRaid","text":"Greenburg raided Northland and carried off 1 coins, 5 wood."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRaid","text":"Raiders from Greenburg struck Yellowville, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":15001,"wallTimeMs":1792880483996,"kind":"NationRaid","text":"Northville raided Westford and carried off 5 coins, 3 wood."}
+{"type":"chronicle","tick":15053,"wallTimeMs":1792880485586,"kind":"StallBuilt","text":"Trade came to Bigland: Linda Thomas built a stall."}
+{"type":"chronicle","tick":15053,"wallTimeMs":1792880485586,"kind":"StallBuilt","text":"Ella Wilson built a market stall in Northshire."}
+{"type":"chronicle","tick":15053,"wallTimeMs":1792880485586,"kind":"StallBuilt","text":"Natalie Brown built a market stall in Northfield."}
+{"type":"chronicle","tick":15201,"wallTimeMs":1792880490238,"kind":"StallBuilt","text":"A new stall opened in the market of Townfield, built by Isabella Taylor."}
+{"type":"chronicle","tick":15201,"wallTimeMs":1792880490238,"kind":"StallBuilt","text":"Olivia Brown built a market stall in Castlewood."}
+{"type":"chronicle","tick":15253,"wallTimeMs":1792880492003,"kind":"NationRelationChange","text":"Blackport and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":15253,"wallTimeMs":1792880492003,"kind":"NationRelationChange","text":"Farmport and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":15253,"wallTimeMs":1792880492003,"kind":"NationRelationChange","text":"Bigford and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":15253,"wallTimeMs":1792880492003,"kind":"NationRelationChange","text":"Northshire and Oldshire have become rivals over their border."}
+{"type":"chronicle","tick":15253,"wallTimeMs":1792880492003,"kind":"NationRelationChange","text":"Smallport and Fortham are now hostile."}
+{"type":"chronicle","tick":15401,"wallTimeMs":1792880501246,"kind":"StallBuilt","text":"A new stall opened in the market of Blackford, built by Hank Johnson."}
+{"type":"chronicle","tick":15453,"wallTimeMs":1792880503373,"kind":"StallBuilt","text":"Trade came to Northville: Ursula Jones built a stall."}
+{"type":"chronicle","tick":15453,"wallTimeMs":1792880503373,"kind":"StallBuilt","text":"A new stall opened in the market of Greenburg, built by Bella Thomas."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792880507417,"kind":"NationRelationChange","text":"Bigland and Southerntown are now hostile."}
+{"type":"chronicle","tick":15501,"wallTimeMs":1792880507417,"kind":"NationRelationChange","text":"Fortresstown and Newford are now hostile."}
+{"type":"status","tick":15665,"wallTimeMs":1792880516716,"text":"Frank Lewis is already a member of Townton."}
+{"type":"chronicle","tick":15753,"wallTimeMs":1792880519847,"kind":"NationRelationChange","text":"Bigland and Townfield have formed an alliance."}
+{"type":"chronicle","tick":15853,"wallTimeMs":1792880523260,"kind":"WorldEvent","text":"Zach Williams\u0027s claim to lead Bigland came to nothing, and Charlie Walker kept well out of it."}
+{"type":"status","tick":16001,"wallTimeMs":1792880528527,"text":"Townfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRelationChange","text":"Relations between Townton and Townfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRelationChange","text":"Lowerland and Fortfield are now hostile."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRelationChange","text":"Relations between Eastland and Westford are now neutral."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRaid","text":"Bigland raided Southerntown and carried off 5 coins, 5 wood, 4 stone."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRaid","text":"Raiders from Fortresstown struck Newford, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRaid","text":"Lowerland raided Fortfield and carried off 5 coins, 2 wood, 5 stone."}
+{"type":"chronicle","tick":16001,"wallTimeMs":1792880528527,"kind":"NationRaid","text":"Raiders from Smallport struck Fortham, taking 5 coins."}
+{"type":"status","tick":16005,"wallTimeMs":1792880528656,"text":"Welcome home!"}
+{"type":"status","tick":16037,"wallTimeMs":1792880530178,"text":"Entered settlement."}
+{"type":"status","tick":16069,"wallTimeMs":1792880531703,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"status","tick":16101,"wallTimeMs":1792880533185,"text":"House built."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792880540321,"kind":"NationRelationChange","text":"Yellowville and Greatford are now hostile."}
+{"type":"chronicle","tick":16253,"wallTimeMs":1792880540321,"kind":"NationRelationChange","text":"Smalltown and Greatford are now hostile."}
+{"type":"status","tick":16257,"wallTimeMs":1792880540496,"text":"Exited settlement."}
+{"type":"status","tick":16493,"wallTimeMs":1792880550054,"text":"You leave the land of Townton for the wilds."}
+{"type":"chronicle","tick":16753,"wallTimeMs":1792880558823,"kind":"NationRelationChange","text":"Eastland and Towntown have become rivals over their border."}
+{"type":"chronicle","tick":16753,"wallTimeMs":1792880558823,"kind":"NationRelationChange","text":"Bigland and Bluewood have formed an alliance."}
+{"type":"chronicle","tick":16753,"wallTimeMs":1792880558823,"kind":"NationRelationChange","text":"Bluewood and Southerntown are now hostile."}
+{"type":"status","tick":16821,"wallTimeMs":1792880561213,"text":"You are back on your own land."}
+{"type":"status","tick":17001,"wallTimeMs":1792880567978,"text":"Blackford shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRelationChange","text":"Relations between Townton and Blackford are now friendly against a common enemy."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRelationChange","text":"Bigland and Lowerland have formed an alliance."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRelationChange","text":"Smalltown and Newtown are now hostile."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRelationChange","text":"Relations between Southerntown and Bigland are now rival."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRaid","text":"Raiders from Yellowville struck Greatford, taking 5 coins, 4 wood, 5 stone."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRaid","text":"Raiders from Smalltown struck Greatford, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRaid","text":"Smalltown raided Newtown and carried off 5 coins."}
+{"type":"chronicle","tick":17001,"wallTimeMs":1792880567978,"kind":"NationRaid","text":"Bluewood raided Southerntown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":17053,"wallTimeMs":1792880569999,"kind":"StallBuilt","text":"Trade came to Bigland: Linda Thomas built a stall. The market is now full."}
+{"type":"status","tick":17141,"wallTimeMs":1792880573692,"text":"Frank Lewis is already a member of Townton."}
+{"type":"chronicle","tick":17253,"wallTimeMs":1792880578332,"kind":"NationRelationChange","text":"Castlewood and Smallburg are now hostile."}
+{"type":"status","tick":17381,"wallTimeMs":1792880583115,"text":"You leave the land of Townton for the wilds."}
+{"type":"status","tick":17501,"wallTimeMs":1792880587505,"text":"Towntown shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Relations between Townton and Towntown are now friendly against a common enemy."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Bigland and Southerntown are now hostile over their border."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Northland and Smalltown are now hostile over their border."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Bigland and Fortfield are now hostile."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Northville and Towntown have formed an alliance."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Bluewood and Towntown are now hostile."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1792880587505,"kind":"NationRelationChange","text":"Smallport and Smallburg are now hostile."}
+{"type":"status","tick":17621,"wallTimeMs":1792880592143,"text":"You are back on your own land."}
+{"type":"status","tick":17753,"wallTimeMs":1792880596860,"text":"Farmport shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":17753,"wallTimeMs":1792880596860,"kind":"NationRelationChange","text":"Relations between Townton and Farmport are now friendly against a common enemy."}
+{"type":"chronicle","tick":17753,"wallTimeMs":1792880596860,"kind":"NationRelationChange","text":"Castlewood and Farmport are now hostile."}
+{"type":"chronicle","tick":17753,"wallTimeMs":1792880596860,"kind":"NationRelationChange","text":"Castlewood and Smallport have formed an alliance."}
+{"type":"status","tick":17997,"wallTimeMs":1792880606480,"text":"Gemma Williams is already a member of Townton."}
+{"type":"save","tick":18001,"wallTimeMs":1792880606872,"count":3}
+{"type":"status","tick":18001,"wallTimeMs":1792880606872,"text":"Autosaved."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Relations between Townton and Bigford are now friendly against a common enemy."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Yellowville and Blueham swore an alliance."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Townfield and Blueham are now hostile."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Relations between Southerntown and Bigland are now rival."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Castlewood and Bigford are now hostile."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Smallport and Bigford are now hostile."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Blueham and Greatford are now hostile."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRelationChange","text":"Relations between Bigford and Castlewood are now rival."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRaid","text":"Bigland raided Fortfield and carried off 2 coins, 5 stone."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRaid","text":"Raiders from Castlewood struck Farmport, taking 5 coins."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRaid","text":"Castlewood raided Smallburg and carried off 5 coins, 3 wood."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRaid","text":"Bluewood raided Towntown and carried off 5 coins."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRaid","text":"Raiders from Smallport struck Smallburg, taking 5 coins."}
+{"type":"chronicle","tick":18001,"wallTimeMs":1792880606872,"kind":"NationRaid","text":"Smallport raided Bigford and carried off 5 coins, 5 stone."}
+{"type":"status","tick":18253,"wallTimeMs":1792880617785,"text":"You leave the land of Townton for the wilds."}
+{"type":"chronicle","tick":18253,"wallTimeMs":1792880617785,"kind":"NationRelationChange","text":"Yellowville and Whitefield are now hostile."}
+{"type":"status","tick":18501,"wallTimeMs":1792880627878,"text":"Bigland resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Townton and Bigland have become rivals over their border."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Yellowville and Fortham have formed an alliance."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Whitefield and Westford have formed an alliance."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Townfield and Fortham are now hostile."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Newford and Eastland have formed an alliance."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Castlewood and Northernport have formed an alliance."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Lowerland and Southerntown are now hostile."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Eastland and Blackford are now hostile."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Fortham and Greatford are now hostile."}
+{"type":"chronicle","tick":18501,"wallTimeMs":1792880627878,"kind":"NationRelationChange","text":"Northernport and Bigford are now hostile."}
+{"type":"status","tick":18541,"wallTimeMs":1792880629022,"text":"You are back on your own land."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880635431,"kind":"NationRelationChange","text":"Bluewood and Northville are now hostile."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1792880635431,"kind":"NationRelationChange","text":"Farmport and Eastland swore an alliance."}
+{"type":"status","tick":18879,"wallTimeMs":1792880639732,"text":"Harriet Thomas is already a member of Townton."}
+{"type":"status","tick":19003,"wallTimeMs":1792880644169,"text":"Greatford has fallen and been disbanded."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRelationChange","text":"Farmport and Blackford are now hostile."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRelationChange","text":"Bigford and Northfield swore an alliance."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Whitefield raided Yellowville and carried off 5 coins, 5 stone."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"SettlementCapture","text":"After a siege, a village of Greatford fell to Yellowville."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationDisband","text":"With its last village taken by Yellowville, Greatford passed into history."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Raiders from Townfield struck Fortham, taking 5 coins."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Westford raided Northville and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Bluewood raided Northville and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Raiders from Westford struck Fortresstown, taking 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Raiders from Farmport struck Blackford, taking 4 coins."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Lowerland raided Southerntown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1792880644169,"kind":"NationRaid","text":"Raiders from Northernport struck Bigford, taking 4 coins."}
+{"type":"status","tick":19131,"wallTimeMs":1792880648969,"text":"You leave the land of Townton for the wilds."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Northland and Northville have formed an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Yellowville and Northville swore an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Whitefield and Greenburg swore an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Greenburg and Blueland have formed an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Smallburg and Northfield swore an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Smallport and Northernport swore an alliance."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1792880652787,"kind":"NationRelationChange","text":"Northernport and Northfield are now hostile."}
+{"type":"status","tick":19411,"wallTimeMs":1792880657307,"text":"You are back on your own land."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880659969,"kind":"NationRelationChange","text":"Bigland and Southerntown are now hostile over their border."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880659969,"kind":"NationRelationChange","text":"Bigland and Smalltown have formed an alliance."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1792880659969,"kind":"NationRelationChange","text":"Westford and Towntown are now hostile."}
+{"type":"status","tick":19751,"wallTimeMs":1792880667896,"text":"Newtown has fallen and been disbanded."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880667896,"kind":"NationRelationChange","text":"Blueland and Smalltown have formed an alliance."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880667896,"kind":"NationRelationChange","text":"Bigford and Upperfield have formed an alliance."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880667896,"kind":"SettlementCapture","text":"After a siege, a village of Newtown fell to Smalltown."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1792880667896,"kind":"NationDisband","text":"The banners of Newtown came down when Smalltown took its last village."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Castlewood and Bigford are now hostile over their border."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Bigland and Whitefield swore an alliance."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Whitefield and Newford have formed an alliance."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Relations between Southerntown and Bigland are now rival."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Relations between Bluewood and Northville are now rival."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Smallburg and Upperfield swore an alliance."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRelationChange","text":"Northernport and Upperfield are now hostile."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRaid","text":"Raiders from Westford struck Towntown, taking 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRaid","text":"Eastland raided Blackford and carried off 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRaid","text":"Newford raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRaid","text":"Castlewood raided Bigford and carried off 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRaid","text":"Northernport raided Upperfield and carried off 5 coins."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1792880676754,"kind":"NationRaid","text":"Northernport raided Northfield and carried off 5 coins."}
+{"type":"status","tick":20043,"wallTimeMs":1792880678204,"text":"Gemma Williams is already a member of Townton."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Northland and Southerntown have formed an alliance."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Yellowville and Southerntown swore an alliance."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Blackford and Northshire have formed an alliance."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Castlewood and Northshire have formed an alliance."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Northernport and Northshire swore an alliance."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Northshire and Blackport are now hostile."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Northshire and Farmport are now hostile."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Northshire and Bigford are now hostile."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1792880687517,"kind":"NationRelationChange","text":"Northshire and Oldshire are now hostile."}
+{"type":"status","tick":20423,"wallTimeMs":1792880693857,"text":"You leave the land of Townton for the wilds."}
+{"type":"status","tick":20503,"wallTimeMs":1792880696653,"text":"Fortresstown shares an enemy with you: relations are now Friendly (\u002B20). Farmport has fallen and been disbanded."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880696653,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880696653,"kind":"NationRelationChange","text":"Northville and Fortresstown swore an alliance."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880696653,"kind":"NationRelationChange","text":"Blackford and Blackport are now hostile."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880696653,"kind":"NationRelationChange","text":"Northernport and Smallburg are now hostile."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880696653,"kind":"SettlementCapture","text":"Castlewood captured a camp from Farmport."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1792880696653,"kind":"NationDisband","text":"The banners of Farmport came down when Castlewood took its last camp."}
+{"type":"status","tick":20563,"wallTimeMs":1792880698543,"text":"You enter the land of Fortresstown (Friendly)."}
+{"type":"chronicle","tick":20751,"wallTimeMs":1792880705636,"kind":"NationRelationChange","text":"Northville and Bluewood are now hostile over their border."}
+{"type":"chronicle","tick":20751,"wallTimeMs":1792880705636,"kind":"NationRelationChange","text":"Smallburg and Bigford swore an alliance."}
+{"type":"status","tick":20919,"wallTimeMs":1792880713750,"text":"Bob White (Stranger): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRelationChange","text":"Relations between Yellowville and Whitefield are now rival against a common enemy."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRelationChange","text":"Westford and Castlewood have formed an alliance."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRelationChange","text":"Fortresstown and Eastland are now hostile."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRelationChange","text":"Relations between Bluewood and Northville are now rival."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRelationChange","text":"Relations between Eastland and Fortresstown are now rival."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Bigland raided Northland and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Bigland struck Yellowville, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Northville struck Bigland, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Bigland raided Fortfield and carried off 2 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Greenburg raided Northland and carried off 1 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Northland struck Blueland, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Smalltown raided Northland and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Townfield struck Fortham, taking 4 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Northville raided Westford and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Westford struck Towntown, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Blackford raided Blackport and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Eastland struck Blackford, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Fortresstown struck Newford, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Northshire struck Blackport, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Southerntown struck Bluewood, taking 5 coins, 1 wood."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Southerntown struck Lowerland, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Castlewood raided Smallburg and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Castlewood struck Bigford, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Bluewood struck Towntown, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Smallport struck Smallburg, taking 3 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Smallport raided Bigford and carried off 1 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Northernport struck Upperfield, taking 4 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Raiders from Northernport struck Northfield, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1792880717991,"kind":"NationRaid","text":"Northshire raided Oldshire and carried off 5 coins."}
+{"type":"world_event_offered","tick":21051,"wallTimeMs":1792880720464,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Village of Townton. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":21051,"wallTimeMs":1792880720663,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":21051,"wallTimeMs":1792880722077,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"status","tick":21051,"wallTimeMs":1792880723547,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":21051,"wallTimeMs":1792880725002,"text":"There is no one within reach to give a gift to. (x4)"}
+{"type":"status","tick":21051,"wallTimeMs":1792880726444,"text":"There is no one within reach to give a gift to. (x5)"}
+{"type":"status","tick":21051,"wallTimeMs":1792880727927,"text":"There is no one within reach to invite."}
+{"type":"status","tick":21051,"wallTimeMs":1792880736350,"text":"Bandits camped outside the Village of Townton; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":21051,"wallTimeMs":1792880736350,"kind":"WorldEvent","text":"Bandits camped outside the Village of Townton; you paid them 30 coins to go away."}
+{"type":"world_event_resolved","tick":21051,"wallTimeMs":1792880736350,"title":"Bandit camp","status":"Bandits camped outside the Village of Townton; you paid them 30 coins to go away."}
+{"type":"status","tick":21087,"wallTimeMs":1792880738190,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":21115,"wallTimeMs":1792880739627,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"status","tick":21143,"wallTimeMs":1792880741038,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":21175,"wallTimeMs":1792880742683,"text":"There is no one within reach to invite."}
+{"type":"status","tick":21251,"wallTimeMs":1792880746338,"text":"Blackford has fallen and been disbanded."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1792880746338,"kind":"NationRelationChange","text":"Whitefield and Smallburg are now hostile."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1792880746338,"kind":"NationRelationChange","text":"Smallport and Northfield are now hostile."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1792880746338,"kind":"SettlementCapture","text":"After a siege, a village of Blackford fell to Eastland."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1792880746338,"kind":"NationDisband","text":"Blackford is no more; its last village fell to Eastland."}
+{"type":"status","tick":21407,"wallTimeMs":1792880754143,"text":"You gave Linda White 10 coin. Linda White (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":21415,"wallTimeMs":1792880754529,"text":"You gave Linda White 10 coin. Linda White (Stranger): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":21423,"wallTimeMs":1792880754906,"text":"You gave Linda White 10 coin. Linda White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Linda White now knows you by name."}
+{"type":"status","tick":21459,"wallTimeMs":1792880756469,"text":"Linda White (Acquaintance): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":21503,"wallTimeMs":1792880758385,"kind":"NationRelationChange","text":"Bigland and Southerntown are now hostile over their border."}
+{"type":"chronicle","tick":21503,"wallTimeMs":1792880758385,"kind":"NationRelationChange","text":"Northernport and Oldshire are now hostile."}
+{"type":"status","tick":21603,"wallTimeMs":1792880762927,"text":"You gave Linda White 10 coin. Linda White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":21611,"wallTimeMs":1792880763310,"text":"You gave Linda White 10 coin. Linda White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":21623,"wallTimeMs":1792880763868,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":21631,"wallTimeMs":1792880764254,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"status","tick":21639,"wallTimeMs":1792880764627,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":21671,"wallTimeMs":1792880766181,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":21751,"wallTimeMs":1792880770591,"kind":"NationRelationChange","text":"Towntown and Eastland are now hostile."}
+{"type":"status","tick":21959,"wallTimeMs":1792880780862,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":21971,"wallTimeMs":1792880781337,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Frank Wilson now knows you by name."}
+{"type":"status","tick":21979,"wallTimeMs":1792880781641,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":21991,"wallTimeMs":1792880782131,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":21999,"wallTimeMs":1792880782449,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Frank Wilson now counts you as a friend!"}
+{"type":"chronicle","tick":21999,"wallTimeMs":1792880782449,"kind":"PawnRelationshipIncrease","text":"Frank Wilson of Fortresstown now counts you a friend."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRelationChange","text":"Yellowville and Smallburg swore an alliance."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRelationChange","text":"Smallport and Upperfield are now hostile."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Raiders from Bigland struck Southerntown, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Yellowville raided Greenburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Whitefield raided Smallburg and carried off 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Towntown raided Eastland and carried off 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Smallburg raided Smallport and carried off 5 coins, 5 stone."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Smallburg raided Northernport and carried off 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Raiders from Smallport struck Upperfield, taking 4 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Raiders from Smallport struck Northfield, taking 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1792880782618,"kind":"NationRaid","text":"Northernport raided Oldshire and carried off 5 coins."}
+{"type":"status","tick":22023,"wallTimeMs":1792880783410,"text":"Bob White (Stranger): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":22067,"wallTimeMs":1792880785223,"text":"You gave Bob White 10 coin. Bob White (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22079,"wallTimeMs":1792880785728,"text":"You gave Bob White 10 coin. Bob White (Stranger): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22087,"wallTimeMs":1792880786057,"text":"You gave Bob White 10 coin. Bob White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Bob White now knows you by name."}
+{"type":"status","tick":22099,"wallTimeMs":1792880786547,"text":"You gave Bob White 10 coin. Bob White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22107,"wallTimeMs":1792880786866,"text":"You gave Bob White 10 coin. Bob White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":22131,"wallTimeMs":1792880787845,"text":"Bob White (Acquaintance): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":22171,"wallTimeMs":1792880789506,"text":"You gave Bob White 10 coin. Bob White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22183,"wallTimeMs":1792880789969,"text":"You gave Bob White 10 coin. Bob White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22191,"wallTimeMs":1792880790280,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22203,"wallTimeMs":1792880790775,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22211,"wallTimeMs":1792880791123,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":22235,"wallTimeMs":1792880792178,"text":"Frank Wilson (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":22251,"wallTimeMs":1792880792893,"kind":"NationRelationChange","text":"Yellowville and Whitefield are now hostile over their border."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1792880792893,"kind":"NationRelationChange","text":"Northland and Fortfield swore an alliance."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1792880792893,"kind":"NationRelationChange","text":"Yellowville and Fortfield have formed an alliance."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1792880792893,"kind":"NationRelationChange","text":"Northville and Fortfield have formed an alliance."}
+{"type":"status","tick":22359,"wallTimeMs":1792880797655,"text":"You gave Harriet Roberts 10 coin. Harriet Roberts (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22371,"wallTimeMs":1792880798132,"text":"You gave Harriet Roberts 10 coin. Harriet Roberts (Stranger): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22379,"wallTimeMs":1792880798486,"text":"You gave Harriet Roberts 10 coin. Harriet Roberts (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Harriet Roberts now knows you by name."}
+{"type":"status","tick":22387,"wallTimeMs":1792880798843,"text":"You gave Harriet Roberts 10 coin. Harriet Roberts (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22399,"wallTimeMs":1792880799358,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":22423,"wallTimeMs":1792880800358,"text":"There is no one within reach to invite."}
+{"type":"status","tick":22471,"wallTimeMs":1792880802278,"text":"You gave Linda White 10 coin. Linda White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22483,"wallTimeMs":1792880802744,"text":"You gave Linda White 10 coin. Linda White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":22495,"wallTimeMs":1792880803228,"text":"You gave Linda White 10 coin. Linda White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Linda White now counts you as a friend!"}
+{"type":"chronicle","tick":22495,"wallTimeMs":1792880803228,"kind":"PawnRelationshipIncrease","text":"Linda White of Fortresstown now counts you a friend."}
+{"type":"status","tick":22503,"wallTimeMs":1792880803559,"text":"You gave Linda White 10 coin. Linda White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"chronicle","tick":22503,"wallTimeMs":1792880803559,"kind":"NationRelationChange","text":"Bigland and Smallford have formed an alliance."}
+{"type":"chronicle","tick":22503,"wallTimeMs":1792880803559,"kind":"NationRelationChange","text":"Whitefield and Smallport swore an alliance."}
+{"type":"chronicle","tick":22503,"wallTimeMs":1792880803559,"kind":"NationRelationChange","text":"Southerntown and Towntown swore an alliance."}
+{"type":"status","tick":22515,"wallTimeMs":1792880804030,"text":"You gave Linda White 10 coin. Linda White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":22539,"wallTimeMs":1792880804957,"text":"Linda White (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":22583,"wallTimeMs":1792880806720,"text":"You gave Linda White 10 coin. Linda White (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":22595,"wallTimeMs":1792880807192,"text":"You gave Linda White 1 apple. Linda White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":22603,"wallTimeMs":1792880807505,"text":"You gave Linda White 1 apple. Linda White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":22615,"wallTimeMs":1792880807937,"text":"You gave Linda White 1 apple. Linda White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":22627,"wallTimeMs":1792880808391,"text":"You gave Linda White 1 apple. Linda White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 Linda White is now loyal to you!"}
+{"type":"chronicle","tick":22627,"wallTimeMs":1792880808391,"kind":"PawnRelationshipIncrease","text":"Linda White of Fortresstown is now loyal to you."}
+{"type":"status","tick":22651,"wallTimeMs":1792880809276,"text":"Linda White left Fortresstown and joined Townton! Members: 5. Fortresstown resents it: relations Neutral (\u002B13)."}
+{"type":"chronicle","tick":22651,"wallTimeMs":1792880809276,"kind":"NationLeave","text":"Linda White left Fortresstown."}
+{"type":"chronicle","tick":22651,"wallTimeMs":1792880809276,"kind":"NationJoin","text":"Linda White threw in their lot with Townton."}
+{"type":"chronicle","tick":22651,"wallTimeMs":1792880809276,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now neutral."}
+{"type":"status","tick":22951,"wallTimeMs":1792880820442,"text":"You gave Una Wilson 1 apple. Una Wilson (Stranger): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":22963,"wallTimeMs":1792880820846,"text":"You gave Una Wilson 1 apple. Una Wilson (Stranger): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":22975,"wallTimeMs":1792880821261,"text":"You gave Una Wilson 1 apple. Una Wilson (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 Una Wilson now knows you by name."}
+{"type":"status","tick":22987,"wallTimeMs":1792880821699,"text":"You gave Una Wilson 1 apple. Una Wilson (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":22999,"wallTimeMs":1792880822102,"text":"You gave Una Wilson 1 apple. Una Wilson (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":23003,"wallTimeMs":1792880822253,"text":"Blackport has fallen and been disbanded. Oldshire has fallen and been disbanded."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRelationChange","text":"Relations between Eastland and Towntown are now rival."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRelationChange","text":"Fortham and Bigford swore an alliance."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRaid","text":"Whitefield raided Yellowville and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRaid","text":"Westford raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"SettlementCapture","text":"Northshire captured a camp from Blackport."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationDisband","text":"With its last camp taken by Northshire, Blackport passed into history."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRaid","text":"Towntown raided Bluewood and carried off 5 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRaid","text":"Raiders from Fortfield struck Lowerland, taking 5 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationRaid","text":"Bigford raided Northshire and carried off 5 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"SettlementCapture","text":"After a siege, a village of Oldshire fell to Northshire."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1792880822253,"kind":"NationDisband","text":"With its last village taken by Northshire, Oldshire passed into history."}
+{"type":"status","tick":23023,"wallTimeMs":1792880822968,"text":"There is no one within reach to invite."}
+{"type":"status","tick":23211,"wallTimeMs":1792880830154,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":23223,"wallTimeMs":1792880830660,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":23231,"wallTimeMs":1792880830996,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":23239,"wallTimeMs":1792880831335,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 Harriet Roberts now counts you as a friend!"}
+{"type":"chronicle","tick":23239,"wallTimeMs":1792880831335,"kind":"PawnRelationshipIncrease","text":"You and Harriet Roberts of Fortresstown have become friends."}
+{"type":"status","tick":23251,"wallTimeMs":1792880831858,"text":"Northland shares an enemy with you: relations are now Friendly (\u002B20). Southerntown shares an enemy with you: relations are now Friendly (\u002B20). Fortfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":23251,"wallTimeMs":1792880831858,"kind":"NationRelationChange","text":"Relations between Townton and Northland are now friendly against a common enemy."}
+{"type":"chronicle","tick":23251,"wallTimeMs":1792880831858,"kind":"NationRelationChange","text":"Relations between Townton and Southerntown are now friendly against a common enemy."}
+{"type":"chronicle","tick":23251,"wallTimeMs":1792880831858,"kind":"NationRelationChange","text":"Relations between Townton and Fortfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":23251,"wallTimeMs":1792880831858,"kind":"NationRelationChange","text":"Townfield and Smallport have formed an alliance."}
+{"type":"status","tick":23271,"wallTimeMs":1792880832702,"text":"Harriet Roberts (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":23331,"wallTimeMs":1792880835163,"text":"You gave Charlie Thompson 1 apple. Charlie Thompson (Stranger): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":23343,"wallTimeMs":1792880835629,"text":"You gave Charlie Thompson 1 apple. Charlie Thompson (Stranger): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":23351,"wallTimeMs":1792880835963,"text":"You gave Charlie Thompson 1 apple. Charlie Thompson (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 Charlie Thompson now knows you by name."}
+{"type":"status","tick":23359,"wallTimeMs":1792880836306,"text":"You gave Charlie Thompson 1 apple. Charlie Thompson (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":23371,"wallTimeMs":1792880836768,"text":"You gave Charlie Thompson 1 apple. Charlie Thompson (Acquaintance): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":23395,"wallTimeMs":1792880837744,"text":"Charlie Thompson (Acquaintance): \u0022I lead Fortresstown. I won\u0027t abandon my people.\u0022"}
+{"type":"chronicle","tick":23503,"wallTimeMs":1792880841874,"kind":"NationRelationChange","text":"Whitefield and Northernport swore an alliance."}
+{"type":"status","tick":23563,"wallTimeMs":1792880843833,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":23575,"wallTimeMs":1792880844212,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":23587,"wallTimeMs":1792880844601,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":23603,"wallTimeMs":1792880845096,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x4)"}
+{"type":"status","tick":23615,"wallTimeMs":1792880845476,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x5)"}
+{"type":"status","tick":23643,"wallTimeMs":1792880846391,"text":"Harriet Roberts (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":23751,"wallTimeMs":1792880850006,"text":"Bigford has fallen and been disbanded."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1792880850006,"kind":"NationRelationChange","text":"Eastland and Towntown are now hostile over their border."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1792880850006,"kind":"SettlementCapture","text":"After a siege, a village of Bigford fell to Castlewood."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1792880850006,"kind":"NationDisband","text":"Bigford is no more; its last village fell to Castlewood."}
+{"type":"status","tick":23979,"wallTimeMs":1792880859010,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 Bob White now counts you as a friend!"}
+{"type":"chronicle","tick":23979,"wallTimeMs":1792880859010,"kind":"PawnRelationshipIncrease","text":"Bob White of Fortresstown now counts you a friend."}
+{"type":"status","tick":23987,"wallTimeMs":1792880859334,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":23999,"wallTimeMs":1792880859847,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"save","tick":24003,"wallTimeMs":1792880860179,"count":4}
+{"type":"status","tick":24003,"wallTimeMs":1792880860179,"text":"Autosaved."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1792880860179,"kind":"NationRelationChange","text":"Whitefield and Blueham swore an alliance."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1792880860179,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1792880860179,"kind":"NationRelationChange","text":"Relations between Eastland and Towntown are now rival."}
+{"type":"status","tick":24007,"wallTimeMs":1792880860350,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":24015,"wallTimeMs":1792880860672,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":24039,"wallTimeMs":1792880861631,"text":"Bob White (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":24231,"wallTimeMs":1792880868993,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":24243,"wallTimeMs":1792880869416,"text":"You gave Bob White 1 apple. Bob White (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"chronicle","tick":24251,"wallTimeMs":1792880869731,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"chronicle","tick":24251,"wallTimeMs":1792880869731,"kind":"NationRelationChange","text":"Fortham and Northfield have formed an alliance."}
+{"type":"status","tick":24255,"wallTimeMs":1792880869874,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 Bob White is now loyal to you!"}
+{"type":"chronicle","tick":24255,"wallTimeMs":1792880869874,"kind":"PawnRelationshipIncrease","text":"Bob White of Fortresstown is now loyal to you."}
+{"type":"status","tick":24263,"wallTimeMs":1792880870177,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":24275,"wallTimeMs":1792880870614,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":24303,"wallTimeMs":1792880871648,"text":"Bob White left Fortresstown and joined Townton! Members: 6. Fortresstown resents it: relations Neutral (\u002B5)."}
+{"type":"chronicle","tick":24303,"wallTimeMs":1792880871648,"kind":"NationLeave","text":"Bob White left Fortresstown."}
+{"type":"chronicle","tick":24303,"wallTimeMs":1792880871648,"kind":"NationJoin","text":"Bob White threw in their lot with Townton."}
+{"type":"chronicle","tick":24303,"wallTimeMs":1792880871648,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now neutral."}
+{"type":"status","tick":24359,"wallTimeMs":1792880873721,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":24371,"wallTimeMs":1792880874152,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":24379,"wallTimeMs":1792880874471,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":24391,"wallTimeMs":1792880874945,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x4)"}
+{"type":"status","tick":24403,"wallTimeMs":1792880875422,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x5)"}
+{"type":"status","tick":24419,"wallTimeMs":1792880876251,"text":"Bob White is already a member of Townton."}
+{"type":"status","tick":24467,"wallTimeMs":1792880878551,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":24475,"wallTimeMs":1792880878934,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":24487,"wallTimeMs":1792880879489,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":24495,"wallTimeMs":1792880879814,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x4)"}
+{"type":"status","tick":24507,"wallTimeMs":1792880880293,"text":"You gave Bob White 1 apple. Bob White (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x5)"}
+{"type":"status","tick":24531,"wallTimeMs":1792880881199,"text":"There is no one within reach to invite."}
+{"type":"status","tick":24923,"wallTimeMs":1792880895042,"text":"Entered settlement."}
+{"type":"status","tick":24971,"wallTimeMs":1792880896733,"text":"Exited settlement."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1792880897891,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1792880897891,"kind":"NationRelationChange","text":"Fortham and Upperfield have formed an alliance."}
+{"type":"status","tick":25019,"wallTimeMs":1792880898483,"text":"Entered settlement."}
+{"type":"status","tick":25067,"wallTimeMs":1792880900263,"text":"Exited settlement."}
+{"type":"status","tick":25115,"wallTimeMs":1792880902005,"text":"Entered settlement."}
+{"type":"status","tick":25163,"wallTimeMs":1792880903722,"text":"Exited settlement."}
+{"type":"status","tick":25251,"wallTimeMs":1792880907017,"text":"Smallburg has fallen and been disbanded. Upperfield has fallen and been disbanded. Northfield has fallen and been disbanded."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"NationRelationChange","text":"Whitefield and Fortham have formed an alliance."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"NationRelationChange","text":"Southerntown and Smallford are now hostile."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"SettlementCapture","text":"Whitefield captured a village from Smallburg."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"NationDisband","text":"The banners of Smallburg came down when Whitefield took its last village."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"SettlementCapture","text":"Smallport captured a camp from Upperfield."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"NationDisband","text":"The banners of Upperfield came down when Smallport took its last camp."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"SettlementCapture","text":"After a siege, a camp of Northfield fell to Smallport."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1792880907017,"kind":"NationDisband","text":"The banners of Northfield came down when Smallport took its last camp."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1792880916726,"kind":"NationRelationChange","text":"Westford and Newford swore an alliance."}
+{"type":"status","tick":25583,"wallTimeMs":1792880919173,"text":"You enter the land of Newford (Rival)."}
+{"type":"chronicle","tick":25751,"wallTimeMs":1792880924077,"kind":"NationRelationChange","text":"Eastland and Towntown are now hostile over their border."}
+{"type":"status","tick":25815,"wallTimeMs":1792880925638,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1792880930486,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1792880930486,"kind":"NationRelationChange","text":"Relations between Eastland and Towntown are now rival."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1792880930486,"kind":"NationRaid","text":"Bigland raided Northville and carried off 5 coins, 5 wood, 3 stone."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1792880930486,"kind":"NationRaid","text":"Newford raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1792880930486,"kind":"NationRaid","text":"Southerntown raided Smallford and carried off 5 coins."}
+{"type":"status","tick":26175,"wallTimeMs":1792880936435,"text":"Gathered 5 wood and 1 apple from tree. (x2)"}
+{"type":"chronicle","tick":26251,"wallTimeMs":1792880940612,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"chronicle","tick":26251,"wallTimeMs":1792880940612,"kind":"NationRelationChange","text":"Northville and Southerntown have formed an alliance."}
+{"type":"status","tick":26403,"wallTimeMs":1792880947585,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":26659,"wallTimeMs":1792880957274,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":26751,"wallTimeMs":1792880960523,"kind":"NationRelationChange","text":"Bluewood and Eastland swore an alliance."}
+{"type":"status","tick":26895,"wallTimeMs":1792880965856,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":27003,"wallTimeMs":1792880970192,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":27003,"wallTimeMs":1792880970192,"kind":"NationRelationChange","text":"Westford and Bluewood have formed an alliance."}
+{"type":"chronicle","tick":27003,"wallTimeMs":1792880970192,"kind":"NationRelationChange","text":"Relations between Smallford and Southerntown are now rival."}
+{"type":"status","tick":27075,"wallTimeMs":1792880972926,"text":"Welcome home!"}
+{"type":"status","tick":27083,"wallTimeMs":1792880973340,"text":"You are back on your own land."}
+{"type":"status","tick":27115,"wallTimeMs":1792880974992,"text":"Entered settlement."}
+{"type":"status","tick":27227,"wallTimeMs":1792880980727,"text":"You sold resources to Linda White. Relationship increased to 31."}
+{"type":"status","tick":27251,"wallTimeMs":1792880981970,"text":"Northville shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":27251,"wallTimeMs":1792880981970,"kind":"NationRelationChange","text":"Relations between Townton and Northville are now friendly against a common enemy."}
+{"type":"chronicle","tick":27251,"wallTimeMs":1792880981970,"kind":"NationRelationChange","text":"Southerntown and Smallford are now hostile over their border."}
+{"type":"chronicle","tick":27251,"wallTimeMs":1792880981970,"kind":"NationRelationChange","text":"Southerntown and Fortfield have formed an alliance."}
+{"type":"chronicle","tick":27351,"wallTimeMs":1792880987119,"kind":"StallBuilt","text":"Samantha Watson built a market stall in Northernport. The market is now full."}
+{"type":"status","tick":27367,"wallTimeMs":1792880987909,"text":"Withdrew 67 coins from settlement."}
+{"type":"status","tick":27415,"wallTimeMs":1792880990292,"text":"Collected 70 wood and 0 stone from the stockpile."}
+{"type":"chronicle","tick":27503,"wallTimeMs":1792880994584,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Peggy Smith."}
+{"type":"chronicle","tick":27551,"wallTimeMs":1792880997105,"kind":"StallBuilt","text":"A new stall opened in the market of Townfield, built by Isabella Taylor."}
+{"type":"chronicle","tick":27551,"wallTimeMs":1792880997105,"kind":"StallBuilt","text":"Mike Smith built a market stall in Fortham."}
+{"type":"status","tick":27627,"wallTimeMs":1792881000964,"text":"Withdrew 35 coins from settlement."}
+{"type":"status","tick":27659,"wallTimeMs":1792881002576,"text":"Exited settlement."}
+{"type":"chronicle","tick":27703,"wallTimeMs":1792881004679,"kind":"StallBuilt","text":"Bella Thomas built a market stall in Greenburg."}
+{"type":"chronicle","tick":27751,"wallTimeMs":1792881007138,"kind":"NationRelationChange","text":"Eastland and Towntown are now hostile over their border."}
+{"type":"chronicle","tick":27803,"wallTimeMs":1792881009076,"kind":"StallBuilt","text":"Wendy Watson built a market stall in Blueland."}
+{"type":"chronicle","tick":27851,"wallTimeMs":1792881010817,"kind":"StallBuilt","text":"Trade came to Whitefield: Ruth Roberts built a stall."}
+{"type":"status","tick":27871,"wallTimeMs":1792881011662,"text":"You leave the land of Townton for the wilds."}
+{"type":"chronicle","tick":27903,"wallTimeMs":1792881012774,"kind":"StallBuilt","text":"Frank Robinson built a market stall in Blueham."}
+{"type":"chronicle","tick":27951,"wallTimeMs":1792881014318,"kind":"StallBuilt","text":"Mike Smith built a market stall in Fortham."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"StallBuilt","text":"Trade came to Lowerland: Lily Lewis built a stall."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRelationChange","text":"Eastland and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRelationChange","text":"Relations between Eastland and Towntown are now rival."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRelationChange","text":"Relations between Smallford and Southerntown are now rival."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRaid","text":"Townfield raided Blueham and carried off 1 coins."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1792881016538,"kind":"NationRaid","text":"Smallport raided Fortham and carried off 1 coins."}
+{"type":"status","tick":28011,"wallTimeMs":1792881016826,"text":"You enter the land of Fortresstown (Friendly)."}
+{"type":"chronicle","tick":28051,"wallTimeMs":1792881018231,"kind":"StallBuilt","text":"A new stall opened in the market of Townfield, built by Isabella Taylor."}
+{"type":"chronicle","tick":28151,"wallTimeMs":1792881022139,"kind":"StallBuilt","text":"Trade came to Smalltown: Fiona Jones built a stall."}
+{"type":"chronicle","tick":28203,"wallTimeMs":1792881023865,"kind":"StallBuilt","text":"Trade came to Northland: Zach Lewis built a stall."}
+{"type":"chronicle","tick":28251,"wallTimeMs":1792881025509,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"chronicle","tick":28251,"wallTimeMs":1792881025509,"kind":"NationRelationChange","text":"Bigland and Westford have formed an alliance."}
+{"type":"chronicle","tick":28251,"wallTimeMs":1792881025509,"kind":"NationRelationChange","text":"Bigland and Newford have formed an alliance."}
+{"type":"chronicle","tick":28251,"wallTimeMs":1792881025509,"kind":"NationRelationChange","text":"Bigland and Castlewood have formed an alliance."}
+{"type":"chronicle","tick":28303,"wallTimeMs":1792881027173,"kind":"StallBuilt","text":"Bob Thomas built a market stall in Yellowville."}
+{"type":"chronicle","tick":28303,"wallTimeMs":1792881027173,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortresstown."}
+{"type":"chronicle","tick":28303,"wallTimeMs":1792881027173,"kind":"StallBuilt","text":"Oscar Thompson built a market stall in Fortfield."}
+{"type":"chronicle","tick":28351,"wallTimeMs":1792881028692,"kind":"StallBuilt","text":"Trade came to Northshire: Ella Wilson built a stall."}
+{"type":"chronicle","tick":28351,"wallTimeMs":1792881028692,"kind":"StallBuilt","text":"A new stall opened in the market of Smallport, built by Bob Walker."}
+{"type":"chronicle","tick":28403,"wallTimeMs":1792881030440,"kind":"StallBuilt","text":"A new stall opened in the market of Blueland, built by Wendy Watson."}
+{"type":"chronicle","tick":28503,"wallTimeMs":1792881033911,"kind":"StallBuilt","text":"A new stall opened in the market of Castlewood, built by Olivia Brown."}
+{"type":"chronicle","tick":28527,"wallTimeMs":1792881034788,"kind":"Caravan","text":"A caravan from Blueland sold 12 stone at the Town of Northville for 420 coins."}
+{"type":"chronicle","tick":28551,"wallTimeMs":1792881035708,"kind":"StallBuilt","text":"Trade came to Fortresstown: Charlie Thompson built a stall. The market is now full."}
+{"type":"chronicle","tick":28651,"wallTimeMs":1792881039299,"kind":"StallBuilt","text":"Trade came to Townfield: Isabella Taylor built a stall."}
+{"type":"chronicle","tick":28751,"wallTimeMs":1792881043363,"kind":"NationRelationChange","text":"Northville and Bluewood are now hostile over their border."}
+{"type":"status","tick":28767,"wallTimeMs":1792881044003,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":28803,"wallTimeMs":1792881045500,"kind":"StallBuilt","text":"A new stall opened in the market of Fortham, built by Mike Smith."}
+{"type":"chronicle","tick":28903,"wallTimeMs":1792881049789,"kind":"StallBuilt","text":"Ursula Jones built a market stall in Northville. The market is now full."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792881054897,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Peggy Smith."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792881054897,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1792881054897,"kind":"NationRaid","text":"Northville raided Bluewood and carried off 5 coins."}
+{"type":"chronicle","tick":29051,"wallTimeMs":1792881057560,"kind":"StallBuilt","text":"Trade came to Lowerland: Lily Lewis built a stall."}
+{"type":"status","tick":29155,"wallTimeMs":1792881062009,"text":"Una Wilson (Acquaintance): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":29191,"wallTimeMs":1792881063397,"text":"You gave Una Wilson 10 coin. Una Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":29199,"wallTimeMs":1792881063695,"text":"You gave Una Wilson 10 coin. Una Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"chronicle","tick":29203,"wallTimeMs":1792881063842,"kind":"StallBuilt","text":"Frank Robinson built a market stall in Blueham."}
+{"type":"status","tick":29211,"wallTimeMs":1792881064123,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Una Wilson now counts you as a friend!"}
+{"type":"chronicle","tick":29211,"wallTimeMs":1792881064123,"kind":"PawnRelationshipIncrease","text":"You and Una Wilson of Fortresstown have become friends."}
+{"type":"status","tick":29223,"wallTimeMs":1792881064603,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":29247,"wallTimeMs":1792881065610,"text":"There is no one within reach to invite."}
+{"type":"status","tick":29251,"wallTimeMs":1792881065802,"text":"Eastland shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1792881065802,"kind":"NationRelationChange","text":"Relations between Townton and Eastland are now friendly against a common enemy."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1792881065802,"kind":"NationRelationChange","text":"Southerntown and Smallford are now hostile over their border."}
+{"type":"chronicle","tick":29303,"wallTimeMs":1792881068013,"kind":"StallBuilt","text":"Oscar Thompson built a market stall in Fortfield."}
+{"type":"status","tick":29491,"wallTimeMs":1792881074545,"text":"Una Wilson (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":29503,"wallTimeMs":1792881074972,"kind":"StallBuilt","text":"Isabella Taylor built a market stall in Townfield."}
+{"type":"chronicle","tick":29503,"wallTimeMs":1792881074972,"kind":"StallBuilt","text":"A new stall opened in the market of Smalltown, built by Fiona Jones."}
+{"type":"chronicle","tick":29503,"wallTimeMs":1792881074972,"kind":"StallBuilt","text":"Trade came to Northshire: Ella Wilson built a stall."}
+{"type":"status","tick":29527,"wallTimeMs":1792881075763,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":29539,"wallTimeMs":1792881076181,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":29551,"wallTimeMs":1792881076594,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":29563,"wallTimeMs":1792881077004,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"status","tick":29591,"wallTimeMs":1792881077982,"text":"Una Wilson (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":29603,"wallTimeMs":1792881078388,"kind":"StallBuilt","text":"A new stall opened in the market of Smallport, built by Bob Walker. The market is now full."}
+{"type":"chronicle","tick":29651,"wallTimeMs":1792881080042,"kind":"StallBuilt","text":"Mike Smith built a market stall in Fortham."}
+{"type":"chronicle","tick":29703,"wallTimeMs":1792881081907,"kind":"StallBuilt","text":"Trade came to Blueland: Wendy Watson built a stall."}
+{"type":"chronicle","tick":29751,"wallTimeMs":1792881083476,"kind":"StallBuilt","text":"Zach Lewis built a market stall in Northland."}
+{"type":"chronicle","tick":29751,"wallTimeMs":1792881083476,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerland, built by Lily Lewis."}
+{"type":"chronicle","tick":29751,"wallTimeMs":1792881083476,"kind":"NationRelationChange","text":"Eastland and Towntown are now hostile over their border."}
+{"type":"status","tick":29783,"wallTimeMs":1792881084498,"text":"Harriet Roberts (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"status","tick":29823,"wallTimeMs":1792881085835,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":29835,"wallTimeMs":1792881086277,"text":"You gave Una Wilson 10 coin. Una Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":29847,"wallTimeMs":1792881086726,"text":"You gave Una Wilson 10 coin. Una Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 Una Wilson is now loyal to you!"}
+{"type":"chronicle","tick":29847,"wallTimeMs":1792881086726,"kind":"PawnRelationshipIncrease","text":"Una Wilson of Fortresstown is now loyal to you."}
+{"type":"status","tick":29855,"wallTimeMs":1792881087030,"text":"You gave Una Wilson 10 coin. Una Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":29883,"wallTimeMs":1792881088089,"text":"Una Wilson left Fortresstown and joined Townton! Members: 7. Fortresstown resents it: relations Neutral (\u002B12)."}
+{"type":"chronicle","tick":29883,"wallTimeMs":1792881088089,"kind":"NationLeave","text":"Una Wilson left Fortresstown."}
+{"type":"chronicle","tick":29883,"wallTimeMs":1792881088089,"kind":"NationJoin","text":"Una Wilson swore fealty to Townton."}
+{"type":"chronicle","tick":29883,"wallTimeMs":1792881088089,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now neutral."}
+{"type":"save","tick":30003,"wallTimeMs":1792881092757,"count":5}
+{"type":"status","tick":30003,"wallTimeMs":1792881092757,"text":"Autosaved."}
+{"type":"chronicle","tick":30003,"wallTimeMs":1792881092757,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":30003,"wallTimeMs":1792881092757,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"chronicle","tick":30003,"wallTimeMs":1792881092757,"kind":"NationRelationChange","text":"Relations between Smallford and Southerntown are now rival."}
+{"type":"chronicle","tick":30003,"wallTimeMs":1792881092757,"kind":"NationRaid","text":"Westford raided Northville and carried off 5 coins, 5 wood."}
+{"type":"status","tick":30091,"wallTimeMs":1792881095941,"text":"Una Wilson is already a member of Townton."}
+{"type":"chronicle","tick":30103,"wallTimeMs":1792881096397,"kind":"StallBuilt","text":"Trade came to Fortfield: Oscar Thompson built a stall."}
+{"type":"chronicle","tick":30203,"wallTimeMs":1792881099525,"kind":"StallBuilt","text":"Grace Thomas built a market stall in Smalltown."}
+{"type":"chronicle","tick":30251,"wallTimeMs":1792881100953,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"chronicle","tick":30403,"wallTimeMs":1792881105730,"kind":"StallBuilt","text":"A new stall opened in the market of Blueham, built by Frank Robinson."}
+{"type":"chronicle","tick":30451,"wallTimeMs":1792881107244,"kind":"StallBuilt","text":"Bob Thomas built a market stall in Yellowville."}
+{"type":"status","tick":30471,"wallTimeMs":1792881107894,"text":"Frank Wilson (Friend): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":30503,"wallTimeMs":1792881108955,"kind":"StallBuilt","text":"Trade came to Blueland: Wendy Watson built a stall. The market is now full."}
+{"type":"chronicle","tick":30503,"wallTimeMs":1792881108955,"kind":"NationRelationChange","text":"Westford and Eastland swore an alliance."}
+{"type":"status","tick":30511,"wallTimeMs":1792881109220,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Friend): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":30527,"wallTimeMs":1792881109727,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 Frank Wilson is now loyal to you!"}
+{"type":"chronicle","tick":30527,"wallTimeMs":1792881109727,"kind":"PawnRelationshipIncrease","text":"Frank Wilson of Fortresstown would follow you anywhere now."}
+{"type":"status","tick":30539,"wallTimeMs":1792881110126,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":30551,"wallTimeMs":1792881110521,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":30579,"wallTimeMs":1792881111450,"text":"Frank Wilson (Loyal): \u0022I think the world of you, but Fortresstown is my home. I won\u0027t turn my back on it.\u0022 (Loyal by nature)"}
+{"type":"chronicle","tick":30603,"wallTimeMs":1792881112237,"kind":"StallBuilt","text":"Trade came to Greenburg: Bella Thomas built a stall."}
+{"type":"chronicle","tick":30603,"wallTimeMs":1792881112237,"kind":"StallBuilt","text":"Trade came to Smalltown: Fiona Jones built a stall."}
+{"type":"status","tick":30647,"wallTimeMs":1792881113681,"text":"Frank Wilson (Loyal): \u0022I think the world of you, but Fortresstown is my home. I won\u0027t turn my back on it.\u0022 (Loyal by nature) (x2)"}
+{"type":"chronicle","tick":30651,"wallTimeMs":1792881113814,"kind":"StallBuilt","text":"Isabella Taylor built a market stall in Townfield. The market is now full."}
+{"type":"status","tick":30687,"wallTimeMs":1792881115009,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":30699,"wallTimeMs":1792881115431,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"chronicle","tick":30703,"wallTimeMs":1792881115575,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerland, built by Lily Lewis. The market is now full."}
+{"type":"status","tick":30711,"wallTimeMs":1792881115830,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":30723,"wallTimeMs":1792881116232,"text":"There is no one within reach to give a gift to. (x4)"}
+{"type":"status","tick":30751,"wallTimeMs":1792881117221,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":30751,"wallTimeMs":1792881117221,"kind":"NationRelationChange","text":"Fortresstown and Towntown have formed an alliance."}
+{"type":"status","tick":30891,"wallTimeMs":1792881122378,"text":"Frank Wilson (Loyal): \u0022I think the world of you, but Fortresstown is my home. I won\u0027t turn my back on it.\u0022 (Loyal by nature)"}
+{"type":"chronicle","tick":30903,"wallTimeMs":1792881122837,"kind":"StallBuilt","text":"Trade came to Castlewood: Olivia Brown built a stall."}
+{"type":"chronicle","tick":30903,"wallTimeMs":1792881122837,"kind":"StallBuilt","text":"Trade came to Fortham: Mike Smith built a stall."}
+{"type":"status","tick":30923,"wallTimeMs":1792881123596,"text":"You gave Frank Wilson 1 apple. Frank Wilson (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022"}
+{"type":"status","tick":30935,"wallTimeMs":1792881124036,"text":"You gave Frank Wilson 1 apple. Frank Wilson (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":30947,"wallTimeMs":1792881124491,"text":"You gave Frank Wilson 1 apple. Frank Wilson (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":30955,"wallTimeMs":1792881124802,"text":"You gave Frank Wilson 1 apple. Frank Wilson (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x4)"}
+{"type":"status","tick":30979,"wallTimeMs":1792881125742,"text":"Frank Wilson (Loyal): \u0022I think the world of you, but Fortresstown is my home. I won\u0027t turn my back on it.\u0022 (Loyal by nature)"}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792881126697,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792881126697,"kind":"NationRelationChange","text":"Fortresstown and Eastland are now hostile over their border."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792881126697,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792881126697,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"chronicle","tick":31003,"wallTimeMs":1792881126697,"kind":"NationRaid","text":"Eastland raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":31251,"wallTimeMs":1792881135962,"kind":"NationRelationChange","text":"Southerntown and Smallford are now hostile over their border."}
+{"type":"status","tick":31303,"wallTimeMs":1792881137712,"text":"Entered settlement."}
+{"type":"chronicle","tick":31451,"wallTimeMs":1792881143044,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Ella Wilson."}
+{"type":"status","tick":31503,"wallTimeMs":1792881144934,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 Harriet Roberts is now loyal to you!"}
+{"type":"chronicle","tick":31503,"wallTimeMs":1792881144934,"kind":"StallBuilt","text":"Trade came to Fortfield: Oscar Thompson built a stall."}
+{"type":"chronicle","tick":31503,"wallTimeMs":1792881144934,"kind":"PawnRelationshipIncrease","text":"Harriet Roberts of Fortresstown would follow you anywhere now."}
+{"type":"status","tick":31551,"wallTimeMs":1792881146671,"text":"You gave Harriet Roberts 1 apple. Harriet Roberts (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"chronicle","tick":31703,"wallTimeMs":1792881152159,"kind":"StallBuilt","text":"A new stall opened in the market of Northland, built by Zach Lewis."}
+{"type":"chronicle","tick":31703,"wallTimeMs":1792881152159,"kind":"StallBuilt","text":"Fiona Jones built a market stall in Smalltown."}
+{"type":"status","tick":31723,"wallTimeMs":1792881152869,"text":"Nancy Wilson (Stranger): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"chronicle","tick":31751,"wallTimeMs":1792881153856,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"chronicle","tick":31851,"wallTimeMs":1792881157440,"kind":"StallBuilt","text":"Trade came to Smalltown: Grace Thomas built a stall."}
+{"type":"status","tick":31967,"wallTimeMs":1792881161568,"text":"Harriet Roberts left Fortresstown and joined Townton! Members: 8. Fortresstown resents it: relations Neutral (\u002B5)."}
+{"type":"chronicle","tick":31967,"wallTimeMs":1792881161568,"kind":"NationLeave","text":"Harriet Roberts walked away from Fortresstown."}
+{"type":"chronicle","tick":31967,"wallTimeMs":1792881161568,"kind":"NationJoin","text":"Townton welcomed Harriet Roberts into its ranks."}
+{"type":"chronicle","tick":31967,"wallTimeMs":1792881161568,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now neutral."}
+{"type":"chronicle","tick":32003,"wallTimeMs":1792881162880,"kind":"StallBuilt","text":"A new stall opened in the market of Blueham, built by Frank Robinson."}
+{"type":"chronicle","tick":32003,"wallTimeMs":1792881162880,"kind":"NationRelationChange","text":"Relations between Smallford and Southerntown are now rival."}
+{"type":"chronicle","tick":32251,"wallTimeMs":1792881171785,"kind":"NationRelationChange","text":"Greenburg and Smalltown have become rivals over their border."}
+{"type":"chronicle","tick":32251,"wallTimeMs":1792881171785,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"status","tick":32279,"wallTimeMs":1792881172783,"text":"Cannot teleport while in settlement."}
+{"type":"status","tick":32335,"wallTimeMs":1792881174753,"text":"Exited settlement."}
+{"type":"status","tick":32403,"wallTimeMs":1792881177226,"text":"Entered settlement."}
+{"type":"chronicle","tick":32451,"wallTimeMs":1792881178988,"kind":"StallBuilt","text":"Trade came to Greenburg: Bella Thomas built a stall."}
+{"type":"status","tick":32615,"wallTimeMs":1792881184981,"text":"You sold resources to Frank Wilson. Relationship increased to 49."}
+{"type":"status","tick":32663,"wallTimeMs":1792881186731,"text":"You sold resources to Frank Wilson. Relationship increased to 50."}
+{"type":"status","tick":32711,"wallTimeMs":1792881188468,"text":"You sold resources to Frank Wilson. Relationship increased to 51."}
+{"type":"status","tick":32759,"wallTimeMs":1792881190177,"text":"You sold resources to Frank Wilson. Relationship increased to 52."}
+{"type":"status","tick":32807,"wallTimeMs":1792881191844,"text":"You sold resources to Frank Wilson. Relationship increased to 53."}
+{"type":"status","tick":32999,"wallTimeMs":1792881198478,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 5."}
+{"type":"chronicle","tick":33003,"wallTimeMs":1792881198625,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":33003,"wallTimeMs":1792881198625,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":33003,"wallTimeMs":1792881198625,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"chronicle","tick":33003,"wallTimeMs":1792881198625,"kind":"NationRelationChange","text":"Eastland and Northshire are now hostile."}
+{"type":"chronicle","tick":33003,"wallTimeMs":1792881198625,"kind":"NationRaid","text":"Eastland raided Northshire and carried off 5 coins."}
+{"type":"status","tick":33039,"wallTimeMs":1792881199801,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4."}
+{"type":"status","tick":33083,"wallTimeMs":1792881201315,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x2)"}
+{"type":"status","tick":33123,"wallTimeMs":1792881202680,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x3)"}
+{"type":"chronicle","tick":33151,"wallTimeMs":1792881203628,"kind":"StallBuilt","text":"Trade came to Castlewood: Olivia Brown built a stall."}
+{"type":"status","tick":33163,"wallTimeMs":1792881204030,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x4)"}
+{"type":"chronicle","tick":33203,"wallTimeMs":1792881205407,"kind":"StallBuilt","text":"Mike Smith built a market stall in Fortham. The market is now full."}
+{"type":"status","tick":33207,"wallTimeMs":1792881205538,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x5)"}
+{"type":"status","tick":33247,"wallTimeMs":1792881206932,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x6)"}
+{"type":"chronicle","tick":33251,"wallTimeMs":1792881207076,"kind":"NationRelationChange","text":"Southerntown and Smallford are now hostile over their border."}
+{"type":"status","tick":33287,"wallTimeMs":1792881208309,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x7)"}
+{"type":"status","tick":33327,"wallTimeMs":1792881209698,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x8)"}
+{"type":"status","tick":33371,"wallTimeMs":1792881211221,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 4. (x9)"}
+{"type":"status","tick":33399,"wallTimeMs":1792881212133,"text":"Exited settlement."}
+{"type":"chronicle","tick":33403,"wallTimeMs":1792881212287,"kind":"StallBuilt","text":"A new stall opened in the market of Whitefield, built by Ruth Roberts."}
+{"type":"chronicle","tick":33403,"wallTimeMs":1792881212287,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Peggy Smith."}
+{"type":"status","tick":33447,"wallTimeMs":1792881213816,"text":"Charlie Thompson (Acquaintance): \u0022I lead Fortresstown. I won\u0027t abandon my people.\u0022"}
+{"type":"chronicle","tick":33451,"wallTimeMs":1792881213950,"kind":"StallBuilt","text":"A new stall opened in the market of Fortfield, built by Oscar Thompson. The market is now full."}
+{"type":"chronicle","tick":33751,"wallTimeMs":1792881223501,"kind":"StallBuilt","text":"Trade came to Blueham: Frank Robinson built a stall."}
+{"type":"status","tick":33987,"wallTimeMs":1792881231332,"text":"Charlie Thompson (Acquaintance): \u0022I lead Fortresstown. I won\u0027t abandon my people.\u0022"}
+{"type":"chronicle","tick":34003,"wallTimeMs":1792881231928,"kind":"NationRelationChange","text":"Fortresstown and Northshire swore an alliance."}
+{"type":"chronicle","tick":34003,"wallTimeMs":1792881231928,"kind":"NationRaid","text":"Raiders from Fortresstown struck Eastland, taking 5 coins."}
+{"type":"chronicle","tick":34251,"wallTimeMs":1792881241101,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"chronicle","tick":34251,"wallTimeMs":1792881241101,"kind":"NationRelationChange","text":"Yellowville and Townfield are now hostile over their border."}
+{"type":"chronicle","tick":34251,"wallTimeMs":1792881241101,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"status","tick":34343,"wallTimeMs":1792881244363,"text":"Charlie Thompson (Acquaintance): \u0022I lead Fortresstown. I won\u0027t abandon my people.\u0022 (x2)"}
+{"type":"chronicle","tick":34503,"wallTimeMs":1792881249945,"kind":"StallBuilt","text":"Fiona Jones built a market stall in Smalltown."}
+{"type":"chronicle","tick":34503,"wallTimeMs":1792881249945,"kind":"LeadershipChange","text":"Westford has a new leader: Jasmine Jones."}
+{"type":"chronicle","tick":34503,"wallTimeMs":1792881249945,"kind":"WorldEvent","text":"With Towntown\u0027s gold behind them, Jasmine Jones seized the leadership of Westford."}
+{"type":"chronicle","tick":34551,"wallTimeMs":1792881251561,"kind":"StallBuilt","text":"Trade came to Northland: Zach Lewis built a stall."}
+{"type":"status","tick":34903,"wallTimeMs":1792881264129,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":34951,"wallTimeMs":1792881265859,"kind":"StallBuilt","text":"Trade came to Northshire: Ella Wilson built a stall."}
+{"type":"status","tick":34995,"wallTimeMs":1792881267507,"text":"Frank Wilson left Fortresstown and joined Townton! Members: 9. Fortresstown resents it: relations Neutral (\u002B7)."}
+{"type":"chronicle","tick":34995,"wallTimeMs":1792881267507,"kind":"NationLeave","text":"Frank Wilson left Fortresstown."}
+{"type":"chronicle","tick":34995,"wallTimeMs":1792881267507,"kind":"NationJoin","text":"Frank Wilson swore fealty to Townton."}
+{"type":"chronicle","tick":34995,"wallTimeMs":1792881267507,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now neutral."}
+{"type":"chronicle","tick":35003,"wallTimeMs":1792881267820,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":35003,"wallTimeMs":1792881267820,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":35003,"wallTimeMs":1792881267820,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"chronicle","tick":35003,"wallTimeMs":1792881267820,"kind":"NationRelationChange","text":"Relations between Smallford and Southerntown are now rival."}
+{"type":"chronicle","tick":35003,"wallTimeMs":1792881267820,"kind":"NationRaid","text":"Raiders from Yellowville struck Townfield, taking 5 coins, 5 stone."}
+{"type":"status","tick":35031,"wallTimeMs":1792881268938,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":35039,"wallTimeMs":1792881269268,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":35051,"wallTimeMs":1792881269742,"text":"You gave Frank Wilson 10 coin. Frank Wilson (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":35059,"wallTimeMs":1792881270093,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":35083,"wallTimeMs":1792881270998,"text":"There is no one within reach to invite."}
+{"type":"status","tick":35235,"wallTimeMs":1792881276956,"text":"Charlie Thompson (Acquaintance): \u0022I lead Fortresstown. I won\u0027t abandon my people.\u0022"}
+{"type":"chronicle","tick":35251,"wallTimeMs":1792881277611,"kind":"NationRelationChange","text":"Southerntown and Smallford are now hostile over their border."}
+{"type":"chronicle","tick":35303,"wallTimeMs":1792881279956,"kind":"StallBuilt","text":"A new stall opened in the market of Blueham, built by Frank Robinson."}
+{"type":"chronicle","tick":35351,"wallTimeMs":1792881281884,"kind":"StallBuilt","text":"A new stall opened in the market of Castlewood, built by Gemma Wood. The market is now full."}
+{"type":"chronicle","tick":35403,"wallTimeMs":1792881283798,"kind":"StallBuilt","text":"Trade came to Castlewood: Olivia Brown built a stall. The market is now full."}
+{"type":"chronicle","tick":35551,"wallTimeMs":1792881288843,"kind":"StallBuilt","text":"Fiona Jones built a market stall in Smalltown."}
+{"type":"status","tick":35995,"wallTimeMs":1792881304533,"text":"Nancy Wilson (Stranger): \u0022I\u0027m loyal to Fortresstown.\u0022 (needs Loyal)"}
+{"type":"save","tick":36003,"wallTimeMs":1792881305001,"count":6}
+{"type":"status","tick":36003,"wallTimeMs":1792881305001,"text":"Autosaved."}
+{"type":"chronicle","tick":36051,"wallTimeMs":1792881306877,"kind":"StallBuilt","text":"Trade came to Yellowville: Bob Thomas built a stall."}
+{"type":"chronicle","tick":36251,"wallTimeMs":1792881314549,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"status","tick":36331,"wallTimeMs":1792881317370,"text":"You gave Nancy Wilson 10 coin. Nancy Wilson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"chronicle","tick":36351,"wallTimeMs":1792881318102,"kind":"StallBuilt","text":"A new stall opened in the market of Whitefield, built by Ruth Roberts. The market is now full."}
+{"type":"chronicle","tick":36351,"wallTimeMs":1792881318102,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Ella Wilson."}
+{"type":"status","tick":36363,"wallTimeMs":1792881318538,"text":"You gave Nancy Wilson 10 coin. Nancy Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Nancy Wilson now knows you by name."}
+{"type":"chronicle","tick":36551,"wallTimeMs":1792881325042,"kind":"StallBuilt","text":"Fiona Jones built a market stall in Smalltown."}
+{"type":"status","tick":36567,"wallTimeMs":1792881325610,"text":"You gave Nancy Wilson 10 coin. Nancy Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":36687,"wallTimeMs":1792881330174,"text":"You gave Nancy Wilson 10 coin. Nancy Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"chronicle","tick":36751,"wallTimeMs":1792881332711,"kind":"StallBuilt","text":"Trade came to Blueham: Frank Robinson built a stall."}
+{"type":"chronicle","tick":36903,"wallTimeMs":1792881338729,"kind":"StallBuilt","text":"Bella Thomas built a market stall in Greenburg."}
+{"type":"chronicle","tick":37003,"wallTimeMs":1792881342167,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":37003,"wallTimeMs":1792881342167,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":37003,"wallTimeMs":1792881342167,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"status","tick":37215,"wallTimeMs":1792881348371,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":37251,"wallTimeMs":1792881349414,"kind":"NationRelationChange","text":"Greenburg and Smalltown are now hostile."}
+{"type":"chronicle","tick":37451,"wallTimeMs":1792881355035,"kind":"StallBuilt","text":"Trade came to Smalltown: Fiona Jones built a stall. The market is now full."}
+{"type":"status","tick":37539,"wallTimeMs":1792881357836,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":37551,"wallTimeMs":1792881358203,"kind":"StallBuilt","text":"Grace Thomas built a market stall in Smalltown."}
+{"type":"status","tick":37659,"wallTimeMs":1792881361721,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":37751,"wallTimeMs":1792881364559,"kind":"NationRelationChange","text":"Towntown and Northshire swore an alliance."}
+{"type":"status","tick":37995,"wallTimeMs":1792881372391,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":38003,"wallTimeMs":1792881372636,"text":"Smallford has fallen and been disbanded."}
+{"type":"chronicle","tick":38003,"wallTimeMs":1792881372636,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"chronicle","tick":38003,"wallTimeMs":1792881372636,"kind":"NationRaid","text":"Greenburg raided Smalltown and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":38003,"wallTimeMs":1792881372636,"kind":"SettlementCapture","text":"Southerntown captured a village from Smallford."}
+{"type":"chronicle","tick":38003,"wallTimeMs":1792881372636,"kind":"NationDisband","text":"With its last village taken by Southerntown, Smallford passed into history."}
+{"type":"status","tick":38131,"wallTimeMs":1792881376305,"text":"You leave the land of Fortresstown for the wilds."}
+{"type":"status","tick":38223,"wallTimeMs":1792881379124,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":38251,"wallTimeMs":1792881379934,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"status","tick":38495,"wallTimeMs":1792881387245,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":38503,"wallTimeMs":1792881387546,"kind":"NationRelationChange","text":"Smallport and Northshire have become rivals over their border."}
+{"type":"chronicle","tick":38551,"wallTimeMs":1792881389091,"kind":"NationCreation","text":"Tilly Roberts founded the nation of Blackshire."}
+{"type":"chronicle","tick":38551,"wallTimeMs":1792881389091,"kind":"StallBuilt","text":"A new stall opened in the market of Blueham, built by Frank Robinson. The market is now full."}
+{"type":"chronicle","tick":38703,"wallTimeMs":1792881394405,"kind":"StallBuilt","text":"A new stall opened in the market of Northland, built by Zach Lewis. The market is now full."}
+{"type":"chronicle","tick":38851,"wallTimeMs":1792881399313,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Ella Wilson."}
+{"type":"status","tick":38923,"wallTimeMs":1792881401411,"text":"You enter the land of Fortresstown (Friendly)."}
+{"type":"chronicle","tick":38951,"wallTimeMs":1792881402185,"kind":"SettlementFounded","text":"Tilly Roberts raised the first settlement of Blackshire."}
+{"type":"chronicle","tick":39003,"wallTimeMs":1792881403779,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":39003,"wallTimeMs":1792881403779,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":39003,"wallTimeMs":1792881403779,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"status","tick":39587,"wallTimeMs":1792881423184,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 Nancy Wilson now counts you as a friend!"}
+{"type":"chronicle","tick":39587,"wallTimeMs":1792881423184,"kind":"PawnRelationshipIncrease","text":"You and Nancy Wilson of Fortresstown have become friends."}
+{"type":"chronicle","tick":39603,"wallTimeMs":1792881423705,"kind":"StallBuilt","text":"Bob Thomas built a market stall in Yellowville."}
+{"type":"status","tick":39627,"wallTimeMs":1792881424500,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":39907,"wallTimeMs":1792881434549,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x3)"}
+{"type":"status","tick":39939,"wallTimeMs":1792881435773,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x4)"}
+{"type":"chronicle","tick":39951,"wallTimeMs":1792881436231,"kind":"StallBuilt","text":"Trade came to Blackshire: Tilly Roberts built a stall."}
+{"type":"status","tick":39971,"wallTimeMs":1792881436986,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Friend): \u0022I\u0027ll save this for later. Thanks.\u0022 (x5)"}
+{"type":"status","tick":40003,"wallTimeMs":1792881438190,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 Nancy Wilson is now loyal to you!"}
+{"type":"chronicle","tick":40003,"wallTimeMs":1792881438190,"kind":"PawnRelationshipIncrease","text":"Nancy Wilson of Fortresstown is now loyal to you."}
+{"type":"status","tick":40035,"wallTimeMs":1792881439363,"text":"You gave Nancy Wilson 1 apple. Nancy Wilson (Loyal): \u0022I\u0027ll save this for later. Thanks.\u0022 (x2)"}
+{"type":"status","tick":40067,"wallTimeMs":1792881440610,"text":"You gave Nancy Wilson 5 wood. Nancy Wilson (Loyal): \u0022Wood is always useful. Thanks.\u0022"}
+{"type":"status","tick":40095,"wallTimeMs":1792881441768,"text":"Nancy Wilson left Fortresstown and joined Townton! Members: 10. Fortresstown resents it: relations Neutral (\u002B13)."}
+{"type":"chronicle","tick":40095,"wallTimeMs":1792881441768,"kind":"NationLeave","text":"Nancy Wilson left Fortresstown."}
+{"type":"chronicle","tick":40095,"wallTimeMs":1792881441768,"kind":"NationJoin","text":"Nancy Wilson threw in their lot with Townton."}
+{"type":"chronicle","tick":40095,"wallTimeMs":1792881441768,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now neutral."}
+{"type":"chronicle","tick":40251,"wallTimeMs":1792881447670,"kind":"NationRelationChange","text":"Castlewood and Eastland have become rivals over their border."}
+{"type":"status","tick":40463,"wallTimeMs":1792881456011,"text":"You are back on your own land."}
+{"type":"chronicle","tick":40703,"wallTimeMs":1792881464798,"kind":"StallBuilt","text":"Trade came to Blackshire: Tilly Roberts built a stall."}
+{"type":"chronicle","tick":40703,"wallTimeMs":1792881464798,"kind":"StallBuilt","text":"A new stall opened in the market of Northshire, built by Ella Wilson. The market is now full."}
+{"type":"chronicle","tick":41003,"wallTimeMs":1792881474858,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":41003,"wallTimeMs":1792881474858,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":41003,"wallTimeMs":1792881474858,"kind":"NationRelationChange","text":"Relations between Eastland and Castlewood are now neutral."}
+{"type":"chronicle","tick":41251,"wallTimeMs":1792881484055,"kind":"NationRelationChange","text":"Southerntown and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":41251,"wallTimeMs":1792881484055,"kind":"NationRelationChange","text":"Towntown and Blackshire have become rivals over their border."}
+{"type":"chronicle","tick":41503,"wallTimeMs":1792881492792,"kind":"NationRelationChange","text":"Fortresstown and Castlewood have become rivals over their border."}
+{"type":"chronicle","tick":41603,"wallTimeMs":1792881495984,"kind":"StallBuilt","text":"Tilly Roberts built a market stall in Blackshire."}
+{"type":"chronicle","tick":41651,"wallTimeMs":1792881497556,"kind":"StallBuilt","text":"Trade came to Smallport: Bob Walker built a stall."}
+{"type":"chronicle","tick":41703,"wallTimeMs":1792881499195,"kind":"StallBuilt","text":"A new stall opened in the market of Smallport, built by Bob Walker. The market is now full."}
+{"type":"chronicle","tick":41751,"wallTimeMs":1792881500642,"kind":"NationRelationChange","text":"Relations between Townton and Fortresstown are now friendly against a common enemy."}
+{"type":"save","tick":42003,"wallTimeMs":1792881509139,"count":7}
+{"type":"status","tick":42003,"wallTimeMs":1792881509139,"text":"Autosaved."}
+{"type":"chronicle","tick":42351,"wallTimeMs":1792881519917,"kind":"StallBuilt","text":"A new stall opened in the market of Blackshire, built by Tilly Roberts. The market is now full."}
+{"type":"chronicle","tick":43003,"wallTimeMs":1792881540033,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":43003,"wallTimeMs":1792881540033,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":43503,"wallTimeMs":1792881558749,"kind":"NationRelationChange","text":"Smallport and Northshire are now hostile."}
+{"type":"chronicle","tick":43903,"wallTimeMs":1792881572140,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Peggy Smith."}
+{"type":"chronicle","tick":44003,"wallTimeMs":1792881575546,"kind":"NationRaid","text":"Raiders from Smallport struck Northshire, taking 5 coins."}
+{"type":"chronicle","tick":44751,"wallTimeMs":1792881600906,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Bob Thomas."}
+{"type":"chronicle","tick":45003,"wallTimeMs":1792881609705,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":45003,"wallTimeMs":1792881609705,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":46251,"wallTimeMs":1792881652643,"kind":"StallBuilt","text":"Trade came to Greenburg: Bella Thomas built a stall. The market is now full."}
+{"type":"chronicle","tick":46251,"wallTimeMs":1792881652643,"kind":"NationRelationChange","text":"Towntown and Blackshire are now hostile."}
+{"type":"chronicle","tick":46503,"wallTimeMs":1792881661183,"kind":"NationRelationChange","text":"Castlewood and Fortresstown are now hostile."}
+{"type":"chronicle","tick":47003,"wallTimeMs":1792881678442,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":47003,"wallTimeMs":1792881678442,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":47003,"wallTimeMs":1792881678442,"kind":"NationRaid","text":"Castlewood raided Fortresstown and carried off 2 coins, 5 wood."}
+{"type":"chronicle","tick":47003,"wallTimeMs":1792881678442,"kind":"NationRaid","text":"Towntown raided Blackshire and carried off 5 coins."}
+{"type":"save","tick":48003,"wallTimeMs":1792881713282,"count":8}
+{"type":"status","tick":48003,"wallTimeMs":1792881713282,"text":"Autosaved."}
+{"type":"chronicle","tick":48503,"wallTimeMs":1792881731143,"kind":"NationRelationChange","text":"Eastland and Smallport have formed an alliance."}
+{"type":"chronicle","tick":48503,"wallTimeMs":1792881731143,"kind":"NationRelationChange","text":"Fortham and Northshire have formed an alliance."}
+{"type":"status","tick":49003,"wallTimeMs":1792881749524,"text":"Blackshire has fallen and been disbanded."}
+{"type":"chronicle","tick":49003,"wallTimeMs":1792881749524,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":49003,"wallTimeMs":1792881749524,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":49003,"wallTimeMs":1792881749524,"kind":"NationRaid","text":"Fortham raided Townfield and carried off 5 coins."}
+{"type":"chronicle","tick":49003,"wallTimeMs":1792881749524,"kind":"SettlementCapture","text":"Towntown captured a camp from Blackshire."}
+{"type":"chronicle","tick":49003,"wallTimeMs":1792881749524,"kind":"NationDisband","text":"With its last camp taken by Towntown, Blackshire passed into history."}
+{"type":"objective_completed","tick":51003,"wallTimeMs":1792881818902,"number":7,"id":"grow-nation","title":"Reach the Village era","ticksTaken":43402}
+{"type":"era_changed","tick":51003,"wallTimeMs":1792881818902,"from":"Camp","to":"Village"}
+{"type":"status","tick":51003,"wallTimeMs":1792881818902,"text":"Summer has come. Long days; chickens hatch. A new era: Townton is now a Village. Unlocked: Workshop (craft planks and bricks), up to 3 settlements. Objective complete: Reach the Village era. \u002B100 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRelationChange","text":"Whitefield and Townfield have become rivals over their border."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRelationChange","text":"Relations between Townfield and Whitefield are now neutral."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Bigland raided Northland and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Bigland struck Yellowville, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Bigland struck Northville, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Bigland struck Southerntown, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Bigland struck Fortfield, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Greenburg struck Northland, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Northland struck Blueland, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Smalltown raided Northland and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Whitefield struck Yellowville, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Yellowville struck Townfield, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Fortham struck Townfield, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Townfield struck Blueham, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Westford struck Northville, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Northville struck Bluewood, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Westford raided Fortresstown and carried off 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Westford struck Towntown, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Greenburg struck Smalltown, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Newford struck Fortresstown, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Castlewood raided Fortresstown and carried off 2 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Southerntown struck Bluewood, taking 3 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Southerntown struck Lowerland, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Fortfield struck Lowerland, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Raiders from Towntown struck Eastland, taking 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Eastland raided Northshire and carried off 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Smallport raided Fortham and carried off 5 coins."}
+{"type":"chronicle","tick":51003,"wallTimeMs":1792881818902,"kind":"NationRaid","text":"Smallport raided Northshire and carried off 5 coins."}
+{"type":"objective_completed","tick":51051,"wallTimeMs":1792881820522,"number":8,"id":"sell-resources","title":"Sell resources at market","ticksTaken":48}
+{"type":"status","tick":51051,"wallTimeMs":1792881820522,"text":"Objective complete: Sell resources at market. \u002B50 coins."}
+{"type":"chronicle","tick":51503,"wallTimeMs":1792881835659,"kind":"NationRelationChange","text":"Newford and Castlewood swore an alliance."}
+{"type":"chronicle","tick":51643,"wallTimeMs":1792881840982,"kind":"Caravan","text":"A caravan from Whitefield sold 13 stone at the Town of Blueland for 410 coins."}

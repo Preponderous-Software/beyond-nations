@@ -1,0 +1,126 @@
+{
+  "session": "s02",
+  "goal": "Survive the first winter and check the hunger readouts agree (#410): found or join a nation early; each time you feed, compare the HUD hunger banner (here vs elsewhere), the 'Feed Residents (N hungry)' button and the 'You fed N' result, and say whether they make sense together. Count hunger deaths from events.jsonl and note which were leaders.",
+  "build": {"version": "0.6.2", "commit": "edb1a62"},
+  "seed": 103,
+  "durationSec": 2097,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "'You fed N' reports residents as fed who are still counted hungry right after (fed 7 then 4 more with 8 present)",
+      "detail": "Tick 217390 in the Town of Yellowton: banner '7 members hungry: all here', button 'Feed Residents (7 hungry)'; click -> 'You fed 7 residents' (apples 15->8). The very next frame the banner says '4 members hungry: all here' and the button 'Feed Residents (4 hungry)'. A second click at 217562 -> 'You fed 4 residents' (apples 8->4). 11 feedings in 172 ticks while the nameplate reads '8 here, 9/20 residents', so at least 3 people were reported fed but stayed hungry. The same pattern (smaller) at 206038 (fed 6, then 3 more, 8 here), 221790 (7 then 1) and 224798 (3 then 1). Banner and button always agree with each other; it is the 'You fed N' result that does not mean 'N are no longer hungry'. Expected: one click leaves 0 hungry among those present, or the result says some still need food.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season winter; N to create a nation; gather 50 wood, F to found, E to enter; build 2-3 houses (K K); leave for ~2000 ticks, H home, E, click Feed Residents (553,476) and look at the banner/button straight after",
+      "screenshot": "shots/feed13.png",
+      "tick": 217390
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Action button rows overflow the window bottom in a settlement, hiding Feed Residents",
+      "detail": "In the second settlement with a pawn nearby the action panel grows to 5 rows; the bottom row (Withdraw Funds / Collect Stockpile / Exit Settlement / Feed Residents) is cut off by the 540px window edge and Leave Nation disappears. Feed Residents is the key winter action.",
+      "repro": "after reaching Village era, found a 2nd settlement (F 250+ away), enter it (E) and wait for a pawn to come near",
+      "screenshot": "shots/t33.png",
+      "tick": 233894
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Season panel says 'Winter: no harvests' but trees yield apples all winter",
+      "detail": "Every tree chopped in winter gave 1-3 apples ('Gathered 6 wood and 3 apples from tree'); trees were my whole food supply. Either the label is misleading or winter food is unintentionally easy.",
+      "repro": "start with --season winter; walkto tree; e",
+      "screenshot": "shots/winter_apples.png",
+      "tick": 199476
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Purchase Food error gives two possible reasons and contradicts the listed apple price",
+      "detail": "At my own market with 231 coins: 'No one is selling food at this market or you do not have enough money to purchase food.' The Market panel lists Apples at 80 buy. The player cannot tell which reason applies.",
+      "repro": "inside own settlement in winter click Purchase Food (66,445)",
+      "screenshot": "shots/purchase_food_ambiguous.png",
+      "tick": 209286
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement tier 'Town' vs nation era 'Camp' read as contradictory",
+      "detail": "After a 3rd house: 'The settlement is now a Town!' and 'Tier: Town (5 buildings)', but the Era panel still says 'Camp (1/4)' and Objective 7 still asks to 'Reach the Village era'.",
+      "repro": "build 3 houses + farm in the first settlement before 10 members",
+      "screenshot": "shots/tier_vs_era.png",
+      "tick": 206558
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "H (Teleport Home) can land outside interact range, so H then E fails",
+      "detail": "H put me at (774.7,-12.7), ~9 units from the settlement centre; E said 'No entities within range to interact with.' and the 'Enter Settlement' button looked enabled but also failed. Other times H+E worked.",
+      "repro": "from far away press h, then e",
+      "screenshot": "shots/home_out_of_reach.png",
+      "tick": 215278
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 'Build a market stall' completes when an AI pawn builds one",
+      "detail": "Objective 6 completed at tick 187200 because Victor Evans built a stall while I had 8/20 wood; the text said 'press B inside your settlement'. The Market panel also lists merchants that do not match the chronicle's builders.",
+      "repro": "found settlement, enter, wait",
+      "screenshot": "shots/stall.png",
+      "tick": 187200
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Death toasts for foreign pawns lack the nation and re-announce earlier deaths",
+      "detail": "Toasts such as 'Olivia Thomas has died.' appear for other nations' pawns with no nation named. Zach Lewis is announced at 224046, again in 'Zach Lewis and Jasmine Watson have died.' at 224410, then '3 pawns have died. Isabella Roberts is now the leader of Smallshire.' at 224534.",
+      "repro": "play through winter; watch the top toast",
+      "screenshot": "shots/t27.png",
+      "tick": 224534
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "AI nations starve heavily in winter: 12 hunger deaths, 4 of them leaders",
+      "detail": "12 PawnDeath (all hunger, all 'within the walls') in AI nations, none in mine. Leaders: Frank Taylor (Bigfield), Xavier Thomas (Smallshire), Wendy Walker and then her successor Grace Lewis 2800 ticks later (Bigville). AI settlements cannot feed themselves while trees still give apples.",
+      "repro": "grep PawnDeath out/events.jsonl after a winter run with seed 103",
+      "screenshot": "shots/final_state.png",
+      "tick": 230010
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress bar label clipped on the left ('nbers 9/10 • Buildings 2/2')",
+      "detail": "Objective 7 bar text is right-aligned and overflows to the left, showing 'nbers' instead of 'Members'. The settlement nameplate ('8 here, 9/16 residents') also renders huge across the top HUD.",
+      "repro": "reach objective 7",
+      "screenshot": "shots/obj7_clipped.png",
+      "tick": 187528
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 9,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 31.0,
+      "Eat something": 32.0,
+      "Create or join a nation": 33.0,
+      "Found a settlement": 139.0,
+      "Enter your settlement": 142.0,
+      "Build a market stall": 144.0,
+      "Reach the Village era": 900.0,
+      "Sell resources at market": 970.0,
+      "Found a second settlement": 1023.0
+    },
+    "secondsToObjectiveNote": "game seconds since world start (world tick 180000)",
+    "springReachedTick": 231002,
+    "feedClicks": 20,
+    "feedsWhereBannerButtonResultAgreed": 20,
+    "feedsFollowedImmediatelyByMoreHungryThanPresentAllows": 2,
+    "hungerDeathsTotal": 12,
+    "hungerDeathsLeaders": 4,
+    "hungerDeathsOwnNation": 0,
+    "applesSpentFeeding": 69
+  },
+  "fun": 3,
+  "verdict": "The hunger readouts mostly agree: the banner ('N hungry: X here, Y outside the walls' / 'all in the Town of Yellowton' when away) and the Feed Residents (N hungry) button matched every time, and 'You fed N' always equalled the button count. The problem is what 'fed' means: several times the banner showed new hungry people the very next frame, once adding up to 11 feedings for 8 people present, so 'You fed 7' does not mean they are fed. Winter itself was easy for the player (trees give apples despite 'no harvests'; 0 deaths), while AI nations lost 12 to hunger, including 4 leaders."
+}

@@ -1,0 +1,27 @@
+{
+  "session": "s04",
+  "dir": "/tmp/playtest-beyond-nations/20261024-1610/s04",
+  "profile": "beyond-nations",
+  "display": ":105",
+  "window": "2097159",
+  "size": "960x540",
+  "seed": "1",
+  "args": [],
+  "command": [
+    "/root/beyond-nations/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
+    "--width",
+    "960",
+    "--height",
+    "540",
+    "--no-usage-reporting",
+    "--seed",
+    "1",
+    "--playtest-out",
+    "/tmp/playtest-beyond-nations/20261024-1610/s04/out"
+  ],
+  "probe": true,
+  "ticksPerSecond": 50,
+  "startedAtMs": 1792879913360,
+  "version": "0.6.2",
+  "commit": "edb1a62"
+}
