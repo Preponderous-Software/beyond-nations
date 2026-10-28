@@ -40,6 +40,30 @@ the time of day, its sky, cascaded shadows and fog.
   shows an "exited" panel (play again, or back to the arcade); F12 downloads a
   PNG; the window size is the page's.
 
+### Loading screen
+
+The page loads behind the Strata web kit's loading shell
+(`wwwroot/strata-kit/strata-loader.js`, Strata's `web/kit/strata-loader.js`
+vendored at the commit in `strata-kit/PIN`, with its `LICENSE` and
+`SHA256SUMS`; `strata-kit/update.sh <full sha>` re-vendors it). The .NET
+runtime fetches its own files, so the page shows the shell with
+`StrataLoader.show()` and drives its bar with `StrataLoader.progress()`:
+
+- **Backdrop:** the /play trailer's first frame
+  (`https://danielstephenson.dev/trailers/beyond-nations.jpg`), blurred.
+- **Progress:** downloading is the first 90%, whichever is further of the
+  runtime's count of boot files fetched (`onDownloadResourceProgress`) and the
+  compressed bytes (`webhost/loader.js`) against the usual 5 MB, with the
+  megabytes so far; starting the runtime is 95%; the game's `ready()` fades
+  the shell out. The bar never moves back.
+- **Fallback:** without WebGL 2, or when the game fails before it is up, the
+  trailer plays (the still under `prefers-reduced-motion`) with the reason
+  and a link back to the arcade. After the game is up, a failure shows the
+  error panel (Reload, Report it) as before.
+
+The controls are in the game's own Controls panel (`/`, or ? on a touch
+screen), which used to be repeated on the loading panel.
+
 ### Sound
 
 The browser build has sound; the desktop does not yet (see
@@ -288,6 +312,12 @@ browser's stack trace then names each frame. For this trap the top frame was
   controls list; Menu pauses and the touch Resume resumes; the first tip shows; and the
   page has neither scrolled nor zoomed. On its side, a staged world event
   (`?stage-event`) hides the controls until a tap on a choice answers it.
+
+Both profiles also check the loading screen: Strata's shell is up while the
+game loads, its bar only moves forward, and it is gone (and lets taps through)
+once the title screen is drawn. `--no-webgl2` instead runs the page with
+WebGL 2 taken away and checks that the shell shows the trailer with the reason
+and that none of the runtime is downloaded.
 
 Screenshots and the console log are uploaded as the `web-smoke` artifact.
 

@@ -7,6 +7,11 @@
   --button: #2f5d9e;
   --button-text: #ffffff;
   color-scheme: dark;
+  /* the Strata loading shell (strata-kit/strata-loader.js) in the game's colours */
+  --sk-loader-bg: var(--bg);
+  --sk-loader-fg: var(--text);
+  --sk-loader-panel: var(--panel);
+  --sk-loader-accent: var(--accent);
 }
 
 * { box-sizing: border-box; }
@@ -56,25 +61,6 @@ html, body {
 .panel .sub { margin: 0 0 16px; color: var(--muted); }
 .panel .small { font-size: 0.9rem; color: var(--muted); margin-bottom: 0; }
 .panel a { color: var(--accent); }
-
-.bar {
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-}
-#bar-fill {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: var(--accent);
-  transition: width 0.2s ease;
-}
-
-.controls { margin-top: 16px; }
-.controls summary { cursor: pointer; color: var(--muted); }
-.controls ul { margin: 8px 0 0; padding-left: 20px; }
-.controls li { margin: 2px 0; }
 
 kbd {
   display: inline-block;

@@ -10,6 +10,12 @@
 // console error, page error or failed request.
 // Writes title.png, menu.png, world.png and result.json to <output-dir>.
 //
+// Every run also checks the loading screen (Strata's loading shell,
+// wwwroot/strata-kit): it is up while the game loads, its bar only moves
+// forward, and it is gone once the title is drawn. --no-webgl2 instead loads
+// the page with WebGL 2 taken away and checks that the shell shows the
+// trailer with the reason, and that none of the runtime is downloaded.
+//
 // --phone runs the same page as a phone held upright (390x844, touch, no
 // hover) and --phone-landscape as one on its side (844x390), and plays it
 // with the touch controls instead (docs/WEB.md, "Touch controls"): taps
@@ -25,8 +31,9 @@ const url = process.argv[2];
 const out = process.argv[3] || "smoke-out";
 const landscape = process.argv.includes("--phone-landscape");
 const phone = landscape || process.argv.includes("--phone");
+const noWebgl2 = process.argv.includes("--no-webgl2");
 if (!url) {
-  console.error("usage: node smoke.mjs <url> <output-dir> [--phone | --phone-landscape]");
+  console.error("usage: node smoke.mjs <url> <output-dir> [--phone | --phone-landscape] [--no-webgl2]");
   process.exit(2);
 }
 fs.mkdirSync(out, { recursive: true });
@@ -62,13 +69,43 @@ await page.addInitScript(() => {
   };
 });
 
+// The loading shell's bar, sampled from the first script on: every value of
+// aria-valuenow it showed, in order, and whether the shell was ever up.
+await page.addInitScript(() => {
+  const seen = { up: false, values: [] };
+  window.__shellSeen = seen;
+  const sample = () => {
+    const bar = document.querySelector(".sk-loader .sk-bar");
+    if (document.querySelector(".sk-loader:not(.sk-done):not([hidden])")) seen.up = true;
+    const now = bar && bar.getAttribute("aria-valuenow");
+    if (now != null && seen.values[seen.values.length - 1] !== Number(now)) seen.values.push(Number(now));
+  };
+  const timer = setInterval(sample, 25);
+  addEventListener("DOMContentLoaded", () => {
+    new MutationObserver(sample).observe(document.body, { subtree: true, attributes: true, childList: true });
+  });
+  setTimeout(() => clearInterval(timer), 300000);
+});
+if (noWebgl2) {
+  await page.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (kind, ...rest) {
+      return kind === "webgl2" ? null : getContext.call(this, kind, ...rest);
+    };
+  });
+}
+
 page.on("console", (message) => {
   const line = `[${message.type()}] ${message.text()}`;
   log.push(line);
   if (message.type() === "error") problems.push("console error: " + message.text());
 });
 page.on("pageerror", (error) => problems.push("page error: " + error.message));
-page.on("requestfailed", (request) => problems.push("request failed: " + request.url() + " " + (request.failure()?.errorText || "")));
+page.on("requestfailed", (request) => {
+  // the fallback's trailer clip may be cut short by the browser; that is not the page's fault
+  if (noWebgl2 && request.resourceType() === "media") return;
+  problems.push("request failed: " + request.url() + " " + (request.failure()?.errorText || ""));
+});
 page.on("response", (response) => {
   if (response.status() >= 400) problems.push(`HTTP ${response.status()}: ${response.url()}`);
 });
@@ -86,12 +123,45 @@ async function waitFor(predicate, what, timeout = 120000) {
   throw new Error(`timed out waiting for ${what}; last status ${JSON.stringify(last)}; problems ${JSON.stringify(problems)}`);
 }
 
-const result = { url, phone, landscape, ok: false };
+const result = { url, phone, landscape, noWebgl2, ok: false };
+const FINISHED = Symbol("finished");
 try {
   const started = Date.now();
+  if (noWebgl2) {
+    // Without WebGL 2 the shell shows the trailer and says why, and the
+    // runtime is never fetched.
+    const runtimeRequests = [];
+    page.on("request", (request) => { if (/\/_framework\//.test(request.url())) runtimeRequests.push(request.url()); });
+    await page.goto(url, { waitUntil: "load" });
+    await page.waitForSelector(".sk-loader.sk-fallback", { timeout: 30000 });
+    await page.waitForTimeout(1000);
+    result.fallback = await page.evaluate(() => ({
+      message: document.querySelector(".sk-loader .sk-msg")?.textContent || "",
+      media: document.querySelector(".sk-loader .sk-media")?.tagName || null,
+      link: document.querySelector(".sk-loader .sk-box a")?.href || null,
+      state: window.StrataLoader?.state,
+    }));
+    await page.screenshot({ path: path.join(out, "no-webgl2.png") });
+    if (!/WebGL 2/.test(result.fallback.message)) throw new Error("the fallback does not say why: " + JSON.stringify(result.fallback));
+    if (result.fallback.media !== "VIDEO") throw new Error("the fallback does not show the trailer: " + JSON.stringify(result.fallback));
+    if (!/danielstephenson\.dev\/play/.test(result.fallback.link || "")) throw new Error("the fallback has no way back to the arcade");
+    if (runtimeRequests.length) throw new Error("the runtime was fetched without WebGL 2: " + runtimeRequests.slice(0, 3).join(", "));
+    if (problems.length) throw new Error(problems.join("\n"));
+    result.ok = true;
+    throw FINISHED;  // nothing more to check: skip the game
+  }
   await page.goto(url, { waitUntil: "load" });
   result.loadEventMs = Date.now() - started;
   await waitFor((s) => s.screen === "TITLE" && s.frames >= 5, "the title screen");
+  // The loading screen: up while loading, its bar only moving forward to
+  // 100, then gone (hidden) so it takes no taps or clicks.
+  await page.waitForSelector(".sk-loader", { state: "hidden", timeout: 5000 });
+  result.shell = await page.evaluate(() => window.__shellSeen);
+  const bar = result.shell.values;
+  if (!result.shell.up) throw new Error("the loading screen never showed");
+  if (!bar.length || bar[bar.length - 1] !== 100 || bar.some((v, i) => i && v < bar[i - 1])) {
+    throw new Error("the loading bar did not move forward to 100: " + JSON.stringify(bar));
+  }
   result.titleMs = Date.now() - started;
   result.transferredBytes = await page.evaluate(() =>
     performance.getEntriesByType("resource").reduce((sum, entry) => sum + (entry.transferSize || 0), 0)
@@ -435,8 +505,10 @@ try {
   if (problems.length) throw new Error(problems.join("\n"));
   result.ok = true;
 } catch (error) {
-  result.error = String(error && error.message ? error.message : error);
-  await page.screenshot({ path: path.join(out, "failure.png") }).catch(() => {});
+  if (error !== FINISHED) {
+    result.error = String(error && error.message ? error.message : error);
+    await page.screenshot({ path: path.join(out, "failure.png") }).catch(() => {});
+  }
 } finally {
   result.problems = problems;
   fs.writeFileSync(path.join(out, "result.json"), JSON.stringify(result, null, 2));

@@ -62,6 +62,10 @@ jobs:
           test -s web-site/index.html
           test -s web-site/main.js
           test -s web-site/webhost/host.js
+          # Strata's loading shell, as vendored (wwwroot/strata-kit/PIN)
+          (cd src/BeyondNations.Web/wwwroot/strata-kit && sha256sum -c SHA256SUMS)
+          cmp src/BeyondNations.Web/wwwroot/strata-kit/strata-loader.js web-site/strata-kit/strata-loader.js
+          test ! -e web-site/strata-kit/update.sh
           test -s web-site/_framework/dotnet.js
           test -s web-site/_framework/dotnet.native.wasm
           test -s web-site/_framework/dotnet.native.wasm.gz
@@ -88,6 +92,7 @@ jobs:
           node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/desktop"
           node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/phone" --phone
           node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/phone-landscape" --phone-landscape
+          node smoke.mjs http://127.0.0.1:8080/ "$GITHUB_WORKSPACE/smoke-out/no-webgl2" --no-webgl2
 
       - name: Upload smoke screenshots
         if: always()

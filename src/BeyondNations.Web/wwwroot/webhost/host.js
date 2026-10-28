@@ -6,9 +6,11 @@
 //   const host = await startWebHost({ canvas, ui, assembly: "BeyondNations.Web",
 //                                    exportsName: "beyondnations.web.host.WebHostExports" });
 //
-// ui: { progress(loadedBytes), ready(), fatal(message), quit(), status(obj),
+// ui: { progress(loadedBytes), resources(loaded, total), starting(), ready(), fatal(message), quit(), status(obj),
 //       log(level, message), touchMode(mode), inputHooks } -- every member
-//       optional. touchMode is the game asking the page to store its
+//       optional. resources() is the runtime's own count of the boot files
+//       it has fetched, of how many; starting() is the downloads done and the
+//       runtime starting. touchMode is the game asking the page to store its
 //       touch-controls setting; the page answers with host.touchState().
 // modules: { name: object } -- extra JSImport modules the game's own code
 //       imports (Beyond Nations' "bn-audio"), registered before Main runs.
@@ -51,6 +53,8 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
     // ("strata info: ..."), so those go to the log instead; anything else
     // native code prints on stderr is still an error.
     .withModuleConfig({
+      // the runtime's count of boot files fetched, of how many
+      onDownloadResourceProgress(loaded, total) { ui.resources?.(loaded, total); },
       printErr(text) {
         if (/^strata (info|debug):/.test(text)) console.log(text);
         else console.error(text);
@@ -58,6 +62,7 @@ export async function startWebHost({ canvas, ui = {}, assembly, exportsName, fra
     })
     .withConfig({ disableIntegrityCheck: true })
     .create();
+  ui.starting?.();
 
   const query = window.location.search || "";
   runtime.setModuleImports("webhost", {

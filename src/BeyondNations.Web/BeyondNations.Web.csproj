@@ -109,6 +109,12 @@
     <Content Include="$(DesktopDir)assets/fonts/LICENSE-DejaVu.txt" Link="wwwroot/LICENSE-DejaVu.txt" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Strata's loading shell is served with its LICENSE, PIN and SHA256SUMS;
+         the script that re-vendors it is not (docs/WEB.md, "Loading screen"). -->
+    <Content Update="wwwroot/strata-kit/update.sh" CopyToPublishDirectory="Never" CopyToOutputDirectory="Never" />
+  </ItemGroup>
+
   <Import Project="native/cimgui.targets" />
   <Import Project="native/strata.targets" />
 
