@@ -180,10 +180,11 @@ namespace beyondnations.desktop.ui {
                     new CollectProfitFromStallCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(numCoins > 0));
 
-                int numApples = stallInventory.getNumItems(ItemType.APPLE);
-                commands.Add(new WorldCommand("Collect Food (" + numApples + ")", CommandGroup.Stall, () =>
+                // every kind of food, not just apples: the command collects the most nourishing first (#419)
+                int numFood = FoodItems.countFood(stallInventory);
+                commands.Add(new WorldCommand("Collect Food (" + numFood + ")", CommandGroup.Stall, () =>
                     new CollectFoodFromStallCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(numApples > 0));
+                    .setEnabled(numFood > 0));
             }
 
             if (leads) {
