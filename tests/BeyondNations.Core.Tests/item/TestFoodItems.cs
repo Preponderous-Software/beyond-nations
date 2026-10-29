@@ -191,5 +191,29 @@ namespace beyondnationstests {
             // run / check
             Assert.Null(FoodItems.getMostNourishingFood(inventory));
         }
+
+        [Fact]
+        public void testCountFoodAddsEveryKindOfFoodAndNothingElse() {
+            // prepare
+            Inventory inventory = new Inventory(0);
+            inventory.addItem(ItemType.APPLE, 6);
+            inventory.addItem(ItemType.CHICKEN_MEAT, 4);
+            inventory.addItem(ItemType.COOKED_MEAT, 2);
+            inventory.addItem(ItemType.WOOD, 9);
+            inventory.addItem(ItemType.COIN, 30);
+
+            // run / check
+            Assert.Equal(12, FoodItems.countFood(inventory));
+        }
+
+        [Fact]
+        public void testCountFoodIsZeroWithoutFood() {
+            // prepare
+            Inventory inventory = new Inventory(0);
+            inventory.addItem(ItemType.STONE, 3);
+
+            // run / check
+            Assert.Equal(0, FoodItems.countFood(inventory));
+        }
     }
 }
