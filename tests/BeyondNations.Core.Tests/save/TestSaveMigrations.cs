@@ -47,6 +47,24 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testTheVersion5Fixture_FromBeforeEnvoys_LoadsWithEveryEnvoyHome() {
+            // format 5 is what 0.6.3 writes; format 6 adds the realm's envoys (#424)
+            byte[] file = File.ReadAllBytes(SaveFixtures.pathFor(5));
+            Assert.Equal(5, SaveGame.check(file).FormatVersion);
+            Simulation loaded = SaveGame.decode(file);
+            List<Nation> nations = new List<Nation>(loaded.getNationRepository().getNations());
+            foreach (Nation a in nations) {
+                foreach (Nation b in nations) {
+                    Assert.Equal(0, loaded.getRealm().getEnvoyTicksLeft(a, b));
+                }
+            }
+            for (int i = 0; i < 500; i++) {
+                loaded.fixedUpdate(1f / 50f);
+            }
+            Assert.Null(WorldComparer.difference(loaded, SaveGame.decode(SaveGame.encode(loaded, "test"))));
+        }
+
+        [Fact]
         public void testTheVersion1Fixture_FromBeforeEras_LoadsAtTheCamp() {
             Simulation loaded = SaveGame.decode(File.ReadAllBytes(SaveFixtures.pathFor(1)));
             EraTracker eras = loaded.getEraTracker();

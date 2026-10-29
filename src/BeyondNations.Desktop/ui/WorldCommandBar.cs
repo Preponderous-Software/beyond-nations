@@ -285,7 +285,7 @@ namespace beyondnations.desktop.ui {
                     new OfferPeaceCommand(nationRepository, realm).execute(player, owner)));
             }
             commands.Add(new WorldCommand("Denounce " + owner.getName(), CommandGroup.Drastic, () =>
-                new DenounceNationCommand(nationRepository, diplomacy).execute(player, owner)));
+                new DenounceNationCommand(nationRepository, diplomacy, realm).execute(player, owner)));
             // after Denounce, which is always there, so war coming or going
             // (declared, or peace made) moves nothing on the red row
             if (NationDiplomacy.canDeclareWar(realm, own, owner)) {

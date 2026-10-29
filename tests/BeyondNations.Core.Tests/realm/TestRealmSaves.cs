@@ -76,6 +76,10 @@ namespace beyondnationstests {
             Assert.Equal(1, loaded.getLevel(loadedNation, LawType.CONSCRIPTION));
             Assert.True(loaded.isAtWar(loadedNation, loadedHostile));
             Assert.True(loaded.hasTruce(loadedNation, loadedFriendly));
+            // the envoy sent with the declaration of war is still away (#424)
+            Nation originalNation = original.getNationRepository().getNation(original.getPlayer().getNationId());
+            Assert.True(original.getRealm().getEnvoyTicksLeft(originalNation, staged.hostile) > 0);
+            Assert.Equal(original.getRealm().getEnvoyTicksLeft(originalNation, staged.hostile), loaded.getEnvoyTicksLeft(loadedNation, loadedHostile));
             Assert.Equal(original.getRealm().getLineage()[0].getName(), loaded.getLineage()[0].getName());
             Assert.Equal(original.getPlayer().getName(), copy.getPlayer().getName());
             // the succession screen was not yet shown when the world was saved: it is still to show
