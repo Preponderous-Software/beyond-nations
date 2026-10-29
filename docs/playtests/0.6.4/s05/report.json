@@ -1,0 +1,96 @@
+{
+  "session": "s05",
+  "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 105,
+  "durationSec": 1489,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "NPCs fill all 4 market stalls in a new settlement before the player can build one; B says 'Market is full'",
+      "detail": "I founded a settlement at tick 5750 with 4 wood left (founding takes 50 of the 54 I had), then left to chop the 20 wood a stall needs. By tick 6802 NPCs (Dave Robinson, Mike Roberts, Lily Wood) had built all 4 stalls in MY settlement ('The market is now full'). Back inside with 22 wood/5 stone, B gave 'Market is full. Cannot build stall.' The player never gets to build a stall in their own settlement. Expected: a stall slot kept for the leader, or NPCs waiting until the player has had a chance.",
+      "repro": "pt start --seed 105; gather ~54 wood; N; walk to open ground; F; E (enter); Exit Settlement; chop 20 wood (~1300 ticks); walkto settlement; e; b",
+      "screenshot": "shots/market-full.png",
+      "tick": 7118
+    },
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Objective 6 'Build a market stall' completes when an NPC builds a stall, not the player",
+      "detail": "objective_completed build-stall fired at tick 6050, the same tick the chronicle says 'Dave Robinson built a market stall in Easttown'. I was outside chopping wood at the time and had built nothing. The tutorial step was skipped, the +50 coin reward was paid for nothing, and B then refuses because the market is full.",
+      "repro": "As above; watch pt events for objective_completed number 6 while out of the settlement",
+      "screenshot": "shots/market-full.png",
+      "tick": 6050
+    },
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Build-confirm window is ~1 game second, so a normal second click times out at low tps",
+      "detail": "Build Farm asks you to 'Click again to confirm'. Three separate clicks on 'Confirm Build Farm' failed with 'Not confirmed in time, so nothing was done.' and the button re-armed. Only two clicks fired 1.7 s apart in real time worked. The window looks like ~50 ticks, which is several real seconds at 9 tps but too short with 2 fps hover-then-click. It should be measured in real time (or be longer).",
+      "repro": "Inside own settlement with 25 wood/10 stone: pt click 473 445; pt wait 2; pt click 473 445 -> re-arms instead of building",
+      "screenshot": "shots/farm-confirm.png",
+      "tick": 8086
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Selling in own settlement is coin-starved; Sell Resources sells one unit with no choice",
+      "detail": "Right after founding, Sell Resources gave 'No merchant here can pay: the richest has 9 coins'. Buying food (25 coins for 1 apple) gave the merchants enough to then buy 1 wood for 20. After that: 'richest has 6 coins', while Market Info showed '4/4 stalls, 40 coins'. I had 437 coins. I could not choose which good or how many to sell. The messages are clear and helpful, but trading is mostly blocked.",
+      "repro": "Inside new settlement: click Sell Resources (186,445); click Purchase Food (66,445); click Sell Resources again; again",
+      "screenshot": "shots/sell-starved.png",
+      "tick": 8906
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Storehouse/caravan gated behind Town era (Village alone needs Day 3); not reachable in a session, and not shown in era unlocks",
+      "detail": "'Send Caravan (Town era)' looks enabled. Clicking it says 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' The era box lists Village requirements (Village 0/1, Members 6/10, Stalls 2/2, Day 1/3) and Village unlocks (Workshop), but never mentions the Storehouse. With a 10-game-minute day, a caravan is at least 3+ game days away. The button should look disabled, and the era panel should show the path to the Storehouse.",
+      "repro": "Inside own settlement in Camp era: click Send Caravan (640,445); tap era box (110,58) and scroll",
+      "screenshot": "shots/caravan-gate.png",
+      "tick": 8726
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "HUD text clipped in settlement: objective hint, progress label, toast; world label overlaps HUD",
+      "detail": "Objective 6 hint 'Gather 20 wood and 5 stone' is cut off at the panel bottom. Objective 7 bar reads 'nbers 5/10' (Members). The toast 'Enter your settlemen' is truncated. The large world-space label 'N here, 3/8 residents' / 'Camp of Easttown' sits behind the top HUD. The Inventory panel covers the centre of the plaza.",
+      "repro": "Found a settlement and press E to enter; look at the top-left objective panel",
+      "screenshot": "shots/settlement-panel.png",
+      "tick": 5854
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Missing-resource message counts the stockpile without saying so",
+      "detail": "With 5 stone in inventory, K for a House (15 stone) said 'Need 0 more wood, 5 more stone'. That was only right because 5 stone sat uncollected in the stockpile. Settlement Info 'Next (K)' also changed from Farm to House between visits, while the Build Farm button was still available.",
+      "repro": "Inside settlement with 21 wood/5 stone and 5 stone in the stockpile: pt key k",
+      "screenshot": "shots/kmenu.png",
+      "tick": 7666
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 25.0,
+      "Eat something": 26.04,
+      "Create or join a nation": 28.04,
+      "Found a settlement": 115.0,
+      "Enter your settlement": 117.0,
+      "Build a market stall": 121.0
+    },
+    "stallsBuiltByPlayer": 0,
+    "successfulSales": 1,
+    "failedSellAttempts": 3,
+    "foodPurchases": 1,
+    "caravansSent": 0,
+    "farmConfirmAttempts": 4,
+    "finalCoins": 432,
+    "finalTick": 9010,
+    "typicalTps": 10
+  },
+  "fun": 2,
+  "verdict": "The early loop (chop, nation, found) flows well, and the error messages are good: they give spacing hints with distance and direction, and say why a merchant can't pay. But the trade goal falls apart. NPCs fill the player's own market before the player can build a stall, and the stall objective completes from their stall. Selling is starved of coins. The Storehouse and caravans sit behind the Town era, at least 3 game days away. The build-confirm window also times out at low tps (the machine was at load ~54, 2 fps / 7-15 tps; the first pt start timed out)."
+}

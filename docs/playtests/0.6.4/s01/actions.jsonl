@@ -1,0 +1,171 @@
+{"t": 1793282021827, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "101"]}
+{"t": 1793282394366, "cmd": "status", "args": []}
+{"t": 1793282411014, "cmd": "stop", "args": []}
+{"t": 1793282411189, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "101"]}
+{"t": 1793282419479, "cmd": "shot", "args": ["title"]}
+{"t": 1793282419712, "cmd": "state", "args": []}
+{"t": 1793282430341, "cmd": "key", "args": ["space"]}
+{"t": 1793282430945, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793282431075, "cmd": "shot", "args": ["menu"]}
+{"t": 1793282436056, "cmd": "click", "args": ["480", "419"]}
+{"t": 1793282436903, "cmd": "wait", "args": ["1"]}
+{"t": 1793282437991, "cmd": "shot", "args": ["controls"]}
+{"t": 1793282443448, "cmd": "click", "args": ["615", "507"]}
+{"t": 1793282444378, "cmd": "wait", "args": ["1"]}
+{"t": 1793282445509, "cmd": "shot", "args": ["controls2"]}
+{"t": 1793282450491, "cmd": "click", "args": ["615", "507"]}
+{"t": 1793282451450, "cmd": "wait", "args": ["1"]}
+{"t": 1793282452721, "cmd": "shot", "args": ["controls3"]}
+{"t": 1793282461325, "cmd": "note", "args": ["--shot", "controls_debug", "Controls page 3 of 3 lists debug cheats (F2 generate land, F3 spawn pawn, F4 coins, F5 wood, F6 teleport pawns) to every player from the main menu; a new player sees cheats as normal controls. Expected debug keys hidden in release builds or labelled as cheats."]}
+{"t": 1793282461605, "cmd": "click", "args": ["480", "507"]}
+{"t": 1793282462594, "cmd": "wait", "args": ["1"]}
+{"t": 1793282463785, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282464789, "cmd": "wait", "args": ["2"]}
+{"t": 1793282466948, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793282473306, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282474207, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1793282474734, "cmd": "wait", "args": ["2"]}
+{"t": 1793282476898, "cmd": "shot", "args": ["world0"]}
+{"t": 1793282477225, "cmd": "state", "args": []}
+{"t": 1793282483666, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793282484471, "cmd": "hold", "args": ["d", "2"]}
+{"t": 1793282486634, "cmd": "shot", "args": ["turn1"]}
+{"t": 1793282486882, "cmd": "state", "args": []}
+{"t": 1793282493424, "cmd": "click", "args": ["338", "376"]}
+{"t": 1793282494348, "cmd": "hold", "args": ["d", "3"]}
+{"t": 1793282497543, "cmd": "shot", "args": ["turn2"]}
+{"t": 1793282497893, "cmd": "state", "args": []}
+{"t": 1793282504095, "cmd": "click", "args": ["338", "376"]}
+{"t": 1793282504918, "cmd": "hold", "args": ["d", "0.6"]}
+{"t": 1793282505800, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1793282509077, "cmd": "state", "args": []}
+{"t": 1793282509350, "cmd": "shot", "args": ["walk1"]}
+{"t": 1793282513509, "cmd": "key", "args": ["e"]}
+{"t": 1793282514201, "cmd": "wait", "args": ["1"]}
+{"t": 1793282515284, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793282515698, "cmd": "state", "args": []}
+{"t": 1793282522595, "cmd": "wait", "args": ["3"]}
+{"t": 1793282525750, "cmd": "state", "args": []}
+{"t": 1793282525935, "cmd": "events", "args": ["10"]}
+{"t": 1793282532675, "cmd": "note", "args": ["--shot", "apples_mismatch", "Chopping the first tree: status says 'Gathered 5 wood and 2 apples from tree.' but the floating text says '+1 apple' and Apples shows 1; energy silently jumped 83 -> 98. Looks like one apple was auto-eaten with no message. Expected the status to match the inventory, or say an apple was eaten. tick 562"]}
+{"t": 1793282532870, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282569669, "cmd": "key", "args": ["e"]}
+{"t": 1793282570291, "cmd": "wait", "args": ["1"]}
+{"t": 1793282571433, "cmd": "state", "args": []}
+{"t": 1793282575816, "cmd": "shot", "args": ["obj2"]}
+{"t": 1793282582642, "cmd": "events", "args": ["8"]}
+{"t": 1793282588544, "cmd": "note", "args": ["--shot", "obj2", "Objective 2 'Eat something' completed by itself 48 ticks after it appeared (tick 1050) without me eating anything (apples stayed at 5). Its instructions were never on screen long enough to read, so a new player never learns how to eat. Expected it to wait for a real eat action and show how (key/button)."]}
+{"t": 1793282588873, "cmd": "key", "args": ["n"]}
+{"t": 1793282589403, "cmd": "wait", "args": ["2"]}
+{"t": 1793282591503, "cmd": "shot", "args": ["nation1"]}
+{"t": 1793282591908, "cmd": "state", "args": []}
+{"t": 1793282595359, "cmd": "wait", "args": ["2"]}
+{"t": 1793282597505, "cmd": "shot", "args": ["nation2"]}
+{"t": 1793282597829, "cmd": "state", "args": []}
+{"t": 1793282606508, "cmd": "note", "args": ["--shot", "nation2", "Pressing N instantly created a nation with an auto-generated name (Southburg): no name prompt, no confirmation, no explanation of what a nation is or what being LEADER means. Chronicle line reads 'You founded the nation of Southburg' right as the next objective is 'Found a settlement', which blurs the two. tick 1246"]}
+{"t": 1793282606878, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282685175, "cmd": "key", "args": ["e"]}
+{"t": 1793282706078, "cmd": "wait", "args": ["1"]}
+{"t": 1793282707228, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282716411, "cmd": "key", "args": ["e"]}
+{"t": 1793282716972, "cmd": "wait", "args": ["1"]}
+{"t": 1793282718037, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282726934, "cmd": "key", "args": ["e"]}
+{"t": 1793282727400, "cmd": "wait", "args": ["1"]}
+{"t": 1793282728463, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282755143, "cmd": "key", "args": ["e"]}
+{"t": 1793282755708, "cmd": "wait", "args": ["1"]}
+{"t": 1793282756790, "cmd": "state", "args": []}
+{"t": 1793282761518, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282771405, "cmd": "key", "args": ["e"]}
+{"t": 1793282771943, "cmd": "wait", "args": ["1"]}
+{"t": 1793282773048, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282797990, "cmd": "key", "args": ["e"]}
+{"t": 1793282798513, "cmd": "wait", "args": ["1"]}
+{"t": 1793282799576, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282802033, "cmd": "key", "args": ["e"]}
+{"t": 1793282802515, "cmd": "wait", "args": ["1"]}
+{"t": 1793282803647, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282873193, "cmd": "key", "args": ["e"]}
+{"t": 1793282874811, "cmd": "wait", "args": ["1"]}
+{"t": 1793282875925, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282891157, "cmd": "key", "args": ["e"]}
+{"t": 1793282891711, "cmd": "wait", "args": ["1"]}
+{"t": 1793282892782, "cmd": "state", "args": []}
+{"t": 1793282897517, "cmd": "events", "args": ["25"]}
+{"t": 1793282902407, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282919659, "cmd": "key", "args": ["e"]}
+{"t": 1793282920233, "cmd": "wait", "args": ["1"]}
+{"t": 1793282921604, "cmd": "shot", "args": ["wood50"]}
+{"t": 1793282922623, "cmd": "state", "args": []}
+{"t": 1793282927835, "cmd": "note", "args": ["--shot", "wood50", "Earlier, pressing E beside a tree (tree bbd44c1d, ~3.6 m) harvested a chicken instead ('Harvested chicken meat.', tick 2802); the tree stayed and needed a second E. Help says E acts on settlement, pawn, tree, rock, chicken in that order, so the tree should have won. Also apples pile up fast (27 after 10 trees) with no sign of what they are for."]}
+{"t": 1793282929268, "cmd": "key", "args": ["f"]}
+{"t": 1793282929855, "cmd": "wait", "args": ["2"]}
+{"t": 1793282932290, "cmd": "shot", "args": ["found1"]}
+{"t": 1793282932584, "cmd": "state", "args": []}
+{"t": 1793282944488, "cmd": "note", "args": ["--shot", "found1", "F near Newburg gives a good message ('Too close... Open ground lies about 270 to the north') but nothing on screen shows which way north is: no compass, no minimap, no N marker. A new player cannot act on the direction. tick 4450"]}
+{"t": 1793282945376, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793282946221, "cmd": "face", "args": ["28"]}
+{"t": 1793282948806, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1793282968990, "cmd": "key", "args": ["f"]}
+{"t": 1793282969567, "cmd": "wait", "args": ["1"]}
+{"t": 1793282971707, "cmd": "state", "args": []}
+{"t": 1793282977055, "cmd": "face", "args": ["-38"]}
+{"t": 1793282979665, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1793282999801, "cmd": "key", "args": ["f"]}
+{"t": 1793283000284, "cmd": "wait", "args": ["1"]}
+{"t": 1793283002072, "cmd": "shot", "args": ["found2"]}
+{"t": 1793283003626, "cmd": "state", "args": []}
+{"t": 1793283009362, "cmd": "click", "args": ["338", "402"]}
+{"t": 1793283010099, "cmd": "state", "args": []}
+{"t": 1793283015327, "cmd": "face", "args": ["40"]}
+{"t": 1793283017721, "cmd": "hold", "args": ["Shift_L+w", "9"]}
+{"t": 1793283026871, "cmd": "key", "args": ["f"]}
+{"t": 1793283027350, "cmd": "wait", "args": ["1"]}
+{"t": 1793283028450, "cmd": "state", "args": []}
+{"t": 1793283032262, "cmd": "wait", "args": ["2"]}
+{"t": 1793283034450, "cmd": "shot", "args": ["settled"]}
+{"t": 1793283036030, "cmd": "state", "args": []}
+{"t": 1793283036112, "cmd": "events", "args": ["12"]}
+{"t": 1793283047249, "cmd": "note", "args": ["--shot", "settled", "On founding, the warning 'Settlement founded. Fortressford and Littleford resent a new settlement so near their land.' (tick 5794) is replaced 8 ticks later by 'You are back on your own land. Objective complete...' (tick 5802), so the diplomatic consequence is never readable. Also the settlement's big floating name/'0/0 residents' label renders behind the Chronicle and status panels and cannot be read. Expected the warning to persist and the label not to collide with the HUD."]}
+{"t": 1793283047558, "cmd": "key", "args": ["e"]}
+{"t": 1793283048132, "cmd": "wait", "args": ["2"]}
+{"t": 1793283050246, "cmd": "shot", "args": ["inside"]}
+{"t": 1793283050605, "cmd": "state", "args": []}
+{"t": 1793283061199, "cmd": "note", "args": ["--shot", "inside", "Inside the settlement (tick 6058) text is clipped: Objective 6 hint is cut mid-line ('Gather 20 wood and 5 stone' then cut by the panel edge) and the toast reads 'Objective complete: Enter your settlemen'. The 3D settlement label ('0 here, 3/8 residents') sprawls across the top of the screen behind the HUD. Chicken Meat 1 -> 0 and energy 90 -> 99 with no 'you ate' message."]}
+{"t": 1793283061580, "cmd": "click", "args": ["377", "476"]}
+{"t": 1793283062419, "cmd": "wait", "args": ["1"]}
+{"t": 1793283063520, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793283083451, "cmd": "key", "args": ["e"]}
+{"t": 1793283084036, "cmd": "wait", "args": ["1"]}
+{"t": 1793283085172, "cmd": "shot", "args": ["rock1"]}
+{"t": 1793283085905, "cmd": "state", "args": []}
+{"t": 1793283091029, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283110548, "cmd": "key", "args": ["e"]}
+{"t": 1793283111189, "cmd": "wait", "args": ["1"]}
+{"t": 1793283112374, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283125285, "cmd": "key", "args": ["e"]}
+{"t": 1793283125849, "cmd": "wait", "args": ["1"]}
+{"t": 1793283127015, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283233655, "cmd": "key", "args": ["e"]}
+{"t": 1793283234260, "cmd": "wait", "args": ["1"]}
+{"t": 1793283235330, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283245967, "cmd": "key", "args": ["e"]}
+{"t": 1793283246587, "cmd": "wait", "args": ["1"]}
+{"t": 1793283247744, "cmd": "state", "args": []}
+{"t": 1793283253728, "cmd": "events", "args": ["30"]}
+{"t": 1793283253914, "cmd": "shot", "args": ["obj7"]}
+{"t": 1793283263882, "cmd": "note", "args": ["--shot", "obj7", "Objective 6 'Build a market stall' (needs Wood 20, Stone 5) completed on its own at tick 6250 while I had Wood 2 / Stone 0 and had just exited the settlement; no stall was built by me and no resources were spent. I then gathered wood/stone for nothing. Objective 7's progress bar text 'Members 4/10 . Buildings 0/2' overflows and is clipped on the left ('nbers 4/10'), and its hint says 'Village 0/1' while the era box says 'Village: 0/4'."]}
+{"t": 1793283264405, "cmd": "key", "args": ["h"]}
+{"t": 1793283265045, "cmd": "wait", "args": ["2"]}
+{"t": 1793283267149, "cmd": "key", "args": ["e"]}
+{"t": 1793283267767, "cmd": "wait", "args": ["2"]}
+{"t": 1793283269956, "cmd": "shot", "args": ["home"]}
+{"t": 1793283270413, "cmd": "state", "args": []}
+{"t": 1793283280616, "cmd": "note", "args": ["--shot", "home", "After H (teleport home) + E (tick 7346) the Inventory Info panel jumps to the middle of the screen and overlaps the action buttons (Craft Pickaxe sits on top of it). Market shows 'Merchants: Lily Williams', so a resident built the stall that completed my Objective 6, but nothing told me. Stone price fell 31/28 -> 9/8 within ~1300 ticks with no explanation. 'Collect Stockpile (78)' is unexplained to a newcomer."]}
+{"t": 1793283281058, "cmd": "events", "args": ["200"]}
+{"t": 1793283281235, "cmd": "events", "args": ["200"]}
+{"t": 1793283281414, "cmd": "events", "args": ["400"]}
+{"t": 1793283281528, "cmd": "stop", "args": []}
+{"t": 1793283315667, "cmd": "report", "args": []}
+{"t": 1793285744704, "cmd": "stop", "args": []}

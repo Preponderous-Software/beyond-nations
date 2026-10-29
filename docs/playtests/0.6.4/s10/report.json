@@ -1,0 +1,68 @@
+{
+  "session": "s10",
+  "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": "Ironvale",
+  "durationSec": 1020,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Same shared seed reproduces the starting map but not the world's history (nation names/timing differ)",
+      "detail": "Share screen shows 'World seed 1450162717' and a ?seed= link. A new world from 1450162717 starts identical to the Ironvale world (same trees/rocks/pawns/chickens at the same distances/bearings, same region and objective; seedworld.png matches world0.png). But history diverges within ~1 game minute: original world tick 850 'Isabella Wood founded the nation of Eastwood', tick 1550 'Peggy Smith ... Bigwood', tick 1702 Ruth Wilson 'Northernville'; same-seed world tick 900 'Isabella Wood founded the nation of Westernham', tick 1400 Ruth Wilson 'Greentown'. Player behaviour differed (walked to a rock in run 1, stood still in run 2), which may explain timing, but the same pawn founding the first nation got a different name. Expected a shared seed to give a friend the same nations, or the Share screen to say only the map is shared.",
+      "repro": "pt start --seed Ironvale; Start; Begin; play ~1600 ticks; Esc > Share (note seed); Main Menu > Start; clear box, type 1450162717; Begin; pt wait 90; pt events 15",
+      "screenshot": "shots/seed-history-diverges.png",
+      "tick": 900
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Load screen slots are indistinguishable: both labelled 'Day 1 - no nation'",
+      "detail": "After saving two different worlds (one where I'd moved and gathered 5 stone, one fresh), the Load screen showed two rows 'Day 1 - no nation 2026-10-29 08:09' and '... 08:05' only. No seed, region, inventory or nation names. Picking the right one relies on remembering the time. Loading the 08:05 slot did correctly restore the first world (tick 2014, pos -77.46,-72.68, stone 5).",
+      "repro": "Save two worlds; Main Menu > Load",
+      "screenshot": "shots/load-slots-identical.png",
+      "tick": 1956
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "HUD panels briefly drawn off the bottom of the screen right after --continue",
+      "detail": "First screenshot after `pt start --continue` showed the Inventory, Season and Player Info panels pushed down so they overlap the action buttons and the Player Info energy bar is cut off at the bottom edge. A few seconds later the layout was normal (continued2.png). A fresh New World start did not show this.",
+      "repro": "Save from pause menu; pt stop; pt start --continue; pt await WORLD; pt shot",
+      "screenshot": "shots/continue-layout.png",
+      "tick": 1602
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Ctrl+A does not select all in the New World seed box",
+      "detail": "To paste a shared seed I clicked the seed box ('Ironvale') and pressed Ctrl+A then Backspace; only the last character was deleted, giving 'Ironval1450162717' (seed 1889372902). Needed ~20 Backspaces to clear. The live 'is seed N' preview made the mistake obvious, which is good. (Could partly be key-timing at 2 fps.) A 'Clear' button or select-all on focus would help when pasting a share seed.",
+      "repro": "Main Menu > Start; click seed box; pt key Control_L+a; pt key BackSpace; pt shot",
+      "screenshot": "shots/ctrla.png",
+      "tick": null
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Pause menu has no Load entry although controls help lists 'Save, Load, Share, Main Menu'",
+      "detail": "Pause menu offers Resume, Save, Share, Controls, Main Menu, Quit. Load is only on the main menu. Either add Load or update the help text.",
+      "repro": "In world: Esc; pt shot",
+      "screenshot": "shots/pause.png",
+      "tick": 1594
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "saveTick": 1594,
+    "continueRestoredTick": 1594,
+    "playerFieldsMismatchedAfterContinue": 0,
+    "sharedSeed": 1450162717,
+    "startingEntitiesMatchingInSeedWorld": "12/12 nearest tree/rock/pawn/chicken",
+    "saveSlotsAfterTest": 2
+  },
+  "fun": 3,
+  "verdict": "Save/continue is solid: the pause-menu Save gives clear feedback ('Saved: Day 1 - no nation, 08:02'), --continue restored tick, position, heading, energy, inventory, objective and chronicle exactly, with a friendly 'Welcome back' toast, and Main Menu > Load restored the right slot. The Share screen's seed reproduces the starting map exactly, but the world's history (which nations form, their names and timing) diverges, so a shared seed is a shared map rather than a shared story; save slots also need more distinguishing detail than 'Day 1 - no nation'."
+}

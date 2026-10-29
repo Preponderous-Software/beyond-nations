@@ -1,0 +1,119 @@
+{"type":"screen","tick":0,"wallTimeMs":1793282412593,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282430417,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282436609,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1793282462202,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282464371,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282473839,"how":"created","slot":"world-101-20261029-140113","seed":101}
+{"type":"screen","tick":0,"wallTimeMs":1793282473841,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":562,"wallTimeMs":1793282513829,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":702,"wallTimeMs":1793282530963,"kind":"NationCreation","text":"Una Taylor declared the nation of Hamletfield, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"chronicle","tick":750,"wallTimeMs":1793282544647,"kind":"SettlementFounded","text":"Hamletfield put down roots: Una Taylor founded its first settlement."}
+{"type":"status","tick":990,"wallTimeMs":1793282569959,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1002,"wallTimeMs":1793282570962,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1002}
+{"type":"status","tick":1002,"wallTimeMs":1793282570962,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1050,"wallTimeMs":1793282575297,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1050,"wallTimeMs":1793282575297,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":1150,"wallTimeMs":1793282584198,"kind":"NationCreation","text":"Samantha Taylor declared the nation of Fortressford, though none had yet sworn to it."}
+{"type":"status","tick":1214,"wallTimeMs":1793282589226,"text":"Created nation Southburg."}
+{"type":"chronicle","tick":1214,"wallTimeMs":1793282589226,"kind":"NationCreation","text":"You founded the nation of Southburg."}
+{"type":"objective_completed","tick":1250,"wallTimeMs":1793282592181,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":200}
+{"type":"status","tick":1250,"wallTimeMs":1793282592181,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":1514,"wallTimeMs":1793282706088,"text":"No entities within range to interact with."}
+{"type":"status","tick":1658,"wallTimeMs":1793282716581,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":1846,"wallTimeMs":1793282727044,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":1850,"wallTimeMs":1793282727231,"kind":"SettlementFounded","text":"Samantha Taylor laid the first stones of Fortressford."}
+{"type":"chronicle","tick":1850,"wallTimeMs":1793282727231,"kind":"NationCreation","text":"Bella Jones raised a banner and called it Newburg."}
+{"type":"chronicle","tick":1950,"wallTimeMs":1793282732959,"kind":"NationCreation","text":"Charlie Taylor declared the nation of Hamletham, though none had yet sworn to it."}
+{"type":"chronicle","tick":2050,"wallTimeMs":1793282744655,"kind":"SettlementFounded","text":"Charlie Taylor laid the first stones of Hamletham."}
+{"type":"chronicle","tick":2050,"wallTimeMs":1793282744655,"kind":"SettlementFounded","text":"Bella Jones raised the first settlement of Newburg."}
+{"type":"status","tick":2194,"wallTimeMs":1793282755512,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2302,"wallTimeMs":1793282763893,"kind":"NationCreation","text":"Xavier Brown declared the nation of Cityland, though none had yet sworn to it."}
+{"type":"status","tick":2406,"wallTimeMs":1793282771739,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":2502,"wallTimeMs":1793282778755,"text":"You enter the land of Newburg (Neutral)."}
+{"type":"chronicle","tick":2650,"wallTimeMs":1793282788309,"kind":"SettlementFounded","text":"Xavier Brown raised the first settlement of Cityland."}
+{"type":"status","tick":2802,"wallTimeMs":1793282800483,"text":"Harvested chicken meat."}
+{"type":"status","tick":2842,"wallTimeMs":1793282802291,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3102,"wallTimeMs":1793282828603,"kind":"NationCreation","text":"Stan Smith raised a banner and called it Lowerburg."}
+{"type":"chronicle","tick":3150,"wallTimeMs":1793282832569,"kind":"NationCreation","text":"Ruth Brown founded the nation of Eastfield."}
+{"type":"chronicle","tick":3202,"wallTimeMs":1793282836291,"kind":"SettlementFounded","text":"Stan Smith raised the first settlement of Lowerburg."}
+{"type":"chronicle","tick":3450,"wallTimeMs":1793282853355,"kind":"NationCreation","text":"Charlotte Watson founded the nation of Blueford."}
+{"type":"chronicle","tick":3450,"wallTimeMs":1793282853355,"kind":"SettlementFounded","text":"Eastfield put down roots: Ruth Brown founded its first settlement."}
+{"type":"status","tick":3502,"wallTimeMs":1793282857082,"text":"You leave the land of Newburg for the wilds."}
+{"type":"chronicle","tick":3502,"wallTimeMs":1793282857082,"kind":"NationRelationChange","text":"Hamletfield and Fortressford have become rivals over their border."}
+{"type":"chronicle","tick":3550,"wallTimeMs":1793282860435,"kind":"StallBuilt","text":"A new stall opened in the market of Newburg, built by Bella Jones."}
+{"type":"chronicle","tick":3550,"wallTimeMs":1793282860435,"kind":"NationCreation","text":"Wendy Brown founded the nation of Littleford."}
+{"type":"chronicle","tick":3602,"wallTimeMs":1793282863537,"kind":"NationCreation","text":"The nation of Newville was born, with Olivia Brown at its head."}
+{"type":"status","tick":3738,"wallTimeMs":1793282873529,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3850,"wallTimeMs":1793282881461,"kind":"StallBuilt","text":"Xavier Brown built a market stall in Cityland."}
+{"type":"status","tick":3890,"wallTimeMs":1793282884741,"text":"You enter the land of Newburg (Neutral)."}
+{"type":"chronicle","tick":3902,"wallTimeMs":1793282885688,"kind":"NationCreation","text":"Hank Watson founded the nation of Cityville."}
+{"type":"status","tick":3970,"wallTimeMs":1793282891348,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":4050,"wallTimeMs":1793282897491,"kind":"SettlementFounded","text":"Hank Watson raised the first settlement of Cityville."}
+{"type":"chronicle","tick":4050,"wallTimeMs":1793282897491,"kind":"StallBuilt","text":"Ruth Brown built a market stall in Eastfield."}
+{"type":"chronicle","tick":4050,"wallTimeMs":1793282897491,"kind":"SettlementFounded","text":"Wendy Brown raised the first settlement of Littleford."}
+{"type":"chronicle","tick":4202,"wallTimeMs":1793282910818,"kind":"SettlementFounded","text":"Newville put down roots: Olivia Brown founded its first settlement."}
+{"type":"status","tick":4230,"wallTimeMs":1793282913065,"text":"You leave the land of Newburg for the wilds."}
+{"type":"chronicle","tick":4250,"wallTimeMs":1793282914397,"kind":"StallBuilt","text":"Xavier Brown built a market stall in Cityland."}
+{"type":"status","tick":4314,"wallTimeMs":1793282919875,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":4418,"wallTimeMs":1793282929698,"text":"Too close to the Village of Newburg: 111 away, and settlements must be 250 apart. Open ground lies about 270 to the north."}
+{"type":"chronicle","tick":4450,"wallTimeMs":1793282932076,"kind":"StallBuilt","text":"Trade came to Hamletfield: Una Taylor built a stall."}
+{"type":"chronicle","tick":4502,"wallTimeMs":1793282938115,"kind":"NationRelationChange","text":"Hamletfield and Newburg have become rivals over their border."}
+{"type":"chronicle","tick":4502,"wallTimeMs":1793282938115,"kind":"NationRelationChange","text":"Hamletfield and Hamletham have become rivals over their border."}
+{"type":"chronicle","tick":4650,"wallTimeMs":1793282950021,"kind":"SettlementFounded","text":"Charlotte Watson raised the first settlement of Blueford."}
+{"type":"chronicle","tick":4750,"wallTimeMs":1793282957214,"kind":"NationRelationChange","text":"Hamletfield and Lowerburg have become rivals over their border."}
+{"type":"chronicle","tick":4902,"wallTimeMs":1793282968322,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressford, built by Samantha Taylor."}
+{"type":"chronicle","tick":4902,"wallTimeMs":1793282968322,"kind":"StallBuilt","text":"A new stall opened in the market of Cityland, built by Xavier Brown."}
+{"type":"status","tick":4918,"wallTimeMs":1793282969432,"text":"Too close to the Town of Fortressford: 160 away, and settlements must be 250 apart. Open ground lies about 300 to the east."}
+{"type":"chronicle","tick":5002,"wallTimeMs":1793282976001,"kind":"NationRelationChange","text":"Hamletfield and Cityland have become rivals over their border."}
+{"type":"status","tick":5090,"wallTimeMs":1793282982076,"text":"You enter the land of Fortressford (Neutral)."}
+{"type":"chronicle","tick":5302,"wallTimeMs":1793282996361,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletham, built by Charlie Taylor."}
+{"type":"status","tick":5342,"wallTimeMs":1793282998718,"text":"You leave the land of Fortressford for the wilds."}
+{"type":"status","tick":5362,"wallTimeMs":1793282999965,"text":"Too close to the Town of Fortressford: 155 away, and settlements must be 250 apart. Open ground lies about 100 to the south-east."}
+{"type":"chronicle","tick":5602,"wallTimeMs":1793283016154,"kind":"StallBuilt","text":"Trade came to Eastfield: Ruth Brown built a stall."}
+{"type":"chronicle","tick":5650,"wallTimeMs":1793283019084,"kind":"StallBuilt","text":"Xavier Brown built a market stall in Cityland. The market is now full."}
+{"type":"chronicle","tick":5750,"wallTimeMs":1793283024610,"kind":"NationRelationChange","text":"Cityland and Eastfield have become rivals over their border."}
+{"type":"status","tick":5794,"wallTimeMs":1793283027052,"text":"Settlement founded. Fortressford and Littleford resent a new settlement so near their land."}
+{"type":"chronicle","tick":5794,"wallTimeMs":1793283027052,"kind":"SettlementFounded","text":"Southburg put down roots: you founded its first settlement."}
+{"type":"objective_completed","tick":5802,"wallTimeMs":1793283027573,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4552}
+{"type":"status","tick":5802,"wallTimeMs":1793283027573,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":5802,"wallTimeMs":1793283027573,"kind":"NationJoin","text":"Lily Williams swore fealty to Southburg."}
+{"type":"chronicle","tick":5802,"wallTimeMs":1793283027573,"kind":"NationJoin","text":"Grace Taylor threw in their lot with Southburg."}
+{"type":"chronicle","tick":5850,"wallTimeMs":1793283031110,"kind":"StallBuilt","text":"Olivia Brown built a market stall in Newville."}
+{"type":"save","tick":6002,"wallTimeMs":1793283045668,"count":1}
+{"type":"chronicle","tick":6002,"wallTimeMs":1793283045668,"kind":"NationRelationChange","text":"Fortressford and Hamletfield are now hostile."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1793283045668,"kind":"NationRaid","text":"Fortressford raided Hamletfield and carried off 3 coins, 5 wood, 2 stone."}
+{"type":"status","tick":6026,"wallTimeMs":1793283047823,"text":"Entered settlement."}
+{"type":"objective_completed","tick":6050,"wallTimeMs":1793283049843,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":248}
+{"type":"status","tick":6050,"wallTimeMs":1793283049843,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":6150,"wallTimeMs":1793283059238,"kind":"StallBuilt","text":"Trade came to Newburg: Bella Jones built a stall."}
+{"type":"status","tick":6186,"wallTimeMs":1793283062652,"text":"Exited settlement."}
+{"type":"chronicle","tick":6202,"wallTimeMs":1793283064254,"kind":"NationJoin","text":"Charlotte Jones joined Southburg."}
+{"type":"objective_completed","tick":6250,"wallTimeMs":1793283068324,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":200}
+{"type":"status","tick":6250,"wallTimeMs":1793283068324,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":6250,"wallTimeMs":1793283068324,"kind":"StallBuilt","text":"Trade came to Southburg: Lily Williams built a stall."}
+{"type":"status","tick":6410,"wallTimeMs":1793283083980,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"StallBuilt","text":"Trade came to Eastfield: Ruth Brown built a stall."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"NationRelationChange","text":"Hamletfield and Littleford have become rivals over their border."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"NationRelationChange","text":"Hamletfield and Newville have become rivals over their border."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"NationRelationChange","text":"Hamletfield and Cityville have become rivals over their border."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"NationRelationChange","text":"Newburg and Blueford have become rivals over their border."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"NationRelationChange","text":"Eastfield and Littleford have become rivals over their border."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283093071,"kind":"NationRelationChange","text":"Eastfield and Newville have become rivals over their border."}
+{"type":"chronicle","tick":6650,"wallTimeMs":1793283108875,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressford, built by Samantha Taylor."}
+{"type":"status","tick":6674,"wallTimeMs":1793283111049,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":6702,"wallTimeMs":1793283113361,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerburg, built by Stan Smith."}
+{"type":"chronicle","tick":6702,"wallTimeMs":1793283113361,"kind":"StallBuilt","text":"Olivia Brown built a market stall in Newville."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1793283118186,"kind":"NationCreation","text":"The nation of Easternshire was born, with Frank Smith at its head."}
+{"type":"status","tick":6762,"wallTimeMs":1793283119489,"text":"You leave the land of Southburg for the wilds."}
+{"type":"status","tick":6830,"wallTimeMs":1793283125566,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1793283140449,"kind":"NationRelationChange","text":"Lowerburg and Blueford have become rivals over their border."}
+{"type":"status","tick":7050,"wallTimeMs":1793283234018,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":7102,"wallTimeMs":1793283240753,"kind":"SettlementFounded","text":"Easternshire put down roots: Frank Smith founded its first settlement."}
+{"type":"status","tick":7154,"wallTimeMs":1793283246342,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":7202,"wallTimeMs":1793283251814,"kind":"StallBuilt","text":"Trade came to Hamletham: Charlie Taylor built a stall."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1793283257507,"kind":"NationRelationChange","text":"Hamletfield and Newburg are now hostile."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1793283257507,"kind":"NationRelationChange","text":"Hamletfield and Lowerburg are now hostile."}
+{"type":"chronicle","tick":7302,"wallTimeMs":1793283263715,"kind":"StallBuilt","text":"Ruth Brown built a market stall in Eastfield. The market is now full."}
+{"type":"status","tick":7310,"wallTimeMs":1793283264841,"text":"You are back on your own land."}
+{"type":"status","tick":7330,"wallTimeMs":1793283267776,"text":"Entered settlement."}
+{"type":"chronicle","tick":7402,"wallTimeMs":1793283277887,"kind":"NationCreation","text":"Irene Walker founded the nation of Blackville."}

@@ -1,0 +1,127 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 101,
+  "durationSec": 868,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Objective 6 'Build a market stall' completes by itself when a resident builds a stall",
+      "detail": "Objective needs Wood 20 / Stone 5. It completed at tick 6250 while I had Wood 2 / Stone 0 and had just exited the settlement; nothing was spent. The settlement's market later lists 'Merchants: Lily Williams' (1/4 stalls), so an NPC resident built it. No message said so, and I went on gathering wood and stone for a stall I never needed. Expected the objective to need the player's own B/Build Stall, or at least a message crediting the resident.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 101; reach objective 6 (found a settlement ~ (475,-446), press E to enter, then click Exit Settlement); wait ~200 ticks; pt events shows objective_completed build-stall with Wood still 2",
+      "screenshot": "shots/obj7.png",
+      "tick": 6250
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 2 'Eat something' completes in 48 ticks without the player eating; eating is never taught",
+      "detail": "Right after Gather wood completed (tick 1002), 'Eat something' completed at tick 1050 with apples unchanged at 5. Its hint was never on screen long enough to read. Eating is automatic and silent throughout (energy 83->98 on first chop; Chicken Meat 1->0 and energy 90->99 on entering the settlement) with no 'you ate' message. Expected the objective to wait for a real eat, and some feedback when food is eaten.",
+      "repro": "pt start ... --seed 101; Begin; walk to nearest tree and press E twice (two trees); pt events 10",
+      "screenshot": "shots/obj2.png",
+      "tick": 1050
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Open ground lies about 270 to the north' is not usable: no compass or minimap shows north",
+      "detail": "The F 'too close' message is helpful and gives a distance and compass direction, but nothing on screen shows which way north/east/south-east is. I made three attempts (ticks 4450, 4942, 5362) walking in guessed directions and hitting new 'too close' settlements (Newburg, Fortressford twice) before founding at tick 5794. The world is crowded with AI settlements by then (250 spacing), so this is where a new player wanders the longest: Found a settlement took 4552 ticks, more than all other objectives combined.",
+      "repro": "pt start ... --seed 101; gather 50 wood near spawn; press F at about (28,107)",
+      "screenshot": "shots/found1.png",
+      "tick": 4450
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective panel text clipped: progress bar 'nbers 4/10', hint cut off, toast 'Enter your settlemen'",
+      "detail": "Objective 7 progress bar 'Members 4/10 · Buildings 0/2' overflows and is clipped on the left. Objective 6 hint 'Gather 20 wood and 5 stone' is cut off by the panel bottom inside the settlement. The completion toast reads 'Enter your settlemen'. Objective 7 hint says 'Village 0/1' while the era box says 'Village: 0/4', which is confusing.",
+      "repro": "pt start ... --seed 101; play to objective 6 and 7 (found settlement, enter it)",
+      "screenshot": "shots/obj7.png",
+      "tick": 7162
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement-founding warning about resentful neighbours is overwritten after 8 ticks",
+      "detail": "'Settlement founded. Fortressford and Littleford resent a new settlement so near their land.' (tick 5794) is replaced at tick 5802 by 'You are back on your own land. Objective complete...', so the diplomatic consequence is never readable. Also, the large floating settlement label ('0 here, 3/8 residents') draws behind the Chronicle/status HUD and cannot be read.",
+      "repro": "pt start ... --seed 101; found a settlement within ~260 m of two AI settlements; pt events 10",
+      "screenshot": "shots/settled.png",
+      "tick": 5794
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "E beside a tree harvested a nearby chicken instead of the tree",
+      "detail": "With walkto tree reporting tree bbd44c1d at 3.6 m, E gave 'Harvested chicken meat.' (tick 2802) and the tree stayed; a second E chopped it. The help says E prefers tree over chicken.",
+      "repro": "pt start ... --seed 101; repeated pt walkto tree; pt key e around tick 2800 near (x~0,z~110)",
+      "screenshot": "shots/wood50.png",
+      "tick": 2802
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "N creates a nation instantly with an auto name and no explanation",
+      "detail": "Pressing N made me LEADER of 'Southburg' with no naming prompt, no confirmation and no explanation of nations or what LEADER implies. The chronicle line 'You founded the nation of Southburg' appears just as the next objective is 'Found a settlement', which mixes up the two ideas.",
+      "repro": "pt start ... --seed 101; complete objective 2; pt key n",
+      "screenshot": "shots/nation2.png",
+      "tick": 1246
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "In-settlement HUD: Inventory panel overlaps action buttons; unexplained Stockpile and price swings",
+      "detail": "After H then E, the Inventory Info panel sits in the screen centre under the Craft Axe/Craft Pickaxe buttons. 'Collect Stockpile (78)' isn't explained. Stone price fell from 31/28 to 9/8 in about 1300 ticks with no reason given.",
+      "repro": "pt start ... --seed 101; after founding, go away, pt key h; pt key e",
+      "screenshot": "shots/home.png",
+      "tick": 7346
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "First tree's status says '2 apples' but +1 apple shown and Apples = 1",
+      "detail": "Status 'Gathered 5 wood and 2 apples from tree.' while the float text says '+1 apple' and the inventory shows 1, with energy jumping 83->98 (one apple presumably auto-eaten, unannounced).",
+      "repro": "pt start ... --seed 101; Begin; walk to nearest tree; pt key e",
+      "screenshot": "shots/apples_mismatch.png",
+      "tick": 562
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Controls screen page 3 lists debug cheats (F2-F6) to every player",
+      "detail": "Main menu > Controls page 3/3 shows 'Debug' keys: generate land, spawn pawn, coins, wood, teleport pawns. A new player sees these as normal controls. Expected them hidden in release builds or clearly labelled as developer cheats.",
+      "repro": "pt start ... ; pt key space; click Controls (480,419); Next twice",
+      "screenshot": "shots/controls_debug.png",
+      "tick": null
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "Game ran at 2-4 fps / 5-18 tps on the shared machine; first start timed out",
+      "detail": "With load average ~54, the first pt start failed (no window within 60 s) and the second worked. In the world, fps stayed at 2-4 and tps at 5-18 of 50, so 14 minutes of wall time covered only 7422 ticks (~2.5 game minutes). This is likely the parallel-run environment, not the game.",
+      "repro": "pt start under heavy parallel load; pt status / pt state tps",
+      "screenshot": "shots/world0.png",
+      "tick": 42
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 20.04,
+      "Eat something": 21.0,
+      "Create or join a nation": 25.0,
+      "Found a settlement": 116.04,
+      "Enter your settlement": 121.0,
+      "Build a market stall": 125.0
+    },
+    "gameTicksPlayed": 7422,
+    "foundSettlementAttempts": 4,
+    "treesChopped": 15,
+    "applesUnused": 32
+  },
+  "fun": 3,
+  "verdict": "The opening loop (tips, top-left objective, chop trees, then N, F and E) is clear, and its feedback is good: floating +wood text, rewards, a helpful 'too close' message. But two of the first six objectives complete without the player doing them ('Eat something' and 'Build a market stall', the stall built by an NPC), so the tutorial teaches less than it seems to. Founding a settlement is the big stall point: the crowded world plus compass directions with no compass on screen cause several minutes of wandering. Several HUD text overflows and overlaps make the screen look unfinished at 960x540."
+}
