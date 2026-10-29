@@ -1,0 +1,92 @@
+{
+  "session": "s02",
+  "goal": "Reach the Village era as fast as you can (it cannot come before day 3, about 17 minutes of game time); record the game time of every objective.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 102,
+  "durationSec": 1543,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "perf",
+      "title": "Game ran at 0.2-16 tps (normally 50) on the shared machine, so the day-3 Village gate could not be reached in a 35-minute session",
+      "detail": "pt status/state showed tps between 0.2 and 16, mostly 11-13, with fps 0-3 (load average about 55). Game time ran at roughly a quarter of real time. After 25 minutes of wall-clock time the game was at tick 10270, still day 1 (timeOfDay 0.64). Every other Village requirement was met or nearly met by tick 8800. At this rate day 3 (about tick 60000) would take over an hour of real time. walkto also timed out several times because it steers at 2-3 fps.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 102 with several sessions in parallel; play for 25 minutes; pt state shows tps and tick",
+      "screenshot": "shots/day_gate.png",
+      "tick": 10270
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 6 'Build a market stall' completes when an NPC builds a stall, without the player doing anything",
+      "detail": "I was out chopping trees outside my land. At tick 7150 the event 'Trade came to Southernford: Linda Wilson built a stall.' fired, and objective 6 completed at the same tick (+50 coins). I never pressed B, so the tutorial step that teaches stall building was skipped. I expected the objective to need a stall I built myself, or the toast to say the NPC built it for me.",
+      "repro": "seed 102; found a settlement around (-470,-263) at about tick 6200; leave it and gather; around tick 7150 the objective completes by itself",
+      "screenshot": "shots/npc_stall_objective.png",
+      "tick": 7150
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Settlement shows 'Village' tier while the nation's era is still Camp",
+      "detail": "After building a Farm (tick 8810), the Settlement Info panel said 'Tier: Village (3 buildings)' and the floating label said 'Village of Southernford', but the era panel still said 'Era: Camp (1/4)' with Members 6/10 and Day 1/3 left to do. Two different meanings of 'Village' are on screen at once. It reads as though the goal is already reached when it is not.",
+      "repro": "seed 102; found a settlement, enter it, press K twice to build a Farm; compare the Settlement Info panel and the era panel",
+      "screenshot": "shots/day_gate.png",
+      "tick": 9114
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective 7's progress bar text is clipped on the left and does not match the era checklist",
+      "detail": "The bar shows 'mbers 6/10 - Buildings 2/2' with the start of 'Members' cut off. The objective counts 'Buildings 0/2' while the era checklist counts 'Stalls 2/2' and 'Village 0/1' (a settlement with 2 buildings), so the two panels describe the same goal differently.",
+      "repro": "seed 102; reach objective 7 'Reach the Village era'; look at the objective panel at the top left",
+      "screenshot": "shots/npc_stall_objective.png",
+      "tick": 8594
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "On entering the settlement, popups overlap and several labels are clipped",
+      "detail": "On first entering my settlement, two 'Objective complete' popups stacked on top of the chronicle. 'Enter your settlemen' was clipped, the objective panel's 'Gather 20 wood and 5 stone' line was cut off at the bottom of the panel, and a large world-space label '0 here, 1/8 residents' showed through the top HUD.",
+      "repro": "seed 102; found a settlement (F), then press E to enter",
+      "screenshot": "shots/settlement_overlap.png",
+      "tick": 6402
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Red status toast is clipped: 'No entities within range to interact w'",
+      "detail": "At 960x540 the red error toast at the top centre cuts off the end of its message.",
+      "repro": "press e with nothing in reach",
+      "screenshot": "shots/toast_cut.png",
+      "tick": 2418
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "E next to the settlement centre talks to a pawn instead of entering; the follow-up K says 'You are not inside a settlement'",
+      "detail": "Standing about 16 m from my settlement centre, with a member pawn close by, E opened Linda Wilson's dialogue ('Yes, leader? I hardly know you...') instead of entering. Linda is also labelled 'Stranger' although she is already a member of my nation. The Enter Settlement button worked.",
+      "repro": "seed 102; walk back to your own settlement while your residents stand around it; press e then k",
+      "screenshot": "shots/recruit.png",
+      "tick": 8634
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 56.04,
+      "Eat something": 57.0,
+      "Create or join a nation": 58.04,
+      "Found a settlement": 124.04,
+      "Enter your settlement": 126.04,
+      "Build a market stall": 143.0
+    },
+    "villageEraReached": false,
+    "finalTick": 10270,
+    "finalMembers": 6,
+    "settlementPlacementAttempts": 4,
+    "typicalTps": 12
+  },
+  "fun": 3,
+  "verdict": "The early loop moves fast and is well signposted. Six objectives were done in 143 game seconds, and the 'too close to X, open ground lies N to the south' hints made placing a settlement easy. Once the settlement exists, NPCs build stalls and buildings for you, and the only things left are a fixed day-3 timer and recruiting members, so the Village era turns into waiting. The two different meanings of 'Village' on screen make that wait confusing. On this loaded machine (about 12 tps) the day-3 gate could not be reached in the session at all."
+}

@@ -1,0 +1,105 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter. Start with `--season autumn` (a fresh world otherwise reaches winter only after about 57 minutes of game time). Note how food and cold feel.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 103,
+  "durationSec": 1479,
+  "outcome": "blocked",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "--season autumn starts at autumn day 1/2, so winter is still ~52k ticks (over an hour of wall time) away",
+      "detail": "With --season autumn the world opens at tick 120044 (day 4), and the Season panel says 'Autumn - day 1/2, Winter in 2 days'. Winter begins at tick 180000. At the 9-17 tps this machine managed, I reached tick ~130700 by the end of a 25-minute session, so winter was never reached and the cold could not be tested. Expected: a start that puts winter within a playtest's reach, such as the last day of autumn or a --season winter-eve option.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 103 --season autumn; pt key space; pt click 480 315; pt click 480 315; pt state (tick 120044, season panel 'Winter in 2 days')",
+      "screenshot": "shots/winter_unreachable.png",
+      "tick": 128056
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Food creates no pressure in autumn: apples pile up from chopping and energy stays above 90",
+      "detail": "Every tree chopped also dropped 1-3 apples. I had 29 apples by tick 130680 without looking for food. Energy stayed between 92 and 99 the whole session, and early on it rose from 84 to 98 without me pressing anything to eat. The 'Eat something' objective also completed by itself (tick 120852). The settlement showed 'Feed Residents (0 hungry)'. Apart from the orange 'Winter in 2 days' line, nothing nudged me to stock food before winter. Expected: some sign that food matters before winter, such as a winter food-need estimate in Settlement Info.",
+      "repro": "start as above; pt walkto tree; pt key e e e e e (repeat ~10 trees); pt state: apple count climbs, energy ~95",
+      "screenshot": "shots/food_easy.png",
+      "tick": 128064
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Two-click confirm on Build Farm times out in ~70 ticks, too short at low fps",
+      "detail": "Clicking Build Farm shows 'Click again to confirm: Build Farm.' Three separate second clicks, each a few wall seconds later (ticks 127596, 127692, 127784), all got 'Not confirmed in time, so nothing was done.' The farm only got built when I sent two clicks back to back (tick 127944). At 2-3 fps the window is about 8 wall seconds, which a careful player can easily miss. Expected: a longer window, or one measured in wall time or frames.",
+      "repro": "inside own settlement: pt click <Build Farm>; wait ~6 s; pt click <Build Farm> -> 'Not confirmed in time'",
+      "screenshot": "shots/confirm_timeout.png",
+      "tick": 127944
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement action bar reflows under the pointer, so clicks land on the wrong button",
+      "detail": "When the market filled, 'Build Stall' disappeared, and a pawn walking up added Order/Talk/Gift rows. Build Farm moved from about (625,445) to (476,445), so my click opened 'Send Caravan (Town era)' instead. Expected: buttons that keep their positions, with unavailable ones disabled rather than removed.",
+      "repro": "enter own settlement; screenshot; wait for a pawn to approach / market to fill; click where Build Farm was",
+      "screenshot": "shots/buttons_shift.png",
+      "tick": 127460
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective 7 progress text clipped: 'bers 6/10 • Buildings 0/2'",
+      "detail": "The progress bar for 'Reach the Village era' is too narrow, and the first letters of 'Members' are cut off on the left. In the same visit, Settlement Info 'Next (K)' changed from Farm to House, so pressing K offers a House when the player may want the winter Farm.",
+      "repro": "found settlement, enter it (E), look at Objective 7 panel",
+      "screenshot": "shots/objective_clip.png",
+      "tick": 127448
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Near pawns, floating world labels cover the Chronicle and get clipped, and the Inventory panel jumps to screen centre",
+      "detail": "Standing next to Nancy Walker in Blackland, her label 'Gregarious, Ambitious (gathering resources)' was drawn in very large text over the Chronicle panel, another label was cut off at the left edge ('ces)'), and the Inventory Info panel moved to the middle of the screen, on top of the tip and the action bar. The settlement's '0 here / 3/8 residents' label also sits behind the Chronicle panel.",
+      "repro": "pt walkto pawn; pt shot",
+      "screenshot": "shots/overlap_labels.png",
+      "tick": 123820
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "'Found elsewhere' hint gives a compass direction, but nothing on screen shows which way is south-east",
+      "detail": "Pressing F in a claimed area said 'Open ground lies about 170 to the south-east.' The HUD has no compass or heading, so I had to walk and press F again. The second hint said '230 to the north-west' after I had walked about 100 units, which was confusing. After a third try I found a valid spot.",
+      "repro": "with 50 wood, stand in another nation's land, press f; walk; press f",
+      "screenshot": "shots/claimed_land.png",
+      "tick": 124364
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Objectives complete without the player acting: 'Build a market stall' is credited when an NPC builds one",
+      "detail": "Objective 6 'Build a market stall' completed at tick 125400 after pawns built stalls in my settlement; I never pressed B. 'Eat something' also completed without me eating. Being credited for others' actions takes away the teaching moment.",
+      "repro": "found settlement, enter, wait ~250 ticks while pawns build stalls; pt events | grep objective_completed",
+      "screenshot": "shots/founded.png",
+      "tick": 125400
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 2416.0,
+      "Eat something": 2417.04,
+      "Create or join a nation": 2427.04,
+      "Found a settlement": 2501.04,
+      "Enter your settlement": 2503.04,
+      "Build a market stall": 2508.0
+    },
+    "winterReached": false,
+    "startTick": 120044,
+    "endTick": 130680,
+    "winterStartTick": 180000,
+    "minEnergy": 84.9,
+    "applesAtEnd": 29,
+    "farmsBuilt": 1,
+    "tpsRange": "6.8-17.4",
+    "fpsRange": "0-4"
+  },
+  "fun": 3,
+  "verdict": "Early autumn plays smoothly: wood, a nation, a settlement and a farm in about 10,000 ticks, with useful refusal messages and a lively chronicle of rival nations. But --season autumn leaves winter two game days away, so neither winter nor the cold could be tested in a 35-minute session. Food creates no pressure in autumn: apples pile up from chopping and energy never fell below 84. Low fps also makes the two-click confirms and the reflowing action bar easy to misclick."
+}

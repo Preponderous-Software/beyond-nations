@@ -1,0 +1,233 @@
+{"type":"screen","tick":0,"wallTimeMs":1793282233940,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282410003,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282417670,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282431518,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282432563,"how":"created","slot":"world-105-20261029-140032","seed":105}
+{"type":"screen","tick":0,"wallTimeMs":1793282432567,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":146,"wallTimeMs":1793282441169,"text":"You are not in a nation."}
+{"type":"status","tick":522,"wallTimeMs":1793282469042,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":542,"wallTimeMs":1793282470723,"text":"No entities within range to interact with."}
+{"type":"status","tick":562,"wallTimeMs":1793282472219,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":586,"wallTimeMs":1793282473790,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":610,"wallTimeMs":1793282475655,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":638,"wallTimeMs":1793282477409,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":1038,"wallTimeMs":1793282507241,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":1050,"wallTimeMs":1793282508765,"text":"No entities within range to interact with."}
+{"type":"status","tick":1062,"wallTimeMs":1793282510170,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1074,"wallTimeMs":1793282511616,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":1090,"wallTimeMs":1793282513276,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":1246,"wallTimeMs":1793282531033,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":1250,"wallTimeMs":1793282538675,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1250}
+{"type":"status","tick":1250,"wallTimeMs":1793282538675,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":1250,"wallTimeMs":1793282538675,"kind":"NationCreation","text":"Oscar Smith founded the nation of Upperburg. It is the first nation this world has known."}
+{"type":"objective_completed","tick":1302,"wallTimeMs":1793282543454,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1302,"wallTimeMs":1793282543454,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":1302,"wallTimeMs":1793282543454,"kind":"SettlementFounded","text":"Upperburg put down roots: Oscar Smith founded its first settlement."}
+{"type":"status","tick":1374,"wallTimeMs":1793282551725,"text":"Created nation Easttown."}
+{"type":"chronicle","tick":1374,"wallTimeMs":1793282551725,"kind":"NationCreation","text":"Under your hand, the nation of Easttown was born."}
+{"type":"objective_completed","tick":1402,"wallTimeMs":1793282554638,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":100}
+{"type":"status","tick":1402,"wallTimeMs":1793282554638,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":1462,"wallTimeMs":1793282561546,"text":"Not enough wood. Need 37 more."}
+{"type":"status","tick":1538,"wallTimeMs":1793282569012,"text":"You are not inside a settlement."}
+{"type":"chronicle","tick":1750,"wallTimeMs":1793282588233,"kind":"NationCreation","text":"The nation of Westburg was born, with Peggy Jones at its head."}
+{"type":"status","tick":1786,"wallTimeMs":1793282591277,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":1798,"wallTimeMs":1793282592450,"text":"No entities within range to interact with."}
+{"type":"status","tick":1814,"wallTimeMs":1793282593706,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1830,"wallTimeMs":1793282595105,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":1842,"wallTimeMs":1793282596205,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":2050,"wallTimeMs":1793282681745,"kind":"SettlementFounded","text":"Peggy Jones laid the first stones of Westburg."}
+{"type":"chronicle","tick":2050,"wallTimeMs":1793282681745,"kind":"NationCreation","text":"Dave Wood declared the nation of Littleburg, though none had yet sworn to it."}
+{"type":"status","tick":2062,"wallTimeMs":1793282685558,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":2094,"wallTimeMs":1793282707329,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":2102,"wallTimeMs":1793282707871,"kind":"SettlementFounded","text":"Littleburg put down roots: Dave Wood founded its first settlement."}
+{"type":"status","tick":2106,"wallTimeMs":1793282708128,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2126,"wallTimeMs":1793282709420,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2134,"wallTimeMs":1793282711005,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":2350,"wallTimeMs":1793282725968,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":2374,"wallTimeMs":1793282727126,"text":"No entities within range to interact with."}
+{"type":"status","tick":2394,"wallTimeMs":1793282728164,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2414,"wallTimeMs":1793282729161,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2434,"wallTimeMs":1793282730195,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":2622,"wallTimeMs":1793282745366,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":2642,"wallTimeMs":1793282747204,"text":"No entities within range to interact with."}
+{"type":"status","tick":2662,"wallTimeMs":1793282748627,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2678,"wallTimeMs":1793282749705,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2694,"wallTimeMs":1793282750781,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":2862,"wallTimeMs":1793282762608,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2878,"wallTimeMs":1793282763737,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":2898,"wallTimeMs":1793282765137,"text":"No entities within range to interact with."}
+{"type":"status","tick":2914,"wallTimeMs":1793282766283,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2930,"wallTimeMs":1793282767317,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":3450,"wallTimeMs":1793282804034,"kind":"NationCreation","text":"Alice Jones raised a banner and called it Cityshire."}
+{"type":"chronicle","tick":3502,"wallTimeMs":1793282807772,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Dave Wood."}
+{"type":"chronicle","tick":3650,"wallTimeMs":1793282825182,"kind":"NationCreation","text":"Tilly Thomas declared the nation of Easternham, though none had yet sworn to it."}
+{"type":"chronicle","tick":3650,"wallTimeMs":1793282825182,"kind":"SettlementFounded","text":"Alice Jones raised the first settlement of Cityshire."}
+{"type":"status","tick":3698,"wallTimeMs":1793282829224,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":3718,"wallTimeMs":1793282830800,"text":"No entities within range to interact with."}
+{"type":"status","tick":3730,"wallTimeMs":1793282831674,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":3746,"wallTimeMs":1793282832903,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":3762,"wallTimeMs":1793282834132,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":3950,"wallTimeMs":1793282847188,"kind":"StallBuilt","text":"Alice Jones built a market stall in Cityshire."}
+{"type":"status","tick":4002,"wallTimeMs":1793282851069,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":4018,"wallTimeMs":1793282852225,"text":"No entities within range to interact with."}
+{"type":"status","tick":4030,"wallTimeMs":1793282853201,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":4046,"wallTimeMs":1793282854380,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":4062,"wallTimeMs":1793282855693,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":4302,"wallTimeMs":1793282871981,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Dave Wood."}
+{"type":"status","tick":4314,"wallTimeMs":1793282872800,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":4334,"wallTimeMs":1793282874141,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":4350,"wallTimeMs":1793282875285,"kind":"StallBuilt","text":"Trade came to Westburg: Peggy Jones built a stall."}
+{"type":"status","tick":4354,"wallTimeMs":1793282875525,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":4374,"wallTimeMs":1793282876775,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":4390,"wallTimeMs":1793282877908,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":4502,"wallTimeMs":1793282886725,"kind":"NationRelationChange","text":"Upperburg and Westburg have become rivals over their border."}
+{"type":"chronicle","tick":4502,"wallTimeMs":1793282886725,"kind":"NationRelationChange","text":"Upperburg and Littleburg have become rivals over their border."}
+{"type":"chronicle","tick":4702,"wallTimeMs":1793282903590,"kind":"SettlementFounded","text":"Easternham put down roots: Tilly Thomas founded its first settlement."}
+{"type":"status","tick":4706,"wallTimeMs":1793282903968,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":4722,"wallTimeMs":1793282905213,"text":"No entities within range to interact with."}
+{"type":"status","tick":4738,"wallTimeMs":1793282906609,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":4754,"wallTimeMs":1793282908135,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":4774,"wallTimeMs":1793282909627,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":4854,"wallTimeMs":1793282915471,"text":"Too close to the Village of Littleburg: 147 away, and settlements must be 250 apart. Open ground lies about 230 to the south-west."}
+{"type":"status","tick":4910,"wallTimeMs":1793282919946,"text":"You are not inside a settlement."}
+{"type":"chronicle","tick":5250,"wallTimeMs":1793282947252,"kind":"StallBuilt","text":"Trade came to Cityshire: Alice Jones built a stall."}
+{"type":"chronicle","tick":5302,"wallTimeMs":1793282951051,"kind":"StallBuilt","text":"Peggy Jones built a market stall in Westburg."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1793282967160,"kind":"NationCreation","text":"The nation of Littleham was born, with Natalie Lewis at its head."}
+{"type":"status","tick":5570,"wallTimeMs":1793282972349,"text":"Too close to the Village of Westburg: 228 away, and settlements must be 250 apart. Open ground lies about 30 to the west."}
+{"type":"chronicle","tick":5602,"wallTimeMs":1793282974785,"kind":"NationCreation","text":"Rachel Evans raised a banner and called it Bigton."}
+{"type":"chronicle","tick":5650,"wallTimeMs":1793282978271,"kind":"NationCreation","text":"The nation of Northham was born, with Una Brown at its head."}
+{"type":"chronicle","tick":5650,"wallTimeMs":1793282978271,"kind":"NationCreation","text":"The nation of Townville was born, with Isabella Taylor at its head."}
+{"type":"chronicle","tick":5650,"wallTimeMs":1793282978271,"kind":"NationCreation","text":"Wendy Wilson declared the nation of Bigfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":5702,"wallTimeMs":1793282981857,"kind":"SettlementFounded","text":"Wendy Wilson raised the first settlement of Bigfield."}
+{"type":"status","tick":5718,"wallTimeMs":1793282982939,"text":"Settlement founded. Westburg and Littleburg resent a new settlement so near their land."}
+{"type":"chronicle","tick":5718,"wallTimeMs":1793282982939,"kind":"SettlementFounded","text":"Easttown put down roots: you founded its first settlement."}
+{"type":"status","tick":5722,"wallTimeMs":1793282983265,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":5750,"wallTimeMs":1793282985554,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4348}
+{"type":"status","tick":5750,"wallTimeMs":1793282985554,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":5750,"wallTimeMs":1793282985554,"kind":"NationJoin","text":"Dave Robinson threw in their lot with Easttown."}
+{"type":"chronicle","tick":5750,"wallTimeMs":1793282985554,"kind":"NationJoin","text":"Mike Roberts swore fealty to Easttown."}
+{"type":"status","tick":5810,"wallTimeMs":1793282990684,"text":"Entered settlement."}
+{"type":"objective_completed","tick":5850,"wallTimeMs":1793282993723,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":100}
+{"type":"status","tick":5850,"wallTimeMs":1793282993723,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":5850,"wallTimeMs":1793282993723,"kind":"SettlementFounded","text":"Natalie Lewis laid the first stones of Littleham."}
+{"type":"chronicle","tick":5902,"wallTimeMs":1793282997985,"kind":"NationCreation","text":"Ursula Williams declared the nation of Bigham, though none had yet sworn to it."}
+{"type":"chronicle","tick":5950,"wallTimeMs":1793283001678,"kind":"NationCreation","text":"Samantha Wood declared the nation of Blueburg, though none had yet sworn to it."}
+{"type":"save","tick":6002,"wallTimeMs":1793283006104,"count":1}
+{"type":"chronicle","tick":6002,"wallTimeMs":1793283006104,"kind":"NationCreation","text":"Gemma Walker raised a banner and called it Hamletfield."}
+{"type":"chronicle","tick":6002,"wallTimeMs":1793283006104,"kind":"NationRelationChange","text":"Upperburg and Cityshire have become rivals over their border."}
+{"type":"status","tick":6038,"wallTimeMs":1793283009090,"text":"Exited settlement."}
+{"type":"objective_completed","tick":6050,"wallTimeMs":1793283010082,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":200}
+{"type":"status","tick":6050,"wallTimeMs":1793283010082,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1793283010082,"kind":"StallBuilt","text":"A new stall opened in the market of Cityshire, built by Alice Jones."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1793283010082,"kind":"SettlementFounded","text":"Isabella Taylor raised the first settlement of Townville."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1793283010082,"kind":"StallBuilt","text":"Dave Robinson built a market stall in Easttown."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1793283010082,"kind":"StallBuilt","text":"Mike Roberts built a market stall in Easttown."}
+{"type":"chronicle","tick":6050,"wallTimeMs":1793283010082,"kind":"NationJoin","text":"Lily Wood joined Easttown."}
+{"type":"chronicle","tick":6150,"wallTimeMs":1793283017929,"kind":"SettlementFounded","text":"Ursula Williams raised the first settlement of Bigham."}
+{"type":"status","tick":6154,"wallTimeMs":1793283018206,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":6170,"wallTimeMs":1793283019306,"text":"Mike Roberts (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"status","tick":6186,"wallTimeMs":1793283020318,"text":"No entities within range to interact with."}
+{"type":"status","tick":6202,"wallTimeMs":1793283021351,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":6222,"wallTimeMs":1793283022628,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":6250,"wallTimeMs":1793283024465,"kind":"NationJoin","text":"Easttown welcomed Abigail Walker into its ranks."}
+{"type":"status","tick":6342,"wallTimeMs":1793283030371,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":6358,"wallTimeMs":1793283031586,"text":"No entities within range to interact with."}
+{"type":"status","tick":6386,"wallTimeMs":1793283033618,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":6402,"wallTimeMs":1793283034756,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":6430,"wallTimeMs":1793283036615,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283042714,"kind":"StallBuilt","text":"Dave Wood built a market stall in Littleburg."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283042714,"kind":"StallBuilt","text":"Trade came to Easttown: Lily Wood built a stall."}
+{"type":"chronicle","tick":6550,"wallTimeMs":1793283047409,"kind":"SettlementFounded","text":"Una Brown laid the first stones of Northham."}
+{"type":"chronicle","tick":6550,"wallTimeMs":1793283047409,"kind":"NationCreation","text":"Lily Brown declared the nation of Lowerford, though none had yet sworn to it."}
+{"type":"status","tick":6602,"wallTimeMs":1793283051464,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":6618,"wallTimeMs":1793283053084,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":6634,"wallTimeMs":1793283054486,"text":"No entities within range to interact with."}
+{"type":"status","tick":6646,"wallTimeMs":1793283055604,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":6662,"wallTimeMs":1793283057001,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":6702,"wallTimeMs":1793283060683,"kind":"NationCreation","text":"Tina Thomas raised a banner and called it Lowertown."}
+{"type":"chronicle","tick":6802,"wallTimeMs":1793283069200,"kind":"SettlementFounded","text":"Gemma Walker laid the first stones of Hamletfield."}
+{"type":"chronicle","tick":6802,"wallTimeMs":1793283069200,"kind":"StallBuilt","text":"A new stall opened in the market of Easttown, built by Mike Roberts. The market is now full."}
+{"type":"chronicle","tick":6902,"wallTimeMs":1793283078474,"kind":"SettlementFounded","text":"Lowertown put down roots: Tina Thomas founded its first settlement."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1793283087012,"kind":"NationCreation","text":"Yvonne Jones raised a banner and called it Townwood."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1793283087012,"kind":"NationRelationChange","text":"Littleburg and Easternham have become rivals over their border."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1793283087012,"kind":"NationRelationChange","text":"Cityshire and Easternham have become rivals over their border."}
+{"type":"status","tick":7054,"wallTimeMs":1793283092216,"text":"Entered settlement."}
+{"type":"status","tick":7090,"wallTimeMs":1793283096261,"text":"Market is full. Cannot build stall."}
+{"type":"chronicle","tick":7102,"wallTimeMs":1793283097727,"kind":"StallBuilt","text":"Trade came to Easternham: Tilly Thomas built a stall."}
+{"type":"chronicle","tick":7102,"wallTimeMs":1793283097727,"kind":"NationCreation","text":"The nation of Easternton was born, with Stan Walker at its head."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1793283114593,"kind":"NationCreation","text":"Tilly Walker declared the nation of Greenham, though none had yet sworn to it."}
+{"type":"status","tick":7350,"wallTimeMs":1793283125406,"text":"No merchant here can pay: the richest has 9 coins, and your cheapest good (sapling) sells for 16."}
+{"type":"chronicle","tick":7402,"wallTimeMs":1793283130954,"kind":"StallBuilt","text":"Alice Jones built a market stall in Cityshire."}
+{"type":"chronicle","tick":7402,"wallTimeMs":1793283130954,"kind":"SettlementFounded","text":"Lily Brown raised the first settlement of Lowerford."}
+{"type":"chronicle","tick":7450,"wallTimeMs":1793283135323,"kind":"NationCreation","text":"Yvonne Thomas declared the nation of Lowerport, though none had yet sworn to it."}
+{"type":"status","tick":7474,"wallTimeMs":1793283149329,"text":"You purchased food from Abigail Walker. Relationship increased to 1."}
+{"type":"chronicle","tick":7502,"wallTimeMs":1793283237337,"kind":"NationCreation","text":"Judy Thomas founded the nation of Newville."}
+{"type":"status","tick":7550,"wallTimeMs":1793283242199,"text":"You sold resources to Abigail Walker. Relationship increased to 2."}
+{"type":"chronicle","tick":7550,"wallTimeMs":1793283242199,"kind":"SettlementFounded","text":"Bigton put down roots: Rachel Evans founded its first settlement."}
+{"type":"chronicle","tick":7550,"wallTimeMs":1793283242199,"kind":"NationJoin","text":"Harriet Roberts swore fealty to Easttown."}
+{"type":"chronicle","tick":7602,"wallTimeMs":1793283248418,"kind":"SettlementFounded","text":"Tilly Walker raised the first settlement of Greenham."}
+{"type":"status","tick":7638,"wallTimeMs":1793283253220,"text":"A House needs 20 wood, 15 stone. Need 0 more wood, 5 more stone."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1793283260325,"kind":"StallBuilt","text":"Natalie Lewis built a market stall in Littleham."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1793283260325,"kind":"NationCreation","text":"Nancy Wilson founded the nation of Castleburg."}
+{"type":"chronicle","tick":7702,"wallTimeMs":1793283260325,"kind":"SettlementFounded","text":"Judy Thomas raised the first settlement of Newville."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1793283266199,"kind":"NationCreation","text":"Charlotte Jones founded the nation of Lowerwood."}
+{"type":"status","tick":7782,"wallTimeMs":1793283270214,"text":"Collected 22 wood and 5 stone from the stockpile."}
+{"type":"chronicle","tick":7802,"wallTimeMs":1793283272685,"kind":"NationCreation","text":"Irene Watson founded the nation of Cityburg."}
+{"type":"chronicle","tick":7850,"wallTimeMs":1793283278590,"kind":"SettlementFounded","text":"Yvonne Thomas raised the first settlement of Lowerport."}
+{"type":"status","tick":7866,"wallTimeMs":1793283280677,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":7942,"wallTimeMs":1793283289204,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":7946,"wallTimeMs":1793283289677,"text":"Click again to confirm: Build Farm."}
+{"type":"chronicle","tick":7950,"wallTimeMs":1793283290156,"kind":"StallBuilt","text":"Una Brown built a market stall in Northham."}
+{"type":"chronicle","tick":7950,"wallTimeMs":1793283290156,"kind":"StallBuilt","text":"A new stall opened in the market of Bigfield, built by Wendy Wilson."}
+{"type":"status","tick":8002,"wallTimeMs":1793283296883,"text":"Westburg resents your border: relations are now Rival (-20). Littleburg resents your border: relations are now Rival (-20). Littleburg sent 20 coins of tribute to your treasury. Relations with Littleburg are now Neutral (-12)."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1793283296883,"kind":"NationRelationChange","text":"Easttown and Westburg have become rivals over their border."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1793283296883,"kind":"NationRelationChange","text":"Easttown and Littleburg have become rivals over their border."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1793283296883,"kind":"NationRelationChange","text":"Easternham and Bigfield have become rivals over their border."}
+{"type":"chronicle","tick":8002,"wallTimeMs":1793283296883,"kind":"NationRelationChange","text":"Relations between Littleburg and Easttown are now neutral."}
+{"type":"status","tick":8034,"wallTimeMs":1793283306319,"text":"Click again to confirm: Build Farm."}
+{"type":"chronicle","tick":8050,"wallTimeMs":1793283310032,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Dave Wood. The market is now full."}
+{"type":"status","tick":8086,"wallTimeMs":1793283315267,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":8102,"wallTimeMs":1793283319387,"text":"Click again to confirm: Build Farm."}
+{"type":"chronicle","tick":8150,"wallTimeMs":1793283324706,"kind":"SettlementFounded","text":"Irene Watson raised the first settlement of Cityburg."}
+{"type":"status","tick":8182,"wallTimeMs":1793283327598,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":8246,"wallTimeMs":1793283334448,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":8250,"wallTimeMs":1793283334895,"text":"Littleham resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1793283334895,"kind":"StallBuilt","text":"Peggy Jones built a market stall in Westburg."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1793283334895,"kind":"StallBuilt","text":"Tina Thomas built a market stall in Lowertown."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1793283334895,"kind":"NationRelationChange","text":"Easttown and Littleham have become rivals over their border."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1793283334895,"kind":"NationRelationChange","text":"Littleburg and Littleham have become rivals over their border."}
+{"type":"chronicle","tick":8250,"wallTimeMs":1793283334895,"kind":"NationRelationChange","text":"Littleham and Bigfield have become rivals over their border."}
+{"type":"status","tick":8254,"wallTimeMs":1793283335399,"text":"Farm built."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1793283340098,"kind":"NationCreation","text":"Nancy Jones raised a banner and called it Littleford."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1793283340098,"kind":"NationCreation","text":"The nation of Hamletburg was born, with Bella Walker at its head."}
+{"type":"chronicle","tick":8402,"wallTimeMs":1793283349807,"kind":"SettlementFounded","text":"Nancy Wilson laid the first stones of Castleburg."}
+{"type":"screen","tick":8462,"wallTimeMs":1793283355495,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":8462,"wallTimeMs":1793283375781,"from":"CONTROLS","to":"WORLD"}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"SettlementFounded","text":"Townwood put down roots: Yvonne Jones founded its first settlement."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"StallBuilt","text":"A new stall opened in the market of Bigfield, built by Wendy Wilson."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"SettlementFounded","text":"Samantha Wood laid the first stones of Blueburg."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"NationCreation","text":"Ella Robinson raised a banner and called it Fortfield."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"NationRelationChange","text":"Cityshire and Bigham have become rivals over their border."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"NationRelationChange","text":"Easternham and Townville have become rivals over their border."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283379492,"kind":"NationRelationChange","text":"Littleham and Townville have become rivals over their border."}
+{"type":"chronicle","tick":8550,"wallTimeMs":1793283383585,"kind":"StallBuilt","text":"A new stall opened in the market of Townville, built by Isabella Taylor."}
+{"type":"chronicle","tick":8702,"wallTimeMs":1793283397049,"kind":"StallBuilt","text":"A new stall opened in the market of Littleham, built by Natalie Lewis."}
+{"type":"status","tick":8706,"wallTimeMs":1793283397426,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era."}
+{"type":"chronicle","tick":8750,"wallTimeMs":1793283401297,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerport, built by Yvonne Thomas."}
+{"type":"chronicle","tick":8802,"wallTimeMs":1793283405816,"kind":"StallBuilt","text":"Trade came to Northham: Una Brown built a stall."}
+{"type":"chronicle","tick":8802,"wallTimeMs":1793283405816,"kind":"NationCreation","text":"The nation of Yellowshire was born, with Katie Walker at its head."}
+{"type":"screen","tick":8802,"wallTimeMs":1793283406195,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":8806,"wallTimeMs":1793283407984,"from":"INVENTORY","to":"WORLD"}
+{"type":"status","tick":8894,"wallTimeMs":1793283416434,"text":"No merchant here can pay: the richest has 6 coins, and your cheapest good (apple) sells for 11."}
+{"type":"chronicle","tick":8902,"wallTimeMs":1793283417332,"kind":"StallBuilt","text":"Trade came to Lowerford: Lily Brown built a stall."}
+{"type":"status","tick":8922,"wallTimeMs":1793283419701,"text":"No merchant here can pay: the richest has 6 coins, and your cheapest good (apple) sells for 11. (x2)"}
+{"type":"status","tick":9002,"wallTimeMs":1793283427742,"text":"Northham resents your border: relations are now Rival (-20). Westburg sent 20 coins of tribute to your treasury. Relations with Westburg are now Neutral (-16)."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"StallBuilt","text":"Alice Jones built a market stall in Cityshire."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"SettlementFounded","text":"Hamletburg put down roots: Bella Walker founded its first settlement."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"NationRelationChange","text":"Easttown and Northham have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"NationRelationChange","text":"Northham and Bigfield have become rivals over their border."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"NationRelationChange","text":"Relations between Westburg and Easttown are now neutral."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"Caravan","text":"Littleburg sent a caravan of 9 wood from the Village of Littleburg to the Camp of Easttown."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"Caravan","text":"Littleham sent a caravan of 20 wood from the Village of Littleham to the Camp of Easttown."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"Caravan","text":"Northham sent a caravan of 20 wood from the Village of Northham to the Camp of Easttown."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283427742,"kind":"Caravan","text":"Greenham sent a caravan of 20 wood from the Village of Greenham to the Camp of Easttown."}

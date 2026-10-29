@@ -1,0 +1,197 @@
+{"t": 1793281941069, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "106"]}
+{"t": 1793282394185, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793282394290, "cmd": "key", "args": ["space"]}
+{"t": 1793282394834, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793282394943, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282395725, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793282398224, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793282408140, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282408981, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1793282409284, "cmd": "wait", "args": ["3"]}
+{"t": 1793282412451, "cmd": "shot", "args": ["world0"]}
+{"t": 1793282412796, "cmd": "state", "args": []}
+{"t": 1793282425451, "cmd": "click", "args": ["425", "389"]}
+{"t": 1793282426429, "cmd": "key", "args": ["n"]}
+{"t": 1793282427078, "cmd": "wait", "args": ["2"]}
+{"t": 1793282429205, "cmd": "shot", "args": ["nation1"]}
+{"t": 1793282429508, "cmd": "state", "args": []}
+{"t": 1793282429650, "cmd": "events", "args": ["10"]}
+{"t": 1793282434086, "cmd": "key", "args": ["o"]}
+{"t": 1793282434691, "cmd": "wait", "args": ["2"]}
+{"t": 1793282436785, "cmd": "shot", "args": ["nations1"]}
+{"t": 1793282437115, "cmd": "state", "args": ["--full"]}
+{"t": 1793282441431, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793282442338, "cmd": "wait", "args": ["2"]}
+{"t": 1793282444471, "cmd": "shot", "args": ["laws1"]}
+{"t": 1793282450530, "cmd": "click", "args": ["353", "175"]}
+{"t": 1793282451395, "cmd": "wait", "args": ["1"]}
+{"t": 1793282452570, "cmd": "click", "args": ["225", "262"]}
+{"t": 1793282453474, "cmd": "wait", "args": ["1"]}
+{"t": 1793282454650, "cmd": "shot", "args": ["laws2"]}
+{"t": 1793282455023, "cmd": "state", "args": []}
+{"t": 1793282455157, "cmd": "events", "args": ["6"]}
+{"t": 1793282461685, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282462294, "cmd": "wait", "args": ["1"]}
+{"t": 1793282463418, "cmd": "click", "args": ["48", "20"]}
+{"t": 1793282464295, "cmd": "wait", "args": ["2"]}
+{"t": 1793282466420, "cmd": "shot", "args": ["controls"]}
+{"t": 1793282470740, "cmd": "click", "args": ["615", "508"]}
+{"t": 1793282471542, "cmd": "wait", "args": ["2"]}
+{"t": 1793282473667, "cmd": "shot", "args": ["controls2"]}
+{"t": 1793282473985, "cmd": "click", "args": ["615", "508"]}
+{"t": 1793282474874, "cmd": "wait", "args": ["2"]}
+{"t": 1793282477092, "cmd": "shot", "args": ["controls3"]}
+{"t": 1793282483966, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282502210, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793282562920, "cmd": "state", "args": []}
+{"t": 1793282567773, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793282570006, "cmd": "key", "args": ["r"]}
+{"t": 1793282570692, "cmd": "wait", "args": ["1"]}
+{"t": 1793282571821, "cmd": "shot", "args": ["invite1"]}
+{"t": 1793282572137, "cmd": "state", "args": []}
+{"t": 1793282572262, "cmd": "events", "args": ["5"]}
+{"t": 1793282577992, "cmd": "key", "args": ["e"]}
+{"t": 1793282578656, "cmd": "wait", "args": ["1"]}
+{"t": 1793282579850, "cmd": "state", "args": []}
+{"t": 1793282579994, "cmd": "key", "args": ["e"]}
+{"t": 1793282580544, "cmd": "wait", "args": ["1"]}
+{"t": 1793282581711, "cmd": "state", "args": []}
+{"t": 1793282581905, "cmd": "key", "args": ["e"]}
+{"t": 1793282582449, "cmd": "wait", "args": ["1"]}
+{"t": 1793282583593, "cmd": "state", "args": []}
+{"t": 1793282583758, "cmd": "key", "args": ["e"]}
+{"t": 1793282584325, "cmd": "wait", "args": ["1"]}
+{"t": 1793282585436, "cmd": "state", "args": []}
+{"t": 1793282585562, "cmd": "key", "args": ["g"]}
+{"t": 1793282586233, "cmd": "wait", "args": ["1"]}
+{"t": 1793282587470, "cmd": "state", "args": []}
+{"t": 1793282591124, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1793282629527, "cmd": "key", "args": ["e"]}
+{"t": 1793282632588, "cmd": "state", "args": []}
+{"t": 1793282655091, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1793282706078, "cmd": "key", "args": ["e"]}
+{"t": 1793282706555, "cmd": "state", "args": []}
+{"t": 1793282706627, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1793282743427, "cmd": "key", "args": ["e"]}
+{"t": 1793282745194, "cmd": "state", "args": []}
+{"t": 1793282745282, "cmd": "key", "args": ["g"]}
+{"t": 1793282745851, "cmd": "state", "args": []}
+{"t": 1793282750877, "cmd": "state", "args": []}
+{"t": 1793282750971, "cmd": "events", "args": ["8"]}
+{"t": 1793282755844, "cmd": "key", "args": ["o"]}
+{"t": 1793282756375, "cmd": "wait", "args": ["1"]}
+{"t": 1793282757483, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793282758292, "cmd": "wait", "args": ["1"]}
+{"t": 1793282759902, "cmd": "shot", "args": ["laws3"]}
+{"t": 1793282760231, "cmd": "click", "args": ["97", "175"]}
+{"t": 1793282761063, "cmd": "wait", "args": ["1"]}
+{"t": 1793282762162, "cmd": "shot", "args": ["laws4"]}
+{"t": 1793282762455, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282770834, "cmd": "note", "args": ["--shot", "laws-preview", "Laws tab only describes the law currently in force (e.g. 'No tax: members keep their coin'); the effect of High taxes (3 coins/10s, loyalty falls fast, no immigrants) and Conscription On (members gather 40% less) is only revealed after it is enacted and has taken effect 30 s later. No hover/preview of an option before choosing it. Also a 1-member nation shows 'Taxes: 0 coins' with no hint taxes need members."]}
+{"t": 1793282771114, "cmd": "walkto", "args": ["pawn", "25"]}
+{"t": 1793282798198, "cmd": "key", "args": ["e"]}
+{"t": 1793282798711, "cmd": "state", "args": []}
+{"t": 1793282804245, "cmd": "state", "args": []}
+{"t": 1793282804344, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1793282824589, "cmd": "state", "args": []}
+{"t": 1793282829440, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1793282845548, "cmd": "key", "args": ["e"]}
+{"t": 1793282846059, "cmd": "key", "args": ["e"]}
+{"t": 1793282846582, "cmd": "wait", "args": ["1"]}
+{"t": 1793282847692, "cmd": "state", "args": []}
+{"t": 1793282850194, "cmd": "shot", "args": ["stuck"]}
+{"t": 1793282850497, "cmd": "state", "args": []}
+{"t": 1793282857675, "cmd": "face", "args": ["-45"]}
+{"t": 1793282860299, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1793282862399, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1793282902978, "cmd": "key", "args": ["e"]}
+{"t": 1793282903743, "cmd": "wait", "args": ["1"]}
+{"t": 1793282904889, "cmd": "state", "args": []}
+{"t": 1793282904988, "cmd": "events", "args": ["6"]}
+{"t": 1793282914052, "cmd": "key", "args": ["e"]}
+{"t": 1793282914572, "cmd": "key", "args": ["e"]}
+{"t": 1793282915105, "cmd": "key", "args": ["e"]}
+{"t": 1793282915620, "cmd": "key", "args": ["r"]}
+{"t": 1793282916135, "cmd": "wait", "args": ["1"]}
+{"t": 1793282917216, "cmd": "shot", "args": ["talk"]}
+{"t": 1793282917439, "cmd": "state", "args": []}
+{"t": 1793282917567, "cmd": "events", "args": ["5"]}
+{"t": 1793282926265, "cmd": "note", "args": ["--shot", "overlap", "Near Smalltown the floating settlement label 'Town of Smalltown / 5 here, 7/12 residents' is drawn underneath the red status banner at the top centre, so both are partly unreadable (tick ~4450)."]}
+{"t": 1793282926562, "cmd": "note", "args": ["--shot", "talk-flee", "Recruiting is very hard: pawns are Strangers ('I don't even know you' needs Acquaintance), and after one E-talk they walk off; repeated E presses 1 s later say 'No entities within range'. pt walkto repeatedly times out chasing pawns at ~3 fps. Within ~15 min every nearby pawn had founded/joined its own nation (10+ nations by day 1 morning), so a solo player nation stays at 1 member."]}
+{"t": 1793282931581, "cmd": "key", "args": ["o"]}
+{"t": 1793282932178, "cmd": "wait", "args": ["1"]}
+{"t": 1793282933283, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793282934091, "cmd": "wait", "args": ["1"]}
+{"t": 1793282936809, "cmd": "click", "args": ["97", "262"]}
+{"t": 1793282937728, "cmd": "wait", "args": ["1"]}
+{"t": 1793282938816, "cmd": "click", "args": ["415", "45"]}
+{"t": 1793282939577, "cmd": "wait", "args": ["1"]}
+{"t": 1793282940830, "cmd": "shot", "args": ["nations2"]}
+{"t": 1793282941149, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282946490, "cmd": "note", "args": ["--shot", "no-heir", "No ruler/heir information anywhere a player can see: Nations tab says only 'You lead it', Laws tab, Player Info (Role: LEADER) and all 3 pages of ? Controls never mention an heir, succession, or what happens if the ruler dies. A player trying to plan a dynasty cannot learn who would succeed them."]}
+{"t": 1793282946837, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1793282958244, "cmd": "key", "args": ["g"]}
+{"t": 1793282958820, "cmd": "wait", "args": ["1"]}
+{"t": 1793282959918, "cmd": "state", "args": []}
+{"t": 1793282963283, "cmd": "key", "args": ["g"]}
+{"t": 1793282964198, "cmd": "key", "args": ["g"]}
+{"t": 1793282964728, "cmd": "key", "args": ["g"]}
+{"t": 1793282965255, "cmd": "key", "args": ["g"]}
+{"t": 1793282965856, "cmd": "key", "args": ["g"]}
+{"t": 1793282966429, "cmd": "key", "args": ["r"]}
+{"t": 1793282967050, "cmd": "wait", "args": ["1"]}
+{"t": 1793282968155, "cmd": "events", "args": ["8"]}
+{"t": 1793282968237, "cmd": "shot", "args": ["gift"]}
+{"t": 1793282971860, "cmd": "walkto", "args": ["pawn", "25"]}
+{"t": 1793282979743, "cmd": "key", "args": ["r"]}
+{"t": 1793282980268, "cmd": "wait", "args": ["1"]}
+{"t": 1793282981344, "cmd": "events", "args": ["3"]}
+{"t": 1793282981424, "cmd": "state", "args": []}
+{"t": 1793282985817, "cmd": "wait", "args": ["15"]}
+{"t": 1793283000898, "cmd": "events", "args": ["30"]}
+{"t": 1793283000969, "cmd": "state", "args": []}
+{"t": 1793283004528, "cmd": "wait", "args": ["40"]}
+{"t": 1793283044661, "cmd": "events", "args": ["30"]}
+{"t": 1793283044884, "cmd": "state", "args": []}
+{"t": 1793283048720, "cmd": "wait", "args": ["50"]}
+{"t": 1793283098861, "cmd": "events", "args": ["40"]}
+{"t": 1793283098981, "cmd": "state", "args": []}
+{"t": 1793283104236, "cmd": "events", "args": ["60"]}
+{"t": 1793283104367, "cmd": "key", "args": ["o"]}
+{"t": 1793283104910, "cmd": "wait", "args": ["1"]}
+{"t": 1793283106020, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793283106890, "cmd": "wait", "args": ["1"]}
+{"t": 1793283108002, "cmd": "shot", "args": ["laws5"]}
+{"t": 1793283108381, "cmd": "key", "args": ["Escape"]}
+{"t": 1793283119198, "cmd": "note", "args": ["--shot", "law-zero", "Conscription: Off proclaimed at tick 4574 ('takes effect in 30 seconds'). At tick ~6200 (32+ game s later) the Laws tab reads 'Conscription: On (Off in 0 s)' and the law is still On. Earlier changes landed exactly on ticks 2002 and 4002, so laws seem to apply only on a 2000-tick (40 s) cadence: the countdown hits 0 s and then sits there for up to ~40 s more."]}
+{"t": 1793283135055, "cmd": "state", "args": []}
+{"t": 1793283135220, "cmd": "events", "args": ["15"]}
+{"t": 1793283139959, "cmd": "state", "args": []}
+{"t": 1793283233654, "cmd": "state", "args": []}
+{"t": 1793283243791, "cmd": "state", "args": []}
+{"t": 1793283253987, "cmd": "state", "args": []}
+{"t": 1793283264194, "cmd": "state", "args": []}
+{"t": 1793283274392, "cmd": "state", "args": []}
+{"t": 1793283284528, "cmd": "state", "args": []}
+{"t": 1793283294692, "cmd": "state", "args": []}
+{"t": 1793283304779, "cmd": "state", "args": []}
+{"t": 1793283314861, "cmd": "state", "args": []}
+{"t": 1793283325034, "cmd": "state", "args": []}
+{"t": 1793283335268, "cmd": "state", "args": []}
+{"t": 1793283345383, "cmd": "state", "args": []}
+{"t": 1793283355535, "cmd": "state", "args": []}
+{"t": 1793283365614, "cmd": "state", "args": []}
+{"t": 1793283375754, "cmd": "state", "args": []}
+{"t": 1793283385861, "cmd": "state", "args": []}
+{"t": 1793283395980, "cmd": "state", "args": []}
+{"t": 1793283406124, "cmd": "state", "args": []}
+{"t": 1793283416274, "cmd": "state", "args": []}
+{"t": 1793283426393, "cmd": "state", "args": []}
+{"t": 1793283436527, "cmd": "state", "args": []}
+{"t": 1793283439480, "cmd": "events", "args": ["40"]}
+{"t": 1793283444429, "cmd": "state", "args": []}
+{"t": 1793283444559, "cmd": "events", "args": ["200"]}
+{"t": 1793283444640, "cmd": "stop", "args": []}
+{"t": 1793283467461, "cmd": "report", "args": []}
+{"t": 1793283470355, "cmd": "report", "args": []}
+{"t": 1793285744839, "cmd": "stop", "args": []}

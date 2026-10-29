@@ -1,0 +1,50 @@
+{"type":"screen","tick":0,"wallTimeMs":1793281941531,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282021927,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282398184,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282399429,"how":"created","slot":"world-104-20261029-135959","seed":104}
+{"type":"screen","tick":0,"wallTimeMs":1793282399431,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":211,"wallTimeMs":1793282412614,"text":"Created nation Fortressham."}
+{"type":"chronicle","tick":211,"wallTimeMs":1793282412614,"kind":"NationCreation","text":"You founded the nation of Fortressham. It is the first nation this world has known."}
+{"type":"screen","tick":399,"wallTimeMs":1793282425350,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":403,"wallTimeMs":1793282434334,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":851,"wallTimeMs":1793282464640,"kind":"NationCreation","text":"Charlotte Taylor founded the nation of Westshire."}
+{"type":"chronicle","tick":903,"wallTimeMs":1793282468039,"kind":"SettlementFounded","text":"Charlotte Taylor laid the first stones of Westshire."}
+{"type":"screen","tick":1387,"wallTimeMs":1793282498467,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":1387,"wallTimeMs":1793282505963,"text":"Westshire declines: relations are Neutral (0); an alliance needs \u002B30. Gifts help."}
+{"type":"status","tick":1387,"wallTimeMs":1793282515334,"text":"Westshire accepts your gift of 25 coins. Relations: Neutral (\u002B10)."}
+{"type":"status","tick":1387,"wallTimeMs":1793282517207,"text":"Westshire accepts your gift of 25 coins. Relations: Friendly (\u002B20)."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282517207,"kind":"NationRelationChange","text":"Relations between Fortressham and Westshire are now friendly."}
+{"type":"status","tick":1387,"wallTimeMs":1793282519261,"text":"Westshire accepts your gift of 25 coins. Relations: Friendly (\u002B30)."}
+{"type":"status","tick":1387,"wallTimeMs":1793282524328,"text":"Westshire agrees: Fortressham and Westshire are now allies."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282524328,"kind":"NationRelationChange","text":"Fortressham and Westshire have formed an alliance."}
+{"type":"status","tick":1387,"wallTimeMs":1793282538941,"text":"Click Denounce again to denounce Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282546250,"text":"You denounced Westshire. Relations: Neutral (\u002B5)."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282546250,"kind":"NationRelationChange","text":"The alliance between Fortressham and Westshire has ended."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282546250,"kind":"NationRelationChange","text":"Relations between Fortressham and Westshire are now neutral."}
+{"type":"status","tick":1387,"wallTimeMs":1793282558087,"text":"Click Denounce again to denounce Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282561892,"text":"You denounced Westshire. Relations: Rival (-20)."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282561892,"kind":"NationRelationChange","text":"Fortressham and Westshire have become rivals."}
+{"type":"status","tick":1387,"wallTimeMs":1793282578658,"text":"Click War again to declare war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282586830,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":1387,"wallTimeMs":1793282588913,"text":"Click War again to declare war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282597076,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":1387,"wallTimeMs":1793282597559,"text":"Click War again to declare war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282606177,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":1387,"wallTimeMs":1793282609751,"text":"Click War again to declare war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282613322,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":1387,"wallTimeMs":1793282630152,"text":"Click War again to declare war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282655391,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":1387,"wallTimeMs":1793282730992,"text":"Click War again to declare war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282731950,"text":"Westshire takes up arms: war, 1 to your 1. They are far off; war bites only where your lands meet."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282731950,"kind":"NationRelationChange","text":"Fortressham and Westshire are now hostile."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282731950,"kind":"Statecraft","text":"Fortressham declared war on Westshire."}
+{"type":"status","tick":1387,"wallTimeMs":1793282752770,"text":"Westshire accepts peace (the fighting has cost them enough). A truce holds for 60 seconds; relations are Neutral (-19)."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282752770,"kind":"NationRelationChange","text":"Relations between Fortressham and Westshire are now neutral."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282752770,"kind":"Statecraft","text":"Fortressham and Westshire made peace, ending their war."}
+{"type":"status","tick":1387,"wallTimeMs":1793282766257,"text":"Click War again to break the truce with Westshire and declare war."}
+{"type":"status","tick":1387,"wallTimeMs":1793282767210,"text":"Westshire takes up arms: war, 1 to your 1. They are far off; war bites only where your lands meet."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282767210,"kind":"NationRelationChange","text":"Fortressham and Westshire are now hostile."}
+{"type":"chronicle","tick":1387,"wallTimeMs":1793282767210,"kind":"Statecraft","text":"Fortressham declared war on Westshire."}
+{"type":"screen","tick":1391,"wallTimeMs":1793282778712,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":2183,"wallTimeMs":1793282835891,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":2187,"wallTimeMs":1793282845822,"from":"NATIONS","to":"WORLD"}

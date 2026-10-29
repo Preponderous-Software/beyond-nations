@@ -1,0 +1,127 @@
+{"t": 1793281942132, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "103", "--season", "autumn"]}
+{"t": 1793282393883, "cmd": "key", "args": ["space"]}
+{"t": 1793282396415, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282400527, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793282411070, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282411973, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793282414491, "cmd": "shot", "args": ["world0"]}
+{"t": 1793282414794, "cmd": "state", "args": []}
+{"t": 1793282425795, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793282426728, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282442412, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282446862, "cmd": "state", "args": []}
+{"t": 1793282447021, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793282451851, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282465889, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282470250, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793282487471, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282491816, "cmd": "state", "args": []}
+{"t": 1793282491977, "cmd": "events", "args": ["10"]}
+{"t": 1793282496447, "cmd": "state", "args": ["--full"]}
+{"t": 1793282503618, "cmd": "key", "args": ["n"]}
+{"t": 1793282507262, "cmd": "shot", "args": ["nation"]}
+{"t": 1793282507725, "cmd": "state", "args": []}
+{"t": 1793282507816, "cmd": "events", "args": ["4"]}
+{"t": 1793282512693, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282551932, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282555558, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282574348, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282577718, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282592927, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282596252, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282684811, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282708355, "cmd": "state", "args": []}
+{"t": 1793282713003, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282718997, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282722118, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282728031, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282731191, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282758795, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282762671, "cmd": "state", "args": []}
+{"t": 1793282762744, "cmd": "status", "args": []}
+{"t": 1793282766304, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282774376, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282777672, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282798517, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282802033, "cmd": "key", "args": ["f"]}
+{"t": 1793282806511, "cmd": "events", "args": ["6"]}
+{"t": 1793282806637, "cmd": "shot", "args": ["settle"]}
+{"t": 1793282816117, "cmd": "note", "args": ["--shot", "overlap_labels", "Near pawn Nancy Walker in Blackland land: the pawn's floating world label ('Gregarious, Ambitious (gathering resources)') renders huge over the Chronicle panel, a second label is clipped at the left edge ('ces)'), and the Inventory panel jumps to screen centre overlapping the tip and the action bar. Tick ~123820."]}
+{"t": 1793282816637, "cmd": "note", "args": ["--shot", "claimed_land", "Pressing F inside Blackland's claim correctly explains why and points 'about 170 to the south-east' - helpful, but there is no compass/heading on screen so 'south-east' is hard to act on."]}
+{"t": 1793282824731, "cmd": "state", "args": []}
+{"t": 1793282830049, "cmd": "face", "args": ["103"]}
+{"t": 1793282835319, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793282843567, "cmd": "state", "args": []}
+{"t": 1793282843690, "cmd": "key", "args": ["f"]}
+{"t": 1793282847210, "cmd": "events", "args": ["3"]}
+{"t": 1793282854975, "cmd": "face", "args": ["180"]}
+{"t": 1793282865267, "cmd": "hold", "args": ["Shift_L+w", "14"]}
+{"t": 1793282879617, "cmd": "state", "args": []}
+{"t": 1793282879721, "cmd": "key", "args": ["f"]}
+{"t": 1793282883307, "cmd": "events", "args": ["3"]}
+{"t": 1793282886880, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1793282893064, "cmd": "key", "args": ["f"]}
+{"t": 1793282896734, "cmd": "events", "args": ["3"]}
+{"t": 1793282896818, "cmd": "shot", "args": ["founded"]}
+{"t": 1793282902833, "cmd": "key", "args": ["e"]}
+{"t": 1793282907776, "cmd": "shot", "args": ["inside"]}
+{"t": 1793282908159, "cmd": "state", "args": []}
+{"t": 1793282915070, "cmd": "key", "args": ["e"]}
+{"t": 1793282917646, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282936791, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282940397, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282958817, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282962298, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282977664, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282980810, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282994082, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793282997324, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283008260, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793283011399, "cmd": "state", "args": []}
+{"t": 1793283014968, "cmd": "events", "args": ["40"]}
+{"t": 1793283018443, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283044738, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793283048187, "cmd": "key", "args": ["h"]}
+{"t": 1793283052782, "cmd": "key", "args": ["k"]}
+{"t": 1793283057356, "cmd": "events", "args": ["6"]}
+{"t": 1793283057430, "cmd": "shot", "args": ["farm"]}
+{"t": 1793283061303, "cmd": "key", "args": ["e"]}
+{"t": 1793283064850, "cmd": "key", "args": ["k"]}
+{"t": 1793283069557, "cmd": "events", "args": ["6"]}
+{"t": 1793283069698, "cmd": "shot", "args": ["farm2"]}
+{"t": 1793283076481, "cmd": "note", "args": ["--shot", "objective_clip", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: shows 'bers 6/10 • Buildings 0/2' instead of 'Members 6/10 • Buildings 0/2' (Objective panel too narrow). Also K inside the settlement offers a House first; the Settlement Info 'Next (K)' changed from Farm to House between visits, so a player wanting a winter Farm must find the Build Farm button."]}
+{"t": 1793283077139, "cmd": "click", "args": ["625", "445"]}
+{"t": 1793283081967, "cmd": "events", "args": ["3"]}
+{"t": 1793283082106, "cmd": "shot", "args": ["farm3"]}
+{"t": 1793283091047, "cmd": "note", "args": ["--shot", "buttons_shift", "Settlement action bar reflows while you aim: when the market filled ('Build Stall' vanished) and a pawn walked up (Order/Talk/Gift rows added), 'Build Farm' moved from ~(625,445) to ~(476,445) and my click on it hit 'Send Caravan (Town era)' instead. Buttons jumping under the pointer at 2-3 fps causes misclicks."]}
+{"t": 1793283091478, "cmd": "click", "args": ["476", "445"]}
+{"t": 1793283096370, "cmd": "events", "args": ["3"]}
+{"t": 1793283096438, "cmd": "shot", "args": ["farm4"]}
+{"t": 1793283101854, "cmd": "shot", "args": ["farm5"]}
+{"t": 1793283102296, "cmd": "click", "args": ["476", "445"]}
+{"t": 1793283107172, "cmd": "events", "args": ["4"]}
+{"t": 1793283112518, "cmd": "click", "args": ["476", "445"]}
+{"t": 1793283116420, "cmd": "events", "args": ["4"]}
+{"t": 1793283130187, "cmd": "click", "args": ["476", "445"]}
+{"t": 1793283130999, "cmd": "click", "args": ["476", "445"]}
+{"t": 1793283134902, "cmd": "events", "args": ["4"]}
+{"t": 1793283140424, "cmd": "note", "args": ["--shot", "confirm_timeout", "Build Farm's 'Click again to confirm' window expires in ~70 ticks (~1.4 game s, ~8 s wall at 9-15 tps / 2-3 fps). Three deliberate second clicks (ticks 127596, 127692, 127784) all got 'Not confirmed in time, so nothing was done.' Only two back-to-back clicks worked (Farm built at tick 127944). The confirm window is too short for a slow machine or a careful player."]}
+{"t": 1793283140684, "cmd": "state", "args": []}
+{"t": 1793283234006, "cmd": "note", "args": ["--shot", "winter_unreachable", "Goal 'survive the first winter' cannot be reached in a 35-min session: --season autumn starts at day 4 = 'Autumn - day 1/2, Winter in 2 days' (winter begins at tick 180000). At the observed 9-17 tps the remaining ~52k ticks take ~60+ wall minutes. A --season late-autumn / 'winter tomorrow' start (or starting on autumn's last day) would make winter testable."]}
+{"t": 1793283234430, "cmd": "note", "args": ["--shot", "food_easy", "Food never mattered in autumn: by tick 128000 I held 26 apples from incidental tree chopping (each tree drops 1-3 apples), energy stayed 92-99 the whole time (it even rose from 84 to 98 early on without me eating), and the settlement shows 'Feed Residents (0 hungry)'. No sense of pressure to lay in food before winter beyond the orange 'Winter in 2 days' line."]}
+{"t": 1793283238389, "cmd": "status", "args": []}
+{"t": 1793283248522, "cmd": "status", "args": []}
+{"t": 1793283254502, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283320545, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793283323029, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283393761, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793283396142, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283458056, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793283460299, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793283492511, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1793283494752, "cmd": "state", "args": []}
+{"t": 1793283499237, "cmd": "shot", "args": ["final"]}
+{"t": 1793283499491, "cmd": "events", "args": ["200"]}
+{"t": 1793283499573, "cmd": "stop", "args": []}
+{"t": 1793283528445, "cmd": "report", "args": []}
+{"t": 1793285744758, "cmd": "stop", "args": []}

@@ -1,0 +1,175 @@
+{"t": 1793281941684, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "102"]}
+{"t": 1793282394055, "cmd": "key", "args": ["space"]}
+{"t": 1793282396557, "cmd": "shot", "args": ["menu"]}
+{"t": 1793282401340, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282404235, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793282413718, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282414555, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793282414880, "cmd": "shot", "args": ["world0"]}
+{"t": 1793282415164, "cmd": "state", "args": []}
+{"t": 1793282426062, "cmd": "wait", "args": ["2"]}
+{"t": 1793282428179, "cmd": "shot", "args": ["world1"]}
+{"t": 1793282435270, "cmd": "click", "args": ["425", "388"]}
+{"t": 1793282436115, "cmd": "click", "args": ["168", "58"]}
+{"t": 1793282436960, "cmd": "shot", "args": ["era"]}
+{"t": 1793282442023, "cmd": "click", "args": ["168", "58"]}
+{"t": 1793282442932, "cmd": "shot", "args": ["era2"]}
+{"t": 1793282443276, "cmd": "state", "args": ["--full"]}
+{"t": 1793282451813, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282483007, "cmd": "key", "args": ["e"]}
+{"t": 1793282483572, "cmd": "key", "args": ["e"]}
+{"t": 1793282484122, "cmd": "key", "args": ["e"]}
+{"t": 1793282484703, "cmd": "key", "args": ["e"]}
+{"t": 1793282485272, "cmd": "key", "args": ["e"]}
+{"t": 1793282485855, "cmd": "key", "args": ["e"]}
+{"t": 1793282486390, "cmd": "state", "args": []}
+{"t": 1793282490089, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793282554380, "cmd": "key", "args": ["e"]}
+{"t": 1793282555004, "cmd": "wait", "args": ["1"]}
+{"t": 1793282556129, "cmd": "state", "args": []}
+{"t": 1793282556233, "cmd": "events", "args": ["5"]}
+{"t": 1793282559580, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282572579, "cmd": "key", "args": ["e"]}
+{"t": 1793282573199, "cmd": "wait", "args": ["1"]}
+{"t": 1793282574361, "cmd": "state", "args": []}
+{"t": 1793282579328, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793282681346, "cmd": "key", "args": ["e"]}
+{"t": 1793282684811, "cmd": "wait", "args": ["1"]}
+{"t": 1793282706078, "cmd": "state", "args": []}
+{"t": 1793282706121, "cmd": "shot", "args": ["obj"]}
+{"t": 1793282706273, "cmd": "events", "args": ["6"]}
+{"t": 1793282714642, "cmd": "status", "args": []}
+{"t": 1793282718890, "cmd": "note", "args": ["--shot", "toast_cut", "Red status toast 'No entities within range to interact with.' is clipped to '! No entities within range to interact w' at the top centre (960x540)"]}
+{"t": 1793282719070, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1793282749400, "cmd": "key", "args": ["e"]}
+{"t": 1793282752254, "cmd": "wait", "args": ["1"]}
+{"t": 1793282753406, "cmd": "state", "args": []}
+{"t": 1793282753492, "cmd": "events", "args": ["8"]}
+{"t": 1793282756355, "cmd": "key", "args": ["n"]}
+{"t": 1793282756863, "cmd": "wait", "args": ["1"]}
+{"t": 1793282757948, "cmd": "shot", "args": ["nation"]}
+{"t": 1793282758241, "cmd": "state", "args": []}
+{"t": 1793282762290, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1793282769831, "cmd": "key", "args": ["e"]}
+{"t": 1793282770456, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1793282824580, "cmd": "key", "args": ["e"]}
+{"t": 1793282825186, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1793282826355, "cmd": "key", "args": ["e"]}
+{"t": 1793282827000, "cmd": "state", "args": []}
+{"t": 1793282830241, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793282838715, "cmd": "key", "args": ["e"]}
+{"t": 1793282839304, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793282850662, "cmd": "key", "args": ["e"]}
+{"t": 1793282851754, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793282864320, "cmd": "key", "args": ["e"]}
+{"t": 1793282864781, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793282873000, "cmd": "key", "args": ["e"]}
+{"t": 1793282873535, "cmd": "state", "args": []}
+{"t": 1793282876808, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793282894184, "cmd": "key", "args": ["e"]}
+{"t": 1793282894729, "cmd": "wait", "args": ["1"]}
+{"t": 1793282895821, "cmd": "key", "args": ["f"]}
+{"t": 1793282896402, "cmd": "wait", "args": ["2"]}
+{"t": 1793282898493, "cmd": "shot", "args": ["found"]}
+{"t": 1793282898894, "cmd": "state", "args": []}
+{"t": 1793282899001, "cmd": "events", "args": ["6"]}
+{"t": 1793282903395, "cmd": "face", "args": ["182"]}
+{"t": 1793282914247, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793282922633, "cmd": "state", "args": []}
+{"t": 1793282926333, "cmd": "face", "args": ["-18"]}
+{"t": 1793282927965, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793282936622, "cmd": "key", "args": ["f"]}
+{"t": 1793282937207, "cmd": "wait", "args": ["2"]}
+{"t": 1793282939349, "cmd": "state", "args": []}
+{"t": 1793282939434, "cmd": "events", "args": ["6"]}
+{"t": 1793282944598, "cmd": "face", "args": ["-124"]}
+{"t": 1793282951711, "cmd": "hold", "args": ["Shift_L+w", "5"]}
+{"t": 1793282956947, "cmd": "key", "args": ["f"]}
+{"t": 1793282957468, "cmd": "wait", "args": ["2"]}
+{"t": 1793282959531, "cmd": "state", "args": []}
+{"t": 1793282959651, "cmd": "events", "args": ["4"]}
+{"t": 1793282964315, "cmd": "state", "args": ["--full"]}
+{"t": 1793282968358, "cmd": "face", "args": ["170"]}
+{"t": 1793282977916, "cmd": "hold", "args": ["Shift_L+w", "7"]}
+{"t": 1793282985199, "cmd": "key", "args": ["f"]}
+{"t": 1793282985677, "cmd": "wait", "args": ["2"]}
+{"t": 1793282987944, "cmd": "state", "args": ["--full"]}
+{"t": 1793282993259, "cmd": "face", "args": ["58"]}
+{"t": 1793282996773, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1793283003541, "cmd": "key", "args": ["f"]}
+{"t": 1793283004029, "cmd": "wait", "args": ["2"]}
+{"t": 1793283006108, "cmd": "state", "args": ["--full"]}
+{"t": 1793283010765, "cmd": "key", "args": ["e"]}
+{"t": 1793283011239, "cmd": "wait", "args": ["2"]}
+{"t": 1793283013300, "cmd": "shot", "args": ["inside"]}
+{"t": 1793283013609, "cmd": "state", "args": []}
+{"t": 1793283013692, "cmd": "events", "args": ["6"]}
+{"t": 1793283020914, "cmd": "note", "args": ["--shot", "settlement_overlap", "Inside the new settlement: two 'Objective complete' popups stack over the chronicle, 'Enter your settlemen' is clipped, the objective panel's 'Gather 20 wood and 5 stone' line is cut off at the panel bottom, and a giant world-space label '0 here, 1/8 residents' bleeds through the top of the HUD"]}
+{"t": 1793283021088, "cmd": "click", "args": ["377", "475"]}
+{"t": 1793283021824, "cmd": "wait", "args": ["1"]}
+{"t": 1793283022892, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1793283044825, "cmd": "key", "args": ["e"]}
+{"t": 1793283045430, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1793283045598, "cmd": "key", "args": ["e"]}
+{"t": 1793283046129, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1793283062239, "cmd": "key", "args": ["e"]}
+{"t": 1793283062845, "cmd": "state", "args": []}
+{"t": 1793283068237, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1793283086524, "cmd": "key", "args": ["e"]}
+{"t": 1793283087212, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1793283094775, "cmd": "key", "args": ["e"]}
+{"t": 1793283095459, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1793283105347, "cmd": "key", "args": ["e"]}
+{"t": 1793283105941, "cmd": "walkto", "args": ["rock", "30"]}
+{"t": 1793283122885, "cmd": "key", "args": ["e"]}
+{"t": 1793283123461, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1793283233045, "cmd": "key", "args": ["e"]}
+{"t": 1793283233657, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1793283245303, "cmd": "key", "args": ["e"]}
+{"t": 1793283245894, "cmd": "state", "args": []}
+{"t": 1793283251401, "cmd": "events", "args": ["12"]}
+{"t": 1793283251494, "cmd": "state", "args": ["--full"]}
+{"t": 1793283262481, "cmd": "walkto", "args": ["settlement", "50"]}
+{"t": 1793283314885, "cmd": "click", "args": ["168", "58"]}
+{"t": 1793283315687, "cmd": "wait", "args": ["1"]}
+{"t": 1793283318367, "cmd": "shot", "args": ["obj7"]}
+{"t": 1793283328313, "cmd": "note", "args": ["--shot", "npc_stall_objective", "Objective 6 'Build a market stall' completed (tick 7150) while I was away chopping trees: an NPC (Linda Wilson) built the stall. Also the objective 7 progress bar text is clipped on the left ('mbers 6/10 - Buildings 0/2')."]}
+{"t": 1793283328604, "cmd": "hold", "args": ["w", "1"]}
+{"t": 1793283329813, "cmd": "key", "args": ["e"]}
+{"t": 1793283330409, "cmd": "wait", "args": ["1"]}
+{"t": 1793283331522, "cmd": "key", "args": ["k"]}
+{"t": 1793283332092, "cmd": "wait", "args": ["2"]}
+{"t": 1793283334175, "cmd": "shot", "args": ["build1"]}
+{"t": 1793283334569, "cmd": "events", "args": ["5"]}
+{"t": 1793283338837, "cmd": "shot", "args": ["pre"]}
+{"t": 1793283339131, "cmd": "click", "args": ["74", "475"]}
+{"t": 1793283339997, "cmd": "wait", "args": ["1"]}
+{"t": 1793283341099, "cmd": "key", "args": ["k"]}
+{"t": 1793283341662, "cmd": "wait", "args": ["2"]}
+{"t": 1793283343795, "cmd": "shot", "args": ["build1"]}
+{"t": 1793283344195, "cmd": "events", "args": ["5"]}
+{"t": 1793283348468, "cmd": "key", "args": ["k"]}
+{"t": 1793283349021, "cmd": "wait", "args": ["2"]}
+{"t": 1793283351089, "cmd": "shot", "args": ["build2"]}
+{"t": 1793283351378, "cmd": "events", "args": ["4"]}
+{"t": 1793283351486, "cmd": "state", "args": []}
+{"t": 1793283360120, "cmd": "click", "args": ["409", "413"]}
+{"t": 1793283360960, "cmd": "wait", "args": ["1"]}
+{"t": 1793283362029, "cmd": "click", "args": ["409", "413"]}
+{"t": 1793283362864, "cmd": "wait", "args": ["1"]}
+{"t": 1793283363967, "cmd": "key", "args": ["r"]}
+{"t": 1793283364622, "cmd": "wait", "args": ["2"]}
+{"t": 1793283366752, "cmd": "shot", "args": ["recruit"]}
+{"t": 1793283367061, "cmd": "events", "args": ["8"]}
+{"t": 1793283376028, "cmd": "note", "args": ["--shot", "day_gate", "At tick ~9000 (day 1 of 3) the only Village requirements left are Members 6/10 and Day 1/3. Settlement panel already says 'Tier: Village (3 buildings)' and the floating label says 'Village of Southernford' while the era is still Camp (1/4). With tps ~11-13 on this machine, day 3 (tick ~60000) is over an hour of real time away."]}
+{"t": 1793283376303, "cmd": "click", "args": ["375", "475"]}
+{"t": 1793283377104, "cmd": "wait", "args": ["1"]}
+{"t": 1793283378225, "cmd": "state", "args": ["--full"]}
+{"t": 1793283382562, "cmd": "wait", "args": ["90"]}
+{"t": 1793283472631, "cmd": "state", "args": []}
+{"t": 1793283477356, "cmd": "shot", "args": ["now"]}
+{"t": 1793283477641, "cmd": "state", "args": ["--full"]}
+{"t": 1793283484435, "cmd": "events", "args": ["200"]}
+{"t": 1793283484511, "cmd": "stop", "args": []}
+{"t": 1793283507686, "cmd": "report", "args": []}
+{"t": 1793285744731, "cmd": "stop", "args": []}

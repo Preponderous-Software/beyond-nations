@@ -1,0 +1,44 @@
+{"type":"screen","tick":0,"wallTimeMs":1793281996776,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282394213,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282402932,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282414202,"how":"created","slot":"world-1450162717-20261029-140014","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1793282414205,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":450,"wallTimeMs":1793282443265,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":482,"wallTimeMs":1793282445678,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":850,"wallTimeMs":1793282473556,"kind":"NationCreation","text":"Isabella Wood founded the nation of Eastwood. It is the first nation this world has known."}
+{"type":"chronicle","tick":902,"wallTimeMs":1793282477657,"kind":"SettlementFounded","text":"Isabella Wood raised the first settlement of Eastwood."}
+{"type":"status","tick":1482,"wallTimeMs":1793282539718,"text":"No entities within range to interact with."}
+{"type":"status","tick":1510,"wallTimeMs":1793282542634,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1534,"wallTimeMs":1793282545324,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":1550,"wallTimeMs":1793282547786,"kind":"NationCreation","text":"Peggy Smith raised a banner and called it Bigwood."}
+{"type":"screen","tick":1594,"wallTimeMs":1793282553128,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":1594,"wallTimeMs":1793282565285,"count":1}
+{"type":"status","tick":1594,"wallTimeMs":1793282565285,"text":"Game saved."}
+{"type":"screen","tick":1594,"wallTimeMs":1793282575475,"from":"PAUSE","to":"SHARE"}
+{"type":"screen","tick":1594,"wallTimeMs":1793282588304,"from":"SHARE","to":"PAUSE"}
+{"type":"world","tick":1594,"wallTimeMs":1793282595976,"how":"loaded","slot":"world-1450162717-20261029-140014","seed":1450162717}
+{"type":"screen","tick":1598,"wallTimeMs":1793282596582,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":1602,"wallTimeMs":1793282597088,"kind":"SettlementFounded","text":"Peggy Smith laid the first stones of Bigwood."}
+{"type":"screen","tick":1694,"wallTimeMs":1793282606488,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":1698,"wallTimeMs":1793282632630,"from":"PAUSE","to":"WORLD"}
+{"type":"chronicle","tick":1702,"wallTimeMs":1793282632777,"kind":"NationCreation","text":"The nation of Northernville was born, with Ruth Wilson at its head."}
+{"type":"chronicle","tick":2002,"wallTimeMs":1793282751177,"kind":"SettlementFounded","text":"Ruth Wilson laid the first stones of Northernville."}
+{"type":"screen","tick":2014,"wallTimeMs":1793282752235,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":2014,"wallTimeMs":1793282753809,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":2014,"wallTimeMs":1793282753809,"count":1}
+{"type":"status","tick":2014,"wallTimeMs":1793282753809,"text":"Game saved."}
+{"type":"screen","tick":2014,"wallTimeMs":1793282761736,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282820724,"how":"created","slot":"world-1450162717-20261029-140700","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1793282820724,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":900,"wallTimeMs":1793282871050,"kind":"NationCreation","text":"Isabella Wood founded the nation of Westernham. It is the first nation this world has known."}
+{"type":"chronicle","tick":952,"wallTimeMs":1793282873960,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Westernham."}
+{"type":"chronicle","tick":1400,"wallTimeMs":1793282902810,"kind":"NationCreation","text":"Ruth Wilson raised a banner and called it Greentown."}
+{"type":"chronicle","tick":1452,"wallTimeMs":1793282906625,"kind":"StallBuilt","text":"Trade came to Westernham: Isabella Wood built a stall."}
+{"type":"chronicle","tick":1800,"wallTimeMs":1793282931064,"kind":"SettlementFounded","text":"Ruth Wilson laid the first stones of Greentown."}
+{"type":"screen","tick":1956,"wallTimeMs":1793282942482,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":1956,"wallTimeMs":1793282943932,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":1956,"wallTimeMs":1793282943932,"count":2}
+{"type":"status","tick":1956,"wallTimeMs":1793282943932,"text":"Game saved."}
+{"type":"screen","tick":1956,"wallTimeMs":1793282944687,"from":"MAIN_MENU","to":"LOAD"}
+{"type":"world","tick":2014,"wallTimeMs":1793282957007,"how":"loaded","slot":"world-1450162717-20261029-140014","seed":1450162717}
+{"type":"screen","tick":2014,"wallTimeMs":1793282957007,"from":"LOAD","to":"WORLD"}

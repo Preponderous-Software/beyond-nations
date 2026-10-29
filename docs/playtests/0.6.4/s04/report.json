@@ -1,0 +1,85 @@
+{
+  "session": "s04",
+  "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O).",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 104,
+  "durationSec": 906,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Diplomacy happens with no game time passing: Nations screen pauses the world, so ally/denounce/war/peace all resolve on one tick",
+      "detail": "With the Nations screen open the tick stayed at 1387 (tps 0). In that frozen moment I went Neutral 0 -> three Tributes (+30, 75 of 199 coins) -> Ally accepted -> Denounce x2 (Rival -20) -> War (Hostile -60) -> Peace accepted -> War again. No cooldowns, no diminishing returns on gifts. An alliance with the first neighbour cost 75 coins and ~20 s real time. Expected gifts or relation changes to need some game time or have a cooldown.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 104; title/Start/Begin; pt key n; pt wait 60 (Westshire is founded ~tick 851); pt key o; click Tribute (123,218) x3; click Ally (301,218)",
+      "screenshot": "shots/ally_cheap.png",
+      "tick": 1387
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "War/Denounce click-again confirmation expires in a few seconds of real time; at 2-5 fps the second click often misses it",
+      "detail": "Clicking War relabels the button 'Confirm' and arms a confirmation, which expires with 'Not confirmed in time, so nothing was done.' after roughly 4-9 s of real time (it varied, suggesting it may be frame-dependent). With hover-before-click at a few fps, a normal second click arrived after expiry and just re-armed it. It took 5 attempts (~2.5 min) until two back-to-back clicks worked. Expected the confirmation to last longer, or to be a modal, on slow machines.",
+      "repro": "At Rival with Westshire, Nations screen: pt click 657 218; pt wait 3; pt click 657 218 -> events show 'Not confirmed in time' then 'Click War again...' repeatedly",
+      "screenshot": "shots/war_declared.png",
+      "tick": 1387
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Peace accepted with reason 'the fighting has cost them enough' on the same tick war was declared",
+      "detail": "Peace was offered and accepted at tick 1387, the tick war was declared, with no fighting at all. Relations went Hostile -60 -> Neutral -19 and a 60 s truce began. The reason given is wrong, and declaring war then making peace costs nothing (net +1 relations versus Rival -20).",
+      "repro": "Declare war on Westshire (two quick clicks on War), then click Peace (480,218)",
+      "screenshot": "shots/peace_instant.png",
+      "tick": 1387
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Breaking a fresh truce with War has no visible cost",
+      "detail": "Straight after peace the row reads 'Neutral (-19), truce 60 s' and War is still offered. The confirm says 'Click War again to break the truce', which is good, but breaking it simply sets relations back to Hostile -60 with no extra penalty, reputation hit or chronicle mention of the broken truce.",
+      "repro": "After the peace above, click War twice quickly",
+      "screenshot": "shots/truce_broken.png",
+      "tick": 1387
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "War confirm status says 'Click War again' but the button now reads 'Confirm'",
+      "detail": "When armed, the War button is relabelled 'Confirm' while the status line says 'Click War again to declare war on Westshire.' There is no button labelled War on screen at that point.",
+      "repro": "At Rival with Westshire, click War once and read the button and status line",
+      "screenshot": "shots/war_confirm_text.png",
+      "tick": 1387
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Denouncing an ally ended the alliance without a visible confirmation",
+      "detail": "Allied +30: my first Denounce click showed nothing (no 'click again' prompt was logged or displayed), the second ended the alliance (Neutral +5). Denouncing at Neutral did show 'Click Denounce again'. Either the first click was dropped at low fps or the confirmation was not shown. The button also does not say that it ends the alliance.",
+      "repro": "Allied with Westshire: click Denounce (836,218), take a screenshot, click again",
+      "screenshot": "shots/denounce_no_confirm.png",
+      "tick": 1387
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Chronicle panel cuts entries off with '...'",
+      "detail": "The recent-chronicle panel shows 'Fortressham and Westshire made peace, ending...' and 'Relations between Fortressham and Westshire...', which cuts off the important part. Wrap the text or widen the panel.",
+      "repro": "After any diplomacy, close the Nations screen and read the chronicle panel at the top centre",
+      "screenshot": "shots/chronicle_trunc.png",
+      "tick": 2179
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "neighbourNationFoundedTick": 851,
+    "coinsSpentToAlly": 75,
+    "gameTicksSpentOnFullDiplomacyCycle": 0,
+    "warConfirmAttempts": 5,
+    "minTps": 2.5
+  },
+  "fun": 3,
+  "verdict": "The Nations screen is clear and responsive: every action gives a precise status line with the relation number and threshold, Peace and Confirm buttons appear only when they apply, and the chronicle records each step. But because the screen pauses the world, the whole cycle (alliance for 75 coins, rivalry, war, instant peace, war again through a truce) costs no game time and almost nothing else, so diplomacy feels like flipping switches rather than statecraft. The short real-time window for click-again confirmations is also hard to hit at low frame rates."
+}

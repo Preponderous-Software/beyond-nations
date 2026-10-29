@@ -1,0 +1,39 @@
+{"type":"screen","tick":0,"wallTimeMs":1793282019372,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282401863,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282414642,"from":"MAIN_MENU","to":"CONFIG"}
+{"type":"screen","tick":0,"wallTimeMs":1793282438090,"from":"CONFIG","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282440028,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1793282458729,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282460894,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282466182,"how":"created","slot":"world-109-20261029-140106","seed":109}
+{"type":"screen","tick":0,"wallTimeMs":1793282466184,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":843,"wallTimeMs":1793282540023,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":867,"wallTimeMs":1793282542791,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":903,"wallTimeMs":1793282546906,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":903}
+{"type":"status","tick":903,"wallTimeMs":1793282546906,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":951,"wallTimeMs":1793282552433,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":951,"wallTimeMs":1793282552433,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"screen","tick":1067,"wallTimeMs":1793282566610,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":1067,"wallTimeMs":1793282575128,"from":"INVENTORY","to":"CRAFTING"}
+{"type":"screen","tick":1071,"wallTimeMs":1793282586941,"from":"CRAFTING","to":"WORLD"}
+{"type":"screen","tick":1091,"wallTimeMs":1793282588913,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":1095,"wallTimeMs":1793282607234,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":1111,"wallTimeMs":1793282611282,"text":"Created nation Towntown."}
+{"type":"chronicle","tick":1111,"wallTimeMs":1793282611282,"kind":"NationCreation","text":"Under your hand, the nation of Towntown was born. It is the first nation this world has known."}
+{"type":"objective_completed","tick":1151,"wallTimeMs":1793282630642,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":200}
+{"type":"status","tick":1151,"wallTimeMs":1793282630642,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":1255,"wallTimeMs":1793282713105,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":1303,"wallTimeMs":1793282717026,"kind":"NationCreation","text":"Una Smith declared the nation of Westwood, though none had yet sworn to it."}
+{"type":"chronicle","tick":1351,"wallTimeMs":1793282720545,"kind":"SettlementFounded","text":"Una Smith laid the first stones of Westwood."}
+{"type":"status","tick":1383,"wallTimeMs":1793282722532,"text":"Chronicle hidden."}
+{"type":"status","tick":1407,"wallTimeMs":1793282723986,"text":"Chronicle: recent entries."}
+{"type":"screen","tick":1431,"wallTimeMs":1793282725583,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":1431,"wallTimeMs":1793282735950,"from":"PAUSE","to":"SHARE"}
+{"type":"screen","tick":1431,"wallTimeMs":1793282752298,"from":"SHARE","to":"PAUSE"}
+{"type":"save","tick":1431,"wallTimeMs":1793282754500,"count":1}
+{"type":"status","tick":1431,"wallTimeMs":1793282754500,"text":"Game saved."}
+{"type":"screen","tick":1435,"wallTimeMs":1793282761771,"from":"PAUSE","to":"WORLD"}
+{"type":"status","tick":1651,"wallTimeMs":1793282776201,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":1703,"wallTimeMs":1793282780036,"kind":"NationCreation","text":"The nation of Lowerham was born, with Grace Davies at its head."}
+{"type":"chronicle","tick":1751,"wallTimeMs":1793282783570,"kind":"SettlementFounded","text":"Grace Davies laid the first stones of Lowerham."}
+{"type":"status","tick":1843,"wallTimeMs":1793282789586,"text":"You are not inside a settlement."}

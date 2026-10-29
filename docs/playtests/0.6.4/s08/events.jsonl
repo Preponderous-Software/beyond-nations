@@ -1,0 +1,527 @@
+{"type":"screen","tick":0,"wallTimeMs":1793282017879,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282401972,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282412453,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282419000,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282436580,"how":"created","slot":"world-108-20261029-140036","seed":108}
+{"type":"screen","tick":0,"wallTimeMs":1793282436583,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":863,"wallTimeMs":1793282493233,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":883,"wallTimeMs":1793282494969,"text":"No entities within range to interact with."}
+{"type":"status","tick":903,"wallTimeMs":1793282496519,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":923,"wallTimeMs":1793282498279,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":939,"wallTimeMs":1793282499904,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":963,"wallTimeMs":1793282501666,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":1243,"wallTimeMs":1793282539387,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1251,"wallTimeMs":1793282540728,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1251}
+{"type":"status","tick":1251,"wallTimeMs":1793282540728,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1303,"wallTimeMs":1793282546440,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1303,"wallTimeMs":1793282546440,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":1551,"wallTimeMs":1793282574555,"kind":"NationCreation","text":"Mia Thomas raised a banner and called it Littleburg. It is the first nation this world has known."}
+{"type":"status","tick":1567,"wallTimeMs":1793282576135,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":1583,"wallTimeMs":1793282577846,"text":"Gathered 4 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":1603,"wallTimeMs":1793282580524,"kind":"SettlementFounded","text":"Mia Thomas laid the first stones of Littleburg."}
+{"type":"status","tick":2019,"wallTimeMs":1793282685074,"text":"No entities within range to interact with."}
+{"type":"status","tick":2159,"wallTimeMs":1793282717412,"text":"Created nation Hamletton."}
+{"type":"chronicle","tick":2159,"wallTimeMs":1793282717412,"kind":"NationCreation","text":"You founded the nation of Hamletton."}
+{"type":"objective_completed","tick":2203,"wallTimeMs":1793282720218,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":900}
+{"type":"status","tick":2203,"wallTimeMs":1793282720218,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":2255,"wallTimeMs":1793282723197,"text":"Not enough wood. Need 32 more."}
+{"type":"chronicle","tick":2503,"wallTimeMs":1793282737984,"kind":"NationCreation","text":"Frank Wilson raised a banner and called it Fortham."}
+{"type":"chronicle","tick":2551,"wallTimeMs":1793282744154,"kind":"SettlementFounded","text":"Frank Wilson laid the first stones of Fortham."}
+{"type":"status","tick":2591,"wallTimeMs":1793282746975,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":2739,"wallTimeMs":1793282757070,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":2883,"wallTimeMs":1793282767621,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":3087,"wallTimeMs":1793282781253,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3103,"wallTimeMs":1793282782493,"kind":"NationCreation","text":"Ursula Johnson raised a banner and called it Southernshire."}
+{"type":"chronicle","tick":3151,"wallTimeMs":1793282786005,"kind":"SettlementFounded","text":"Ursula Johnson raised the first settlement of Southernshire."}
+{"type":"chronicle","tick":3751,"wallTimeMs":1793282833064,"kind":"NationCreation","text":"The nation of Smallton was born, with Ella Walker at its head."}
+{"type":"status","tick":3879,"wallTimeMs":1793282842217,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":4087,"wallTimeMs":1793282856526,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":4203,"wallTimeMs":1793282863810,"kind":"NationCreation","text":"The nation of Newwood was born, with Isabella Robinson at its head."}
+{"type":"chronicle","tick":4251,"wallTimeMs":1793282866739,"kind":"SettlementFounded","text":"Ella Walker raised the first settlement of Smallton."}
+{"type":"status","tick":4351,"wallTimeMs":1793282874187,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":4503,"wallTimeMs":1793282885518,"text":"You enter the land of Southernshire (Neutral)."}
+{"type":"status","tick":4747,"wallTimeMs":1793282904357,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":4751,"wallTimeMs":1793282904669,"kind":"SettlementFounded","text":"Newwood put down roots: Isabella Robinson founded its first settlement."}
+{"type":"status","tick":4811,"wallTimeMs":1793282909247,"text":"This land is claimed by Southernshire. Found your settlement outside its borders. Open ground lies about 210 to the south-east."}
+{"type":"chronicle","tick":5003,"wallTimeMs":1793282924991,"kind":"NationRelationChange","text":"Littleburg and Fortham have become rivals over their border."}
+{"type":"status","tick":5123,"wallTimeMs":1793282936558,"text":"This land is claimed by Southernshire. Found your settlement outside its borders. Open ground lies about 220 to the north."}
+{"type":"status","tick":5447,"wallTimeMs":1793282962035,"text":"This land is claimed by Southernshire. Found your settlement outside its borders. Open ground lies about 250 to the south-east."}
+{"type":"chronicle","tick":5503,"wallTimeMs":1793282965992,"kind":"NationRelationChange","text":"Littleburg and Southernshire have become rivals over their border."}
+{"type":"chronicle","tick":5803,"wallTimeMs":1793282988186,"kind":"NationCreation","text":"Isabella Davies raised a banner and called it Oldport."}
+{"type":"status","tick":5943,"wallTimeMs":1793282997046,"text":"You leave the land of Southernshire for the wilds."}
+{"type":"status","tick":5947,"wallTimeMs":1793282997281,"text":"Too close to the Village of Southernshire: 104 away, and settlements must be 250 apart. Open ground lies about 310 to the north-east."}
+{"type":"save","tick":6003,"wallTimeMs":1793283000912,"count":1}
+{"type":"chronicle","tick":6251,"wallTimeMs":1793283017762,"kind":"NationRelationChange","text":"Smallton and Newwood have become rivals over their border."}
+{"type":"chronicle","tick":6303,"wallTimeMs":1793283020914,"kind":"SettlementFounded","text":"Oldport put down roots: Isabella Davies founded its first settlement."}
+{"type":"status","tick":6463,"wallTimeMs":1793283030162,"text":"You enter the land of Littleburg (Neutral)."}
+{"type":"chronicle","tick":6503,"wallTimeMs":1793283032838,"kind":"NationRelationChange","text":"Fortham and Smallton have become rivals over their border."}
+{"type":"chronicle","tick":6503,"wallTimeMs":1793283032838,"kind":"NationRelationChange","text":"Southernshire and Smallton have become rivals over their border."}
+{"type":"status","tick":6547,"wallTimeMs":1793283035990,"text":"This land is claimed by Littleburg. Found your settlement outside its borders. Open ground lies about 180 to the east."}
+{"type":"chronicle","tick":6551,"wallTimeMs":1793283036322,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Mia Thomas."}
+{"type":"chronicle","tick":6551,"wallTimeMs":1793283036322,"kind":"NationCreation","text":"The nation of Westernport was born, with Victor Evans at its head."}
+{"type":"chronicle","tick":6603,"wallTimeMs":1793283040599,"kind":"SettlementFounded","text":"Westernport put down roots: Victor Evans founded its first settlement."}
+{"type":"status","tick":6919,"wallTimeMs":1793283066875,"text":"This land is claimed by Littleburg. Found your settlement outside its borders. Open ground lies about 210 to the west."}
+{"type":"status","tick":7083,"wallTimeMs":1793283081197,"text":"You leave the land of Littleburg for the wilds."}
+{"type":"status","tick":7175,"wallTimeMs":1793283089572,"text":"Too close to the Village of Littleburg: 192 away, and settlements must be 250 apart. Open ground lies about 60 to the west."}
+{"type":"status","tick":7307,"wallTimeMs":1793283103502,"text":"Too close to the Village of Littleburg: 236 away, and settlements must be 250 apart. Open ground lies about 20 to the west."}
+{"type":"status","tick":7439,"wallTimeMs":1793283116646,"text":"Settlement founded. Littleburg and Fortham resent a new settlement so near their land."}
+{"type":"chronicle","tick":7439,"wallTimeMs":1793283116646,"kind":"SettlementFounded","text":"Hamletton put down roots: you founded its first settlement."}
+{"type":"status","tick":7443,"wallTimeMs":1793283117238,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":7451,"wallTimeMs":1793283118205,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":5248}
+{"type":"status","tick":7451,"wallTimeMs":1793283118205,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1793283118205,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Mia Thomas."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1793283118205,"kind":"NationJoin","text":"Charlie Thompson joined Hamletton."}
+{"type":"chronicle","tick":7451,"wallTimeMs":1793283118205,"kind":"NationJoin","text":"Olivia Thompson threw in their lot with Hamletton."}
+{"type":"status","tick":7575,"wallTimeMs":1793283132092,"text":"Entered settlement."}
+{"type":"objective_completed","tick":7603,"wallTimeMs":1793283134955,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":152}
+{"type":"status","tick":7603,"wallTimeMs":1793283134955,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":7603,"wallTimeMs":1793283134955,"kind":"NationJoin","text":"Tina Smith threw in their lot with Hamletton."}
+{"type":"status","tick":7639,"wallTimeMs":1793283148774,"text":"Exited settlement."}
+{"type":"status","tick":7711,"wallTimeMs":1793283240646,"text":"Entered settlement."}
+{"type":"objective_completed","tick":7903,"wallTimeMs":1793283266245,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":300}
+{"type":"status","tick":7903,"wallTimeMs":1793283266245,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":7903,"wallTimeMs":1793283266245,"kind":"StallBuilt","text":"Trade came to Hamletton: Olivia Thompson built a stall."}
+{"type":"chronicle","tick":7951,"wallTimeMs":1793283272672,"kind":"StallBuilt","text":"Olivia Thompson built a market stall in Hamletton."}
+{"type":"status","tick":8191,"wallTimeMs":1793283310798,"text":"Exited settlement."}
+{"type":"status","tick":8403,"wallTimeMs":1793283336728,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":8647,"wallTimeMs":1793283355521,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":8703,"wallTimeMs":1793283359818,"kind":"StallBuilt","text":"Trade came to Hamletton: Charlie Thompson built a stall."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1793283363738,"kind":"NationRelationChange","text":"Southernshire and Oldport have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1793283363738,"kind":"NationRelationChange","text":"Newwood and Oldport have become rivals over their border."}
+{"type":"chronicle","tick":8751,"wallTimeMs":1793283363738,"kind":"NationRelationChange","text":"Newwood and Smallton are now hostile."}
+{"type":"status","tick":8799,"wallTimeMs":1793283367831,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":8891,"wallTimeMs":1793283374061,"text":"You leave the land of Hamletton for the wilds."}
+{"type":"status","tick":8975,"wallTimeMs":1793283380108,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":9003,"wallTimeMs":1793283381944,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1793283381944,"kind":"NationRelationChange","text":"Littleburg and Westernport have become rivals over their border."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1793283381944,"kind":"NationRelationChange","text":"Oldport and Westernport have become rivals over their border."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1793283381944,"kind":"NationRaid","text":"Raiders from Newwood struck Smallton, taking 3 wood."}
+{"type":"chronicle","tick":9051,"wallTimeMs":1793283385463,"kind":"NationJoin","text":"Hamletton welcomed Judy Wood into its ranks."}
+{"type":"status","tick":9343,"wallTimeMs":1793283409389,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":9359,"wallTimeMs":1793283410789,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":9503,"wallTimeMs":1793283423364,"kind":"StallBuilt","text":"Trade came to Smallton: Ella Walker built a stall."}
+{"type":"status","tick":9659,"wallTimeMs":1793283434800,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":9683,"wallTimeMs":1793283436427,"text":"No entities within range to interact with."}
+{"type":"status","tick":9751,"wallTimeMs":1793283441101,"text":"Littleburg resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":9751,"wallTimeMs":1793283441101,"kind":"NationRelationChange","text":"Littleburg and Hamletton have become rivals over their border."}
+{"type":"status","tick":9807,"wallTimeMs":1793283445024,"text":"Welcome home!"}
+{"type":"status","tick":9811,"wallTimeMs":1793283445325,"text":"You are back on your own land."}
+{"type":"status","tick":9855,"wallTimeMs":1793283448668,"text":"You are not inside a settlement."}
+{"type":"status","tick":9887,"wallTimeMs":1793283451216,"text":"You are not inside a settlement. (x2)"}
+{"type":"status","tick":9987,"wallTimeMs":1793283459310,"text":"Entered settlement."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1793283460615,"kind":"NationRelationChange","text":"Littleburg and Fortham are now hostile."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1793283460615,"kind":"NationRelationChange","text":"Smallton and Southernshire are now hostile."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1793283460615,"kind":"NationRaid","text":"Littleburg raided Fortham and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":10003,"wallTimeMs":1793283460615,"kind":"NationRaid","text":"Raiders from Smallton struck Southernshire, taking 1 wood, 5 stone."}
+{"type":"status","tick":10023,"wallTimeMs":1793283462151,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":10115,"wallTimeMs":1793283469803,"text":"Farm built."}
+{"type":"chronicle","tick":10151,"wallTimeMs":1793283472727,"kind":"StallBuilt","text":"Trade came to Oldport: Isabella Davies built a stall."}
+{"type":"chronicle","tick":10303,"wallTimeMs":1793283484951,"kind":"NationCreation","text":"Peggy Taylor declared the nation of Newshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":10351,"wallTimeMs":1793283488672,"kind":"StallBuilt","text":"Trade came to Southernshire: Ursula Johnson built a stall."}
+{"type":"chronicle","tick":10451,"wallTimeMs":1793283496031,"kind":"NationJoin","text":"Ella Roberts threw in their lot with Hamletton."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1793283499948,"kind":"StallBuilt","text":"Trade came to Littleburg: Mia Thomas built a stall."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1793283499948,"kind":"NationCreation","text":"Katie Lewis founded the nation of Hamletshire."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1793283499948,"kind":"NationCreation","text":"The nation of Yellowford was born, with Mike Evans at its head."}
+{"type":"chronicle","tick":10503,"wallTimeMs":1793283499948,"kind":"NationRelationChange","text":"Littleburg and Southernshire are now hostile."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1793283503477,"kind":"SettlementFounded","text":"Hamletshire put down roots: Katie Lewis founded its first settlement."}
+{"type":"chronicle","tick":10551,"wallTimeMs":1793283503477,"kind":"SettlementFounded","text":"Yellowford put down roots: Mike Evans founded its first settlement."}
+{"type":"chronicle","tick":10903,"wallTimeMs":1793283527837,"kind":"StallBuilt","text":"Trade came to Hamletton: Charlie Thompson built a stall. The market is now full."}
+{"type":"chronicle","tick":10903,"wallTimeMs":1793283527837,"kind":"SettlementFounded","text":"Newshire put down roots: Peggy Taylor founded its first settlement."}
+{"type":"chronicle","tick":10903,"wallTimeMs":1793283527837,"kind":"NationCreation","text":"Olivia Brown declared the nation of Bluewood, though none had yet sworn to it."}
+{"type":"chronicle","tick":11003,"wallTimeMs":1793283534864,"kind":"NationRaid","text":"Littleburg raided Southernshire and carried off 2 coins, 5 stone."}
+{"type":"status","tick":11087,"wallTimeMs":1793283541180,"text":"Exited settlement."}
+{"type":"chronicle","tick":11103,"wallTimeMs":1793283542329,"kind":"StallBuilt","text":"Mike Evans built a market stall in Yellowford."}
+{"type":"status","tick":11363,"wallTimeMs":1793283560570,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":11451,"wallTimeMs":1793283566085,"kind":"StallBuilt","text":"Trade came to Fortham: Frank Wilson built a stall."}
+{"type":"status","tick":11491,"wallTimeMs":1793283568613,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1793283569351,"kind":"NationRelationChange","text":"Littleburg and Smallton swore an alliance."}
+{"type":"chronicle","tick":11503,"wallTimeMs":1793283569351,"kind":"NationRelationChange","text":"Smallton and Fortham are now hostile."}
+{"type":"chronicle","tick":11551,"wallTimeMs":1793283572484,"kind":"SettlementFounded","text":"Bluewood put down roots: Olivia Brown founded its first settlement."}
+{"type":"chronicle","tick":11603,"wallTimeMs":1793283575734,"kind":"NationCreation","text":"Olivia Wood founded the nation of Upperville."}
+{"type":"chronicle","tick":11651,"wallTimeMs":1793283578774,"kind":"StallBuilt","text":"Isabella Davies built a market stall in Oldport."}
+{"type":"status","tick":11663,"wallTimeMs":1793283579504,"text":"You leave the land of Hamletton for the wilds."}
+{"type":"status","tick":11671,"wallTimeMs":1793283580028,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":11807,"wallTimeMs":1793283588425,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":11951,"wallTimeMs":1793283597408,"kind":"NationCreation","text":"Abigail White raised a banner and called it Castlewood."}
+{"type":"save","tick":12003,"wallTimeMs":1793283602922,"count":2}
+{"type":"status","tick":12003,"wallTimeMs":1793283602922,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":12103,"wallTimeMs":1793283609732,"kind":"SettlementFounded","text":"Castlewood put down roots: Abigail White founded its first settlement."}
+{"type":"status","tick":12167,"wallTimeMs":1793283613744,"text":"Gathered 6 wood and 3 apples from tree. (x2)"}
+{"type":"chronicle","tick":12303,"wallTimeMs":1793283623096,"kind":"StallBuilt","text":"A new stall opened in the market of Newshire, built by Peggy Taylor."}
+{"type":"chronicle","tick":12303,"wallTimeMs":1793283623096,"kind":"StallBuilt","text":"Trade came to Yellowford: Mike Evans built a stall."}
+{"type":"status","tick":12339,"wallTimeMs":1793283625790,"text":"Gathered 6 wood and 3 apples from tree. (x3)"}
+{"type":"status","tick":12363,"wallTimeMs":1793283627735,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":12451,"wallTimeMs":1793283634175,"kind":"StallBuilt","text":"Isabella Robinson built a market stall in Newwood."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1793283637358,"kind":"StallBuilt","text":"Trade came to Hamletshire: Katie Lewis built a stall."}
+{"type":"chronicle","tick":12503,"wallTimeMs":1793283637358,"kind":"NationRelationChange","text":"Southernshire and Newwood swore an alliance."}
+{"type":"status","tick":12575,"wallTimeMs":1793283641656,"text":"Gathered 4 wood and 3 apples from tree. (x2)"}
+{"type":"status","tick":12695,"wallTimeMs":1793283648751,"text":"Welcome home!"}
+{"type":"status","tick":12703,"wallTimeMs":1793283649391,"text":"You are back on your own land."}
+{"type":"status","tick":12727,"wallTimeMs":1793283651248,"text":"Entered settlement."}
+{"type":"status","tick":12751,"wallTimeMs":1793283653015,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"chronicle","tick":12803,"wallTimeMs":1793283657045,"kind":"StallBuilt","text":"Ursula Johnson built a market stall in Southernshire."}
+{"type":"chronicle","tick":12851,"wallTimeMs":1793283660673,"kind":"SettlementFounded","text":"Upperville put down roots: Olivia Wood founded its first settlement."}
+{"type":"status","tick":12859,"wallTimeMs":1793283661347,"text":"Not confirmed in time, so nothing was done."}
+{"type":"chronicle","tick":12903,"wallTimeMs":1793283664819,"kind":"StallBuilt","text":"A new stall opened in the market of Westernport, built by Victor Evans."}
+{"type":"chronicle","tick":12903,"wallTimeMs":1793283664819,"kind":"StallBuilt","text":"A new stall opened in the market of Newshire, built by Peggy Taylor."}
+{"type":"chronicle","tick":12951,"wallTimeMs":1793283669061,"kind":"NationCreation","text":"Harriet White raised a banner and called it Whiteburg."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1793283674985,"kind":"NationRelationChange","text":"Littleburg and Hamletshire have become rivals over their border."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1793283674985,"kind":"NationRelationChange","text":"Littleburg and Yellowford have become rivals over their border."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1793283674985,"kind":"NationRaid","text":"Southernshire raided Littleburg and carried off 5 coins, 2 wood, 5 stone."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1793283674985,"kind":"NationRaid","text":"Raiders from Southernshire struck Smallton, taking 2 coins, 3 wood, 5 stone."}
+{"type":"chronicle","tick":13051,"wallTimeMs":1793283680303,"kind":"NationJoin","text":"Lily Jones joined Hamletton."}
+{"type":"chronicle","tick":13051,"wallTimeMs":1793283680303,"kind":"NationCreation","text":"Charlie Walker founded the nation of Littleport."}
+{"type":"status","tick":13251,"wallTimeMs":1793283704113,"text":"Newshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1793283704113,"kind":"NationRelationChange","text":"Hamletton and Newshire have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1793283704113,"kind":"NationRelationChange","text":"Newshire and Hamletshire have become rivals over their border."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1793283704113,"kind":"NationRelationChange","text":"Yellowford and Bluewood have become rivals over their border."}
+{"type":"chronicle","tick":13303,"wallTimeMs":1793283710025,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletshire, built by Katie Lewis."}
+{"type":"chronicle","tick":13351,"wallTimeMs":1793283714984,"kind":"NationCreation","text":"Oscar Smith raised a banner and called it Westernland."}
+{"type":"chronicle","tick":13403,"wallTimeMs":1793283720325,"kind":"StallBuilt","text":"Peggy Taylor built a market stall in Newshire."}
+{"type":"chronicle","tick":13403,"wallTimeMs":1793283720325,"kind":"SettlementFounded","text":"Harriet White raised the first settlement of Whiteburg."}
+{"type":"chronicle","tick":13403,"wallTimeMs":1793283720325,"kind":"SettlementFounded","text":"Charlie Walker laid the first stones of Littleport."}
+{"type":"status","tick":13459,"wallTimeMs":1793283726173,"text":"Exited settlement."}
+{"type":"status","tick":13475,"wallTimeMs":1793283727906,"text":"Entered settlement."}
+{"type":"chronicle","tick":13551,"wallTimeMs":1793283736125,"kind":"SettlementFounded","text":"Oscar Smith raised the first settlement of Westernland."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1793283757444,"kind":"NationRelationChange","text":"Southernshire and Oldport are now hostile."}
+{"type":"chronicle","tick":13751,"wallTimeMs":1793283757444,"kind":"NationRelationChange","text":"Newwood and Oldport are now hostile."}
+{"type":"chronicle","tick":13903,"wallTimeMs":1793283774067,"kind":"StallBuilt","text":"Trade came to Littleburg: Mia Thomas built a stall."}
+{"type":"status","tick":13987,"wallTimeMs":1793283783298,"text":"Exited settlement."}
+{"type":"status","tick":14003,"wallTimeMs":1793283784978,"text":"Entered settlement."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"StallBuilt","text":"Peggy Taylor built a market stall in Newshire. The market is now full."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRelationChange","text":"Hamletshire and Bluewood have become rivals over their border."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRelationChange","text":"Littleburg and Oldport have formed an alliance."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRelationChange","text":"Littleburg and Westernport are now hostile."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRelationChange","text":"Oldport and Westernport are now hostile."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRaid","text":"Raiders from Littleburg struck Westernport, taking 3 coins, 3 stone."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRaid","text":"Southernshire raided Oldport and carried off 5 coins."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1793283784978,"kind":"NationRaid","text":"Raiders from Newwood struck Oldport, taking 5 coins."}
+{"type":"status","tick":14071,"wallTimeMs":1793283792558,"text":"Exited settlement."}
+{"type":"status","tick":14087,"wallTimeMs":1793283794173,"text":"Entered settlement."}
+{"type":"status","tick":14155,"wallTimeMs":1793283801565,"text":"Exited settlement."}
+{"type":"status","tick":14171,"wallTimeMs":1793283803310,"text":"Entered settlement."}
+{"type":"chronicle","tick":14203,"wallTimeMs":1793283806673,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Olivia Brown."}
+{"type":"status","tick":14227,"wallTimeMs":1793283809119,"text":"Cannot teleport while in settlement."}
+{"type":"status","tick":14251,"wallTimeMs":1793283811641,"text":"Fortham has fallen and been disbanded."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1793283811641,"kind":"NationRelationChange","text":"Yellowford and Castlewood have become rivals over their border."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1793283811641,"kind":"SettlementCapture","text":"After a siege, a village of Fortham fell to Littleburg."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1793283811641,"kind":"NationDisband","text":"With its last village taken by Littleburg, Fortham passed into history."}
+{"type":"status","tick":14267,"wallTimeMs":1793283813366,"text":"You are not inside a settlement."}
+{"type":"status","tick":14283,"wallTimeMs":1793283815003,"text":"You are not inside a settlement. (x2)"}
+{"type":"chronicle","tick":14351,"wallTimeMs":1793283822500,"kind":"StallBuilt","text":"Trade came to Westernport: Victor Evans built a stall."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1793283822500,"kind":"StallBuilt","text":"A new stall opened in the market of Littleport, built by Charlie Walker."}
+{"type":"chronicle","tick":14351,"wallTimeMs":1793283822500,"kind":"NationCreation","text":"Bella White raised a banner and called it Littleham."}
+{"type":"chronicle","tick":14403,"wallTimeMs":1793283828510,"kind":"NationCreation","text":"Ruth Robinson raised a banner and called it Townland."}
+{"type":"chronicle","tick":14451,"wallTimeMs":1793283834701,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletshire, built by Katie Lewis."}
+{"type":"status","tick":14503,"wallTimeMs":1793283840980,"text":"Southernshire shares an enemy with you: relations are now Friendly (\u002B20). Westernport shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1793283840980,"kind":"NationRelationChange","text":"Relations between Hamletton and Southernshire are now friendly against a common enemy."}
+{"type":"chronicle","tick":14503,"wallTimeMs":1793283840980,"kind":"NationRelationChange","text":"Relations between Hamletton and Westernport are now friendly against a common enemy."}
+{"type":"chronicle","tick":14651,"wallTimeMs":1793283862674,"kind":"SettlementFounded","text":"Bella White laid the first stones of Littleham."}
+{"type":"chronicle","tick":14803,"wallTimeMs":1793283878958,"kind":"SettlementFounded","text":"Ruth Robinson raised the first settlement of Townland."}
+{"type":"chronicle","tick":14851,"wallTimeMs":1793283883933,"kind":"StallBuilt","text":"A new stall opened in the market of Smallton, built by Ella Walker."}
+{"type":"chronicle","tick":14903,"wallTimeMs":1793283890549,"kind":"StallBuilt","text":"Charlie Walker built a market stall in Littleport."}
+{"type":"chronicle","tick":14903,"wallTimeMs":1793283890549,"kind":"NationCreation","text":"Ruth White founded the nation of Redham."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1793283902718,"kind":"StallBuilt","text":"A new stall opened in the market of Townland, built by Ruth Robinson."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1793283902718,"kind":"NationRelationChange","text":"Upperville and Castlewood have become rivals over their border."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1793283902718,"kind":"NationRaid","text":"Raiders from Oldport struck Westernport, taking 2 stone."}
+{"type":"chronicle","tick":15103,"wallTimeMs":1793283916500,"kind":"NationCreation","text":"Stan Taylor raised a banner and called it Northburg."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1793283931384,"kind":"NationRelationChange","text":"Westernport and Upperville have become rivals over their border."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1793283931384,"kind":"NationRelationChange","text":"Westernport and Westernland have become rivals over their border."}
+{"type":"chronicle","tick":15403,"wallTimeMs":1793283946221,"kind":"NationCreation","text":"Daisy Jones raised a banner and called it Southford."}
+{"type":"chronicle","tick":15451,"wallTimeMs":1793283950902,"kind":"NationCreation","text":"Rachel Watson founded the nation of Castleburg."}
+{"type":"chronicle","tick":15751,"wallTimeMs":1793283983671,"kind":"NationRelationChange","text":"Hamletshire and Whiteburg have become rivals over their border."}
+{"type":"chronicle","tick":15751,"wallTimeMs":1793283983671,"kind":"NationRelationChange","text":"Yellowford and Littleport have become rivals over their border."}
+{"type":"chronicle","tick":15751,"wallTimeMs":1793283983671,"kind":"NationRelationChange","text":"Whiteburg and Littleport have become rivals over their border."}
+{"type":"chronicle","tick":15751,"wallTimeMs":1793283983671,"kind":"NationRelationChange","text":"Yellowford and Bluewood are now hostile."}
+{"type":"chronicle","tick":15951,"wallTimeMs":1793284003542,"kind":"StallBuilt","text":"A new stall opened in the market of Oldport, built by Isabella Davies."}
+{"type":"chronicle","tick":15951,"wallTimeMs":1793284003542,"kind":"NationCreation","text":"Charlotte Davies founded the nation of Blueton."}
+{"type":"status","tick":16003,"wallTimeMs":1793284009185,"text":"Newshire sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1793284009185,"kind":"NationRelationChange","text":"Southernshire and Westernland have become rivals over their border."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1793284009185,"kind":"NationRaid","text":"Smallton raided Newwood and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1793284009185,"kind":"NationRaid","text":"Yellowford raided Bluewood and carried off 4 coins, 2 wood."}
+{"type":"chronicle","tick":16051,"wallTimeMs":1793284013748,"kind":"NationCreation","text":"Victor Thomas founded the nation of Hamletville."}
+{"type":"chronicle","tick":16051,"wallTimeMs":1793284013748,"kind":"SettlementFounded","text":"Northburg put down roots: Stan Taylor founded its first settlement."}
+{"type":"screen","tick":16055,"wallTimeMs":1793284014514,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":16059,"wallTimeMs":1793284025294,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":16075,"wallTimeMs":1793284026933,"text":"Chronicle: full history."}
+{"type":"chronicle","tick":16451,"wallTimeMs":1793284067766,"kind":"SettlementFounded","text":"Daisy Jones laid the first stones of Southford."}
+{"type":"chronicle","tick":16551,"wallTimeMs":1793284079554,"kind":"SettlementFounded","text":"Victor Thomas raised the first settlement of Hamletville."}
+{"type":"chronicle","tick":16751,"wallTimeMs":1793284101818,"kind":"NationRelationChange","text":"Yellowford and Castlewood are now hostile."}
+{"type":"chronicle","tick":16903,"wallTimeMs":1793284120007,"kind":"SettlementFounded","text":"Rachel Watson raised the first settlement of Castleburg."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1793284131539,"kind":"NationRelationChange","text":"Westernland and Littleham have become rivals over their border."}
+{"type":"chronicle","tick":17003,"wallTimeMs":1793284131539,"kind":"NationRaid","text":"Raiders from Yellowford struck Castlewood, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":17051,"wallTimeMs":1793284156613,"kind":"SettlementFounded","text":"Ruth White laid the first stones of Redham."}
+{"type":"chronicle","tick":17051,"wallTimeMs":1793284156613,"kind":"NationCreation","text":"Bob Brown declared the nation of Hamletwood, though none had yet sworn to it."}
+{"type":"chronicle","tick":17251,"wallTimeMs":1793284190537,"kind":"SettlementFounded","text":"Bob Brown laid the first stones of Hamletwood."}
+{"type":"chronicle","tick":17251,"wallTimeMs":1793284190537,"kind":"NationRelationChange","text":"Oldport and Townland have become rivals over their border."}
+{"type":"chronicle","tick":17251,"wallTimeMs":1793284190537,"kind":"NationRelationChange","text":"Westernland and Townland have become rivals over their border."}
+{"type":"chronicle","tick":17403,"wallTimeMs":1793284207342,"kind":"SettlementFounded","text":"Blueton put down roots: Charlotte Davies founded its first settlement."}
+{"type":"status","tick":17751,"wallTimeMs":1793284250519,"text":"Yellowford shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":17751,"wallTimeMs":1793284250519,"kind":"NationCreation","text":"Nancy Jones declared the nation of Westville, though none had yet sworn to it."}
+{"type":"chronicle","tick":17751,"wallTimeMs":1793284250519,"kind":"NationRelationChange","text":"Relations between Hamletton and Yellowford are now friendly against a common enemy."}
+{"type":"chronicle","tick":17751,"wallTimeMs":1793284250519,"kind":"NationRelationChange","text":"Westernland and Westernport are now hostile."}
+{"type":"save","tick":18003,"wallTimeMs":1793284282806,"count":3}
+{"type":"status","tick":18003,"wallTimeMs":1793284282806,"text":"Newshire sent 20 coins of tribute to your treasury."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1793284282806,"kind":"Caravan","text":"Newwood sent a caravan of 20 wood from the Town of Newwood to the Village of Hamletton."}
+{"type":"chronicle","tick":18051,"wallTimeMs":1793284288653,"kind":"NationCreation","text":"Hank Lewis declared the nation of Blackton, though none had yet sworn to it."}
+{"type":"chronicle","tick":18151,"wallTimeMs":1793284300299,"kind":"SettlementFounded","text":"Westville put down roots: Nancy Jones founded its first settlement."}
+{"type":"chronicle","tick":18151,"wallTimeMs":1793284300299,"kind":"NationCreation","text":"Jasmine Walker founded the nation of Redville."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1793284311019,"kind":"NationRelationChange","text":"Littleburg and Newshire have formed an alliance."}
+{"type":"chronicle","tick":18251,"wallTimeMs":1793284311019,"kind":"NationRelationChange","text":"Newshire and Hamletshire are now hostile."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1793284351758,"kind":"NationRelationChange","text":"Smallton and Northburg have become rivals over their border."}
+{"type":"chronicle","tick":18503,"wallTimeMs":1793284351758,"kind":"NationRelationChange","text":"Oldport and Northburg have become rivals over their border."}
+{"type":"chronicle","tick":18603,"wallTimeMs":1793284367903,"kind":"SettlementFounded","text":"Hank Lewis laid the first stones of Blackton."}
+{"type":"chronicle","tick":18603,"wallTimeMs":1793284367903,"kind":"SettlementFounded","text":"Jasmine Walker raised the first settlement of Redville."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1793284396237,"kind":"NationRelationChange","text":"Westernport and Southford have become rivals over their border."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1793284396237,"kind":"NationRelationChange","text":"Upperville and Castlewood are now hostile over their border."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1793284396237,"kind":"NationRelationChange","text":"Littleham and Southford have become rivals over their border."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1793284396237,"kind":"NationRelationChange","text":"Littleburg and Bluewood have formed an alliance."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRelationChange","text":"Littleburg and Hamletville have become rivals over their border."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRelationChange","text":"Newshire and Hamletville have become rivals over their border."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRelationChange","text":"Newwood and Westernport have formed an alliance."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRelationChange","text":"Bluewood and Hamletshire are now hostile."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRaid","text":"Westernport raided Oldport and carried off 5 coins."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRaid","text":"Raiders from Westernport struck Westernland, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRaid","text":"Raiders from Newshire struck Hamletshire, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRaid","text":"Bluewood raided Hamletshire and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":19003,"wallTimeMs":1793284435988,"kind":"NationRaid","text":"Bluewood raided Yellowford and carried off 5 coins, 4 wood."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1793284464805,"kind":"NationRelationChange","text":"Upperville and Blueton have become rivals over their border."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1793284464805,"kind":"NationRelationChange","text":"Townland and Castleburg have become rivals over their border."}
+{"type":"chronicle","tick":19251,"wallTimeMs":1793284464805,"kind":"NationRelationChange","text":"Northburg and Castleburg have become rivals over their border."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1793284502883,"kind":"NationRelationChange","text":"Newwood and Redham have become rivals over their border."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1793284502883,"kind":"NationRelationChange","text":"Redham and Northburg have become rivals over their border."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1793284502883,"kind":"NationRelationChange","text":"Hamletville and Hamletwood have become rivals over their border."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1793284530911,"kind":"NationRelationChange","text":"Southford and Blueton have become rivals over their border."}
+{"type":"chronicle","tick":19751,"wallTimeMs":1793284530911,"kind":"WorldEvent","text":"A bountiful harvest came in across Castleburg, and Rachel Watson filled the stores with 10 apples."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1793284555169,"kind":"NationRelationChange","text":"Littleburg and Hamletshire are now hostile."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1793284555169,"kind":"NationRelationChange","text":"Littleburg and Yellowford are now hostile."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1793284555169,"kind":"NationRaid","text":"Littleburg raided Hamletshire and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":20003,"wallTimeMs":1793284555169,"kind":"NationRaid","text":"Littleburg raided Yellowford and carried off 5 coins, 4 wood, 1 stone."}
+{"type":"chronicle","tick":20251,"wallTimeMs":1793284578758,"kind":"NationRelationChange","text":"Westernport and Upperville are now hostile."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1793284606331,"kind":"NationRelationChange","text":"Littleham and Westville have become rivals over their border."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1793284606331,"kind":"NationRelationChange","text":"Townland and Westville have become rivals over their border."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1793284606331,"kind":"NationRelationChange","text":"Northburg and Westville have become rivals over their border."}
+{"type":"chronicle","tick":20751,"wallTimeMs":1793284630588,"kind":"NationRelationChange","text":"Littleburg and Westernland swore an alliance."}
+{"type":"chronicle","tick":20751,"wallTimeMs":1793284630588,"kind":"NationRelationChange","text":"Hamletshire and Whiteburg are now hostile."}
+{"type":"chronicle","tick":20751,"wallTimeMs":1793284630588,"kind":"NationRelationChange","text":"Whiteburg and Littleport are now hostile."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRelationChange","text":"Upperville and Redville have become rivals over their border."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRelationChange","text":"Castleburg and Blackton have become rivals over their border."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRelationChange","text":"Westville and Blackton have become rivals over their border."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRelationChange","text":"Smallton and Oldport have formed an alliance."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRelationChange","text":"Relations between Yellowford and Littleburg are now rival."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRelationChange","text":"Westernland and Southernshire are now hostile."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Littleburg struck Southernshire, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Littleburg raided Westernport and carried off 5 coins, 1 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Littleburg raided Hamletshire and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Smallton raided Southernshire and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Oldport struck Southernshire, taking 2 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Newwood raided Smallton and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Newwood struck Oldport, taking 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Oldport raided Westernport and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Westernport struck Upperville, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Westernland struck Westernport, taking 3 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Newshire struck Hamletshire, taking 1 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Bluewood raided Yellowford and carried off 5 coins."}
+{"type":"chronicle","tick":21003,"wallTimeMs":1793284654922,"kind":"NationRaid","text":"Raiders from Whiteburg struck Littleport, taking 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1793284784094,"kind":"NationRelationChange","text":"Littleburg and Yellowford are now hostile over their border."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1793284784094,"kind":"NationRelationChange","text":"Westernland and Littleham are now hostile."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1793284784094,"kind":"NationRaid","text":"Raiders from Littleburg struck Yellowford, taking 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1793284784094,"kind":"NationRaid","text":"Hamletshire raided Whiteburg and carried off 5 coins."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1793284784094,"kind":"NationRaid","text":"Raiders from Westernland struck Littleham, taking 1 wood, 5 stone."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1793284835920,"kind":"NationRelationChange","text":"Southernshire and Townland have formed an alliance."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1793284835920,"kind":"NationRelationChange","text":"Oldport and Townland are now hostile."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1793284835920,"kind":"NationRelationChange","text":"Westernport and Townland have formed an alliance."}
+{"type":"chronicle","tick":22251,"wallTimeMs":1793284835920,"kind":"NationRelationChange","text":"Westernland and Townland are now hostile."}
+{"type":"status","tick":22751,"wallTimeMs":1793284905886,"text":"Hamletshire has fallen and been disbanded."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"NationRelationChange","text":"Southernshire and Hamletshire have formed an alliance."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"NationRelationChange","text":"Southernshire and Yellowford have formed an alliance."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"NationRelationChange","text":"Westernport and Hamletshire have formed an alliance."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"NationRelationChange","text":"Westernport and Yellowford have formed an alliance."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"NationRelationChange","text":"Yellowford and Littleport are now hostile."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"SettlementCapture","text":"Littleburg captured a village from Hamletshire."}
+{"type":"chronicle","tick":22751,"wallTimeMs":1793284905886,"kind":"NationDisband","text":"The banners of Hamletshire came down when Littleburg took its last village."}
+{"type":"chronicle","tick":22927,"wallTimeMs":1793284955842,"kind":"Caravan","text":"A caravan from Newwood sold 14 wood at the Village of Hamletton for 168 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRelationChange","text":"Upperville and Blueton are now hostile over their border."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRelationChange","text":"Westernport and Littleham have formed an alliance."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Southernshire raided Smallton and carried off 5 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Raiders from Southernshire struck Oldport, taking 5 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Smallton raided Newwood and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Raiders from Oldport struck Newwood, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Westernport raided Oldport and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Raiders from Oldport struck Townland, taking 5 coins, 1 wood, 5 stone."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Raiders from Westernport struck Westernland, taking 3 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Yellowford raided Littleport and carried off 5 coins."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1793284981766,"kind":"NationRaid","text":"Raiders from Westernland struck Townland, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":23503,"wallTimeMs":1793285026122,"kind":"NationRelationChange","text":"Southernshire and Northburg have formed an alliance."}
+{"type":"chronicle","tick":23503,"wallTimeMs":1793285026122,"kind":"NationRelationChange","text":"Smallton and Northburg are now hostile."}
+{"type":"chronicle","tick":23503,"wallTimeMs":1793285026122,"kind":"NationRelationChange","text":"Oldport and Northburg are now hostile."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1793285063217,"kind":"NationRelationChange","text":"Oldport and Westernland have formed an alliance."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1793285063217,"kind":"NationRelationChange","text":"Westernport and Southford are now hostile."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1793285063217,"kind":"NationRelationChange","text":"Littleham and Southford are now hostile."}
+{"type":"save","tick":24003,"wallTimeMs":1793285098366,"count":4}
+{"type":"status","tick":24003,"wallTimeMs":1793285098366,"text":"Autosaved."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRelationChange","text":"Littleburg and Hamletville are now hostile."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRelationChange","text":"Newshire and Hamletville are now hostile."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRelationChange","text":"Bluewood and Castlewood have formed an alliance."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRaid","text":"Southernshire raided Westernland and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRaid","text":"Raiders from Smallton struck Northburg, taking 2 wood, 5 stone."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRaid","text":"Oldport raided Northburg and carried off 5 stone."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRaid","text":"Raiders from Westernport struck Southford, taking 3 wood, 5 stone."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1793285098366,"kind":"NationRaid","text":"Raiders from Littleham struck Southford, taking 5 stone."}
+{"type":"chronicle","tick":24251,"wallTimeMs":1793285129236,"kind":"NationRelationChange","text":"Bluewood and Whiteburg have become rivals over their border."}
+{"type":"chronicle","tick":24251,"wallTimeMs":1793285129236,"kind":"NationRelationChange","text":"Littleburg and Castlewood swore an alliance."}
+{"type":"chronicle","tick":24251,"wallTimeMs":1793285129236,"kind":"NationRelationChange","text":"Oldport and Castleburg swore an alliance."}
+{"type":"chronicle","tick":24251,"wallTimeMs":1793285129236,"kind":"NationRelationChange","text":"Townland and Castleburg are now hostile."}
+{"type":"chronicle","tick":24251,"wallTimeMs":1793285129236,"kind":"NationRelationChange","text":"Northburg and Castleburg are now hostile."}
+{"type":"status","tick":24387,"wallTimeMs":1793285143023,"text":"Chronicle hidden."}
+{"type":"chronicle","tick":24503,"wallTimeMs":1793285165168,"kind":"NationRelationChange","text":"Smallton and Redham swore an alliance."}
+{"type":"chronicle","tick":24503,"wallTimeMs":1793285165168,"kind":"NationRelationChange","text":"Newwood and Redham are now hostile."}
+{"type":"chronicle","tick":24503,"wallTimeMs":1793285165168,"kind":"NationRelationChange","text":"Oldport and Redham have formed an alliance."}
+{"type":"chronicle","tick":24503,"wallTimeMs":1793285165168,"kind":"NationRelationChange","text":"Westernport and Blueton have formed an alliance."}
+{"type":"chronicle","tick":24503,"wallTimeMs":1793285165168,"kind":"NationRelationChange","text":"Northburg and Redham are now hostile."}
+{"type":"chronicle","tick":24503,"wallTimeMs":1793285165168,"kind":"NationRelationChange","text":"Hamletwood and Hamletville are now hostile."}
+{"type":"status","tick":24751,"wallTimeMs":1793285207183,"text":"Littleham has fallen and been disbanded."}
+{"type":"chronicle","tick":24751,"wallTimeMs":1793285207183,"kind":"NationRelationChange","text":"Blueton and Southford are now hostile."}
+{"type":"chronicle","tick":24751,"wallTimeMs":1793285207183,"kind":"SettlementCapture","text":"After a siege, a camp of Littleham fell to Westernland."}
+{"type":"chronicle","tick":24751,"wallTimeMs":1793285207183,"kind":"NationDisband","text":"With its last camp taken by Westernland, Littleham passed into history."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1793285232661,"kind":"NationRelationChange","text":"Westernport and Castlewood have formed an alliance."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1793285232661,"kind":"NationRelationChange","text":"Yellowford and Whiteburg swore an alliance."}
+{"type":"chronicle","tick":25003,"wallTimeMs":1793285232661,"kind":"NationRaid","text":"Raiders from Blueton struck Southford, taking 5 stone."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1793285255966,"kind":"NationRelationChange","text":"Littleburg and Upperville have formed an alliance."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1793285255966,"kind":"NationRelationChange","text":"Oldport and Upperville swore an alliance."}
+{"type":"status","tick":25503,"wallTimeMs":1793285284884,"text":"Littleport has fallen and been disbanded."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1793285284884,"kind":"NationRelationChange","text":"Oldport and Westville swore an alliance."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1793285284884,"kind":"NationRelationChange","text":"Castlewood and Littleport swore an alliance."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1793285284884,"kind":"NationRelationChange","text":"Townland and Westville are now hostile."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1793285284884,"kind":"NationRelationChange","text":"Northburg and Westville are now hostile."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1793285284884,"kind":"SettlementCapture","text":"Yellowford captured a camp from Littleport."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1793285284884,"kind":"NationDisband","text":"The banners of Littleport came down when Yellowford took its last camp."}
+{"type":"chronicle","tick":25751,"wallTimeMs":1793285313062,"kind":"NationRelationChange","text":"Smallton and Westernland swore an alliance."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRelationChange","text":"Upperville and Redville are now hostile."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRelationChange","text":"Townland and Blackton have formed an alliance."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRelationChange","text":"Northburg and Blackton swore an alliance."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRelationChange","text":"Blackton and Castleburg are now hostile."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRelationChange","text":"Blackton and Westville are now hostile."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRaid","text":"Westernland raided Southernshire and carried off 5 coins."}
+{"type":"chronicle","tick":26003,"wallTimeMs":1793285336176,"kind":"NationRaid","text":"Upperville raided Blueton and carried off 2 wood, 5 stone."}
+{"type":"status","tick":26251,"wallTimeMs":1793285350187,"text":"Northburg has fallen and been disbanded."}
+{"type":"chronicle","tick":26251,"wallTimeMs":1793285350187,"kind":"SettlementCapture","text":"Smallton captured a village from Northburg."}
+{"type":"chronicle","tick":26251,"wallTimeMs":1793285350187,"kind":"NationDisband","text":"The banners of Northburg came down when Smallton took its last village."}
+{"type":"status","tick":26503,"wallTimeMs":1793285364231,"text":"Townland has fallen and been disbanded. Southford has fallen and been disbanded."}
+{"type":"chronicle","tick":26503,"wallTimeMs":1793285364231,"kind":"SettlementCapture","text":"Oldport captured a village from Townland."}
+{"type":"chronicle","tick":26503,"wallTimeMs":1793285364231,"kind":"NationDisband","text":"The banners of Townland came down when Oldport took its last village."}
+{"type":"chronicle","tick":26503,"wallTimeMs":1793285364231,"kind":"SettlementCapture","text":"After a siege, a village of Southford fell to Westernport."}
+{"type":"chronicle","tick":26503,"wallTimeMs":1793285364231,"kind":"NationDisband","text":"The banners of Southford came down when Westernport took its last village."}
+{"type":"status","tick":26751,"wallTimeMs":1793285378019,"text":"Hamletville has fallen and been disbanded."}
+{"type":"chronicle","tick":26751,"wallTimeMs":1793285378019,"kind":"SettlementCapture","text":"After a siege, a camp of Hamletville fell to Littleburg."}
+{"type":"chronicle","tick":26751,"wallTimeMs":1793285378019,"kind":"NationDisband","text":"With its last camp taken by Littleburg, Hamletville passed into history."}
+{"type":"chronicle","tick":27603,"wallTimeMs":1793285421986,"kind":"StallBuilt","text":"A new stall opened in the market of Oldport, built by Isabella Davies."}
+{"type":"chronicle","tick":27603,"wallTimeMs":1793285421986,"kind":"StallBuilt","text":"Charlotte Davies built a market stall in Blueton."}
+{"type":"chronicle","tick":27751,"wallTimeMs":1793285428953,"kind":"StallBuilt","text":"Olivia Wood built a market stall in Upperville."}
+{"type":"chronicle","tick":27751,"wallTimeMs":1793285428953,"kind":"NationRelationChange","text":"Redham and Castleburg have become rivals over their border."}
+{"type":"chronicle","tick":27803,"wallTimeMs":1793285431351,"kind":"StallBuilt","text":"A new stall opened in the market of Castlewood, built by Abigail White."}
+{"type":"chronicle","tick":27803,"wallTimeMs":1793285431351,"kind":"StallBuilt","text":"Oscar Smith built a market stall in Westernland."}
+{"type":"chronicle","tick":27803,"wallTimeMs":1793285431351,"kind":"StallBuilt","text":"Rachel Watson built a market stall in Castleburg."}
+{"type":"chronicle","tick":27803,"wallTimeMs":1793285431351,"kind":"StallBuilt","text":"A new stall opened in the market of Redville, built by Jasmine Walker."}
+{"type":"chronicle","tick":27951,"wallTimeMs":1793285438038,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Olivia Brown."}
+{"type":"chronicle","tick":28003,"wallTimeMs":1793285440367,"kind":"NationRaid","text":"Raiders from Upperville struck Redville, taking 1 coins."}
+{"type":"chronicle","tick":28151,"wallTimeMs":1793285446950,"kind":"StallBuilt","text":"A new stall opened in the market of Whiteburg, built by Harriet White."}
+{"type":"chronicle","tick":28203,"wallTimeMs":1793285449304,"kind":"StallBuilt","text":"A new stall opened in the market of Blueton, built by Charlotte Davies."}
+{"type":"chronicle","tick":28203,"wallTimeMs":1793285449304,"kind":"StallBuilt","text":"Trade came to Hamletwood: Bob Brown built a stall."}
+{"type":"chronicle","tick":28303,"wallTimeMs":1793285453898,"kind":"StallBuilt","text":"A new stall opened in the market of Newwood, built by Isabella Robinson."}
+{"type":"chronicle","tick":28351,"wallTimeMs":1793285456073,"kind":"StallBuilt","text":"Trade came to Westville: Nancy Jones built a stall."}
+{"type":"chronicle","tick":28351,"wallTimeMs":1793285456073,"kind":"StallBuilt","text":"A new stall opened in the market of Redville, built by Jasmine Walker."}
+{"type":"chronicle","tick":28451,"wallTimeMs":1793285460608,"kind":"StallBuilt","text":"Trade came to Yellowford: Mike Evans built a stall."}
+{"type":"chronicle","tick":28551,"wallTimeMs":1793285465133,"kind":"StallBuilt","text":"Trade came to Upperville: Olivia Wood built a stall."}
+{"type":"status","tick":28751,"wallTimeMs":1793285475029,"text":"Redville has fallen and been disbanded."}
+{"type":"chronicle","tick":28751,"wallTimeMs":1793285475029,"kind":"SettlementCapture","text":"Upperville captured a camp from Redville."}
+{"type":"chronicle","tick":28751,"wallTimeMs":1793285475029,"kind":"NationDisband","text":"With its last camp taken by Upperville, Redville passed into history."}
+{"type":"chronicle","tick":28803,"wallTimeMs":1793285477726,"kind":"StallBuilt","text":"Trade came to Littleburg: Mia Thomas built a stall."}
+{"type":"chronicle","tick":28851,"wallTimeMs":1793285480271,"kind":"StallBuilt","text":"Trade came to Blueton: Charlotte Davies built a stall."}
+{"type":"chronicle","tick":28851,"wallTimeMs":1793285480271,"kind":"StallBuilt","text":"Oscar Smith built a market stall in Westernland."}
+{"type":"chronicle","tick":28903,"wallTimeMs":1793285482985,"kind":"StallBuilt","text":"Isabella Davies built a market stall in Oldport."}
+{"type":"chronicle","tick":28903,"wallTimeMs":1793285482985,"kind":"StallBuilt","text":"Trade came to Westernland: Bella White built a stall."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1793285488302,"kind":"StallBuilt","text":"Victor Evans built a market stall in Westernport."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1793285488302,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Olivia Brown."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1793285488302,"kind":"StallBuilt","text":"A new stall opened in the market of Castlewood, built by Abigail White."}
+{"type":"chronicle","tick":29003,"wallTimeMs":1793285488302,"kind":"NationRaid","text":"Raiders from Castlewood struck Yellowford, taking 1 coins."}
+{"type":"chronicle","tick":29103,"wallTimeMs":1793285492815,"kind":"StallBuilt","text":"Trade came to Newwood: Isabella Robinson built a stall."}
+{"type":"chronicle","tick":29151,"wallTimeMs":1793285494547,"kind":"StallBuilt","text":"Bob Brown built a market stall in Hamletwood."}
+{"type":"status","tick":29251,"wallTimeMs":1793285498223,"text":"Blackton has fallen and been disbanded."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1793285498223,"kind":"NationRelationChange","text":"Bluewood and Whiteburg are now hostile."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1793285498223,"kind":"SettlementCapture","text":"Castleburg captured a village from Blackton."}
+{"type":"chronicle","tick":29251,"wallTimeMs":1793285498223,"kind":"NationDisband","text":"The banners of Blackton came down when Castleburg took its last village."}
+{"type":"chronicle","tick":29503,"wallTimeMs":1793285507859,"kind":"NationRelationChange","text":"Southernshire and Westernport have formed an alliance."}
+{"type":"chronicle","tick":29603,"wallTimeMs":1793285511699,"kind":"StallBuilt","text":"Abigail White built a market stall in Castlewood."}
+{"type":"chronicle","tick":29651,"wallTimeMs":1793285513598,"kind":"StallBuilt","text":"Trade came to Whiteburg: Harriet White built a stall."}
+{"type":"chronicle","tick":29703,"wallTimeMs":1793285515606,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Victor Thomas."}
+{"type":"chronicle","tick":29703,"wallTimeMs":1793285515606,"kind":"NationCreation","text":"Jasmine Walker founded the nation of Northland."}
+{"type":"chronicle","tick":29751,"wallTimeMs":1793285517440,"kind":"StallBuilt","text":"Nancy Jones built a market stall in Westville."}
+{"type":"chronicle","tick":29803,"wallTimeMs":1793285519483,"kind":"StallBuilt","text":"Frank Johnson built a market stall in Smallton."}
+{"type":"chronicle","tick":29851,"wallTimeMs":1793285521465,"kind":"StallBuilt","text":"Olivia Brown built a market stall in Bluewood."}
+{"type":"save","tick":30003,"wallTimeMs":1793285543267,"count":5}
+{"type":"status","tick":30003,"wallTimeMs":1793285543267,"text":"Autosaved."}
+{"type":"chronicle","tick":30003,"wallTimeMs":1793285543267,"kind":"NationRaid","text":"Bluewood raided Whiteburg and carried off 5 coins."}
+{"type":"chronicle","tick":30003,"wallTimeMs":1793285543267,"kind":"NationRaid","text":"Castlewood raided Upperville and carried off 3 wood."}
+{"type":"chronicle","tick":30051,"wallTimeMs":1793285545150,"kind":"StallBuilt","text":"Mike Evans built a market stall in Yellowford."}
+{"type":"chronicle","tick":30103,"wallTimeMs":1793285547208,"kind":"StallBuilt","text":"Trade came to Smallton: Ella Walker built a stall."}
+{"type":"chronicle","tick":30351,"wallTimeMs":1793285557501,"kind":"StallBuilt","text":"Trade came to Littleburg: Mia Thomas built a stall."}
+{"type":"chronicle","tick":30403,"wallTimeMs":1793285559721,"kind":"StallBuilt","text":"Trade came to Westville: Nancy Jones built a stall."}
+{"type":"chronicle","tick":30451,"wallTimeMs":1793285561774,"kind":"StallBuilt","text":"Trade came to Whiteburg: Harriet White built a stall."}
+{"type":"chronicle","tick":30503,"wallTimeMs":1793285563855,"kind":"StallBuilt","text":"A new stall opened in the market of Blueton, built by Charlotte Davies."}
+{"type":"chronicle","tick":30503,"wallTimeMs":1793285563855,"kind":"NationCreation","text":"Hank Lewis raised a banner and called it Eastland."}
+{"type":"chronicle","tick":30551,"wallTimeMs":1793285565770,"kind":"StallBuilt","text":"A new stall opened in the market of Southernshire, built by Ursula Johnson."}
+{"type":"world_event_offered","tick":30551,"wallTimeMs":1793285565770,"title":"Drought","body":"No rain has fallen on Hamletton for weeks. Its 2 farms are drying out and will bring in nothing for a day.","options":["Dig irrigation ditches (15 wood, 10 stone)","Buy grain from traders (25 coins)","Ration and wait for rain"]}
+{"type":"status","tick":30551,"wallTimeMs":1793285584567,"text":"Drought struck Hamletton; you had irrigation ditches dug, and the farms were dry only a little while."}
+{"type":"chronicle","tick":30551,"wallTimeMs":1793285584567,"kind":"WorldEvent","text":"Drought struck Hamletton; you had irrigation ditches dug, and the farms were dry only a little while."}
+{"type":"world_event_resolved","tick":30551,"wallTimeMs":1793285584567,"title":"Drought","status":"Drought struck Hamletton; you had irrigation ditches dug, and the farms were dry only a little while."}
+{"type":"chronicle","tick":30603,"wallTimeMs":1793285586608,"kind":"StallBuilt","text":"Trade came to Westernland: Oscar Smith built a stall."}
+{"type":"chronicle","tick":30651,"wallTimeMs":1793285588516,"kind":"StallBuilt","text":"Isabella Davies built a market stall in Oldport."}
+{"type":"chronicle","tick":30651,"wallTimeMs":1793285588516,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Olivia Brown."}
+{"type":"chronicle","tick":30703,"wallTimeMs":1793285590552,"kind":"SettlementFounded","text":"Northland put down roots: Jasmine Walker founded its first settlement."}
+{"type":"chronicle","tick":30803,"wallTimeMs":1793285594469,"kind":"StallBuilt","text":"Trade came to Yellowford: Mike Evans built a stall."}
+{"type":"chronicle","tick":30851,"wallTimeMs":1793285596446,"kind":"StallBuilt","text":"Ruth White built a market stall in Redham."}
+{"type":"chronicle","tick":30851,"wallTimeMs":1793285596446,"kind":"StallBuilt","text":"Rachel Watson built a market stall in Castleburg."}
+{"type":"chronicle","tick":30903,"wallTimeMs":1793285598555,"kind":"StallBuilt","text":"A new stall opened in the market of Newwood, built by Isabella Robinson."}
+{"type":"screen","tick":30943,"wallTimeMs":1793285600364,"from":"WORLD","to":"PAUSE"}
+{"type":"world","tick":30000,"wallTimeMs":1793285609907,"how":"loaded","slot":"world-108-20261029-140036","seed":108}
+{"type":"screen","tick":30004,"wallTimeMs":1793285610072,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":30052,"wallTimeMs":1793285611967,"kind":"StallBuilt","text":"Mike Evans built a market stall in Yellowford."}
+{"type":"chronicle","tick":30100,"wallTimeMs":1793285613755,"kind":"StallBuilt","text":"Trade came to Smallton: Ella Walker built a stall."}
+{"type":"chronicle","tick":30352,"wallTimeMs":1793285623458,"kind":"StallBuilt","text":"Trade came to Littleburg: Mia Thomas built a stall."}
+{"type":"chronicle","tick":30400,"wallTimeMs":1793285625373,"kind":"StallBuilt","text":"Trade came to Westville: Nancy Jones built a stall."}
+{"type":"chronicle","tick":30452,"wallTimeMs":1793285627421,"kind":"StallBuilt","text":"Trade came to Whiteburg: Harriet White built a stall."}
+{"type":"chronicle","tick":30500,"wallTimeMs":1793285629341,"kind":"StallBuilt","text":"A new stall opened in the market of Blueton, built by Charlotte Davies."}
+{"type":"chronicle","tick":30500,"wallTimeMs":1793285629341,"kind":"NationCreation","text":"Hank Lewis raised a banner and called it Eastland."}
+{"type":"chronicle","tick":30552,"wallTimeMs":1793285631406,"kind":"StallBuilt","text":"A new stall opened in the market of Southernshire, built by Ursula Johnson."}
+{"type":"world_event_offered","tick":30552,"wallTimeMs":1793285631406,"title":"Drought","body":"No rain has fallen on Hamletton for weeks. Its 2 farms are drying out and will bring in nothing for a day.","options":["Dig irrigation ditches (15 wood, 10 stone)","Buy grain from traders (25 coins)","Ration and wait for rain"]}
+{"type":"status","tick":30552,"wallTimeMs":1793285638552,"text":"Drought struck Hamletton, and you rationed the stores and waited for rain."}
+{"type":"chronicle","tick":30552,"wallTimeMs":1793285638552,"kind":"WorldEvent","text":"Drought struck Hamletton, and you rationed the stores and waited for rain."}
+{"type":"world_event_resolved","tick":30552,"wallTimeMs":1793285638552,"title":"Drought","status":"Drought struck Hamletton, and you rationed the stores and waited for rain."}
+{"type":"chronicle","tick":30600,"wallTimeMs":1793285640380,"kind":"StallBuilt","text":"Trade came to Westernland: Oscar Smith built a stall."}
+{"type":"chronicle","tick":30652,"wallTimeMs":1793285642387,"kind":"StallBuilt","text":"Isabella Davies built a market stall in Oldport."}
+{"type":"chronicle","tick":30652,"wallTimeMs":1793285642387,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Olivia Brown."}
+{"type":"chronicle","tick":30700,"wallTimeMs":1793285644308,"kind":"SettlementFounded","text":"Northland put down roots: Jasmine Walker founded its first settlement."}
+{"type":"chronicle","tick":30800,"wallTimeMs":1793285648502,"kind":"StallBuilt","text":"Trade came to Yellowford: Mike Evans built a stall."}
+{"type":"chronicle","tick":30852,"wallTimeMs":1793285650762,"kind":"StallBuilt","text":"Ruth White built a market stall in Redham."}
+{"type":"chronicle","tick":30852,"wallTimeMs":1793285650762,"kind":"StallBuilt","text":"Rachel Watson built a market stall in Castleburg."}
+{"type":"chronicle","tick":30900,"wallTimeMs":1793285652842,"kind":"StallBuilt","text":"A new stall opened in the market of Newwood, built by Isabella Robinson."}
+{"type":"chronicle","tick":31000,"wallTimeMs":1793285672848,"kind":"NationRaid","text":"Raiders from Newwood struck Redham, taking 1 coins."}
+{"type":"world","tick":30000,"wallTimeMs":1793285675979,"how":"loaded","slot":"world-108-20261029-140036","seed":108}
+{"type":"screen","tick":30004,"wallTimeMs":1793285676152,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":30052,"wallTimeMs":1793285678186,"kind":"StallBuilt","text":"Mike Evans built a market stall in Yellowford."}
+{"type":"chronicle","tick":30100,"wallTimeMs":1793285680138,"kind":"StallBuilt","text":"Trade came to Smallton: Ella Walker built a stall."}
+{"type":"chronicle","tick":30352,"wallTimeMs":1793285690486,"kind":"StallBuilt","text":"Trade came to Littleburg: Mia Thomas built a stall."}
+{"type":"chronicle","tick":30400,"wallTimeMs":1793285692541,"kind":"StallBuilt","text":"Trade came to Westville: Nancy Jones built a stall."}
+{"type":"chronicle","tick":30452,"wallTimeMs":1793285694766,"kind":"StallBuilt","text":"Trade came to Whiteburg: Harriet White built a stall."}
+{"type":"chronicle","tick":30500,"wallTimeMs":1793285696708,"kind":"StallBuilt","text":"A new stall opened in the market of Blueton, built by Charlotte Davies."}
+{"type":"chronicle","tick":30500,"wallTimeMs":1793285696708,"kind":"NationCreation","text":"Hank Lewis raised a banner and called it Eastland."}
+{"type":"chronicle","tick":30552,"wallTimeMs":1793285698749,"kind":"StallBuilt","text":"A new stall opened in the market of Southernshire, built by Ursula Johnson."}
+{"type":"world_event_offered","tick":30552,"wallTimeMs":1793285698749,"title":"Drought","body":"No rain has fallen on Hamletton for weeks. Its 2 farms are drying out and will bring in nothing for a day.","options":["Dig irrigation ditches (15 wood, 10 stone)","Buy grain from traders (25 coins)","Ration and wait for rain"]}
+{"type":"status","tick":30552,"wallTimeMs":1793285701213,"text":"Drought struck Hamletton; you bought grain from passing traders to see it through."}
+{"type":"chronicle","tick":30552,"wallTimeMs":1793285701213,"kind":"WorldEvent","text":"Drought struck Hamletton; you bought grain from passing traders to see it through."}
+{"type":"world_event_resolved","tick":30552,"wallTimeMs":1793285701213,"title":"Drought","status":"Drought struck Hamletton; you bought grain from passing traders to see it through."}
+{"type":"chronicle","tick":30600,"wallTimeMs":1793285703080,"kind":"StallBuilt","text":"Trade came to Westernland: Oscar Smith built a stall."}
+{"type":"chronicle","tick":30652,"wallTimeMs":1793285705071,"kind":"StallBuilt","text":"Isabella Davies built a market stall in Oldport."}
+{"type":"chronicle","tick":30652,"wallTimeMs":1793285705071,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Olivia Brown."}
+{"type":"chronicle","tick":30700,"wallTimeMs":1793285706901,"kind":"SettlementFounded","text":"Northland put down roots: Jasmine Walker founded its first settlement."}

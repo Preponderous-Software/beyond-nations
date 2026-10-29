@@ -1,0 +1,118 @@
+{"t": 1793281940351, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "104"]}
+{"t": 1793282021858, "cmd": "key", "args": ["space"]}
+{"t": 1793282022629, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793282041955, "cmd": "shot", "args": ["menu"]}
+{"t": 1793282396881, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282397575, "cmd": "await", "args": ["NEW_WORLD", "15"]}
+{"t": 1793282398885, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793282399686, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1793282400530, "cmd": "shot", "args": ["world0"]}
+{"t": 1793282400918, "cmd": "state", "args": []}
+{"t": 1793282412292, "cmd": "key", "args": ["n"]}
+{"t": 1793282412889, "cmd": "wait", "args": ["2"]}
+{"t": 1793282415010, "cmd": "shot", "args": ["nation1"]}
+{"t": 1793282415299, "cmd": "state", "args": []}
+{"t": 1793282415396, "cmd": "events", "args": ["10"]}
+{"t": 1793282425216, "cmd": "key", "args": ["o"]}
+{"t": 1793282425785, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793282425902, "cmd": "shot", "args": ["nations1"]}
+{"t": 1793282426345, "cmd": "state", "args": ["--full"]}
+{"t": 1793282434189, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282434766, "cmd": "wait", "args": ["60"]}
+{"t": 1793282494961, "cmd": "state", "args": []}
+{"t": 1793282495057, "cmd": "events", "args": ["8"]}
+{"t": 1793282498024, "cmd": "key", "args": ["o"]}
+{"t": 1793282498585, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793282498983, "cmd": "shot", "args": ["nations2"]}
+{"t": 1793282504805, "cmd": "click", "args": ["301", "218"]}
+{"t": 1793282505630, "cmd": "wait", "args": ["2"]}
+{"t": 1793282507772, "cmd": "shot", "args": ["ally1"]}
+{"t": 1793282508172, "cmd": "state", "args": []}
+{"t": 1793282508317, "cmd": "events", "args": ["4"]}
+{"t": 1793282514362, "cmd": "click", "args": ["123", "218"]}
+{"t": 1793282515244, "cmd": "wait", "args": ["1"]}
+{"t": 1793282516369, "cmd": "click", "args": ["123", "218"]}
+{"t": 1793282517235, "cmd": "wait", "args": ["1"]}
+{"t": 1793282518356, "cmd": "click", "args": ["123", "218"]}
+{"t": 1793282519188, "cmd": "wait", "args": ["1"]}
+{"t": 1793282520282, "cmd": "shot", "args": ["trib3"]}
+{"t": 1793282520690, "cmd": "state", "args": []}
+{"t": 1793282520820, "cmd": "events", "args": ["5"]}
+{"t": 1793282523311, "cmd": "click", "args": ["301", "218"]}
+{"t": 1793282524295, "cmd": "wait", "args": ["2"]}
+{"t": 1793282526502, "cmd": "shot", "args": ["ally2"]}
+{"t": 1793282526895, "cmd": "events", "args": ["4"]}
+{"t": 1793282532890, "cmd": "note", "args": ["--shot", "ally_cheap", "Alliance with Westshire reached in ~20 s real time and 0 game ticks: three Tribute clicks (75 of 199 starting coins) took relations 0->+30 while the Nations screen pauses the world (tick stayed 1387), then Ally accepted. No cooldown or diminishing returns on gifts."]}
+{"t": 1793282533067, "cmd": "click", "args": ["836", "218"]}
+{"t": 1793282533810, "cmd": "wait", "args": ["2"]}
+{"t": 1793282535883, "cmd": "shot", "args": ["denounce1"]}
+{"t": 1793282536140, "cmd": "events", "args": ["4"]}
+{"t": 1793282543491, "cmd": "move", "args": ["830", "218"]}
+{"t": 1793282543647, "cmd": "wait", "args": ["1"]}
+{"t": 1793282544881, "cmd": "click", "args": ["836", "218"]}
+{"t": 1793282545798, "cmd": "wait", "args": ["3"]}
+{"t": 1793282548971, "cmd": "shot", "args": ["denounce2"]}
+{"t": 1793282549330, "cmd": "events", "args": ["3"]}
+{"t": 1793282549497, "cmd": "status", "args": []}
+{"t": 1793282557008, "cmd": "note", "args": ["--shot", "denounce_no_confirm", "Denounce on an ally silently ends the alliance (Allied +30 -> Neutral +5) in one click with no confirmation and no hint on the button that it breaks the alliance. Also my first Denounce click did not register (slow frames), second did."]}
+{"t": 1793282557188, "cmd": "click", "args": ["836", "218"]}
+{"t": 1793282557955, "cmd": "wait", "args": ["3"]}
+{"t": 1793282561077, "cmd": "click", "args": ["836", "218"]}
+{"t": 1793282561951, "cmd": "wait", "args": ["3"]}
+{"t": 1793282565122, "cmd": "shot", "args": ["denounce3"]}
+{"t": 1793282565493, "cmd": "events", "args": ["6"]}
+{"t": 1793282577888, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282578820, "cmd": "wait", "args": ["3"]}
+{"t": 1793282581955, "cmd": "shot", "args": ["war1"]}
+{"t": 1793282582232, "cmd": "events", "args": ["4"]}
+{"t": 1793282587468, "cmd": "note", "args": ["--shot", "war_confirm_text", "War confirmation: the button relabels to 'Confirm' but the status line says 'Click War again to declare war on Westshire.' - there is no War button on screen any more."]}
+{"t": 1793282587909, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282588730, "cmd": "wait", "args": ["3"]}
+{"t": 1793282591846, "cmd": "shot", "args": ["war2"]}
+{"t": 1793282592219, "cmd": "events", "args": ["5"]}
+{"t": 1793282596709, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282597574, "cmd": "wait", "args": ["3"]}
+{"t": 1793282600702, "cmd": "shot", "args": ["war3"]}
+{"t": 1793282601055, "cmd": "events", "args": ["5"]}
+{"t": 1793282606809, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282609493, "cmd": "wait", "args": ["2"]}
+{"t": 1793282611603, "cmd": "events", "args": ["4"]}
+{"t": 1793282629218, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282630074, "cmd": "wait", "args": ["4"]}
+{"t": 1793282681346, "cmd": "events", "args": ["4"]}
+{"t": 1793282684811, "cmd": "shot", "args": ["war4"]}
+{"t": 1793282730197, "cmd": "status", "args": []}
+{"t": 1793282730291, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282731098, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282731888, "cmd": "wait", "args": ["3"]}
+{"t": 1793282735365, "cmd": "events", "args": ["4"]}
+{"t": 1793282745419, "cmd": "note", "args": ["--shot", "war_declared", "War declared only after several tries: the War confirm window expires ('Not confirmed in time, so nothing was done.') after a few seconds of real time; at 2-5 fps with hover-before-click, a normal second click often lands after it expired and just re-arms it. Took 5 attempts (~2.5 min) before two rapid clicks worked."]}
+{"t": 1793282746916, "cmd": "shot", "args": ["war5"]}
+{"t": 1793282751994, "cmd": "click", "args": ["480", "218"]}
+{"t": 1793282752759, "cmd": "click", "args": ["480", "218"]}
+{"t": 1793282753511, "cmd": "wait", "args": ["3"]}
+{"t": 1793282756636, "cmd": "events", "args": ["4"]}
+{"t": 1793282756733, "cmd": "shot", "args": ["peace1"]}
+{"t": 1793282764974, "cmd": "note", "args": ["--shot", "peace_instant", "Peace accepted at the same tick war was declared (tick 1387; the Nations screen pauses the world) with the reason 'the fighting has cost them enough' although no fighting happened. Relations jump Hostile -60 -> Neutral -19. Declare war then sue for peace is free and instant."]}
+{"t": 1793282765275, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282766325, "cmd": "click", "args": ["657", "218"]}
+{"t": 1793282767121, "cmd": "wait", "args": ["3"]}
+{"t": 1793282770828, "cmd": "events", "args": ["3"]}
+{"t": 1793282770932, "cmd": "shot", "args": ["truce_war"]}
+{"t": 1793282777594, "cmd": "note", "args": ["--shot", "truce_broken", "Right after peace the row reads 'Neutral (-19), truce 60 s' yet War is still offered; declaring war during the truce succeeds with no warning and no extra penalty (relations back to -60), so the truce does not bind the player."]}
+{"t": 1793282778500, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282779026, "cmd": "wait", "args": ["45"]}
+{"t": 1793282824599, "cmd": "shot", "args": ["afterwar"]}
+{"t": 1793282824911, "cmd": "state", "args": []}
+{"t": 1793282824987, "cmd": "events", "args": ["8"]}
+{"t": 1793282834883, "cmd": "note", "args": ["--shot", "chronicle_trunc", "Chronicle panel truncates entries with '...' ('Fortressham and Westshire made peace, ending...', 'Relations between Fortressham and Westshire...'); the panel has room on screen but the key part of the line is cut."]}
+{"t": 1793282835615, "cmd": "key", "args": ["o"]}
+{"t": 1793282836189, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793282836269, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793282837035, "cmd": "wait", "args": ["3"]}
+{"t": 1793282840139, "cmd": "shot", "args": ["laws"]}
+{"t": 1793282845631, "cmd": "key", "args": ["Escape"]}
+{"t": 1793282846143, "cmd": "events", "args": ["50"]}
+{"t": 1793282846209, "cmd": "stop", "args": []}
+{"t": 1793282870352, "cmd": "report", "args": []}
+{"t": 1793285744785, "cmd": "stop", "args": []}

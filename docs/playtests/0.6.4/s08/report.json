@@ -1,0 +1,76 @@
+{
+  "session": "s08",
+  "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 108,
+  "durationSec": 3300,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Drought 'Ration and wait for rain' restlessness penalty is never reported",
+      "detail": "Option 3 says 'your people grow restless with you'. The result toast and chronicle only say 'Drought struck Hamletton, and you rationed the stores and waited for rain.' There is no number and no visible change; Player Info still reads 'Relationships: 0'. The code lowers every member's relationship with the player, so the free option has a hidden cost the player cannot measure. Expected the result line to state the cost (e.g. 'your 7 members think less of you (-N)') or a visible mood or relationship change.",
+      "repro": "pt start --seed 108; Start, Begin; create nation (N), found settlement, build a farm (K K); play to tick ~30552 (or pt start --continue from the tick-30003 autosave); click option 3 on the Drought sheet",
+      "screenshot": "shots/drought_ration.png",
+      "tick": 30552
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Drought irrigation option takes missing stone from settlement stores without saying so",
+      "detail": "With 5 stone on hand, 'Dig irrigation ditches (15 wood, 10 stone)' was not greyed out. Clicking it went through: wood 44->29 and my stone 5->0. The other 5 stone came from somewhere unstated (probably the settlement store). Paying from stores is fair, but the option should say where the cost comes from, e.g. 'you 5 + stores 5'. Otherwise the player cannot tell whether an option is affordable.",
+      "repro": "same world as above; carry 44 wood, 5 stone; click option 1 on the Drought sheet at tick 30551",
+      "screenshot": "shots/drought_after1.png",
+      "tick": 30551
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Chronicle 'Your news' view is flooded with other nations' raids, so nation world events are buried",
+      "detail": "Pressing Y shows 'Showing: > Your news' with 259 entries, but the list is mostly other nations' raids and rivalries (e.g. 'Raiders from Westernport struck Westernland'). The HUD chronicle strip labelled 'your news' also lists other nations' stalls. The only nation world event before tick 24000 (tick 19751, 'A bountiful harvest came in across Castleburg...') sat among about 50 raids and 100 relation changes, so a player would never notice that world events are happening to other nations.",
+      "repro": "seed 108, play to tick ~24000, press Y",
+      "screenshot": "shots/chronicle_yournews.png",
+      "tick": 24335
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Open ground lies about N to the X' hint changes direction as you follow it",
+      "detail": "When founding was refused, the hint said '220 to the north' at (131,-84). After walking, it said '250 to the south-east'. At (34,140) it said '180 to the east', then after walking about 112 that way it said '210 to the west'. Each hint is the nearest site from where you stand, so the target jumps around and the distance grows. It took 6 F presses and about 2700 ticks to find a legal site. The last two hints (60 W, then 20 W) were accurate. Expected the hint to stay on one target, or to name a landmark.",
+      "repro": "seed 108; create nation near (131,-180) with 57 wood; press F, follow hints",
+      "screenshot": "shots/settled.png",
+      "tick": 7567
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "World-space settlement label draws through full-screen panels and over the HUD",
+      "detail": "Inside my settlement, the large label '6 here, 7/20 residents' renders through the semi-transparent Nations panel (O) and collides with the Nations/Laws tabs. It also sits behind the pause menu, the Drought sheet and the top-left HUD.",
+      "repro": "enter own settlement, press O",
+      "screenshot": "shots/nations2.png",
+      "tick": 16055
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress bar text clipped on the left",
+      "detail": "Objective 7's progress bar reads 'mbers 7/10 . Buildings 2/2'. The 'Me' of 'Members' is cut off by the panel edge.",
+      "repro": "reach objective 7 'Reach the Village era'",
+      "screenshot": "shots/drought_ration.png",
+      "tick": 30552
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 25.0, "Eat something": 26.1, "Create or join a nation": 44.1, "Found a settlement": 149.0, "Enter your settlement": 152.1, "Build a market stall": 158.1},
+    "firstPlayerWorldEventGameSec": 611.0,
+    "playerWorldEventsOffered": 1,
+    "worldEventChoicesTried": 3,
+    "nationWorldEventsInChronicle": 1,
+    "avgTps": 8
+  },
+  "fun": 3,
+  "verdict": "The world-event sheet works well. The Drought sheet names the cause, gives each option's cost and effect, pauses the world, and the result line is clear. A save reload replays the same event, so all three choices could be compared. The weak spots are around it. Ration's 'restless' penalty is hidden. Irrigation silently draws on stores. Nation world events are lost in raid spam in a chronicle labelled 'your news'. The first player event comes about 10 game minutes in, so only one event (Drought) was seen in this session, under heavy machine load (about 3-15 tps)."
+}

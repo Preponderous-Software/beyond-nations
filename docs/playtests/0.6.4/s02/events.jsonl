@@ -1,0 +1,116 @@
+{"type":"screen","tick":0,"wallTimeMs":1793281998861,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793282394086,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793282401873,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793282414254,"how":"created","slot":"world-102-20261029-140014","seed":102}
+{"type":"screen","tick":0,"wallTimeMs":1793282414256,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":1038,"wallTimeMs":1793282483383,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":1050,"wallTimeMs":1793282484336,"text":"No entities within range to interact with."}
+{"type":"status","tick":1058,"wallTimeMs":1793282485001,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1066,"wallTimeMs":1793282485509,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":1074,"wallTimeMs":1793282486007,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":1102,"wallTimeMs":1793282487880,"kind":"NationCreation","text":"Dave Taylor declared the nation of Smallport, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"chronicle","tick":1150,"wallTimeMs":1793282491134,"kind":"SettlementFounded","text":"Dave Taylor laid the first stones of Smallport."}
+{"type":"chronicle","tick":1302,"wallTimeMs":1793282503492,"kind":"NationCreation","text":"Tina Wilson founded the nation of Upperwood."}
+{"type":"chronicle","tick":1350,"wallTimeMs":1793282508404,"kind":"SettlementFounded","text":"Tina Wilson raised the first settlement of Upperwood."}
+{"type":"status","tick":1654,"wallTimeMs":1793282554651,"text":"No entities within range to interact with."}
+{"type":"status","tick":1802,"wallTimeMs":1793282571318,"text":"You enter the land of Smallport."}
+{"type":"status","tick":1818,"wallTimeMs":1793282572861,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":2286,"wallTimeMs":1793282685082,"text":"No entities within range to interact with."}
+{"type":"status","tick":2798,"wallTimeMs":1793282749572,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":2802,"wallTimeMs":1793282749839,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2802}
+{"type":"status","tick":2802,"wallTimeMs":1793282749839,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":2850,"wallTimeMs":1793282753270,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":2850,"wallTimeMs":1793282753270,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":2850,"wallTimeMs":1793282753270,"kind":"NationCreation","text":"Karl Lewis founded the nation of Blackfield."}
+{"type":"status","tick":2898,"wallTimeMs":1793282756617,"text":"Created nation Southernford."}
+{"type":"chronicle","tick":2898,"wallTimeMs":1793282756617,"kind":"NationCreation","text":"You raised a banner and named your people Southernford."}
+{"type":"objective_completed","tick":2902,"wallTimeMs":1793282756907,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":2902,"wallTimeMs":1793282756907,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":2950,"wallTimeMs":1793282760602,"kind":"StallBuilt","text":"Trade came to Smallport: Dave Taylor built a stall."}
+{"type":"chronicle","tick":3002,"wallTimeMs":1793282764362,"kind":"SettlementFounded","text":"Karl Lewis laid the first stones of Blackfield."}
+{"type":"status","tick":3082,"wallTimeMs":1793282770398,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":3510,"wallTimeMs":1793282804670,"text":"You leave the land of Smallport for the wilds."}
+{"type":"chronicle","tick":3702,"wallTimeMs":1793282822381,"kind":"NationCreation","text":"Victor Taylor founded the nation of Easttown."}
+{"type":"status","tick":3718,"wallTimeMs":1793282824795,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":3742,"wallTimeMs":1793282826719,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3750,"wallTimeMs":1793282827385,"kind":"NationRelationChange","text":"Smallport and Upperwood have become rivals over their border."}
+{"type":"chronicle","tick":3902,"wallTimeMs":1793282838222,"kind":"SettlementFounded","text":"Easttown put down roots: Victor Taylor founded its first settlement."}
+{"type":"status","tick":3914,"wallTimeMs":1793282839154,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":4082,"wallTimeMs":1793282851181,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":4202,"wallTimeMs":1793282860308,"kind":"StallBuilt","text":"Karl Lewis built a market stall in Blackfield."}
+{"type":"status","tick":4270,"wallTimeMs":1793282864440,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":4390,"wallTimeMs":1793282873147,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":4450,"wallTimeMs":1793282877006,"kind":"StallBuilt","text":"Dave Taylor built a market stall in Smallport."}
+{"type":"status","tick":4682,"wallTimeMs":1793282894011,"text":"You enter the land of Blackfield (Neutral)."}
+{"type":"status","tick":4690,"wallTimeMs":1793282894658,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":4702,"wallTimeMs":1793282895567,"kind":"NationCreation","text":"Eve Wood raised a banner and called it Westernville."}
+{"type":"status","tick":4710,"wallTimeMs":1793282896182,"text":"This land is claimed by Blackfield. Found your settlement outside its borders. Open ground lies about 200 to the west."}
+{"type":"status","tick":4950,"wallTimeMs":1793282915049,"text":"You leave the land of Blackfield for the wilds."}
+{"type":"chronicle","tick":4950,"wallTimeMs":1793282915049,"kind":"StallBuilt","text":"Trade came to Upperwood: Tina Wilson built a stall."}
+{"type":"chronicle","tick":5050,"wallTimeMs":1793282922576,"kind":"StallBuilt","text":"Trade came to Blackfield: Karl Lewis built a stall."}
+{"type":"status","tick":5226,"wallTimeMs":1793282936878,"text":"Too close to the Town of Easttown: 181 away, and settlements must be 250 apart. Open ground lies about 70 to the south."}
+{"type":"chronicle","tick":5250,"wallTimeMs":1793282938904,"kind":"NationRelationChange","text":"Smallport and Blackfield have become rivals over their border."}
+{"type":"chronicle","tick":5302,"wallTimeMs":1793282942805,"kind":"SettlementFounded","text":"Eve Wood raised the first settlement of Westernville."}
+{"type":"status","tick":5490,"wallTimeMs":1793282957255,"text":"Too close to the Town of Easttown: 154 away, and settlements must be 250 apart. Open ground lies about 130 to the south-west."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1793282958034,"kind":"NationRelationChange","text":"Smallport and Easttown have become rivals over their border."}
+{"type":"chronicle","tick":5702,"wallTimeMs":1793282971780,"kind":"StallBuilt","text":"Trade came to Blackfield: Karl Lewis built a stall."}
+{"type":"status","tick":5894,"wallTimeMs":1793282985495,"text":"Too close to the Town of Easttown: 180 away, and settlements must be 250 apart. Open ground lies about 70 to the south."}
+{"type":"save","tick":6002,"wallTimeMs":1793282992650,"count":1}
+{"type":"status","tick":6186,"wallTimeMs":1793283003744,"text":"Settlement founded. Smallport and Blackfield and Easttown resent a new settlement so near their land."}
+{"type":"chronicle","tick":6186,"wallTimeMs":1793283003744,"kind":"SettlementFounded","text":"Southernford put down roots: you founded its first settlement."}
+{"type":"status","tick":6190,"wallTimeMs":1793283004060,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":6202,"wallTimeMs":1793283005056,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3300}
+{"type":"status","tick":6202,"wallTimeMs":1793283005056,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"status","tick":6278,"wallTimeMs":1793283010917,"text":"Entered settlement."}
+{"type":"objective_completed","tick":6302,"wallTimeMs":1793283012789,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":100}
+{"type":"status","tick":6302,"wallTimeMs":1793283012789,"text":"Objective complete: Enter your settlement."}
+{"type":"status","tick":6418,"wallTimeMs":1793283021867,"text":"Exited settlement."}
+{"type":"chronicle","tick":6502,"wallTimeMs":1793283027997,"kind":"NationRelationChange","text":"Smallport and Upperwood are now hostile."}
+{"type":"status","tick":6710,"wallTimeMs":1793283045134,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":6718,"wallTimeMs":1793283045939,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1793283048218,"kind":"StallBuilt","text":"Trade came to Easttown: Victor Taylor built a stall."}
+{"type":"chronicle","tick":6750,"wallTimeMs":1793283048218,"kind":"NationCreation","text":"Linda Taylor raised a banner and called it Greenham."}
+{"type":"chronicle","tick":6802,"wallTimeMs":1793283052241,"kind":"NationJoin","text":"Southernford welcomed Yvonne White into its ranks."}
+{"type":"chronicle","tick":6802,"wallTimeMs":1793283052241,"kind":"NationJoin","text":"Linda Wilson threw in their lot with Southernford."}
+{"type":"chronicle","tick":6850,"wallTimeMs":1793283056137,"kind":"NationJoin","text":"Judy Wood threw in their lot with Southernford."}
+{"type":"status","tick":6930,"wallTimeMs":1793283062667,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":6950,"wallTimeMs":1793283064448,"kind":"NationCreation","text":"Isabella Thompson declared the nation of Castleford, though none had yet sworn to it."}
+{"type":"chronicle","tick":7002,"wallTimeMs":1793283069066,"kind":"NationRaid","text":"Smallport raided Upperwood and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":7122,"wallTimeMs":1793283079448,"text":"You leave the land of Southernford for the wilds."}
+{"type":"objective_completed","tick":7150,"wallTimeMs":1793283081869,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":848}
+{"type":"status","tick":7150,"wallTimeMs":1793283081869,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":7150,"wallTimeMs":1793283081869,"kind":"StallBuilt","text":"Trade came to Southernford: Linda Wilson built a stall."}
+{"type":"status","tick":7202,"wallTimeMs":1793283086808,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":7202,"wallTimeMs":1793283086808,"kind":"StallBuilt","text":"A new stall opened in the market of Southernford, built by Linda Wilson."}
+{"type":"chronicle","tick":7250,"wallTimeMs":1793283090815,"kind":"StallBuilt","text":"Trade came to Southernford: Linda Wilson built a stall."}
+{"type":"status","tick":7290,"wallTimeMs":1793283095235,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":7394,"wallTimeMs":1793283106004,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":7402,"wallTimeMs":1793283106991,"kind":"SettlementFounded","text":"Isabella Thompson laid the first stones of Castleford."}
+{"type":"chronicle","tick":7450,"wallTimeMs":1793283111561,"kind":"NationJoin","text":"Oscar Brown joined Southernford."}
+{"type":"chronicle","tick":7550,"wallTimeMs":1793283120476,"kind":"NationJoin","text":"Ruth Taylor swore fealty to Southernford."}
+{"type":"status","tick":7578,"wallTimeMs":1793283123128,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1793283138989,"kind":"NationRelationChange","text":"Smallport and Westernville have become rivals over their border."}
+{"type":"status","tick":7790,"wallTimeMs":1793283233400,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":7902,"wallTimeMs":1793283244727,"kind":"StallBuilt","text":"A new stall opened in the market of Southernford, built by Oscar Brown. The market is now full."}
+{"type":"status","tick":7914,"wallTimeMs":1793283245825,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":8150,"wallTimeMs":1793283271815,"kind":"SettlementFounded","text":"Linda Taylor laid the first stones of Greenham."}
+{"type":"status","tick":8330,"wallTimeMs":1793283289094,"text":"You are back on your own land."}
+{"type":"status","tick":8502,"wallTimeMs":1793283315980,"text":"Smallport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":8502,"wallTimeMs":1793283315980,"kind":"NationRelationChange","text":"Smallport and Southernford have become rivals over their border."}
+{"type":"status","tick":8618,"wallTimeMs":1793283330158,"text":"Linda Wilson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"status","tick":8634,"wallTimeMs":1793283331803,"text":"You are not inside a settlement."}
+{"type":"status","tick":8722,"wallTimeMs":1793283340225,"text":"Entered settlement."}
+{"type":"status","tick":8734,"wallTimeMs":1793283341322,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":8810,"wallTimeMs":1793283348848,"text":"Farm built."}
+{"type":"chronicle","tick":8950,"wallTimeMs":1793283361245,"kind":"StallBuilt","text":"Victor Taylor built a market stall in Easttown."}
+{"type":"chronicle","tick":8950,"wallTimeMs":1793283361245,"kind":"StallBuilt","text":"Trade came to Blackfield: Karl Lewis built a stall."}
+{"type":"status","tick":8986,"wallTimeMs":1793283364457,"text":"Linda Wilson is already a member of Southernford."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283365925,"kind":"StallBuilt","text":"A new stall opened in the market of Smallport, built by Dave Taylor."}
+{"type":"chronicle","tick":9002,"wallTimeMs":1793283365925,"kind":"Caravan","text":"Smallport sent a caravan of 20 wood from the Town of Smallport to the Village of Southernford."}
+{"type":"status","tick":9134,"wallTimeMs":1793283377482,"text":"Exited settlement."}
+{"type":"chronicle","tick":9250,"wallTimeMs":1793283387176,"kind":"NationRelationChange","text":"Smallport and Easttown are now hostile over their border."}
+{"type":"status","tick":9750,"wallTimeMs":1793283431446,"text":"Castleford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1793283431446,"kind":"NationRelationChange","text":"Blackfield and Castleford have become rivals over their border."}
+{"type":"chronicle","tick":9750,"wallTimeMs":1793283431446,"kind":"NationRelationChange","text":"Southernford and Castleford have become rivals over their border."}
+{"type":"chronicle","tick":9902,"wallTimeMs":1793283443901,"kind":"StallBuilt","text":"Karl Lewis built a market stall in Blackfield."}
+{"type":"chronicle","tick":10250,"wallTimeMs":1793283470919,"kind":"NationRelationChange","text":"Greenham and Castleford have become rivals over their border."}

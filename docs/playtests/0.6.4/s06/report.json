@@ -1,0 +1,79 @@
+{
+  "session": "s06",
+  "goal": "Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies.",
+  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "seed": 106,
+  "durationSec": 1504,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Ruler death / succession cannot be reached or even learned about in normal play within a session",
+      "detail": "The goal's third part (what happens when the ruler dies) was not reachable. Nothing on screen (Nations tab 'You lead it', Laws tab, Player Info 'Role: LEADER', all 3 pages of ? Controls) mentions an heir, succession, or ruler death. The only way to die seems to be energy reaching 0: energy drained ~85 -> 57.6 over 8210 ticks (~164 game s), i.e. ~6 more game minutes, which at the observed 7-16 tps is 25+ real minutes. And with no other nation members there would be no heir anyway. Expected: the Nations tab to name the current heir (or say 'no heir: Redfield ends with you') so a player can plan a dynasty.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 106; space; click Start; click Begin; key n; key o; read both tabs; open ? Controls pages 1-3",
+      "screenshot": "shots/no-heir.png",
+      "tick": 4614
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Player's nation cannot realistically gain members: pawns flee after one talk and all join AI nations within minutes",
+      "detail": "Irene Taylor: 'I don't even know you.' (needs Acquaintance). After one E-talk pawns walk off, so the next E 1 s later says 'No entities within range'. Gifting (G, 10 coins each) to Wendy Wilson reached Acquaintance after 3 gifts, but by then she and Hank Davies were sworn to Smalltown ('I'm loyal to Smalltown.' (needs Loyal)). By day 1 morning 9 AI nations existed (Smalltown, Newwood, Towntown, Upperburg, Littleburg, Whiteland, Northernland, Townfield, Easternham), leaving Redfield at 1 member for the whole session. With 1 member, taxes collect 0 coins and conscription ('one conscript per 2 members') yields nothing, so the laws had no observable effect and no heir could exist.",
+      "repro": "seed 106; key n; walkto pawn; key e; key r -> needs Acquaintance; walkto pawn (Smalltown villager); key g x3; key r -> needs Loyal",
+      "screenshot": "shots/talk-flee.png",
+      "tick": 4530
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Laws tab gives no preview of an option's effect before enacting it",
+      "detail": "Each law shows only the description of the law currently in force ('No tax: members keep their coin'). The real effect of High taxes (3 coins per member per 10 s, loyalty falls fast, no immigrants) and Conscription On (members gather 40% less) only appears after it has taken effect 30+ s later. Expected a tooltip or description under each button.",
+      "repro": "seed 106; key n; key o; click Laws (543,45); compare text before and after clicking High (353,175)",
+      "screenshot": "shots/laws-preview.png",
+      "tick": 2598
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Law countdown reads '0 s' while the change is still pending for up to ~10 s more",
+      "detail": "Conscription: Off proclaimed at tick 4574 ('takes effect in 30 seconds'). At tick ~6200 the Laws tab showed 'Conscription: On (Off in 0 s)'; it actually applied at tick 6502 (38.6 game s). The three changes landed on ticks 2002, 4002, 6502, so laws appear to be applied on a coarse periodic check. Expected the countdown to match the real moment, or the text to say 'at the next council'.",
+      "repro": "key o; Laws; click Off under Conscription (97,262); reopen Laws ~32 game s later",
+      "screenshot": "shots/law-zero.png",
+      "tick": 6318
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement floating label is drawn under the top status banner",
+      "detail": "Standing in Smalltown, the label 'Town of Smalltown / 5 here, 7/12 residents' sits at the top centre exactly where the red status banner appears, so both are partly unreadable.",
+      "repro": "seed 106; walk into Smalltown (~50,170); press E with nobody in reach",
+      "screenshot": "shots/overlap.png",
+      "tick": 4530
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "Game time ran at 7-16 tps (14-33% speed) under the parallel playtest load",
+      "detail": "fps 2-4 and tps 7-16 throughout, making pawn chasing unreliable (pt walkto repeatedly timed out or reported 'stuck') and any starvation-based death test impossible in a 30-minute session.",
+      "repro": "pt status / pt state during play",
+      "screenshot": "shots/stuck.png",
+      "tick": 3670
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 0,
+    "secondsToObjective": {},
+    "lawsEnacted": 2,
+    "lawsRepealed": 2,
+    "lawEnactDelayMaxGameSec": 38.6,
+    "nationMembers": 1,
+    "aiNationsByDay1Morning": 9,
+    "coinsSpentOnGifts": 30,
+    "finalEnergy": 57.6,
+    "finalTick": 8210
+  },
+  "fun": 2,
+  "verdict": "Founding a nation and passing or repealing laws works, and the chronicle reports each change clearly ('Taxes in Redfield rose to High', 'Redfield stood down its conscripts'). But laws do nothing you can see in a one-member nation. Pawns are hard to recruit, and the AI nations sign them all up within minutes. Succession has no presence in the UI at all, so the ruler-and-heirs part of this goal could not be reached or even planned for in normal play."
+}
