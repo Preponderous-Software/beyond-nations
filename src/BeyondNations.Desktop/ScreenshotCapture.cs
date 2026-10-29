@@ -34,7 +34,13 @@ namespace beyondnations.desktop {
             string timestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
             string filename = "screenshot_" + timestamp + ".png";
             string path = Path.Combine(directory, filename);
+            captureTo(gl, width, height, path);
+            Log.info("Screenshot saved to " + path);
+            return path;
+        }
 
+        /** As capture, to a path the caller names (the flyover's numbered frames), quietly. */
+        public static void captureTo(GL gl, int width, int height, string path) {
             byte[] pixels = new byte[width * height * BytesPerPixel];
 
             // RGBA is always 4-byte aligned regardless of width, so the pack
@@ -49,9 +55,6 @@ namespace beyondnations.desktop {
                 ImageWriter writer = new ImageWriter();
                 writer.WritePng(topDown, width, height, ColorComponents.RedGreenBlueAlpha, stream);
             }
-
-            Log.info("Screenshot saved to " + path);
-            return path;
         }
 
         /**

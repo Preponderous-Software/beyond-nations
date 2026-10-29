@@ -46,6 +46,8 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--stage-feel` | replay the feedback effects (chips, floating "+5 wood", buildings rising, the objective flash) every couple of seconds, for screenshots |
 | `--stage-victory`, `--stage-defeat` | open on the end-of-run screen of a staged run: a Prosperity victory in the Kingdom era, or a collapse |
 | `--playtest-out DIR` | write `state.json` (what is on screen, about twice a second) and `events.jsonl` (what happened) to DIR, for playtesting agents (see [PLAYTESTING.md](./PLAYTESTING.md)) |
+| `--advance-ticks N` | run the world N ticks before the first frame, as fast as it goes, so it opens mid-game |
+| `--flyover-out DIR` | hide the UI, glide the camera from one nation's town across the border to a neighbour's, write every frame to DIR as a PNG and exit after `--flyover-frames N` (default 120); `tools/readme-flyover.sh` makes the README's GIF with it |
 | `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
 | `--season NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` (default spring) |
 | `--help`, `-h` | list every switch |

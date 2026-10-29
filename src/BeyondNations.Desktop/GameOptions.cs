@@ -204,6 +204,26 @@ namespace beyondnations.desktop {
         */
         public string PlaytestOut = null;
 
+        /**
+        * Run the simulation this many ticks before the first frame, as fast as
+        * it will go, so a world can be shown mid-game: nations founded,
+        * settlements built, borders drawn. The same fixed steps the window
+        * runs (and HistoryExport runs headless), just not waiting for the
+        * clock. Zero, the default, starts the world as it is generated.
+        */
+        public int AdvanceTicks = 0;
+
+        /**
+        * Where to write a flyover: the camera leaves the player and glides
+        * over the two closest settlements of different nations, the UI is
+        * hidden, the world runs a fixed number of ticks a frame, every frame
+        * is written there as a PNG, and the run exits after FlyoverFrames. Null,
+        * the default, plays normally. tools/readme-flyover.sh turns the
+        * frames into the README's GIF.
+        */
+        public string FlyoverOut = null;
+        public int FlyoverFrames = 120;
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -242,6 +262,9 @@ namespace beyondnations.desktop {
                     case "--season":           options.StartSeason = seasonAfter(args, ref i); break;
                     case "--ui-scale":         options.UiScale = uiScaleAfter(args, ref i); break;
                     case "--playtest-out":     options.PlaytestOut = textAfter(args, ref i); break;
+                    case "--advance-ticks":    options.AdvanceTicks = intAfter(args, ref i, options.AdvanceTicks); break;
+                    case "--flyover-out":      options.FlyoverOut = textAfter(args, ref i); break;
+                    case "--flyover-frames":   options.FlyoverFrames = intAfter(args, ref i, options.FlyoverFrames); break;
                     case "--help":
                     case "-h":
                         printUsage();
@@ -397,6 +420,9 @@ namespace beyondnations.desktop {
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
                 "  --playtest-out DIR      write state.json and events.jsonl to DIR for playtesting agents (docs/PLAYTESTING.md)",
+                "  --advance-ticks N       run the world N ticks before the first frame, to start mid-game",
+                "  --flyover-out DIR       glide over two nations' settlements with the UI hidden, write each frame to DIR, then exit",
+                "  --flyover-frames N      how many frames the flyover writes (default 120)",
                 "  --help, -h              print this and exit"
             });
         }
