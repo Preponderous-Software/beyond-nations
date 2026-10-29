@@ -65,5 +65,24 @@ namespace beyondnationstests {
                 Assert.NotEqual(BehaviorType.CONSTRUCT_STALL, calculator.computeBehaviorType(resident));
             }
         }
+
+        [Fact]
+        public void testResidentOfAColonyThePlayerDoesNotLiveIn_StillBuildsAStall() {
+            // the colony rule stands: a settlement its leader does not live in is built up by its residents
+            Settlement colony = new Settlement(new Vector3(1000, 0, 0), nation.getId(), nation.getColor(), nation.getName(), random);
+            entityRepository.addEntity(colony);
+            nation.addSettlement(colony.getId());
+            Pawn resident = new Pawn(colony.getPosition(), "Colonist", random);
+            entityRepository.addEntity(resident);
+            nation.addMember(resident.getId());
+            resident.setNationId(nation.getId());
+            resident.getInventory().setNumItems(ItemType.COIN, 0);
+            resident.setHomeSettlementId(colony.getId());
+            SettlementLife.admit(resident, colony);
+            colony.getInventory().addItem(ItemType.WOOD, Stall.WOOD_COST_TO_BUILD);
+            colony.getInventory().addItem(ItemType.STONE, Stall.STONE_COST_TO_BUILD);
+
+            Assert.Equal(BehaviorType.CONSTRUCT_STALL, calculator.computeBehaviorType(resident));
+        }
     }
 }
