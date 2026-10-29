@@ -215,7 +215,7 @@ source) are covered by `tests/BeyondNations.Web.Tests`, which is in the solution
 and runs in `Build and test`.
 
 - **Strata**: `native/strata.targets` pins the commit of a Strata release
-  (`v0.6.0`), checks the source tarball's SHA-256 and runs
+  (`v0.7.0`), checks the source tarball's SHA-256 and runs
   `native/build-strata.sh`, which builds it with the **workload's own
   Emscripten (3.1.34)**, not the newer one Strata's CI uses, so the objects
   link with .NET's `wasm-ld`. The release's own
