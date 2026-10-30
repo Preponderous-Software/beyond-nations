@@ -55,10 +55,18 @@ namespace beyondnations.pacing {
         /** How long the bot courts one settler before trying another: two minutes at the default rate. */
         private const int CourtingTicks = 120 * TickCounter.DefaultTicksPerSecond;
 
-        public PacingBot(Simulation simulation) {
+        /** When set, the bot never courts a pawn (PacingRunOptions.NoCourting). */
+        private readonly bool noCourting;
+        private bool inviting = false;
+
+        public PacingBot(Simulation simulation, bool noCourting = false) {
             this.simulation = simulation ?? throw new ArgumentNullException(nameof(simulation));
             this.player = simulation.getPlayer();
+            this.noCourting = noCourting;
         }
+
+        /** Whether the bot is in the middle of an invitation, so a join it causes can be told from one it did not. */
+        public bool isInviting() { return inviting; }
 
         /** What the bot was last doing, for the report. */
         public string getActivity() { return activity; }
@@ -494,6 +502,12 @@ namespace beyondnations.pacing {
                 joinNation();
                 return;
             }
+            if (noCourting) {
+                // build up and let the world bring the members
+                activity = "growing without courting";
+                earnFunds();
+                return;
+            }
             activity = "recruiting settlers";
             if (player.isCurrentlyInSettlement()) {
                 leaveSettlementIfInside();
@@ -522,8 +536,10 @@ namespace beyondnations.pacing {
                 ? InvitePawnToNationCommand.NATIONLESS_TIER_REQUIRED
                 : InvitePawnToNationCommand.RIVAL_TIER_REQUIRED;
             if (PawnRelations.getTier(inReach, player) >= needed) {
+                inviting = true;
                 new InvitePawnToNationCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                     simulation.getEntityRepository()).execute(player, inReach);
+                inviting = false;
                 recruitId = null;
                 return;
             }

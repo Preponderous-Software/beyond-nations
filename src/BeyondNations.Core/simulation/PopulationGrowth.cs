@@ -31,7 +31,8 @@ namespace beyondnations {
     *     has a nationless wanderer turn up somewhere already generated.
     *
     * Nothing here takes the world past GameConfig.getMaxNumPawns() while lag
-    * prevention is on. Draws from its own RandomSource, so growth never
+    * prevention is on, except births and newcomers in a settlement of the
+    * player's nation, which may take it PLAYER_NATION_HEADROOM past it. Draws from its own RandomSource, so growth never
     * shifts the rest of a seeded world's stream.
     */
     public class PopulationGrowth {
@@ -47,6 +48,15 @@ namespace beyondnations {
         public const int WANDERER_FLOOR = 12;
         public const int WANDERER_COOLDOWN_TICKS = 3000;
         public const int SETTLER_COOLDOWN_TICKS = 9000;
+        /**
+        * How far past GameConfig.getMaxNumPawns() births and newcomers in a
+        * settlement of the player's nation may take the world (#371). The
+        * world fills to its limit in its first few minutes, and before this a
+        * full world drew no newcomer and bore no child anywhere, so a player
+        * who had not courted settlers in those minutes was held at a handful
+        * of members for good.
+        */
+        public const int PLAYER_NATION_HEADROOM = 20;
 
         private readonly RandomSource random;
 
@@ -133,7 +143,7 @@ namespace beyondnations {
                     trySendSettler(settlement, residents, totalTicks);
                     continue;
                 }
-                if (!hasRoomForMorePawns(numPawns)) {
+                if (!hasRoomForMorePawns(numPawns) && !(playerLeads(settlement) && numPawns < gameConfig.getMaxNumPawns() + PLAYER_NATION_HEADROOM)) {
                     continue;
                 }
                 if (tryBirth(settlement, residents, totalTicks)) {
@@ -150,6 +160,15 @@ namespace beyondnations {
                     lastWandererTick = totalTicks;
                 }
             }
+        }
+
+        /** Whether the player leads the nation that holds this settlement. */
+        private bool playerLeads(Settlement settlement) {
+            if (player == null || settlement.getNationId() == null) {
+                return false;
+            }
+            Nation nation = nationRepository.getNation(settlement.getNationId());
+            return nation != null && player.getId().Equals(nation.getLeaderId());
         }
 
         private bool hasRoomForMorePawns(int numPawns) {

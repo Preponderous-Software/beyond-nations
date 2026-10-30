@@ -16,7 +16,7 @@ namespace beyondnations.pacing {
     public static class Program {
         private const string Usage =
             "usage: BeyondNations.Pacing [--budget FILE] [--seeds 1,2,3] [--objectives N] [--max-ticks N]\n"
-            + "                            [--out DIR] [--check] [--write-budget] [--trace]\n"
+            + "                            [--out DIR] [--check] [--write-budget] [--trace] [--no-courting]\n"
             + "  --budget FILE    budget to read (default docs/pacing-budget.json)\n"
             + "  --seeds LIST     seeds to run (default: the budget's)\n"
             + "  --objectives N   stop each run after N objectives (default: the budget's)\n"
@@ -24,7 +24,8 @@ namespace beyondnations.pacing {
             + "  --out DIR        write pacing-report.md and pacing-report.json there (default pacing-out)\n"
             + "  --check          exit 1 if any objective is too fast, too slow or never completes\n"
             + "  --write-budget   rewrite the budget file from these runs (review the diff!)\n"
-            + "  --trace          print every status line the bot's player sees, with its time";
+            + "  --trace          print every status line the bot's player sees, with its time\n"
+            + "  --no-courting    the bot never talks to, gifts or invites a pawn (measures recruiting; not for --check)";
 
         public static int Main(string[] args) {
             string budgetPath = Path.Combine("docs", "pacing-budget.json");
@@ -35,6 +36,7 @@ namespace beyondnations.pacing {
             bool check = false;
             bool writeBudget = false;
             bool trace = false;
+            bool noCourting = false;
             try {
                 for (int i = 0; i < args.Length; i++) {
                     switch (args[i]) {
@@ -46,6 +48,7 @@ namespace beyondnations.pacing {
                         case "--check": check = true; break;
                         case "--write-budget": writeBudget = true; break;
                         case "--trace": trace = true; break;
+                        case "--no-courting": noCourting = true; break;
                         case "-h":
                         case "--help":
                             Console.WriteLine(Usage);
@@ -83,7 +86,7 @@ namespace beyondnations.pacing {
             Parallel.For(0, seeds.Count, parallel, i => {
                 results[i] = PacingRun.run(new PacingRunOptions {
                     Seed = seeds[i], ObjectiveLimit = objectiveLimit, MaxTicks = maxTicks,
-                    Trace = trace ? Console.Out : null,
+                    Trace = trace ? Console.Out : null, NoCourting = noCourting,
                 });
             });
             List<PacingRunResult> runs = new List<PacingRunResult>(results);
@@ -91,7 +94,9 @@ namespace beyondnations.pacing {
                 int done = run.Objectives.FindAll(t => t.Completed).Count;
                 Console.WriteLine("seed " + run.Seed + ": " + done + " objectives in " + run.TicksRun + " ticks ("
                     + PacingReport.clock((double) run.TicksRun / run.TicksPerSecond) + " of game time); raids on the player's nation " + run.RaidsOnPlayer
-                    + " (" + run.raidsOnPlayerPerHour().ToString("0.0") + " an hour; " + run.RaidsOnPlayerSheltered + " while sheltered), by it " + run.RaidsByPlayer);
+                    + " (" + run.raidsOnPlayerPerHour().ToString("0.0") + " an hour; " + run.RaidsOnPlayerSheltered + " while sheltered), by it " + run.RaidsByPlayer
+                    + "; " + EraRules.VillageMembers + " members " + (run.VillageMembersTick < 0 ? "never" : "at " + PacingReport.clock((double) run.VillageMembersTick / run.TicksPerSecond))
+                    + " (" + run.MembersInvited + " invited, " + run.MembersJoinedOtherwise + " joined otherwise)");
             }
             Console.WriteLine(seeds.Count + " seeds in " + watch.Elapsed.TotalSeconds.ToString("0.0") + " s");
 
