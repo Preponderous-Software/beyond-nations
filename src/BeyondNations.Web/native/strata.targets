@@ -3,7 +3,7 @@
   <!--
     Strata, the engine the world is drawn with, linked into dotnet.native.wasm.
 
-    The commit of a Strata release is pinned here (v0.6.0, the release the
+    The commit of a Strata release is pinned here (v0.7.0, the release the
     desktop pins too): the source tarball for that commit is checked against
     its SHA-256 and built by native/build-strata.sh with the Emscripten the
     wasm-tools workload links with. The release's own wasm32-emscripten
@@ -21,8 +21,8 @@
   -->
 
   <PropertyGroup>
-    <StrataCommit>c2d7ee4c1102726c654c90d8361383d9ba3590b3</StrataCommit>
-    <StrataSourceSha256>80bf0f028342b2149991f3ad70d78836e5f896226145d68f7caee46a8c6a11a4</StrataSourceSha256>
+    <StrataCommit>20827c3d67e71c1f942c29e7cf8adfa4801188a8</StrataCommit>
+    <StrataSourceSha256>a56c7ff01c0af55b130c958d8dd129ac350cd035a978f597e43eedabae204c82</StrataSourceSha256>
     <StrataWebDir>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)strata-web/$(StrataCommit)/</StrataWebDir>
     <StrataWebArchive Condition="'$(StrataWebArchive)' == ''">$(StrataWebDir)strata.a</StrataWebArchive>
     <BnWebArchive>$(MSBuildProjectDirectory)/$(BaseIntermediateOutputPath)bnweb/bnweb.a</BnWebArchive>
