@@ -1,120 +1,196 @@
-{"t": 1793317184068, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "101"]}
-{"t": 1793317196768, "cmd": "key", "args": ["space"]}
-{"t": 1793317199505, "cmd": "shot", "args": ["menu"]}
-{"t": 1793317220897, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793317224804, "cmd": "shot", "args": ["newworld"]}
-{"t": 1793317237555, "cmd": "status", "args": []}
-{"t": 1793317237837, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793317242023, "cmd": "state", "args": []}
-{"t": 1793317242348, "cmd": "shot", "args": ["newworld2"]}
-{"t": 1793317256082, "cmd": "walkto", "args": ["tree"]}
-{"t": 1793317289593, "cmd": "key", "args": ["e"]}
-{"t": 1793317291374, "cmd": "key", "args": ["e"]}
-{"t": 1793317293002, "cmd": "state", "args": []}
-{"t": 1793317293242, "cmd": "shot", "args": ["chop1"]}
-{"t": 1793317303198, "cmd": "note", "args": ["--shot", "tip-mismatch", "Tick ~447: after first tree chop (5 wood, objective Wood 5/10), tip popup says 'Tip 3 of 5: Gather stone' while objective 1 is still Gather wood. Tips 1-2 never seen on screen (state had walk/look tip at tick 27 but screen only showed Welcome status). Mixed signals for new player. Also state.json objective.progress says 'Wood 0/10' while screen shows 5/10."]}
-{"t": 1793317304020, "cmd": "key", "args": ["e"]}
-{"t": 1793317305902, "cmd": "events", "args": ["10"]}
-{"t": 1793317317567, "cmd": "click", "args": ["337", "375"]}
-{"t": 1793317318677, "cmd": "walkto", "args": ["tree"]}
-{"t": 1793317366328, "cmd": "key", "args": ["e"]}
-{"t": 1793317369113, "cmd": "state", "args": []}
-{"t": 1793317369253, "cmd": "events", "args": ["4"]}
-{"t": 1793317369433, "cmd": "shot", "args": ["chop2"]}
-{"t": 1793317403270, "cmd": "wait", "args": ["4"]}
-{"t": 1793317407626, "cmd": "state", "args": []}
-{"t": 1793317407799, "cmd": "events", "args": ["5"]}
-{"t": 1793317408115, "cmd": "shot", "args": ["obj-check"]}
-{"t": 1793317420124, "cmd": "note", "args": ["--shot", "eat-autocomplete", "Tick 1003: Objective 2 'Eat something' completed 52 ticks after it appeared without me pressing any key (I only waited 4s). Apples 3 -> 5 (only the +2 reward), chicken meat unchanged at 2, so nothing was eaten. The objective flashed past before I could even read how to eat. Expected: completes only when I eat."]}
-{"t": 1793317420621, "cmd": "events", "args": ["30"]}
-{"t": 1793317450245, "cmd": "key", "args": ["n"]}
-{"t": 1793317465403, "cmd": "state", "args": []}
-{"t": 1793317465664, "cmd": "shot", "args": ["nation"]}
-{"t": 1793317480101, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317511327, "cmd": "key", "args": ["e"]}
-{"t": 1793317513206, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317553060, "cmd": "key", "args": ["e"]}
-{"t": 1793317554944, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317581820, "cmd": "key", "args": ["e"]}
-{"t": 1793317583591, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317600601, "cmd": "key", "args": ["e"]}
-{"t": 1793317602393, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317618283, "cmd": "key", "args": ["e"]}
-{"t": 1793317620075, "cmd": "state", "args": []}
-{"t": 1793317631894, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317652391, "cmd": "key", "args": ["e"]}
-{"t": 1793317654026, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317665496, "cmd": "key", "args": ["e"]}
-{"t": 1793317667380, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317716209, "cmd": "key", "args": ["e"]}
-{"t": 1793317718111, "cmd": "state", "args": []}
-{"t": 1793317723580, "cmd": "key", "args": ["f"]}
-{"t": 1793317727286, "cmd": "state", "args": []}
-{"t": 1793317727621, "cmd": "events", "args": ["6"]}
-{"t": 1793317727913, "cmd": "shot", "args": ["founded"]}
-{"t": 1793317740047, "cmd": "click", "args": ["337", "388"]}
-{"t": 1793317741128, "cmd": "note", "args": ["--shot", "no-compass", "Tick 2995: Found Settlement refused with a helpful message 'Open ground lies about 81 to the north', but there is no compass or north indicator anywhere on the HUD, so a new player cannot tell which way north is. (Had to look in state/code: north is +Z.)"]}
-{"t": 1793317741766, "cmd": "face", "args": ["24"]}
-{"t": 1793317743880, "cmd": "hold", "args": ["w", "6"]}
-{"t": 1793317750226, "cmd": "state", "args": []}
-{"t": 1793317754544, "cmd": "face", "args": ["40"]}
-{"t": 1793317758968, "cmd": "hold", "args": ["w", "15"]}
-{"t": 1793317774340, "cmd": "state", "args": []}
-{"t": 1793317774769, "cmd": "key", "args": ["f"]}
-{"t": 1793317778606, "cmd": "events", "args": ["4"]}
-{"t": 1793317801759, "cmd": "face", "args": ["-117"]}
-{"t": 1793317813870, "cmd": "state", "args": []}
-{"t": 1793317823343, "cmd": "hold", "args": ["Shift_L+w", "30"]}
-{"t": 1793317854336, "cmd": "state", "args": []}
-{"t": 1793317854781, "cmd": "key", "args": ["f"]}
-{"t": 1793317858996, "cmd": "events", "args": ["3"]}
-{"t": 1793317875398, "cmd": "hold", "args": ["Shift_L+w", "25"]}
-{"t": 1793317900862, "cmd": "key", "args": ["f"]}
-{"t": 1793317905798, "cmd": "events", "args": ["4"]}
-{"t": 1793317906257, "cmd": "state", "args": []}
-{"t": 1793317906703, "cmd": "shot", "args": ["found2"]}
-{"t": 1793317933737, "cmd": "click", "args": ["337", "401"]}
-{"t": 1793317934685, "cmd": "key", "args": ["e"]}
-{"t": 1793317939438, "cmd": "state", "args": []}
-{"t": 1793317939797, "cmd": "events", "args": ["5"]}
-{"t": 1793317939943, "cmd": "shot", "args": ["entered"]}
-{"t": 1793317968807, "cmd": "wait", "args": ["60"]}
-{"t": 1793318029021, "cmd": "state", "args": ["--full"]}
-{"t": 1793318029494, "cmd": "events", "args": ["10"]}
-{"t": 1793318029626, "cmd": "shot", "args": ["wait1"]}
-{"t": 1793318059186, "cmd": "note", "args": ["--shot", "billboard-overlap", "Tick ~4800: Inside/near own settlement the floating world label '0 here, 0/8 residents' is rendered huge across the top of the screen behind the chronicle and status toast, half-hidden and hard to read. It also says 0/8 residents while Settlement Info panel says Residents 2/8."]}
-{"t": 1793318060042, "cmd": "key", "args": ["e"]}
-{"t": 1793318062897, "cmd": "walkto", "args": ["rock"]}
-{"t": 1793318097688, "cmd": "key", "args": ["e"]}
-{"t": 1793318100625, "cmd": "key", "args": ["e"]}
-{"t": 1793318103486, "cmd": "state", "args": []}
-{"t": 1793318124260, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318140325, "cmd": "key", "args": ["e"]}
-{"t": 1793318142089, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318191111, "cmd": "key", "args": ["e"]}
-{"t": 1793318192843, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318239888, "cmd": "key", "args": ["e"]}
-{"t": 1793318241684, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318290359, "cmd": "key", "args": ["e"]}
-{"t": 1793318292316, "cmd": "state", "args": []}
-{"t": 1793318292772, "cmd": "events", "args": ["12"]}
-{"t": 1793318303425, "cmd": "shot", "args": ["away"]}
-{"t": 1793318316610, "cmd": "key", "args": ["h"]}
-{"t": 1793318320684, "cmd": "key", "args": ["e"]}
-{"t": 1793318325772, "cmd": "shot", "args": ["before-build"]}
-{"t": 1793318327247, "cmd": "state", "args": []}
-{"t": 1793318343264, "cmd": "note", "args": ["--shot", "pre-stall-zero", "Tick 6183: Goal check. Founded Greentown at tick 4163 and entered at 4303 with no materials; ~1900 ticks later (resident Ruth Walker present, residents 2/8) Market Info still shows 0/4 stalls and objective 6 'Build a market stall' was NOT completed. Residents did not build a stall in my settlement. Side note: Inventory panel jumped from the left column to the middle of the screen in this layout, and my own resident is labelled 'Talk to Ruth Walker (Stranger)'."]}
-{"t": 1793318344716, "cmd": "key", "args": ["b"]}
-{"t": 1793318349561, "cmd": "events", "args": ["5"]}
-{"t": 1793318349978, "cmd": "shot", "args": ["after-build"]}
-{"t": 1793318361852, "cmd": "events", "args": ["6"]}
-{"t": 1793318362221, "cmd": "state", "args": []}
-{"t": 1793318362722, "cmd": "shot", "args": ["after-build2"]}
-{"t": 1793318382309, "cmd": "note", "args": ["--shot", "stall-done", "Tick 6255/6303: Pressed B inside Greentown with 24 wood/5 stone -> 'Stall built.', Market 1/4 stalls, objective 6 completed at tick 6303 (ticksTaken 2000). GOAL ANSWER: objective completed only when I built the stall; residents built none first. New objective 7 progress bar text is clipped on the left: 'nbers 2/10 - Buildings 0/2' (Members cut off)."]}
-{"t": 1793318383911, "cmd": "click", "args": ["48", "19"]}
-{"t": 1793318388424, "cmd": "shot", "args": ["controls"]}
-{"t": 1793318404581, "cmd": "status", "args": []}
-{"t": 1793318404999, "cmd": "note", "args": ["--shot", "perf", "Tick ~6400: Game runs at fps 0-2 and tps 3-5 (of 50) on this shared machine; clicking '? Controls' did not visibly open within 3s. Likely load from parallel sessions, but game time runs ~10x slower than real time."]}
-{"t": 1793318406232, "cmd": "stop", "args": []}
-{"t": 1793318453290, "cmd": "report", "args": []}
-{"t": 1793320033823, "cmd": "stop", "args": []}
+{"t": 1793328829140, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "101"]}
+{"t": 1793328831057, "cmd": "shot", "args": ["title"]}
+{"t": 1793328849521, "cmd": "key", "args": ["space"]}
+{"t": 1793328850070, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793328850197, "cmd": "shot", "args": ["menu"]}
+{"t": 1793328855684, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328856665, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793328856873, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793328883448, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328901514, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793328901684, "cmd": "wait", "args": ["2"]}
+{"t": 1793328903767, "cmd": "shot", "args": ["world0"]}
+{"t": 1793328959345, "cmd": "state", "args": []}
+{"t": 1793328965881, "cmd": "wait", "args": ["8"]}
+{"t": 1793328974049, "cmd": "status", "args": []}
+{"t": 1793328974261, "cmd": "shot", "args": ["world1"]}
+{"t": 1793328978668, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793328979533, "cmd": "wait", "args": ["1"]}
+{"t": 1793328980592, "cmd": "shot", "args": ["tip2"]}
+{"t": 1793328984210, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793328995749, "cmd": "key", "args": ["e"]}
+{"t": 1793328996288, "cmd": "wait", "args": ["2"]}
+{"t": 1793328998412, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793328998803, "cmd": "state", "args": []}
+{"t": 1793329003555, "cmd": "note", "args": ["--shot", "chop_apples", "Chopping first tree: status says 'Gathered 5 wood and 2 apples from tree.' but float text says +1 apple and inventory shows Apples: 1. Tick ~723."]}
+{"t": 1793329010116, "cmd": "shot", "args": ["chop1b"]}
+{"t": 1793329014267, "cmd": "click", "args": ["338", "376"]}
+{"t": 1793329015048, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329034494, "cmd": "key", "args": ["e"]}
+{"t": 1793329035003, "cmd": "wait", "args": ["2"]}
+{"t": 1793329037098, "cmd": "shot", "args": ["chop2"]}
+{"t": 1793329037451, "cmd": "state", "args": []}
+{"t": 1793329037567, "cmd": "events", "args": ["10"]}
+{"t": 1793329047803, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329065430, "cmd": "key", "args": ["e"]}
+{"t": 1793329066045, "cmd": "wait", "args": ["1"]}
+{"t": 1793329067093, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329067472, "cmd": "key", "args": ["e"]}
+{"t": 1793329067998, "cmd": "wait", "args": ["1"]}
+{"t": 1793329069095, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329074835, "cmd": "key", "args": ["e"]}
+{"t": 1793329075391, "cmd": "wait", "args": ["1"]}
+{"t": 1793329076511, "cmd": "shot", "args": ["chop5"]}
+{"t": 1793329076805, "cmd": "state", "args": []}
+{"t": 1793329081599, "cmd": "events", "args": ["12"]}
+{"t": 1793329086524, "cmd": "note", "args": ["--shot", "chron_trunc", "Chronicle panel lines are cut off with '...' (e.g. 'Katie Jones raised a banner and called it Fort...') so the nation names - the most useful part - are hidden. Tick ~1915."]}
+{"t": 1793329086689, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793329087528, "cmd": "key", "args": ["n"]}
+{"t": 1793329088075, "cmd": "wait", "args": ["2"]}
+{"t": 1793329090228, "cmd": "shot", "args": ["nation"]}
+{"t": 1793329090545, "cmd": "state", "args": []}
+{"t": 1793329094377, "cmd": "wait", "args": ["2"]}
+{"t": 1793329096475, "cmd": "shot", "args": ["nation2"]}
+{"t": 1793329096818, "cmd": "state", "args": []}
+{"t": 1793329102206, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329122074, "cmd": "key", "args": ["e"]}
+{"t": 1793329122594, "cmd": "wait", "args": ["1"]}
+{"t": 1793329123732, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329130461, "cmd": "key", "args": ["e"]}
+{"t": 1793329130968, "cmd": "wait", "args": ["1"]}
+{"t": 1793329132110, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329176763, "cmd": "key", "args": ["e"]}
+{"t": 1793329177431, "cmd": "wait", "args": ["1"]}
+{"t": 1793329178596, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329184677, "cmd": "key", "args": ["e"]}
+{"t": 1793329185228, "cmd": "wait", "args": ["1"]}
+{"t": 1793329186411, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329186657, "cmd": "key", "args": ["e"]}
+{"t": 1793329187232, "cmd": "wait", "args": ["1"]}
+{"t": 1793329188358, "cmd": "state", "args": []}
+{"t": 1793329194762, "cmd": "wait", "args": ["1"]}
+{"t": 1793329195831, "cmd": "shot", "args": ["wood50"]}
+{"t": 1793329196198, "cmd": "state", "args": []}
+{"t": 1793329201316, "cmd": "key", "args": ["f"]}
+{"t": 1793329201983, "cmd": "wait", "args": ["3"]}
+{"t": 1793329205126, "cmd": "shot", "args": ["found"]}
+{"t": 1793329205405, "cmd": "state", "args": []}
+{"t": 1793329205539, "cmd": "events", "args": ["8"]}
+{"t": 1793329212767, "cmd": "note", "args": ["--shot", "no_compass", "F refused: 'Too close ... Open ground lies about 280 to the south-west.' Good message, but nothing on screen tells me which way is south-west (no compass, no minimap, no arrow), so I had to guess a direction. Tick ~3683."]}
+{"t": 1793329212978, "cmd": "face", "args": ["-160"]}
+{"t": 1793329227604, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793329235899, "cmd": "state", "args": []}
+{"t": 1793329241378, "cmd": "key", "args": ["f"]}
+{"t": 1793329242095, "cmd": "wait", "args": ["2"]}
+{"t": 1793329244486, "cmd": "state", "args": []}
+{"t": 1793329254351, "cmd": "face", "args": ["180"]}
+{"t": 1793329266616, "cmd": "hold", "args": ["Shift_L+w", "25"]}
+{"t": 1793329292123, "cmd": "key", "args": ["f"]}
+{"t": 1793329292882, "cmd": "wait", "args": ["2"]}
+{"t": 1793329295089, "cmd": "state", "args": []}
+{"t": 1793329301846, "cmd": "face", "args": ["-10"]}
+{"t": 1793329303555, "cmd": "hold", "args": ["Shift_L+w", "18"]}
+{"t": 1793329322037, "cmd": "key", "args": ["f"]}
+{"t": 1793329322704, "cmd": "wait", "args": ["2"]}
+{"t": 1793329324925, "cmd": "state", "args": []}
+{"t": 1793329333138, "cmd": "face", "args": ["72"]}
+{"t": 1793329337754, "cmd": "hold", "args": ["Shift_L+w", "16"]}
+{"t": 1793329354067, "cmd": "key", "args": ["f"]}
+{"t": 1793329354672, "cmd": "wait", "args": ["2"]}
+{"t": 1793329356792, "cmd": "state", "args": []}
+{"t": 1793329372428, "cmd": "face", "args": ["-46"]}
+{"t": 1793329375640, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1793329396569, "cmd": "key", "args": ["f"]}
+{"t": 1793329397081, "cmd": "wait", "args": ["2"]}
+{"t": 1793329399289, "cmd": "state", "args": []}
+{"t": 1793329405343, "cmd": "face", "args": ["-44"]}
+{"t": 1793329410700, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1793329416911, "cmd": "key", "args": ["f"]}
+{"t": 1793329417569, "cmd": "wait", "args": ["3"]}
+{"t": 1793329420700, "cmd": "shot", "args": ["found2"]}
+{"t": 1793329420944, "cmd": "state", "args": []}
+{"t": 1793329429588, "cmd": "note", "args": ["--shot", "found_hunt", "Founding took ~2200 ticks (~44 game s, ~6 F attempts) of wandering: each refusal points a different way (south-west, south-east, west, north, west, north-west) and walking the stated direction often lands near ANOTHER settlement. Also the big 3D label over the new settlement ('0 here, max residents...') is clipped by the top of the screen and overlaps the HUD. Founded at tick 5879."]}
+{"t": 1793329429921, "cmd": "key", "args": ["e"]}
+{"t": 1793329430458, "cmd": "wait", "args": ["3"]}
+{"t": 1793329433574, "cmd": "shot", "args": ["enter"]}
+{"t": 1793329433866, "cmd": "state", "args": ["--full"]}
+{"t": 1793329448694, "cmd": "key", "args": ["e"]}
+{"t": 1793329449220, "cmd": "wait", "args": ["1"]}
+{"t": 1793329450300, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329468744, "cmd": "key", "args": ["e"]}
+{"t": 1793329469280, "cmd": "wait", "args": ["1"]}
+{"t": 1793329472630, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329540653, "cmd": "key", "args": ["e"]}
+{"t": 1793329541262, "cmd": "wait", "args": ["1"]}
+{"t": 1793329542668, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329566747, "cmd": "key", "args": ["e"]}
+{"t": 1793329567377, "cmd": "wait", "args": ["1"]}
+{"t": 1793329568495, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329583018, "cmd": "key", "args": ["e"]}
+{"t": 1793329583610, "cmd": "wait", "args": ["1"]}
+{"t": 1793329584888, "cmd": "state", "args": ["--full"]}
+{"t": 1793329601955, "cmd": "state", "args": ["--full"]}
+{"t": 1793329606397, "cmd": "walkto", "args": ["rock", "50"]}
+{"t": 1793329624506, "cmd": "key", "args": ["e"]}
+{"t": 1793329625052, "cmd": "wait", "args": ["2"]}
+{"t": 1793329627187, "cmd": "shot", "args": ["rock1"]}
+{"t": 1793329627493, "cmd": "state", "args": ["--full"]}
+{"t": 1793329631482, "cmd": "walkto", "args": ["rock", "50"]}
+{"t": 1793329632206, "cmd": "key", "args": ["e"]}
+{"t": 1793329632778, "cmd": "wait", "args": ["2"]}
+{"t": 1793329634939, "cmd": "state", "args": ["--full"]}
+{"t": 1793329640138, "cmd": "key", "args": ["h"]}
+{"t": 1793329640682, "cmd": "wait", "args": ["3"]}
+{"t": 1793329643843, "cmd": "shot", "args": ["home"]}
+{"t": 1793329644233, "cmd": "state", "args": ["--full"]}
+{"t": 1793329649338, "cmd": "key", "args": ["e"]}
+{"t": 1793329649954, "cmd": "wait", "args": ["3"]}
+{"t": 1793329653071, "cmd": "shot", "args": ["inside2"]}
+{"t": 1793329653528, "cmd": "state", "args": ["--full"]}
+{"t": 1793329661547, "cmd": "note", "args": ["--shot", "rival_border", "Right after founding, status 'Whiteland resents your border: relations are now Rival (-20).' A new player has no idea what they did wrong or how to avoid it; Whiteland's settlement is ~300 away. Tick ~8267."]}
+{"t": 1793329663831, "cmd": "wait", "args": ["90"]}
+{"t": 1793329753903, "cmd": "shot", "args": ["wait1"]}
+{"t": 1793329754149, "cmd": "state", "args": ["--full"]}
+{"t": 1793329754241, "cmd": "events", "args": ["30"]}
+{"t": 1793329762739, "cmd": "key", "args": ["b"]}
+{"t": 1793329763258, "cmd": "wait", "args": ["3"]}
+{"t": 1793329766349, "cmd": "shot", "args": ["stall"]}
+{"t": 1793329766594, "cmd": "state", "args": ["--full"]}
+{"t": 1793329766684, "cmd": "events", "args": ["15"]}
+{"t": 1793329775767, "cmd": "note", "args": ["--shot", "obj7_clip", "Objective 7 'Reach the Village era' progress bar text is clipped on the left ('mbers 4/10 - Buildings 0/2'). Also four different counters for the same goal are on screen: era panel 'Village: 0/4', objective text 'Village 0/1', 'Members 4/10', 'Buildings 0/2' - unclear which matters. Tick 10763."]}
+{"t": 1793329775947, "cmd": "note", "args": ["--shot", "stall", "GOAL CHECK: in my own settlement, Market Info stayed '0/4 stalls' from entering (tick ~6100) through tick 10467 with 4 residents and a 198 stockpile, while NPCs built stalls in other nations' settlements (chronicle). Objective 'Build a market stall' completed only when I pressed B (status 'Stall built.' tick 10687, objective_completed tick 10703). Works as intended."]}
+{"t": 1793329781263, "cmd": "click", "args": ["108", "58"]}
+{"t": 1793329782055, "cmd": "wait", "args": ["2"]}
+{"t": 1793329784116, "cmd": "shot", "args": ["era"]}
+{"t": 1793329790189, "cmd": "click", "args": ["108", "58"]}
+{"t": 1793329790960, "cmd": "click", "args": ["216", "476"]}
+{"t": 1793329791724, "cmd": "wait", "args": ["2"]}
+{"t": 1793329793811, "cmd": "shot", "args": ["collect"]}
+{"t": 1793329794162, "cmd": "state", "args": ["--full"]}
+{"t": 1793329802162, "cmd": "note", "args": ["--shot", "collect", "Collect Stockpile (198) gave 128 wood + 70 stone in one click, right after I spent several minutes hand-chopping the 20 wood / 5 stone the stall objective asked for. No objective or tip points at the stockpile, and it makes manual gathering pointless once residents arrive. Tick 11415."]}
+{"t": 1793329802568, "cmd": "key", "args": ["k"]}
+{"t": 1793329803133, "cmd": "wait", "args": ["2"]}
+{"t": 1793329805273, "cmd": "key", "args": ["k"]}
+{"t": 1793329805789, "cmd": "wait", "args": ["2"]}
+{"t": 1793329807964, "cmd": "key", "args": ["b"]}
+{"t": 1793329808594, "cmd": "wait", "args": ["3"]}
+{"t": 1793329811686, "cmd": "shot", "args": ["village"]}
+{"t": 1793329812064, "cmd": "state", "args": ["--full"]}
+{"t": 1793329812143, "cmd": "events", "args": ["15"]}
+{"t": 1793329816727, "cmd": "key", "args": ["k"]}
+{"t": 1793329817245, "cmd": "wait", "args": ["2"]}
+{"t": 1793329819326, "cmd": "key", "args": ["k"]}
+{"t": 1793329819850, "cmd": "wait", "args": ["3"]}
+{"t": 1793329822942, "cmd": "shot", "args": ["village2"]}
+{"t": 1793329823278, "cmd": "state", "args": ["--full"]}
+{"t": 1793329823418, "cmd": "events", "args": ["10"]}
+{"t": 1793329829163, "cmd": "click", "args": ["48", "20"]}
+{"t": 1793329829892, "cmd": "wait", "args": ["2"]}
+{"t": 1793329831953, "cmd": "shot", "args": ["controls"]}
+{"t": 1793329836270, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329836751, "cmd": "state", "args": ["--full"]}
+{"t": 1793329836815, "cmd": "events", "args": ["400"]}
+{"t": 1793329836877, "cmd": "events", "args": ["400"]}
+{"t": 1793329836936, "cmd": "stop", "args": []}
+{"t": 1793329870118, "cmd": "report", "args": []}
+{"t": 1793330655236, "cmd": "stop", "args": []}

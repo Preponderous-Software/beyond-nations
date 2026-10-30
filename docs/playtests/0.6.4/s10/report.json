@@ -1,27 +1,39 @@
 {
   "session": "s10",
   "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches. This build changed the save format (v6) to store diplomacy envoys. Before saving, lead a nation and make at least one diplomacy act on the Nations screen (O) so an envoy is on the road; save while it is away, quit, `pt start --continue`, and confirm the envoy is still away with the same remaining time (Nations screen row 'envoy back in N s') and the rest of the world matches.",
-  "build": {"version": "0.6.3", "commit": "b6a0019"},
+  "build": {
+    "version": "0.6.3",
+    "commit": "a44aa8d"
+  },
   "seed": "Ironvale",
-  "durationSec": 629,
+  "durationSec": 543,
   "outcome": "achieved",
   "findings": [
     {
-      "severity": "polish",
+      "severity": "minor",
       "category": "ux",
-      "title": "Nations screen: diplomacy buttons for a nation whose envoy is away are not dimmed",
-      "detail": "After paying tribute, the row reads 'envoy back in 20 s' but Tribute/Ally/War/Denounce look exactly like the buttons of a nation you can deal with. Clicking one correctly refuses ('Your envoy to Westernham is still on the road: you can deal with them again in 20 seconds of play.') and charges nothing (coins stay 231), so this is only a visual hint gap. Expected the row's buttons greyed out while the envoy travels.",
-      "repro": "pt start --seed Ironvale; Start, Begin; pt key n; wait until another nation is founded (~tick 950); pt key o; pt click 123 255 (Tribute); pt click 123 255 again",
-      "screenshot": "shots/envoy_again2.png",
-      "tick": 1557
+      "title": "Nations screen status line shows a stale envoy countdown that contradicts the row",
+      "detail": "After clicking Tribute twice on Fortresstown, the bottom status line says 'you can deal with them again in 20 seconds of play'. Later, when I reopened the Nations screen, the row read 'envoy back in 11 s' but the status line still said 20 seconds. I expected the status line to clear when the screen reopens, or to show the live remaining time.",
+      "repro": "pt start --seed Ironvale; Start, Begin; pt key n; wait for an AI nation; pt key o; click Tribute (123,255) twice; Escape; let ~8 s of game time pass; pt key o",
+      "screenshot": "shots/nations_presave2.png",
+      "tick": 2178
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Diplomacy buttons look active while the envoy is away, and nothing tells you when it returns",
+      "detail": "While 'envoy back in N s' is showing, Fortresstown's Tribute/Ally/War/Denounce buttons are drawn exactly like the active ones. Clicking them only shows an 'envoy still on the road' status. When the envoy came back, no status message or chronicle entry appeared; the only sign was that the row suffix was gone (seen at tick 2770). I expected greyed-out buttons during the cooldown and a short 'your envoy has returned from X' notice.",
+      "repro": "Same as above; close Nations; wait for about 20 game seconds; pt key o; pt events 15 shows no envoy-return event",
+      "screenshot": "shots/nations_envoyback.png",
+      "tick": 2770
     },
     {
       "severity": "polish",
       "category": "ux",
-      "title": "New World seed box keeps the previous seed and Ctrl+A does not select it",
-      "detail": "Going Main Menu > Start after playing, the seed box still holds 'Ironvale'. Clicking it and pressing Ctrl+A then BackSpace removed only the last character ('Ironval'), so typing the shared seed produced 'Ironval1450162717' (a different world, though the label under the box shows the resolved seed so it is noticeable). Had to press BackSpace 20 times. Expected Ctrl+A to select all, or a clear button, since pasting a shared seed is the main use of this box. (Low frame rate may contribute; tried once.)",
-      "repro": "From a world: Escape > Main Menu > Start; pt click 480 235; pt key ctrl+a BackSpace; pt type 1450162717",
-      "screenshot": "shots/newworld_seed.png",
+      "title": "Ctrl+A does not select all in the New World seed box",
+      "detail": "Pasting the numeric seed from Share: clicking the box, pressing Ctrl+A, then BackSpace removed only one character, so typing gave 'Ironval1450162717' (seed 1889372902, a different world). The preview line ('X is seed N') caught it, which is good. I had to press BackSpace 25 times. I expected Ctrl+A to select all, or the box to select all its text when it gets focus.",
+      "repro": "Main Menu > Start; click seed box (480,235); pt key ctrl+a; pt key BackSpace; pt type 1450162717",
+      "screenshot": "shots/nw3.png",
       "tick": null
     }
   ],
@@ -29,13 +41,18 @@
     "objectivesCompleted": 0,
     "deaths": 0,
     "secondsToObjective": {},
-    "saveTick": 1448,
-    "envoyRemainingAtSaveSec": 15,
-    "envoyRemainingAfterContinueSec": 12,
-    "ticksBetweenSaveAndEnvoyCheckAfterContinue": 112,
-    "playerStateMismatchesAfterContinue": 0,
-    "shareSeed": 1450162717
+    "saveTick": 2206,
+    "envoyDueTick": 2686,
+    "envoyRemainingAtSaveSec": 9.6,
+    "envoyShownAfterLoadSec": 6,
+    "tickWhenCheckedAfterLoad": 2406,
+    "relationAfterLoad": 10,
+    "coinsBeforeSave": 231,
+    "coinsAfterLoad": 231,
+    "shareSeed": 1450162717,
+    "seedWorldMatched": true,
+    "avgTps": 10
   },
   "fun": 3,
-  "verdict": "The v6 save round trip works: with a tribute envoy away (row read 'envoy back in 15 s' at tick 1440), Save, then pt stop and --continue, resumed at tick 1448 with position, heading, coins, inventory, nation, role, objective, settlement and nearby trees/rocks/chickens all identical, and the envoy row read 'envoy back in 12 s' after 112 more ticks (2.2 s), which is exactly the time that had passed. The Share screen shows seed 1450162717 plus a link, and a new world from that number matched the original start exactly (same HUD, region, distances and bearings, the same pawn names, and Isabella Wood again founding the first AI nation and settlement). Save feedback is very good ('Saved: Day 1 - Upperford, 18:03', 'Welcome back'). Two small UI nits only: envoy-away buttons aren't dimmed, and the seed box is awkward to clear."
+  "verdict": "The v6 save keeps diplomacy envoys correctly. An envoy sent at tick 1686 and saved at tick 2206 came back after --continue showing 'envoy back in 6 s' at tick 2406, which matches the math exactly. Relations (+10), coins, position, energy, objective and nation/leader role also survived, and the envoy returned on schedule. The Share seed (1450162717) typed into New World rebuilt an identical starting world. The rough edges are all diplomacy feedback: a stale countdown in the status line, cooldown buttons that look active, and no notice when the envoy returns."
 }
