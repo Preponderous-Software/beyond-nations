@@ -265,9 +265,13 @@ namespace beyondnations {
                 Settlement treasury = findRichestSettlement(self);
                 if (treasury != null && treasury.getFunds() >= AI_TRIBUTE_COINS) {
                     treasury.removeFunds(AI_TRIBUTE_COINS);
-                    giveCoins(other, AI_TRIBUTE_COINS);
+                    // a neighbour has a settlement, so the tribute lands in one.
+                    // "Your treasury" alone sent the 0.6.0 playtest (s04) looking
+                    // at the player's purse, and no screen says treasury (#375)
+                    Settlement paidInto = giveCoins(other, AI_TRIBUTE_COINS);
                     if (isPlayersNation(other)) {
-                        player.getStatus().update(self.getName() + " sent " + AI_TRIBUTE_COINS + " coins of tribute to your treasury.");
+                        player.getStatus().update(self.getName() + " sent " + AI_TRIBUTE_COINS + " coins of tribute to the treasury of your "
+                            + describeSettlement(paidInto) + " (its Funds, shown while you stand in it).");
                     }
                     change(self, other, giftValue(AI_TRIBUTE_COINS));
                     return;
@@ -666,18 +670,20 @@ namespace beyondnations {
         /**
         * Coins given to a nation go into its first settlement's treasury,
         * where its leader can withdraw them, or to its leader if it has no
-        * settlement.
+        * settlement. Returns the settlement paid into, or null if the coins
+        * went to the leader.
         */
-        public void giveCoins(Nation nation, int coins) {
+        public Settlement giveCoins(Nation nation, int coins) {
             List<Settlement> settlements = getSettlements(nation);
             if (settlements.Count > 0) {
                 settlements[0].addFunds(coins);
-                return;
+                return settlements[0];
             }
             Entity leader = entityRepository.getEntity(nation.getLeaderId());
             if (leader != null) {
                 leader.getInventory().addItem(ItemType.COIN, coins);
             }
+            return null;
         }
 
         public List<Settlement> getSettlements(Nation nation) {
