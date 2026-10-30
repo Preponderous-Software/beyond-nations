@@ -104,6 +104,30 @@ namespace beyondnationstests {
             Assert.Equal(-30 + 4 * Diplomacy.NEIGHBOUR_FRICTION + Diplomacy.giftValue(Diplomacy.AI_TRIBUTE_COINS), world.relations.getScore(weak, strong));
         }
 
+        /**
+        * "Sent 20 coins of tribute to your treasury" left the 0.6.0 playtest
+        * (s04) watching the player's purse, which did not move: the coins are
+        * in a settlement's Funds, and the message now says which (#375).
+        */
+        [Fact]
+        public void testTributeToThePlayersNation_NamesTheTreasuryItWentInto() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            Nation weak = world.pawnNation("Aland", 1);
+            Nation own = world.playerNation(4);
+            Settlement weakHome = world.settlement(weak, 0, 0);
+            Settlement ownHome = world.settlement(own, 300, 0);
+            weakHome.addFunds(50);
+            world.relations.adjust(weak, own, -30);
+            int coinsCarried = world.player.getInventory().getNumItems(ItemType.COIN);
+
+            world.rounds(Diplomacy.RAID_EVERY_ROUNDS);
+
+            Assert.Equal(Diplomacy.AI_TRIBUTE_COINS, ownHome.getFunds());
+            Assert.Equal(coinsCarried, world.player.getInventory().getNumItems(ItemType.COIN));
+            Assert.Contains("Aland sent " + Diplomacy.AI_TRIBUTE_COINS + " coins of tribute to the treasury of your camp (its Funds, shown while you stand in it).",
+                world.player.getStatus().getStatus());
+        }
+
         [Fact]
         public void testStrongNation_DenouncesAWeakerOneItDespises() {
             DiplomacyFixture world = new DiplomacyFixture();
