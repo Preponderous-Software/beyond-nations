@@ -1,133 +1,136 @@
-{"t": 1793281941513, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "Ironvale"]}
-{"t": 1793282394045, "cmd": "await", "args": ["TITLE", "30"]}
-{"t": 1793282394175, "cmd": "key", "args": ["space"]}
-{"t": 1793282394715, "cmd": "await", "args": ["MAIN_MENU", "20"]}
-{"t": 1793282394856, "cmd": "shot", "args": ["menu"]}
-{"t": 1793282401578, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282402479, "cmd": "await", "args": ["NEW_WORLD", "20"]}
-{"t": 1793282403718, "cmd": "shot", "args": ["newworld"]}
-{"t": 1793282413665, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282414491, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282414799, "cmd": "wait", "args": ["3"]}
-{"t": 1793282417977, "cmd": "shot", "args": ["world0"]}
-{"t": 1793282418306, "cmd": "state", "args": []}
-{"t": 1793282426052, "cmd": "click", "args": ["425", "388"]}
-{"t": 1793282426924, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793282442625, "cmd": "key", "args": ["e"]}
-{"t": 1793282443264, "cmd": "wait", "args": ["2"]}
-{"t": 1793282445435, "cmd": "key", "args": ["e"]}
-{"t": 1793282445996, "cmd": "wait", "args": ["2"]}
-{"t": 1793282448160, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793282539368, "cmd": "key", "args": ["e"]}
-{"t": 1793282539949, "cmd": "wait", "args": ["2"]}
-{"t": 1793282542126, "cmd": "key", "args": ["e"]}
-{"t": 1793282542730, "cmd": "wait", "args": ["2"]}
-{"t": 1793282544901, "cmd": "key", "args": ["e"]}
-{"t": 1793282545503, "cmd": "wait", "args": ["2"]}
-{"t": 1793282547630, "cmd": "state", "args": []}
-{"t": 1793282552868, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282553539, "cmd": "await", "args": ["PAUSE", "20"]}
-{"t": 1793282553673, "cmd": "shot", "args": ["pause"]}
-{"t": 1793282554009, "cmd": "state", "args": []}
-{"t": 1793282560172, "cmd": "state", "args": []}
-{"t": 1793282560341, "cmd": "wait", "args": ["3"]}
-{"t": 1793282563546, "cmd": "state", "args": []}
-{"t": 1793282563729, "cmd": "click", "args": ["480", "326"]}
-{"t": 1793282564623, "cmd": "wait", "args": ["2"]}
-{"t": 1793282566815, "cmd": "shot", "args": ["saved"]}
-{"t": 1793282567186, "cmd": "events", "args": ["8"]}
-{"t": 1793282567316, "cmd": "state", "args": ["--full"]}
-{"t": 1793282574442, "cmd": "click", "args": ["480", "367"]}
-{"t": 1793282575267, "cmd": "wait", "args": ["3"]}
-{"t": 1793282578400, "cmd": "shot", "args": ["share"]}
-{"t": 1793282578856, "cmd": "state", "args": []}
-{"t": 1793282587112, "cmd": "click", "args": ["480", "455"]}
-{"t": 1793282588026, "cmd": "wait", "args": ["2"]}
-{"t": 1793282590200, "cmd": "state", "args": []}
-{"t": 1793282590375, "cmd": "stop", "args": []}
-{"t": 1793282594559, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "Ironvale", "--continue"]}
-{"t": 1793282596985, "cmd": "await", "args": ["WORLD", "90"]}
-{"t": 1793282597110, "cmd": "state", "args": []}
-{"t": 1793282597305, "cmd": "shot", "args": ["continued"]}
-{"t": 1793282606132, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282606746, "cmd": "await", "args": ["PAUSE", "20"]}
-{"t": 1793282609502, "cmd": "state", "args": ["--full"]}
-{"t": 1793282609710, "cmd": "events", "args": ["10"]}
-{"t": 1793282629527, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282630102, "cmd": "await", "args": ["WORLD", "20"]}
-{"t": 1793282681346, "cmd": "wait", "args": ["3"]}
-{"t": 1793282684895, "cmd": "shot", "args": ["continued2"]}
-{"t": 1793282743163, "cmd": "state", "args": []}
-{"t": 1793282744201, "cmd": "note", "args": ["--shot", "continue-ok", "After pt start --continue: tick 1594 restored, player pos (-77.46,-72.68) yaw 256, energy 79.7, coins 256, stone 5, objective 1 Wood 0/10, seed 1450162717 all identical to save. Toast 'Welcome back. Day 1 - no nation.' First frames after continue had Inventory/Season/Player Info panels pushed off the bottom edge (shots/continue-layout.png); corrected a few seconds later."]}
-{"t": 1793282751876, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282752421, "cmd": "await", "args": ["PAUSE", "20"]}
-{"t": 1793282752723, "cmd": "click", "args": ["480", "448"]}
-{"t": 1793282753584, "cmd": "wait", "args": ["4"]}
-{"t": 1793282757695, "cmd": "state", "args": []}
-{"t": 1793282757781, "cmd": "shot", "args": ["mainmenu2"]}
-{"t": 1793282761226, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282762051, "cmd": "wait", "args": ["3"]}
-{"t": 1793282765143, "cmd": "state", "args": []}
-{"t": 1793282765228, "cmd": "shot", "args": ["after-start"]}
-{"t": 1793282772050, "cmd": "click", "args": ["480", "235"]}
-{"t": 1793282772843, "cmd": "key", "args": ["ctrl+a", "BackSpace"]}
-{"t": 1793282773885, "cmd": "type", "args": ["1450162717"]}
-{"t": 1793282774437, "cmd": "wait", "args": ["2"]}
-{"t": 1793282776527, "cmd": "shot", "args": ["seedtyped"]}
-{"t": 1793282782228, "cmd": "key", "args": ["Control_L+a"]}
-{"t": 1793282782980, "cmd": "wait", "args": ["1"]}
-{"t": 1793282784063, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282784622, "cmd": "wait", "args": ["2"]}
-{"t": 1793282786681, "cmd": "shot", "args": ["ctrla"]}
-{"t": 1793282792701, "cmd": "key", "args": ["End"]}
-{"t": 1793282793168, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282793652, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282794129, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282794722, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282796104, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282796625, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282797117, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282797637, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282798138, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282798669, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282799171, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282799677, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282800138, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282802034, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282802515, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282802996, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282803508, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282804117, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282804658, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282805167, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282805684, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282806195, "cmd": "key", "args": ["BackSpace"]}
-{"t": 1793282806748, "cmd": "wait", "args": ["1"]}
-{"t": 1793282807839, "cmd": "type", "args": ["1450162717"]}
-{"t": 1793282808386, "cmd": "wait", "args": ["2"]}
-{"t": 1793282810467, "cmd": "shot", "args": ["seedtyped2"]}
-{"t": 1793282815476, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282816174, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282824583, "cmd": "state", "args": []}
-{"t": 1793282824693, "cmd": "shot", "args": ["seedworld"]}
-{"t": 1793282833480, "cmd": "wait", "args": ["90"]}
-{"t": 1793282923579, "cmd": "state", "args": []}
-{"t": 1793282923669, "cmd": "events", "args": ["15"]}
-{"t": 1793282937918, "cmd": "note", "args": ["--shot", "seed-history-diverges", "New world from Share seed 1450162717 starts identical to the Ironvale world (player 0,0, same trees/rocks/pawns/chickens with same distances and bearings at tick ~56, same region/objective; screenshots seedworld.png vs world0.png match). But history diverges: original world tick 850 'Isabella Wood founded the nation of Eastwood', tick 1550 Peggy Smith 'Bigwood'; same-seed world tick 900 'Isabella Wood founded the nation of Westernham', tick 1400 Ruth Wilson 'Greentown'. Nation names/timing are not reproducible from the shared seed."]}
-{"t": 1793282942286, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282942819, "cmd": "await", "args": ["PAUSE", "20"]}
-{"t": 1793282942894, "cmd": "click", "args": ["480", "448"]}
-{"t": 1793282943834, "cmd": "await", "args": ["MAIN_MENU", "20"]}
-{"t": 1793282944157, "cmd": "click", "args": ["480", "389"]}
-{"t": 1793282945009, "cmd": "wait", "args": ["3"]}
-{"t": 1793282948124, "cmd": "shot", "args": ["loadlist"]}
-{"t": 1793282948502, "cmd": "state", "args": []}
-{"t": 1793282956264, "cmd": "note", "args": ["--shot", "load-slots-identical", "Load screen lists two saves from two different worlds/runs with identical labels 'Day 1 - no nation' differing only by timestamp; no seed, region, player position or nation names to tell them apart."]}
-{"t": 1793282956476, "cmd": "click", "args": ["445", "225"]}
-{"t": 1793282957245, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282957323, "cmd": "state", "args": []}
-{"t": 1793282957394, "cmd": "events", "args": ["5"]}
-{"t": 1793282961334, "cmd": "shot", "args": ["loaded-slot1"]}
-{"t": 1793282961606, "cmd": "stop", "args": []}
-{"t": 1793282983558, "cmd": "report", "args": []}
-{"t": 1793285744949, "cmd": "stop", "args": []}
+{"t": 1793318247725, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "Ironvale"]}
+{"t": 1793318261695, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793318261997, "cmd": "key", "args": ["space"]}
+{"t": 1793318262972, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793318263407, "cmd": "shot", "args": ["menu"]}
+{"t": 1793318275893, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318277130, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793318277427, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793318291850, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318293149, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793318293435, "cmd": "wait", "args": ["2"]}
+{"t": 1793318295615, "cmd": "shot", "args": ["world1"]}
+{"t": 1793318296515, "cmd": "state", "args": []}
+{"t": 1793318308472, "cmd": "key", "args": ["n"]}
+{"t": 1793318309506, "cmd": "wait", "args": ["2"]}
+{"t": 1793318312031, "cmd": "shot", "args": ["nation"]}
+{"t": 1793318313581, "cmd": "state", "args": []}
+{"t": 1793318323062, "cmd": "key", "args": ["o"]}
+{"t": 1793318323945, "cmd": "await", "args": ["NATIONS", "20"]}
+{"t": 1793318324615, "cmd": "wait", "args": ["1"]}
+{"t": 1793318326041, "cmd": "shot", "args": ["nations1"]}
+{"t": 1793318366379, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318367261, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793318367682, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318415296, "cmd": "key", "args": ["e", "e", "e", "e"]}
+{"t": 1793318417439, "cmd": "wait", "args": ["2"]}
+{"t": 1793318419869, "cmd": "state", "args": []}
+{"t": 1793318428653, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793318437238, "cmd": "click", "args": ["337", "376"]}
+{"t": 1793318438132, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318519670, "cmd": "key", "args": ["e", "e", "e", "e"]}
+{"t": 1793318521993, "cmd": "wait", "args": ["2"]}
+{"t": 1793318524326, "cmd": "events", "args": ["30"]}
+{"t": 1793318524809, "cmd": "state", "args": []}
+{"t": 1793318533217, "cmd": "key", "args": ["o"]}
+{"t": 1793318534053, "cmd": "await", "args": ["NATIONS", "20"]}
+{"t": 1793318534951, "cmd": "wait", "args": ["1"]}
+{"t": 1793318536159, "cmd": "shot", "args": ["nations2"]}
+{"t": 1793318546245, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793318547427, "cmd": "wait", "args": ["1"]}
+{"t": 1793318548683, "cmd": "shot", "args": ["tribute"]}
+{"t": 1793318549451, "cmd": "state", "args": ["--full"]}
+{"t": 1793318561605, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318562368, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793318562542, "cmd": "wait", "args": ["30"]}
+{"t": 1793318592811, "cmd": "key", "args": ["o"]}
+{"t": 1793318593595, "cmd": "await", "args": ["NATIONS", "20"]}
+{"t": 1793318593996, "cmd": "wait", "args": ["1"]}
+{"t": 1793318595148, "cmd": "shot", "args": ["envoy_before_save"]}
+{"t": 1793318595943, "cmd": "state", "args": []}
+{"t": 1793318607999, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318608767, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318609410, "cmd": "await", "args": ["PAUSE", "15"]}
+{"t": 1793318609725, "cmd": "state", "args": ["--full"]}
+{"t": 1793318610009, "cmd": "shot", "args": ["pause"]}
+{"t": 1793318618742, "cmd": "click", "args": ["480", "326"]}
+{"t": 1793318619628, "cmd": "wait", "args": ["2"]}
+{"t": 1793318621818, "cmd": "shot", "args": ["saved"]}
+{"t": 1793318622356, "cmd": "events", "args": ["5"]}
+{"t": 1793318631532, "cmd": "click", "args": ["480", "367"]}
+{"t": 1793318632530, "cmd": "wait", "args": ["2"]}
+{"t": 1793318634729, "cmd": "shot", "args": ["share"]}
+{"t": 1793318635251, "cmd": "state", "args": []}
+{"t": 1793318644071, "cmd": "stop", "args": []}
+{"t": 1793318644465, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "Ironvale", "--continue"]}
+{"t": 1793318648810, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1793318648993, "cmd": "wait", "args": ["1"]}
+{"t": 1793318650267, "cmd": "state", "args": ["--full"]}
+{"t": 1793318650406, "cmd": "shot", "args": ["continued"]}
+{"t": 1793318659394, "cmd": "key", "args": ["o"]}
+{"t": 1793318660118, "cmd": "await", "args": ["NATIONS", "20"]}
+{"t": 1793318660578, "cmd": "wait", "args": ["1"]}
+{"t": 1793318661860, "cmd": "shot", "args": ["envoy_after_continue"]}
+{"t": 1793318662331, "cmd": "state", "args": []}
+{"t": 1793318677693, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318678473, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793318679167, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318680042, "cmd": "await", "args": ["PAUSE", "10"]}
+{"t": 1793318680238, "cmd": "click", "args": ["480", "448"]}
+{"t": 1793318681135, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793318682235, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318683272, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793318683729, "cmd": "click", "args": ["480", "235"]}
+{"t": 1793318684624, "cmd": "key", "args": ["ctrl+a", "BackSpace"]}
+{"t": 1793318686135, "cmd": "type", "args": ["1450162717"]}
+{"t": 1793318686781, "cmd": "wait", "args": ["1"]}
+{"t": 1793318688057, "cmd": "shot", "args": ["newworld_seed"]}
+{"t": 1793318695071, "cmd": "key", "args": ["End"]}
+{"t": 1793318695734, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318696414, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318697046, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318697787, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318698553, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318699248, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318700022, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318700777, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318701547, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318702233, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318702960, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318703658, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318704331, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318705032, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318705833, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318706376, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318707032, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318707849, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318708550, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318709314, "cmd": "key", "args": ["BackSpace"]}
+{"t": 1793318709979, "cmd": "type", "args": ["1450162717"]}
+{"t": 1793318710619, "cmd": "wait", "args": ["1"]}
+{"t": 1793318711703, "cmd": "shot", "args": ["newworld_seed2"]}
+{"t": 1793318717479, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318718561, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793318718725, "cmd": "state", "args": []}
+{"t": 1793318718910, "cmd": "shot", "args": ["shareseed_world"]}
+{"t": 1793318725424, "cmd": "state", "args": ["--full"]}
+{"t": 1793318731116, "cmd": "wait", "args": ["120"]}
+{"t": 1793318851274, "cmd": "events", "args": ["40"]}
+{"t": 1793318851597, "cmd": "state", "args": []}
+{"t": 1793318858261, "cmd": "key", "args": ["n"]}
+{"t": 1793318858916, "cmd": "wait", "args": ["1"]}
+{"t": 1793318860096, "cmd": "key", "args": ["o"]}
+{"t": 1793318860758, "cmd": "await", "args": ["NATIONS", "20"]}
+{"t": 1793318860954, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793318861984, "cmd": "wait", "args": ["1"]}
+{"t": 1793318863148, "cmd": "move", "args": ["480", "400"]}
+{"t": 1793318863293, "cmd": "wait", "args": ["1"]}
+{"t": 1793318864514, "cmd": "shot", "args": ["envoy_again1"]}
+{"t": 1793318865086, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793318866002, "cmd": "wait", "args": ["1"]}
+{"t": 1793318867248, "cmd": "shot", "args": ["envoy_again2"]}
+{"t": 1793318867847, "cmd": "state", "args": []}
+{"t": 1793318875706, "cmd": "note", "args": ["--shot", "envoy_buttons_not_dimmed", "Nations screen: Tribute/Ally/War/Denounce for a nation whose envoy is away look identical to available ones; clicking gives a clear 'still on the road' message and charges nothing, but the row could dim them."]}
+{"t": 1793318876458, "cmd": "stop", "args": []}
+{"t": 1793318892633, "cmd": "report", "args": []}
+{"t": 1793320034838, "cmd": "stop", "args": []}

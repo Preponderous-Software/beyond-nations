@@ -1,539 +1,188 @@
-{"t": 1793281941714, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "108"]}
-{"t": 1793282393489, "cmd": "status", "args": []}
-{"t": 1793282400997, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "108"]}
-{"t": 1793282402293, "cmd": "status", "args": []}
-{"t": 1793282412370, "cmd": "key", "args": ["space"]}
-{"t": 1793282412983, "cmd": "await", "args": ["MAIN_MENU", "30"]}
-{"t": 1793282413119, "cmd": "shot", "args": ["menu"]}
-{"t": 1793282418495, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282419344, "cmd": "await", "args": ["NEW_WORLD", "30"]}
-{"t": 1793282419467, "cmd": "shot", "args": ["newworld"]}
-{"t": 1793282436019, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282436866, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282437235, "cmd": "state", "args": []}
-{"t": 1793282437328, "cmd": "shot", "args": ["world1"]}
-{"t": 1793282443184, "cmd": "wait", "args": ["5"]}
-{"t": 1793282448305, "cmd": "status", "args": []}
-{"t": 1793282448509, "cmd": "shot", "args": ["world2"]}
-{"t": 1793282448951, "cmd": "state", "args": []}
-{"t": 1793282469958, "cmd": "state", "args": ["--full"]}
-{"t": 1793282473680, "cmd": "click", "args": ["338", "388"]}
-{"t": 1793282474469, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282492853, "cmd": "key", "args": ["e"]}
-{"t": 1793282493432, "cmd": "wait", "args": ["1"]}
-{"t": 1793282494542, "cmd": "key", "args": ["e"]}
-{"t": 1793282495159, "cmd": "wait", "args": ["1"]}
-{"t": 1793282496271, "cmd": "key", "args": ["e"]}
-{"t": 1793282496860, "cmd": "wait", "args": ["1"]}
-{"t": 1793282497976, "cmd": "key", "args": ["e"]}
-{"t": 1793282498545, "cmd": "wait", "args": ["1"]}
-{"t": 1793282499735, "cmd": "key", "args": ["e"]}
-{"t": 1793282500323, "cmd": "wait", "args": ["1"]}
-{"t": 1793282501478, "cmd": "key", "args": ["e"]}
-{"t": 1793282502104, "cmd": "wait", "args": ["1"]}
-{"t": 1793282503282, "cmd": "state", "args": []}
-{"t": 1793282507698, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282538959, "cmd": "key", "args": ["e"]}
-{"t": 1793282539592, "cmd": "wait", "args": ["1"]}
-{"t": 1793282540795, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282575575, "cmd": "key", "args": ["e"]}
-{"t": 1793282576218, "cmd": "wait", "args": ["1"]}
-{"t": 1793282577392, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282577623, "cmd": "key", "args": ["e"]}
-{"t": 1793282578206, "cmd": "wait", "args": ["1"]}
-{"t": 1793282579379, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793282684812, "cmd": "key", "args": ["e"]}
-{"t": 1793282685350, "cmd": "wait", "args": ["1"]}
-{"t": 1793282706078, "cmd": "state", "args": []}
-{"t": 1793282706124, "cmd": "events", "args": ["10"]}
-{"t": 1793282709884, "cmd": "status", "args": []}
-{"t": 1793282717095, "cmd": "key", "args": ["n"]}
-{"t": 1793282717644, "cmd": "wait", "args": ["2"]}
-{"t": 1793282719701, "cmd": "shot", "args": ["nation"]}
-{"t": 1793282719874, "cmd": "state", "args": []}
-{"t": 1793282722906, "cmd": "key", "args": ["f"]}
-{"t": 1793282723396, "cmd": "wait", "args": ["2"]}
-{"t": 1793282725453, "cmd": "shot", "args": ["found"]}
-{"t": 1793282725604, "cmd": "state", "args": []}
-{"t": 1793282725654, "cmd": "events", "args": ["4"]}
-{"t": 1793282728826, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282746574, "cmd": "key", "args": ["e"]}
-{"t": 1793282747181, "cmd": "wait", "args": ["1"]}
-{"t": 1793282748330, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282756650, "cmd": "key", "args": ["e"]}
-{"t": 1793282757245, "cmd": "wait", "args": ["1"]}
-{"t": 1793282758358, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282767465, "cmd": "key", "args": ["e"]}
-{"t": 1793282768035, "cmd": "wait", "args": ["1"]}
-{"t": 1793282769634, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282781070, "cmd": "key", "args": ["e"]}
-{"t": 1793282781582, "cmd": "wait", "args": ["1"]}
-{"t": 1793282782673, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282841848, "cmd": "key", "args": ["e"]}
-{"t": 1793282842361, "cmd": "wait", "args": ["1"]}
-{"t": 1793282843458, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282856108, "cmd": "key", "args": ["e"]}
-{"t": 1793282856637, "cmd": "wait", "args": ["1"]}
-{"t": 1793282857769, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282874060, "cmd": "key", "args": ["e"]}
-{"t": 1793282874624, "cmd": "wait", "args": ["1"]}
-{"t": 1793282876188, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282904056, "cmd": "key", "args": ["e"]}
-{"t": 1793282904606, "cmd": "wait", "args": ["1"]}
-{"t": 1793282905719, "cmd": "state", "args": []}
-{"t": 1793282908905, "cmd": "key", "args": ["f"]}
-{"t": 1793282909491, "cmd": "wait", "args": ["2"]}
-{"t": 1793282913837, "cmd": "shot", "args": ["founded"]}
-{"t": 1793282914102, "cmd": "events", "args": ["5"]}
-{"t": 1793282919862, "cmd": "face", "args": ["90"]}
-{"t": 1793282926364, "cmd": "hold", "args": ["Shift_L+w", "8"]}
-{"t": 1793282934698, "cmd": "key", "args": ["f"]}
-{"t": 1793282936578, "cmd": "wait", "args": ["2"]}
-{"t": 1793282938673, "cmd": "state", "args": []}
-{"t": 1793282945223, "cmd": "face", "args": ["180"]}
-{"t": 1793282955532, "cmd": "hold", "args": ["Shift_L+w", "6"]}
-{"t": 1793282961849, "cmd": "key", "args": ["f"]}
-{"t": 1793282962406, "cmd": "wait", "args": ["2"]}
-{"t": 1793282964552, "cmd": "state", "args": []}
-{"t": 1793282985325, "cmd": "face", "args": ["-110"]}
-{"t": 1793282991952, "cmd": "hold", "args": ["Shift_L+w", "5"]}
-{"t": 1793282997111, "cmd": "key", "args": ["f"]}
-{"t": 1793282997590, "cmd": "wait", "args": ["2"]}
-{"t": 1793282999706, "cmd": "state", "args": []}
-{"t": 1793283008604, "cmd": "state", "args": ["--full"]}
-{"t": 1793283015532, "cmd": "face", "args": ["-64"]}
-{"t": 1793283018938, "cmd": "hold", "args": ["Shift_L+w", "15"]}
-{"t": 1793283035740, "cmd": "key", "args": ["f"]}
-{"t": 1793283036320, "cmd": "wait", "args": ["2"]}
-{"t": 1793283038452, "cmd": "state", "args": []}
-{"t": 1793283044211, "cmd": "face", "args": ["90"]}
-{"t": 1793283050019, "cmd": "state", "args": []}
-{"t": 1793283056335, "cmd": "hold", "args": ["Shift_L+w", "10"]}
-{"t": 1793283066642, "cmd": "key", "args": ["f"]}
-{"t": 1793283067230, "cmd": "wait", "args": ["2"]}
-{"t": 1793283069352, "cmd": "state", "args": []}
-{"t": 1793283075427, "cmd": "hold", "args": ["Shift_L+w", "13"]}
-{"t": 1793283088978, "cmd": "key", "args": ["f"]}
-{"t": 1793283089531, "cmd": "wait", "args": ["2"]}
-{"t": 1793283091634, "cmd": "state", "args": []}
-{"t": 1793283097593, "cmd": "hold", "args": ["Shift_L+w", "5"]}
-{"t": 1793283102938, "cmd": "key", "args": ["f"]}
-{"t": 1793283103534, "cmd": "wait", "args": ["3"]}
-{"t": 1793283106641, "cmd": "state", "args": []}
-{"t": 1793283106791, "cmd": "shot", "args": ["settled"]}
-{"t": 1793283112501, "cmd": "hold", "args": ["Shift_L+w", "2.5"]}
-{"t": 1793283115923, "cmd": "key", "args": ["f"]}
-{"t": 1793283116634, "cmd": "wait", "args": ["3"]}
-{"t": 1793283119804, "cmd": "state", "args": []}
-{"t": 1793283119958, "cmd": "shot", "args": ["settled"]}
-{"t": 1793283131506, "cmd": "note", "args": ["--shot", "settled", "Open-ground hint flip-flops while walking it: at (131,-84) 'about 220 to the north'; after following it 'about 250 to the south-east'; at (34,140) 'about 180 to the east', after walking 112 roughly that way 'about 210 to the west'. The hint is recomputed from where you stand, so the target jumps and distance grows; took ~2700 ticks (54 game s) and 6 F presses to find a legal site. Last two hints (60 W, 20 W) were accurate."]}
-{"t": 1793283131820, "cmd": "key", "args": ["e"]}
-{"t": 1793283132425, "cmd": "wait", "args": ["2"]}
-{"t": 1793283134711, "cmd": "shot", "args": ["inside"]}
-{"t": 1793283135220, "cmd": "state", "args": []}
-{"t": 1793283141342, "cmd": "key", "args": ["e"]}
-{"t": 1793283141794, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283240436, "cmd": "key", "args": ["e"]}
-{"t": 1793283241014, "cmd": "wait", "args": ["1"]}
-{"t": 1793283242155, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283310427, "cmd": "key", "args": ["e"]}
-{"t": 1793283311024, "cmd": "wait", "args": ["1"]}
-{"t": 1793283312144, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283336282, "cmd": "key", "args": ["e"]}
-{"t": 1793283336875, "cmd": "wait", "args": ["1"]}
-{"t": 1793283338022, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283355287, "cmd": "key", "args": ["e"]}
-{"t": 1793283355900, "cmd": "wait", "args": ["1"]}
-{"t": 1793283357017, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283367562, "cmd": "key", "args": ["e"]}
-{"t": 1793283368177, "cmd": "wait", "args": ["1"]}
-{"t": 1793283369297, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283379968, "cmd": "key", "args": ["e"]}
-{"t": 1793283380567, "cmd": "wait", "args": ["1"]}
-{"t": 1793283381700, "cmd": "key", "args": ["e"]}
-{"t": 1793283382287, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283408844, "cmd": "key", "args": ["e"]}
-{"t": 1793283409462, "cmd": "wait", "args": ["1"]}
-{"t": 1793283410551, "cmd": "key", "args": ["e"]}
-{"t": 1793283411148, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283434418, "cmd": "key", "args": ["e"]}
-{"t": 1793283435012, "cmd": "wait", "args": ["1"]}
-{"t": 1793283436111, "cmd": "key", "args": ["e"]}
-{"t": 1793283436684, "cmd": "state", "args": []}
-{"t": 1793283440462, "cmd": "events", "args": ["12"]}
-{"t": 1793283444657, "cmd": "key", "args": ["h"]}
-{"t": 1793283445211, "cmd": "wait", "args": ["3"]}
-{"t": 1793283448302, "cmd": "key", "args": ["b"]}
-{"t": 1793283448840, "cmd": "wait", "args": ["2"]}
-{"t": 1793283450954, "cmd": "key", "args": ["k"]}
-{"t": 1793283451560, "cmd": "wait", "args": ["2"]}
-{"t": 1793283453627, "cmd": "shot", "args": ["build"]}
-{"t": 1793283453928, "cmd": "state", "args": []}
-{"t": 1793283459159, "cmd": "key", "args": ["e"]}
-{"t": 1793283459681, "cmd": "wait", "args": ["2"]}
-{"t": 1793283461782, "cmd": "key", "args": ["k"]}
-{"t": 1793283462337, "cmd": "wait", "args": ["3"]}
-{"t": 1793283465449, "cmd": "shot", "args": ["build2"]}
-{"t": 1793283465751, "cmd": "state", "args": []}
-{"t": 1793283469417, "cmd": "key", "args": ["k"]}
-{"t": 1793283469959, "cmd": "wait", "args": ["2"]}
-{"t": 1793283472060, "cmd": "state", "args": []}
-{"t": 1793283478427, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283540994, "cmd": "key", "args": ["e"]}
-{"t": 1793283541512, "cmd": "wait", "args": ["1"]}
-{"t": 1793283542586, "cmd": "state", "args": ["--full"]}
-{"t": 1793283542685, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283559830, "cmd": "key", "args": ["e"]}
-{"t": 1793283560270, "cmd": "wait", "args": ["1"]}
-{"t": 1793283561384, "cmd": "state", "args": ["--full"]}
-{"t": 1793283561462, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283568449, "cmd": "key", "args": ["e"]}
-{"t": 1793283568952, "cmd": "wait", "args": ["1"]}
-{"t": 1793283570033, "cmd": "state", "args": ["--full"]}
-{"t": 1793283570122, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283579867, "cmd": "key", "args": ["e"]}
-{"t": 1793283580345, "cmd": "wait", "args": ["1"]}
-{"t": 1793283581425, "cmd": "state", "args": ["--full"]}
-{"t": 1793283581522, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283588279, "cmd": "key", "args": ["e"]}
-{"t": 1793283588783, "cmd": "wait", "args": ["1"]}
-{"t": 1793283589888, "cmd": "state", "args": ["--full"]}
-{"t": 1793283589955, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283602359, "cmd": "key", "args": ["e"]}
-{"t": 1793283602852, "cmd": "wait", "args": ["1"]}
-{"t": 1793283603917, "cmd": "state", "args": ["--full"]}
-{"t": 1793283603986, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283613611, "cmd": "key", "args": ["e"]}
-{"t": 1793283614108, "cmd": "wait", "args": ["1"]}
-{"t": 1793283615182, "cmd": "state", "args": ["--full"]}
-{"t": 1793283615243, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283625639, "cmd": "key", "args": ["e"]}
-{"t": 1793283626144, "cmd": "wait", "args": ["1"]}
-{"t": 1793283627223, "cmd": "state", "args": ["--full"]}
-{"t": 1793283627333, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283627533, "cmd": "key", "args": ["e"]}
-{"t": 1793283628044, "cmd": "wait", "args": ["1"]}
-{"t": 1793283629122, "cmd": "state", "args": ["--full"]}
-{"t": 1793283629204, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283641541, "cmd": "key", "args": ["e"]}
-{"t": 1793283642070, "cmd": "wait", "args": ["1"]}
-{"t": 1793283643143, "cmd": "state", "args": ["--full"]}
-{"t": 1793283648458, "cmd": "key", "args": ["h"]}
-{"t": 1793283649027, "cmd": "wait", "args": ["2"]}
-{"t": 1793283651094, "cmd": "key", "args": ["e"]}
-{"t": 1793283651591, "cmd": "wait", "args": ["1"]}
-{"t": 1793283652663, "cmd": "key", "args": ["k"]}
-{"t": 1793283653220, "cmd": "wait", "args": ["2"]}
-{"t": 1793283655300, "cmd": "state", "args": []}
-{"t": 1793283655425, "cmd": "events", "args": ["15"]}
-{"t": 1793283661231, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283725885, "cmd": "key", "args": ["e"]}
-{"t": 1793283726429, "cmd": "wait", "args": ["1"]}
-{"t": 1793283727542, "cmd": "key", "args": ["e"]}
-{"t": 1793283728074, "cmd": "state", "args": ["--full"]}
-{"t": 1793283728178, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283782963, "cmd": "key", "args": ["e"]}
-{"t": 1793283783493, "cmd": "wait", "args": ["1"]}
-{"t": 1793283784617, "cmd": "key", "args": ["e"]}
-{"t": 1793283785182, "cmd": "state", "args": ["--full"]}
-{"t": 1793283785291, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283792231, "cmd": "key", "args": ["e"]}
-{"t": 1793283792799, "cmd": "wait", "args": ["1"]}
-{"t": 1793283793906, "cmd": "key", "args": ["e"]}
-{"t": 1793283794426, "cmd": "state", "args": ["--full"]}
-{"t": 1793283794533, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793283801373, "cmd": "key", "args": ["e"]}
-{"t": 1793283801941, "cmd": "wait", "args": ["1"]}
-{"t": 1793283803084, "cmd": "key", "args": ["e"]}
-{"t": 1793283803725, "cmd": "state", "args": ["--full"]}
-{"t": 1793283808889, "cmd": "key", "args": ["h"]}
-{"t": 1793283809399, "cmd": "wait", "args": ["2"]}
-{"t": 1793283811525, "cmd": "key", "args": ["e"]}
-{"t": 1793283812043, "cmd": "wait", "args": ["1"]}
-{"t": 1793283813142, "cmd": "key", "args": ["k"]}
-{"t": 1793283813668, "cmd": "wait", "args": ["1"]}
-{"t": 1793283814791, "cmd": "key", "args": ["k"]}
-{"t": 1793283815386, "cmd": "wait", "args": ["2"]}
-{"t": 1793283817487, "cmd": "state", "args": []}
-{"t": 1793283822990, "cmd": "wait", "args": ["15"]}
-{"t": 1793283838149, "cmd": "state", "args": ["--full"]}
-{"t": 1793283838260, "cmd": "wait", "args": ["15"]}
-{"t": 1793283853353, "cmd": "state", "args": ["--full"]}
-{"t": 1793283853437, "cmd": "wait", "args": ["15"]}
-{"t": 1793283868533, "cmd": "state", "args": ["--full"]}
-{"t": 1793283868677, "cmd": "wait", "args": ["15"]}
-{"t": 1793283883813, "cmd": "state", "args": ["--full"]}
-{"t": 1793283883888, "cmd": "wait", "args": ["15"]}
-{"t": 1793283899032, "cmd": "state", "args": ["--full"]}
-{"t": 1793283899202, "cmd": "wait", "args": ["15"]}
-{"t": 1793283914345, "cmd": "state", "args": ["--full"]}
-{"t": 1793283914425, "cmd": "wait", "args": ["15"]}
-{"t": 1793283929527, "cmd": "state", "args": ["--full"]}
-{"t": 1793283929638, "cmd": "wait", "args": ["15"]}
-{"t": 1793283944741, "cmd": "state", "args": ["--full"]}
-{"t": 1793283944882, "cmd": "wait", "args": ["15"]}
-{"t": 1793283959972, "cmd": "state", "args": ["--full"]}
-{"t": 1793283960060, "cmd": "wait", "args": ["15"]}
-{"t": 1793283975251, "cmd": "state", "args": ["--full"]}
-{"t": 1793283975374, "cmd": "wait", "args": ["15"]}
-{"t": 1793283990450, "cmd": "state", "args": ["--full"]}
-{"t": 1793283990571, "cmd": "wait", "args": ["15"]}
-{"t": 1793284005726, "cmd": "state", "args": ["--full"]}
-{"t": 1793284010299, "cmd": "status", "args": []}
-{"t": 1793284014158, "cmd": "key", "args": ["o"]}
-{"t": 1793284014652, "cmd": "wait", "args": ["3"]}
-{"t": 1793284017710, "cmd": "shot", "args": ["nations"]}
-{"t": 1793284018055, "cmd": "state", "args": ["--full"]}
-{"t": 1793284024573, "cmd": "note", "args": ["--shot", "nations2", "Nations panel (O) opened inside my settlement: the giant world-space settlement label '6 here, 7/20 residents' draws through the semi-transparent panel and collides with the Nations/Laws tabs at the top. Expected world labels hidden or dimmed behind full-screen panels."]}
-{"t": 1793284024961, "cmd": "key", "args": ["Escape"]}
-{"t": 1793284025508, "cmd": "wait", "args": ["1"]}
-{"t": 1793284026720, "cmd": "key", "args": ["y"]}
-{"t": 1793284027258, "cmd": "wait", "args": ["2"]}
-{"t": 1793284029372, "cmd": "shot", "args": ["chronicle"]}
-{"t": 1793284029743, "cmd": "state", "args": ["--full"]}
-{"t": 1793284036752, "cmd": "events", "args": ["200"]}
-{"t": 1793284042320, "cmd": "wait", "args": ["15"]}
-{"t": 1793284057463, "cmd": "state", "args": ["--full"]}
-{"t": 1793284057541, "cmd": "wait", "args": ["15"]}
-{"t": 1793284072636, "cmd": "state", "args": ["--full"]}
-{"t": 1793284072770, "cmd": "wait", "args": ["15"]}
-{"t": 1793284087899, "cmd": "state", "args": ["--full"]}
-{"t": 1793284088036, "cmd": "wait", "args": ["15"]}
-{"t": 1793284103174, "cmd": "state", "args": ["--full"]}
-{"t": 1793284103267, "cmd": "wait", "args": ["15"]}
-{"t": 1793284118384, "cmd": "state", "args": ["--full"]}
-{"t": 1793284118549, "cmd": "wait", "args": ["15"]}
-{"t": 1793284133741, "cmd": "state", "args": ["--full"]}
-{"t": 1793284133955, "cmd": "wait", "args": ["15"]}
-{"t": 1793284149006, "cmd": "state", "args": ["--full"]}
-{"t": 1793284149066, "cmd": "wait", "args": ["15"]}
-{"t": 1793284164224, "cmd": "state", "args": ["--full"]}
-{"t": 1793284164394, "cmd": "wait", "args": ["15"]}
-{"t": 1793284179565, "cmd": "state", "args": ["--full"]}
-{"t": 1793284179728, "cmd": "wait", "args": ["15"]}
-{"t": 1793284194921, "cmd": "state", "args": ["--full"]}
-{"t": 1793284195035, "cmd": "wait", "args": ["15"]}
-{"t": 1793284210192, "cmd": "state", "args": ["--full"]}
-{"t": 1793284210341, "cmd": "wait", "args": ["15"]}
-{"t": 1793284225469, "cmd": "state", "args": ["--full"]}
-{"t": 1793284225579, "cmd": "wait", "args": ["15"]}
-{"t": 1793284240690, "cmd": "state", "args": ["--full"]}
-{"t": 1793284240851, "cmd": "wait", "args": ["15"]}
-{"t": 1793284255983, "cmd": "state", "args": ["--full"]}
-{"t": 1793284256069, "cmd": "wait", "args": ["15"]}
-{"t": 1793284271245, "cmd": "state", "args": ["--full"]}
-{"t": 1793284271386, "cmd": "wait", "args": ["15"]}
-{"t": 1793284286532, "cmd": "state", "args": ["--full"]}
-{"t": 1793284286648, "cmd": "wait", "args": ["15"]}
-{"t": 1793284301706, "cmd": "state", "args": ["--full"]}
-{"t": 1793284301776, "cmd": "wait", "args": ["15"]}
-{"t": 1793284316898, "cmd": "state", "args": ["--full"]}
-{"t": 1793284317044, "cmd": "wait", "args": ["15"]}
-{"t": 1793284332144, "cmd": "state", "args": ["--full"]}
-{"t": 1793284332327, "cmd": "wait", "args": ["15"]}
-{"t": 1793284347493, "cmd": "state", "args": ["--full"]}
-{"t": 1793284347592, "cmd": "wait", "args": ["15"]}
-{"t": 1793284362809, "cmd": "state", "args": ["--full"]}
-{"t": 1793284363020, "cmd": "wait", "args": ["15"]}
-{"t": 1793284378129, "cmd": "state", "args": ["--full"]}
-{"t": 1793284378214, "cmd": "wait", "args": ["15"]}
-{"t": 1793284393355, "cmd": "state", "args": ["--full"]}
-{"t": 1793284393577, "cmd": "wait", "args": ["15"]}
-{"t": 1793284408690, "cmd": "state", "args": ["--full"]}
-{"t": 1793284408989, "cmd": "wait", "args": ["15"]}
-{"t": 1793284424070, "cmd": "state", "args": ["--full"]}
-{"t": 1793284424152, "cmd": "wait", "args": ["15"]}
-{"t": 1793284439280, "cmd": "state", "args": ["--full"]}
-{"t": 1793284439380, "cmd": "wait", "args": ["15"]}
-{"t": 1793284454479, "cmd": "state", "args": ["--full"]}
-{"t": 1793284454571, "cmd": "wait", "args": ["15"]}
-{"t": 1793284469687, "cmd": "state", "args": ["--full"]}
-{"t": 1793284469769, "cmd": "wait", "args": ["15"]}
-{"t": 1793284484913, "cmd": "state", "args": ["--full"]}
-{"t": 1793284484996, "cmd": "wait", "args": ["15"]}
-{"t": 1793284500082, "cmd": "state", "args": ["--full"]}
-{"t": 1793284500164, "cmd": "events", "args": ["300"]}
-{"t": 1793284509448, "cmd": "wait", "args": ["15"]}
-{"t": 1793284524595, "cmd": "state", "args": ["--full"]}
-{"t": 1793284524684, "cmd": "wait", "args": ["15"]}
-{"t": 1793284539751, "cmd": "state", "args": ["--full"]}
-{"t": 1793284539849, "cmd": "wait", "args": ["15"]}
-{"t": 1793284554945, "cmd": "state", "args": ["--full"]}
-{"t": 1793284555031, "cmd": "wait", "args": ["15"]}
-{"t": 1793284570130, "cmd": "state", "args": ["--full"]}
-{"t": 1793284570245, "cmd": "wait", "args": ["15"]}
-{"t": 1793284585337, "cmd": "state", "args": ["--full"]}
-{"t": 1793284585447, "cmd": "wait", "args": ["15"]}
-{"t": 1793284600594, "cmd": "state", "args": ["--full"]}
-{"t": 1793284600668, "cmd": "wait", "args": ["15"]}
-{"t": 1793284615793, "cmd": "state", "args": ["--full"]}
-{"t": 1793284615884, "cmd": "wait", "args": ["15"]}
-{"t": 1793284630961, "cmd": "state", "args": ["--full"]}
-{"t": 1793284631042, "cmd": "wait", "args": ["15"]}
-{"t": 1793284646164, "cmd": "state", "args": ["--full"]}
-{"t": 1793284646250, "cmd": "wait", "args": ["15"]}
-{"t": 1793284661346, "cmd": "state", "args": ["--full"]}
-{"t": 1793284661412, "cmd": "wait", "args": ["15"]}
-{"t": 1793284676472, "cmd": "state", "args": ["--full"]}
-{"t": 1793284676536, "cmd": "wait", "args": ["15"]}
-{"t": 1793284691601, "cmd": "state", "args": ["--full"]}
-{"t": 1793284691665, "cmd": "wait", "args": ["15"]}
-{"t": 1793284706760, "cmd": "state", "args": ["--full"]}
-{"t": 1793284706831, "cmd": "wait", "args": ["15"]}
-{"t": 1793284729428, "cmd": "state", "args": ["--full"]}
-{"t": 1793284729581, "cmd": "wait", "args": ["15"]}
-{"t": 1793284744655, "cmd": "state", "args": ["--full"]}
-{"t": 1793284744745, "cmd": "wait", "args": ["15"]}
-{"t": 1793284759832, "cmd": "state", "args": ["--full"]}
-{"t": 1793284759903, "cmd": "wait", "args": ["15"]}
-{"t": 1793284774969, "cmd": "state", "args": ["--full"]}
-{"t": 1793284775052, "cmd": "wait", "args": ["15"]}
-{"t": 1793284792185, "cmd": "state", "args": ["--full"]}
-{"t": 1793284792277, "cmd": "wait", "args": ["15"]}
-{"t": 1793284807778, "cmd": "state", "args": ["--full"]}
-{"t": 1793284807871, "cmd": "wait", "args": ["15"]}
-{"t": 1793284823282, "cmd": "state", "args": ["--full"]}
-{"t": 1793284823378, "cmd": "wait", "args": ["15"]}
-{"t": 1793284838457, "cmd": "state", "args": ["--full"]}
-{"t": 1793284838541, "cmd": "wait", "args": ["15"]}
-{"t": 1793284853613, "cmd": "state", "args": ["--full"]}
-{"t": 1793284853690, "cmd": "wait", "args": ["15"]}
-{"t": 1793284868792, "cmd": "state", "args": ["--full"]}
-{"t": 1793284868876, "cmd": "wait", "args": ["15"]}
-{"t": 1793284884237, "cmd": "state", "args": ["--full"]}
-{"t": 1793284884317, "cmd": "wait", "args": ["15"]}
-{"t": 1793284899405, "cmd": "state", "args": ["--full"]}
-{"t": 1793284899484, "cmd": "wait", "args": ["15"]}
-{"t": 1793284914575, "cmd": "state", "args": ["--full"]}
-{"t": 1793284914661, "cmd": "wait", "args": ["15"]}
-{"t": 1793284934781, "cmd": "state", "args": ["--full"]}
-{"t": 1793284934871, "cmd": "wait", "args": ["15"]}
-{"t": 1793284949935, "cmd": "state", "args": ["--full"]}
-{"t": 1793284949999, "cmd": "wait", "args": ["15"]}
-{"t": 1793284976078, "cmd": "state", "args": ["--full"]}
-{"t": 1793284976144, "cmd": "wait", "args": ["15"]}
-{"t": 1793284991205, "cmd": "state", "args": ["--full"]}
-{"t": 1793284991274, "cmd": "wait", "args": ["15"]}
-{"t": 1793285006334, "cmd": "state", "args": ["--full"]}
-{"t": 1793285006396, "cmd": "wait", "args": ["15"]}
-{"t": 1793285021466, "cmd": "state", "args": ["--full"]}
-{"t": 1793285021536, "cmd": "wait", "args": ["15"]}
-{"t": 1793285036786, "cmd": "state", "args": ["--full"]}
-{"t": 1793285037024, "cmd": "wait", "args": ["15"]}
-{"t": 1793285052086, "cmd": "state", "args": ["--full"]}
-{"t": 1793285052151, "cmd": "wait", "args": ["15"]}
-{"t": 1793285067268, "cmd": "state", "args": ["--full"]}
-{"t": 1793285067348, "cmd": "wait", "args": ["15"]}
-{"t": 1793285082422, "cmd": "state", "args": ["--full"]}
-{"t": 1793285082543, "cmd": "wait", "args": ["15"]}
-{"t": 1793285097638, "cmd": "state", "args": ["--full"]}
-{"t": 1793285097704, "cmd": "wait", "args": ["15"]}
-{"t": 1793285112879, "cmd": "state", "args": ["--full"]}
-{"t": 1793285113028, "cmd": "wait", "args": ["15"]}
-{"t": 1793285118545, "cmd": "events", "args": ["400"]}
-{"t": 1793285125497, "cmd": "state", "args": ["--full"]}
-{"t": 1793285125603, "cmd": "status", "args": []}
-{"t": 1793285128136, "cmd": "state", "args": ["--full"]}
-{"t": 1793285128231, "cmd": "wait", "args": ["15"]}
-{"t": 1793285129862, "cmd": "shot", "args": ["hud_late"]}
-{"t": 1793285137927, "cmd": "note", "args": ["--shot", "chronicle_yournews", "Chronicle (opened with Y) shows 'Showing: > Your news' selected, yet the list is all other nations' raids and rivalries (e.g. 'Raiders from Westernport struck Westernland'); 259 entries, mostly raid spam. The only world-event news so far (tick 19751: 'A bountiful harvest came in across Castleburg...') is buried among ~50 raids, so a player would never notice nation world events happening."]}
-{"t": 1793285142647, "cmd": "key", "args": ["y"]}
-{"t": 1793285143169, "cmd": "wait", "args": ["1"]}
-{"t": 1793285143328, "cmd": "state", "args": ["--full"]}
-{"t": 1793285144268, "cmd": "state", "args": []}
-{"t": 1793285149021, "cmd": "wait", "args": ["15"]}
-{"t": 1793285164107, "cmd": "state", "args": ["--full"]}
-{"t": 1793285164196, "cmd": "wait", "args": ["15"]}
-{"t": 1793285179326, "cmd": "state", "args": ["--full"]}
-{"t": 1793285179469, "cmd": "wait", "args": ["15"]}
-{"t": 1793285194624, "cmd": "state", "args": ["--full"]}
-{"t": 1793285194715, "cmd": "wait", "args": ["15"]}
-{"t": 1793285209795, "cmd": "state", "args": ["--full"]}
-{"t": 1793285209875, "cmd": "wait", "args": ["15"]}
-{"t": 1793285224943, "cmd": "state", "args": ["--full"]}
-{"t": 1793285225011, "cmd": "wait", "args": ["15"]}
-{"t": 1793285240829, "cmd": "state", "args": ["--full"]}
-{"t": 1793285240932, "cmd": "wait", "args": ["15"]}
-{"t": 1793285256009, "cmd": "state", "args": ["--full"]}
-{"t": 1793285256085, "cmd": "wait", "args": ["15"]}
-{"t": 1793285272590, "cmd": "state", "args": ["--full"]}
-{"t": 1793285272683, "cmd": "wait", "args": ["15"]}
-{"t": 1793285287756, "cmd": "state", "args": ["--full"]}
-{"t": 1793285287830, "cmd": "wait", "args": ["15"]}
-{"t": 1793285302914, "cmd": "state", "args": ["--full"]}
-{"t": 1793285302983, "cmd": "wait", "args": ["15"]}
-{"t": 1793285318044, "cmd": "state", "args": ["--full"]}
-{"t": 1793285318119, "cmd": "wait", "args": ["15"]}
-{"t": 1793285333207, "cmd": "state", "args": ["--full"]}
-{"t": 1793285333280, "cmd": "wait", "args": ["15"]}
-{"t": 1793285348331, "cmd": "state", "args": ["--full"]}
-{"t": 1793285348382, "cmd": "wait", "args": ["15"]}
-{"t": 1793285363420, "cmd": "state", "args": ["--full"]}
-{"t": 1793285363465, "cmd": "wait", "args": ["15"]}
-{"t": 1793285378505, "cmd": "state", "args": ["--full"]}
-{"t": 1793285378548, "cmd": "wait", "args": ["15"]}
-{"t": 1793285393593, "cmd": "state", "args": ["--full"]}
-{"t": 1793285393641, "cmd": "wait", "args": ["15"]}
-{"t": 1793285408683, "cmd": "state", "args": ["--full"]}
-{"t": 1793285408727, "cmd": "wait", "args": ["15"]}
-{"t": 1793285423763, "cmd": "state", "args": ["--full"]}
-{"t": 1793285423799, "cmd": "wait", "args": ["15"]}
-{"t": 1793285438836, "cmd": "state", "args": ["--full"]}
-{"t": 1793285438870, "cmd": "wait", "args": ["15"]}
-{"t": 1793285453904, "cmd": "state", "args": ["--full"]}
-{"t": 1793285453937, "cmd": "wait", "args": ["15"]}
-{"t": 1793285468975, "cmd": "state", "args": ["--full"]}
-{"t": 1793285469015, "cmd": "wait", "args": ["15"]}
-{"t": 1793285484049, "cmd": "state", "args": ["--full"]}
-{"t": 1793285484085, "cmd": "wait", "args": ["15"]}
-{"t": 1793285499122, "cmd": "state", "args": ["--full"]}
-{"t": 1793285499162, "cmd": "wait", "args": ["15"]}
-{"t": 1793285514200, "cmd": "state", "args": ["--full"]}
-{"t": 1793285514240, "cmd": "wait", "args": ["15"]}
-{"t": 1793285529274, "cmd": "state", "args": ["--full"]}
-{"t": 1793285529310, "cmd": "wait", "args": ["15"]}
-{"t": 1793285544352, "cmd": "state", "args": ["--full"]}
-{"t": 1793285544392, "cmd": "wait", "args": ["15"]}
-{"t": 1793285559431, "cmd": "state", "args": ["--full"]}
-{"t": 1793285559470, "cmd": "wait", "args": ["15"]}
-{"t": 1793285574506, "cmd": "state", "args": ["--full"]}
-{"t": 1793285577974, "cmd": "shot", "args": ["drought"]}
-{"t": 1793285578081, "cmd": "state", "args": ["--full"]}
-{"t": 1793285584028, "cmd": "click", "args": ["480", "348"]}
-{"t": 1793285584718, "cmd": "wait", "args": ["3"]}
-{"t": 1793285587751, "cmd": "shot", "args": ["drought_after1"]}
-{"t": 1793285587866, "cmd": "state", "args": ["--full"]}
-{"t": 1793285587904, "cmd": "events", "args": ["6"]}
-{"t": 1793285600035, "cmd": "note", "args": ["--shot", "drought_after1", "Drought world event (tick 30551, first player event, ~611 game s in): sheet is clear - title, cause ('2 farms ... nothing for a day'), each option with cost and effect, 'The world waits while you decide'. Chose 1 'Dig irrigation ditches (15 wood, 10 stone)' while carrying only 5 stone: option was not greyed out, it went through, wood 44->29 and my stone 5->0; the other 5 stone was taken from somewhere (settlement store?) without saying so. Result toast and chronicle line are clear."]}
-{"t": 1793285600190, "cmd": "key", "args": ["Escape"]}
-{"t": 1793285600627, "cmd": "wait", "args": ["2"]}
-{"t": 1793285602660, "cmd": "shot", "args": ["pause"]}
-{"t": 1793285608710, "cmd": "stop", "args": []}
-{"t": 1793285608943, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "108", "--continue"]}
-{"t": 1793285610250, "cmd": "state", "args": ["--full"]}
-{"t": 1793285613587, "cmd": "wait", "args": ["10"]}
-{"t": 1793285623624, "cmd": "state", "args": ["--full"]}
-{"t": 1793285623661, "cmd": "wait", "args": ["10"]}
-{"t": 1793285633699, "cmd": "state", "args": ["--full"]}
-{"t": 1793285637851, "cmd": "state", "args": ["--full"]}
-{"t": 1793285637882, "cmd": "click", "args": ["480", "465"]}
-{"t": 1793285638573, "cmd": "wait", "args": ["3"]}
-{"t": 1793285641605, "cmd": "shot", "args": ["drought_ration"]}
-{"t": 1793285641713, "cmd": "state", "args": ["--full"]}
-{"t": 1793285641749, "cmd": "events", "args": ["4"]}
-{"t": 1793285654893, "cmd": "note", "args": ["--shot", "drought_ration", "Drought option 3 'Ration and wait for rain' says 'your people grow restless with you', but the result toast/chronicle only says 'you rationed the stores and waited for rain.' No number or visible change: Player Info still reads 'Relationships: 0'. Code lowers every member's relationship with the player, but the player is never told by how much or where to see it. Also visible here: objective progress bar text clipped on the left ('mbers 7/10 . Buildings 2/2'), and 'Chronicle: your news' lists other nations' stalls."]}
-{"t": 1793285674817, "cmd": "stop", "args": []}
-{"t": 1793285675049, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "108", "--continue"]}
-{"t": 1793285676349, "cmd": "wait", "args": ["8"]}
-{"t": 1793285684383, "cmd": "state", "args": ["--full"]}
-{"t": 1793285684417, "cmd": "wait", "args": ["8"]}
-{"t": 1793285692454, "cmd": "state", "args": ["--full"]}
-{"t": 1793285692495, "cmd": "wait", "args": ["8"]}
-{"t": 1793285700530, "cmd": "state", "args": ["--full"]}
-{"t": 1793285700564, "cmd": "click", "args": ["480", "405"]}
-{"t": 1793285701257, "cmd": "wait", "args": ["3"]}
-{"t": 1793285704290, "cmd": "shot", "args": ["drought_grain"]}
-{"t": 1793285704397, "cmd": "state", "args": ["--full"]}
-{"t": 1793285710110, "cmd": "stop", "args": []}
-{"t": 1793285730804, "cmd": "report", "args": []}
-{"t": 1793285744895, "cmd": "stop", "args": []}
+{"t": 1793318432463, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "108"]}
+{"t": 1793318498983, "cmd": "key", "args": ["space"]}
+{"t": 1793318501877, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318504890, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793318573126, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318574038, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793318574595, "cmd": "shot", "args": ["world0"]}
+{"t": 1793318575638, "cmd": "state", "args": []}
+{"t": 1793318626523, "cmd": "status", "args": []}
+{"t": 1793318645538, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318675864, "cmd": "key", "args": ["e"]}
+{"t": 1793318677718, "cmd": "key", "args": ["e"]}
+{"t": 1793318679434, "cmd": "key", "args": ["e"]}
+{"t": 1793318681306, "cmd": "key", "args": ["e"]}
+{"t": 1793318683073, "cmd": "key", "args": ["e"]}
+{"t": 1793318684929, "cmd": "key", "args": ["e"]}
+{"t": 1793318686722, "cmd": "state", "args": []}
+{"t": 1793318686927, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793318697629, "cmd": "click", "args": ["337", "376"]}
+{"t": 1793318698647, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318723725, "cmd": "key", "args": ["e"]}
+{"t": 1793318725407, "cmd": "key", "args": ["e"]}
+{"t": 1793318727098, "cmd": "key", "args": ["e"]}
+{"t": 1793318728858, "cmd": "key", "args": ["e"]}
+{"t": 1793318730496, "cmd": "key", "args": ["e"]}
+{"t": 1793318732199, "cmd": "state", "args": []}
+{"t": 1793318735581, "cmd": "key", "args": ["n"]}
+{"t": 1793318739406, "cmd": "shot", "args": ["nation"]}
+{"t": 1793318740019, "cmd": "state", "args": []}
+{"t": 1793318746639, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318781710, "cmd": "key", "args": ["e"]}
+{"t": 1793318783039, "cmd": "key", "args": ["e"]}
+{"t": 1793318784380, "cmd": "key", "args": ["e"]}
+{"t": 1793318785822, "cmd": "key", "args": ["e"]}
+{"t": 1793318787320, "cmd": "key", "args": ["e"]}
+{"t": 1793318788799, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318801606, "cmd": "key", "args": ["e"]}
+{"t": 1793318803075, "cmd": "key", "args": ["e"]}
+{"t": 1793318804447, "cmd": "key", "args": ["e"]}
+{"t": 1793318805902, "cmd": "key", "args": ["e"]}
+{"t": 1793318807321, "cmd": "key", "args": ["e"]}
+{"t": 1793318808691, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318839432, "cmd": "key", "args": ["e"]}
+{"t": 1793318840824, "cmd": "key", "args": ["e"]}
+{"t": 1793318842495, "cmd": "key", "args": ["e"]}
+{"t": 1793318843845, "cmd": "key", "args": ["e"]}
+{"t": 1793318845241, "cmd": "key", "args": ["e"]}
+{"t": 1793318846590, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318864224, "cmd": "key", "args": ["e"]}
+{"t": 1793318865601, "cmd": "key", "args": ["e"]}
+{"t": 1793318866968, "cmd": "key", "args": ["e"]}
+{"t": 1793318868400, "cmd": "key", "args": ["e"]}
+{"t": 1793318869800, "cmd": "key", "args": ["e"]}
+{"t": 1793318871174, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318887311, "cmd": "key", "args": ["e"]}
+{"t": 1793318888644, "cmd": "key", "args": ["e"]}
+{"t": 1793318890023, "cmd": "key", "args": ["e"]}
+{"t": 1793318891314, "cmd": "key", "args": ["e"]}
+{"t": 1793318892597, "cmd": "key", "args": ["e"]}
+{"t": 1793318893824, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318913682, "cmd": "key", "args": ["e"]}
+{"t": 1793318915097, "cmd": "key", "args": ["e"]}
+{"t": 1793318916532, "cmd": "key", "args": ["e"]}
+{"t": 1793318917947, "cmd": "key", "args": ["e"]}
+{"t": 1793318919438, "cmd": "key", "args": ["e"]}
+{"t": 1793318920800, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318935340, "cmd": "key", "args": ["e"]}
+{"t": 1793318936709, "cmd": "key", "args": ["e"]}
+{"t": 1793318938245, "cmd": "key", "args": ["e"]}
+{"t": 1793318939635, "cmd": "key", "args": ["e"]}
+{"t": 1793318940895, "cmd": "key", "args": ["e"]}
+{"t": 1793318942373, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793318961502, "cmd": "key", "args": ["e"]}
+{"t": 1793318963105, "cmd": "key", "args": ["e"]}
+{"t": 1793318964475, "cmd": "key", "args": ["e"]}
+{"t": 1793318965726, "cmd": "key", "args": ["e"]}
+{"t": 1793318967077, "cmd": "key", "args": ["e"]}
+{"t": 1793318968675, "cmd": "state", "args": []}
+{"t": 1793318971757, "cmd": "key", "args": ["f"]}
+{"t": 1793318975519, "cmd": "state", "args": []}
+{"t": 1793318975795, "cmd": "shot", "args": ["settled"]}
+{"t": 1793318981169, "cmd": "state", "args": ["--full"]}
+{"t": 1793318986977, "cmd": "state", "args": ["--full"]}
+{"t": 1793318990139, "cmd": "state", "args": []}
+{"t": 1793318995463, "cmd": "face", "args": ["-165"]}
+{"t": 1793319008812, "cmd": "hold", "args": ["w", "6"]}
+{"t": 1793319015405, "cmd": "state", "args": []}
+{"t": 1793319023294, "cmd": "face", "args": ["-60"]}
+{"t": 1793319031037, "cmd": "hold", "args": ["w", "15"]}
+{"t": 1793319046485, "cmd": "state", "args": []}
+{"t": 1793319050704, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1793319054087, "cmd": "key", "args": ["f"]}
+{"t": 1793319057899, "cmd": "state", "args": []}
+{"t": 1793319063243, "cmd": "key", "args": ["e"]}
+{"t": 1793319067006, "cmd": "state", "args": []}
+{"t": 1793319067335, "cmd": "shot", "args": ["inside"]}
+{"t": 1793319077619, "cmd": "events", "args": ["8"]}
+{"t": 1793319077908, "cmd": "state", "args": []}
+{"t": 1793319082437, "cmd": "note", "args": ["--shot", "overlap_label", "Inside own settlement, a huge world-space label ('...0 here, 3/8 residents') renders across the top of the screen behind the HUD, clipped and unreadable. Tick ~4730."]}
+{"t": 1793319088892, "cmd": "key", "args": ["e"]}
+{"t": 1793319091631, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793319125689, "cmd": "key", "args": ["e"]}
+{"t": 1793319127162, "cmd": "key", "args": ["e"]}
+{"t": 1793319128561, "cmd": "key", "args": ["e"]}
+{"t": 1793319129884, "cmd": "key", "args": ["e"]}
+{"t": 1793319131188, "cmd": "key", "args": ["e"]}
+{"t": 1793319132586, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793319172701, "cmd": "key", "args": ["e"]}
+{"t": 1793319174145, "cmd": "key", "args": ["e"]}
+{"t": 1793319175448, "cmd": "key", "args": ["e"]}
+{"t": 1793319176816, "cmd": "key", "args": ["e"]}
+{"t": 1793319178301, "cmd": "key", "args": ["e"]}
+{"t": 1793319179629, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793319196717, "cmd": "key", "args": ["e"]}
+{"t": 1793319198002, "cmd": "key", "args": ["e"]}
+{"t": 1793319199398, "cmd": "key", "args": ["e"]}
+{"t": 1793319200821, "cmd": "key", "args": ["e"]}
+{"t": 1793319202268, "cmd": "key", "args": ["e"]}
+{"t": 1793319203650, "cmd": "state", "args": []}
+{"t": 1793319208713, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793319221562, "cmd": "key", "args": ["e"]}
+{"t": 1793319222867, "cmd": "key", "args": ["e"]}
+{"t": 1793319224433, "cmd": "key", "args": ["e"]}
+{"t": 1793319226023, "cmd": "key", "args": ["e"]}
+{"t": 1793319227850, "cmd": "key", "args": ["e"]}
+{"t": 1793319229176, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793319245137, "cmd": "key", "args": ["e"]}
+{"t": 1793319246498, "cmd": "key", "args": ["e"]}
+{"t": 1793319247859, "cmd": "key", "args": ["e"]}
+{"t": 1793319249135, "cmd": "key", "args": ["e"]}
+{"t": 1793319250417, "cmd": "key", "args": ["e"]}
+{"t": 1793319251812, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793319298710, "cmd": "key", "args": ["e"]}
+{"t": 1793319300257, "cmd": "key", "args": ["e"]}
+{"t": 1793319301677, "cmd": "key", "args": ["e"]}
+{"t": 1793319303115, "cmd": "key", "args": ["e"]}
+{"t": 1793319304657, "cmd": "key", "args": ["e"]}
+{"t": 1793319306138, "cmd": "walkto", "args": ["settlement", "120"]}
+{"t": 1793319378569, "cmd": "key", "args": ["b"]}
+{"t": 1793319382370, "cmd": "state", "args": []}
+{"t": 1793319386100, "cmd": "key", "args": ["e"]}
+{"t": 1793319388809, "cmd": "key", "args": ["b"]}
+{"t": 1793319392463, "cmd": "events", "args": ["6"]}
+{"t": 1793319392598, "cmd": "state", "args": []}
+{"t": 1793319397275, "cmd": "key", "args": ["e"]}
+{"t": 1793319399077, "cmd": "key", "args": ["h"]}
+{"t": 1793319403908, "cmd": "state", "args": []}
+{"t": 1793319404141, "cmd": "key", "args": ["b"]}
+{"t": 1793319407888, "cmd": "state", "args": []}
+{"t": 1793319411623, "cmd": "key", "args": ["e"]}
+{"t": 1793319415241, "cmd": "key", "args": ["b"]}
+{"t": 1793319419928, "cmd": "state", "args": []}
+{"t": 1793319420274, "cmd": "shot", "args": ["stall"]}
+{"t": 1793319430622, "cmd": "key", "args": ["e"]}
+{"t": 1793319431481, "cmd": "wait", "args": ["45"]}
+{"t": 1793319476681, "cmd": "state", "args": []}
+{"t": 1793319476863, "cmd": "wait", "args": ["45"]}
+{"t": 1793319522073, "cmd": "state", "args": []}
+{"t": 1793319522207, "cmd": "wait", "args": ["45"]}
+{"t": 1793319567401, "cmd": "state", "args": []}
+{"t": 1793319567501, "cmd": "wait", "args": ["45"]}
+{"t": 1793319612715, "cmd": "state", "args": []}
+{"t": 1793319612885, "cmd": "wait", "args": ["45"]}
+{"t": 1793319658078, "cmd": "state", "args": []}
+{"t": 1793319658275, "cmd": "wait", "args": ["45"]}
+{"t": 1793319703384, "cmd": "state", "args": []}
+{"t": 1793319703537, "cmd": "wait", "args": ["45"]}
+{"t": 1793319748645, "cmd": "state", "args": []}
+{"t": 1793319748771, "cmd": "wait", "args": ["45"]}
+{"t": 1793319793875, "cmd": "state", "args": []}
+{"t": 1793319793945, "cmd": "events", "args": ["15"]}
+{"t": 1793319798195, "cmd": "wait", "args": ["40"]}
+{"t": 1793319838348, "cmd": "state", "args": []}
+{"t": 1793319838459, "cmd": "wait", "args": ["40"]}
+{"t": 1793319878553, "cmd": "state", "args": []}
+{"t": 1793319878621, "cmd": "wait", "args": ["40"]}
+{"t": 1793319918730, "cmd": "state", "args": []}
+{"t": 1793319918818, "cmd": "wait", "args": ["40"]}
+{"t": 1793319958965, "cmd": "state", "args": []}
+{"t": 1793319959143, "cmd": "wait", "args": ["40"]}
+{"t": 1793319999276, "cmd": "state", "args": []}
+{"t": 1793319999494, "cmd": "events", "args": ["40"]}
+{"t": 1793319999626, "cmd": "shot", "args": ["final"]}
+{"t": 1793320004278, "cmd": "note", "args": ["--shot", "no_event", "Tick 13880 (~278 game s, ~26 min wall): no world event offered to the player and no nation world event in the chronicle yet. state.worldEvent null throughout. Nothing on screen hints events exist or when one is coming."]}
+{"t": 1793320004821, "cmd": "events", "args": ["200"]}
+{"t": 1793320004949, "cmd": "stop", "args": []}
+{"t": 1793320019822, "cmd": "report", "args": []}
+{"t": 1793320034535, "cmd": "stop", "args": []}

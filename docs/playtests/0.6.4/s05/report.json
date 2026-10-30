@@ -1,96 +1,74 @@
 {
   "session": "s05",
-  "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan.",
-  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan. Check specifically that residents of YOUR own settlement leave the market stalls to you (they should not fill your market), and that the 'Build a market stall' objective completes only from a stall you build.",
+  "build": {"version": "0.6.3", "commit": "b6a0019"},
   "seed": 105,
-  "durationSec": 1489,
+  "durationSec": 1351,
   "outcome": "partial",
   "findings": [
     {
       "severity": "major",
       "category": "balance",
-      "title": "NPCs fill all 4 market stalls in a new settlement before the player can build one; B says 'Market is full'",
-      "detail": "I founded a settlement at tick 5750 with 4 wood left (founding takes 50 of the 54 I had), then left to chop the 20 wood a stall needs. By tick 6802 NPCs (Dave Robinson, Mike Roberts, Lily Wood) had built all 4 stalls in MY settlement ('The market is now full'). Back inside with 22 wood/5 stone, B gave 'Market is full. Cannot build stall.' The player never gets to build a stall in their own settlement. Expected: a stall slot kept for the leader, or NPCs waiting until the player has had a chance.",
-      "repro": "pt start --seed 105; gather ~54 wood; N; walk to open ground; F; E (enter); Exit Settlement; chop 20 wood (~1300 ticks); walkto settlement; e; b",
-      "screenshot": "shots/market-full.png",
-      "tick": 7118
+      "title": "A freshly built own market cannot trade at all: Sell and Purchase Food both fail, yet Market Info shows live prices",
+      "detail": "Right after building the first stall in my settlement (resident Nancy Walker becomes its merchant), Sell Resources says 'No merchant here can pay: the richest has 0 coins, and your cheapest good (sapling) sells for 19.' and Purchase Food says 'No one is selling food at this market...'. Still the same ~8 game seconds later. Meanwhile the Market Info panel lists buy/sell prices with trend arrows for 9 goods, which reads as a working market. Expected: either the new stall is seeded with a little coin/stock, or the panel says the merchant has nothing to trade yet. As a player whose goal is 'buy and sell', I had 437 coins and 31 apples and could do neither. Sell also offers saplings first as 'cheapest good', which is surprising.",
+      "repro": "pt start --seed 105; gather 50 wood, N, F on open ground, E to enter, gather 20 wood + 5 stone, H, E, B; click Sell Resources (187,444) and Purchase Food (66,444)",
+      "screenshot": "shots/market2.png",
+      "tick": 7332
     },
     {
       "severity": "major",
-      "category": "bug",
-      "title": "Objective 6 'Build a market stall' completes when an NPC builds a stall, not the player",
-      "detail": "objective_completed build-stall fired at tick 6050, the same tick the chronicle says 'Dave Robinson built a market stall in Easttown'. I was outside chopping wood at the time and had built nothing. The tutorial step was skipped, the +50 coin reward was paid for nothing, and B then refuses because the market is full.",
-      "repro": "As above; watch pt events for objective_completed number 6 while out of the settlement",
-      "screenshot": "shots/market-full.png",
-      "tick": 6050
-    },
-    {
-      "severity": "major",
-      "category": "bug",
-      "title": "Build-confirm window is ~1 game second, so a normal second click times out at low tps",
-      "detail": "Build Farm asks you to 'Click again to confirm'. Three separate clicks on 'Confirm Build Farm' failed with 'Not confirmed in time, so nothing was done.' and the button re-armed. Only two clicks fired 1.7 s apart in real time worked. The window looks like ~50 ticks, which is several real seconds at 9 tps but too short with 2 fps hover-then-click. It should be measured in real time (or be longer).",
-      "repro": "Inside own settlement with 25 wood/10 stone: pt click 473 445; pt wait 2; pt click 473 445 -> re-arms instead of building",
-      "screenshot": "shots/farm-confirm.png",
-      "tick": 8086
-    },
-    {
-      "severity": "minor",
       "category": "balance",
-      "title": "Selling in own settlement is coin-starved; Sell Resources sells one unit with no choice",
-      "detail": "Right after founding, Sell Resources gave 'No merchant here can pay: the richest has 9 coins'. Buying food (25 coins for 1 apple) gave the merchants enough to then buy 1 wood for 20. After that: 'richest has 6 coins', while Market Info showed '4/4 stalls, 40 coins'. I had 437 coins. I could not choose which good or how many to sell. The messages are clear and helpful, but trading is mostly blocked.",
-      "repro": "Inside new settlement: click Sell Resources (186,445); click Purchase Food (66,445); click Sell Resources again; again",
-      "screenshot": "shots/sell-starved.png",
-      "tick": 8906
+      "title": "Caravans are locked behind Town era and Storehouse needs 30 stone: out of reach of a 30-minute trade session",
+      "detail": "Inside my settlement the 'Send Caravan (Town era)' button is greyed; Town is era 3 of 4 (Camp -> Village needs 10 members, 2 buildings, 2 stalls, day 3). The Storehouse costs 10 wood + 30 stone. With the game running at 3-14 tps on a shared machine, reaching the stall objective took ~22 real minutes, so the caravan half of the goal was unreachable. A player hunting for the trade loop will see the caravan button almost immediately but not be able to use it for hours of play.",
+      "repro": "as above; enter own settlement and look at the 'Send Caravan (Town era)' button",
+      "screenshot": "shots/inside_overlay.png",
+      "tick": 5508
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "Storehouse/caravan gated behind Town era (Village alone needs Day 3); not reachable in a session, and not shown in era unlocks",
-      "detail": "'Send Caravan (Town era)' looks enabled. Clicking it says 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' The era box lists Village requirements (Village 0/1, Members 6/10, Stalls 2/2, Day 1/3) and Village unlocks (Workshop), but never mentions the Storehouse. With a 10-game-minute day, a caravan is at least 3+ game days away. The button should look disabled, and the era panel should show the path to the Storehouse.",
-      "repro": "Inside own settlement in Camp era: click Send Caravan (640,445); tap era box (110,58) and scroll",
-      "screenshot": "shots/caravan-gate.png",
-      "tick": 8726
+      "title": "Found-settlement 'open ground lies to the north' hint leads into another camp's exclusion zone; no compass on screen",
+      "detail": "Pressing F at (12,225) in Redton's land said 'Open ground lies about 180 to the north'. After sprinting ~190 units north, F said 'Too close to the Camp of Easternland: 91 away, and settlements must be 250 apart. Open ground lies about 160 to the east.' (a camp was founded meanwhile, or the hint ignored it). Following east then worked. There is no compass/minimap or heading indicator, so 'north' cannot be followed from the screen alone.",
+      "repro": "pt start --seed 105; collect 50 wood near spawn via pt walkto tree; F at ~(12,225); walk north; F again",
+      "screenshot": "shots/found_chase.png",
+      "tick": 4792
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "HUD layout breaks inside own settlement: Inventory panel jumps to screen centre, objective bar text clipped, giant floating resident label",
+      "detail": "After building a stall the Inventory Info panel moved from the left column to the middle of the screen over the well and stayed there. The objective 7 progress bar reads 'nbers 3/10 - Buildings 0/2' (clipped on the left). A huge white floating label '... here, 3/8 residents' is drawn behind the top HUD and cut off at the screen top. Market Info panel also overruns the Season panel when not in the settlement view.",
+      "repro": "enter own settlement, press B to build a stall, take a screenshot",
+      "screenshot": "shots/after_stall.png",
+      "tick": 6912
     },
     {
       "severity": "polish",
-      "category": "text",
-      "title": "HUD text clipped in settlement: objective hint, progress label, toast; world label overlaps HUD",
-      "detail": "Objective 6 hint 'Gather 20 wood and 5 stone' is cut off at the panel bottom. Objective 7 bar reads 'nbers 5/10' (Members). The toast 'Enter your settlemen' is truncated. The large world-space label 'N here, 3/8 residents' / 'Camp of Easttown' sits behind the top HUD. The Inventory panel covers the centre of the plaza.",
-      "repro": "Found a settlement and press E to enter; look at the top-left objective panel",
-      "screenshot": "shots/settlement-panel.png",
-      "tick": 5854
-    },
-    {
-      "severity": "polish",
-      "category": "text",
-      "title": "Missing-resource message counts the stockpile without saying so",
-      "detail": "With 5 stone in inventory, K for a House (15 stone) said 'Need 0 more wood, 5 more stone'. That was only right because 5 stone sat uncollected in the stockpile. Settlement Info 'Next (K)' also changed from Farm to House between visits, while the Build Farm button was still available.",
-      "repro": "Inside settlement with 21 wood/5 stone and 5 stone in the stockpile: pt key k",
-      "screenshot": "shots/kmenu.png",
-      "tick": 7666
+      "category": "ux",
+      "title": "WORKS: residents leave my market to me and 'Build a market stall' completes only from my own stall",
+      "detail": "With 3/8 residents in Southtown, Market Info stayed at 0/4 stalls and objective 6 stayed open until I pressed B (tick 6896 'Stall built.', objective completed tick 6900). Oscar Smith's stall built in rival Blackfield at tick 6800 did not complete it. After my build a resident (Nancy Walker) only staffs the stall as merchant. Logged as a positive confirmation.",
+      "repro": "as above; watch Market Info and objective 6 before/after B",
+      "screenshot": "shots/before_stall.png",
+      "tick": 6888
     }
   ],
   "metrics": {
     "objectivesCompleted": 6,
     "deaths": 0,
     "secondsToObjective": {
-      "Gather wood": 25.0,
-      "Eat something": 26.04,
-      "Create or join a nation": 28.04,
-      "Found a settlement": 115.0,
-      "Enter your settlement": 117.0,
-      "Build a market stall": 121.0
+      "Gather wood": 23.04,
+      "Eat something": 24.0,
+      "Create or join a nation": 28.0,
+      "Found a settlement": 106.0,
+      "Enter your settlement": 108.0,
+      "Build a market stall": 138.0
     },
-    "stallsBuiltByPlayer": 0,
-    "successfulSales": 1,
-    "failedSellAttempts": 3,
-    "foodPurchases": 1,
+    "stallsBuiltByResidentsInMySettlement": 0,
+    "successfulSales": 0,
+    "successfulPurchases": 0,
     "caravansSent": 0,
-    "farmConfirmAttempts": 4,
-    "finalCoins": 432,
-    "finalTick": 9010,
-    "typicalTps": 10
+    "typicalTps": 7
   },
   "fun": 2,
-  "verdict": "The early loop (chop, nation, found) flows well, and the error messages are good: they give spacing hints with distance and direction, and say why a merchant can't pay. But the trade goal falls apart. NPCs fill the player's own market before the player can build a stall, and the stall objective completes from their stall. Selling is starved of coins. The Storehouse and caravans sit behind the Town era, at least 3 game days away. The build-confirm window also times out at low tps (the machine was at load ~54, 2 fps / 7-15 tps; the first pt start timed out)."
+  "verdict": "The stall fix holds: residents don't build in the leader's market, and the objective completes only from the player's own B press. The trade loop itself dead-ends, though: a new market's merchant has 0 coins and no stock, so you can't buy or sell, while the panel shows prices as if you could. Caravans are hidden behind Town era, so 'trade and caravans' can't be done in a short session. The game also ran at 3-14 tps here, which made gathering 70+ wood a slog."
 }

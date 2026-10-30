@@ -1,94 +1,48 @@
-{"type":"screen","tick":0,"wallTimeMs":1793282416655,"from":null,"to":"TITLE"}
-{"type":"screen","tick":0,"wallTimeMs":1793282430498,"from":"TITLE","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793282439128,"from":"MAIN_MENU","to":"NEW_WORLD"}
-{"type":"world","tick":0,"wallTimeMs":1793282440100,"how":"created","slot":"world-107-20261029-140040","seed":107}
-{"type":"screen","tick":0,"wallTimeMs":1793282440102,"from":"NEW_WORLD","to":"WORLD"}
-{"type":"screen","tick":7,"wallTimeMs":1793282440981,"from":"WORLD","to":"CRAFTING"}
-{"type":"screen","tick":11,"wallTimeMs":1793282448336,"from":"CRAFTING","to":"WORLD"}
-{"type":"status","tick":223,"wallTimeMs":1793282464368,"text":"Gathered 6 wood and 2 apples from tree."}
-{"type":"status","tick":399,"wallTimeMs":1793282476529,"text":"Gathered 5 stone from rock."}
-{"type":"screen","tick":515,"wallTimeMs":1793282484043,"from":"WORLD","to":"CRAFTING"}
-{"type":"status","tick":515,"wallTimeMs":1793282490416,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}
-{"type":"screen","tick":519,"wallTimeMs":1793282496357,"from":"CRAFTING","to":"WORLD"}
-{"type":"status","tick":687,"wallTimeMs":1793282510144,"text":"Gathered 7 wood and 1 apple from tree (\u002B3 from your axe), 19 uses left."}
-{"type":"status","tick":815,"wallTimeMs":1793282521748,"text":"Crafted 1 pickaxe (\u002B2 stone per rock, lasts 15 rocks)."}
-{"type":"status","tick":987,"wallTimeMs":1793282549675,"text":"Gathered 7 stone from rock (\u002B2 from your pickaxe), 14 uses left."}
-{"type":"status","tick":1415,"wallTimeMs":1793282588087,"text":"Harvested chicken meat."}
-{"type":"screen","tick":1495,"wallTimeMs":1793282594232,"from":"WORLD","to":"CRAFTING"}
-{"type":"status","tick":1495,"wallTimeMs":1793282601224,"text":"Crafted 1 cooked meat (45 energy each)."}
-{"type":"screen","tick":1499,"wallTimeMs":1793282602561,"from":"CRAFTING","to":"WORLD"}
-{"type":"screen","tick":1527,"wallTimeMs":1793282606264,"from":"WORLD","to":"INVENTORY"}
-{"type":"screen","tick":1531,"wallTimeMs":1793282617702,"from":"INVENTORY","to":"WORLD"}
-{"type":"screen","tick":1551,"wallTimeMs":1793282630174,"from":"WORLD","to":"CONTROLS"}
-{"type":"screen","tick":1555,"wallTimeMs":1793282721208,"from":"CONTROLS","to":"WORLD"}
-{"type":"chronicle","tick":1903,"wallTimeMs":1793282744186,"kind":"NationCreation","text":"Grace Smith declared the nation of Southernshire, though none had yet sworn to it. It is the first nation this world has known."}
-{"type":"chronicle","tick":1951,"wallTimeMs":1793282748181,"kind":"SettlementFounded","text":"Southernshire put down roots: Grace Smith founded its first settlement."}
-{"type":"status","tick":2159,"wallTimeMs":1793282762142,"text":"No entities within range to interact with."}
-{"type":"status","tick":2187,"wallTimeMs":1793282763939,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":2223,"wallTimeMs":1793282766410,"text":"No entities within range to interact with. (x3)"}
-{"type":"chronicle","tick":2603,"wallTimeMs":1793282791593,"kind":"NationCreation","text":"The nation of Uppertown was born, with Yvonne Brown at its head."}
-{"type":"chronicle","tick":2703,"wallTimeMs":1793282798521,"kind":"SettlementFounded","text":"Uppertown put down roots: Yvonne Brown founded its first settlement."}
-{"type":"status","tick":3003,"wallTimeMs":1793282825244,"text":"You enter the land of Southernshire."}
-{"type":"status","tick":3235,"wallTimeMs":1793282841503,"text":"Gathered 9 wood and 3 apples from tree (\u002B3 from your axe), 18 uses left."}
-{"type":"objective_completed","tick":3251,"wallTimeMs":1793282842727,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":3251}
-{"type":"status","tick":3251,"wallTimeMs":1793282842727,"text":"Objective complete: Gather wood. \u002B2 apples."}
-{"type":"objective_completed","tick":3303,"wallTimeMs":1793282846414,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
-{"type":"status","tick":3303,"wallTimeMs":1793282846414,"text":"Objective complete: Eat something. \u002B25 coins."}
-{"type":"status","tick":3467,"wallTimeMs":1793282859233,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 17 uses left."}
-{"type":"status","tick":3743,"wallTimeMs":1793282879014,"text":"You leave the land of Southernshire for the wilds."}
-{"type":"status","tick":3751,"wallTimeMs":1793282879605,"text":"You enter the land of Southernshire."}
-{"type":"status","tick":3859,"wallTimeMs":1793282887608,"text":"Gathered 7 wood and 2 apples from tree (\u002B3 from your axe), 16 uses left."}
-{"type":"chronicle","tick":4003,"wallTimeMs":1793282898705,"kind":"NationRelationChange","text":"Southernshire and Uppertown have become rivals over their border."}
-{"type":"chronicle","tick":4051,"wallTimeMs":1793282903295,"kind":"NationCreation","text":"Yvonne Evans raised a banner and called it Townburg."}
-{"type":"status","tick":4091,"wallTimeMs":1793282906772,"text":"You leave the land of Southernshire for the wilds."}
-{"type":"status","tick":4271,"wallTimeMs":1793282919949,"text":"Gathered 8 wood and 1 apple from tree (\u002B3 from your axe), 15 uses left."}
-{"type":"status","tick":4307,"wallTimeMs":1793282922670,"text":"Gathered 7 wood and 2 apples from tree (\u002B3 from your axe), 14 uses left."}
-{"type":"status","tick":4567,"wallTimeMs":1793282945231,"text":"Gathered 8 wood and 1 apple from tree (\u002B3 from your axe), 13 uses left."}
-{"type":"status","tick":4587,"wallTimeMs":1793282947004,"text":"Gathered 8 wood and 3 apples from tree (\u002B3 from your axe), 12 uses left."}
-{"type":"chronicle","tick":4651,"wallTimeMs":1793282952027,"kind":"SettlementFounded","text":"Townburg put down roots: Yvonne Evans founded its first settlement."}
-{"type":"status","tick":4751,"wallTimeMs":1793282960466,"text":"Gathered 9 wood and 1 apple from tree (\u002B3 from your axe), 11 uses left."}
-{"type":"chronicle","tick":4803,"wallTimeMs":1793282964622,"kind":"NationCreation","text":"The nation of Eastville was born, with Linda Watson at its head."}
-{"type":"status","tick":4831,"wallTimeMs":1793282967737,"text":"Created nation Hamletburg."}
-{"type":"chronicle","tick":4831,"wallTimeMs":1793282967737,"kind":"NationCreation","text":"You founded the nation of Hamletburg."}
-{"type":"objective_completed","tick":4851,"wallTimeMs":1793282969259,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":1548}
-{"type":"status","tick":4851,"wallTimeMs":1793282969259,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
-{"type":"chronicle","tick":4851,"wallTimeMs":1793282969259,"kind":"StallBuilt","text":"Trade came to Uppertown: Yvonne Brown built a stall."}
-{"type":"status","tick":4895,"wallTimeMs":1793282972658,"text":"Too close to the Town of Southernshire: 143 away, and settlements must be 250 apart. Open ground lies about 120 to the north."}
-{"type":"chronicle","tick":4903,"wallTimeMs":1793282973303,"kind":"SettlementFounded","text":"Linda Watson raised the first settlement of Eastville."}
-{"type":"chronicle","tick":4951,"wallTimeMs":1793282976822,"kind":"NationCreation","text":"Abigail Davies raised a banner and called it Castleton."}
-{"type":"screen","tick":5095,"wallTimeMs":1793282987799,"from":"WORLD","to":"PAUSE"}
-{"type":"screen","tick":5099,"wallTimeMs":1793283006676,"from":"PAUSE","to":"WORLD"}
-{"type":"chronicle","tick":5103,"wallTimeMs":1793283006976,"kind":"NationCreation","text":"The nation of Northernford was born, with Fiona Watson at its head."}
-{"type":"status","tick":5211,"wallTimeMs":1793283014348,"text":"You enter the land of Southernshire (Neutral)."}
-{"type":"chronicle","tick":5251,"wallTimeMs":1793283017049,"kind":"NationCreation","text":"Judy White founded the nation of Greatwood."}
-{"type":"status","tick":5279,"wallTimeMs":1793283018882,"text":"This land is claimed by Southernshire. Found your settlement outside its borders. Open ground lies about 260 to the south-east."}
-{"type":"chronicle","tick":5403,"wallTimeMs":1793283026645,"kind":"StallBuilt","text":"A new stall opened in the market of Eastville, built by Linda Watson."}
-{"type":"chronicle","tick":5603,"wallTimeMs":1793283041104,"kind":"SettlementFounded","text":"Northernford put down roots: Fiona Watson founded its first settlement."}
-{"type":"status","tick":5623,"wallTimeMs":1793283042856,"text":"You leave the land of Southernshire for the wilds."}
-{"type":"status","tick":5707,"wallTimeMs":1793283050259,"text":"Too close to the Camp of Eastville: 75 away, and settlements must be 250 apart. Open ground lies about 310 to the north-west."}
-{"type":"chronicle","tick":5751,"wallTimeMs":1793283054315,"kind":"StallBuilt","text":"Trade came to Uppertown: Yvonne Brown built a stall."}
-{"type":"status","tick":5863,"wallTimeMs":1793283063763,"text":"You enter the land of Eastville (Neutral)."}
-{"type":"status","tick":5991,"wallTimeMs":1793283075305,"text":"You leave the land of Eastville for the wilds."}
-{"type":"save","tick":6003,"wallTimeMs":1793283076698,"count":1}
-{"type":"status","tick":6163,"wallTimeMs":1793283089394,"text":"Too close to the Camp of Northernford: 136 away, and settlements must be 250 apart. Open ground lies about 121 to the west."}
-{"type":"chronicle","tick":6251,"wallTimeMs":1793283097043,"kind":"SettlementFounded","text":"Abigail Davies raised the first settlement of Castleton."}
-{"type":"chronicle","tick":6303,"wallTimeMs":1793283101415,"kind":"NationCreation","text":"Una Smith raised a banner and called it Eastford."}
-{"type":"chronicle","tick":6351,"wallTimeMs":1793283106169,"kind":"NationCreation","text":"Phoebe Thompson raised a banner and called it Newport."}
-{"type":"status","tick":6403,"wallTimeMs":1793283110886,"text":"You enter the land of Northernford (Neutral)."}
-{"type":"status","tick":6471,"wallTimeMs":1793283117825,"text":"This land is claimed by Northernford. Found your settlement outside its borders. Open ground lies about 211 to the north."}
-{"type":"chronicle","tick":6503,"wallTimeMs":1793283120838,"kind":"NationRelationChange","text":"Uppertown and Southernshire are now hostile."}
-{"type":"chronicle","tick":6603,"wallTimeMs":1793283129862,"kind":"SettlementFounded","text":"Phoebe Thompson laid the first stones of Newport."}
-{"type":"chronicle","tick":7003,"wallTimeMs":1793283265324,"kind":"StallBuilt","text":"A new stall opened in the market of Newport, built by Phoebe Thompson."}
-{"type":"chronicle","tick":7003,"wallTimeMs":1793283265324,"kind":"NationRelationChange","text":"Southernshire and Townburg have become rivals over their border."}
-{"type":"chronicle","tick":7003,"wallTimeMs":1793283265324,"kind":"NationRaid","text":"Raiders from Uppertown struck Southernshire, taking 5 wood, 5 stone."}
-{"type":"chronicle","tick":7051,"wallTimeMs":1793283270103,"kind":"SettlementFounded","text":"Una Smith raised the first settlement of Eastford."}
-{"type":"status","tick":7171,"wallTimeMs":1793283282080,"text":"You leave the land of Northernford for the wilds."}
-{"type":"chronicle","tick":7203,"wallTimeMs":1793283284741,"kind":"SettlementFounded","text":"Greatwood put down roots: Judy White founded its first settlement."}
-{"type":"chronicle","tick":7251,"wallTimeMs":1793283288550,"kind":"NationRelationChange","text":"Southernshire and Eastville have become rivals over their border."}
-{"type":"status","tick":7295,"wallTimeMs":1793283292860,"text":"Settlement founded. Northernford and Newport and Eastford resent a new settlement so near their land."}
-{"type":"chronicle","tick":7295,"wallTimeMs":1793283292860,"kind":"SettlementFounded","text":"Hamletburg put down roots: you founded its first settlement."}
-{"type":"objective_completed","tick":7303,"wallTimeMs":1793283293894,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":2452}
-{"type":"status","tick":7303,"wallTimeMs":1793283293894,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
-{"type":"screen","tick":7367,"wallTimeMs":1793283303812,"from":"WORLD","to":"CRAFTING"}
-{"type":"status","tick":7367,"wallTimeMs":1793283323097,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}
-{"type":"screen","tick":7371,"wallTimeMs":1793283335635,"from":"CRAFTING","to":"WORLD"}
+{"type":"screen","tick":0,"wallTimeMs":1793317187684,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793317199658,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793317201012,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793317218220,"how":"created","slot":"world-107-20261029-234018","seed":107}
+{"type":"screen","tick":0,"wallTimeMs":1793317218222,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":10,"wallTimeMs":1793317225645,"from":"WORLD","to":"CRAFTING"}
+{"type":"screen","tick":14,"wallTimeMs":1793317244235,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":278,"wallTimeMs":1793317279104,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":538,"wallTimeMs":1793317301036,"text":"Gathered 5 stone from rock."}
+{"type":"screen","tick":610,"wallTimeMs":1793317309953,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":610,"wallTimeMs":1793317324325,"text":"Crafted 1 axe (\u002B3 wood per tree, lasts 20 trees)."}
+{"type":"screen","tick":614,"wallTimeMs":1793317335422,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":754,"wallTimeMs":1793317361208,"text":"Gathered 7 wood and 1 apple from tree (\u002B3 from your axe), 19 uses left."}
+{"type":"status","tick":938,"wallTimeMs":1793317406477,"text":"Crafted 1 pickaxe (\u002B2 stone per rock, lasts 15 rocks)."}
+{"type":"status","tick":1354,"wallTimeMs":1793317477105,"text":"No entities within range to interact with."}
+{"type":"status","tick":1610,"wallTimeMs":1793317541423,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":1902,"wallTimeMs":1793317580219,"kind":"NationCreation","text":"Grace Smith founded the nation of Fortshire. It is the first nation this world has known."}
+{"type":"chronicle","tick":1950,"wallTimeMs":1793317586992,"kind":"SettlementFounded","text":"Fortshire put down roots: Grace Smith founded its first settlement."}
+{"type":"chronicle","tick":2002,"wallTimeMs":1793317593956,"kind":"NationCreation","text":"The nation of Oldshire was born, with Fiona Johnson at its head."}
+{"type":"status","tick":2094,"wallTimeMs":1793317605475,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":2350,"wallTimeMs":1793317642054,"kind":"SettlementFounded","text":"Fiona Johnson laid the first stones of Oldshire."}
+{"type":"status","tick":2522,"wallTimeMs":1793317668089,"text":"Gathered 7 stone from rock (\u002B2 from your pickaxe), 14 uses left."}
+{"type":"status","tick":2750,"wallTimeMs":1793317697484,"text":"You enter the land of Oldshire."}
+{"type":"status","tick":2802,"wallTimeMs":1793317708474,"text":"You leave the land of Oldshire for the wilds."}
+{"type":"status","tick":2810,"wallTimeMs":1793317713377,"text":"Harvested chicken meat."}
+{"type":"status","tick":3246,"wallTimeMs":1793317758865,"text":"Harvested chicken meat. (x2)"}
+{"type":"screen","tick":3294,"wallTimeMs":1793317766997,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":3294,"wallTimeMs":1793317775409,"text":"Crafted 1 cooked meat (45 energy each)."}
+{"type":"screen","tick":3298,"wallTimeMs":1793317777331,"from":"CRAFTING","to":"WORLD"}
+{"type":"chronicle","tick":3402,"wallTimeMs":1793317794583,"kind":"NationCreation","text":"Judy Taylor declared the nation of Newland, though none had yet sworn to it."}
+{"type":"chronicle","tick":3450,"wallTimeMs":1793317801479,"kind":"SettlementFounded","text":"Judy Taylor raised the first settlement of Newland."}
+{"type":"screen","tick":3530,"wallTimeMs":1793317815295,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":3534,"wallTimeMs":1793317893035,"from":"CONTROLS","to":"WORLD"}
+{"type":"screen","tick":3538,"wallTimeMs":1793317894384,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":3542,"wallTimeMs":1793317922484,"from":"INVENTORY","to":"WORLD"}
+{"type":"screen","tick":3630,"wallTimeMs":1793317934475,"from":"WORLD","to":"CRAFTING"}
+{"type":"status","tick":3630,"wallTimeMs":1793317936492,"text":"Crafted 1 pickaxe (\u002B2 stone per rock, lasts 15 rocks)."}
+{"type":"screen","tick":3634,"wallTimeMs":1793317938285,"from":"CRAFTING","to":"WORLD"}
+{"type":"screen","tick":3638,"wallTimeMs":1793317939446,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":3642,"wallTimeMs":1793317980319,"from":"INVENTORY","to":"WORLD"}
+{"type":"chronicle","tick":4002,"wallTimeMs":1793318038795,"kind":"NationRelationChange","text":"Fortshire and Oldshire have become rivals over their border."}
+{"type":"chronicle","tick":4402,"wallTimeMs":1793318108102,"kind":"StallBuilt","text":"A new stall opened in the market of Oldshire, built by Fiona Johnson."}
+{"type":"status","tick":4458,"wallTimeMs":1793318126499,"text":"Gathered 8 wood and 2 apples from tree (\u002B3 from your axe), 18 uses left."}
+{"type":"status","tick":4474,"wallTimeMs":1793318129277,"text":"Gathered 7 wood and 2 apples from tree (\u002B3 from your axe), 17 uses left."}
+{"type":"objective_completed","tick":4502,"wallTimeMs":1793318134718,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":4502}
+{"type":"status","tick":4502,"wallTimeMs":1793318134718,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":4550,"wallTimeMs":1793318142763,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":4550,"wallTimeMs":1793318142763,"text":"Objective complete: Eat something. \u002B25 coins."}

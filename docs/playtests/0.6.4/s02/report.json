@@ -1,92 +1,84 @@
 {
   "session": "s02",
   "goal": "Reach the Village era as fast as you can (it cannot come before day 3, about 17 minutes of game time); record the game time of every objective.",
-  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "build": {"version": "0.6.3", "commit": "b6a0019"},
   "seed": 102,
-  "durationSec": 1543,
+  "durationSec": 1410,
   "outcome": "partial",
   "findings": [
     {
       "severity": "major",
       "category": "perf",
-      "title": "Game ran at 0.2-16 tps (normally 50) on the shared machine, so the day-3 Village gate could not be reached in a 35-minute session",
-      "detail": "pt status/state showed tps between 0.2 and 16, mostly 11-13, with fps 0-3 (load average about 55). Game time ran at roughly a quarter of real time. After 25 minutes of wall-clock time the game was at tick 10270, still day 1 (timeOfDay 0.64). Every other Village requirement was met or nearly met by tick 8800. At this rate day 3 (about tick 60000) would take over an hour of real time. walkto also timed out several times because it steers at 2-3 fps.",
-      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 102 with several sessions in parallel; play for 25 minutes; pt state shows tps and tick",
-      "screenshot": "shots/day_gate.png",
-      "tick": 10270
+      "title": "Game runs at 4-11 ticks/s (1-2 fps) under shared load, making the Day 3 Village gate unreachable in a session",
+      "detail": "Throughout the session pt status/state showed tps 4-11 of 50 and fps 0-2 (host load average ~94 on 20 cores, so partly environmental). After ~23 min of wall clock the world was only at tick 7324 (day 1, timeOfDay 0.54). Village needs Day 3 (~tick 60000), i.e. 2-3 more hours of wall time. Every other Village condition except Members (7/10) was met by tick 6976 (~140 game s), so the day gate is the entire wait.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-playtest064 --seed 102 on a busy host; pt status repeatedly",
+      "screenshot": "shots/perf.png",
+      "tick": 7324
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "Objective 6 'Build a market stall' completes when an NPC builds a stall, without the player doing anything",
-      "detail": "I was out chopping trees outside my land. At tick 7150 the event 'Trade came to Southernford: Linda Wilson built a stall.' fired, and objective 6 completed at the same tick (+50 coins). I never pressed B, so the tutorial step that teaches stall building was skipped. I expected the objective to need a stall I built myself, or the toast to say the NPC built it for me.",
-      "repro": "seed 102; found a settlement around (-470,-263) at about tick 6200; leave it and gather; around tick 7150 the objective completes by itself",
-      "screenshot": "shots/npc_stall_objective.png",
-      "tick": 7150
+      "title": "Two-step build confirmation expires in ~40-48 game ticks, too short at low frame rates",
+      "detail": "Pressing K (or clicking Build House) shows 'Press K again / Click again to confirm: Build House', but the confirmation expired ('Not confirmed in time, so nothing was done.') five times in a row because a second press 8-15 s later was more than ~48 ticks at 4-6 tps. Only two clicks fired 3 s apart from one shell command worked. Build Stall, by contrast, built on the first click with no confirmation, which is inconsistent. Expected: a real-time window (or a longer one), and the same behaviour for all build buttons.",
+      "repro": "Inside own settlement with 20 wood/15 stone: pt key k; (wait ~10 s) pt key k -> 'Not confirmed in time'. Events ticks 6192-6672.",
+      "screenshot": "shots/confirm.png",
+      "tick": 6672
     },
     {
       "severity": "minor",
       "category": "text",
-      "title": "Settlement shows 'Village' tier while the nation's era is still Camp",
-      "detail": "After building a Farm (tick 8810), the Settlement Info panel said 'Tier: Village (3 buildings)' and the floating label said 'Village of Southernford', but the era panel still said 'Era: Camp (1/4)' with Members 6/10 and Day 1/3 left to do. Two different meanings of 'Village' are on screen at once. It reads as though the goal is already reached when it is not.",
-      "repro": "seed 102; found a settlement, enter it, press K twice to build a Farm; compare the Settlement Info panel and the era panel",
-      "screenshot": "shots/day_gate.png",
-      "tick": 9114
-    },
-    {
-      "severity": "minor",
-      "category": "text",
-      "title": "Objective 7's progress bar text is clipped on the left and does not match the era checklist",
-      "detail": "The bar shows 'mbers 6/10 - Buildings 2/2' with the start of 'Members' cut off. The objective counts 'Buildings 0/2' while the era checklist counts 'Stalls 2/2' and 'Village 0/1' (a settlement with 2 buildings), so the two panels describe the same goal differently.",
-      "repro": "seed 102; reach objective 7 'Reach the Village era'; look at the objective panel at the top left",
-      "screenshot": "shots/npc_stall_objective.png",
-      "tick": 8594
-    },
-    {
-      "severity": "polish",
-      "category": "text",
-      "title": "On entering the settlement, popups overlap and several labels are clipped",
-      "detail": "On first entering my settlement, two 'Objective complete' popups stacked on top of the chronicle. 'Enter your settlemen' was clipped, the objective panel's 'Gather 20 wood and 5 stone' line was cut off at the bottom of the panel, and a large world-space label '0 here, 1/8 residents' showed through the top HUD.",
-      "repro": "seed 102; found a settlement (F), then press E to enter",
-      "screenshot": "shots/settlement_overlap.png",
-      "tick": 6402
-    },
-    {
-      "severity": "polish",
-      "category": "text",
-      "title": "Red status toast is clipped: 'No entities within range to interact w'",
-      "detail": "At 960x540 the red error toast at the top centre cuts off the end of its message.",
-      "repro": "press e with nothing in reach",
-      "screenshot": "shots/toast_cut.png",
-      "tick": 2418
+      "title": "Objective 7 progress text is clipped on the left and leaves out two of the four Village conditions",
+      "detail": "The objective bar reads 'nbers 7/10 · Buildings 2/2' (the 'Me' of Members is cut off). The objective tracks only Members and Buildings, but the era panel needs 4 conditions (Village 1/1, Members x/10, Stalls x/2, Day x/3). A player following only the objective will not know about the stalls or the day gate. Right after the second house the objective still said 'Buildings 1/2' while the era panel already said Village 1/1, until a later refresh.",
+      "repro": "Complete objective 6 (build a market stall), then click the Era '+' at (168,58) and compare the era list with the Objective panel",
+      "screenshot": "shots/era.png",
+      "tick": 4932
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "E next to the settlement centre talks to a pawn instead of entering; the follow-up K says 'You are not inside a settlement'",
-      "detail": "Standing about 16 m from my settlement centre, with a member pawn close by, E opened Linda Wilson's dialogue ('Yes, leader? I hardly know you...') instead of entering. Linda is also labelled 'Stranger' although she is already a member of my nation. The Enter Settlement button worked.",
-      "repro": "seed 102; walk back to your own settlement while your residents stand around it; press e then k",
-      "screenshot": "shots/recruit.png",
-      "tick": 8634
+      "title": "Found-settlement refusal says 'open ground lies about 280 to the west' but nothing on screen shows direction",
+      "detail": "Pressing F too close to another town gives a useful message with distance and compass direction, but the HUD has no compass, map or heading, so the player has to guess which way is west. I only found it with the probe's yaw. The second attempt gave the same kind of message ('70 to the west') after a 255-unit walk.",
+      "repro": "Gather 50 wood near spawn (seed 102), pt key f at about (-146,-165) -> 'Too close to the Town of Fortressland... about 280 to the west'",
+      "screenshot": "shots/nocompass.png",
+      "tick": 3644
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective hint and completion popups are truncated",
+      "detail": "Objective 4 hint showed 'Gather 50 wood, then press' with the key cut off (it wrapped correctly a few seconds later). The top toast read 'Objective complete: Create or' and the popup read 'Create or join a nat'. Expected: the full text, wrapped.",
+      "repro": "From a fresh world, gather 10 wood, then pt key n; screenshot right away",
+      "screenshot": "shots/textcut.png",
+      "tick": 1116
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement world label renders huge across the top of the HUD, and pawn name labels overlap the objective panel",
+      "detail": "Right after founding, the floating label 'Village of Easternville / 3 here, 7/16 residents' is drawn in very large text behind the Chronicle and toast, and a pawn label ('...antha Brown') overlaps the Objective panel. Both are hard to read and clutter the HUD.",
+      "repro": "Found a settlement and stand next to it; take a screenshot",
+      "screenshot": "shots/labels.png",
+      "tick": 4568
     }
   ],
   "metrics": {
     "objectivesCompleted": 6,
     "deaths": 0,
     "secondsToObjective": {
-      "Gather wood": 56.04,
-      "Eat something": 57.0,
-      "Create or join a nation": 58.04,
-      "Found a settlement": 124.04,
-      "Enter your settlement": 126.04,
-      "Build a market stall": 143.0
+      "Gather wood": 17.04,
+      "Eat something": 18.0,
+      "Create or join a nation": 21.04,
+      "Found a settlement": 89.04,
+      "Enter your settlement": 92.0,
+      "Build a market stall": 95.04
     },
-    "villageEraReached": false,
-    "finalTick": 10270,
-    "finalMembers": 6,
-    "settlementPlacementAttempts": 4,
-    "typicalTps": 12
+    "villageConditionsMetAtEnd": "Village 1/1, Stalls 2/2, Members 7/10, Day 1/3",
+    "villageTierReachedTick": 6864,
+    "secondStallTick": 6976,
+    "finalTick": 7324,
+    "avgTps": 6,
+    "villageEraReached": false
   },
   "fun": 3,
-  "verdict": "The early loop moves fast and is well signposted. Six objectives were done in 143 game seconds, and the 'too close to X, open ground lies N to the south' hints made placing a settlement easy. Once the settlement exists, NPCs build stalls and buildings for you, and the only things left are a fixed day-3 timer and recruiting members, so the Village era turns into waiting. The two different meanings of 'Village' on screen make that wait confusing. On this loaded machine (about 12 tps) the day-3 gate could not be reached in the session at all."
+  "verdict": "The early loop is quick and well guided: wood, nation, settlement and a stall took 95 game seconds, and the stockpile, the clear 'too close' message and the lively chronicle all helped. After that the Village era is just a wait on the Day 3 gate, which this overloaded host (about 6 tps) could not reach in the session. The objective panel also hides two of the four Village conditions (stalls and day). The two-step build confirm, which expires in game ticks, and the lack of a compass were the main frictions."
 }

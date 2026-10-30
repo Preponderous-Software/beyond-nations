@@ -41,6 +41,16 @@ namespace beyondnations {
         public const int LAW_DELAY_TICKS = 1500;
         /** How long a peace or a tribute holds off raids and sieges: a minute. */
         public const int TRUCE_TICKS = 3000;
+        /**
+        * How long the player's envoy to a nation is away after it has dealt
+        * with that nation (a gift or tribute, an alliance, a denunciation,
+        * war or peace): twenty seconds, four diplomacy rounds, as often as a
+        * pawn-led nation may pay tribute. The nations screen pauses the
+        * world, and dealing took no game time at all: in the 0.6.4 playtest
+        * (s04) one tick saw three tributes, an alliance, two denunciations,
+        * war, peace and war again with one neighbour (#424).
+        */
+        public const int ENVOY_TICKS = 1000;
         /** A member whose relationship with the player sinks this low deserts. */
         public const int DESERT_AT = -15;
         /** Declaring war drops relations to at least this. */
@@ -62,6 +72,8 @@ namespace beyondnations {
         private List<NationLaws> laws = new List<NationLaws>();
         private HashSet<string> wars = new HashSet<string>();
         private Dictionary<string, int> truces = new Dictionary<string, int>();
+        // pair -> the tick the player's envoy is back from that nation (ENVOY_TICKS)
+        private Dictionary<string, int> envoys = new Dictionary<string, int>();
 
         private List<Reign> lineage = new List<Reign>();
         private int reignStartTick = 0;
@@ -155,6 +167,7 @@ namespace beyondnations {
             }
             lawRound++;
             expireTruces(totalTicks);
+            expireEnvoys(totalTicks);
             foreach (NationLaws entry in new List<NationLaws>(laws)) {
                 Nation nation = nationRepository.getNation(entry.getNationId());
                 if (nation == null) {
@@ -573,6 +586,38 @@ namespace beyondnations {
             truces[pairKey(a, b)] = now() + TRUCE_TICKS;
         }
 
+        /**
+        * Ticks until the player's envoy is back from dealing with the other
+        * nation, or 0 when it is free to deal again. Every diplomatic act
+        * that takes effect sends it (sendEnvoy); one that is refused does not.
+        */
+        public int getEnvoyTicksLeft(Nation own, Nation other) {
+            int back;
+            if (own == null || other == null || own == other || !envoys.TryGetValue(pairKey(own, other), out back)) {
+                return 0;
+            }
+            return Math.Max(0, back - now());
+        }
+
+        /** The player's nation has just dealt with the other: no more dealing for ENVOY_TICKS. */
+        public void sendEnvoy(Nation own, Nation other) {
+            if (own != null && other != null && own != other) {
+                envoys[pairKey(own, other)] = now() + ENVOY_TICKS;
+            }
+        }
+
+        private void expireEnvoys(int totalTicks) {
+            List<string> back = new List<string>();
+            foreach (KeyValuePair<string, int> envoy in envoys) {
+                if (envoy.Value <= totalTicks) {
+                    back.Add(envoy.Key);
+                }
+            }
+            foreach (string key in back) {
+                envoys.Remove(key);
+            }
+        }
+
         private void expireTruces(int totalTicks) {
             List<string> ended = new List<string>();
             foreach (KeyValuePair<string, int> truce in truces) {
@@ -689,6 +734,14 @@ namespace beyondnations {
                 writer.endArray();
             }
             writer.endArray();
+            writer.beginArray("envoys");
+            foreach (KeyValuePair<string, int> envoy in envoys) {
+                writer.beginArray();
+                writer.writeValue(envoy.Key);
+                writer.writeValue(envoy.Value);
+                writer.endArray();
+            }
+            writer.endArray();
             writer.beginArray("lineage");
             foreach (Reign reign in lineage) {
                 writer.beginObject();
@@ -720,6 +773,10 @@ namespace beyondnations {
             truces.Clear();
             foreach (JsonElement entry in SaveReader.property(element, "truces").EnumerateArray()) {
                 truces[entry[0].GetString()] = entry[1].GetInt32();
+            }
+            envoys.Clear();
+            foreach (JsonElement entry in SaveReader.property(element, "envoys").EnumerateArray()) {
+                envoys[entry[0].GetString()] = entry[1].GetInt32();
             }
             lineage.Clear();
             foreach (JsonElement entry in SaveReader.property(element, "lineage").EnumerateArray()) {

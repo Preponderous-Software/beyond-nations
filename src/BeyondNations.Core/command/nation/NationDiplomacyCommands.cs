@@ -51,6 +51,27 @@ namespace beyondnations {
             return own != null && target != null && own != target && !realm.isAtWar(own, target);
         }
 
+        /**
+        * Whether the player's envoy to the target is still away from the last
+        * dealing (Realm.ENVOY_TICKS), with the wait on the status line. Every
+        * dealing takes game time (#424): before, the nations screen paused
+        * the world and a whole diplomatic history fitted in one tick.
+        */
+        public static bool isEnvoyAway(Player player, Realm realm, Nation own, Nation target) {
+            int left = realm == null ? 0 : realm.getEnvoyTicksLeft(own, target);
+            if (left <= 0) {
+                return false;
+            }
+            player.getStatus().update("Your envoy to " + target.getName() + " is still on the road: you can deal with them again in "
+                + secondsOf(left) + " seconds of play.");
+            return true;
+        }
+
+        /** Ticks as whole seconds of play, rounded up so that 1 tick left reads 1, not 0. */
+        public static int secondsOf(int ticks) {
+            return (ticks + TickCounter.DefaultTicksPerSecond - 1) / TickCounter.DefaultTicksPerSecond;
+        }
+
         /** Whether the player can deal with other nations at all: they lead one. */
         public static bool playerLeads(Player player, NationRepository nationRepository) {
             Nation own = nationRepository.getNation(player.getNationId());
@@ -92,6 +113,9 @@ namespace beyondnations {
             if (own == null) {
                 return;
             }
+            if (NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return;
+            }
             int coins = Diplomacy.PLAYER_GIFT_COINS;
             if (player.getInventory().getNumItems(ItemType.COIN) < coins) {
                 player.getStatus().update("A gift to " + target.getName() + " costs " + coins + " coins; you carry "
@@ -102,6 +126,7 @@ namespace beyondnations {
             player.getInventory().removeItem(ItemType.COIN, coins);
             diplomacy.giveCoins(target, coins);
             diplomacy.change(own, target, Diplomacy.giftValue(coins));
+            realm?.sendEnvoy(own, target);
             if (tribute) {
                 realm.grantTruce(own, target);
                 player.getStatus().update(target.getName() + " accepts your tribute of " + coins + " coins and will hold off its raiders for "
@@ -139,6 +164,9 @@ namespace beyondnations {
             if (own == null) {
                 return;
             }
+            if (NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return;
+            }
             NationRelations relations = nationRepository.getRelations();
             if (relations.isAllied(own, target)) {
                 player.getStatus().update("You are already allied with " + target.getName() + ".");
@@ -169,6 +197,7 @@ namespace beyondnations {
                 }
             }
             relations.formAlliance(own, target);
+            realm?.sendEnvoy(own, target);
             player.getStatus().update(target.getName() + " agrees: " + own.getName() + " and " + target.getName() + " are now allies.");
         }
     }
@@ -177,10 +206,14 @@ namespace beyondnations {
     public class DenounceNationCommand {
         private readonly NationRepository nationRepository;
         private readonly Diplomacy diplomacy;
+        private readonly Realm realm;
 
-        public DenounceNationCommand(NationRepository nationRepository, Diplomacy diplomacy) {
+        // realm is optional so that existing callers keep compiling; without
+        // one, denouncing sends no envoy (Realm.ENVOY_TICKS)
+        public DenounceNationCommand(NationRepository nationRepository, Diplomacy diplomacy, Realm realm = null) {
             this.nationRepository = nationRepository;
             this.diplomacy = diplomacy;
+            this.realm = realm;
         }
 
         public void execute(Player player, Nation target) {
@@ -188,10 +221,14 @@ namespace beyondnations {
             if (own == null) {
                 return;
             }
+            if (NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return;
+            }
             NationRelations relations = nationRepository.getRelations();
             relations.breakAlliance(own, target);
             relations.markDenounced(own, target);
             diplomacy.change(own, target, Diplomacy.DENOUNCE);
+            realm?.sendEnvoy(own, target);
             player.getStatus().update("You denounced " + target.getName() + ". Relations: " + relations.describe(own, target) + ".");
         }
     }

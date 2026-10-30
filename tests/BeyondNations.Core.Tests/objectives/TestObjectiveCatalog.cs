@@ -198,6 +198,35 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testBuildStall_ForALeader_CountsOnlyTheirHomeSettlement() {
+            // #423: a resident's stall in a colony is not the player's work
+            Nation nation = makePlayerLeader();
+            Settlement home = addSettlement(nation, Vector3.Zero);
+            Settlement colony = addSettlement(nation, new Vector3(1000, 0, 0));
+            player.setHomeSettlementId(home.getId());
+
+            colony.getMarket().createStall();
+            Assert.False(arc("build-stall").evaluate(simulation).isComplete());
+
+            home.getMarket().createStall();
+            Assert.True(arc("build-stall").evaluate(simulation).isComplete());
+        }
+
+        [Fact]
+        public void testBuildStall_ForAMemberWhoDoesNotLead_AnyStallOfTheNationCounts() {
+            Nation nation = new Nation("Elsewhere", new EntityId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(nation);
+            nation.addMember(player.getId());
+            player.setNationId(nation.getId());
+            Settlement home = addSettlement(nation, Vector3.Zero);
+            Settlement other = addSettlement(nation, new Vector3(1000, 0, 0));
+            player.setHomeSettlementId(home.getId());
+
+            other.getMarket().createStall();
+            Assert.True(arc("build-stall").evaluate(simulation).isComplete());
+        }
+
+        [Fact]
         public void testBuildStall_HintAsksForStoneUntilAffordable() {
             makePlayerLeader();
             string hint = arc("build-stall").getHint(simulation);

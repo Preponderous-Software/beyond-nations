@@ -1,199 +1,160 @@
-{"t": 1793282022567, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "107"]}
-{"t": 1793282394333, "cmd": "status", "args": []}
-{"t": 1793282415368, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "107"]}
-{"t": 1793282425995, "cmd": "shot", "args": ["title"]}
-{"t": 1793282430454, "cmd": "key", "args": ["space"]}
-{"t": 1793282431060, "cmd": "await", "args": ["MAIN_MENU", "30"]}
-{"t": 1793282431216, "cmd": "shot", "args": ["menu"]}
-{"t": 1793282438617, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282439414, "cmd": "await", "args": ["NEW_WORLD", "30"]}
-{"t": 1793282439537, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282440405, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282440758, "cmd": "key", "args": ["c"]}
-{"t": 1793282441315, "cmd": "await", "args": ["CRAFTING", "20"]}
-{"t": 1793282441445, "cmd": "shot", "args": ["craft0"]}
-{"t": 1793282441731, "cmd": "state", "args": []}
-{"t": 1793282447977, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282448632, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282464038, "cmd": "key", "args": ["e"]}
-{"t": 1793282464705, "cmd": "wait", "args": ["2"]}
-{"t": 1793282466864, "cmd": "state", "args": []}
-{"t": 1793282466990, "cmd": "events", "args": ["5"]}
-{"t": 1793282471589, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793282476156, "cmd": "key", "args": ["e"]}
-{"t": 1793282476798, "cmd": "wait", "args": ["2"]}
-{"t": 1793282478934, "cmd": "state", "args": []}
-{"t": 1793282479088, "cmd": "shot", "args": ["afterrock"]}
-{"t": 1793282483681, "cmd": "key", "args": ["c"]}
-{"t": 1793282484177, "cmd": "await", "args": ["CRAFTING", "20"]}
-{"t": 1793282484526, "cmd": "shot", "args": ["craft1"]}
-{"t": 1793282489480, "cmd": "click", "args": ["822", "141"]}
-{"t": 1793282490290, "cmd": "wait", "args": ["1"]}
-{"t": 1793282491435, "cmd": "shot", "args": ["craft2"]}
-{"t": 1793282491702, "cmd": "state", "args": []}
-{"t": 1793282496244, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282496848, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282510046, "cmd": "key", "args": ["e"]}
-{"t": 1793282510582, "cmd": "wait", "args": ["2"]}
-{"t": 1793282512690, "cmd": "state", "args": []}
-{"t": 1793282512878, "cmd": "shot", "args": ["axechop"]}
-{"t": 1793282520482, "cmd": "click", "args": ["545", "517"]}
-{"t": 1793282521307, "cmd": "wait", "args": ["1"]}
-{"t": 1793282522540, "cmd": "state", "args": []}
-{"t": 1793282522783, "cmd": "walkto", "args": ["rock", "90"]}
-{"t": 1793282549366, "cmd": "key", "args": ["e"]}
-{"t": 1793282550028, "cmd": "wait", "args": ["2"]}
-{"t": 1793282552242, "cmd": "state", "args": []}
-{"t": 1793282552481, "cmd": "shot", "args": ["pickmine"]}
-{"t": 1793282556953, "cmd": "walkto", "args": ["chicken", "90"]}
-{"t": 1793282587745, "cmd": "key", "args": ["e"]}
-{"t": 1793282588400, "cmd": "wait", "args": ["2"]}
-{"t": 1793282590531, "cmd": "state", "args": []}
-{"t": 1793282593818, "cmd": "key", "args": ["c"]}
-{"t": 1793282594379, "cmd": "await", "args": ["CRAFTING", "20"]}
-{"t": 1793282594890, "cmd": "shot", "args": ["craft3"]}
-{"t": 1793282599996, "cmd": "click", "args": ["822", "265"]}
-{"t": 1793282600827, "cmd": "wait", "args": ["1"]}
-{"t": 1793282601958, "cmd": "state", "args": []}
-{"t": 1793282602110, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282605363, "cmd": "key", "args": ["i"]}
-{"t": 1793282605896, "cmd": "wait", "args": ["1"]}
-{"t": 1793282607068, "cmd": "shot", "args": ["inv"]}
-{"t": 1793282617047, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282619723, "cmd": "wait", "args": ["1"]}
-{"t": 1793282629283, "cmd": "click", "args": ["48", "20"]}
-{"t": 1793282655092, "cmd": "wait", "args": ["1"]}
-{"t": 1793282680886, "cmd": "shot", "args": ["controls"]}
-{"t": 1793282709815, "cmd": "click", "args": ["615", "507"]}
-{"t": 1793282710647, "cmd": "wait", "args": ["1"]}
-{"t": 1793282711749, "cmd": "shot", "args": ["controls2"]}
-{"t": 1793282712505, "cmd": "click", "args": ["615", "507"]}
-{"t": 1793282713268, "cmd": "wait", "args": ["1"]}
-{"t": 1793282714412, "cmd": "shot", "args": ["controls3"]}
-{"t": 1793282721048, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282721525, "cmd": "wait", "args": ["1"]}
-{"t": 1793282722585, "cmd": "note", "args": ["--shot", "inv_no_eat", "Crafted Cooked Meat (tick 1495, '45 energy each'), but there is no way to eat it: no eat key on any of the 3 Controls pages, no button in the Inventory (I) screen, no HUD button. Energy 95 unchanged. Players cannot tell if/when food is consumed."]}
-{"t": 1793282722751, "cmd": "events", "args": ["30"]}
-{"t": 1793282761232, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793282761801, "cmd": "key", "args": ["e"]}
-{"t": 1793282762325, "cmd": "wait", "args": ["1"]}
-{"t": 1793282763392, "cmd": "state", "args": []}
-{"t": 1793282763531, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793282763789, "cmd": "key", "args": ["e"]}
-{"t": 1793282764291, "cmd": "wait", "args": ["1"]}
-{"t": 1793282765403, "cmd": "state", "args": []}
-{"t": 1793282765478, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793282766242, "cmd": "key", "args": ["e"]}
-{"t": 1793282766824, "cmd": "wait", "args": ["1"]}
-{"t": 1793282769113, "cmd": "state", "args": []}
-{"t": 1793282771976, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282772738, "cmd": "state", "args": []}
-{"t": 1793282772869, "cmd": "shot", "args": ["walkfail"]}
-{"t": 1793282779261, "cmd": "face", "args": ["52"]}
-{"t": 1793282782821, "cmd": "hold", "args": ["Shift_L+w", "8"]}
-{"t": 1793282791004, "cmd": "state", "args": []}
-{"t": 1793282794485, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282841355, "cmd": "key", "args": ["e"]}
-{"t": 1793282841866, "cmd": "wait", "args": ["1"]}
-{"t": 1793282842989, "cmd": "state", "args": []}
-{"t": 1793282843104, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282859076, "cmd": "key", "args": ["e"]}
-{"t": 1793282859617, "cmd": "wait", "args": ["1"]}
-{"t": 1793282860691, "cmd": "state", "args": []}
-{"t": 1793282860770, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282887087, "cmd": "key", "args": ["e"]}
-{"t": 1793282887811, "cmd": "wait", "args": ["1"]}
-{"t": 1793282888962, "cmd": "state", "args": []}
-{"t": 1793282894823, "cmd": "events", "args": ["40"]}
-{"t": 1793282894967, "cmd": "note", "args": ["--shot", "meat_wasted", "Cooked Meat vanished from inventory between tick ~2600 and 3247 with no message; energy went from ~90 to 99.2 (capped at 100). Auto-eat triggers below 90 energy and picks the MOST nourishing food first, so the 45-energy cooked meat restores only ~10 while 12 apples (15 each) sit in the bag. Crafting cooked meat is effectively wasted."]}
-{"t": 1793282901982, "cmd": "walkto", "args": ["rock", "120"]}
-{"t": 1793282919601, "cmd": "key", "args": ["e"]}
-{"t": 1793282920146, "cmd": "wait", "args": ["1"]}
-{"t": 1793282921586, "cmd": "state", "args": []}
-{"t": 1793282921700, "cmd": "walkto", "args": ["rock", "120"]}
-{"t": 1793282922247, "cmd": "key", "args": ["e"]}
-{"t": 1793282922849, "cmd": "wait", "args": ["1"]}
-{"t": 1793282923929, "cmd": "state", "args": []}
-{"t": 1793282924043, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282944664, "cmd": "key", "args": ["e"]}
-{"t": 1793282945245, "cmd": "wait", "args": ["1"]}
-{"t": 1793282946392, "cmd": "state", "args": []}
-{"t": 1793282946549, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282946751, "cmd": "key", "args": ["e"]}
-{"t": 1793282947350, "cmd": "wait", "args": ["1"]}
-{"t": 1793282948488, "cmd": "state", "args": []}
-{"t": 1793282948633, "cmd": "walkto", "args": ["tree", "120"]}
-{"t": 1793282959988, "cmd": "key", "args": ["e"]}
-{"t": 1793282960574, "cmd": "wait", "args": ["1"]}
-{"t": 1793282961692, "cmd": "state", "args": []}
-{"t": 1793282966284, "cmd": "key", "args": ["n"]}
-{"t": 1793282966803, "cmd": "wait", "args": ["2"]}
-{"t": 1793282968878, "cmd": "shot", "args": ["nation"]}
-{"t": 1793282969252, "cmd": "state", "args": []}
-{"t": 1793282972418, "cmd": "key", "args": ["f"]}
-{"t": 1793282972990, "cmd": "wait", "args": ["3"]}
-{"t": 1793282976076, "cmd": "state", "args": []}
-{"t": 1793282976218, "cmd": "click", "args": ["110", "57"]}
-{"t": 1793282977095, "cmd": "wait", "args": ["1"]}
-{"t": 1793282978183, "cmd": "shot", "args": ["era"]}
-{"t": 1793282987596, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282988127, "cmd": "hold", "args": ["Shift_L+w", "6"]}
-{"t": 1793282994311, "cmd": "key", "args": ["f"]}
-{"t": 1793282994801, "cmd": "wait", "args": ["2"]}
-{"t": 1793282996877, "cmd": "state", "args": []}
-{"t": 1793283000361, "cmd": "state", "args": []}
-{"t": 1793283000432, "cmd": "shot", "args": ["s1"]}
-{"t": 1793283006411, "cmd": "key", "args": ["Escape"]}
-{"t": 1793283006930, "cmd": "await", "args": ["WORLD", "10"]}
-{"t": 1793283006997, "cmd": "face", "args": ["96"]}
-{"t": 1793283012325, "cmd": "hold", "args": ["Shift_L+w", "6"]}
-{"t": 1793283018496, "cmd": "key", "args": ["f"]}
-{"t": 1793283019004, "cmd": "wait", "args": ["2"]}
-{"t": 1793283021064, "cmd": "state", "args": []}
-{"t": 1793283025806, "cmd": "face", "args": ["-176"]}
-{"t": 1793283035741, "cmd": "hold", "args": ["Shift_L+w", "14"]}
-{"t": 1793283049961, "cmd": "key", "args": ["f"]}
-{"t": 1793283050516, "cmd": "wait", "args": ["2"]}
-{"t": 1793283052686, "cmd": "state", "args": []}
-{"t": 1793283060066, "cmd": "face", "args": ["-30"]}
-{"t": 1793283062922, "cmd": "hold", "args": ["Shift_L+w", "26"]}
-{"t": 1793283089194, "cmd": "key", "args": ["f"]}
-{"t": 1793283089874, "cmd": "wait", "args": ["2"]}
-{"t": 1793283092008, "cmd": "state", "args": []}
-{"t": 1793283098828, "cmd": "face", "args": ["-98"]}
-{"t": 1793283106313, "cmd": "hold", "args": ["Shift_L+w", "11"]}
-{"t": 1793283117635, "cmd": "key", "args": ["f"]}
-{"t": 1793283118226, "cmd": "wait", "args": ["2"]}
-{"t": 1793283120412, "cmd": "state", "args": []}
-{"t": 1793283126040, "cmd": "face", "args": ["-96"]}
-{"t": 1793283132833, "cmd": "state", "args": []}
-{"t": 1793283139396, "cmd": "face", "args": ["176"]}
-{"t": 1793283243367, "cmd": "state", "args": []}
-{"t": 1793283247850, "cmd": "hold", "args": ["a", "0.5"]}
-{"t": 1793283248604, "cmd": "state", "args": []}
-{"t": 1793283253650, "cmd": "hold", "args": ["a", "1.5"]}
-{"t": 1793283255323, "cmd": "wait", "args": ["1"]}
-{"t": 1793283256448, "cmd": "state", "args": []}
-{"t": 1793283262455, "cmd": "hold", "args": ["d", "4"]}
-{"t": 1793283266723, "cmd": "wait", "args": ["1"]}
-{"t": 1793283267858, "cmd": "state", "args": []}
-{"t": 1793283272258, "cmd": "hold", "args": ["Shift_L+w", "20"]}
-{"t": 1793283292539, "cmd": "key", "args": ["f"]}
-{"t": 1793283293262, "cmd": "wait", "args": ["2"]}
-{"t": 1793283295397, "cmd": "state", "args": []}
-{"t": 1793283303520, "cmd": "key", "args": ["c"]}
-{"t": 1793283304082, "cmd": "await", "args": ["CRAFTING", "20"]}
-{"t": 1793283304181, "cmd": "shot", "args": ["craft_settle"]}
-{"t": 1793283309424, "cmd": "wait", "args": ["2"]}
-{"t": 1793283311659, "cmd": "shot", "args": ["craft_settle2"]}
-{"t": 1793283312225, "cmd": "state", "args": []}
-{"t": 1793283321547, "cmd": "note", "args": ["--shot", "planks_locked", "Planks and Bricks (2 of 5 recipes) stay locked even in my own founded settlement (tick ~7400): need Village era = 1 village, 10 members, 2 stalls, day 3. With game time at 0-17 tps on this machine, day 3 is far out of reach in a 30-min session; a player can't try trade-good crafting early. Lock reason is clearly shown in orange, which is good."]}
-{"t": 1793283321870, "cmd": "click", "args": ["822", "141"]}
-{"t": 1793283322762, "cmd": "wait", "args": ["2"]}
-{"t": 1793283324919, "cmd": "state", "args": []}
-{"t": 1793283335321, "cmd": "key", "args": ["Escape"]}
-{"t": 1793283335973, "cmd": "events", "args": ["100"]}
-{"t": 1793283336159, "cmd": "state", "args": []}
-{"t": 1793283336339, "cmd": "stop", "args": []}
-{"t": 1793283363570, "cmd": "report", "args": []}
-{"t": 1793285744867, "cmd": "stop", "args": []}
+{"t": 1793317184561, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "107"]}
+{"t": 1793317199540, "cmd": "key", "args": ["space"]}
+{"t": 1793317200283, "cmd": "await", "args": ["MAIN_MENU", "30"]}
+{"t": 1793317200448, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793317201410, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793317201734, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793317217574, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793317218569, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1793317219987, "cmd": "wait", "args": ["2"]}
+{"t": 1793317224802, "cmd": "key", "args": ["c"]}
+{"t": 1793317226126, "cmd": "await", "args": ["CRAFTING", "10"]}
+{"t": 1793317226456, "cmd": "shot", "args": ["craft1"]}
+{"t": 1793317227092, "cmd": "state", "args": []}
+{"t": 1793317243965, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317244772, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793317245010, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317278732, "cmd": "state", "args": []}
+{"t": 1793317278875, "cmd": "key", "args": ["e"]}
+{"t": 1793317279533, "cmd": "wait", "args": ["1"]}
+{"t": 1793317280799, "cmd": "state", "args": []}
+{"t": 1793317284462, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793317285226, "cmd": "events", "args": ["5"]}
+{"t": 1793317285437, "cmd": "state", "args": []}
+{"t": 1793317292898, "cmd": "click", "args": ["337", "376"]}
+{"t": 1793317293839, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793317300554, "cmd": "key", "args": ["e"]}
+{"t": 1793317301388, "cmd": "wait", "args": ["1"]}
+{"t": 1793317302740, "cmd": "events", "args": ["2"]}
+{"t": 1793317303011, "cmd": "state", "args": []}
+{"t": 1793317309405, "cmd": "key", "args": ["c"]}
+{"t": 1793317310085, "cmd": "await", "args": ["CRAFTING", "10"]}
+{"t": 1793317310288, "cmd": "shot", "args": ["craft2"]}
+{"t": 1793317322904, "cmd": "click", "args": ["820", "141"]}
+{"t": 1793317324129, "cmd": "wait", "args": ["1"]}
+{"t": 1793317325513, "cmd": "shot", "args": ["craft3"]}
+{"t": 1793317326071, "cmd": "state", "args": []}
+{"t": 1793317326468, "cmd": "events", "args": ["3"]}
+{"t": 1793317334626, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317335595, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793317335821, "cmd": "shot", "args": ["inv_axe"]}
+{"t": 1793317336362, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317359392, "cmd": "key", "args": ["e"]}
+{"t": 1793317360440, "cmd": "wait", "args": ["1"]}
+{"t": 1793317361890, "cmd": "events", "args": ["1"]}
+{"t": 1793317362288, "cmd": "state", "args": []}
+{"t": 1793317393348, "cmd": "shot", "args": ["world_axe"]}
+{"t": 1793317404726, "cmd": "click", "args": ["37", "376"]}
+{"t": 1793317405742, "cmd": "click", "args": ["545", "517"]}
+{"t": 1793317406743, "cmd": "wait", "args": ["1"]}
+{"t": 1793317408093, "cmd": "events", "args": ["2"]}
+{"t": 1793317408326, "cmd": "state", "args": []}
+{"t": 1793317415044, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793317476410, "cmd": "key", "args": ["e"]}
+{"t": 1793317477481, "cmd": "wait", "args": ["1"]}
+{"t": 1793317478956, "cmd": "events", "args": ["1"]}
+{"t": 1793317479534, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793317540588, "cmd": "key", "args": ["e"]}
+{"t": 1793317541399, "cmd": "wait", "args": ["1"]}
+{"t": 1793317542875, "cmd": "events", "args": ["1"]}
+{"t": 1793317543271, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793317557235, "cmd": "state", "args": []}
+{"t": 1793317572389, "cmd": "walkto", "args": ["rock", "200"]}
+{"t": 1793317604829, "cmd": "key", "args": ["e"]}
+{"t": 1793317605603, "cmd": "wait", "args": ["1"]}
+{"t": 1793317606927, "cmd": "events", "args": ["1"]}
+{"t": 1793317607551, "cmd": "state", "args": []}
+{"t": 1793317667400, "cmd": "key", "args": ["e"]}
+{"t": 1793317668152, "cmd": "wait", "args": ["1"]}
+{"t": 1793317669387, "cmd": "events", "args": ["1"]}
+{"t": 1793317669745, "cmd": "shot", "args": ["pick1"]}
+{"t": 1793317670693, "cmd": "state", "args": []}
+{"t": 1793317675689, "cmd": "walkto", "args": ["chicken", "200"]}
+{"t": 1793317708863, "cmd": "key", "args": ["e"]}
+{"t": 1793317709515, "cmd": "wait", "args": ["1"]}
+{"t": 1793317710671, "cmd": "events", "args": ["2"]}
+{"t": 1793317710864, "cmd": "state", "args": []}
+{"t": 1793317716267, "cmd": "state", "args": []}
+{"t": 1793317716536, "cmd": "walkto", "args": ["chicken", "100"]}
+{"t": 1793317758231, "cmd": "key", "args": ["e"]}
+{"t": 1793317759023, "cmd": "wait", "args": ["1"]}
+{"t": 1793317760127, "cmd": "events", "args": ["3"]}
+{"t": 1793317760349, "cmd": "shot", "args": ["chicken1"]}
+{"t": 1793317761168, "cmd": "state", "args": []}
+{"t": 1793317766349, "cmd": "key", "args": ["c"]}
+{"t": 1793317767032, "cmd": "await", "args": ["CRAFTING", "10"]}
+{"t": 1793317767177, "cmd": "wait", "args": ["1"]}
+{"t": 1793317768419, "cmd": "shot", "args": ["craft4"]}
+{"t": 1793317773741, "cmd": "click", "args": ["820", "265"]}
+{"t": 1793317774777, "cmd": "wait", "args": ["1"]}
+{"t": 1793317776269, "cmd": "events", "args": ["1"]}
+{"t": 1793317776611, "cmd": "state", "args": []}
+{"t": 1793317777009, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317777789, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793317778466, "cmd": "wait", "args": ["1"]}
+{"t": 1793317779691, "cmd": "shot", "args": ["world2"]}
+{"t": 1793317813013, "cmd": "click", "args": ["337", "389"]}
+{"t": 1793317813912, "cmd": "click", "args": ["48", "20"]}
+{"t": 1793317814906, "cmd": "wait", "args": ["1"]}
+{"t": 1793317816177, "cmd": "shot", "args": ["controls"]}
+{"t": 1793317828174, "cmd": "click", "args": ["615", "507"]}
+{"t": 1793317829245, "cmd": "wait", "args": ["1"]}
+{"t": 1793317830431, "cmd": "shot", "args": ["controls2"]}
+{"t": 1793317831448, "cmd": "click", "args": ["615", "507"]}
+{"t": 1793317832665, "cmd": "wait", "args": ["1"]}
+{"t": 1793317834017, "cmd": "shot", "args": ["controls3"]}
+{"t": 1793317864622, "cmd": "click", "args": ["615", "507"]}
+{"t": 1793317865992, "cmd": "wait", "args": ["2"]}
+{"t": 1793317868576, "cmd": "shot", "args": ["controls4"]}
+{"t": 1793317892525, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317893428, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793317893767, "cmd": "key", "args": ["i"]}
+{"t": 1793317894623, "cmd": "await", "args": ["INVENTORY", "10"]}
+{"t": 1793317894995, "cmd": "wait", "args": ["1"]}
+{"t": 1793317896303, "cmd": "shot", "args": ["inventory"]}
+{"t": 1793317920466, "cmd": "note", "args": ["--shot", "no_eat", "Cooked Meat recipe says '45 energy (raw: 25)' but there is no Eat key on any of the 3 Controls pages and no Eat button in Inventory (I). Energy seems to rise on its own (84->99 after first chop while apples went 2->1; 90.6->99 around chicken harvest), so food appears to be auto-eaten, but nothing on screen says so. Player cannot choose to eat cooked over raw meat."]}
+{"t": 1793317921558, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317933727, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793317934082, "cmd": "key", "args": ["c"]}
+{"t": 1793317934796, "cmd": "await", "args": ["CRAFTING", "10"]}
+{"t": 1793317934992, "cmd": "click", "args": ["820", "203"]}
+{"t": 1793317935970, "cmd": "wait", "args": ["1"]}
+{"t": 1793317937460, "cmd": "events", "args": ["1"]}
+{"t": 1793317937835, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317938735, "cmd": "key", "args": ["i"]}
+{"t": 1793317939290, "cmd": "await", "args": ["INVENTORY", "10"]}
+{"t": 1793317939695, "cmd": "wait", "args": ["1"]}
+{"t": 1793317940855, "cmd": "shot", "args": ["inv2"]}
+{"t": 1793317941176, "cmd": "state", "args": []}
+{"t": 1793317965225, "cmd": "wait", "args": ["2"]}
+{"t": 1793317967509, "cmd": "shot", "args": ["objregress"]}
+{"t": 1793317968186, "cmd": "state", "args": []}
+{"t": 1793317979615, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317980303, "cmd": "await", "args": ["WORLD", "10"]}
+{"t": 1793317980785, "cmd": "wait", "args": ["2"]}
+{"t": 1793317983110, "cmd": "note", "args": ["--shot", "obj_regress", "Objective 1 'Gather wood 10' counts wood currently held, so crafting sets it back: it read Wood 9/10 at tick ~760 (after 13 wood gathered), dropped to 6 then 5/10 after crafting a pickaxe and cooked meat. After crafting a second pickaxe (wood 5->2) the HUD still says Wood 5/10 while Inventory shows Wood: 2 - the bar neither tracks held wood nor total gathered. Expected: gathering progress that crafting does not undo."]}
+{"t": 1793317995396, "cmd": "click", "args": ["337", "389"]}
+{"t": 1793317996410, "cmd": "click", "args": ["110", "58"]}
+{"t": 1793317997258, "cmd": "wait", "args": ["2"]}
+{"t": 1793317999450, "cmd": "shot", "args": ["era"]}
+{"t": 1793318012115, "cmd": "note", "args": ["--shot", "era_overlap", "Expanding the Era box (tap) pushes the Objective panel down and the Inventory Info panel slides right to x~220, where it sits under the Tip 4 card; the two overlap. Also Village era needs Day 3 (plus 10 members, 2 stalls), so Planks and Bricks (Workshop) are unreachable in a short session: at observed 8-12 tps a game day is ~45 real minutes."]}
+{"t": 1793318012543, "cmd": "click", "args": ["337", "389"]}
+{"t": 1793318013478, "cmd": "wait", "args": ["2"]}
+{"t": 1793318015774, "cmd": "shot", "args": ["tip_after"]}
+{"t": 1793318016336, "cmd": "state", "args": []}
+{"t": 1793318026581, "cmd": "click", "args": ["110", "58"]}
+{"t": 1793318027692, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1793318125655, "cmd": "key", "args": ["e"]}
+{"t": 1793318126476, "cmd": "wait", "args": ["1"]}
+{"t": 1793318127725, "cmd": "events", "args": ["1"]}
+{"t": 1793318128023, "cmd": "walkto", "args": ["tree", "100"]}
+{"t": 1793318128686, "cmd": "key", "args": ["e"]}
+{"t": 1793318129748, "cmd": "wait", "args": ["1"]}
+{"t": 1793318131138, "cmd": "events", "args": ["1"]}
+{"t": 1793318149119, "cmd": "state", "args": []}
+{"t": 1793318149454, "cmd": "events", "args": ["200"]}
+{"t": 1793318149907, "cmd": "events", "args": ["200"]}
+{"t": 1793318150101, "cmd": "stop", "args": []}
+{"t": 1793318191458, "cmd": "report", "args": []}
+{"t": 1793318203057, "cmd": "report", "args": []}
+{"t": 1793320034404, "cmd": "stop", "args": []}

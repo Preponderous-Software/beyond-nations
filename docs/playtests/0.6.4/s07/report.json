@@ -1,84 +1,81 @@
 {
   "session": "s07",
   "goal": "Crafting: find and use every recipe on the crafting screen (C); are tools worth making?",
-  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "build": {"version": "0.6.3", "commit": "b6a0019"},
   "seed": 107,
-  "durationSec": 919,
+  "durationSec": 1000,
   "outcome": "partial",
   "findings": [
     {
       "severity": "major",
       "category": "balance",
-      "title": "Cooked Meat is wasted by auto-eat: eaten first at <90 energy, capped at 100",
-      "detail": "Crafted 1 Cooked Meat (screen says '45 energy (raw: 25)'). There is no eat key or button; the player auto-eats when energy drops below 90 and always picks the most nourishing food first. The cooked meat disappeared around tick 3250-3303 (only visible cue: 'Objective complete: Eat something'), and energy went from ~90 to 99.2. So ~35 of its 45 energy was lost while the bag held 12+ apples (15 each) that would have fit exactly. Cooking a chicken (costing a wood) currently buys almost nothing. Expected: eat the smallest food that fills the gap, or let the player choose when to eat.",
-      "repro": "pt start --seed 107; key space; click Start/Begin; walkto tree, e; walkto chicken, e; key c; click Craft on Cooked Meat (822,265); keep gathering until energy < 90; watch the cooked_meat count drop and energy cap at 100",
-      "screenshot": "shots/meat_wasted.png",
-      "tick": 3303
+      "title": "Planks and Bricks (2 of 5 recipes) are locked behind Village era, which needs Day 3: unreachable in a normal short session",
+      "detail": "The crafting screen shows Planks x2 and Bricks x2 as 'Locked: The Workshop is unlocked in the Village era.' Tapping the Era box lists Village 0/1, Members 0/10, Stalls 0/2, Day 1/3. A day is 10 game minutes; at the observed 8-12 tps that is ~45 real minutes per day, so the two trade-good recipes cannot be tried in a 30-minute session. The goal of using every recipe could not be met. Expected: the lock is fine, but the day gate makes the Workshop recipes invisible in practice for a new player's first sitting.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-playtest064 --seed 107; Start; Begin; pt key c (Planks/Bricks locked); close; pt click 110 58 (Era box)",
+      "screenshot": "shots/era_overlap.png",
+      "tick": 3854
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "No way to eat food, and no message when food is eaten automatically",
-      "detail": "Neither the three Controls pages, the Inventory (I) screen nor the HUD offer an eat action. The crafting screen sells Cooked Meat as '45 energy', but the player never sees it eaten: no status line or floating text, it just disappears from the inventory. Expected: a 'You ate cooked meat (+N energy)' status line, and ideally a line on the Controls page saying food is eaten automatically below 90 energy.",
-      "repro": "craft Cooked Meat as above; press I; open ? Controls pages 1-3",
-      "screenshot": "shots/inv_no_eat.png",
-      "tick": 1579
-    },
-    {
-      "severity": "minor",
-      "category": "balance",
-      "title": "Planks and Bricks (2 of 5 recipes) cannot be reached in a normal first session",
-      "detail": "Both need a Workshop, which unlocks in the Village era: 1 village, 10 members, 2 stalls, day 3. I created a nation and founded my own settlement at tick 7303, and both were still locked. At the observed 0-17 ticks a second, day 3 is hours of real time away. The lock reason is shown clearly in orange, which is good, but a crafting-focused player can't try 40% of the screen early on.",
-      "repro": "pt start --seed 107; gather 50 wood; key n; walk to open ground; key f; key c",
-      "screenshot": "shots/planks_locked.png",
-      "tick": 7367
+      "title": "Cooked Meat advertises '45 energy (raw: 25)' but there is no way to eat on purpose",
+      "detail": "No Eat key on any of the 3 Controls pages and no Eat button in Inventory (I). Food seems to be eaten automatically: energy went 84 -> 99 after the first chop while apples went 2 -> 1, and 90.6 -> 99 around the chicken harvest; objective 2 'Eat something' completed on its own at tick 4550. Nothing on screen says food is auto-eaten or which food is eaten first, so the player cannot tell whether crafting Cooked Meat (1 meat + 1 wood) actually gains anything over raw meat.",
+      "repro": "craft Cooked Meat via C; open ? Controls pages 1-3 and Inventory (I); look for an eat action",
+      "screenshot": "shots/no_eat.png",
+      "tick": 3538
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "Founding a settlement: the 'open ground' hint keeps moving as AI nations claim land",
-      "detail": "After N, pressing F gave 'Open ground lies about 120 to the north'. After walking there: 'Too close to the Camp of Eastville... 310 to the north-west', then 'Northernford... 121 to the west', then 'claimed by Northernford... 211 to the north'. It took four tries and ~2400 ticks (objective 4) to find a legal spot, because AI nations founded camps at the same time. The hints are helpful but they chase a moving target.",
-      "repro": "pt start --seed 107; go to around (-27,315) with 50 wood; key n; key f; follow each hint and press f again",
-      "screenshot": "shots/era.png",
-      "tick": 5731
+      "title": "Crafting tools sets back objective 1 'Gather wood 10' because it counts held wood",
+      "detail": "Objective 1 read Wood 9/10 after 13 wood had been gathered (axe crafted in between). Crafting a pickaxe and cooked meat dropped it to 5/10, and a second pickaxe to 2/10. The game nudges you to craft (contextual 'Craft Pickaxe' button) while the first objective punishes doing so. Expected: count wood gathered, or warn before spending.",
+      "repro": "chop 1 tree (6 wood), mine 1 rock, craft Axe, chop a tree -> 9/10; craft Pickaxe -> 6/10",
+      "screenshot": "shots/obj_regress.png",
+      "tick": 3662
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Crafting screen says 'Ready: you can make 1' for both Axe and Pickaxe when only one can be afforded",
+      "detail": "With 6 wood and 5 stone, Axe (4w 2s) and Pickaxe (3w 3s) both show 'Ready: you can make 1'. Making one leaves too little wood for the other. The per-recipe count is correct alone but misleads when recipes share inputs.",
+      "repro": "gather 6 wood and 5 stone; press c",
+      "screenshot": "shots/craft2.png",
+      "tick": 610
     },
     {
       "severity": "polish",
       "category": "ux",
-      "title": "Using a rock next to a tree chops the tree instead (interact priority)",
-      "detail": "Twice `pt walkto rock` + E chopped a nearby tree ('Gathered 8 wood...') rather than mining the rock, because interact prefers tree over rock. This is documented behaviour, but it spends axe durability when the player meant to use the pickaxe. Facing direction could break the tie.",
-      "repro": "walkto rock near trees (around tick 4291); e",
-      "screenshot": "shots/pickmine.png",
-      "tick": 4291
+      "title": "Expanded Era box pushes the Inventory Info panel under the tip card",
+      "detail": "Tapping the Era box pushes the Objective panel down and the Inventory Info panel moves right to x~220, where the Tip card covers part of it.",
+      "repro": "with a Tip showing, pt click 110 58",
+      "screenshot": "shots/era_overlap.png",
+      "tick": 3854
     },
     {
-      "severity": "polish",
+      "severity": "minor",
       "category": "perf",
-      "title": "Very low frame/tick rate under the shared load; crafting overlay showed a frame late",
-      "detail": "fps 1-5 and tps 0-17 for most of the session (machine load avg ~54). The first pt start timed out after 60s with an empty game.log; the second worked. Once, state.json said CRAFTING while the screenshot still showed the world view; the overlay appeared ~2s later. Probably the environment, not the game.",
-      "repro": "pt start under heavy load; key c; pt shot immediately",
-      "screenshot": "shots/craft_settle.png",
-      "tick": 7311
+      "title": "Game ran at 1-3 fps and 8-12 tps; screenshots and HUD lag a second or more behind state",
+      "detail": "Keys/clicks often landed late (one E press on a chicken registered only on the next attempt), and the HUD showed stale values (Wood 5/10 while the inventory had 2). With trees and rocks 60-280 m apart in the Moor, walking between them took 30-90 real seconds each.",
+      "repro": "pt status / pt state during normal play",
+      "screenshot": "shots/objregress.png",
+      "tick": 3638
     }
   ],
   "metrics": {
-    "objectivesCompleted": 4,
+    "objectivesCompleted": 2,
     "deaths": 0,
-    "secondsToObjective": {"Gather wood": 65.0, "Eat something": 66.1, "Create or join a nation": 97.0, "Found a settlement": 146.1},
-    "recipesSeen": 5,
-    "recipesCrafted": 3,
-    "recipesLocked": 2,
-    "axesCrafted": 2,
-    "pickaxesCrafted": 1,
-    "cookedMeatCrafted": 1,
-    "woodPerTreeNoAxe": 6,
-    "woodPerTreeWithAxeAvg": 7.9,
-    "treesChoppedWithAxe": 9,
-    "stonePerRockNoPickaxe": 5,
+    "secondsToObjective": {"Gather wood": 90.04, "Eat something": 91.0},
+    "recipesUsed": 3,
+    "recipesTotal": 5,
+    "baseWoodPerTreeAvg": 4.8,
+    "woodPerTreeWithAxeAvg": 7.3,
+    "baseStonePerRock": 5,
     "stonePerRockWithPickaxe": 7,
-    "axeCostWoodEquivalent": 6,
-    "axeExpectedBonusWood": 60
+    "axeBreakEvenTrees": 2,
+    "pickaxeBreakEvenRocks": 2,
+    "axeLifetimeExtraWood": 60,
+    "pickaxeLifetimeExtraStone": 30
   },
   "fun": 3,
-  "verdict": "Tools are worth making and the screen explains them well. An axe (4 wood, 2 stone) pays for itself after two trees and gives about +60 wood over 20 uses; the pickaxe gives +30 stone over 15 uses. The live 'Ready / Need N more / have 1 (19 uses left)' lines and the context 'Craft Pickaxe' HUD button are good. Cooked Meat is the weak recipe: you can't choose to eat it, and auto-eat spends it first at 89 energy, so most of its 45 energy is thrown away. Planks and Bricks can't be reached in a first session (Village era: 10 members, 2 stalls, day 3), so only 3 of the 5 recipes could be used."
+  "verdict": "The crafting screen is very clear: costs, effects, durability, exact shortfalls ('Need 2 more wood'), 'have 1 (19 uses left)', a contextual Craft button in the HUD, and status lines that credit the tool ('+3 from your axe'). Tools are clearly worth making: the Axe (+3 on a 4-6 base, +60% yield) and Pickaxe (+2 on 5, +40%) pay back after 2 uses and give ~60 wood / ~30 stone over their lifetime. But Cooked Meat has no player-facing eat action to show its value, and Planks/Bricks sit behind a Day-3 Village era nobody reaches in a first session."
 }

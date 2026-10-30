@@ -1,135 +1,256 @@
-{"t": 1793281941618, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "109"]}
-{"t": 1793282394245, "cmd": "await", "args": ["TITLE", "30"]}
-{"t": 1793282394347, "cmd": "shot", "args": ["title"]}
-{"t": 1793282401506, "cmd": "note", "args": ["--shot", "title_contrast", "Title screen: white text (title + 'Press any key or click to continue') on light sky-blue (~#72A5E5) background, contrast roughly 2.5:1, below WCAG AA 4.5:1 for the small prompt line"]}
-{"t": 1793282401808, "cmd": "key", "args": ["space"]}
-{"t": 1793282402407, "cmd": "await", "args": ["MAIN_MENU", "20"]}
-{"t": 1793282402506, "cmd": "shot", "args": ["menu"]}
-{"t": 1793282413928, "cmd": "note", "args": ["--shot", "menu_buttons", "Main menu: buttons (#5C9EEB-ish) are nearly the same blue as the background, button edges barely visible; small white labels on mid-blue, low contrast. No Continue/Load on main menu visible."]}
-{"t": 1793282414146, "cmd": "click", "args": ["480", "367"]}
-{"t": 1793282414948, "cmd": "wait", "args": ["1"]}
-{"t": 1793282416159, "cmd": "shot", "args": ["config"]}
-{"t": 1793282426231, "cmd": "move", "args": ["527", "276"]}
-{"t": 1793282426509, "cmd": "wait", "args": ["2"]}
-{"t": 1793282428627, "cmd": "shot", "args": ["config_hover"]}
-{"t": 1793282428858, "cmd": "move", "args": ["540", "304"]}
-{"t": 1793282429042, "cmd": "wait", "args": ["2"]}
-{"t": 1793282431165, "cmd": "shot", "args": ["config_hover2"]}
-{"t": 1793282437323, "cmd": "note", "args": ["--shot", "config_jargon", "Config: 'Chunk Size', 'Location Scale', 'Lag Prevention', 'Respawn Pawns' have no explanation and no hover tooltip (hovered labels 2s, nothing). No UI/text scale, key rebinding or colour options. Volume label admits sound only plays in browser version (desktop slider does nothing)."]}
-{"t": 1793282437570, "cmd": "click", "args": ["480", "510"]}
-{"t": 1793282438413, "cmd": "wait", "args": ["1"]}
-{"t": 1793282439502, "cmd": "click", "args": ["480", "419"]}
-{"t": 1793282440307, "cmd": "wait", "args": ["1"]}
-{"t": 1793282441458, "cmd": "shot", "args": ["controls"]}
-{"t": 1793282446058, "cmd": "click", "args": ["615", "508"]}
-{"t": 1793282447033, "cmd": "wait", "args": ["1"]}
-{"t": 1793282448213, "cmd": "shot", "args": ["controls2"]}
-{"t": 1793282448516, "cmd": "click", "args": ["615", "508"]}
-{"t": 1793282449496, "cmd": "wait", "args": ["1"]}
-{"t": 1793282450669, "cmd": "shot", "args": ["controls3"]}
-{"t": 1793282458320, "cmd": "note", "args": ["--shot", "controls3", "Controls page 3 lists debug cheats (F2-F6 spawn coins/wood/pawns) to every player as normal controls; also on page 2 'Era box (tap)' uses touch wording for a mouse player and the Era box location is never described. Page 3 Prev/Close button pair is off-centre (Next slot left empty)."]}
-{"t": 1793282458651, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282459228, "cmd": "wait", "args": ["1"]}
-{"t": 1793282460356, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282461207, "cmd": "wait", "args": ["1"]}
-{"t": 1793282462348, "cmd": "shot", "args": ["newworld"]}
-{"t": 1793282465575, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282466456, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282466762, "cmd": "wait", "args": ["3"]}
-{"t": 1793282469911, "cmd": "shot", "args": ["world1"]}
-{"t": 1793282470272, "cmd": "state", "args": []}
-{"t": 1793282475379, "cmd": "move", "args": ["100", "83"]}
-{"t": 1793282475551, "cmd": "wait", "args": ["2"]}
-{"t": 1793282477687, "cmd": "shot", "args": ["hover_village"]}
-{"t": 1793282477985, "cmd": "move", "args": ["400", "517"]}
-{"t": 1793282478131, "cmd": "wait", "args": ["2"]}
-{"t": 1793282480249, "cmd": "shot", "args": ["hover_disabled"]}
-{"t": 1793282484978, "cmd": "note", "args": ["--shot", "hover_disabled", "World HUD: greyed 'Enter Settlement' and 'Plant Sapling' buttons have low-contrast grey-on-teal labels and give no reason why disabled, even on hover (hovered 2s, no tooltip). 'Village: 0/4' with a yellow square swatch is unexplained (0/4 of what? hover shows nothing). Chronicle text is grey on a translucent box over green grass, hard to read."]}
-{"t": 1793282485211, "cmd": "click", "args": ["110", "58"]}
-{"t": 1793282486026, "cmd": "wait", "args": ["2"]}
-{"t": 1793282488138, "cmd": "shot", "args": ["era"]}
-{"t": 1793282495312, "cmd": "note", "args": ["--shot", "era", "Era box expanded (click): readable checklist, good. But 'Village: 0/4' collapsed label only makes sense after expanding; 'Day 1/3' here vs Season panel 'Spring - day 1/2, year 1' use two different meanings of 'day N/M' side by side, confusing. Era header 'Era: Camp (1/4) -' white on bright #4499FF blue is low contrast."]}
-{"t": 1793282495634, "cmd": "click", "args": ["338", "389"]}
-{"t": 1793282496424, "cmd": "wait", "args": ["2"]}
-{"t": 1793282498527, "cmd": "shot", "args": ["tip2"]}
-{"t": 1793282502272, "cmd": "click", "args": ["338", "376"]}
-{"t": 1793282503215, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282539633, "cmd": "key", "args": ["e"]}
-{"t": 1793282540220, "cmd": "wait", "args": ["2"]}
-{"t": 1793282542495, "cmd": "key", "args": ["e"]}
-{"t": 1793282543102, "cmd": "wait", "args": ["2"]}
-{"t": 1793282545225, "cmd": "shot", "args": ["chop"]}
-{"t": 1793282545751, "cmd": "state", "args": []}
-{"t": 1793282552710, "cmd": "wait", "args": ["3"]}
-{"t": 1793282555891, "cmd": "state", "args": []}
-{"t": 1793282556013, "cmd": "events", "args": ["10"]}
-{"t": 1793282560490, "cmd": "shot", "args": ["obj3"]}
-{"t": 1793282565371, "cmd": "note", "args": ["--shot", "obj3", "Objective 2 'Eat something' completed 48 ticks after objective 1 without the player eating (apples 4 +2 reward = 6, none consumed); the player never sees what objective 2 asked or how to eat. Objective 1 bar also lagged behind inventory (Wood 11 in inventory while bar read 5/10) for a few frames."]}
-{"t": 1793282565815, "cmd": "key", "args": ["i"]}
-{"t": 1793282566422, "cmd": "wait", "args": ["2"]}
-{"t": 1793282568579, "cmd": "shot", "args": ["inventory"]}
-{"t": 1793282574459, "cmd": "note", "args": ["--shot", "inventory", "Inventory screen (I): white list text is drawn directly over the world with only a dim overlay, and the player's white capsule sits right behind 'Apples: 6' / 'Saplings: 2', making those lines hard to read. Screen offers no actions (no way to eat an apple shown) and duplicates the HUD Inventory panel."]}
-{"t": 1793282574848, "cmd": "key", "args": ["c"]}
-{"t": 1793282575447, "cmd": "wait", "args": ["2"]}
-{"t": 1793282577569, "cmd": "shot", "args": ["crafting"]}
-{"t": 1793282586465, "cmd": "note", "args": ["--shot", "crafting", "Crafting screen: good clear recipe cards and reasons ('Need 2 more stone', 'Locked: ...'). But stale status line 'Objective complete: Eat something. +25 coins.' lingers at the bottom long after; red-orange 'Locked/Need' text on dark grey is small (~9px) and the paragraph under the title runs edge to edge (860px) as one hard-to-scan line. No visible Craft button or hint how to craft when affordable."]}
-{"t": 1793282586757, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282587359, "cmd": "wait", "args": ["1"]}
-{"t": 1793282588521, "cmd": "key", "args": ["o"]}
-{"t": 1793282589087, "cmd": "wait", "args": ["2"]}
-{"t": 1793282591225, "cmd": "shot", "args": ["nations"]}
-{"t": 1793282595996, "cmd": "click", "args": ["543", "45"]}
-{"t": 1793282596866, "cmd": "wait", "args": ["2"]}
-{"t": 1793282599054, "cmd": "shot", "args": ["laws"]}
-{"t": 1793282606502, "cmd": "note", "args": ["--shot", "laws", "Nations/Laws screen (O): body text has no backing panel; the first line ('You belong to no nation, and live under no laws...') is drawn across tree trunks and canopy at the horizon, so letters cross dark trunks and bright leaves. Unselected tab ('Nations') is semi-transparent with trees showing through. Stale 'Objective complete: Eat something.' status still shown ~2 minutes later."]}
-{"t": 1793282606791, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282609490, "cmd": "wait", "args": ["1"]}
-{"t": 1793282610905, "cmd": "key", "args": ["n"]}
-{"t": 1793282611604, "cmd": "wait", "args": ["2"]}
-{"t": 1793282615171, "cmd": "shot", "args": ["create_nation"]}
-{"t": 1793282629658, "cmd": "wait", "args": ["3"]}
-{"t": 1793282680887, "cmd": "shot", "args": ["nation2"]}
-{"t": 1793282684811, "cmd": "state", "args": []}
-{"t": 1793282706078, "cmd": "note", "args": ["--shot", "nation2", "After founding a nation (N) the left HUD column grows (Era detail + green 'Sheltered until the Town era...' paragraph) and the Inventory Info panel jumps from the bottom-left corner to the middle of the screen (x~220,y~320), covering the play view. Chronicle line is truncated with '...' ('Under your hand, the nation of Towntown was...') with no way to read the rest on that line. 'Sheltered... border quarrels stop at Rival' uses undefined jargon ('Rival'). Destructive red 'Leave Nation' button is the most prominent button on screen, right under the action row."]}
-{"t": 1793282706241, "cmd": "move", "args": ["75", "476"]}
-{"t": 1793282706323, "cmd": "wait", "args": ["2"]}
-{"t": 1793282708394, "cmd": "shot", "args": ["found_disabled"]}
-{"t": 1793282712733, "cmd": "key", "args": ["y"]}
-{"t": 1793282713245, "cmd": "wait", "args": ["2"]}
-{"t": 1793282716035, "cmd": "shot", "args": ["chron_full"]}
-{"t": 1793282722043, "cmd": "note", "args": ["--shot", "chron_full", "Chronicle full-history window (Y) is semi-transparent: the HUD text behind it (Objective-complete popup 'Create or join a nation +25 coins', Era panel, Inventory Info, Season/Player Info) shows through and overlaps the window's own controls ('Close  Y cycles views' collides with 'Objective complete!'). 'Close' button sits inline among filter controls rather than in a consistent spot."]}
-{"t": 1793282722235, "cmd": "key", "args": ["y"]}
-{"t": 1793282722714, "cmd": "wait", "args": ["1"]}
-{"t": 1793282723790, "cmd": "key", "args": ["y"]}
-{"t": 1793282724278, "cmd": "wait", "args": ["1"]}
-{"t": 1793282725340, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282725808, "cmd": "wait", "args": ["2"]}
-{"t": 1793282727864, "cmd": "shot", "args": ["pause"]}
-{"t": 1793282732189, "cmd": "move", "args": ["480", "368"]}
-{"t": 1793282732256, "cmd": "wait", "args": ["2"]}
-{"t": 1793282734374, "cmd": "shot", "args": ["share_hover"]}
-{"t": 1793282734763, "cmd": "click", "args": ["480", "368"]}
-{"t": 1793282735588, "cmd": "wait", "args": ["2"]}
-{"t": 1793282743209, "cmd": "shot", "args": ["share"]}
-{"t": 1793282751315, "cmd": "note", "args": ["--shot", "share", "Share screen: 'Export replay (USD)' - 'USD' reads as US dollars to most players; OpenUSD format isn't explained. Seed URL text and 'World seed 109' on pause/share screens are drawn over the red player capsule (no backing panel). Pause menu has no Load button (task brief and Controls imply Save/Load) and 'Share' has no hover hint."]}
-{"t": 1793282751534, "cmd": "click", "args": ["480", "456"]}
-{"t": 1793282752342, "cmd": "wait", "args": ["1"]}
-{"t": 1793282753435, "cmd": "click", "args": ["480", "327"]}
-{"t": 1793282754209, "cmd": "wait", "args": ["2"]}
-{"t": 1793282756282, "cmd": "shot", "args": ["saved"]}
-{"t": 1793282761367, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282761905, "cmd": "walkto", "args": ["rock", "40"]}
-{"t": 1793282775564, "cmd": "key", "args": ["e"]}
-{"t": 1793282776609, "cmd": "wait", "args": ["2"]}
-{"t": 1793282778721, "cmd": "shot", "args": ["rock"]}
-{"t": 1793282784721, "cmd": "note", "args": ["--shot", "rock", "Tip 3 panel ('Gather stone') now overlaps the relocated Inventory Info panel: 'Inventory Info (I)' title and 'Coins: 38...' are covered/cut off. Also: standing 2.5m from a grey rock (walkto rock) and pressing E as the tip says chopped a tree instead ('Gathered 4 wood and 3 apples from tree') because trees outrank rocks; no on-screen indication which object E will act on."]}
-{"t": 1793282784966, "cmd": "state", "args": []}
-{"t": 1793282789274, "cmd": "key", "args": ["b"]}
-{"t": 1793282789773, "cmd": "wait", "args": ["1"]}
-{"t": 1793282790972, "cmd": "shot", "args": ["bkey"]}
-{"t": 1793282791140, "cmd": "state", "args": []}
-{"t": 1793282797407, "cmd": "note", "args": ["--shot", "bkey", "Chronicle recent panel truncates every line at ~55 chars ('...the nation of Lowerham was born, with Grace Da...', 'Una Smith declared the nation of Westwood, tho...'); readable only by opening Y. Good: B outside a settlement gives a clear red banner '! You are not inside a settlement.'"]}
-{"t": 1793282797687, "cmd": "events", "args": ["40"]}
-{"t": 1793282797760, "cmd": "stop", "args": []}
-{"t": 1793282825269, "cmd": "report", "args": []}
-{"t": 1793285744922, "cmd": "stop", "args": []}
+{"t": 1793318506651, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "109"]}
+{"t": 1793318577522, "cmd": "shot", "args": ["title"]}
+{"t": 1793318620688, "cmd": "note", "args": ["--shot", "title_contrast", "Title screen: white text (title and 'Press any key or click to continue') on light sky-blue background; low contrast (~2.5:1 measured for pure white vs background), small prompt text hard to read."]}
+{"t": 1793318621140, "cmd": "key", "args": ["space"]}
+{"t": 1793318621810, "cmd": "shot", "args": ["menu"]}
+{"t": 1793318645602, "cmd": "note", "args": ["--shot", "menu_buttons", "Main menu: button fill (~#5B9FEF) is nearly the same as the background (#73A6E6); buttons barely stand out, white labels small (~8px) with low contrast. No keyboard focus indicator visible."]}
+{"t": 1793318646041, "cmd": "click", "args": ["480", "367"]}
+{"t": 1793318646984, "cmd": "shot", "args": ["config"]}
+{"t": 1793318653114, "cmd": "move", "args": ["528", "276"]}
+{"t": 1793318653308, "cmd": "wait", "args": ["1"]}
+{"t": 1793318654617, "cmd": "shot", "args": ["config_hover"]}
+{"t": 1793318662705, "cmd": "move", "args": ["380", "388"]}
+{"t": 1793318662891, "cmd": "wait", "args": ["1"]}
+{"t": 1793318664012, "cmd": "shot", "args": ["config_hover2"]}
+{"t": 1793318671933, "cmd": "note", "args": ["--shot", "config_hover2", "Config screen: 'Chunk Size', 'Location Scale', 'Lag Prevention', 'Respawn Pawns' have no description and no hover tooltip (hovered each, nothing appears); player can't tell what they do or whether they affect existing worlds. Volume label says '(sound plays in the browser version)' implying desktop build has no sound at all, yet volume/mute are shown."]}
+{"t": 1793318672678, "cmd": "click", "args": ["480", "510"]}
+{"t": 1793318673589, "cmd": "click", "args": ["480", "419"]}
+{"t": 1793318674648, "cmd": "shot", "args": ["controls"]}
+{"t": 1793318682780, "cmd": "click", "args": ["615", "508"]}
+{"t": 1793318683932, "cmd": "shot", "args": ["controls2"]}
+{"t": 1793318684520, "cmd": "click", "args": ["615", "508"]}
+{"t": 1793318685542, "cmd": "shot", "args": ["controls3"]}
+{"t": 1793318695485, "cmd": "note", "args": ["--shot", "controls3", "Controls page 3 lists Debug cheats (F2-F6 spawn coins/wood/pawns) to every player with no warning; a third of the help is cheats. Controls screen itself reads well: good contrast, clear grouping."]}
+{"t": 1793318695893, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318696559, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318697573, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793318703821, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793318704893, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793318705480, "cmd": "wait", "args": ["3"]}
+{"t": 1793318708701, "cmd": "shot", "args": ["world1"]}
+{"t": 1793318709158, "cmd": "state", "args": []}
+{"t": 1793318717516, "cmd": "move", "args": ["90", "83"]}
+{"t": 1793318717731, "cmd": "wait", "args": ["2"]}
+{"t": 1793318719996, "cmd": "shot", "args": ["hover_village"]}
+{"t": 1793318720666, "cmd": "move", "args": ["800", "368"]}
+{"t": 1793318720919, "cmd": "wait", "args": ["2"]}
+{"t": 1793318723093, "cmd": "shot", "args": ["hover_season"]}
+{"t": 1793318732567, "cmd": "note", "args": ["--shot", "hover_village", "HUD: 'Village: 0/4' with a yellow square, 'Era: Camp (1/4) +' and 'Spring - day 1/2, year 1' are unexplained; hovering shows no tooltip. 'day 1/2' reads like half a day / a fraction. Chronicle header text is mid-grey on translucent panel over bright sky (low contrast). Disabled 'Enter Settlement'/'Plant Sapling' buttons give no reason why they are disabled."]}
+{"t": 1793318733045, "cmd": "click", "args": ["110", "58"]}
+{"t": 1793318734098, "cmd": "wait", "args": ["2"]}
+{"t": 1793318736289, "cmd": "shot", "args": ["era"]}
+{"t": 1793318756172, "cmd": "note", "args": ["--shot", "era", "Era box expanded (clicked): header 'Era: Camp (1/4) -' is light-blue text (#8CD9FF) on bright-blue fill (#4296FA), contrast ~1.9:1, the worst on the HUD. Numbers are inconsistent: collapsed line says 'Village: 0/4' but the checklist says 'Village 0/1'; checklist says 'Day 1/3' while Season panel says 'day 1/2'. The '+'/'-' expander is the only hint the box is clickable."]}
+{"t": 1793318756669, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793318757805, "cmd": "wait", "args": ["1"]}
+{"t": 1793318759020, "cmd": "shot", "args": ["tip2"]}
+{"t": 1793318765921, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793318793433, "cmd": "key", "args": ["e"]}
+{"t": 1793318794066, "cmd": "wait", "args": ["2"]}
+{"t": 1793318796269, "cmd": "shot", "args": ["chop"]}
+{"t": 1793318796687, "cmd": "state", "args": []}
+{"t": 1793318805924, "cmd": "note", "args": ["--shot", "chop", "After first chop: status bar says 'Gathered 5 wood and 3 apples from tree.' but the floating text says '+2 apples' and inventory shows Apples: 2 (energy jumped 83->96, so one was presumably eaten silently - never stated). Status omits the +2 saplings. Floating '+N' text is pale grey/white on the bright-green tree foliage and is hard to read. Tip counter went from 'Tip 1 of 5' to 'Tip 3 of 5' - tip 2 never appeared."]}
+{"t": 1793318806870, "cmd": "key", "args": ["e"]}
+{"t": 1793318807667, "cmd": "wait", "args": ["2"]}
+{"t": 1793318809922, "cmd": "key", "args": ["e"]}
+{"t": 1793318810577, "cmd": "wait", "args": ["2"]}
+{"t": 1793318812697, "cmd": "state", "args": []}
+{"t": 1793318816794, "cmd": "shot", "args": ["obj2"]}
+{"t": 1793318817176, "cmd": "key", "args": ["i"]}
+{"t": 1793318817771, "cmd": "wait", "args": ["2"]}
+{"t": 1793318820032, "cmd": "shot", "args": ["inventory"]}
+{"t": 1793318828081, "cmd": "events", "args": ["15"]}
+{"t": 1793318834950, "cmd": "note", "args": ["--shot", "inventory", "Inventory screen (I): text list drawn directly over the 3D world with only a dim overlay and no panel; the player capsule sits on top of 'Apples: 6 / Saplings: 2', making them hard to read. Also 'Eat something' objective completed (+25 coins) at the same tick I opened inventory, so its toast was hidden behind the screen and coins jumped 339->364 with no visible explanation."]}
+{"t": 1793318835725, "cmd": "key", "args": ["c"]}
+{"t": 1793318836446, "cmd": "wait", "args": ["2"]}
+{"t": 1793318838629, "cmd": "shot", "args": ["crafting"]}
+{"t": 1793318845737, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318846437, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793318862141, "cmd": "key", "args": ["e"]}
+{"t": 1793318862755, "cmd": "wait", "args": ["2"]}
+{"t": 1793318865020, "cmd": "key", "args": ["e"]}
+{"t": 1793318865758, "cmd": "wait", "args": ["2"]}
+{"t": 1793318867939, "cmd": "key", "args": ["e"]}
+{"t": 1793318868739, "cmd": "wait", "args": ["1"]}
+{"t": 1793318870014, "cmd": "shot", "args": ["rock"]}
+{"t": 1793318870566, "cmd": "state", "args": []}
+{"t": 1793318874290, "cmd": "key", "args": ["n"]}
+{"t": 1793318874886, "cmd": "wait", "args": ["2"]}
+{"t": 1793318877112, "cmd": "shot", "args": ["nation"]}
+{"t": 1793318884651, "cmd": "move", "args": ["500", "84"]}
+{"t": 1793318884801, "cmd": "wait", "args": ["2"]}
+{"t": 1793318886896, "cmd": "shot", "args": ["chron_hover"]}
+{"t": 1793318894204, "cmd": "note", "args": ["--shot", "chron_hover", "After pressing N: chronicle lines are truncated with '...' mid-sentence ('...named your people Ol...', 'declared the nation of Farmland, tho...'); hovering gives no tooltip, so the new nation's name is cut off in the very line announcing it. Player is never asked to name the nation (auto-named 'Oldtown'). Inventory Info panel jumped from the left column to the middle of the screen when the era panel grew, covering the world view. 'border quarrels stop at Rival' uses 'Rival' (a relation level?) never explained."]}
+{"t": 1793318894570, "cmd": "key", "args": ["y"]}
+{"t": 1793318895204, "cmd": "wait", "args": ["2"]}
+{"t": 1793318897377, "cmd": "shot", "args": ["chron_y"]}
+{"t": 1793318905993, "cmd": "note", "args": ["--shot", "chron_y", "Chronicle full history (Y): window is translucent, so the Tip, Inventory and Season panels behind bleed through its lower half and compete with the text. Header '3 entries. Listing 2.' is cryptic (which one is hidden and why?). Order differs from the HUD chronicle (HUD had my entry first, window has it last). Three overlapping filters (Your news / All nations, 'Only my nation' checkbox, 'Y cycles views') with no explanation of the difference."]}
+{"t": 1793318906661, "cmd": "key", "args": ["y"]}
+{"t": 1793318907359, "cmd": "wait", "args": ["1"]}
+{"t": 1793318908584, "cmd": "key", "args": ["y"]}
+{"t": 1793318909294, "cmd": "wait", "args": ["1"]}
+{"t": 1793318910492, "cmd": "key", "args": ["o"]}
+{"t": 1793318911332, "cmd": "wait", "args": ["2"]}
+{"t": 1793318913603, "cmd": "shot", "args": ["nations"]}
+{"t": 1793318924715, "cmd": "move", "args": ["836", "255"]}
+{"t": 1793318925073, "cmd": "wait", "args": ["2"]}
+{"t": 1793318927217, "cmd": "shot", "args": ["nations_hover"]}
+{"t": 1793318927772, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793318928654, "cmd": "wait", "args": ["2"]}
+{"t": 1793318930908, "cmd": "shot", "args": ["laws"]}
+{"t": 1793318942279, "cmd": "note", "args": ["--shot", "nations_hover", "Nations screen (O): hovering 'Denounce' (or War/Ally/Tribute) shows only a colour change, no tooltip; what Denounce does, and its cost, is never explained. 'Tribute 25 coins for +10' - +10 of what (the 'Neutral (0)' score) is not labelled. Text sits directly on the dimmed 3D world with no panel; player capsule sits between the button columns. A stale status line 'Chronicle: recent entries.' lingers at the bottom."]}
+{"t": 1793318942660, "cmd": "note", "args": ["--shot", "laws", "Laws tab: only the CURRENT option is described ('No tax: members keep their coin'); the effects of Low/High taxes, Conscription On and Borders Open are not shown until you commit (and changes take 30 s). 'Defence 1.' in the header is unexplained. Selected option is marked with '> None <' text (good, not colour-only)."]}
+{"t": 1793318948607, "cmd": "move", "args": ["226", "175"]}
+{"t": 1793318948840, "cmd": "wait", "args": ["2"]}
+{"t": 1793318951044, "cmd": "shot", "args": ["laws_hover"]}
+{"t": 1793318951721, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318952445, "cmd": "wait", "args": ["1"]}
+{"t": 1793318953570, "cmd": "key", "args": ["Escape"]}
+{"t": 1793318954340, "cmd": "wait", "args": ["2"]}
+{"t": 1793318956610, "cmd": "shot", "args": ["pause"]}
+{"t": 1793318962972, "cmd": "click", "args": ["480", "368"]}
+{"t": 1793318964071, "cmd": "wait", "args": ["2"]}
+{"t": 1793318966236, "cmd": "shot", "args": ["share"]}
+{"t": 1793318975523, "cmd": "note", "args": ["--shot", "share", "Share screen: 'Export replay (USD)' - 'USD' (Universal Scene Description) is unexplained jargon a player will likely read as US dollars; no hint where exported files go. Pause menu has no Load option (only Resume/Save/Share/Controls/Main Menu/Quit); the player capsule draws over the 'World seed 109' line and the link text on both pause and share screens."]}
+{"t": 1793318976042, "cmd": "click", "args": ["480", "456"]}
+{"t": 1793318977126, "cmd": "wait", "args": ["1"]}
+{"t": 1793318978311, "cmd": "click", "args": ["480", "327"]}
+{"t": 1793318979221, "cmd": "wait", "args": ["2"]}
+{"t": 1793318981331, "cmd": "shot", "args": ["saved"]}
+{"t": 1793318988336, "cmd": "click", "args": ["480", "449"]}
+{"t": 1793318989332, "cmd": "wait", "args": ["3"]}
+{"t": 1793318992554, "cmd": "shot", "args": ["mainmenu2"]}
+{"t": 1793318997732, "cmd": "click", "args": ["480", "390"]}
+{"t": 1793318998669, "cmd": "wait", "args": ["2"]}
+{"t": 1793319000808, "cmd": "shot", "args": ["load"]}
+{"t": 1793319011310, "cmd": "click", "args": ["677", "187"]}
+{"t": 1793319012460, "cmd": "wait", "args": ["2"]}
+{"t": 1793319014743, "cmd": "shot", "args": ["delete"]}
+{"t": 1793319023332, "cmd": "note", "args": ["--shot", "delete", "Load screen: Delete is the same blue as the load slot, no warning colour; it does ask 'Sure?' in place (good) but the confirm is a tiny same-colour button right next to the slot. Light-blue menu screens (Load, Config, New World) share the low-contrast white-on-#73A6E6 issue."]}
+{"t": 1793319024001, "cmd": "click", "args": ["445", "187"]}
+{"t": 1793319025161, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793319025680, "cmd": "wait", "args": ["3"]}
+{"t": 1793319028927, "cmd": "shot", "args": ["loaded"]}
+{"t": 1793319029640, "cmd": "state", "args": []}
+{"t": 1793319035889, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793319075788, "cmd": "key", "args": ["e"]}
+{"t": 1793319076831, "cmd": "wait", "args": ["1"]}
+{"t": 1793319078089, "cmd": "key", "args": ["e"]}
+{"t": 1793319078771, "cmd": "wait", "args": ["1"]}
+{"t": 1793319080131, "cmd": "key", "args": ["e"]}
+{"t": 1793319080771, "cmd": "wait", "args": ["1"]}
+{"t": 1793319081917, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793319093205, "cmd": "key", "args": ["e"]}
+{"t": 1793319093906, "cmd": "wait", "args": ["1"]}
+{"t": 1793319095052, "cmd": "key", "args": ["e"]}
+{"t": 1793319095751, "cmd": "wait", "args": ["1"]}
+{"t": 1793319097063, "cmd": "key", "args": ["e"]}
+{"t": 1793319097702, "cmd": "wait", "args": ["1"]}
+{"t": 1793319099001, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793319111934, "cmd": "key", "args": ["e"]}
+{"t": 1793319112693, "cmd": "wait", "args": ["1"]}
+{"t": 1793319113979, "cmd": "key", "args": ["e"]}
+{"t": 1793319114693, "cmd": "wait", "args": ["1"]}
+{"t": 1793319115998, "cmd": "key", "args": ["e"]}
+{"t": 1793319116797, "cmd": "wait", "args": ["1"]}
+{"t": 1793319118056, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793319138099, "cmd": "key", "args": ["e"]}
+{"t": 1793319138800, "cmd": "wait", "args": ["1"]}
+{"t": 1793319139907, "cmd": "key", "args": ["e"]}
+{"t": 1793319140455, "cmd": "wait", "args": ["1"]}
+{"t": 1793319141656, "cmd": "key", "args": ["e"]}
+{"t": 1793319142213, "cmd": "wait", "args": ["1"]}
+{"t": 1793319143348, "cmd": "state", "args": []}
+{"t": 1793319146297, "cmd": "key", "args": ["f"]}
+{"t": 1793319146980, "cmd": "wait", "args": ["3"]}
+{"t": 1793319150096, "cmd": "shot", "args": ["founded"]}
+{"t": 1793319150501, "cmd": "state", "args": []}
+{"t": 1793319166161, "cmd": "note", "args": ["--shot", "founded", "Objective progress bar: white 'Wood 50/50' text on the filled yellow bar (#E6B300) has ~1.9:1 contrast and becomes hard to read exactly when the goal is reached. Settlement-too-close error is clear and helpful, but says 'Open ground lies about 210 to the north' while the HUD has no compass or north marker, so a player can't act on the direction."]}
+{"t": 1793319166807, "cmd": "face", "args": ["-40"]}
+{"t": 1793319170015, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793319178357, "cmd": "key", "args": ["f"]}
+{"t": 1793319179177, "cmd": "wait", "args": ["3"]}
+{"t": 1793319182559, "cmd": "state", "args": []}
+{"t": 1793319189487, "cmd": "face", "args": ["-72"]}
+{"t": 1793319196105, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1793319202630, "cmd": "key", "args": ["f"]}
+{"t": 1793319203302, "cmd": "wait", "args": ["3"]}
+{"t": 1793319206468, "cmd": "state", "args": []}
+{"t": 1793319215814, "cmd": "face", "args": ["-136"]}
+{"t": 1793319225280, "cmd": "state", "args": []}
+{"t": 1793319232447, "cmd": "face", "args": ["-104"]}
+{"t": 1793319241208, "cmd": "hold", "args": ["Shift_L+w", "10"]}
+{"t": 1793319251632, "cmd": "key", "args": ["f"]}
+{"t": 1793319252388, "cmd": "wait", "args": ["3"]}
+{"t": 1793319255537, "cmd": "state", "args": []}
+{"t": 1793319259573, "cmd": "hold", "args": ["Shift_L+w", "14"]}
+{"t": 1793319274153, "cmd": "key", "args": ["f"]}
+{"t": 1793319274788, "cmd": "wait", "args": ["3"]}
+{"t": 1793319278010, "cmd": "state", "args": []}
+{"t": 1793319278189, "cmd": "shot", "args": ["found2"]}
+{"t": 1793319281848, "cmd": "face", "args": ["40"]}
+{"t": 1793319285794, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1793319288167, "cmd": "key", "args": ["f"]}
+{"t": 1793319288886, "cmd": "wait", "args": ["3"]}
+{"t": 1793319292195, "cmd": "state", "args": []}
+{"t": 1793319292504, "cmd": "shot", "args": ["found3"]}
+{"t": 1793319297819, "cmd": "face", "args": ["-100"]}
+{"t": 1793319307576, "cmd": "hold", "args": ["w", "4"]}
+{"t": 1793319312059, "cmd": "key", "args": ["f"]}
+{"t": 1793319312857, "cmd": "wait", "args": ["3"]}
+{"t": 1793319316135, "cmd": "state", "args": []}
+{"t": 1793319316456, "cmd": "shot", "args": ["found4"]}
+{"t": 1793319327075, "cmd": "note", "args": ["--shot", "found4", "Right after founding: the settlement's floating world label renders enormous ('...0 here, 1/8 residents'), clipped off the top of the screen and overlapped by the status bar and chronicle; unreadable while standing next to your own settlement. The '+50 coins' float is again hidden under the 'Objective complete!' toast. Also the 'too close' message's 'Open ground ... to the north-east' was right, but with no compass it took several tries."]}
+{"t": 1793319327728, "cmd": "hold", "args": ["s", "3"]}
+{"t": 1793319331041, "cmd": "wait", "args": ["1"]}
+{"t": 1793319332694, "cmd": "shot", "args": ["label"]}
+{"t": 1793319341480, "cmd": "note", "args": ["--shot", "label", "HUD coverage at 960x540: era checklist, objective, inventory, chronicle (5 lines), season, player info and two rows of action buttons cover well over half the screen; the settlement label 'Camp of Oldtown / 0 here, 1/8 residents' and the settlement itself are hidden behind the chronicle and toast. No way seen to collapse the inventory/chronicle panels."]}
+{"t": 1793319342610, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1793319345112, "cmd": "key", "args": ["e"]}
+{"t": 1793319345789, "cmd": "wait", "args": ["3"]}
+{"t": 1793319349127, "cmd": "shot", "args": ["inside"]}
+{"t": 1793319349982, "cmd": "state", "args": []}
+{"t": 1793319360393, "cmd": "note", "args": ["--shot", "inside", "Inside settlement: the Objective 6 panel ('...press B inside your settlement.') overflows downward and its last line is drawn on top of a half-hidden button labelled '...n (Town era)' behind it - both texts are unreadable. The era panel shrinks and grows a scrollbar, hiding the 'Sheltered...' note. Five action buttons (Build Stall, Build House, Build Farm, Collect Stockpile (0), Feed Residents (0 hungry)) are greyed with near-background contrast and no stated reason; Settlement Info says 'Next (K): Farm, 25 wood, 10 stone' but there is no hint that the greyed Build Farm is the same thing. Market price trend is shown by small green triangles only."]}
+{"t": 1793319361083, "cmd": "move", "args": ["320", "445"]}
+{"t": 1793319361423, "cmd": "wait", "args": ["2"]}
+{"t": 1793319363599, "cmd": "shot", "args": ["hover_stall"]}
+{"t": 1793319372686, "cmd": "note", "args": ["--shot", "hover_stall", "Correction/follow-up: a few frames later the overlap resolved (it was a one-layout-pass glitch on entering), revealing 'Send Caravan (Town era)' - which is drawn in the ENABLED button colour although it is era-locked, while greyed buttons like Build Stall show no tooltip on hover explaining what's missing (need 20 wood). Objective bar text 'Wood 0/20 • Stone 5/5' runs white over the yellow fill again."]}
+{"t": 1793319377144, "cmd": "click", "args": ["97", "414"]}
+{"t": 1793319378359, "cmd": "wait", "args": ["2"]}
+{"t": 1793319380493, "cmd": "shot", "args": ["caravan"]}
+{"t": 1793319381415, "cmd": "state", "args": []}
+{"t": 1793319386174, "cmd": "click", "args": ["186", "445"]}
+{"t": 1793319387241, "cmd": "wait", "args": ["2"]}
+{"t": 1793319389432, "cmd": "shot", "args": ["sell"]}
+{"t": 1793319390254, "cmd": "state", "args": []}
+{"t": 1793319399298, "cmd": "note", "args": ["--shot", "sell", "'Sell Resources' and 'Purchase Food' look enabled in a settlement with 0 stalls; clicking gives a red error 'This settlement does not have any stalls.' The Market Info panel still lists buy/sell prices for 7 goods. Buttons should be greyed with a reason, like Build Stall. The red error banner is drawn over the giant settlement label text behind it."]}
+{"t": 1793319399960, "cmd": "key", "args": ["v"]}
+{"t": 1793319400683, "cmd": "wait", "args": ["2"]}
+{"t": 1793319403039, "cmd": "shot", "args": ["view_v"]}
+{"t": 1793319413190, "cmd": "note", "args": ["--shot", "view_v", "First-person view inside the settlement: because HUD panels and buttons are translucent, against the dark interior the greyed (disabled) buttons Build Stall/House/Farm look almost identical to enabled ones like Exit Settlement and Withdraw Funds; enabled vs disabled relies on a subtle tint whose contrast depends on what's behind it. The chronicle's grey header and the Season panel similarly change legibility with the scene."]}
+{"t": 1793319414282, "cmd": "key", "args": ["v"]}
+{"t": 1793319415094, "cmd": "key", "args": ["e"]}
+{"t": 1793319415875, "cmd": "wait", "args": ["2"]}
+{"t": 1793319418086, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793319478449, "cmd": "key", "args": ["e"]}
+{"t": 1793319479442, "cmd": "wait", "args": ["2"]}
+{"t": 1793319481619, "cmd": "shot", "args": ["talk"]}
+{"t": 1793319482291, "cmd": "state", "args": []}
+{"t": 1793319486430, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793319548891, "cmd": "key", "args": ["e"]}
+{"t": 1793319549583, "cmd": "wait", "args": ["2"]}
+{"t": 1793319551766, "cmd": "shot", "args": ["talk"]}
+{"t": 1793319552355, "cmd": "state", "args": []}
+{"t": 1793319556005, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793319589336, "cmd": "key", "args": ["e"]}
+{"t": 1793319589969, "cmd": "wait", "args": ["2"]}
+{"t": 1793319592158, "cmd": "shot", "args": ["talk"]}
+{"t": 1793319592821, "cmd": "state", "args": []}
+{"t": 1793319604215, "cmd": "note", "args": ["--shot", "talk", "Talking to a pawn in bright highlands: 'Gift Nancy Wilson' and 'Invite Nancy Wilson' buttons are pale/washed out against the sunlit scene (white text on light translucent fill), and the floating pawn label 'Peggy Lewis / Ambitious / (going home)' is white text on pale sky, drawn overlapping the chronicle panel. Interact UI stacks four button rows; destructive red 'Leave Nation', 'Denounce Eastwood', 'Declare War on Eastwood' sit in one row directly under everyday buttons."]}
+{"t": 1793319604836, "cmd": "click", "args": ["497", "517"]}
+{"t": 1793319605899, "cmd": "wait", "args": ["2"]}
+{"t": 1793319608061, "cmd": "shot", "args": ["war"]}
+{"t": 1793319608865, "cmd": "state", "args": []}
+{"t": 1793319613668, "cmd": "events", "args": ["50"]}
+{"t": 1793319613894, "cmd": "stop", "args": []}
+{"t": 1793319652803, "cmd": "report", "args": []}
+{"t": 1793320034709, "cmd": "stop", "args": []}

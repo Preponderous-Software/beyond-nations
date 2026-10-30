@@ -1,175 +1,102 @@
-{"type":"screen","tick":0,"wallTimeMs":1793282019350,"from":null,"to":"TITLE"}
-{"type":"screen","tick":0,"wallTimeMs":1793282393915,"from":"TITLE","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793282398200,"from":"MAIN_MENU","to":"NEW_WORLD"}
-{"type":"world","tick":120000,"wallTimeMs":1793282411817,"how":"created","slot":"world-103-20261029-140011","seed":103}
-{"type":"screen","tick":120000,"wallTimeMs":1793282411820,"from":"NEW_WORLD","to":"WORLD"}
-{"type":"status","tick":120472,"wallTimeMs":1793282442600,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":120480,"wallTimeMs":1793282443091,"text":"No entities within range to interact with."}
-{"type":"status","tick":120488,"wallTimeMs":1793282443654,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":120500,"wallTimeMs":1793282444528,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":120780,"wallTimeMs":1793282466319,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":120792,"wallTimeMs":1793282467208,"text":"No entities within range to interact with."}
-{"type":"objective_completed","tick":120800,"wallTimeMs":1793282467815,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":800}
-{"type":"status","tick":120800,"wallTimeMs":1793282467815,"text":"Objective complete: Gather wood. \u002B2 apples."}
-{"type":"status","tick":120804,"wallTimeMs":1793282468103,"text":"No entities within range to interact with."}
-{"type":"objective_completed","tick":120852,"wallTimeMs":1793282471434,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
-{"type":"status","tick":120852,"wallTimeMs":1793282471434,"text":"Objective complete: Eat something. \u002B25 coins."}
-{"type":"chronicle","tick":120952,"wallTimeMs":1793282478067,"kind":"NationCreation","text":"The nation of Smallland was born, with Alice Wood at its head. It is the first nation this world has known."}
-{"type":"chronicle","tick":121000,"wallTimeMs":1793282481450,"kind":"SettlementFounded","text":"Alice Wood raised the first settlement of Smallland."}
-{"type":"status","tick":121100,"wallTimeMs":1793282487604,"text":"Gathered 5 stone from rock."}
-{"type":"status","tick":121108,"wallTimeMs":1793282488077,"text":"No entities within range to interact with."}
-{"type":"status","tick":121116,"wallTimeMs":1793282488725,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":121128,"wallTimeMs":1793282489543,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":121336,"wallTimeMs":1793282503884,"text":"Created nation Southerntown."}
-{"type":"chronicle","tick":121336,"wallTimeMs":1793282503884,"kind":"NationCreation","text":"You founded the nation of Southerntown."}
-{"type":"objective_completed","tick":121352,"wallTimeMs":1793282505209,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":500}
-{"type":"status","tick":121352,"wallTimeMs":1793282505209,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
-{"type":"status","tick":121716,"wallTimeMs":1793282552614,"text":"Gathered 6 wood and 2 apples from tree."}
-{"type":"status","tick":121924,"wallTimeMs":1793282575180,"text":"Gathered 4 wood and 3 apples from tree."}
-{"type":"chronicle","tick":121952,"wallTimeMs":1793282577878,"kind":"NationCreation","text":"Stan Williams declared the nation of Littleham, though none had yet sworn to it."}
-{"type":"chronicle","tick":122000,"wallTimeMs":1793282582569,"kind":"SettlementFounded","text":"Stan Williams raised the first settlement of Littleham."}
-{"type":"status","tick":122132,"wallTimeMs":1793282593108,"text":"Gathered 5 wood and 3 apples from tree."}
-{"type":"status","tick":122140,"wallTimeMs":1793282593766,"text":"No entities within range to interact with."}
-{"type":"status","tick":122156,"wallTimeMs":1793282595125,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":122412,"wallTimeMs":1793282685068,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":122564,"wallTimeMs":1793282719243,"text":"Gathered 4 wood and 3 apples from tree."}
-{"type":"status","tick":122572,"wallTimeMs":1793282719649,"text":"Gathered 5 stone from rock."}
-{"type":"status","tick":122580,"wallTimeMs":1793282720050,"text":"No entities within range to interact with."}
-{"type":"status","tick":122588,"wallTimeMs":1793282720461,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":122596,"wallTimeMs":1793282720883,"text":"No entities within range to interact with. (x3)"}
-{"type":"chronicle","tick":122700,"wallTimeMs":1793282726130,"kind":"StallBuilt","text":"Alice Wood built a market stall in Smallland."}
-{"type":"status","tick":122740,"wallTimeMs":1793282728193,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":122748,"wallTimeMs":1793282728596,"text":"No entities within range to interact with."}
-{"type":"chronicle","tick":122752,"wallTimeMs":1793282728810,"kind":"NationCreation","text":"Wendy Walker founded the nation of Blackland."}
-{"type":"status","tick":122756,"wallTimeMs":1793282728999,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":122764,"wallTimeMs":1793282729383,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":122772,"wallTimeMs":1793282729815,"text":"No entities within range to interact with. (x4)"}
-{"type":"status","tick":122800,"wallTimeMs":1793282731553,"text":"You enter the land of Blackland (Neutral)."}
-{"type":"chronicle","tick":122800,"wallTimeMs":1793282731553,"kind":"SettlementFounded","text":"Wendy Walker laid the first stones of Blackland."}
-{"type":"status","tick":123000,"wallTimeMs":1793282750408,"text":"You leave the land of Blackland for the wilds."}
-{"type":"status","tick":123124,"wallTimeMs":1793282758958,"text":"Gathered 6 wood and 1 apple from tree."}
-{"type":"status","tick":123140,"wallTimeMs":1793282760018,"text":"No entities within range to interact with."}
-{"type":"status","tick":123148,"wallTimeMs":1793282760605,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":123160,"wallTimeMs":1793282761474,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":123360,"wallTimeMs":1793282774723,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":123372,"wallTimeMs":1793282775495,"text":"No entities within range to interact with."}
-{"type":"status","tick":123380,"wallTimeMs":1793282775978,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":123500,"wallTimeMs":1793282784172,"text":"You enter the land of Blackland (Neutral)."}
-{"type":"status","tick":123752,"wallTimeMs":1793282798875,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":123768,"wallTimeMs":1793282800324,"text":"No entities within range to interact with."}
-{"type":"status","tick":123820,"wallTimeMs":1793282802232,"text":"This land is claimed by Blackland. Found your settlement outside its borders. Open ground lies about 170 to the south-east."}
-{"type":"chronicle","tick":124252,"wallTimeMs":1793282835416,"kind":"NationRelationChange","text":"Smallland and Littleham have become rivals over their border."}
-{"type":"status","tick":124364,"wallTimeMs":1793282843820,"text":"This land is claimed by Blackland. Found your settlement outside its borders. Open ground lies about 230 to the north-west."}
-{"type":"chronicle","tick":124752,"wallTimeMs":1793282873959,"kind":"NationRelationChange","text":"Smallland and Blackland have become rivals over their border."}
-{"type":"status","tick":124792,"wallTimeMs":1793282876446,"text":"You leave the land of Blackland for the wilds."}
-{"type":"status","tick":124840,"wallTimeMs":1793282879913,"text":"Too close to the Town of Blackland: 172 away, and settlements must be 250 apart. Open ground lies about 81 to the south-east."}
-{"type":"status","tick":125036,"wallTimeMs":1793282893363,"text":"Settlement founded. Smallland and Blackland resent a new settlement so near their land."}
-{"type":"chronicle","tick":125036,"wallTimeMs":1793282893363,"kind":"SettlementFounded","text":"You laid the first stones of Southerntown."}
-{"type":"status","tick":125040,"wallTimeMs":1793282893851,"text":"You are back on your own land."}
-{"type":"objective_completed","tick":125052,"wallTimeMs":1793282894854,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3700}
-{"type":"status","tick":125052,"wallTimeMs":1793282894854,"text":"Objective complete: Found a settlement. \u002B50 coins."}
-{"type":"chronicle","tick":125052,"wallTimeMs":1793282894854,"kind":"NationJoin","text":"Bella Johnson swore fealty to Southerntown."}
-{"type":"chronicle","tick":125052,"wallTimeMs":1793282894854,"kind":"NationJoin","text":"Peggy Brown swore fealty to Southerntown."}
-{"type":"status","tick":125140,"wallTimeMs":1793282903267,"text":"Entered settlement."}
-{"type":"objective_completed","tick":125152,"wallTimeMs":1793282904303,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":100}
-{"type":"status","tick":125152,"wallTimeMs":1793282904303,"text":"Objective complete: Enter your settlement."}
-{"type":"chronicle","tick":125200,"wallTimeMs":1793282909045,"kind":"NationJoin","text":"Southerntown welcomed Alice Robinson into its ranks."}
-{"type":"status","tick":125284,"wallTimeMs":1793282915498,"text":"Exited settlement."}
-{"type":"objective_completed","tick":125400,"wallTimeMs":1793282925156,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":248}
-{"type":"status","tick":125400,"wallTimeMs":1793282925156,"text":"Objective complete: Build a market stall. \u002B50 coins."}
-{"type":"chronicle","tick":125400,"wallTimeMs":1793282925156,"kind":"StallBuilt","text":"A new stall opened in the market of Southerntown, built by Alice Robinson."}
-{"type":"chronicle","tick":125452,"wallTimeMs":1793282930014,"kind":"StallBuilt","text":"Trade came to Southerntown: Alice Robinson built a stall."}
-{"type":"chronicle","tick":125500,"wallTimeMs":1793282933633,"kind":"NationCreation","text":"The nation of Greatburg was born, with Nancy Walker at its head."}
-{"type":"chronicle","tick":125500,"wallTimeMs":1793282933633,"kind":"NationJoin","text":"Dave Robinson joined Southerntown."}
-{"type":"status","tick":125540,"wallTimeMs":1793282937322,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":125552,"wallTimeMs":1793282938352,"text":"No entities within range to interact with."}
-{"type":"chronicle","tick":125652,"wallTimeMs":1793282945925,"kind":"NationCreation","text":"Victor Johnson declared the nation of Smallford, though none had yet sworn to it."}
-{"type":"status","tick":125732,"wallTimeMs":1793282951814,"text":"You leave the land of Southerntown for the wilds."}
-{"type":"status","tick":125836,"wallTimeMs":1793282959264,"text":"Gathered 5 wood and 3 apples from tree."}
-{"type":"status","tick":125848,"wallTimeMs":1793282960043,"text":"No entities within range to interact with."}
-{"type":"status","tick":125856,"wallTimeMs":1793282960816,"text":"No entities within range to interact with. (x2)"}
-{"type":"chronicle","tick":125900,"wallTimeMs":1793282964056,"kind":"SettlementFounded","text":"Smallford put down roots: Victor Johnson founded its first settlement."}
-{"type":"chronicle","tick":125952,"wallTimeMs":1793282967633,"kind":"SettlementFounded","text":"Greatburg put down roots: Nancy Walker founded its first settlement."}
-{"type":"save","tick":126000,"wallTimeMs":1793282972078,"count":1}
-{"type":"chronicle","tick":126052,"wallTimeMs":1793282975902,"kind":"NationJoin","text":"Southerntown welcomed Hank Smith into its ranks."}
-{"type":"status","tick":126076,"wallTimeMs":1793282977832,"text":"Gathered 5 wood and 1 apple from tree."}
-{"type":"status","tick":126084,"wallTimeMs":1793282978415,"text":"No entities within range to interact with."}
-{"type":"status","tick":126096,"wallTimeMs":1793282979246,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":126332,"wallTimeMs":1793282994336,"text":"Gathered 4 wood and 1 apple from tree."}
-{"type":"status","tick":126340,"wallTimeMs":1793282994832,"text":"Gathered 5 stone from rock."}
-{"type":"status","tick":126348,"wallTimeMs":1793282995316,"text":"Gathered 5 stone from rock. (x2)"}
-{"type":"chronicle","tick":126352,"wallTimeMs":1793282995562,"kind":"StallBuilt","text":"Alice Robinson built a market stall in Southerntown."}
-{"type":"status","tick":126360,"wallTimeMs":1793282996027,"text":"No entities within range to interact with."}
-{"type":"status","tick":126540,"wallTimeMs":1793283008398,"text":"Gathered 4 wood and 2 apples from tree."}
-{"type":"status","tick":126548,"wallTimeMs":1793283008911,"text":"No entities within range to interact with."}
-{"type":"status","tick":126556,"wallTimeMs":1793283009431,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":126568,"wallTimeMs":1793283010209,"text":"No entities within range to interact with. (x3)"}
-{"type":"chronicle","tick":126952,"wallTimeMs":1793283034049,"kind":"NationCreation","text":"Quinn Davies declared the nation of Farmville, though none had yet sworn to it."}
-{"type":"status","tick":127104,"wallTimeMs":1793283045252,"text":"Gathered 6 wood and 2 apples from tree."}
-{"type":"status","tick":127120,"wallTimeMs":1793283046470,"text":"No entities within range to interact with."}
-{"type":"status","tick":127144,"wallTimeMs":1793283048355,"text":"Welcome home!"}
-{"type":"status","tick":127152,"wallTimeMs":1793283049002,"text":"You are back on your own land."}
-{"type":"chronicle","tick":127152,"wallTimeMs":1793283049002,"kind":"SettlementFounded","text":"Quinn Davies raised the first settlement of Farmville."}
-{"type":"status","tick":127196,"wallTimeMs":1793283053275,"text":"You are not inside a settlement."}
-{"type":"status","tick":127288,"wallTimeMs":1793283061499,"text":"Entered settlement."}
-{"type":"status","tick":127328,"wallTimeMs":1793283065370,"text":"Press K again to build a House (20 wood, 15 stone)."}
-{"type":"chronicle","tick":127400,"wallTimeMs":1793283072101,"kind":"StallBuilt","text":"A new stall opened in the market of Southerntown, built by Hank Smith. The market is now full."}
-{"type":"status","tick":127416,"wallTimeMs":1793283073555,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":127460,"wallTimeMs":1793283078274,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era."}
-{"type":"status","tick":127500,"wallTimeMs":1793283082371,"text":"Smallland resents your border: relations are now Rival (-20)."}
-{"type":"chronicle","tick":127500,"wallTimeMs":1793283082371,"kind":"NationRelationChange","text":"Smallland and Southerntown have become rivals over their border."}
-{"type":"chronicle","tick":127500,"wallTimeMs":1793283082371,"kind":"NationRelationChange","text":"Blackland and Smallford have become rivals over their border."}
-{"type":"chronicle","tick":127500,"wallTimeMs":1793283082371,"kind":"NationRelationChange","text":"Blackland and Smallland are now hostile."}
-{"type":"chronicle","tick":127500,"wallTimeMs":1793283082371,"kind":"Caravan","text":"Smallland sent a caravan of 14 stone from the Town of Smallland to the Camp of Southerntown."}
-{"type":"status","tick":127596,"wallTimeMs":1793283092669,"text":"Click again to confirm: Build Farm."}
-{"type":"status","tick":127668,"wallTimeMs":1793283100990,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":127692,"wallTimeMs":1793283103481,"text":"Click again to confirm: Build Farm."}
-{"type":"status","tick":127764,"wallTimeMs":1793283111674,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":127784,"wallTimeMs":1793283113616,"text":"Click again to confirm: Build Farm."}
-{"type":"status","tick":127852,"wallTimeMs":1793283122013,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":127936,"wallTimeMs":1793283131215,"text":"Click again to confirm: Build Farm."}
-{"type":"status","tick":127944,"wallTimeMs":1793283131948,"text":"Farm built."}
-{"type":"chronicle","tick":128000,"wallTimeMs":1793283137464,"kind":"NationRaid","text":"Raiders from Blackland struck Smallland, taking 1 coins, 3 wood, 5 stone."}
-{"type":"chronicle","tick":128100,"wallTimeMs":1793283239104,"kind":"StallBuilt","text":"A new stall opened in the market of Littleham, built by Stan Williams."}
-{"type":"status","tick":128252,"wallTimeMs":1793283258593,"text":"Smallford resents your border: relations are now Rival (-20)."}
-{"type":"chronicle","tick":128252,"wallTimeMs":1793283258593,"kind":"NationRelationChange","text":"Smallland and Greatburg have become rivals over their border."}
-{"type":"chronicle","tick":128252,"wallTimeMs":1793283258593,"kind":"NationRelationChange","text":"Southerntown and Smallford have become rivals over their border."}
-{"type":"chronicle","tick":128400,"wallTimeMs":1793283276940,"kind":"StallBuilt","text":"Victor Johnson built a market stall in Smallford."}
-{"type":"chronicle","tick":128500,"wallTimeMs":1793283288650,"kind":"StallBuilt","text":"Trade came to Farmville: Quinn Davies built a stall."}
-{"type":"chronicle","tick":128600,"wallTimeMs":1793283310174,"kind":"StallBuilt","text":"Alice Wood built a market stall in Smallland."}
-{"type":"status","tick":128664,"wallTimeMs":1793283320766,"text":"Exited settlement."}
-{"type":"status","tick":128672,"wallTimeMs":1793283321419,"text":"Entered settlement."}
-{"type":"chronicle","tick":128752,"wallTimeMs":1793283329742,"kind":"NationCreation","text":"Ruth Brown raised a banner and called it Easternland."}
-{"type":"chronicle","tick":129096,"wallTimeMs":1793283363972,"kind":"Caravan","text":"A caravan from Smallland sold 9 stone at the Camp of Southerntown for 36 coins."}
-{"type":"chronicle","tick":129152,"wallTimeMs":1793283369580,"kind":"NationCreation","text":"Charlie Brown raised a banner and called it Hamlettown."}
-{"type":"chronicle","tick":129200,"wallTimeMs":1793283374090,"kind":"StallBuilt","text":"A new stall opened in the market of Farmville, built by Quinn Davies."}
-{"type":"chronicle","tick":129200,"wallTimeMs":1793283374090,"kind":"SettlementFounded","text":"Ruth Brown laid the first stones of Easternland."}
-{"type":"chronicle","tick":129252,"wallTimeMs":1793283379293,"kind":"NationRelationChange","text":"Smallland and Littleham are now hostile."}
-{"type":"chronicle","tick":129300,"wallTimeMs":1793283383670,"kind":"NationCreation","text":"Jasmine Thompson raised a banner and called it Bluetown."}
-{"type":"status","tick":129416,"wallTimeMs":1793283393988,"text":"Exited settlement."}
-{"type":"status","tick":129424,"wallTimeMs":1793283394737,"text":"Entered settlement."}
-{"type":"chronicle","tick":129452,"wallTimeMs":1793283397236,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Victor Johnson."}
-{"type":"chronicle","tick":129500,"wallTimeMs":1793283401542,"kind":"NationCreation","text":"Dave Johnson raised a banner and called it Northernfield."}
-{"type":"chronicle","tick":129500,"wallTimeMs":1793283401542,"kind":"NationRelationChange","text":"Blackland and Farmville have become rivals over their border."}
-{"type":"chronicle","tick":129552,"wallTimeMs":1793283406438,"kind":"SettlementFounded","text":"Charlie Brown laid the first stones of Hamlettown."}
-{"type":"chronicle","tick":129800,"wallTimeMs":1793283429526,"kind":"NationCreation","text":"Isabella Thompson raised a banner and called it Castleshire."}
-{"type":"chronicle","tick":129800,"wallTimeMs":1793283429526,"kind":"NationCreation","text":"Natalie Jones raised a banner and called it Townham."}
-{"type":"chronicle","tick":129852,"wallTimeMs":1793283433970,"kind":"SettlementFounded","text":"Bluetown put down roots: Jasmine Thompson founded its first settlement."}
-{"type":"chronicle","tick":130000,"wallTimeMs":1793283446568,"kind":"StallBuilt","text":"A new stall opened in the market of Farmville, built by Quinn Davies."}
-{"type":"chronicle","tick":130000,"wallTimeMs":1793283446568,"kind":"NationRelationChange","text":"Blackland and Smallford are now hostile."}
-{"type":"chronicle","tick":130000,"wallTimeMs":1793283446568,"kind":"NationRaid","text":"Smallland raided Littleham and carried off 4 coins."}
-{"type":"chronicle","tick":130000,"wallTimeMs":1793283446568,"kind":"NationRaid","text":"Raiders from Blackland struck Smallford, taking 5 coins, 5 wood."}
-{"type":"status","tick":130140,"wallTimeMs":1793283458214,"text":"Exited settlement."}
-{"type":"status","tick":130148,"wallTimeMs":1793283458832,"text":"Entered settlement."}
-{"type":"chronicle","tick":130152,"wallTimeMs":1793283459220,"kind":"SettlementFounded","text":"Townham put down roots: Natalie Jones founded its first settlement."}
-{"type":"status","tick":130160,"wallTimeMs":1793283459875,"text":"Exited settlement."}
-{"type":"chronicle","tick":130200,"wallTimeMs":1793283463133,"kind":"SettlementFounded","text":"Isabella Thompson laid the first stones of Castleshire."}
-{"type":"chronicle","tick":130252,"wallTimeMs":1793283467104,"kind":"StallBuilt","text":"Victor Johnson built a market stall in Smallford."}
-{"type":"status","tick":130380,"wallTimeMs":1793283476121,"text":"You leave the land of Southerntown for the wilds."}
-{"type":"chronicle","tick":130400,"wallTimeMs":1793283477333,"kind":"StallBuilt","text":"Nancy Walker built a market stall in Greatburg."}
-{"type":"chronicle","tick":130500,"wallTimeMs":1793283483654,"kind":"SettlementFounded","text":"Northernfield put down roots: Dave Johnson founded its first settlement."}
-{"type":"status","tick":130648,"wallTimeMs":1793283492669,"text":"Gathered 4 wood and 3 apples from tree."}
-{"type":"status","tick":130656,"wallTimeMs":1793283493126,"text":"No entities within range to interact with."}
-{"type":"status","tick":130664,"wallTimeMs":1793283493584,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":130672,"wallTimeMs":1793283494034,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":130680,"wallTimeMs":1793283494505,"text":"No entities within range to interact with. (x4)"}
+{"type":"screen","tick":0,"wallTimeMs":1793317188725,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793317199938,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793317225373,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":120000,"wallTimeMs":1793317240441,"how":"created","slot":"world-103-20261029-234040","seed":103}
+{"type":"screen","tick":120000,"wallTimeMs":1793317240443,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":120456,"wallTimeMs":1793317290180,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":120488,"wallTimeMs":1793317292511,"text":"No entities within range to interact with."}
+{"type":"status","tick":120772,"wallTimeMs":1793317323640,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":120800,"wallTimeMs":1793317327411,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":800}
+{"type":"status","tick":120800,"wallTimeMs":1793317327411,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":120852,"wallTimeMs":1793317333695,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":120852,"wallTimeMs":1793317333695,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":120952,"wallTimeMs":1793317346340,"kind":"NationCreation","text":"The nation of Smallland was born, with Alice Wood at its head. It is the first nation this world has known."}
+{"type":"chronicle","tick":121000,"wallTimeMs":1793317361227,"kind":"SettlementFounded","text":"Alice Wood raised the first settlement of Smallland."}
+{"type":"status","tick":121064,"wallTimeMs":1793317386721,"text":"No entities within range to interact with."}
+{"type":"status","tick":121272,"wallTimeMs":1793317414576,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":121336,"wallTimeMs":1793317424636,"text":"Created nation Southerntown."}
+{"type":"chronicle","tick":121336,"wallTimeMs":1793317424636,"kind":"NationCreation","text":"You founded the nation of Southerntown."}
+{"type":"objective_completed","tick":121352,"wallTimeMs":1793317426927,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":500}
+{"type":"status","tick":121352,"wallTimeMs":1793317426927,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":121704,"wallTimeMs":1793317496188,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":121868,"wallTimeMs":1793317539155,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":121952,"wallTimeMs":1793317552857,"kind":"NationCreation","text":"Stan Williams raised a banner and called it Oldshire."}
+{"type":"chronicle","tick":122000,"wallTimeMs":1793317558628,"kind":"SettlementFounded","text":"Stan Williams raised the first settlement of Oldshire."}
+{"type":"status","tick":122032,"wallTimeMs":1793317563579,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":122536,"wallTimeMs":1793317627104,"text":"Bella Thomas (Stranger): \u0022Who are you? I don\u0027t belong to any nation. I mean to found my own. It\u0027s always nice to have someone to talk to!\u0022"}
+{"type":"chronicle","tick":122752,"wallTimeMs":1793317654054,"kind":"StallBuilt","text":"Alice Wood built a market stall in Smallland."}
+{"type":"chronicle","tick":122900,"wallTimeMs":1793317678045,"kind":"NationCreation","text":"Wendy Walker raised a banner and called it Townshire."}
+{"type":"status","tick":122952,"wallTimeMs":1793317684860,"text":"You enter the land of Townshire (Neutral)."}
+{"type":"chronicle","tick":122952,"wallTimeMs":1793317684860,"kind":"SettlementFounded","text":"Wendy Walker laid the first stones of Townshire."}
+{"type":"status","tick":123244,"wallTimeMs":1793317729652,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":123400,"wallTimeMs":1793317744929,"kind":"NationCreation","text":"Grace Lewis declared the nation of Blacktown, though none had yet sworn to it."}
+{"type":"status","tick":123468,"wallTimeMs":1793317751055,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":123632,"wallTimeMs":1793317774532,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":123736,"wallTimeMs":1793317790938,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":123852,"wallTimeMs":1793317811601,"kind":"SettlementFounded","text":"Grace Lewis raised the first settlement of Blacktown."}
+{"type":"status","tick":123856,"wallTimeMs":1793317812403,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":123960,"wallTimeMs":1793317829686,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":124100,"wallTimeMs":1793317856870,"text":"This land is claimed by Townshire. Found your settlement outside its borders. Open ground lies about 200 to the north-west."}
+{"type":"chronicle","tick":124252,"wallTimeMs":1793317889397,"kind":"NationRelationChange","text":"Smallland and Oldshire have become rivals over their border."}
+{"type":"status","tick":124364,"wallTimeMs":1793317909414,"text":"This land is claimed by Townshire. Found your settlement outside its borders. Open ground lies about 210 to the north-west."}
+{"type":"status","tick":124664,"wallTimeMs":1793317976858,"text":"This land is claimed by Townshire. Found your settlement outside its borders. Open ground lies about 230 to the north."}
+{"type":"status","tick":124900,"wallTimeMs":1793318016669,"text":"This land is claimed by Townshire. Found your settlement outside its borders. Open ground lies about 160 to the north."}
+{"type":"status","tick":125000,"wallTimeMs":1793318033747,"text":"You leave the land of Townshire for the wilds."}
+{"type":"status","tick":125108,"wallTimeMs":1793318052878,"text":"Too close to the Town of Townshire: 234 away, and settlements must be 250 apart. Open ground lies about 21 to the north."}
+{"type":"status","tick":125244,"wallTimeMs":1793318074262,"text":"Too close to the Town of Blacktown: 249 away, and settlements must be 250 apart. Open ground lies about 10 to the north-west."}
+{"type":"chronicle","tick":125252,"wallTimeMs":1793318075552,"kind":"NationRelationChange","text":"Smallland and Townshire have become rivals over their border."}
+{"type":"chronicle","tick":125252,"wallTimeMs":1793318075552,"kind":"NationRelationChange","text":"Townshire and Blacktown have become rivals over their border."}
+{"type":"status","tick":125444,"wallTimeMs":1793318107675,"text":"Too close to the Town of Blacktown: 248 away, and settlements must be 250 apart. Open ground lies about 10 to the north-west."}
+{"type":"chronicle","tick":125452,"wallTimeMs":1793318108880,"kind":"StallBuilt","text":"Trade came to Blacktown: Grace Lewis built a stall."}
+{"type":"status","tick":125612,"wallTimeMs":1793318141377,"text":"You are back on your own land."}
+{"type":"chronicle","tick":125612,"wallTimeMs":1793318141377,"kind":"SettlementFounded","text":"Southerntown put down roots: you founded its first settlement."}
+{"type":"objective_completed","tick":125652,"wallTimeMs":1793318149819,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4300}
+{"type":"status","tick":125652,"wallTimeMs":1793318149819,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":125652,"wallTimeMs":1793318149819,"kind":"NationJoin","text":"Southerntown welcomed Irene Taylor into its ranks."}
+{"type":"chronicle","tick":125752,"wallTimeMs":1793318176872,"kind":"NationCreation","text":"The nation of Westham was born, with Tina Roberts at its head."}
+{"type":"status","tick":125760,"wallTimeMs":1793318178564,"text":"Entered settlement."}
+{"type":"objective_completed","tick":125800,"wallTimeMs":1793318185769,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":148}
+{"type":"status","tick":125800,"wallTimeMs":1793318185769,"text":"Objective complete: Enter your settlement."}
+{"type":"status","tick":125892,"wallTimeMs":1793318202705,"text":"Exited settlement."}
+{"type":"save","tick":126000,"wallTimeMs":1793318231425,"count":1}
+{"type":"chronicle","tick":126100,"wallTimeMs":1793318248750,"kind":"SettlementFounded","text":"Tina Roberts raised the first settlement of Westham."}
+{"type":"status","tick":126144,"wallTimeMs":1793318256569,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":126320,"wallTimeMs":1793318285560,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":126352,"wallTimeMs":1793318292254,"kind":"NationCreation","text":"Charlie Taylor founded the nation of Lowerville."}
+{"type":"status","tick":126476,"wallTimeMs":1793318317427,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":126652,"wallTimeMs":1793318356446,"text":"You leave the land of Southerntown for the wilds."}
+{"type":"chronicle","tick":126652,"wallTimeMs":1793318356446,"kind":"NationCreation","text":"Grace Williams raised a banner and called it Castlewood."}
+{"type":"chronicle","tick":126700,"wallTimeMs":1793318364719,"kind":"SettlementFounded","text":"Castlewood put down roots: Grace Williams founded its first settlement."}
+{"type":"status","tick":126712,"wallTimeMs":1793318367225,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":126800,"wallTimeMs":1793318394196,"kind":"SettlementFounded","text":"Lowerville put down roots: Charlie Taylor founded its first settlement."}
+{"type":"status","tick":126896,"wallTimeMs":1793318417356,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":127192,"wallTimeMs":1793318474893,"text":"You are back on your own land."}
+{"type":"status","tick":127212,"wallTimeMs":1793318478729,"text":"No entities within range to interact with."}
+{"type":"status","tick":127352,"wallTimeMs":1793318502994,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":127368,"wallTimeMs":1793318505618,"text":"Welcome home!"}
+{"type":"status","tick":127388,"wallTimeMs":1793318509864,"text":"Entered settlement."}
+{"type":"status","tick":127404,"wallTimeMs":1793318513036,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":127444,"wallTimeMs":1793318521195,"text":"Not confirmed in time, so nothing was done."}
+{"type":"chronicle","tick":127452,"wallTimeMs":1793318522743,"kind":"NationCreation","text":"Samantha Watson raised a banner and called it Fortville."}
+{"type":"status","tick":127456,"wallTimeMs":1793318523717,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":127492,"wallTimeMs":1793318532487,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":127520,"wallTimeMs":1793318539550,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":127532,"wallTimeMs":1793318541525,"text":"Farm built."}
+{"type":"status","tick":127748,"wallTimeMs":1793318576178,"text":"Collected 34 wood and 15 stone from the stockpile."}
+{"type":"chronicle","tick":127752,"wallTimeMs":1793318576792,"kind":"NationRelationChange","text":"Blacktown and Townshire are now hostile."}
+{"type":"status","tick":127820,"wallTimeMs":1793318586494,"text":"Stall built."}
+{"type":"chronicle","tick":127820,"wallTimeMs":1793318586494,"kind":"StallBuilt","text":"Trade came to Southerntown: you built a stall."}
+{"type":"status","tick":127832,"wallTimeMs":1793318588413,"text":"Not enough wood. Need 1 more."}
+{"type":"objective_completed","tick":127852,"wallTimeMs":1793318591330,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":2052}
+{"type":"status","tick":127852,"wallTimeMs":1793318591330,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":127952,"wallTimeMs":1793318605065,"kind":"SettlementFounded","text":"Samantha Watson laid the first stones of Fortville."}
+{"type":"status","tick":128000,"wallTimeMs":1793318610335,"text":"Townshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":128000,"wallTimeMs":1793318610335,"kind":"NationCreation","text":"The nation of Southernburg was born, with Oscar Robinson at its head."}
+{"type":"chronicle","tick":128000,"wallTimeMs":1793318610335,"kind":"NationRelationChange","text":"Southerntown and Townshire have become rivals over their border."}
+{"type":"chronicle","tick":128000,"wallTimeMs":1793318610335,"kind":"NationRaid","text":"Blacktown raided Townshire and carried off 5 wood."}
+{"type":"chronicle","tick":128300,"wallTimeMs":1793318646436,"kind":"NationCreation","text":"Ruth Thomas raised a banner and called it Westton."}
+{"type":"chronicle","tick":128452,"wallTimeMs":1793318667531,"kind":"SettlementFounded","text":"Southernburg put down roots: Oscar Robinson founded its first settlement."}
+{"type":"chronicle","tick":128500,"wallTimeMs":1793318674978,"kind":"NationRelationChange","text":"Smallland and Westham have become rivals over their border."}
+{"type":"chronicle","tick":128552,"wallTimeMs":1793318682102,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerville, built by Charlie Taylor."}
+{"type":"chronicle","tick":128600,"wallTimeMs":1793318689392,"kind":"StallBuilt","text":"Trade came to Oldshire: Stan Williams built a stall."}
+{"type":"chronicle","tick":128652,"wallTimeMs":1793318695379,"kind":"SettlementFounded","text":"Ruth Thomas raised the first settlement of Westton."}

@@ -108,6 +108,8 @@ namespace beyondnations.desktop.ui.screens {
             if (leads) {
                 lines.Add("Tribute " + Diplomacy.PLAYER_GIFT_COINS + " coins for +" + Diplomacy.giftValue(Diplomacy.PLAYER_GIFT_COINS)
                     + " (and a truce from a stronger foe). An alliance needs +" + NationRelations.ALLIANCE_REQUIRES + ". Hostile neighbours raid and besiege.");
+                lines.Add("Each dealing sends your envoy for " + NationDiplomacy.secondsOf(Realm.ENVOY_TICKS)
+                    + " s of play before you can deal with that nation again; the world waits while this screen is open.");
             }
             else {
                 lines.Add("Only the leader of " + own.getName() + " can speak for it.");
@@ -154,6 +156,10 @@ namespace beyondnations.desktop.ui.screens {
                     int truce = realm.getTruceTicksLeft(own, nation);
                     if (truce > 0) {
                         text += ", truce " + (truce + TickCounter.DefaultTicksPerSecond - 1) / TickCounter.DefaultTicksPerSecond + " s";
+                    }
+                    int envoy = leads ? realm.getEnvoyTicksLeft(own, nation) : 0;
+                    if (envoy > 0) {
+                        text += ", envoy back in " + NationDiplomacy.secondsOf(envoy) + " s";
                     }
                     bool neighbour = diplomacy.areNeighbours(own, nation);
                     if (neighbour) {
@@ -486,7 +492,7 @@ namespace beyondnations.desktop.ui.screens {
                     string denounceLabel = confirmGate.isArmed(denounceKey, now) ? ArmedLabel : "Denounce";
                     if (Overlay.buttonAt(denounceLabel + "###denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
                         pending = confirmGate.press(denounceKey, now)
-                            ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy()).execute(player, target)
+                            ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy(), realm).execute(player, target)
                             : () => confirmGate.prompt(player.getStatus(), (TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
                     }
                 }
