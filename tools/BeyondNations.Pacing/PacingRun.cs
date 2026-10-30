@@ -46,12 +46,6 @@ namespace beyondnations.pacing {
         public int SampleEvery = 1500;
         /** When set, every new status line the player sees is written here with its time. */
         public System.IO.TextWriter Trace = null;
-        /**
-        * When set, the bot never talks to, gifts or invites a pawn: it plays
-        * like someone who builds up a settlement and lets the world bring the
-        * members (docs/PACING.md, "Recruiting").
-        */
-        public bool NoCourting = false;
     }
 
     /** The result of driving one seed with the bot. */
@@ -67,11 +61,6 @@ namespace beyondnations.pacing {
         public int RaidsByPlayer;
         /** Of RaidsOnPlayer, those that came while its era sheltered it (EraRules.isSheltered). */
         public int RaidsOnPlayerSheltered;
-        /** The first tick the player's nation had the Village era's members (EraRules.VillageMembers), or -1. */
-        public int VillageMembersTick = -1;
-        /** Members the player's nation took by invitation (courting), and that joined it otherwise. */
-        public int MembersInvited;
-        public int MembersJoinedOtherwise;
 
         /** Raids on the player's nation per hour of game time. */
         public double raidsOnPlayerPerHour() {
@@ -92,7 +81,7 @@ namespace beyondnations.pacing {
             config.setWorldSeed(options.Seed);
             config.setTicksPerSecond(options.TicksPerSecond);
             Simulation simulation = new Simulation(config);
-            PacingBot bot = new PacingBot(simulation, options.NoCourting);
+            PacingBot bot = new PacingBot(simulation);
             ObjectiveTracker tracker = simulation.getObjectiveTracker();
 
             PacingRunResult result = new PacingRunResult {
@@ -112,20 +101,6 @@ namespace beyondnations.pacing {
                 }
                 else if (own != null && own.Equals(raid.getRaider().getId())) {
                     result.RaidsByPlayer++;
-                }
-            });
-
-            simulation.getEventRepository().subscribe(EventType.NationJoin, e => {
-                NationJoinEvent join = (NationJoinEvent) e;
-                NationId own = simulation.getPlayer().getNationId();
-                if (own == null || !own.Equals(join.getNation().getId()) || join.getEntityId().Equals(simulation.getPlayer().getId())) {
-                    return;
-                }
-                if (bot.isInviting()) {
-                    result.MembersInvited++;
-                }
-                else {
-                    result.MembersJoinedOtherwise++;
                 }
             });
 
@@ -162,9 +137,6 @@ namespace beyondnations.pacing {
                     });
                     previousCompletionTick = tick;
                     recorded++;
-                }
-                if (result.VillageMembersTick < 0 && WorldView.members(simulation) >= EraRules.VillageMembers) {
-                    result.VillageMembersTick = tick;
                 }
                 if (tick % options.SampleEvery == 0) {
                     sample(simulation, bot, result);
