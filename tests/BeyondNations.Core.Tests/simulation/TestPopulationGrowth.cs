@@ -249,6 +249,76 @@ namespace beyondnationstests {
             }
         }
 
+        /** A thriving village of the player's nation, in a world already at its pawn limit. */
+        private Settlement makePlayerVillageInAFullWorld() {
+            Settlement settlement = makeSettlement();
+            nation.setLeaderId(player.getId());
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            settlement.setResidentCount(1);
+            Assert.True(PopulationGrowth.isThriving(settlement));
+            gameConfig.setMaxNumPawns(countPawns());
+            return settlement;
+        }
+
+        [Fact]
+        public void testFullWorld_StillDrawsNewcomersToThePlayersNation() {
+            makePlayerVillageInAFullWorld();
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            // #371: a full world used to draw no newcomer at all, so the player's nation stopped growing
+            Assert.Equal(before + 1, countPawns());
+            Assert.Equal(1, growth.getNumImmigrants());
+        }
+
+        [Fact]
+        public void testFullWorld_DrawsNoNewcomerToAPawnLedNation() {
+            Settlement settlement = makeSettlement();
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            settlement.setResidentCount(1);
+            gameConfig.setMaxNumPawns(countPawns());
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+            Assert.Equal(0, growth.getNumImmigrants());
+        }
+
+        [Fact]
+        public void testPlayersNation_GrowsNoFurtherThanTheHeadroomPastTheLimit() {
+            makePlayerVillageInAFullWorld();
+            int limit = countPawns();
+            for (int i = 0; i < PopulationGrowth.PLAYER_NATION_HEADROOM; i++) {
+                entityRepository.addEntity(new Pawn(new Vector3(500, 0, 500), "Far Away " + i, random));
+            }
+            gameConfig.setMaxNumPawns(limit);
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+        }
+
+        [Fact]
+        public void testFullWorld_PlayersCoupleStillHasAChild() {
+            Settlement settlement = makePlayerVillageInAFullWorld();
+            Pawn ada = addResident(settlement, "Ada Smith");
+            Pawn bo = addResident(settlement, "Bo Jones");
+            befriend(ada, bo, 50);
+            settlement.getInventory().addItem(ItemType.APPLE, 20);
+            int members = nation.getNumberOfMembers();
+            gameConfig.setMaxNumPawns(countPawns());
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(1, growth.getNumBirths());
+            Assert.Equal(members + 1, nation.getNumberOfMembers());
+        }
+
         [Fact]
         public void testEmptyWorld_GetsWanderers() {
             Chunk chunk = new Chunk(0, 0, 5, 5, random);
