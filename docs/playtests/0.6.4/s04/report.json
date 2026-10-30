@@ -1,85 +1,89 @@
 {
   "session": "s04",
-  "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O).",
-  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O). This build adds an envoy: every diplomacy act that takes effect (gift/tribute, alliance, denunciation, war, peace) sends your envoy to that nation and blocks further acts toward that nation for 1,000 ticks (20 s of play, which pass only while the Nations screen is closed). Check that acts toward one nation now take game time, that the status line and the Nations screen row explain the wait, that a refused offer sends no envoy, and that each nation has its own envoy. Record the game tick of each act.",
+  "build": {
+    "version": "0.6.3",
+    "commit": "b6a0019"
+  },
   "seed": 104,
-  "durationSec": 906,
-  "outcome": "achieved",
+  "durationSec": 1146,
+  "outcome": "partial",
   "findings": [
     {
       "severity": "major",
-      "category": "balance",
-      "title": "Diplomacy happens with no game time passing: Nations screen pauses the world, so ally/denounce/war/peace all resolve on one tick",
-      "detail": "With the Nations screen open the tick stayed at 1387 (tps 0). In that frozen moment I went Neutral 0 -> three Tributes (+30, 75 of 199 coins) -> Ally accepted -> Denounce x2 (Rival -20) -> War (Hostile -60) -> Peace accepted -> War again. No cooldowns, no diminishing returns on gifts. An alliance with the first neighbour cost 75 coins and ~20 s real time. Expected gifts or relation changes to need some game time or have a cooldown.",
-      "repro": "pt start --profile beyond-nations --game-dir /root/bn-pt-064 --seed 104; title/Start/Begin; pt key n; pt wait 60 (Westshire is founded ~tick 851); pt key o; click Tribute (123,218) x3; click Ally (301,218)",
-      "screenshot": "shots/ally_cheap.png",
-      "tick": 1387
-    },
-    {
-      "severity": "major",
-      "category": "ux",
-      "title": "War/Denounce click-again confirmation expires in a few seconds of real time; at 2-5 fps the second click often misses it",
-      "detail": "Clicking War relabels the button 'Confirm' and arms a confirmation, which expires with 'Not confirmed in time, so nothing was done.' after roughly 4-9 s of real time (it varied, suggesting it may be frame-dependent). With hover-before-click at a few fps, a normal second click arrived after expiry and just re-armed it. It took 5 attempts (~2.5 min) until two back-to-back clicks worked. Expected the confirmation to last longer, or to be a modal, on slow machines.",
-      "repro": "At Rival with Westshire, Nations screen: pt click 657 218; pt wait 3; pt click 657 218 -> events show 'Not confirmed in time' then 'Click War again...' repeatedly",
-      "screenshot": "shots/war_declared.png",
-      "tick": 1387
-    },
-    {
-      "severity": "minor",
-      "category": "text",
-      "title": "Peace accepted with reason 'the fighting has cost them enough' on the same tick war was declared",
-      "detail": "Peace was offered and accepted at tick 1387, the tick war was declared, with no fighting at all. Relations went Hostile -60 -> Neutral -19 and a 60 s truce began. The reason given is wrong, and declaring war then making peace costs nothing (net +1 relations versus Rival -20).",
-      "repro": "Declare war on Westshire (two quick clicks on War), then click Peace (480,218)",
-      "screenshot": "shots/peace_instant.png",
-      "tick": 1387
-    },
-    {
-      "severity": "minor",
-      "category": "balance",
-      "title": "Breaking a fresh truce with War has no visible cost",
-      "detail": "Straight after peace the row reads 'Neutral (-19), truce 60 s' and War is still offered. The confirm says 'Click War again to break the truce', which is good, but breaking it simply sets relations back to Hostile -60 with no extra penalty, reputation hit or chronicle mention of the broken truce.",
-      "repro": "After the peace above, click War twice quickly",
-      "screenshot": "shots/truce_broken.png",
-      "tick": 1387
-    },
-    {
-      "severity": "minor",
-      "category": "text",
-      "title": "War confirm status says 'Click War again' but the button now reads 'Confirm'",
-      "detail": "When armed, the War button is relabelled 'Confirm' while the status line says 'Click War again to declare war on Westshire.' There is no button labelled War on screen at that point.",
-      "repro": "At Rival with Westshire, click War once and read the button and status line",
-      "screenshot": "shots/war_confirm_text.png",
-      "tick": 1387
+      "category": "bug",
+      "title": "Nations screen at ~1 fps treats every frame as a reopen: War/Denounce confirm never holds and rows re-sort under the pointer",
+      "detail": "At 1-2 fps the Nations screen disarms the two-click confirm between frames. Denounce on Northport showed 'Confirm' on the button, but two quick click pairs each left 'Click Denounce again to denounce Northport.' and nothing happened. One War pair did go through. The kept row order is also dropped, so rows re-sort while the screen is open. After War on Whitewood (tick 2644), Whitewood jumped to row 1 and Southernport's War button slid under the pointer. After Peace (tick 3728), Whitewood dropped back to row 2, and a click aimed at Southernport's Tribute hit Whitewood instead. Cause seen in the source (read-only): NationScreen.ReopenGapSeconds = 1.0, measured between frames with ImGui.GetTime, so any frame gap over 1 s clears shownOrder and disarms the ConfirmGate. Expected: a reopen is detected from the screen being closed, not from frame time, so confirms and row order survive slow frames.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-playtest064 --seed 104 (on a loaded machine, fps 1); key n; wait until 2+ AI nations exist; key o; pt click on a War or Denounce button twice ~1 s apart; or act on row 1 and watch the rows re-order",
+      "screenshot": "shots/denounce_np3.png",
+      "tick": 3728
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "Denouncing an ally ended the alliance without a visible confirmation",
-      "detail": "Allied +30: my first Denounce click showed nothing (no 'click again' prompt was logged or displayed), the second ended the alliance (Neutral +5). Denouncing at Neutral did show 'Click Denounce again'. Either the first click was dropped at low fps or the confirmation was not shown. The button also does not say that it ends the alliance.",
-      "repro": "Allied with Westshire: click Denounce (836,218), take a screenshot, click again",
-      "screenshot": "shots/denounce_no_confirm.png",
-      "tick": 1387
+      "title": "Status line says 'deal with them again in 20 seconds' and never counts down, contradicting the row",
+      "detail": "After a blocked act, the status line reads 'Your envoy to Southernport is still on the road: you can deal with them again in 20 seconds of play.' The text stays on the world HUD and on the Nations screen. 264 ticks later the row above it correctly said 'envoy back in 15 s', but the status line still said 20 seconds. Expected: the status line counts down, or is cleared once the countdown no longer matches.",
+      "repro": "lead a nation; key o; Tribute nation A; Tribute A again (blocked); Escape; pt wait 40; key o; compare the row's 'envoy back in N s' with the status line",
+      "screenshot": "shots/countdown2.png",
+      "tick": 1772
     },
     {
-      "severity": "polish",
-      "category": "text",
-      "title": "Chronicle panel cuts entries off with '...'",
-      "detail": "The recent-chronicle panel shows 'Fortressham and Westshire made peace, ending...' and 'Relations between Fortressham and Westshire...', which cuts off the important part. Wrap the text or widen the panel.",
-      "repro": "After any diplomacy, close the Nations screen and read the chronicle panel at the top centre",
-      "screenshot": "shots/chronicle_trunc.png",
-      "tick": 2179
+      "severity": "minor",
+      "category": "ux",
+      "title": "War/Denounce ask for confirmation even when the envoy is away and the act will be refused",
+      "detail": "With the envoy to Southernport away (row: 'envoy back in 20 s'), clicking War gives 'Click War again to declare war on Southernport'. Only the confirming click says 'Your envoy to Southernport is still on the road'. Denounce behaves the same. The buttons for a nation whose envoy is away also look exactly as enabled as normal ones. Expected: the buttons are dimmed, or the envoy message shows on the first click.",
+      "repro": "key o; Tribute Southernport; click War on Southernport twice quickly",
+      "screenshot": "shots/war_confirm_then_envoy.png",
+      "tick": 1508
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "New nations appear mid-list between visits, so a remembered button position hits the wrong nation",
+      "detail": "Between two visits to the Nations screen, the new nation Whitewood was inserted as row 2, above Castleton. My War click meant for Castleton's row declared war on Whitewood (tick 2644). Sorting 'neighbours and enemies first' is reasonable, but nothing marks a new row as new. A 'new' tag or a highlight on new nations would help.",
+      "repro": "seed 104; key n; key o at ~tick 1500 (2 nations), close, reopen at ~tick 2600 (Whitewood is row 2)",
+      "screenshot": "shots/war_whitewood.png",
+      "tick": 2644
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Three tributes at the envoy pace land at +29 because of relation decay, one short of the +30 an alliance needs",
+      "detail": "The header says tribute gives +10 and an alliance needs +30. Gifts to Southernport at ticks 1508, 2644 and 3728 (as fast as the envoy allows) gave +10, +20, then +29, because relations decay about 1 point per envoy round trip. An alliance therefore needs a 4th gift (100 coins) and a 5th envoy window, over 60 s of play. I could not reach an alliance within the time budget. Either make three gifts enough, or have the header say that relations fade.",
+      "repro": "key n; key o; Tribute nation A every time its envoy returns; read relations after the 3rd gift",
+      "screenshot": "shots/after3.png",
+      "tick": 3728
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "Game runs at 1-2 fps and 5-9 ticks/s, so each 20 s envoy wait takes ~3 minutes of real time",
+      "detail": "pt status showed fps 1-3 and tps 5.6-16.7 for the whole session, on a machine shared with other sessions. The envoy design ties every diplomacy act to 1,000 ticks, which made this goal slow to test.",
+      "repro": "pt status during play",
+      "screenshot": "shots/scrolled.png",
+      "tick": 3728
     }
   ],
   "metrics": {
     "objectivesCompleted": 0,
     "deaths": 0,
     "secondsToObjective": {},
-    "neighbourNationFoundedTick": 851,
-    "coinsSpentToAlly": 75,
-    "gameTicksSpentOnFullDiplomacyCycle": 0,
-    "warConfirmAttempts": 5,
-    "minTps": 2.5
+    "envoyTicks": 1000,
+    "nationsMet": 4,
+    "finalRelationsSouthernport": 29,
+    "tick_allyRefusedSouthernport": 1508,
+    "tick_tributeSouthernport1": 1508,
+    "tick_tributeSouthernportBlocked": 1508,
+    "tick_tributeCastleton1": 1508,
+    "tick_warSouthernportBlocked": 1508,
+    "tick_warWhitewood": 2644,
+    "tick_tributeSouthernport2": 2644,
+    "tick_peaceWhitewoodBlocked": 2644,
+    "tick_peaceWhitewood": 3728,
+    "tick_allyRefusedCastleton": 3728,
+    "tick_tributeCastleton2": 3728,
+    "tick_tributeSouthernport3": 3728
   },
   "fun": 3,
-  "verdict": "The Nations screen is clear and responsive: every action gives a precise status line with the relation number and threshold, Peace and Confirm buttons appear only when they apply, and the chronicle records each step. But because the screen pauses the world, the whole cycle (alliance for 75 coins, rivalry, war, instant peace, war again through a truce) costs no game time and almost nothing else, so diplomacy feels like flipping switches rather than statecraft. The short real-time window for click-again confirmations is also hard to hit at low frame rates."
+  "verdict": "The envoy works as designed. Accepted acts send a separate envoy to each nation, refused offers send none, and blocked acts take no coins. The Nations row counts down 'envoy back in N s', and the header explains the rule well. The major problem is the Nations screen at low frame rates: with frame gaps over 1 s the two-click confirm never holds and rows re-sort under the pointer, which sent one of my clicks to the wrong nation. The status line's frozen '20 seconds' and relation decay leaving three gifts at +29 also need a look."
 }

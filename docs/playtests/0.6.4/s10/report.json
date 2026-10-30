@@ -1,68 +1,41 @@
 {
   "session": "s10",
-  "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches.",
-  "build": {"version": "0.6.3", "commit": "4645cdf"},
+  "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches. This build changed the save format (v6) to store diplomacy envoys. Before saving, lead a nation and make at least one diplomacy act on the Nations screen (O) so an envoy is on the road; save while it is away, quit, `pt start --continue`, and confirm the envoy is still away with the same remaining time (Nations screen row 'envoy back in N s') and the rest of the world matches.",
+  "build": {"version": "0.6.3", "commit": "b6a0019"},
   "seed": "Ironvale",
-  "durationSec": 1020,
+  "durationSec": 629,
   "outcome": "achieved",
   "findings": [
     {
-      "severity": "minor",
-      "category": "bug",
-      "title": "Same shared seed reproduces the starting map but not the world's history (nation names/timing differ)",
-      "detail": "Share screen shows 'World seed 1450162717' and a ?seed= link. A new world from 1450162717 starts identical to the Ironvale world (same trees/rocks/pawns/chickens at the same distances/bearings, same region and objective; seedworld.png matches world0.png). But history diverges within ~1 game minute: original world tick 850 'Isabella Wood founded the nation of Eastwood', tick 1550 'Peggy Smith ... Bigwood', tick 1702 Ruth Wilson 'Northernville'; same-seed world tick 900 'Isabella Wood founded the nation of Westernham', tick 1400 Ruth Wilson 'Greentown'. Player behaviour differed (walked to a rock in run 1, stood still in run 2), which may explain timing, but the same pawn founding the first nation got a different name. Expected a shared seed to give a friend the same nations, or the Share screen to say only the map is shared.",
-      "repro": "pt start --seed Ironvale; Start; Begin; play ~1600 ticks; Esc > Share (note seed); Main Menu > Start; clear box, type 1450162717; Begin; pt wait 90; pt events 15",
-      "screenshot": "shots/seed-history-diverges.png",
-      "tick": 900
-    },
-    {
-      "severity": "minor",
+      "severity": "polish",
       "category": "ux",
-      "title": "Load screen slots are indistinguishable: both labelled 'Day 1 - no nation'",
-      "detail": "After saving two different worlds (one where I'd moved and gathered 5 stone, one fresh), the Load screen showed two rows 'Day 1 - no nation 2026-10-29 08:09' and '... 08:05' only. No seed, region, inventory or nation names. Picking the right one relies on remembering the time. Loading the 08:05 slot did correctly restore the first world (tick 2014, pos -77.46,-72.68, stone 5).",
-      "repro": "Save two worlds; Main Menu > Load",
-      "screenshot": "shots/load-slots-identical.png",
-      "tick": 1956
+      "title": "Nations screen: diplomacy buttons for a nation whose envoy is away are not dimmed",
+      "detail": "After paying tribute, the row reads 'envoy back in 20 s' but Tribute/Ally/War/Denounce look exactly like the buttons of a nation you can deal with. Clicking one correctly refuses ('Your envoy to Westernham is still on the road: you can deal with them again in 20 seconds of play.') and charges nothing (coins stay 231), so this is only a visual hint gap. Expected the row's buttons greyed out while the envoy travels.",
+      "repro": "pt start --seed Ironvale; Start, Begin; pt key n; wait until another nation is founded (~tick 950); pt key o; pt click 123 255 (Tribute); pt click 123 255 again",
+      "screenshot": "shots/envoy_again2.png",
+      "tick": 1557
     },
     {
       "severity": "polish",
       "category": "ux",
-      "title": "HUD panels briefly drawn off the bottom of the screen right after --continue",
-      "detail": "First screenshot after `pt start --continue` showed the Inventory, Season and Player Info panels pushed down so they overlap the action buttons and the Player Info energy bar is cut off at the bottom edge. A few seconds later the layout was normal (continued2.png). A fresh New World start did not show this.",
-      "repro": "Save from pause menu; pt stop; pt start --continue; pt await WORLD; pt shot",
-      "screenshot": "shots/continue-layout.png",
-      "tick": 1602
-    },
-    {
-      "severity": "polish",
-      "category": "ux",
-      "title": "Ctrl+A does not select all in the New World seed box",
-      "detail": "To paste a shared seed I clicked the seed box ('Ironvale') and pressed Ctrl+A then Backspace; only the last character was deleted, giving 'Ironval1450162717' (seed 1889372902). Needed ~20 Backspaces to clear. The live 'is seed N' preview made the mistake obvious, which is good. (Could partly be key-timing at 2 fps.) A 'Clear' button or select-all on focus would help when pasting a share seed.",
-      "repro": "Main Menu > Start; click seed box; pt key Control_L+a; pt key BackSpace; pt shot",
-      "screenshot": "shots/ctrla.png",
+      "title": "New World seed box keeps the previous seed and Ctrl+A does not select it",
+      "detail": "Going Main Menu > Start after playing, the seed box still holds 'Ironvale'. Clicking it and pressing Ctrl+A then BackSpace removed only the last character ('Ironval'), so typing the shared seed produced 'Ironval1450162717' (a different world, though the label under the box shows the resolved seed so it is noticeable). Had to press BackSpace 20 times. Expected Ctrl+A to select all, or a clear button, since pasting a shared seed is the main use of this box. (Low frame rate may contribute; tried once.)",
+      "repro": "From a world: Escape > Main Menu > Start; pt click 480 235; pt key ctrl+a BackSpace; pt type 1450162717",
+      "screenshot": "shots/newworld_seed.png",
       "tick": null
-    },
-    {
-      "severity": "polish",
-      "category": "text",
-      "title": "Pause menu has no Load entry although controls help lists 'Save, Load, Share, Main Menu'",
-      "detail": "Pause menu offers Resume, Save, Share, Controls, Main Menu, Quit. Load is only on the main menu. Either add Load or update the help text.",
-      "repro": "In world: Esc; pt shot",
-      "screenshot": "shots/pause.png",
-      "tick": 1594
     }
   ],
   "metrics": {
     "objectivesCompleted": 0,
     "deaths": 0,
     "secondsToObjective": {},
-    "saveTick": 1594,
-    "continueRestoredTick": 1594,
-    "playerFieldsMismatchedAfterContinue": 0,
-    "sharedSeed": 1450162717,
-    "startingEntitiesMatchingInSeedWorld": "12/12 nearest tree/rock/pawn/chicken",
-    "saveSlotsAfterTest": 2
+    "saveTick": 1448,
+    "envoyRemainingAtSaveSec": 15,
+    "envoyRemainingAfterContinueSec": 12,
+    "ticksBetweenSaveAndEnvoyCheckAfterContinue": 112,
+    "playerStateMismatchesAfterContinue": 0,
+    "shareSeed": 1450162717
   },
   "fun": 3,
-  "verdict": "Save/continue is solid: the pause-menu Save gives clear feedback ('Saved: Day 1 - no nation, 08:02'), --continue restored tick, position, heading, energy, inventory, objective and chronicle exactly, with a friendly 'Welcome back' toast, and Main Menu > Load restored the right slot. The Share screen's seed reproduces the starting map exactly, but the world's history (which nations form, their names and timing) diverges, so a shared seed is a shared map rather than a shared story; save slots also need more distinguishing detail than 'Day 1 - no nation'."
+  "verdict": "The v6 save round trip works: with a tribute envoy away (row read 'envoy back in 15 s' at tick 1440), Save, then pt stop and --continue, resumed at tick 1448 with position, heading, coins, inventory, nation, role, objective, settlement and nearby trees/rocks/chickens all identical, and the envoy row read 'envoy back in 12 s' after 112 more ticks (2.2 s), which is exactly the time that had passed. The Share screen shows seed 1450162717 plus a link, and a new world from that number matched the original start exactly (same HUD, region, distances and bearings, the same pawn names, and Isabella Wood again founding the first AI nation and settlement). Save feedback is very good ('Saved: Day 1 - Upperford, 18:03', 'Welcome back'). Two small UI nits only: envoy-away buttons aren't dimmed, and the seed box is awkward to clear."
 }

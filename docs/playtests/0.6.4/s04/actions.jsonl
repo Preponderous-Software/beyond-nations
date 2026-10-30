@@ -1,118 +1,129 @@
-{"t": 1793281940351, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "104"]}
-{"t": 1793282021858, "cmd": "key", "args": ["space"]}
-{"t": 1793282022629, "cmd": "await", "args": ["MAIN_MENU", "20"]}
-{"t": 1793282041955, "cmd": "shot", "args": ["menu"]}
-{"t": 1793282396881, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282397575, "cmd": "await", "args": ["NEW_WORLD", "15"]}
-{"t": 1793282398885, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282399686, "cmd": "await", "args": ["WORLD", "60"]}
-{"t": 1793282400530, "cmd": "shot", "args": ["world0"]}
-{"t": 1793282400918, "cmd": "state", "args": []}
-{"t": 1793282412292, "cmd": "key", "args": ["n"]}
-{"t": 1793282412889, "cmd": "wait", "args": ["2"]}
-{"t": 1793282415010, "cmd": "shot", "args": ["nation1"]}
-{"t": 1793282415299, "cmd": "state", "args": []}
-{"t": 1793282415396, "cmd": "events", "args": ["10"]}
-{"t": 1793282425216, "cmd": "key", "args": ["o"]}
-{"t": 1793282425785, "cmd": "await", "args": ["NATIONS", "10"]}
-{"t": 1793282425902, "cmd": "shot", "args": ["nations1"]}
-{"t": 1793282426345, "cmd": "state", "args": ["--full"]}
-{"t": 1793282434189, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282434766, "cmd": "wait", "args": ["60"]}
-{"t": 1793282494961, "cmd": "state", "args": []}
-{"t": 1793282495057, "cmd": "events", "args": ["8"]}
-{"t": 1793282498024, "cmd": "key", "args": ["o"]}
-{"t": 1793282498585, "cmd": "await", "args": ["NATIONS", "10"]}
-{"t": 1793282498983, "cmd": "shot", "args": ["nations2"]}
-{"t": 1793282504805, "cmd": "click", "args": ["301", "218"]}
-{"t": 1793282505630, "cmd": "wait", "args": ["2"]}
-{"t": 1793282507772, "cmd": "shot", "args": ["ally1"]}
-{"t": 1793282508172, "cmd": "state", "args": []}
-{"t": 1793282508317, "cmd": "events", "args": ["4"]}
-{"t": 1793282514362, "cmd": "click", "args": ["123", "218"]}
-{"t": 1793282515244, "cmd": "wait", "args": ["1"]}
-{"t": 1793282516369, "cmd": "click", "args": ["123", "218"]}
-{"t": 1793282517235, "cmd": "wait", "args": ["1"]}
-{"t": 1793282518356, "cmd": "click", "args": ["123", "218"]}
-{"t": 1793282519188, "cmd": "wait", "args": ["1"]}
-{"t": 1793282520282, "cmd": "shot", "args": ["trib3"]}
-{"t": 1793282520690, "cmd": "state", "args": []}
-{"t": 1793282520820, "cmd": "events", "args": ["5"]}
-{"t": 1793282523311, "cmd": "click", "args": ["301", "218"]}
-{"t": 1793282524295, "cmd": "wait", "args": ["2"]}
-{"t": 1793282526502, "cmd": "shot", "args": ["ally2"]}
-{"t": 1793282526895, "cmd": "events", "args": ["4"]}
-{"t": 1793282532890, "cmd": "note", "args": ["--shot", "ally_cheap", "Alliance with Westshire reached in ~20 s real time and 0 game ticks: three Tribute clicks (75 of 199 starting coins) took relations 0->+30 while the Nations screen pauses the world (tick stayed 1387), then Ally accepted. No cooldown or diminishing returns on gifts."]}
-{"t": 1793282533067, "cmd": "click", "args": ["836", "218"]}
-{"t": 1793282533810, "cmd": "wait", "args": ["2"]}
-{"t": 1793282535883, "cmd": "shot", "args": ["denounce1"]}
-{"t": 1793282536140, "cmd": "events", "args": ["4"]}
-{"t": 1793282543491, "cmd": "move", "args": ["830", "218"]}
-{"t": 1793282543647, "cmd": "wait", "args": ["1"]}
-{"t": 1793282544881, "cmd": "click", "args": ["836", "218"]}
-{"t": 1793282545798, "cmd": "wait", "args": ["3"]}
-{"t": 1793282548971, "cmd": "shot", "args": ["denounce2"]}
-{"t": 1793282549330, "cmd": "events", "args": ["3"]}
-{"t": 1793282549497, "cmd": "status", "args": []}
-{"t": 1793282557008, "cmd": "note", "args": ["--shot", "denounce_no_confirm", "Denounce on an ally silently ends the alliance (Allied +30 -> Neutral +5) in one click with no confirmation and no hint on the button that it breaks the alliance. Also my first Denounce click did not register (slow frames), second did."]}
-{"t": 1793282557188, "cmd": "click", "args": ["836", "218"]}
-{"t": 1793282557955, "cmd": "wait", "args": ["3"]}
-{"t": 1793282561077, "cmd": "click", "args": ["836", "218"]}
-{"t": 1793282561951, "cmd": "wait", "args": ["3"]}
-{"t": 1793282565122, "cmd": "shot", "args": ["denounce3"]}
-{"t": 1793282565493, "cmd": "events", "args": ["6"]}
-{"t": 1793282577888, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282578820, "cmd": "wait", "args": ["3"]}
-{"t": 1793282581955, "cmd": "shot", "args": ["war1"]}
-{"t": 1793282582232, "cmd": "events", "args": ["4"]}
-{"t": 1793282587468, "cmd": "note", "args": ["--shot", "war_confirm_text", "War confirmation: the button relabels to 'Confirm' but the status line says 'Click War again to declare war on Westshire.' - there is no War button on screen any more."]}
-{"t": 1793282587909, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282588730, "cmd": "wait", "args": ["3"]}
-{"t": 1793282591846, "cmd": "shot", "args": ["war2"]}
-{"t": 1793282592219, "cmd": "events", "args": ["5"]}
-{"t": 1793282596709, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282597574, "cmd": "wait", "args": ["3"]}
-{"t": 1793282600702, "cmd": "shot", "args": ["war3"]}
-{"t": 1793282601055, "cmd": "events", "args": ["5"]}
-{"t": 1793282606809, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282609493, "cmd": "wait", "args": ["2"]}
-{"t": 1793282611603, "cmd": "events", "args": ["4"]}
-{"t": 1793282629218, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282630074, "cmd": "wait", "args": ["4"]}
-{"t": 1793282681346, "cmd": "events", "args": ["4"]}
-{"t": 1793282684811, "cmd": "shot", "args": ["war4"]}
-{"t": 1793282730197, "cmd": "status", "args": []}
-{"t": 1793282730291, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282731098, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282731888, "cmd": "wait", "args": ["3"]}
-{"t": 1793282735365, "cmd": "events", "args": ["4"]}
-{"t": 1793282745419, "cmd": "note", "args": ["--shot", "war_declared", "War declared only after several tries: the War confirm window expires ('Not confirmed in time, so nothing was done.') after a few seconds of real time; at 2-5 fps with hover-before-click, a normal second click often lands after it expired and just re-arms it. Took 5 attempts (~2.5 min) before two rapid clicks worked."]}
-{"t": 1793282746916, "cmd": "shot", "args": ["war5"]}
-{"t": 1793282751994, "cmd": "click", "args": ["480", "218"]}
-{"t": 1793282752759, "cmd": "click", "args": ["480", "218"]}
-{"t": 1793282753511, "cmd": "wait", "args": ["3"]}
-{"t": 1793282756636, "cmd": "events", "args": ["4"]}
-{"t": 1793282756733, "cmd": "shot", "args": ["peace1"]}
-{"t": 1793282764974, "cmd": "note", "args": ["--shot", "peace_instant", "Peace accepted at the same tick war was declared (tick 1387; the Nations screen pauses the world) with the reason 'the fighting has cost them enough' although no fighting happened. Relations jump Hostile -60 -> Neutral -19. Declare war then sue for peace is free and instant."]}
-{"t": 1793282765275, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282766325, "cmd": "click", "args": ["657", "218"]}
-{"t": 1793282767121, "cmd": "wait", "args": ["3"]}
-{"t": 1793282770828, "cmd": "events", "args": ["3"]}
-{"t": 1793282770932, "cmd": "shot", "args": ["truce_war"]}
-{"t": 1793282777594, "cmd": "note", "args": ["--shot", "truce_broken", "Right after peace the row reads 'Neutral (-19), truce 60 s' yet War is still offered; declaring war during the truce succeeds with no warning and no extra penalty (relations back to -60), so the truce does not bind the player."]}
-{"t": 1793282778500, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282779026, "cmd": "wait", "args": ["45"]}
-{"t": 1793282824599, "cmd": "shot", "args": ["afterwar"]}
-{"t": 1793282824911, "cmd": "state", "args": []}
-{"t": 1793282824987, "cmd": "events", "args": ["8"]}
-{"t": 1793282834883, "cmd": "note", "args": ["--shot", "chronicle_trunc", "Chronicle panel truncates entries with '...' ('Fortressham and Westshire made peace, ending...', 'Relations between Fortressham and Westshire...'); the panel has room on screen but the key part of the line is cut."]}
-{"t": 1793282835615, "cmd": "key", "args": ["o"]}
-{"t": 1793282836189, "cmd": "await", "args": ["NATIONS", "10"]}
-{"t": 1793282836269, "cmd": "click", "args": ["543", "45"]}
-{"t": 1793282837035, "cmd": "wait", "args": ["3"]}
-{"t": 1793282840139, "cmd": "shot", "args": ["laws"]}
-{"t": 1793282845631, "cmd": "key", "args": ["Escape"]}
-{"t": 1793282846143, "cmd": "events", "args": ["50"]}
-{"t": 1793282846209, "cmd": "stop", "args": []}
-{"t": 1793282870352, "cmd": "report", "args": []}
-{"t": 1793285744785, "cmd": "stop", "args": []}
+{"t": 1793317184201, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "104"]}
+{"t": 1793317199780, "cmd": "key", "args": ["space"]}
+{"t": 1793317202534, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793317205598, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793317227345, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793317228327, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793317229377, "cmd": "state", "args": []}
+{"t": 1793317229654, "cmd": "shot", "args": ["world1"]}
+{"t": 1793317242105, "cmd": "key", "args": ["n"]}
+{"t": 1793317244850, "cmd": "shot", "args": ["afterN"]}
+{"t": 1793317245647, "cmd": "state", "args": ["--full"]}
+{"t": 1793317256190, "cmd": "key", "args": ["o"]}
+{"t": 1793317256769, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793317258210, "cmd": "shot", "args": ["nations1"]}
+{"t": 1793317258996, "cmd": "state", "args": ["--full"]}
+{"t": 1793317278608, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317279203, "cmd": "status", "args": []}
+{"t": 1793317279434, "cmd": "walkto", "args": ["tree"]}
+{"t": 1793317311421, "cmd": "key", "args": ["e"]}
+{"t": 1793317315323, "cmd": "key", "args": ["e"]}
+{"t": 1793317316154, "cmd": "wait", "args": ["20"]}
+{"t": 1793317336375, "cmd": "state", "args": []}
+{"t": 1793317358217, "cmd": "walkto", "args": ["tree"]}
+{"t": 1793317418800, "cmd": "key", "args": ["e"]}
+{"t": 1793317421761, "cmd": "key", "args": ["e"]}
+{"t": 1793317424649, "cmd": "key", "args": ["e"]}
+{"t": 1793317425617, "cmd": "wait", "args": ["30"]}
+{"t": 1793317465385, "cmd": "events", "args": ["15"]}
+{"t": 1793317465586, "cmd": "state", "args": []}
+{"t": 1793317475901, "cmd": "key", "args": ["o"]}
+{"t": 1793317477161, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793317478774, "cmd": "shot", "args": ["nations2"]}
+{"t": 1793317480031, "cmd": "state", "args": ["--full"]}
+{"t": 1793317489896, "cmd": "state", "args": ["--full"]}
+{"t": 1793317493085, "cmd": "click", "args": ["300", "255"]}
+{"t": 1793317496226, "cmd": "shot", "args": ["ally_refused"]}
+{"t": 1793317496901, "cmd": "state", "args": ["--full"]}
+{"t": 1793317509496, "cmd": "note", "args": ["--shot", "refused_no_envoy", "Tick 1508: Ally to Southernport at Neutral(0) refused with clear message; row shows no envoy-away marker afterward (good)."]}
+{"t": 1793317510836, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793317514578, "cmd": "shot", "args": ["tribute1"]}
+{"t": 1793317534518, "cmd": "state", "args": ["--full"]}
+{"t": 1793317545016, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793317548486, "cmd": "shot", "args": ["tribute_blocked"]}
+{"t": 1793317549256, "cmd": "state", "args": ["--full"]}
+{"t": 1793317564336, "cmd": "note", "args": ["--shot", "tribute_blocked2", "Tick 1508: Tribute to Southernport accepted (+10, 199->174 coins); row now reads 'envoy back in 20 s'. Second Tribute click blocked with 'Your envoy to Southernport is still on the road...20 seconds of play'; no coins taken. But the Tribute/Ally/War/Denounce buttons for Southernport look exactly as enabled as before."]}
+{"t": 1793317564996, "cmd": "click", "args": ["123", "320"]}
+{"t": 1793317568025, "cmd": "shot", "args": ["castleton_tribute"]}
+{"t": 1793317569115, "cmd": "state", "args": ["--full"]}
+{"t": 1793317575136, "cmd": "click", "args": ["835", "255"]}
+{"t": 1793317578310, "cmd": "state", "args": ["--full"]}
+{"t": 1793317578707, "cmd": "click", "args": ["657", "255"]}
+{"t": 1793317581870, "cmd": "shot", "args": ["war_blocked"]}
+{"t": 1793317582750, "cmd": "state", "args": ["--full"]}
+{"t": 1793317587917, "cmd": "click", "args": ["657", "255"]}
+{"t": 1793317590860, "cmd": "shot", "args": ["war_blocked2"]}
+{"t": 1793317591684, "cmd": "state", "args": ["--full"]}
+{"t": 1793317597532, "cmd": "click", "args": ["657", "255"]}
+{"t": 1793317601634, "cmd": "shot", "args": ["war_confirm"]}
+{"t": 1793317602567, "cmd": "state", "args": ["--full"]}
+{"t": 1793317639995, "cmd": "status", "args": []}
+{"t": 1793317640356, "cmd": "click", "args": ["657", "255"]}
+{"t": 1793317641500, "cmd": "click", "args": ["657", "255"]}
+{"t": 1793317644591, "cmd": "shot", "args": ["war2"]}
+{"t": 1793317645556, "cmd": "state", "args": ["--full"]}
+{"t": 1793317662729, "cmd": "note", "args": ["--shot", "war_confirm_then_envoy", "Tick 1508: War on Southernport while its envoy is away: the game first asks 'Click War again to declare war on Southernport', and only after the confirming click says 'Your envoy to Southernport is still on the road'. The confirm step is wasted; the row already says envoy back in 20 s. Same with Denounce. Also at 1-2 fps my confirm click ~10 s later silently re-armed (the button still showed Confirm in the last frame)."]}
+{"t": 1793317663992, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317664798, "cmd": "wait", "args": ["40"]}
+{"t": 1793317708263, "cmd": "state", "args": []}
+{"t": 1793317708488, "cmd": "key", "args": ["o"]}
+{"t": 1793317709340, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793317710520, "cmd": "shot", "args": ["countdown"]}
+{"t": 1793317711085, "cmd": "state", "args": ["--full"]}
+{"t": 1793317720741, "cmd": "shot", "args": ["countdown2"]}
+{"t": 1793317734085, "cmd": "note", "args": ["--shot", "countdown2", "Tick 1772 (264 ticks after both tributes): Nations rows correctly count down 'envoy back in 15 s' for each nation separately. But the status line at the bottom (and on the world HUD while walking) still says 'you can deal with them again in 20 seconds of play' - a frozen number that disagrees with the row right above it."]}
+{"t": 1793317734757, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317735399, "cmd": "wait", "args": ["100"]}
+{"t": 1793317835707, "cmd": "state", "args": []}
+{"t": 1793317856819, "cmd": "key", "args": ["o"]}
+{"t": 1793317857900, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793317861488, "cmd": "shot", "args": ["back"]}
+{"t": 1793317862839, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793317866127, "cmd": "state", "args": ["--full"]}
+{"t": 1793317866453, "cmd": "click", "args": ["657", "320"]}
+{"t": 1793317868109, "cmd": "click", "args": ["657", "320"]}
+{"t": 1793317872538, "cmd": "shot", "args": ["war_castleton"]}
+{"t": 1793317873773, "cmd": "state", "args": ["--full"]}
+{"t": 1793317897632, "cmd": "shot", "args": ["war_whitewood"]}
+{"t": 1793317921212, "cmd": "note", "args": ["--shot", "war_whitewood", "Tick 2644: declared war on Whitewood (new nation that appeared as row 2 since my last visit, pushing Castleton down - I meant Castleton). Envoy sent; row reads 'Hostile (-60), at war, envoy back in 20 s'. Right after the war the rows re-sorted while the screen stayed open: Whitewood jumped to row 1 and Southernport's War button slid under my pointer (now highlighted). The screen claims buttons never slide under the pointer."]}
+{"t": 1793317922783, "cmd": "click", "args": ["480", "255"]}
+{"t": 1793317925983, "cmd": "state", "args": ["--full"]}
+{"t": 1793317946459, "cmd": "key", "args": ["Escape"]}
+{"t": 1793317947180, "cmd": "wait", "args": ["150"]}
+{"t": 1793318097531, "cmd": "state", "args": []}
+{"t": 1793318122409, "cmd": "wait", "args": ["25"]}
+{"t": 1793318147748, "cmd": "key", "args": ["o"]}
+{"t": 1793318148361, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793318152921, "cmd": "shot", "args": ["win3"]}
+{"t": 1793318153658, "cmd": "state", "args": ["--full"]}
+{"t": 1793318173676, "cmd": "click", "args": ["480", "255"]}
+{"t": 1793318176670, "cmd": "state", "args": ["--full"]}
+{"t": 1793318179031, "cmd": "shot", "args": ["peace1"]}
+{"t": 1793318202037, "cmd": "click", "args": ["123", "320"]}
+{"t": 1793318212074, "cmd": "state", "args": ["--full"]}
+{"t": 1793318212487, "cmd": "click", "args": ["300", "386"]}
+{"t": 1793318215525, "cmd": "state", "args": ["--full"]}
+{"t": 1793318219375, "cmd": "shot", "args": ["castle_refused"]}
+{"t": 1793318220338, "cmd": "click", "args": ["123", "386"]}
+{"t": 1793318223582, "cmd": "state", "args": ["--full"]}
+{"t": 1793318226020, "cmd": "shot", "args": ["after3"]}
+{"t": 1793318247749, "cmd": "note", "args": ["--shot", "after3", "Tick 3728: after Peace with Whitewood (accepted, truce 60 s, envoy sent) the rows re-sorted again with the screen open: Whitewood dropped from row 1 to row 2 and Southernport rose to row 1. My next click, aimed at Southernport's Tribute in row 2, hit Whitewood ('Your envoy to Whitewood is still on the road'). Then Ally to Castleton at +9 was refused and sent no envoy: the following Tribute to Castleton went through at once (+19, envoy back in 20 s). Per-nation envoys confirmed: Whitewood and Castleton away, Southernport free."]}
+{"t": 1793318249167, "cmd": "click", "args": ["123", "255"]}
+{"t": 1793318252394, "cmd": "state", "args": ["--full"]}
+{"t": 1793318270592, "cmd": "click", "args": ["880", "197"]}
+{"t": 1793318274841, "cmd": "shot", "args": ["scrolled"]}
+{"t": 1793318287712, "cmd": "click", "args": ["835", "386"]}
+{"t": 1793318288958, "cmd": "click", "args": ["835", "386"]}
+{"t": 1793318292241, "cmd": "state", "args": ["--full"]}
+{"t": 1793318294652, "cmd": "shot", "args": ["denounce_np"]}
+{"t": 1793318304212, "cmd": "status", "args": []}
+{"t": 1793318304610, "cmd": "click", "args": ["835", "386"]}
+{"t": 1793318305688, "cmd": "click", "args": ["835", "386"]}
+{"t": 1793318308940, "cmd": "state", "args": ["--full"]}
+{"t": 1793318311355, "cmd": "shot", "args": ["denounce_np2"]}
+{"t": 1793318328173, "cmd": "note", "args": ["--shot", "denounce_np3", "Tick 3728, fps 1: Denounce on Northport cannot be confirmed. Two quick click pairs (each click ~1 s apart) both leave 'Click Denounce again to denounce Northport.' while the button reads 'Confirm'. Earlier a War pair did go through once. Source (read-only): NationScreen treats any gap >1.0 s between frames (ReopenGapSeconds) as a reopen, which disarms the ConfirmGate and clears the kept row order, so at ~1 fps every frame looks like a reopen."]}
+{"t": 1793318329435, "cmd": "events", "args": ["40"]}
+{"t": 1793318330013, "cmd": "stop", "args": []}
+{"t": 1793318362734, "cmd": "report", "args": []}
+{"t": 1793318378991, "cmd": "report", "args": []}
+{"t": 1793320034057, "cmd": "stop", "args": []}

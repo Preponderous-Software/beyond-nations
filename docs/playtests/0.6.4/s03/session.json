@@ -1,6 +1,6 @@
 {
   "session": "s03",
-  "dir": "/tmp/playtest-beyond-nations/064-20261029-0750/s03",
+  "dir": "/tmp/playtest-beyond-nations/064b-20261029-1717/s03",
   "profile": "beyond-nations",
   "display": ":107",
   "window": "2097159",
@@ -11,7 +11,7 @@
     "autumn"
   ],
   "command": [
-    "/root/bn-pt-064/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
+    "/root/bn-wt-playtest064/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
     "--width",
     "960",
     "--height",
@@ -20,13 +20,13 @@
     "--seed",
     "103",
     "--playtest-out",
-    "/tmp/playtest-beyond-nations/064-20261029-0750/s03/out",
+    "/tmp/playtest-beyond-nations/064b-20261029-1717/s03/out",
     "--season",
     "autumn"
   ],
   "probe": true,
   "ticksPerSecond": 50,
-  "startedAtMs": 1793282019916,
+  "startedAtMs": 1793317189284,
   "version": "0.6.3",
-  "commit": "4645cdf"
+  "commit": "b6a0019"
 }

@@ -1,6 +1,6 @@
 {
   "session": "s09",
-  "dir": "/tmp/playtest-beyond-nations/064-20261029-0750/s09",
+  "dir": "/tmp/playtest-beyond-nations/064b-20261029-1717/s09",
   "profile": "beyond-nations",
   "display": ":106",
   "window": "2097159",
@@ -8,7 +8,7 @@
   "seed": "109",
   "args": [],
   "command": [
-    "/root/bn-pt-064/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
+    "/root/bn-wt-playtest064/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
     "--width",
     "960",
     "--height",
@@ -17,11 +17,11 @@
     "--seed",
     "109",
     "--playtest-out",
-    "/tmp/playtest-beyond-nations/064-20261029-0750/s09/out"
+    "/tmp/playtest-beyond-nations/064b-20261029-1717/s09/out"
   ],
   "probe": true,
   "ticksPerSecond": 50,
-  "startedAtMs": 1793282019652,
+  "startedAtMs": 1793318510035,
   "version": "0.6.3",
-  "commit": "4645cdf"
+  "commit": "b6a0019"
 }

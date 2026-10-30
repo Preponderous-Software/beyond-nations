@@ -1,39 +1,108 @@
-{"type":"screen","tick":0,"wallTimeMs":1793282019372,"from":null,"to":"TITLE"}
-{"type":"screen","tick":0,"wallTimeMs":1793282401863,"from":"TITLE","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793282414642,"from":"MAIN_MENU","to":"CONFIG"}
-{"type":"screen","tick":0,"wallTimeMs":1793282438090,"from":"CONFIG","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793282440028,"from":"MAIN_MENU","to":"CONTROLS"}
-{"type":"screen","tick":0,"wallTimeMs":1793282458729,"from":"CONTROLS","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793282460894,"from":"MAIN_MENU","to":"NEW_WORLD"}
-{"type":"world","tick":0,"wallTimeMs":1793282466182,"how":"created","slot":"world-109-20261029-140106","seed":109}
-{"type":"screen","tick":0,"wallTimeMs":1793282466184,"from":"NEW_WORLD","to":"WORLD"}
-{"type":"status","tick":843,"wallTimeMs":1793282540023,"text":"Gathered 5 wood and 3 apples from tree."}
-{"type":"status","tick":867,"wallTimeMs":1793282542791,"text":"Gathered 6 wood and 2 apples from tree."}
-{"type":"objective_completed","tick":903,"wallTimeMs":1793282546906,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":903}
-{"type":"status","tick":903,"wallTimeMs":1793282546906,"text":"Objective complete: Gather wood. \u002B2 apples."}
-{"type":"objective_completed","tick":951,"wallTimeMs":1793282552433,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
-{"type":"status","tick":951,"wallTimeMs":1793282552433,"text":"Objective complete: Eat something. \u002B25 coins."}
-{"type":"screen","tick":1067,"wallTimeMs":1793282566610,"from":"WORLD","to":"INVENTORY"}
-{"type":"screen","tick":1067,"wallTimeMs":1793282575128,"from":"INVENTORY","to":"CRAFTING"}
-{"type":"screen","tick":1071,"wallTimeMs":1793282586941,"from":"CRAFTING","to":"WORLD"}
-{"type":"screen","tick":1091,"wallTimeMs":1793282588913,"from":"WORLD","to":"NATIONS"}
-{"type":"screen","tick":1095,"wallTimeMs":1793282607234,"from":"NATIONS","to":"WORLD"}
-{"type":"status","tick":1111,"wallTimeMs":1793282611282,"text":"Created nation Towntown."}
-{"type":"chronicle","tick":1111,"wallTimeMs":1793282611282,"kind":"NationCreation","text":"Under your hand, the nation of Towntown was born. It is the first nation this world has known."}
-{"type":"objective_completed","tick":1151,"wallTimeMs":1793282630642,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":200}
-{"type":"status","tick":1151,"wallTimeMs":1793282630642,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
-{"type":"status","tick":1255,"wallTimeMs":1793282713105,"text":"Chronicle: full history."}
-{"type":"chronicle","tick":1303,"wallTimeMs":1793282717026,"kind":"NationCreation","text":"Una Smith declared the nation of Westwood, though none had yet sworn to it."}
-{"type":"chronicle","tick":1351,"wallTimeMs":1793282720545,"kind":"SettlementFounded","text":"Una Smith laid the first stones of Westwood."}
-{"type":"status","tick":1383,"wallTimeMs":1793282722532,"text":"Chronicle hidden."}
-{"type":"status","tick":1407,"wallTimeMs":1793282723986,"text":"Chronicle: recent entries."}
-{"type":"screen","tick":1431,"wallTimeMs":1793282725583,"from":"WORLD","to":"PAUSE"}
-{"type":"screen","tick":1431,"wallTimeMs":1793282735950,"from":"PAUSE","to":"SHARE"}
-{"type":"screen","tick":1431,"wallTimeMs":1793282752298,"from":"SHARE","to":"PAUSE"}
-{"type":"save","tick":1431,"wallTimeMs":1793282754500,"count":1}
-{"type":"status","tick":1431,"wallTimeMs":1793282754500,"text":"Game saved."}
-{"type":"screen","tick":1435,"wallTimeMs":1793282761771,"from":"PAUSE","to":"WORLD"}
-{"type":"status","tick":1651,"wallTimeMs":1793282776201,"text":"Gathered 4 wood and 3 apples from tree."}
-{"type":"chronicle","tick":1703,"wallTimeMs":1793282780036,"kind":"NationCreation","text":"The nation of Lowerham was born, with Grace Davies at its head."}
-{"type":"chronicle","tick":1751,"wallTimeMs":1793282783570,"kind":"SettlementFounded","text":"Grace Davies laid the first stones of Lowerham."}
-{"type":"status","tick":1843,"wallTimeMs":1793282789586,"text":"You are not inside a settlement."}
+{"type":"screen","tick":0,"wallTimeMs":1793318509699,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793318621241,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793318646620,"from":"MAIN_MENU","to":"CONFIG"}
+{"type":"screen","tick":0,"wallTimeMs":1793318673243,"from":"CONFIG","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793318674134,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1793318695925,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793318697087,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793318704466,"how":"created","slot":"world-109-20261030-000504","seed":109}
+{"type":"screen","tick":0,"wallTimeMs":1793318704467,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":932,"wallTimeMs":1793318794124,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":1060,"wallTimeMs":1793318807566,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":1088,"wallTimeMs":1793318810468,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":1100,"wallTimeMs":1793318811726,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1100}
+{"type":"status","tick":1100,"wallTimeMs":1793318811726,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1152,"wallTimeMs":1793318817192,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1152,"wallTimeMs":1793318817192,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"screen","tick":1152,"wallTimeMs":1793318817533,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":1152,"wallTimeMs":1793318836132,"from":"INVENTORY","to":"CRAFTING"}
+{"type":"screen","tick":1156,"wallTimeMs":1793318846226,"from":"CRAFTING","to":"WORLD"}
+{"type":"status","tick":1324,"wallTimeMs":1793318862568,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":1356,"wallTimeMs":1793318865498,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":1384,"wallTimeMs":1793318868318,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":1400,"wallTimeMs":1793318870017,"kind":"NationCreation","text":"Una Smith declared the nation of Farmland, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"status","tick":1444,"wallTimeMs":1793318874566,"text":"Created nation Oldtown."}
+{"type":"chronicle","tick":1444,"wallTimeMs":1793318874566,"kind":"NationCreation","text":"You raised a banner and named your people Oldtown."}
+{"type":"objective_completed","tick":1452,"wallTimeMs":1793318875272,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":300}
+{"type":"status","tick":1452,"wallTimeMs":1793318875272,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":1452,"wallTimeMs":1793318875272,"kind":"SettlementFounded","text":"Una Smith laid the first stones of Farmland."}
+{"type":"status","tick":1664,"wallTimeMs":1793318895051,"text":"Chronicle: full history."}
+{"type":"status","tick":1788,"wallTimeMs":1793318906976,"text":"Chronicle hidden."}
+{"type":"chronicle","tick":1800,"wallTimeMs":1793318908468,"kind":"NationCreation","text":"The nation of Westernport was born, with Grace Davies at its head."}
+{"type":"status","tick":1804,"wallTimeMs":1793318908947,"text":"Chronicle: recent entries."}
+{"type":"screen","tick":1820,"wallTimeMs":1793318911176,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":1824,"wallTimeMs":1793318952440,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":1836,"wallTimeMs":1793318954223,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":1836,"wallTimeMs":1793318964678,"from":"PAUSE","to":"SHARE"}
+{"type":"screen","tick":1836,"wallTimeMs":1793318977164,"from":"SHARE","to":"PAUSE"}
+{"type":"save","tick":1836,"wallTimeMs":1793318979852,"count":1}
+{"type":"status","tick":1836,"wallTimeMs":1793318979852,"text":"Game saved."}
+{"type":"screen","tick":1836,"wallTimeMs":1793318989417,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":1836,"wallTimeMs":1793318989417,"count":2}
+{"type":"status","tick":1836,"wallTimeMs":1793318989417,"text":"Game saved. (x2)"}
+{"type":"screen","tick":1836,"wallTimeMs":1793318998351,"from":"MAIN_MENU","to":"LOAD"}
+{"type":"world","tick":1836,"wallTimeMs":1793319024962,"how":"loaded","slot":"world-109-20261030-000504","seed":109}
+{"type":"screen","tick":1836,"wallTimeMs":1793319024962,"from":"LOAD","to":"WORLD"}
+{"type":"chronicle","tick":1852,"wallTimeMs":1793319026395,"kind":"SettlementFounded","text":"Westernport put down roots: Grace Davies founded its first settlement."}
+{"type":"chronicle","tick":2052,"wallTimeMs":1793319049301,"kind":"NationCreation","text":"The nation of Castleshire was born, with Una Williams at its head."}
+{"type":"status","tick":2264,"wallTimeMs":1793319076635,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":2280,"wallTimeMs":1793319078797,"text":"No entities within range to interact with."}
+{"type":"status","tick":2296,"wallTimeMs":1793319080681,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":2300,"wallTimeMs":1793319081095,"kind":"NationCreation","text":"Zach Wilson declared the nation of Southfield, though none had yet sworn to it."}
+{"type":"status","tick":2416,"wallTimeMs":1793319093716,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":2436,"wallTimeMs":1793319095704,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":2448,"wallTimeMs":1793319097446,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":2500,"wallTimeMs":1793319103754,"kind":"SettlementFounded","text":"Una Williams laid the first stones of Castleshire."}
+{"type":"status","tick":2576,"wallTimeMs":1793319112505,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2592,"wallTimeMs":1793319114442,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":2608,"wallTimeMs":1793319116382,"text":"No entities within range to interact with."}
+{"type":"status","tick":2820,"wallTimeMs":1793319138782,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":2832,"wallTimeMs":1793319140173,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2860,"wallTimeMs":1793319141988,"text":"No entities within range to interact with."}
+{"type":"status","tick":2928,"wallTimeMs":1793319146688,"text":"Too close to the Village of Westernport: 188 away, and settlements must be 250 apart. Open ground lies about 210 to the north."}
+{"type":"chronicle","tick":2952,"wallTimeMs":1793319148154,"kind":"NationCreation","text":"Nancy Williams founded the nation of Greatport."}
+{"type":"status","tick":3252,"wallTimeMs":1793319178785,"text":"Too close to the Village of Westernport: 130 away, and settlements must be 250 apart. Open ground lies about 170 to the north."}
+{"type":"status","tick":3440,"wallTimeMs":1793319200551,"text":"You enter the land of Westernport (Neutral)."}
+{"type":"status","tick":3460,"wallTimeMs":1793319202875,"text":"This land is claimed by Westernport. Found your settlement outside its borders. Open ground lies about 200 to the north."}
+{"type":"chronicle","tick":3500,"wallTimeMs":1793319207841,"kind":"SettlementFounded","text":"Zach Wilson raised the first settlement of Southfield."}
+{"type":"chronicle","tick":3552,"wallTimeMs":1793319213602,"kind":"StallBuilt","text":"Trade came to Farmland: Una Smith built a stall."}
+{"type":"chronicle","tick":3552,"wallTimeMs":1793319213602,"kind":"StallBuilt","text":"Una Williams built a market stall in Castleshire."}
+{"type":"status","tick":3800,"wallTimeMs":1793319244521,"text":"You leave the land of Westernport for the wilds."}
+{"type":"status","tick":3860,"wallTimeMs":1793319252618,"text":"Too close to the Village of Westernport: 148 away, and settlements must be 250 apart. Open ground lies about 130 to the north."}
+{"type":"status","tick":4064,"wallTimeMs":1793319274830,"text":"Too close to the Village of Farmland: 246 away, and settlements must be 250 apart. Open ground lies about 11 to the north-east."}
+{"type":"status","tick":4168,"wallTimeMs":1793319288656,"text":"Too close to the Village of Farmland: 243 away, and settlements must be 250 apart. Open ground lies about 11 to the north-east."}
+{"type":"chronicle","tick":4252,"wallTimeMs":1793319298726,"kind":"NationRelationChange","text":"Farmland and Westernport have become rivals over their border."}
+{"type":"objective_completed","tick":4352,"wallTimeMs":1793319312916,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":2516}
+{"type":"status","tick":4352,"wallTimeMs":1793319312916,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":4352,"wallTimeMs":1793319312916,"kind":"SettlementFounded","text":"You laid the first stones of Oldtown."}
+{"type":"chronicle","tick":4452,"wallTimeMs":1793319330876,"kind":"SettlementFounded","text":"Greatport put down roots: Nancy Williams founded its first settlement."}
+{"type":"status","tick":4548,"wallTimeMs":1793319345929,"text":"Entered settlement."}
+{"type":"objective_completed","tick":4552,"wallTimeMs":1793319346906,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":200}
+{"type":"status","tick":4552,"wallTimeMs":1793319346906,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":4552,"wallTimeMs":1793319346906,"kind":"NationCreation","text":"Charlotte Brown declared the nation of Villagewood, though none had yet sworn to it."}
+{"type":"chronicle","tick":4600,"wallTimeMs":1793319355119,"kind":"StallBuilt","text":"Trade came to Westernport: Grace Davies built a stall."}
+{"type":"chronicle","tick":4600,"wallTimeMs":1793319355119,"kind":"SettlementFounded","text":"Charlotte Brown raised the first settlement of Villagewood."}
+{"type":"status","tick":4752,"wallTimeMs":1793319378892,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1793319378892,"kind":"NationRelationChange","text":"Farmland and Castleshire have become rivals over their border."}
+{"type":"status","tick":4808,"wallTimeMs":1793319387593,"text":"This settlement does not have any stalls."}
+{"type":"status","tick":4900,"wallTimeMs":1793319400251,"text":"First-person view."}
+{"type":"status","tick":5004,"wallTimeMs":1793319414691,"text":"Third-person view."}
+{"type":"status","tick":5012,"wallTimeMs":1793319415534,"text":"Exited settlement."}
+{"type":"chronicle","tick":5052,"wallTimeMs":1793319421545,"kind":"StallBuilt","text":"A new stall opened in the market of Castleshire, built by Una Williams."}
+{"type":"chronicle","tick":5400,"wallTimeMs":1793319464317,"kind":"NationCreation","text":"Peggy Lewis founded the nation of Eastwood."}
+{"type":"status","tick":5412,"wallTimeMs":1793319465229,"text":"You leave the land of Oldtown for the wilds."}
+{"type":"chronicle","tick":5500,"wallTimeMs":1793319474337,"kind":"NationRelationChange","text":"Westernport and Southfield have become rivals over their border."}
+{"type":"status","tick":5548,"wallTimeMs":1793319479246,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":5752,"wallTimeMs":1793319501325,"kind":"NationRelationChange","text":"Castleshire and Southfield have become rivals over their border."}
+{"type":"status","tick":5952,"wallTimeMs":1793319519621,"text":"You enter the land of Eastwood (Neutral)."}
+{"type":"chronicle","tick":5952,"wallTimeMs":1793319519621,"kind":"SettlementFounded","text":"Peggy Lewis laid the first stones of Eastwood."}
+{"type":"chronicle","tick":6152,"wallTimeMs":1793319539804,"kind":"NationCreation","text":"Natalie Robinson founded the nation of Eastford."}
+{"type":"chronicle","tick":6200,"wallTimeMs":1793319545063,"kind":"StallBuilt","text":"Una Smith built a market stall in Farmland."}
+{"type":"status","tick":6244,"wallTimeMs":1793319549466,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":6652,"wallTimeMs":1793319585462,"kind":"SettlementFounded","text":"Eastford put down roots: Natalie Robinson founded its first settlement."}
+{"type":"status","tick":6700,"wallTimeMs":1793319589860,"text":"Nancy Wilson (Stranger): \u0022Who are you? I\u0027m loyal to Eastwood. It\u0027s always nice to have someone to talk to!\u0022"}
+{"type":"status","tick":6752,"wallTimeMs":1793319594335,"text":"Farmland resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1793319594335,"kind":"NationRelationChange","text":"Farmland and Oldtown have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1793319594335,"kind":"NationRelationChange","text":"Castleshire and Greatport have become rivals over their border."}
+{"type":"status","tick":6848,"wallTimeMs":1793319606508,"text":"Click again to confirm: Declare War on Eastwood."}
+{"type":"chronicle","tick":6852,"wallTimeMs":1793319607096,"kind":"StallBuilt","text":"Una Williams built a market stall in Castleshire."}

@@ -1,348 +1,218 @@
-{"t": 1793282021452, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "105"]}
-{"t": 1793282395665, "cmd": "status", "args": []}
-{"t": 1793282408823, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-pt-064", "--seed", "105"]}
-{"t": 1793282417586, "cmd": "key", "args": ["space"]}
-{"t": 1793282418268, "cmd": "shot", "args": ["title"]}
-{"t": 1793282431018, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282431853, "cmd": "await", "args": ["NEW_WORLD", "30"]}
-{"t": 1793282432007, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793282432848, "cmd": "await", "args": ["WORLD", "90"]}
-{"t": 1793282433192, "cmd": "shot", "args": ["world0"]}
-{"t": 1793282433486, "cmd": "state", "args": []}
-{"t": 1793282440864, "cmd": "key", "args": ["b"]}
-{"t": 1793282441549, "cmd": "wait", "args": ["2"]}
-{"t": 1793282443731, "cmd": "shot", "args": ["b1"]}
-{"t": 1793282444154, "cmd": "state", "args": []}
-{"t": 1793282444441, "cmd": "events", "args": ["5"]}
-{"t": 1793282450562, "cmd": "click", "args": ["338", "389"]}
-{"t": 1793282451504, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282468471, "cmd": "key", "args": ["e"]}
-{"t": 1793282469112, "cmd": "wait", "args": ["1"]}
-{"t": 1793282470283, "cmd": "key", "args": ["e"]}
-{"t": 1793282470854, "cmd": "wait", "args": ["1"]}
-{"t": 1793282471975, "cmd": "key", "args": ["e"]}
-{"t": 1793282472535, "cmd": "wait", "args": ["1"]}
-{"t": 1793282473631, "cmd": "key", "args": ["e"]}
-{"t": 1793282474224, "cmd": "wait", "args": ["1"]}
-{"t": 1793282475367, "cmd": "key", "args": ["e"]}
-{"t": 1793282475968, "cmd": "wait", "args": ["1"]}
-{"t": 1793282477071, "cmd": "key", "args": ["e"]}
-{"t": 1793282477620, "cmd": "wait", "args": ["1"]}
-{"t": 1793282478820, "cmd": "state", "args": []}
-{"t": 1793282483603, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282506678, "cmd": "key", "args": ["e"]}
-{"t": 1793282507348, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282508261, "cmd": "key", "args": ["e"]}
-{"t": 1793282508888, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282509762, "cmd": "key", "args": ["e"]}
-{"t": 1793282510422, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282511252, "cmd": "key", "args": ["e"]}
-{"t": 1793282511851, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282512620, "cmd": "key", "args": ["e"]}
-{"t": 1793282513311, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282514221, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282530612, "cmd": "key", "args": ["e"]}
-{"t": 1793282531181, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282531969, "cmd": "key", "args": ["e"]}
-{"t": 1793282532486, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282533268, "cmd": "key", "args": ["e"]}
-{"t": 1793282533767, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282534558, "cmd": "key", "args": ["e"]}
-{"t": 1793282535063, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282535837, "cmd": "key", "args": ["e"]}
-{"t": 1793282536312, "cmd": "wait", "args": ["0.7"]}
-{"t": 1793282537120, "cmd": "state", "args": []}
-{"t": 1793282537183, "cmd": "events", "args": ["6"]}
-{"t": 1793282543225, "cmd": "wait", "args": ["2"]}
-{"t": 1793282545311, "cmd": "state", "args": []}
-{"t": 1793282545495, "cmd": "events", "args": ["10"]}
-{"t": 1793282545644, "cmd": "shot", "args": ["wood"]}
-{"t": 1793282550999, "cmd": "key", "args": ["n"]}
-{"t": 1793282551650, "cmd": "wait", "args": ["2"]}
-{"t": 1793282553837, "cmd": "shot", "args": ["nation"]}
-{"t": 1793282554276, "cmd": "state", "args": []}
-{"t": 1793282554440, "cmd": "events", "args": ["6"]}
-{"t": 1793282558477, "cmd": "wait", "args": ["2"]}
-{"t": 1793282560611, "cmd": "state", "args": []}
-{"t": 1793282560922, "cmd": "key", "args": ["f"]}
-{"t": 1793282561546, "cmd": "wait", "args": ["2"]}
-{"t": 1793282563724, "cmd": "shot", "args": ["found"]}
-{"t": 1793282564253, "cmd": "state", "args": []}
-{"t": 1793282564506, "cmd": "events", "args": ["6"]}
-{"t": 1793282568413, "cmd": "key", "args": ["b"]}
-{"t": 1793282568959, "cmd": "wait", "args": ["2"]}
-{"t": 1793282571149, "cmd": "state", "args": []}
-{"t": 1793282571322, "cmd": "shot", "args": ["b2"]}
-{"t": 1793282578000, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282590837, "cmd": "key", "args": ["e"]}
-{"t": 1793282591465, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282592130, "cmd": "key", "args": ["e"]}
-{"t": 1793282592738, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282593394, "cmd": "key", "args": ["e"]}
-{"t": 1793282594031, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282594710, "cmd": "key", "args": ["e"]}
-{"t": 1793282595221, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282595908, "cmd": "key", "args": ["e"]}
-{"t": 1793282596492, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282597164, "cmd": "state", "args": []}
-{"t": 1793282597322, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282685310, "cmd": "key", "args": ["e"]}
-{"t": 1793282706078, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282706662, "cmd": "key", "args": ["e"]}
-{"t": 1793282707290, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282707925, "cmd": "key", "args": ["e"]}
-{"t": 1793282708480, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282709112, "cmd": "key", "args": ["e"]}
-{"t": 1793282709657, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282710250, "cmd": "key", "args": ["e"]}
-{"t": 1793282710723, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282711399, "cmd": "state", "args": []}
-{"t": 1793282711563, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282725872, "cmd": "key", "args": ["e"]}
-{"t": 1793282726334, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282726889, "cmd": "key", "args": ["e"]}
-{"t": 1793282727353, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282727913, "cmd": "key", "args": ["e"]}
-{"t": 1793282728377, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282728936, "cmd": "key", "args": ["e"]}
-{"t": 1793282729420, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282730002, "cmd": "key", "args": ["e"]}
-{"t": 1793282730525, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282731152, "cmd": "state", "args": []}
-{"t": 1793282731258, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282745225, "cmd": "key", "args": ["e"]}
-{"t": 1793282745916, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282746518, "cmd": "key", "args": ["e"]}
-{"t": 1793282747583, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282748230, "cmd": "key", "args": ["e"]}
-{"t": 1793282748851, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282749445, "cmd": "key", "args": ["e"]}
-{"t": 1793282750008, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282750602, "cmd": "key", "args": ["e"]}
-{"t": 1793282751142, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282751751, "cmd": "state", "args": []}
-{"t": 1793282751891, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282762454, "cmd": "key", "args": ["e"]}
-{"t": 1793282762971, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282763586, "cmd": "key", "args": ["e"]}
-{"t": 1793282764114, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282764733, "cmd": "key", "args": ["e"]}
-{"t": 1793282765274, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282765891, "cmd": "key", "args": ["e"]}
-{"t": 1793282766399, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282767043, "cmd": "key", "args": ["e"]}
-{"t": 1793282767544, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282768129, "cmd": "state", "args": []}
-{"t": 1793282769074, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282829094, "cmd": "key", "args": ["e"]}
-{"t": 1793282829723, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282830363, "cmd": "key", "args": ["e"]}
-{"t": 1793282830877, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282831446, "cmd": "key", "args": ["e"]}
-{"t": 1793282831994, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282832611, "cmd": "key", "args": ["e"]}
-{"t": 1793282833261, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282833842, "cmd": "key", "args": ["e"]}
-{"t": 1793282834725, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282835339, "cmd": "state", "args": []}
-{"t": 1793282835453, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282850582, "cmd": "key", "args": ["e"]}
-{"t": 1793282851099, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282851824, "cmd": "key", "args": ["e"]}
-{"t": 1793282852392, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282852968, "cmd": "key", "args": ["e"]}
-{"t": 1793282853544, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282854136, "cmd": "key", "args": ["e"]}
-{"t": 1793282854705, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282855332, "cmd": "key", "args": ["e"]}
-{"t": 1793282855884, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282856528, "cmd": "state", "args": []}
-{"t": 1793282856658, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282872624, "cmd": "key", "args": ["e"]}
-{"t": 1793282873193, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282873802, "cmd": "key", "args": ["e"]}
-{"t": 1793282874458, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282875240, "cmd": "key", "args": ["e"]}
-{"t": 1793282875898, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282876473, "cmd": "key", "args": ["e"]}
-{"t": 1793282877133, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282877745, "cmd": "key", "args": ["e"]}
-{"t": 1793282878903, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282879564, "cmd": "state", "args": []}
-{"t": 1793282879661, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793282903749, "cmd": "key", "args": ["e"]}
-{"t": 1793282904332, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282904988, "cmd": "key", "args": ["e"]}
-{"t": 1793282905529, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282906180, "cmd": "key", "args": ["e"]}
-{"t": 1793282906686, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282907776, "cmd": "key", "args": ["e"]}
-{"t": 1793282908311, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282909360, "cmd": "key", "args": ["e"]}
-{"t": 1793282909908, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793282910571, "cmd": "state", "args": []}
-{"t": 1793282915121, "cmd": "key", "args": ["f"]}
-{"t": 1793282915640, "cmd": "wait", "args": ["3"]}
-{"t": 1793282919169, "cmd": "state", "args": []}
-{"t": 1793282919605, "cmd": "key", "args": ["b"]}
-{"t": 1793282920300, "cmd": "wait", "args": ["3"]}
-{"t": 1793282923435, "cmd": "shot", "args": ["stall"]}
-{"t": 1793282923770, "cmd": "state", "args": []}
-{"t": 1793282929858, "cmd": "state", "args": []}
-{"t": 1793282943746, "cmd": "face", "args": ["-27"]}
-{"t": 1793282946491, "cmd": "hold", "args": ["Shift_L+w", "8"]}
-{"t": 1793282955871, "cmd": "state", "args": []}
-{"t": 1793282964699, "cmd": "hold", "args": ["Shift_L+w", "6"]}
-{"t": 1793282971912, "cmd": "state", "args": []}
-{"t": 1793282972002, "cmd": "key", "args": ["f"]}
-{"t": 1793282972572, "cmd": "wait", "args": ["3"]}
-{"t": 1793282975667, "cmd": "state", "args": []}
-{"t": 1793282979500, "cmd": "hold", "args": ["Shift_L+w", "3"]}
-{"t": 1793282982670, "cmd": "key", "args": ["f"]}
-{"t": 1793282983176, "cmd": "wait", "args": ["3"]}
-{"t": 1793282986258, "cmd": "state", "args": []}
-{"t": 1793282986341, "cmd": "shot", "args": ["founded"]}
-{"t": 1793282990315, "cmd": "key", "args": ["e"]}
-{"t": 1793282990852, "cmd": "wait", "args": ["3"]}
-{"t": 1793282993916, "cmd": "shot", "args": ["inside"]}
-{"t": 1793282994196, "cmd": "state", "args": []}
-{"t": 1793283007096, "cmd": "note", "args": ["--shot", "settlement-panel", "Inside new settlement (tick ~5854): objective 6 hint text 'Gather 20 wood and 5 stone' is clipped by the objective panel bottom edge; toast 'Enter your settlemen' truncated; large world-space label '0 here, 3/8 residents' overlaps the HUD at top. 'Send Caravan (Town era)' button shown but gated behind Town era while era is Camp (1/4); no hint on how far Town is."]}
-{"t": 1793283007992, "cmd": "click", "args": ["384", "476"]}
-{"t": 1793283008756, "cmd": "wait", "args": ["2"]}
-{"t": 1793283010823, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283018013, "cmd": "key", "args": ["e"]}
-{"t": 1793283018530, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283019120, "cmd": "key", "args": ["e"]}
-{"t": 1793283019600, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283020170, "cmd": "key", "args": ["e"]}
-{"t": 1793283020643, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283021219, "cmd": "key", "args": ["e"]}
-{"t": 1793283021686, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283022265, "cmd": "key", "args": ["e"]}
-{"t": 1793283022746, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283023328, "cmd": "state", "args": []}
-{"t": 1793283023410, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283030016, "cmd": "key", "args": ["e"]}
-{"t": 1793283030596, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283031172, "cmd": "key", "args": ["e"]}
-{"t": 1793283032551, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283033208, "cmd": "key", "args": ["e"]}
-{"t": 1793283033904, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283034511, "cmd": "key", "args": ["e"]}
-{"t": 1793283035780, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283036411, "cmd": "key", "args": ["e"]}
-{"t": 1793283037155, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283038211, "cmd": "state", "args": []}
-{"t": 1793283038354, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793283051223, "cmd": "key", "args": ["e"]}
-{"t": 1793283052174, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283052836, "cmd": "key", "args": ["e"]}
-{"t": 1793283053453, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283054107, "cmd": "key", "args": ["e"]}
-{"t": 1793283054719, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283055366, "cmd": "key", "args": ["e"]}
-{"t": 1793283055915, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283056558, "cmd": "key", "args": ["e"]}
-{"t": 1793283057085, "cmd": "wait", "args": ["0.5"]}
-{"t": 1793283057690, "cmd": "state", "args": []}
-{"t": 1793283063082, "cmd": "walkto", "args": ["settlement", "60"]}
-{"t": 1793283092007, "cmd": "key", "args": ["e"]}
-{"t": 1793283092594, "cmd": "wait", "args": ["3"]}
-{"t": 1793283095744, "cmd": "state", "args": []}
-{"t": 1793283095906, "cmd": "key", "args": ["b"]}
-{"t": 1793283096467, "cmd": "wait", "args": ["3"]}
-{"t": 1793283099611, "cmd": "shot", "args": ["stallbuilt"]}
-{"t": 1793283100063, "cmd": "state", "args": []}
-{"t": 1793283100235, "cmd": "events", "args": ["8"]}
-{"t": 1793283106604, "cmd": "events", "args": ["60"]}
-{"t": 1793283106732, "cmd": "state", "args": ["--full"]}
-{"t": 1793283121048, "cmd": "note", "args": ["--shot", "market-full", "Tick 7118: pressed B inside my own new settlement with 22 wood/5 stone -> 'Market is full. Cannot build stall.' NPCs (Dave Robinson, Mike Roberts, Lily Wood) built all 4 stalls within ~1000 ticks of founding while I was out gathering the 20 wood. Objective 6 'Build a market stall' completed at tick 6050 from an NPC's stall, not mine. The player never gets to build a stall in their own settlement. Also the objective 7 progress bar label is clipped ('nbers 5/10')."]}
-{"t": 1793283124287, "cmd": "click", "args": ["186", "445"]}
-{"t": 1793283125270, "cmd": "wait", "args": ["3"]}
-{"t": 1793283128415, "cmd": "shot", "args": ["sell"]}
-{"t": 1793283128917, "cmd": "state", "args": []}
-{"t": 1793283139540, "cmd": "note", "args": ["--shot", "sell-blocked", "Tick ~7400: Sell Resources in own settlement -> 'No merchant here can pay: the richest has 9 coins, and your cheapest good (sapling) sells for 16.' Market has 4/4 stalls but only 9 coins across merchants, so selling is impossible right after founding. Message is clear, but saplings are not in the Market Info price list, so the 16-coin sapling price is only visible in the error. Player holds 437 coins vs. merchants' 9 - economy lopsided."]}
-{"t": 1793283139844, "cmd": "click", "args": ["66", "445"]}
-{"t": 1793283140647, "cmd": "wait", "args": ["3"]}
-{"t": 1793283143692, "cmd": "shot", "args": ["buy"]}
-{"t": 1793283143834, "cmd": "state", "args": []}
-{"t": 1793283234002, "cmd": "wait", "args": ["2"]}
-{"t": 1793283236169, "cmd": "state", "args": []}
-{"t": 1793283236283, "cmd": "events", "args": ["5"]}
-{"t": 1793283240936, "cmd": "click", "args": ["186", "445"]}
-{"t": 1793283241788, "cmd": "wait", "args": ["3"]}
-{"t": 1793283244915, "cmd": "shot", "args": ["sell2"]}
-{"t": 1793283245281, "cmd": "state", "args": []}
-{"t": 1793283252495, "cmd": "key", "args": ["k"]}
-{"t": 1793283253142, "cmd": "wait", "args": ["3"]}
-{"t": 1793283256372, "cmd": "shot", "args": ["kmenu"]}
-{"t": 1793283256857, "cmd": "state", "args": []}
-{"t": 1793283269089, "cmd": "click", "args": ["216", "476"]}
-{"t": 1793283269972, "cmd": "wait", "args": ["3"]}
-{"t": 1793283273073, "cmd": "state", "args": []}
-{"t": 1793283279437, "cmd": "click", "args": ["473", "445"]}
-{"t": 1793283280330, "cmd": "wait", "args": ["3"]}
-{"t": 1793283283522, "cmd": "shot", "args": ["farm"]}
-{"t": 1793283283910, "cmd": "state", "args": []}
-{"t": 1793283287986, "cmd": "click", "args": ["473", "445"]}
-{"t": 1793283288926, "cmd": "wait", "args": ["3"]}
-{"t": 1793283292054, "cmd": "shot", "args": ["farm2"]}
-{"t": 1793283292675, "cmd": "state", "args": []}
-{"t": 1793283303073, "cmd": "click", "args": ["473", "445"]}
-{"t": 1793283303970, "cmd": "wait", "args": ["2"]}
-{"t": 1793283307961, "cmd": "state", "args": []}
-{"t": 1793283308207, "cmd": "events", "args": ["8"]}
-{"t": 1793283315245, "cmd": "shot", "args": ["confirm3"]}
-{"t": 1793283315755, "cmd": "click", "args": ["473", "445"]}
-{"t": 1793283318367, "cmd": "wait", "args": ["2"]}
-{"t": 1793283320513, "cmd": "state", "args": []}
-{"t": 1793283320692, "cmd": "events", "args": ["6"]}
-{"t": 1793283330072, "cmd": "wait", "args": ["3"]}
-{"t": 1793283333171, "cmd": "click", "args": ["473", "445"]}
-{"t": 1793283334045, "cmd": "click", "args": ["473", "445"]}
-{"t": 1793283334969, "cmd": "wait", "args": ["2"]}
-{"t": 1793283337094, "cmd": "state", "args": []}
-{"t": 1793283337232, "cmd": "events", "args": ["6"]}
-{"t": 1793283344066, "cmd": "note", "args": ["--shot", "farm-confirm", "Ticks 7894-8254: 'Build Farm' needs a confirm click, but the confirm window is about 1 game second (50 ticks). At ~9 tps / 2 fps a normal second click arrives too late: 'Not confirmed in time, so nothing was done.' and the button re-arms. Three separate clicks on 'Confirm Build Farm' failed; only two clicks fired 1.7 s apart worked ('Farm built.'). The window should be in real time or longer."]}
-{"t": 1793283344373, "cmd": "wait", "args": ["2"]}
-{"t": 1793283346464, "cmd": "shot", "args": ["afterfarm"]}
-{"t": 1793283346774, "cmd": "state", "args": []}
-{"t": 1793283354298, "cmd": "click", "args": ["48", "20"]}
-{"t": 1793283355239, "cmd": "wait", "args": ["2"]}
-{"t": 1793283357350, "cmd": "shot", "args": ["controls"]}
-{"t": 1793283363503, "cmd": "click", "args": ["615", "508"]}
-{"t": 1793283364372, "cmd": "wait", "args": ["1"]}
-{"t": 1793283365477, "cmd": "shot", "args": ["controls2"]}
-{"t": 1793283365884, "cmd": "click", "args": ["615", "508"]}
-{"t": 1793283366780, "cmd": "wait", "args": ["1"]}
-{"t": 1793283367883, "cmd": "shot", "args": ["controls3"]}
-{"t": 1793283374648, "cmd": "click", "args": ["480", "508"]}
-{"t": 1793283375463, "cmd": "wait", "args": ["1"]}
-{"t": 1793283376596, "cmd": "click", "args": ["110", "58"]}
-{"t": 1793283377433, "cmd": "wait", "args": ["2"]}
-{"t": 1793283379518, "cmd": "shot", "args": ["era"]}
-{"t": 1793283386566, "cmd": "move", "args": ["100", "180"]}
-{"t": 1793283386717, "cmd": "scroll", "args": ["5"]}
-{"t": 1793283387884, "cmd": "wait", "args": ["1"]}
-{"t": 1793283389026, "cmd": "shot", "args": ["era2"]}
-{"t": 1793283396144, "cmd": "click", "args": ["640", "445"]}
-{"t": 1793283396938, "cmd": "wait", "args": ["2"]}
-{"t": 1793283399027, "cmd": "shot", "args": ["caravan"]}
-{"t": 1793283399305, "cmd": "state", "args": []}
-{"t": 1793283405373, "cmd": "note", "args": ["--shot", "caravan-gate", "Tick 8726: 'Send Caravan (Town era)' looks like an enabled button; clicking says 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' Era box shows Village needs Day 1/3 plus Village/Members/Stalls; Town is two eras away. With a day = 10 game minutes, Storehouse + caravan cannot be reached in a ~30-minute session (at ~9-15 tps here, one game day is ~11-18 real minutes). Feedback text is clear; the Storehouse is never mentioned in the Village-era unlock list, so the path to it is only learned by clicking the caravan button."]}
-{"t": 1793283405728, "cmd": "key", "args": ["i"]}
-{"t": 1793283406274, "cmd": "wait", "args": ["1"]}
-{"t": 1793283407415, "cmd": "key", "args": ["i"]}
-{"t": 1793283407982, "cmd": "events", "args": ["100"]}
-{"t": 1793283415176, "cmd": "click", "args": ["186", "445"]}
-{"t": 1793283416036, "cmd": "wait", "args": ["2"]}
-{"t": 1793283418212, "cmd": "state", "args": []}
-{"t": 1793283418337, "cmd": "click", "args": ["186", "445"]}
-{"t": 1793283419233, "cmd": "wait", "args": ["2"]}
-{"t": 1793283421424, "cmd": "shot", "args": ["sell3"]}
-{"t": 1793283421735, "cmd": "state", "args": []}
-{"t": 1793283428466, "cmd": "note", "args": ["--shot", "sell-starved", "Tick 8906-8938: Market Info says '4/4 stalls, 40 coins', but Sell Resources says 'No merchant here can pay: the richest has 6 coins'. The one successful sale (tick 7574) sold a single wood for 20 coins; the player cannot pick which good or how many. Selling in your own settlement is coin-starved: you end up buying food to fund the merchants just so you can sell to them."]}
-{"t": 1793283428782, "cmd": "events", "args": ["200"]}
-{"t": 1793283428911, "cmd": "stop", "args": []}
-{"t": 1793283458402, "cmd": "report", "args": []}
-{"t": 1793285744812, "cmd": "stop", "args": []}
+{"t": 1793317183915, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "105"]}
+{"t": 1793317194270, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793317194796, "cmd": "key", "args": ["space"]}
+{"t": 1793317195620, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793317195832, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793317196911, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793317199193, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793317216008, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793317217171, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793317218671, "cmd": "shot", "args": ["world0"]}
+{"t": 1793317219435, "cmd": "state", "args": []}
+{"t": 1793317237707, "cmd": "wait", "args": ["3"]}
+{"t": 1793317240957, "cmd": "shot", "args": ["world1"]}
+{"t": 1793317249688, "cmd": "click", "args": ["425", "388"]}
+{"t": 1793317250650, "cmd": "key", "args": ["b"]}
+{"t": 1793317251491, "cmd": "wait", "args": ["2"]}
+{"t": 1793317253760, "cmd": "shot", "args": ["b1"]}
+{"t": 1793317254363, "cmd": "state", "args": []}
+{"t": 1793317260003, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317284653, "cmd": "key", "args": ["e"]}
+{"t": 1793317285433, "cmd": "key", "args": ["e"]}
+{"t": 1793317286012, "cmd": "key", "args": ["e"]}
+{"t": 1793317286725, "cmd": "key", "args": ["e"]}
+{"t": 1793317287414, "cmd": "key", "args": ["e"]}
+{"t": 1793317288099, "cmd": "key", "args": ["e"]}
+{"t": 1793317288692, "cmd": "wait", "args": ["1"]}
+{"t": 1793317289939, "cmd": "state", "args": []}
+{"t": 1793317293919, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317332133, "cmd": "key", "args": ["e"]}
+{"t": 1793317332972, "cmd": "key", "args": ["e"]}
+{"t": 1793317333932, "cmd": "key", "args": ["e"]}
+{"t": 1793317334685, "cmd": "key", "args": ["e"]}
+{"t": 1793317335433, "cmd": "key", "args": ["e"]}
+{"t": 1793317336299, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317358479, "cmd": "key", "args": ["e"]}
+{"t": 1793317359143, "cmd": "key", "args": ["e"]}
+{"t": 1793317360434, "cmd": "key", "args": ["e"]}
+{"t": 1793317361216, "cmd": "key", "args": ["e"]}
+{"t": 1793317362217, "cmd": "key", "args": ["e"]}
+{"t": 1793317362975, "cmd": "state", "args": []}
+{"t": 1793317369466, "cmd": "wait", "args": ["2"]}
+{"t": 1793317385741, "cmd": "state", "args": []}
+{"t": 1793317387039, "cmd": "events", "args": ["10"]}
+{"t": 1793317387262, "cmd": "shot", "args": ["obj1"]}
+{"t": 1793317400937, "cmd": "key", "args": ["i"]}
+{"t": 1793317401737, "cmd": "wait", "args": ["2"]}
+{"t": 1793317404198, "cmd": "shot", "args": ["inv"]}
+{"t": 1793317412729, "cmd": "key", "args": ["i"]}
+{"t": 1793317413441, "cmd": "wait", "args": ["2"]}
+{"t": 1793317415601, "cmd": "shot", "args": ["obj2"]}
+{"t": 1793317422271, "cmd": "key", "args": ["n"]}
+{"t": 1793317423112, "cmd": "wait", "args": ["2"]}
+{"t": 1793317425408, "cmd": "shot", "args": ["n1"]}
+{"t": 1793317426361, "cmd": "state", "args": []}
+{"t": 1793317431010, "cmd": "wait", "args": ["2"]}
+{"t": 1793317433408, "cmd": "state", "args": []}
+{"t": 1793317433860, "cmd": "key", "args": ["f"]}
+{"t": 1793317434705, "cmd": "wait", "args": ["2"]}
+{"t": 1793317437075, "cmd": "shot", "args": ["f1"]}
+{"t": 1793317438141, "cmd": "state", "args": []}
+{"t": 1793317444591, "cmd": "key", "args": ["b"]}
+{"t": 1793317445419, "cmd": "wait", "args": ["1"]}
+{"t": 1793317446737, "cmd": "state", "args": []}
+{"t": 1793317446978, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317483337, "cmd": "key", "args": ["e"]}
+{"t": 1793317484207, "cmd": "key", "args": ["e"]}
+{"t": 1793317485049, "cmd": "key", "args": ["e"]}
+{"t": 1793317486399, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317536116, "cmd": "key", "args": ["e"]}
+{"t": 1793317537131, "cmd": "key", "args": ["e"]}
+{"t": 1793317537866, "cmd": "key", "args": ["e"]}
+{"t": 1793317538688, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317560523, "cmd": "key", "args": ["e"]}
+{"t": 1793317561429, "cmd": "key", "args": ["e"]}
+{"t": 1793317562152, "cmd": "key", "args": ["e"]}
+{"t": 1793317563058, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793317576895, "cmd": "wait", "args": ["45"]}
+{"t": 1793317594143, "cmd": "key", "args": ["e"]}
+{"t": 1793317594789, "cmd": "key", "args": ["e"]}
+{"t": 1793317595463, "cmd": "key", "args": ["e"]}
+{"t": 1793317596207, "cmd": "state", "args": []}
+{"t": 1793317636228, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793317657580, "cmd": "key", "args": ["e"]}
+{"t": 1793317658432, "cmd": "key", "args": ["e"]}
+{"t": 1793317659331, "cmd": "key", "args": ["e"]}
+{"t": 1793317660208, "cmd": "state", "args": []}
+{"t": 1793317660758, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793317662991, "cmd": "wait", "args": ["40"]}
+{"t": 1793317681408, "cmd": "key", "args": ["e"]}
+{"t": 1793317682179, "cmd": "key", "args": ["e"]}
+{"t": 1793317682995, "cmd": "key", "args": ["e"]}
+{"t": 1793317683722, "cmd": "state", "args": []}
+{"t": 1793317684110, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793317701707, "cmd": "key", "args": ["e"]}
+{"t": 1793317708260, "cmd": "key", "args": ["e"]}
+{"t": 1793317708995, "cmd": "key", "args": ["e"]}
+{"t": 1793317709814, "cmd": "state", "args": []}
+{"t": 1793317709944, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793317712162, "cmd": "wait", "args": ["50"]}
+{"t": 1793317736179, "cmd": "key", "args": ["e"]}
+{"t": 1793317736943, "cmd": "key", "args": ["e"]}
+{"t": 1793317737589, "cmd": "key", "args": ["e"]}
+{"t": 1793317738350, "cmd": "state", "args": []}
+{"t": 1793317766503, "cmd": "key", "args": ["f"]}
+{"t": 1793317767170, "cmd": "wait", "args": ["2"]}
+{"t": 1793317769600, "cmd": "state", "args": []}
+{"t": 1793317770015, "cmd": "shot", "args": ["found"]}
+{"t": 1793317813304, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1793317816721, "cmd": "state", "args": []}
+{"t": 1793317827925, "cmd": "face", "args": ["-88"]}
+{"t": 1793317838501, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1793317841863, "cmd": "state", "args": []}
+{"t": 1793317865180, "cmd": "face", "args": ["152"]}
+{"t": 1793317881099, "cmd": "state", "args": []}
+{"t": 1793317895723, "cmd": "face", "args": ["88"]}
+{"t": 1793317903760, "cmd": "state", "args": []}
+{"t": 1793317921460, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793317929823, "cmd": "state", "args": []}
+{"t": 1793317940156, "cmd": "state", "args": []}
+{"t": 1793317940256, "cmd": "key", "args": ["f"]}
+{"t": 1793317940952, "cmd": "wait", "args": ["2"]}
+{"t": 1793317943124, "cmd": "state", "args": []}
+{"t": 1793317964780, "cmd": "hold", "args": ["Shift_L+w", "28"]}
+{"t": 1793317993194, "cmd": "key", "args": ["f"]}
+{"t": 1793317993952, "cmd": "wait", "args": ["2"]}
+{"t": 1793317996192, "cmd": "state", "args": []}
+{"t": 1793318003949, "cmd": "note", "args": ["--shot", "found_chase", "Followed 'Open ground lies about 180 to the north' from (12,225); after sprinting ~190 units north F now says 'Too close to the Camp of Easternland: 91 away... Open ground lies about 160 to the east'. The first hint pointed into another settlement's 250-unit exclusion zone. No compass/minimap on screen to know which way is north either."]}
+{"t": 1793318004470, "cmd": "face", "args": ["74"]}
+{"t": 1793318012696, "cmd": "state", "args": []}
+{"t": 1793318016783, "cmd": "face", "args": ["-146"]}
+{"t": 1793318029760, "cmd": "state", "args": []}
+{"t": 1793318037791, "cmd": "face", "args": ["-42"]}
+{"t": 1793318042325, "cmd": "state", "args": []}
+{"t": 1793318042643, "cmd": "hold", "args": ["Shift_L+w", "28"]}
+{"t": 1793318071180, "cmd": "key", "args": ["f"]}
+{"t": 1793318072140, "cmd": "wait", "args": ["2"]}
+{"t": 1793318074498, "cmd": "state", "args": []}
+{"t": 1793318088565, "cmd": "key", "args": ["e"]}
+{"t": 1793318089297, "cmd": "wait", "args": ["2"]}
+{"t": 1793318091687, "cmd": "shot", "args": ["inside"]}
+{"t": 1793318092953, "cmd": "state", "args": []}
+{"t": 1793318122134, "cmd": "note", "args": ["--shot", "inside_overlay", "Inside own settlement: a huge white floating label '0 here, 2/8 residents' is drawn behind/over the top HUD panels and chronicle, cut off at the top of the screen. Also 'Send Caravan (Town era)' is shown greyed: caravans are locked until Town era."]}
+{"t": 1793318123342, "cmd": "state", "args": []}
+{"t": 1793318123821, "cmd": "key", "args": ["e"]}
+{"t": 1793318145051, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793318159287, "cmd": "wait", "args": ["60"]}
+{"t": 1793318186198, "cmd": "key", "args": ["e"]}
+{"t": 1793318186853, "cmd": "key", "args": ["e"]}
+{"t": 1793318189386, "cmd": "key", "args": ["e"]}
+{"t": 1793318190130, "cmd": "state", "args": []}
+{"t": 1793318190441, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793318197630, "cmd": "key", "args": ["e"]}
+{"t": 1793318198382, "cmd": "key", "args": ["e"]}
+{"t": 1793318199278, "cmd": "key", "args": ["e"]}
+{"t": 1793318200149, "cmd": "state", "args": []}
+{"t": 1793318200484, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793318239064, "cmd": "wait", "args": ["75"]}
+{"t": 1793318240255, "cmd": "key", "args": ["e"]}
+{"t": 1793318241110, "cmd": "key", "args": ["e"]}
+{"t": 1793318242136, "cmd": "key", "args": ["e"]}
+{"t": 1793318242840, "cmd": "state", "args": []}
+{"t": 1793318243045, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793318253885, "cmd": "key", "args": ["e"]}
+{"t": 1793318254726, "cmd": "key", "args": ["e"]}
+{"t": 1793318255540, "cmd": "key", "args": ["e"]}
+{"t": 1793318256435, "cmd": "state", "args": []}
+{"t": 1793318256719, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793318272233, "cmd": "key", "args": ["e"]}
+{"t": 1793318273253, "cmd": "key", "args": ["e"]}
+{"t": 1793318274096, "cmd": "key", "args": ["e"]}
+{"t": 1793318274876, "cmd": "state", "args": []}
+{"t": 1793318275246, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793318316100, "cmd": "key", "args": ["e"]}
+{"t": 1793318317073, "cmd": "key", "args": ["e"]}
+{"t": 1793318317943, "cmd": "key", "args": ["e"]}
+{"t": 1793318318891, "cmd": "state", "args": []}
+{"t": 1793318333494, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1793318350520, "cmd": "key", "args": ["e"]}
+{"t": 1793318351429, "cmd": "key", "args": ["e"]}
+{"t": 1793318352192, "cmd": "key", "args": ["e"]}
+{"t": 1793318353076, "cmd": "state", "args": []}
+{"t": 1793318359822, "cmd": "key", "args": ["h"]}
+{"t": 1793318360625, "cmd": "wait", "args": ["3"]}
+{"t": 1793318363919, "cmd": "state", "args": []}
+{"t": 1793318364067, "cmd": "shot", "args": ["home"]}
+{"t": 1793318382262, "cmd": "key", "args": ["e"]}
+{"t": 1793318383333, "cmd": "wait", "args": ["2"]}
+{"t": 1793318385718, "cmd": "shot", "args": ["before_stall"]}
+{"t": 1793318387027, "cmd": "state", "args": ["--full"]}
+{"t": 1793318400966, "cmd": "note", "args": ["--shot", "before_stall", "GOOD: inside own settlement with 3/8 residents present, Market Info shows 0/4 stalls and objective 6 'Build a market stall' still open: residents did not fill my market. Minor layout: Market Info panel runs down into the Season panel (Season shows only one line)."]}
+{"t": 1793318402328, "cmd": "key", "args": ["b"]}
+{"t": 1793318402962, "cmd": "wait", "args": ["3"]}
+{"t": 1793318406362, "cmd": "shot", "args": ["after_stall"]}
+{"t": 1793318407877, "cmd": "state", "args": []}
+{"t": 1793318408280, "cmd": "events", "args": ["6"]}
+{"t": 1793318428644, "cmd": "note", "args": ["--shot", "after_stall", "Pressed B inside Southtown with 22 wood/5 stone: 'Stall built.', objective 6 completed at tick 6900 from MY stall (Oscar Smith's stall in rival Blackfield at tick 6800 did not count). Market now 1/4 stalls with 'Merchants: Nancy Walker' - a resident immediately staffs the stall I built. Layout bugs on this frame: Inventory Info panel jumped to screen centre over the well, and the objective 7 progress bar text is clipped on the left ('nbers 3/10 - Buildings 0/2')."]}
+{"t": 1793318429801, "cmd": "click", "args": ["187", "444"]}
+{"t": 1793318430930, "cmd": "wait", "args": ["3"]}
+{"t": 1793318434468, "cmd": "shot", "args": ["sell"]}
+{"t": 1793318436167, "cmd": "state", "args": []}
+{"t": 1793318449738, "cmd": "note", "args": ["--shot", "sell", "Sell Resources right after building my stall: 'No merchant here can pay: the richest has 0 coins, and your cheapest good (sapling) sells for 19.' Clear message, but the only merchant is the brand-new one with 0 coins, so selling at my own new market is impossible at first. Also sells saplings first as 'cheapest good' - unexpected."]}
+{"t": 1793318451183, "cmd": "click", "args": ["66", "444"]}
+{"t": 1793318452162, "cmd": "wait", "args": ["3"]}
+{"t": 1793318455626, "cmd": "shot", "args": ["buy"]}
+{"t": 1793318456548, "cmd": "state", "args": []}
+{"t": 1793318470749, "cmd": "wait", "args": ["40"]}
+{"t": 1793318511133, "cmd": "click", "args": ["187", "444"]}
+{"t": 1793318512233, "cmd": "wait", "args": ["2"]}
+{"t": 1793318514631, "cmd": "click", "args": ["66", "444"]}
+{"t": 1793318515494, "cmd": "wait", "args": ["2"]}
+{"t": 1793318517822, "cmd": "shot", "args": ["market2"]}
+{"t": 1793318519090, "cmd": "events", "args": ["8"]}
+{"t": 1793318519352, "cmd": "state", "args": []}
+{"t": 1793318533149, "cmd": "note", "args": ["--shot", "market2", "~8 game s later both Sell Resources and Purchase Food still fail at my own 1-stall market (merchant 0 coins, no stock), while Market Info lists live buy/sell prices for 9 goods with trend arrows - looks tradable but nothing can be traded. Inventory Info panel remains displaced to screen centre."]}
+{"t": 1793318534102, "cmd": "status", "args": []}
+{"t": 1793318534520, "cmd": "stop", "args": []}
+{"t": 1793318567772, "cmd": "report", "args": []}
+{"t": 1793320034182, "cmd": "stop", "args": []}

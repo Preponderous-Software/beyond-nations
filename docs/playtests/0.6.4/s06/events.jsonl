@@ -1,112 +1,84 @@
-{"type":"screen","tick":0,"wallTimeMs":1793281942251,"from":null,"to":"TITLE"}
-{"type":"screen","tick":0,"wallTimeMs":1793282394317,"from":"TITLE","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793282395439,"from":"MAIN_MENU","to":"NEW_WORLD"}
-{"type":"world","tick":0,"wallTimeMs":1793282408678,"how":"created","slot":"world-106-20261029-140008","seed":106}
-{"type":"screen","tick":0,"wallTimeMs":1793282408680,"from":"NEW_WORLD","to":"WORLD"}
-{"type":"status","tick":290,"wallTimeMs":1793282426773,"text":"Created nation Redfield."}
-{"type":"chronicle","tick":290,"wallTimeMs":1793282426773,"kind":"NationCreation","text":"Under your hand, the nation of Redfield was born. It is the first nation this world has known."}
-{"type":"screen","tick":406,"wallTimeMs":1793282434321,"from":"WORLD","to":"NATIONS"}
-{"type":"status","tick":406,"wallTimeMs":1793282451583,"text":"Taxes: High proclaimed. It takes effect in 30 seconds."}
-{"type":"status","tick":406,"wallTimeMs":1793282453299,"text":"Conscription: On proclaimed. It takes effect in 30 seconds."}
-{"type":"screen","tick":410,"wallTimeMs":1793282461973,"from":"NATIONS","to":"WORLD"}
-{"type":"screen","tick":446,"wallTimeMs":1793282464279,"from":"WORLD","to":"CONTROLS"}
-{"type":"screen","tick":450,"wallTimeMs":1793282484196,"from":"CONTROLS","to":"WORLD"}
-{"type":"chronicle","tick":902,"wallTimeMs":1793282517648,"kind":"NationCreation","text":"Una Johnson declared the nation of Smalltown, though none had yet sworn to it."}
-{"type":"chronicle","tick":950,"wallTimeMs":1793282521759,"kind":"SettlementFounded","text":"Una Johnson raised the first settlement of Smalltown."}
-{"type":"status","tick":1298,"wallTimeMs":1793282570536,"text":"Irene Taylor (Stranger): \u0022I don\u0027t even know you.\u0022 (needs Acquaintance)"}
-{"type":"status","tick":1378,"wallTimeMs":1793282578416,"text":"No entities within range to interact with."}
-{"type":"status","tick":1398,"wallTimeMs":1793282580283,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":1422,"wallTimeMs":1793282582259,"text":"No entities within range to interact with. (x3)"}
-{"type":"status","tick":1446,"wallTimeMs":1793282583949,"text":"No entities within range to interact with. (x4)"}
-{"type":"status","tick":1470,"wallTimeMs":1793282586106,"text":"There is no one within reach to give a gift to."}
-{"type":"status","tick":1754,"wallTimeMs":1793282632746,"text":"No entities within range to interact with."}
-{"type":"status","tick":1810,"wallTimeMs":1793282707407,"text":"No entities within range to interact with. (x2)"}
-{"type":"chronicle","tick":1902,"wallTimeMs":1793282714489,"kind":"NationCreation","text":"Jasmine Thomas raised a banner and called it Newwood."}
-{"type":"chronicle","tick":1950,"wallTimeMs":1793282719075,"kind":"SettlementFounded","text":"Jasmine Thomas laid the first stones of Newwood."}
-{"type":"status","tick":2002,"wallTimeMs":1793282721988,"text":"Taxes in Redfield rose to High. Conscription came into force in Redfield: its people drill to defend it."}
-{"type":"chronicle","tick":2002,"wallTimeMs":1793282721988,"kind":"NationCreation","text":"The nation of Towntown was born, with Stan Wilson at its head."}
-{"type":"chronicle","tick":2002,"wallTimeMs":1793282721988,"kind":"Statecraft","text":"Taxes in Redfield rose to High."}
-{"type":"chronicle","tick":2002,"wallTimeMs":1793282721988,"kind":"Statecraft","text":"Conscription came into force in Redfield: its people drill to defend it."}
-{"type":"status","tick":2310,"wallTimeMs":1793282744462,"text":"No entities within range to interact with."}
-{"type":"status","tick":2326,"wallTimeMs":1793282745595,"text":"There is no one within reach to give a gift to."}
-{"type":"screen","tick":2474,"wallTimeMs":1793282756000,"from":"WORLD","to":"NATIONS"}
-{"type":"status","tick":2474,"wallTimeMs":1793282761353,"text":"Taxes: None proclaimed. It takes effect in 30 seconds."}
-{"type":"screen","tick":2478,"wallTimeMs":1793282762634,"from":"NATIONS","to":"WORLD"}
-{"type":"chronicle","tick":2502,"wallTimeMs":1793282764159,"kind":"SettlementFounded","text":"Towntown put down roots: Stan Wilson founded its first settlement."}
-{"type":"chronicle","tick":2602,"wallTimeMs":1793282771016,"kind":"NationCreation","text":"Ruth Brown founded the nation of Littleburg."}
-{"type":"status","tick":2998,"wallTimeMs":1793282798526,"text":"No entities within range to interact with."}
-{"type":"chronicle","tick":3150,"wallTimeMs":1793282809060,"kind":"NationCreation","text":"The nation of Upperburg was born, with Phoebe Johnson at its head."}
-{"type":"chronicle","tick":3350,"wallTimeMs":1793282829132,"kind":"SettlementFounded","text":"Ruth Brown laid the first stones of Littleburg."}
-{"type":"status","tick":3602,"wallTimeMs":1793282845867,"text":"No entities within range to interact with."}
-{"type":"status","tick":3610,"wallTimeMs":1793282846365,"text":"No entities within range to interact with. (x2)"}
-{"type":"chronicle","tick":3650,"wallTimeMs":1793282849013,"kind":"SettlementFounded","text":"Phoebe Johnson laid the first stones of Upperburg."}
-{"type":"chronicle","tick":3850,"wallTimeMs":1793282862384,"kind":"StallBuilt","text":"Trade came to Towntown: Stan Wilson built a stall."}
-{"type":"status","tick":3930,"wallTimeMs":1793282867092,"text":"You enter the land of Smalltown (Neutral)."}
-{"type":"chronicle","tick":3950,"wallTimeMs":1793282868518,"kind":"NationCreation","text":"Fiona White founded the nation of Whiteland."}
-{"type":"status","tick":4002,"wallTimeMs":1793282872813,"text":"Taxes were lifted in Redfield."}
-{"type":"chronicle","tick":4002,"wallTimeMs":1793282872813,"kind":"Statecraft","text":"Taxes were lifted in Redfield."}
-{"type":"chronicle","tick":4250,"wallTimeMs":1793282893120,"kind":"NationRelationChange","text":"Smalltown and Newwood have become rivals over their border."}
-{"type":"chronicle","tick":4302,"wallTimeMs":1793282898723,"kind":"NationCreation","text":"The nation of Northernland was born, with Mike White at its head."}
-{"type":"status","tick":4338,"wallTimeMs":1793282903249,"text":"Wendy Wilson (Stranger): \u0022Who are you? I\u0027m loyal to Smalltown. Mind you, nothing\u0027s free.\u0022"}
-{"type":"status","tick":4438,"wallTimeMs":1793282914437,"text":"No entities within range to interact with."}
-{"type":"status","tick":4450,"wallTimeMs":1793282915792,"text":"There is no one within reach to invite."}
-{"type":"chronicle","tick":4450,"wallTimeMs":1793282915792,"kind":"NationCreation","text":"Karl Wood founded the nation of Easternham."}
-{"type":"chronicle","tick":4450,"wallTimeMs":1793282915792,"kind":"NationCreation","text":"Tilly White declared the nation of Townfield, though none had yet sworn to it."}
-{"type":"chronicle","tick":4502,"wallTimeMs":1793282922731,"kind":"SettlementFounded","text":"Tilly White laid the first stones of Townfield."}
-{"type":"screen","tick":4574,"wallTimeMs":1793282931901,"from":"WORLD","to":"NATIONS"}
-{"type":"status","tick":4574,"wallTimeMs":1793282938066,"text":"Conscription: Off proclaimed. It takes effect in 30 seconds."}
-{"type":"screen","tick":4578,"wallTimeMs":1793282941523,"from":"NATIONS","to":"WORLD"}
-{"type":"chronicle","tick":4602,"wallTimeMs":1793282944496,"kind":"SettlementFounded","text":"Fiona White raised the first settlement of Whiteland."}
-{"type":"status","tick":4730,"wallTimeMs":1793282958507,"text":"You gave Wendy Wilson 10 coin. Wendy Wilson (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
-{"type":"chronicle","tick":4750,"wallTimeMs":1793282960536,"kind":"NationRelationChange","text":"Smalltown and Towntown have become rivals over their border."}
-{"type":"status","tick":4786,"wallTimeMs":1793282963728,"text":"You gave Wendy Wilson 10 coin. Wendy Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Wendy Wilson now knows you by name."}
-{"type":"status","tick":4794,"wallTimeMs":1793282964413,"text":"You gave Wendy Wilson 10 coin. Wendy Wilson (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
-{"type":"status","tick":4802,"wallTimeMs":1793282965217,"text":"There is no one within reach to give a gift to."}
-{"type":"status","tick":4814,"wallTimeMs":1793282966440,"text":"There is no one within reach to give a gift to. (x2)"}
-{"type":"status","tick":4818,"wallTimeMs":1793282966776,"text":"There is no one within reach to invite."}
-{"type":"chronicle","tick":4850,"wallTimeMs":1793282969824,"kind":"NationCreation","text":"Mia Williams declared the nation of Littleshire, though none had yet sworn to it."}
-{"type":"chronicle","tick":4902,"wallTimeMs":1793282974992,"kind":"NationCreation","text":"Gemma Thomas raised a banner and called it Southernham."}
-{"type":"status","tick":4954,"wallTimeMs":1793282979940,"text":"Hank Davies (Stranger): \u0022I\u0027m loyal to Smalltown.\u0022 (needs Loyal)"}
-{"type":"chronicle","tick":5002,"wallTimeMs":1793282984213,"kind":"NationCreation","text":"The nation of Greatshire was born, with Mia Watson at its head."}
-{"type":"chronicle","tick":5050,"wallTimeMs":1793282988438,"kind":"NationCreation","text":"Charlotte Evans founded the nation of Westernford."}
-{"type":"chronicle","tick":5050,"wallTimeMs":1793282988438,"kind":"NationCreation","text":"Fiona Robinson founded the nation of Castleham."}
-{"type":"chronicle","tick":5150,"wallTimeMs":1793282996818,"kind":"NationCreation","text":"Gemma Evans founded the nation of Villageford."}
-{"type":"chronicle","tick":5150,"wallTimeMs":1793282996818,"kind":"SettlementFounded","text":"Mia Watson laid the first stones of Greatshire."}
-{"type":"chronicle","tick":5602,"wallTimeMs":1793283035364,"kind":"NationCreation","text":"Una Taylor declared the nation of Northtown, though none had yet sworn to it."}
-{"type":"chronicle","tick":5702,"wallTimeMs":1793283045686,"kind":"SettlementFounded","text":"Charlotte Evans laid the first stones of Westernford."}
-{"type":"chronicle","tick":5750,"wallTimeMs":1793283050572,"kind":"NationCreation","text":"Samantha Smith declared the nation of Easternland, though none had yet sworn to it."}
-{"type":"chronicle","tick":5750,"wallTimeMs":1793283050572,"kind":"NationCreation","text":"Tina Taylor founded the nation of Yellowport."}
-{"type":"chronicle","tick":5750,"wallTimeMs":1793283050572,"kind":"NationRelationChange","text":"Smalltown and Littleburg have become rivals over their border."}
-{"type":"chronicle","tick":5750,"wallTimeMs":1793283050572,"kind":"NationRelationChange","text":"Smalltown and Upperburg have become rivals over their border."}
-{"type":"chronicle","tick":5850,"wallTimeMs":1793283060908,"kind":"SettlementFounded","text":"Mike White raised the first settlement of Northernland."}
-{"type":"save","tick":6002,"wallTimeMs":1793283078186,"count":1}
-{"type":"status","tick":6002,"wallTimeMs":1793283078186,"text":"Autosaved."}
-{"type":"chronicle","tick":6050,"wallTimeMs":1793283083388,"kind":"SettlementFounded","text":"Gemma Evans laid the first stones of Villageford."}
-{"type":"chronicle","tick":6150,"wallTimeMs":1793283094828,"kind":"NationCreation","text":"The nation of Hamletwood was born, with Harriet Taylor at its head."}
-{"type":"screen","tick":6226,"wallTimeMs":1793283104671,"from":"WORLD","to":"NATIONS"}
-{"type":"screen","tick":6230,"wallTimeMs":1793283108878,"from":"NATIONS","to":"WORLD"}
-{"type":"chronicle","tick":6402,"wallTimeMs":1793283129536,"kind":"NationCreation","text":"Judy Taylor raised a banner and called it Hamletland."}
-{"type":"chronicle","tick":6450,"wallTimeMs":1793283134346,"kind":"SettlementFounded","text":"Una Taylor laid the first stones of Northtown."}
-{"type":"status","tick":6502,"wallTimeMs":1793283234714,"text":"Redfield stood down its conscripts."}
-{"type":"chronicle","tick":6502,"wallTimeMs":1793283234714,"kind":"Statecraft","text":"Redfield stood down its conscripts."}
-{"type":"chronicle","tick":6650,"wallTimeMs":1793283254608,"kind":"SettlementFounded","text":"Gemma Thomas raised the first settlement of Southernham."}
-{"type":"chronicle","tick":6650,"wallTimeMs":1793283254608,"kind":"SettlementFounded","text":"Castleham put down roots: Fiona Robinson founded its first settlement."}
-{"type":"chronicle","tick":6750,"wallTimeMs":1793283268649,"kind":"SettlementFounded","text":"Hamletland put down roots: Judy Taylor founded its first settlement."}
-{"type":"chronicle","tick":6750,"wallTimeMs":1793283268649,"kind":"NationRelationChange","text":"Upperburg and Townfield have become rivals over their border."}
-{"type":"chronicle","tick":6802,"wallTimeMs":1793283275812,"kind":"StallBuilt","text":"Trade came to Townfield: Tilly White built a stall."}
-{"type":"chronicle","tick":7002,"wallTimeMs":1793283308398,"kind":"StallBuilt","text":"A new stall opened in the market of Greatshire, built by Mia Watson."}
-{"type":"chronicle","tick":7002,"wallTimeMs":1793283308398,"kind":"NationRelationChange","text":"Smalltown and Whiteland have become rivals over their border."}
-{"type":"chronicle","tick":7102,"wallTimeMs":1793283323714,"kind":"SettlementFounded","text":"Mia Williams raised the first settlement of Littleshire."}
-{"type":"chronicle","tick":7250,"wallTimeMs":1793283340675,"kind":"SettlementFounded","text":"Harriet Taylor laid the first stones of Hamletwood."}
-{"type":"chronicle","tick":7250,"wallTimeMs":1793283340675,"kind":"NationRelationChange","text":"Townfield and Greatshire have become rivals over their border."}
-{"type":"chronicle","tick":7502,"wallTimeMs":1793283368790,"kind":"NationRelationChange","text":"Whiteland and Greatshire have become rivals over their border."}
-{"type":"chronicle","tick":7502,"wallTimeMs":1793283368790,"kind":"NationRelationChange","text":"Townfield and Westernford have become rivals over their border."}
-{"type":"chronicle","tick":7550,"wallTimeMs":1793283373625,"kind":"StallBuilt","text":"Charlotte Evans built a market stall in Westernford."}
-{"type":"chronicle","tick":7650,"wallTimeMs":1793283384319,"kind":"SettlementFounded","text":"Easternland put down roots: Samantha Smith founded its first settlement."}
-{"type":"chronicle","tick":7702,"wallTimeMs":1793283389683,"kind":"SettlementFounded","text":"Easternham put down roots: Karl Wood founded its first settlement."}
-{"type":"chronicle","tick":7702,"wallTimeMs":1793283389683,"kind":"StallBuilt","text":"A new stall opened in the market of Townfield, built by Tilly White."}
-{"type":"chronicle","tick":7802,"wallTimeMs":1793283400126,"kind":"StallBuilt","text":"A new stall opened in the market of Greatshire, built by Mia Watson."}
-{"type":"chronicle","tick":7850,"wallTimeMs":1793283404805,"kind":"SettlementFounded","text":"Tina Taylor raised the first settlement of Yellowport."}
-{"type":"chronicle","tick":8002,"wallTimeMs":1793283421744,"kind":"StallBuilt","text":"Trade came to Smalltown: Una Johnson built a stall."}
-{"type":"chronicle","tick":8002,"wallTimeMs":1793283421744,"kind":"NationRelationChange","text":"Whiteland and Northernland have become rivals over their border."}
-{"type":"chronicle","tick":8002,"wallTimeMs":1793283421744,"kind":"NationRelationChange","text":"Westernford and Castleham have become rivals over their border."}
+{"type":"screen","tick":0,"wallTimeMs":1793317187078,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793317196033,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793317225460,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793317227169,"how":"created","slot":"world-106-20261029-234027","seed":106}
+{"type":"screen","tick":0,"wallTimeMs":1793317227172,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":324,"wallTimeMs":1793317258607,"text":"Created nation Northburg."}
+{"type":"chronicle","tick":324,"wallTimeMs":1793317258607,"kind":"NationCreation","text":"You founded the nation of Northburg. It is the first nation this world has known."}
+{"type":"screen","tick":452,"wallTimeMs":1793317278768,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":452,"wallTimeMs":1793317304303,"text":"Taxes: Low proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":452,"wallTimeMs":1793317308250,"text":"Conscription: On proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":452,"wallTimeMs":1793317311416,"text":"Borders: Open proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":456,"wallTimeMs":1793317325816,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":488,"wallTimeMs":1793317329619,"from":"WORLD","to":"CONTROLS"}
+{"type":"screen","tick":492,"wallTimeMs":1793317417428,"from":"CONTROLS","to":"WORLD"}
+{"type":"chronicle","tick":900,"wallTimeMs":1793317496286,"kind":"NationCreation","text":"Una Johnson declared the nation of Newland, though none had yet sworn to it."}
+{"type":"chronicle","tick":952,"wallTimeMs":1793317504278,"kind":"SettlementFounded","text":"Una Johnson laid the first stones of Newland."}
+{"type":"status","tick":1564,"wallTimeMs":1793317611743,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":1652,"wallTimeMs":1793317623612,"kind":"NationCreation","text":"Mike Wood raised a banner and called it Southham."}
+{"type":"chronicle","tick":1652,"wallTimeMs":1793317623612,"kind":"NationCreation","text":"The nation of Hamletfield was born, with Fiona White at its head."}
+{"type":"chronicle","tick":1700,"wallTimeMs":1793317632658,"kind":"SettlementFounded","text":"Southham put down roots: Mike Wood founded its first settlement."}
+{"type":"chronicle","tick":1700,"wallTimeMs":1793317632658,"kind":"SettlementFounded","text":"Fiona White raised the first settlement of Hamletfield."}
+{"type":"chronicle","tick":1952,"wallTimeMs":1793317674161,"kind":"NationCreation","text":"Karl Wood raised a banner and called it Easttown."}
+{"type":"status","tick":1976,"wallTimeMs":1793317677189,"text":"There is no one within reach to invite. (x2)"}
+{"type":"status","tick":2000,"wallTimeMs":1793317680639,"text":"Taxes in Northburg rose to Low. Conscription came into force in Northburg: its people drill to defend it. Northburg opened its borders to traders and newcomers."}
+{"type":"chronicle","tick":2000,"wallTimeMs":1793317680639,"kind":"NationCreation","text":"Jasmine Thomas declared the nation of Blueburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":2000,"wallTimeMs":1793317680639,"kind":"Statecraft","text":"Taxes in Northburg rose to Low."}
+{"type":"chronicle","tick":2000,"wallTimeMs":1793317680639,"kind":"Statecraft","text":"Conscription came into force in Northburg: its people drill to defend it."}
+{"type":"chronicle","tick":2000,"wallTimeMs":1793317680639,"kind":"Statecraft","text":"Northburg opened its borders to traders and newcomers."}
+{"type":"status","tick":2100,"wallTimeMs":1793317693504,"text":"You enter the land of Southham (Neutral)."}
+{"type":"chronicle","tick":2252,"wallTimeMs":1793317722482,"kind":"NationCreation","text":"The nation of Southford was born, with Fiona Thomas at its head."}
+{"type":"chronicle","tick":2452,"wallTimeMs":1793317741912,"kind":"SettlementFounded","text":"Karl Wood laid the first stones of Easttown."}
+{"type":"chronicle","tick":2452,"wallTimeMs":1793317741912,"kind":"SettlementFounded","text":"Fiona Thomas raised the first settlement of Southford."}
+{"type":"chronicle","tick":2600,"wallTimeMs":1793317757993,"kind":"NationCreation","text":"Frank Brown declared the nation of Villageham, though none had yet sworn to it."}
+{"type":"status","tick":2652,"wallTimeMs":1793317765855,"text":"Frank Brown (Stranger): \u0022I lead Villageham. I won\u0027t abandon my people.\u0022"}
+{"type":"chronicle","tick":2800,"wallTimeMs":1793317787476,"kind":"SettlementFounded","text":"Jasmine Thomas laid the first stones of Blueburg."}
+{"type":"chronicle","tick":3352,"wallTimeMs":1793317884954,"kind":"NationCreation","text":"Grace Brown declared the nation of Hamletshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":3400,"wallTimeMs":1793317891766,"kind":"SettlementFounded","text":"Frank Brown raised the first settlement of Villageham."}
+{"type":"status","tick":3740,"wallTimeMs":1793317962897,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":3800,"wallTimeMs":1793317969414,"kind":"SettlementFounded","text":"Grace Brown laid the first stones of Hamletshire."}
+{"type":"chronicle","tick":3900,"wallTimeMs":1793317987156,"kind":"StallBuilt","text":"Trade came to Blueburg: Jasmine Thomas built a stall."}
+{"type":"chronicle","tick":4000,"wallTimeMs":1793318003304,"kind":"NationRelationChange","text":"Newland and Southham have become rivals over their border."}
+{"type":"chronicle","tick":4000,"wallTimeMs":1793318003304,"kind":"NationRelationChange","text":"Newland and Hamletfield have become rivals over their border."}
+{"type":"status","tick":4100,"wallTimeMs":1793318021230,"text":"There is no one within reach to invite. (x2)"}
+{"type":"chronicle","tick":4152,"wallTimeMs":1793318029468,"kind":"NationCreation","text":"Hank Taylor declared the nation of Southburg, though none had yet sworn to it."}
+{"type":"screen","tick":4172,"wallTimeMs":1793318032940,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":4172,"wallTimeMs":1793318043093,"text":"Conscription: Off proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":4172,"wallTimeMs":1793318046257,"text":"Borders: Closed proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":4176,"wallTimeMs":1793318147607,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":4300,"wallTimeMs":1793318177504,"kind":"NationCreation","text":"Yvonne Williams declared the nation of Castleville, though none had yet sworn to it."}
+{"type":"chronicle","tick":4352,"wallTimeMs":1793318186734,"kind":"SettlementFounded","text":"Yvonne Williams raised the first settlement of Castleville."}
+{"type":"status","tick":4424,"wallTimeMs":1793318200751,"text":"There is no one within reach to invite."}
+{"type":"status","tick":4468,"wallTimeMs":1793318216403,"text":"Charlotte Taylor (Stranger): \u0022I\u0027m loyal to Southham.\u0022 (needs Loyal)"}
+{"type":"status","tick":4556,"wallTimeMs":1793318239768,"text":"You gave Charlotte Taylor 10 coin. Charlotte Taylor (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":4564,"wallTimeMs":1793318242086,"text":"You gave Charlotte Taylor 10 coin. Charlotte Taylor (Stranger): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":4572,"wallTimeMs":1793318244208,"text":"You gave Charlotte Taylor 10 coin. Charlotte Taylor (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Charlotte Taylor now knows you by name."}
+{"type":"status","tick":4580,"wallTimeMs":1793318246256,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":4592,"wallTimeMs":1793318249868,"text":"There is no one within reach to invite."}
+{"type":"chronicle","tick":4600,"wallTimeMs":1793318252037,"kind":"StallBuilt","text":"A new stall opened in the market of Southford, built by Fiona Thomas."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1793318290455,"kind":"NationCreation","text":"Dave Thomas declared the nation of Townford, though none had yet sworn to it."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1793318290455,"kind":"NationRelationChange","text":"Newland and Easttown have become rivals over their border."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1793318290455,"kind":"NationRelationChange","text":"Newland and Southford have become rivals over their border."}
+{"type":"chronicle","tick":4800,"wallTimeMs":1793318303708,"kind":"StallBuilt","text":"A new stall opened in the market of Castleville, built by Yvonne Williams."}
+{"type":"chronicle","tick":4952,"wallTimeMs":1793318350064,"kind":"NationCreation","text":"The nation of Northernwood was born, with Tilly Jones at its head."}
+{"type":"chronicle","tick":5000,"wallTimeMs":1793318362617,"kind":"SettlementFounded","text":"Tilly Jones laid the first stones of Northernwood."}
+{"type":"chronicle","tick":5052,"wallTimeMs":1793318383868,"kind":"SettlementFounded","text":"Southburg put down roots: Hank Taylor founded its first settlement."}
+{"type":"chronicle","tick":5052,"wallTimeMs":1793318383868,"kind":"NationCreation","text":"Zach Thompson declared the nation of Blackville, though none had yet sworn to it."}
+{"type":"chronicle","tick":5100,"wallTimeMs":1793318397542,"kind":"StallBuilt","text":"A new stall opened in the market of Villageham, built by Frank Brown."}
+{"type":"chronicle","tick":5152,"wallTimeMs":1793318411951,"kind":"NationCreation","text":"The nation of Eastland was born, with Tilly Smith at its head."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1793318426616,"kind":"StallBuilt","text":"A new stall opened in the market of Blueburg, built by Jasmine Thomas."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1793318426616,"kind":"NationCreation","text":"Fiona Wood founded the nation of Fortton."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1793318426616,"kind":"StallBuilt","text":"Trade came to Castleville: Yvonne Williams built a stall."}
+{"type":"chronicle","tick":5252,"wallTimeMs":1793318450714,"kind":"NationRelationChange","text":"Newland and Blueburg have become rivals over their border."}
+{"type":"chronicle","tick":5300,"wallTimeMs":1793318461616,"kind":"NationCreation","text":"Grace Roberts declared the nation of Greenfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":5300,"wallTimeMs":1793318461616,"kind":"SettlementFounded","text":"Dave Thomas laid the first stones of Townford."}
+{"type":"chronicle","tick":5352,"wallTimeMs":1793318472556,"kind":"SettlementFounded","text":"Zach Thompson raised the first settlement of Blackville."}
+{"type":"chronicle","tick":5700,"wallTimeMs":1793318552689,"kind":"SettlementFounded","text":"Fiona Wood laid the first stones of Fortton."}
+{"type":"chronicle","tick":5752,"wallTimeMs":1793318563577,"kind":"NationRelationChange","text":"Southham and Villageham have become rivals over their border."}
+{"type":"chronicle","tick":5752,"wallTimeMs":1793318563577,"kind":"NationRelationChange","text":"Southford and Villageham have become rivals over their border."}
+{"type":"chronicle","tick":5852,"wallTimeMs":1793318578683,"kind":"SettlementFounded","text":"Tilly Smith laid the first stones of Eastland."}
+{"type":"chronicle","tick":5952,"wallTimeMs":1793318594696,"kind":"StallBuilt","text":"Trade came to Castleville: Yvonne Williams built a stall."}
+{"type":"save","tick":6000,"wallTimeMs":1793318601817,"count":1}
+{"type":"status","tick":6000,"wallTimeMs":1793318601817,"text":"Northburg stood down its conscripts. Northburg closed its borders."}
+{"type":"chronicle","tick":6000,"wallTimeMs":1793318601817,"kind":"Statecraft","text":"Northburg stood down its conscripts."}
+{"type":"chronicle","tick":6000,"wallTimeMs":1793318601817,"kind":"Statecraft","text":"Northburg closed its borders."}
