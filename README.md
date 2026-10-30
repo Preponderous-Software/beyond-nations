@@ -1,6 +1,13 @@
 # ![Beyond Nations](./.github/media/banner.png)
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
+<p>
+<img src="./.github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over a crimson-roofed town of one nation, its houses, fields, market stalls and residents at the well, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town" width="480">
+<img src="./.github/media/flyover.png" alt="The town of Hamletburg from above: crimson-roofed houses round a well with residents beside it, fields and stalls inside a fence, and beyond it border posts and the next nation's town on the horizon" width="480">
+</p>
+
+*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer: twenty nations, thirty-two settlements, nobody playing. Made with `tools/readme-flyover.sh`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); the still is one of its frames at full size.*
+
 ## Play in your browser
 
 **[Play Beyond Nations in your browser](https://beyond-nations.play.danielstephenson.dev)**: nothing to install. It is the same game, compiled to WebAssembly and drawn by the same engine, Strata, built for WebGL 2, and it is also listed in the [arcade](https://danielstephenson.dev/play). It plays with a keyboard and mouse, or on a phone or tablet with touch controls: a joystick to walk, a drag to steer, a tap to gather, and big buttons for the rest. The browser build sends no usage report. How it is built, the URL options (`?seed=42&start-screen=world`, the same names as the command-line options) and how to run it locally are in [docs/WEB.md](./docs/WEB.md).

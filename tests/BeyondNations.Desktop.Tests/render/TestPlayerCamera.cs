@@ -240,5 +240,15 @@ namespace beyondnationstests.desktop {
             Assert.True(MathF.Abs(inViewSpace.X) < 1e-3f);
             Assert.Equal(MathF.Sqrt(125f), inViewSpace.Length(), 2);
         }
-    }
+    
+        [Fact]
+        public void testLookAtLeavesThePlayerForAScriptedView() {
+            PlayerCamera camera = new PlayerCamera();
+
+            camera.lookAt(new Vector3(0f, 30f, 0f), new Vector3(0f, 0f, 60f));
+
+            assertClose(new Vector3(0f, 30f, 0f), camera.getEyePosition());
+            assertClose(Vector3.Normalize(new Vector3(0f, -30f, 60f)), camera.getForward());
+        }
+}
 }

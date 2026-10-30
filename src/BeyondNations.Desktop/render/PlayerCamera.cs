@@ -173,6 +173,17 @@ namespace beyondnations.desktop.render {
             targetPosition = eyePosition + forward;
         }
 
+        /**
+        * Puts the eye somewhere and points it at a target, leaving the
+        * player behind. For scripted views (--flyover-out); play always
+        * goes through follow().
+        */
+        public void lookAt(Vector3 eye, Vector3 target) {
+            eyePosition = eye;
+            targetPosition = target;
+            forward = normalizeOrDefault(target - eye, Vector3.UnitZ);
+        }
+
         public Matrix4x4 getViewMatrix() {
             // Straight up is unusable as an up vector when the view is looking
             // along it. The pitch clamps make that unreachable, but a view

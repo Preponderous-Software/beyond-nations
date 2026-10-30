@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Numerics;
 using Silk.NET.Input;
 using Silk.NET.Maths;
 using Silk.NET.OpenGL;
@@ -92,6 +95,12 @@ namespace beyondnations.desktop {
         private bool screenshotAfterFramesDone;
         private string lastScreenshotPath;
         private bool screenshotRequested;
+
+        // --flyover-out: the scripted camera, and how many frames it has written
+        private FlyoverDirector flyover;
+        private int flyoverFramesWritten;
+        // about real time at the README GIF's 15 frames a second and 50 ticks a second
+        private const int FlyoverTicksPerFrame = 3;
 
         public Game(GameOptions options) {
             this.options = options;
@@ -310,6 +319,13 @@ namespace beyondnations.desktop {
                 EndingShowcase.stage(simulation, options.StageVictory);
             }
 
+            if (options.AdvanceTicks > 0) {
+                advanceTicks(options.AdvanceTicks);
+            }
+            if (options.FlyoverOut != null) {
+                beginFlyover();
+            }
+
             // --- #219 camera and culling ---
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
@@ -322,6 +338,42 @@ namespace beyondnations.desktop {
             feel.beginWorld(simulation, true);
             share.beginWorld(simulation);
             playtest?.worldStarted(simulation, "created", saves.getCurrentSlot());
+        }
+
+        /**
+        * --advance-ticks: the same fixed steps the window runs, without
+        * waiting for the clock, so the world opens mid-game. A world event
+        * waiting on the player does not stop it: the player is not playing.
+        */
+        private void advanceTicks(int ticks) {
+            Log.info("advancing the world " + ticks + " ticks");
+            float step = (float) fixedTimeStep;
+            for (int i = 0; i < ticks; i++) {
+                simulation.fixedUpdate(step);
+            }
+            Log.info("advanced to tick " + simulation.getTickCounter().getTotalTicks()
+                + ": " + simulation.getNationRepository().getNations().Count + " nations");
+        }
+
+        /** --flyover-out: picks the two settlements to glide between. */
+        private void beginFlyover() {
+            List<Vector3> settlements = new List<Vector3>();
+            List<int> nations = new List<int>();
+            int nationIndex = 0;
+            foreach (Nation nation in simulation.getNationRepository().getNations()) {
+                foreach (EntityId settlementId in nation.getSettlements()) {
+                    Entity settlement = simulation.getEntityRepository().getEntity(settlementId);
+                    if (settlement != null) {
+                        settlements.Add(settlement.getPosition());
+                        nations.Add(nationIndex);
+                    }
+                }
+                nationIndex++;
+            }
+            flyover = FlyoverDirector.between(settlements, nations, simulation.getPlayer().getPosition(), options.FlyoverFrames);
+            Directory.CreateDirectory(options.FlyoverOut);
+            Log.info("flyover: " + settlements.Count + " settlements; gliding " + flyover.getStart() + " to " + flyover.getEnd()
+                + ", " + options.FlyoverFrames + " frames to " + options.FlyoverOut);
         }
 
         /**
@@ -381,6 +433,16 @@ namespace beyondnations.desktop {
             runHousekeeping();
 
             if (!screens.shouldAdvanceSimulation() || simulation == null) {
+                return;
+            }
+            // a flyover runs a fixed number of ticks a frame, however slow the
+            // frame, so the same seed films the same way; world events do not
+            // stop it, since nobody is there to choose
+            if (flyover != null) {
+                for (int i = 0; i < FlyoverTicksPerFrame; i++) {
+                    simulation.fixedUpdate((float) fixedTimeStep);
+                    fixedStepsRun++;
+                }
                 return;
             }
             // the world waits while a world event's choice sheet is up
@@ -603,14 +665,19 @@ namespace beyondnations.desktop {
                 // view volume or past that distance before an instance buffer
                 // is touched.
                 MouseLook mouseLook = playerInputController.getMouseLook();
-                camera.setRenderDistance(player.getRenderDistance());
-                camera.follow(player.getPosition() + feel.getCameraShake(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                if (flyover != null) {
+                    camera.setRenderDistance(flyover.getViewDistance());
+                    camera.lookAt(flyover.getEye(flyoverFramesWritten), flyover.getTarget(flyoverFramesWritten));
+                } else {
+                    camera.setRenderDistance(player.getRenderDistance());
+                    camera.follow(player.getPosition() + feel.getCameraShake(), player.getYaw(), mouseLook.getYawDegrees(), mouseLook.getPitchDegrees());
+                }
                 feel.setView(camera.getViewMatrix(), camera.getProjectionMatrix());
                 culler.beginFrame(camera);
                 // --- #280 ---
                 if (renderer is NativeWorldRenderer native) {
                     native.setTimeOfDay(simulation.getTimeOfDay().getFraction());
-                    native.setPlayerPosition(player.getPosition());
+                    native.setPlayerPosition(flyover != null ? flyover.getGroundPoint(flyoverFramesWritten) : player.getPosition());
                 }
                 // --- end #280 ---
                 renderer.render(snapshot, camera.getViewMatrix(), camera.getProjectionMatrix(), culler);
@@ -624,8 +691,11 @@ namespace beyondnations.desktop {
 
             // --- #221 imgui user interface ---
             // Drawn last, so it sits over the world rather than under it.
-            ui?.render(deltaTime, window.FramebufferSize.X, window.FramebufferSize.Y, simulation,
-                      playerInputController.isDebugMode(), playerInputController.getChronicleView());
+            // a flyover shows the world alone
+            if (flyover == null) {
+                ui?.render(deltaTime, window.FramebufferSize.X, window.FramebufferSize.Y, simulation,
+                          playerInputController.isDebugMode(), playerInputController.getChronicleView());
+            }
             if (ui != null) {
                 if (ui.consumeStartRequest()) {
                     createWorld();
@@ -658,6 +728,10 @@ namespace beyondnations.desktop {
                 captureScreenshotAndReport();
             }
 
+            if (flyover != null && simulation != null) {
+                writeFlyoverFrame();
+            }
+
             framesRendered++;
             if (playtest != null) {
                 recordPlaytest();
@@ -670,6 +744,19 @@ namespace beyondnations.desktop {
             renderStats?.endFrame(
                 renderer != null ? renderer.getDrawCallCount() : 0,
                 renderer != null ? renderer.getInstancesDrawn() : 0);
+        }
+
+        /** One numbered PNG per frame; the last one closes the window. */
+        private void writeFlyoverFrame() {
+            Vector2D<int> size = window.FramebufferSize;
+            string path = Path.Combine(options.FlyoverOut, "frame-" + flyoverFramesWritten.ToString("D4") + ".png");
+            ScreenshotCapture.captureTo(gl, size.X, size.Y, path);
+            flyoverFramesWritten++;
+            if (flyoverFramesWritten >= options.FlyoverFrames) {
+                Log.info("flyover: wrote " + flyoverFramesWritten + " frames");
+                automatedExit = true;
+                window.Close();
+            }
         }
 
         /**
