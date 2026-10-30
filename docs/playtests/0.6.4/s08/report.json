@@ -1,47 +1,68 @@
 {
   "session": "s08",
   "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
-  "build": {"version": "0.6.3", "commit": "b6a0019"},
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
   "seed": 108,
-  "durationSec": 1600,
+  "durationSec": 1786,
   "outcome": "blocked",
   "findings": [
     {
       "severity": "major",
       "category": "perf",
-      "title": "First world event can't be reached in a 30-minute session: it is scheduled 420-660 game s in, and the game ran at 6-15 tps",
-      "detail": "I played normally (5 objectives, nation, settlement, stall), then let time pass. After about 26 wall minutes the game was at tick 13928 (~279 game seconds). WorldEvents.cs schedules the first player event at FIRST_PLAYER_EVENT_MIN_SECONDS=420 (tick 21000+). Nation events start at 240 s or later (tick 12000+), and none had shown up in the chronicle by tick 13928. state.worldEvent was null the whole session. At the load this box was under (load average ~80-100, tps 5.5-15.9), seeing an event takes about an hour of wall time. Expected: a playtest session with this goal can reach an event, either with a shorter first-event delay, a staged-event switch the brief allows, or a save where an event is pending.",
-      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-playtest064 --seed 108; play through objectives 1-6; pt wait in 45 s chunks until about 26 min wall; pt state shows worldEvent null at tick 13928",
-      "screenshot": "shots/no_event.png",
-      "tick": 13928
+      "title": "Simulation ran at 5-20 tps, so no player world event was offered within a 30-minute session",
+      "detail": "Throughout the session the game ran at 5-20 ticks/s (fps 0-5) instead of 50. The first player event is scheduled 420-660 game seconds in (WorldEvents.FIRST_PLAYER_EVENT_MIN/MAX_SECONDS). After 30 wall minutes the world had reached only tick 28521 (570 game s) and no world_event_offered had appeared, so I could not see a choice sheet, take a choice or judge consequences. Even at full speed a player waits 7-11 minutes for their first event, and nothing on screen hints that events exist or are coming.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 108; Start; Begin; n; gather 50 wood; f at open ground; e; idle and watch pt status / pt events until 30 min wall",
+      "screenshot": "shots/final.png",
+      "tick": 28521
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "Nothing on screen tells the player that world events exist or when one might come",
-      "detail": "In ~279 game seconds, no HUD element, tip or objective mentioned world events. The chronicle showed rivalries, alliances, caravans and new nations, but nothing marked as a world event. A player who has heard about events has no idea whether they are close or what triggers them. Expected: a tip or chronicle line foreshadowing events, e.g. once the player leads a nation.",
-      "repro": "same as above; read the tips and the chronicle panel",
-      "screenshot": "shots/final.png",
-      "tick": 13880
+      "title": "An NPC world event shows only as one plain chronicle line and is pushed out of the recent panel almost at once",
+      "detail": "The only world event in the session (tick 19753, 'A bountiful harvest came in across Northernwood, and Isabella Thompson filled the stores with 14 apples.') appeared as an ordinary line in the 5-line recent-chronicle panel. Raid and relation lines pushed it off within about a minute, before I took a screenshot. It had no distinct styling, toast or sound. I expected world events, which the game presents as what changes the world, to stand out from routine news.",
+      "repro": "seed 108; found a settlement; wait to tick ~19753; look at the chronicle panel at ~tick 20200",
+      "screenshot": "shots/npc_event_buried.png",
+      "tick": 20205
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "NPC raid spam floods the chronicle: 76 raid lines in about 9.5 game minutes, 13 of them on one tick",
+      "detail": "On tick 17001 thirteen NationRaid chronicle entries fired at once ('Raiders from Blacktown struck Easternton...', and so on). By tick 28521 there were 76 raids, 71 relation changes and only 1 WorldEvent entry. This noise is what buries the world events and the player's own news in the chronicle.",
+      "repro": "seed 108; play to tick ~17001; pt events 20 / view the chronicle",
+      "screenshot": "shots/late.png",
+      "tick": 17001
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement placement hints use compass directions, but nothing on screen shows which way north is",
+      "detail": "'Too close to ... Open ground lies about 180 to the south-east' and 'Found your settlement outside its borders. Open ground lies about 190 to the south-west.' There is no compass or minimap, so I found a valid spot by trial and error, and it took 4 attempts and about 5 wall minutes. I expected a compass strip, a direction arrow or a minimap marker.",
+      "repro": "seed 108; gather 50 wood near spawn; press f near Easternfield/Oldwood",
+      "screenshot": "shots/no_compass.png",
+      "tick": 5273
     },
     {
       "severity": "polish",
       "category": "ux",
-      "title": "Huge world-space settlement label is clipped across the top of the screen when inside your own settlement",
-      "detail": "After founding and entering the settlement, giant text ('...0 here, 3/8 residents') runs across the top of the screen behind the HUD panels. It is cut off and can't be read.",
-      "repro": "found a settlement (N, 50 wood, F), press E to enter; look at the top of the screen",
-      "screenshot": "shots/overlap_label.png",
-      "tick": 4824
+      "title": "The floating settlement label is drawn huge behind the HUD and cut off at the top of the screen",
+      "detail": "At my own settlement's well, the world-space label ('0 here, 1/8 residents', later '3 here, 4/8 residents') spans the top of the screen. It sits behind the objective toast, the chronicle and the Settlement Info panels, and its top line is clipped.",
+      "repro": "seed 108; found a settlement; stand at the well",
+      "screenshot": "shots/label_overlap.png",
+      "tick": 6813
     }
   ],
   "metrics": {
-    "objectivesCompleted": 6,
+    "objectivesCompleted": 5,
     "deaths": 0,
-    "secondsToObjective": {"Found a settlement": 93.0, "Enter your settlement": 95.0},
-    "worldEventsOffered": 0,
-    "finalTick": 13928,
-    "tpsRange": "5.5-15.9"
+    "secondsToObjective": {"Gather wood": 31.06, "Eat something": 32.02, "Create or join a nation": 33.06, "Found a settlement": 134.02, "Enter your settlement": 139.06},
+    "playerWorldEventsOffered": 0,
+    "npcWorldEventsSeen": 1,
+    "firstNpcWorldEventGameSec": 395.06,
+    "finalTick": 28521,
+    "nationRaidChronicleLines": 76,
+    "typicalTps": 12
   },
-  "fun": 3,
-  "verdict": "The world events could not be judged: the first one is scheduled at least 420 game seconds in, and at 6-15 tps the session ended at ~279 game seconds with none offered and no nation event in the chronicle. The early game felt good. Objectives chain cleanly, the 'too close, open ground lies 80 to the south-west' message is excellent, and the chronicle feels alive with rivalries and caravans. Testing this goal needs either a faster-loading start or permission to stage an event."
+  "fun": 2,
+  "verdict": "I could not test the world-event choices: with the simulation at 5-20 tps, the first player event (420-660 game s) never arrived within 30 wall minutes. Even at full speed a player waits 7+ minutes with no hint that events exist. The one NPC world event I saw was a single plain chronicle line, drowned within a minute by dozens of raid and relation lines, so as built world events are close to invisible to the player. The early loop (wood, nation, settlement) is clear and well signposted apart from the compass-less placement hints."
 }

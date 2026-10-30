@@ -3,87 +3,90 @@
   "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O). This build adds an envoy: every diplomacy act that takes effect (gift/tribute, alliance, denunciation, war, peace) sends your envoy to that nation and blocks further acts toward that nation for 1,000 ticks (20 s of play, which pass only while the Nations screen is closed). Check that acts toward one nation now take game time, that the status line and the Nations screen row explain the wait, that a refused offer sends no envoy, and that each nation has its own envoy. Record the game tick of each act.",
   "build": {
     "version": "0.6.3",
-    "commit": "b6a0019"
+    "commit": "a44aa8d"
   },
   "seed": 104,
-  "durationSec": 1146,
-  "outcome": "partial",
+  "durationSec": 975,
+  "outcome": "achieved",
   "findings": [
     {
       "severity": "major",
-      "category": "bug",
-      "title": "Nations screen at ~1 fps treats every frame as a reopen: War/Denounce confirm never holds and rows re-sort under the pointer",
-      "detail": "At 1-2 fps the Nations screen disarms the two-click confirm between frames. Denounce on Northport showed 'Confirm' on the button, but two quick click pairs each left 'Click Denounce again to denounce Northport.' and nothing happened. One War pair did go through. The kept row order is also dropped, so rows re-sort while the screen is open. After War on Whitewood (tick 2644), Whitewood jumped to row 1 and Southernport's War button slid under the pointer. After Peace (tick 3728), Whitewood dropped back to row 2, and a click aimed at Southernport's Tribute hit Whitewood instead. Cause seen in the source (read-only): NationScreen.ReopenGapSeconds = 1.0, measured between frames with ImGui.GetTime, so any frame gap over 1 s clears shownOrder and disarms the ConfirmGate. Expected: a reopen is detected from the screen being closed, not from frame time, so confirms and row order survive slow frames.",
-      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-playtest064 --seed 104 (on a loaded machine, fps 1); key n; wait until 2+ AI nations exist; key o; pt click on a War or Denounce button twice ~1 s apart; or act on row 1 and watch the rows re-order",
-      "screenshot": "shots/denounce_np3.png",
-      "tick": 3728
+      "category": "ux",
+      "title": "Nations list re-sorts after an act, so the two-click Denounce/War confirm can land on a different nation",
+      "detail": "I denounced Bigford (row 2) at tick 2093. The list then re-sorted, enemies first: Bigford moved to row 1 and Farmwood took row 2. My next two clicks at the same spot armed 'Click Denounce again to denounce Farmwood' and then confirmed it. Only Farmwood's envoy being away stopped an unintended denunciation. Arming is also allowed on a nation whose envoy is away; the envoy block only appears on the confirm click. Expected: a stable row order while the screen is open (or no re-sort under the cursor), and the envoy check on the first click.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 104; Start, Begin; pt key n; wait until 3 AI nations exist (~tick 2000); pt key o; Tribute row 1 and row 3, then pt click 835 319 twice (Denounce Bigford in row 2); then pt click 835 319 twice again",
+      "screenshot": "shots/rows_reorder_misclick.png",
+      "tick": 2093
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Alliance refusal says '+30 needed', but a larger nation actually wants +60",
+      "detail": "The header says 'An alliance needs +30'. At tick 4193 Southton (3 members to my 1, Friendly +28) refused with 'an alliance needs +30. Gifts help', so I paid 25 coins to reach +38. At tick 5237 (+41) it refused again: 'they are 3 to your 1 and want relations of +60 before taking on so small a partner'. The first refusal should give the real +60 threshold. It cost me an extra tribute and an extra 20 s envoy wait.",
+      "repro": "As above; tribute Southton up to ~+28, click Ally (refused with +30), tribute to +38+, wait 20 s, click Ally (refused with +60)",
+      "screenshot": "shots/ally_ok.png",
+      "tick": 5237
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "Status line says 'deal with them again in 20 seconds' and never counts down, contradicting the row",
-      "detail": "After a blocked act, the status line reads 'Your envoy to Southernport is still on the road: you can deal with them again in 20 seconds of play.' The text stays on the world HUD and on the Nations screen. 264 ticks later the row above it correctly said 'envoy back in 15 s', but the status line still said 20 seconds. Expected: the status line counts down, or is cleared once the countdown no longer matches.",
-      "repro": "lead a nation; key o; Tribute nation A; Tribute A again (blocked); Escape; pt wait 40; key o; compare the row's 'envoy back in N s' with the status line",
-      "screenshot": "shots/countdown2.png",
-      "tick": 1772
+      "title": "Two-click confirm: stale 'Confirm' label, mismatched wording, and a wall-clock expiry at low fps",
+      "detail": "After arming Denounce on Bigford and then clicking Tribute on Farmwood, the Bigford button still read 'Confirm'. Clicking it re-armed instead of confirming ('Click Denounce again...'). The status says 'Click Denounce again' while the button says 'Confirm'. The arm expires after about 8-10 s of real time ('Not confirmed in time, so nothing was done.'), even though the world is paused. At 2-3 fps the screen often still showed the armed state after it had expired.",
+      "repro": "pt key o; pt click 835 319 (arm Denounce on row 2); click Tribute on another row; pt click 835 319",
+      "screenshot": "shots/denounce_bigford.png",
+      "tick": 2093
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "War/Denounce ask for confirmation even when the envoy is away and the act will be refused",
-      "detail": "With the envoy to Southernport away (row: 'envoy back in 20 s'), clicking War gives 'Click War again to declare war on Southernport'. Only the confirming click says 'Your envoy to Southernport is still on the road'. Denounce behaves the same. The buttons for a nation whose envoy is away also look exactly as enabled as normal ones. Expected: the buttons are dimmed, or the envoy message shows on the first click.",
-      "repro": "key o; Tribute Southernport; click War on Southernport twice quickly",
-      "screenshot": "shots/war_confirm_then_envoy.png",
-      "tick": 1508
+      "title": "Envoy wait only shows on the Nations screen: buttons stay live, HUD toast is static, no 'envoy returned' notice",
+      "detail": "While an envoy is away, all of the row's buttons look enabled; clicking one gives a clear 'still on the road' status but no visual cue beforehand. After closing O, the HUD toast keeps saying 'again in 20 seconds of play' (no countdown) and then fades. Nothing tells the player when the envoy is back, so they have to reopen O to check. The row's countdown itself is accurate: 'envoy back in 11 s' at tick 1493 for an act at 1037.",
+      "repro": "Tribute any nation; close O; watch the HUD; reopen O after 20 s",
+      "screenshot": "shots/envoy_blocked_buttons_live.png",
+      "tick": 1037
     },
     {
-      "severity": "minor",
-      "category": "ux",
-      "title": "New nations appear mid-list between visits, so a remembered button position hits the wrong nation",
-      "detail": "Between two visits to the Nations screen, the new nation Whitewood was inserted as row 2, above Castleton. My War click meant for Castleton's row declared war on Whitewood (tick 2644). Sorting 'neighbours and enemies first' is reasonable, but nothing marks a new row as new. A 'new' tag or a highlight on new nations would help.",
-      "repro": "seed 104; key n; key o at ~tick 1500 (2 nations), close, reopen at ~tick 2600 (Whitewood is row 2)",
-      "screenshot": "shots/war_whitewood.png",
-      "tick": 2644
-    },
-    {
-      "severity": "minor",
-      "category": "balance",
-      "title": "Three tributes at the envoy pace land at +29 because of relation decay, one short of the +30 an alliance needs",
-      "detail": "The header says tribute gives +10 and an alliance needs +30. Gifts to Southernport at ticks 1508, 2644 and 3728 (as fast as the envoy allows) gave +10, +20, then +29, because relations decay about 1 point per envoy round trip. An alliance therefore needs a 4th gift (100 coins) and a 5th envoy window, over 60 s of play. I could not reach an alliance within the time budget. Either make three gifts enough, or have the header say that relations fade.",
-      "repro": "key n; key o; Tribute nation A every time its envoy returns; read relations after the 3rd gift",
-      "screenshot": "shots/after3.png",
-      "tick": 3728
-    },
-    {
-      "severity": "minor",
-      "category": "perf",
-      "title": "Game runs at 1-2 fps and 5-9 ticks/s, so each 20 s envoy wait takes ~3 minutes of real time",
-      "detail": "pt status showed fps 1-3 and tps 5.6-16.7 for the whole session, on a machine shared with other sessions. The envoy design ties every diplomacy act to 1,000 ticks, which made this goal slow to test.",
-      "repro": "pt status during play",
-      "screenshot": "shots/scrolled.png",
-      "tick": 3728
+      "severity": "polish",
+      "category": "text",
+      "title": "Nations list footer says 'Scroll for more' when already at the end",
+      "detail": "'Nations 2-4 of 4, neighbours and enemies first. Scroll for more.' is shown at the bottom of the list. Expected: no 'Scroll for more' when nothing more is below (or 'Scroll up for more').",
+      "repro": "With 4 other nations, pt key o; click Down (880,196)",
+      "screenshot": "shots/allied.png",
+      "tick": 7345
     }
   ],
   "metrics": {
-    "objectivesCompleted": 0,
+    "objectivesCompleted": 3,
     "deaths": 0,
-    "secondsToObjective": {},
-    "envoyTicks": 1000,
-    "nationsMet": 4,
-    "finalRelationsSouthernport": 29,
-    "tick_allyRefusedSouthernport": 1508,
-    "tick_tributeSouthernport1": 1508,
-    "tick_tributeSouthernportBlocked": 1508,
-    "tick_tributeCastleton1": 1508,
-    "tick_warSouthernportBlocked": 1508,
-    "tick_warWhitewood": 2644,
-    "tick_tributeSouthernport2": 2644,
-    "tick_peaceWhitewoodBlocked": 2644,
-    "tick_peaceWhitewood": 3728,
-    "tick_allyRefusedCastleton": 3728,
-    "tick_tributeCastleton2": 3728,
-    "tick_tributeSouthernport3": 3728
+    "secondsToObjective": {
+      "Gather wood": 27.06,
+      "Eat something": 28.02,
+      "Create or join a nation": 29.06
+    },
+    "nationCreatedTick": 169,
+    "envoyBlocksObserved": 3,
+    "refusedOffersSentEnvoy": 0,
+    "nationsWithSimultaneousEnvoys": 3,
+    "coinsSpentOnTribute": 175,
+    "finalRelationSouthton": 70,
+    "tick_allyRefusedSouthton": 1037,
+    "tick_tributeSouthton1": 1037,
+    "tick_tributeSouthtonBlocked": 1037,
+    "tick_tributeSouthton2": 2093,
+    "tick_tributeFarmwood": 2093,
+    "tick_denounceBigford": 2093,
+    "tick_warBigford": 3105,
+    "tick_peaceBigfordBlockedByEnvoy": 3105,
+    "tick_tributeSouthton3": 3105,
+    "tick_allyRefusedSouthtonAt28": 4193,
+    "tick_tributeSouthton4": 4193,
+    "tick_peaceRefusedBigford": 4193,
+    "tick_tributeTruceBigford": 4193,
+    "tick_allyRefusedSouthtonAt41": 5237,
+    "tick_tributeSouthton5": 5237,
+    "tick_tributeSouthton6": 6289,
+    "tick_allianceSouthton": 7345
   },
   "fun": 3,
-  "verdict": "The envoy works as designed. Accepted acts send a separate envoy to each nation, refused offers send none, and blocked acts take no coins. The Nations row counts down 'envoy back in N s', and the header explains the rule well. The major problem is the Nations screen at low frame rates: with frame gaps over 1 s the two-click confirm never holds and rows re-sort under the pointer, which sent one of my clicks to the wrong nation. The status line's frozen '20 seconds' and relation decay leaving three gifts at +29 also need a look."
+  "verdict": "The envoy works as specified. Acts that take effect lock only that nation for 20 s of play, refusals (Ally at 0/+28/+41, Peace at -60) send no envoy, three nations had envoys out at once, and both the row ('envoy back in N s', counting down correctly) and the status line explain the wait. The biggest risk is the list re-sorting after an act combined with the two-click confirm, which aimed my second Denounce at the wrong nation. The alliance refusal also understates the threshold (+30 shown, +60 needed against a bigger nation). Small polish items: greyed buttons during the wait and an 'envoy returned' notice would make the pacing readable outside the O screen."
 }

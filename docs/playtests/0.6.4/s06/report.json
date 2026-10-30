@@ -1,88 +1,86 @@
 {
   "session": "s06",
   "goal": "Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies.",
-  "build": {"version": "0.6.3", "commit": "b6a0019"},
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
   "seed": 106,
-  "durationSec": 1442,
+  "durationSec": 875,
   "outcome": "partial",
   "findings": [
     {
       "severity": "major",
-      "category": "balance",
-      "title": "Ruler death (and so succession) cannot be reached in a play session: hunger is the only death and takes ~25,000 ticks",
-      "detail": "The goal asks to see what happens when the ruler dies. The player only dies of hunger: energy drains 100 per in-game day (30,000 ticks), starting at 85. In 6,156 ticks energy went 85 -> 64.7. There is no combat, hazard or other death. Even at full speed (50 tps) a death takes over 8 real minutes of standing still; on this machine (4-10 tps) it would have taken ~50 min, so the Succession screen ('THE RULE PASSES ON') was never seen. Expected: some way for a ruler to die or abdicate within a reasonable session, or a faster test path.",
-      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-playtest064 --seed 106; space; Start; Begin; N; pt wait ... ; pt state (energy falls ~0.0033/tick)",
-      "screenshot": "shots/repeal.png",
-      "tick": 6156
-    },
-    {
-      "severity": "major",
-      "category": "ux",
-      "title": "Nobody can be recruited as an heir: pawns out-walk the player and need 'Loyal' before R works",
-      "detail": "Succession needs a member pawn, but recruiting one is very hard early. Pawns wander as fast as the player walks: 6 walkto attempts between ticks 600 and 4,400 mostly ended 'stuck: not getting closer' at 20-50 m. The two pawns I reached were no use. Frank Brown led his own nation already. Charlotte Taylor said 'I'm loyal to Southham.' (needs Loyal). Three 10-coin gifts only moved her from Stranger to Acquaintance before she walked out of reach. Within 6,000 ticks NPCs had founded 9 nations and taken in most pawns. My nation stayed at 1 member, so any death would have ended the run.",
-      "repro": "pt start ... --seed 106; create nation (N); pt walkto pawn 60 (repeat); pt key r; pt key g",
-      "screenshot": "shots/chase2.png",
-      "tick": 3896
-    },
-    {
-      "severity": "major",
       "category": "bug",
-      "title": "Laws tab hides the fourth law (Rationing) at 960x540: no scroll and the row is cut",
-      "detail": "The Laws tab shows Taxes, Conscription and Borders. The game defines a fourth law, Rationing (Laws.All). LawsPanel.draw stops adding rows when the next block would not fit above the footer, and the tab has no scroll (the Nations tab does have Up/Down). So at this window size Rationing cannot be seen or enacted. Expected: every law can be reached, by scrolling or a more compact layout.",
-      "repro": "pt start ... --seed 106; N; O; click Laws (543,45); look below Borders",
-      "screenshot": "shots/laws5.png",
-      "tick": 4172
+      "title": "Laws tab drops the Rationing law entirely at 960x540",
+      "detail": "The Laws tab lists only Taxes, Conscription and Borders. The fourth law, Rationing (LawType.RATIONING, described in Laws.cs as one of 'the four laws'), is never drawn: LawsPanel.draw breaks out of the row loop when the next block would not fit above height - 3.2 lines, with no scrolling and no hint that more exists. There is visibly empty space below Borders. A leader at this resolution cannot see or enact Rationing. Expected: all four laws shown, or a scroll like the Nations tab has.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 106; pt key space; pt click 480 315; pt click 480 315; pt key n; pt key o; pt click 543 45; pt shot laws",
+      "screenshot": "shots/laws-no-rationing.png",
+      "tick": 1631
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Coin gifts have no cooldown: 160 coins buys a rival nation's member as Loyal in seconds",
+      "detail": "Talking gives +2 with a 30 s cooldown, but G (gift 10 coins, +2) can be pressed repeatedly with no cooldown. Pressing G 16 times took Hank Thomas (a member of Oldwood) from Stranger to Loyal in ~10 game seconds, and R made him defect to my nation. 160 of the 375 starting coins buys a defector and an heir. Expected: a gift cooldown or diminishing returns, as with talking.",
+      "repro": "(as above, with a nation) pt walkto pawn; press g 16 times; pt key r",
+      "screenshot": "shots/gift-spam.png",
+      "tick": 5799
     },
     {
       "severity": "minor",
       "category": "ux",
-      "title": "No screen shows the heir or line of succession while you rule",
-      "detail": "Nations tab says 'Your nation: Northburg, 1 member, no settlement. You lead it.' Neither the Laws tab, Player Info nor the Controls screen says who would succeed you, or warns that with no heir your death ends the run. The player can't plan for succession or see that they need to recruit. Expected: an 'Heir: <name>' or 'No heir: your death ends the line' line in the Nations tab or Player Info.",
-      "repro": "pt start ... ; N; O (Nations tab); check Player Info panel",
-      "screenshot": "shots/nations2.png",
-      "tick": 4172
+      "title": "No screen names the heir or warns what happens if the ruler dies",
+      "detail": "With a second member in Smallton, neither the Nations tab, the Laws tab nor the HUD names the heir or says that dying with no members ends the line and the run. Succession.cs has clear rules (family first, then most loyal, then longest sworn), but the player only learns who the heir is on the 'The Rule Passes On' screen after death. Expected: an 'Heir: <name> (reason)' line on the Nations tab, or 'No heir: your line ends if you die'.",
+      "repro": "Create nation (N), recruit one pawn (gift G, invite R), pt key o, look at both tabs",
+      "screenshot": "shots/no-heir-shown.png",
+      "tick": 5947
     },
     {
       "severity": "minor",
-      "category": "text",
-      "title": "Law countdown says 30 s but a repeal took 36.6 s to come into force",
-      "detail": "Laws proclaimed at tick 452 came into force at tick 2000 (31 s). The repeal proclaimed at 4172 came in at 6000 (36.6 s), while the panel said 'Off in 30 s'. Changes seem to land on 1000-tick law rounds, so the promised time is a lower bound and not exact.",
-      "repro": "O; Laws; click Conscription Off and Borders Closed; pt events (Statecraft chronicle entries)",
-      "screenshot": "shots/repeal.png",
-      "tick": 6000
+      "category": "ux",
+      "title": "After succession the new ruler's name appears nowhere on the HUD",
+      "detail": "After the rule passes to Xavier Lewis, the red status toast says so, but Player Info shows only Nation, Role and Land, and the Nations tab says 'You lead it'. Once the toast fades, nothing on screen shows the player's current name, how long they have reigned or their line. Expected: the ruler's name in Player Info, and the lineage from the succession screen reachable later, for example on the Nations tab.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 106 --stage-succession; space; Start; Begin; Continue on the succession screen; look at the HUD and press O",
+      "screenshot": "shots/ruler-name-missing.png",
+      "tick": 133
     },
     {
       "severity": "minor",
-      "category": "perf",
-      "title": "Simulation ran at 3.5-10 tps (of 50) and 1-4 fps through the whole session",
-      "detail": "pt status/state showed tps 3.5-10.3 and fps 1-4 the whole time. The machine was shared with other sessions, but it made every timed mechanic (30 s laws, hunger) take 5-10x longer in real time.",
-      "repro": "pt status at any point",
-      "screenshot": "shots/chase.png",
-      "tick": 1996
+      "category": "balance",
+      "title": "A ruler cannot die naturally within a play session, so succession is hard to reach",
+      "detail": "Energy drained from 84.9 to 65.2 over ~6000 ticks (2 game minutes) while I walked, so starving takes about 30 game minutes, and the player has no other way to die (militia, fire and sickness all clamp energy at 1). At the tps on this machine that is well over the 30-minute budget, so I had to use --stage-succession to see a death. Succession is a headline feature, but a normal session will rarely see it.",
+      "repro": "Play normally and watch energy in Player Info; compare with the drain rate",
+      "screenshot": "shots/repeal1.png",
+      "tick": 5947
     },
     {
       "severity": "polish",
       "category": "text",
-      "title": "Pawn name label is cut off at the right screen edge",
-      "detail": "With Frank Brown right beside the player, his floating label ran off the right edge: only 'Frank Br / Ambitio / (looking' showed. Expected the label to be clamped on screen.",
-      "repro": "walk up beside a pawn (pt walkto pawn) and screenshot",
-      "screenshot": "shots/invite2b.png",
-      "tick": 2812
+      "title": "Law-enactment chronicle lines are cut off with an ellipsis in the HUD chronicle",
+      "detail": "The chronicle box shows '* Day 1, morning - Conscription came into force in Smallton: it...', which cuts off the effect of the law (the part a ruler most wants). Y shows more, but the key consequence is lost at a glance.",
+      "repro": "Enact Conscription On, wait 30 s, look at the chronicle box",
+      "screenshot": "shots/talk1.png",
+      "tick": 3015
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Nations screen always reopens on the Nations tab, so clicks meant for Laws hit Tribute",
+      "detail": "Pressing O always opens the Nations tab. At a few fps my click on the Laws tab did not register before my next click, and that click landed on Oldwood's Tribute button and spent 25 coins by mistake. Remembering the last tab would help, as would making Tribute and the other diplomacy actions need a confirm.",
+      "repro": "Open the Laws tab, close it, press O again: you are on the Nations tab",
+      "screenshot": "shots/repeal0.png",
+      "tick": 6023
     }
   ],
   "metrics": {
     "objectivesCompleted": 0,
-    "deaths": 0,
+    "deaths": 1,
     "secondsToObjective": {},
-    "lawsEnacted": 3,
-    "lawsRepealed": 2,
-    "lawEnactDelaySec": 31.0,
-    "lawRepealDelaySec": 36.6,
-    "nationMembers": 1,
-    "recruitAttempts": 6,
-    "energyAtEnd": 64.7,
-    "npcNationsFounded": 9
+    "lawsEnacted": 2,
+    "lawsRepealed": 1,
+    "secondsLawDelay": 30,
+    "coinsToBuyDefector": 160,
+    "naturalDeathReached": 0,
+    "successionsSeen": 1
   },
-  "fun": 2,
-  "verdict": "Enacting and repealing laws is clear and satisfying: the panel explains each effect in a line, shows the pending change with a countdown, and the chronicle announces it when it comes into force. The heir side of the goal can't be reached in a session. Hunger is the only way to die and takes most of an in-game day, recruiting anyone to be an heir means chasing pawns that out-walk you and earning their Loyalty, and nothing on screen tells you who your heir is. Rationing is also hidden off the bottom of the Laws tab."
+  "fun": 3,
+  "verdict": "The laws loop works and reads well: changes are announced, show a live 30 s countdown and land in the chronicle, and the 'The Rule Passes On' screen with its numbered line is a strong moment. But Rationing never appears in the Laws tab at 960x540, the heir is hidden until after death, and a ruler cannot realistically die in a session (I needed --stage-succession, which my goal justified), so the dynasty fantasy is mostly out of the player's reach. Coin gifting with no cooldown makes recruiting heirs and defectors trivially cheap."
 }

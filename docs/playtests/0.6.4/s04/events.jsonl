@@ -1,62 +1,88 @@
-{"type":"screen","tick":0,"wallTimeMs":1793317187377,"from":null,"to":"TITLE"}
-{"type":"screen","tick":0,"wallTimeMs":1793317199873,"from":"TITLE","to":"MAIN_MENU"}
-{"type":"screen","tick":0,"wallTimeMs":1793317203137,"from":"MAIN_MENU","to":"NEW_WORLD"}
-{"type":"world","tick":0,"wallTimeMs":1793317228087,"how":"created","slot":"world-104-20261029-234028","seed":104}
-{"type":"screen","tick":0,"wallTimeMs":1793317228089,"from":"NEW_WORLD","to":"WORLD"}
-{"type":"status","tick":148,"wallTimeMs":1793317242330,"text":"Created nation Southernwood."}
-{"type":"chronicle","tick":148,"wallTimeMs":1793317242330,"kind":"NationCreation","text":"You raised a banner and named your people Southernwood. It is the first nation this world has known."}
-{"type":"screen","tick":272,"wallTimeMs":1793317256474,"from":"WORLD","to":"NATIONS"}
-{"type":"screen","tick":276,"wallTimeMs":1793317278759,"from":"NATIONS","to":"WORLD"}
-{"type":"status","tick":652,"wallTimeMs":1793317311691,"text":"Gathered 4 wood and 2 apples from tree."}
-{"type":"status","tick":688,"wallTimeMs":1793317315583,"text":"No entities within range to interact with."}
-{"type":"chronicle","tick":852,"wallTimeMs":1793317336298,"kind":"NationCreation","text":"Charlotte Taylor declared the nation of Castleton, though none had yet sworn to it."}
-{"type":"chronicle","tick":900,"wallTimeMs":1793317343320,"kind":"SettlementFounded","text":"Charlotte Taylor laid the first stones of Castleton."}
-{"type":"status","tick":1236,"wallTimeMs":1793317419096,"text":"No entities within range to interact with."}
-{"type":"status","tick":1256,"wallTimeMs":1793317422971,"text":"No entities within range to interact with. (x2)"}
-{"type":"status","tick":1272,"wallTimeMs":1793317425587,"text":"No entities within range to interact with. (x3)"}
-{"type":"chronicle","tick":1352,"wallTimeMs":1793317439778,"kind":"NationCreation","text":"Ruth Evans raised a banner and called it Southernport."}
-{"type":"chronicle","tick":1400,"wallTimeMs":1793317448475,"kind":"SettlementFounded","text":"Southernport put down roots: Ruth Evans founded its first settlement."}
-{"type":"screen","tick":1508,"wallTimeMs":1793317476968,"from":"WORLD","to":"NATIONS"}
-{"type":"status","tick":1508,"wallTimeMs":1793317494488,"text":"Southernport declines: relations are Neutral (0); an alliance needs \u002B30. Gifts help."}
-{"type":"status","tick":1508,"wallTimeMs":1793317513061,"text":"Southernport accepts your gift of 25 coins. Relations: Neutral (\u002B10)."}
-{"type":"status","tick":1508,"wallTimeMs":1793317546657,"text":"Your envoy to Southernport is still on the road: you can deal with them again in 20 seconds of play."}
-{"type":"status","tick":1508,"wallTimeMs":1793317566926,"text":"Castleton accepts your gift of 25 coins. Relations: Neutral (\u002B10)."}
-{"type":"status","tick":1508,"wallTimeMs":1793317577276,"text":"Click Denounce again to denounce Southernport."}
-{"type":"status","tick":1508,"wallTimeMs":1793317581107,"text":"Click War again to declare war on Southernport."}
-{"type":"status","tick":1508,"wallTimeMs":1793317597641,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":1508,"wallTimeMs":1793317598824,"text":"Click War again to declare war on Southernport."}
-{"type":"status","tick":1508,"wallTimeMs":1793317607097,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":1508,"wallTimeMs":1793317642067,"text":"Click War again to declare war on Southernport."}
-{"type":"status","tick":1508,"wallTimeMs":1793317643424,"text":"Your envoy to Southernport is still on the road: you can deal with them again in 20 seconds of play."}
-{"type":"screen","tick":1512,"wallTimeMs":1793317664475,"from":"NATIONS","to":"WORLD"}
-{"type":"screen","tick":1772,"wallTimeMs":1793317709325,"from":"WORLD","to":"NATIONS"}
-{"type":"screen","tick":1776,"wallTimeMs":1793317734900,"from":"NATIONS","to":"WORLD"}
-{"type":"chronicle","tick":1852,"wallTimeMs":1793317740543,"kind":"NationCreation","text":"The nation of Whitewood was born, with Gemma Roberts at its head."}
-{"type":"chronicle","tick":1900,"wallTimeMs":1793317744604,"kind":"SettlementFounded","text":"Gemma Roberts raised the first settlement of Whitewood."}
-{"type":"chronicle","tick":2200,"wallTimeMs":1793317782985,"kind":"NationCreation","text":"Stan Jones founded the nation of Northport."}
-{"type":"chronicle","tick":2600,"wallTimeMs":1793317848205,"kind":"StallBuilt","text":"Trade came to Southernport: Ruth Evans built a stall."}
-{"type":"screen","tick":2644,"wallTimeMs":1793317857528,"from":"WORLD","to":"NATIONS"}
-{"type":"status","tick":2644,"wallTimeMs":1793317864874,"text":"Southernport accepts your gift of 25 coins. Relations: Friendly (\u002B20)."}
-{"type":"chronicle","tick":2644,"wallTimeMs":1793317864874,"kind":"NationRelationChange","text":"Relations between Southernwood and Southernport are now friendly."}
-{"type":"status","tick":2644,"wallTimeMs":1793317868063,"text":"Click War again to declare war on Whitewood."}
-{"type":"status","tick":2644,"wallTimeMs":1793317869755,"text":"Whitewood takes up arms: war, 1 to your 1. They are far off; war bites only where your lands meet."}
-{"type":"chronicle","tick":2644,"wallTimeMs":1793317869755,"kind":"NationRelationChange","text":"Southernwood and Whitewood are now hostile."}
-{"type":"chronicle","tick":2644,"wallTimeMs":1793317869755,"kind":"Statecraft","text":"Southernwood declared war on Whitewood."}
-{"type":"status","tick":2644,"wallTimeMs":1793317924296,"text":"Your envoy to Whitewood is still on the road: you can deal with them again in 20 seconds of play."}
-{"type":"screen","tick":2648,"wallTimeMs":1793317955709,"from":"NATIONS","to":"WORLD"}
-{"type":"chronicle","tick":2700,"wallTimeMs":1793317961941,"kind":"SettlementFounded","text":"Stan Jones laid the first stones of Northport."}
-{"type":"status","tick":3000,"wallTimeMs":1793318006738,"text":"Southernport resents your border: relations are now Neutral (\u002B19)."}
-{"type":"chronicle","tick":3000,"wallTimeMs":1793318006738,"kind":"NationRelationChange","text":"Relations between Southernwood and Southernport are now neutral over their border."}
-{"type":"screen","tick":3728,"wallTimeMs":1793318148559,"from":"WORLD","to":"NATIONS"}
-{"type":"status","tick":3728,"wallTimeMs":1793318175355,"text":"Whitewood accepts peace (the fighting has cost them enough). A truce holds for 60 seconds; relations are Neutral (-19)."}
-{"type":"chronicle","tick":3728,"wallTimeMs":1793318175355,"kind":"NationRelationChange","text":"Relations between Southernwood and Whitewood are now neutral."}
-{"type":"chronicle","tick":3728,"wallTimeMs":1793318175355,"kind":"Statecraft","text":"Southernwood and Whitewood made peace, ending their war."}
-{"type":"status","tick":3728,"wallTimeMs":1793318203600,"text":"Your envoy to Whitewood is still on the road: you can deal with them again in 20 seconds of play."}
-{"type":"status","tick":3728,"wallTimeMs":1793318213966,"text":"Castleton declines: relations are Neutral (\u002B9); an alliance needs \u002B30. Gifts help."}
-{"type":"status","tick":3728,"wallTimeMs":1793318222661,"text":"Castleton accepts your gift of 25 coins. Relations: Neutral (\u002B19)."}
-{"type":"status","tick":3728,"wallTimeMs":1793318251066,"text":"Southernport accepts your gift of 25 coins. Relations: Friendly (\u002B29)."}
-{"type":"chronicle","tick":3728,"wallTimeMs":1793318251066,"kind":"NationRelationChange","text":"Relations between Southernwood and Southernport are now friendly."}
-{"type":"status","tick":3728,"wallTimeMs":1793318289633,"text":"Click Denounce again to denounce Northport."}
-{"type":"status","tick":3728,"wallTimeMs":1793318297055,"text":"Not confirmed in time, so nothing was done."}
-{"type":"status","tick":3728,"wallTimeMs":1793318306309,"text":"Click Denounce again to denounce Northport."}
-{"type":"status","tick":3728,"wallTimeMs":1793318314757,"text":"Not confirmed in time, so nothing was done."}
+{"type":"screen","tick":0,"wallTimeMs":1793328831133,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793328849658,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793328850791,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793328858508,"how":"created","slot":"world-104-20261030-025418","seed":104}
+{"type":"screen","tick":0,"wallTimeMs":1793328858510,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":169,"wallTimeMs":1793328889566,"text":"Created nation Hamletford."}
+{"type":"chronicle","tick":169,"wallTimeMs":1793328889566,"kind":"NationCreation","text":"You raised a banner and named your people Hamletford. It is the first nation this world has known."}
+{"type":"status","tick":253,"wallTimeMs":1793328901784,"text":"You are already the leader of Hamletford."}
+{"type":"screen","tick":401,"wallTimeMs":1793328959318,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":405,"wallTimeMs":1793328968966,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":853,"wallTimeMs":1793328993331,"kind":"NationCreation","text":"The nation of Southton was born, with Charlotte Taylor at its head."}
+{"type":"status","tick":869,"wallTimeMs":1793328994379,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":901,"wallTimeMs":1793328995674,"kind":"SettlementFounded","text":"Southton put down roots: Charlotte Taylor founded its first settlement."}
+{"type":"status","tick":909,"wallTimeMs":1793328996104,"text":"No entities within range to interact with."}
+{"type":"status","tick":917,"wallTimeMs":1793328998018,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":933,"wallTimeMs":1793328999809,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":949,"wallTimeMs":1793329000634,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":1001,"wallTimeMs":1793329002275,"text":"No entities within range to interact with. (x5)"}
+{"type":"screen","tick":1037,"wallTimeMs":1793329007389,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":1037,"wallTimeMs":1793329013920,"text":"Southton declines: relations are Neutral (0); an alliance needs \u002B30. Gifts help."}
+{"type":"status","tick":1037,"wallTimeMs":1793329020882,"text":"Southton accepts your gift of 25 coins. Relations: Neutral (\u002B10)."}
+{"type":"status","tick":1037,"wallTimeMs":1793329028274,"text":"Your envoy to Southton is still on the road: you can deal with them again in 20 seconds of play."}
+{"type":"screen","tick":1041,"wallTimeMs":1793329040271,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":1345,"wallTimeMs":1793329055944,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1353,"wallTimeMs":1793329056370,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1353}
+{"type":"status","tick":1353,"wallTimeMs":1793329056370,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1401,"wallTimeMs":1793329058689,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1401,"wallTimeMs":1793329058689,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":1453,"wallTimeMs":1793329061470,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":1453,"wallTimeMs":1793329061470,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"screen","tick":1493,"wallTimeMs":1793329063644,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":1497,"wallTimeMs":1793329070115,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":1653,"wallTimeMs":1793329077979,"kind":"NationCreation","text":"Gemma Roberts declared the nation of Farmwood, though none had yet sworn to it."}
+{"type":"chronicle","tick":1701,"wallTimeMs":1793329081652,"kind":"SettlementFounded","text":"Gemma Roberts raised the first settlement of Farmwood."}
+{"type":"chronicle","tick":1753,"wallTimeMs":1793329085824,"kind":"NationCreation","text":"Karl White raised a banner and called it Bigford."}
+{"type":"chronicle","tick":1801,"wallTimeMs":1793329090500,"kind":"SettlementFounded","text":"Bigford put down roots: Karl White founded its first settlement."}
+{"type":"screen","tick":2093,"wallTimeMs":1793329107428,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":2093,"wallTimeMs":1793329117409,"text":"Southton accepts your gift of 25 coins. Relations: Neutral (\u002B19)."}
+{"type":"status","tick":2093,"wallTimeMs":1793329119353,"text":"Click Denounce again to denounce Bigford."}
+{"type":"status","tick":2093,"wallTimeMs":1793329121480,"text":"Farmwood accepts your gift of 25 coins. Relations: Neutral (\u002B10)."}
+{"type":"status","tick":2093,"wallTimeMs":1793329130858,"text":"Click Denounce again to denounce Bigford."}
+{"type":"status","tick":2093,"wallTimeMs":1793329138978,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":2093,"wallTimeMs":1793329139662,"text":"Click Denounce again to denounce Bigford."}
+{"type":"status","tick":2093,"wallTimeMs":1793329147706,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":2093,"wallTimeMs":1793329148842,"text":"Click Denounce again to denounce Bigford."}
+{"type":"status","tick":2093,"wallTimeMs":1793329153863,"text":"You denounced Bigford. Relations: Rival (-25)."}
+{"type":"chronicle","tick":2093,"wallTimeMs":1793329153863,"kind":"NationRelationChange","text":"Hamletford and Bigford have become rivals."}
+{"type":"status","tick":2093,"wallTimeMs":1793329154578,"text":"Click Denounce again to denounce Bigford."}
+{"type":"status","tick":2093,"wallTimeMs":1793329165133,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":2093,"wallTimeMs":1793329165384,"text":"Click Denounce again to denounce Farmwood."}
+{"type":"status","tick":2093,"wallTimeMs":1793329176795,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":2093,"wallTimeMs":1793329186617,"text":"Click Denounce again to denounce Farmwood."}
+{"type":"status","tick":2093,"wallTimeMs":1793329187477,"text":"Your envoy to Farmwood is still on the road: you can deal with them again in 20 seconds of play."}
+{"type":"screen","tick":2097,"wallTimeMs":1793329199255,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":2473,"wallTimeMs":1793329235288,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3101,"wallTimeMs":1793329294926,"kind":"NationCreation","text":"The nation of Westham was born, with Oscar Thompson at its head."}
+{"type":"screen","tick":3105,"wallTimeMs":1793329295974,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":3105,"wallTimeMs":1793329310300,"text":"Click War again to declare war on Bigford."}
+{"type":"status","tick":3105,"wallTimeMs":1793329311131,"text":"Bigford laughs at your declaration of war: they are 4 to your 1. They are far off; war bites only where your lands meet."}
+{"type":"chronicle","tick":3105,"wallTimeMs":1793329311131,"kind":"NationRelationChange","text":"Hamletford and Bigford are now hostile."}
+{"type":"chronicle","tick":3105,"wallTimeMs":1793329311131,"kind":"Statecraft","text":"Hamletford declared war on Bigford."}
+{"type":"status","tick":3105,"wallTimeMs":1793329322874,"text":"Southton accepts your gift of 25 coins. Relations: Friendly (\u002B28)."}
+{"type":"chronicle","tick":3105,"wallTimeMs":1793329322874,"kind":"NationRelationChange","text":"Relations between Hamletford and Southton are now friendly."}
+{"type":"status","tick":3105,"wallTimeMs":1793329334964,"text":"Your envoy to Bigford is still on the road: you can deal with them again in 20 seconds of play."}
+{"type":"screen","tick":3109,"wallTimeMs":1793329357268,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":3353,"wallTimeMs":1793329389242,"kind":"SettlementFounded","text":"Oscar Thompson laid the first stones of Westham."}
+{"type":"chronicle","tick":4001,"wallTimeMs":1793329439604,"kind":"NationRelationChange","text":"Southton and Farmwood have become rivals over their border."}
+{"type":"screen","tick":4193,"wallTimeMs":1793329457946,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":4193,"wallTimeMs":1793329468106,"text":"Southton declines: relations are Friendly (\u002B28); an alliance needs \u002B30. Gifts help."}
+{"type":"status","tick":4193,"wallTimeMs":1793329487145,"text":"Southton accepts your gift of 25 coins. Relations: Friendly (\u002B38)."}
+{"type":"status","tick":4193,"wallTimeMs":1793329585934,"text":"Bigford refuses peace: they are 4 to your 1 and think they are winning. Tribute may buy a truce."}
+{"type":"status","tick":4193,"wallTimeMs":1793329594434,"text":"Bigford accepts your tribute of 25 coins and will hold off its raiders for 60 seconds. Relations: Hostile (-50)."}
+{"type":"screen","tick":4197,"wallTimeMs":1793329603781,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":4253,"wallTimeMs":1793329607169,"kind":"NationRelationChange","text":"Southton and Bigford have become rivals over their border."}
+{"type":"chronicle","tick":5153,"wallTimeMs":1793329657120,"kind":"StallBuilt","text":"Karl White built a market stall in Bigford."}
+{"type":"screen","tick":5237,"wallTimeMs":1793329663986,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":5237,"wallTimeMs":1793329682059,"text":"Southton declines: they are 3 to your 1 and want relations of \u002B60 before taking on so small a partner (now Friendly (\u002B41))."}
+{"type":"status","tick":5237,"wallTimeMs":1793329693357,"text":"Southton accepts your gift of 25 coins. Relations: Friendly (\u002B51)."}
+{"type":"screen","tick":5241,"wallTimeMs":1793329695854,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":5753,"wallTimeMs":1793329717437,"kind":"NationRelationChange","text":"Southton and Westham have become rivals over their border."}
+{"type":"save","tick":6001,"wallTimeMs":1793329726275,"count":1}
+{"type":"status","tick":6001,"wallTimeMs":1793329726275,"text":"Autosaved."}
+{"type":"screen","tick":6289,"wallTimeMs":1793329736192,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":6289,"wallTimeMs":1793329745196,"text":"Southton accepts your gift of 25 coins. Relations: Friendly (\u002B66)."}
+{"type":"screen","tick":6293,"wallTimeMs":1793329747642,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":7345,"wallTimeMs":1793329785064,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":7345,"wallTimeMs":1793329793367,"text":"Southton agrees: Hamletford and Southton are now allies."}
+{"type":"chronicle","tick":7345,"wallTimeMs":1793329793367,"kind":"NationRelationChange","text":"Hamletford and Southton have formed an alliance."}

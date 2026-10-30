@@ -1,137 +1,247 @@
-{"t": 1793317185686, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-playtest064", "--seed", "103", "--season", "autumn"]}
-{"t": 1793317199897, "cmd": "key", "args": ["space"]}
-{"t": 1793317202712, "cmd": "shot", "args": ["menu"]}
-{"t": 1793317220927, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793317224807, "cmd": "shot", "args": ["newworld"]}
-{"t": 1793317239428, "cmd": "click", "args": ["480", "315"]}
-{"t": 1793317240579, "cmd": "await", "args": ["WORLD", "30"]}
-{"t": 1793317242974, "cmd": "shot", "args": ["world0"]}
-{"t": 1793317243985, "cmd": "state", "args": []}
-{"t": 1793317256387, "cmd": "status", "args": []}
-{"t": 1793317268961, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317289760, "cmd": "key", "args": ["e"]}
-{"t": 1793317292324, "cmd": "key", "args": ["e"]}
-{"t": 1793317295005, "cmd": "state", "args": []}
-{"t": 1793317300085, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317323170, "cmd": "key", "args": ["e"]}
-{"t": 1793317325975, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793317386432, "cmd": "key", "args": ["e"]}
-{"t": 1793317389168, "cmd": "state", "args": []}
-{"t": 1793317389435, "cmd": "events", "args": ["10"]}
-{"t": 1793317400932, "cmd": "shot", "args": ["rock1"]}
-{"t": 1793317412242, "cmd": "hold", "args": ["w", "1.0"]}
-{"t": 1793317413654, "cmd": "state", "args": []}
-{"t": 1793317413905, "cmd": "key", "args": ["e"]}
-{"t": 1793317416605, "cmd": "events", "args": ["3"]}
-{"t": 1793317424291, "cmd": "key", "args": ["n"]}
-{"t": 1793317427932, "cmd": "shot", "args": ["nation"]}
-{"t": 1793317428857, "cmd": "state", "args": []}
-{"t": 1793317435729, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317495405, "cmd": "key", "args": ["e"]}
-{"t": 1793317498259, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317538210, "cmd": "key", "args": ["e"]}
-{"t": 1793317540710, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317562652, "cmd": "key", "args": ["e"]}
-{"t": 1793317565050, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793317626741, "cmd": "key", "args": ["e"]}
-{"t": 1793317629129, "cmd": "state", "args": []}
-{"t": 1793317643444, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793317729105, "cmd": "key", "args": ["e"]}
-{"t": 1793317731615, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793317750491, "cmd": "key", "args": ["e"]}
-{"t": 1793317752808, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793317773687, "cmd": "key", "args": ["e"]}
-{"t": 1793317776269, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793317790461, "cmd": "key", "args": ["e"]}
-{"t": 1793317792830, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793317811298, "cmd": "key", "args": ["e"]}
-{"t": 1793317813716, "cmd": "walkto", "args": ["tree", "90"]}
-{"t": 1793317829230, "cmd": "key", "args": ["e"]}
-{"t": 1793317831501, "cmd": "state", "args": []}
-{"t": 1793317856309, "cmd": "key", "args": ["f"]}
-{"t": 1793317860446, "cmd": "shot", "args": ["settle"]}
-{"t": 1793317861879, "cmd": "state", "args": []}
-{"t": 1793317862789, "cmd": "events", "args": ["5"]}
-{"t": 1793317892476, "cmd": "note", "args": ["--shot", "nocompass", "Found-settlement refusal says 'Open ground lies about 200 to the north-west' but the HUD has no compass or map, so the player cannot tell which way north-west is. Tick ~124100."]}
-{"t": 1793317893032, "cmd": "face", "args": ["59"]}
-{"t": 1793317899908, "cmd": "hold", "args": ["Shift_L+w", "8"]}
-{"t": 1793317908695, "cmd": "key", "args": ["f"]}
-{"t": 1793317920407, "cmd": "state", "args": []}
-{"t": 1793317933906, "cmd": "state", "args": ["--full"]}
-{"t": 1793317946531, "cmd": "face", "args": ["180"]}
-{"t": 1793317966989, "cmd": "hold", "args": ["Shift_L+w", "8"]}
-{"t": 1793317976176, "cmd": "key", "args": ["f"]}
-{"t": 1793317979900, "cmd": "state", "args": ["--full"]}
-{"t": 1793317994640, "cmd": "face", "args": ["72"]}
-{"t": 1793318003370, "cmd": "hold", "args": ["Shift_L+w", "12"]}
-{"t": 1793318015851, "cmd": "key", "args": ["f"]}
-{"t": 1793318019682, "cmd": "state", "args": ["--full"]}
-{"t": 1793318026616, "cmd": "hold", "args": ["Shift_L+w", "25"]}
-{"t": 1793318052176, "cmd": "key", "args": ["f"]}
-{"t": 1793318056081, "cmd": "state", "args": ["--full"]}
-{"t": 1793318068292, "cmd": "hold", "args": ["Shift_L+w", "5"]}
-{"t": 1793318073973, "cmd": "key", "args": ["f"]}
-{"t": 1793318077930, "cmd": "state", "args": ["--full"]}
-{"t": 1793318078247, "cmd": "shot", "args": ["founded"]}
-{"t": 1793318100367, "cmd": "face", "args": ["-45"]}
-{"t": 1793318104592, "cmd": "hold", "args": ["w", "2"]}
-{"t": 1793318107146, "cmd": "key", "args": ["f"]}
-{"t": 1793318110929, "cmd": "state", "args": ["--full"]}
-{"t": 1793318129272, "cmd": "face", "args": ["90"]}
-{"t": 1793318137688, "cmd": "hold", "args": ["w", "3"]}
-{"t": 1793318140992, "cmd": "key", "args": ["f"]}
-{"t": 1793318144844, "cmd": "state", "args": ["--full"]}
-{"t": 1793318153783, "cmd": "shot", "args": ["mytown"]}
-{"t": 1793318154942, "cmd": "events", "args": ["6"]}
-{"t": 1793318177109, "cmd": "walkto", "args": ["settlement", "30"]}
-{"t": 1793318177928, "cmd": "key", "args": ["e"]}
-{"t": 1793318181857, "cmd": "shot", "args": ["inside"]}
-{"t": 1793318182689, "cmd": "state", "args": []}
-{"t": 1793318201812, "cmd": "events", "args": ["3"]}
-{"t": 1793318202031, "cmd": "key", "args": ["e"]}
-{"t": 1793318203809, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318255568, "cmd": "key", "args": ["e"]}
-{"t": 1793318258168, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318284622, "cmd": "key", "args": ["e"]}
-{"t": 1793318286844, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318317111, "cmd": "key", "args": ["e"]}
-{"t": 1793318319530, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318366642, "cmd": "key", "args": ["e"]}
-{"t": 1793318369582, "cmd": "walkto", "args": ["tree", "60"]}
-{"t": 1793318414536, "cmd": "key", "args": ["e"]}
-{"t": 1793318416764, "cmd": "walkto", "args": ["rock", "60"]}
-{"t": 1793318477313, "cmd": "key", "args": ["e"]}
-{"t": 1793318480394, "cmd": "state", "args": []}
-{"t": 1793318492903, "cmd": "walkto", "args": ["rock", "40"]}
-{"t": 1793318502477, "cmd": "key", "args": ["e"]}
-{"t": 1793318505211, "cmd": "key", "args": ["h"]}
-{"t": 1793318509155, "cmd": "key", "args": ["e"]}
-{"t": 1793318511993, "cmd": "key", "args": ["k"]}
-{"t": 1793318516018, "cmd": "shot", "args": ["farm"]}
-{"t": 1793318516938, "cmd": "events", "args": ["6"]}
-{"t": 1793318523100, "cmd": "key", "args": ["k"]}
-{"t": 1793318527101, "cmd": "shot", "args": ["farm2"]}
-{"t": 1793318528167, "cmd": "events", "args": ["4"]}
-{"t": 1793318539066, "cmd": "key", "args": ["k"]}
-{"t": 1793318541011, "cmd": "key", "args": ["k"]}
-{"t": 1793318544891, "cmd": "events", "args": ["4"]}
-{"t": 1793318545251, "cmd": "shot", "args": ["farm3"]}
-{"t": 1793318561521, "cmd": "note", "args": ["--shot", "stale_objective", "Objective 6 'Build a market stall' bar shows 'Wood 20/20 • Stone 5/5' (full, gold) right after building a Farm, but inventory is Wood 5 / Stone 0. Progress looks cached from before the farm spent 25 wood + 10 stone. Expected 5/20 and 0/5. Also the objective text box runs underneath the Inventory panel."]}
-{"t": 1793318561989, "cmd": "note", "args": ["--shot", "winter_counter", "Season panel still says 'Autumn - day 1/2' and 'Winter in 2 days' after timeOfDay went 0.30 -> 0.55 (a quarter day) since the world started; chronicle meanwhile shows 'Day 5'. Day numbering differs between Season panel (day 1/2), chronicle (Day 5) and state.json (day 4); the countdown never ticks down to e.g. 1.5 days, so a player cannot gauge how long until winter."]}
-{"t": 1793318562958, "cmd": "state", "args": []}
-{"t": 1793318573878, "cmd": "note", "args": ["--shot", "perf", "Game ran at 3-11 ticks/s (50 is full speed) and 1-2 fps the whole session (host load avg ~95 on 20 cores with parallel sessions). With --season autumn the HUD says 'Winter in 2 days' = 20 game minutes = 60000 ticks; at ~6 tps that is ~2.8 h wall, so the 'survive the first winter' goal cannot be reached in a 35 min session. In 22 wall minutes only ~7600 ticks (2.5 game min) passed."]}
-{"t": 1793318574317, "cmd": "click", "args": ["217", "476"]}
-{"t": 1793318578249, "cmd": "events", "args": ["3"]}
-{"t": 1793318585676, "cmd": "key", "args": ["b"]}
-{"t": 1793318587434, "cmd": "key", "args": ["b"]}
-{"t": 1793318591069, "cmd": "events", "args": ["4"]}
-{"t": 1793318591357, "cmd": "note", "args": ["--shot", "confirm_timeout", "Build confirm (K then K again) expired: pressed K, then K again ~8 s wall later (40 ticks at ~5 tps) and got 'Not confirmed in time, so nothing was done.' Twice. Only a ~1 s double-tap worked. At low frame rates the confirm window is very tight; a visible countdown or a click-to-confirm button would help. Ticks 127404-127532."]}
-{"t": 1793318603178, "cmd": "wait", "args": ["90"]}
-{"t": 1793318693311, "cmd": "shot", "args": ["final"]}
-{"t": 1793318693815, "cmd": "state", "args": []}
-{"t": 1793318693971, "cmd": "events", "args": ["30"]}
-{"t": 1793318694160, "cmd": "events", "args": ["30"]}
-{"t": 1793318702182, "cmd": "note", "args": ["--shot", "layout", "With a resident nearby inside the settlement the HUD reflows badly: the Inventory Info panel jumps to mid-screen over the world, Objective 7 progress bar text is cut off on the left ('nbers 2/10 • Buildings 1/2' instead of 'Members ...'), and the Season panel overlaps the Player Info title. Also Irene Taylor, who joined my nation, is offered as 'Talk to Irene Taylor (Stranger)'. Tick ~128632."]}
-{"t": 1793318702983, "cmd": "stop", "args": []}
-{"t": 1793318730770, "cmd": "report", "args": []}
-{"t": 1793320033966, "cmd": "stop", "args": []}
+{"t": 1793328829354, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "103", "--season", "autumn"]}
+{"t": 1793328849561, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793328849695, "cmd": "key", "args": ["space"]}
+{"t": 1793328850289, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793328850427, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328851228, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793328851572, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793328857706, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328878183, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793328878370, "cmd": "wait", "args": ["2"]}
+{"t": 1793328882143, "cmd": "shot", "args": ["world0"]}
+{"t": 1793328883748, "cmd": "state", "args": []}
+{"t": 1793328890376, "cmd": "status", "args": []}
+{"t": 1793328901873, "cmd": "note", "args": ["--shot", "season_panel", "Season panel says 'Autumn - day 1/2, year 1' and 'Winter in 2 days' while state.json reports day 4, timeOfDay 0.303 at tick 120076. Session-day numbering differs between panel (season day) and state (world day); 'in 2 days' is rounded up from ~1.7 days."]}
+{"t": 1793328926795, "cmd": "click", "args": ["338", "389"]}
+{"t": 1793328927544, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793328971698, "cmd": "key", "args": ["e"]}
+{"t": 1793328972301, "cmd": "wait", "args": ["2"]}
+{"t": 1793328975136, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793328975565, "cmd": "state", "args": []}
+{"t": 1793328978876, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793328988914, "cmd": "key", "args": ["e"]}
+{"t": 1793328989455, "cmd": "wait", "args": ["2"]}
+{"t": 1793328991601, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793329011537, "cmd": "key", "args": ["e"]}
+{"t": 1793329012117, "cmd": "wait", "args": ["2"]}
+{"t": 1793329014236, "cmd": "state", "args": []}
+{"t": 1793329014345, "cmd": "events", "args": ["10"]}
+{"t": 1793329018344, "cmd": "key", "args": ["n"]}
+{"t": 1793329018864, "cmd": "wait", "args": ["2"]}
+{"t": 1793329021009, "cmd": "shot", "args": ["nation"]}
+{"t": 1793329021331, "cmd": "state", "args": []}
+{"t": 1793329025103, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329042576, "cmd": "key", "args": ["e"]}
+{"t": 1793329043222, "cmd": "wait", "args": ["1"]}
+{"t": 1793329044289, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329054160, "cmd": "key", "args": ["e"]}
+{"t": 1793329054739, "cmd": "wait", "args": ["1"]}
+{"t": 1793329055855, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329109946, "cmd": "key", "args": ["e"]}
+{"t": 1793329110571, "cmd": "wait", "args": ["1"]}
+{"t": 1793329111651, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329132487, "cmd": "key", "args": ["e"]}
+{"t": 1793329133002, "cmd": "wait", "args": ["1"]}
+{"t": 1793329134145, "cmd": "state", "args": []}
+{"t": 1793329138088, "cmd": "shot", "args": ["wood31"]}
+{"t": 1793329143575, "cmd": "note", "args": ["--shot", "day_numbers", "Three different day numbers on one screen: chronicle says 'Day 5, morning', Season panel says 'Autumn - day 1/2, year 1', state.json says day 4. Expected one consistent calendar."]}
+{"t": 1793329143891, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329153585, "cmd": "key", "args": ["e"]}
+{"t": 1793329154131, "cmd": "wait", "args": ["1"]}
+{"t": 1793329155209, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329167185, "cmd": "key", "args": ["e"]}
+{"t": 1793329167754, "cmd": "wait", "args": ["1"]}
+{"t": 1793329168799, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329176003, "cmd": "key", "args": ["e"]}
+{"t": 1793329176486, "cmd": "wait", "args": ["1"]}
+{"t": 1793329177616, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329184911, "cmd": "key", "args": ["e"]}
+{"t": 1793329185507, "cmd": "wait", "args": ["1"]}
+{"t": 1793329186642, "cmd": "state", "args": []}
+{"t": 1793329190173, "cmd": "key", "args": ["f"]}
+{"t": 1793329190790, "cmd": "wait", "args": ["2"]}
+{"t": 1793329193060, "cmd": "shot", "args": ["found"]}
+{"t": 1793329193555, "cmd": "state", "args": []}
+{"t": 1793329199307, "cmd": "face", "args": ["40"]}
+{"t": 1793329202097, "cmd": "hold", "args": ["w", "8"]}
+{"t": 1793329210527, "cmd": "state", "args": []}
+{"t": 1793329210656, "cmd": "key", "args": ["f"]}
+{"t": 1793329211229, "cmd": "wait", "args": ["2"]}
+{"t": 1793329213542, "cmd": "state", "args": []}
+{"t": 1793329220735, "cmd": "face", "args": ["-108"]}
+{"t": 1793329230063, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1793329238331, "cmd": "key", "args": ["f"]}
+{"t": 1793329239139, "cmd": "wait", "args": ["2"]}
+{"t": 1793329241411, "cmd": "state", "args": []}
+{"t": 1793329248697, "cmd": "face", "args": ["13"]}
+{"t": 1793329250238, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1793329262679, "cmd": "key", "args": ["f"]}
+{"t": 1793329263372, "cmd": "wait", "args": ["2"]}
+{"t": 1793329265604, "cmd": "state", "args": []}
+{"t": 1793329270923, "cmd": "face", "args": ["20"]}
+{"t": 1793329273256, "cmd": "hold", "args": ["Shift_L+w", "14"]}
+{"t": 1793329287721, "cmd": "key", "args": ["f"]}
+{"t": 1793329288356, "cmd": "wait", "args": ["2"]}
+{"t": 1793329290538, "cmd": "state", "args": []}
+{"t": 1793329295434, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1793329297698, "cmd": "key", "args": ["f"]}
+{"t": 1793329298353, "cmd": "wait", "args": ["3"]}
+{"t": 1793329301550, "cmd": "shot", "args": ["founded"]}
+{"t": 1793329302349, "cmd": "state", "args": []}
+{"t": 1793329302496, "cmd": "events", "args": ["5"]}
+{"t": 1793329312644, "cmd": "note", "args": ["--shot", "founded_label", "Right after pressing F to found my settlement (tick ~125508), a huge world-space label '0 here, 0/8 residents' overflows the top of the screen and is clipped behind the HUD; the settlement name above it is cut off entirely. state.json names it just 'Settlement'."]}
+{"t": 1793329313328, "cmd": "click", "args": ["430", "402"]}
+{"t": 1793329314335, "cmd": "wait", "args": ["3"]}
+{"t": 1793329317526, "cmd": "shot", "args": ["after_found"]}
+{"t": 1793329318004, "cmd": "state", "args": []}
+{"t": 1793329332961, "cmd": "key", "args": ["e"]}
+{"t": 1793329333562, "cmd": "wait", "args": ["3"]}
+{"t": 1793329336814, "cmd": "shot", "args": ["inside"]}
+{"t": 1793329337252, "cmd": "state", "args": []}
+{"t": 1793329345510, "cmd": "key", "args": ["e"]}
+{"t": 1793329346181, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329355781, "cmd": "key", "args": ["e"]}
+{"t": 1793329356258, "cmd": "wait", "args": ["1"]}
+{"t": 1793329357396, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329358143, "cmd": "key", "args": ["e"]}
+{"t": 1793329358668, "cmd": "wait", "args": ["1"]}
+{"t": 1793329359762, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329359998, "cmd": "key", "args": ["e"]}
+{"t": 1793329360564, "cmd": "wait", "args": ["1"]}
+{"t": 1793329362799, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329372428, "cmd": "key", "args": ["e"]}
+{"t": 1793329373046, "cmd": "wait", "args": ["1"]}
+{"t": 1793329374276, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793329382220, "cmd": "key", "args": ["e"]}
+{"t": 1793329382982, "cmd": "wait", "args": ["1"]}
+{"t": 1793329384148, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1793329420145, "cmd": "key", "args": ["e"]}
+{"t": 1793329420750, "cmd": "wait", "args": ["1"]}
+{"t": 1793329421869, "cmd": "state", "args": []}
+{"t": 1793329426490, "cmd": "events", "args": ["25"]}
+{"t": 1793329432297, "cmd": "note", "args": ["Trees within interact range of my settlement centre cannot be chopped: walkto tree (5.5m from the well) then E toggled Entered/Exited settlement 4 times (ticks 125788-126156) instead of chopping. Expected E to target the tree I'm facing/standing at, or a hint that the settlement takes priority."]}
+{"t": 1793329432391, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329440543, "cmd": "key", "args": ["e"]}
+{"t": 1793329441103, "cmd": "wait", "args": ["1"]}
+{"t": 1793329442271, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329469877, "cmd": "key", "args": ["e"]}
+{"t": 1793329470379, "cmd": "wait", "args": ["1"]}
+{"t": 1793329471446, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329540666, "cmd": "key", "args": ["e"]}
+{"t": 1793329541291, "cmd": "wait", "args": ["1"]}
+{"t": 1793329542660, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329546477, "cmd": "key", "args": ["e"]}
+{"t": 1793329546951, "cmd": "wait", "args": ["1"]}
+{"t": 1793329548003, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329577058, "cmd": "key", "args": ["e"]}
+{"t": 1793329577793, "cmd": "wait", "args": ["1"]}
+{"t": 1793329578980, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329595077, "cmd": "key", "args": ["e"]}
+{"t": 1793329595898, "cmd": "wait", "args": ["1"]}
+{"t": 1793329597021, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329608408, "cmd": "key", "args": ["e"]}
+{"t": 1793329609070, "cmd": "wait", "args": ["1"]}
+{"t": 1793329610175, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329622435, "cmd": "key", "args": ["e"]}
+{"t": 1793329622983, "cmd": "wait", "args": ["1"]}
+{"t": 1793329624109, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329630224, "cmd": "key", "args": ["e"]}
+{"t": 1793329630822, "cmd": "wait", "args": ["1"]}
+{"t": 1793329631968, "cmd": "state", "args": []}
+{"t": 1793329638168, "cmd": "key", "args": ["h"]}
+{"t": 1793329638704, "cmd": "wait", "args": ["3"]}
+{"t": 1793329641815, "cmd": "state", "args": []}
+{"t": 1793329641915, "cmd": "key", "args": ["e"]}
+{"t": 1793329642469, "cmd": "wait", "args": ["2"]}
+{"t": 1793329644615, "cmd": "key", "args": ["b"]}
+{"t": 1793329645223, "cmd": "wait", "args": ["2"]}
+{"t": 1793329647298, "cmd": "key", "args": ["k"]}
+{"t": 1793329647826, "cmd": "wait", "args": ["3"]}
+{"t": 1793329650957, "cmd": "shot", "args": ["built"]}
+{"t": 1793329651350, "cmd": "events", "args": ["8"]}
+{"t": 1793329656408, "cmd": "note", "args": ["--shot", "objective_clip", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: reads 'nbers 4/10 · Buildings 0/2' (Members). Inventory Info panel also jumped to the middle of the screen, overlapping the world view. Tick ~128860."]}
+{"t": 1793329656791, "cmd": "click", "args": ["217", "476"]}
+{"t": 1793329657649, "cmd": "wait", "args": ["2"]}
+{"t": 1793329659791, "cmd": "state", "args": []}
+{"t": 1793329665329, "cmd": "click", "args": ["625", "445"]}
+{"t": 1793329666378, "cmd": "wait", "args": ["2"]}
+{"t": 1793329668479, "cmd": "click", "args": ["475", "445"]}
+{"t": 1793329669252, "cmd": "wait", "args": ["3"]}
+{"t": 1793329672338, "cmd": "shot", "args": ["buildings"]}
+{"t": 1793329672606, "cmd": "events", "args": ["6"]}
+{"t": 1793329672685, "cmd": "state", "args": []}
+{"t": 1793329678132, "cmd": "click", "args": ["473", "445"]}
+{"t": 1793329678925, "cmd": "wait", "args": ["3"]}
+{"t": 1793329682021, "cmd": "shot", "args": ["afterhouse"]}
+{"t": 1793329682330, "cmd": "events", "args": ["4"]}
+{"t": 1793329686943, "cmd": "click", "args": ["473", "445"]}
+{"t": 1793329687712, "cmd": "wait", "args": ["2"]}
+{"t": 1793329689803, "cmd": "events", "args": ["3"]}
+{"t": 1793329689895, "cmd": "state", "args": []}
+{"t": 1793329694578, "cmd": "key", "args": ["k"]}
+{"t": 1793329695154, "cmd": "wait", "args": ["1"]}
+{"t": 1793329696270, "cmd": "key", "args": ["k"]}
+{"t": 1793329696794, "cmd": "wait", "args": ["3"]}
+{"t": 1793329699885, "cmd": "events", "args": ["4"]}
+{"t": 1793329699967, "cmd": "state", "args": []}
+{"t": 1793329717880, "cmd": "note", "args": ["--shot", "confirm_lapse", "Build House button: two pt clicks ~9 s apart in real time each just re-armed 'Click again to confirm: Build House.' (ticks 129120, 129340, 129528) and never built. ConfirmGate window is 8 s of wall time; at 2-5 fps a hover+click takes several seconds, so confirming via the mouse is unreliable. Pressing K twice built the Farm fine."]}
+{"t": 1793329718122, "cmd": "key", "args": ["k"]}
+{"t": 1793329718609, "cmd": "wait", "args": ["1"]}
+{"t": 1793329719675, "cmd": "key", "args": ["k"]}
+{"t": 1793329720168, "cmd": "wait", "args": ["3"]}
+{"t": 1793329723249, "cmd": "events", "args": ["3"]}
+{"t": 1793329723332, "cmd": "state", "args": []}
+{"t": 1793329728942, "cmd": "key", "args": ["e"]}
+{"t": 1793329729424, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1793329732539, "cmd": "wait", "args": ["30"]}
+{"t": 1793329762634, "cmd": "state", "args": []}
+{"t": 1793329762724, "cmd": "wait", "args": ["30"]}
+{"t": 1793329792786, "cmd": "state", "args": []}
+{"t": 1793329792857, "cmd": "wait", "args": ["30"]}
+{"t": 1793329822988, "cmd": "state", "args": []}
+{"t": 1793329823070, "cmd": "wait", "args": ["30"]}
+{"t": 1793329853145, "cmd": "state", "args": []}
+{"t": 1793329860748, "cmd": "shot", "args": ["outdoors"]}
+{"t": 1793329870489, "cmd": "note", "args": ["--shot", "village_vs_era", "After building Farm+House the status said 'House built. The settlement is now a Village!' but the era badge still reads 'Era: Camp (1/4)' and objective 'Reach the Village era' is incomplete (Members 5/10). Two different meanings of 'Village' (settlement tier vs nation era) contradict each other on screen. Also 'Chronicle: your news' is filled with other nations' border rivalries, pushing my own events off."]}
+{"t": 1793329871053, "cmd": "state", "args": []}
+{"t": 1793329879642, "cmd": "key", "args": ["p"]}
+{"t": 1793329880194, "cmd": "wait", "args": ["2"]}
+{"t": 1793329885062, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793329924283, "cmd": "key", "args": ["e"]}
+{"t": 1793329924799, "cmd": "wait", "args": ["3"]}
+{"t": 1793329927843, "cmd": "shot", "args": ["talk"]}
+{"t": 1793329928113, "cmd": "events", "args": ["4"]}
+{"t": 1793329934952, "cmd": "note", "args": ["--shot", "winter_countdown", "At night of season day 1 (chronicle 'Day 5, night', tick ~135000) the Season panel still reads 'Autumn - day 1/2' and 'Winter in 2 days'. Winter is about one day away (state: day 4, timeOfDay ~0.8; winter at day 6 / tick 180000). The countdown overstates how long the player has to prepare. Also apple price at my market fell from 54/48 to 9/9 within ~6000 ticks."]}
+{"t": 1793329935212, "cmd": "click", "args": ["160", "383"]}
+{"t": 1793329935924, "cmd": "wait", "args": ["3"]}
+{"t": 1793329938966, "cmd": "shot", "args": ["talk2"]}
+{"t": 1793329939193, "cmd": "events", "args": ["3"]}
+{"t": 1793329953459, "cmd": "note", "args": ["--shot", "talk_wrong_pawn", "Inside my settlement I clicked 'Talk to Phoebe Jones (Stranger)' at (160,383) (tick 135224); the reply came from Alice White instead. The contextual pawn rows re-target to whichever pawn is nearest as they walk, so at a few fps the button changes target between hover and click."]}
+{"t": 1793329953899, "cmd": "key", "args": ["e"]}
+{"t": 1793329954421, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1793329957525, "cmd": "wait", "args": ["40"]}
+{"t": 1793329997575, "cmd": "state", "args": []}
+{"t": 1793329997633, "cmd": "wait", "args": ["40"]}
+{"t": 1793330037670, "cmd": "state", "args": []}
+{"t": 1793330037718, "cmd": "wait", "args": ["40"]}
+{"t": 1793330077764, "cmd": "state", "args": []}
+{"t": 1793330077806, "cmd": "wait", "args": ["40"]}
+{"t": 1793330117875, "cmd": "state", "args": []}
+{"t": 1793330117972, "cmd": "wait", "args": ["40"]}
+{"t": 1793330158079, "cmd": "state", "args": []}
+{"t": 1793330158190, "cmd": "wait", "args": ["40"]}
+{"t": 1793330198251, "cmd": "state", "args": []}
+{"t": 1793330206295, "cmd": "wait", "args": ["60"]}
+{"t": 1793330266441, "cmd": "shot", "args": ["day2"]}
+{"t": 1793330266669, "cmd": "state", "args": []}
+{"t": 1793330272208, "cmd": "click", "args": ["480", "390"]}
+{"t": 1793330272979, "cmd": "wait", "args": ["3"]}
+{"t": 1793330276045, "cmd": "shot", "args": ["after_event"]}
+{"t": 1793330276413, "cmd": "events", "args": ["4"]}
+{"t": 1793330290252, "cmd": "status", "args": []}
+{"t": 1793330290383, "cmd": "events", "args": ["200"]}
+{"t": 1793330290481, "cmd": "events", "args": ["200"]}
+{"t": 1793330290560, "cmd": "stop", "args": []}
+{"t": 1793330331590, "cmd": "report", "args": []}
+{"t": 1793330336218, "cmd": "report", "args": []}
+{"t": 1793330655300, "cmd": "stop", "args": []}
