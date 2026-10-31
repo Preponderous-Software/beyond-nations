@@ -29,7 +29,7 @@ namespace beyondnations.desktop.ui.boxes {
         }
 
         public override List<string> getLines() {
-            List<string> lines = new List<string>(4);
+            List<string> lines = new List<string>(6);
             lines.Add("Energy: " + (int) player.getEnergy());
             if (isCompact()) {
                 // the energy bar and whose the player is, in one line: in a
@@ -55,6 +55,9 @@ namespace beyondnations.desktop.ui.boxes {
                 lines.Add("Nation: none");
                 lines.Add("Role: none");
             }
+
+            // founding hints give compass directions, so say which way W walks (#374)
+            lines.Add("Facing: " + Compass.facing(player.getForward()));
 
             if (entityRepository != null) {
                 lines.Add("Land: " + Territory.describeFor(player, entityRepository, nationRepository));

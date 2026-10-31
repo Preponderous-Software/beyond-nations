@@ -151,6 +151,23 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testCompass_Facing_NamesTheDirectionAlongTheGround() {
+            // a fresh player faces +Z, north (#374)
+            Assert.Equal("north", Compass.facing(player.getForward()));
+            Assert.Equal("north-west", Compass.facing(new Vector3(-1, 3, 1)));
+            Assert.Equal("here", Compass.facing(Vector3.UnitY));
+        }
+
+        [Fact]
+        public void testNearestOpenSite_NoneWithinTheSearch_SaysSoInPaces() {
+            // a settlement here with a spacing wider than the search leaves nowhere open
+            addSettlementAt(Vector3.Zero);
+
+            Assert.Equal("No open ground lies within " + (int) SettlementSites.SEARCH_RADIUS + " paces.",
+                SettlementSites.describeNearestOpenSite(entityRepository, Vector3.Zero, 5000, player.getNationId()));
+        }
+
+        [Fact]
         public void testExecute_ExactlyMinDistanceAway_FoundsSettlement() {
             // prepare
             Nation nation = makePlayerLeader();
