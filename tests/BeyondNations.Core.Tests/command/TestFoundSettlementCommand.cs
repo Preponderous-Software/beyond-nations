@@ -108,8 +108,8 @@ namespace beyondnationstests {
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD, player.getInventory().getNumItems(ItemType.WOOD));
             Assert.Null(player.getHomeSettlementId());
             // which settlement, how far, the minimum and the way out (playtests 0.4.1: seven sessions guessed)
-            Assert.Equal("Too close to the Camp of Otherland: " + (gameConfig.getMinDistanceBetweenSettlements() - 1) + " away, and settlements must be "
-                + gameConfig.getMinDistanceBetweenSettlements() + " apart. Open ground lies about 10 to the west.", player.getStatus().getStatus());
+            Assert.Equal("Too close to the Camp of Otherland: " + (gameConfig.getMinDistanceBetweenSettlements() - 1) + " paces away, and settlements must be "
+                + gameConfig.getMinDistanceBetweenSettlements() + " paces apart. Open ground lies about 10 paces to the west.", player.getStatus().getStatus());
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace beyondnationstests {
 
             command.execute(player);
 
-            Assert.StartsWith("Too close to the " + nearest.getDisplayName() + ": 120 away", player.getStatus().getStatus());
+            Assert.StartsWith("Too close to the " + nearest.getDisplayName() + ": 120 paces away", player.getStatus().getStatus());
             // open ground lies east or west, clear of both
             string status = player.getStatus().getStatus();
             Assert.True(status.EndsWith(" to the east.") || status.EndsWith(" to the west."), status);
@@ -148,6 +148,23 @@ namespace beyondnationstests {
             Assert.Equal("east", Compass.describe(Vector3.Zero, new Vector3(10, 5, 0)));
             Assert.Equal("south-west", Compass.describe(Vector3.Zero, new Vector3(-10, 0, -10)));
             Assert.Equal("here", Compass.describe(Vector3.Zero, Vector3.Zero));
+        }
+
+        [Fact]
+        public void testCompass_Facing_NamesTheDirectionAlongTheGround() {
+            // a fresh player faces +Z, north (#374)
+            Assert.Equal("north", Compass.facing(player.getForward()));
+            Assert.Equal("north-west", Compass.facing(new Vector3(-1, 3, 1)));
+            Assert.Equal("here", Compass.facing(Vector3.UnitY));
+        }
+
+        [Fact]
+        public void testNearestOpenSite_NoneWithinTheSearch_SaysSoInPaces() {
+            // a settlement here with a spacing wider than the search leaves nowhere open
+            addSettlementAt(Vector3.Zero);
+
+            Assert.Equal("No open ground lies within " + (int) SettlementSites.SEARCH_RADIUS + " paces.",
+                SettlementSites.describeNearestOpenSite(entityRepository, Vector3.Zero, 5000, player.getNationId()));
         }
 
         [Fact]
