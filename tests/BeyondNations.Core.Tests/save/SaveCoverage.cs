@@ -232,7 +232,7 @@ namespace beyondnationstests {
             },
             [typeof(NationResources)] = new Entry { Derived = new[] { "entityRepository", "regionMap" } },
             [typeof(Realm)] = new Entry {
-                Saved = new[] { "lawRound", "laws", "wars", "truces", "lineage", "reignStartTick", "runOver", "notice", "noticeShown" },
+                Saved = new[] { "lawRound", "laws", "wars", "truces", "envoys", "lineage", "reignStartTick", "runOver", "notice", "noticeShown" },
                 Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player", "diplomacy", "gameConfig", "tickCounter" },
             },
             [typeof(NationLaws)] = saved("nationId", "levels", "pending", "proclaimedAt", "lastTaxCollected", "totalTaxCollected", "deserters"),

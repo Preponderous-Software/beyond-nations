@@ -1,0 +1,121 @@
+{"t": 1793328828151, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "108"]}
+{"t": 1793328833741, "cmd": "key", "args": ["space"]}
+{"t": 1793328836337, "cmd": "shot", "args": ["menu"]}
+{"t": 1793328849505, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328852339, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793328887544, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328888251, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793328926868, "cmd": "shot", "args": ["world0"]}
+{"t": 1793328964135, "cmd": "status", "args": []}
+{"t": 1793328964198, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328964956, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1793328965073, "cmd": "status", "args": []}
+{"t": 1793328975136, "cmd": "status", "args": []}
+{"t": 1793328975321, "cmd": "state", "args": []}
+{"t": 1793328975446, "cmd": "shot", "args": ["w1"]}
+{"t": 1793328989194, "cmd": "click", "args": ["425", "388"]}
+{"t": 1793328989948, "cmd": "key", "args": ["n"]}
+{"t": 1793328992463, "cmd": "state", "args": []}
+{"t": 1793328992576, "cmd": "shot", "args": ["nation"]}
+{"t": 1793328996325, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329012345, "cmd": "key", "args": ["e"]}
+{"t": 1793329013909, "cmd": "key", "args": ["e"]}
+{"t": 1793329015498, "cmd": "key", "args": ["e"]}
+{"t": 1793329017083, "cmd": "key", "args": ["e"]}
+{"t": 1793329018608, "cmd": "key", "args": ["e"]}
+{"t": 1793329020182, "cmd": "key", "args": ["e"]}
+{"t": 1793329021739, "cmd": "state", "args": []}
+{"t": 1793329025336, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329041714, "cmd": "key", "args": ["e"]}
+{"t": 1793329043251, "cmd": "key", "args": ["e"]}
+{"t": 1793329044804, "cmd": "key", "args": ["e"]}
+{"t": 1793329046353, "cmd": "key", "args": ["e"]}
+{"t": 1793329047877, "cmd": "key", "args": ["e"]}
+{"t": 1793329049396, "cmd": "key", "args": ["e"]}
+{"t": 1793329050929, "cmd": "state", "args": []}
+{"t": 1793329051600, "cmd": "events", "args": ["10"]}
+{"t": 1793329057267, "cmd": "state", "args": []}
+{"t": 1793329057358, "cmd": "key", "args": ["f"]}
+{"t": 1793329059936, "cmd": "events", "args": ["5"]}
+{"t": 1793329060019, "cmd": "shot", "args": ["found"]}
+{"t": 1793329064276, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329083550, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329086007, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329087094, "cmd": "state", "args": []}
+{"t": 1793329087260, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329100254, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329102671, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329103662, "cmd": "state", "args": []}
+{"t": 1793329103756, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329122264, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329124747, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329125765, "cmd": "state", "args": []}
+{"t": 1793329125878, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329138479, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329140938, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329142022, "cmd": "state", "args": []}
+{"t": 1793329142159, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329178525, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329181061, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329182069, "cmd": "state", "args": []}
+{"t": 1793329182294, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329223856, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329226348, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329227427, "cmd": "state", "args": []}
+{"t": 1793329227593, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1793329238245, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1793329240850, "cmd": "key", "args": ["e", "e"]}
+{"t": 1793329242286, "cmd": "state", "args": []}
+{"t": 1793329251414, "cmd": "key", "args": ["f"]}
+{"t": 1793329255051, "cmd": "events", "args": ["6"]}
+{"t": 1793329255229, "cmd": "state", "args": []}
+{"t": 1793329264103, "cmd": "face", "args": ["-45"]}
+{"t": 1793329268873, "cmd": "hold", "args": ["Shift_L+w", "15"]}
+{"t": 1793329284222, "cmd": "key", "args": ["f"]}
+{"t": 1793329287974, "cmd": "events", "args": ["3"]}
+{"t": 1793329288168, "cmd": "state", "args": []}
+{"t": 1793329295577, "cmd": "face", "args": ["-90"]}
+{"t": 1793329303813, "cmd": "hold", "args": ["Shift_L+w", "15"]}
+{"t": 1793329319183, "cmd": "key", "args": ["f"]}
+{"t": 1793329322878, "cmd": "events", "args": ["2"]}
+{"t": 1793329323073, "cmd": "state", "args": []}
+{"t": 1793329328162, "cmd": "shot", "args": ["dir"]}
+{"t": 1793329339684, "cmd": "note", "args": ["--shot", "no_compass", "Placement hints give compass directions ('Open ground lies about 190 to the south-west') but nothing on screen shows which way is north/south: no compass, no map. Following the hint by trial and error took 3 tries; hint direction flipped from south-east to south-west after one move."]}
+{"t": 1793329340078, "cmd": "face", "args": ["-132"]}
+{"t": 1793329346345, "cmd": "state", "args": []}
+{"t": 1793329350669, "cmd": "face", "args": ["100"]}
+{"t": 1793329357478, "cmd": "state", "args": []}
+{"t": 1793329372434, "cmd": "hold", "args": ["d", "1"]}
+{"t": 1793329373702, "cmd": "state", "args": []}
+{"t": 1793329379063, "cmd": "hold", "args": ["d", "9"]}
+{"t": 1793329388248, "cmd": "state", "args": []}
+{"t": 1793329388339, "cmd": "hold", "args": ["Shift_L+w", "15"]}
+{"t": 1793329404928, "cmd": "key", "args": ["f"]}
+{"t": 1793329408550, "cmd": "events", "args": ["3"]}
+{"t": 1793329415383, "cmd": "state", "args": []}
+{"t": 1793329415607, "cmd": "hold", "args": ["d", "4"]}
+{"t": 1793329421978, "cmd": "hold", "args": ["Shift_L+w", "25"]}
+{"t": 1793329448333, "cmd": "key", "args": ["f"]}
+{"t": 1793329451933, "cmd": "events", "args": ["2"]}
+{"t": 1793329452015, "cmd": "state", "args": []}
+{"t": 1793329454847, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1793329457004, "cmd": "key", "args": ["f"]}
+{"t": 1793329460647, "cmd": "events", "args": ["3"]}
+{"t": 1793329460840, "cmd": "shot", "args": ["settled"]}
+{"t": 1793329469359, "cmd": "note", "args": ["--shot", "label_overlap", "Standing at my new settlement's well, the big floating settlement label ('0 here, 1/8 residents') renders across the top of the screen behind the Objective toast and chronicle panel, cut off at the screen edge and hard to read."]}
+{"t": 1793329469763, "cmd": "status", "args": []}
+{"t": 1793329541132, "cmd": "key", "args": ["e"]}
+{"t": 1793329564902, "cmd": "state", "args": []}
+{"t": 1793329565033, "cmd": "events", "args": ["4"]}
+{"t": 1793330117365, "cmd": "status", "args": []}
+{"t": 1793330117438, "cmd": "state", "args": []}
+{"t": 1793330117501, "cmd": "events", "args": ["6"]}
+{"t": 1793330117568, "cmd": "shot", "args": ["late"]}
+{"t": 1793330296401, "cmd": "shot", "args": ["npc_event"]}
+{"t": 1793330305608, "cmd": "note", "args": ["--shot", "npc_event_buried", "First world event (tick 19753: 'A bountiful harvest came in across Northernwood...') only appeared as one chronicle line and was pushed out of the 5-line recent-chronicle panel within ~a minute by a burst of NationRaid lines (13 raids logged at the same tick 17001, more at night). A player would never notice a world event happened; it has no distinct styling from raids/relations."]}
+{"t": 1793330536124, "cmd": "state", "args": []}
+{"t": 1793330613863, "cmd": "state", "args": []}
+{"t": 1793330613931, "cmd": "shot", "args": ["final"]}
+{"t": 1793330614233, "cmd": "stop", "args": []}
+{"t": 1793330637141, "cmd": "report", "args": []}
+{"t": 1793330655463, "cmd": "stop", "args": []}

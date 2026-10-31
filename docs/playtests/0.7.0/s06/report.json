@@ -1,0 +1,86 @@
+{
+  "session": "s06",
+  "goal": "Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies.",
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
+  "seed": 106,
+  "durationSec": 875,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Laws tab drops the Rationing law entirely at 960x540",
+      "detail": "The Laws tab lists only Taxes, Conscription and Borders. The fourth law, Rationing (LawType.RATIONING, described in Laws.cs as one of 'the four laws'), is never drawn: LawsPanel.draw breaks out of the row loop when the next block would not fit above height - 3.2 lines, with no scrolling and no hint that more exists. There is visibly empty space below Borders. A leader at this resolution cannot see or enact Rationing. Expected: all four laws shown, or a scroll like the Nations tab has.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 106; pt key space; pt click 480 315; pt click 480 315; pt key n; pt key o; pt click 543 45; pt shot laws",
+      "screenshot": "shots/laws-no-rationing.png",
+      "tick": 1631
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Coin gifts have no cooldown: 160 coins buys a rival nation's member as Loyal in seconds",
+      "detail": "Talking gives +2 with a 30 s cooldown, but G (gift 10 coins, +2) can be pressed repeatedly with no cooldown. Pressing G 16 times took Hank Thomas (a member of Oldwood) from Stranger to Loyal in ~10 game seconds, and R made him defect to my nation. 160 of the 375 starting coins buys a defector and an heir. Expected: a gift cooldown or diminishing returns, as with talking.",
+      "repro": "(as above, with a nation) pt walkto pawn; press g 16 times; pt key r",
+      "screenshot": "shots/gift-spam.png",
+      "tick": 5799
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "No screen names the heir or warns what happens if the ruler dies",
+      "detail": "With a second member in Smallton, neither the Nations tab, the Laws tab nor the HUD names the heir or says that dying with no members ends the line and the run. Succession.cs has clear rules (family first, then most loyal, then longest sworn), but the player only learns who the heir is on the 'The Rule Passes On' screen after death. Expected: an 'Heir: <name> (reason)' line on the Nations tab, or 'No heir: your line ends if you die'.",
+      "repro": "Create nation (N), recruit one pawn (gift G, invite R), pt key o, look at both tabs",
+      "screenshot": "shots/no-heir-shown.png",
+      "tick": 5947
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "After succession the new ruler's name appears nowhere on the HUD",
+      "detail": "After the rule passes to Xavier Lewis, the red status toast says so, but Player Info shows only Nation, Role and Land, and the Nations tab says 'You lead it'. Once the toast fades, nothing on screen shows the player's current name, how long they have reigned or their line. Expected: the ruler's name in Player Info, and the lineage from the succession screen reachable later, for example on the Nations tab.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 106 --stage-succession; space; Start; Begin; Continue on the succession screen; look at the HUD and press O",
+      "screenshot": "shots/ruler-name-missing.png",
+      "tick": 133
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "A ruler cannot die naturally within a play session, so succession is hard to reach",
+      "detail": "Energy drained from 84.9 to 65.2 over ~6000 ticks (2 game minutes) while I walked, so starving takes about 30 game minutes, and the player has no other way to die (militia, fire and sickness all clamp energy at 1). At the tps on this machine that is well over the 30-minute budget, so I had to use --stage-succession to see a death. Succession is a headline feature, but a normal session will rarely see it.",
+      "repro": "Play normally and watch energy in Player Info; compare with the drain rate",
+      "screenshot": "shots/repeal1.png",
+      "tick": 5947
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Law-enactment chronicle lines are cut off with an ellipsis in the HUD chronicle",
+      "detail": "The chronicle box shows '* Day 1, morning - Conscription came into force in Smallton: it...', which cuts off the effect of the law (the part a ruler most wants). Y shows more, but the key consequence is lost at a glance.",
+      "repro": "Enact Conscription On, wait 30 s, look at the chronicle box",
+      "screenshot": "shots/talk1.png",
+      "tick": 3015
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Nations screen always reopens on the Nations tab, so clicks meant for Laws hit Tribute",
+      "detail": "Pressing O always opens the Nations tab. At a few fps my click on the Laws tab did not register before my next click, and that click landed on Oldwood's Tribute button and spent 25 coins by mistake. Remembering the last tab would help, as would making Tribute and the other diplomacy actions need a confirm.",
+      "repro": "Open the Laws tab, close it, press O again: you are on the Nations tab",
+      "screenshot": "shots/repeal0.png",
+      "tick": 6023
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 0,
+    "deaths": 1,
+    "secondsToObjective": {},
+    "lawsEnacted": 2,
+    "lawsRepealed": 1,
+    "secondsLawDelay": 30,
+    "coinsToBuyDefector": 160,
+    "naturalDeathReached": 0,
+    "successionsSeen": 1
+  },
+  "fun": 3,
+  "verdict": "The laws loop works and reads well: changes are announced, show a live 30 s countdown and land in the chronicle, and the 'The Rule Passes On' screen with its numbered line is a strong moment. But Rationing never appears in the Laws tab at 960x540, the heir is hidden until after death, and a ruler cannot realistically die in a session (I needed --stage-succession, which my goal justified), so the dynasty fantasy is mostly out of the player's reach. Coin gifting with no cooldown makes recruiting heirs and defectors trivially cheap."
+}

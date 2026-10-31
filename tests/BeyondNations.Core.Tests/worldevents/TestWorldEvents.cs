@@ -268,8 +268,13 @@ namespace beyondnationstests {
             run(simulation, drought.getEndTick() - simulation.getTickCounter().getTotalTicks() + 1);
             Assert.False(simulation.getWorldEvents().isDrought(s.playerNation.getId()));
             Assert.Contains(worldEventLines(simulation), line => line.Contains("Rain returned"));
+            // a hungry resident may buy the harvest straight off the stall: since
+            // #423 residents build no stalls of their own in the player's town,
+            // so this stall is the only food on sale there
+            int bought = s.playerSettlement.getMarket().getTotalNumItemsBought();
             run(simulation, BuildingCatalog.FARM_TICKS_PER_HARVEST + 1);
-            Assert.True(stall.getInventory().getNumItems(ItemType.APPLE) > apples);
+            int sold = s.playerSettlement.getMarket().getTotalNumItemsBought() - bought;
+            Assert.True(stall.getInventory().getNumItems(ItemType.APPLE) + sold > apples);
         }
 
         [Fact]
@@ -368,8 +373,13 @@ namespace beyondnationstests {
             Assert.Equal(s.playerSettlement.getId(), pending.getSettlementId());
             choose(simulation, 2);
             Assert.True(simulation.getWorldEvents().hasBandits(s.playerSettlement.getId()));
-            run(simulation, WorldEvents.BANDIT_THEFT_SECONDS * 50 + 1);
-            Assert.True(s.playerSettlement.getInventory().getNumItems(ItemType.WOOD) <= 40 - WorldEvents.BANDIT_THEFT_GOODS);
+            // measured across the theft itself: residents hand wood in to the
+            // stockpile meanwhile, and since #423 none of them spends it on stalls
+            // in the player's town, so the stockpile can grow faster than it is robbed
+            run(simulation, WorldEvents.BANDIT_THEFT_SECONDS * 50 - 1);
+            int woodBefore = s.playerSettlement.getInventory().getNumItems(ItemType.WOOD);
+            run(simulation, 2);
+            Assert.True(s.playerSettlement.getInventory().getNumItems(ItemType.WOOD) <= woodBefore - WorldEvents.BANDIT_THEFT_GOODS);
             // a day and a half later, they move on (brought forward, to keep the test quick)
             WorldEffect camp = simulation.getWorldEvents().findEffect(WorldEffectKind.BANDITS, null, s.playerSettlement.getId());
             Assert.Equal(BanditCampEvent.STAY_SECONDS * 50, camp.getEndTick() - camp.getStartTick());

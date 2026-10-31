@@ -122,5 +122,23 @@ namespace beyondnationstests.desktop {
             // and would pass without the alias being documented at all.
             Assert.Contains("--help, -h", usage);
         }
-    }
+    
+        [Fact]
+        public void testFlyoverOptionsAreReadAndOffByDefault() {
+            GameOptions defaults = GameOptions.parse(new string[] { });
+            Assert.Equal(0, defaults.AdvanceTicks);
+            Assert.Null(defaults.FlyoverOut);
+
+            GameOptions options = GameOptions.parse(new string[] {
+                "--advance-ticks", "150000", "--flyover-out", "frames", "--flyover-frames", "96" });
+            Assert.Equal(150000, options.AdvanceTicks);
+            Assert.Equal("frames", options.FlyoverOut);
+            Assert.Equal(96, options.FlyoverFrames);
+
+            string usage = GameOptions.getUsageText();
+            Assert.Contains("--advance-ticks", usage);
+            Assert.Contains("--flyover-out", usage);
+            Assert.Contains("--flyover-frames", usage);
+        }
+}
 }

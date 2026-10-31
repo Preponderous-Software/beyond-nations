@@ -92,6 +92,22 @@ namespace beyondnations {
             return chicken != null && Vector3.Distance(pawn.getPosition(), chicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE;
         }
 
+        /**
+        * Whether the nation's leader, pawn or player, lives in this
+        * settlement. Its residents build there only when not: a settlement
+        * its leader lives in is the leader's to build up. The player was
+        * once not counted (only a pawn leader was), so residents treated the
+        * player's own town as a colony and filled its market before the
+        * player could build a stall (#423, the 0.6.4 playtest).
+        */
+        private bool leaderLivesIn(Nation nation, EntityId settlementId) {
+            Entity leader = entityRepository.getEntity(nation.getLeaderId());
+            EntityId leaderHome = leader is Pawn ? ((Pawn) leader).getHomeSettlementId()
+                : leader is Player ? ((Player) leader).getHomeSettlementId()
+                : null;
+            return settlementId.Equals(leaderHome);
+        }
+
         private static bool isAtHome(Pawn pawn) {
             return pawn.getHomeSettlementId() != null && pawn.getHomeSettlementId().Equals(pawn.getCurrentSettlementId());
         }
@@ -206,9 +222,7 @@ namespace beyondnations {
                     // A settlement founded by a member, away from its leader, is
                     // built up by whoever lives there, from its stockpile.
                     if (isAtHome(pawn) && nation.getLeaderId() != null) {
-                        Entity leader = entityRepository.getEntity(nation.getLeaderId());
-                        bool leaderLivesHere = leader is Pawn && currentSettlementId.Equals(((Pawn) leader).getHomeSettlementId());
-                        if (!leaderLivesHere) {
+                        if (!leaderLivesIn(nation, currentSettlementId)) {
                             if (market.getNumStalls() < market.getMaxNumStalls() && Stall.canAffordToBuild(pawn.getInventory(), currentSettlement.getInventory())) {
                                 return BehaviorType.CONSTRUCT_STALL;
                             }

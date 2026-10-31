@@ -1,0 +1,87 @@
+{
+  "session": "s05",
+  "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan. Check specifically that residents of YOUR own settlement leave the market stalls to you (they should not fill your market), and that the 'Build a market stall' objective completes only from a stall you build.",
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
+  "seed": 105,
+  "durationSec": 1073,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Own market cannot trade: the resident who takes the player's new stall has 0 coins and nothing to sell",
+      "detail": "Right after I built my first stall (B) in my own camp, Market Info showed 'Merchants: Linda Smith', '1/4 stalls, 0 coins'. Sell Resources then failed with 'No merchant here can pay: the richest has 0 coins, and your cheapest good (sapling) sells for 19.' and Purchase Food failed with 'No one is selling food at this market...'. It was still the same about 3,600 ticks (~72 game s) later. A merchant has to pay 100 coins to buy a stall, but the stall/market showed 0 coins afterwards, so it is unclear where that money went. To buy and sell I had to travel 340 m to a foreign Town (Castletown), where both worked. Expected: the market I just built can trade with me straight away, or the HUD tells me how to stock it or give it money.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 105; gather ~90 wood + 30 stone; N; walk away from other settlements; F; E; B; click Sell Resources (186,445); click Purchase Food (66,445)",
+      "screenshot": "shots/sell_nocoins.png",
+      "tick": 10286
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "A resident buys the stall the player built within ~2 s, with no message and no way for the player to own it",
+      "detail": "I pressed B at tick 9550, and within about 2 seconds Linda Smith was listed as the stall's merchant. Nothing in the chronicle or status line said that a resident had bought my stall. The objective still completed, correctly, from my own build. Residents did not build any stalls themselves: the market was 0/4 for 20 s before I built and 1/4 for about 3,600 ticks after, so the 'leave the market to you' rule holds for construction. Having the stall taken over so fast still feels like the market is not mine. Expected: a chronicle line such as 'Linda Smith took over your stall'.",
+      "repro": "same as above up to B; take a screenshot 2 s later and read Market Info",
+      "screenshot": "shots/merchant_took_stall.png",
+      "tick": 9550
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Storehouse and caravans are locked until the Town era (3rd of 4), so a trade-focused player starting out cannot reach them",
+      "detail": "The 'Send Caravan (Town era)' button shows from the first camp. Clicking it says: 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' K offers only Farm or House in a Camp. The message is clear, but caravans are a long way off. After ~13,000 ticks I was still at Camp, objective 7 (Village: Members 5/10, Buildings 1/2). The Storehouse and caravan parts of my goal could not be done in this session.",
+      "repro": "after founding and entering your settlement, click 'Send Caravan (Town era)' (66,414)",
+      "screenshot": "shots/caravan_btn.png",
+      "tick": 11042
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "K build confirmation lapses at low fps: the second K press ~4 s later just re-prompts",
+      "detail": "Pressing K showed 'Press K again to build a Farm (25 wood, 10 stone).' I took a screenshot and pressed K again about 4 real seconds later (at 2-4 fps), and the game showed the same prompt again without building. Sending 'k k' together built the farm. The confirm window seems to be timed in a way that is easy to miss when the frame rate is low.",
+      "repro": "inside own camp with 25 wood/10 stone: pt key k; pt wait 2; pt shot x; pt key k; pt state (status still 'Press K again...')",
+      "screenshot": "shots/kmenu.png",
+      "tick": 10866
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Sell Resources at a foreign town sold only 1 apple + 1 sapling with no quantity shown",
+      "detail": "At Castletown (2 merchants, 24 coins in the market) one Sell Resources click went from 437 to 457 coins, and from 37 to 36 apples and 15 to 14 saplings. The status line said only 'You sold resources to Samantha Evans.' It did not say what was sold or for how much. Wood and stone counts were 0 at the time. Expected: the status line names the items and the coins received.",
+      "repro": "enter a foreign Town with merchants; click Sell Resources; compare inventory before/after",
+      "screenshot": "shots/sold.png",
+      "tick": 12934
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Settlement name banner is drawn huge behind the HUD and cut off at the top of the screen",
+      "detail": "Inside a settlement, large text such as 'Camp of Newville / 2 here, 5/8 residents' renders behind the chronicle and objective panels, and its top line is clipped by the window edge.",
+      "repro": "enter any settlement and take a screenshot",
+      "screenshot": "shots/home_final2.png",
+      "tick": 13370
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 43.0,
+      "Eat something": 44.04,
+      "Create or join a nation": 71.0,
+      "Found a settlement": 177.0,
+      "Enter your settlement": 179.0,
+      "Build a market stall": 191.0
+    },
+    "ownSettlementStallsBeforePlayerBuilt": 0,
+    "ownSettlementStallsAtEnd": 1,
+    "residentBuiltStallsInOwnSettlement": 0,
+    "ownMarketMerchantCoins": 0,
+    "successfulSales": 1,
+    "successfulPurchases": 1,
+    "caravansSent": 0,
+    "storehousesBuilt": 0,
+    "averageTps": 15
+  },
+  "fun": 3,
+  "verdict": "The #423 fix holds: in my own settlement residents built no stalls, and 'Build a market stall' completed from my own B press. Trading did not work at home, though. A resident took my new stall at once with 0 coins, so I could not buy or sell there and had to travel to a foreign Town. Caravans need a Storehouse, which unlocks only in the Town era, too far off for a short session. The error messages are clear and specific, and gathering resources and founding a settlement feel quick."
+}

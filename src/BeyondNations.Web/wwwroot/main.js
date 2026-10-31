@@ -106,20 +106,52 @@ $("rotate-dismiss").addEventListener("click", () => {
 });
 preventPageGestures();
 
+// --- the loading screen (docs/WEB.md, "Loading screen") ---
+//
+// Strata's loading shell (strata-kit/strata-loader.js): the trailer's still
+// as a blurred backdrop and a progress bar that this page drives from the
+// .NET boot, which fetches its own files. Downloading is the first 90% of the
+// bar: whichever is further of the runtime's count of files fetched and the
+// bytes against the usual size; starting the runtime is the rest. Until the
+// game is up, a failure shows the trailer with the reason and a way back to
+// the arcade; after that, the error panel.
+const TRAILER = "https://danielstephenson.dev/trailers/beyond-nations";
+// The gzip-compressed runtime and assemblies (webhost/loader.js): about
+// 4.8 MB in 0.6.x; a guide for the bar, not a promise (the file count
+// catches up, and the bar never moves back).
+const USUAL_DOWNLOAD_BYTES = 5 * 1024 * 1024;
+const boot = { bytes: 0, files: 0, ofFiles: 0, up: false };
+function bootProgress() {
+  const byFiles = boot.ofFiles ? boot.files / boot.ofFiles : 0;
+  const byBytes = Math.min(0.98, boot.bytes / USUAL_DOWNLOAD_BYTES);
+  const mb = (boot.bytes / (1024 * 1024)).toFixed(1);
+  StrataLoader.progress(0.9 * Math.max(byFiles, byBytes), `Downloading the game… ${mb} MB`);
+}
+
 const ui = {
   progress(bytes) {
-    const mb = bytes / (1024 * 1024);
-    $("loading-text").textContent = `Loading the game… ${mb.toFixed(1)} MB`;
-    // The compressed download is about 10 MB; the bar is a guide, not a promise.
-    $("bar-fill").style.width = Math.min(95, (mb / 10) * 100).toFixed(0) + "%";
+    boot.bytes = bytes;
+    bootProgress();
+  },
+  resources(loaded, total) {
+    boot.files = loaded;
+    boot.ofFiles = total;
+    bootProgress();
+  },
+  starting() {
+    StrataLoader.progress(0.95, "Starting the game…");
   },
   ready() {
-    $("bar-fill").style.width = "100%";
-    show("loading", false);
+    boot.up = true;
+    StrataLoader.progress(1, "Ready");
+    StrataLoader.done();
     canvas.focus({ preventScroll: true });
   },
   fatal(message) {
-    show("loading", false);
+    if (!boot.up && StrataLoader.state !== "done") {
+      StrataLoader.fallback("engine", message);
+      return;
+    }
     $("error-text").textContent = message;
     show("error", true);
   },
@@ -178,8 +210,18 @@ const ui = {
 $("play-again").addEventListener("click", () => window.location.reload());
 $("error-reload").addEventListener("click", () => window.location.reload());
 
+// false, with the trailer and the reason showing, when there is no WebGL 2
+const canRun = StrataLoader.show({
+  title: "Beyond Nations",
+  poster: TRAILER + ".jpg",
+  trailer: { webm: TRAILER + ".webm", mp4: TRAILER + ".mp4" },
+  trailerLabel: "A recorded clip of Beyond Nations",
+  posterAlt: "A still of Beyond Nations",
+  fallback: { href: "https://danielstephenson.dev/play", text: "More games at danielstephenson.dev/play" },
+});
+
 try {
-  host = await startWebHost({
+  if (canRun) host = await startWebHost({
     canvas,
     ui,
     assembly: "BeyondNations.Web",

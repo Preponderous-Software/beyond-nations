@@ -31,6 +31,9 @@ namespace beyondnations {
     *   4 -> 5  eras (EraTracker): the "eras" section, at the camp with no
     *           outcome and an empty history; the era catches up with the
     *           nation on the first seconds of play
+    *   5 -> 6  the player's envoys (Realm.ENVOY_TICKS): the realm's
+    *           "envoys", empty -- every envoy is home, as before any
+    *           dealing took time
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
@@ -39,7 +42,18 @@ namespace beyondnations {
             addWorldEvents,
             addTradeAndPrices,
             addEras,
+            addEnvoys,
         };
+
+        /** 5 -> 6: a world from before envoys has every envoy at home. */
+        private static JsonObject addEnvoys(JsonObject body) {
+            JsonObject realm = body["realm"] as JsonObject;
+            if (realm != null) {
+                realm["envoys"] = new JsonArray();
+            }
+            body["formatVersion"] = 6;
+            return body;
+        }
 
         /** 4 -> 5: a world from before eras starts at the camp, with no outcome. */
         private static JsonObject addEras(JsonObject body) {

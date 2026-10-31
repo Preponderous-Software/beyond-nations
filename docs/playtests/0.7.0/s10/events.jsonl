@@ -1,0 +1,50 @@
+{"type":"screen","tick":0,"wallTimeMs":1793328828841,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793328833963,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793328850082,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793328884045,"how":"created","slot":"world-1450162717-20261030-025444","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1793328884047,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":182,"wallTimeMs":1793328967584,"text":"Created nation Eastburg."}
+{"type":"chronicle","tick":182,"wallTimeMs":1793328967584,"kind":"NationCreation","text":"Under your hand, the nation of Eastburg was born. It is the first nation this world has known."}
+{"type":"screen","tick":318,"wallTimeMs":1793328974433,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":322,"wallTimeMs":1793328987780,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":902,"wallTimeMs":1793329021406,"kind":"NationCreation","text":"Isabella Wood raised a banner and called it Fortresstown."}
+{"type":"chronicle","tick":950,"wallTimeMs":1793329024049,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Fortresstown."}
+{"type":"status","tick":1442,"wallTimeMs":1793329050678,"text":"No entities within range to interact with."}
+{"type":"status","tick":1486,"wallTimeMs":1793329053017,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1518,"wallTimeMs":1793329054475,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":1554,"wallTimeMs":1793329056113,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":1586,"wallTimeMs":1793329057582,"text":"No entities within range to interact with. (x5)"}
+{"type":"screen","tick":1686,"wallTimeMs":1793329062548,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":1686,"wallTimeMs":1793329070447,"text":"Fortresstown accepts your gift of 25 coins. Relations: Neutral (\u002B10)."}
+{"type":"status","tick":1686,"wallTimeMs":1793329076878,"text":"Your envoy to Fortresstown is still on the road: you can deal with them again in 20 seconds of play."}
+{"type":"screen","tick":1690,"wallTimeMs":1793329084991,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":1758,"wallTimeMs":1793329092534,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":1762,"wallTimeMs":1793329102345,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":1950,"wallTimeMs":1793329113837,"kind":"NationCreation","text":"The nation of Blueport was born, with Stan White at its head."}
+{"type":"chronicle","tick":2002,"wallTimeMs":1793329116604,"kind":"SettlementFounded","text":"Blueport put down roots: Stan White founded its first settlement."}
+{"type":"screen","tick":2178,"wallTimeMs":1793329126351,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":2182,"wallTimeMs":1793329128941,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":2206,"wallTimeMs":1793329130878,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":2206,"wallTimeMs":1793329141629,"count":1}
+{"type":"status","tick":2206,"wallTimeMs":1793329141629,"text":"Game saved."}
+{"type":"screen","tick":2206,"wallTimeMs":1793329149891,"from":"PAUSE","to":"SHARE"}
+{"type":"world","tick":2206,"wallTimeMs":1793329179125,"how":"loaded","slot":"world-1450162717-20261030-025444","seed":1450162717}
+{"type":"screen","tick":2210,"wallTimeMs":1793329179649,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":2250,"wallTimeMs":1793329182205,"kind":"NationCreation","text":"Tina Evans founded the nation of Farmport."}
+{"type":"screen","tick":2406,"wallTimeMs":1793329193276,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":2410,"wallTimeMs":1793329207630,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":2450,"wallTimeMs":1793329209798,"kind":"SettlementFounded","text":"Tina Evans laid the first stones of Farmport."}
+{"type":"screen","tick":2566,"wallTimeMs":1793329227562,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":2570,"wallTimeMs":1793329234679,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":2602,"wallTimeMs":1793329236884,"kind":"NationCreation","text":"Katie Davies declared the nation of Blueburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":2602,"wallTimeMs":1793329236884,"kind":"NationCreation","text":"Ruth Lewis declared the nation of Redtown, though none had yet sworn to it."}
+{"type":"chronicle","tick":2650,"wallTimeMs":1793329240856,"kind":"SettlementFounded","text":"Katie Davies laid the first stones of Blueburg."}
+{"type":"screen","tick":2770,"wallTimeMs":1793329255307,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":2774,"wallTimeMs":1793329275374,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":2782,"wallTimeMs":1793329276617,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":2782,"wallTimeMs":1793329279701,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":2782,"wallTimeMs":1793329279701,"count":1}
+{"type":"status","tick":2782,"wallTimeMs":1793329279701,"text":"Game saved."}
+{"type":"screen","tick":2782,"wallTimeMs":1793329281856,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793329332908,"how":"created","slot":"world-1450162717-20261030-030212","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1793329332908,"from":"NEW_WORLD","to":"WORLD"}

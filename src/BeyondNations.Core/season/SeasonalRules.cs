@@ -138,11 +138,7 @@ namespace beyondnations {
         }
 
         public static int countFood(Inventory inventory) {
-            int total = 0;
-            foreach (ItemType food in FoodItems.getFoodInDescendingEnergyOrder()) {
-                total += inventory.getNumItems(food);
-            }
-            return total;
+            return FoodItems.countFood(inventory);
         }
 
         /** One line on what the season means for the player, for the HUD. */

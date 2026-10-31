@@ -1,0 +1,114 @@
+{"type":"screen","tick":0,"wallTimeMs":1793328830401,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793328836893,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793328850079,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793328878220,"how":"created","slot":"world-106-20261030-025438","seed":106}
+{"type":"screen","tick":0,"wallTimeMs":1793328878222,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":159,"wallTimeMs":1793328889588,"text":"Created nation Smallton."}
+{"type":"chronicle","tick":159,"wallTimeMs":1793328889588,"kind":"NationCreation","text":"You raised a banner and named your people Smallton. It is the first nation this world has known."}
+{"type":"status","tick":231,"wallTimeMs":1793328902707,"text":"You are already the leader of Smallton."}
+{"type":"screen","tick":451,"wallTimeMs":1793328963549,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":451,"wallTimeMs":1793328981216,"text":"Taxes: Low proclaimed. It takes effect in 30 seconds."}
+{"type":"status","tick":451,"wallTimeMs":1793328984094,"text":"Conscription: On proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":455,"wallTimeMs":1793328992102,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":1003,"wallTimeMs":1793329019672,"kind":"NationCreation","text":"Isabella Brown founded the nation of Southford."}
+{"type":"chronicle","tick":1051,"wallTimeMs":1793329022560,"kind":"NationCreation","text":"Hank Davies raised a banner and called it Whitewood."}
+{"type":"chronicle","tick":1051,"wallTimeMs":1793329022560,"kind":"SettlementFounded","text":"Southford put down roots: Isabella Brown founded its first settlement."}
+{"type":"chronicle","tick":1103,"wallTimeMs":1793329024921,"kind":"SettlementFounded","text":"Whitewood put down roots: Hank Davies founded its first settlement."}
+{"type":"chronicle","tick":1503,"wallTimeMs":1793329047377,"kind":"NationCreation","text":"Una Johnson declared the nation of Whiteham, though none had yet sworn to it."}
+{"type":"screen","tick":1631,"wallTimeMs":1793329054283,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":1635,"wallTimeMs":1793329069201,"from":"NATIONS","to":"WORLD"}
+{"type":"status","tick":2003,"wallTimeMs":1793329093657,"text":"Taxes in Smallton rose to Low. Conscription came into force in Smallton: its people drill to defend it."}
+{"type":"chronicle","tick":2003,"wallTimeMs":1793329093657,"kind":"NationCreation","text":"Mike White founded the nation of Fortham."}
+{"type":"chronicle","tick":2003,"wallTimeMs":1793329093657,"kind":"Statecraft","text":"Taxes in Smallton rose to Low."}
+{"type":"chronicle","tick":2003,"wallTimeMs":1793329093657,"kind":"Statecraft","text":"Conscription came into force in Smallton: its people drill to defend it."}
+{"type":"chronicle","tick":2051,"wallTimeMs":1793329096168,"kind":"SettlementFounded","text":"Una Johnson laid the first stones of Whiteham."}
+{"type":"chronicle","tick":2103,"wallTimeMs":1793329098816,"kind":"NationCreation","text":"Irene Taylor founded the nation of Oldwood."}
+{"type":"chronicle","tick":2103,"wallTimeMs":1793329098816,"kind":"StallBuilt","text":"Trade came to Whitewood: Hank Davies built a stall."}
+{"type":"chronicle","tick":2303,"wallTimeMs":1793329109615,"kind":"SettlementFounded","text":"Mike White raised the first settlement of Fortham."}
+{"type":"chronicle","tick":2403,"wallTimeMs":1793329116118,"kind":"SettlementFounded","text":"Oldwood put down roots: Irene Taylor founded its first settlement."}
+{"type":"status","tick":2523,"wallTimeMs":1793329123531,"text":"You enter the land of Oldwood (Neutral)."}
+{"type":"status","tick":2943,"wallTimeMs":1793329149919,"text":"You leave the land of Oldwood for the wilds."}
+{"type":"status","tick":2983,"wallTimeMs":1793329152987,"text":"Irene Taylor (Stranger): \u0022Who are you? I lead Oldwood. We are 2 strong. I stand by my own.\u0022"}
+{"type":"chronicle","tick":3051,"wallTimeMs":1793329158740,"kind":"NationCreation","text":"Nancy Walker raised a banner and called it Southham."}
+{"type":"chronicle","tick":3251,"wallTimeMs":1793329173665,"kind":"StallBuilt","text":"Hank Davies built a market stall in Whitewood."}
+{"type":"chronicle","tick":3251,"wallTimeMs":1793329173665,"kind":"SettlementFounded","text":"Nancy Walker raised the first settlement of Southham."}
+{"type":"chronicle","tick":3451,"wallTimeMs":1793329182968,"kind":"NationCreation","text":"Victor White declared the nation of Hamletshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":3503,"wallTimeMs":1793329186408,"kind":"NationRelationChange","text":"Southford and Whitewood have become rivals over their border."}
+{"type":"chronicle","tick":3703,"wallTimeMs":1793329203951,"kind":"NationCreation","text":"Stan Smith raised a banner and called it Cityport."}
+{"type":"status","tick":3751,"wallTimeMs":1793329206510,"text":"You enter the land of Oldwood (Neutral)."}
+{"type":"chronicle","tick":3803,"wallTimeMs":1793329209244,"kind":"NationCreation","text":"Karl Roberts declared the nation of Westernfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":3851,"wallTimeMs":1793329212174,"kind":"SettlementFounded","text":"Stan Smith laid the first stones of Cityport."}
+{"type":"chronicle","tick":3903,"wallTimeMs":1793329217177,"kind":"SettlementFounded","text":"Karl Roberts raised the first settlement of Westernfield."}
+{"type":"status","tick":3991,"wallTimeMs":1793329232113,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":4003,"wallTimeMs":1793329233071,"kind":"StallBuilt","text":"A new stall opened in the market of Southham, built by Nancy Walker."}
+{"type":"chronicle","tick":4051,"wallTimeMs":1793329236693,"kind":"SettlementFounded","text":"Victor White laid the first stones of Hamletshire."}
+{"type":"chronicle","tick":4251,"wallTimeMs":1793329258347,"kind":"NationCreation","text":"The nation of Blackwood was born, with Peggy Lewis at its head."}
+{"type":"chronicle","tick":4251,"wallTimeMs":1793329258347,"kind":"NationRelationChange","text":"Southford and Fortham have become rivals over their border."}
+{"type":"chronicle","tick":4503,"wallTimeMs":1793329284021,"kind":"NationRelationChange","text":"Whitewood and Whiteham have become rivals over their border."}
+{"type":"chronicle","tick":4651,"wallTimeMs":1793329298526,"kind":"StallBuilt","text":"Trade came to Southham: Nancy Walker built a stall."}
+{"type":"chronicle","tick":4751,"wallTimeMs":1793329310412,"kind":"NationRelationChange","text":"Southford and Oldwood have become rivals over their border."}
+{"type":"chronicle","tick":4751,"wallTimeMs":1793329310412,"kind":"NationRelationChange","text":"Whiteham and Oldwood have become rivals over their border."}
+{"type":"chronicle","tick":4851,"wallTimeMs":1793329326009,"kind":"SettlementFounded","text":"Blackwood put down roots: Peggy Lewis founded its first settlement."}
+{"type":"status","tick":4963,"wallTimeMs":1793329334541,"text":"Ruth Williams (Stranger): \u0022Who are you? I\u0027m loyal to Oldwood. It\u0027s always nice to have someone to talk to!\u0022"}
+{"type":"chronicle","tick":5051,"wallTimeMs":1793329343093,"kind":"NationCreation","text":"The nation of Fortwood was born, with Grace Lewis at its head."}
+{"type":"status","tick":5083,"wallTimeMs":1793329345707,"text":"There is no one within reach to give a gift to."}
+{"type":"status","tick":5099,"wallTimeMs":1793329346857,"text":"There is no one within reach to give a gift to. (x2)"}
+{"type":"status","tick":5115,"wallTimeMs":1793329348113,"text":"There is no one within reach to give a gift to. (x3)"}
+{"type":"status","tick":5127,"wallTimeMs":1793329349228,"text":"There is no one within reach to give a gift to. (x4)"}
+{"type":"status","tick":5143,"wallTimeMs":1793329350377,"text":"There is no one within reach to give a gift to. (x5)"}
+{"type":"chronicle","tick":5151,"wallTimeMs":1793329350975,"kind":"StallBuilt","text":"Nancy Walker built a market stall in Southham."}
+{"type":"status","tick":5159,"wallTimeMs":1793329351637,"text":"There is no one within reach to give a gift to. (x6)"}
+{"type":"status","tick":5175,"wallTimeMs":1793329353103,"text":"There is no one within reach to give a gift to. (x7)"}
+{"type":"status","tick":5187,"wallTimeMs":1793329354208,"text":"There is no one within reach to give a gift to. (x8)"}
+{"type":"chronicle","tick":5403,"wallTimeMs":1793329391447,"kind":"StallBuilt","text":"Trade came to Whitewood: Hank Davies built a stall."}
+{"type":"chronicle","tick":5403,"wallTimeMs":1793329391447,"kind":"NationCreation","text":"Judy Davies raised a banner and called it Hamletton."}
+{"type":"status","tick":5487,"wallTimeMs":1793329405545,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":5495,"wallTimeMs":1793329408278,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Hank Thomas now knows you by name."}
+{"type":"status","tick":5503,"wallTimeMs":1793329409050,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"chronicle","tick":5503,"wallTimeMs":1793329409050,"kind":"SettlementFounded","text":"Judy Davies laid the first stones of Hamletton."}
+{"type":"chronicle","tick":5503,"wallTimeMs":1793329409050,"kind":"NationRelationChange","text":"Southford and Southham have become rivals over their border."}
+{"type":"status","tick":5515,"wallTimeMs":1793329410111,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":5527,"wallTimeMs":1793329411144,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Hank Thomas now counts you as a friend!"}
+{"type":"chronicle","tick":5527,"wallTimeMs":1793329411144,"kind":"PawnRelationshipIncrease","text":"Hank Thomas of Oldwood now counts you a friend."}
+{"type":"status","tick":5539,"wallTimeMs":1793329412163,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"chronicle","tick":5551,"wallTimeMs":1793329413132,"kind":"SettlementFounded","text":"Fortwood put down roots: Grace Lewis founded its first settlement."}
+{"type":"status","tick":5643,"wallTimeMs":1793329420313,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":5651,"wallTimeMs":1793329421571,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"status","tick":5659,"wallTimeMs":1793329422132,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x5)"}
+{"type":"status","tick":5675,"wallTimeMs":1793329423465,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 Hank Thomas is now loyal to you!"}
+{"type":"chronicle","tick":5675,"wallTimeMs":1793329423465,"kind":"PawnRelationshipIncrease","text":"Hank Thomas of Oldwood would follow you anywhere now."}
+{"type":"status","tick":5683,"wallTimeMs":1793329424068,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":5699,"wallTimeMs":1793329425050,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":5715,"wallTimeMs":1793329425988,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"status","tick":5731,"wallTimeMs":1793329426864,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x5)"}
+{"type":"status","tick":5747,"wallTimeMs":1793329427771,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x6)"}
+{"type":"chronicle","tick":5751,"wallTimeMs":1793329427986,"kind":"StallBuilt","text":"Nancy Walker built a market stall in Southham. The market is now full."}
+{"type":"status","tick":5763,"wallTimeMs":1793329428641,"text":"You gave Hank Thomas 10 coin. Hank Thomas (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x7)"}
+{"type":"status","tick":5799,"wallTimeMs":1793329430818,"text":"Hank Thomas left Oldwood and joined Smallton! Members: 2. Oldwood resents it: relations Neutral (-15)."}
+{"type":"chronicle","tick":5799,"wallTimeMs":1793329430818,"kind":"NationLeave","text":"Hank Thomas left Oldwood."}
+{"type":"chronicle","tick":5799,"wallTimeMs":1793329430818,"kind":"NationJoin","text":"Smallton welcomed Hank Thomas into its ranks."}
+{"type":"screen","tick":5931,"wallTimeMs":1793329439667,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":5935,"wallTimeMs":1793329486672,"from":"NATIONS","to":"WORLD"}
+{"type":"save","tick":6003,"wallTimeMs":1793329540759,"count":1}
+{"type":"chronicle","tick":6003,"wallTimeMs":1793329540759,"kind":"NationRelationChange","text":"Fortham and Westernfield have become rivals over their border."}
+{"type":"screen","tick":6023,"wallTimeMs":1793329545210,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":6023,"wallTimeMs":1793329551332,"text":"Oldwood accepts your gift of 25 coins. Relations: Neutral (-4)."}
+{"type":"screen","tick":6027,"wallTimeMs":1793329566056,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":6103,"wallTimeMs":1793329575539,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":6103,"wallTimeMs":1793329590955,"text":"Conscription: Off proclaimed. It takes effect in 30 seconds."}
+{"type":"screen","tick":6107,"wallTimeMs":1793329598761,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":6139,"wallTimeMs":1793329601400,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":6139,"wallTimeMs":1793329608640,"count":2}
+{"type":"status","tick":6139,"wallTimeMs":1793329608640,"text":"Game saved."}
+{"type":"screen","tick":0,"wallTimeMs":1793329616642,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1793329654164,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1793329665020,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1793329671809,"how":"created","slot":"world-106-20261030-030751","seed":106}
+{"type":"screen","tick":0,"wallTimeMs":1793329671811,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":1,"wallTimeMs":1793329671976,"from":"WORLD","to":"SUCCESSION"}
+{"type":"status","tick":1,"wallTimeMs":1793329671976,"text":"You died. You go on as Xavier Lewis, the longest sworn of your people."}
+{"type":"chronicle","tick":1,"wallTimeMs":1793329671976,"kind":"Statecraft","text":"You died of hunger. Xavier Lewis, the longest sworn of your people, took up the rule of Easternwood."}
+{"type":"player_death","tick":1,"wallTimeMs":1793329671976,"total":1}
+{"type":"screen","tick":1,"wallTimeMs":1793329683763,"from":"SUCCESSION","to":"WORLD"}
+{"type":"screen","tick":105,"wallTimeMs":1793329687715,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":109,"wallTimeMs":1793329702064,"from":"NATIONS","to":"WORLD"}

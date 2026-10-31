@@ -66,7 +66,7 @@ namespace beyondnations {
                     ObjectiveReward.None),
 
                 new Objective("build-stall", "Build a market stall",
-                    s => ObjectiveProgress.countersWith(nationStalls(s) >= 1,
+                    s => ObjectiveProgress.countersWith(stallsForObjective(s) >= 1,
                         "Wood", wood(s), Stall.WOOD_COST_TO_BUILD, "Stone", stone(s), Stall.STONE_COST_TO_BUILD),
                     s => !isLeader(s)
                         ? "Your leader builds stalls; help by bringing wood and stone."
@@ -255,6 +255,26 @@ namespace beyondnations {
                 }
             }
             return stalls;
+        }
+
+        /**
+        * The stalls "Build a market stall" counts. For a leader, only those
+        * in the settlement the player lives in: residents leave building
+        * there to the leader, so those stalls are the player's own work. It
+        * counted every stall of the nation, and a resident's stall completed
+        * the objective while the player still held 2 wood (#423, the 0.6.4
+        * playtest). A member who does not lead is told the leader builds
+        * stalls, so for them any stall of the nation still counts.
+        */
+        public static int stallsForObjective(Simulation simulation) {
+            Player player = simulation.getPlayer();
+            if (isLeader(simulation) && player.getHomeSettlementId() != null) {
+                Settlement home = simulation.getEntityRepository().getEntity(player.getHomeSettlementId()) as Settlement;
+                Nation nation = playerNation(simulation);
+                return home != null && nation != null && nation.getId().Equals(home.getNationId())
+                    ? home.getMarket().getNumStalls() : 0;
+            }
+            return nationStalls(simulation);
         }
 
         /** Buildings across every settlement of the player's nation. */

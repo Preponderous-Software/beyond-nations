@@ -55,6 +55,17 @@ namespace beyondnations {
         }
 
         /// <summary>
+        /// How many items of food the inventory holds, of every kind together.
+        /// </summary>
+        public static int countFood(Inventory inventory) {
+            int total = 0;
+            foreach (ItemType foodType in foodInDescendingEnergyOrder) {
+                total += inventory.getNumItems(foodType);
+            }
+            return total;
+        }
+
+        /// <summary>
         /// The most nourishing food the inventory holds, or null when it holds none.
         /// </summary>
         public static ItemType? getMostNourishingFood(Inventory inventory) {

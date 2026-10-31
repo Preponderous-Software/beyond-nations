@@ -1,0 +1,68 @@
+{
+  "session": "s08",
+  "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
+  "seed": 108,
+  "durationSec": 1786,
+  "outcome": "blocked",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "perf",
+      "title": "Simulation ran at 5-20 tps, so no player world event was offered within a 30-minute session",
+      "detail": "Throughout the session the game ran at 5-20 ticks/s (fps 0-5) instead of 50. The first player event is scheduled 420-660 game seconds in (WorldEvents.FIRST_PLAYER_EVENT_MIN/MAX_SECONDS). After 30 wall minutes the world had reached only tick 28521 (570 game s) and no world_event_offered had appeared, so I could not see a choice sheet, take a choice or judge consequences. Even at full speed a player waits 7-11 minutes for their first event, and nothing on screen hints that events exist or are coming.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 108; Start; Begin; n; gather 50 wood; f at open ground; e; idle and watch pt status / pt events until 30 min wall",
+      "screenshot": "shots/final.png",
+      "tick": 28521
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "An NPC world event shows only as one plain chronicle line and is pushed out of the recent panel almost at once",
+      "detail": "The only world event in the session (tick 19753, 'A bountiful harvest came in across Northernwood, and Isabella Thompson filled the stores with 14 apples.') appeared as an ordinary line in the 5-line recent-chronicle panel. Raid and relation lines pushed it off within about a minute, before I took a screenshot. It had no distinct styling, toast or sound. I expected world events, which the game presents as what changes the world, to stand out from routine news.",
+      "repro": "seed 108; found a settlement; wait to tick ~19753; look at the chronicle panel at ~tick 20200",
+      "screenshot": "shots/npc_event_buried.png",
+      "tick": 20205
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "NPC raid spam floods the chronicle: 76 raid lines in about 9.5 game minutes, 13 of them on one tick",
+      "detail": "On tick 17001 thirteen NationRaid chronicle entries fired at once ('Raiders from Blacktown struck Easternton...', and so on). By tick 28521 there were 76 raids, 71 relation changes and only 1 WorldEvent entry. This noise is what buries the world events and the player's own news in the chronicle.",
+      "repro": "seed 108; play to tick ~17001; pt events 20 / view the chronicle",
+      "screenshot": "shots/late.png",
+      "tick": 17001
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement placement hints use compass directions, but nothing on screen shows which way north is",
+      "detail": "'Too close to ... Open ground lies about 180 to the south-east' and 'Found your settlement outside its borders. Open ground lies about 190 to the south-west.' There is no compass or minimap, so I found a valid spot by trial and error, and it took 4 attempts and about 5 wall minutes. I expected a compass strip, a direction arrow or a minimap marker.",
+      "repro": "seed 108; gather 50 wood near spawn; press f near Easternfield/Oldwood",
+      "screenshot": "shots/no_compass.png",
+      "tick": 5273
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "The floating settlement label is drawn huge behind the HUD and cut off at the top of the screen",
+      "detail": "At my own settlement's well, the world-space label ('0 here, 1/8 residents', later '3 here, 4/8 residents') spans the top of the screen. It sits behind the objective toast, the chronicle and the Settlement Info panels, and its top line is clipped.",
+      "repro": "seed 108; found a settlement; stand at the well",
+      "screenshot": "shots/label_overlap.png",
+      "tick": 6813
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 31.06, "Eat something": 32.02, "Create or join a nation": 33.06, "Found a settlement": 134.02, "Enter your settlement": 139.06},
+    "playerWorldEventsOffered": 0,
+    "npcWorldEventsSeen": 1,
+    "firstNpcWorldEventGameSec": 395.06,
+    "finalTick": 28521,
+    "nationRaidChronicleLines": 76,
+    "typicalTps": 12
+  },
+  "fun": 2,
+  "verdict": "I could not test the world-event choices: with the simulation at 5-20 tps, the first player event (420-660 game s) never arrived within 30 wall minutes. Even at full speed a player waits 7+ minutes with no hint that events exist. The one NPC world event I saw was a single plain chronicle line, drowned within a minute by dozens of raid and relation lines, so as built world events are close to invisible to the player. The early loop (wood, nation, settlement) is clear and well signposted apart from the compass-less placement hints."
+}

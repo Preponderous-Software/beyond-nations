@@ -1,0 +1,90 @@
+{
+  "session": "s07",
+  "goal": "Crafting: find and use every recipe on the crafting screen (C); are tools worth making?",
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
+  "seed": 107,
+  "durationSec": 1130,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Planks and Bricks (2 of 5 recipes) out of reach in ~20 min: Village era needs 10 members; strangers must be Loyal",
+      "detail": "The crafting screen lists 5 recipes. Axe, Pickaxe and Cooked Meat all work out in the world. Planks x2 and Bricks x2 stay 'Locked: The Workshop is unlocked in the Village era.' I founded a nation and a settlement, built a stall, a house and a farm (Buildings 2/2), and the settlement became a 'Village'. Objective 7 then sat at Members 9/10 for over 6000 ticks. Inviting a nearby stranger with R gave 'Abigail Thomas (Stranger): \"I'm loyal to Eastfield.\" (needs Loyal)'. So the two trade-good recipes, which are the main reason to collect a surplus of wood and stone, stay out of reach for a long time, and nothing on the crafting screen shows how far off they are.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 107; gather 50 wood; N; F (outside claimed land); E; B; K K (house); collect stockpile; K K (farm); C -> Planks/Bricks still locked; R on stranger -> needs Loyal",
+      "screenshot": "shots/craft_village.png",
+      "tick": 7300
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Cooked Meat is eaten automatically to top up a few energy points, with no message, while apples are in the bag",
+      "detail": "Between tick ~6000 and ~6240, energy went from 90 to 99 and cooked_meat went from 1 to 0, while I held 13 apples. No status line said I ate anything, and the second cooked meat I made also disappeared later. Neither the Controls screen nor the Inventory has an Eat action, so the 45-energy food is used up on a 9-point top-up. On top of that, the market buys cooked meat for about 85-93, which is less than the ingredients sell for separately (chicken meat ~47-49 plus wood ~55-57). Right now cooking makes the meat worth less and gives the player no say in when it is eaten. I expected the game to eat apples first, or to let me choose when to eat.",
+      "repro": "craft Cooked Meat (C, row 3) with energy ~90 and apples in inventory; wait ~5 game seconds; pt state -> cooked_meat gone, energy 99, no status",
+      "screenshot": "shots/ate_cooked_meat.png",
+      "tick": 6294
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Crafting the axe moves the first objective backwards (Wood 6/10 -> 2/10)",
+      "detail": "Objective 1 'Gather wood' counts the wood you are carrying, not the wood you have gathered. Crafting an axe (4 wood) right after the first tree dropped the progress from 6/10 to 2/10, so the tutorial penalises the very tool it should encourage.",
+      "repro": "chop one tree (E); C; click Axe Craft >; close; objective shows Wood 2/10",
+      "screenshot": "shots/axe_chop.png",
+      "tick": 900
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'The settlement is now a Village!' but crafting says the Workshop needs the Village era (era still Camp)",
+      "detail": "Right after the farm made my settlement a Village, the crafting header read 'In the Village of Smallton, which has no Workshop: the Workshop is unlocked in the Village era.' The era widget still showed 'Era: Camp (1/4)'. The settlement tier and the nation era are both called 'Village', so the message reads as a contradiction, and a player expects planks and bricks to unlock at this point.",
+      "repro": "as in the first finding; after 'Farm built. The settlement is now a Village!' press C",
+      "screenshot": "shots/village_vs_era.png",
+      "tick": 7374
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress text is cut off ('mbers 8/10'), and it shows Village 0/1 while the era widget shows 0/4",
+      "detail": "The 'Reach the Village era' progress bar is clipped on the left and shows 'mbers 8/10 . Buildings 0/2'. The body text says 'Village 0/1', while the era widget just above says 'Village: 0/4'.",
+      "repro": "complete objective 6 (build a stall) and look at the objective panel",
+      "screenshot": "shots/obj7_truncated.png",
+      "tick": 6858
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "First tree's status line says '2 apples' but the floating text and inventory show 1",
+      "detail": "The status said 'Gathered 6 wood and 2 apples from tree.' The floating text said '+1 apple' and the inventory showed Apples: 1. Energy jumped from 84 to 99, so one apple was probably eaten automatically without any message.",
+      "repro": "pt start ... --seed 107; walkto tree; e",
+      "screenshot": "shots/apple_mismatch.png",
+      "tick": 308
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "Very low frame and tick rate (fps 0-5, tps 0.8-22) makes menus slow to respond",
+      "detail": "Measured with several sessions sharing the machine. Era-widget clicks never opened a visible panel, a stockpile click sometimes did nothing on the first try, and game time ran at about 1/3 speed or slower.",
+      "repro": "pt status during play",
+      "screenshot": "shots/settle2.png",
+      "tick": 5100
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 23.04, "Eat something": 24.0, "Create or join a nation": 69.0, "Found a settlement": 112.04, "Enter your settlement": 128.04, "Build a market stall": 134.04},
+    "recipesListed": 5,
+    "recipesUsed": 3,
+    "recipesLocked": 2,
+    "woodPerTreeNoAxe": 6,
+    "woodPerTreeWithAxeAvg": 7.6,
+    "treesChoppedWithAxe": 13,
+    "stonePerRockNoPickaxe": 5,
+    "stonePerRockWithPickaxe": 7,
+    "axePaybackTrees": 2,
+    "pickaxePaybackRocks": 2
+  },
+  "fun": 3,
+  "verdict": "Tools are clearly worth making. The axe adds +3 wood to a base of about 4-6 per tree (about 65% more) and pays back its 4 wood within 2 trees, and the pickaxe adds +2 to a base of 5 stone. The crafting screen explains costs, readiness, uses left and locks very well. But only 3 of 5 recipes can be used early: Planks and Bricks sit behind a Village era that needs 10 loyal members. Cooked Meat is a trap: it is auto-eaten for small top-ups, there is no Eat control, and it sells for less than its ingredients."
+}

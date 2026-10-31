@@ -1,0 +1,485 @@
+{"t": 1793328829382, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "104"]}
+{"t": 1793328849490, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793328849613, "cmd": "key", "args": ["space"]}
+{"t": 1793328850135, "cmd": "await", "args": ["MAIN_MENU", "15"]}
+{"t": 1793328850304, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328851084, "cmd": "await", "args": ["NEW_WORLD", "15"]}
+{"t": 1793328851424, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793328857702, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328878212, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793328878402, "cmd": "wait", "args": ["2"]}
+{"t": 1793328882139, "cmd": "state", "args": []}
+{"t": 1793328883449, "cmd": "shot", "args": ["world0"]}
+{"t": 1793328886525, "cmd": "key", "args": ["n"]}
+{"t": 1793328886978, "cmd": "wait", "args": ["1"]}
+{"t": 1793328888026, "cmd": "state", "args": []}
+{"t": 1793328888071, "cmd": "shot", "args": ["after_n"]}
+{"t": 1793328891803, "cmd": "click", "args": ["425", "388"]}
+{"t": 1793328892559, "cmd": "wait", "args": ["1"]}
+{"t": 1793328893604, "cmd": "key", "args": ["n"]}
+{"t": 1793328894049, "cmd": "wait", "args": ["1"]}
+{"t": 1793328901514, "cmd": "state", "args": []}
+{"t": 1793328901623, "cmd": "events", "args": ["10"]}
+{"t": 1793328901716, "cmd": "shot", "args": ["after_n2"]}
+{"t": 1793328959105, "cmd": "key", "args": ["o"]}
+{"t": 1793328959902, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793328960054, "cmd": "shot", "args": ["nations0"]}
+{"t": 1793328960425, "cmd": "state", "args": ["--full"]}
+{"t": 1793328968739, "cmd": "key", "args": ["Escape"]}
+{"t": 1793328969315, "cmd": "state", "args": ["--full"]}
+{"t": 1793328974159, "cmd": "state", "args": []}
+{"t": 1793328974254, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793328994055, "cmd": "key", "args": ["e"]}
+{"t": 1793328994612, "cmd": "wait", "args": ["1"]}
+{"t": 1793328995793, "cmd": "key", "args": ["e"]}
+{"t": 1793328996357, "cmd": "wait", "args": ["1"]}
+{"t": 1793328997409, "cmd": "key", "args": ["e"]}
+{"t": 1793328997878, "cmd": "wait", "args": ["1"]}
+{"t": 1793328998948, "cmd": "key", "args": ["e"]}
+{"t": 1793328999404, "cmd": "wait", "args": ["1"]}
+{"t": 1793329000529, "cmd": "key", "args": ["e"]}
+{"t": 1793329001022, "cmd": "wait", "args": ["1"]}
+{"t": 1793329002096, "cmd": "key", "args": ["e"]}
+{"t": 1793329002608, "cmd": "wait", "args": ["1"]}
+{"t": 1793329003734, "cmd": "state", "args": []}
+{"t": 1793329003825, "cmd": "events", "args": ["10"]}
+{"t": 1793329006895, "cmd": "key", "args": ["o"]}
+{"t": 1793329007445, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329007564, "cmd": "wait", "args": ["1"]}
+{"t": 1793329008661, "cmd": "shot", "args": ["nations1"]}
+{"t": 1793329009218, "cmd": "state", "args": []}
+{"t": 1793329013086, "cmd": "click", "args": ["301", "254"]}
+{"t": 1793329013936, "cmd": "wait", "args": ["1"]}
+{"t": 1793329015075, "cmd": "shot", "args": ["ally_refused"]}
+{"t": 1793329015395, "cmd": "events", "args": ["4"]}
+{"t": 1793329019711, "cmd": "note", "args": ["--shot", "ally_refused_noenvoy", "Ally at Neutral(0) refused at tick 1037: status 'Southton declines: ... alliance needs +30. Gifts help.' Row buttons remain; no envoy sent (correct)."]}
+{"t": 1793329020149, "cmd": "click", "args": ["123", "254"]}
+{"t": 1793329021004, "cmd": "wait", "args": ["1"]}
+{"t": 1793329022142, "cmd": "shot", "args": ["tribute1"]}
+{"t": 1793329022518, "cmd": "events", "args": ["3"]}
+{"t": 1793329022639, "cmd": "state", "args": []}
+{"t": 1793329027372, "cmd": "click", "args": ["123", "254"]}
+{"t": 1793329028258, "cmd": "wait", "args": ["1"]}
+{"t": 1793329029391, "cmd": "shot", "args": ["tribute_blocked"]}
+{"t": 1793329029712, "cmd": "events", "args": ["2"]}
+{"t": 1793329030060, "cmd": "state", "args": []}
+{"t": 1793329037369, "cmd": "note", "args": ["--shot", "envoy_blocked_buttons_live", "Tribute accepted at tick 1037 (coins 199->174, Neutral +10); row now reads 'envoy back in 20 s'. Clicking Tribute again at tick 1037 is blocked with clear status 'Your envoy to Southton is still on the road... 20 seconds of play'; coins unchanged. But all four buttons still look enabled (no greyed-out state or tooltip) while the envoy is away."]}
+{"t": 1793329040150, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329040690, "cmd": "wait", "args": ["1"]}
+{"t": 1793329041749, "cmd": "shot", "args": ["world_after_tribute"]}
+{"t": 1793329042140, "cmd": "state", "args": []}
+{"t": 1793329046196, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329055680, "cmd": "key", "args": ["e"]}
+{"t": 1793329056249, "cmd": "wait", "args": ["2"]}
+{"t": 1793329058389, "cmd": "state", "args": []}
+{"t": 1793329058537, "cmd": "shot", "args": ["world_mid"]}
+{"t": 1793329063297, "cmd": "key", "args": ["o"]}
+{"t": 1793329063841, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329064135, "cmd": "wait", "args": ["1"]}
+{"t": 1793329065204, "cmd": "shot", "args": ["nations_countdown"]}
+{"t": 1793329065391, "cmd": "state", "args": []}
+{"t": 1793329069991, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329070479, "cmd": "wait", "args": ["3"]}
+{"t": 1793329073600, "cmd": "state", "args": []}
+{"t": 1793329073736, "cmd": "wait", "args": ["3"]}
+{"t": 1793329076813, "cmd": "state", "args": []}
+{"t": 1793329076962, "cmd": "wait", "args": ["3"]}
+{"t": 1793329081237, "cmd": "state", "args": []}
+{"t": 1793329081374, "cmd": "wait", "args": ["3"]}
+{"t": 1793329084526, "cmd": "state", "args": []}
+{"t": 1793329084658, "cmd": "wait", "args": ["3"]}
+{"t": 1793329087792, "cmd": "state", "args": []}
+{"t": 1793329087945, "cmd": "wait", "args": ["3"]}
+{"t": 1793329091031, "cmd": "state", "args": []}
+{"t": 1793329091121, "cmd": "wait", "args": ["3"]}
+{"t": 1793329094236, "cmd": "state", "args": []}
+{"t": 1793329094378, "cmd": "wait", "args": ["3"]}
+{"t": 1793329097519, "cmd": "state", "args": []}
+{"t": 1793329097659, "cmd": "state", "args": []}
+{"t": 1793329097784, "cmd": "events", "args": ["8"]}
+{"t": 1793329102315, "cmd": "wait", "args": ["2"]}
+{"t": 1793329104426, "cmd": "state", "args": []}
+{"t": 1793329104542, "cmd": "wait", "args": ["2"]}
+{"t": 1793329106720, "cmd": "state", "args": []}
+{"t": 1793329106816, "cmd": "shot", "args": ["world_after_wait"]}
+{"t": 1793329107196, "cmd": "key", "args": ["o"]}
+{"t": 1793329108219, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329108335, "cmd": "wait", "args": ["1"]}
+{"t": 1793329109527, "cmd": "shot", "args": ["nations_3"]}
+{"t": 1793329110096, "cmd": "state", "args": []}
+{"t": 1793329116611, "cmd": "click", "args": ["123", "385"]}
+{"t": 1793329117479, "cmd": "wait", "args": ["1"]}
+{"t": 1793329118599, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329119504, "cmd": "wait", "args": ["1"]}
+{"t": 1793329120609, "cmd": "click", "args": ["123", "254"]}
+{"t": 1793329121487, "cmd": "wait", "args": ["1"]}
+{"t": 1793329122631, "cmd": "shot", "args": ["three_envoys"]}
+{"t": 1793329123001, "cmd": "events", "args": ["5"]}
+{"t": 1793329123115, "cmd": "state", "args": []}
+{"t": 1793329130013, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329130805, "cmd": "wait", "args": ["1"]}
+{"t": 1793329131916, "cmd": "shot", "args": ["denounce_bigford"]}
+{"t": 1793329132235, "cmd": "events", "args": ["2"]}
+{"t": 1793329132328, "cmd": "state", "args": []}
+{"t": 1793329138835, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329139679, "cmd": "wait", "args": ["1"]}
+{"t": 1793329140822, "cmd": "shot", "args": ["denounce_bigford2"]}
+{"t": 1793329141222, "cmd": "events", "args": ["2"]}
+{"t": 1793329147908, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329148810, "cmd": "wait", "args": ["0.5"]}
+{"t": 1793329149561, "cmd": "shot", "args": ["denounce_bigford3"]}
+{"t": 1793329149856, "cmd": "events", "args": ["3"]}
+{"t": 1793329152963, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329153880, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329154630, "cmd": "wait", "args": ["0.5"]}
+{"t": 1793329155210, "cmd": "events", "args": ["4"]}
+{"t": 1793329160659, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329161485, "cmd": "wait", "args": ["0.5"]}
+{"t": 1793329162080, "cmd": "shot", "args": ["denounce_after"]}
+{"t": 1793329165345, "cmd": "events", "args": ["3"]}
+{"t": 1793329185886, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329186709, "cmd": "click", "args": ["835", "319"]}
+{"t": 1793329187569, "cmd": "wait", "args": ["0.5"]}
+{"t": 1793329188198, "cmd": "events", "args": ["3"]}
+{"t": 1793329188314, "cmd": "shot", "args": ["denounce_blocked"]}
+{"t": 1793329198804, "cmd": "note", "args": ["--shot", "rows_reorder_misclick", "After denouncing Bigford (tick 2093, wall 1793329153863) the Nations list re-sorted (enemies first): Bigford jumped from row 2 to row 1, Farmwood moved into row 2. My next Denounce clicks at the same spot (835,319) armed and then confirmed against Farmwood instead. It was only stopped by Farmwood's envoy being away. Also, arming ('Click Denounce again to denounce Farmwood') is allowed on a nation whose envoy is away; the envoy block only shows on the confirm click."]}
+{"t": 1793329199103, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329199717, "cmd": "wait", "args": ["1"]}
+{"t": 1793329200891, "cmd": "state", "args": []}
+{"t": 1793329206873, "cmd": "shot", "args": ["world_coins"]}
+{"t": 1793329207075, "cmd": "events", "args": ["40"]}
+{"t": 1793329213538, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793329235050, "cmd": "key", "args": ["e"]}
+{"t": 1793329235736, "cmd": "wait", "args": ["2"]}
+{"t": 1793329237853, "cmd": "state", "args": []}
+{"t": 1793329238113, "cmd": "wait", "args": ["2"]}
+{"t": 1793329240227, "cmd": "state", "args": []}
+{"t": 1793329240368, "cmd": "wait", "args": ["2"]}
+{"t": 1793329242553, "cmd": "state", "args": []}
+{"t": 1793329242968, "cmd": "wait", "args": ["2"]}
+{"t": 1793329245041, "cmd": "state", "args": []}
+{"t": 1793329245270, "cmd": "wait", "args": ["2"]}
+{"t": 1793329247595, "cmd": "state", "args": []}
+{"t": 1793329247880, "cmd": "wait", "args": ["2"]}
+{"t": 1793329250206, "cmd": "state", "args": []}
+{"t": 1793329250461, "cmd": "wait", "args": ["2"]}
+{"t": 1793329252789, "cmd": "state", "args": []}
+{"t": 1793329253026, "cmd": "wait", "args": ["2"]}
+{"t": 1793329255369, "cmd": "state", "args": []}
+{"t": 1793329255725, "cmd": "wait", "args": ["2"]}
+{"t": 1793329257845, "cmd": "state", "args": []}
+{"t": 1793329257992, "cmd": "wait", "args": ["2"]}
+{"t": 1793329260137, "cmd": "state", "args": []}
+{"t": 1793329260266, "cmd": "shot", "args": ["hud_stale"]}
+{"t": 1793329260970, "cmd": "state", "args": []}
+{"t": 1793329270946, "cmd": "wait", "args": ["2"]}
+{"t": 1793329273196, "cmd": "state", "args": []}
+{"t": 1793329273565, "cmd": "wait", "args": ["2"]}
+{"t": 1793329275764, "cmd": "state", "args": []}
+{"t": 1793329276036, "cmd": "wait", "args": ["2"]}
+{"t": 1793329278184, "cmd": "state", "args": []}
+{"t": 1793329278329, "cmd": "wait", "args": ["2"]}
+{"t": 1793329280475, "cmd": "state", "args": []}
+{"t": 1793329280571, "cmd": "wait", "args": ["2"]}
+{"t": 1793329282738, "cmd": "state", "args": []}
+{"t": 1793329282893, "cmd": "wait", "args": ["2"]}
+{"t": 1793329285161, "cmd": "state", "args": []}
+{"t": 1793329285336, "cmd": "wait", "args": ["2"]}
+{"t": 1793329287548, "cmd": "state", "args": []}
+{"t": 1793329287758, "cmd": "wait", "args": ["2"]}
+{"t": 1793329289976, "cmd": "state", "args": []}
+{"t": 1793329290153, "cmd": "wait", "args": ["2"]}
+{"t": 1793329292476, "cmd": "state", "args": []}
+{"t": 1793329292722, "cmd": "wait", "args": ["2"]}
+{"t": 1793329294974, "cmd": "state", "args": []}
+{"t": 1793329295318, "cmd": "status", "args": []}
+{"t": 1793329295521, "cmd": "key", "args": ["o"]}
+{"t": 1793329296397, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329296593, "cmd": "wait", "args": ["1"]}
+{"t": 1793329297853, "cmd": "shot", "args": ["nations_back"]}
+{"t": 1793329298806, "cmd": "state", "args": []}
+{"t": 1793329308747, "cmd": "click", "args": ["657", "254"]}
+{"t": 1793329309737, "cmd": "click", "args": ["657", "254"]}
+{"t": 1793329310794, "cmd": "wait", "args": ["1"]}
+{"t": 1793329312211, "cmd": "events", "args": ["4"]}
+{"t": 1793329312398, "cmd": "shot", "args": ["war_bigford"]}
+{"t": 1793329317766, "cmd": "click", "args": ["479", "254"]}
+{"t": 1793329318716, "cmd": "wait", "args": ["1"]}
+{"t": 1793329321123, "cmd": "events", "args": ["2"]}
+{"t": 1793329321250, "cmd": "shot", "args": ["peace_blocked"]}
+{"t": 1793329321843, "cmd": "click", "args": ["123", "385"]}
+{"t": 1793329322839, "cmd": "wait", "args": ["1"]}
+{"t": 1793329323962, "cmd": "events", "args": ["1"]}
+{"t": 1793329324073, "cmd": "shot", "args": ["southton_tribute3"]}
+{"t": 1793329334071, "cmd": "click", "args": ["479", "254"]}
+{"t": 1793329334979, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329336613, "cmd": "events", "args": ["3"]}
+{"t": 1793329336701, "cmd": "shot", "args": ["peace_blocked2"]}
+{"t": 1793329344015, "cmd": "note", "args": ["--shot", "peace_blocked2", "War on Bigford at tick 3105 ('Bigford laughs... 4 to your 1'), row reads 'Hostile (-60), at war, envoy back in 20 s'. Peace right after is blocked with the envoy message. Southton tribute at the same tick 3105 still works (+28 Friendly): envoys are per nation."]}
+{"t": 1793329344343, "cmd": "click", "args": ["880", "196"]}
+{"t": 1793329345222, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329346850, "cmd": "shot", "args": ["scrolled"]}
+{"t": 1793329356083, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329356547, "cmd": "wait", "args": ["1"]}
+{"t": 1793329357649, "cmd": "shot", "args": ["hud_after_close"]}
+{"t": 1793329357947, "cmd": "wait", "args": ["2"]}
+{"t": 1793329360039, "cmd": "state", "args": []}
+{"t": 1793329360113, "cmd": "wait", "args": ["2"]}
+{"t": 1793329362791, "cmd": "state", "args": []}
+{"t": 1793329362985, "cmd": "wait", "args": ["2"]}
+{"t": 1793329372445, "cmd": "state", "args": []}
+{"t": 1793329372920, "cmd": "wait", "args": ["2"]}
+{"t": 1793329375223, "cmd": "state", "args": []}
+{"t": 1793329375396, "cmd": "wait", "args": ["2"]}
+{"t": 1793329377664, "cmd": "state", "args": []}
+{"t": 1793329377879, "cmd": "wait", "args": ["2"]}
+{"t": 1793329380051, "cmd": "state", "args": []}
+{"t": 1793329380199, "cmd": "wait", "args": ["2"]}
+{"t": 1793329382564, "cmd": "state", "args": []}
+{"t": 1793329382759, "cmd": "wait", "args": ["2"]}
+{"t": 1793329384900, "cmd": "state", "args": []}
+{"t": 1793329385110, "cmd": "wait", "args": ["2"]}
+{"t": 1793329387261, "cmd": "state", "args": []}
+{"t": 1793329387434, "cmd": "wait", "args": ["2"]}
+{"t": 1793329390699, "cmd": "state", "args": []}
+{"t": 1793329390834, "cmd": "wait", "args": ["2"]}
+{"t": 1793329392955, "cmd": "state", "args": []}
+{"t": 1793329393138, "cmd": "wait", "args": ["2"]}
+{"t": 1793329396569, "cmd": "state", "args": []}
+{"t": 1793329396739, "cmd": "wait", "args": ["2"]}
+{"t": 1793329399289, "cmd": "state", "args": []}
+{"t": 1793329399436, "cmd": "wait", "args": ["2"]}
+{"t": 1793329401533, "cmd": "state", "args": []}
+{"t": 1793329401592, "cmd": "wait", "args": ["2"]}
+{"t": 1793329404930, "cmd": "state", "args": []}
+{"t": 1793329405093, "cmd": "wait", "args": ["2"]}
+{"t": 1793329407128, "cmd": "state", "args": []}
+{"t": 1793329407166, "cmd": "wait", "args": ["2"]}
+{"t": 1793329409310, "cmd": "state", "args": []}
+{"t": 1793329409485, "cmd": "wait", "args": ["2"]}
+{"t": 1793329411671, "cmd": "state", "args": []}
+{"t": 1793329411856, "cmd": "wait", "args": ["2"]}
+{"t": 1793329413997, "cmd": "state", "args": []}
+{"t": 1793329414081, "cmd": "wait", "args": ["2"]}
+{"t": 1793329416184, "cmd": "state", "args": []}
+{"t": 1793329416306, "cmd": "wait", "args": ["2"]}
+{"t": 1793329418428, "cmd": "state", "args": []}
+{"t": 1793329418535, "cmd": "wait", "args": ["2"]}
+{"t": 1793329420636, "cmd": "state", "args": []}
+{"t": 1793329420744, "cmd": "wait", "args": ["2"]}
+{"t": 1793329422834, "cmd": "state", "args": []}
+{"t": 1793329422918, "cmd": "wait", "args": ["2"]}
+{"t": 1793329425047, "cmd": "state", "args": []}
+{"t": 1793329425166, "cmd": "wait", "args": ["2"]}
+{"t": 1793329427257, "cmd": "state", "args": []}
+{"t": 1793329427370, "cmd": "wait", "args": ["2"]}
+{"t": 1793329429491, "cmd": "state", "args": []}
+{"t": 1793329429588, "cmd": "wait", "args": ["2"]}
+{"t": 1793329431710, "cmd": "state", "args": []}
+{"t": 1793329431835, "cmd": "wait", "args": ["2"]}
+{"t": 1793329433930, "cmd": "state", "args": []}
+{"t": 1793329434025, "cmd": "wait", "args": ["2"]}
+{"t": 1793329436203, "cmd": "state", "args": []}
+{"t": 1793329436356, "cmd": "wait", "args": ["2"]}
+{"t": 1793329438519, "cmd": "state", "args": []}
+{"t": 1793329438667, "cmd": "wait", "args": ["2"]}
+{"t": 1793329440866, "cmd": "state", "args": []}
+{"t": 1793329440954, "cmd": "wait", "args": ["2"]}
+{"t": 1793329443057, "cmd": "state", "args": []}
+{"t": 1793329443190, "cmd": "wait", "args": ["2"]}
+{"t": 1793329445299, "cmd": "state", "args": []}
+{"t": 1793329445398, "cmd": "wait", "args": ["2"]}
+{"t": 1793329448333, "cmd": "state", "args": []}
+{"t": 1793329448491, "cmd": "shot", "args": ["hud_later"]}
+{"t": 1793329448797, "cmd": "state", "args": []}
+{"t": 1793329448886, "cmd": "events", "args": ["10"]}
+{"t": 1793329457642, "cmd": "key", "args": ["o"]}
+{"t": 1793329458191, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329458563, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329460169, "cmd": "shot", "args": ["nations_r3"]}
+{"t": 1793329460523, "cmd": "state", "args": []}
+{"t": 1793329467290, "cmd": "click", "args": ["301", "385"]}
+{"t": 1793329468076, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329469655, "cmd": "events", "args": ["1"]}
+{"t": 1793329469747, "cmd": "shot", "args": ["ally28_refused"]}
+{"t": 1793329486061, "cmd": "click", "args": ["123", "385"]}
+{"t": 1793329487001, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329488721, "cmd": "events", "args": ["2"]}
+{"t": 1793329488921, "cmd": "shot", "args": ["tribute_after_refuse"]}
+{"t": 1793329547250, "cmd": "note", "args": ["--shot", "tribute_after_refuse", "Refused offer sends no envoy (2nd check): Ally to Southton at Friendly (+28) declined at tick 4193; Tribute to Southton right after, same tick 4193, accepted (+38) and only then 'envoy back in 20 s' appears."]}
+{"t": 1793329550947, "cmd": "click", "args": ["793", "196"]}
+{"t": 1793329551704, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329553251, "cmd": "shot", "args": ["up"]}
+{"t": 1793329574638, "cmd": "click", "args": ["793", "196"]}
+{"t": 1793329575461, "cmd": "wait", "args": ["2"]}
+{"t": 1793329577672, "cmd": "shot", "args": ["up2"]}
+{"t": 1793329584659, "cmd": "click", "args": ["479", "254"]}
+{"t": 1793329585609, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329587216, "cmd": "events", "args": ["2"]}
+{"t": 1793329587340, "cmd": "shot", "args": ["peace_try"]}
+{"t": 1793329593618, "cmd": "click", "args": ["123", "254"]}
+{"t": 1793329594447, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329596027, "cmd": "events", "args": ["3"]}
+{"t": 1793329596112, "cmd": "shot", "args": ["bigford_truce"]}
+{"t": 1793329596421, "cmd": "state", "args": []}
+{"t": 1793329603464, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329604059, "cmd": "wait", "args": ["2"]}
+{"t": 1793329606153, "cmd": "state", "args": []}
+{"t": 1793329606245, "cmd": "wait", "args": ["2"]}
+{"t": 1793329608418, "cmd": "state", "args": []}
+{"t": 1793329608639, "cmd": "wait", "args": ["2"]}
+{"t": 1793329610832, "cmd": "state", "args": []}
+{"t": 1793329611030, "cmd": "wait", "args": ["2"]}
+{"t": 1793329613129, "cmd": "state", "args": []}
+{"t": 1793329613223, "cmd": "wait", "args": ["2"]}
+{"t": 1793329615300, "cmd": "state", "args": []}
+{"t": 1793329615408, "cmd": "wait", "args": ["2"]}
+{"t": 1793329617516, "cmd": "state", "args": []}
+{"t": 1793329617610, "cmd": "wait", "args": ["2"]}
+{"t": 1793329619722, "cmd": "state", "args": []}
+{"t": 1793329619802, "cmd": "wait", "args": ["2"]}
+{"t": 1793329621886, "cmd": "state", "args": []}
+{"t": 1793329621989, "cmd": "wait", "args": ["2"]}
+{"t": 1793329624132, "cmd": "state", "args": []}
+{"t": 1793329624248, "cmd": "wait", "args": ["2"]}
+{"t": 1793329626352, "cmd": "state", "args": []}
+{"t": 1793329626444, "cmd": "wait", "args": ["2"]}
+{"t": 1793329628587, "cmd": "state", "args": []}
+{"t": 1793329628672, "cmd": "wait", "args": ["2"]}
+{"t": 1793329630839, "cmd": "state", "args": []}
+{"t": 1793329630967, "cmd": "wait", "args": ["2"]}
+{"t": 1793329633118, "cmd": "state", "args": []}
+{"t": 1793329633223, "cmd": "wait", "args": ["2"]}
+{"t": 1793329635362, "cmd": "state", "args": []}
+{"t": 1793329635535, "cmd": "wait", "args": ["2"]}
+{"t": 1793329637639, "cmd": "state", "args": []}
+{"t": 1793329637765, "cmd": "wait", "args": ["2"]}
+{"t": 1793329639864, "cmd": "state", "args": []}
+{"t": 1793329639955, "cmd": "wait", "args": ["2"]}
+{"t": 1793329642095, "cmd": "state", "args": []}
+{"t": 1793329642199, "cmd": "wait", "args": ["2"]}
+{"t": 1793329644308, "cmd": "state", "args": []}
+{"t": 1793329644473, "cmd": "wait", "args": ["2"]}
+{"t": 1793329646590, "cmd": "state", "args": []}
+{"t": 1793329646721, "cmd": "wait", "args": ["2"]}
+{"t": 1793329648822, "cmd": "state", "args": []}
+{"t": 1793329648953, "cmd": "wait", "args": ["2"]}
+{"t": 1793329651132, "cmd": "state", "args": []}
+{"t": 1793329651261, "cmd": "wait", "args": ["2"]}
+{"t": 1793329653381, "cmd": "state", "args": []}
+{"t": 1793329653520, "cmd": "wait", "args": ["2"]}
+{"t": 1793329655681, "cmd": "state", "args": []}
+{"t": 1793329655805, "cmd": "wait", "args": ["2"]}
+{"t": 1793329657961, "cmd": "state", "args": []}
+{"t": 1793329658089, "cmd": "wait", "args": ["2"]}
+{"t": 1793329660236, "cmd": "state", "args": []}
+{"t": 1793329660418, "cmd": "wait", "args": ["2"]}
+{"t": 1793329663601, "cmd": "state", "args": []}
+{"t": 1793329663726, "cmd": "events", "args": ["10"]}
+{"t": 1793329663853, "cmd": "key", "args": ["o"]}
+{"t": 1793329664424, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329664777, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329666378, "cmd": "shot", "args": ["nations_r4"]}
+{"t": 1793329671841, "cmd": "click", "args": ["880", "196"]}
+{"t": 1793329672605, "cmd": "wait", "args": ["2"]}
+{"t": 1793329674679, "cmd": "shot", "args": ["down4"]}
+{"t": 1793329681292, "cmd": "click", "args": ["301", "385"]}
+{"t": 1793329682065, "cmd": "wait", "args": ["2"]}
+{"t": 1793329684157, "cmd": "events", "args": ["3"]}
+{"t": 1793329684233, "cmd": "shot", "args": ["ally_ok"]}
+{"t": 1793329684502, "cmd": "state", "args": []}
+{"t": 1793329692444, "cmd": "note", "args": ["--shot", "ally_ok", "Alliance threshold is inconsistent: header says 'An alliance needs +30'; at tick 4193 (Southton 3 members vs my 1, Friendly +28) the refusal said 'an alliance needs +30. Gifts help', so I paid 25 coins to reach +38. At tick 5237 (+41) Southton now declines: 'they are 3 to your 1 and want relations of +60 before taking on so small a partner'. The size rule was hidden by the first message."]}
+{"t": 1793329692646, "cmd": "click", "args": ["123", "385"]}
+{"t": 1793329693439, "cmd": "wait", "args": ["2"]}
+{"t": 1793329695528, "cmd": "events", "args": ["1"]}
+{"t": 1793329695642, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329701422, "cmd": "wait", "args": ["2"]}
+{"t": 1793329703546, "cmd": "state", "args": []}
+{"t": 1793329703614, "cmd": "wait", "args": ["2"]}
+{"t": 1793329705714, "cmd": "state", "args": []}
+{"t": 1793329705830, "cmd": "wait", "args": ["2"]}
+{"t": 1793329707886, "cmd": "state", "args": []}
+{"t": 1793329707938, "cmd": "wait", "args": ["2"]}
+{"t": 1793329710033, "cmd": "state", "args": []}
+{"t": 1793329710115, "cmd": "wait", "args": ["2"]}
+{"t": 1793329712180, "cmd": "state", "args": []}
+{"t": 1793329712239, "cmd": "wait", "args": ["2"]}
+{"t": 1793329714330, "cmd": "state", "args": []}
+{"t": 1793329714404, "cmd": "wait", "args": ["2"]}
+{"t": 1793329716485, "cmd": "state", "args": []}
+{"t": 1793329716561, "cmd": "wait", "args": ["2"]}
+{"t": 1793329718639, "cmd": "state", "args": []}
+{"t": 1793329718703, "cmd": "wait", "args": ["2"]}
+{"t": 1793329720782, "cmd": "state", "args": []}
+{"t": 1793329720863, "cmd": "wait", "args": ["2"]}
+{"t": 1793329722983, "cmd": "state", "args": []}
+{"t": 1793329723085, "cmd": "wait", "args": ["2"]}
+{"t": 1793329725174, "cmd": "state", "args": []}
+{"t": 1793329725243, "cmd": "wait", "args": ["2"]}
+{"t": 1793329727321, "cmd": "state", "args": []}
+{"t": 1793329727386, "cmd": "wait", "args": ["2"]}
+{"t": 1793329729451, "cmd": "state", "args": []}
+{"t": 1793329729526, "cmd": "wait", "args": ["2"]}
+{"t": 1793329731595, "cmd": "state", "args": []}
+{"t": 1793329731661, "cmd": "wait", "args": ["2"]}
+{"t": 1793329733745, "cmd": "state", "args": []}
+{"t": 1793329733848, "cmd": "wait", "args": ["2"]}
+{"t": 1793329735936, "cmd": "state", "args": []}
+{"t": 1793329736005, "cmd": "key", "args": ["o"]}
+{"t": 1793329736495, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329736571, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329738163, "cmd": "shot", "args": ["nations_r5"]}
+{"t": 1793329744587, "cmd": "click", "args": ["123", "385"]}
+{"t": 1793329745336, "cmd": "wait", "args": ["2"]}
+{"t": 1793329747403, "cmd": "events", "args": ["1"]}
+{"t": 1793329747479, "cmd": "state", "args": []}
+{"t": 1793329747565, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329748071, "cmd": "wait", "args": ["2"]}
+{"t": 1793329750145, "cmd": "state", "args": []}
+{"t": 1793329750221, "cmd": "wait", "args": ["2"]}
+{"t": 1793329752316, "cmd": "state", "args": []}
+{"t": 1793329752409, "cmd": "wait", "args": ["2"]}
+{"t": 1793329754482, "cmd": "state", "args": []}
+{"t": 1793329754568, "cmd": "wait", "args": ["2"]}
+{"t": 1793329756659, "cmd": "state", "args": []}
+{"t": 1793329756735, "cmd": "wait", "args": ["2"]}
+{"t": 1793329758807, "cmd": "state", "args": []}
+{"t": 1793329758875, "cmd": "wait", "args": ["2"]}
+{"t": 1793329760982, "cmd": "state", "args": []}
+{"t": 1793329761119, "cmd": "wait", "args": ["2"]}
+{"t": 1793329763183, "cmd": "state", "args": []}
+{"t": 1793329763264, "cmd": "wait", "args": ["2"]}
+{"t": 1793329765358, "cmd": "state", "args": []}
+{"t": 1793329765445, "cmd": "wait", "args": ["2"]}
+{"t": 1793329767523, "cmd": "state", "args": []}
+{"t": 1793329767616, "cmd": "wait", "args": ["2"]}
+{"t": 1793329769703, "cmd": "state", "args": []}
+{"t": 1793329769773, "cmd": "wait", "args": ["2"]}
+{"t": 1793329771841, "cmd": "state", "args": []}
+{"t": 1793329771929, "cmd": "wait", "args": ["2"]}
+{"t": 1793329774000, "cmd": "state", "args": []}
+{"t": 1793329774066, "cmd": "wait", "args": ["2"]}
+{"t": 1793329776127, "cmd": "state", "args": []}
+{"t": 1793329776191, "cmd": "wait", "args": ["2"]}
+{"t": 1793329778278, "cmd": "state", "args": []}
+{"t": 1793329778386, "cmd": "wait", "args": ["2"]}
+{"t": 1793329780476, "cmd": "state", "args": []}
+{"t": 1793329780549, "cmd": "wait", "args": ["2"]}
+{"t": 1793329782639, "cmd": "state", "args": []}
+{"t": 1793329782716, "cmd": "wait", "args": ["2"]}
+{"t": 1793329784785, "cmd": "state", "args": []}
+{"t": 1793329784854, "cmd": "key", "args": ["o"]}
+{"t": 1793329785514, "cmd": "await", "args": ["NATIONS", "10"]}
+{"t": 1793329785628, "cmd": "wait", "args": ["1.5"]}
+{"t": 1793329787204, "cmd": "shot", "args": ["nations_r6"]}
+{"t": 1793329792414, "cmd": "click", "args": ["301", "385"]}
+{"t": 1793329793230, "cmd": "wait", "args": ["2"]}
+{"t": 1793329795315, "cmd": "events", "args": ["3"]}
+{"t": 1793329795403, "cmd": "state", "args": []}
+{"t": 1793329795524, "cmd": "shot", "args": ["allied"]}
+{"t": 1793329803277, "cmd": "note", "args": ["--shot", "allied", "Alliance with Southton formed at tick 7345 at Friendly (+70) after tributes at 1037, 2093, 4193, 5237, 6289. Row: 'Allied (+70), envoy back in 20 s'; Ally button removed. List footer 'Nations 2-4 of 4 ... Scroll for more.' still says scroll for more at the end of the list."]}
+{"t": 1793329803518, "cmd": "events", "args": ["200"]}
+{"t": 1793329803588, "cmd": "stop", "args": []}
+{"t": 1793329833304, "cmd": "report", "args": []}
+{"t": 1793329836598, "cmd": "report", "args": []}
+{"t": 1793330655332, "cmd": "stop", "args": []}

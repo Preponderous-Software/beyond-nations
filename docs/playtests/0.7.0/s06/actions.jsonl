@@ -1,0 +1,184 @@
+{"t": 1793328829348, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "106"]}
+{"t": 1793328836712, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793328836855, "cmd": "key", "args": ["space"]}
+{"t": 1793328837383, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793328837545, "cmd": "shot", "args": ["menu"]}
+{"t": 1793328849499, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328850307, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793328850434, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793328857840, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328858593, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1793328879024, "cmd": "wait", "args": ["2"]}
+{"t": 1793328881074, "cmd": "shot", "args": ["world0"]}
+{"t": 1793328881217, "cmd": "state", "args": []}
+{"t": 1793328886004, "cmd": "click", "args": ["425", "388"]}
+{"t": 1793328886709, "cmd": "key", "args": ["n"]}
+{"t": 1793328887156, "cmd": "wait", "args": ["2"]}
+{"t": 1793328889194, "cmd": "shot", "args": ["nation1"]}
+{"t": 1793328889313, "cmd": "state", "args": []}
+{"t": 1793328893806, "cmd": "click", "args": ["425", "388"]}
+{"t": 1793328901514, "cmd": "wait", "args": ["1"]}
+{"t": 1793328902594, "cmd": "key", "args": ["n"]}
+{"t": 1793328903077, "cmd": "wait", "args": ["2"]}
+{"t": 1793328905143, "cmd": "shot", "args": ["nation2"]}
+{"t": 1793328926902, "cmd": "state", "args": []}
+{"t": 1793328926961, "cmd": "events", "args": ["10"]}
+{"t": 1793328963269, "cmd": "key", "args": ["o"]}
+{"t": 1793328963822, "cmd": "wait", "args": ["3"]}
+{"t": 1793328967015, "cmd": "shot", "args": ["nations1"]}
+{"t": 1793328967381, "cmd": "state", "args": []}
+{"t": 1793328967522, "cmd": "status", "args": []}
+{"t": 1793328972646, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793328973619, "cmd": "wait", "args": ["2"]}
+{"t": 1793328975752, "cmd": "shot", "args": ["laws1"]}
+{"t": 1793328976034, "cmd": "state", "args": ["--full"]}
+{"t": 1793328980373, "cmd": "click", "args": ["225", "175"]}
+{"t": 1793328981269, "cmd": "wait", "args": ["2"]}
+{"t": 1793328983387, "cmd": "click", "args": ["225", "262"]}
+{"t": 1793328984187, "cmd": "wait", "args": ["2"]}
+{"t": 1793328986297, "cmd": "shot", "args": ["laws2"]}
+{"t": 1793328986685, "cmd": "events", "args": ["5"]}
+{"t": 1793328991993, "cmd": "key", "args": ["Escape"]}
+{"t": 1793328992536, "cmd": "wait", "args": ["40"]}
+{"t": 1793329032659, "cmd": "state", "args": []}
+{"t": 1793329032770, "cmd": "events", "args": ["6"]}
+{"t": 1793329032878, "cmd": "status", "args": []}
+{"t": 1793329054099, "cmd": "events", "args": ["8"]}
+{"t": 1793329054186, "cmd": "key", "args": ["o"]}
+{"t": 1793329054726, "cmd": "wait", "args": ["3"]}
+{"t": 1793329057834, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793329058646, "cmd": "wait", "args": ["2"]}
+{"t": 1793329060746, "cmd": "shot", "args": ["laws3"]}
+{"t": 1793329060995, "cmd": "state", "args": []}
+{"t": 1793329068786, "cmd": "note", "args": ["--shot", "laws-no-rationing", "Laws tab at 960x540 shows only Taxes, Conscription, Borders. The fourth law, Rationing, is never drawn (LawsPanel breaks out of the row loop when a block would not fit) although there is visible empty space below Borders and no scroll. A leader at this resolution cannot see or enact Rationing. tick 1631"]}
+{"t": 1793329069047, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329069572, "cmd": "wait", "args": ["15"]}
+{"t": 1793329084727, "cmd": "events", "args": ["5"]}
+{"t": 1793329088395, "cmd": "state", "args": []}
+{"t": 1793329088460, "cmd": "events", "args": ["6"]}
+{"t": 1793329088511, "cmd": "shot", "args": ["w2"]}
+{"t": 1793329100340, "cmd": "walkto", "args": ["pawn", "90"]}
+{"t": 1793329152848, "cmd": "key", "args": ["e"]}
+{"t": 1793329153364, "cmd": "wait", "args": ["3"]}
+{"t": 1793329156433, "cmd": "shot", "args": ["talk1"]}
+{"t": 1793329156617, "cmd": "state", "args": []}
+{"t": 1793329161302, "cmd": "state", "args": ["--full"]}
+{"t": 1793329161401, "cmd": "events", "args": ["12"]}
+{"t": 1793329180866, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793329231697, "cmd": "key", "args": ["e"]}
+{"t": 1793329232300, "cmd": "wait", "args": ["2"]}
+{"t": 1793329234549, "cmd": "shot", "args": ["talk2"]}
+{"t": 1793329235062, "cmd": "state", "args": []}
+{"t": 1793329239023, "cmd": "state", "args": []}
+{"t": 1793329276202, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793329334044, "cmd": "key", "args": ["e"]}
+{"t": 1793329334615, "cmd": "wait", "args": ["1"]}
+{"t": 1793329335730, "cmd": "state", "args": []}
+{"t": 1793329345378, "cmd": "key", "args": ["g"]}
+{"t": 1793329346542, "cmd": "key", "args": ["g"]}
+{"t": 1793329347725, "cmd": "key", "args": ["g"]}
+{"t": 1793329348997, "cmd": "key", "args": ["g"]}
+{"t": 1793329350167, "cmd": "key", "args": ["g"]}
+{"t": 1793329351362, "cmd": "key", "args": ["g"]}
+{"t": 1793329352515, "cmd": "key", "args": ["g"]}
+{"t": 1793329353716, "cmd": "key", "args": ["g"]}
+{"t": 1793329354856, "cmd": "wait", "args": ["1"]}
+{"t": 1793329355928, "cmd": "state", "args": []}
+{"t": 1793329360264, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1793329405103, "cmd": "key", "args": ["g"]}
+{"t": 1793329406037, "cmd": "key", "args": ["g"]}
+{"t": 1793329406905, "cmd": "key", "args": ["g"]}
+{"t": 1793329407748, "cmd": "key", "args": ["g"]}
+{"t": 1793329408842, "cmd": "key", "args": ["g"]}
+{"t": 1793329409818, "cmd": "key", "args": ["g"]}
+{"t": 1793329410763, "cmd": "key", "args": ["g"]}
+{"t": 1793329411779, "cmd": "key", "args": ["g"]}
+{"t": 1793329412772, "cmd": "wait", "args": ["1"]}
+{"t": 1793329413982, "cmd": "state", "args": []}
+{"t": 1793329419809, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1793329420117, "cmd": "key", "args": ["g"]}
+{"t": 1793329421019, "cmd": "key", "args": ["g"]}
+{"t": 1793329421934, "cmd": "key", "args": ["g"]}
+{"t": 1793329422879, "cmd": "key", "args": ["g"]}
+{"t": 1793329423816, "cmd": "key", "args": ["g"]}
+{"t": 1793329424755, "cmd": "key", "args": ["g"]}
+{"t": 1793329425706, "cmd": "key", "args": ["g"]}
+{"t": 1793329426656, "cmd": "key", "args": ["g"]}
+{"t": 1793329427575, "cmd": "key", "args": ["g"]}
+{"t": 1793329428513, "cmd": "key", "args": ["g"]}
+{"t": 1793329429435, "cmd": "wait", "args": ["1"]}
+{"t": 1793329430526, "cmd": "key", "args": ["r"]}
+{"t": 1793329431088, "cmd": "wait", "args": ["2"]}
+{"t": 1793329433195, "cmd": "events", "args": ["12"]}
+{"t": 1793329433313, "cmd": "state", "args": []}
+{"t": 1793329439218, "cmd": "note", "args": ["--shot", "gift-spam", "Bought a member of Oldwood (Hank Thomas) from Stranger to Loyal in ~10 s of game time by pressing G 16 times (10 coins each, 160 coins of a 375 start), then R: he defected to Smallton. Coin gifts have no cooldown, unlike talking (30 s cooldown, +2). Loyalty and defection feel trivially cheap. ticks 5500-5799"]}
+{"t": 1793329439502, "cmd": "key", "args": ["o"]}
+{"t": 1793329440080, "cmd": "wait", "args": ["3"]}
+{"t": 1793329443158, "cmd": "shot", "args": ["nations2"]}
+{"t": 1793329449376, "cmd": "click", "args": ["415", "45"]}
+{"t": 1793329450129, "cmd": "wait", "args": ["2"]}
+{"t": 1793329452242, "cmd": "shot", "args": ["nations3"]}
+{"t": 1793329486096, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329487057, "cmd": "wait", "args": ["1"]}
+{"t": 1793329488189, "cmd": "note", "args": ["--shot", "no-heir-shown", "With Hank Thomas as Smallton's only other member, neither the Nations tab, the Laws tab nor the HUD names an heir or says what happens if I die. The heir is only revealed by the SuccessionScreen after death. A ruler cannot plan a succession. tick ~6000"]}
+{"t": 1793329531123, "cmd": "state", "args": []}
+{"t": 1793329544773, "cmd": "key", "args": ["o"]}
+{"t": 1793329545268, "cmd": "wait", "args": ["2"]}
+{"t": 1793329547316, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793329548032, "cmd": "wait", "args": ["2"]}
+{"t": 1793329550476, "cmd": "click", "args": ["97", "262"]}
+{"t": 1793329551257, "cmd": "wait", "args": ["2"]}
+{"t": 1793329553303, "cmd": "shot", "args": ["repeal1"]}
+{"t": 1793329565475, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329566491, "cmd": "wait", "args": ["1"]}
+{"t": 1793329567769, "cmd": "events", "args": ["4"]}
+{"t": 1793329574966, "cmd": "key", "args": ["o"]}
+{"t": 1793329575596, "cmd": "wait", "args": ["3"]}
+{"t": 1793329578842, "cmd": "click", "args": ["543", "45"]}
+{"t": 1793329579805, "cmd": "wait", "args": ["3"]}
+{"t": 1793329582932, "cmd": "shot", "args": ["repeal0"]}
+{"t": 1793329590083, "cmd": "click", "args": ["97", "262"]}
+{"t": 1793329591012, "cmd": "wait", "args": ["3"]}
+{"t": 1793329594103, "cmd": "shot", "args": ["repeal2"]}
+{"t": 1793329594422, "cmd": "events", "args": ["3"]}
+{"t": 1793329598539, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329599115, "cmd": "wait", "args": ["2"]}
+{"t": 1793329601197, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329601762, "cmd": "await", "args": ["PAUSE", "10"]}
+{"t": 1793329601908, "cmd": "shot", "args": ["pause"]}
+{"t": 1793329607693, "cmd": "click", "args": ["480", "326"]}
+{"t": 1793329608521, "cmd": "wait", "args": ["2"]}
+{"t": 1793329610638, "cmd": "events", "args": ["3"]}
+{"t": 1793329610742, "cmd": "stop", "args": []}
+{"t": 1793329615387, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "106", "--stage-succession"]}
+{"t": 1793329637338, "cmd": "state", "args": []}
+{"t": 1793329650910, "cmd": "state", "args": []}
+{"t": 1793329651021, "cmd": "shot", "args": ["stage0"]}
+{"t": 1793329654029, "cmd": "key", "args": ["space"]}
+{"t": 1793329654622, "cmd": "wait", "args": ["5"]}
+{"t": 1793329659737, "cmd": "state", "args": []}
+{"t": 1793329659850, "cmd": "shot", "args": ["stage1"]}
+{"t": 1793329664447, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793329665273, "cmd": "wait", "args": ["3"]}
+{"t": 1793329668347, "cmd": "state", "args": []}
+{"t": 1793329668434, "cmd": "shot", "args": ["stage2"]}
+{"t": 1793329671258, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793329672001, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1793329672064, "cmd": "wait", "args": ["4"]}
+{"t": 1793329676136, "cmd": "state", "args": []}
+{"t": 1793329676230, "cmd": "shot", "args": ["stage3"]}
+{"t": 1793329676457, "cmd": "events", "args": ["8"]}
+{"t": 1793329683147, "cmd": "click", "args": ["480", "248"]}
+{"t": 1793329683931, "cmd": "await", "args": ["WORLD", "15"]}
+{"t": 1793329684216, "cmd": "wait", "args": ["3"]}
+{"t": 1793329687295, "cmd": "shot", "args": ["after"]}
+{"t": 1793329687517, "cmd": "key", "args": ["o"]}
+{"t": 1793329688037, "cmd": "wait", "args": ["3"]}
+{"t": 1793329691107, "cmd": "shot", "args": ["after-nations"]}
+{"t": 1793329701877, "cmd": "key", "args": ["Escape"]}
+{"t": 1793329702389, "cmd": "wait", "args": ["1"]}
+{"t": 1793329703472, "cmd": "note", "args": ["--shot", "ruler-name-missing", "After succession (--stage-succession) I now rule as Xavier Lewis, but the HUD (Player Info: Nation, Role, Land) and the Nations tab never show the ruler's name or reign; once the red toast fades, nothing on screen says who I am. tick ~60"]}
+{"t": 1793329703717, "cmd": "state", "args": []}
+{"t": 1793329703800, "cmd": "stop", "args": []}
+{"t": 1793329729970, "cmd": "report", "args": []}
+{"t": 1793330655400, "cmd": "stop", "args": []}

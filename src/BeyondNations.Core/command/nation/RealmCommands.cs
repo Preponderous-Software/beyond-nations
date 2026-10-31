@@ -49,8 +49,12 @@ namespace beyondnations {
                 player.getStatus().update("You are already at war with " + target.getName() + ".");
                 return;
             }
+            if (NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return;
+            }
             // weighed after the war breaks any alliance between the two
             realm.declareWar(own, target);
+            realm.sendEnvoy(own, target);
             Diplomacy diplomacy = realm.getDiplomacy();
             int ours = diplomacy.getStrength(own);
             int theirs = diplomacy.getDefence(target);
@@ -107,6 +111,9 @@ namespace beyondnations {
                 player.getStatus().update("You are not at odds with " + target.getName() + ": relations are " + relations.describe(own, target) + ".");
                 return;
             }
+            if (NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return;
+            }
             Diplomacy diplomacy = realm.getDiplomacy();
             int ours = diplomacy.getDefence(own);
             int theirs = diplomacy.getStrength(target);
@@ -125,6 +132,7 @@ namespace beyondnations {
             string why = theirs < ours ? "they are the weaker, " + theirs + " to your " + ours
                 : (truce ? "your tribute has softened them" : "the fighting has cost them enough");
             realm.makePeace(own, target);
+            realm.sendEnvoy(own, target);
             player.getStatus().update(target.getName() + " accepts peace (" + why + "). A truce holds for "
                 + (Realm.TRUCE_TICKS / TickCounter.DefaultTicksPerSecond) + " seconds; relations are " + relations.describe(own, target) + ".");
         }

@@ -180,10 +180,11 @@ namespace beyondnations.desktop.ui {
                     new CollectProfitFromStallCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(numCoins > 0));
 
-                int numApples = stallInventory.getNumItems(ItemType.APPLE);
-                commands.Add(new WorldCommand("Collect Food (" + numApples + ")", CommandGroup.Stall, () =>
+                // every kind of food, not just apples: the command collects the most nourishing first (#419)
+                int numFood = FoodItems.countFood(stallInventory);
+                commands.Add(new WorldCommand("Collect Food (" + numFood + ")", CommandGroup.Stall, () =>
                     new CollectFoodFromStallCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(numApples > 0));
+                    .setEnabled(numFood > 0));
             }
 
             if (leads) {
@@ -284,7 +285,7 @@ namespace beyondnations.desktop.ui {
                     new OfferPeaceCommand(nationRepository, realm).execute(player, owner)));
             }
             commands.Add(new WorldCommand("Denounce " + owner.getName(), CommandGroup.Drastic, () =>
-                new DenounceNationCommand(nationRepository, diplomacy).execute(player, owner)));
+                new DenounceNationCommand(nationRepository, diplomacy, realm).execute(player, owner)));
             // after Denounce, which is always there, so war coming or going
             // (declared, or peace made) moves nothing on the red row
             if (NationDiplomacy.canDeclareWar(realm, own, owner)) {

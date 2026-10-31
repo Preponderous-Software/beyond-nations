@@ -30,6 +30,13 @@ namespace beyondnationstests {
             new GiftNationCommand(world.nations, world.diplomacy, realm).execute(world.player, target);
         }
 
+        /** Lets the player's envoy come home (Realm.ENVOY_TICKS) by the clock alone: no diplomacy round runs. */
+        private void envoyReturns() {
+            for (int i = 0; i < Realm.ENVOY_TICKS; i++) {
+                world.simulation.getTickCounter().increment();
+            }
+        }
+
         [Fact]
         public void testDeclaringWar_MakesThemHostile_BreaksAlliances_AndAngersTheirAllies() {
             Nation own = world.playerNation(1);
@@ -89,14 +96,17 @@ namespace beyondnationstests {
             Nation enemy = world.pawnNation("Aland", 3);
             declareWar(enemy);
 
+            envoyReturns();
             offerPeace(enemy);
             Assert.True(realm.isAtWar(own, enemy));
             Assert.Equal("Aland refuses peace: they are 3 to your 1 and think they are winning. Tribute may buy a truce.", status());
 
+            // a refusal sends no envoy, so the tribute can go at once
             tribute(enemy);
             Assert.True(realm.hasTruce(own, enemy));
             Assert.Equal("Aland accepts your tribute of 25 coins and will hold off its raiders for 60 seconds. Relations: Hostile (-50).", status());
 
+            envoyReturns();
             offerPeace(enemy);
             Assert.False(realm.isAtWar(own, enemy));
             Assert.Equal(Realm.PEACE_SCORE, world.relations.getScore(own, enemy));
@@ -110,6 +120,7 @@ namespace beyondnationstests {
             Nation enemy = world.pawnNation("Aland", 1);
             declareWar(enemy);
 
+            envoyReturns();
             offerPeace(enemy);
 
             Assert.False(realm.isAtWar(own, enemy));
@@ -181,6 +192,7 @@ namespace beyondnationstests {
             ProposeAllianceCommand propose = new ProposeAllianceCommand(world.nations, realm);
 
             declareWar(strong);
+            envoyReturns();
             propose.execute(world.player, strong);
             Assert.Equal("Aland will not ally with a nation it is at war with. Offer peace first.", status());
 
@@ -193,6 +205,86 @@ namespace beyondnationstests {
             world.relations.adjust(own, strong, 25);
             propose.execute(world.player, strong);
             Assert.True(world.relations.isAllied(own, strong));
+        }
+
+        // --- the envoy: dealing takes game time (#424) ---------------------------------------------
+
+        [Fact]
+        public void testTheS04History_NoLongerFitsInOneTick() {
+            // the 0.6.4 playtest (s04): three tributes, an alliance, two
+            // denunciations, war and peace with one neighbour, all on one tick
+            Nation own = world.playerNation(1);
+            Nation neighbour = world.pawnNation("Westshire", 1);
+
+            tribute(neighbour);
+            Assert.Equal(Diplomacy.giftValue(Diplomacy.PLAYER_GIFT_COINS), world.relations.getScore(own, neighbour));
+            int coins = world.player.getInventory().getNumItems(ItemType.COIN);
+
+            tribute(neighbour);
+            Assert.Equal("Your envoy to Westshire is still on the road: you can deal with them again in 20 seconds of play.", status());
+            Assert.Equal(Diplomacy.giftValue(Diplomacy.PLAYER_GIFT_COINS), world.relations.getScore(own, neighbour));
+            // nothing was paid for the refused gift
+            Assert.Equal(coins + Diplomacy.PLAYER_GIFT_COINS, world.player.getInventory().getNumItems(ItemType.COIN));
+
+            new DenounceNationCommand(world.nations, world.diplomacy, realm).execute(world.player, neighbour);
+            declareWar(neighbour);
+            offerPeace(neighbour);
+            new ProposeAllianceCommand(world.nations, realm).execute(world.player, neighbour);
+            Assert.False(realm.isAtWar(own, neighbour));
+            Assert.False(world.relations.isAllied(own, neighbour));
+            Assert.Equal(Diplomacy.giftValue(Diplomacy.PLAYER_GIFT_COINS), world.relations.getScore(own, neighbour));
+        }
+
+        [Fact]
+        public void testTheEnvoy_IsBackAfterEnvoyTicks_AndCountsDownMeanwhile() {
+            Nation own = world.playerNation(1);
+            Nation neighbour = world.pawnNation("Westshire", 1);
+            Nation other = world.pawnNation("Bshire", 1);
+
+            tribute(neighbour);
+            Assert.Equal(Realm.ENVOY_TICKS, realm.getEnvoyTicksLeft(own, neighbour));
+            // each nation has an envoy of its own
+            Assert.Equal(0, realm.getEnvoyTicksLeft(own, other));
+            tribute(other);
+            Assert.StartsWith("Bshire accepts your gift", status());
+
+            for (int i = 0; i < Realm.ENVOY_TICKS - 1; i++) {
+                world.simulation.getTickCounter().increment();
+            }
+            Assert.Equal(1, realm.getEnvoyTicksLeft(own, neighbour));
+            tribute(neighbour);
+            Assert.Equal("Your envoy to Westshire is still on the road: you can deal with them again in 1 seconds of play.", status());
+
+            world.simulation.getTickCounter().increment();
+            Assert.Equal(0, realm.getEnvoyTicksLeft(own, neighbour));
+            tribute(neighbour);
+            Assert.StartsWith("Westshire accepts your gift", status());
+        }
+
+        [Fact]
+        public void testARefusal_SendsNoEnvoy() {
+            Nation own = world.playerNation(1);
+            Nation strong = world.pawnNation("Aland", 3);
+            new ProposeAllianceCommand(world.nations, realm).execute(world.player, strong);
+            Assert.StartsWith("Aland declines", status());
+            Assert.Equal(0, realm.getEnvoyTicksLeft(own, strong));
+
+            declareWar(strong);
+            Assert.Equal(Realm.ENVOY_TICKS, realm.getEnvoyTicksLeft(own, strong));
+            envoyReturns();
+            offerPeace(strong);
+            Assert.StartsWith("Aland refuses peace", status());
+            Assert.Equal(0, realm.getEnvoyTicksLeft(own, strong));
+        }
+
+        [Fact]
+        public void testPeace_ComesNoSoonerThanAnEnvoyAfterWar() {
+            Nation own = world.playerNation(3);
+            Nation enemy = world.pawnNation("Aland", 1);
+            declareWar(enemy);
+            offerPeace(enemy);
+            Assert.True(realm.isAtWar(own, enemy));
+            Assert.StartsWith("Your envoy to Aland is still on the road", status());
         }
     }
 }

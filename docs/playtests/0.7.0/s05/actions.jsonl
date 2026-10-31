@@ -1,0 +1,173 @@
+{"t": 1793328828868, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/bn-wt-pt064c", "--seed", "105"]}
+{"t": 1793328834606, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1793328834749, "cmd": "key", "args": ["space"]}
+{"t": 1793328835347, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1793328835530, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328836398, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1793328836559, "cmd": "shot", "args": ["newworld"]}
+{"t": 1793328849492, "cmd": "click", "args": ["480", "315"]}
+{"t": 1793328850389, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1793328850697, "cmd": "wait", "args": ["2"]}
+{"t": 1793328852767, "cmd": "shot", "args": ["world0"]}
+{"t": 1793328852943, "cmd": "state", "args": []}
+{"t": 1793328892832, "cmd": "click", "args": ["425", "389"]}
+{"t": 1793328893533, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1793328959105, "cmd": "key", "args": ["e"]}
+{"t": 1793328959680, "cmd": "wait", "args": ["1"]}
+{"t": 1793328960822, "cmd": "state", "args": []}
+{"t": 1793328960954, "cmd": "shot", "args": ["chop1"]}
+{"t": 1793328966804, "cmd": "status", "args": []}
+{"t": 1793328971138, "cmd": "face", "args": ["-127"]}
+{"t": 1793328979392, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1793328982940, "cmd": "state", "args": []}
+{"t": 1793328986249, "cmd": "walkto", "args": ["tree", "120"]}
+{"t": 1793329022941, "cmd": "key", "args": ["e"]}
+{"t": 1793329023483, "cmd": "wait", "args": ["2"]}
+{"t": 1793329025620, "cmd": "state", "args": []}
+{"t": 1793329030982, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329050505, "cmd": "key", "args": ["e"]}
+{"t": 1793329051511, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329061594, "cmd": "key", "args": ["e"]}
+{"t": 1793329062192, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329075662, "cmd": "key", "args": ["e"]}
+{"t": 1793329076247, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329088396, "cmd": "key", "args": ["e"]}
+{"t": 1793329090073, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329098871, "cmd": "key", "args": ["e"]}
+{"t": 1793329099427, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329106408, "cmd": "key", "args": ["e"]}
+{"t": 1793329106981, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329130377, "cmd": "key", "args": ["e"]}
+{"t": 1793329130906, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329143688, "cmd": "key", "args": ["e"]}
+{"t": 1793329144317, "cmd": "state", "args": []}
+{"t": 1793329148052, "cmd": "key", "args": ["n"]}
+{"t": 1793329148688, "cmd": "wait", "args": ["2"]}
+{"t": 1793329150813, "cmd": "shot", "args": ["nation"]}
+{"t": 1793329151175, "cmd": "state", "args": []}
+{"t": 1793329154465, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329190111, "cmd": "key", "args": ["e"]}
+{"t": 1793329190693, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329198920, "cmd": "key", "args": ["e"]}
+{"t": 1793329199550, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329207891, "cmd": "key", "args": ["e"]}
+{"t": 1793329208456, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329239945, "cmd": "key", "args": ["e"]}
+{"t": 1793329240620, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329261834, "cmd": "key", "args": ["e"]}
+{"t": 1793329262585, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329262964, "cmd": "key", "args": ["e"]}
+{"t": 1793329263774, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329283964, "cmd": "key", "args": ["e"]}
+{"t": 1793329284756, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329322504, "cmd": "key", "args": ["e"]}
+{"t": 1793329323172, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1793329339577, "cmd": "key", "args": ["e"]}
+{"t": 1793329340227, "cmd": "state", "args": []}
+{"t": 1793329343898, "cmd": "key", "args": ["f"]}
+{"t": 1793329344483, "cmd": "wait", "args": ["3"]}
+{"t": 1793329347603, "cmd": "shot", "args": ["founded"]}
+{"t": 1793329348055, "cmd": "state", "args": []}
+{"t": 1793329352422, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329373075, "cmd": "key", "args": ["e"]}
+{"t": 1793329373845, "cmd": "wait", "args": ["1"]}
+{"t": 1793329375000, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329383620, "cmd": "key", "args": ["e"]}
+{"t": 1793329384257, "cmd": "wait", "args": ["1"]}
+{"t": 1793329385432, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329416645, "cmd": "key", "args": ["e"]}
+{"t": 1793329417237, "cmd": "wait", "args": ["1"]}
+{"t": 1793329418350, "cmd": "state", "args": []}
+{"t": 1793329422555, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329436742, "cmd": "key", "args": ["e"]}
+{"t": 1793329437382, "cmd": "wait", "args": ["1"]}
+{"t": 1793329438534, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329488903, "cmd": "key", "args": ["e"]}
+{"t": 1793329489567, "cmd": "wait", "args": ["1"]}
+{"t": 1793329490681, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329550787, "cmd": "key", "args": ["e"]}
+{"t": 1793329551356, "cmd": "wait", "args": ["1"]}
+{"t": 1793329552438, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1793329592882, "cmd": "key", "args": ["e"]}
+{"t": 1793329593540, "cmd": "wait", "args": ["1"]}
+{"t": 1793329594891, "cmd": "state", "args": []}
+{"t": 1793329598621, "cmd": "key", "args": ["f"]}
+{"t": 1793329599142, "cmd": "wait", "args": ["2"]}
+{"t": 1793329601289, "cmd": "state", "args": []}
+{"t": 1793329606363, "cmd": "state", "args": ["--full"]}
+{"t": 1793329611670, "cmd": "face", "args": ["13"]}
+{"t": 1793329612968, "cmd": "hold", "args": ["Shift_L+w", "35"]}
+{"t": 1793329648159, "cmd": "key", "args": ["f"]}
+{"t": 1793329648785, "cmd": "wait", "args": ["2"]}
+{"t": 1793329650996, "cmd": "state", "args": []}
+{"t": 1793329654360, "cmd": "key", "args": ["e"]}
+{"t": 1793329654887, "cmd": "wait", "args": ["3"]}
+{"t": 1793329657994, "cmd": "shot", "args": ["inside"]}
+{"t": 1793329658371, "cmd": "state", "args": []}
+{"t": 1793329666378, "cmd": "wait", "args": ["20"]}
+{"t": 1793329686459, "cmd": "shot", "args": ["wait_stalls"]}
+{"t": 1793329686721, "cmd": "state", "args": []}
+{"t": 1793329692183, "cmd": "key", "args": ["b"]}
+{"t": 1793329692669, "cmd": "wait", "args": ["2"]}
+{"t": 1793329694744, "cmd": "shot", "args": ["stall_built"]}
+{"t": 1793329695010, "cmd": "state", "args": []}
+{"t": 1793329695159, "cmd": "events", "args": ["8"]}
+{"t": 1793329721040, "cmd": "note", "args": ["--shot", "merchant_took_stall", "Built my first stall with B in my own settlement (tick ~9550); objective 'Build a market stall' completed correctly from my build. Within ~2s the Market Info shows 'Merchants: Linda Smith' - a resident bought the stall I just built. Before that, 20s of waiting with 5 residents left the market at 0/4 (no resident-built stalls)."]}
+{"t": 1793329721278, "cmd": "click", "args": ["186", "445"]}
+{"t": 1793329722019, "cmd": "wait", "args": ["2"]}
+{"t": 1793329724093, "cmd": "shot", "args": ["sell"]}
+{"t": 1793329730993, "cmd": "note", "args": ["--shot", "sell_nocoins", "Sell Resources in my own camp right after building a stall: red error 'No merchant here can pay: the richest has 0 coins, and your cheapest good (sapling) sells for 19.' Clear message, but my freshly-made merchant (Linda Smith) has no coins, so selling is impossible at my own market."]}
+{"t": 1793329731213, "cmd": "click", "args": ["66", "445"]}
+{"t": 1793329731961, "cmd": "wait", "args": ["2"]}
+{"t": 1793329734036, "cmd": "shot", "args": ["buy"]}
+{"t": 1793329734363, "cmd": "state", "args": []}
+{"t": 1793329738562, "cmd": "key", "args": ["k"]}
+{"t": 1793329739042, "cmd": "wait", "args": ["2"]}
+{"t": 1793329741114, "cmd": "shot", "args": ["kmenu"]}
+{"t": 1793329754784, "cmd": "key", "args": ["k"]}
+{"t": 1793329755263, "cmd": "wait", "args": ["2"]}
+{"t": 1793329757339, "cmd": "state", "args": []}
+{"t": 1793329757406, "cmd": "click", "args": ["66", "414"]}
+{"t": 1793329758157, "cmd": "wait", "args": ["2"]}
+{"t": 1793329760259, "cmd": "shot", "args": ["caravan_btn"]}
+{"t": 1793329760546, "cmd": "state", "args": []}
+{"t": 1793329765675, "cmd": "note", "args": ["--shot", "caravan_btn", "Send Caravan (Town era) button in a Camp: clicking says 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' Clear, but my goal (Storehouse + caravan) needs Town era (3rd of 4), out of reach in a 30-min session."]}
+{"t": 1793329765905, "cmd": "key", "args": ["k", "k"]}
+{"t": 1793329766798, "cmd": "wait", "args": ["2"]}
+{"t": 1793329768882, "cmd": "state", "args": []}
+{"t": 1793329774246, "cmd": "wait", "args": ["30"]}
+{"t": 1793329804364, "cmd": "click", "args": ["186", "445"]}
+{"t": 1793329805146, "cmd": "wait", "args": ["2"]}
+{"t": 1793329807223, "cmd": "shot", "args": ["later"]}
+{"t": 1793329807611, "cmd": "state", "args": []}
+{"t": 1793329807764, "cmd": "state", "args": ["--full"]}
+{"t": 1793329814168, "cmd": "click", "args": ["371", "476"]}
+{"t": 1793329815033, "cmd": "wait", "args": ["1"]}
+{"t": 1793329816123, "cmd": "face", "args": ["154"]}
+{"t": 1793329823914, "cmd": "hold", "args": ["Shift_L+w", "15"]}
+{"t": 1793329839094, "cmd": "walkto", "args": ["settlement", "60"]}
+{"t": 1793329852217, "cmd": "key", "args": ["e"]}
+{"t": 1793329852693, "cmd": "wait", "args": ["2"]}
+{"t": 1793329854761, "cmd": "shot", "args": ["foreign"]}
+{"t": 1793329854966, "cmd": "state", "args": []}
+{"t": 1793329862421, "cmd": "click", "args": ["321", "476"]}
+{"t": 1793329863227, "cmd": "wait", "args": ["2"]}
+{"t": 1793329865318, "cmd": "shot", "args": ["sold"]}
+{"t": 1793329865634, "cmd": "state", "args": []}
+{"t": 1793329865738, "cmd": "click", "args": ["200", "476"]}
+{"t": 1793329866622, "cmd": "wait", "args": ["2"]}
+{"t": 1793329869637, "cmd": "shot", "args": ["bought"]}
+{"t": 1793329870077, "cmd": "state", "args": []}
+{"t": 1793329876714, "cmd": "click", "args": ["76", "476"]}
+{"t": 1793329877567, "cmd": "wait", "args": ["1"]}
+{"t": 1793329878683, "cmd": "key", "args": ["h"]}
+{"t": 1793329879251, "cmd": "wait", "args": ["3"]}
+{"t": 1793329885063, "cmd": "key", "args": ["e"]}
+{"t": 1793329885625, "cmd": "wait", "args": ["3"]}
+{"t": 1793329888725, "cmd": "shot", "args": ["home_final"]}
+{"t": 1793329889081, "cmd": "state", "args": []}
+{"t": 1793329900448, "cmd": "note", "args": ["--shot", "home_final2", "Back home at tick ~13160: market still 1/4 stalls (only the one I built), merchant Linda Smith still 0 coins, so Sell Resources/Purchase Food at my own market remain unusable. Settlement name banner text is drawn huge behind the HUD and cut off at the top edge."]}
+{"t": 1793329900761, "cmd": "events", "args": ["200"]}
+{"t": 1793329900888, "cmd": "stop", "args": []}
+{"t": 1793329939308, "cmd": "report", "args": []}
+{"t": 1793330655369, "cmd": "stop", "args": []}

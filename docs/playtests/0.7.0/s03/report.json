@@ -1,0 +1,106 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter. Start with `--season autumn` (a fresh world otherwise reaches winter only after about 57 minutes of game time). Note how food and cold feel.",
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
+  "seed": 103,
+  "durationSec": 1461,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "perf",
+      "title": "Sim runs at 3-30 ticks/s (often far below 50), so an autumn start cannot reach winter in a play session",
+      "detail": "With --season autumn the world starts at day 4, tick 120000, and winter begins on day 6 (tick 180000, 60000 ticks = 20 game minutes away). The measured tps ranged from 0.3 to 33 (2.9 right after entering the world, 0.3 at the final status) at 1-5 fps, with machine load around 20 on 20 cores. In 24 wall minutes the world only got from tick 120000 to 141552, the start of season day 2/2. Winter was still ~38000 ticks off, so the goal could not be finished. Under shared load, an --season autumn start is not a practical way to test winter. A start near the end of autumn, or a --season winter start for this goal, would be.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 103 --season autumn; enter world; pt status every few minutes",
+      "screenshot": "shots/day2.png",
+      "tick": 141552
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Season panel's 'Winter in 2 days' counts whole days and overstates the time left; three different day numbers on screen",
+      "detail": "At the night of autumn season day 1 (chronicle 'Day 5, night', state day 4 timeOfDay ~0.8, tick ~135000) the Season panel still said 'Autumn - day 1/2' and 'Winter in 2 days', though winter was about 1.2 days away. It switched to 'Winter in 1 day!' only at the day rollover. SeasonCalendar.daysUntil counts whole days. The same screen also shows three calendars: chronicle 'Day 5', season panel 'day 1/2', and state.json day 4. Expected a countdown that counts down within the day (for example in hours or as a fraction) and one day number.",
+      "repro": "pt start ... --season autumn; enter world; pt wait until state timeOfDay > 0.8; pt shot",
+      "screenshot": "shots/winter_countdown.png",
+      "tick": 135224
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Mouse 'click again to confirm' for Build House never commits at low fps (8 s wall-clock window)",
+      "detail": "In the settlement I clicked Build House at (473,445), and each later click just re-armed 'Click again to confirm: Build House.' (ticks 129120, 129340, 129528). Nothing was built. Each hover-plus-click took about 9 s of wall time at 2-5 fps, which is longer than ConfirmGate's 8 s window. The first Build Farm arm was also lost when the button row reflowed. Pressing K twice built both Farm and House at once. Expected a confirm window measured in frames or game time, or one that tolerates slow frames.",
+      "repro": "inside own settlement with 25+ wood/15 stone: pt click 473 445; pt wait 2; pt click 473 445; pt events 3",
+      "screenshot": "shots/confirm_lapse.png",
+      "tick": 129528
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Trees next to the settlement well cannot be chopped: E enters/exits the settlement instead",
+      "detail": "After founding, pt walkto tree went to a tree 5.5 m from the well. Pressing E then toggled 'Entered settlement'/'Exited settlement' 4 times (ticks 125788-126156), and I got no wood. Interact priority puts the settlement first, which is documented, but nothing on screen tells the player why. Expected E to act on the tree I am facing, or a hint like 'Too close to the settlement to chop'.",
+      "repro": "found settlement at seed 103 ~(249,630); pt walkto tree; pt key e (x4); pt events 10",
+      "screenshot": "shots/inside.png",
+      "tick": 126156
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Talk to <pawn>' button re-targets to another pawn between hover and click",
+      "detail": "Inside my settlement I clicked 'Talk to Phoebe Jones (Stranger)', and Alice White answered. The contextual pawn rows follow whichever pawn is nearest, and at a few fps that changes between the hover and the click. The order and gift buttons in the same row have the same risk.",
+      "repro": "inside own settlement with several residents: pt click 160 383; pt events 3",
+      "screenshot": "shots/talk_wrong_pawn.png",
+      "tick": 135240
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'The settlement is now a Village!' while the era badge still says Camp (1/4)",
+      "detail": "Building the Farm and House gave the status 'House built. The settlement is now a Village!', but the era badge stayed 'Era: Camp (1/4)' and objective 7 'Reach the Village era' stayed incomplete (Members 5/10). Two meanings of 'Village' (settlement tier and nation era) contradict each other on screen. 'Chronicle: your news' is also full of other nations' border rivalries and raids, which push the player's own events out of the five visible lines.",
+      "repro": "inside own settlement: pt key k k (farm); pt key k k (house); pt shot",
+      "screenshot": "shots/village_vs_era.png",
+      "tick": 130272
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement's world-space label overflows the top of the screen and its name is cut off",
+      "detail": "Near my own settlement a huge label 'N here, 5/12 residents' covers the top of the screen behind the HUD. The settlement name line above it is clipped off entirely, and state.json names the settlement just 'Settlement'. The objective bar is also clipped on the left ('nbers 4/10 · Buildings 0/2').",
+      "repro": "found a settlement; stand by the well; pt shot",
+      "screenshot": "shots/objective_clip.png",
+      "tick": 128972
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Food and cold pressure is very low: auto-eat, a 20-apple surplus by mid-autumn, no energy drain indoors",
+      "detail": "Within ~3000 ticks of chopping I had 20 apples, and 34 by tick 128600 (each tree gives 1-3 in autumn). Energy burns about 0.33 per 100 ticks outdoors and the player eats automatically (energy 90->99, apple -1). Indoors energy held flat at 91.5. The 'Eat something' objective completed by itself 52 ticks after the first one. That is roughly 13 apples per game day outdoors. With winter's 1.3x cold multiplier and free warmth indoors, a player who stays in the settlement does not need to prepare. Bandit and market pressure happen, but food and cold never felt threatening in autumn.",
+      "repro": "pt start ... --season autumn; chop ~8 trees; sample pt state energy/apple every 40s outdoors and inside",
+      "screenshot": "shots/outdoors.png",
+      "tick": 140556
+    },
+    {
+      "severity": "polish",
+      "category": "balance",
+      "title": "Market apple price swings from 54/48 to 9/9 within ~6000 ticks",
+      "detail": "My stall listed apples at 54 buy / 48 sell at tick ~129200 and 9/9 at tick ~135000. Wood went 57->16 over the same stretch. That may be the autumn double harvest, but the size of the swing makes selling look either hugely profitable or pointless, depending on when the player looks.",
+      "repro": "build stall; compare Market Info prices at ticks ~129200 and ~135000",
+      "screenshot": "shots/talk.png",
+      "tick": 135000
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 18.0, "Eat something": 19.0, "Create or join a nation": 28.0, "Found a settlement": 111.0, "Enter your settlement": 116.0, "Build a market stall": 177.0},
+    "secondsToObjectiveNote": "game seconds since entering the world at tick 120000 ((tick-120000)/50)",
+    "finalTick": 141552,
+    "ticksStillToWinter": 38448,
+    "applesAtEnd": 30,
+    "applesPeak": 34,
+    "minEnergySeen": 90.6,
+    "tpsMin": 0.3,
+    "tpsMax": 33.3
+  },
+  "fun": 3,
+  "verdict": "The opening is clear and well signposted: helpful 'open ground lies 150 to the north-east' hints, quick objective rewards and a good bandit-camp world-event choice. But the winter goal could not be reached because the simulation ran at 3-30 tps, and food and cold never pressed. Apples pile up, eating is automatic and indoors costs no energy, so 'preparing for winter' asks nothing of the player. The season countdown also counts whole days and overstates the time left."
+}

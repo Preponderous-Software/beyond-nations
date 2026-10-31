@@ -1,0 +1,120 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion. Also check specifically: after you found a settlement and enter it, does the 'Build a market stall' objective complete only when YOU build a stall, or do residents build stalls in your own settlement first (they should not)?",
+  "build": {"version": "0.6.3", "commit": "a44aa8d"},
+  "seed": 101,
+  "durationSec": 1008,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Founding a settlement turns into a long hunt: the 'open ground' hints keep changing direction and there is no compass to follow them",
+      "detail": "With 50 wood, F was refused 5 times in a row. Each refusal named a different direction ('south-west', 'south-east', 'west', 'north', 'west', 'north-west'), and walking that way usually put me near ANOTHER settlement (the world fills with NPC settlements fast). There is no compass, minimap or arrow, so I could not tell which way south-west is. Founding took 3748 ticks (75 game s), most of the run up to then. Expected: an on-screen arrow or compass toward the suggested spot, or a hint that stays valid once you walk there.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 101; gather 50 wood near spawn; pt key n; pt key f (refused, 'about 280 to the south-west'); walk any direction, press f again",
+      "screenshot": "shots/found_hunt.png",
+      "tick": 5851
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "No on-screen heading: direction words in messages ('south-west') cannot be followed",
+      "detail": "The HUD has no compass, no minimap and no cardinal marker. Direction words in status messages are useless without one. Seen on the first refusal of F.",
+      "repro": "pt start ... --seed 101; gather 50 wood; pt key n; pt key f",
+      "screenshot": "shots/no_compass.png",
+      "tick": 3683
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Collect Stockpile makes the hand-gathering objective pointless and nothing points the player at it",
+      "detail": "The 'Build a market stall' objective says gather 20 wood and 5 stone, so I hand-chopped trees and mined a rock. Back inside, one click on 'Collect Stockpile (198)' gave 128 wood + 70 stone, enough for 2 stalls, a farm and a house within seconds (the settlement became a Village at tick ~11780). No tip or objective mentions the stockpile. Expected: the objective text mentions the stockpile, or the stockpile fills more slowly early on.",
+      "repro": "found settlement; wait ~2 game minutes; enter (e); click Collect Stockpile",
+      "screenshot": "shots/collect.png",
+      "tick": 11387
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Rivalry penalties arrive right after founding, with no explanation",
+      "detail": "Right after I founded and entered, status messages said 'Whiteland resents your border: relations are now Rival (-20).' and then the same for Whiteburg and Whiteshire. I founded where the game allowed (250+ from others), so a new player cannot tell what they did wrong or how to avoid it. Expected: a brief reason or tip (for example 'borders within X of theirs annoy neighbours').",
+      "repro": "found settlement at about (-924,-104) on seed 101; enter it; wait",
+      "screenshot": "shots/rival_border.png",
+      "tick": 8267
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective 7 progress text is clipped, and four different counters describe the same goal",
+      "detail": "The 'Reach the Village era' progress bar shows 'mbers 4/10 - Buildings 0/2' (the start is cut off). On screen at the same time: era panel 'Village: 0/4', objective body 'Village 0/1', 'Members 4/10', 'Buildings 0/2'. Later the status says 'The settlement is now a Village!' while the era panel still reads 'Era: Camp (1/4)'. The tier and the era are easy to confuse.",
+      "repro": "complete the stall objective; look at the objective panel and the era panel",
+      "screenshot": "shots/obj7_clip.png",
+      "tick": 10763
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Chronicle lines are cut off with '...' right where the nation name is",
+      "detail": "Chronicle entries such as 'Katie Jones raised a banner and called it Fort...' and the player's own 'You raised a banner and named your people Li...' are cut off before the name, which is the part that matters.",
+      "repro": "pt start ... --seed 101; play about 40 game s; read the chronicle panel",
+      "screenshot": "shots/chron_trunc.png",
+      "tick": 1915
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Food is eaten silently, so apple counts don't match the 'Gathered N apples' messages",
+      "detail": "The first tree said 'Gathered 5 wood and 2 apples from tree.', but the inventory showed Apples: 1 and the float text +1 apple. Energy jumped 83 to 97 at the same time, so an apple was probably auto-eaten without any message. 'Eat something' then completed silently 52 ticks after it appeared. Expected: a short 'You ate an apple (+energy)' status.",
+      "repro": "pt start ... --seed 101; dismiss tip; pt walkto tree; pt key e",
+      "screenshot": "shots/chop_apples.png",
+      "tick": 723
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Floating settlement label is clipped at the top of the screen and overlaps the HUD",
+      "detail": "Near your own settlement, the large 3D label ('Camp of Littleshire / 2 here, 3/8 residents') sits under the top status bar and chronicle panel and is cut off at the top edge. The Inventory panel also jumps into the middle of the view when the settlement button bar grows.",
+      "repro": "found settlement; stand by the well",
+      "screenshot": "shots/inside2.png",
+      "tick": 8267
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Tutorial tips skip numbers (1 then 3) and tip 5 vanished before it could be read",
+      "detail": "After 'Got it' on Tip 1 of 5, the next tip I saw was 'Tip 3 of 5'. state.json showed the 'Your goals' tip at tick 2095, but it was gone from the screen 2 seconds later without being dismissed, because the objective-complete popup replaced it.",
+      "repro": "pt start ... --seed 101; click Got it; chop trees; press n",
+      "screenshot": "shots/chop1b.png",
+      "tick": 779
+    },
+    {
+      "severity": "polish",
+      "category": "bug",
+      "title": "GOAL CHECK (works): residents do not build stalls in the player's own settlement; the stall objective completes only on the player's B",
+      "detail": "From entering my settlement (tick ~6100) to tick 10467, Market Info stayed '0/4 stalls' with 4 residents and a 198 stockpile. Meanwhile the chronicle showed NPCs building many stalls in other nations' settlements. 'Build a market stall' completed only after I pressed B: status 'Stall built.' at tick 10687, objective_completed at tick 10703. Recorded here as a confirmation, not a defect.",
+      "repro": "found settlement; enter; wait ~2000 ticks watching Market Info; press b",
+      "screenshot": "shots/stall.png",
+      "tick": 10703
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 25.0,
+      "Eat something": 26.1,
+      "Create or join a nation": 42.1,
+      "Found a settlement": 117.0,
+      "Enter your settlement": 122.1,
+      "Build a market stall": 214.1
+    },
+    "foundAttempts": 6,
+    "residentBuiltStallsInOwnSettlementBeforePlayer": 0,
+    "ticksWatchedOwnMarketBeforeBuilding": 4360,
+    "stockpileCollectedWood": 128,
+    "stockpileCollectedStone": 70,
+    "finalTick": 11939
+  },
+  "fun": 3,
+  "verdict": "The opening is clear and well paced: objectives at the top left, helpful refusal messages and a good controls screen got a new player to a nation, a settlement and a stall in under 4 game minutes. Residents correctly leave your market alone, so the stall objective completes only on the player's own B press. The biggest snag is founding a settlement: direction hints with no compass sent me wandering through a crowded map for over a minute. After that, Collect Stockpile hands over so many resources that the gathering objectives feel pointless."
+}

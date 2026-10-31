@@ -1,0 +1,27 @@
+{
+  "session": "s07",
+  "dir": "/tmp/claude-0/-root/7a3bb779-a049-4d17-9206-3b3df82da180/scratchpad/proctor-bn2/064c-20261029-2052/s07",
+  "profile": "beyond-nations",
+  "display": ":109",
+  "window": "2097159",
+  "size": "960x540",
+  "seed": "107",
+  "args": [],
+  "command": [
+    "/root/bn-wt-pt064c/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
+    "--width",
+    "960",
+    "--height",
+    "540",
+    "--no-usage-reporting",
+    "--seed",
+    "107",
+    "--playtest-out",
+    "/tmp/claude-0/-root/7a3bb779-a049-4d17-9206-3b3df82da180/scratchpad/proctor-bn2/064c-20261029-2052/s07/out"
+  ],
+  "probe": true,
+  "ticksPerSecond": 50,
+  "startedAtMs": 1793328832386,
+  "version": "0.6.3",
+  "commit": "a44aa8d"
+}

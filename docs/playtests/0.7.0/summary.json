@@ -1,0 +1,2077 @@
+{
+  "runDir": "/tmp/claude-0/-root/7a3bb779-a049-4d17-9206-3b3df82da180/scratchpad/proctor-bn2/064c-20261029-2052",
+  "generated": "2026-10-29 21:24",
+  "sessions": [
+    {
+      "session": "s01",
+      "profile": "beyond-nations",
+      "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion. Also check specifically: after you found a settlement and enter it, does the 'Build a market stall' objective complete only when YOU build a stall, or do residents build stalls in your own settlement first (they should not)?",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 1008,
+      "seed": 101,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The opening is clear and well paced: objectives at the top left, helpful refusal messages and a good controls screen got a new player to a nation, a settlement and a stall in under 4 game minutes. Residents correctly leave your market alone, so the stall objective completes only on the player's own B press. The biggest snag is founding a settlement: direction hints with no compass sent me wandering through a crowded map for over a minute. After that, Collect Stockpile hands over so many resources that the gathering objectives feel pointless.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 25.0,
+          "Eat something": 26.1,
+          "Create or join a nation": 42.1,
+          "Found a settlement": 117.0,
+          "Enter your settlement": 122.1,
+          "Build a market stall": 214.1
+        },
+        "foundAttempts": 6,
+        "residentBuiltStallsInOwnSettlementBeforePlayer": 0,
+        "ticksWatchedOwnMarketBeforeBuilding": 4360,
+        "stockpileCollectedWood": 128,
+        "stockpileCollectedStone": 70,
+        "finalTick": 11939
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 25.0,
+            "wallSeconds": 151.6,
+            "tick": 1251
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 26.1,
+            "wallSeconds": 157.0,
+            "tick": 1303
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 42.1,
+            "wallSeconds": 206.8,
+            "tick": 2103
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 117.0,
+            "wallSeconds": 534.3,
+            "tick": 5851
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 122.1,
+            "wallSeconds": 549.1,
+            "tick": 6103
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 214.1,
+            "wallSeconds": 879.7,
+            "tick": 10703
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 1,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 6,
+          "world": 1,
+          "status": 48,
+          "chronicle": 213,
+          "objective_completed": 6,
+          "save": 1
+        },
+        "lastTick": 11931
+      },
+      "ticksPerSecond": 50,
+      "notes": 8,
+      "crash": null
+    },
+    {
+      "session": "s02",
+      "profile": "beyond-nations",
+      "goal": "Reach the Village era as fast as you can (it cannot come before day 3, about 17 minutes of game time); record the game time of every objective.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 1328,
+      "seed": 102,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The Camp loop (chop, eat, nation, settle, stall, build) is clear, and the era checklist with its [x] items is a very good guide. The stockpile collection (76 wood / 74 stone) made the buildings fast. Two things slow the player down: NPC nations grab land so fast that founding becomes a chase after moving 'open ground' hints, and the 10-member gate leaves almost no unaffiliated settlers to recruit. I could not reach the Village era within budget: 6/7 objectives were done, and Members (3/10) and the day-3 gate were still outstanding.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 24.04,
+          "Eat something": 25.0,
+          "Create or join a nation": 30.04,
+          "Found a settlement": 164.04,
+          "Enter your settlement": 166.04,
+          "Build a market stall": 304.04
+        },
+        "settlementBecameVillageTierSec": 321.0,
+        "villageEraRequirementsMetAtEnd": "Village 1/1, Stalls 2/2, Members 3/10, Day 1/3",
+        "finalTick": 20219,
+        "nationsInWorldByDay1Night": 15
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 24.0,
+            "wallSeconds": 140.2,
+            "tick": 1202
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 25.0,
+            "wallSeconds": 142.5,
+            "tick": 1250
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 30.0,
+            "wallSeconds": 157.5,
+            "tick": 1502
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 164.0,
+            "wallSeconds": 733.5,
+            "tick": 8202
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 166.0,
+            "wallSeconds": 740.1,
+            "tick": 8302
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 304.0,
+            "wallSeconds": 1055.8,
+            "tick": 15202
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 3,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 109,
+          "chronicle": 268,
+          "objective_completed": 6,
+          "save": 3
+        },
+        "lastTick": 20067
+      },
+      "ticksPerSecond": 50,
+      "notes": 3,
+      "crash": null
+    },
+    {
+      "session": "s03",
+      "profile": "beyond-nations",
+      "goal": "Survive the first winter. Start with `--season autumn` (a fresh world otherwise reaches winter only after about 57 minutes of game time). Note how food and cold feel.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 1461,
+      "seed": 103,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The opening is clear and well signposted: helpful 'open ground lies 150 to the north-east' hints, quick objective rewards and a good bandit-camp world-event choice. But the winter goal could not be reached because the simulation ran at 3-30 tps, and food and cold never pressed. Apples pile up, eating is automatic and indoors costs no energy, so 'preparing for winter' asks nothing of the player. The season countdown also counts whole days and overstates the time left.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 18.0,
+          "Eat something": 19.0,
+          "Create or join a nation": 28.0,
+          "Found a settlement": 111.0,
+          "Enter your settlement": 116.0,
+          "Build a market stall": 177.0
+        },
+        "secondsToObjectiveNote": "game seconds since entering the world at tick 120000 ((tick-120000)/50)",
+        "finalTick": 141552,
+        "ticksStillToWinter": 38448,
+        "applesAtEnd": 30,
+        "applesPeak": 34,
+        "minEnergySeen": 90.6,
+        "tpsMin": 0.3,
+        "tpsMax": 33.3
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 2418.0,
+            "wallSeconds": 132.5,
+            "tick": 120900
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 2419.0,
+            "wallSeconds": 135.1,
+            "tick": 120952
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 2428.0,
+            "wallSeconds": 162.4,
+            "tick": 121400
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 2511.0,
+            "wallSeconds": 446.7,
+            "tick": 125552
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 2516.0,
+            "wallSeconds": 476.1,
+            "tick": 125800
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 2577.0,
+            "wallSeconds": 790.2,
+            "tick": 128852
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 3,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 87,
+          "objective_completed": 6,
+          "chronicle": 320,
+          "save": 3,
+          "world_event_offered": 1,
+          "world_event_resolved": 1
+        },
+        "lastTick": 141552
+      },
+      "ticksPerSecond": 50,
+      "notes": 9,
+      "crash": null
+    },
+    {
+      "session": "s04",
+      "profile": "beyond-nations",
+      "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O). This build adds an envoy: every diplomacy act that takes effect (gift/tribute, alliance, denunciation, war, peace) sends your envoy to that nation and blocks further acts toward that nation for 1,000 ticks (20 s of play, which pass only while the Nations screen is closed). Check that acts toward one nation now take game time, that the status line and the Nations screen row explain the wait, that a refused offer sends no envoy, and that each nation has its own envoy. Record the game tick of each act.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 975,
+      "seed": 104,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The envoy works as specified. Acts that take effect lock only that nation for 20 s of play, refusals (Ally at 0/+28/+41, Peace at -60) send no envoy, three nations had envoys out at once, and both the row ('envoy back in N s', counting down correctly) and the status line explain the wait. The biggest risk is the list re-sorting after an act combined with the two-click confirm, which aimed my second Denounce at the wrong nation. The alliance refusal also understates the threshold (+30 shown, +60 needed against a bigger nation). Small polish items: greyed buttons during the wait and an 'envoy returned' notice would make the pacing readable outside the O screen.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 3,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 27.06,
+          "Eat something": 28.02,
+          "Create or join a nation": 29.06
+        },
+        "nationCreatedTick": 169,
+        "envoyBlocksObserved": 3,
+        "refusedOffersSentEnvoy": 0,
+        "nationsWithSimultaneousEnvoys": 3,
+        "coinsSpentOnTribute": 175,
+        "finalRelationSouthton": 70,
+        "tick_allyRefusedSouthton": 1037,
+        "tick_tributeSouthton1": 1037,
+        "tick_tributeSouthtonBlocked": 1037,
+        "tick_tributeSouthton2": 2093,
+        "tick_tributeFarmwood": 2093,
+        "tick_denounceBigford": 2093,
+        "tick_warBigford": 3105,
+        "tick_peaceBigfordBlockedByEnvoy": 3105,
+        "tick_tributeSouthton3": 3105,
+        "tick_allyRefusedSouthtonAt28": 4193,
+        "tick_tributeSouthton4": 4193,
+        "tick_peaceRefusedBigford": 4193,
+        "tick_tributeTruceBigford": 4193,
+        "tick_allyRefusedSouthtonAt41": 5237,
+        "tick_tributeSouthton5": 5237,
+        "tick_tributeSouthton6": 6289,
+        "tick_allianceSouthton": 7345
+      },
+      "derived": {
+        "objectivesCompleted": 3,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 27.1,
+            "wallSeconds": 197.9,
+            "tick": 1353
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 28.0,
+            "wallSeconds": 200.2,
+            "tick": 1401
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 29.1,
+            "wallSeconds": 203.0,
+            "tick": 1453
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 1,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 21,
+          "world": 1,
+          "status": 44,
+          "chronicle": 18,
+          "objective_completed": 3,
+          "save": 1
+        },
+        "lastTick": 7345
+      },
+      "ticksPerSecond": 50,
+      "notes": 7,
+      "crash": null
+    },
+    {
+      "session": "s05",
+      "profile": "beyond-nations",
+      "goal": "Trade and caravans: build a market stall, buy and sell, get a Storehouse and send a caravan. Check specifically that residents of YOUR own settlement leave the market stalls to you (they should not fill your market), and that the 'Build a market stall' objective completes only from a stall you build.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 1073,
+      "seed": 105,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The #423 fix holds: in my own settlement residents built no stalls, and 'Build a market stall' completed from my own B press. Trading did not work at home, though. A resident took my new stall at once with 0 coins, so I could not buy or sell there and had to travel to a foreign Town. Caravans need a Storehouse, which unlocks only in the Town era, too far off for a short session. The error messages are clear and specific, and gathering resources and founding a settlement feel quick.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 43.0,
+          "Eat something": 44.04,
+          "Create or join a nation": 71.0,
+          "Found a settlement": 177.0,
+          "Enter your settlement": 179.0,
+          "Build a market stall": 191.0
+        },
+        "ownSettlementStallsBeforePlayerBuilt": 0,
+        "ownSettlementStallsAtEnd": 1,
+        "residentBuiltStallsInOwnSettlement": 0,
+        "ownMarketMerchantCoins": 0,
+        "successfulSales": 1,
+        "successfulPurchases": 1,
+        "caravansSent": 0,
+        "storehousesBuilt": 0,
+        "averageTps": 15
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 43.0,
+            "wallSeconds": 212.3,
+            "tick": 2150
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 44.0,
+            "wallSeconds": 217.5,
+            "tick": 2202
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 71.0,
+            "wallSeconds": 299.2,
+            "tick": 3550
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 177.0,
+            "wallSeconds": 800.8,
+            "tick": 8850
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 179.0,
+            "wallSeconds": 807.4,
+            "tick": 8950
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 191.0,
+            "wallSeconds": 842.4,
+            "tick": 9550
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 66,
+          "chronicle": 199,
+          "objective_completed": 6,
+          "save": 2
+        },
+        "lastTick": 13350
+      },
+      "ticksPerSecond": 50,
+      "notes": 4,
+      "crash": null
+    },
+    {
+      "session": "s06",
+      "profile": "beyond-nations",
+      "goal": "Ruler, laws and heirs: lead a nation, enact and repeal laws, and see what happens when the ruler dies.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 875,
+      "seed": 106,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The laws loop works and reads well: changes are announced, show a live 30 s countdown and land in the chronicle, and the 'The Rule Passes On' screen with its numbered line is a strong moment. But Rationing never appears in the Laws tab at 960x540, the heir is hidden until after death, and a ruler cannot realistically die in a session (I needed --stage-succession, which my goal justified), so the dynasty fantasy is mostly out of the player's reach. Coin gifting with no cooldown makes recruiting heirs and defectors trivially cheap.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 0,
+        "deaths": 1,
+        "secondsToObjective": {},
+        "lawsEnacted": 2,
+        "lawsRepealed": 1,
+        "secondsLawDelay": 30,
+        "coinsToBuyDefector": 160,
+        "naturalDeathReached": 0,
+        "successionsSeen": 1
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 1,
+        "saves": 2,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 23,
+          "world": 2,
+          "status": 40,
+          "chronicle": 46,
+          "save": 2,
+          "player_death": 1
+        },
+        "lastTick": 6139
+      },
+      "ticksPerSecond": 50,
+      "notes": 4,
+      "crash": null
+    },
+    {
+      "session": "s07",
+      "profile": "beyond-nations",
+      "goal": "Crafting: find and use every recipe on the crafting screen (C); are tools worth making?",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 1130,
+      "seed": 107,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "Tools are clearly worth making. The axe adds +3 wood to a base of about 4-6 per tree (about 65% more) and pays back its 4 wood within 2 trees, and the pickaxe adds +2 to a base of 5 stone. The crafting screen explains costs, readiness, uses left and locks very well. But only 3 of 5 recipes can be used early: Planks and Bricks sit behind a Village era that needs 10 loyal members. Cooked Meat is a trap: it is auto-eaten for small top-ups, there is no Eat control, and it sells for less than its ingredients.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 6,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 23.04,
+          "Eat something": 24.0,
+          "Create or join a nation": 69.0,
+          "Found a settlement": 112.04,
+          "Enter your settlement": 128.04,
+          "Build a market stall": 134.04
+        },
+        "recipesListed": 5,
+        "recipesUsed": 3,
+        "recipesLocked": 2,
+        "woodPerTreeNoAxe": 6,
+        "woodPerTreeWithAxeAvg": 7.6,
+        "treesChoppedWithAxe": 13,
+        "stonePerRockNoPickaxe": 5,
+        "stonePerRockWithPickaxe": 7,
+        "axePaybackTrees": 2,
+        "pickaxePaybackRocks": 2
+      },
+      "derived": {
+        "objectivesCompleted": 6,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 23.0,
+            "wallSeconds": 177.7,
+            "tick": 1152
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 24.0,
+            "wallSeconds": 179.8,
+            "tick": 1200
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 69.0,
+            "wallSeconds": 371.4,
+            "tick": 3450
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 112.0,
+            "wallSeconds": 562.4,
+            "tick": 5602
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 128.0,
+            "wallSeconds": 692.5,
+            "tick": 6402
+          },
+          {
+            "number": 6,
+            "title": "Build a market stall",
+            "seconds": 134.0,
+            "wallSeconds": 718.8,
+            "tick": 6702
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 18,
+          "world": 1,
+          "status": 62,
+          "objective_completed": 6,
+          "chronicle": 180,
+          "save": 2
+        },
+        "lastTick": 13750
+      },
+      "ticksPerSecond": 50,
+      "notes": 5,
+      "crash": null
+    },
+    {
+      "session": "s08",
+      "profile": "beyond-nations",
+      "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
+      "outcome": "blocked",
+      "fun": 2,
+      "durationSec": 1786,
+      "seed": 108,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "I could not test the world-event choices: with the simulation at 5-20 tps, the first player event (420-660 game s) never arrived within 30 wall minutes. Even at full speed a player waits 7+ minutes with no hint that events exist. The one NPC world event I saw was a single plain chronicle line, drowned within a minute by dozens of raid and relation lines, so as built world events are close to invisible to the player. The early loop (wood, nation, settlement) is clear and well signposted apart from the compass-less placement hints.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 5,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 31.06,
+          "Eat something": 32.02,
+          "Create or join a nation": 33.06,
+          "Found a settlement": 134.02,
+          "Enter your settlement": 139.06
+        },
+        "playerWorldEventsOffered": 0,
+        "npcWorldEventsSeen": 1,
+        "firstNpcWorldEventGameSec": 395.06,
+        "finalTick": 28521,
+        "nationRaidChronicleLines": 76,
+        "typicalTps": 12
+      },
+      "derived": {
+        "objectivesCompleted": 5,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 31.1,
+            "wallSeconds": 156.5,
+            "tick": 1553
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 32.0,
+            "wallSeconds": 158.6,
+            "tick": 1601
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 33.1,
+            "wallSeconds": 162.3,
+            "tick": 1653
+          },
+          {
+            "number": 4,
+            "title": "Found a settlement",
+            "seconds": 134.0,
+            "wallSeconds": 570.2,
+            "tick": 6701
+          },
+          {
+            "number": 5,
+            "title": "Enter your settlement",
+            "seconds": 139.1,
+            "wallSeconds": 654.6,
+            "tick": 6953
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 4,
+        "loads": 0,
+        "eventCounts": {
+          "screen": 4,
+          "world": 1,
+          "status": 69,
+          "chronicle": 370,
+          "objective_completed": 5,
+          "save": 4
+        },
+        "lastTick": 28501
+      },
+      "ticksPerSecond": 50,
+      "notes": 3,
+      "crash": null
+    },
+    {
+      "session": "s09",
+      "profile": "beyond-nations",
+      "goal": "Accessibility and text audit, touching only what a mouse-and-keyboard player would: every screen and panel; cut-off, overlapping, unclear or misspelled text; contrast; anything only explained on hover.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 945,
+      "seed": 109,
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "Text is mostly well written and destructive actions are safely confirmed. The Controls pages, Crafting list and error messages are clear. Accessibility suffers from translucent UI over a bright world: contrast collapses to about 2:1 on action buttons and the light-blue menus, and the HUD overlaps itself once a settlement adds panels and 13 buttons. No tooltips exist anywhere, so disabled buttons and jargon go unexplained, and menus can't be driven from the keyboard.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 3,
+        "deaths": 0,
+        "secondsToObjective": {
+          "Gather wood": 32.0,
+          "Eat something": 33.04,
+          "Create or join a nation": 48.0
+        },
+        "screensVisited": 14,
+        "textContrastFailuresMeasured": 6,
+        "hoverTooltipsFound": 0
+      },
+      "derived": {
+        "objectivesCompleted": 3,
+        "objectives": [
+          {
+            "number": 1,
+            "title": "Gather wood",
+            "seconds": 32.0,
+            "wallSeconds": 90.7,
+            "tick": 1600
+          },
+          {
+            "number": 2,
+            "title": "Eat something",
+            "seconds": 33.0,
+            "wallSeconds": 94.0,
+            "tick": 1652
+          },
+          {
+            "number": 3,
+            "title": "Create or join a nation",
+            "seconds": 48.0,
+            "wallSeconds": 239.3,
+            "tick": 2400
+          }
+        ],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 1,
+        "eventCounts": {
+          "screen": 23,
+          "world": 2,
+          "status": 30,
+          "chronicle": 21,
+          "objective_completed": 3,
+          "save": 2
+        },
+        "lastTick": 7000
+      },
+      "ticksPerSecond": 50,
+      "notes": 28,
+      "crash": null
+    },
+    {
+      "session": "s10",
+      "profile": "beyond-nations",
+      "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches. This build changed the save format (v6) to store diplomacy envoys. Before saving, lead a nation and make at least one diplomacy act on the Nations screen (O) so an envoy is on the road; save while it is away, quit, `pt start --continue`, and confirm the envoy is still away with the same remaining time (Nations screen row 'envoy back in N s') and the rest of the world matches.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 543,
+      "seed": "Ironvale",
+      "build": {
+        "version": "0.6.3",
+        "commit": "a44aa8d"
+      },
+      "verdict": "The v6 save keeps diplomacy envoys correctly. An envoy sent at tick 1686 and saved at tick 2206 came back after --continue showing 'envoy back in 6 s' at tick 2406, which matches the math exactly. Relations (+10), coins, position, energy, objective and nation/leader role also survived, and the envoy returned on schedule. The Share seed (1450162717) typed into New World rebuilt an identical starting world. The rough edges are all diplomacy feedback: a stale countdown in the status line, cooldown buttons that look active, and no notice when the envoy returns.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 0,
+        "deaths": 0,
+        "secondsToObjective": {},
+        "saveTick": 2206,
+        "envoyDueTick": 2686,
+        "envoyRemainingAtSaveSec": 9.6,
+        "envoyShownAfterLoadSec": 6,
+        "tickWhenCheckedAfterLoad": 2406,
+        "relationAfterLoad": 10,
+        "coinsBeforeSave": 231,
+        "coinsAfterLoad": 231,
+        "shareSeed": 1450162717,
+        "seedWorldMatched": true,
+        "avgTps": 10
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 2,
+        "loads": 1,
+        "eventCounts": {
+          "screen": 25,
+          "world": 3,
+          "status": 10,
+          "chronicle": 10,
+          "save": 2
+        },
+        "lastTick": 2782
+      },
+      "ticksPerSecond": 50,
+      "notes": 3,
+      "crash": null
+    }
+  ],
+  "severityCounts": {
+    "blocker": 0,
+    "major": 10,
+    "minor": 46,
+    "polish": 18
+  },
+  "findingReports": 74,
+  "findings": [
+    {
+      "title": "Founding a settlement: NPC nations claim the open ground the F hint points to before the player gets there",
+      "severity": "major",
+      "categories": [
+        "balance",
+        "ux"
+      ],
+      "sessions": [
+        "s01",
+        "s02"
+      ],
+      "reports": 2,
+      "detail": "With 50 wood in hand at tick ~4400 I pressed F and followed the hint ('open ground about 40 to the south-east', '11 to the east', '30 to the north'...) seven times. Each time an NPC (Fortressburg, Fortressshire, Blueport) founded or extended a claim on that spot just before I arrived, and the hint jumped 170-230 units away. The world went from 1 to 15+ nations within the first in-game day. Founding took 6700 ticks (134 game s), more than the rest of the Camp objectives combined. I expected the pointed-to ground to still be free a few seconds later, or the hint to account for NPC settlers heading there.",
+      "repro": "pt start --profile beyond-nations --seed 102; gather 50 wood near spawn; press f; follow the direction in the status message; press f again; repeat",
+      "screenshots": [
+        "s02/shots/chase.png",
+        "s01/shots/found_hunt.png"
+      ],
+      "alsoTitled": [
+        "Founding a settlement turns into a long hunt: the 'open ground' hints keep changing direction and there is no compass to follow them"
+      ]
+    },
+    {
+      "title": "Context action buttons are translucent and drop to ~1.8:1 contrast over bright grass/sky",
+      "severity": "major",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Buttons like 'Talk to Olivia Taylor (Stranger)', 'Gift Olivia Taylor', 'Invite...', 'Propose Alliance to Greatport', 'Gift Greatport 25 Coins', 'Craft Pickaxe' are white text on a translucent teal; over sunlit grass the measured background is ~#75D59B, giving ~1.8:1 contrast. Over sky 'Gift Greatport 25 Coins' is nearly invisible. Disabled buttons ('Found Settlement', 'Enter Settlement', 'Plant Sapling') are ~2.5:1 and indistinguishable from enabled translucent ones. Expected opaque buttons with >=4.5:1 text.",
+      "repro": "same as above; take screenshots near Greatport in daylight",
+      "screenshots": [
+        "s09/shots/button_contrast.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "HUD panels overlap each other near a settlement: Inventory jumps to centre under the Tip box, Player Info loses its title",
+      "severity": "major",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Walking up to Greatport's settlement and talking to a pawn: the Inventory Info panel moves to the screen centre and the Tip box draws on top of it, hiding 'Chicken Meat' and 'Axes: 1 (20 uses)'. After entering and with the Market Info panel growing, the right column runs out of height and the 'Player Info' title disappears; its energy bar and nation lines appear under the Season panel as if part of it. Expected panels to keep fixed slots or collapse cleanly.",
+      "repro": "pt start --profile beyond-nations --seed 109; Start, Begin; N; pt walkto pawn (near Greatport, ~(-65,157)); e; click Enter Settlement (210,476); click Sell Resources",
+      "screenshots": [
+        "s09/shots/settlement_overlap.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Laws tab drops the Rationing law entirely at 960x540",
+      "severity": "major",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "The Laws tab lists only Taxes, Conscription and Borders. The fourth law, Rationing (LawType.RATIONING, described in Laws.cs as one of 'the four laws'), is never drawn: LawsPanel.draw breaks out of the row loop when the next block would not fit above height - 3.2 lines, with no scrolling and no hint that more exists. There is visibly empty space below Borders. A leader at this resolution cannot see or enact Rationing. Expected: all four laws shown, or a scroll like the Nations tab has.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 106; pt key space; pt click 480 315; pt click 480 315; pt key n; pt key o; pt click 543 45; pt shot laws",
+      "screenshots": [
+        "s06/shots/laws-no-rationing.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations list re-sorts after an act, so the two-click Denounce/War confirm can land on a different nation",
+      "severity": "major",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "I denounced Bigford (row 2) at tick 2093. The list then re-sorted, enemies first: Bigford moved to row 1 and Farmwood took row 2. My next two clicks at the same spot armed 'Click Denounce again to denounce Farmwood' and then confirmed it. Only Farmwood's envoy being away stopped an unintended denunciation. Arming is also allowed on a nation whose envoy is away; the envoy block only appears on the confirm click. Expected: a stable row order while the screen is open (or no re-sort under the cursor), and the envoy check on the first click.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 104; Start, Begin; pt key n; wait until 3 AI nations exist (~tick 2000); pt key o; Tribute row 1 and row 3, then pt click 835 319 twice (Denounce Bigford in row 2); then pt click 835 319 twice again",
+      "screenshots": [
+        "s04/shots/rows_reorder_misclick.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Own market cannot trade: the resident who takes the player's new stall has 0 coins and nothing to sell",
+      "severity": "major",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "Right after I built my first stall (B) in my own camp, Market Info showed 'Merchants: Linda Smith', '1/4 stalls, 0 coins'. Sell Resources then failed with 'No merchant here can pay: the richest has 0 coins, and your cheapest good (sapling) sells for 19.' and Purchase Food failed with 'No one is selling food at this market...'. It was still the same about 3,600 ticks (~72 game s) later. A merchant has to pay 100 coins to buy a stall, but the stall/market showed 0 coins afterwards, so it is unclear where that money went. To buy and sell I had to travel 340 m to a foreign Town (Castletown), where both worked. Expected: the market I just built can trade with me straight away, or the HUD tells me how to stock it or give it money.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 105; gather ~90 wood + 30 stone; N; walk away from other settlements; F; E; B; click Sell Resources (186,445); click Purchase Food (66,445)",
+      "screenshots": [
+        "s05/shots/sell_nocoins.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Planks and Bricks (2 of 5 recipes) out of reach in ~20 min: Village era needs 10 members; strangers must be Loyal",
+      "severity": "major",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "The crafting screen lists 5 recipes. Axe, Pickaxe and Cooked Meat all work out in the world. Planks x2 and Bricks x2 stay 'Locked: The Workshop is unlocked in the Village era.' I founded a nation and a settlement, built a stall, a house and a farm (Buildings 2/2), and the settlement became a 'Village'. Objective 7 then sat at Members 9/10 for over 6000 ticks. Inviting a nearby stranger with R gave 'Abigail Thomas (Stranger): \"I'm loyal to Eastfield.\" (needs Loyal)'. So the two trade-good recipes, which are the main reason to collect a surplus of wood and stone, stay out of reach for a long time, and nothing on the crafting screen shows how far off they are.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 107; gather 50 wood; N; F (outside claimed land); E; B; K K (house); collect stockpile; K K (farm); C -> Planks/Bricks still locked; R on stranger -> needs Loyal",
+      "screenshots": [
+        "s07/shots/craft_village.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Sim runs at 3-30 ticks/s (often far below 50), so an autumn start cannot reach winter in a play session",
+      "severity": "major",
+      "categories": [
+        "perf"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "With --season autumn the world starts at day 4, tick 120000, and winter begins on day 6 (tick 180000, 60000 ticks = 20 game minutes away). The measured tps ranged from 0.3 to 33 (2.9 right after entering the world, 0.3 at the final status) at 1-5 fps, with machine load around 20 on 20 cores. In 24 wall minutes the world only got from tick 120000 to 141552, the start of season day 2/2. Winter was still ~38000 ticks off, so the goal could not be finished. Under shared load, an --season autumn start is not a practical way to test winter. A start near the end of autumn, or a --season winter start for this goal, would be.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 103 --season autumn; enter world; pt status every few minutes",
+      "screenshots": [
+        "s03/shots/day2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Simulation ran at 5-20 tps, so no player world event was offered within a 30-minute session",
+      "severity": "major",
+      "categories": [
+        "perf"
+      ],
+      "sessions": [
+        "s08"
+      ],
+      "reports": 1,
+      "detail": "Throughout the session the game ran at 5-20 ticks/s (fps 0-5) instead of 50. The first player event is scheduled 420-660 game seconds in (WorldEvents.FIRST_PLAYER_EVENT_MIN/MAX_SECONDS). After 30 wall minutes the world had reached only tick 28521 (570 game s) and no world_event_offered had appeared, so I could not see a choice sheet, take a choice or judge consequences. Even at full speed a player waits 7-11 minutes for their first event, and nothing on screen hints that events exist or are coming.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 108; Start; Begin; n; gather 50 wood; f at open ground; e; idle and watch pt status / pt events until 30 min wall",
+      "screenshots": [
+        "s08/shots/final.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Village era 'Members 10' requirement: almost no recruitable settlers left in the world",
+      "severity": "major",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "After I built the house and farm (Village 1/1, Stalls 2/2 at tick 16050), Members stayed at 3/10. The pawns near my settlement were already members ('Frank Jones is already a member of Yellowfield'). The nearest stranger after a sprint was another nation's leader ('I lead Whitefield. I won't abandon my people'), and only 3 pawns were within ~270 m. The objective says 'Befriend settlers and press R', but nothing in the game points to where unaffiliated settlers are, so the member gate became the real blocker. In addition, Interact tries the settlement first, so pawns standing in your settlement cannot be talked to with E (E enters or leaves the settlement instead).",
+      "repro": "after founding and building house + farm: pt walkto pawn; pt key e; pt key r",
+      "screenshots": [
+        "s02/shots/talk.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Floating settlement label is clipped at the top of the screen and overlaps chronicle and banners, even on the pause screen",
+      "severity": "minor",
+      "categories": [
+        "text",
+        "ux"
+      ],
+      "sessions": [
+        "s01",
+        "s03",
+        "s05",
+        "s08",
+        "s09"
+      ],
+      "reports": 5,
+      "detail": "'Village of Greatport / 3 here, 5/8 residents' is drawn as huge white text that runs off the top edge, overlaps the chronicle panel and status banner, and stays visible above the pause menu dimmer. White on pale sky is unreadable.",
+      "repro": "walk to Greatport settlement (~(-65,157)); Escape",
+      "screenshots": [
+        "s09/shots/village_label_cut.png",
+        "s01/shots/inside2.png",
+        "s03/shots/objective_clip.png",
+        "s05/shots/home_final2.png",
+        "s08/shots/label_overlap.png"
+      ],
+      "alsoTitled": [
+        "Floating settlement label is clipped at the top of the screen and overlaps the HUD",
+        "Settlement name banner is drawn huge behind the HUD and cut off at the top of the screen",
+        "Settlement's world-space label overflows the top of the screen and its name is cut off",
+        "The floating settlement label is drawn huge behind the HUD and cut off at the top of the screen"
+      ]
+    },
+    {
+      "title": "Chronicle lines truncated with '...' in the default view",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s01",
+        "s06",
+        "s09"
+      ],
+      "reports": 3,
+      "detail": "'The nation of Greatport was born, with Una Smi...', 'Samantha Williams founded the nation of Whitet...'. The full text is only in the Y window, which is itself translucent with HUD panels drawing over it and the cryptic '4 entries. Listing 2.' header.",
+      "repro": "play ~2000 ticks; read chronicle panel; press y",
+      "screenshots": [
+        "s09/shots/chronicle_truncated.png",
+        "s01/shots/chron_trunc.png",
+        "s06/shots/talk1.png"
+      ],
+      "alsoTitled": [
+        "Chronicle lines are cut off with '...' right where the nation name is",
+        "Law-enactment chronicle lines are cut off with an ellipsis in the HUD chronicle"
+      ]
+    },
+    {
+      "title": "'The settlement is now a Village!' while the era badge still says Camp (1/4)",
+      "severity": "minor",
+      "categories": [
+        "text",
+        "ux"
+      ],
+      "sessions": [
+        "s03",
+        "s07"
+      ],
+      "reports": 2,
+      "detail": "Building the Farm and House gave the status 'House built. The settlement is now a Village!', but the era badge stayed 'Era: Camp (1/4)' and objective 7 'Reach the Village era' stayed incomplete (Members 5/10). Two meanings of 'Village' (settlement tier and nation era) contradict each other on screen. 'Chronicle: your news' is also full of other nations' border rivalries and raids, which push the player's own events out of the five visible lines.",
+      "repro": "inside own settlement: pt key k k (farm); pt key k k (house); pt shot",
+      "screenshots": [
+        "s03/shots/village_vs_era.png",
+        "s07/shots/village_vs_era.png"
+      ],
+      "alsoTitled": [
+        "'The settlement is now a Village!' but crafting says the Workshop needs the Village era (era still Camp)"
+      ]
+    },
+    {
+      "title": "Mouse 'click again to confirm' for Build House never commits at low fps (8 s wall-clock window)",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s03",
+        "s04"
+      ],
+      "reports": 2,
+      "detail": "In the settlement I clicked Build House at (473,445), and each later click just re-armed 'Click again to confirm: Build House.' (ticks 129120, 129340, 129528). Nothing was built. Each hover-plus-click took about 9 s of wall time at 2-5 fps, which is longer than ConfirmGate's 8 s window. The first Build Farm arm was also lost when the button row reflowed. Pressing K twice built both Farm and House at once. Expected a confirm window measured in frames or game time, or one that tolerates slow frames.",
+      "repro": "inside own settlement with 25+ wood/15 stone: pt click 473 445; pt wait 2; pt click 473 445; pt events 3",
+      "screenshots": [
+        "s03/shots/confirm_lapse.png",
+        "s04/shots/denounce_bigford.png"
+      ],
+      "alsoTitled": [
+        "Two-click confirm: stale 'Confirm' label, mismatched wording, and a wall-clock expiry at low fps"
+      ]
+    },
+    {
+      "title": "Objective 7 progress text is clipped, and four different counters describe the same goal",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s01",
+        "s07"
+      ],
+      "reports": 2,
+      "detail": "The 'Reach the Village era' progress bar shows 'mbers 4/10 - Buildings 0/2' (the start is cut off). On screen at the same time: era panel 'Village: 0/4', objective body 'Village 0/1', 'Members 4/10', 'Buildings 0/2'. Later the status says 'The settlement is now a Village!' while the era panel still reads 'Era: Camp (1/4)'. The tier and the era are easy to confuse.",
+      "repro": "complete the stall objective; look at the objective panel and the era panel",
+      "screenshots": [
+        "s01/shots/obj7_clip.png",
+        "s07/shots/obj7_truncated.png"
+      ],
+      "alsoTitled": [
+        "Objective 7 progress text is cut off ('mbers 8/10'), and it shows Village 0/1 while the era widget shows 0/4"
+      ]
+    },
+    {
+      "title": "'Talk to <pawn>' button re-targets to another pawn between hover and click",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "Inside my settlement I clicked 'Talk to Phoebe Jones (Stranger)', and Alice White answered. The contextual pawn rows follow whichever pawn is nearest, and at a few fps that changes between the hover and the click. The order and gift buttons in the same row have the same risk.",
+      "repro": "inside own settlement with several residents: pt click 160 383; pt events 3",
+      "screenshots": [
+        "s03/shots/talk_wrong_pawn.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "'Village' used for three different things in the Era box",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "The next era ('To reach the Village era'), the checklist counter ('Village: 0/4') and a requirement line ('Village 0/1'). 'Day 1/3' in the era list sits next to 'day 1/2' in the Season panel, which are different counters.",
+      "repro": "click Era box (110,58)",
+      "screenshots": [
+        "s09/shots/era_detail.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "A resident buys the stall the player built within ~2 s, with no message and no way for the player to own it",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "I pressed B at tick 9550, and within about 2 seconds Linda Smith was listed as the stall's merchant. Nothing in the chronicle or status line said that a resident had bought my stall. The objective still completed, correctly, from my own build. Residents did not build any stalls themselves: the market was 0/4 for 20 s before I built and 1/4 for about 3,600 ticks after, so the 'leave the market to you' rule holds for construction. Having the stall taken over so fast still feels like the market is not mine. Expected: a chronicle line such as 'Linda Smith took over your stall'.",
+      "repro": "same as above up to B; take a screenshot 2 s later and read Market Info",
+      "screenshots": [
+        "s05/shots/merchant_took_stall.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "A ruler cannot die naturally within a play session, so succession is hard to reach",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "Energy drained from 84.9 to 65.2 over ~6000 ticks (2 game minutes) while I walked, so starving takes about 30 game minutes, and the player has no other way to die (militia, fire and sickness all clamp energy at 1). At the tps on this machine that is well over the 30-minute budget, so I had to use --stage-succession to see a death. Succession is a headline feature, but a normal session will rarely see it.",
+      "repro": "Play normally and watch energy in Player Info; compare with the drain rate",
+      "screenshots": [
+        "s06/shots/repeal1.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "After succession the new ruler's name appears nowhere on the HUD",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "After the rule passes to Xavier Lewis, the red status toast says so, but Player Info shows only Nation, Role and Land, and the Nations tab says 'You lead it'. Once the toast fades, nothing on screen shows the player's current name, how long they have reigned or their line. Expected: the ruler's name in Player Info, and the lineage from the succession screen reachable later, for example on the Nations tab.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/bn-wt-pt064c --seed 106 --stage-succession; space; Start; Begin; Continue on the succession screen; look at the HUD and press O",
+      "screenshots": [
+        "s06/shots/ruler-name-missing.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Alliance refusal says '+30 needed', but a larger nation actually wants +60",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "The header says 'An alliance needs +30'. At tick 4193 Southton (3 members to my 1, Friendly +28) refused with 'an alliance needs +30. Gifts help', so I paid 25 coins to reach +38. At tick 5237 (+41) it refused again: 'they are 3 to your 1 and want relations of +60 before taking on so small a partner'. The first refusal should give the real +60 threshold. It cost me an extra tribute and an extra 20 s envoy wait.",
+      "repro": "As above; tribute Southton up to ~+28, click Ally (refused with +30), tribute to +38+, wait 20 s, click Ally (refused with +60)",
+      "screenshots": [
+        "s04/shots/ally_ok.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "An NPC world event shows only as one plain chronicle line and is pushed out of the recent panel almost at once",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s08"
+      ],
+      "reports": 1,
+      "detail": "The only world event in the session (tick 19753, 'A bountiful harvest came in across Northernwood, and Isabella Thompson filled the stores with 14 apples.') appeared as an ordinary line in the 5-line recent-chronicle panel. Raid and relation lines pushed it off within about a minute, before I took a screenshot. It had no distinct styling, toast or sound. I expected world events, which the game presents as what changes the world, to stand out from routine news.",
+      "repro": "seed 108; found a settlement; wait to tick ~19753; look at the chronicle panel at ~tick 20200",
+      "screenshots": [
+        "s08/shots/npc_event_buried.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Coin gifts have no cooldown: 160 coins buys a rival nation's member as Loyal in seconds",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "Talking gives +2 with a 30 s cooldown, but G (gift 10 coins, +2) can be pressed repeatedly with no cooldown. Pressing G 16 times took Hank Thomas (a member of Oldwood) from Stranger to Loyal in ~10 game seconds, and R made him defect to my nation. 160 of the 375 starting coins buys a defector and an heir. Expected: a gift cooldown or diminishing returns, as with talking.",
+      "repro": "(as above, with a nation) pt walkto pawn; press g 16 times; pt key r",
+      "screenshots": [
+        "s06/shots/gift-spam.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Collect Stockpile makes the hand-gathering objective pointless and nothing points the player at it",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "The 'Build a market stall' objective says gather 20 wood and 5 stone, so I hand-chopped trees and mined a rock. Back inside, one click on 'Collect Stockpile (198)' gave 128 wood + 70 stone, enough for 2 stalls, a farm and a house within seconds (the settlement became a Village at tick ~11780). No tip or objective mentions the stockpile. Expected: the objective text mentions the stockpile, or the stockpile fills more slowly early on.",
+      "repro": "found settlement; wait ~2 game minutes; enter (e); click Collect Stockpile",
+      "screenshots": [
+        "s01/shots/collect.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Cooked Meat is eaten automatically to top up a few energy points, with no message, while apples are in the bag",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "Between tick ~6000 and ~6240, energy went from 90 to 99 and cooked_meat went from 1 to 0, while I held 13 apples. No status line said I ate anything, and the second cooked meat I made also disappeared later. Neither the Controls screen nor the Inventory has an Eat action, so the 45-energy food is used up on a 9-point top-up. On top of that, the market buys cooked meat for about 85-93, which is less than the ingredients sell for separately (chicken meat ~47-49 plus wood ~55-57). Right now cooking makes the meat worth less and gives the player no say in when it is eaten. I expected the game to eat apples first, or to let me choose when to eat.",
+      "repro": "craft Cooked Meat (C, row 3) with energy ~90 and apples in inventory; wait ~5 game seconds; pt state -> cooked_meat gone, energy 99, no status",
+      "screenshots": [
+        "s07/shots/ate_cooked_meat.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Crafting the axe moves the first objective backwards (Wood 6/10 -> 2/10)",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "Objective 1 'Gather wood' counts the wood you are carrying, not the wood you have gathered. Crafting an axe (4 wood) right after the first tree dropped the progress from 6/10 to 2/10, so the tutorial penalises the very tool it should encourage.",
+      "repro": "chop one tree (E); C; click Axe Craft >; close; objective shows Wood 2/10",
+      "screenshots": [
+        "s07/shots/axe_chop.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Crafting: selected row turns bright blue and its sub-text drops to ~2:1",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "On hover/selection the recipe row goes #4296FA; the green 'Ready: you can make 1 / have 1 (20 uses left)' is ~2.4:1 and the grey effect line '+3 wood per tree, lasts 20 trees' ~2.0:1. That is the moment the player is reading before clicking.",
+      "repro": "c; hover/click Axe row",
+      "screenshots": [
+        "s09/shots/crafting_hover_contrast.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Diplomacy buttons look active while the envoy is away, and nothing tells you when it returns",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s10"
+      ],
+      "reports": 1,
+      "detail": "While 'envoy back in N s' is showing, Fortresstown's Tribute/Ally/War/Denounce buttons are drawn exactly like the active ones. Clicking them only shows an 'envoy still on the road' status. When the envoy came back, no status message or chronicle entry appeared; the only sign was that the row suffix was gone (seen at tick 2770). I expected greyed-out buttons during the cooldown and a short 'your envoy has returned from X' notice.",
+      "repro": "Same as above; close Nations; wait for about 20 game seconds; pt key o; pt events 15 shows no envoy-return event",
+      "screenshots": [
+        "s10/shots/nations_envoyback.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Disabled actions and HUD terms have no explanation, not even on hover",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Hovering disabled 'Plant Sapling'/'Enter Settlement'/'Found Settlement', the 'Village: 0/4' counter, or Config options shows no tooltip. Players must guess that Found Settlement needs 50 wood, that Plant needs a sapling, what Chunk Size / Location Scale / Lag Prevention / Respawn Pawns do, or what Gift/Invite/Alliance cost. Nothing is hover-only, but nothing explains these at all.",
+      "repro": "pt move 425 517 on the first world screen; pt move 540 304 on Config",
+      "screenshots": [
+        "s09/shots/disabled_buttons.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Envoy wait only shows on the Nations screen: buttons stay live, HUD toast is static, no 'envoy returned' notice",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "While an envoy is away, all of the row's buttons look enabled; clicking one gives a clear 'still on the road' status but no visual cue beforehand. After closing O, the HUD toast keeps saying 'again in 20 seconds of play' (no countdown) and then fades. Nothing tells the player when the envoy is back, so they have to reopen O to check. The row's countdown itself is accurate: 'envoy back in 11 s' at tick 1493 for an act at 1037.",
+      "repro": "Tribute any nation; close O; watch the HUD; reopen O after 20 s",
+      "screenshots": [
+        "s04/shots/envoy_blocked_buttons_live.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Food and cold pressure is very low: auto-eat, a 20-apple surplus by mid-autumn, no energy drain indoors",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "Within ~3000 ticks of chopping I had 20 apples, and 34 by tick 128600 (each tree gives 1-3 in autumn). Energy burns about 0.33 per 100 ticks outdoors and the player eats automatically (energy 90->99, apple -1). Indoors energy held flat at 91.5. The 'Eat something' objective completed by itself 52 ticks after the first one. That is roughly 13 apples per game day outdoors. With winter's 1.3x cold multiplier and free warmth indoors, a player who stays in the settlement does not need to prepare. Bandit and market pressure happen, but food and cold never felt threatening in autumn.",
+      "repro": "pt start ... --season autumn; chop ~8 trees; sample pt state energy/apple every 40s outdoors and inside",
+      "screenshots": [
+        "s03/shots/outdoors.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Game runs at 3-22 tps (fps 1-4) on a shared machine, so the day-3 era gate takes far longer than the 17 min of game time suggests",
+      "severity": "minor",
+      "categories": [
+        "perf"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Over 22 minutes of wall clock the world advanced only 20219 ticks (6.7 game minutes). Reaching the day-3 gate (~51000 ticks) would need about 50 more wall minutes. pt walkto timed out twice because the player barely moved. The machine was loaded (load average ~43 on 20 cores), so this is partly environmental.",
+      "repro": "pt start ...; pt status (tps 3-22)",
+      "screenshots": [
+        "s02/shots/world0.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Gather feedback disagrees with itself: '3 apples' vs '+2 apples', saplings omitted, silent auto-eat",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "First chop: banner 'Gathered 5 wood and 3 apples from tree.', floating text '+2 apples', inventory Apples: 2, +2 saplings missing from the banner; energy rose 81->95 with no message that an apple was eaten (the 'Eat something' objective completed silently).",
+      "repro": "Begin; pt walkto tree; e",
+      "screenshots": [
+        "s09/shots/chop_mismatch.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "K build confirmation lapses at low fps: the second K press ~4 s later just re-prompts",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "Pressing K showed 'Press K again to build a Farm (25 wood, 10 stone).' I took a screenshot and pressed K again about 4 real seconds later (at 2-4 fps), and the game showed the same prompt again without building. Sending 'k k' together built the farm. The confirm window seems to be timed in a way that is easy to miss when the frame rate is low.",
+      "repro": "inside own camp with 25 wood/10 stone: pt key k; pt wait 2; pt shot x; pt key k; pt state (status still 'Press K again...')",
+      "screenshots": [
+        "s05/shots/kmenu.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Menus can't be used from the keyboard",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "On the pause menu, Down, Tab and Return do nothing and there is no focus indicator. Only Esc works. A keyboard-only player cannot Save, Share or go to the Main Menu.",
+      "repro": "in world: Escape; pt key Down Down; pt key Tab; pt key Return -> still PAUSE",
+      "screenshots": [
+        "s09/shots/pause_no_kbd.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "NPC raid spam floods the chronicle: 76 raid lines in about 9.5 game minutes, 13 of them on one tick",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s08"
+      ],
+      "reports": 1,
+      "detail": "On tick 17001 thirteen NationRaid chronicle entries fired at once ('Raiders from Blacktown struck Easternton...', and so on). By tick 28521 there were 76 raids, 71 relation changes and only 1 WorldEvent entry. This noise is what buries the world events and the player's own news in the chronicle.",
+      "repro": "seed 108; play to tick ~17001; pt events 20 / view the chronicle",
+      "screenshots": [
+        "s08/shots/late.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations screen status line shows a stale envoy countdown that contradicts the row",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s10"
+      ],
+      "reports": 1,
+      "detail": "After clicking Tribute twice on Fortresstown, the bottom status line says 'you can deal with them again in 20 seconds of play'. Later, when I reopened the Nations screen, the row read 'envoy back in 11 s' but the status line still said 20 seconds. I expected the status line to clear when the screen reopens, or to show the live remaining time.",
+      "repro": "pt start --seed Ironvale; Start, Begin; pt key n; wait for an AI nation; pt key o; click Tribute (123,255) twice; Escape; let ~8 s of game time pass; pt key o",
+      "screenshots": [
+        "s10/shots/nations_presave2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "No on-screen heading: direction words in messages ('south-west') cannot be followed",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "The HUD has no compass, no minimap and no cardinal marker. Direction words in status messages are useless without one. Seen on the first refusal of F.",
+      "repro": "pt start ... --seed 101; gather 50 wood; pt key n; pt key f",
+      "screenshots": [
+        "s01/shots/no_compass.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "No screen names the heir or warns what happens if the ruler dies",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "With a second member in Smallton, neither the Nations tab, the Laws tab nor the HUD names the heir or says that dying with no members ends the line and the run. Succession.cs has clear rules (family first, then most loyal, then longest sworn), but the player only learns who the heir is on the 'The Rule Passes On' screen after death. Expected: an 'Heir: <name> (reason)' line on the Nations tab, or 'No heir: your line ends if you die'.",
+      "repro": "Create nation (N), recruit one pawn (gift G, invite R), pt key o, look at both tabs",
+      "screenshots": [
+        "s06/shots/no-heir-shown.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Objective panel overlaps the settlement action buttons and its progress text is clipped on the left",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Inside my own settlement, the Objective 7 panel is drawn over the action rows ('Gather Wood', 'Purchase Food' and others overlap). The progress bar label reads 'mbers 3/10 . Buildings 0/2' because the start of 'Members' is cut off. The Inventory panel also covers the tip box ('Info (I)' is hidden under the tip).",
+      "repro": "found a settlement; pt key e (enter); pt key b; pt shot x",
+      "screenshots": [
+        "s02/shots/overlap.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "R (invite) gives no feedback when used next to a stranger who is another nation's leader",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Next to Phoebe Lewis (Stranger, leader of Whitefield) I talked 3 times and pressed R. No status message or event appeared at all. Elsewhere R says 'There is no one within reach to invite' or 'X is already a member'. I expected a refusal message. R is also missing from the controls list in the brief and only shows up in the objective text.",
+      "repro": "walk to a pawn who leads another nation (pt walkto pawn); pt key e (x3); pt key r; pt events 5",
+      "screenshots": [
+        "s02/shots/r_silent.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Rivalry penalties arrive right after founding, with no explanation",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "Right after I founded and entered, status messages said 'Whiteland resents your border: relations are now Rival (-20).' and then the same for Whiteburg and Whiteshire. I founded where the game allowed (250+ from others), so a new player cannot tell what they did wrong or how to avoid it. Expected: a brief reason or tip (for example 'borders within X of theirs annoy neighbours').",
+      "repro": "found settlement at about (-924,-104) on seed 101; enter it; wait",
+      "screenshots": [
+        "s01/shots/rival_border.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Season panel's 'Winter in 2 days' counts whole days and overstates the time left; three different day numbers on screen",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "At the night of autumn season day 1 (chronicle 'Day 5, night', state day 4 timeOfDay ~0.8, tick ~135000) the Season panel still said 'Autumn - day 1/2' and 'Winter in 2 days', though winter was about 1.2 days away. It switched to 'Winter in 1 day!' only at the day rollover. SeasonCalendar.daysUntil counts whole days. The same screen also shows three calendars: chronicle 'Day 5', season panel 'day 1/2', and state.json day 4. Expected a countdown that counts down within the day (for example in hours or as a fraction) and one day number.",
+      "repro": "pt start ... --season autumn; enter world; pt wait until state timeOfDay > 0.8; pt shot",
+      "screenshots": [
+        "s03/shots/winter_countdown.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Sell Resources at a foreign town sold only 1 apple + 1 sapling with no quantity shown",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "At Castletown (2 merchants, 24 coins in the market) one Sell Resources click went from 437 to 457 coins, and from 37 to 36 apples and 15 to 14 saplings. The status line said only 'You sold resources to Samantha Evans.' It did not say what was sold or for how much. Wood and stone counts were 0 at the time. Expected: the status line names the items and the coins received.",
+      "repro": "enter a foreign Town with merchants; click Sell Resources; compare inventory before/after",
+      "screenshots": [
+        "s05/shots/sold.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Settlement panels mislead: build hint and unlabeled prices in a foreign settlement",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Inside Greatport (not the player's nation), Settlement Info still shows 'Next (K): House, 20 wood, 15 stone'. 'Prices (buy/sell)' doesn't say whose buy/sell. The trend is shown only by red/green triangles. 'Purchase Food'/'Sell Resources' give no price before clicking. The Sell error message itself is clear and specific.",
+      "repro": "enter Greatport settlement; read right panels",
+      "screenshots": [
+        "s09/shots/settlement_info.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Settlement placement hints use compass directions, but nothing on screen shows which way north is",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s08"
+      ],
+      "reports": 1,
+      "detail": "'Too close to ... Open ground lies about 180 to the south-east' and 'Found your settlement outside its borders. Open ground lies about 190 to the south-west.' There is no compass or minimap, so I found a valid spot by trial and error, and it took 4 attempts and about 5 wall minutes. I expected a compass strip, a direction arrow or a minimap marker.",
+      "repro": "seed 108; gather 50 wood near spawn; press f near Easternfield/Oldwood",
+      "screenshots": [
+        "s08/shots/no_compass.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Stale status banners leak into other screens",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "The world status text appears on unrelated full screens: 'Chronicle: recent entries.' under the Crafting list, 'Crafted 1 axe (+3 wood per tree...)' on the Nations and Laws tabs, and 'Saved: Day 1 - Littleshire, 21:02.' still on the pause menu several minutes later.",
+      "repro": "press y, then c (Crafting); craft axe, then o (Nations)",
+      "screenshots": [
+        "s09/shots/nations_stray.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Stale tip and programmer wording",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Tip 4 of 5 still says 'Press N to start a nation...' after the player leads Littleshire. Pressing E with nothing near gives '! No entities within range to interact with.' ('entities' is engine jargon; expected 'Nothing in reach').",
+      "repro": "n; e away from anything",
+      "screenshots": [
+        "s09/shots/stale_tip.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Storehouse and caravans are locked until the Town era (3rd of 4), so a trade-focused player starting out cannot reach them",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s05"
+      ],
+      "reports": 1,
+      "detail": "The 'Send Caravan (Town era)' button shows from the first camp. Clicking it says: 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.' K offers only Farm or House in a Camp. The message is clear, but caravans are a long way off. After ~13,000 ticks I was still at Camp, objective 7 (Village: Members 5/10, Buildings 1/2). The Storehouse and caravan parts of my goal could not be done in this session.",
+      "repro": "after founding and entering your settlement, click 'Send Caravan (Town era)' (66,414)",
+      "screenshots": [
+        "s05/shots/caravan_btn.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Tip 'Gather stone' shown while the objective is 'Eat something' / 'Found a settlement'",
+      "severity": "minor",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s02"
+      ],
+      "reports": 1,
+      "detail": "Tip 3 of 5 'Gather stone: Find a grey rock and press E' kept showing during objectives 2-4, none of which need stone (founding needs 50 wood). I expected tips to follow the current objective.",
+      "repro": "pt start ... --seed 102; chop 2 trees to finish Gather wood; pt shot",
+      "screenshots": [
+        "s02/shots/wood2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Title, main menu, Config and Load screens: white text on light blue at ~2.5:1, buttons barely visible",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Background ~#73A6E6, button fill ~#5FA0EE with no border; white 'Press any key or click to continue' and small button labels are well below 4.5:1. Button shapes barely separate from the background.",
+      "repro": "pt start; screenshot title and main menu",
+      "screenshots": [
+        "s09/shots/menu_buttons.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Trees next to the settlement well cannot be chopped: E enters/exits the settlement instead",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "After founding, pt walkto tree went to a tree 5.5 m from the well. Pressing E then toggled 'Entered settlement'/'Exited settlement' 4 times (ticks 125788-126156), and I got no wood. Interact priority puts the settlement first, which is documented, but nothing on screen tells the player why. Expected E to act on the tree I am facing, or a hint like 'Too close to the settlement to chop'.",
+      "repro": "found settlement at seed 103 ~(249,630); pt walkto tree; pt key e (x4); pt events 10",
+      "screenshots": [
+        "s03/shots/inside.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Very low frame and tick rate (fps 0-5, tps 0.8-22) makes menus slow to respond",
+      "severity": "minor",
+      "categories": [
+        "perf"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "Measured with several sessions sharing the machine. Era-widget clicks never opened a visible panel, a stockpile click sometimes did nothing on the first try, and game time ran at about 1/3 speed or slower.",
+      "repro": "pt status during play",
+      "screenshots": [
+        "s07/shots/settle2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Ctrl+A does not select all in the New World seed box",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s10"
+      ],
+      "reports": 1,
+      "detail": "Pasting the numeric seed from Share: clicking the box, pressing Ctrl+A, then BackSpace removed only one character, so typing gave 'Ironval1450162717' (seed 1889372902, a different world). The preview line ('X is seed N') caught it, which is good. I had to press BackSpace 25 times. I expected Ctrl+A to select all, or the box to select all its text when it gets focus.",
+      "repro": "Main Menu > Start; click seed box (480,235); pt key ctrl+a; pt key BackSpace; pt type 1450162717",
+      "screenshots": [
+        "s10/shots/nw3.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "First tree's status line says '2 apples' but the floating text and inventory show 1",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s07"
+      ],
+      "reports": 1,
+      "detail": "The status said 'Gathered 6 wood and 2 apples from tree.' The floating text said '+1 apple' and the inventory showed Apples: 1. Energy jumped from 84 to 99, so one apple was probably eaten automatically without any message.",
+      "repro": "pt start ... --seed 107; walkto tree; e",
+      "screenshots": [
+        "s07/shots/apple_mismatch.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Food is eaten silently, so apple counts don't match the 'Gathered N apples' messages",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "The first tree said 'Gathered 5 wood and 2 apples from tree.', but the inventory showed Apples: 1 and the float text +1 apple. Energy jumped 83 to 97 at the same time, so an apple was probably auto-eaten without any message. 'Eat something' then completed silently 52 ticks after it appeared. Expected: a short 'You ate an apple (+energy)' status.",
+      "repro": "pt start ... --seed 101; dismiss tip; pt walkto tree; pt key e",
+      "screenshots": [
+        "s01/shots/chop_apples.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Full-screen Inventory/Nations/Pause text has no backing panel and sits on the player model",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Inventory item lines, the pause menu's 'World seed 109' and Resume button, and the Share URL draw straight over the player capsule and world with only a dim. Inventory order also differs from the HUD panel.",
+      "repro": "i; Escape",
+      "screenshots": [
+        "s09/shots/inventory_overlay.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "GOAL CHECK (works): residents do not build stalls in the player's own settlement; the stall objective completes only on the player's B",
+      "severity": "polish",
+      "categories": [
+        "bug"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "From entering my settlement (tick ~6100) to tick 10467, Market Info stayed '0/4 stalls' with 4 residents and a 198 stockpile. Meanwhile the chronicle showed NPCs building many stalls in other nations' settlements. 'Build a market stall' completed only after I pressed B: status 'Stall built.' at tick 10687, objective_completed at tick 10703. Recorded here as a confirmation, not a defect.",
+      "repro": "found settlement; enter; wait ~2000 ticks watching Market Info; press b",
+      "screenshots": [
+        "s01/shots/stall.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Jargon: 'Export replay (USD)', Config labels, 'Era box (tap)'",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "USD (Universal Scene Description) reads as dollars. Config's Chunk Size/Location Scale/Lag Prevention are unexplained, and the Volume label notes sound only plays in the browser version. Controls page 2 says 'Era box (tap)' (touch wording) on desktop. Controls page 3 lists F2-F6 spawn/teleport cheats as ordinary controls.",
+      "repro": "Escape > Share; main menu > Config; Controls pages 2-3",
+      "screenshots": [
+        "s09/shots/share_usd.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Load screen Delete/'Sure?' not styled as destructive",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s09"
+      ],
+      "reports": 1,
+      "detail": "Delete and its confirm 'Sure?' are the same blue as Load, while in-world destructive actions (Leave Nation, Declare War) are red with a confirm. Nation founding (N) also auto-names the nation with no chance to choose.",
+      "repro": "Main Menu > Load > Delete",
+      "screenshots": [
+        "s09/shots/load_delete_style.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Market apple price swings from 54/48 to 9/9 within ~6000 ticks",
+      "severity": "polish",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "s03"
+      ],
+      "reports": 1,
+      "detail": "My stall listed apples at 54 buy / 48 sell at tick ~129200 and 9/9 at tick ~135000. Wood went 57->16 over the same stretch. That may be the autumn double harvest, but the size of the swing makes selling look either hugely profitable or pointless, depending on when the player looks.",
+      "repro": "build stall; compare Market Info prices at ticks ~129200 and ~135000",
+      "screenshots": [
+        "s03/shots/talk.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations list footer says 'Scroll for more' when already at the end",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "s04"
+      ],
+      "reports": 1,
+      "detail": "'Nations 2-4 of 4, neighbours and enemies first. Scroll for more.' is shown at the bottom of the list. Expected: no 'Scroll for more' when nothing more is below (or 'Scroll up for more').",
+      "repro": "With 4 other nations, pt key o; click Down (880,196)",
+      "screenshots": [
+        "s04/shots/allied.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations screen always reopens on the Nations tab, so clicks meant for Laws hit Tribute",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s06"
+      ],
+      "reports": 1,
+      "detail": "Pressing O always opens the Nations tab. At a few fps my click on the Laws tab did not register before my next click, and that click landed on Oldwood's Tribute button and spent 25 coins by mistake. Remembering the last tab would help, as would making Tribute and the other diplomacy actions need a confirm.",
+      "repro": "Open the Laws tab, close it, press O again: you are on the Nations tab",
+      "screenshots": [
+        "s06/shots/repeal0.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Tutorial tips skip numbers (1 then 3) and tip 5 vanished before it could be read",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "s01"
+      ],
+      "reports": 1,
+      "detail": "After 'Got it' on Tip 1 of 5, the next tip I saw was 'Tip 3 of 5'. state.json showed the 'Your goals' tip at tick 2095, but it was gone from the screen 2 seconds later without being dismissed, because the objective-complete popup replaced it.",
+      "repro": "pt start ... --seed 101; click Got it; chop trees; press n",
+      "screenshots": [
+        "s01/shots/chop1b.png"
+      ],
+      "alsoTitled": []
+    }
+  ],
+  "objectiveTimings": [
+    {
+      "number": 1,
+      "title": "Gather wood",
+      "seconds": {
+        "s01": 25.0,
+        "s02": 24.0,
+        "s03": 2418.0,
+        "s04": 27.1,
+        "s05": 43.0,
+        "s07": 23.0,
+        "s08": 31.1,
+        "s09": 32.0
+      },
+      "sessions": 8,
+      "min": 23.0,
+      "median": 29.1,
+      "max": 2418.0
+    },
+    {
+      "number": 2,
+      "title": "Eat something",
+      "seconds": {
+        "s01": 26.1,
+        "s02": 25.0,
+        "s03": 2419.0,
+        "s04": 28.0,
+        "s05": 44.0,
+        "s07": 24.0,
+        "s08": 32.0,
+        "s09": 33.0
+      },
+      "sessions": 8,
+      "min": 24.0,
+      "median": 30.0,
+      "max": 2419.0
+    },
+    {
+      "number": 3,
+      "title": "Create or join a nation",
+      "seconds": {
+        "s01": 42.1,
+        "s02": 30.0,
+        "s03": 2428.0,
+        "s04": 29.1,
+        "s05": 71.0,
+        "s07": 69.0,
+        "s08": 33.1,
+        "s09": 48.0
+      },
+      "sessions": 8,
+      "min": 29.1,
+      "median": 45.05,
+      "max": 2428.0
+    },
+    {
+      "number": 4,
+      "title": "Found a settlement",
+      "seconds": {
+        "s01": 117.0,
+        "s02": 164.0,
+        "s03": 2511.0,
+        "s05": 177.0,
+        "s07": 112.0,
+        "s08": 134.0
+      },
+      "sessions": 6,
+      "min": 112.0,
+      "median": 149.0,
+      "max": 2511.0
+    },
+    {
+      "number": 5,
+      "title": "Enter your settlement",
+      "seconds": {
+        "s01": 122.1,
+        "s02": 166.0,
+        "s03": 2516.0,
+        "s05": 179.0,
+        "s07": 128.0,
+        "s08": 139.1
+      },
+      "sessions": 6,
+      "min": 122.1,
+      "median": 152.55,
+      "max": 2516.0
+    },
+    {
+      "number": 6,
+      "title": "Build a market stall",
+      "seconds": {
+        "s01": 214.1,
+        "s02": 304.0,
+        "s03": 2577.0,
+        "s05": 191.0,
+        "s07": 134.0
+      },
+      "sessions": 5,
+      "min": 134.0,
+      "median": 214.1,
+      "max": 2577.0
+    }
+  ],
+  "problems": []
+}

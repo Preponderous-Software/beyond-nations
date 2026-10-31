@@ -70,7 +70,7 @@ A save is UTF-8 text (in practice ASCII) in two parts:
   and `seed` must agree with the header's.
 
 `tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave`,
-`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave`, `v4-seed42-tick2400.bnsave` and `v5-seed42-tick2400.bnsave` are real version 1 to 5 saves; open one to see every section. `.gitattributes` marks
+`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave`, `v4-seed42-tick2400.bnsave`, `v5-seed42-tick2400.bnsave` and `v6-seed42-tick2400.bnsave` are real version 1 to 6 saves; open one to see every section. `.gitattributes` marks
 `*.bnsave` as binary, since a line-ending conversion would break the checksum.
 
 ### What the body holds
@@ -161,7 +161,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 5.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 6.
 
 | Version | Change | Migration from the one before |
 | --- | --- | --- |
@@ -170,6 +170,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 | 3 | world events: the `worldEvents` section | add it empty: nothing pending or running; the events' clocks start from the first tick the loaded world runs, as a new world's do |
 | 4 | trade caravans and living prices: the `trade` section, `prices` in every market, and caravan entities | adds `trade` with nothing sent, and every market's `prices` empty (every item at its plain supply-curve price, no trend yet); an old world has no caravans |
 | 5 | eras and the end of a run: the `eras` section | add `eras` at the camp, with no outcome and an empty history; the era catches up with the nation one era a second as play resumes, and the chronicle's kept lines about the player are copied into the history |
+| 6 | the player's envoys (diplomacy takes game time, #424): `envoys` in the `realm` section | add `envoys` empty: every envoy is home, so the player can deal with any nation at once, as before |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by
