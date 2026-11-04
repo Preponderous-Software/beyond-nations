@@ -206,6 +206,17 @@ namespace beyondnations.desktop.ui.screens {
             return kept;
         }
 
+        /** No frame yet: the first draw always counts as an opening. */
+        public const int NeverDrawn = -1;
+
+        public static bool wasClosed(int frame, int lastDrawnFrame) {
+            return true;
+        }
+
+        public static bool refusedByEnvoy(ConfirmGate gate, Player player, Realm realm, Nation own, Nation target) {
+            return false;
+        }
+
         /** "Click again to declare war on Blackport." -- and to break a truce, when there is one. */
         public static string getWarPrompt(Realm realm, Nation own, Nation target, bool touch) {
             string click = touch ? "Tap" : "Click";
