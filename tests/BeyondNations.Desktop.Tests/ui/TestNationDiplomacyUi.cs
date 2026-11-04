@@ -74,6 +74,41 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testNationScreen_SlowFramesDoNotCountAsAReopen() {
+            // one frame straight after another, however long it took (0.6.4
+            // playtest s04: at 1-3 fps every frame read as a reopen, the list
+            // re-sorted, and a second click landed on another nation)
+            Assert.False(NationScreen.wasClosed(101, 100));
+
+            // a frame without the screen: it was closed
+            Assert.True(NationScreen.wasClosed(102, 100));
+            Assert.True(NationScreen.wasClosed(5000, 100));
+            Assert.True(NationScreen.wasClosed(1, NationScreen.NeverDrawn));
+        }
+
+        [Fact]
+        public void testNationScreen_AnEnvoyAwayIsRefusedOnTheFirstPress() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            Realm realm = simulation.getRealm();
+            Player player = simulation.getPlayer();
+            ConfirmGate gate = new ConfirmGate();
+            gate.press("denounce:another", 1.0);
+            realm.sendEnvoy(result.playerNation, result.friendly);
+
+            // the wait is said at once, not after a click that armed nothing useful,
+            // and the press, being of something else, disarms what was armed
+            Assert.True(NationScreen.refusedByEnvoy(gate, player, realm, result.playerNation, result.friendly));
+            Assert.StartsWith("Your envoy to " + result.friendly.getName() + " is still on the road", player.getStatus().getStatus());
+            Assert.False(gate.isArmed("denounce:another", 1.0));
+
+            // a nation with no envoy away arms as before
+            gate.press("denounce:another", 1.0);
+            Assert.False(NationScreen.refusedByEnvoy(gate, player, realm, result.playerNation, result.hostile));
+            Assert.True(gate.isArmed("denounce:another", 1.0));
+        }
+
+        [Fact]
         public void testNationScreen_WarPromptWarnsOfATruce() {
             DiplomacyShowcase.Staged result;
             Simulation simulation = staged(out result);

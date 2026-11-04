@@ -47,9 +47,8 @@ namespace beyondnations.desktop.ui.screens {
         // the row order shown when the screen opened; kept until it is
         // closed, so a click never re-sorts a row out from under the pointer
         private readonly List<NationId> shownOrder = new List<NationId>();
-        // when the screen was last drawn: a longer gap means it was closed
-        private double lastDrawn = double.NegativeInfinity;
-        private const double ReopenGapSeconds = 1.0;
+        // the frame the screen was last drawn on (wasClosed)
+        private int lastDrawnFrame = NeverDrawn;
         // "Confirm Denounce" would not fit a button; the status line names the action
         public const string ArmedLabel = "Confirm";
         /** How far a drag across the list has gone toward the next row. */
@@ -206,6 +205,35 @@ namespace beyondnations.desktop.ui.screens {
             return kept;
         }
 
+        /** No frame yet: the first draw always counts as an opening. */
+        public const int NeverDrawn = -1;
+
+        /**
+        * Whether the screen was closed since it was last drawn: a frame went
+        * by without it. Counted in frames, not seconds, so that a slow frame
+        * is not taken for a reopen (0.6.4 playtest s04: at 1-3 fps every
+        * frame looked like one, so the list re-sorted under the pointer and
+        * an armed click was forgotten).
+        */
+        public static bool wasClosed(int frame, int lastDrawnFrame) {
+            return frame - lastDrawnFrame > 1;
+        }
+
+        /**
+        * Whether a press of War or Denounce is refused because the envoy to
+        * the target is still away, with the wait on the status line. Asked
+        * before the press arms the gate, so that the player is not asked to
+        * confirm something that would only be refused. The press was of
+        * something else, so it disarms what was armed.
+        */
+        public static bool refusedByEnvoy(ConfirmGate gate, Player player, Realm realm, Nation own, Nation target) {
+            if (!NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return false;
+            }
+            gate.disarm();
+            return true;
+        }
+
         /** "Click again to declare war on Blackport." -- and to break a truce, when there is one. */
         public static string getWarPrompt(Realm realm, Nation own, Nation target, bool touch) {
             string click = touch ? "Tap" : "Click";
@@ -280,6 +308,17 @@ namespace beyondnations.desktop.ui.screens {
             float left = System.MathF.Max(width * 0.04f, UiScale.px(16f));
             // below the corner Close on a touch screen (TouchLayout)
             float y = System.MathF.Max(System.MathF.Max(height / 18f, UiScale.px(12f)), Overlay.touchCloseBottom());
+
+            // here rather than in drawNations, so that a look at the Laws tab
+            // does not count as closing the screen
+            int frame = ImGui.GetFrameCount();
+            if (wasClosed(frame, lastDrawnFrame)) {
+                shownOrder.Clear();
+                confirmGate.disarm();
+            }
+            lastDrawnFrame = frame;
+            // a "Click War/Denounce again" prompt whose window has lapsed is taken back
+            confirmGate.update(ImGui.GetTime(), simulation.getPlayer().getStatus());
 
             Overlay.beginFullScreen("##nation-screen", width, height);
             Overlay.dimBackground(width, height);
@@ -374,13 +413,6 @@ namespace beyondnations.desktop.ui.screens {
             y += lineHeight * 0.3f;
 
             double now = ImGui.GetTime();
-            if (now - lastDrawn > ReopenGapSeconds) {
-                shownOrder.Clear();
-                confirmGate.disarm();
-            }
-            lastDrawn = now;
-            // a "Click War/Denounce again" prompt whose window has lapsed is taken back
-            confirmGate.update(now, simulation.getPlayer().getStatus());
             List<Row> rows = keepOrder(getRows(simulation), shownOrder);
             if (rows.Count == 0) {
                 Overlay.textCentered(NoOtherNations, height / 32f, y, width);
@@ -484,16 +516,21 @@ namespace beyondnations.desktop.ui.screens {
                     string warLabel = confirmGate.isArmed(warKey, now) ? ArmedLabel : "War";
                     if (row.canDeclareWar && Overlay.buttonAt(warLabel + "###war" + i, x + slot * 3f, by, buttonWidth, buttonHeight)) {
                         Nation own = nationRepository.getNation(player.getNationId());
-                        pending = confirmGate.press(warKey, now)
-                            ? () => new DeclareWarCommand(nationRepository, realm).execute(player, target)
-                            : () => confirmGate.prompt(player.getStatus(), getWarPrompt(realm, own, target, TouchLayout.isActive()));
+                        if (!refusedByEnvoy(confirmGate, player, realm, own, target)) {
+                            pending = confirmGate.press(warKey, now)
+                                ? () => new DeclareWarCommand(nationRepository, realm).execute(player, target)
+                                : () => confirmGate.prompt(player.getStatus(), getWarPrompt(realm, own, target, TouchLayout.isActive()));
+                        }
                     }
                     string denounceKey = "denounce:" + target.getId();
                     string denounceLabel = confirmGate.isArmed(denounceKey, now) ? ArmedLabel : "Denounce";
                     if (Overlay.buttonAt(denounceLabel + "###denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
-                        pending = confirmGate.press(denounceKey, now)
-                            ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy(), realm).execute(player, target)
-                            : () => confirmGate.prompt(player.getStatus(), (TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
+                        Nation own = nationRepository.getNation(player.getNationId());
+                        if (!refusedByEnvoy(confirmGate, player, realm, own, target)) {
+                            pending = confirmGate.press(denounceKey, now)
+                                ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy(), realm).execute(player, target)
+                                : () => confirmGate.prompt(player.getStatus(), (TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
+                        }
                     }
                 }
                 y += steps[i];
