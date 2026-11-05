@@ -35,6 +35,36 @@ namespace beyondnations.desktop.ui.screens {
             }
         }
 
+        /** Which laws are on screen, and where the first of them starts. */
+        public class Window {
+            public readonly int firstRow;
+            public readonly int visible;
+            /** Some law is out of sight, so the count line and Up/Down are shown. */
+            public readonly bool overflow;
+            public readonly float listTop;
+
+            public Window(int firstRow, int visible, bool overflow, float listTop) {
+                this.firstRow = firstRow;
+                this.visible = visible;
+                this.overflow = overflow;
+                this.listTop = listTop;
+            }
+        }
+
+        /** Temporary: the rule as it stands, a list that stops at the first law that does not fit. */
+        public static Window fit(float[] steps, float top, float bottom, float stripHeight, int firstRow) {
+            int visible = 0;
+            float y = top;
+            foreach (float step in steps) {
+                if (y + step > bottom) {
+                    break;
+                }
+                y += step;
+                visible++;
+            }
+            return new Window(0, visible, false, top);
+        }
+
         /** The lines above the laws: whose laws they are, and what they have done lately. */
         public static List<string> getLines(Simulation simulation) {
             List<string> lines = new List<string>();

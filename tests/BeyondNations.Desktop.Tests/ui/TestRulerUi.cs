@@ -68,6 +68,51 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testLawsPanel_EveryLawCanBeScrolledTo_WhenTheyDoNotAllFit() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window end = LawsPanel.fit(steps, 100f, 400f, 38f, 99);
+
+            Assert.Equal(2, end.firstRow);
+            Assert.Equal(2, end.visible);
+            Assert.Equal(steps.Length, end.firstRow + end.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_ALawOutOfSight_IsSignalled_AndMakesRoomForTheStrip() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window top = LawsPanel.fit(steps, 100f, 400f, 38f, 0);
+
+            Assert.True(top.overflow);
+            Assert.Equal(138f, top.listTop);
+            Assert.Equal(0, top.firstRow);
+            Assert.Equal(2, top.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_AWindowShorterThanALaw_StillShowsOne() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window last = LawsPanel.fit(steps, 0f, 50f, 38f, 99);
+
+            Assert.Equal(3, last.firstRow);
+            Assert.Equal(1, last.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_WhenEveryLawFits_NothingScrollsAndNoRoomIsTaken() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window all = LawsPanel.fit(steps, 0f, 400f, 38f, 2);
+
+            Assert.False(all.overflow);
+            Assert.Equal(0f, all.listTop);
+            Assert.Equal(0, all.firstRow);
+            Assert.Equal(4, all.visible);
+        }
+
+        [Fact]
         public void testNationScreen_ShowsWarAndOffersPeaceToTheHostile() {
             DiplomacyShowcase.Staged result;
             Simulation simulation = staged(out result);
