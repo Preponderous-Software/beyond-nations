@@ -193,7 +193,7 @@ Every settlement claims a circle of land around it whose radius grows with its t
 Being a ruler (`Realm`, in [`src/BeyondNations.Core/realm/`](../src/BeyondNations.Core/realm/)): the laws a nation lives under, the wars and truces its ruler declares and agrees, and the player's line of rulers. Nothing here draws on randomness, and a world that never touches it -- no laws set, no war declared, nobody dying in a nation -- takes exactly the course it always did.
 
 ### Laws
-The nations screen's **Laws** tab (the court) lets the leader set four laws (`Laws`, `NationLaws`). A change is proclaimed and comes in `Realm.LAW_DELAY_TICKS` (1,500, thirty seconds) later, on the status line and in the chronicle ("Taxes in Townfield rose to High."). Choosing the setting already in force withdraws a pending change, and a change still pending when the player loses the rule (to a claimant, say) lapses unannounced. Every 500 ticks (ten seconds) a law round runs, and each law in force does its work:
+The nations screen's **Laws** tab (the court) lets the leader set four laws (`Laws`, `NationLaws`). On a window too short for all four, the tab says which are shown and scrolls as the nations list does (`LawsPanel.fit`). A change is proclaimed and comes in `Realm.LAW_DELAY_TICKS` (1,500, thirty seconds) later, on the status line and in the chronicle ("Taxes in Townfield rose to High."). Choosing the setting already in force withdraws a pending change, and a change still pending when the player loses the rule (to a claimant, say) lapses unannounced. Every 500 ticks (ten seconds) a law round runs, and each law in force does its work:
 
 | Law | Effect | Cost |
 | --- | --- | --- |

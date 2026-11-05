@@ -9,11 +9,21 @@ namespace beyondnations.desktop.ui.screens {
     * enough to tap. Only the leader's buttons do anything; anyone else
     * sees the laws they live under.
     *
-    * The words come from getLines() and getRows(), which need no window, so
-    * they are asserted in unit tests.
+    * The blocks scroll when they do not all fit, which on a short window
+    * they do not (0.6.4 playtest s06: at 960x540 Rationing was never drawn,
+    * and nothing said it was there).
+    *
+    * The words come from getLines() and getRows(), and what fits from
+    * fit(), which need no window, so they are asserted in unit tests.
     */
     public class LawsPanel {
         public const string NoNation = "You belong to no nation, and live under no laws. Found one ({CreateNewNation}) to make them.";
+
+        /** Rows the list should move by this frame; NationScreen.readScroll. */
+        public delegate int ScrollReader(float listTop, float listBottom, float rowHeight);
+
+        /** The first law on screen; the list scrolls when the laws outnumber the screen. */
+        private int firstRow;
 
         /** One law, as the panel shows it. */
         public class Row {
@@ -51,18 +61,23 @@ namespace beyondnations.desktop.ui.screens {
             }
         }
 
-        /** Temporary: the rule as it stands, a list that stops at the first law that does not fit. */
+        /**
+        * Fits laws of the given heights between top and bottom, as near to
+        * firstRow as the list allows. The strip for the count line and
+        * Up/Down takes room only when some law would otherwise be lost.
+        */
         public static Window fit(float[] steps, float top, float bottom, float stripHeight, int firstRow) {
-            int visible = 0;
-            float y = top;
-            foreach (float step in steps) {
-                if (y + step > bottom) {
-                    break;
-                }
-                y += step;
-                visible++;
-            }
-            return new Window(0, visible, false, top);
+            bool overflow = NationScreen.countFitting(steps, 0, bottom - top) < steps.Length;
+            float listTop = overflow ? top + stripHeight : top;
+            float space = bottom - listTop;
+            int first = NationScreen.clampFirstRow(firstRow, steps.Length, NationScreen.countFittingFromEnd(steps, space));
+            return new Window(first, NationScreen.countFitting(steps, first, space), overflow, listTop);
+        }
+
+        /** "Laws 1-2 of 4. Scroll for more.", for the line over a list that does not all fit. */
+        public static string describeShown(int firstRow, int shown, int total, bool touch) {
+            string laws = shown == 1 ? "Law " + (firstRow + 1) : "Laws " + (firstRow + 1) + "-" + (firstRow + shown);
+            return laws + " of " + total + "." + (touch ? " Drag or tap Up/Down for more." : " Scroll for more.");
         }
 
         /** The lines above the laws: whose laws they are, and what they have done lately. */
@@ -115,7 +130,7 @@ namespace beyondnations.desktop.ui.screens {
 
         /** Draws the panel from y down. Returns the command a tapped button asks for, to run after drawing. */
         public System.Action draw(float width, float height, Simulation simulation, float y, float left, float lineHeight,
-                float buttonGap, float buttonHeight) {
+                float buttonGap, float buttonHeight, ScrollReader readScroll) {
             foreach (string line in getLines(simulation)) {
                 y = NationScreen.drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 3);
             }
@@ -127,21 +142,48 @@ namespace beyondnations.desktop.ui.screens {
             System.Action pending = null;
             float textStep = lineHeight * 0.7f;
             float columnWidth = width - left * 2f;
+            float effectSize = height / 40f;
+            float effectScale = Overlay.fontScaleFor(effectSize);
+            float effectStep = textStep * 0.8f;
             List<Row> rows = getRows(simulation);
+            List<List<string>> effects = new List<List<string>>(rows.Count);
+            float[] steps = new float[rows.Count];
             for (int i = 0; i < rows.Count; i++) {
-                Row row = rows[i];
-                float effectSize = height / 40f;
-                float effectScale = Overlay.fontScaleFor(effectSize);
-                List<string> effect = TextWrap.wrap(row.effect, columnWidth, line => ImGuiNET.ImGui.CalcTextSize(line).X * effectScale);
-                int effectLines = System.Math.Min(2, effect.Count);
-                float effectStep = textStep * 0.8f;
-                float blockHeight = textStep + effectStep * effectLines + (leads ? buttonHeight + buttonGap : 0f) + buttonGap * 2f;
-                if (y + blockHeight > height - lineHeight * 3.2f) {
-                    break;
+                List<string> effect = TextWrap.wrap(rows[i].effect, columnWidth, line => ImGuiNET.ImGui.CalcTextSize(line).X * effectScale);
+                effects.Add(effect);
+                steps[i] = textStep + effectStep * System.Math.Min(2, effect.Count) + (leads ? buttonHeight + buttonGap : 0f) + buttonGap * 2f;
+            }
+
+            // scrolling, as on the nations list: the wheel, the keys, a drag, or Up/Down
+            float listBottom = height - lineHeight * 3.2f;
+            float stripHeight = buttonHeight + buttonGap;
+            Window window = fit(steps, y, listBottom, stripHeight, firstRow);
+            int move = readScroll(window.listTop, listBottom, rows.Count > 0 ? steps[0] : lineHeight);
+            window = fit(steps, y, listBottom, stripHeight, firstRow + move);
+            firstRow = window.firstRow;
+            if (window.overflow) {
+                float arrowWidth = System.MathF.Min(UiScale.px(80f), columnWidth / 5f);
+                float lineWidth = width - (arrowWidth + buttonGap) * 2f;
+                NationScreen.drawWrappedCentred(describeShown(firstRow, window.visible, rows.Count, TouchLayout.isActive()), height / 38f,
+                    y + (buttonHeight - lineHeight * 0.7f) * 0.5f, lineWidth, left, lineHeight * 0.7f, 1);
+                float ax = width - left - arrowWidth * 2f - buttonGap;
+                int page = System.Math.Max(1, window.visible - 1);
+                if (Overlay.buttonAt("Up##laws-up", ax, y, arrowWidth, buttonHeight)) {
+                    window = fit(steps, y, listBottom, stripHeight, firstRow - page);
                 }
+                if (Overlay.buttonAt("Down##laws-down", ax + arrowWidth + buttonGap, y, arrowWidth, buttonHeight)) {
+                    window = fit(steps, y, listBottom, stripHeight, firstRow + page);
+                }
+                firstRow = window.firstRow;
+            }
+            y = window.listTop;
+
+            for (int i = firstRow; i < firstRow + window.visible; i++) {
+                Row row = rows[i];
                 Overlay.textAtScaled(row.title, height / 32f, left, y);
                 y += textStep;
-                for (int line = 0; line < effectLines; line++) {
+                List<string> effect = effects[i];
+                for (int line = 0; line < effect.Count && line < 2; line++) {
                     Overlay.textAtScaled(effect[line], effectSize, left, y);
                     y += effectStep;
                 }

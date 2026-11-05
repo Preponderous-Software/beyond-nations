@@ -113,6 +113,13 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testLawsPanel_TheCountLine_SaysWhichLawsAreShown() {
+            Assert.Equal("Laws 1-2 of 4. Scroll for more.", LawsPanel.describeShown(0, 2, 4, false));
+            Assert.Equal("Laws 3-4 of 4. Drag or tap Up/Down for more.", LawsPanel.describeShown(2, 2, 4, true));
+            Assert.Equal("Law 4 of 4. Scroll for more.", LawsPanel.describeShown(3, 1, 4, false));
+        }
+
+        [Fact]
         public void testNationScreen_ShowsWarAndOffersPeaceToTheHostile() {
             DiplomacyShowcase.Staged result;
             Simulation simulation = staged(out result);
