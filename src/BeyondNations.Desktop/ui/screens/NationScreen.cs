@@ -336,7 +336,7 @@ namespace beyondnations.desktop.ui.screens {
 
             Player player = simulation.getPlayer();
             System.Action pending = showingLaws
-                ? lawsPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight)
+                ? lawsPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
             // the answer goes on the status line, shown here too since the HUD is hidden
@@ -445,28 +445,7 @@ namespace beyondnations.desktop.ui.screens {
                     : System.MathF.Max(textStep * textLines + buttonGap, buttonHeight + buttonGap);
             }
 
-            // scrolling: the wheel, the keys (via the host), a drag across the list, or Up/Down
-            ImGuiIOPtr io = ImGui.GetIO();
-            int move = pendingScroll;
-            pendingScroll = 0;
-            if (io.MouseWheel != 0f) {
-                move += io.MouseWheel > 0f ? -1 : 1;
-            }
-            if (ImGui.IsMouseDragging(ImGuiMouseButton.Left) && io.MousePos.Y >= listTop && io.MousePos.Y <= listBottom) {
-                dragCarry -= io.MouseDelta.Y;
-                float rowHeight = System.MathF.Max(buttonHeight, lineHeight);
-                while (dragCarry >= rowHeight) {
-                    move++;
-                    dragCarry -= rowHeight;
-                }
-                while (dragCarry <= -rowHeight) {
-                    move--;
-                    dragCarry += rowHeight;
-                }
-            }
-            else {
-                dragCarry = 0f;
-            }
+            int move = readScroll(listTop, listBottom, System.MathF.Max(buttonHeight, lineHeight));
             int lastPage = countFittingFromEnd(steps, listBottom - listTop);
             firstRow = clampFirstRow(firstRow + move, rows.Count, lastPage);
             int visible = countFitting(steps, firstRow, listBottom - listTop);
@@ -538,8 +517,37 @@ namespace beyondnations.desktop.ui.screens {
             return pending;
         }
 
+        /**
+        * Rows to move whichever list is showing by this frame: the wheel, the
+        * keys (via the host), or a drag between listTop and listBottom. Asked
+        * by both tabs, so that keys pressed on one do not wait for the other.
+        */
+        private int readScroll(float listTop, float listBottom, float rowHeight) {
+            ImGuiIOPtr io = ImGui.GetIO();
+            int move = pendingScroll;
+            pendingScroll = 0;
+            if (io.MouseWheel != 0f) {
+                move += io.MouseWheel > 0f ? -1 : 1;
+            }
+            if (ImGui.IsMouseDragging(ImGuiMouseButton.Left) && io.MousePos.Y >= listTop && io.MousePos.Y <= listBottom) {
+                dragCarry -= io.MouseDelta.Y;
+                while (dragCarry >= rowHeight) {
+                    move++;
+                    dragCarry -= rowHeight;
+                }
+                while (dragCarry <= -rowHeight) {
+                    move--;
+                    dragCarry += rowHeight;
+                }
+            }
+            else {
+                dragCarry = 0f;
+            }
+            return move;
+        }
+
         /** How many rows from first fit in the height; at least one, so a tall row is never stuck off screen. */
-        private static int countFitting(float[] steps, int first, float space) {
+        public static int countFitting(float[] steps, int first, float space) {
             int count = 0;
             float used = 0f;
             for (int i = first; i < steps.Length; i++) {
@@ -553,7 +561,7 @@ namespace beyondnations.desktop.ui.screens {
         }
 
         /** How many rows at the end of the list fit in the height, which is how far down the list may scroll. */
-        private static int countFittingFromEnd(float[] steps, float space) {
+        public static int countFittingFromEnd(float[] steps, float space) {
             int count = 0;
             float used = 0f;
             for (int i = steps.Length - 1; i >= 0; i--) {

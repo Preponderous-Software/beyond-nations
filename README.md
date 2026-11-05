@@ -178,7 +178,7 @@ The nations screen lists the nations that matter first -- at war, at odds, neigh
 ### Ruling a nation
 ![The Laws tab: taxes, conscription, borders and rationing, each with its setting, what it costs and buys, and a button for every setting](./.github/media/laws-screen.png)
 
-The nations screen's **Laws** tab is your court. A change is proclaimed and comes in thirty seconds later, with a line in the chronicle:
+The nations screen's **Laws** tab is your court. On a short window it says how many of the four laws are shown and scrolls the same way as the nations list. A change is proclaimed and comes in thirty seconds later, with a line in the chronicle:
 
 | Law | Buys | Costs |
 | --- | --- | --- |
