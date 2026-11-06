@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using ImGuiNET;
+using beyondnations.desktop.ui;
 
 namespace beyondnations.web.host {
 
@@ -66,6 +67,7 @@ namespace beyondnations.web.host {
             io.FontGlobalScale = 1f / scale;
 
             ImGui.StyleColorsDark();
+            UiTheme.apply();
             defaultStyle = *ImGui.GetStyle().NativePtr;
             uploadFontAtlas();
         }

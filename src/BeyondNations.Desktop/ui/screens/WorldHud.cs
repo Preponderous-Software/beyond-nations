@@ -331,11 +331,6 @@ namespace beyondnations.desktop.ui.screens {
             return settings;
         }
 
-        /** Hostile and irreversible buttons are drawn red; armed, brighter. */
-        private static readonly Vector4 DrasticColour = new Vector4(0.55f, 0.16f, 0.14f, 0.90f);
-        private static readonly Vector4 DrasticHoverColour = new Vector4(0.70f, 0.22f, 0.18f, 1f);
-        private static readonly Vector4 ArmedColour = new Vector4(0.85f, 0.30f, 0.10f, 1f);
-
         /**
         * The command buttons along the bottom. Which ones are offered is
         * WorldCommandBar's decision and where each goes is CommandBarLayout's;
@@ -372,20 +367,17 @@ namespace beyondnations.desktop.ui.screens {
                     // a pawn's long name is cut to the button rather than widening it (CommandBarLayout)
                     string text = CommandBarLayout.fitLabel(full, label => ImGui.CalcTextSize(label).X, rect.Width - settings.TextPadding);
                     string tooltip = command.getTooltip() ?? (text != full ? full : null);
-                    int colours = 0;
-                    if (armed) {
-                        ImGui.PushStyleColor(ImGuiCol.Button, ArmedColour);
-                        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, ArmedColour);
-                        colours = 2;
-                    } else if (command.getGroup() == CommandGroup.Drastic) {
-                        ImGui.PushStyleColor(ImGuiCol.Button, DrasticColour);
-                        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, DrasticHoverColour);
-                        colours = 2;
-                    }
                     // a button that has just appeared or moved waits a moment
                     // before it takes a click (ButtonSettle)
                     bool usable = command.isEnabled() && buttonSettle.isSettled(command.getLabel(), rect.X, rect.Y, now);
+                    ButtonColours colours = UiTheme.commandButton(usable, armed, command.getGroup() == CommandGroup.Drastic);
+                    ImGui.PushStyleColor(ImGuiCol.Button, colours.Fill);
+                    ImGui.PushStyleColor(ImGuiCol.ButtonHovered, colours.Hovered);
+                    ImGui.PushStyleColor(ImGuiCol.ButtonActive, colours.Active);
+                    ImGui.PushStyleColor(ImGuiCol.Text, colours.Text);
                     if (!usable) {
+                        // opaque as well: UiTheme.Disabled is already the dimmed look
+                        ImGui.PushStyleVar(ImGuiStyleVar.DisabledAlpha, 1f);
                         ImGui.BeginDisabled();
                     }
                     // the id is the plain label, so arming keeps the same button
@@ -399,10 +391,9 @@ namespace beyondnations.desktop.ui.screens {
                     }
                     if (!usable) {
                         ImGui.EndDisabled();
+                        ImGui.PopStyleVar();
                     }
-                    if (colours > 0) {
-                        ImGui.PopStyleColor(colours);
-                    }
+                    ImGui.PopStyleColor(4);
                 }
                 buttonSettle.endFrame();
                 // Run the command after the row is laid out, so that a command
