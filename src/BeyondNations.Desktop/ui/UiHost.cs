@@ -72,6 +72,7 @@ namespace beyondnations.desktop.ui {
 
         public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig, SaveSession saves, ShareSession share) {
             this.controller = new ImGuiController(gl, window, input, configureForUiScale);
+            UiTheme.apply();
             this.input = input;
             foreach (IMouse mouse in input.Mice) {
                 mouse.MouseDown += (_, button) => clicks.recordPress(button);
