@@ -60,6 +60,7 @@ namespace beyondnations.desktop.ui {
         private bool confirm;
         private string widthLabel;
         private string tooltip;
+        private string disabledReason;
 
         public WorldCommand(string label, System.Action action) {
             this.label = label;
@@ -88,6 +89,17 @@ namespace beyondnations.desktop.ui {
             return this;
         }
 
+        /** setEnabled, with what the player is missing while it is disabled: "Needs 38 more wood." (#444) */
+        public WorldCommand setEnabled(bool enabled, string disabledReason) {
+            this.disabledReason = disabledReason;
+            return setEnabled(enabled);
+        }
+
+        /** Why the button cannot be clicked right now; null while it can. */
+        public string getDisabledReason() {
+            return enabled ? null : disabledReason;
+        }
+
         /**
         * The text the button's width is measured from: its label, unless the
         * label varies in a way that must not move its neighbours (a pawn's
@@ -103,14 +115,31 @@ namespace beyondnations.desktop.ui {
             return this;
         }
 
-        /** Shown when the pointer rests on the button (the full label is, when it had to be shortened); null for none. */
+        /** What the button says for itself when the pointer rests on it: its own tooltip, or why it is disabled; null for neither. */
         public string getTooltip() {
-            return tooltip;
+            return tooltip ?? getDisabledReason();
         }
 
         public WorldCommand setTooltip(string tooltip) {
             this.tooltip = tooltip;
             return this;
+        }
+
+        /**
+        * What to show when the pointer rests on the button, given the text
+        * it shows and the text it would show with room: getTooltip, with the
+        * full text ahead of a disabled reason when the label was shortened,
+        * or alone when there is nothing else to say.
+        */
+        public string getHoverText(string shown, string full) {
+            if (shown == full) {
+                return getTooltip();
+            }
+            if (tooltip != null) {
+                return tooltip;
+            }
+            string reason = getDisabledReason();
+            return reason == null ? full : full + "\n" + reason;
         }
 
         /** Whether a click only arms the button and a second click runs it. */

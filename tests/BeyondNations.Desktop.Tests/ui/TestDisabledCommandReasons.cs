@@ -4,6 +4,7 @@ using Xunit;
 
 using beyondnations;
 using beyondnations.desktop.ui;
+using beyondnations.desktop.ui.screens;
 
 namespace beyondnationstests.desktop.ui {
 
@@ -181,6 +182,59 @@ namespace beyondnationstests.desktop.ui {
 
             Assert.True(enter.isEnabled());
             Assert.Null(enter.getTooltip());
+        }
+
+        [Fact]
+        public void testReasonIsDroppedOnceTheButtonIsEnabled() {
+            WorldCommand command = new WorldCommand("Plant Sapling", () => { }).setEnabled(false, "You have no saplings.");
+            Assert.Equal("You have no saplings.", command.getDisabledReason());
+
+            command.setEnabled(true);
+
+            Assert.Null(command.getDisabledReason());
+        }
+
+        [Fact]
+        public void testHoverText_ShortenedLabelKeepsItsFullTextAboveTheReason() {
+            WorldCommand disabled = new WorldCommand("Feed Residents (3 hungry)", () => { }).setEnabled(false, "You have no food to give.");
+            WorldCommand enabled = new WorldCommand("Feed Residents (3 hungry)", () => { });
+
+            Assert.Equal("You have no food to give.", disabled.getHoverText("Feed Residents (3 hungry)", "Feed Residents (3 hungry)"));
+            Assert.Equal("Feed Residents (3 hungry)\nYou have no food to give.", disabled.getHoverText("Feed Resid...", "Feed Residents (3 hungry)"));
+            Assert.Equal("Feed Residents (3 hungry)", enabled.getHoverText("Feed Resid...", "Feed Residents (3 hungry)"));
+            Assert.Null(enabled.getHoverText("Feed Residents (3 hungry)", "Feed Residents (3 hungry)"));
+        }
+
+        [Fact]
+        public void testHoverText_OwnTooltipStaysAsItWas() {
+            WorldCommand talk = new WorldCommand("Talk to Ada", () => { }).setTooltip("Talk to Ada (Friend)");
+
+            Assert.Equal("Talk to Ada (Friend)", talk.getHoverText("Talk to...", "Talk to Ada"));
+            Assert.Equal("Talk to Ada (Friend)", talk.getHoverText("Talk to Ada", "Talk to Ada"));
+        }
+
+        [Fact]
+        public void testClickOnADisabledButton_PutsTheReasonOnTheStatusLine() {
+            Simulation simulation = createSimulation();
+            simulation.getPlayer().getInventory().clear();
+            Status status = simulation.getPlayer().getStatus();
+
+            WorldHud.explainDisabled(find(simulation, "Plant Sapling"), status);
+            WorldHud.explainDisabled(find(simulation, "Plant Sapling"), status);
+
+            // said as a prompt: a second click must not read "(x2)"
+            Assert.Equal("You have no saplings.", status.getStatus());
+        }
+
+        [Fact]
+        public void testClickOnAnEnabledButton_LeavesTheStatusLineAlone() {
+            Simulation simulation = createSimulation();
+            Status status = simulation.getPlayer().getStatus();
+            status.update("Something else happened.");
+
+            WorldHud.explainDisabled(new WorldCommand("Create Nation", () => { }), status);
+
+            Assert.Equal("Something else happened.", status.getStatus());
         }
 
         /** A new camp of the player's nation with the player inside it, carrying nothing, its stockpile empty. */
