@@ -366,7 +366,7 @@ namespace beyondnations.desktop.ui.screens {
                     string full = armed ? CommandBarLayout.getArmedLabel(command) : command.getLabel();
                     // a pawn's long name is cut to the button rather than widening it (CommandBarLayout)
                     string text = CommandBarLayout.fitLabel(full, label => ImGui.CalcTextSize(label).X, rect.Width - settings.TextPadding);
-                    string tooltip = command.getTooltip() ?? (text != full ? full : null);
+                    string tooltip = command.getHoverText(text, full);
                     // a button that has just appeared or moved waits a moment
                     // before it takes a click (ButtonSettle)
                     bool usable = command.isEnabled() && buttonSettle.isSettled(command.getLabel(), rect.X, rect.Y, now);
@@ -388,6 +388,10 @@ namespace beyondnations.desktop.ui.screens {
                         ImGui.BeginTooltip();
                         ImGui.TextUnformatted(tooltip);
                         ImGui.EndTooltip();
+                    }
+                    // a touch screen has no hover to show that tooltip on (#444)
+                    if (ImGui.IsMouseClicked(ImGuiMouseButton.Left) && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+                        explainDisabled(command, simulation.getPlayer().getStatus());
                     }
                     if (!usable) {
                         ImGui.EndDisabled();
@@ -419,6 +423,18 @@ namespace beyondnations.desktop.ui.screens {
                 return;
             }
             confirmGate.prompt(player.getStatus(), getConfirmPrompt(command, TouchLayout.isActive()));
+        }
+
+        /**
+        * A click or tap on a disabled button puts why on the status line. It
+        * is said as a prompt, so a second click does not read "(x2)". An
+        * enabled button, even one still settling (ButtonSettle), says nothing.
+        */
+        public static void explainDisabled(WorldCommand command, Status status) {
+            string reason = command.getDisabledReason();
+            if (reason != null) {
+                status.prompt(reason);
+            }
         }
 
         /** "Click again to confirm: Raid Caravan." */

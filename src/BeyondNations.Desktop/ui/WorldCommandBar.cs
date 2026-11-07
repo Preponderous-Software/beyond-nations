@@ -66,7 +66,8 @@ namespace beyondnations.desktop.ui {
                     commands.Add(new WorldCommand("Found Settlement", CommandGroup.Nation, () =>
                         new FoundSettlementCommand(nationRepository, simulation.getEventProducer(), entityRepository, simulation.getGameConfig(), simulation.getRandom())
                             .execute(player))
-                        .setEnabled(inventory.getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD));
+                        .setEnabled(inventory.getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD,
+                            describeShortfall(Settlement.WOOD_COST_TO_BUILD - inventory.getNumItems(ItemType.WOOD), 0)));
                 }
 
                 if (!player.isCurrentlyInSettlement() && player.getHomeSettlementId() != null) {
@@ -98,11 +99,11 @@ namespace beyondnations.desktop.ui {
                     && (int) Vector3.Distance(player.getPosition(), nearestSettlement.getPosition()) < EnterSettlementDistance;
                 commands.Insert(0, new WorldCommand("Enter Settlement", CommandGroup.Place, () =>
                     new EnterSettlementCommand(entityRepository).execute(player, nearestSettlement))
-                    .setEnabled(inReach));
+                    .setEnabled(inReach, describeOutOfReach(player, nearestSettlement)));
 
                 commands.Add(new WorldCommand("Plant Sapling", CommandGroup.Place, () =>
                     new PlantSaplingCommand(entityRepository, simulation.getRandom(), simulation.getTickCounter()).execute(player))
-                    .setEnabled(inventory.getNumItems(ItemType.SAPLING) > 0));
+                    .setEnabled(inventory.getNumItems(ItemType.SAPLING) > 0, "You have no saplings."));
             }
             else {
                 commands.Insert(0, new WorldCommand("Exit Settlement", CommandGroup.Place, () =>
@@ -110,13 +111,13 @@ namespace beyondnations.desktop.ui {
 
                 commands.Add(new WorldCommand("Purchase Food", CommandGroup.Place, () =>
                     new PurchaseFoodFromMarketCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(inventory.getNumItems(ItemType.COIN) > 0));
+                    .setEnabled(inventory.getNumItems(ItemType.COIN) > 0, "You have no coins."));
 
                 // whatever the market buys, food included (playtest 0.6.1 s03: five
                 // chicken meat left the button greyed out)
                 commands.Add(new WorldCommand("Sell Resources", CommandGroup.Place, () =>
                     new SellResourcesAtMarketCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(Market.hasAnythingToSell(inventory)));
+                    .setEnabled(Market.hasAnythingToSell(inventory), "You are carrying nothing the market buys."));
             }
 
             return CommandBarLayout.order(commands);
@@ -140,12 +141,16 @@ namespace beyondnations.desktop.ui {
             FeedResidentsCommand feed = new FeedResidentsCommand(entityRepository);
             int hungryHere = feed.countHungryHere(player);
             commands.Add(new WorldCommand(feedResidentsLabel(hungryHere), CommandGroup.Place, () => feed.execute(player))
-                .setEnabled(hungryHere > 0 && FoodItems.hasFood(player.getInventory())));
+                .setEnabled(hungryHere > 0 && FoodItems.hasFood(player.getInventory()),
+                    hungryHere == 0 ? "No one here is hungry." : "You have no food to give."));
 
             if (leads && market.getNumStalls() < market.getMaxNumStalls()) {
+                Inventory carried = player.getInventory();
                 commands.Add(new WorldCommand("Build Stall", CommandGroup.Build, () =>
                     new BuildStallCommand(nationRepository, entityRepository, simulation.getEventProducer()).execute(player))
-                    .setEnabled(Stall.canAffordToBuild(player.getInventory()))
+                    .setEnabled(Stall.canAffordToBuild(carried), describeShortfall(
+                        Stall.WOOD_COST_TO_BUILD - carried.getNumItems(ItemType.WOOD),
+                        Stall.STONE_COST_TO_BUILD - carried.getNumItems(ItemType.STONE)))
                     .requireConfirm());
             }
 
@@ -156,7 +161,8 @@ namespace beyondnations.desktop.ui {
                     BuildingType typeToBuild = buildingType;
                     commands.Add(new WorldCommand(buildLabel(buildingType), CommandGroup.Build, () =>
                         new BuildBuildingCommand(nationRepository, entityRepository).execute(player, typeToBuild))
-                        .setEnabled(BuildingCatalog.canAfford(player.getInventory(), settlement.getInventory(), buildingType))
+                        .setEnabled(BuildingCatalog.canAfford(player.getInventory(), settlement.getInventory(), buildingType),
+                            describeBuildShortfall(player.getInventory(), settlement.getInventory(), buildingType))
                         .requireConfirm());
                 }
             }
@@ -178,13 +184,13 @@ namespace beyondnations.desktop.ui {
                 int numCoins = stallInventory.getNumItems(ItemType.COIN);
                 commands.Add(new WorldCommand("Collect Coins (" + numCoins + ")", CommandGroup.Stall, () =>
                     new CollectProfitFromStallCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(numCoins > 0));
+                    .setEnabled(numCoins > 0, "Your stall holds no coins."));
 
                 // every kind of food, not just apples: the command collects the most nourishing first (#419)
                 int numFood = FoodItems.countFood(stallInventory);
                 commands.Add(new WorldCommand("Collect Food (" + numFood + ")", CommandGroup.Stall, () =>
                     new CollectFoodFromStallCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(numFood > 0));
+                    .setEnabled(numFood > 0, "Your stall holds no food."));
             }
 
             if (leads) {
@@ -194,8 +200,40 @@ namespace beyondnations.desktop.ui {
                 int stockpile = CollectSettlementStockpileCommand.getStockpileSize(settlement);
                 commands.Add(new WorldCommand("Collect Stockpile (" + stockpile + ")", CommandGroup.Nation, () =>
                     new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(stockpile > 0));
+                    .setEnabled(stockpile > 0, "The stockpile is empty."));
             }
+        }
+
+        /** "Needs 12 more wood and 5 more stone.", naming only what is short; a count of zero or less is not. */
+        private static string describeShortfall(int woodShort, int stoneShort) {
+            return "Needs " + describeMissing(woodShort, stoneShort) + ".";
+        }
+
+        private static string describeMissing(int woodShort, int stoneShort) {
+            string wood = woodShort + " more wood";
+            string stone = stoneShort + " more stone";
+            if (woodShort > 0 && stoneShort > 0) {
+                return wood + " and " + stone;
+            }
+            return woodShort > 0 ? wood : stone;
+        }
+
+        /** What is missing for a building, which is paid for from what the player carries and the stockpile (BuildingCatalog). */
+        private static string describeBuildShortfall(Inventory carried, Inventory stockpile, BuildingType type) {
+            int wood = carried.getNumItems(ItemType.WOOD) + stockpile.getNumItems(ItemType.WOOD);
+            int stone = carried.getNumItems(ItemType.STONE) + stockpile.getNumItems(ItemType.STONE);
+            return "Needs " + describeMissing(BuildingCatalog.getWoodCost(type) - wood, BuildingCatalog.getStoneCost(type) - stone)
+                + ", counting the settlement's stockpile.";
+        }
+
+        /** "The Camp of Aland is about 175 paces to the west. Walk within 50 to enter." */
+        private static string describeOutOfReach(Player player, Settlement nearest) {
+            if (nearest == null) {
+                return "No settlement has been founded yet.";
+            }
+            int distance = (int) Vector3.Distance(player.getPosition(), nearest.getPosition());
+            return "The " + nearest.getDisplayName() + " is about " + distance + " paces to the "
+                + Compass.describe(player.getPosition(), nearest.getPosition()) + ". Walk within " + EnterSettlementDistance + " to enter.";
         }
 
         /** "Feed Residents (3 hungry)" */
