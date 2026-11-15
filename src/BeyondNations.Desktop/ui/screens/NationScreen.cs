@@ -11,7 +11,8 @@ namespace beyondnations.desktop.ui.screens {
     * offer peace, declare war, denounce -- offered by the same rules as the
     * command bar (NationDiplomacy), which is the whole of the player's
     * diplomacy. A second tab, Laws, is the court: the nation's laws
-    * (LawsPanel).
+    * (LawsPanel). A third, Members, lists the player's own people, their
+    * loyalty and the heir (MembersPanel).
     *
     * The list puts the nations that matter first -- at war, at odds,
     * neighbours, allies, then the rest nearest first -- and scrolls when
@@ -30,6 +31,7 @@ namespace beyondnations.desktop.ui.screens {
         public const string NoOtherNations = "No other nation has been founded yet.";
         public const string NationsTab = "Nations";
         public const string LawsTab = "Laws";
+        public const string MembersTab = "Members";
 
         private const float DesignButtonWidth = 96f;
         private const float DesignButtonGap = 8f;
@@ -37,9 +39,13 @@ namespace beyondnations.desktop.ui.screens {
 
         /** --start-screen laws opens the screen on its Laws tab. */
         public static bool startOnLaws = false;
+        /** --start-screen members opens the screen on its Members tab. */
+        public static bool startOnMembers = false;
 
         private readonly LawsPanel lawsPanel = new LawsPanel();
+        private readonly MembersPanel membersPanel = new MembersPanel();
         private bool showingLaws = startOnLaws;
+        private bool showingMembers = startOnMembers && !startOnLaws;
         /** The first row of the list on screen; the list scrolls when the nations outnumber the screen. */
         private int firstRow;
         // War and Denounce take two clicks, as on the command bar (#368)
@@ -298,6 +304,25 @@ namespace beyondnations.desktop.ui.screens {
 
         public void showLaws(bool laws) {
             showingLaws = laws;
+            if (laws) {
+                showingMembers = false;
+            }
+        }
+
+        public bool isShowingMembers() {
+            return showingMembers;
+        }
+
+        public void showMembers(bool members) {
+            showingMembers = members;
+            if (members) {
+                showingLaws = false;
+            }
+        }
+
+        /** "> Laws <" for the tab showing, "Laws" for the others. */
+        public static string tabLabel(string tab, bool showing) {
+            return showing ? "> " + tab + " <" : tab;
         }
 
         public UiAction draw(float width, float height, Simulation simulation) {
@@ -309,8 +334,8 @@ namespace beyondnations.desktop.ui.screens {
             // below the corner Close on a touch screen (TouchLayout)
             float y = System.MathF.Max(System.MathF.Max(height / 18f, UiScale.px(12f)), Overlay.touchCloseBottom());
 
-            // here rather than in drawNations, so that a look at the Laws tab
-            // does not count as closing the screen
+            // here rather than in drawNations, so that a look at the Laws or
+            // Members tab does not count as closing the screen
             int frame = ImGui.GetFrameCount();
             if (wasClosed(frame, lastDrawnFrame)) {
                 shownOrder.Clear();
@@ -323,20 +348,28 @@ namespace beyondnations.desktop.ui.screens {
             Overlay.beginFullScreen("##nation-screen", width, height);
             Overlay.dimBackground(width, height);
 
-            // the two tabs, as big buttons so a thumb finds them
-            float tabWidth = System.MathF.Min(UiScale.px(DesignTabWidth), (width - left * 2f - buttonGap) / 2f);
-            float tabsX = (width - tabWidth * 2f - buttonGap) / 2f;
-            if (Overlay.buttonAt((showingLaws ? NationsTab : "> " + NationsTab + " <") + "##tab-nations", tabsX, y, tabWidth, buttonHeight)) {
+            // the three tabs, as big buttons so a thumb finds them
+            const int tabs = 3;
+            float tabWidth = System.MathF.Min(UiScale.px(DesignTabWidth), (width - left * 2f - buttonGap * (tabs - 1)) / tabs);
+            float tabsX = (width - tabWidth * tabs - buttonGap * (tabs - 1)) / 2f;
+            bool showingNations = !showingLaws && !showingMembers;
+            if (Overlay.buttonAt(tabLabel(NationsTab, showingNations) + "##tab-nations", tabsX, y, tabWidth, buttonHeight)) {
                 showingLaws = false;
+                showingMembers = false;
             }
-            if (Overlay.buttonAt((showingLaws ? "> " + LawsTab + " <" : LawsTab) + "##tab-laws", tabsX + tabWidth + buttonGap, y, tabWidth, buttonHeight)) {
-                showingLaws = true;
+            if (Overlay.buttonAt(tabLabel(MembersTab, showingMembers) + "##tab-members", tabsX + tabWidth + buttonGap, y, tabWidth, buttonHeight)) {
+                showMembers(true);
+            }
+            if (Overlay.buttonAt(tabLabel(LawsTab, showingLaws) + "##tab-laws", tabsX + (tabWidth + buttonGap) * 2f, y, tabWidth, buttonHeight)) {
+                showLaws(true);
             }
             y += buttonHeight + lineHeight * 0.9f;
 
             Player player = simulation.getPlayer();
             System.Action pending = showingLaws
                 ? lawsPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
+                : showingMembers
+                ? membersPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
             // the answer goes on the status line, shown here too since the HUD is hidden
