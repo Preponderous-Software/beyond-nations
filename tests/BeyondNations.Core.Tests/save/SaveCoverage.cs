@@ -40,7 +40,7 @@ namespace beyondnationstests {
                     "objectiveTracker", "chronicle", "realm", "worldEvents", "tradeCaravans", "eraTracker" },
                 // seasons come from the tick count and regions from the seed, so all five are rebuilt (docs/SAVES.md)
                 Derived = new[] { "eventProducer", "pawnBehaviorCalculator", "pawnBehaviorExecutor", "lagPreventer",
-                    "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources" },
+                    "regionMap", "seasonCalendar", "seasonalWorld", "worldPalette", "nationResources", "reservedGround" },
             },
             [typeof(GameConfig)] = new Entry {
                 Saved = new[] { "chunkSize", "locationScale", "respawnPawns", "keepInventoryOnDeath", "lagPreventionEnabled", "worldSeed",
@@ -82,9 +82,13 @@ namespace beyondnationstests {
             [typeof(Pawn)] = saved("random", "speed", "nationId", "homeSettlementId", "targetEntity", "currentBehaviorType", "distanceThreshold",
                 "energy", "metabolism", "relationships", "currentSettlementId", "millTarget", "hasMillTargetValue", "lastConversationTicks",
                 "order", "traits", "settler"),
-            [typeof(Player)] = saved("walkSpeed", "runSpeed", "currentSpeed", "renderDistance", "horizontalInput", "verticalInput",
-                "jumpRequested", "yaw", "nationId", "homeSettlementId", "status", "autoWalk", "energy", "metabolism", "relationships",
-                "currentSettlementId", "mealsEaten", "marketSales"),
+            // the open ground a refusal just named: taken by ReservedGround on the next tick
+            [typeof(Player)] = new Entry {
+                Saved = new[] { "walkSpeed", "runSpeed", "currentSpeed", "renderDistance", "horizontalInput", "verticalInput",
+                    "jumpRequested", "yaw", "nationId", "homeSettlementId", "status", "autoWalk", "energy", "metabolism", "relationships",
+                    "currentSettlementId", "mealsEaten", "marketSales" },
+                Transient = new[] { "pointedOutGround" },
+            },
             [typeof(Settlement)] = new Entry {
                 Saved = new[] { "color", "nationId", "nationName", "currentlyPresentEntities", "market", "buildings",
                     "residentCount", "drawnLayoutSignature", "claimRadius", "siegeText" },
@@ -210,10 +214,16 @@ namespace beyondnationstests {
                 "ambitionEras"),
             [typeof(HistoryEntry)] = saved("tick", "day", "partOfDay", "text", "milestone"),
             [typeof(PawnBehaviorCalculator)] = new Entry {
-                Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar" },
+                Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar", "reservedGround" },
             },
             [typeof(PawnBehaviorExecutor)] = new Entry {
-                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar", "realm", "gameConfig" },
+                Derived = new[] { "nationNameGenerator", "random", "environment", "nationRepository", "eventProducer", "entityRepository", "tickCounter", "seasonCalendar", "realm", "gameConfig", "reservedGround" },
+            },
+            // the opening comes from the tick count and the player's home; a site held
+            // for the player lasts two minutes and a load lets it go (docs/SAVES.md)
+            [typeof(ReservedGround)] = new Entry {
+                Derived = new[] { "player", "tickCounter" },
+                Transient = new[] { "heldSite", "heldUntilTick" },
             },
             // seasons and regions: no state of their own (docs/SAVES.md)
             [typeof(RegionMap)] = new Entry {

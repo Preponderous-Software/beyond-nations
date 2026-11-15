@@ -38,6 +38,19 @@ namespace beyondnations {
             this.seasonCalendar = seasonCalendar;
         }
 
+        // ground kept for the player in the opening (territory/ReservedGround); null in most tests
+        private ReservedGround reservedGround;
+
+        /** Keeps pawns from founding on the ground held for the player (#433). */
+        public void setReservedGround(ReservedGround reservedGround) {
+            this.reservedGround = reservedGround;
+        }
+
+        /** Whether a settlement founded here would leave the player's reserved ground open. */
+        private bool clearOfReservedGround(Pawn pawn) {
+            return reservedGround == null || reservedGround.allowsPawnFounding(pawn.getPosition(), gameConfig.getMinDistanceBetweenSettlements());
+        }
+
         private bool isWinter() {
             return seasonCalendar != null && seasonCalendar.isWinter();
         }
@@ -160,7 +173,12 @@ namespace beyondnations {
                 return BehaviorType.EXIT_SETTLEMENT;
             }
 
-            Nation nation = nationRepository.getNation(pawn.getNationId());
+            Nation nation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (nation == null) {
+                // a pawn put out of its nation while indoors (a claimant warned against,
+                // Realm.expel) has no business here: it used to crash this method
+                return BehaviorType.EXIT_SETTLEMENT;
+            }
             NationRole role = nation.getRole(pawn.getId());
 
             if (role == NationRole.LEADER) {
@@ -333,7 +351,7 @@ namespace beyondnations {
                     // if no settlements within x units, create settlement
                     Entity nearestSettlement = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
                     int distanceToNearestSettlement = nearestSettlement == null ? int.MaxValue : (int)Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition());
-                    if (nearestSettlement == null || distanceToNearestSettlement > gameConfig.getMinDistanceBetweenSettlements()) {
+                    if ((nearestSettlement == null || distanceToNearestSettlement > gameConfig.getMinDistanceBetweenSettlements()) && clearOfReservedGround(pawn)) {
                         return BehaviorType.CONSTRUCT_SETTLEMENT;
                     }
                     else {
@@ -407,7 +425,8 @@ namespace beyondnations {
 
         private bool isFarEnoughToSettle(Pawn pawn) {
             Entity nearestSettlement = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
-            return nearestSettlement == null || Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition()) > gameConfig.getMinDistanceBetweenSettlements();
+            return (nearestSettlement == null || Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition()) > gameConfig.getMinDistanceBetweenSettlements())
+                && clearOfReservedGround(pawn);
         }
 
         private bool hasReasonToGoHome(Pawn pawn, NationRole role) {

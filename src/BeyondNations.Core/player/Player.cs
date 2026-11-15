@@ -210,6 +210,23 @@ namespace beyondnations {
             this.homeSettlementId = settlementId;
         }
 
+        // The open ground a refused founding last pointed the player to, until
+        // ReservedGround takes it to hold for them (#433). Not saved: a hold
+        // lasts seconds.
+        private Vector3? pointedOutGround = null;
+
+        /** A refusal to found here named open ground at site (FoundSettlementCommand). */
+        public void pointOutOpenGround(Vector3 site) {
+            pointedOutGround = site;
+        }
+
+        /** The ground last pointed out and not yet taken, cleared by the call. */
+        public Vector3? takePointedOutGround() {
+            Vector3? site = pointedOutGround;
+            pointedOutGround = null;
+            return site;
+        }
+
         public Status getStatus() {
             return status;
         }
