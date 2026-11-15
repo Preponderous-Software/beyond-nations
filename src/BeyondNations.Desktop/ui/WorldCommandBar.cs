@@ -60,14 +60,18 @@ namespace beyondnations.desktop.ui {
                     new NationLeaveCommand(nationRepository, simulation.getEventProducer(), entityRepository)
                         .execute(player)));
 
-                // offered to a leader with no settlement yet, and enabled once
-                // they carry the wood
-                if (player.getId() == nation.getLeaderId() && nation.getNumberOfSettlements() == 0) {
+                // offered to a leader with no settlement yet, and again (#145)
+                // whenever the era lets the nation hold another; enabled once
+                // they carry what it costs (FoundingCost) and stand outside
+                if (player.getId() == nation.getLeaderId()
+                        && (nation.getNumberOfSettlements() == 0 || (nation.canFoundSettlement() && !player.isCurrentlyInSettlement()))) {
+                    int woodShort = FoundingCost.wood(nation) - inventory.getNumItems(ItemType.WOOD);
+                    int stoneShort = FoundingCost.stone(nation) - inventory.getNumItems(ItemType.STONE);
                     commands.Add(new WorldCommand("Found Settlement", CommandGroup.Nation, () =>
                         new FoundSettlementCommand(nationRepository, simulation.getEventProducer(), entityRepository, simulation.getGameConfig(), simulation.getRandom())
                             .execute(player))
-                        .setEnabled(inventory.getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD,
-                            describeShortfall(Settlement.WOOD_COST_TO_BUILD - inventory.getNumItems(ItemType.WOOD), 0)));
+                        .setEnabled(woodShort <= 0 && stoneShort <= 0,
+                            describeShortfall(System.Math.Max(0, woodShort), System.Math.Max(0, stoneShort))));
                 }
 
                 if (!player.isCurrentlyInSettlement() && player.getHomeSettlementId() != null) {

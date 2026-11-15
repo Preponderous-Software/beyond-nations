@@ -91,7 +91,7 @@ namespace beyondnations {
 
                 new Objective("second-settlement", "Found a second settlement",
                     s => ObjectiveProgress.count("Settlements", settlements(s), ArcSettlementTarget),
-                    "Travel well away from your first, then press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood.",
+                    s => "Travel well away from your first, then press {FoundSettlement} with " + FoundingCost.describe(playerNation(s)) + ".",
                     ObjectiveReward.coins(largeCoinReward() * 2)),
             };
         }
@@ -144,7 +144,7 @@ namespace beyondnations {
                     }
                     return new Objective(id, "Hold " + target + " settlements",
                         s => ObjectiveProgress.count("Settlements", settlements(s), target),
-                        "Press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood, far from other settlements.",
+                        s => "Press {FoundSettlement} with " + FoundingCost.describe(playerNation(s)) + ", far from other settlements.",
                         reward.and(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD / 4), true);
                 }
                 default: {

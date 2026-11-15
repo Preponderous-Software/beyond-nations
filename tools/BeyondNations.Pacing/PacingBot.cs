@@ -280,8 +280,14 @@ namespace beyondnations.pacing {
                     simulation.getEntityRepository()).execute(player);
                 return;
             }
-            if (WorldView.wood(simulation) < Settlement.WOOD_COST_TO_BUILD) {
+            // a second settlement and after cost more wood, and stone (FoundingCost)
+            Nation own = simulation.getNationRepository().getNation(player.getNationId());
+            if (WorldView.wood(simulation) < FoundingCost.wood(own)) {
                 gather(EntityType.TREE);
+                return;
+            }
+            if (WorldView.stone(simulation) < FoundingCost.stone(own)) {
+                gather(EntityType.ROCK);
                 return;
             }
             activity = "founding a settlement";

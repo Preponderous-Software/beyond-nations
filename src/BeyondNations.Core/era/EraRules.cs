@@ -158,7 +158,8 @@ namespace beyondnations {
                 case "Stalls":
                     return "Inside your settlement, press {BuildStall} with " + Stall.WOOD_COST_TO_BUILD + " wood and " + Stall.STONE_COST_TO_BUILD + " stone.";
                 case "Settlements":
-                    return "Far from other settlements, press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood.";
+                    return "Far from other settlements, press {FoundSettlement} with " + FoundingCost.wood(requirement.current)
+                        + " wood" + (FoundingCost.stone(requirement.current) > 0 ? " and " + FoundingCost.stone(requirement.current) + " stone" : "") + ".";
                 case "Funds":
                     return "Your coins and your settlements' treasuries. Stalls earn coin; sell at market.";
                 case "Day":

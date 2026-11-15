@@ -518,7 +518,8 @@ namespace beyondnations {
                 }
                 Player memberPlayer = member as Player;
                 if (memberPlayer != null && settlement.getId().Equals(memberPlayer.getHomeSettlementId())) {
-                    memberPlayer.setHomeSettlementId(null);
+                    // with another settlement left (#145), the oldest becomes home; with none, no home
+                    memberPlayer.setHomeSettlementId(from.getNumberOfSettlements() > 0 ? from.getSettlement(0) : null);
                 }
             }
 
