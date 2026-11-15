@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Numerics;
 using System.Text;
@@ -71,6 +72,10 @@ namespace beyondnations.web {
         private ScreenType lastPublishedScreen = (ScreenType) (-1);
         private bool tapPending;
         private int tapsInteracted;
+        // ?advance-ticks still to run (advanceChunk)
+        private int advanceTicksLeft;
+        /** Main-thread time a frame given to ?advance-ticks. */
+        private const int AdvanceBudgetMs = 200;
 
         public WebGame(GameOptions options, double devicePixelRatio) {
             this.options = options;
@@ -142,6 +147,9 @@ namespace beyondnations.web {
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
             }
+            if (options.StageOutpost) {
+                OutpostShowcase.stage(simulation);
+            }
             if (options.StageDiplomacy) {
                 DiplomacyShowcase.stage(simulation);
             }
@@ -160,6 +168,11 @@ namespace beyondnations.web {
             }
             if (options.StageVictory || options.StageDefeat) {
                 EndingShowcase.stage(simulation, options.StageVictory);
+            }
+            if (options.AdvanceTicks > 0) {
+                // run over the next frames (advanceChunk), not here, so the page stays responsive
+                advanceTicksLeft = options.AdvanceTicks;
+                Log.info("advancing the world " + advanceTicksLeft + " ticks");
             }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
@@ -181,6 +194,7 @@ namespace beyondnations.web {
             simulation = loaded;
             share.beginWorld(simulation);
             accumulator = 0;
+            advanceTicksLeft = 0;
             feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
@@ -295,6 +309,10 @@ namespace beyondnations.web {
         private void update(double deltaTime) {
             readInput();
             runHousekeeping();
+            if (!stopped && simulation != null && advanceTicksLeft > 0) {
+                advanceChunk();
+                return;
+            }
             if (stopped || !screens.shouldAdvanceSimulation() || simulation == null) {
                 return;
             }
@@ -322,6 +340,32 @@ namespace beyondnations.web {
             // a victory or a defeat stops the world for the end-of-run screen
             if (simulation.getEraTracker().shouldShowOutcome()) {
                 screens.runEnded();
+            }
+        }
+
+        /**
+        * ?advance-ticks (Game.advanceTicks): the same fixed steps the window
+        * runs, without waiting for the clock, so the world opens mid-game. The
+        * desktop runs them all before its first frame; a page that did that
+        * would freeze for as long as they take (tens of seconds for the
+        * winter warning's 22,000 on a phone), so here they run in slices of
+        * AdvanceBudgetMs a frame and the world is drawn, fast-forwarding, in
+        * between. As on the desktop, a world event waiting on the player does
+        * not stop it, and nothing else steps until it is done. WebOptions
+        * caps the count (WebOptions.MaxAdvanceTicks).
+        */
+        private void advanceChunk() {
+            float step = (float) fixedTimeStep;
+            long started = Stopwatch.GetTimestamp();
+            long budget = Stopwatch.Frequency * AdvanceBudgetMs / 1000;
+            do {
+                simulation.fixedUpdate(step);
+                advanceTicksLeft--;
+            } while (advanceTicksLeft > 0 && Stopwatch.GetTimestamp() - started < budget);
+            accumulator = 0;
+            if (advanceTicksLeft == 0) {
+                Log.info("advanced to tick " + simulation.getTickCounter().getTotalTicks()
+                    + ": " + simulation.getNationRepository().getNations().Count + " nations");
             }
         }
 
@@ -497,6 +541,8 @@ namespace beyondnations.web {
             json.Append(",\"frames\":").Append(framesRendered);
             json.Append(",\"fixedSteps\":").Append(fixedStepsRun);
             json.Append(",\"world\":").Append(simulation != null ? "true" : "false");
+            // ticks of ?advance-ticks still to run; 0 once the world is where it was asked to be
+            json.Append(",\"advancing\":").Append(advanceTicksLeft);
             json.Append(",\"tick\":").Append(simulation != null ? simulation.getTickCounter().getTotalTicks() : 0);
             json.Append(",\"renderer\":\"").Append(renderer.getName()).Append('"');
             json.Append(",\"drawCalls\":").Append(renderer.getDrawCallCount());

@@ -151,6 +151,10 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `render-distance=N` | starting render distance |
 | `time-of-day=F` | starting time of day, 0 to 1 |
 | `stage-feel` | replay the feedback effects every 20 frames, for screenshots |
+| `stage-settlement` | open with a lived-in settlement standing ahead of the player |
+| `stage-outpost` | open leading a Village-era nation with two settlements |
+| `stage-diplomacy`, `stage-succession`, `stage-event`, `stage-trade`, `stage-market`, `stage-victory`, `stage-defeat` | the desktop's other staged openings ([CONTRIBUTING.md](./CONTRIBUTING.md)) |
+| `advance-ticks=N` | run the world N ticks so it opens mid-game, at most 50,000 (a larger number is lowered to that, with a warning). Unlike the desktop, which runs them before its first frame, the page runs them in slices of 200 ms a frame and draws the world fast-forwarding meanwhile, so it stays responsive; `window.beyondNations.status().advancing` counts the ticks left. `?stage-settlement&season=autumn&advance-ticks=22000` reaches the winter warning. |
 | `season=NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
 | `exit-after-frames=N`, `screenshot-after-frames=N` | for automated runs |
@@ -159,6 +163,10 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 Anything unknown or malformed is dropped with a console warning. (On the
 desktop a bad option ends the process; in a page that would take the runtime
 down with it, so nothing unusable reaches `GameOptions.parse`.)
+
+The warning the day before winter in the browser, `?no-saves&seed=42&start-screen=world&stage-settlement&season=autumn&advance-ticks=22000` (the `phone-staged` and `desktop-staged` shots in `tools/capture/web.json`):
+
+<img src="./screenshots/web-phone-shotlist/desktop-winter-warning.jpg" alt="The browser build at 1280x720 the night before winter: a banner says winter comes tomorrow and that 9 of Southernland's 17 members are short of food, and the Season box reads Autumn, day 2 of 2, Winter in 1 day" width="560"> <img src="./screenshots/web-phone-shotlist/phone-winter-warning.jpg" alt="The same warning on a phone held upright" width="180">
 
 ### Sharing
 

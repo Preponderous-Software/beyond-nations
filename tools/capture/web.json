@@ -77,6 +77,33 @@
         { "goto": "?{q}&start-screen=world&stage-market" }, { "wait": 8000 }, { "capture": "desktop-market-town" },
         { "tap": [569, 642] }, { "wait": 5000 }, { "capture": "desktop-market-panel" }
       ]
+    },
+    {
+      "name": "phone-staged", "device": "phone",
+      "comment": "The screens #471 opened to the browser: a lived-in town (stage-settlement), a nation with two settlements (stage-outpost) and the winter warning, which is stage-settlement on the first day of autumn run 22000 ticks to the morning of its last day (as media.json's winter-warning). The page runs those ticks in slices between frames and status().advancing counts down to 0. The rotate hint's OK is tapped at (334, 338) as in the phone shot.",
+      "caption": "The browser build's staged screens on a phone held upright (390x844, touch).",
+      "alt": "Beyond Nations on a phone held upright: a lived-in town, a nation with two settlements, and the warning the day before winter",
+      "steps": [
+        { "goto": "?{q}&start-screen=world&stage-settlement" }, { "wait": 8000 },
+        { "tap": [334, 338] }, { "wait": 4000 }, { "capture": "phone-town" },
+        { "goto": "?{q}&start-screen=nations&stage-outpost" }, { "wait": 5000 }, { "capture": "phone-two-settlements" },
+        { "goto": "?{q}&start-screen=world&stage-settlement&season=autumn&advance-ticks=22000" },
+        { "waitFor": "window.beyondNations.status().advancing === 0", "timeout": 900000 },
+        { "tap": [334, 338] }, { "wait": 5000 }, { "capture": "phone-winter-warning" }
+      ]
+    },
+    {
+      "name": "desktop-staged", "device": "desktop",
+      "comment": "As phone-staged, at 1280x720 with a mouse.",
+      "caption": "The browser build's staged screens on a desktop (1280x720, mouse).",
+      "alt": "Beyond Nations in a desktop browser: a lived-in town, a nation with two settlements, and the warning the day before winter",
+      "steps": [
+        { "goto": "?{q}&start-screen=world&stage-settlement" }, { "wait": 8000 }, { "capture": "desktop-town" },
+        { "goto": "?{q}&start-screen=nations&stage-outpost" }, { "wait": 5000 }, { "capture": "desktop-two-settlements" },
+        { "goto": "?{q}&start-screen=world&stage-settlement&season=autumn&advance-ticks=22000" },
+        { "waitFor": "window.beyondNations.status().advancing === 0", "timeout": 900000 },
+        { "wait": 5000 }, { "capture": "desktop-winter-warning" }
+      ]
     }
   ]
 }
