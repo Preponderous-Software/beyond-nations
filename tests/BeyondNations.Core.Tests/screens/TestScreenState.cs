@@ -256,5 +256,30 @@ namespace beyondnationstests {
             screens.nationsPressed();
             Assert.Equal(ScreenType.PAUSE, screens.getCurrent());
         }
+
+        [Fact]
+        public void testSettlementScreen_OpensFromTheWorldOrTheNations_AndGoesBackThere() {
+            ScreenState screens = new ScreenState();
+            screens.goTo(ScreenType.WORLD);
+
+            screens.openSettlement();
+            Assert.Equal(ScreenType.SETTLEMENT, screens.getCurrent());
+            Assert.False(screens.shouldAdvanceSimulation());
+            Assert.True(screens.isWorldVisible());
+            Assert.True(screens.escapePressed());
+            Assert.Equal(ScreenType.WORLD, screens.getCurrent());
+
+            screens.nationsPressed();
+            screens.openSettlement();
+            Assert.Equal(ScreenType.SETTLEMENT, screens.getCurrent());
+            Assert.Equal(ScreenType.NATIONS, screens.getSettlementReturn());
+            screens.closeSettlement();
+            Assert.Equal(ScreenType.NATIONS, screens.getCurrent());
+
+            // means nothing on a menu
+            screens.goTo(ScreenType.PAUSE);
+            screens.openSettlement();
+            Assert.Equal(ScreenType.PAUSE, screens.getCurrent());
+        }
     }
 }

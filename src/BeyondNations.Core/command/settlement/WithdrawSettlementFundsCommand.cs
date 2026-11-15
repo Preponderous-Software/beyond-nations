@@ -16,11 +16,6 @@ namespace beyondnations {
                 return;
             }
             Nation nation = nationRepository.getNation(player.getNationId());
-            if (nation.getRole(player.getId()) != NationRole.LEADER) {
-                player.getStatus().update("You are not a leader.");
-                return;
-            }
-
             EntityId currentSettlementId = player.getCurrentSettlementId();
             if (currentSettlementId == null) {
                 player.getStatus().update("You are not inside a settlement.");
@@ -28,9 +23,10 @@ namespace beyondnations {
             }
             Settlement settlement = (Settlement) entityRepository.getEntity(currentSettlementId);
 
-            // if not owned by nation
-            if (settlement.getNationId() != nation.getId()) {
-                player.getStatus().update("You do not own this settlement.");
+            // the leader, or the member it was given to (#176)
+            string refusal = SettlementOwnership.refusal(player.getId(), nation, settlement, entityRepository);
+            if (refusal != null) {
+                player.getStatus().update(refusal);
                 return;
             }
 

@@ -385,6 +385,8 @@ namespace beyondnations {
                             }
                             if (totalTicks % ResidentRecountTicks == 0) {
                                 settlement.setResidentCount(SettlementLife.countResidents(entityRepository, settlement.getId()));
+                                // a holder who has left or died gives it back to the leader (#176)
+                                SettlementOwnership.reconcile(settlement, nationRepository.getNation(settlement.getNationId()), entityRepository);
                             }
                             settlement.refreshAppearance();
                         }

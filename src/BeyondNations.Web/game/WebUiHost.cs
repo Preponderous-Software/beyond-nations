@@ -31,6 +31,7 @@ namespace beyondnations.web {
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
+        private readonly SettlementScreen settlementScreen = new SettlementScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
         private readonly SuccessionScreen successionScreen = new SuccessionScreen();
@@ -67,6 +68,7 @@ namespace beyondnations.web {
             this.gameConfig = gameConfig;
             this.saves = saves;
             this.share = share;
+            nationScreen.setTextPlatform(share.getPlatform());
         }
 
         public bool consumeQuitRequest() {
@@ -122,6 +124,8 @@ namespace beyondnations.web {
             // the safe area: the canvas less any notch or rounded corners
             float width = backend.getUiWidth(cssWidth);
             float height = backend.getUiHeight(cssHeight);
+            // entering a settlement, or a button asking for it, opens the settlement screen (#178)
+            SettlementScreens.beforeDraw(simulation, screens);
             UiAction action = UiAction.None;
             switch (screens.getCurrent()) {
                 case ScreenType.TITLE:
@@ -181,6 +185,11 @@ namespace beyondnations.web {
                 case ScreenType.END_OF_RUN:
                     if (simulation != null) {
                         action = endOfRunScreen.draw(width, height, simulation);
+                    }
+                    break;
+                case ScreenType.SETTLEMENT:
+                    if (simulation != null) {
+                        action = settlementScreen.draw(width, height, simulation);
                     }
                     break;
             }
@@ -253,6 +262,9 @@ namespace beyondnations.web {
                     // the ended world is saved, then the New World screen asks for a seed as Start does
                     newWorldRequested = true;
                     screens.goTo(ScreenType.NEW_WORLD);
+                    break;
+                case UiAction.CloseSettlement:
+                    screens.closeSettlement();
                     break;
             }
         }

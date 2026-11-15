@@ -137,6 +137,8 @@ namespace beyondnations.desktop {
         */
         public bool StageSettlement = false;
         public bool StageOutpost = false;
+        /** As StageOutpost, with the second settlement given to a member and the player outside it (#176). */
+        public bool StageHoldings = false;
 
         /**
         * Replays the feedback effects every couple of seconds -- chips,
@@ -250,6 +252,7 @@ namespace beyondnations.desktop {
                     case "--debug-mode":       options.DebugMode = true; break;
                     case "--stage-settlement": options.StageSettlement = true; break;
                     case "--stage-outpost":    options.StageOutpost = true; break;
+                    case "--stage-holdings":   options.StageHoldings = true; break;
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--stage-feel":       options.StageFeel = true; break;
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
@@ -327,10 +330,17 @@ namespace beyondnations.desktop {
                     // the nations screen, opened on its Members tab
                     beyondnations.desktop.ui.screens.NationScreen.startOnMembers = true;
                     return ScreenType.NATIONS;
+                case "manage":
+                    // the nations screen, opened on its Manage tab
+                    beyondnations.desktop.ui.screens.NationScreen.startOnManage = true;
+                    return ScreenType.NATIONS;
+                case "settlement":
+                    // the settlement screen (#178), on the settlement the player is in or nearest to
+                    return ScreenType.SETTLEMENT;
                 case "new-world": return ScreenType.NEW_WORLD;
                 case "share":     return ScreenType.SHARE;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, members, crafting, load, new-world or share)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -419,12 +429,13 @@ namespace beyondnations.desktop {
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
                 "  --stage-outpost         open leading a Village-era nation with two settlements",
+                "  --stage-holdings        as --stage-outpost, the second settlement held by a member",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
                 "  --stage-victory         open on the end-of-run screen of a won run (--stage-defeat: a lost one)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, crafting, load, new-world or share",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",

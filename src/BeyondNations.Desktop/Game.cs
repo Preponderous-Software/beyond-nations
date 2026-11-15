@@ -305,6 +305,9 @@ namespace beyondnations.desktop {
             if (options.StageOutpost) {
                 OutpostShowcase.stage(simulation);
             }
+            if (options.StageHoldings) {
+                HoldingsShowcase.stage(simulation);
+            }
             if (options.StageDiplomacy) {
                 DiplomacyShowcase.stage(simulation);
             }

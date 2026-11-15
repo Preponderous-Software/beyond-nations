@@ -34,6 +34,12 @@ namespace beyondnations.desktop.ui.boxes {
             else {
                 lines.Add("Leader: " + leader.getType());
             }
+            // given to a member (#176): whose it is, when not the leader's
+            if (SettlementOwnership.isGranted(settlement, nation)) {
+                EntityId holder = SettlementOwnership.holderOf(settlement, nation);
+                Entity held = entityRepository.getEntity(holder);
+                lines.Add("Held by: " + (held is Player ? "You" : held != null ? held.getName() : "no one"));
+            }
 
             // no "PCIS" (pawns currently in settlement): the floating label
             // says "N here", and the F1 debug box keeps the count (#350)

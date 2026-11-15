@@ -74,6 +74,34 @@ namespace beyondnations {
             return name;
         }
 
+        /**
+        * Remembers a name a nation took for itself (RenameNationCommand), so
+        * no nation founded later is given it.
+        */
+        public void reserve(string name) {
+            if (!generated.Contains(name)) {
+                generated.Add(name);
+            }
+        }
+
+        /** Whether the name has been given out or taken already. */
+        public bool isTaken(string name) {
+            return generated.Contains(name);
+        }
+
+        /**
+        * The index-th name of a fixed walk through every prefix and suffix,
+        * for the rename field's Suggest button. It draws nothing from the
+        * world's random stream, so asking for one changes nothing.
+        */
+        public static string suggest(int index) {
+            int count = prefixes.Length * suffixes.Length;
+            int i = ((index % count) + count) % count;
+            // a stride coprime with the count, so consecutive suggestions differ in both halves
+            int k = (int) (((long) i * 37) % count);
+            return prefixes[k / suffixes.Length] + suffixes[k % suffixes.Length];
+        }
+
         // --- saving (docs/SAVES.md) ---
 
         internal List<string> getGenerated() {

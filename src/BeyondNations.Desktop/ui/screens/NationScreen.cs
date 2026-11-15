@@ -12,7 +12,10 @@ namespace beyondnations.desktop.ui.screens {
     * command bar (NationDiplomacy), which is the whole of the player's
     * diplomacy. A second tab, Laws, is the court: the nation's laws
     * (LawsPanel). A third, Members, lists the player's own people, their
-    * loyalty and the heir (MembersPanel).
+    * loyalty and the heir (MembersPanel). A fourth, Manage, is where the
+    * leader renames the nation, hands it on or disbands it, and where its
+    * settlements are listed with who holds each and an Open button for the
+    * settlement screen (ManagePanel, #175, #176, #178).
     *
     * The list puts the nations that matter first -- at war, at odds,
     * neighbours, allies, then the rest nearest first -- and scrolls when
@@ -32,6 +35,7 @@ namespace beyondnations.desktop.ui.screens {
         public const string NationsTab = "Nations";
         public const string LawsTab = "Laws";
         public const string MembersTab = "Members";
+        public const string ManageTab = "Manage";
 
         private const float DesignButtonWidth = 96f;
         private const float DesignButtonGap = 8f;
@@ -41,11 +45,20 @@ namespace beyondnations.desktop.ui.screens {
         public static bool startOnLaws = false;
         /** --start-screen members opens the screen on its Members tab. */
         public static bool startOnMembers = false;
+        /** --start-screen manage opens the screen on its Manage tab. */
+        public static bool startOnManage = false;
 
         private readonly LawsPanel lawsPanel = new LawsPanel();
         private readonly MembersPanel membersPanel = new MembersPanel();
+        private readonly ManagePanel managePanel = new ManagePanel();
         private bool showingLaws = startOnLaws;
         private bool showingMembers = startOnMembers && !startOnLaws;
+        private bool showingManage = startOnManage && !startOnLaws && !startOnMembers;
+
+        /** Where the Manage tab asks for a typed name on a platform the game cannot type into. */
+        public void setTextPlatform(ISharePlatform platform) {
+            managePanel.setTextPlatform(platform);
+        }
         /** The first row of the list on screen; the list scrolls when the nations outnumber the screen. */
         private int firstRow;
         // War and Denounce take two clicks, as on the command bar (#368)
@@ -341,6 +354,7 @@ namespace beyondnations.desktop.ui.screens {
             showingLaws = laws;
             if (laws) {
                 showingMembers = false;
+                showingManage = false;
             }
         }
 
@@ -352,6 +366,19 @@ namespace beyondnations.desktop.ui.screens {
             showingMembers = members;
             if (members) {
                 showingLaws = false;
+                showingManage = false;
+            }
+        }
+
+        public bool isShowingManage() {
+            return showingManage;
+        }
+
+        public void showManage(bool manage) {
+            showingManage = manage;
+            if (manage) {
+                showingLaws = false;
+                showingMembers = false;
             }
         }
 
@@ -383,20 +410,24 @@ namespace beyondnations.desktop.ui.screens {
             Overlay.beginFullScreen("##nation-screen", width, height);
             Overlay.dimBackground(width, height);
 
-            // the three tabs, as big buttons so a thumb finds them
-            const int tabs = 3;
+            // the four tabs, as big buttons so a thumb finds them
+            const int tabs = 4;
             float tabWidth = System.MathF.Min(UiScale.px(DesignTabWidth), (width - left * 2f - buttonGap * (tabs - 1)) / tabs);
             float tabsX = (width - tabWidth * tabs - buttonGap * (tabs - 1)) / 2f;
-            bool showingNations = !showingLaws && !showingMembers;
+            bool showingNations = !showingLaws && !showingMembers && !showingManage;
             if (Overlay.buttonAt(tabLabel(NationsTab, showingNations) + "##tab-nations", tabsX, y, tabWidth, buttonHeight)) {
                 showingLaws = false;
                 showingMembers = false;
+                showingManage = false;
             }
             if (Overlay.buttonAt(tabLabel(MembersTab, showingMembers) + "##tab-members", tabsX + tabWidth + buttonGap, y, tabWidth, buttonHeight)) {
                 showMembers(true);
             }
             if (Overlay.buttonAt(tabLabel(LawsTab, showingLaws) + "##tab-laws", tabsX + (tabWidth + buttonGap) * 2f, y, tabWidth, buttonHeight)) {
                 showLaws(true);
+            }
+            if (Overlay.buttonAt(tabLabel(ManageTab, showingManage) + "##tab-manage", tabsX + (tabWidth + buttonGap) * 3f, y, tabWidth, buttonHeight)) {
+                showManage(true);
             }
             y += buttonHeight + lineHeight * 0.9f;
 
@@ -405,6 +436,8 @@ namespace beyondnations.desktop.ui.screens {
                 ? lawsPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
                 : showingMembers
                 ? membersPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
+                : showingManage
+                ? managePanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
             // the answer goes on the status line, shown here too since the HUD is hidden

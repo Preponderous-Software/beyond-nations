@@ -21,7 +21,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | Switch | Effect |
 | --- | --- |
 | `--exit-after-frames N` | render N frames, then exit |
-| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `members` (the nations screen on its Members tab), `crafting`, `load`, `new-world` (the seed for a new world) or `share` (the world's seed, share link and exports) |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `members` (the nations screen on its Members tab), `manage` (the nations screen on its Manage tab), `settlement` (the settlement screen, on the settlement the player is in or nearest to), `crafting`, `load`, `new-world` (the seed for a new world) or `share` (the world's seed, share link and exports) |
 | `--ui-scale F` | draw the UI F times its design size, 1 to 4; by default the monitor's content scale (150 % in Windows display settings is 1.5) |
 | `--seed S` | fix the world seed, so a run is reproducible: a number, or any text, which is hashed to one (see [SHARING.md](./SHARING.md)) |
 | `--screenshot-after-frames N` | write a PNG and carry on |
@@ -39,6 +39,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--no-saves` | neither autosave, save on quit nor offer saved worlds this run, so an automated run leaves a player's saves alone (see [SAVES.md](./SAVES.md)) |
 | `--continue` | open in the most recently saved world, as **Continue** on the main menu does; falls back to the main menu when there is none |
 | `--stage-settlement` | open with a lived-in settlement (nation, market, merchants, residents) standing ahead of the player |
+| `--stage-holdings` | as `--stage-outpost` (a Village-era nation with two settlements), with the newer settlement given to a member and the player standing outside it |
 | `--stage-diplomacy` | open leading a nation between a friendly and a hostile, besieging neighbour, standing at the border |
 | `--stage-succession` | as `--stage-diplomacy`, with the player about to starve, so the first tick hands the rule to an heir and opens the succession screen |
 | `--stage-event` | open with a world event's choice sheet up (with `--stage-diplomacy`, wanderers at your village) |
