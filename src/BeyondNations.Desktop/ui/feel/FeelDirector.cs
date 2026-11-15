@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
 using beyondnations.desktop.ui.boxes;
+using beyondnations.desktop.ui.screens;
 
 namespace beyondnations.desktop.ui.feel {
 
@@ -378,6 +379,23 @@ namespace beyondnations.desktop.ui.feel {
             return screenHeight * (touch ? 0.24f : 0.6f);
         }
 
+        /**
+        * The card's top, moved up when a card cardHeight tall at preferred
+        * would reach down to the command bar (barTop; 0 when none is
+        * drawn), so it never covers a button: on a narrow window the bar's
+        * rows rise past 60 % of the height, and the card hid Build House
+        * (#350). It stops rising at minTop.
+        */
+        public static float hintCardTopAboveBar(float preferred, float cardHeight, float barTop, float gap, float minTop) {
+            if (barTop <= 0f || preferred + cardHeight + gap <= barTop) {
+                return preferred;
+            }
+            return Math.Max(minTop, barTop - gap - cardHeight);
+        }
+
+        // the card's height when last drawn, to keep it clear of the bar
+        private float lastHintCardHeight;
+
         private void drawHintCard(float width, float height, Simulation world) {
             OnboardingHints.Step? step = hints.getVisible();
             // The objective toast says something more important; the tip waits.
@@ -385,10 +403,14 @@ namespace beyondnations.desktop.ui.feel {
                 return;
             }
             float cardWidth = hintCardWidth(width);
-            ImGui.SetNextWindowPos(new Vector2(width / 2f, (TouchLayout.getTipTop() > 0f ? TouchLayout.getTipTop() : hintCardTop(height, isTouch()))), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            float top = TouchLayout.getTipTop() > 0f
+                ? TouchLayout.getTipTop()
+                : hintCardTopAboveBar(hintCardTop(height, isTouch()), lastHintCardHeight, WorldHud.getBarTop(), UiScale.px(10f), height * 0.2f);
+            ImGui.SetNextWindowPos(new Vector2(width / 2f, top), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowSize(new Vector2(cardWidth, 0f), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.82f);
             if (ImGui.Begin("##feel-hint", HintFlags)) {
+                lastHintCardHeight = ImGui.GetWindowSize().Y;
                 Overlay.textColoured(HintHeadingColour,
                     "Tip " + hints.getNumber() + " of " + OnboardingHints.Steps.Length + ": " + OnboardingHints.title(step.Value));
                 ImGui.PushTextWrapPos(0f);

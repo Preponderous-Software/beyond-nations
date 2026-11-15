@@ -48,9 +48,62 @@ namespace beyondnations.desktop.ui {
             return compact;
         }
 
-        /** The height getLines() would take, one row each, before any wrapping. */
-        public float estimateHeight() {
-            return Overlay.lineHeight() * (getLines().Count + 1) + ImGui.GetStyle().WindowPadding.Y * 2f;
+        /**
+        * What a box's height is estimated from, as plain numbers, so the
+        * estimate can be checked without ImGui (current() reads the style).
+        */
+        public struct Metrics {
+            /** A text row and the spacing under it. */
+            public float LineHeight;
+            /** A framed row, such as the energy bar, and the spacing under it. */
+            public float FrameRowHeight;
+            public float PaddingX;
+            public float PaddingY;
+            /** The width of a string as drawn. */
+            public System.Func<string, float> Measure;
+
+            public static Metrics current() {
+                ImGuiStylePtr style = ImGui.GetStyle();
+                return new Metrics {
+                    LineHeight = Overlay.lineHeight(),
+                    FrameRowHeight = Overlay.frameHeight() + style.ItemSpacing.Y,
+                    PaddingX = style.WindowPadding.X,
+                    PaddingY = style.WindowPadding.Y,
+                    Measure = text => ImGui.CalcTextSize(text).X,
+                };
+            }
+        }
+
+        /**
+        * The height the box takes at boxWidth, every line wrapped as
+        * drawBody wraps it. Counting one row a line, as this used to, judged
+        * a settlement's four boxes to fit at 1280x720 and 960x540 when the
+        * wrapped lines made them too tall, so the season box was drawn over
+        * the player box (#350, playtest 0.7.0 s09).
+        */
+        public float estimateHeight(float boxWidth, Metrics metrics) {
+            float textWidth = getTextWidth(boxWidth, metrics);
+            List<string> lines = getLines();
+            int rows = 1; // the title bar
+            for (int i = 0; i < lines.Count; i++) {
+                rows += countRows(i, lines[i], textWidth, metrics.Measure);
+            }
+            return metrics.LineHeight * rows + metrics.PaddingY * 2f + getExtraHeight(metrics);
+        }
+
+        /** The width lines are wrapped to in a box boxWidth wide, as drawBody finds it. */
+        public static float getTextWidth(float boxWidth, Metrics metrics) {
+            return System.MathF.Max(40f, boxWidth - metrics.PaddingX * 2f);
+        }
+
+        /** The rows line index takes once wrapped; at least one. */
+        protected virtual int countRows(int index, string line, float textWidth, System.Func<string, float> measure) {
+            return System.Math.Max(1, TextWrap.wrap(line, textWidth, measure).Count);
+        }
+
+        /** Height drawBody adds beyond its text rows (a bar drawn in place of a line). */
+        protected virtual float getExtraHeight(Metrics metrics) {
+            return 0f;
         }
 
         private string heightKey() {
@@ -109,7 +162,7 @@ namespace beyondnations.desktop.ui {
         public float getExpectedHeight() {
             float height;
             if (!lastHeights.TryGetValue(heightKey(), out height)) {
-                height = estimateHeight();
+                height = Overlay.lineHeight() * (getLines().Count + 1) + ImGui.GetStyle().WindowPadding.Y * 2f;
             }
             return height;
         }

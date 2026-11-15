@@ -708,5 +708,75 @@ namespace beyondnationstests.desktop.ui {
             key.update(player, 30.0 + ConfirmGate.DefaultWindowSeconds + 1.0);
             Assert.Equal(ConfirmGate.LapsedMessage, player.getStatus().getStatus());
         }
+
+        /**
+        * #345 as the 0.6.0 playtest's s09 saw it, replayed against today's
+        * bar: the pointer held still at one spot while pawns came and went.
+        * The Talk button changed pawn under it, an Order row came and went,
+        * Send Caravan jumped between rows, and a pawn row appearing between
+        * the two clicks of Declare War re-armed it instead of confirming.
+        * Now nothing already on the bar moves, a different pawn under the
+        * pointer takes no click until it has stood still for ButtonSettle's
+        * wait, and the armed War survives the new row.
+        */
+        [Theory]
+        [MemberData(nameof(Screens))]
+        public void session09sReflow_MovesNothing_SwapsNoClick_AndKeepsTheArmedWar(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            List<WorldCommand>[] frames = {
+                session09Bar(null, false),
+                session09Bar("Charlotte Johnson", false),
+                session09Bar("Charlotte Johnson", true),
+                session09Bar("Abigail Evans", true),
+                session09Bar("Abigail Evans", false),
+                session09Bar(null, false),
+            };
+
+            // every button on the bar throughout keeps one place, Send Caravan and War included
+            Dictionary<string, CommandBarLayout.Rect> first = place(frames[0], settings);
+            foreach (List<WorldCommand> commands in frames) {
+                Dictionary<string, CommandBarLayout.Rect> now = place(commands, settings);
+                foreach (KeyValuePair<string, CommandBarLayout.Rect> entry in first) {
+                    Assert.Equal(entry.Value, now[entry.Key]);
+                }
+            }
+
+            // Talk changes pawn in the same slot: the pointer resting there gets no click at once
+            CommandBarLayout.Rect slot = place(frames[2], settings)["Talk to Charlotte Johnson (Stranger)"];
+            Assert.Equal(slot, place(frames[3], settings)["Talk to Abigail Evans (Stranger)"]);
+            ButtonSettle settle = new ButtonSettle();
+            Assert.False(settle.isSettled("Talk to Charlotte Johnson (Stranger)", slot.X, slot.Y, 0.0));
+            settle.endFrame();
+            Assert.True(settle.isSettled("Talk to Charlotte Johnson (Stranger)", slot.X, slot.Y, 5.0));
+            settle.endFrame();
+            Assert.False(settle.isSettled("Talk to Abigail Evans (Stranger)", slot.X, slot.Y, 5.1));
+            settle.endFrame();
+
+            // War armed with no pawn near; a pawn row appears; the second click is still on War and confirms it
+            ConfirmGate gate = new ConfirmGate();
+            Assert.False(gate.press("Declare War on Newham", 10.0));
+            Assert.Equal(first["Declare War on Newham"], place(frames[2], settings)["Declare War on Newham"]);
+            Assert.True(gate.press("Declare War on Newham", 13.0));
+        }
+
+        /** The bar in s09: out in the world near Newham, with pawn, and its Order row, when given. */
+        private static List<WorldCommand> session09Bar(string pawn, bool orders) {
+            List<WorldCommand> commands = new List<WorldCommand> {
+                command("Enter Settlement", CommandGroup.Place),
+                command("Send Caravan", CommandGroup.Trade),
+                command("Offer Peace to Newham", CommandGroup.Trade),
+                command("Leave Nation", CommandGroup.Drastic).requireConfirm(),
+                command("Declare War on Newham", CommandGroup.Drastic).requireConfirm(),
+            };
+            if (pawn != null) {
+                commands.Add(command("Talk to " + pawn + " (Stranger)", CommandGroup.People)
+                    .setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"));
+                if (orders) {
+                    commands.Add(command("Order " + pawn + ": Gather Wood", CommandGroup.People)
+                        .setWidthLabel("Order " + WorldCommandBar.PawnNameSlot + ": Gather Wood"));
+                }
+            }
+            return CommandBarLayout.order(commands);
+        }
     }
 }
