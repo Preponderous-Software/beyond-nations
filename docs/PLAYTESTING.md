@@ -137,7 +137,7 @@ time budget, with something to measure:
 - **Concrete:** "Reach the Village era as fast as you can; record the game
   time of each objective", not "test the eras".
 - **Sized to game time:** a day is 10 minutes of game time, and the Village
-  era cannot come before day 3. Use `--season` or a `--stage-*` switch to get
+  era cannot come before day 2 (7 minutes in). Use `--season` or a `--stage-*` switch to get
   there sooner when the goal is about the later game, and say so in the goal.
 - **One focus:** a crafting goal and a diplomacy goal find different things;
   one goal that asks for both finds neither well.

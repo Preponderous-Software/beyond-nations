@@ -193,6 +193,10 @@ namespace beyondnations.pacing {
                     raidsOnPlayerPerHour = r.raidsOnPlayerPerHour(),
                     raidsOnPlayerSheltered = r.RaidsOnPlayerSheltered,
                     raidsByPlayer = r.RaidsByPlayer,
+                    villageMembersTick = r.VillageMembersTick,
+                    villageMembersSeconds = r.VillageMembersTick < 0 ? -1 : (double) r.VillageMembersTick / r.TicksPerSecond,
+                    membersInvited = r.MembersInvited,
+                    membersJoinedOtherwise = r.MembersJoinedOtherwise,
                     objectives = r.Objectives.ConvertAll(t => new {
                         index = t.Index,
                         id = t.Id,

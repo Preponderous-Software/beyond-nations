@@ -31,7 +31,7 @@ namespace beyondnations {
     * What each era asks and what it gives, in one table so the tracker, the
     * HUD, the objectives and the docs never disagree about a number.
     *
-    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls; day 3
+    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls; day 2
     *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7
     *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 3,000 funds; day 19
     *
@@ -61,13 +61,20 @@ namespace beyondnations {
         public const int KingdomFunds = 3000;
 
         // Each era also waits on the calendar (a day is ten minutes at the
-        // default rates): a nation that settlers flock to is a village in two
-        // minutes on most seeds, so two nights have to pass before it is
-        // one in name, and so on up. These set the floor of the pacing
-        // (Village from about 17 minutes, Town about an hour, Kingdom about
-        // three hours); the other requirements set how long a nation takes
-        // above it.
-        public const int VillageDay = 3;
+        // default rates): a nation that courts every settler is a village in
+        // two minutes on most seeds, so a night has to pass before it is one
+        // in name, and so on up. These set the floor of the pacing (Village
+        // from 7 minutes, Town about an hour, Kingdom about three hours); the
+        // other requirements set how long a nation takes above it.
+        //
+        // The Village waits for day 2, not day 3 (#352): at day 3 a nation
+        // that had everything else by minute 3 idled for 14 minutes with
+        // nothing that could bring the era sooner. Now a nation that grows on
+        // its own (no courting) reaches 10 members between minutes 3 and 13,
+        // so on most seeds the members, which courting and housing speed up,
+        // decide when the era comes, and the calendar only stops the
+        // two-minute village (docs/PACING.md, "The eras").
+        public const int VillageDay = 2;
         public const int TownDay = 7;
         public const int KingdomDay = 19;
 
