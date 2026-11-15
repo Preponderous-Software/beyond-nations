@@ -130,17 +130,21 @@ See the [CI/CD Documentation](./CI-CD.md) for what the pipeline does with them.
 
 ### Refreshing the README's screenshots and GIFs
 
-The README's flyover, seasons, town, nation, members and winter images are a shot list, `tools/capture/media.json`, for [darkroom](https://github.com/Preponderous-Software/darkroom). Each shot runs the real game with the switches above on its own virtual display and turns what it writes into a JPEG, or for the flyover and seasons a GIF (the flyover also an MP4 and a poster still), each fitted under a size budget. Linux only (it needs `Xvfb`, `apt install xvfb`); about five minutes in all, most of it the flyover's 150,000 ticks.
+The README's flyover, seasons, town, nation, members and winter images are a shot list, `tools/capture/media.json`, for [darkroom](https://github.com/Preponderous-Software/darkroom). Each shot runs the real game with the switches above on its own virtual display and turns what it writes into a JPEG, or for the flyover a GIF, an MP4 and a poster still, each fitted under a size budget. The seasons are one run per season (`"each"`), composed into a captioned 2x2 grid. Linux only (it needs `Xvfb`, `apt install xvfb`); about five minutes in all, most of it the flyover's 150,000 ticks.
 
 ```bash
 pip install "darkroom[video] @ git+https://github.com/Preponderous-Software/darkroom"
 dotnet build src/BeyondNations.Desktop -c Release
 darkroom shoot tools/capture/media.json                        # everything that is out of date
 darkroom shoot tools/capture/media.json --only flyover --force # one shot again
-darkroom gallery tools/capture/media.json --relative-to README.md  # markdown for the outputs
+darkroom gallery tools/capture/media.json --insert README.md   # put each image at its marker in the README
 ```
 
-The images land in `.github/media/` under the shot's name, replacing the old ones. darkroom keeps each take's raw frames in `tools/capture/.darkroom/` (ignored by git), so `darkroom shoot tools/capture/media.json --encode --only flyover` re-encodes the last take without running the game again. darkroom starts Xvfb with Mesa's software renderer (`LIBGL_ALWAYS_SOFTWARE=1`, `GALLIUM_DRIVER=llvmpipe`) for both the display and the game, which is what keeps it working on machines whose GPU driver crashes Xvfb, such as NVIDIA under WSL.
+Each shot's `"file"` is the path the README already links (`.github/media/flyover.gif`, `.github/media/seasons.jpg`, ...), so a reshoot replaces the old image in place. In the README every image sits between `<!-- darkroom:shot NAME -->` and `<!-- darkroom:end -->`; `darkroom gallery --insert README.md` rewrites just those blocks (image, alt text and caption, all from the shot list), so to change an image's alt text or caption, edit `media.json` and run it again. For a PR body, which lives outside the repository, add `--base-url https://raw.githubusercontent.com/Preponderous-Software/beyond-nations/<branch>/` so the links resolve anywhere.
+
+The flags every shot shares (`--no-saves`, `--no-usage-reporting`, the window size) are the list var `common`, spliced into the default `argv` as `"@common"`; each shot's `"argv+"` adds its own seed, start screen and stage. The game runs in a scratch directory darkroom makes per run and deletes afterwards (so its `imgui.ini` and logs never land in the repository), with `XDG_DATA_HOME` pointing its data folder into the run's output folder, which is where its screenshots are collected from.
+
+darkroom keeps each take's raw frames in `tools/capture/.darkroom/` (ignored by git), so `darkroom shoot tools/capture/media.json --encode --only flyover` re-encodes the last take without running the game again. darkroom starts Xvfb with Mesa's software renderer (`LIBGL_ALWAYS_SOFTWARE=1`, `GALLIUM_DRIVER=llvmpipe`) for both the display and the game, which is what keeps it working on machines whose GPU driver crashes Xvfb, such as NVIDIA under WSL.
 
 ## Issues
 

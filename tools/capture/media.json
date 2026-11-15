@@ -1,78 +1,85 @@
 {
-  "description": "Beyond Nations' README visuals, shot with darkroom's command backend (https://github.com/Preponderous-Software/darkroom). Build first: dotnet build src/BeyondNations.Desktop -c Release. Then: darkroom shoot tools/capture/media.json. See docs/CONTRIBUTING.md.",
+  "description": "Beyond Nations' README visuals, shot with darkroom's command backend (https://github.com/Preponderous-Software/darkroom). Build first: dotnet build src/BeyondNations.Desktop -c Release. Then: darkroom shoot tools/capture/media.json, and darkroom gallery tools/capture/media.json --insert README.md to put each image at its <!-- darkroom:shot NAME --> marker. See docs/CONTRIBUTING.md.",
   "out": "../../.github/media",
   "vars": {
-    "game": "{manifest_dir}/../../src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll"
+    "game": "{manifest_dir}/../../src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll",
+    "common": ["--no-saves", "--no-usage-reporting", "--width", "{width}", "--height", "{height}"]
   },
   "devices": {
-    "film": { "width": 960, "height": 540 },
-    "phone-portrait": { "width": 412, "height": 915 }
+    "film": { "width": 960, "height": 540 }
   },
   "defaults": {
     "backend": "command",
+    "comment": "Every shot runs the game in darkroom's scratch {work_dir} (its imgui.ini and logs go there and are thrown away). XDG_DATA_HOME points the game's data folder into {out_dir}, so its screenshots (BeyondNations/Screenshots/screenshot_*.png) are the frames; @common splices the shared flags and each shot's argv+ adds its own.",
     "xvfb": true,
     "timeout": 900,
     "retries": 1,
-    "cwd": "{out_dir}",
     "env": { "XDG_DATA_HOME": "{out_dir}/data" },
-    "glob": "screenshot_*.png"
+    "glob": "screenshot_*.png",
+    "argv": ["dotnet", "{game}", "@common"]
   },
   "shots": [
     {
       "name": "flyover", "kind": "clip", "device": "film",
       "comment": "Seed 12 fifty minutes in (150000 ticks), the camera gliding from one nation's town across the border to its neighbour's. About two minutes under llvmpipe.",
-      "argv": ["dotnet", "{game}", "--seed", "12", "--start-screen", "world", "--no-saves", "--no-usage-reporting",
-               "--width", "{width}", "--height", "{height}", "--advance-ticks", "150000",
-               "--flyover-out", "{out_dir}/frames", "--flyover-frames", "90"],
+      "argv+": ["--seed", "12", "--start-screen", "world", "--advance-ticks", "150000",
+                "--flyover-out", "{out_dir}/frames", "--flyover-frames", "90"],
       "glob": "frame-*.png",
       "fps": 12,
       "gif": { "fps": 12, "width": 480, "palette": "adaptive", "budget_mb": 4 },
       "video": ["mp4"], "poster": 0.24,
-      "caption": "Seed 12, fifty minutes in: one nation's town, the border, the next nation's town.",
+      "file": "../../.github/media/flyover.gif",
+      "caption": "Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's town, the border, the next nation's town.",
       "alt": "A flyover of seed 12 fifty minutes in: over one nation's town, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town"
     },
     {
-      "name": "seasons", "kind": "clip", "device": "desktop", "repeat": 4,
-      "comment": "One run per season: {i} = 0..3 picks spring, summer, autumn, winter through the bash wrapper.",
-      "argv": ["bash", "-c", "s=(spring summer autumn winter); exec dotnet \"$0\" \"$@\" --season \"${s[$SEASON_I]}\"",
-               "{game}", "--seed", "12", "--start-screen", "world", "--advance-ticks", "50", "--no-saves", "--no-usage-reporting",
-               "--width", "{width}", "--height", "{height}", "--time-of-day", "0.45",
-               "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
-      "env": { "XDG_DATA_HOME": "{out_dir}/data", "SEASON_I": "{i}" },
-      "fps": 1,
-      "gif": { "fps": 1, "width": 640, "palette": "octree" },
+      "name": "seasons", "kind": "clip", "device": "desktop", "gif": false,
+      "comment": "One run per season, {value} being the season. It makes no GIF of its own: its four frames are the tiles of seasons-grid below.",
+      "each": ["spring", "summer", "autumn", "winter"],
+      "argv+": ["--seed", "12", "--start-screen", "world", "--advance-ticks", "50", "--season", "{value}", "--time-of-day", "0.45",
+                "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "caption": "The same spot on seed 12 in each season.",
+      "alt": "The same spot on seed 12 in one season"
+    },
+    {
+      "name": "seasons-grid", "kind": "grid", "of": "seasons",
+      "captions": ["Spring", "Summer", "Autumn", "Winter"],
+      "file": "../../.github/media/seasons.jpg",
       "caption": "The same spot on seed 12 in spring, summer, autumn and winter.",
-      "alt": "Animation, one frame a second: the same spot on seed 12 in spring, summer, autumn and winter, the ground and leaves changing colour and then snow; the Season box says which season it is"
+      "alt": "Four views of the same spot on seed 12, captioned Spring, Summer, Autumn and Winter: fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; in each the Season box above the player box says which season it is, how long until winter and what the land is good for"
     },
     {
       "name": "settlement-town", "kind": "still", "device": "desktop",
-      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "world", "--stage-settlement", "--no-saves", "--no-usage-reporting",
-               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
-      "caption": "A lived-in town and today's HUD (--stage-settlement).",
-      "alt": "A town: a plaza with a well and banner, market stalls with nation-coloured awnings, houses, farms and trees, residents milling about, and the HUD round the edges"
+      "argv+": ["--seed", "42", "--start-screen", "world", "--stage-settlement",
+                "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+      "file": "../../.github/media/settlement-town.jpg",
+      "caption": "A lived-in town and today's HUD.",
+      "alt": "The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about; round the edges the HUD -- the era bar, the first objective, the chronicle, the first tip, the inventory, the command bar, the Season box and the player box"
     },
     {
       "name": "two-settlements", "kind": "still", "device": "desktop",
-      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "nations", "--stage-outpost", "--no-saves", "--no-usage-reporting",
-               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
-      "caption": "The nation screen of a nation with two settlements (--stage-outpost).",
-      "alt": "The Nations screen listing the player's nation with two settlements, which is home, and what a third would cost"
+      "argv+": ["--seed", "42", "--start-screen", "nations", "--stage-outpost",
+                "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "file": "../../.github/media/two-settlements.jpg",
+      "caption": "The nation screen of a nation with two settlements.",
+      "alt": "The nations screen of Southernland: 9 members and 2 settlements, 2 of the 3 the era allows -- the Town of Southernland, home, and a new Camp of Southernland, each with its residents and where it lies -- and what a third costs"
     },
     {
       "name": "members-tab", "kind": "still", "device": "desktop",
-      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "members", "--stage-diplomacy", "--no-saves", "--no-usage-reporting",
-               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "argv+": ["--seed", "42", "--start-screen", "members", "--stage-diplomacy",
+                "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "file": "../../.github/media/members-tab.jpg",
       "caption": "The Members tab: every member, their loyalty, and the heir.",
-      "alt": "The Members tab of the nations screen: a row per member with their loyalty, the heir marked"
+      "alt": "The Members tab: the people of Blackburg, three members, the heir Ella Wood marked in gold, each member's loyalty and traits, and how the heir is chosen"
     },
     {
       "name": "winter-warning", "kind": "still", "device": "desktop",
       "comment": "Opens on the first day of autumn and runs 22000 ticks (from time 0.3 the next day starts at 21000) to the morning of the last day of autumn, when the warning fires.",
-      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "world", "--stage-settlement", "--season", "autumn", "--advance-ticks", "22000",
-               "--no-saves", "--no-usage-reporting",
-               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+      "argv+": ["--seed", "42", "--start-screen", "world", "--stage-settlement", "--season", "autumn", "--advance-ticks", "22000",
+                "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+      "file": "../../.github/media/winter-warning.jpg",
       "caption": "The day before winter: the banner, the chronicle and the Season box say what the nation carries.",
-      "alt": "The last day of autumn in a town: a banner saying winter comes tomorrow and how many members are short of food, a gold chronicle line, and the Season box's food count"
+      "alt": "The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 15 members are short of the food they want, the player's own hunger banner sits above it, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 42 of 60 for winter"
     }
   ]
 }
