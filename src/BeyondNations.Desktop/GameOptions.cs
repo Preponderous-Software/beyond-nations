@@ -179,6 +179,13 @@ namespace beyondnations.desktop {
         public bool StageTrade = false;
 
         /**
+        * As StageTrade, with the player already standing in the trading
+        * neighbour's market, whose merchant has coins and wood: the market
+        * panel (Trade at Market) is one press away. See TradeShowcase.stageMarket.
+        */
+        public bool StageMarket = false;
+
+        /**
         * Opens a world whose run has just ended -- a Prosperity victory in
         * the Kingdom era, or a collapse -- on the end-of-run screen. See
         * EndingShowcase.
@@ -258,6 +265,7 @@ namespace beyondnations.desktop {
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
                     case "--stage-event":      options.StageEvent = true; break;
                     case "--stage-trade":      options.StageTrade = true; break;
+                    case "--stage-market":     options.StageMarket = true; break;
                     case "--stage-victory":    options.StageVictory = true; break;
                     case "--stage-defeat":     options.StageDefeat = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
@@ -437,6 +445,7 @@ namespace beyondnations.desktop {
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
+                "  --stage-market          as --stage-trade, standing in the trading neighbour's market",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",

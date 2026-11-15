@@ -272,6 +272,8 @@ namespace beyondnations.desktop.ui.screens {
             // (from the top on a touch screen, whose controls step aside while
             // it is open, so its Send and Close stay above the screen's edge)
             CaravanDispatchPanel.draw(width, height, simulation, touch ? layout.Margin : centreBottom + layout.Gap);
+            // likewise the market panel (Trade at Market)
+            MarketTradePanel.draw(width, height, simulation, touch ? layout.Margin : centreBottom + layout.Gap);
 
             return action;
         }

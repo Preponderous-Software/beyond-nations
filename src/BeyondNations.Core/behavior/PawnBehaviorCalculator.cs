@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 
@@ -181,6 +182,10 @@ namespace beyondnations {
             }
             NationRole role = nation.getRole(pawn.getId());
 
+            if (role == NationRole.TRADER) {
+                return computeTraderBehaviorInSettlement(pawn, currentSettlement);
+            }
+
             if (role == NationRole.LEADER) {
                 if (pawn.getInventory().getNumItems(ItemType.COIN) < 100 && currentSettlement.getFunds() > 100) {
                     Log.debug("[PBC] Pawn is low on coins. Withdrawing from settlement.");
@@ -226,6 +231,12 @@ namespace beyondnations {
                     return BehaviorType.PURCHASE_STALL;
                 }
                 else {
+
+                    // with a stake and no stall to buy, a serf at home may take up
+                    // trade (#167), while its nation has fewer traders than settlements
+                    if (isAtHome(pawn) && canTakeUpTrade(pawn, nation, currentSettlement)) {
+                        return BehaviorType.BUY_TRADE_GOODS;
+                    }
 
                     // if pawn has an abundance of resources, sell them
                     if (pawn.getInventory().containsAbundanceOfResources()
@@ -380,10 +391,65 @@ namespace beyondnations {
                 }
             }
 
+            if (role == NationRole.TRADER) {
+                // a load to sell: off to whichever market pays most for it
+                if (Traders.hasGoodsToSell(pawn.getInventory()) && findTraderDestination(pawn) != null) {
+                    return BehaviorType.TRAVEL_TO_MARKET;
+                }
+                // empty-handed with a purse: home, to plan the next run
+                if (!Traders.hasGoodsToSell(pawn.getInventory())
+                        && pawn.getInventory().getNumItems(ItemType.COIN) >= Traders.MIN_PROFIT) {
+                    return BehaviorType.GO_TO_HOME_SETTLEMENT;
+                }
+                // broke: it gathers like anyone, and carries the haul to the best market
+            }
+
             if (hasReasonToGoHome(pawn, role)) {
                 return BehaviorType.GO_TO_HOME_SETTLEMENT;
             }
             return BehaviorType.GATHER_RESOURCES;
+        }
+
+        /**
+        * A trader in a settlement (#167, Traders): with a load, it sells here
+        * if no market in reach pays more, or walks out to the one that does;
+        * empty-handed, it buys a load here when a run from here pays.
+        */
+        private BehaviorType computeTraderBehaviorInSettlement(Pawn pawn, Settlement here) {
+            Inventory carried = pawn.getInventory();
+            List<Settlement> markets = Traders.getMarkets(entityRepository, nationRepository, here, pawn.getNationId());
+            if (Traders.hasGoodsToSell(carried)) {
+                Settlement best = Traders.findBestMarketFor(carried, here, markets);
+                if (best == here && here.getMarket().canSellTo(pawn, PawnTraits.sellPriceBonusPercent(pawn), Stall.TILL_RESERVE)) {
+                    return BehaviorType.SELL_RESOURCES;
+                }
+                if (best != null && best != here) {
+                    return BehaviorType.EXIT_SETTLEMENT;
+                }
+            }
+            else if (Traders.planRun(pawn, here, markets) != null) {
+                return BehaviorType.BUY_TRADE_GOODS;
+            }
+            return rollIdleExit(pawn) ? BehaviorType.EXIT_SETTLEMENT : BehaviorType.NONE;
+        }
+
+        /**
+        * Whether a serf standing in one of its nation's settlements would take
+        * up trade now: it has the stake, its nation has room for another
+        * trader, and a run from this market would pay.
+        */
+        private bool canTakeUpTrade(Pawn pawn, Nation nation, Settlement here) {
+            if (pawn.getInventory().getNumItems(ItemType.COIN) < Traders.TRADER_STAKE) {
+                return false;
+            }
+            if (!nation.getId().Equals(here.getNationId()) || !Traders.hasRoomForTrader(nation)) {
+                return false;
+            }
+            return Traders.planRun(pawn, here, Traders.getMarkets(entityRepository, nationRepository, here, pawn.getNationId())) != null;
+        }
+
+        private Settlement findTraderDestination(Pawn pawn) {
+            return Traders.findDestinationOnTheRoad(entityRepository, nationRepository, pawn);
         }
 
         /**

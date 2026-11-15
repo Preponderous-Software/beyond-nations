@@ -39,6 +39,7 @@ namespace beyondnations.desktop.ui {
         }
 
         public static void open(Simulation simulation) {
+            MarketTradePanel.close();
             isOpenFlag = true;
             destinationIndex = 0;
             load.Clear();

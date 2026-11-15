@@ -336,6 +336,12 @@ namespace beyondnations {
             else if (getCurrentBehaviorType() == BehaviorType.SEEK_SETTLEMENT_SITE) {
                 return "(looking for land to settle)";
             }
+            else if (getCurrentBehaviorType() == BehaviorType.TRAVEL_TO_MARKET) {
+                return "(taking goods to market)";
+            }
+            else if (getCurrentBehaviorType() == BehaviorType.BUY_TRADE_GOODS) {
+                return "(buying goods to trade)";
+            }
             else {
                 return "(?)";
             }

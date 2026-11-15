@@ -152,7 +152,10 @@ namespace beyondnations.web {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
-            if (options.StageTrade) {
+            if (options.StageMarket) {
+                TradeShowcase.stageMarket(simulation);
+            }
+            else if (options.StageTrade) {
                 TradeShowcase.stage(simulation);
             }
             if (options.StageVictory || options.StageDefeat) {
@@ -516,6 +519,8 @@ namespace beyondnations.web {
             json.Append(",\"worldEvent\":").Append(WorldEventSheet.getView(simulation) != null ? "true" : "false");
             // likewise the caravan dispatch panel (Send Caravan), whose buttons run down the screen
             json.Append(",\"caravanPanel\":").Append(CaravanDispatchPanel.isOpen() ? "true" : "false");
+            // and the market panel (Trade at Market, #182)
+            json.Append(",\"marketPanel\":").Append(MarketTradePanel.isOpen() ? "true" : "false");
             if (simulation != null) {
                 Vector3 position = simulation.getPlayer().getPosition();
                 json.Append(",\"playerX\":").Append(position.X.ToString("0.##", CultureInfo.InvariantCulture));

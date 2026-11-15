@@ -98,6 +98,8 @@ namespace beyondnations {
                     return "I'm heading home.";
                 case BehaviorType.PLANT_SAPLING:
                     return "I'm planting a tree for the next generation.";
+                case BehaviorType.TRAVEL_TO_MARKET:
+                    return "I'm taking these goods where they fetch more.";
             }
             if (pawn.getHomeSettlementId() == null) {
                 return "I still need a settlement to call home.";

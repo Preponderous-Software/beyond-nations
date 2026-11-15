@@ -64,6 +64,7 @@ namespace beyondnations.desktop.ui.screens {
             switch (role) {
                 case NationRole.LEADER: return "Leader";
                 case NationRole.MERCHANT: return "Merchant";
+                case NationRole.TRADER: return "Trader";
                 case NationRole.SERF: return "Serf";
                 default: return "Member";
             }
