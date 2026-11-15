@@ -361,6 +361,9 @@ namespace beyondnations.web {
             if (screens.getCurrent() == ScreenType.NATIONS) {
                 beyondnations.desktop.ui.screens.NationScreen.readScrollKeys(inputService);
             }
+            if (screens.getCurrent() == ScreenType.SETTLEMENT) {
+                beyondnations.desktop.ui.screens.SettlementScreen.readKeys(simulation, inputService);
+            }
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
                 screens.craftingPressed();
             }

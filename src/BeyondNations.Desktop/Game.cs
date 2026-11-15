@@ -605,6 +605,10 @@ namespace beyondnations.desktop {
             if (screens.getCurrent() == ScreenType.NATIONS) {
                 beyondnations.desktop.ui.screens.NationScreen.readScrollKeys(inputService);
             }
+            // the build-stall key works on the settlement screen, as the objective's hint says (playtest 0.8.0 s01)
+            if (screens.getCurrent() == ScreenType.SETTLEMENT) {
+                beyondnations.desktop.ui.screens.SettlementScreen.readKeys(simulation, inputService);
+            }
 
             // C opens and closes the crafting screen (#47) the same way.
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
