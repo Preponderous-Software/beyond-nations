@@ -57,15 +57,17 @@ namespace beyondnations {
             int minDistance = gameConfig.getMinDistanceBetweenSettlements();
             string objection = Territory.getFoundingObjection(entityRepository, nationRepository, player.getPosition(), nation.getId());
             if (objection != null) {
+                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
                 player.getStatus().update(objection + " Found your settlement outside its borders. "
-                    + SettlementSites.describeNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
+                    + SettlementSites.describeOpenSite(player.getPosition(), site));
                 return;
             }
 
             // nor within the minimum distance of another settlement: name it, and the way out
             Settlement tooClose = SettlementSites.findTooClose(entityRepository, player.getPosition(), minDistance);
             if (tooClose != null) {
-                player.getStatus().update(SettlementSites.describeTooClose(entityRepository, player.getPosition(), tooClose, minDistance, nation.getId()));
+                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
+                player.getStatus().update(SettlementSites.describeTooClose(player.getPosition(), tooClose, minDistance, site));
                 return;
             }
 
@@ -95,6 +97,17 @@ namespace beyondnations {
                 player.getStatus().update("Settlement founded. " + string.Join(" and ", names) + " resent a new settlement so near their land.");
             }
             eventProducer.produceSettlementFoundedEvent(settlement, nation, player.getId());
+        }
+
+        /**
+        * Tells the player which open ground the refusal names, so the world
+        * holds it for them while they walk there (ReservedGround, #433).
+        */
+        private static Vector3? pointOut(Player player, Vector3? site) {
+            if (site != null) {
+                player.pointOutOpenGround(site.Value);
+            }
+            return site;
         }
     }
 }

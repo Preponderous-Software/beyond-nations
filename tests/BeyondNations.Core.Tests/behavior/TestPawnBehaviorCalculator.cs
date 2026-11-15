@@ -10,6 +10,23 @@ namespace beyondnationstests {
         private readonly RandomSource random = new RandomSource(20260816);
 
 
+        /** A pawn put out of its nation while indoors (Realm.expel, a warned-against claimant) walks out; it used to crash the calculator. */
+        [Fact]
+        public void testComputeBehaviorType_NationlessPawnInsideASettlement_LeavesIt() {
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), null, Rgba.White, "Aland", random);
+            entityRepository.addEntity(settlement);
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(pawn);
+            pawn.setCurrentSettlementId(settlement.getId());
+            pawn.setEnergy(100);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            Assert.Equal(BehaviorType.EXIT_SETTLEMENT, calculator.computeBehaviorType(pawn));
+        }
+
         /**
             * Input: pawn is nationless, no settlements nearby and does not have enough wood to create a settlement
             * Expected output: GATHER_RESOURCES

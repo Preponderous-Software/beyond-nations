@@ -90,7 +90,11 @@ namespace beyondnations {
 
         /** "Open ground lies about 90 paces to the south-west." or, when none is near, "No open ground lies within 1000 paces." */
         public static string describeNearestOpenSite(EntityRepository entityRepository, Vector3 from, int minDistance, NationId founder) {
-            Vector3? site = findNearestOpenSite(entityRepository, from, minDistance, founder);
+            return describeOpenSite(from, findNearestOpenSite(entityRepository, from, minDistance, founder));
+        }
+
+        /** describeNearestOpenSite for a site already found (null for none). */
+        public static string describeOpenSite(Vector3 from, Vector3? site) {
             if (site == null) {
                 return "No open ground lies within " + (int) SEARCH_RADIUS + " paces.";
             }
@@ -103,9 +107,14 @@ namespace beyondnations {
         * 250 paces apart. Open ground lies about 80 paces to the west."
         */
         public static string describeTooClose(EntityRepository entityRepository, Vector3 position, Settlement tooClose, int minDistance, NationId founder) {
+            return describeTooClose(position, tooClose, minDistance, findNearestOpenSite(entityRepository, position, minDistance, founder));
+        }
+
+        /** describeTooClose for an open site already found (null for none). */
+        public static string describeTooClose(Vector3 position, Settlement tooClose, int minDistance, Vector3? site) {
             int distance = (int) Vector3.Distance(position, tooClose.getPosition());
             return "Too close to the " + tooClose.getDisplayName() + ": " + distance + " paces away, and settlements must be " + minDistance + " paces apart. "
-                + describeNearestOpenSite(entityRepository, position, minDistance, founder);
+                + describeOpenSite(position, site);
         }
     }
 

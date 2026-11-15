@@ -52,6 +52,8 @@ namespace beyondnations {
         private WorldEvents worldEvents;
         private TradeCaravans tradeCaravans;
         private EraTracker eraTracker;
+        // the spawn grove, the would-be founder's ground and the pointed-out site, kept for the player in the opening
+        private ReservedGround reservedGround;
 
         private int numPawnDeaths = 0;
         private int numPlayerDeaths = 0;
@@ -130,6 +132,9 @@ namespace beyondnations {
             populationGrowth.setRealm(realm);
             pawnBehaviorExecutor.setRealm(realm);
             pawnBehaviorExecutor.setGameConfig(gameConfig);
+            reservedGround = new ReservedGround(player, tickCounter);
+            pawnBehaviorCalculator.setReservedGround(reservedGround);
+            pawnBehaviorExecutor.setReservedGround(reservedGround);
             // droughts, bandits, claimants (worldevents/), on a stream of their own
             worldEvents = new WorldEvents(random.getSeed(), tickCounter.getTicksPerSecond());
             tradeCaravans = new TradeCaravans(entityRepository, nationRepository, eventProducer, player, timeOfDay, nationResources);
@@ -161,6 +166,8 @@ namespace beyondnations {
         public WorldEvents getWorldEvents() { return worldEvents; }
         public TradeCaravans getTradeCaravans() { return tradeCaravans; }
         public EraTracker getEraTracker() { return eraTracker; }
+        /** The ground kept for the player in the first minutes (#351, #433). */
+        public ReservedGround getReservedGround() { return reservedGround; }
         public int getNumPawnDeaths() { return numPawnDeaths; }
         /** Which region every chunk is; see RegionMap. */
         public RegionMap getRegionMap() { return regionMap; }
@@ -183,6 +190,7 @@ namespace beyondnations {
                     checkIfPlayerIsFallingIntoVoid();
                     Season season = seasonCalendar.getSeason();
                     player.getStatus().clearStatusIfExpired();
+                    reservedGround.update();
 
                     // list of positions to generate chunks at
                     List<Vector3> positionsToGenerateChunksAt = new List<Vector3>();

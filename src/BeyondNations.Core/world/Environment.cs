@@ -101,6 +101,31 @@ namespace beyondnations {
         * the pawn and settlement rules treat them as indoors. What the player
         * can reach is getNearestVisiblePawn.
         */
+        /** The nearest entity of a type that skip does not rule out; getNearestEntityOfType when skip is null. */
+        public Entity getNearestEntityOfType(Vector3 position, EntityType type, System.Func<Entity, bool> skip) {
+            if (skip == null) {
+                return getNearestEntityOfType(position, type);
+            }
+            Entity nearestEntity = null;
+            float nearestDistance = float.MaxValue;
+            int count = entityRepository.getEntityCount();
+            for (int i = 0; i < count; i++) {
+                Entity entity = entityRepository.getEntityAt(i);
+                if (entity.getType() != type || skip(entity)) {
+                    continue;
+                }
+                if (entity.getType() == EntityType.PAWN && ((Pawn) entity).isCurrentlyInSettlement()) {
+                    continue;
+                }
+                float distance = Vector3.DistanceSquared(position, entity.getPosition());
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestEntity = entity;
+                }
+            }
+            return nearestEntity;
+        }
+
         public Entity getNearestEntityOfType(Vector3 position, EntityType type) {
             // walks the repository in place rather than copying out a list per call
             Entity nearestEntity = null;

@@ -133,7 +133,53 @@ namespace beyondnations.pacing {
 
         // --- deciding ---------------------------------------------------------
 
+        /** Ticks the bot reads a world event's sheet before it chooses: one second, as it reads any reply. */
+        private const int EventReadingTicks = TickCounter.DefaultTicksPerSecond;
+
+        /**
+        * Takes a choice on a world event waiting for the player, after a
+        * second of reading it, as a person must: the host pauses the world
+        * while the sheet is up, so nobody plays on past one. The bot keeps
+        * its coins for gifts (chooseWorldEventAnswer). It used to leave the
+        * sheet for its three-minute timeout and its default, which a person
+        * cannot do; once the first event came within a minute and a half of
+        * founding (#370), the default for bandits (bar the gates) robbed the
+        * bot's village every minute for a day and a half and starved its
+        * recruiting of coins. Returns whether it acted.
+        */
+        /**
+        * The choice a player saving coins for gifts takes: the first one it
+        * can take that does not cost coins (the sheets list the most
+        * active answer first: drive the bandits off, dig ditches, welcome
+        * the wanderers), else the first it can take. -1 when none can be.
+        */
+        public static int chooseWorldEventAnswer(List<WorldEventChoice> choices) {
+            int free = choices.FindIndex(c => c.isAvailable() && !c.getLabel().Contains(" coins)"));
+            return free >= 0 ? free : choices.FindIndex(c => c.isAvailable());
+        }
+
+        private bool answerWorldEvent() {
+            WorldEvents events = simulation.getWorldEvents();
+            WorldEventInstance pending = events.getPending();
+            if (pending == null) {
+                return false;
+            }
+            activity = "answering a world event";
+            stop();
+            if (simulation.getTickCounter().getTotalTicks() - pending.getStartTick() < EventReadingTicks) {
+                return true;
+            }
+            int choice = chooseWorldEventAnswer(events.getPendingChoices(simulation));
+            if (choice >= 0) {
+                events.choose(simulation, choice);
+            }
+            return true;
+        }
+
         private void decide() {
+            if (answerWorldEvent()) {
+                return;
+            }
             if (recover()) {
                 return;
             }

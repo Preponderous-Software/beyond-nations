@@ -46,6 +46,19 @@ namespace beyondnations {
             this.realm = realm;
         }
 
+        // ground kept for the player in the opening (territory/ReservedGround); null in most tests
+        private ReservedGround reservedGround;
+
+        /** Keeps pawns off the spawn grove and from founding on ground held for the player (#351, #433). */
+        public void setReservedGround(ReservedGround reservedGround) {
+            this.reservedGround = reservedGround;
+        }
+
+        /** What a pawn may not gather from now (the spawn grove in the opening), or null when it may gather anything. */
+        private System.Func<Entity, bool> guardedResources() {
+            return reservedGround != null && reservedGround.isOpening() ? reservedGround.isGuarded : null;
+        }
+
         public void executeBehavior(Pawn pawn, BehaviorType behaviorType) {
             switch (behaviorType) {
                 case BehaviorType.NONE:
@@ -209,6 +222,7 @@ namespace beyondnations {
          * go for stone (docs/SYSTEMS.md, "Seasons").
          */
         private Entity selectGatherTarget(Pawn pawn) {
+            System.Func<Entity, bool> guarded = guardedResources();
             bool hungry = pawn.needsFood();
             bool wantsStores = seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason());
             if (hungry || wantsStores) {
@@ -216,7 +230,7 @@ namespace beyondnations {
                 if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
                     return nearestChicken;
                 }
-                Entity nearestFruit = environment.getNearestTree(pawn.getPosition());
+                Entity nearestFruit = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.TREE, guarded);
                 if (nearestFruit != null && treesBearFruit() && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
                     return nearestFruit;
                 }
@@ -225,8 +239,9 @@ namespace beyondnations {
                 }
             }
 
-            Entity nearestTree = environment.getNearestTree(pawn.getPosition());
-            Entity nearestRock = environment.getNearestRock(pawn.getPosition());
+            // never the trees and rocks by the player's spawn in the opening (ReservedGround, #351)
+            Entity nearestTree = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.TREE, guarded);
+            Entity nearestRock = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.ROCK, guarded);
 
             // Wood enough for a stall but short of the stone a house takes: go for a rock,
             // rocks are scarce and the nearest-wins rule rarely picks one.
@@ -346,7 +361,9 @@ namespace beyondnations {
                 return;
             }
             // never inside another nation's land, nor past what the era allows (EraRules)
-            if (!nation.canFoundSettlement() || Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null) {
+            // nor on ground held for the player (ReservedGround, #433)
+            if (!nation.canFoundSettlement() || Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null
+                    || (reservedGround != null && gameConfig != null && !reservedGround.allowsPawnFounding(targetPosition, gameConfig.getMinDistanceBetweenSettlements()))) {
                 pawn.setCurrentBehaviorType(BehaviorType.WANDER);
                 return;
             }
@@ -743,7 +760,7 @@ namespace beyondnations {
             List<Entity> settlements = entityRepository.getEntitiesOfType(EntityType.SETTLEMENT);
             Vector3 away = gameConfig == null
                 ? computeAwayFromSettlements(pawn.getPosition(), settlements)
-                : computeTowardSettlementSite(pawn.getPosition(), settlements, gameConfig.getMinDistanceBetweenSettlements());
+                : computeTowardSettlementSite(pawn.getPosition(), settlements, gameConfig.getMinDistanceBetweenSettlements(), reservedGround);
             if (away == Vector3.Zero) {
                 return;
             }
@@ -775,9 +792,9 @@ namespace beyondnations {
         * (#402, found while #395 was diagnosed). A fixed point to walk to
         * gets closer with every step.
         */
-        public static Vector3? findSettlementSite(Vector3 position, List<Entity> settlements, float minDistance) {
+        public static Vector3? findSettlementSite(Vector3 position, List<Entity> settlements, float minDistance, ReservedGround reserved = null) {
             float required = minDistance + SiteMargin;
-            if (clearance(position, settlements) > required) {
+            if (clearance(position, settlements, reserved) > required) {
                 return position;
             }
             for (float radius = SiteSearchStep; radius <= SiteSearchRange; radius += SiteSearchStep) {
@@ -786,7 +803,7 @@ namespace beyondnations {
                 for (int i = 0; i < SiteSearchAngles; i++) {
                     float angle = i * 2f * System.MathF.PI / SiteSearchAngles;
                     Vector3 candidate = new Vector3(position.X + radius * System.MathF.Cos(angle), position.Y, position.Z + radius * System.MathF.Sin(angle));
-                    float room = clearance(candidate, settlements);
+                    float room = clearance(candidate, settlements, reserved);
                     if (room > bestRoom) {
                         bestRoom = room;
                         best = candidate;
@@ -800,8 +817,8 @@ namespace beyondnations {
         }
 
         /** The unit direction to findSettlementSite's point, or away from the settlements when there is none in range; zero once there. */
-        public static Vector3 computeTowardSettlementSite(Vector3 position, List<Entity> settlements, float minDistance) {
-            Vector3? site = findSettlementSite(position, settlements, minDistance);
+        public static Vector3 computeTowardSettlementSite(Vector3 position, List<Entity> settlements, float minDistance, ReservedGround reserved = null) {
+            Vector3? site = findSettlementSite(position, settlements, minDistance, reserved);
             if (site == null) {
                 return computeAwayFromSettlements(position, settlements);
             }
@@ -810,9 +827,13 @@ namespace beyondnations {
             return toward.LengthSquared() < 0.01f ? Vector3.Zero : VectorMath.normalized(toward);
         }
 
-        /** The horizontal distance from the position to the nearest settlement (MaxValue with none). */
-        private static float clearance(Vector3 position, List<Entity> settlements) {
-            float nearest = float.MaxValue;
+        /**
+        * The horizontal distance from the position to the nearest settlement
+        * (MaxValue with none), or to the edge of the ground reserved for the
+        * player when that is nearer (ReservedGround.getRoom).
+        */
+        private static float clearance(Vector3 position, List<Entity> settlements, ReservedGround reserved = null) {
+            float nearest = reserved == null ? float.MaxValue : reserved.getRoom(position);
             foreach (Entity settlement in settlements) {
                 float dx = position.X - settlement.getPosition().X;
                 float dz = position.Z - settlement.getPosition().Z;

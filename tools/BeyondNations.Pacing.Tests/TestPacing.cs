@@ -15,6 +15,21 @@ namespace beyondnations.pacing.tests {
     public class TestPacing {
         private const int Tps = 50;
 
+        [Fact]
+        public void testTheBot_AnswersAWorldEvent_WithoutSpendingCoins_WhenItCan() {
+            List<WorldEventChoice> bandits = new List<WorldEventChoice> {
+                new WorldEventChoice("Raise a militia and drive them off", "worn out"),
+                new WorldEventChoice("Pay them to leave (40 coins)", "gone"),
+                new WorldEventChoice("Bar the gates and wait", "robbed"),
+            };
+            Assert.Equal(0, PacingBot.chooseWorldEventAnswer(bandits));
+            bandits[0] = new WorldEventChoice("Raise a militia and drive them off", "worn out", "Needs 6 members");
+            Assert.Equal(2, PacingBot.chooseWorldEventAnswer(bandits));
+            List<WorldEventChoice> onlyCoins = new List<WorldEventChoice> { new WorldEventChoice("Pay a healer (30 coins)", "cured") };
+            Assert.Equal(0, PacingBot.chooseWorldEventAnswer(onlyCoins));
+            Assert.Equal(-1, PacingBot.chooseWorldEventAnswer(new List<WorldEventChoice> { new WorldEventChoice("A", "a", "never") }));
+        }
+
         private static PacingRunResult runOf(int seed, params ObjectiveTiming[] timings) {
             PacingRunResult run = new PacingRunResult { Seed = seed, TicksPerSecond = Tps, TicksPerDay = 30000 };
             run.Objectives.AddRange(timings);

@@ -121,6 +121,13 @@ before either existed -- rebuilds both exactly. That makes `RegionMap`'s noise
 part of the save contract: changing it would change the regions of every saved
 world. `TestRegionMap` pins seed 42's regions so it cannot change by accident.
 
+**The ground kept for the player in the opening is derived** (`ReservedGround`,
+no format change): the opening is a function of the tick count and the
+player's home settlement and nation, the grove is a fixed distance from the
+spawn and the founder's ground a fixed distance from the player. The one piece of it that is not derived, the open ground a refused
+founding has just named, is held for two minutes and is deliberately not
+saved: a world loaded during those two minutes lets it go.
+
 What is not saved, because it is not world state: the wall-clock measurement
 behind the debug overlay's ticks per second; the recording behind Share >
 Export replay (`RunRecorder`, [SHARING.md](./SHARING.md)), which only reads the
