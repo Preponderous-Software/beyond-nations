@@ -129,14 +129,23 @@ namespace beyondnations {
             bool sheltered = EraRules.isSheltered(era);
             bool forewarned = getSiegeWarningTicksLeft(simulation) > 0;
             EntityRepository entities = simulation.getEntityRepository();
+            // a pawn-led nation's settlements count as towns only from the Town era's day (#373)
+            // (or the player's own era, should a staged world have it there sooner)
+            Era calendar = EraRules.calendarEra(dayOf(simulation));
+            if (era > calendar) {
+                calendar = era;
+            }
+            SettlementTier pawnLedCap = EraRules.pawnLedTierCap(calendar);
             foreach (Nation nation in simulation.getNationRepository().getNations()) {
                 bool limited = nation == led;
+                bool pawnLed = !player.getId().Equals(nation.getLeaderId());
                 nation.setSettlementLimit(limited ? EraRules.settlementLimit(era) : 0);
                 nation.setSheltered(nation == home && sheltered);
                 nation.setForewarned(nation == home && forewarned);
                 foreach (EntityId settlementId in nation.getSettlements()) {
                     if (entities.getEntity(settlementId) is Settlement settlement) {
                         settlement.setBuildingEra(limited ? era : (Era?) null);
+                        settlement.setTierCap(pawnLed ? pawnLedCap : SettlementTier.TOWN);
                     }
                 }
             }

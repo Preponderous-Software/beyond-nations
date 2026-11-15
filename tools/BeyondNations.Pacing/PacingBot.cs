@@ -546,7 +546,101 @@ namespace beyondnations.pacing {
                 buildStall();
                 return;
             }
+            if (tradeByCaravan()) {
+                return;
+            }
             sellResources();
+        }
+
+        /**
+        * The Funds hint's other road: "send a caravan from a Storehouse"
+        * (EraRules.hintFor). Once the era unlocks the storehouse, a leader
+        * with none puts one up in the home settlement, and a leader with one
+        * loads what it carries on a caravan to the first market the dispatch
+        * panel offers, with a caravan free. False when there is nothing of
+        * this to do, and the bot sells at market instead.
+        */
+        private bool tradeByCaravan() {
+            if (!WorldView.isLeader(simulation)) {
+                return false;
+            }
+            Settlement depot = settlementWithStorehouse();
+            if (depot == null) {
+                Settlement home = homeSettlement();
+                if (home == null || !home.canAddBuilding(BuildingType.STOREHOUSE)) {
+                    return false;
+                }
+                Inventory stockpile = home.getInventory();
+                if (WorldView.wood(simulation) + stockpile.getNumItems(ItemType.WOOD) < BuildingCatalog.getWoodCost(BuildingType.STOREHOUSE)) {
+                    gather(EntityType.TREE);
+                    return true;
+                }
+                if (WorldView.stone(simulation) + stockpile.getNumItems(ItemType.STONE) < BuildingCatalog.getStoneCost(BuildingType.STOREHOUSE)) {
+                    gather(EntityType.ROCK);
+                    return true;
+                }
+                activity = "building a storehouse";
+                if (player.getCurrentSettlementId() == home.getId()) {
+                    new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, BuildingType.STOREHOUSE);
+                    return true;
+                }
+                leaveSettlementIfInside();
+                if (approach(home.getPosition())) {
+                    interact();
+                }
+                return true;
+            }
+            return sendCaravan(depot);
+        }
+
+        /**
+        * Loads what the bot carries on a caravan from depot, walking there
+        * first. False when no caravan is free or it carries too little.
+        */
+        private bool sendCaravan(Settlement depot) {
+            TradeCaravans trade = simulation.getTradeCaravans();
+            int carried = WorldView.wood(simulation) + WorldView.stone(simulation);
+            if (trade.getNumPlayerCaravans() >= TradeCaravans.MAX_PLAYER_CARAVANS || carried < SellBatch) {
+                return false;
+            }
+            activity = "sending a caravan";
+            if (player.getCurrentSettlementId() != depot.getId()) {
+                leaveSettlementIfInside();
+                if (approach(depot.getPosition())) {
+                    interact();
+                }
+                return true;
+            }
+            List<Settlement> destinations = trade.getDestinations(depot, player.getNationId());
+            if (destinations.Count == 0) {
+                return false;
+            }
+            Dictionary<ItemType, int> load = new Dictionary<ItemType, int>();
+            int room = TradeCaravans.MAX_PLAYER_CARGO;
+            foreach (ItemType itemType in new[] { ItemType.WOOD, ItemType.STONE }) {
+                int quantity = Math.Min(room, player.getInventory().getNumItems(itemType));
+                if (quantity > 0) {
+                    load[itemType] = quantity;
+                    room -= quantity;
+                }
+            }
+            trade.dispatchPlayerCaravan(destinations[0], load, simulation.getTickCounter().getTotalTicks());
+            return true;
+        }
+
+        /** One of the nation's settlements with a storehouse, or null. */
+        private Settlement settlementWithStorehouse() {
+            Nation nation = WorldView.playerNation(simulation);
+            if (nation == null) {
+                return null;
+            }
+            foreach (EntityId settlementId in nation.getSettlements()) {
+                if (simulation.getEntityRepository().getEntity(settlementId) is Settlement settlement
+                        && settlement.getNumBuildings(BuildingType.STOREHOUSE) > 0) {
+                    return settlement;
+                }
+            }
+            return null;
         }
 
         private void growNation() {
@@ -558,6 +652,12 @@ namespace beyondnations.pacing {
                 // build up and let the world bring the members
                 activity = "growing without courting";
                 earnFunds();
+                return;
+            }
+            // recruiting needs no wood or stone: once the era message announces the
+            // storehouse ("Unlocked: Storehouse (more market stalls, and caravans)"), a
+            // leader puts one up, then sends what it carries on a free caravan on the way
+            if (tradeByCaravan()) {
                 return;
             }
             activity = "recruiting settlers";

@@ -8,7 +8,8 @@ How long each objective takes is measured, not guessed. `tools/BeyondNations.Pac
 
 - It works on the current objective and nothing else, pressing one key at a time and at most five a second.
 - It walks to things (sprinting, turning to face them) and never teleports. Gifts, conversations and market sales are at most one a second, the speed at which someone can read the reply.
-- It only runs the Core commands that the keys and HUD buttons run (`InteractCommand`, `NationCreateCommand`, `FoundSettlementCommand`, `BuildStallCommand`, `SellResourcesAtMarketCommand`, `GiftPawnCommand`, `InvitePawnToNationCommand`, `GiftNationCommand`, and `WorldEvents.choose` for a world event's sheet). It never uses a debug command.
+- It only runs the Core commands that the keys and HUD buttons run (`InteractCommand`, `NationCreateCommand`, `FoundSettlementCommand`, `BuildStallCommand`, `BuildBuildingCommand`, `SellResourcesAtMarketCommand`, `GiftPawnCommand`, `InvitePawnToNationCommand`, `GiftNationCommand`, the caravan panel's `TradeCaravans.dispatchPlayerCaravan`, and `WorldEvents.choose` for a world event's sheet). It never uses a debug command.
+- When it works on funds it follows the hint's other road too ("send a caravan from a Storehouse"): once the era unlocks the storehouse, it builds one at home, and with one built it loads what it carries on a caravan to the first market the panel offers whenever one of its two caravans is free. It does both between recruits too, since recruiting needs no wood or stone.
 - It recruits nationless settlers first. They join at Acquaintance, as the hint says. Only when there are none left anywhere does it court another nation's members who neither lead it nor are Loyal by nature. Those need Loyal standing, and poaching them sours relations. It sticks with one settler for up to two minutes while that settler is out of doors.
 - It answers a world event's choice sheet a second after it comes up, with the first choice it can take that costs no coins, since it keeps its coins for gifts (drive the bandits off, dig ditches, welcome the wanderers; `PacingBot.chooseWorldEventAnswer`), through `WorldEvents.choose`, the sheet's buttons. A person cannot play on past the sheet (the host pauses the world), so the bot does not either; it used to leave every sheet to its three-minute timeout and default.
 - When a siege warning tells it to "Gift, ally or grow it", it sends the besieger a gift if it can afford one. If it loses its nation anyway, it founds a new one and starts again.
@@ -16,6 +17,38 @@ How long each objective takes is measured, not guessed. `tools/BeyondNations.Pac
 The bot reads the objective list generically. Ids it knows get a specific plan. Any other objective is planned from the label on its progress counter (`Wood`, `Stone`, `Members`, `Settlements`, `Funds`, `Day`), and anything else gets general play. The harness takes the objectives from `ObjectiveTracker.getObjectives()` and `getCompletedCount()`, so a reworked objective list is still measured, and it reports objectives it has no budget for instead of crashing.
 
 A run is deterministic: the same seed gives the same times on every run and every machine, and the seeds run in parallel without changing a result.
+
+## Milestones
+
+Some late content is not an objective but should come up in a normal session of 45 to 60 minutes. The budget's `milestones` list names each with the latest time it may first be reached on every seed, counted from the start of the world; a run goes on past its objective limit (up to `maxTicks`) until each has been reached. A milestone reached late or never **fails** the check, unless it is `advisory`. They are the report's **Milestones** table and `milestones` in each run of the JSON.
+
+| Milestone | Reached when | By |
+|---|---|---|
+| `storehouse` | a settlement of the player's nation has a Storehouse | 30 min |
+| `caravan` | the player has a caravan of their own on the road | 30 min |
+| `succession` | the rule has passed to an heir (old age, hunger or abdication) | 60 min |
+
+Measured on seeds 1 to 5 (one hour each), with the Village era at day 2 (#455) and the bot answering world-event sheets (#460): the Storehouse at 7m 08s to 7m 59s (as the Village era comes), the first caravan at 7m 18s to 18m 56s, and a succession on every seed: of old age at 40m 00s on seeds 1, 2, 3 and 5, and of hunger at 36m 34s on seed 4, six minutes after the founder was told they were growing old. Before the bot answered world events it starved on three seeds at 32 to 39 minutes. The binding objectives are unchanged to within a few seconds, and the objective budget is unchanged.
+
+![When the Storehouse, the first caravan and the first succession were reached on seeds 1 to 5](./screenshots/reachable-late-game/pacing-milestones.png)
+
+The chart is drawn from `pacing-report.json` by `python3 tools/pacing-milestones-chart.py pacing-out/pacing-report.json OUT.png src/BeyondNations.Desktop/assets/fonts/DejaVuSans.ttf` (ImageMagick). The screenshots below are the bot's own run on seed 3, saved with `--save-at` and loaded in the game with `--continue` (and `--start-screen laws`). They show:
+
+- the bot on day 2 of the Village era, just after it sent a caravan of 6 wood and 5 stone;
+- day 4, when the chronicle says the founder is growing old;
+- the Laws tab naming the heir, with when old age comes and *Abdicate*, on desktop and phone;
+- the succession screen when the founder dies of old age, 40 minutes in.
+
+A run consumes the succession notice five seconds after it appears, as a player pressing *Continue* would, so a world saved later does not open on an old succession.
+
+| | |
+|---|---|
+| ![Day 2, Village era: the chronicle line for the caravan the bot just sent](./screenshots/reachable-late-game/caravan-sent.png) | ![Day 4: the chronicle says the founder is growing old](./screenshots/reachable-late-game/growing-old.png) |
+| ![The Laws tab names the heir, says when old age comes, and offers Abdicate](./screenshots/reachable-late-game/laws-heir-abdicate.png) | ![The succession screen at 40 minutes: the founder died of old age after a reign of 4 days](./screenshots/reachable-late-game/succession-old-age.png) |
+
+<img src="./screenshots/reachable-late-game/laws-heir-abdicate-phone.png" alt="The Laws tab at phone size" width="270">
+
+They were added for #372 and #373: in the 0.6.0 playtest neither a caravan (the storehouse waited for the Town era, day 7) nor a succession (rulers died only of hunger) could be met in a session. The storehouse now comes with the Village era and rulers grow old after forty minutes (SYSTEMS.md), and these keep them in reach.
 
 ## What is measured
 
@@ -49,6 +82,7 @@ That runs the seeds, objective limit and tick cap in the budget file, writes the
 | `--check` | exit 1 on a failure |
 | `--write-budget` | rewrite the budget file from these runs |
 | `--trace` | print every status line the bot's player sees, with its time, one seed at a time |
+| `--save-at T1,T2` | save each seed's world at these ticks into `DIR/saves` as ordinary save files, to load in the game (copy one into the saves directory and start with `--continue`); the screenshots below were taken that way |
 
 `--trace` is the way to find out why an objective is slow: it shows what the bot was doing and what the game told it.
 
@@ -91,15 +125,15 @@ Seconds of game time per objective, at 50 ticks a second and 30 000 ticks (10 mi
 | Enter your settlement | 1 | 1 | 1 | 1 | 1 | 0 – 60 |
 | Build a market stall | 7 | 14 | 6 | 6 | 5 | 0 – 120 |
 | Reach the Village era | 404 | 393 | 403 | 406 | 407 | 300 – 1800 |
-| Sell resources at market | 1 | 12 | 1 | 2 | 11 | 0 – 180 |
-| Found a second settlement | 11 | 18 | 20 | 1 | 23 | 0 – 120 |
-| Grow your nation to 16 (ambition) | 199 | 120 | 203 | 1 | 125 | 5 – 2400, advisory |
-| Amass 1000 coins (ambition) | 238 | 186 | 177 | 33 | 181 | 30 – 3900, advisory |
-| Hold 3 settlements (ambition) | 13 | 25 | 24 | 12 | 23 | 0 – 300, advisory |
-| Reach the Town era (ambition) | 2538 | 2639 | 2575 | 2951 | 2637 | 0 – 5400, advisory |
+| Sell resources at market | 11 | 11 | 6 | 5 | 4 | 0 – 180 |
+| Found a second settlement | 16 | 1 | 1 | 13 | 28 | 0 – 120 |
+| Grow your nation to 16 (ambition) | 363 | 109 | 1 | 170 | 659 | 5 – 2400, advisory |
+| Amass 1000 coins (ambition) | 80 | 89 | 62 | 81 | 85 | 30 – 3900, advisory |
+| Hold 3 settlements (ambition) | 25 | 1 | 38 | 1 | 23 | 0 – 300, advisory |
+| Reach the Town era (ambition) | 2505 | 2789 | 2892 | 2730 | 2201 | 0 – 5400, advisory |
 | Grow your nation to 25 (ambition) | 1 | 1 | 1 | 1 | 1 | 300 – 3600, advisory |
 
-Measured with eras (Camp to Kingdom, see SYSTEMS.md) and the hungry start (the player begins at 85 energy), on develop with seasons, regions, rulers, world events, trade and spoiling apples, for one hour of game time a seed (`maxTicks` 180 000, 14 objectives). Spoiling apples (SYSTEMS.md, "Seasons") left every binding objective inside its budget and the budget unchanged; the arc to the Village era is unchanged to the second. Among the advisory ambitions, seed 3 now amasses its 1000 coins and goes on to the Town era (it stalled on the coins before), seed 1 now grows to 25, and the Town era takes longer on seed 1 (36 minutes after the previous step, against 24). The arc up to the Village era takes 17 to 20 minutes of game time on seeds 1 to 15. Starving pawns foraging rather than walking home to a market that cannot feed them (SYSTEMS.md, "Seasons") left the binding objectives and the arc to the Village era unchanged; it moved the advisory ambitions a little (seed 3 grows to 16 four minutes later and amasses its coins later, the Town era comes earlier on seeds 3 and 5), and the budget is unchanged. The table was last regenerated on develop with pawn energy capped at a full bar (#340) and Interact acting on what the player faces (below, "Known issues"); the budget is unchanged. It was regenerated again with the Village era at day 2 instead of day 3 (#352, below in "The eras") and the player's nation growing past a full world (#371, below in "Recruiting"): the Village era now comes at 7m 00s on all five seeds (17m 00s before), so the steps after it come ten minutes sooner and the members ambitions, no longer met while the bot waited for day 3, take two to three minutes. The Town era still comes at 57m 00s, its day. Every binding objective is inside its budget and the budget's numbers are unchanged; only the Village era's note was rewritten. "Grow your nation to 25" is met within a second on every seed (advisory, too fast): with #371 the courting bot's nation is well past 25 members by the time that ambition comes up.
+Measured with eras (Camp to Kingdom, see SYSTEMS.md) and the hungry start (the player begins at 85 energy), on develop with seasons, regions, rulers, world events, trade and spoiling apples, for one hour of game time a seed (`maxTicks` 180 000, 14 objectives). Spoiling apples (SYSTEMS.md, "Seasons") left every binding objective inside its budget and the budget unchanged; the arc to the Village era is unchanged to the second. Among the advisory ambitions, seed 3 now amasses its 1000 coins and goes on to the Town era (it stalled on the coins before), seed 1 now grows to 25, and the Town era takes longer on seed 1 (36 minutes after the previous step, against 24). The arc up to the Village era takes 17 to 20 minutes of game time on seeds 1 to 15. Starving pawns foraging rather than walking home to a market that cannot feed them (SYSTEMS.md, "Seasons") left the binding objectives and the arc to the Village era unchanged; it moved the advisory ambitions a little (seed 3 grows to 16 four minutes later and amasses its coins later, the Town era comes earlier on seeds 3 and 5), and the budget is unchanged. The table was last regenerated on develop with pawn energy capped at a full bar (#340) and Interact acting on what the player faces (below, "Known issues"); the budget is unchanged. It was regenerated again with the Village era at day 2 instead of day 3 (#352, below in "The eras") and the player's nation growing past a full world (#371, below in "Recruiting"): the Village era now comes at 7m 00s on all five seeds (17m 00s before), so the steps after it come ten minutes sooner and the members ambitions, no longer met while the bot waited for day 3, take two to three minutes. The Town era still comes at 57m 00s, its day. Every binding objective is inside its budget and the budget's numbers are unchanged; only the Village era's note was rewritten. "Grow your nation to 25" is met within a second on every seed (advisory, too fast): with #371 the courting bot's nation is well past 25 members by the time that ambition comes up. It was regenerated once more, from a fresh run, with the Storehouse in the Village era, the bot building one and sending caravans between other work, pawn-led settlements held to village tier before day 7 and rulers growing old (#372, #373; "Milestones", above), on develop with settlement holders (#459) and the bot answering world-event sheets (#460). Every binding objective is inside its budget and the budget is unchanged.
 
 ### The opening (#351, #370, #433)
 

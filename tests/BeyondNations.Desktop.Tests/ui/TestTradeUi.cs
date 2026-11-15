@@ -142,10 +142,10 @@ namespace beyondnationstests.desktop.ui {
             new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
 
             // playtest 0.4.1 s05: the button and its refusal were both hidden
-            Assert.Contains("Send Caravan (Town era)", labels(simulation));
-            find(simulation, "Send Caravan (Town era)").execute();
+            Assert.Contains("Send Caravan (Village era)", labels(simulation));
+            find(simulation, "Send Caravan (Village era)").execute();
             Assert.False(CaravanDispatchPanel.isOpen());
-            Assert.Equal("This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.",
+            Assert.Equal("This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Village era.",
                 player.getStatus().getStatus());
 
             // in the Town era, the Storehouse is what is missing

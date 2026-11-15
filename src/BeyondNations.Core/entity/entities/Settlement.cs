@@ -23,6 +23,8 @@ namespace beyondnations {
         // is kept for the nametag
         private EntityId ownerId = null;
         private string ownerName = null;
+        // set every tick by EraTracker.applyRules; not saved
+        private SettlementTier tierCap = SettlementTier.TOWN;
 
         public static readonly int WOOD_COST_TO_BUILD = 50;
 
@@ -213,6 +215,19 @@ namespace beyondnations {
         }
 
         /**
+        * The highest tier this settlement may count as just now: a village,
+        * however many buildings it has, while a pawn-led nation waits on the
+        * calendar for its towns (EraRules.pawnLedTierCap).
+        */
+        public SettlementTier getTierCap() {
+            return tierCap;
+        }
+
+        public void setTierCap(SettlementTier cap) {
+            tierCap = cap;
+        }
+
+        /**
         * Puts a building up in the next free slot and applies what it does. The
         * caller has already taken the materials. Returns false, changing
         * nothing, when there is no room for it.
@@ -231,7 +246,8 @@ namespace beyondnations {
         }
 
         public SettlementTier getTier() {
-            return SettlementTiers.fromBuildingCount(buildings.Count);
+            SettlementTier tier = SettlementTiers.fromBuildingCount(buildings.Count);
+            return tier > tierCap ? tierCap : tier;
         }
 
         /**

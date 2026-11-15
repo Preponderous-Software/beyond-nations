@@ -35,7 +35,8 @@ namespace beyondnationstests {
             List<KeyValuePair<string, bool>> lines = EraBox.detailLines(simulation);
             Assert.Equal("To reach the Village era:", lines[0].Key);
             Assert.Contains(lines, line => line.Key == "[ ] Members 0/" + EraRules.VillageMembers);
-            Assert.Contains(lines, line => line.Key.StartsWith("Unlocks: Workshop"));
+            // the storehouse, and with it caravans, come with the Village (#373)
+            Assert.Contains(lines, line => line.Key.StartsWith("Unlocks: Storehouse (more market stalls, and caravans), Workshop"));
             // victories are not shown until they are within reach
             Assert.DoesNotContain(lines, line => line.Key == "Victories:");
         }

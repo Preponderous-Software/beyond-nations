@@ -3,7 +3,8 @@ using System.Collections.Generic;
 namespace beyondnations.desktop.ui.screens {
 
     /**
-    * Shown when the player dies as a member of a nation (realm/Succession).
+    * Shown when the rule passes on: the player dies as a member of a nation,
+    * of hunger or old age, or abdicates (realm/Succession).
     *
     * With an heir it is a short pause in the story: who died, who takes
     * their place and why, and the line of rulers so far, with Continue to
@@ -44,7 +45,10 @@ namespace beyondnations.desktop.ui.screens {
             if (notice == null) {
                 return lines;
             }
-            lines.Add(notice.getPreviousName() + " died of hunger after a reign of " + describeReign(simulation, notice.getReignTicks()) + ".");
+            IReadOnlyList<Reign> ended = realm.getLineage();
+            string cause = ended.Count > 0 ? ended[ended.Count - 1].getCause() : Realm.CAUSE_HUNGER;
+            string how = cause == Realm.CAUSE_ABDICATION ? " gave up the rule" : " died of " + cause;
+            lines.Add(notice.getPreviousName() + how + " after a reign of " + describeReign(simulation, notice.getReignTicks()) + ".");
             lines.Add("You go on as " + notice.getHeirName() + ", " + notice.getReason() + ".");
             lines.Add("The nation of " + notice.getNationName() + ", its settlements and its friends and enemies are yours still.");
             IReadOnlyList<Reign> lineage = realm.getLineage();

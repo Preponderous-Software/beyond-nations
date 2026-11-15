@@ -110,6 +110,42 @@ namespace beyondnations.pacing.tests {
         }
 
         [Fact]
+        public void testMilestones_FailWhenLateOrNeverReached_PerSeed() {
+            PacingBudget budget = new PacingBudget();
+            budget.Milestones.Add(new MilestoneBudget { Id = "caravan", Title = "Send a caravan", MaxSeconds = 600 });
+            budget.Milestones.Add(new MilestoneBudget { Id = "succession", Title = "Succession", MaxSeconds = 600, Advisory = true });
+            PacingRunResult early = runOf(1);
+            early.TicksRun = 1000 * Tps;
+            early.Milestones["caravan"] = 300 * Tps;
+            PacingRunResult late = runOf(2);
+            late.TicksRun = 1000 * Tps;
+            late.Milestones["caravan"] = 700 * Tps;
+            PacingRunResult never = runOf(3);
+            never.TicksRun = 1000 * Tps;
+
+            List<PacingFinding> findings = PacingCheck.check(new List<PacingRunResult> { early, late, never }, budget);
+            List<PacingFinding> caravan = findings.FindAll(f => f.Id == PacingCheck.MilestoneFindingPrefix + "caravan");
+            Assert.Equal(new[] { PacingVerdict.Ok, PacingVerdict.TooSlow, PacingVerdict.Never }, caravan.ConvertAll(f => f.Verdict));
+            Assert.Equal(new[] { 2, 3 }, findings.FindAll(f => f.isFailure()).ConvertAll(f => f.Seed));
+            // an advisory milestone never reached only warns
+            Assert.Contains(findings, f => f.Id == PacingCheck.MilestoneFindingPrefix + "succession" && f.Verdict == PacingVerdict.Never && !f.isFailure());
+        }
+
+        [Fact]
+        public void testSuggest_KeepsTheMilestones() {
+            PacingBudget previous = budgetOf(entry("a", 3, 999));
+            previous.Milestones.Add(new MilestoneBudget { Id = "caravan", Title = "Send a caravan", MaxSeconds = 600 });
+            PacingBudget suggested = PacingBudget.suggest(new List<PacingRunResult> { runOf(1, done("a", 20)) }, previous);
+            Assert.Equal(600, Assert.Single(suggested.Milestones).MaxSeconds);
+        }
+
+        [Fact]
+        public void testCheckedInBudget_WatchesKnownMilestones() {
+            PacingBudget budget = PacingBudget.load(Path.Combine(repoRoot(), "docs", "pacing-budget.json"));
+            Assert.Equal(new List<string>(PacingMilestones.All), budget.milestoneIds());
+        }
+
+        [Fact]
         public void testSuggest_KeepsAStricterHandSetMinimumOnlyIfLower() {
             List<PacingRunResult> runs = new List<PacingRunResult> { runOf(1, done("a", 20)), runOf(2, done("a", 40)) };
             PacingBudget suggested = PacingBudget.suggest(runs, budgetOf(entry("a", 3, 999)));

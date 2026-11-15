@@ -99,6 +99,28 @@ namespace beyondnations.pacing {
                 md.Append("\n");
             }
 
+            if (budget != null && budget.Milestones.Count > 0) {
+                md.Append("\n## Milestones\n\nWhen late content was first reached, from the start of the world (docs/PACING.md, \"Milestones\").\n\n| Milestone | ");
+                foreach (int seed in seeds) {
+                    md.Append("seed ").Append(seed).Append(" | ");
+                }
+                md.Append("by |\n|---|");
+                foreach (int seed in seeds) {
+                    md.Append("---|");
+                }
+                md.Append("---|\n");
+                foreach (MilestoneBudget milestone in budget.Milestones) {
+                    md.Append("| ").Append(milestone.Title).Append(" `").Append(milestone.Id).Append("` | ");
+                    foreach (PacingRunResult run in runs) {
+                        int reachedAt;
+                        md.Append(run.Milestones.TryGetValue(milestone.Id, out reachedAt)
+                            ? clock((double) reachedAt / tps) + " (day " + ((double) reachedAt / ticksPerDay + 1).ToString("0.0", CultureInfo.InvariantCulture) + ")"
+                            : "never").Append(" | ");
+                    }
+                    md.Append(clock(milestone.MaxSeconds)).Append(milestone.Advisory ? " (advisory)" : "").Append(" |\n");
+                }
+            }
+
             List<PacingFinding> problems = findings == null ? new List<PacingFinding>() : findings.FindAll(f => f.Verdict != PacingVerdict.Ok);
             md.Append("\n## Findings\n\n");
             if (problems.Count == 0) {
@@ -197,6 +219,7 @@ namespace beyondnations.pacing {
                     villageMembersSeconds = r.VillageMembersTick < 0 ? -1 : (double) r.VillageMembersTick / r.TicksPerSecond,
                     membersInvited = r.MembersInvited,
                     membersJoinedOtherwise = r.MembersJoinedOtherwise,
+                    milestones = r.Milestones,
                     objectives = r.Objectives.ConvertAll(t => new {
                         index = t.Index,
                         id = t.Id,

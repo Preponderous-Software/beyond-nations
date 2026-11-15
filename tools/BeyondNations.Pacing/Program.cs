@@ -16,7 +16,8 @@ namespace beyondnations.pacing {
     public static class Program {
         private const string Usage =
             "usage: BeyondNations.Pacing [--budget FILE] [--seeds 1,2,3] [--objectives N] [--max-ticks N]\n"
-            + "                            [--out DIR] [--check] [--write-budget] [--trace] [--no-courting]\n"
+            + "                            [--out DIR] [--check] [--write-budget] [--trace] [--no-courting]"
+            + " [--save-at T1,T2]\n"
             + "  --budget FILE    budget to read (default docs/pacing-budget.json)\n"
             + "  --seeds LIST     seeds to run (default: the budget's)\n"
             + "  --objectives N   stop each run after N objectives (default: the budget's)\n"
@@ -25,7 +26,8 @@ namespace beyondnations.pacing {
             + "  --check          exit 1 if any objective is too fast, too slow or never completes\n"
             + "  --write-budget   rewrite the budget file from these runs (review the diff!)\n"
             + "  --trace          print every status line the bot's player sees, with its time\n"
-            + "  --no-courting    the bot never talks to, gifts or invites a pawn (measures recruiting; not for --check)";
+            + "  --no-courting    the bot never talks to, gifts or invites a pawn (measures recruiting; not for --check)\n"
+            + "  --save-at LIST   save each seed's world at these ticks into DIR/saves, to load with the game's --continue";
 
         public static int Main(string[] args) {
             string budgetPath = Path.Combine("docs", "pacing-budget.json");
@@ -37,6 +39,7 @@ namespace beyondnations.pacing {
             bool writeBudget = false;
             bool trace = false;
             bool noCourting = false;
+            List<int> saveAt = new List<int>();
             try {
                 for (int i = 0; i < args.Length; i++) {
                     switch (args[i]) {
@@ -49,6 +52,7 @@ namespace beyondnations.pacing {
                         case "--write-budget": writeBudget = true; break;
                         case "--trace": trace = true; break;
                         case "--no-courting": noCourting = true; break;
+                        case "--save-at": saveAt = parseSeeds(next(args, ref i)); break;
                         case "-h":
                         case "--help":
                             Console.WriteLine(Usage);
@@ -86,7 +90,8 @@ namespace beyondnations.pacing {
             Parallel.For(0, seeds.Count, parallel, i => {
                 results[i] = PacingRun.run(new PacingRunOptions {
                     Seed = seeds[i], ObjectiveLimit = objectiveLimit, MaxTicks = maxTicks,
-                    Trace = trace ? Console.Out : null, NoCourting = noCourting,
+                    Trace = trace ? Console.Out : null, NoCourting = noCourting, Milestones = settings.milestoneIds(),
+                    SaveAtTicks = saveAt, SaveDirectory = Path.Combine(outDir, "saves"),
                 });
             });
             List<PacingRunResult> runs = new List<PacingRunResult>(results);

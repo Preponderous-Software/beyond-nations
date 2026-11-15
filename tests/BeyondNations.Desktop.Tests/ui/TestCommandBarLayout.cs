@@ -521,7 +521,7 @@ namespace beyondnationstests.desktop.ui {
                 command("Sell Resources", CommandGroup.Place),
                 command("Build House", CommandGroup.Build).requireConfirm(),
                 command("Build Farm", CommandGroup.Build).requireConfirm(),
-                command("Send Caravan (Town era)", CommandGroup.Trade),
+                command("Send Caravan (Village era)", CommandGroup.Trade),
                 command("Craft Axe", CommandGroup.Craft),
                 command(talk, CommandGroup.People).setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"),
                 command("Gift " + pawnName, CommandGroup.People).setWidthLabel("Gift " + WorldCommandBar.PawnNameSlot),
