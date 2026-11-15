@@ -109,10 +109,10 @@ game lays its screens out for a finger (`TouchLayout` in
 - The HUD leaves the controls' band clear: the command bar and the boxes stop
   above it, the inventory box is left out (Bag opens the full list), and on a
   phone held upright the status line and chronicle go under the objective
-  tracker rather than over it. Upright, a tip card goes under the Season box
-  when it fits above the command bar, and otherwise just under the status
-  line, over the chronicle strip, so it never covers the Season box or a
-  button; a town's floating name, which has no clear place under that
+  tracker rather than over it. Upright, while a tip card shows the Season box
+  drops its region lines, and the card goes under the Season box when it fits
+  above the command bar, otherwise just under the status line, over the
+  chronicle strip, so it covers neither the Season box nor a button; a town's floating name, which has no clear place under that
   stacked HUD, is left out while it would sit under it.
 - A line too wide for the screen (a panel footer on a phone held upright) is
   drawn smaller rather than cut off at both edges.

@@ -395,20 +395,27 @@ namespace beyondnations.desktop.ui.feel {
 
         /**
         * The card's top on a phone held upright, where the HUD stacks the
-        * status line, the chronicle strip and the Season box down the
-        * middle (WorldHud): under the Season box (preferred) when a card
-        * cardHeight tall fits there above the command bar (barTop; 0 when
-        * none is drawn); else at fallback, under the status line, where it
-        * covers only the chronicle strip for as long as it shows (at
-        * 412x915 in a town it covered Enter Settlement and Teleport Home,
-        * and, moved up, covered the Season box instead). With no fallback
-        * it stays at preferred.
+        * status line, the chronicle strip and the Season box (from
+        * seasonTop) down the middle (WorldHud): under the Season box
+        * (preferred) when a card cardHeight tall fits there above the
+        * command bar (barTop; 0 when none is drawn); else at fallback,
+        * under the status line, when it fits there above the Season box,
+        * covering only the chronicle strip for as long as it shows; else
+        * as low as it can sit above the bar, no higher than fallback. At
+        * 412x915 the card covered Enter Settlement and Teleport Home or,
+        * moved up, the Season box.
         */
-        public static float hintCardTopStacked(float preferred, float fallback, float cardHeight, float barTop, float gap) {
+        public static float hintCardTopStacked(float preferred, float fallback, float seasonTop, float cardHeight, float barTop, float gap) {
             if (barTop <= 0f || preferred + cardHeight + gap <= barTop) {
                 return preferred;
             }
-            return fallback > 0f ? fallback : preferred;
+            if (fallback <= 0f) {
+                return preferred;
+            }
+            if (seasonTop <= 0f || fallback + cardHeight + gap <= seasonTop) {
+                return fallback;
+            }
+            return hintCardTopAboveBar(preferred, cardHeight, barTop, gap, fallback);
         }
 
         // the card's height when last drawn, to keep it clear of the bar
@@ -418,11 +425,12 @@ namespace beyondnations.desktop.ui.feel {
             OnboardingHints.Step? step = hints.getVisible();
             // The objective toast says something more important; the tip waits.
             if (step == null || ObjectiveTrackerBox.isToastShowing(world)) {
+                TouchLayout.setTipHeight(0f);
                 return;
             }
             float cardWidth = hintCardWidth(width);
             float top = TouchLayout.getTipTop() > 0f
-                ? hintCardTopStacked(TouchLayout.getTipTop(), TouchLayout.getTipFallbackTop(), lastHintCardHeight, WorldHud.getBarTop(), UiScale.px(10f))
+                ? hintCardTopStacked(TouchLayout.getTipTop(), TouchLayout.getTipFallbackTop(), TouchLayout.getTipSeasonTop(), lastHintCardHeight, WorldHud.getBarTop(), UiScale.px(10f))
                 : hintCardTopAboveBar(hintCardTop(height, isTouch()), lastHintCardHeight, WorldHud.getBarTop(), UiScale.px(10f), height * 0.2f);
             ImGui.SetNextWindowPos(new Vector2(width / 2f, top), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowSize(new Vector2(cardWidth, 0f), ImGuiCond.Always);
@@ -432,6 +440,7 @@ namespace beyondnations.desktop.ui.feel {
             ImGui.SetNextWindowBgAlpha(overChronicle ? 0.97f : 0.82f);
             if (ImGui.Begin("##feel-hint", HintFlags)) {
                 lastHintCardHeight = ImGui.GetWindowSize().Y;
+                TouchLayout.setTipHeight(lastHintCardHeight);
                 Overlay.textColoured(HintHeadingColour,
                     "Tip " + hints.getNumber() + " of " + OnboardingHints.Steps.Length + ": " + OnboardingHints.title(step.Value));
                 ImGui.PushTextWrapPos(0f);

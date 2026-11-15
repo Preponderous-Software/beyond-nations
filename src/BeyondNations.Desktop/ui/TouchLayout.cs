@@ -87,6 +87,28 @@ namespace beyondnations.desktop.ui {
             tipFallbackTop = top;
         }
 
+        private static float tipSeasonTop;
+
+        /** The top of the Season box when WorldHud stacks it under the chronicle (0: it does not). */
+        public static float getTipSeasonTop() {
+            return isActive() ? tipSeasonTop : 0f;
+        }
+
+        public static void setTipSeasonTop(float top) {
+            tipSeasonTop = top;
+        }
+
+        private static float tipHeight;
+
+        /** The tip card's height as FeelDirector last drew it, 0 when none showed. */
+        public static float getTipHeight() {
+            return tipHeight;
+        }
+
+        public static void setTipHeight(float height) {
+            tipHeight = height;
+        }
+
         /** The host's report: what the page shows, under which setting. */
         public static void setState(TouchMode newMode, bool isActiveNow, float reserve) {
             available = true;

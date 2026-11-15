@@ -263,15 +263,20 @@ namespace beyondnations.desktop.ui.screens {
             LabelPlacement.setTopReserve(System.MathF.Max(stripBottom, centreBottom) / height);
             TouchLayout.setTipTop(0f);
             TouchLayout.setTipFallbackTop(0f);
+            TouchLayout.setTipSeasonTop(0f);
             if (seasonUnderChronicle) {
                 // full width under the chronicle on a phone held upright, and
                 // a tip, while one shows, under that (FeelDirector reads
-                // TouchLayout.getTipTop) rather than over the status line
+                // TouchLayout.getTipTop) rather than over the status line.
+                // While a tip shows the season box drops its region lines,
+                // to leave the card room above the command bar.
                 float seasonTop = System.MathF.Max(stripBottom, centreBottom) + layout.Gap;
+                seasonBox.setCompact(TouchLayout.getTipHeight() > 0f);
                 float seasonBottom = seasonBox.draw(layout.LeftX, seasonTop, width - layout.Margin * 2f);
                 TouchLayout.setTipTop(seasonBottom + layout.Gap);
                 // with no room for it there above the bar, over the chronicle instead
                 TouchLayout.setTipFallbackTop(centreBottom + layout.Gap);
+                TouchLayout.setTipSeasonTop(seasonTop);
             }
             objectiveTracker.drawToast(width, height, stripBottom + layout.Gap);
 
