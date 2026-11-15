@@ -258,6 +258,66 @@ namespace beyondnations {
         * @return the id of the stall owner, or null if nothing was sold
         */
         public EntityId sellResources(Entity entity, int priceBonusPercent) {
+            return sellResources(entity, priceBonusPercent, 0);
+        }
+
+        /**
+        * As sellResources, but a stall only pays for a good when it still
+        * holds keepInTill coins afterwards. Settlers selling surplus keep a
+        * till's float (Stall.TILL_RESERVE) so the market has coin left for
+        * the player (#369); the player and hungry pawns pass 0.
+        *
+        * @return the id of the stall owner, or null if nothing was sold
+        */
+        public EntityId sellResources(Entity entity, int priceBonusPercent, int keepInTill) {
+            List<Stall> stallsToSellTo = findStallsToSellTo(entity, priceBonusPercent, keepInTill);
+            if (stallsToSellTo.Count == 0) {
+                return null;
+            }
+
+            int randomStallIndex = random.range(0, stallsToSellTo.Count);
+            Stall stallToSellTo = stallsToSellTo[randomStallIndex];
+
+            foreach(ItemType itemType in Enum.GetValues(typeof(ItemType))) {
+                if (!entity.getInventory().hasItem(itemType)) {
+                    continue;
+                }
+
+                if (!isSoldInBulk(itemType)) {
+                    continue;
+                }
+
+                int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
+
+                if (!canPay(stallToSellTo, cost, keepInTill)) {
+                    continue;
+                }
+
+                // transfer items
+                entity.getInventory().removeItem(itemType, 1);
+                stallToSellTo.getInventory().addItem(itemType, 1);
+
+                // transfer coins
+                entity.getInventory().addItem(ItemType.COIN, cost);
+                stallToSellTo.getInventory().removeItem(ItemType.COIN, cost);
+
+                totalNumItemsSold++;
+
+                Log.debug("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
+            }
+            return stallToSellTo.getOwnerId();
+        }
+
+        /** Whether sellResources with these terms would sell this entity anything right now. */
+        public bool canSellTo(Entity entity, int priceBonusPercent, int keepInTill) {
+            return findStallsToSellTo(entity, priceBonusPercent, keepInTill).Count > 0;
+        }
+
+        private static bool canPay(Stall stall, int cost, int keepInTill) {
+            return stall.getInventory().getNumItems(ItemType.COIN) - cost >= System.Math.Max(0, keepInTill);
+        }
+
+        private List<Stall> findStallsToSellTo(Entity entity, int priceBonusPercent, int keepInTill) {
             List<Stall> stallsToSellTo = new List<Stall>();
             foreach(Stall stall in stalls) {
                 if (stall.getOwnerId() == null) {
@@ -277,48 +337,14 @@ namespace beyondnations {
 
                     int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
 
-                    if (stall.getInventory().getNumItems(ItemType.COIN) < cost) {
+                    if (!canPay(stall, cost, keepInTill)) {
                         continue;
                     }
 
                     stallsToSellTo.Add(stall);
                 }
             }
-            if (stallsToSellTo.Count == 0) {
-                return null;
-            }
-
-            int randomStallIndex = random.range(0, stallsToSellTo.Count);
-            Stall stallToSellTo = stallsToSellTo[randomStallIndex];
-
-            foreach(ItemType itemType in Enum.GetValues(typeof(ItemType))) {
-                if (!entity.getInventory().hasItem(itemType)) {
-                    continue;
-                }
-
-                if (!isSoldInBulk(itemType)) {
-                    continue;
-                }
-
-                int cost = askingPrice(getSellPrice(itemType), priceBonusPercent);
-
-                if (stallToSellTo.getInventory().getNumItems(ItemType.COIN) < cost) {
-                    continue;
-                }
-                
-                // transfer items
-                entity.getInventory().removeItem(itemType, 1);
-                stallToSellTo.getInventory().addItem(itemType, 1);
-
-                // transfer coins
-                entity.getInventory().addItem(ItemType.COIN, cost);
-                stallToSellTo.getInventory().removeItem(ItemType.COIN, cost);
-
-                totalNumItemsSold++;
-
-                Log.debug("Entity " + entity.getName() + " sold 1 " + itemType + " at the market for " + cost + " coins");
-            }
-            return stallToSellTo.getOwnerId();
+            return stallsToSellTo;
         }
 
         /**

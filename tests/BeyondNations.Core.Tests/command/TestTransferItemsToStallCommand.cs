@@ -103,25 +103,45 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testExecute_MerchantWithStall_MovesEverythingIncludingCoins() {
+        public void testExecute_MerchantWithStall_MovesGoodsButKeepsCoins() {
             // prepare
             Nation nation = joinNationAs(NationRole.MERCHANT);
             Settlement settlement = enterSettlement(nation);
             Stall stall = giveStall(settlement);
             stall.getInventory().addItem(ItemType.WOOD, 5);
+            stall.getInventory().addItem(ItemType.COIN, 7);
             int coinsBefore = player.getInventory().getNumItems(ItemType.COIN);
             Assert.True(coinsBefore > 0);
 
             // run
             command.execute(player);
 
-            // check
+            // check: the goods go to the stall, the purse stays with the merchant (#418)
             Assert.Equal(17, stall.getInventory().getNumItems(ItemType.WOOD));
             Assert.Equal(3, stall.getInventory().getNumItems(ItemType.APPLE));
-            // the player's purse goes into the stall as well (#418)
-            Assert.Equal(coinsBefore, stall.getInventory().getNumItems(ItemType.COIN));
-            Assert.Equal(0, player.getInventory().getTotalNumItems());
-            Assert.Equal("Transferred contents of inventory to stall.", player.getStatus().getStatus());
+            Assert.Equal(7, stall.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(coinsBefore, player.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(coinsBefore, player.getInventory().getTotalNumItems());
+            Assert.Equal("Moved your goods to your stall. Your coins stay in your purse.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_MerchantWithOnlyCoins_SaysThereIsNothingToStock() {
+            // prepare
+            Nation nation = joinNationAs(NationRole.MERCHANT);
+            Settlement settlement = enterSettlement(nation);
+            Stall stall = giveStall(settlement);
+            player.getInventory().removeItem(ItemType.WOOD, 12);
+            player.getInventory().removeItem(ItemType.APPLE, 3);
+            int coinsBefore = player.getInventory().getNumItems(ItemType.COIN);
+
+            // run
+            command.execute(player);
+
+            // check
+            Assert.Equal(0, stall.getInventory().getTotalNumItems());
+            Assert.Equal(coinsBefore, player.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal("You have no goods to stock: your stall takes goods, not coins.", player.getStatus().getStatus());
         }
     }
 }

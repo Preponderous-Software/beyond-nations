@@ -415,7 +415,8 @@ namespace beyondnationstests {
             settlement.getMarket().createStall();
             Stall stall = settlement.getMarket().getStallForSale();
             stall.setOwnerId(merchant.getId());
-            stall.getInventory().addItem(ItemType.COIN, 100);
+            // enough to pay for goods and still keep the till's float (#369)
+            stall.getInventory().addItem(ItemType.COIN, Stall.TILL_RESERVE + 100);
 
             // prepare pawn
             Pawn pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
@@ -836,7 +837,8 @@ namespace beyondnationstests {
             TickCounter tickCounter = new TickCounter();
 
             Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
-            // thirty apples on offer: 40 * 10 / 40 = 10 coins each, which the pawn has
+            // thirty apples on offer: 40 * 20 / 50 = 16 coins each, which the pawn has
+            pawn.getInventory().setNumItems(ItemType.COIN, 16);
             stockHomeMarket(entityRepository, pawn, ItemType.APPLE, 30);
 
             PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);

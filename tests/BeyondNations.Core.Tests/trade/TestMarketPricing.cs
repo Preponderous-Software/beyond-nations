@@ -57,6 +57,9 @@ namespace beyondnationstests {
 
             MarketPricing.driftPrices(town);
             Assert.Equal(MarketPrices.DEFAULT_PRESSURE + MarketPricing.DRIFT_STEP, town.getMarket().getPrices().getPressure(ItemType.APPLE));
+            // a step of a couple of points rounds away on a 36-coin apple; a few rounds show
+            MarketPricing.driftPrices(town);
+            MarketPricing.driftPrices(town);
             Assert.Equal(1, MarketPricing.getTrend(town.getMarket(), ItemType.APPLE));
 
             for (int i = 0; i < 40; i++) {
@@ -73,7 +76,8 @@ namespace beyondnationstests {
             camp.getInventory().addItem(ItemType.WOOD, 200);
             int before = camp.getMarket().getBuyPrice(ItemType.WOOD);
 
-            for (int i = 0; i < 20; i++) {
+            int roundsToTheFloor = (MarketPrices.DEFAULT_PRESSURE - MarketPrices.MIN_PRESSURE) / MarketPricing.DRIFT_STEP;
+            for (int i = 0; i < roundsToTheFloor + 5; i++) {
                 MarketPricing.driftPrices(camp);
             }
             Assert.Equal(MarketPrices.MIN_PRESSURE, camp.getMarket().getPrices().getPressure(ItemType.WOOD));
