@@ -100,6 +100,13 @@ namespace beyondnations.desktop.ui.screens {
             }
         }
 
+        private static float lastBarTop;
+
+        /** The top of the command bar as last drawn (0 before the HUD is drawn). */
+        public static float getBarTop() {
+            return lastBarTop;
+        }
+
         private readonly ChroniclePanel chroniclePanel = new ChroniclePanel();
         // the era box keeps whether its detail is open from frame to frame
         private readonly EraBox eraBox = new EraBox();
@@ -137,6 +144,8 @@ namespace beyondnations.desktop.ui.screens {
             float bottom = height - TouchLayout.getBottomReserve();
             float barRight = getBarRight(width, layout, stackCentre);
             float barTop = drawCommandButtons(width, barRight, bottom, simulation, layout);
+            // the tip card keeps above it (FeelDirector.hintCardTopAboveBar)
+            lastBarTop = barTop;
             float columnBottom = barTop - layout.Gap;
             float rightColumnBottom = stackCentre ? columnBottom : bottom - layout.Margin;
             float centreBottom = layout.Margin;
@@ -215,12 +224,10 @@ namespace beyondnations.desktop.ui.screens {
                 SettlementInfoBox settlementBox = new SettlementInfoBox(settlement, simulation.getNationRepository(), simulation.getEntityRepository());
                 MarketInfoBox marketBox = new MarketInfoBox(settlement.getMarket(), simulation.getEntityRepository());
                 // four boxes do not fit a short window (960x540: the season box
-                // covered the player box and ran off the bottom, #350), so the
-                // market, season and player boxes drop their least needed lines
-                if (!stackCentre && !fitsInFull(rightColumnBottom - rightTop, layout.Gap, settlementBox, marketBox, seasonBox, playerBox)) {
-                    marketBox.setCompact(true);
-                    seasonBox.setCompact(true);
-                    playerBox.setCompact(true);
+                // covered the player box and ran off the bottom, #350)
+                if (!stackCentre) {
+                    fitSettlementColumn(rightColumnBottom - rightTop, layout.Gap, layout.BoxWidth, InfoBox.Metrics.current(),
+                        settlementBox, marketBox, seasonBox, playerBox);
                 }
                 float settlementBottom = settlementBox.draw(layout.RightX, rightTop, layout.BoxWidth);
                 rightTop = marketBox.draw(layout.RightX, settlementBottom + layout.Gap, layout.BoxWidth) + layout.Gap;
@@ -270,16 +277,54 @@ namespace beyondnations.desktop.ui.screens {
         }
 
         /**
-        * Whether the boxes, each with every line, fit one above another in
-        * height. Judged on full line counts, not last frame's heights, so a
-        * column that has just gone compact does not flip back next frame.
+        * Whether the boxes, as they are set now (full or compact), fit one
+        * above another in height at boxWidth. Judged on the boxes' wrapped
+        * line counts, not last frame's heights, so a column that has just
+        * gone compact does not flip back next frame.
         */
-        public static bool fitsInFull(float height, float gap, params InfoBox[] boxes) {
+        public static bool fits(float height, float gap, float boxWidth, InfoBox.Metrics metrics, params InfoBox[] boxes) {
+            return stackedHeight(gap, boxWidth, metrics, boxes) <= height;
+        }
+
+        /** The height of the boxes one above another, gap apart. */
+        public static float stackedHeight(float gap, float boxWidth, InfoBox.Metrics metrics, params InfoBox[] boxes) {
             float needed = gap * (boxes.Length - 1);
             foreach (InfoBox box in boxes) {
-                needed += box.estimateHeight();
+                needed += box.estimateHeight(boxWidth, metrics);
             }
-            return needed <= height;
+            return needed;
+        }
+
+        /**
+        * Fits a settlement's four boxes into a right-hand column height
+        * high. They stay in full when they fit; otherwise the market, then
+        * the season, then the player box drop their least needed lines,
+        * until they fit; and when even that
+        * is too tall, the market lists only the prices the room left allows
+        * ("+2 more goods"), so the season box is never pushed over the
+        * player box (#350: at 960x540 and 1280x720 a growing price list and
+        * wrapped lines did just that).
+        */
+        public static void fitSettlementColumn(float height, float gap, float boxWidth, InfoBox.Metrics metrics,
+                SettlementInfoBox settlement, MarketInfoBox market, SeasonInfoBox season, PlayerInfoBox player) {
+            market.setMaxGoods(-1);
+            foreach (InfoBox box in new InfoBox[] { market, season, player }) {
+                box.setCompact(false);
+            }
+            // one box at a time, the tallest first, so a column that is
+            // only a little short keeps the season's region and the player's
+            // details (1280x720)
+            foreach (InfoBox box in new InfoBox[] { market, season, player }) {
+                if (fits(height, gap, boxWidth, metrics, settlement, market, season, player)) {
+                    return;
+                }
+                box.setCompact(true);
+            }
+            if (fits(height, gap, boxWidth, metrics, settlement, market, season, player)) {
+                return;
+            }
+            float rest = stackedHeight(gap, boxWidth, metrics, settlement, season, player) + gap;
+            market.fitHeight(height - rest, boxWidth, metrics);
         }
 
         /** Draws an info box from the top down; returns its top, as drawAbove does. */

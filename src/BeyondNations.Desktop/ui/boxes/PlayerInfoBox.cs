@@ -66,6 +66,15 @@ namespace beyondnations.desktop.ui.boxes {
             return lines;
         }
 
+        /** The energy line is a bar, a framed row, rather than a line of text. */
+        protected override float getExtraHeight(Metrics metrics) {
+            return metrics.FrameRowHeight - metrics.LineHeight;
+        }
+
+        protected override int countRows(int index, string line, float textWidth, System.Func<string, float> measure) {
+            return index == 0 ? 1 : base.countRows(index, line, textWidth, measure);
+        }
+
         /**
         * The energy line is drawn as a bar coloured by hunger (see EnergyBar),
         * with the number written on it; the remaining lines follow as text.

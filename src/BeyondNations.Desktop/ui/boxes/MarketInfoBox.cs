@@ -36,6 +36,51 @@ namespace beyondnations.desktop.ui.boxes {
             this.entityRepository = entityRepository;
         }
 
+        // how many prices the box has room for; -1: all of them
+        private int maxGoods = -1;
+        // where the price lines were in the last getLines(), for countRows
+        private int lastFirstPrice;
+        private int lastShownGoods;
+
+        /**
+        * Lists at most count prices, then "+N more goods": the box gives way
+        * when a settlement's right-hand column has no room for every price
+        * (#350: at 960x540 the market's growing list pushed the season box
+        * over the player box). -1 lists them all.
+        */
+        public MarketInfoBox setMaxGoods(int count) {
+            maxGoods = count;
+            return this;
+        }
+
+        /**
+        * Lists as many prices as fit in maxHeight at boxWidth (none, if even
+        * the rest of the box does not). The staples lead the list, so they
+        * are the last to go.
+        */
+        public void fitHeight(float maxHeight, float boxWidth, Metrics metrics) {
+            maxGoods = -1;
+            int count = getListedGoods().Count;
+            while (count > 0 && estimateHeight(boxWidth, metrics) > maxHeight) {
+                count--;
+                maxGoods = count;
+            }
+        }
+
+        /** "+3 more goods": what is left out when the box is short of room. */
+        public static string describeMoreGoods(int count) {
+            return "+" + count + (count == 1 ? " more good" : " more goods");
+        }
+
+        /** The prices the box shows: the listed goods, cut to setMaxGoods. */
+        public List<ItemType> getShownGoods() {
+            List<ItemType> goods = getListedGoods();
+            if (maxGoods >= 0 && maxGoods < goods.Count) {
+                goods = goods.GetRange(0, maxGoods);
+            }
+            return goods;
+        }
+
         /** The goods the price list shows right now, in order. */
         public List<ItemType> getListedGoods() {
             List<ItemType> goods = new List<ItemType>(StapleGoods);
@@ -102,8 +147,15 @@ namespace beyondnations.desktop.ui.boxes {
             }
 
             lines.Add(PricesHeading);
-            foreach (ItemType itemType in getListedGoods()) {
+            List<ItemType> shown = getShownGoods();
+            lastFirstPrice = lines.Count;
+            lastShownGoods = shown.Count;
+            foreach (ItemType itemType in shown) {
                 lines.Add(describePrice(itemType) + " " + trendMark(MarketPricing.getTrend(market, itemType)));
+            }
+            int hidden = getListedGoods().Count - shown.Count;
+            if (hidden > 0) {
+                lines.Add(describeMoreGoods(hidden));
             }
 
             return lines;
@@ -125,11 +177,11 @@ namespace beyondnations.desktop.ui.boxes {
         */
         protected override void drawBody() {
             List<string> lines = getLines();
-            List<ItemType> goods = getListedGoods();
-            int firstPrice = lines.Count - goods.Count;
+            List<ItemType> goods = getShownGoods();
+            int firstPrice = lastFirstPrice;
             float width = System.MathF.Max(40f, ImGui.GetContentRegionAvail().X);
             for (int i = 0; i < lines.Count; i++) {
-                if (i < firstPrice) {
+                if (!isPriceLine(i)) {
                     foreach (string part in TextWrap.wrap(lines[i], width, text => ImGui.CalcTextSize(text).X)) {
                         ImGui.TextUnformatted(part);
                     }
@@ -141,6 +193,16 @@ namespace beyondnations.desktop.ui.boxes {
                 ImGui.SameLine();
                 drawTrendArrow(trend);
             }
+        }
+
+        // index is a line of the last getLines()
+        private bool isPriceLine(int index) {
+            return index >= lastFirstPrice && index < lastFirstPrice + lastShownGoods;
+        }
+
+        /** A price line is drawn whole with its arrow beside it, so it takes one row. */
+        protected override int countRows(int index, string line, float textWidth, System.Func<string, float> measure) {
+            return isPriceLine(index) ? 1 : base.countRows(index, line, textWidth, measure);
         }
 
         private static void drawTrendArrow(int trend) {
