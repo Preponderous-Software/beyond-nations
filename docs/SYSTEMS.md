@@ -363,6 +363,8 @@ Funds are the player's coins plus the treasuries of the nation's settlements. Ea
 
 **More than one settlement** (#145). A nation the player leads founds its first settlement for 50 wood; each one after it costs 25 more wood and 10 stone for every settlement it already holds (75 wood and 10 stone for the second, 100 and 20 for the third: `FoundingCost`), on top of the era's limit above. The command bar offers *Found Settlement* again whenever the era allows another, and the nation screen lists the nation's settlements, where each lies and which is home. Founding another does not move the player's home; if home is captured, the oldest settlement the nation keeps becomes home. Settlers the nation sends out on its own, and pawn-led nations, still pay the base 50 wood from a settlement's stockpile.
 
+![The nation screen listing two settlements, which is home, and what a third costs](screenshots/multiple-settlements/nation-screen-settlements.png)
+
 **Objectives follow the era.** The arc's seventh step, which was "Grow your nation to 5" and was met by settlers joining on their own, is now *Reach the Village era*, with members and buildings as its counters. After the arc, ambitions cycle through nation size, funds, settlements (or buildings, where the era will not allow more settlements) and the next era -- in the kingdom, *Win the game* -- and each is scaled to the era it was made in: nation size starts at 16 in the village, 20 in the town and 35 in the kingdom, funds at 1,000 (the arc's rewards and treasuries already make 500), 3,000 and 4,000, and every lap adds 5 members or 500 coins.
 
 **Victory** comes from one of three, judged on the player's nation:
