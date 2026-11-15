@@ -654,10 +654,10 @@ namespace beyondnations.pacing {
                 earnFunds();
                 return;
             }
-            // recruiting needs no wood or stone: a leader with a storehouse sends what it
-            // carries on a free caravan on the way, as the caravan button invites
-            Settlement depot = WorldView.isLeader(simulation) ? settlementWithStorehouse() : null;
-            if (depot != null && sendCaravan(depot)) {
+            // recruiting needs no wood or stone: once the era message announces the
+            // storehouse ("Unlocked: Storehouse (more market stalls, and caravans)"), a
+            // leader puts one up, then sends what it carries on a free caravan on the way
+            if (tradeByCaravan()) {
                 return;
             }
             activity = "recruiting settlers";

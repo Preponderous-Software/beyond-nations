@@ -52,6 +52,7 @@ namespace beyondnations.pacing {
         * members (docs/PACING.md, "Recruiting").
         */
         public bool NoCourting = false;
+        /**
         * Milestones (PacingMilestones) to watch for. A run goes on past its
         * objective limit, up to MaxTicks, until each has been reached.
         */
@@ -148,6 +149,8 @@ namespace beyondnations.pacing {
             int previousCompletionTick = 0;
             int tick = 0;
             string lastStatus = null;
+            SuccessionNotice shownNotice = null;
+            int noticeSince = 0;
             sample(simulation, bot, result);
             while (tick < options.MaxTicks && (recorded < options.ObjectiveLimit || result.Milestones.Count < options.Milestones.Count)) {
                 bot.beforeTick();
@@ -179,6 +182,17 @@ namespace beyondnations.pacing {
                 }
                 if (result.VillageMembersTick < 0 && WorldView.members(simulation) >= EraRules.VillageMembers) {
                     result.VillageMembersTick = tick;
+                }
+                // the succession screen: a player reads it for five seconds and presses Continue,
+                // so a world saved later does not open on an old succession
+                SuccessionNotice notice = simulation.getRealm().getNotice();
+                if (notice != shownNotice) {
+                    shownNotice = notice;
+                    noticeSince = tick;
+                }
+                else if (notice != null && !notice.isLineEnded() && tick - noticeSince == 5 * options.TicksPerSecond) {
+                    simulation.getRealm().consumeNotice();
+                }
                 if (options.SaveAtTicks.Contains(tick) && options.SaveDirectory != null) {
                     System.IO.Directory.CreateDirectory(options.SaveDirectory);
                     System.IO.File.WriteAllBytes(System.IO.Path.Combine(options.SaveDirectory,
