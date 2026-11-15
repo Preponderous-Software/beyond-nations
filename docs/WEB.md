@@ -116,6 +116,8 @@ game lays its screens out for a finger (`TouchLayout` in
   stacked HUD, is left out while it would sit under it.
 - A line too wide for the screen (a panel footer on a phone held upright) is
   drawn smaller rather than cut off at both edges.
+
+  <img src="screenshots/phone-ui-leftovers/phone-town-pair.jpg" alt="A phone held upright in a town, before and after: before, the tip card covers Enter Settlement and Teleport Home and the town's name is cut off at the top behind the boxes; after, the Season box is compact, the tip sits over the chronicle strip, the command bar is clear, and the name is left out" width="420">
 - No line names a key or a mouse button: objective hints, status lines, panel
   footers, the chronicle and the tips name the button instead ("press Use",
   "Realm", "Tap Close"), all from one table (`ObjectiveKeyNames`), and the

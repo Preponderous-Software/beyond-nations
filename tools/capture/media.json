@@ -120,7 +120,7 @@
                 "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
       "file": "../../.github/media/winter-warning.jpg",
       "caption": "The day before winter: the banner, the chronicle and the Season box say what the nation carries.",
-      "alt": "The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 15 members are short of the food they want, the player's own hunger banner sits above it, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 42 of 60 for winter"
+      "alt": "The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 17 members are short of the food they want, the player's own hunger banner sits above it, the town's name floats below the chronicle, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 79 of 68 for winter"
     }
   ]
 }
