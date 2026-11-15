@@ -224,6 +224,11 @@ namespace beyondnationstests {
             Settlement yland = new Settlement(new Vector3(300, 1, 0), nation.getId(), nation.getColor(), "Yland", random);
             entityRepository.addEntity(yland);
             giveStall(ann, 100);
+            // a merchant there with coin enough to pay the full price (Market.getBid)
+            yland.getMarket().createStall();
+            Stall ylandStall = yland.getMarket().getStallForSale();
+            ylandStall.setOwnerId(bob.getId());
+            ylandStall.getInventory().addItem(ItemType.COIN, 5000);
             yland.getMarket().getPrices().setPressure(ItemType.WOOD, MarketPrices.MAX_PRESSURE);
             List<Settlement> markets = Traders.getMarkets(entityRepository, nationRepository, town, nation.getId());
 

@@ -488,7 +488,8 @@ namespace beyondnationstests {
             settlement.getMarket().createStall();
             Stall stall = settlement.getMarket().getStallForSale();
             stall.setOwnerId(merchant.getId());
-            stall.getInventory().addItem(ItemType.COIN, 200);
+            // a stall's worth of profit above the float it keeps
+            stall.getInventory().addItem(ItemType.COIN, Stall.TILL_RESERVE + Stall.COIN_COST_TO_PURCHASE);
 
             // prepare calculator
             GameConfig gameConfig = new GameConfig();

@@ -114,6 +114,16 @@ namespace beyondnations {
             player.setPosition(new Vector3(centre.X + back.X * 18f, player.getPosition().Y, centre.Z + back.Z * 18f));
             player.turn(System.MathF.Atan2(-back.X, -back.Z) - player.getYaw());
             new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, staged.traderSettlement);
+            // a stall a day into trading, as in the 0.8.0 playtest (s05): food,
+            // crafted goods and tools, so the panel lists the full run of goods
+            Inventory stock = staged.traderSettlement.getMarket().getStalls()[0].getInventory();
+            stock.addItem(ItemType.APPLE, 8);
+            stock.addItem(ItemType.CHICKEN_MEAT, 3);
+            stock.addItem(ItemType.BRICKS, 4);
+            stock.addItem(ItemType.PLANKS, 4);
+            stock.addItem(ItemType.AXE, 1);
+            stock.addItem(ItemType.PICKAXE, 1);
+            stock.addItem(ItemType.SAPLING, 6);
             player.getStatus().update("You are in the " + staged.traderSettlement.getDisplayName() + "'s market. Trade at Market to buy and sell.");
             return staged;
         }

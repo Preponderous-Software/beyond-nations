@@ -551,7 +551,9 @@ namespace beyondnations.desktop {
             inputService.update();
 
             if (inputService.wasPressedThisFrame(KeyBindings.Pause)) {
-                if (!screens.escapePressed()) {
+                // Escape over the market panel closes the panel, not the world
+                bool closedPanel = screens.getCurrent() == ScreenType.WORLD && MarketTradePanel.escapePressed();
+                if (!closedPanel && !screens.escapePressed()) {
                     window.Close();
                 }
             }

@@ -64,6 +64,42 @@ namespace beyondnations {
             return receipt;
         }
 
+        /**
+        * Sells exactly what a quote the player was shown said -- its number
+        * for its coins -- or nothing, with the status line saying the market
+        * moved and what it would be now (MarketTrade.describeMovedQuote).
+        * The market panel's Sell button calls this with the quote its label
+        * was drawn from, so a press can never deal something different.
+        */
+        public TradeReceipt sellAsQuoted(Player player, TradeReceipt shown) {
+            ItemType itemType = shown.getItemType();
+            Settlement settlement = findMarket(player);
+            if (settlement == null) {
+                return new TradeReceipt(itemType, true);
+            }
+            TradeReceipt now = settlement.getMarket().quoteSale(player, itemType, shown.getQuantity(), 0);
+            if (!MarketTrade.matchesQuote(shown, now)) {
+                player.getStatus().update(MarketTrade.describeMovedQuote(shown, now));
+                return new TradeReceipt(itemType, true);
+            }
+            return sell(player, itemType, shown.getQuantity());
+        }
+
+        /** As sellAsQuoted, for buying: exactly the number for the coins shown, or nothing. */
+        public TradeReceipt buyAsQuoted(Player player, TradeReceipt shown) {
+            ItemType itemType = shown.getItemType();
+            Settlement settlement = findMarket(player);
+            if (settlement == null) {
+                return new TradeReceipt(itemType, false);
+            }
+            TradeReceipt now = settlement.getMarket().quotePurchase(player, itemType, shown.getQuantity());
+            if (!MarketTrade.matchesQuote(shown, now)) {
+                player.getStatus().update(MarketTrade.describeMovedQuote(shown, now));
+                return new TradeReceipt(itemType, false);
+            }
+            return buy(player, itemType, shown.getQuantity());
+        }
+
         private Settlement findMarket(Player player) {
             Settlement settlement = player.getCurrentSettlementId() == null ? null
                 : entityRepository.getEntity(player.getCurrentSettlementId()) as Settlement;

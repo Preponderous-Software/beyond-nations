@@ -280,7 +280,7 @@ namespace beyondnations {
                     if (pawn.getInventory().getNumItems(ItemType.WOOD) > 0 || pawn.getInventory().getNumItems(ItemType.STONE) > 0) {
                         return BehaviorType.TRANSFER_ITEMS_TO_STALL;
                     }
-                    if (stall.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE * 2) {
+                    if (stall.getInventory().getNumItems(ItemType.COIN) >= Stall.TILL_RESERVE + Stall.COIN_COST_TO_PURCHASE) {
                         return BehaviorType.COLLECT_PROFIT_FROM_STALL;
                     }
                 }
