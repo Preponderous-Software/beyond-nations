@@ -147,6 +147,22 @@ The flags every shot shares (`--no-saves`, `--no-usage-reporting`, the window si
 
 darkroom keeps each take's raw frames in `tools/capture/.darkroom/` (ignored by git), so `darkroom shoot tools/capture/media.json --encode --only flyover` re-encodes the last take without running the game again. darkroom starts Xvfb with Mesa's software renderer (`LIBGL_ALWAYS_SOFTWARE=1`, `GALLIUM_DRIVER=llvmpipe`) for both the display and the game, which is what keeps it working on machines whose GPU driver crashes Xvfb, such as NVIDIA under WSL.
 
+### Shooting the browser build on a phone and a desktop
+
+`tools/capture/web.json` is a second shot list, for darkroom's `web` backend: it opens the browser build in headless Chromium as a phone held upright (`phone`, 390x844 at DPR 3 with touch, so the game's touch layout comes up as on a real phone), a phone on its side (`landscape`, 844x390) and a desktop (`desktop`, 1280x720), and stills every screen a touch player reaches: the title, New World, a new world with its first tip and command bar, the controls list, the nations screen's Nations, Members, Laws and Manage tabs, the settlement screen, a market town's command bar and (upright and on the desktop) the market panel. Each screen is reached with the URL options of [WEB.md](./WEB.md#url-options) (`start-screen`, `stage-diplomacy`, `stage-market`), one page load each; the market panel is a tap on *Trade at Market*. The stills land in `docs/screenshots/web-phone-shotlist/` as `<device>-<screen>.jpg`.
+
+It shoots the live arcade build by default. Point `base` at a local publish (see [WEB.md](./WEB.md#building)) to shoot your own:
+
+```bash
+cd src/BeyondNations.Web/smoke && npm ci && npx playwright install chromium && cd -
+export NODE_PATH=$PWD/src/BeyondNations.Web/smoke/node_modules   # darkroom's web backend needs Playwright
+darkroom shoot tools/capture/web.json                                          # the live build
+darkroom shoot tools/capture/web.json --only phone --force                     # one device again
+darkroom shoot tools/capture/web.json --var base=http://localhost:8080/ --out /tmp/web-shots   # a local build, to a scratch folder
+```
+
+Headless Chromium draws WebGL with SwiftShader at a few frames a second (DPR 3 is nine times the pixels), and every screen boots the .NET runtime again, so a device takes 10 to 20 minutes; the waits are long on purpose. The three devices can be shot in parallel (`--only phone`, `--only landscape`, `--only desktop` in separate shells). The tap coordinates for the rotate hint's OK and for *Trade at Market* are in the shot's `comment`; if the HUD moves, look at `phone-market-town.jpg` and update them. darkroom records console errors with each take (`tools/capture/.darkroom/takes/<device>/meta.json`).
+
 ## Issues
 
 If you find a bug or want a feature, open an issue describing it. Bug reports are more useful with the seed (`--seed`) and the switches you ran with, since that makes the world reproducible.
