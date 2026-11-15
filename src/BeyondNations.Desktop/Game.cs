@@ -318,7 +318,10 @@ namespace beyondnations.desktop {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
-            if (options.StageTrade) {
+            if (options.StageMarket) {
+                TradeShowcase.stageMarket(simulation);
+            }
+            else if (options.StageTrade) {
                 TradeShowcase.stage(simulation);
             }
             if (options.StageVictory || options.StageDefeat) {
@@ -807,6 +810,9 @@ namespace beyondnations.desktop {
                 }
                 if (CaravanDispatchPanel.isOpen()) {
                     playtestView.OpenPanels.Add("caravan-dispatch");
+                }
+                if (MarketTradePanel.isOpen()) {
+                    playtestView.OpenPanels.Add("market-trade");
                 }
                 if (simulation.getWorldEvents().isAwaitingPlayer()) {
                     playtestView.OpenPanels.Add("world-event");

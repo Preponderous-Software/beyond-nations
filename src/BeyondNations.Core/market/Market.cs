@@ -308,6 +308,165 @@ namespace beyondnations {
             return stallToSellTo.getOwnerId();
         }
 
+        // --- dealing in one good, by the unit, with a receipt (#182) ----------
+
+        /**
+        * Sells up to quantity of one good, a unit at a time, each at the
+        * price it fetches once the units before it are on the stalls (so
+        * five at once come to what five presses would). Each unit goes to
+        * whichever stall can pay and still keep keepInTill coins, the one
+        * with the most coins first, so a sale spreads over the market's
+        * merchants instead of stopping when one till is dry. Stops when the
+        * seller runs out or no stall can pay.
+        */
+        public TradeReceipt sellUnits(Entity entity, ItemType itemType, int quantity, int keepInTill) {
+            return sellUnits(entity, itemType, quantity, keepInTill, false);
+        }
+
+        /** What sellUnits would come to right now, without dealing. */
+        public TradeReceipt quoteSale(Entity entity, ItemType itemType, int quantity, int keepInTill) {
+            return sellUnits(entity, itemType, quantity, keepInTill, true);
+        }
+
+        private TradeReceipt sellUnits(Entity entity, ItemType itemType, int quantity, int keepInTill, bool dryRun) {
+            TradeReceipt receipt = new TradeReceipt(itemType, true);
+            if (!isSoldInBulk(itemType)) {
+                return receipt;
+            }
+            int held = entity.getInventory().getNumItems(itemType);
+            int supply = getQuantityAvailable(itemType);
+            int[] tills = new int[stalls.Count];
+            for (int s = 0; s < stalls.Count; s++) {
+                tills[s] = stalls[s].getInventory().getNumItems(ItemType.COIN);
+            }
+            for (int unit = 0; unit < quantity && unit < held; unit++) {
+                int price = ItemCostCalculator.calculateCostAtSupply(itemType, this, supply + 1);
+                int buyer = -1;
+                for (int s = 0; s < stalls.Count; s++) {
+                    Stall stall = stalls[s];
+                    if (stall.getOwnerId() == null || stall.getOwnerId() == entity.getId()) {
+                        continue;
+                    }
+                    if (tills[s] - price < System.Math.Max(0, keepInTill)) {
+                        continue;
+                    }
+                    if (buyer < 0 || tills[s] > tills[buyer]) {
+                        buyer = s;
+                    }
+                }
+                if (buyer < 0) {
+                    break;
+                }
+                tills[buyer] -= price;
+                supply++;
+                receipt.add(stalls[buyer].getOwnerId(), price);
+                if (!dryRun) {
+                    Inventory till = stalls[buyer].getInventory();
+                    entity.getInventory().removeItem(itemType, 1);
+                    till.addItem(itemType, 1);
+                    till.removeItem(ItemType.COIN, price);
+                    entity.getInventory().addItem(ItemType.COIN, price);
+                    totalNumItemsSold++;
+                }
+            }
+            if (!dryRun && !receipt.isEmpty()) {
+                Log.debug("Entity " + entity.getName() + " sold " + receipt.getQuantity() + " " + itemType + " at the market for " + receipt.getCoins() + " coins");
+            }
+            return receipt;
+        }
+
+        /**
+        * Buys up to quantity of one good, a unit at a time, each at the price
+        * it costs once the units before it have left the stalls -- the same
+        * total as getBuyCost. Each unit comes from whichever stall (not the
+        * buyer's own) holds the most of it. Stops when the buyer cannot pay
+        * for the next unit or the stalls run out.
+        */
+        public TradeReceipt buyUnits(Entity entity, ItemType itemType, int quantity) {
+            return buyUnits(entity, itemType, quantity, false);
+        }
+
+        /** What buyUnits would come to right now, without dealing. */
+        public TradeReceipt quotePurchase(Entity entity, ItemType itemType, int quantity) {
+            return buyUnits(entity, itemType, quantity, true);
+        }
+
+        private TradeReceipt buyUnits(Entity entity, ItemType itemType, int quantity, bool dryRun) {
+            TradeReceipt receipt = new TradeReceipt(itemType, false);
+            if (itemType == ItemType.COIN) {
+                return receipt;
+            }
+            int purse = entity.getInventory().getNumItems(ItemType.COIN);
+            int supply = getQuantityAvailable(itemType);
+            int[] stock = new int[stalls.Count];
+            for (int s = 0; s < stalls.Count; s++) {
+                stock[s] = stalls[s].getInventory().getNumItems(itemType);
+            }
+            for (int unit = 0; unit < quantity; unit++) {
+                int price = ItemCostCalculator.calculateCostAtSupply(itemType, this, supply);
+                if (price > purse) {
+                    break;
+                }
+                int seller = -1;
+                for (int s = 0; s < stalls.Count; s++) {
+                    Stall stall = stalls[s];
+                    if (stall.getOwnerId() == null || stall.getOwnerId() == entity.getId() || stock[s] <= 0) {
+                        continue;
+                    }
+                    if (seller < 0 || stock[s] > stock[seller]) {
+                        seller = s;
+                    }
+                }
+                if (seller < 0) {
+                    break;
+                }
+                stock[seller]--;
+                supply--;
+                purse -= price;
+                receipt.add(stalls[seller].getOwnerId(), price);
+                if (!dryRun) {
+                    Inventory till = stalls[seller].getInventory();
+                    entity.getInventory().removeItem(ItemType.COIN, price);
+                    till.addItem(ItemType.COIN, price);
+                    till.removeItem(itemType, 1);
+                    entity.getInventory().addItem(itemType, 1);
+                    totalNumItemsBought++;
+                }
+            }
+            if (!dryRun && !receipt.isEmpty()) {
+                Log.debug("Entity " + entity.getName() + " bought " + receipt.getQuantity() + " " + itemType + " at the market for " + receipt.getCoins() + " coins");
+            }
+            return receipt;
+        }
+
+        /** How many of this good the stalls hold that this entity could buy (not counting its own stall). */
+        public int getQuantityForSaleTo(Entity entity, ItemType itemType) {
+            int quantity = 0;
+            foreach (Stall stall in stalls) {
+                if (stall.getOwnerId() == null || stall.getOwnerId() == entity.getId()) {
+                    continue;
+                }
+                quantity += stall.getInventory().getNumItems(itemType);
+            }
+            return quantity;
+        }
+
+        /**
+        * The coins this market's stalls can spend on goods while each keeps
+        * keepInTill: what a trader, who leaves every till its float, can
+        * hope to sell for here.
+        */
+        public int getSpendableCoins(int keepInTill) {
+            int spendable = 0;
+            foreach (Stall stall in stalls) {
+                if (stall.getOwnerId() == null) {
+                    continue;
+                }
+                spendable += System.Math.Max(0, stall.getInventory().getNumItems(ItemType.COIN) - System.Math.Max(0, keepInTill));
+            }
+            return spendable;
+        }
+
         /** Whether sellResources with these terms would sell this entity anything right now. */
         public bool canSellTo(Entity entity, int priceBonusPercent, int keepInTill) {
             return findStallsToSellTo(entity, priceBonusPercent, keepInTill).Count > 0;

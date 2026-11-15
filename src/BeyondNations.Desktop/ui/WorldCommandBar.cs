@@ -132,6 +132,11 @@ namespace beyondnations.desktop.ui {
                 commands.Add(new WorldCommand("Sell Resources", CommandGroup.Place, () =>
                     new SellResourcesAtMarketCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(Market.hasAnythingToSell(inventory), "You are carrying nothing the market buys."));
+
+                // the market panel (#182): pick a good, a quantity, and see the total before dealing
+                Settlement marketHere = entityRepository.getEntity(here) as Settlement;
+                commands.Add(new WorldCommand(MarketTradePanel.OpenLabel, CommandGroup.Place, () => MarketTradePanel.open(simulation))
+                    .setEnabled(marketHere != null && marketHere.getMarket().getNumStalls() > 0, "This settlement has no stalls yet."));
             }
 
             return CommandBarLayout.order(commands);
@@ -470,6 +475,12 @@ namespace beyondnations.desktop.ui {
                 if (LeaderPawnCommands.canAppointMerchant(player, pawn, nationRepository, entityRepository)) {
                     commands.Add(pawnCommand("Appoint ", pawn, " Merchant", () =>
                         new AppointMerchantCommand(nationRepository, entityRepository, eventProducer).execute(player, pawn)));
+                }
+                if (LeaderPawnCommands.canAppointTrader(player, pawn, nationRepository)) {
+                    commands.Add(pawnCommand("Appoint ", pawn, " Trader", () =>
+                        new AppointTraderCommand(nationRepository, eventProducer).execute(player, pawn))
+                        .setEnabled(player.getInventory().getNumItems(ItemType.COIN) >= Traders.TRADER_STAKE,
+                            "A trader needs a stake of " + Traders.TRADER_STAKE + " coins from you."));
                 }
             }
         }

@@ -166,9 +166,9 @@ const ui = {
     // every other screen has its own buttons and scrolls by dragging.
     document.body.dataset.screen = (value && value.screen) || "";
     // A world event's bottom sheet (WorldEventSheet), which pauses the world, and
-    // the caravan dispatch panel (Send Caravan) both
+    // the caravan dispatch panel (Send Caravan) and the market panel (Trade at Market)
     // reach the bottom of the screen: the controls step aside for them.
-    const sheet = !!(value && (value.worldEvent || value.caravanPanel));
+    const sheet = !!(value && (value.worldEvent || value.caravanPanel || value.marketPanel));
     if (sheet !== (document.body.dataset.sheet === "on")) {
       document.body.dataset.sheet = sheet ? "on" : "off";
       if (sheet) joystick?.reset();
@@ -199,7 +199,7 @@ const ui = {
     // the world, or scroll a panel (a tap on a slider still sets it).
     touchDrag() {
       if (!status || status.screen === "WORLD") {
-        return status && (status.chronicle === "Full" || status.worldEvent || status.caravanPanel) ? "scroll" : "look";
+        return status && (status.chronicle === "Full" || status.worldEvent || status.caravanPanel || status.marketPanel) ? "scroll" : "look";
       }
       return "scroll";
     },

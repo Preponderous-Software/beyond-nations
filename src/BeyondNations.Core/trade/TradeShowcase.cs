@@ -99,6 +99,25 @@ namespace beyondnations {
             return staged;
         }
 
+        /**
+        * The trade road, with the player walked into the trading neighbour's
+        * village and standing in its market (--stage-market): the market
+        * panel (#182) and the merchant's coins and wood are right there.
+        */
+        public static Staged stageMarket(Simulation simulation) {
+            Staged staged = stage(simulation);
+            Player player = simulation.getPlayer();
+            // at the edge of the square, on the side the player came from, facing in
+            Vector3 centre = staged.traderSettlement.getPosition();
+            Vector3 back = player.getPosition() - centre;
+            back = Vector3.Normalize(new Vector3(back.X, 0f, back.Z));
+            player.setPosition(new Vector3(centre.X + back.X * 18f, player.getPosition().Y, centre.Z + back.Z * 18f));
+            player.turn(System.MathF.Atan2(-back.X, -back.Z) - player.getYaw());
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, staged.traderSettlement);
+            player.getStatus().update("You are in the " + staged.traderSettlement.getDisplayName() + "'s market. Trade at Market to buy and sell.");
+            return staged;
+        }
+
         private static Settlement place(Simulation simulation, Nation nation, Vector3 site, int buildings) {
             Vector3 at = new Vector3(site.X, simulation.getPlayer().getPosition().Y, site.Z);
             Settlement settlement = new Settlement(at, nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());

@@ -123,6 +123,12 @@ namespace beyondnations {
                 case BehaviorType.SEEK_SETTLEMENT_SITE:
                     executeSeekSettlementSiteBehavior(pawn);
                     break;
+                case BehaviorType.BUY_TRADE_GOODS:
+                    executeBuyTradeGoodsBehavior(pawn);
+                    break;
+                case BehaviorType.TRAVEL_TO_MARKET:
+                    executeTravelToMarketBehavior(pawn);
+                    break;
                 default:
                     Log.error("Behavior type " + behaviorType + " is not implemented.");
                     break;
@@ -267,6 +273,11 @@ namespace beyondnations {
             Settlement settlement = (Settlement) entityRepository.getEntity(pawn.getCurrentSettlementId());
             
             Market market = settlement.getMarket();
+            Nation pawnNation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (Traders.isTrader(pawnNation, pawn.getId())) {
+                sellTraderLoad(pawn, settlement);
+                return;
+            }
             // selling surplus leaves every till its float, so the player still
             // finds a market that can pay; a hungry pawn sells to eat (#369)
             int keepInTill = pawn.needsFood() ? 0 : Stall.TILL_RESERVE;
@@ -292,6 +303,96 @@ namespace beyondnations {
                 }
             }
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        /**
+        * A trader sells its whole load at once, good by good (Market.sellUnits),
+        * leaving every till its float; a sale at another nation's market warms
+        * the two nations a little, as the player's does (Diplomacy.recordTrade).
+        */
+        private void sellTraderLoad(Pawn pawn, Settlement settlement) {
+            Market market = settlement.getMarket();
+            int keepInTill = pawn.needsFood() ? 0 : Stall.TILL_RESERVE;
+            int sold = 0;
+            foreach (ItemType itemType in MarketPricing.PricedItems) {
+                int quantity = pawn.getInventory().getNumItems(itemType);
+                if (quantity <= 0 || !Market.isSoldInBulk(itemType)) {
+                    continue;
+                }
+                TradeReceipt receipt = market.sellUnits(pawn, itemType, quantity, keepInTill);
+                sold += receipt.getQuantity();
+                foreach (EntityId buyerId in receipt.getCounterparties()) {
+                    Entity buyer = entityRepository.getEntity(buyerId);
+                    if (buyer != null) {
+                        increaseRelationshipWith(pawn, buyer);
+                    }
+                }
+            }
+            if (sold > 0) {
+                Diplomacy.recordTrade(nationRepository, pawn.getNationId(), settlement);
+                Log.debug("Trader " + pawn.getName() + " sold " + sold + " goods at " + settlement.getDisplayName());
+            }
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        /**
+        * A trader (or a serf taking up trade, #167) buys the load its best
+        * run from this market calls for (Traders.planRun). A serf becomes a
+        * trader with its first load.
+        */
+        private void executeBuyTradeGoodsBehavior(Pawn pawn) {
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+            Settlement here = pawn.getCurrentSettlementId() == null ? null : entityRepository.getEntity(pawn.getCurrentSettlementId()) as Settlement;
+            Nation nation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (here == null || nation == null) {
+                return;
+            }
+            NationRole role = nation.getRole(pawn.getId());
+            if (role == NationRole.SERF) {
+                if (!nation.getId().Equals(here.getNationId()) || !Traders.hasRoomForTrader(nation)) {
+                    return;
+                }
+            }
+            else if (role != NationRole.TRADER) {
+                return;
+            }
+            Traders.TradeRun run = Traders.planRun(pawn, here, Traders.getMarkets(entityRepository, nationRepository, here, pawn.getNationId()));
+            if (run == null) {
+                return;
+            }
+            if (role == NationRole.SERF) {
+                nation.setRole(pawn.getId(), NationRole.TRADER);
+                Log.info("Pawn " + pawn.getName() + " took up trade in " + here.getDisplayName() + ".");
+            }
+            TradeReceipt receipt = here.getMarket().buyUnits(pawn, run.good, run.quantity);
+            foreach (EntityId sellerId in receipt.getCounterparties()) {
+                Entity seller = entityRepository.getEntity(sellerId);
+                if (seller != null) {
+                    increaseRelationshipWith(pawn, seller);
+                }
+            }
+        }
+
+        /** A trader on the road walks to whichever market pays most for its load, and goes in. */
+        private void executeTravelToMarketBehavior(Pawn pawn) {
+            if (pawn.isCurrentlyInSettlement()) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            Settlement destination = Traders.findDestinationOnTheRoad(entityRepository, nationRepository, pawn);
+            if (destination == null) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            if (pawn.getTargetEntity() != destination) {
+                pawn.setTargetEntity(destination);
+            }
+            if (pawn.isAtTargetEntity(20)) {
+                SettlementLife.admit(pawn, destination);
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            pawn.moveTowardsTargetEntity();
         }
 
         private void executeWanderBehavior(Pawn pawn) {
@@ -886,6 +987,16 @@ namespace beyondnations {
         }
 
         // helpers -----------------------------------------------------------------------------------------------
+
+        /** A trade with a stall's keeper, pawn or player, warms the two by one. */
+        private void increaseRelationshipWith(Pawn pawn, Entity other) {
+            if (other is Pawn) {
+                increaseRelationship(pawn, (Pawn) other, 1);
+            }
+            else if (other is Player) {
+                increaseRelationship(pawn, (Player) other, 1);
+            }
+        }
 
         private void increaseRelationship(Pawn pawn, Pawn otherPawn, int amount) {
             pawn.increaseRelationship(otherPawn, amount);

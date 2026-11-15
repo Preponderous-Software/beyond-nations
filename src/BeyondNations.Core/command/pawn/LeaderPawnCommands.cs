@@ -29,6 +29,21 @@ namespace beyondnations {
             return home != null && home.getMarket().getNumStallsForSale() > 0;
         }
 
+        /**
+        * Whether the leader could make this serf a trader (#167): the pawn
+        * has a home, and the nation has fewer traders than settlements. The
+        * stake (Traders.TRADER_STAKE) is checked when the command runs, so
+        * the button can say what is missing.
+        */
+        public static bool canAppointTrader(Player player, Pawn pawn, NationRepository nationRepository) {
+            if (!playerLeads(player, pawn, nationRepository)) {
+                return false;
+            }
+            Nation nation = nationRepository.getNation(player.getNationId());
+            return nation.getRole(pawn.getId()) == NationRole.SERF && pawn.getHomeSettlementId() != null
+                && Traders.hasRoomForTrader(nation);
+        }
+
         public static Settlement getHome(Pawn pawn, EntityRepository entityRepository) {
             if (pawn.getHomeSettlementId() == null) {
                 return null;
@@ -126,6 +141,52 @@ namespace beyondnations {
             bool tierUp = PawnRelations.raise(pawn, player, RELATIONSHIP_GAIN, eventProducer);
             player.getStatus().update("You appointed " + pawn.getName() + " a merchant. " + PawnRelations.describe(pawn, player)
                 + ": \"A stall of my own? I won't let you down!\"" + PawnRelations.tierUpSuffix(tierUp, pawn, player));
+        }
+    }
+
+    /**
+    * A leader makes a member serf a trader (#167, Traders), handing it the
+    * stake it buys its first load with. The trader keeps no stall: it buys
+    * where goods are cheap and carries them to whichever market in reach
+    * pays more. A nation keeps one trader for each settlement it holds.
+    */
+    public class AppointTraderCommand {
+        public const int RELATIONSHIP_GAIN = 4;
+
+        private readonly NationRepository nationRepository;
+        private readonly EventProducer eventProducer;
+
+        public AppointTraderCommand(NationRepository nationRepository, EventProducer eventProducer) {
+            this.nationRepository = nationRepository;
+            this.eventProducer = eventProducer;
+        }
+
+        public bool execute(Player player, Pawn pawn) {
+            if (!LeaderPawnCommands.playerLeads(player, pawn, nationRepository)) {
+                player.getStatus().update("Only the leader of " + pawn.getName() + "'s nation can appoint it.");
+                return false;
+            }
+            Nation nation = nationRepository.getNation(player.getNationId());
+            if (nation.getRole(pawn.getId()) != NationRole.SERF) {
+                player.getStatus().update(pawn.getName() + " is already a " + nation.getRole(pawn.getId()).ToString().ToLower() + ".");
+                return false;
+            }
+            if (!Traders.hasRoomForTrader(nation)) {
+                player.getStatus().update(nation.getName() + " already has a trader for each of its settlements.");
+                return false;
+            }
+            if (player.getInventory().getNumItems(ItemType.COIN) < Traders.TRADER_STAKE) {
+                player.getStatus().update("A trader needs a stake of " + Traders.TRADER_STAKE + " coins to buy a first load.");
+                return false;
+            }
+            player.getInventory().removeItem(ItemType.COIN, Traders.TRADER_STAKE);
+            pawn.getInventory().addItem(ItemType.COIN, Traders.TRADER_STAKE);
+            nation.setRole(pawn.getId(), NationRole.TRADER);
+            bool tierUp = PawnRelations.raise(pawn, player, RELATIONSHIP_GAIN, eventProducer);
+            player.getStatus().update("You made " + pawn.getName() + " a trader, with a stake of " + Traders.TRADER_STAKE + " coins. "
+                + PawnRelations.describe(pawn, player) + ": \"Buy low, sell high. I'll be on the road.\""
+                + PawnRelations.tierUpSuffix(tierUp, pawn, player));
+            return true;
         }
     }
 }
