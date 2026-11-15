@@ -28,23 +28,23 @@ Some late content is not an objective but should come up in a normal session of 
 | `caravan` | the player has a caravan of their own on the road | 30 min |
 | `succession` | the rule has passed to an heir (old age, hunger or abdication) | 60 min |
 
-Measured on seeds 1 to 5 (one hour each): the Storehouse at 17m 13s to 17m 50s (as the Village era comes), the first caravan between a second and four and a half minutes later, and a succession on every seed. The first is of hunger at 13m 01s to 16m 06s (the bot gives its food away recruiting); that heir then grows old, is warned at 46m 10s and dies of old age at 56m 10s on seeds 2, 3 and 4. The binding objectives are unchanged to within a few seconds. Among the advisory ambitions, "Grow your nation to 16" is not reached within the hour on seed 1 (the bot now stops recruiting to put up a storehouse and send caravans, and a new ruler starts with half the old one's standing); neither it nor the others gate the build, and the objective budget is unchanged.
+Measured on seeds 1 to 5 (one hour each), with the Village era at day 2 (#455): the Storehouse at 7m 14s to 7m 49s (as the Village era comes), the first caravan within a minute after it on four seeds (18m 47s on seed 1), and a succession on every seed: of old age at 40m 00s on seeds 4 and 5, of hunger at 32m 33s to 38m 47s on seeds 1 to 3 (the bot gives its food away recruiting). The binding objectives are unchanged to within a few seconds, and the objective budget is unchanged.
 
 ![When the Storehouse, the first caravan and the first succession were reached on seeds 1 to 5](./screenshots/reachable-late-game/pacing-milestones.png)
 
-The chart is drawn from `pacing-report.json` by `python3 tools/pacing-milestones-chart.py pacing-out/pacing-report.json OUT.png src/BeyondNations.Desktop/assets/fonts/DejaVuSans.ttf` (ImageMagick). The screenshots below are the bot's own run on seed 2, saved with `--save-at` and loaded in the game with `--continue` (and `--start-screen laws`). They show:
+The chart is drawn from `pacing-report.json` by `python3 tools/pacing-milestones-chart.py pacing-out/pacing-report.json OUT.png src/BeyondNations.Desktop/assets/fonts/DejaVuSans.ttf` (ImageMagick). The screenshots below are the bot's own run on seed 4, saved with `--save-at` and loaded in the game with `--continue` (and `--start-screen laws`). They show:
 
-- the bot on day 3 of the Village era, just after it sent a caravan of 40 wood;
-- day 5, when the chronicle says the ruler, the heir who took over from a starved founder, is growing old (a drought world event is waiting for an answer, as the bot never answers one);
+- the bot on day 2 of the Village era, just after it sent a caravan of 14 wood (the caravan is on the road ahead);
+- day 4, when the chronicle says the founder is growing old;
 - the Laws tab naming the heir, with when old age comes and *Abdicate*, on desktop and phone;
-- the succession screen when that ruler dies of old age, 56 minutes in.
+- the succession screen when the founder dies of old age, 40 minutes in.
 
 A run consumes the succession notice five seconds after it appears, as a player pressing *Continue* would, so a world saved later does not open on an old succession.
 
 | | |
 |---|---|
-| ![Day 3, Village era: the chronicle says the bot sent a caravan of 40 wood](./screenshots/reachable-late-game/caravan-sent.png) | ![Day 5: the chronicle says the ruler is growing old and names the heir](./screenshots/reachable-late-game/growing-old.png) |
-| ![The Laws tab names the heir, says when old age comes, and offers Abdicate](./screenshots/reachable-late-game/laws-heir-abdicate.png) | ![The succession screen at 56 minutes: the second ruler died of old age after a reign of 4 days](./screenshots/reachable-late-game/succession-old-age.png) |
+| ![Day 2, Village era: the bot's caravan of 14 wood on the road, and the chronicle line that sent it](./screenshots/reachable-late-game/caravan-sent.png) | ![Day 4: the chronicle says the founder is growing old](./screenshots/reachable-late-game/growing-old.png) |
+| ![The Laws tab names the heir, says when old age comes, and offers Abdicate](./screenshots/reachable-late-game/laws-heir-abdicate.png) | ![The succession screen at 40 minutes: the founder died of old age after a reign of 4 days](./screenshots/reachable-late-game/succession-old-age.png) |
 
 <img src="./screenshots/reachable-late-game/laws-heir-abdicate-phone.png" alt="The Laws tab at phone size" width="270">
 
