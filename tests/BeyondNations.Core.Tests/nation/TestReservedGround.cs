@@ -88,44 +88,53 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testNoPawnFoundsNearTheSpawn_InTheOpening_SoThePlayerCanFoundThere() {
+        public void testNoPawnFoundsNearAPlayerAboutToFound_SoTheirFirstFGoesThrough() {
             Simulation simulation = newWorld(102);
-            // three game minutes: the #433 report saw nations crowd the spawn within the first day
-            run(simulation, 180 * 50);
-            int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
-            foreach (Entity settlement in simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT)) {
-                Assert.True(Territory.groundDistance(settlement.getPosition(), ReservedGround.Spawn) > minDistance + ReservedGround.HOMESTEAD_RADIUS,
-                    "a settlement was founded " + Territory.groundDistance(settlement.getPosition(), ReservedGround.Spawn) + " from the spawn");
-            }
-            Assert.NotEmpty(simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT));
-
-            // anywhere in the homestead, the player's first F goes through
             Player player = simulation.getPlayer();
+            simulation.fixedUpdate(Step);
+            // a player who has created a nation but not yet founded, idle at the spawn
             new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                 simulation.getRandom(), simulation.getNationNameGenerator()).execute(player);
+            Assert.True(simulation.getReservedGround().isFounding());
+            // three game minutes: the #433 report saw nations crowd the open ground within the first day
+            run(simulation, 180 * 50);
+            int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
+            Assert.NotEmpty(simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT));
+            foreach (Entity settlement in simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT)) {
+                Assert.True(Territory.groundDistance(settlement.getPosition(), player.getPosition()) > minDistance + ReservedGround.FOUNDER_RADIUS,
+                    "a settlement was founded " + Territory.groundDistance(settlement.getPosition(), player.getPosition()) + " from the player");
+            }
+
+            // anywhere within the founder's radius, the player's first F goes through
             player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
-            player.setPosition(new Vector3(ReservedGround.HOMESTEAD_RADIUS * 0.7f, 1f, -ReservedGround.HOMESTEAD_RADIUS * 0.7f));
+            player.setPosition(player.getPosition() + new Vector3(ReservedGround.FOUNDER_RADIUS * 0.7f, 0, -ReservedGround.FOUNDER_RADIUS * 0.7f));
             new FoundSettlementCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                 simulation.getEntityRepository(), simulation.getGameConfig(), simulation.getRandom()).execute(player);
             Assert.StartsWith("Settlement founded.", player.getStatus().getStatus());
             Assert.False(simulation.getReservedGround().isOpening());
+            Assert.False(simulation.getReservedGround().isFounding());
         }
 
         [Fact]
-        public void testPawnFounding_KeepsClearOfTheHomestead() {
+        public void testPawnFounding_KeepsClearOfAPlayerAboutToFound_AndOnlyThen() {
             Simulation simulation = newWorld(5);
             simulation.fixedUpdate(Step);
             ReservedGround reserved = simulation.getReservedGround();
             float minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
-            Assert.False(reserved.allowsPawnFounding(new Vector3(minDistance, 1, 0), minDistance));
-            Assert.True(reserved.allowsPawnFounding(new Vector3(minDistance + ReservedGround.HOMESTEAD_RADIUS + 1, 1, 0), minDistance));
+            Vector3 near = new Vector3(minDistance, 1, 0);
+            // a player with no nation holds no ground: the world opens as it always has
+            Assert.False(reserved.isFounding());
+            Assert.True(reserved.allowsPawnFounding(near, minDistance));
+            Assert.Equal(new Vector3(10, 1, 0), PawnBehaviorExecutor.findSettlementSite(new Vector3(10, 1, 0), new List<Entity>(), minDistance, reserved));
 
-            // a settler standing at the spawn walks out past it
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(),
+                simulation.getRandom(), simulation.getNationNameGenerator()).execute(simulation.getPlayer());
+            Assert.False(reserved.allowsPawnFounding(near, minDistance));
+            Assert.True(reserved.allowsPawnFounding(new Vector3(minDistance + ReservedGround.FOUNDER_RADIUS + 1, 1, 0), minDistance));
+            // a settler standing by the player walks out past it
             Vector3? site = PawnBehaviorExecutor.findSettlementSite(new Vector3(10, 1, 0), new List<Entity>(), minDistance, reserved);
             Assert.NotNull(site);
             Assert.True(reserved.allowsPawnFounding(site.Value, minDistance));
-            // with nothing reserved it would have founded where it stood
-            Assert.Equal(new Vector3(10, 1, 0), PawnBehaviorExecutor.findSettlementSite(new Vector3(10, 1, 0), new List<Entity>(), minDistance));
         }
 
         [Fact]
@@ -136,6 +145,8 @@ namespace beyondnationstests {
             ReservedGround reserved = simulation.getReservedGround();
             int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
 
+            // past the opening, so only the held site is reserved
+            advanceClock(simulation, ReservedGround.OPENING_SECONDS * 50);
             // the player leads a nation far from the spawn, beside a pawn nation's camp
             world.settlement(world.pawnNation("Aland", 1), 5000, 5000);
             world.playerNation(1);

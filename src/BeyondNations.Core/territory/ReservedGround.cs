@@ -11,10 +11,15 @@ namespace beyondnations {
     *     the spawn within about 40 game seconds, so a player who read the
     *     tips for half a minute met "Walk up to a tree" with no tree in
     *     sight (#351).
-    *   - The homestead: during the opening, no pawn founds a settlement close
-    *     enough to the spawn to stop the player founding anywhere within
-    *     HOMESTEAD_RADIUS of it. Settlers otherwise filled the open ground
-    *     around the player in the first in-game day (#433).
+    *   - The would-be founder's ground: while the player leads a nation
+    *     that has no settlement yet, in the opening, no pawn founds a
+    *     settlement close enough to stop the player founding anywhere within
+    *     FOUNDER_RADIUS of where they stand. Settlers otherwise filled the
+    *     open ground around the player in the first in-game day (#433). It
+    *     follows the player and starts only once they lead a nation: a fixed
+    *     ring around the spawn, clear from the first tick, set the first
+    *     nations on its rim, slowed the world's spread (fewer chunks, so
+    *     fewer pawns) and left it short of shelter in its first winter.
     *   - The pointed-out site: when a refused founding names open ground
     *     (FoundSettlementCommand), no pawn founds close enough to it to shut
     *     it for HELD_SITE_SECONDS, the time it takes to walk there. Each
@@ -24,12 +29,12 @@ namespace beyondnations {
     * The opening lasts OPENING_SECONDS of game time from the start of the
     * world, or until the player has a home settlement. Everything here is
     * derived from the tick count and the player, apart from the held site,
-    * which lasts seconds and is not saved.
+    * which lasts two minutes and is not saved.
     */
     public class ReservedGround {
         public const int OPENING_SECONDS = 600;
         public const float GROVE_RADIUS = 60f;
-        public const float HOMESTEAD_RADIUS = 80f;
+        public const float FOUNDER_RADIUS = 100f;
         public const int HELD_SITE_SECONDS = 120;
         /** How near the pointed-out site the player can stand and still find it open. */
         public const float HELD_SITE_RADIUS = 25f;
@@ -64,6 +69,11 @@ namespace beyondnations {
                 && tickCounter.getTotalTicks() < OPENING_SECONDS * tickCounter.getTicksPerSecond();
         }
 
+        /** Whether the player is about to found: in the opening, in a nation, with no home settlement yet. */
+        public bool isFounding() {
+            return isOpening() && player.getNationId() != null;
+        }
+
         /** The site being held for the player, or null. */
         public Vector3? getHeldSite() {
             return heldSite;
@@ -85,8 +95,8 @@ namespace beyondnations {
         */
         public float getRoom(Vector3 position) {
             float room = float.MaxValue;
-            if (isOpening()) {
-                room = System.MathF.Min(room, Territory.groundDistance(position, Spawn) - HOMESTEAD_RADIUS);
+            if (isFounding()) {
+                room = System.MathF.Min(room, Territory.groundDistance(position, player.getPosition()) - FOUNDER_RADIUS);
             }
             if (heldSite != null) {
                 room = System.MathF.Min(room, Territory.groundDistance(position, heldSite.Value) - HELD_SITE_RADIUS);

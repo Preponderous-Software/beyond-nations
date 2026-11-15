@@ -52,7 +52,7 @@ namespace beyondnations {
         private WorldEvents worldEvents;
         private TradeCaravans tradeCaravans;
         private EraTracker eraTracker;
-        // the spawn grove, the homestead and the pointed-out site, kept for the player in the opening
+        // the spawn grove, the would-be founder's ground and the pointed-out site, kept for the player in the opening
         private ReservedGround reservedGround;
 
         private int numPawnDeaths = 0;
