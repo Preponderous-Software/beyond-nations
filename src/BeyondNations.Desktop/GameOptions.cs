@@ -219,8 +219,8 @@ namespace beyondnations.desktop {
         * over the two closest settlements of different nations, the UI is
         * hidden, the world runs a fixed number of ticks a frame, every frame
         * is written there as a PNG, and the run exits after FlyoverFrames. Null,
-        * the default, plays normally. tools/readme-flyover.sh turns the
-        * frames into the README's GIF.
+        * the default, plays normally. The flyover shot in tools/capture/media.json
+        * turns the frames into the README's GIF.
         */
         public string FlyoverOut = null;
         public int FlyoverFrames = 120;

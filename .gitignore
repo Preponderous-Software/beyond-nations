@@ -52,7 +52,8 @@ Thumbs.db
 
 # The pacing harness report (docs/PACING.md)
 pacing-out/
-readme-flyover-out/
+# darkroom takes and state (tools/capture/media.json)
+.darkroom/
 
 # Python bytecode (tools/)
 __pycache__/

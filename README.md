@@ -2,11 +2,11 @@
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
 <p>
-<img src="./.github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over a crimson-roofed town of one nation, its houses, fields, market stalls and residents at the well, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town" width="480">
-<img src="./.github/media/flyover.png" alt="The town of Hamletburg from above: crimson-roofed houses round a well with residents beside it, fields and stalls inside a fence, and beyond it border posts and the next nation's town on the horizon" width="480">
+<img src="./.github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over one nation's village, its houses, market stalls, round and tiered trees in autumn colours and the well, then across the line where two nations' rings of border posts meet, to a neighbouring nation's village" width="480">
+<a href="./.github/media/flyover.mp4"><img src="./.github/media/flyover-poster.jpg" alt="The Village of Easternburg from above: houses and market stalls round a well, autumn-coloured trees on trunks casting long shadows, and rings of border posts where its land meets two neighbours'" width="480"></a>
 </p>
 
-*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer: twenty nations, thirty-two settlements, nobody playing. Made with `tools/readme-flyover.sh`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); the still is one of its frames at full size.*
+*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing. It is the `flyover` shot in `tools/capture/media.json`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); the still is one of its frames at full size and links to the [MP4](./.github/media/flyover.mp4). How to reshoot it is in [CONTRIBUTING.md](./docs/CONTRIBUTING.md#refreshing-the-readmes-screenshots-and-gifs).*
 
 ## Play in your browser
 
@@ -120,7 +120,7 @@ The following controls are available in the game:
 A number of systems combine to create the gameplay experience. Some are already implemented and some are still planned; the [Systems Document](./docs/SYSTEMS.md) lists each one with its current status.
 
 ### Settlements that grow
-![A town of Southernland: a plaza with a well and banner, market stalls with nation-coloured awnings and crates of apples, houses, a storehouse, farms, a palisade, and residents milling about](./.github/media/settlement-town.png)
+![The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about; round the edges the HUD -- the era bar, the first objective, the chronicle, the first tip, the inventory, the command bar, the Season box and the player box](./.github/media/settlement-town.jpg)
 
 A settlement is drawn as a place: a plaza with a well and the nation's banner, its market stalls in a ring around it (an owned stall has a nation-coloured awning and a crate of whatever it sells; a stall for sale has a pale awning and a yellow sign), and its buildings in a wider ring beyond. Pawns inside a settlement stay visible and mill about the plaza, so a busy town looks busy.
 
@@ -133,7 +133,11 @@ Buildings cost wood **and stone**, so quarrying matters. Press `K` inside one of
 | Farm | 25 wood, 10 stone | One apple every 500 ticks, stocked into a merchant's stall (double in autumn, none in winter) |
 | Workshop | 15 wood, 10 stone | Lets anyone inside craft planks and bricks |
 
-Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`).
+Two buildings make a camp a **Village**; five make it a **Town**, which is ringed by a palisade. The tier is on the settlement's nametag. `--stage-settlement` opens the game with a town already standing ahead of the player (the screenshot above is `--seed 42 --start-screen world --stage-settlement`)
+
+A nation can hold more than one settlement, as many as its era allows (one in the Camp era, three in the Village, six in the Town, any number in the Kingdom). The first costs 50 wood; each one after it costs 25 more wood and 10 stone for every settlement already held. *Found Settlement* comes back on the command bar whenever the era allows another, and the nation screen lists your settlements, where each lies and which is home. `--stage-outpost` opens leading a Village-era nation that has just founded its second (the screenshot is `--seed 42 --start-screen nations --stage-outpost`).
+
+![The nations screen of Southernland: 9 members and 2 settlements, 2 of the 3 the era allows -- the Town of Southernland, home, and a new Camp of Southernland, each with its residents and where it lies -- and what a third costs](./.github/media/two-settlements.jpg).
 
 ### Eras, victory and the end of a run
 ![The end-of-run screen after a Prosperity victory: the outcome, the era reached, days survived, when each era came, members, settlements and funds, then The History of Southernland, with the era milestones in gold, and Continue playing, New world and Main menu buttons](./.github/media/end-of-run-victory.png)
@@ -187,24 +191,26 @@ The nations screen's **Laws** tab is your court. On a short window it says how m
 | Open borders | Immigrants twice as often, 2 coins of tolls per settlement, trade warms every nation you are not at war with | Raiders carry off double; thieves take coins and wood every 30 seconds |
 | Rationing | Members' hunger drains a quarter slower | Morale: a point of loyalty every 20 seconds |
 
-Loyalty is how each member feels about you. Push someone to -15 and they desert, taking their stall with them.
+Loyalty is how each member feels about you. Push someone to -15 and they desert, taking their stall with them. The **Members** tab lists every member of your nation with their loyalty, their traits and the settlement they live in, and marks your heir (`--start-screen members`; the screenshot is `--seed 42 --stage-diplomacy`).
+
+![The Members tab: the people of Blackburg, three members, the heir Ella Wood marked in gold, each member's loyalty and traits, and how the heir is chosen](./.github/media/members-tab.jpg)
 
 ![The succession screen: the founder died of hunger, you go on as the heir, and the line of rulers so far, with Continue](./.github/media/succession-screen.png)
 
 **Heirs.** Dying in a nation is not the end. A member takes your place -- family first (someone who shares your surname), then the most loyal -- and you go on as them, with the nation, its settlements and its friends and enemies as they were; your people's loyalty starts at half what it was. With no one left to take your place, your line ends and so does the run: *New World*, *Load* (the last save, from before the death; an ended run is never saved) or *Main Menu*. A wanderer with no nation still rises again as before. `--stage-succession` opens the diplomacy stage with the player about to starve (the screenshot above is `--seed 42 --start-screen world --stage-succession`; `--start-screen laws` opens on the Laws tab).
 
 ### Seasons and regions
-![The same spot on seed 42 in spring, summer, autumn and winter: fresh green, then grey-green highland grass, golden autumn ground with turning leaves, and snow with frosted trees; the Season box above the player box says which season it is, how long until winter and what the land is good for](./.github/media/seasons.png)
+![Animation, one frame a second: the same spot on seed 12 in spring, summer, autumn and winter -- fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; the Season box above the player box says which season it is, how long until winter and what the land is good for](./.github/media/seasons.gif)
 
 The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season, and the Season box (above the player box) shows the season, warns *Winter in 2 days*, shows how much food your nation's people carry for winter, and names the land you stand on. The day before winter the chronicle and a banner say whether your nation is ready; carry food home and *Feed Residents* lays it in for them. You eat what you carry on your own, without wasting a rich meal on a nearly full stomach, or press *Eat* to eat now.
 
-![Winter comes tomorrow: the banner, the chronicle and the Season box say what your nation carries](docs/screenshots/winter-warning-and-hunger/winter-warning.png)
+![The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 15 members are short of the food they want, the player's own hunger banner sits above it, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 42 of 60 for winter](./.github/media/winter-warning.jpg)
 
 <img src="./docs/screenshots/tree-model/forest-orbit.gif" alt="A slow circle round a stand of trees in a forest on seed 12: round broadleaf crowns, tiered crowns and tall oval crowns of different sizes on brown trunks, their lower leaves a darker green, casting shadows on the grass" width="480">
 
 Trees come in three shapes -- a round broadleaf crown, a tiered crown and a tall oval one -- and in different sizes, each a trunk with layered leaves whose lower layers are darker; a sapling is a thin stem with a small crown in the shape it will grow into. Which shape and size a tree takes follows from where it stands, so a world looks the same every time it is played or loaded. (The GIF is `--seed 12 --start-screen world --advance-ticks 50 --flyover-out DIR --flyover-orbit`, which circles the thickest stand of trees near the player.)
 
-The land itself differs. The world is made of **regions** in patches several chunks wide: **forest** (plenty of wood, little stone), **highlands** (rich in stone, poor in food), **plains** (good farming and game) and the scarce **moor**. Every region has some stone, so a settlement outside the highlands is short of it rather than stuck, but nations do differ in what they have plenty of and what they lack, which is what trade and diplomacy will be built on. `--season winter` (or `?season=winter` in the browser) opens the game on the first day of that season; the screenshot above is `--seed 42 --start-screen world --season NAME --time-of-day 0.45`.
+The land itself differs. The world is made of **regions** in patches several chunks wide: **forest** (plenty of wood, little stone), **highlands** (rich in stone, poor in food), **plains** (good farming and game) and the scarce **moor**. Every region has some stone, so a settlement outside the highlands is short of it rather than stuck, but nations do differ in what they have plenty of and what they lack, which is what trade and diplomacy will be built on. `--season winter` (or `?season=winter` in the browser) opens the game on the first day of that season; the seasons above are `--seed 12 --start-screen world --advance-ticks 50 --season NAME --time-of-day 0.45`.
 
 ### World events
 Runs diverge. About every ten to fifteen minutes of play something happens that needs a decision: a drought dries up your farms, a fever breaks out in a crowded settlement, wanderers ask to join, bandits camp outside a village and rob it every minute, a claimant to a rival nation's leadership comes looking for backing, a storehouse catches fire, the harvest comes in heavy, a lost traveller offers a map to a spot rich in stone, or a merchant offers tools for a fraction of their price. A sheet rises from the bottom of the screen with two or three choices and what each will cost and bring; the world waits while you decide, and a choice you cannot afford is shown greyed out with the reason. Tap or click a choice. What happened, and what you chose, goes into the chronicle.

@@ -1,0 +1,78 @@
+{
+  "description": "Beyond Nations' README visuals, shot with darkroom's command backend (https://github.com/Preponderous-Software/darkroom). Build first: dotnet build src/BeyondNations.Desktop -c Release. Then: darkroom shoot tools/capture/media.json. See docs/CONTRIBUTING.md.",
+  "out": "../../.github/media",
+  "vars": {
+    "game": "{manifest_dir}/../../src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop.dll"
+  },
+  "devices": {
+    "film": { "width": 960, "height": 540 },
+    "phone-portrait": { "width": 412, "height": 915 }
+  },
+  "defaults": {
+    "backend": "command",
+    "xvfb": true,
+    "timeout": 900,
+    "retries": 1,
+    "cwd": "{out_dir}",
+    "env": { "XDG_DATA_HOME": "{out_dir}/data" },
+    "glob": "screenshot_*.png"
+  },
+  "shots": [
+    {
+      "name": "flyover", "kind": "clip", "device": "film",
+      "comment": "Seed 12 fifty minutes in (150000 ticks), the camera gliding from one nation's town across the border to its neighbour's. About two minutes under llvmpipe.",
+      "argv": ["dotnet", "{game}", "--seed", "12", "--start-screen", "world", "--no-saves", "--no-usage-reporting",
+               "--width", "{width}", "--height", "{height}", "--advance-ticks", "150000",
+               "--flyover-out", "{out_dir}/frames", "--flyover-frames", "90"],
+      "glob": "frame-*.png",
+      "fps": 12,
+      "gif": { "fps": 12, "width": 480, "palette": "adaptive", "budget_mb": 4 },
+      "video": ["mp4"], "poster": 0.24,
+      "caption": "Seed 12, fifty minutes in: one nation's town, the border, the next nation's town.",
+      "alt": "A flyover of seed 12 fifty minutes in: over one nation's town, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town"
+    },
+    {
+      "name": "seasons", "kind": "clip", "device": "desktop", "repeat": 4,
+      "comment": "One run per season: {i} = 0..3 picks spring, summer, autumn, winter through the bash wrapper.",
+      "argv": ["bash", "-c", "s=(spring summer autumn winter); exec dotnet \"$0\" \"$@\" --season \"${s[$SEASON_I]}\"",
+               "{game}", "--seed", "12", "--start-screen", "world", "--advance-ticks", "50", "--no-saves", "--no-usage-reporting",
+               "--width", "{width}", "--height", "{height}", "--time-of-day", "0.45",
+               "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "env": { "XDG_DATA_HOME": "{out_dir}/data", "SEASON_I": "{i}" },
+      "fps": 1,
+      "gif": { "fps": 1, "width": 640, "palette": "octree" },
+      "caption": "The same spot on seed 12 in spring, summer, autumn and winter.",
+      "alt": "Animation, one frame a second: the same spot on seed 12 in spring, summer, autumn and winter, the ground and leaves changing colour and then snow; the Season box says which season it is"
+    },
+    {
+      "name": "settlement-town", "kind": "still", "device": "desktop",
+      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "world", "--stage-settlement", "--no-saves", "--no-usage-reporting",
+               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+      "caption": "A lived-in town and today's HUD (--stage-settlement).",
+      "alt": "A town: a plaza with a well and banner, market stalls with nation-coloured awnings, houses, farms and trees, residents milling about, and the HUD round the edges"
+    },
+    {
+      "name": "two-settlements", "kind": "still", "device": "desktop",
+      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "nations", "--stage-outpost", "--no-saves", "--no-usage-reporting",
+               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "caption": "The nation screen of a nation with two settlements (--stage-outpost).",
+      "alt": "The Nations screen listing the player's nation with two settlements, which is home, and what a third would cost"
+    },
+    {
+      "name": "members-tab", "kind": "still", "device": "desktop",
+      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "members", "--stage-diplomacy", "--no-saves", "--no-usage-reporting",
+               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "caption": "The Members tab: every member, their loyalty, and the heir.",
+      "alt": "The Members tab of the nations screen: a row per member with their loyalty, the heir marked"
+    },
+    {
+      "name": "winter-warning", "kind": "still", "device": "desktop",
+      "comment": "Opens on the first day of autumn and runs 22000 ticks (from time 0.3 the next day starts at 21000) to the morning of the last day of autumn, when the warning fires.",
+      "argv": ["dotnet", "{game}", "--seed", "42", "--start-screen", "world", "--stage-settlement", "--season", "autumn", "--advance-ticks", "22000",
+               "--no-saves", "--no-usage-reporting",
+               "--width", "{width}", "--height", "{height}", "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+      "caption": "The day before winter: the banner, the chronicle and the Season box say what the nation carries.",
+      "alt": "The last day of autumn in a town: a banner saying winter comes tomorrow and how many members are short of food, a gold chronicle line, and the Season box's food count"
+    }
+  ]
+}

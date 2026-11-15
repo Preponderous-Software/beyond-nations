@@ -47,7 +47,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--stage-victory`, `--stage-defeat` | open on the end-of-run screen of a staged run: a Prosperity victory in the Kingdom era, or a collapse |
 | `--playtest-out DIR` | write `state.json` (what is on screen, about twice a second) and `events.jsonl` (what happened) to DIR, for playtesting agents (see [PLAYTESTING.md](./PLAYTESTING.md)) |
 | `--advance-ticks N` | run the world N ticks before the first frame, as fast as it goes, so it opens mid-game |
-| `--flyover-out DIR` | hide the UI, glide the camera from one nation's town across the border to a neighbour's, write every frame to DIR as a PNG and exit after `--flyover-frames N` (default 120); `tools/readme-flyover.sh` makes the README's GIF with it |
+| `--flyover-out DIR` | hide the UI, glide the camera from one nation's town across the border to a neighbour's, write every frame to DIR as a PNG and exit after `--flyover-frames N` (default 120); the README's flyover is the `flyover` shot in `tools/capture/media.json` |
 | `--flyover-orbit` | with `--flyover-out`, circle the thickest stand of trees near the player once instead (give `--advance-ticks` so the land round the player is generated); the README's tree GIF is `--seed 12 --advance-ticks 50` |
 | `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
 | `--season NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` (default spring) |
@@ -127,6 +127,20 @@ grep -rn --include='*.cs' -E '\[(DllImport|LibraryImport)|NativeLibrary\.|Strata
 ```
 
 See the [CI/CD Documentation](./CI-CD.md) for what the pipeline does with them.
+
+### Refreshing the README's screenshots and GIFs
+
+The README's flyover, seasons, town, nation, members and winter images are a shot list, `tools/capture/media.json`, for [darkroom](https://github.com/Preponderous-Software/darkroom). Each shot runs the real game with the switches above on its own virtual display and turns what it writes into a JPEG, or for the flyover and seasons a GIF (the flyover also an MP4 and a poster still), each fitted under a size budget. Linux only (it needs `Xvfb`, `apt install xvfb`); about five minutes in all, most of it the flyover's 150,000 ticks.
+
+```bash
+pip install "darkroom[video] @ git+https://github.com/Preponderous-Software/darkroom"
+dotnet build src/BeyondNations.Desktop -c Release
+darkroom shoot tools/capture/media.json                        # everything that is out of date
+darkroom shoot tools/capture/media.json --only flyover --force # one shot again
+darkroom gallery tools/capture/media.json --relative-to README.md  # markdown for the outputs
+```
+
+The images land in `.github/media/` under the shot's name, replacing the old ones. darkroom keeps each take's raw frames in `tools/capture/.darkroom/` (ignored by git), so `darkroom shoot tools/capture/media.json --encode --only flyover` re-encodes the last take without running the game again. darkroom starts Xvfb with Mesa's software renderer (`LIBGL_ALWAYS_SOFTWARE=1`, `GALLIUM_DRIVER=llvmpipe`) for both the display and the game, which is what keeps it working on machines whose GPU driver crashes Xvfb, such as NVIDIA under WSL.
 
 ## Issues
 
