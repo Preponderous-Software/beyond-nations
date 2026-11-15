@@ -136,6 +136,7 @@ namespace beyondnations.desktop {
         * SettlementShowcase.
         */
         public bool StageSettlement = false;
+        public bool StageOutpost = false;
 
         /**
         * Replays the feedback effects every couple of seconds -- chips,
@@ -246,6 +247,7 @@ namespace beyondnations.desktop {
                     case "--no-labels":        options.NoLabels = true; break;
                     case "--debug-mode":       options.DebugMode = true; break;
                     case "--stage-settlement": options.StageSettlement = true; break;
+                    case "--stage-outpost":    options.StageOutpost = true; break;
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--stage-feel":       options.StageFeel = true; break;
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
@@ -413,6 +415,7 @@ namespace beyondnations.desktop {
                 "  --continue              open in the most recently saved world (Continue on the main menu)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
+                "  --stage-outpost         open leading a Village-era nation with two settlements",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",

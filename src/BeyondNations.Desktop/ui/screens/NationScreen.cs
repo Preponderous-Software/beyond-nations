@@ -119,10 +119,45 @@ namespace beyondnations.desktop.ui.screens {
             else {
                 lines.Add("Only the leader of " + own.getName() + " can speak for it.");
             }
+            lines.AddRange(describeOwnSettlements(simulation, own, leads));
             foreach (Settlement settlement in simulation.getDiplomacy().getSettlements(own)) {
                 if (settlement.getSiegeText() != null) {
                     lines.Add("Your " + SettlementTiers.getDisplayName(settlement.getTier()).ToLowerInvariant() + ": " + settlement.getSiegeText() + "!");
                 }
+            }
+            return lines;
+        }
+
+        /** At most this many of the nation's settlements are listed by name; the rest are counted. */
+        public const int ListedSettlements = 6;
+
+        /**
+        * Which settlements the nation holds, where each lies from the player
+        * and which is home (#145), and, for a leader, what founding another
+        * costs or why it cannot be founded yet.
+        */
+        public static List<string> describeOwnSettlements(Simulation simulation, Nation own, bool leads) {
+            List<string> lines = new List<string>();
+            Player player = simulation.getPlayer();
+            List<Settlement> settlements = simulation.getDiplomacy().getSettlements(own);
+            int limit = own.getSettlementLimit();
+            string heading = "Settlements: " + settlements.Count + (limit > 0 ? " of the " + limit + " this era allows" : "");
+            lines.Add(heading + (settlements.Count == 0 ? "." : ":"));
+            for (int i = 0; i < settlements.Count && i < ListedSettlements; i++) {
+                Settlement settlement = settlements[i];
+                int distance = (int) Territory.groundDistance(player.getPosition(), settlement.getPosition());
+                string where = distance < 1 ? "here" : distance + " paces " + Compass.describe(player.getPosition(), settlement.getPosition());
+                bool home = settlement.getId().Equals(player.getHomeSettlementId());
+                lines.Add("  " + settlement.getDisplayName() + ": " + settlement.getResidentCount() + "/" + settlement.getResidentCap()
+                    + " residents, " + where + (home ? " (your home)" : "") + ".");
+            }
+            if (settlements.Count > ListedSettlements) {
+                lines.Add("  and " + (settlements.Count - ListedSettlements) + " more.");
+            }
+            if (leads && settlements.Count > 0) {
+                lines.Add(own.canFoundSettlement()
+                    ? ObjectiveKeyNames.resolve("Another settlement costs " + FoundingCost.describe(own) + ": far from other settlements, press {FoundSettlement}.")
+                    : "Reach the next era to found another settlement.");
             }
             return lines;
         }

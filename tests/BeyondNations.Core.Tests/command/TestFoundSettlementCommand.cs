@@ -212,5 +212,86 @@ namespace beyondnationstests {
             Assert.Equal(player.getId(), founded.getFounderId());
             Assert.Equal("Settlement founded.", player.getStatus().getStatus());
         }
+            // --- further settlements (#145) ---
+
+        [Fact]
+        public void testFoundingCost_RisesWithEachSettlementHeld() {
+            Assert.Equal(Settlement.WOOD_COST_TO_BUILD, FoundingCost.wood(0));
+            Assert.Equal(0, FoundingCost.stone(0));
+            Assert.Equal(75, FoundingCost.wood(1));
+            Assert.Equal(10, FoundingCost.stone(1));
+            Assert.Equal(100, FoundingCost.wood(2));
+            Assert.Equal(20, FoundingCost.stone(2));
+            Assert.Equal(Settlement.WOOD_COST_TO_BUILD + " wood", FoundingCost.describe((Nation) null));
+        }
+
+        private Settlement foundFirstAt(Nation nation, Vector3 position) {
+            player.setPosition(position);
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            command.execute(player);
+            Assert.Equal(1, nation.getNumberOfSettlements());
+            return (Settlement) entityRepository.getEntity(nation.getSettlement(0));
+        }
+
+        [Fact]
+        public void testExecute_SecondSettlement_CostsMoreWoodAndStone_AndKeepsTheHome() {
+            Nation nation = makePlayerLeader();
+            Settlement first = foundFirstAt(nation, Vector3.Zero);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1) + 3);
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1) + 2);
+
+            command.execute(player);
+
+            Assert.Equal(2, nation.getNumberOfSettlements());
+            Assert.Equal(3, player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(2, player.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal(first.getId(), player.getHomeSettlementId());
+            Assert.Equal("Settlement founded. Your nation now holds 2 settlements.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_SecondSettlement_ShortOfStone_KeepsEverything() {
+            Nation nation = makePlayerLeader();
+            foundFirstAt(nation, Vector3.Zero);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            player.getInventory().addItem(ItemType.STONE, 4);
+
+            command.execute(player);
+
+            Assert.Equal(1, nation.getNumberOfSettlements());
+            Assert.Equal(FoundingCost.wood(1), player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(4, player.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal("Founding another settlement takes 75 wood and 10 stone. Need 6 more stone.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_SecondSettlement_WithOnlyTheFirstOnesWood_IsRefused() {
+            Nation nation = makePlayerLeader();
+            foundFirstAt(nation, Vector3.Zero);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
+
+            command.execute(player);
+
+            Assert.Equal(1, nation.getNumberOfSettlements());
+            Assert.Equal("Not enough wood for another settlement. Need 25 more.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_HomeLost_TheNextSettlementBecomesHome() {
+            Nation nation = makePlayerLeader();
+            foundFirstAt(nation, Vector3.Zero);
+            player.setHomeSettlementId(null);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
+
+            command.execute(player);
+
+            Assert.Equal(nation.getSettlement(1), player.getHomeSettlementId());
+        }
     }
 }
