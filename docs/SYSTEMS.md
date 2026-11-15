@@ -61,6 +61,23 @@ The inventory system manages the items and resources held by an entity. Items ar
 ## Nation
 The nation system creates and manages nations. Players can create their own nation or join an existing one, and nations track their members and their roles. A nationless pawn joins the nation of a settlement within 100 units of it (60 for an ambitious pawn) and otherwise gathers 50 wood and founds its own; that range was 500, twice the distance between settlements, so every pawn in the opening chunks joined the first nation and a world rarely had a second.
 
+### Managing the nation and its settlements
+**The settlement screen** (#178) opens when the player enters a settlement, from the *Settlement* button on the command bar while inside one, and from *Open* on the nations screen's Manage tab. It shows whose the settlement is (its nation, how that nation stands with the player's, and the member who holds it), its residents and who is there now, its buildings and what comes next, its funds and stockpile (to its own nation's people only), and its market: stalls, merchants and prices. *Prev* and *Next* step through the nation's settlements. *Exit Settlement* leaves the settlement and goes back to the world; *Back* goes back to wherever the screen was opened from, leaving the player inside. The world waits while it is open.
+
+**Who holds a settlement** (#176, `SettlementOwnership`). A settlement nobody has been given is held by whoever leads its nation, as every settlement was before. The leader can give one to any member (the arrows pick who, then *Give*), and take it back. The holder manages its funds, stockpile and stalls (*Withdraw Funds*, *Collect Stockpile*, *Build Stall*); the leader takes it back to manage it again. The nametag over a given settlement says *Held by Ada Smith*, and so does the settlement box on the HUD. A leader can also give a settlement to themselves, which keeps it theirs if they hand the rule on. A holder who leaves the nation or dies gives it back to the leader; a captured settlement is the new nation's leader's.
+
+**The Manage tab** (#175) of the nations screen is where the leader renames the nation (type a name, or *Suggest* one; 3 to 24 letters, not another nation's name), hands its rule to a member (the player stays in the nation as a serf, or a merchant if they keep a stall), or disbands it. Disbanding is the leader leaving a nation of one, as *Leave Nation* does, so with other members still in it the rule has to be handed on first. *Hand Over* and *Disband* take two presses. Under the controls, every settlement of the nation is listed with who holds it and an *Open* button.
+
+![Entering a settlement opens its screen](screenshots/settlement-management/open-settlement-screen.gif)
+
+| Settlement screen (desktop) | Settlement screen (phone portrait) |
+| --- | --- |
+| ![Settlement screen at 1280x720](screenshots/settlement-management/settlement-screen.png) | ![Settlement screen at 390x844](screenshots/settlement-management/settlement-screen-phone.png) |
+
+| Manage tab (desktop) | Manage tab (phone portrait) |
+| --- | --- |
+| ![Manage tab at 1280x720](screenshots/settlement-management/manage-tab.png) | ![Manage tab at 390x844](screenshots/settlement-management/manage-tab-phone.png) |
+
 ### Relations between nations
 Every pair of nations has one score from -100 to +100, starting at zero (`NationRelations`, held by `NationRepository`). Named states are read off it: **Hostile** at -50 and below, **Rival** at -20 and below, **Friendly** at +20 and above, **Neutral** between, and **Allied** while an agreed alliance stands. An alliance ends if the score falls below zero. Every change of named state is recorded as a `NationRelationChange` event.
 

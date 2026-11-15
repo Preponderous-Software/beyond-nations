@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Numerics;
+using beyondnations.desktop.ui.screens;
 
 namespace beyondnations.desktop.ui {
 
@@ -25,6 +26,9 @@ namespace beyondnations.desktop.ui {
         * this as a local named distanceThreshold.
         */
         public const int EnterSettlementDistance = 50;
+
+        /** Opens the settlement screen from inside a settlement (#178). */
+        public const string SettlementLabel = "Settlement";
 
         /** The Build buttons' order, which is the same every time (not the planner's, which shifts). */
         public static readonly BuildingType[] BuildOrder = {
@@ -114,6 +118,11 @@ namespace beyondnations.desktop.ui {
                 commands.Insert(0, new WorldCommand("Exit Settlement", CommandGroup.Place, () =>
                     new ExitSettlementCommand(entityRepository).execute(player)));
 
+                // the settlement screen again (#178): who holds it, its stores and market
+                EntityId here = player.getCurrentSettlementId();
+                commands.Insert(1, new WorldCommand(SettlementLabel, CommandGroup.Place, () =>
+                    SettlementScreen.requestOpen(here)));
+
                 commands.Add(new WorldCommand("Purchase Food", CommandGroup.Place, () =>
                     new PurchaseFoodFromMarketCommand(nationRepository, entityRepository).execute(player))
                     .setEnabled(inventory.getNumItems(ItemType.COIN) > 0, "You have no coins."));
@@ -134,7 +143,6 @@ namespace beyondnations.desktop.ui {
             EntityRepository entityRepository = simulation.getEntityRepository();
             NationRepository nationRepository = simulation.getNationRepository();
             Market market = settlement.getMarket();
-            bool leads = player.getId() == nation.getLeaderId();
 
             // Always offered in the player's own settlement, with the place
             // buttons, and disabled while no one here is hungry or the player
@@ -155,7 +163,9 @@ namespace beyondnations.desktop.ui {
                     hungryHere > 0 || lowHere > 0 ? "You have no food to give."
                     : FeedResidentsCommand.stocksForWinter(season) ? "No one here is hungry or short of winter stores." : "No one here is hungry."));
 
-            if (leads && market.getNumStalls() < market.getMaxNumStalls()) {
+            // the leader, or the member it was given to (#176, SettlementOwnership)
+            bool manages = SettlementOwnership.mayManage(player.getId(), nation, settlement);
+            if (manages && market.getNumStalls() < market.getMaxNumStalls()) {
                 Inventory carried = player.getInventory();
                 commands.Add(new WorldCommand("Build Stall", CommandGroup.Build, () =>
                     new BuildStallCommand(nationRepository, entityRepository, simulation.getEventProducer()).execute(player))
@@ -204,7 +214,7 @@ namespace beyondnations.desktop.ui {
                     .setEnabled(numFood > 0, "Your stall holds no food."));
             }
 
-            if (leads) {
+            if (manages) {
                 commands.Add(new WorldCommand("Withdraw Funds", CommandGroup.Nation, () =>
                     new WithdrawSettlementFundsCommand(nationRepository, entityRepository).execute(player)));
 

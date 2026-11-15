@@ -38,6 +38,11 @@ namespace beyondnations {
             return name;
         }
 
+        /** A new name (#175); the caller renames its settlements' banners (RenameNationCommand). */
+        public void setName(string name) {
+            this.name = name;
+        }
+
         public EntityId getLeaderId() {
             return leaderId;
         }

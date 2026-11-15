@@ -87,7 +87,7 @@ namespace beyondnationstests {
                 "currentSettlementId", "mealsEaten", "marketSales"),
             [typeof(Settlement)] = new Entry {
                 Saved = new[] { "color", "nationId", "nationName", "currentlyPresentEntities", "market", "buildings",
-                    "residentCount", "drawnLayoutSignature", "claimRadius", "siegeText" },
+                    "residentCount", "drawnLayoutSignature", "claimRadius", "siegeText", "ownerId", "ownerName" },
                 // from the saved era, by EraTracker.applyRules at the end of a load
                 Derived = new[] { "buildingEra" },
             },

@@ -1,7 +1,7 @@
 namespace beyondnations {
 
     /**
-    * The leader takes the wood and stone that member pawns delivered under
+    * The leader -- or the member the settlement was given to (#176) -- takes the wood and stone that member pawns delivered under
     * orders out of the settlement's stockpile. Coins are left alone: those
     * are the settlement's funds, withdrawn with WithdrawSettlementFundsCommand.
     */
@@ -30,17 +30,15 @@ namespace beyondnations {
                 return;
             }
             Nation nation = nationRepository.getNation(player.getNationId());
-            if (nation.getLeaderId() != player.getId()) {
-                player.getStatus().update("You are not a leader.");
-                return;
-            }
             if (player.getCurrentSettlementId() == null) {
                 player.getStatus().update("You are not inside a settlement.");
                 return;
             }
             Settlement settlement = (Settlement) entityRepository.getEntity(player.getCurrentSettlementId());
-            if (settlement.getNationId() != nation.getId()) {
-                player.getStatus().update("You do not own this settlement.");
+            // the leader, or the member it was given to (#176)
+            string refusal = SettlementOwnership.refusal(player.getId(), nation, settlement, entityRepository);
+            if (refusal != null) {
+                player.getStatus().update(refusal);
                 return;
             }
             if (getStockpileSize(settlement) == 0) {

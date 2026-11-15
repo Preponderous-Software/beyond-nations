@@ -40,6 +40,7 @@ namespace beyondnations.desktop.ui {
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
+        private readonly SettlementScreen settlementScreen = new SettlementScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
         private readonly SuccessionScreen successionScreen = new SuccessionScreen();
@@ -81,6 +82,7 @@ namespace beyondnations.desktop.ui {
             this.gameConfig = gameConfig;
             this.saves = saves;
             this.share = share;
+            nationScreen.setTextPlatform(share.getPlatform());
         }
 
         /**
@@ -176,6 +178,8 @@ namespace beyondnations.desktop.ui {
             replayClicksShorterThanAFrame();
             controller.Update((float) deltaTime);
 
+            // entering a settlement, or a button asking for it, opens the settlement screen (#178)
+            SettlementScreens.beforeDraw(simulation, screens);
             UiAction action = UiAction.None;
             switch (screens.getCurrent()) {
                 case ScreenType.TITLE:
@@ -235,6 +239,11 @@ namespace beyondnations.desktop.ui {
                 case ScreenType.END_OF_RUN:
                     if (simulation != null) {
                         action = endOfRunScreen.draw(width, height, simulation);
+                    }
+                    break;
+                case ScreenType.SETTLEMENT:
+                    if (simulation != null) {
+                        action = settlementScreen.draw(width, height, simulation);
                     }
                     break;
             }
@@ -332,6 +341,9 @@ namespace beyondnations.desktop.ui {
                     // the ended world is saved, then the New World screen asks for a seed as Start does
                     newWorldRequested = true;
                     screens.goTo(ScreenType.NEW_WORLD);
+                    break;
+                case UiAction.CloseSettlement:
+                    screens.closeSettlement();
                     break;
             }
         }

@@ -76,7 +76,7 @@ namespace beyondnationstests {
             // check
             Assert.Equal(10, settlement.getFunds());
             Assert.Equal(coinsBefore, player.getInventory().getNumItems(ItemType.COIN));
-            Assert.Equal("You are not a leader.", player.getStatus().getStatus());
+            Assert.Equal("Only the leader of Testland, or a member it is given to, manages this settlement.", player.getStatus().getStatus());
         }
 
         [Fact]

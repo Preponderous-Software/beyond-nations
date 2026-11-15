@@ -34,6 +34,9 @@ namespace beyondnations {
     *   5 -> 6  the player's envoys (Realm.ENVOY_TICKS): the realm's
     *           "envoys", empty -- every envoy is home, as before any
     *           dealing took time
+    *   6 -> 7  who holds a settlement (#176, SettlementOwnership): every
+    *           settlement's "ownerId" and "ownerName", null -- held by its
+    *           nation's leader, as every settlement was before
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
@@ -43,7 +46,32 @@ namespace beyondnations {
             addTradeAndPrices,
             addEras,
             addEnvoys,
+            addSettlementOwners,
         };
+
+        /** 6 -> 7: a world from before settlement ownership has every settlement held by its leader. */
+        private static JsonObject addSettlementOwners(JsonObject body) {
+            foreach (string list in new[] { "entities", "orphanEntities" }) {
+                JsonArray entities = body[list] as JsonArray;
+                if (entities == null) {
+                    continue;
+                }
+                foreach (JsonNode entity in entities) {
+                    JsonObject saved = entity as JsonObject;
+                    if (saved == null || !(saved["type"] is JsonValue type) || type.ToString() != "SETTLEMENT") {
+                        continue;
+                    }
+                    if (!saved.ContainsKey("ownerId")) {
+                        saved["ownerId"] = null;
+                    }
+                    if (!saved.ContainsKey("ownerName")) {
+                        saved["ownerName"] = null;
+                    }
+                }
+            }
+            body["formatVersion"] = 7;
+            return body;
+        }
 
         /** 5 -> 6: a world from before envoys has every envoy at home. */
         private static JsonObject addEnvoys(JsonObject body) {

@@ -20,6 +20,8 @@ namespace beyondnations {
         private ScreenType previous = ScreenType.TITLE;
         // Where the controls screen goes back to when it is closed.
         private ScreenType controlsReturn = ScreenType.MAIN_MENU;
+        // where the settlement screen goes back to: the world or the nations screen
+        private ScreenType settlementReturn = ScreenType.WORLD;
 
         public ScreenType getCurrent() {
             return current;
@@ -48,7 +50,8 @@ namespace beyondnations {
                 || screen == ScreenType.CRAFTING || screen == ScreenType.PAUSE
                 || screen == ScreenType.SUCCESSION
                 || screen == ScreenType.SHARE
-                || screen == ScreenType.END_OF_RUN;
+                || screen == ScreenType.END_OF_RUN
+                || screen == ScreenType.SETTLEMENT;
         }
 
         /**
@@ -141,6 +144,31 @@ namespace beyondnations {
         }
 
         /**
+        * Opens the settlement screen (#178) from the world -- on entering a
+        * settlement, or from the command bar inside one -- or from the
+        * nations screen's list of settlements. It closes back to where it
+        * was opened. Means nothing on other screens.
+        */
+        public void openSettlement() {
+            if (current == ScreenType.WORLD || current == ScreenType.NATIONS) {
+                settlementReturn = current;
+                goTo(ScreenType.SETTLEMENT);
+            }
+        }
+
+        /** Closes the settlement screen back to the world or the nations screen it was opened from. */
+        public void closeSettlement() {
+            if (current == ScreenType.SETTLEMENT) {
+                goTo(settlementReturn);
+            }
+        }
+
+        /** The screen the settlement screen returns to when it closes. */
+        public ScreenType getSettlementReturn() {
+            return settlementReturn;
+        }
+
+        /**
         * The run has been won or lost: the end-of-run screen is laid over the
         * stopped world. Only from the world, so a run that ends is never
         * announced over a menu.
@@ -172,6 +200,10 @@ namespace beyondnations {
             }
             if (current == ScreenType.SHARE) {
                 goTo(ScreenType.PAUSE);
+                return true;
+            }
+            if (current == ScreenType.SETTLEMENT) {
+                closeSettlement();
                 return true;
             }
             if (current == ScreenType.CONFIG || current == ScreenType.LOAD || current == ScreenType.NEW_WORLD) {

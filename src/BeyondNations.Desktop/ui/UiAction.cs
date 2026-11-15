@@ -37,6 +37,9 @@ namespace beyondnations.desktop.ui {
         ExportReplay,
         ExportChronicle,
         // the end-of-run screen: save this world and start a new one
-        NewWorld
+        NewWorld,
+        // the settlement screen (#178): back to the world or the nations
+        // screen it was opened from
+        CloseSettlement
     }
 }
