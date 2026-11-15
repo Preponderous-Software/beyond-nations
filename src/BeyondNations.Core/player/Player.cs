@@ -18,6 +18,11 @@ namespace beyondnations {
         // longer owns a Rigidbody to push around; #220 turns this into motion.
         private float horizontalInput = 0;
         private float verticalInput = 0;
+        // trying to walk while inside a settlement, as of the last step (not saved: only says so once per push)
+        private bool pushingInside = false;
+
+        /** Said once when the player tries to walk while inside a settlement, where they cannot (playtest 0.8.0 s02, s08). */
+        public const string CannotWalkInsideMessage = "You are inside the settlement and cannot walk here. Choose Exit Settlement to walk back out.";
         private bool jumpRequested = false;
 
         // Facing, in radians. Replaces the transform rotation the Rigidbody
@@ -147,6 +152,9 @@ namespace beyondnations {
         public void fixedUpdate(float burnMultiplier) {
             if (!isCurrentlyInSettlement()) {
                 move();
+                pushingInside = false;
+            } else {
+                sayHowToWalkOut();
             }
 
             if (energy < EatBelowEnergy) {
@@ -154,6 +162,15 @@ namespace beyondnations {
             }
 
             energy -= metabolism * burnMultiplier;
+        }
+
+        /** Once per push of the stick or a movement key while inside: why nothing moves, and how to leave. */
+        private void sayHowToWalkOut() {
+            bool pushing = horizontalInput != 0 || verticalInput != 0 || autoWalk;
+            if (pushing && !pushingInside && status != null) {
+                status.prompt(CannotWalkInsideMessage);
+            }
+            pushingInside = pushing;
         }
 
         private void move() {

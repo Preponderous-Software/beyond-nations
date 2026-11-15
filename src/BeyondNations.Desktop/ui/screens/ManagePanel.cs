@@ -44,7 +44,7 @@ namespace beyondnations.desktop.ui.screens {
         /** One of the nation's settlements, as the list shows it. */
         public class SettlementRow {
             public readonly Settlement settlement;
-            /** "Village of Blackburg: held by you, 4/6 residents, 12 paces north (your home)." */
+            /** "Village of Blackburg: held by you, 4/6 residents, 12 paces north (you live here)." */
             public readonly string text;
 
             public SettlementRow(Settlement settlement, string text) {
@@ -91,7 +91,7 @@ namespace beyondnations.desktop.ui.screens {
                 bool home = settlement.getId() == player.getHomeSettlementId();
                 rows.Add(new SettlementRow(settlement, MembersPanel.describeSettlement(simulation, own, settlement.getId())
                     + ": held by " + who + ", " + settlement.getResidentCount() + "/" + settlement.getResidentCap() + " residents, "
-                    + where + (home ? " (your home)" : "") + "."));
+                    + where + (home ? " (you live here)" : "") + "."));
             }
             return rows;
         }

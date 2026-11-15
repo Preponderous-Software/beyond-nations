@@ -87,7 +87,8 @@ namespace beyondnationstests {
                 Saved = new[] { "walkSpeed", "runSpeed", "currentSpeed", "renderDistance", "horizontalInput", "verticalInput",
                     "jumpRequested", "yaw", "nationId", "homeSettlementId", "status", "autoWalk", "energy", "metabolism", "relationships",
                     "currentSettlementId", "mealsEaten", "marketSales" },
-                Transient = new[] { "pointedOutGround" },
+                // pushingInside: whether the "cannot walk inside" line was said for this push
+                Transient = new[] { "pointedOutGround", "pushingInside" },
             },
             [typeof(Settlement)] = new Entry {
                 Saved = new[] { "color", "nationId", "nationName", "currentlyPresentEntities", "market", "buildings",

@@ -24,12 +24,28 @@ namespace beyondnations.desktop.ui.screens {
     * settlements. Every button is big enough for a thumb, and no text
     * names a key.
     *
+    * Standing inside one of their own, the player can build from the
+    * screen itself (getBuildCommands: the command bar's Build buttons; the
+    * build key works here too), and the two ways off it say what they do:
+    * Exit Settlement walks out into the world, Stay Inside closes the
+    * screen and leaves the player in the settlement with its buttons
+    * (playtest 0.8.0 s01: "press B inside your settlement" did nothing
+    * here, and Back versus Exit Settlement was never explained).
+    *
     * The words come from getSections() and getActions(), which need no
     * window, so they are asserted in unit tests and only the drawing needs
     * a screen.
     */
     public class SettlementScreen {
         public const string BackLabel = "Back";
+        /** Back, when the player is inside the settlement shown: they stay in it. */
+        public const string StayInsideLabel = "Stay Inside";
+        /** Take Back, when the player holds it personally: it goes back to being held as leader. */
+        public const string HoldAsLeaderLabel = "Hold as Leader";
+        /** Under the buttons while the player is inside, in place of the close hint. */
+        public const string InsideHint = "Exit Settlement walks you out; Stay Inside keeps you here.";
+        /** Over the Build buttons. */
+        public const string BuildNote = "Build here with what you carry:";
         public const string ExitLabel = "Exit Settlement";
         public const string GiveLabel = "Give";
         public const string TakeBackLabel = "Take Back";
@@ -183,22 +199,91 @@ namespace beyondnations.desktop.ui.screens {
             return entity == null ? "no one" : entity.getName();
         }
 
-        /** "Residents: 6 of 8 (3 here now)." and, for the player's, where it lies and whether it is home. */
+        /**
+        * "Residents: 6 of 8; 3 here now." -- counting the player when they
+        * are inside, so it never reads "0 here now" beside "You are inside
+        * it" (playtest 0.8.0 s01, s07) -- and where it lies and whether it
+        * is home. Home is where the player lives, which is not who holds it
+        * (s07: "held by Mia Johnson ... your home" read as a contradiction).
+        */
         public static List<string> describePeople(Simulation simulation, Settlement settlement) {
             List<string> lines = new List<string>();
             Player player = simulation.getPlayer();
-            lines.Add("Residents: " + settlement.getResidentCount() + " of " + settlement.getResidentCap()
-                + " (" + settlement.getCurrentlyPresentEntitiesCount() + " here now).");
+            bool inside = player.getCurrentSettlementId() == settlement.getId();
+            int here = settlement.getCurrentlyPresentEntitiesCount()
+                + (inside && !settlement.getCurrentlyPresentEntities().Contains(player.getId()) ? 1 : 0);
+            lines.Add("Residents: " + settlement.getResidentCount() + " of " + settlement.getResidentCap() + "; " + here + " here now"
+                + (inside ? (here == 1 ? ", you alone." : ", you among them.") : "."));
             string where;
-            if (player.getCurrentSettlementId() == settlement.getId()) {
+            if (inside) {
                 where = "You are inside it";
             } else {
                 int distance = (int) Territory.groundDistance(player.getPosition(), settlement.getPosition());
                 where = distance + " paces " + Compass.describe(player.getPosition(), settlement.getPosition());
             }
-            bool home = settlement.getId() == player.getHomeSettlementId();
-            lines.Add(where + (home ? ". It is your home." : "."));
+            string homeText = ".";
+            if (settlement.getId() == player.getHomeSettlementId()) {
+                Nation nation = simulation.getNationRepository().getNation(settlement.getNationId());
+                EntityId holder = nation == null ? null : SettlementOwnership.holderOf(settlement, nation);
+                homeText = holder != null && holder != player.getId()
+                    ? ". You live here, though " + nameOf(simulation, holder) + " holds it."
+                    : ". You live here: it is your home.";
+            }
+            lines.Add(where + homeText);
             return lines;
+        }
+
+        /**
+        * The command bar's Build buttons (WorldCommandBar, CommandGroup.Build),
+        * offered on the screen while the player stands inside this
+        * settlement: Build Stall and a button per building it has room for,
+        * disabled with the reason while the player cannot pay. Empty
+        * anywhere else, or where the player may not build.
+        */
+        public static List<WorldCommand> getBuildCommands(Simulation simulation, Settlement settlement) {
+            List<WorldCommand> build = new List<WorldCommand>();
+            if (settlement == null || simulation.getPlayer().getCurrentSettlementId() != settlement.getId()) {
+                return build;
+            }
+            foreach (WorldCommand command in WorldCommandBar.getCommands(simulation)) {
+                if (command.getGroup() == CommandGroup.Build) {
+                    build.Add(command);
+                }
+            }
+            return build;
+        }
+
+        /** The build-stall key on this screen does what it does in the world (the objective's hint names it). */
+        public static void buildStallKey(Simulation simulation) {
+            new BuildStallCommand(simulation.getNationRepository(), simulation.getEntityRepository(), simulation.getEventProducer())
+                .execute(simulation.getPlayer());
+        }
+
+        private static readonly beyondnations.desktop.input.BuildKey buildKey = new beyondnations.desktop.input.BuildKey();
+        private static readonly System.Diagnostics.Stopwatch keyClock = System.Diagnostics.Stopwatch.StartNew();
+
+        /**
+        * The keys that act on this screen, as in the world: the build-stall
+        * key, and the build key (twice, as in the world). The hosts call it
+        * while the screen is open.
+        */
+        public static void readKeys(Simulation simulation, beyondnations.desktop.input.InputService input) {
+            if (simulation == null) {
+                return;
+            }
+            double now = keyClock.Elapsed.TotalSeconds;
+            buildKey.update(simulation.getPlayer(), now);
+            if (input.wasPressedThisFrame(beyondnations.desktop.input.KeyBindings.BuildStall)) {
+                buildStallKey(simulation);
+            }
+            if (input.wasPressedThisFrame(beyondnations.desktop.input.KeyBindings.BuildBuilding)) {
+                buildKey.press(simulation, now);
+            }
+        }
+
+        /** Exit Settlement on the screen: out into the world. */
+        public static void exit(Simulation simulation) {
+            new ExitSettlementCommand(simulation.getEntityRepository()).execute(simulation.getPlayer());
         }
 
         /** "Town, 5 of 8 buildings: 2 houses, 2 farms, 1 storehouse." and what comes next. */
@@ -321,13 +406,32 @@ namespace beyondnations.desktop.ui.screens {
                 note = "It is not your nation's.";
             }
             bool granted = ours && settlement.getOwnerId() != null;
-            return new Actions(leads && candidates.Count > 0, leads && granted, !leads && ours && settlement.getOwnerId() == player.getId(),
+            // Giving away the nation's only settlement is no first step: the
+            // first camp opened on "Give to: you" (playtest 0.8.0 s01). It is
+            // offered once there is a second, or while this one is given away
+            // (so it can be given on or taken back), and to someone besides
+            // the player.
+            bool someoneElse = candidates.Exists(c => c != player);
+            bool offerGive = leads && someoneElse && (granted || own.getNumberOfSettlements() > 1);
+            if (leads && !offerGive && !granted) {
+                note = "You hold it as leader. With a second settlement, you can give one to a member.";
+            }
+            return new Actions(offerGive, leads && granted, !leads && ours && settlement.getOwnerId() == player.getId(),
                 inside, candidates, note);
         }
 
-        /** "Give to: Ada Smith", or "Give to: you". */
+        /**
+        * "Give to: Ada Smith", or "Keep it yourself": giving it to the
+        * player keeps it theirs if the rule passes on, which looked like
+        * Take Back when it read "Give to: you" (playtest 0.8.0 s07).
+        */
         public static string describePick(Entity candidate, Player player) {
-            return "Give to: " + (candidate == player ? "you" : candidate.getName());
+            return candidate == player ? "Keep it yourself" : "Give to: " + candidate.getName();
+        }
+
+        /** Take Back, or Hold as Leader when the player holds it personally: either way it is the leader's again. */
+        public static string takeBackLabel(Simulation simulation, Settlement settlement) {
+            return settlement.getOwnerId() == simulation.getPlayer().getId() ? HoldAsLeaderLabel : TakeBackLabel;
         }
 
         /** Index i of a list of count, wrapped round both ends. */
@@ -346,6 +450,8 @@ namespace beyondnations.desktop.ui.screens {
 
             Overlay.beginFullScreen("##settlement-screen", width, height);
             Overlay.dimBackground(width, height);
+            // and darker again: the world's floating labels and the well showed through the text (playtest 0.8.0 s07)
+            ImGui.GetWindowDrawList().AddRectFilled(Vector2.Zero, new Vector2(width, height), ImGui.GetColorU32(new Vector4(0.04f, 0.05f, 0.07f, 0.6f)));
             UiAction action = UiAction.None;
             System.Action pending = null;
 
@@ -393,14 +499,22 @@ namespace beyondnations.desktop.ui.screens {
 
             // the action strip sits at the bottom, above the status line and the hint
             Actions actions = getActions(simulation, settlement);
-            float hintTop = height - lineHeight * 1.2f;
-            float statusTop = hintTop - lineHeight * 1.6f;
+            // inside, the hint says what Exit Settlement and Stay Inside do, which takes more than a line on a phone
+            int hintLines = actions.canExit && narrow ? 3 : 1;
+            float hintStep = lineHeight * 0.62f;
+            float hintTop = height - lineHeight * 0.6f - hintStep * hintLines;
+            float statusTop = hintTop - lineHeight * 1.5f;
+            // the Build buttons, while the player stands inside one of their own (s01)
+            List<WorldCommand> build = getBuildCommands(simulation, settlement);
+            int perRow = narrow ? 2 : System.Math.Max(1, System.Math.Min(build.Count, 4));
+            int buildRows = (build.Count + perRow - 1) / perRow;
+            float buildHeight = build.Count == 0 ? 0f : hintStep + gap * 2f + (buttonHeight + gap) * buildRows;
             // on a phone, Give and Take Back go under the picker, and the note may take three lines
             bool stackGive = narrow && actions.canGive;
             int actionRows = 1 + (actions.canGive || actions.canTakeBack || actions.canHandBack ? 1 : 0) + (stackGive ? 1 : 0);
             int noteLines = narrow ? 3 : 2;
             float noteHeight = lineHeight * 0.62f * noteLines + gap;
-            float actionsTop = statusTop - (buttonHeight + gap) * actionRows - noteHeight - gap;
+            float actionsTop = statusTop - (buttonHeight + gap) * actionRows - noteHeight - buildHeight - gap;
 
             // the sections: two columns on a wide screen, one on a phone; drag or wheel to scroll
             bool twoColumns = width >= UiScale.px(860f);
@@ -470,10 +584,38 @@ namespace beyondnations.desktop.ui.screens {
                 }
             }
 
-            // the note, then the buttons
-            NationScreen.drawWrappedCentred(actions.note, height / 38f, actionsTop, width, left, lineHeight * 0.62f, noteLines);
-            float rowY = actionsTop + noteHeight;
             float rowWidth = width - left * 2f;
+            float buildY = actionsTop;
+            if (build.Count > 0) {
+                Overlay.textCentered(BuildNote, height / 40f, buildY, width);
+                buildY += hintStep + gap;
+                float each = (rowWidth - gap * (perRow - 1)) / perRow;
+                for (int i = 0; i < build.Count; i++) {
+                    WorldCommand command = build[i];
+                    float bx = left + (each + gap) * (i % perRow);
+                    float by = buildY + (buttonHeight + gap) * (i / perRow);
+                    if (!command.isEnabled()) {
+                        ImGui.BeginDisabled();
+                    }
+                    bool pressed = Overlay.buttonAt(fitLabel(command.getLabel(), each) + "##settlement-build-" + i, bx, by, each, buttonHeight);
+                    if (!command.isEnabled()) {
+                        ImGui.EndDisabled();
+                        // no hover on a touch screen: a tap on a greyed button says what is missing (#444)
+                        if (ImGui.IsMouseClicked(ImGuiMouseButton.Left) && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+                            WorldHud.explainDisabled(command, player.getStatus());
+                        }
+                    } else if (pressed) {
+                        // one press: the screen is still and nothing slides under the pointer, as on the bar
+                        WorldCommand chosen = command;
+                        pending = () => chosen.execute();
+                    }
+                }
+                buildY += (buttonHeight + gap) * buildRows + gap;
+            }
+
+            // the note, then the buttons
+            NationScreen.drawWrappedCentred(actions.note, height / 38f, buildY, width, left, lineHeight * 0.62f, noteLines);
+            float rowY = buildY + noteHeight;
             if (actions.canGive || actions.canTakeBack || actions.canHandBack) {
                 if (actions.canGive) {
                     if (pickFor != settlement.getId()) {
@@ -510,13 +652,13 @@ namespace beyondnations.desktop.ui.screens {
                         pending = () => new GrantSettlementCommand(simulation.getNationRepository(), simulation.getEntityRepository()).grant(player, target, to);
                     }
                     x += give + gap;
-                    if (actions.canTakeBack && Overlay.buttonAt(TakeBackLabel + "##take-back", x, rowY, take, buttonHeight)) {
+                    if (actions.canTakeBack && Overlay.buttonAt(fitLabel(takeBackLabel(simulation, settlement), take) + "##take-back", x, rowY, take, buttonHeight)) {
                         Settlement target = settlement;
                         pending = () => new GrantSettlementCommand(simulation.getNationRepository(), simulation.getEntityRepository()).takeBack(player, target);
                     }
                 } else {
                     float w = System.MathF.Min(UiScale.px(180f), rowWidth);
-                    string text = actions.canTakeBack ? TakeBackLabel : HandBackLabel;
+                    string text = actions.canTakeBack ? takeBackLabel(simulation, settlement) : HandBackLabel;
                     if (Overlay.buttonAt(text + "##hand-back", (width - w) / 2f, rowY, w, buttonHeight)) {
                         Settlement target = settlement;
                         pending = () => new GrantSettlementCommand(simulation.getNationRepository(), simulation.getEntityRepository()).takeBack(player, target);
@@ -529,12 +671,13 @@ namespace beyondnations.desktop.ui.screens {
             float pairX = (width - (actions.canExit ? half * 2f + gap : half)) / 2f;
             if (actions.canExit) {
                 if (Overlay.buttonAt(ExitLabel + "##settlement-exit", pairX, rowY, half, buttonHeight)) {
-                    pending = () => new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
+                    pending = () => exit(simulation);
                     action = UiAction.ResumeWorld;
                 }
                 pairX += half + gap;
             }
-            if (Overlay.buttonAt(BackLabel + "##settlement-back", pairX, rowY, half, buttonHeight)) {
+            // inside, Back leaves the player in the settlement: it says so
+            if (Overlay.buttonAt((actions.canExit ? StayInsideLabel : BackLabel) + "##settlement-back", pairX, rowY, half, buttonHeight)) {
                 action = UiAction.CloseSettlement;
             }
 
@@ -542,7 +685,11 @@ namespace beyondnations.desktop.ui.screens {
             if (!string.IsNullOrEmpty(status)) {
                 NationScreen.drawWrappedCentred(status, height / 36f, statusTop, width, left, lineHeight * 0.65f, 2);
             }
-            Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint), height / 36f, hintTop + lineHeight * 0.4f, width);
+            if (actions.canExit) {
+                NationScreen.drawWrappedCentred(InsideHint, height / 38f, hintTop, width, left, hintStep, hintLines);
+            } else {
+                Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint), height / 36f, hintTop, width);
+            }
             Overlay.end();
             if (Overlay.touchCloseButton("settlement", width)) {
                 action = UiAction.CloseSettlement;

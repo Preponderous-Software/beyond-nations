@@ -53,7 +53,7 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal("Nation: " + own(simulation).getName() + " (your nation).", ownership[0]);
             Assert.Equal("Held by: you, as leader of " + own(simulation).getName() + ".", ownership[1]);
             Assert.StartsWith("Residents: " + settlement.getResidentCount() + " of " + settlement.getResidentCap(), section(simulation, settlement, "People")[0]);
-            Assert.EndsWith("It is your home.", section(simulation, settlement, "People")[1]);
+            Assert.EndsWith("You live here: it is your home.", section(simulation, settlement, "People")[1]);
             Assert.Equal("Town, 5 of " + BuildingCatalog.MAX_BUILDINGS + " buildings: 2 houses, 1 storehouse, 2 farms.", section(simulation, settlement, "Buildings")[0]);
             Assert.Equal("Funds: " + settlement.getFunds() + " coins.", section(simulation, settlement, "Stores")[0]);
             Assert.Contains("40 wood", section(simulation, settlement, "Stores")[1]);
@@ -79,7 +79,7 @@ namespace beyondnationstests.desktop.ui {
             // the player first, and never the one already holding it
             Assert.Same(simulation.getPlayer(), actions.candidates[0]);
             Assert.DoesNotContain(actions.candidates, e => e.getId() == outpost.getOwnerId());
-            Assert.Equal("Give to: you", SettlementScreen.describePick(actions.candidates[0], simulation.getPlayer()));
+            Assert.Equal("Keep it yourself", SettlementScreen.describePick(actions.candidates[0], simulation.getPlayer()));
         }
 
         [Fact]
@@ -195,7 +195,7 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(2, rows.Count);
             Assert.Same(home(simulation), rows[0].settlement);
             Assert.Contains(": held by you, ", rows[0].text);
-            Assert.EndsWith("(your home).", rows[0].text);
+            Assert.EndsWith("(you live here).", rows[0].text);
             Assert.Contains(": held by " + outpost.getOwnerName() + ", ", rows[1].text);
             Assert.StartsWith("You lead " + own(simulation).getName() + ":", ManagePanel.getLines(simulation)[0]);
         }
