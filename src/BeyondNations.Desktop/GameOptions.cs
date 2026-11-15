@@ -223,6 +223,8 @@ namespace beyondnations.desktop {
         */
         public string FlyoverOut = null;
         public int FlyoverFrames = 120;
+        /** With FlyoverOut: circle the thickest stand of trees instead of gliding between settlements (#140). */
+        public bool FlyoverOrbit = false;
 
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
@@ -264,6 +266,7 @@ namespace beyondnations.desktop {
                     case "--playtest-out":     options.PlaytestOut = textAfter(args, ref i); break;
                     case "--advance-ticks":    options.AdvanceTicks = intAfter(args, ref i, options.AdvanceTicks); break;
                     case "--flyover-out":      options.FlyoverOut = textAfter(args, ref i); break;
+                    case "--flyover-orbit":    options.FlyoverOrbit = true; break;
                     case "--flyover-frames":   options.FlyoverFrames = intAfter(args, ref i, options.FlyoverFrames); break;
                     case "--help":
                     case "-h":
@@ -423,6 +426,7 @@ namespace beyondnations.desktop {
                 "  --advance-ticks N       run the world N ticks before the first frame, to start mid-game",
                 "  --flyover-out DIR       glide over two nations' settlements with the UI hidden, write each frame to DIR, then exit",
                 "  --flyover-frames N      how many frames the flyover writes (default 120)",
+                "  --flyover-orbit         with --flyover-out, circle the thickest stand of trees instead (give --advance-ticks so the land is generated)",
                 "  --help, -h              print this and exit"
             });
         }

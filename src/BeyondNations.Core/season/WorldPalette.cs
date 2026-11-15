@@ -18,7 +18,11 @@ namespace beyondnations {
         /** The fraction of a season over which it blends into the next. */
         public const float BlendFraction = 0.25f;
 
-        /** The leaf colour trees and saplings are given in code (AppleTree, Sapling): pure green. */
+        /**
+        * The leaf colour trees and saplings are given in code (TreeShape):
+        * pure green, or pure green at a shade (0, g, 0) for a canopy's
+        * shadowed layers.
+        */
         public static readonly Rgba DefaultLeaf = Rgba.Green;
 
         // worked out once a frame by beginFrame
@@ -61,11 +65,17 @@ namespace beyondnations {
             return mix(shaded, seasonTint, amount);
         }
 
-        /** The colour a part should be drawn in: leaves follow the season, everything else is as stored. */
+        /**
+        * The colour a part should be drawn in: leaves follow the season,
+        * keeping their shade, and everything else is as stored.
+        */
         public Rgba partColour(EntityType type, Rgba stored) {
             // compared field by field: Rgba.Equals(object) would box, once a part, every frame (#218)
-            if ((type == EntityType.TREE || type == EntityType.SAPLING) && stored.r == 0f && stored.g == 1f && stored.b == 0f) {
-                return leaf;
+            if ((type == EntityType.TREE || type == EntityType.SAPLING) && stored.r == 0f && stored.b == 0f && stored.g > 0f) {
+                if (stored.g == 1f) {
+                    return leaf;
+                }
+                return new Rgba(leaf.r * stored.g, leaf.g * stored.g, leaf.b * stored.g, leaf.a);
             }
             return stored;
         }
