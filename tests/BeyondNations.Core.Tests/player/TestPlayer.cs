@@ -190,13 +190,15 @@ namespace beyondnationstests {
 
         [Fact]
         public void testEating_NeverFillsThePlayerPastAFullBar() {
-            // prepare: just under the meal threshold, with the most filling food there is
+            // prepare: just under the meal threshold, with the most filling food there is.
+            // On its own the player now keeps the meat until it all fits (#357,
+            // TestPlayerHunger); eaten by choice it still stops at a full bar.
             Player player = makePlayer(25, 50);
             player.setEnergy(89);
             player.getInventory().addItem(ItemType.COOKED_MEAT, 1);
 
             // run
-            player.fixedUpdate();
+            Assert.True(player.eatNow());
 
             // check: the meal is eaten, but the bar stops at full (it used to reach 134)
             Assert.Equal(0, player.getInventory().getNumItems(ItemType.COOKED_MEAT));

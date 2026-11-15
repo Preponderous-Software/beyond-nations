@@ -37,16 +37,66 @@ namespace beyondnations {
             return settlement == null ? 0 : ResidentHunger.getHungryPresent(entityRepository, settlement).Count;
         }
 
-        /** Returns how many pawns were fed. */
+        /**
+        * Whether Feed Residents also lays in winter stores this season: in
+        * autumn and winter, when the pawns themselves want WINTER_FOOD_STORE
+        * food in their packs (SeasonalRules.wantsStores).
+        */
+        public static bool stocksForWinter(Season season) {
+            return season == Season.AUTUMN || season == Season.WINTER;
+        }
+
+        /**
+        * The nation's members standing here who are not hungry but carry less
+        * than SeasonalRules.WINTER_FOOD_STORE food, in autumn and winter (none
+        * otherwise): the ones a press stocks for winter once the hungry are fed.
+        */
+        public List<Pawn> getLowOnStoresHere(Player player, Season season) {
+            List<Pawn> low = new List<Pawn>();
+            Settlement settlement = getOwnSettlement(player);
+            if (settlement == null || !stocksForWinter(season)) {
+                return low;
+            }
+            int entityCount = entityRepository.getEntityCount();
+            for (int i = 0; i < entityCount; i++) {
+                Pawn pawn = entityRepository.getEntityAt(i) as Pawn;
+                if (pawn == null || pawn.isMarkedForDeletion() || !settlement.getNationId().Equals(pawn.getNationId())
+                        || !settlement.getId().Equals(pawn.getCurrentSettlementId()) || pawn.needsFood()
+                        || FoodItems.countFood(pawn.getInventory()) >= SeasonalRules.WINTER_FOOD_STORE) {
+                    continue;
+                }
+                low.Add(pawn);
+            }
+            return low;
+        }
+
+        /** How many residents here a press would stock for winter (0 outside autumn and winter). */
+        public int countLowOnStoresHere(Player player, Season season) {
+            return getLowOnStoresHere(player, season).Count;
+        }
+
+        /** Feeds the hungry here, with no winter stocking. Returns how many pawns were fed. */
         public int execute(Player player) {
+            return execute(player, Season.SPRING);
+        }
+
+        /**
+        * Feeds the hungry here, then, in autumn and winter, gives the other
+        * members here food up to WINTER_FOOD_STORE each, one item a round so
+        * scarce food goes round (#353: the warning a day before winter needs
+        * something the player can do about it). Returns how many pawns got
+        * anything.
+        */
+        public int execute(Player player, Season season) {
             Settlement settlement = getOwnSettlement(player);
             if (settlement == null) {
                 player.getStatus().update("Feed your own nation's residents from inside one of its settlements.");
                 return 0;
             }
             List<Pawn> hungry = ResidentHunger.getHungryPresent(entityRepository, settlement);
-            if (hungry.Count == 0) {
-                player.getStatus().update("No one here is hungry.");
+            List<Pawn> low = getLowOnStoresHere(player, season);
+            if (hungry.Count == 0 && low.Count == 0) {
+                player.getStatus().update(stocksForWinter(season) ? "No one here is hungry or short of winter stores." : "No one here is hungry.");
                 return 0;
             }
             Inventory inventory = player.getInventory();
@@ -76,8 +126,11 @@ namespace beyondnations {
                     gave = true;
                 }
             }
-            if (fed == 0) {
-                player.getStatus().update(hungry.Count + (hungry.Count == 1 ? " resident here is" : " residents here are") + " hungry, and you have no food to share.");
+            int stocked = stock(inventory, low);
+            if (fed == 0 && stocked == 0) {
+                player.getStatus().update(hungry.Count > 0
+                    ? hungry.Count + (hungry.Count == 1 ? " resident here is" : " residents here are") + " hungry, and you have no food to share."
+                    : low.Count + (low.Count == 1 ? " resident here is" : " residents here are") + " short of winter stores, and you have no food to share.");
                 return 0;
             }
             int left = 0;
@@ -86,9 +139,43 @@ namespace beyondnations {
                     left++;
                 }
             }
-            player.getStatus().update("You fed " + fed + (fed == 1 ? " resident" : " residents") + " in the " + settlement.getDisplayName() + "."
-                + (left > 0 ? " " + left + " still hungry: bring more food." : ""));
-            return fed;
+            int stillLow = 0;
+            foreach (Pawn pawn in low) {
+                if (FoodItems.countFood(pawn.getInventory()) < SeasonalRules.WINTER_FOOD_STORE) {
+                    stillLow++;
+                }
+            }
+            string done = fed > 0 && stocked > 0
+                ? "You fed " + fed + " and stocked " + stocked + (stocked == 1 ? " resident" : " residents") + " for winter"
+                : fed > 0 ? "You fed " + fed + (fed == 1 ? " resident" : " residents")
+                : "You stocked " + stocked + (stocked == 1 ? " resident" : " residents") + " for winter";
+            player.getStatus().update(done + " in the " + settlement.getDisplayName() + "."
+                + (left > 0 ? " " + left + " still hungry: bring more food." : "")
+                + (left == 0 && stillLow > 0 ? " " + stillLow + " still short of winter stores: bring more food." : ""));
+            return fed + stocked;
+        }
+
+        /** One food a round to each pawn short of WINTER_FOOD_STORE until all have it or the food runs out; how many got any. */
+        private static int stock(Inventory inventory, List<Pawn> low) {
+            HashSet<Pawn> given = new HashSet<Pawn>();
+            bool gave = true;
+            while (gave) {
+                gave = false;
+                foreach (Pawn pawn in low) {
+                    if (FoodItems.countFood(pawn.getInventory()) >= SeasonalRules.WINTER_FOOD_STORE) {
+                        continue;
+                    }
+                    ItemType? food = FoodItems.getMostNourishingFood(inventory);
+                    if (!food.HasValue) {
+                        return given.Count;
+                    }
+                    inventory.removeItem(food.Value, 1);
+                    pawn.getInventory().addItem(food.Value, 1);
+                    given.Add(pawn);
+                    gave = true;
+                }
+            }
+            return given.Count;
         }
     }
 }

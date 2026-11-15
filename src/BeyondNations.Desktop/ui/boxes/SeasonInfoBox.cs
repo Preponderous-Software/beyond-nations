@@ -25,10 +25,31 @@ namespace beyondnations.desktop.ui.boxes {
         private readonly RegionMap regionMap;
         private readonly Player player;
 
+        private readonly EntityRepository entityRepository;
+
         public SeasonInfoBox(Simulation simulation) : base("Season") {
             calendar = simulation.getSeasonCalendar();
             regionMap = simulation.getRegionMap();
             player = simulation.getPlayer();
+            entityRepository = simulation.getEntityRepository();
+        }
+
+        /**
+        * "Food: 9 of 20 for winter" in autumn and winter for a member of a
+        * nation with pawns, and null otherwise: the food the nation's members
+        * carry against the WINTER_FOOD_STORE each wants (WinterStores, #353).
+        * Before it, no screen showed a nation's food at all.
+        */
+        public static string getStoresLine(SeasonCalendar calendar, EntityRepository entityRepository, Player player) {
+            Season season = calendar.getSeason();
+            if ((season != Season.AUTUMN && season != Season.WINTER) || player.getNationId() == null) {
+                return null;
+            }
+            WinterStores.Count stores = WinterStores.count(entityRepository, player.getNationId());
+            if (stores.Members == 0) {
+                return null;
+            }
+            return "Food: " + stores.Food + " of " + stores.Wanted + " for winter";
         }
 
         public override List<string> getLines() {
@@ -37,6 +58,10 @@ namespace beyondnations.desktop.ui.boxes {
             string warning = getWinterLine(calendar);
             if (warning != null) {
                 lines.Add(warning);
+            }
+            string stores = getStoresLine(calendar, entityRepository, player);
+            if (stores != null) {
+                lines.Add(stores);
             }
             Region region = regionMap.regionAt(player.getPosition());
             if (isCompact()) {

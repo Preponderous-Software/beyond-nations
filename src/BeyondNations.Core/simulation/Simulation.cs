@@ -121,6 +121,7 @@ namespace beyondnations {
             pawnBehaviorCalculator.setSeasonCalendar(seasonCalendar);
             pawnBehaviorExecutor.setSeasonCalendar(seasonCalendar);
             seasonalWorld = new SeasonalWorld(seasonCalendar, regionMap, environment, entityRepository, gameConfig, player, random);
+            seasonalWorld.setNations(nationRepository, eventProducer);
             worldPalette = new WorldPalette(seasonCalendar, regionMap);
             nationResources = new NationResources(entityRepository, regionMap);
             // laws, war and peace, and the player's line of rulers (realm/)
@@ -411,11 +412,11 @@ namespace beyondnations {
                         }
                     }
             
-                    player.fixedUpdate();
-                    if (!player.isCurrentlyInSettlement()) {
-                        // the same winter cold as pawns feel, on top of the ordinary burn
-                        player.setEnergy(player.getEnergy() - player.getMetabolism() * (SeasonalRules.coldMultiplier(season) - 1f));
-                    }
+                    // indoors the player burns at the settlement rate, as pawns do; outdoors
+                    // the same winter cold as pawns feel (#357: indoors it used not to burn at all)
+                    player.fixedUpdate(player.isCurrentlyInSettlement()
+                        ? gameConfig.getSettlementMetabolismMultiplier()
+                        : SeasonalRules.coldMultiplier(season));
                     if (player.getEnergy() <= 0 && !realm.isRunOver() && realm.onPlayerDeath()) {
                         // a member of a nation is succeeded by an heir, or their line ends (realm/Succession)
                         numPlayerDeaths++;

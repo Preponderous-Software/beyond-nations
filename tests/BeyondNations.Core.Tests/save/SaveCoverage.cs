@@ -223,7 +223,8 @@ namespace beyondnationstests {
             },
             [typeof(SeasonCalendar)] = new Entry { Derived = new[] { "timeOfDay" } },
             [typeof(SeasonalWorld)] = new Entry {
-                Derived = new[] { "calendar", "regionMap", "environment", "entityRepository", "gameConfig", "player", "random" },
+                Derived = new[] { "calendar", "regionMap", "environment", "entityRepository", "gameConfig", "player", "random",
+                    "nationRepository", "eventProducer" },
             },
             [typeof(WorldPalette)] = new Entry {
                 Derived = new[] { "calendar", "regionMap" },

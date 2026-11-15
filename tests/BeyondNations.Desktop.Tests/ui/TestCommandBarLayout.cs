@@ -611,11 +611,59 @@ namespace beyondnationstests.desktop.ui {
         // ---- the real bar ----
 
         /** Feed Residents is always offered in the player's own settlement, disabled while no one here is hungry. */
+        /** #357: Eat, by choice, names what it will eat and keeps one width whatever that is. */
+        [Fact]
+        public void theEatButton_NamesTheFood_AndIsDisabledOnAFullBar() {
+            Simulation simulation = inOwnCamp(out _);
+            Player player = simulation.getPlayer();
+            Assert.Null(WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Eat")));
+
+            player.getInventory().addItem(ItemType.COOKED_MEAT, 1);
+            player.getInventory().addItem(ItemType.APPLE, 1);
+            player.setEnergy(50f);
+            WorldCommand eat = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Eat"));
+            Assert.Equal("Eat Cooked Meat (+45)", eat.getLabel());
+            Assert.Equal(CommandGroup.Craft, eat.getGroup());
+            Assert.True(eat.isEnabled());
+            eat.execute();
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.COOKED_MEAT));
+
+            player.setEnergy(Player.MaxEnergy);
+            WorldCommand full = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Eat"));
+            Assert.False(full.isEnabled());
+            Assert.Equal(eat.getWidthLabel(), full.getWidthLabel());
+        }
+
+        /** #353: in autumn, with no one hungry, Feed Residents stocks those short of winter stores. */
+        [Fact]
+        public void inAutumn_FeedResidentsOffersToStockThoseLowOnFood() {
+            Simulation simulation = inOwnCamp(out Settlement settlement);
+            Player player = simulation.getPlayer();
+            simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), Season.AUTUMN);
+            Pawn pawn = new Pawn(settlement.getPosition() + new Vector3(400, 0, 400), "Member", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(pawn);
+            pawn.setNationId(player.getNationId());
+            simulation.getNationRepository().getNation(player.getNationId()).addMember(pawn.getId());
+            pawn.getInventory().clear();
+            pawn.setEnergy(95f);
+            pawn.setCurrentSettlementId(settlement.getId());
+            player.getInventory().addItem(ItemType.APPLE, 10);
+
+            WorldCommand feed = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Feed Residents"));
+            Assert.Equal(WorldCommandBar.feedResidentsLabel(0, 1), feed.getLabel());
+            Assert.Equal("Feed Residents (1 low on food)", feed.getLabel());
+            Assert.True(feed.isEnabled());
+            feed.execute();
+            Assert.Equal(SeasonalRules.WINTER_FOOD_STORE, FoodItems.countFood(pawn.getInventory()));
+        }
+
         [Fact]
         public void inTheOwnSettlement_FeedResidentsHoldsItsPlace_AndCountsWhomItWillFeed() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
             Player player = simulation.getPlayer();
             CommandBarLayout.Settings settings = settingsFor(960f, 540f, 0f, false, 1f, out _, out _);
+            // the player carries food throughout, so the Eat button is there both times
+            player.getInventory().addItem(ItemType.APPLE, 3);
             List<WorldCommand> none = WorldCommandBar.getCommands(simulation);
             WorldCommand feedNone = none.Find(c => c.getLabel() == WorldCommandBar.feedResidentsLabel(0));
             Assert.NotNull(feedNone);
@@ -630,7 +678,6 @@ namespace beyondnationstests.desktop.ui {
             pawn.getInventory().clear();
             pawn.setEnergy(50f);
             pawn.setCurrentSettlementId(settlement.getId());
-            player.getInventory().addItem(ItemType.APPLE, 3);
 
             List<WorldCommand> one = WorldCommandBar.getCommands(simulation);
             Assert.Equal(none.Count, one.Count);

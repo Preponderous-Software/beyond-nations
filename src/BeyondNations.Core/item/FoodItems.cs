@@ -93,6 +93,37 @@ namespace beyondnations {
         }
 
         /// <summary>
+        /// The most nourishing food the inventory holds whose whole worth fits in
+        /// room (the energy short of a full bar), or null when none fits. The
+        /// player eats this way (#357): a cooked meat eaten at 89 used to lose
+        /// 34 of its 45 to the cap, so it was no better than an apple. Now an
+        /// apple is eaten at 85, a chicken meat at 75 and a cooked meat at 55,
+        /// and the richer food is kept until it can all be used.
+        /// </summary>
+        public static ItemType? getFoodThatFits(Inventory inventory, float room) {
+            foreach (ItemType foodType in foodInDescendingEnergyOrder) {
+                if (inventory.getNumItems(foodType) > 0 && getEnergyRestored(foodType) <= room) {
+                    return foodType;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// The least nourishing food the inventory holds, or null when it holds none:
+        /// what a deliberate Eat takes when nothing fits, so as little as possible
+        /// is lost to a full bar.
+        /// </summary>
+        public static ItemType? getLeastNourishingFood(Inventory inventory) {
+            for (int i = foodInDescendingEnergyOrder.Length - 1; i >= 0; i--) {
+                if (inventory.getNumItems(foodInDescendingEnergyOrder[i]) > 0) {
+                    return foodInDescendingEnergyOrder[i];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Every edible item type, most nourishing first. Exposed so that the
         /// ordering can be verified against the energy table.
         /// </summary>

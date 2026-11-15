@@ -93,6 +93,7 @@ namespace beyondnations.desktop.ui {
             addDiplomacyCommands(simulation, commands);
             CaravanCommands.addCommands(simulation, commands);
             addCraftingCommands(simulation, commands);
+            addEatCommand(simulation, commands);
 
             if (!player.isCurrentlyInSettlement()) {
                 // Enter Settlement is always the first place button out in the
@@ -142,11 +143,17 @@ namespace beyondnations.desktop.ui {
             // opened a pawn's dialogue. Its count is the number it will feed
             // (FeedResidentsCommand.countHungryHere, the same list as execute)
             // and is measured as three digits, so it never changes the width.
+            // In autumn and winter it also stocks members short of winter
+            // stores (#353), and says so when no one here is hungry.
             FeedResidentsCommand feed = new FeedResidentsCommand(entityRepository);
+            Season season = simulation.getSeasonCalendar().getSeason();
             int hungryHere = feed.countHungryHere(player);
-            commands.Add(new WorldCommand(feedResidentsLabel(hungryHere), CommandGroup.Place, () => feed.execute(player))
-                .setEnabled(hungryHere > 0 && FoodItems.hasFood(player.getInventory()),
-                    hungryHere == 0 ? "No one here is hungry." : "You have no food to give."));
+            int lowHere = feed.countLowOnStoresHere(player, season);
+            commands.Add(new WorldCommand(feedResidentsLabel(hungryHere, lowHere), CommandGroup.Place, () => feed.execute(player, season))
+                .setWidthLabel(FeedResidentsWidthLabel)
+                .setEnabled((hungryHere > 0 || lowHere > 0) && FoodItems.hasFood(player.getInventory()),
+                    hungryHere > 0 || lowHere > 0 ? "You have no food to give."
+                    : FeedResidentsCommand.stocksForWinter(season) ? "No one here is hungry or short of winter stores." : "No one here is hungry."));
 
             if (leads && market.getNumStalls() < market.getMaxNumStalls()) {
                 Inventory carried = player.getInventory();
@@ -243,6 +250,44 @@ namespace beyondnations.desktop.ui {
         /** "Feed Residents (3 hungry)" */
         public static string feedResidentsLabel(int hungryHere) {
             return "Feed Residents (" + hungryHere + " hungry)";
+        }
+
+        /**
+        * "Feed Residents (3 hungry)", or in autumn and winter with no one here
+        * hungry but some short of winter stores, "Feed Residents (4 low on food)".
+        */
+        public static string feedResidentsLabel(int hungryHere, int lowHere) {
+            if (hungryHere == 0 && lowHere > 0) {
+                return "Feed Residents (" + lowHere + " low on food)";
+            }
+            return feedResidentsLabel(hungryHere);
+        }
+
+        /** The longer of the two labels, so the button keeps one width whichever it shows. */
+        public const string FeedResidentsWidthLabel = "Feed Residents (0 low on food)";
+
+        /** "Eat Cooked Meat (+45)", measured as the longest food's label so it keeps one width. */
+        public static string eatLabel(ItemType food) {
+            string name = System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(ItemNames.getSingularName(food));
+            return "Eat " + name + " (+" + FoodItems.getEnergyRestored(food) + ")";
+        }
+
+        /**
+        * Eat, by choice (#357): the player eats on their own only what fits
+        * under a full bar, so a cooked meat waits until it can all be used.
+        * The button eats now. Offered while the player carries food, and
+        * disabled when the bar is full; it names what it will eat.
+        */
+        private static void addEatCommand(Simulation simulation, List<WorldCommand> commands) {
+            Player player = simulation.getPlayer();
+            if (!FoodItems.hasFood(player.getInventory())) {
+                return;
+            }
+            ItemType? food = player.getFoodToEatNow();
+            string label = food.HasValue ? eatLabel(food.Value) : "Eat";
+            commands.Add(new WorldCommand(label, CommandGroup.Craft, () => player.eatNow())
+                .setWidthLabel(eatLabel(ItemType.CHICKEN_MEAT))
+                .setEnabled(food.HasValue, "You are full."));
         }
 
         /**

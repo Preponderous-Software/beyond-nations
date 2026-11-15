@@ -133,10 +133,30 @@ namespace beyondnations {
         }
 
         public void fixedUpdate() {
-            if (isCurrentlyInSettlement()) {
-                return;
+            fixedUpdate(1f);
+        }
+
+        /**
+        * One step: movement out in the world, then eating and the burn,
+        * indoors as well as out. burnMultiplier scales the burn: the host
+        * passes the settlement rate indoors and the winter cold outdoors
+        * (Simulation). The burn used to stop inside a settlement altogether,
+        * so a player could sit out a winter at a steady 92 while fifty pawns
+        * starved around them (playtest 0.5.0 s03, #357).
+        */
+        public void fixedUpdate(float burnMultiplier) {
+            if (!isCurrentlyInSettlement()) {
+                move();
             }
 
+            if (energy < EatBelowEnergy) {
+                eatIfCarryingFood();
+            }
+
+            energy -= metabolism * burnMultiplier;
+        }
+
+        private void move() {
             if (horizontalInput != 0) {
                 // Two degrees per step, as the transform rotation did.
                 yaw += horizontalInput * 2f * (System.MathF.PI / 180f);
@@ -154,12 +174,6 @@ namespace beyondnations {
             // jump impulse -- so it is carried over rather than overwritten.
             Vector3 horizontalVelocity = getForward() * forwardAmount * currentSpeed;
             setVelocity(new Vector3(horizontalVelocity.X, getVelocity().Y, horizontalVelocity.Z));
-
-            if (energy < EatBelowEnergy) {
-                eatIfCarryingFood();
-            }
-
-            energy -= metabolism;
         }
 
         public float getMetabolism() {
@@ -294,16 +308,59 @@ namespace beyondnations {
         }
 
         /**
-        * Eats the most nourishing food carried, if any. Which item types count as
-        * food, and what each restores, belongs to FoodItems (#83) -- an apple is
-        * no longer the only thing the player will eat.
+        * Eats the most nourishing food carried whose whole worth fits under a
+        * full bar (FoodItems.getFoodThatFits), and says so on the status line.
+        * Before #357 it ate the most nourishing food at once below 90, so a
+        * cooked meat lost most of its 45 to the cap and was no better than an
+        * apple, and food vanished from the pack unannounced. A player carrying
+        * only rich food now keeps it until it can all be used.
         */
         private void eatIfCarryingFood() {
-            int restored = FoodItems.consumeMostNourishingFood(getInventory());
-            if (restored > 0) {
-                energy = System.Math.Min(energy + restored, MaxEnergy);
-                mealsEaten++;
+            ItemType? food = FoodItems.getFoodThatFits(getInventory(), MaxEnergy - energy);
+            if (food.HasValue) {
+                eat(food.Value);
             }
+        }
+
+        /**
+        * Eat now, by choice (the Eat button): the food that fits, or when none
+        * does, the least nourishing, so the least is lost to the cap. Returns
+        * whether anything was eaten.
+        */
+        public bool eatNow() {
+            ItemType? food = getFoodToEatNow();
+            if (!food.HasValue) {
+                getStatus().update(FoodItems.hasFood(getInventory()) ? "You are full." : "You have no food.");
+                return false;
+            }
+            eat(food.Value);
+            return true;
+        }
+
+        /** What eatNow would eat, or null when the player is full or carries no food. */
+        public ItemType? getFoodToEatNow() {
+            if (energy >= MaxEnergy) {
+                return null;
+            }
+            ItemType? food = FoodItems.getFoodThatFits(getInventory(), MaxEnergy - energy);
+            return food.HasValue ? food : FoodItems.getLeastNourishingFood(getInventory());
+        }
+
+        private void eat(ItemType food) {
+            getInventory().removeItem(food, 1);
+            int restored = FoodItems.getEnergyRestored(food);
+            energy = System.Math.Min(energy + restored, MaxEnergy);
+            mealsEaten++;
+            getStatus().update("Ate " + describeOne(food) + " (+" + restored + " energy).");
+        }
+
+        /** "an apple", "chicken meat", "cooked meat". */
+        public static string describeOne(ItemType food) {
+            string name = ItemNames.getSingularName(food);
+            if (ItemNames.isUncountable(food)) {
+                return name;
+            }
+            return ("aeiou".IndexOf(name[0]) >= 0 ? "an " : "a ") + name;
         }
 
         public int getMealsEaten() {
