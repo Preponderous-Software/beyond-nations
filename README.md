@@ -1,12 +1,15 @@
 # ![Beyond Nations](./.github/media/banner.png)
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
-<p>
-<img src="./.github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over one nation's village, its houses, market stalls, round and tiered trees in autumn colours and the well, then across the line where two nations' rings of border posts meet, to a neighbouring nation's village" width="480">
-<a href="./.github/media/flyover.mp4"><img src="./.github/media/flyover-poster.jpg" alt="The Village of Easternburg from above: houses and market stalls round a well, autumn-coloured trees on trunks casting long shadows, and rings of border posts where its land meets two neighbours'" width="480"></a>
-</p>
+<!-- darkroom:shot flyover -->
+![A flyover of seed 12 fifty minutes in: over one nation's town, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town](.github/media/flyover.gif)
 
-*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing. It is the `flyover` shot in `tools/capture/media.json`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); the still is one of its frames at full size and links to the [MP4](./.github/media/flyover.mp4). How to reshoot it is in [CONTRIBUTING.md](./docs/CONTRIBUTING.md#refreshing-the-readmes-screenshots-and-gifs).*
+*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's town, the border, the next nation's town.*
+
+[MP4 version](.github/media/flyover.mp4)
+<!-- darkroom:end -->
+
+It is the `flyover` shot in `tools/capture/media.json`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); [one of its frames at full size](./.github/media/flyover-poster.jpg) is a still of the same flight. How to reshoot it is in [CONTRIBUTING.md](./docs/CONTRIBUTING.md#refreshing-the-readmes-screenshots-and-gifs).
 
 ## Play in your browser
 
@@ -120,7 +123,11 @@ The following controls are available in the game:
 A number of systems combine to create the gameplay experience. Some are already implemented and some are still planned; the [Systems Document](./docs/SYSTEMS.md) lists each one with its current status.
 
 ### Settlements that grow
-![The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about; round the edges the HUD -- the era bar, the first objective, the chronicle, the first tip, the inventory, the command bar, the Season box and the player box](./.github/media/settlement-town.jpg)
+<!-- darkroom:shot settlement-town -->
+![The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about; round the edges the HUD -- the era bar, the first objective, the chronicle, the first tip, the inventory, the command bar, the Season box and the player box](.github/media/settlement-town.jpg)
+
+*A lived-in town and today's HUD.*
+<!-- darkroom:end -->
 
 A settlement is drawn as a place: a plaza with a well and the nation's banner, its market stalls in a ring around it (an owned stall has a nation-coloured awning and a crate of whatever it sells; a stall for sale has a pale awning and a yellow sign), and its buildings in a wider ring beyond. Pawns inside a settlement stay visible and mill about the plaza, so a busy town looks busy.
 
@@ -137,7 +144,11 @@ Two buildings make a camp a **Village**; five make it a **Town**, which is ringe
 
 A nation can hold more than one settlement, as many as its era allows (one in the Camp era, three in the Village, six in the Town, any number in the Kingdom). The first costs 50 wood; each one after it costs 25 more wood and 10 stone for every settlement already held. *Found Settlement* comes back on the command bar whenever the era allows another, and the nation screen lists your settlements, where each lies and which is home. `--stage-outpost` opens leading a Village-era nation that has just founded its second (the screenshot is `--seed 42 --start-screen nations --stage-outpost`).
 
-![The nations screen of Southernland: 9 members and 2 settlements, 2 of the 3 the era allows -- the Town of Southernland, home, and a new Camp of Southernland, each with its residents and where it lies -- and what a third costs](./.github/media/two-settlements.jpg).
+<!-- darkroom:shot two-settlements -->
+![The nations screen of Southernland: 9 members and 2 settlements, 2 of the 3 the era allows -- the Town of Southernland, home, and a new Camp of Southernland, each with its residents and where it lies -- and what a third costs](.github/media/two-settlements.jpg)
+
+*The nation screen of a nation with two settlements.*
+<!-- darkroom:end -->
 
 ### Eras, victory and the end of a run
 ![The end-of-run screen after a Prosperity victory: the outcome, the era reached, days survived, when each era came, members, settlements and funds, then The History of Southernland, with the era milestones in gold, and Continue playing, New world and Main menu buttons](./.github/media/end-of-run-victory.png)
@@ -195,18 +206,30 @@ The nations screen's **Laws** tab is your court. On a short window it says how m
 
 Loyalty is how each member feels about you. Push someone to -15 and they desert, taking their stall with them. The **Members** tab lists every member of your nation with their loyalty, their traits and the settlement they live in, and marks your heir (`--start-screen members`; the screenshot is `--seed 42 --stage-diplomacy`).
 
-![The Members tab: the people of Blackburg, three members, the heir Ella Wood marked in gold, each member's loyalty and traits, and how the heir is chosen](./.github/media/members-tab.jpg)
+<!-- darkroom:shot members-tab -->
+![The Members tab: the people of Blackburg, three members, the heir Ella Wood marked in gold, each member's loyalty and traits, and how the heir is chosen](.github/media/members-tab.jpg)
+
+*The Members tab: every member, their loyalty, and the heir.*
+<!-- darkroom:end -->
 
 ![The succession screen: the founder died of hunger, you go on as the heir, and the line of rulers so far, with Continue](./.github/media/succession-screen.png)
 
 **Heirs.** Dying in a nation is not the end. A member takes your place -- family first (someone who shares your surname), then the most loyal -- and you go on as them, with the nation, its settlements and its friends and enemies as they were; your people's loyalty starts at half what it was. With no one left to take your place, your line ends and so does the run: *New World*, *Load* (the last save, from before the death; an ended run is never saved) or *Main Menu*. A wanderer with no nation still rises again as before. `--stage-succession` opens the diplomacy stage with the player about to starve (the screenshot above is `--seed 42 --start-screen world --stage-succession`; `--start-screen laws` opens on the Laws tab).
 
 ### Seasons and regions
-![Animation, one frame a second: the same spot on seed 12 in spring, summer, autumn and winter -- fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; the Season box above the player box says which season it is, how long until winter and what the land is good for](./.github/media/seasons.gif)
+<!-- darkroom:shot seasons-grid -->
+![Four views of the same spot on seed 12, captioned Spring, Summer, Autumn and Winter: fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; in each the Season box above the player box says which season it is, how long until winter and what the land is good for](.github/media/seasons.jpg)
+
+*The same spot on seed 12 in spring, summer, autumn and winter.*
+<!-- darkroom:end -->
 
 The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season, and the Season box (above the player box) shows the season, warns *Winter in 2 days*, shows how much food your nation's people carry for winter, and names the land you stand on. The day before winter the chronicle and a banner say whether your nation is ready; carry food home and *Feed Residents* lays it in for them. You eat what you carry on your own, without wasting a rich meal on a nearly full stomach, or press *Eat* to eat now.
 
-![The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 15 members are short of the food they want, the player's own hunger banner sits above it, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 42 of 60 for winter](./.github/media/winter-warning.jpg)
+<!-- darkroom:shot winter-warning -->
+![The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 15 members are short of the food they want, the player's own hunger banner sits above it, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 42 of 60 for winter](.github/media/winter-warning.jpg)
+
+*The day before winter: the banner, the chronicle and the Season box say what the nation carries.*
+<!-- darkroom:end -->
 
 <img src="./docs/screenshots/tree-model/forest-orbit.gif" alt="A slow circle round a stand of trees in a forest on seed 12: round broadleaf crowns, tiered crowns and tall oval crowns of different sizes on brown trunks, their lower leaves a darker green, casting shadows on the grass" width="480">
 
