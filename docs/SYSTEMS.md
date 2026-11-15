@@ -230,7 +230,11 @@ The panel holds still while it is open (0.8.0 playtest s05: goods came into the 
 | --- | --- |
 | ![The playtest's market panel at 960x540: the visit's total and Close run off the bottom edge](screenshots/market-panel-and-tills/panel-960-before.png) | ![The market panel at 960x540: every good two to a row, the detail and messages in boxes, Close in full](screenshots/market-panel-and-tills/panel-960-after.png) |
 
-<img src="screenshots/market-panel-and-tills/panel-phone-after.png" alt="The market panel on a window the size of a phone held upright" width="270"> *Sell Resources* stays as the one-press sale of one of each good, and now says what it sold: *Sold 1 wood and 1 stone to Ann Lee for 45 coins.* `--stage-market` (`?stage-market`) opens the game standing in a trading neighbour's market.
+| Develop, 390x844 (a phone held upright) | Now, 390x844, after selling all the wood the tills could pay for |
+| --- | --- |
+| <img src="screenshots/market-panel-and-tills/panel-phone-before.png" alt="The develop market panel on a phone-sized window: the tip card draws over the list of goods" width="270"> | <img src="screenshots/market-panel-and-tills/panel-phone-after.png" alt="The market panel on a phone-sized window: every good, the detail, the quantity, Buy, Sell, the receipt and Close all in view, in front of the HUD" width="270"> |
+
+*Sell Resources* stays as the one-press sale of one of each good, and now says what it sold: *Sold 1 wood and 1 stone to Ann Lee for 45 coins.* `--stage-market` (`?stage-market`) opens the game standing in a trading neighbour's market.
 
 | Before (develop) | After |
 | --- | --- |
