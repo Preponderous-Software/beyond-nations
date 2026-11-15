@@ -52,6 +52,18 @@ namespace beyondnations.pacing {
         * members (docs/PACING.md, "Recruiting").
         */
         public bool NoCourting = false;
+        * Milestones (PacingMilestones) to watch for. A run goes on past its
+        * objective limit, up to MaxTicks, until each has been reached.
+        */
+        public List<string> Milestones = new List<string>();
+        /**
+        * Ticks at which to save the bot's world, as an ordinary save file
+        * (world-<seed>-pacing-t<tick>.bnsave) in SaveDirectory, to load in
+        * the game with --continue: how the docs' screenshots of a bot's
+        * run are taken.
+        */
+        public List<int> SaveAtTicks = new List<int>();
+        public string SaveDirectory = null;
     }
 
     /** The result of driving one seed with the bot. */
@@ -72,6 +84,8 @@ namespace beyondnations.pacing {
         /** Members the player's nation took by invitation (courting), and that joined it otherwise. */
         public int MembersInvited;
         public int MembersJoinedOtherwise;
+        /** The tick each watched milestone was first reached; a milestone never reached is absent. */
+        public Dictionary<string, int> Milestones = new Dictionary<string, int>();
 
         /** Raids on the player's nation per hour of game time. */
         public double raidsOnPlayerPerHour() {
@@ -135,7 +149,7 @@ namespace beyondnations.pacing {
             int tick = 0;
             string lastStatus = null;
             sample(simulation, bot, result);
-            while (tick < options.MaxTicks && recorded < options.ObjectiveLimit) {
+            while (tick < options.MaxTicks && (recorded < options.ObjectiveLimit || result.Milestones.Count < options.Milestones.Count)) {
                 bot.beforeTick();
                 simulation.fixedUpdate(dt);
                 tick = simulation.getTickCounter().getTotalTicks();
@@ -165,6 +179,17 @@ namespace beyondnations.pacing {
                 }
                 if (result.VillageMembersTick < 0 && WorldView.members(simulation) >= EraRules.VillageMembers) {
                     result.VillageMembersTick = tick;
+                if (options.SaveAtTicks.Contains(tick) && options.SaveDirectory != null) {
+                    System.IO.Directory.CreateDirectory(options.SaveDirectory);
+                    System.IO.File.WriteAllBytes(System.IO.Path.Combine(options.SaveDirectory,
+                        "world-" + options.Seed + "-pacing-t" + tick + SaveSlots.Extension), SaveGame.encode(simulation, "pacing"));
+                }
+                if (tick % options.TicksPerSecond == 0) {
+                    foreach (string milestone in options.Milestones) {
+                        if (!result.Milestones.ContainsKey(milestone) && PacingMilestones.isReached(simulation, milestone)) {
+                            result.Milestones[milestone] = tick;
+                        }
+                    }
                 }
                 if (tick % options.SampleEvery == 0) {
                     sample(simulation, bot, result);

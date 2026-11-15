@@ -73,6 +73,92 @@ namespace beyondnationstests {
             Assert.Equal("You died of hunger. " + heirName + ", the most loyal of your people, took up the rule of " + own.getName() + ".", chronicled);
         }
 
+        /** Runs the clock on by ticks, with the realm's update as the simulation would call it. */
+        private void pass(int ticks) {
+            TickCounter counter = world.simulation.getTickCounter();
+            for (int i = 0; i < ticks; i++) {
+                counter.increment();
+                realm.update(counter.getTotalTicks());
+            }
+        }
+
+        [Fact]
+        public void testOldAge_IsForetold_ThenHandsTheRuleAndBelongingsToTheHeir() {
+            Nation own = world.playerNation(3);
+            List<Pawn> members = pawnsOf(own);
+            befriend(members[1], world.player, 20);
+            string heirName = members[1].getName();
+            int heirCoins = members[1].getInventory().getNumItems(ItemType.COIN);
+            world.player.getInventory().addItem(ItemType.COIN, 40);
+            int rulerCoins = world.player.getInventory().getNumItems(ItemType.COIN);
+
+            pass(Realm.OLD_AGE_TICKS - Realm.OLD_AGE_WARNING_TICKS - Realm.LAW_ROUND_TICKS);
+            Assert.Empty(realm.getLineage());
+            pass(Realm.LAW_ROUND_TICKS);
+            Assert.Equal("The founder is growing old. " + heirName + ", the most loyal of your people, is the heir.",
+                world.player.getStatus().getStatus());
+            Assert.Equal(Realm.OLD_AGE_WARNING_TICKS, realm.getTicksUntilOldAge());
+
+            pass(Realm.OLD_AGE_WARNING_TICKS);
+            Assert.Single(realm.getLineage());
+            Assert.Equal(Realm.CAUSE_OLD_AGE, realm.getLineage()[0].getCause());
+            Assert.Equal(Realm.OLD_AGE_TICKS, realm.getLineage()[0].getEndTick());
+            Assert.Equal(heirName, world.player.getName());
+            Assert.False(realm.isRunOver());
+            // a peaceful end: the old ruler's purse goes with the crown
+            Assert.Equal(rulerCoins + heirCoins, world.player.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal("You died of old age. " + heirName + ", the most loyal of your people, took up the rule of " + own.getName() + ".",
+                world.simulation.getChronicle().getRecent(1)[0].getText());
+            // the new reign starts its own years
+            Assert.Equal(Realm.OLD_AGE_TICKS, realm.getTicksUntilOldAge());
+        }
+
+        [Fact]
+        public void testOldAge_WaitsForAnHeir_AndNeverEndsTheRun() {
+            Nation own = world.playerNation(1);
+            pass(Realm.OLD_AGE_TICKS + Realm.LAW_ROUND_TICKS);
+            Assert.Empty(realm.getLineage());
+            Assert.False(realm.isRunOver());
+
+            world.addMember(own);
+            pass(Realm.LAW_ROUND_TICKS);
+            Assert.Single(realm.getLineage());
+            Assert.Equal(Realm.CAUSE_OLD_AGE, realm.getLineage()[0].getCause());
+        }
+
+        [Fact]
+        public void testANationlessWanderer_DoesNotAge() {
+            pass(Realm.OLD_AGE_TICKS + Realm.LAW_ROUND_TICKS);
+            Assert.Empty(realm.getLineage());
+        }
+
+        [Fact]
+        public void testAbdication_HandsTheRuleToTheHeir() {
+            Nation own = world.playerNation(2);
+            string heirName = pawnsOf(own)[0].getName();
+            int heirWood = pawnsOf(own)[0].getInventory().getNumItems(ItemType.WOOD);
+            world.player.getInventory().addItem(ItemType.WOOD, 7);
+            int rulerWood = world.player.getInventory().getNumItems(ItemType.WOOD);
+
+            realm.abdicate();
+
+            Assert.Equal(heirName, world.player.getName());
+            Assert.Equal(world.player.getId(), own.getLeaderId());
+            Assert.Equal(Realm.CAUSE_ABDICATION, realm.getLineage()[0].getCause());
+            Assert.Equal(rulerWood + heirWood, world.player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.NotNull(realm.consumeNotice());
+            Assert.StartsWith("You gave up the rule. " + heirName, world.simulation.getChronicle().getRecent(1)[0].getText());
+        }
+
+        [Fact]
+        public void testAbdication_IsRefused_WithoutAnHeirOrANationToRule() {
+            Assert.Equal("Only the ruler of a nation can abdicate.", realm.abdicate());
+            Nation own = world.playerNation(1);
+            Assert.Equal("No one in " + own.getName() + " was left to take your place.", realm.abdicate());
+            Assert.Empty(realm.getLineage());
+            Assert.Equal("Player", world.player.getName());
+        }
+
         [Fact]
         public void testFamily_ComesBeforeLoyalty() {
             Nation own = world.playerNation(3);

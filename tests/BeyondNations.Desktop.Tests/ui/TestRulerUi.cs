@@ -46,6 +46,29 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testLawsPanel_NamesTheHeir_AndWhenOldAgeComes() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            string reason;
+            Pawn heir = simulation.getRealm().getHeir(out reason);
+            Assert.NotNull(heir);
+
+            List<string> lines = LawsPanel.getLines(simulation);
+
+            Assert.Equal("Heir: " + heir.getName() + ", " + reason + ". Old age comes in about 40 minutes.", lines[lines.Count - 1]);
+            Assert.True(LawsPanel.canAbdicate(simulation));
+        }
+
+        [Fact]
+        public void testSuccessionScreen_SaysTheRulerAbdicated() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            simulation.getRealm().abdicate();
+
+            Assert.Equal("The founder gave up the rule after a reign of less than an hour.", SuccessionScreen.getLines(simulation)[0]);
+        }
+
+        [Fact]
         public void testLawsPanel_ShowsAChangeComingIn() {
             DiplomacyShowcase.Staged result;
             Simulation simulation = staged(out result);

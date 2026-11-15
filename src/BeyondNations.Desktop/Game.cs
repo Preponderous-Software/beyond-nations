@@ -428,6 +428,11 @@ namespace beyondnations.desktop {
             if (simulation == null) {
                 screens.goTo(ScreenType.MAIN_MENU);
             }
+            else if (options.StartScreen != ScreenType.TITLE && options.StartScreen != ScreenType.WORLD) {
+                // --continue --start-screen laws: the loaded world, with that screen over it,
+                // so a saved run (tools/BeyondNations.Pacing --save-at) can be screenshotted there
+                screens.goTo(options.StartScreen);
+            }
         }
 
         /** Saves the world in play, saying so on the status line; the pause screen shows the detail. */

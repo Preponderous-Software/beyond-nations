@@ -110,5 +110,22 @@
       "advisory": true,
       "note": "Advisory: the Kingdom era's members, which the bot is slow to recruit."
     }
+  ],
+  "milestones": [
+    {
+      "id": "storehouse",
+      "title": "Build a Storehouse",
+      "maxSeconds": 1800
+    },
+    {
+      "id": "caravan",
+      "title": "Send a caravan",
+      "maxSeconds": 1800
+    },
+    {
+      "id": "succession",
+      "title": "The rule passes to an heir",
+      "maxSeconds": 3600
+    }
   ]
 }

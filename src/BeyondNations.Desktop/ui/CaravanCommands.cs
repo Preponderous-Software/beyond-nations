@@ -71,7 +71,7 @@ namespace beyondnations.desktop.ui {
         /**
         * For a leader in one of their own settlements who cannot send a
         * caravan from it yet, the button's label with the short reason:
-        * "Send Caravan (Town era)", "Send Caravan (needs Storehouse)" or
+        * "Send Caravan (Village era)", "Send Caravan (needs Storehouse)" or
         * "Send Caravan (2 on the road)". Null anywhere else, or when a caravan
         * can be sent.
         */

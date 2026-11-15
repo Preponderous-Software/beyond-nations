@@ -166,6 +166,7 @@ namespace beyondnations {
                 return;
             }
             lawRound++;
+            checkOldAge();
             expireTruces(totalTicks);
             expireEnvoys(totalTicks);
             foreach (NationLaws entry in new List<NationLaws>(laws)) {
@@ -651,9 +652,9 @@ namespace beyondnations {
             string ruler = getRulerName();
             string reason;
             Pawn heir = Succession.chooseHeir(nation, player, entityRepository, out reason);
-            lineage.Add(new Reign(ruler, nation.getName(), reignStartTick, tick, "hunger"));
 
             if (heir == null) {
+                lineage.Add(new Reign(ruler, nation.getName(), reignStartTick, tick, CAUSE_HUNGER));
                 runOver = true;
                 player.setEnergy(0);
                 player.setVelocity(System.Numerics.Vector3.Zero);
@@ -664,18 +665,139 @@ namespace beyondnations {
                 eventProducer.produceStatecraftEvent(ended, nation, null, player.getId());
                 return true;
             }
+            passRule(nation, heir, reason, CAUSE_HUNGER);
+            return true;
+        }
 
+        /** Why a reign ended, as Reign.getCause() records it. */
+        public const string CAUSE_HUNGER = "hunger";
+        public const string CAUSE_OLD_AGE = "old age";
+        public const string CAUSE_ABDICATION = "abdication";
+
+        /**
+        * How long a ruler reigns before old age takes them: four days, forty
+        * minutes of play at the default rates. Hunger alone almost never ended
+        * a reign -- a player who carries food eats it (0.6.0 playtest s06,
+        * #372) -- so without this no one met a succession in a session.
+        * Old age only comes to a ruler who has an heir to hand on to: it is
+        * a turn in the story, never the end of the run.
+        */
+        public const int OLD_AGE_TICKS = 4 * TimeOfDay.DefaultTicksPerDay;
+        /** The ruler is told they are growing old this long before: a day, ten minutes. */
+        public const int OLD_AGE_WARNING_TICKS = TimeOfDay.DefaultTicksPerDay;
+
+        // the tick the player was told they are growing old, -1 before. Not saved: a loaded
+        // world warns again, so a reign never ends unannounced, however old the save.
+        private int oldAgeWarnedAt = -1;
+
+        /** How long the current ruler has reigned, in ticks. */
+        public int getReignTicks() {
+            return now() - reignStartTick;
+        }
+
+        /** Ticks until the current ruler dies of old age (0 once due), counting the warning they are owed. */
+        public int getTicksUntilOldAge() {
+            int due = reignStartTick + OLD_AGE_TICKS;
+            if (oldAgeWarnedAt >= 0) {
+                due = Math.Max(due, oldAgeWarnedAt + OLD_AGE_WARNING_TICKS);
+            }
+            else {
+                due = Math.Max(due, now() + OLD_AGE_WARNING_TICKS);
+            }
+            return due - now();
+        }
+
+        /**
+        * Who would take the player's place now, or null (with why not); null
+        * also when the player belongs to no nation.
+        */
+        public Pawn getHeir(out string reason) {
+            Nation nation = nationRepository.getNation(player.getNationId());
+            if (nation == null) {
+                reason = "You belong to no nation, so you have no heir.";
+                return null;
+            }
+            return Succession.chooseHeir(nation, player, entityRepository, out reason);
+        }
+
+        /**
+        * Old age, checked with each law round: the ruler is warned a day
+        * before, and when their years are up the rule passes to the heir.
+        * A ruler with no heir lingers on until they have one.
+        */
+        private void checkOldAge() {
+            if (runOver) {
+                return;
+            }
+            Nation nation = nationRepository.getNation(player.getNationId());
+            if (nation == null) {
+                return;
+            }
+            if (getReignTicks() < OLD_AGE_TICKS - OLD_AGE_WARNING_TICKS) {
+                return;
+            }
+            string reason;
+            Pawn heir = Succession.chooseHeir(nation, player, entityRepository, out reason);
+            if (oldAgeWarnedAt < 0) {
+                oldAgeWarnedAt = now();
+                string warning = getRulerName() + " is growing old. "
+                    + (heir != null
+                        ? heir.getName() + ", " + reason + ", is the heir."
+                        : "No one is left to take your place: bring members into " + nation.getName() + ".");
+                player.getStatus().update(warning);
+                eventProducer.produceStatecraftEvent(warning, nation, null, player.getId());
+                return;
+            }
+            if (heir == null || getTicksUntilOldAge() > 0) {
+                return;
+            }
+            passRule(nation, heir, reason, CAUSE_OLD_AGE);
+        }
+
+        /**
+        * The player gives up the rule to their heir while they live: the
+        * heir is shown in the court (the Laws tab), and the old ruler's
+        * belongings go with the crown. Only a leader can abdicate, and only
+        * with an heir. Returns what the player is told (also put on the status line).
+        */
+        public string abdicate() {
+            Nation nation = nationRepository.getNation(player.getNationId());
+            if (runOver || nation == null || !player.getId().Equals(nation.getLeaderId())) {
+                player.getStatus().update("Only the ruler of a nation can abdicate.");
+                return player.getStatus().getStatus();
+            }
+            string reason;
+            Pawn heir = Succession.chooseHeir(nation, player, entityRepository, out reason);
+            if (heir == null) {
+                player.getStatus().update(reason);
+                return reason;
+            }
+            passRule(nation, heir, reason, CAUSE_ABDICATION);
+            return player.getStatus().getStatus();
+        }
+
+        private void passRule(Nation nation, Pawn heir, string reason, string cause) {
+            int tick = now();
+            string ruler = getRulerName();
+            lineage.Add(new Reign(ruler, nation.getName(), reignStartTick, tick, cause));
             bool ruled = nation.getLeaderId().Equals(player.getId());
             string heirName = heir.getName();
-            Succession.crown(heir, nation, player, entityRepository, diplomacy, gameConfig);
+            Succession.crown(heir, nation, player, entityRepository, diplomacy, gameConfig, cause != CAUSE_HUNGER);
             reignStartTick = tick;
+            oldAgeWarnedAt = -1;
             notice = new SuccessionNotice(ruler, heirName, nation.getName(), tick - lineage[lineage.Count - 1].getStartTick(), reason, false);
             noticeShown = false;
-            string text = "You died of hunger. " + heirName + ", " + reason + ", " + (ruled ? "took up the rule of " : "took your place in ")
+            string how = describeEnd(cause);
+            string text = how + " " + heirName + ", " + reason + ", " + (ruled ? "took up the rule of " : "took your place in ")
                 + nation.getName() + ".";
-            player.getStatus().update("You died. You go on as " + heirName + ", " + reason + ".");
+            string youGoOn = cause == CAUSE_ABDICATION ? "You gave up the rule." : "You died.";
+            player.getStatus().update(youGoOn + " You go on as " + heirName + ", " + reason + ".");
             eventProducer.produceStatecraftEvent(text, nation, null, player.getId());
-            return true;
+        }
+
+        /** "You died of hunger." / "You died of old age." / "You gave up the rule." */
+        public static string describeEnd(string cause) {
+            return cause == CAUSE_ABDICATION ? "You gave up the rule." : "You died of " + (cause ?? CAUSE_HUNGER) + ".";
         }
 
         /** The name the current ruler goes by; the first is "the founder" until an heir brings a name. */

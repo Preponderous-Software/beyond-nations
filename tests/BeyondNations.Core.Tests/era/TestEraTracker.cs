@@ -202,7 +202,7 @@ namespace beyondnationstests {
             Assert.False(own.canAddBuilding(BuildingType.STOREHOUSE));
             Assert.True(own.canAddBuilding(BuildingType.HOUSE));
             Assert.True(own.canAddBuilding(BuildingType.FARM));
-            // a pawn-led nation is never held back
+            // a pawn-led nation builds as it likes (only its tier waits on the calendar)
             Assert.True(theirs.canAddBuilding(BuildingType.WORKSHOP));
             Assert.True(theirs.canAddBuilding(BuildingType.STOREHOUSE));
             Assert.True(simulation.getNationRepository().getNation(theirs.getNationId()).canFoundSettlement());
@@ -225,10 +225,35 @@ namespace beyondnationstests {
             eras.evaluate(simulation);
             Assert.Equal(Era.VILLAGE, eras.getEra());
             Assert.True(settlement.canAddBuilding(BuildingType.WORKSHOP));
-            Assert.False(settlement.canAddBuilding(BuildingType.STOREHOUSE));
-            eras.evaluate(simulation);
-            Assert.Equal(Era.TOWN, eras.getEra());
+            // the storehouse, and with it caravans, come with the Village, not the Town (#373)
             Assert.True(settlement.canAddBuilding(BuildingType.STOREHOUSE));
+        }
+
+        [Fact]
+        public void testAPawnLedSettlement_IsNoTownBeforeTheTownErasDay() {
+            Settlement theirs = addSettlement(makePawnNation("Pawnland"), new Vector3(3000, 1, 0));
+            eras.applyRules(simulation);
+            // houses and farms go up as before; it is a village however many it has
+            build(theirs, SettlementTiers.TOWN_BUILDINGS + 1);
+            Assert.Equal(SettlementTier.VILLAGE, theirs.getTier());
+            Assert.NotNull(BuildingPlanner.suggestNext(theirs));
+
+            passToDay(EraRules.VillageDay);
+            eras.applyRules(simulation);
+            Assert.Equal(SettlementTier.VILLAGE, theirs.getTier());
+
+            passToDay(EraRules.TownDay);
+            eras.applyRules(simulation);
+            Assert.Equal(SettlementTier.TOWN, theirs.getTier());
+        }
+
+        [Fact]
+        public void testTheCalendarEra_FollowsTheErasDays() {
+            Assert.Equal(Era.CAMP, EraRules.calendarEra(1));
+            Assert.Equal(Era.CAMP, EraRules.calendarEra(EraRules.VillageDay - 1));
+            Assert.Equal(Era.VILLAGE, EraRules.calendarEra(EraRules.VillageDay));
+            Assert.Equal(Era.TOWN, EraRules.calendarEra(EraRules.TownDay));
+            Assert.Equal(Era.KINGDOM, EraRules.calendarEra(EraRules.KingdomDay));
         }
 
         [Fact]

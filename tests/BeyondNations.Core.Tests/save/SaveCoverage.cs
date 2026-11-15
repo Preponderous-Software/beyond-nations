@@ -93,7 +93,7 @@ namespace beyondnationstests {
                 Saved = new[] { "color", "nationId", "nationName", "currentlyPresentEntities", "market", "buildings",
                     "residentCount", "drawnLayoutSignature", "claimRadius", "siegeText", "ownerId", "ownerName" },
                 // from the saved era, by EraTracker.applyRules at the end of a load
-                Derived = new[] { "buildingEra" },
+                Derived = new[] { "buildingEra", "tierCap" },
             },
             [typeof(Chicken)] = saved("random", "speed", "wanderTarget", "wanderTimer", "wanderInterval"),
             [typeof(Sapling)] = new Entry { Saved = new[] { "height", "plantedTick", "growTime" }, Derived = new[] { "tickCounter" } },
@@ -245,6 +245,8 @@ namespace beyondnationstests {
             [typeof(Realm)] = new Entry {
                 Saved = new[] { "lawRound", "laws", "wars", "truces", "envoys", "lineage", "reignStartTick", "runOver", "notice", "noticeShown" },
                 Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player", "diplomacy", "gameConfig", "tickCounter" },
+                // deliberately not saved: a loaded world warns of old age again before it comes
+                Transient = new[] { "oldAgeWarnedAt" },
             },
             [typeof(NationLaws)] = saved("nationId", "levels", "pending", "proclaimedAt", "lastTaxCollected", "totalTaxCollected", "deserters"),
             [typeof(Reign)] = saved("name", "nationName", "startTick", "endTick", "cause"),

@@ -104,8 +104,42 @@ namespace beyondnations.desktop.ui.screens {
                 }
             }
             lines.Add(record + ".");
+            lines.Add(describeSuccession(simulation));
             return lines;
         }
+
+        /**
+        * Who takes the player's place, and when old age is due:
+        * "Heir: Bo Smith, the most loyal of your people. Old age comes in
+        * about 32 minutes." (#358, #372)
+        */
+        public static string describeSuccession(Simulation simulation) {
+            Realm realm = simulation.getRealm();
+            string reason;
+            Pawn heir = realm.getHeir(out reason);
+            int ticksPerMinute = simulation.getTickCounter().getTicksPerSecond() * 60;
+            int minutes = (realm.getTicksUntilOldAge() + ticksPerMinute - 1) / ticksPerMinute;
+            string age = minutes <= 1 ? " Old age comes within the minute." : " Old age comes in about " + minutes + " minutes.";
+            if (heir == null) {
+                return "No heir. " + reason + " Old age will not take you before you have one.";
+            }
+            return "Heir: " + heir.getName() + ", " + reason + "." + age;
+        }
+
+        public const string AbdicateLabel = "Abdicate";
+        public const string AbdicatePrompt = "Abdicate: tap again to hand the rule and all you carry to your heir.";
+        public const string AbdicatePromptKeys = "Abdicate: click again to hand the rule and all you carry to your heir.";
+
+        /** Whether the Abdicate button is offered: to a leader with an heir. */
+        public static bool canAbdicate(Simulation simulation) {
+            Player player = simulation.getPlayer();
+            Nation own = simulation.getNationRepository().getNation(player.getNationId());
+            string reason;
+            return own != null && own.getLeaderId().Equals(player.getId()) && !simulation.getRealm().isRunOver()
+                && simulation.getRealm().getHeir(out reason) != null;
+        }
+
+        private readonly ConfirmGate abdicateGate = new ConfirmGate();
 
         public static List<Row> getRows(Simulation simulation) {
             List<Row> rows = new List<Row>();
@@ -132,7 +166,7 @@ namespace beyondnations.desktop.ui.screens {
         public System.Action draw(float width, float height, Simulation simulation, float y, float left, float lineHeight,
                 float buttonGap, float buttonHeight, ScrollReader readScroll) {
             foreach (string line in getLines(simulation)) {
-                y = NationScreen.drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 3);
+                y = NationScreen.drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 4);
             }
             y += lineHeight * 0.3f;
 
@@ -140,6 +174,20 @@ namespace beyondnations.desktop.ui.screens {
             Nation own = simulation.getNationRepository().getNation(player.getNationId());
             bool leads = own != null && own.getLeaderId().Equals(player.getId());
             System.Action pending = null;
+
+            // abdication: two presses, since it cannot be taken back (ConfirmGate)
+            double now = ImGuiNET.ImGui.GetTime();
+            abdicateGate.update(now, player.getStatus());
+            if (canAbdicate(simulation)) {
+                float abdicateWidth = System.MathF.Min(UiScale.px(200f), width - left * 2f);
+                string label = (abdicateGate.isArmed(AbdicateLabel, now) ? "Confirm abdication" : AbdicateLabel) + "##abdicate";
+                if (Overlay.buttonAt(label, (width - abdicateWidth) / 2f, y, abdicateWidth, buttonHeight)) {
+                    pending = abdicateGate.press(AbdicateLabel, now)
+                        ? (System.Action) (() => simulation.getRealm().abdicate())
+                        : () => abdicateGate.prompt(player.getStatus(), TouchLayout.isActive() ? AbdicatePrompt : AbdicatePromptKeys);
+                }
+                y += buttonHeight + buttonGap * 2f;
+            }
             float textStep = lineHeight * 0.7f;
             float columnWidth = width - left * 2f;
             float effectSize = height / 40f;
