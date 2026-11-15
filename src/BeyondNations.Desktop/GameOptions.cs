@@ -318,10 +318,14 @@ namespace beyondnations.desktop {
                     // the nations screen, opened on its Laws tab
                     beyondnations.desktop.ui.screens.NationScreen.startOnLaws = true;
                     return ScreenType.NATIONS;
+                case "members":
+                    // the nations screen, opened on its Members tab
+                    beyondnations.desktop.ui.screens.NationScreen.startOnMembers = true;
+                    return ScreenType.NATIONS;
                 case "new-world": return ScreenType.NEW_WORLD;
                 case "share":     return ScreenType.SHARE;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, members, crafting, load, new-world or share)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -414,7 +418,7 @@ namespace beyondnations.desktop {
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
                 "  --stage-victory         open on the end-of-run screen of a won run (--stage-defeat: a lost one)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",

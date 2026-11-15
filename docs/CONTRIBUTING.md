@@ -21,7 +21,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | Switch | Effect |
 | --- | --- |
 | `--exit-after-frames N` | render N frames, then exit |
-| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `crafting`, `load`, `new-world` (the seed for a new world) or `share` (the world's seed, share link and exports) |
+| `--start-screen NAME` | open on `title`, `main-menu`, `config`, `world`, `pause`, `inventory`, `controls`, `nations`, `laws` (the nations screen on its Laws tab), `members` (the nations screen on its Members tab), `crafting`, `load`, `new-world` (the seed for a new world) or `share` (the world's seed, share link and exports) |
 | `--ui-scale F` | draw the UI F times its design size, 1 to 4; by default the monitor's content scale (150 % in Windows display settings is 1.5) |
 | `--seed S` | fix the world seed, so a run is reproducible: a number, or any text, which is hashed to one (see [SHARING.md](./SHARING.md)) |
 | `--screenshot-after-frames N` | write a PNG and carry on |
