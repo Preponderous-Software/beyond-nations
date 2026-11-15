@@ -221,6 +221,12 @@ With no member left to succeed, the line ends and so does the run: it is a defea
 
 The nations screen's *Members* tab lists the player's own nation: the player first, then every member oldest first, each with their role, home settlement, loyalty to the player (tier and number) and traits. The member `Succession.chooseHeir` would pick at that moment is marked HEIR, in gold, and the lines above the list name the heir and why (or say that the line would end), and repeat the rule: family first, then the most loyal, then the longest sworn. The rows keep that order while the screen is open, so a change of heir moves only the mark. `--start-screen members` opens the nations screen on this tab.
 
+![Opening the Members tab from the world](screenshots/nation-members-screen/open-members-tab.gif)
+
+| Members tab (desktop) | Members tab (phone portrait) |
+| --- | --- |
+| ![Members tab at 1280x720](screenshots/nation-members-screen/members-tab.png) | ![Members tab at 400x760](screenshots/nation-members-screen/members-tab-phone.png) |
+
 ## Sound, feedback and tips (host)
 Not a simulation system: it lives in the host, in [`src/BeyondNations.Desktop/ui/feel/`](../src/BeyondNations.Desktop/ui/feel/), shared by the desktop and the browser. It reads the world and never writes to it, draws nothing from the simulation's `RandomSource`, and runs on real frame time, so the same seed steps identically with it on, off or missing (`TestFeel.testFeelLayerDoesNotChangeTheSimulation`, and the History replay job).
 
