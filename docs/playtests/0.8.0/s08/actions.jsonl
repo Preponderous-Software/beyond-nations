@@ -1,0 +1,229 @@
+{"t": 1794780355098, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "108"]}
+{"t": 1794780365924, "cmd": "key", "args": ["space"]}
+{"t": 1794780368700, "cmd": "shot", "args": ["menu"]}
+{"t": 1794780387113, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780390281, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780413551, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780414394, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794780417552, "cmd": "shot", "args": ["world1"]}
+{"t": 1794780418256, "cmd": "state", "args": []}
+{"t": 1794780446549, "cmd": "click", "args": ["425", "389"]}
+{"t": 1794780448461, "cmd": "key", "args": ["n"]}
+{"t": 1794780453025, "cmd": "shot", "args": ["nation"]}
+{"t": 1794780453701, "cmd": "state", "args": []}
+{"t": 1794780473165, "cmd": "key", "args": ["f"]}
+{"t": 1794780475801, "cmd": "move", "args": ["74", "476"]}
+{"t": 1794780478189, "cmd": "shot", "args": ["found"]}
+{"t": 1794780478848, "cmd": "state", "args": []}
+{"t": 1794780486540, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780511469, "cmd": "key", "args": ["e"]}
+{"t": 1794780513207, "cmd": "key", "args": ["e"]}
+{"t": 1794780514895, "cmd": "key", "args": ["e"]}
+{"t": 1794780516547, "cmd": "key", "args": ["e"]}
+{"t": 1794780518233, "cmd": "key", "args": ["e"]}
+{"t": 1794780520015, "cmd": "state", "args": []}
+{"t": 1794780525851, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780557046, "cmd": "key", "args": ["e"]}
+{"t": 1794780558994, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780588398, "cmd": "key", "args": ["e"]}
+{"t": 1794780590109, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780591159, "cmd": "key", "args": ["e"]}
+{"t": 1794780592932, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780593652, "cmd": "key", "args": ["e"]}
+{"t": 1794780596150, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780606383, "cmd": "key", "args": ["e"]}
+{"t": 1794780608152, "cmd": "state", "args": []}
+{"t": 1794780611525, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780675612, "cmd": "key", "args": ["e"]}
+{"t": 1794780677271, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780694775, "cmd": "key", "args": ["e"]}
+{"t": 1794780696491, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780707029, "cmd": "key", "args": ["e"]}
+{"t": 1794780708669, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780744496, "cmd": "key", "args": ["e"]}
+{"t": 1794780746339, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780799106, "cmd": "key", "args": ["e"]}
+{"t": 1794780800780, "cmd": "state", "args": []}
+{"t": 1794780807499, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780833946, "cmd": "key", "args": ["e"]}
+{"t": 1794780835654, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780850367, "cmd": "key", "args": ["e"]}
+{"t": 1794780852114, "cmd": "state", "args": []}
+{"t": 1794780852321, "cmd": "key", "args": ["f"]}
+{"t": 1794780856187, "cmd": "shot", "args": ["founded"]}
+{"t": 1794780856659, "cmd": "state", "args": []}
+{"t": 1794780864629, "cmd": "note", "args": ["--shot", "founded_label", "Tick ~3887: right after F founded the settlement, the settlement's floating name label ('0 here, 0/8 residents') renders huge at the top and is half-hidden behind the chronicle panel; the objective panel still says 'Objective 4 Found a settlement' (not yet ticked over)."]}
+{"t": 1794780865249, "cmd": "wait", "args": ["5"]}
+{"t": 1794780870397, "cmd": "events", "args": ["10"]}
+{"t": 1794780874409, "cmd": "state", "args": ["--full"]}
+{"t": 1794780878545, "cmd": "state", "args": ["--full"]}
+{"t": 1794780883225, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780883842, "cmd": "state", "args": ["--full"]}
+{"t": 1794780889111, "cmd": "state", "args": ["--full"]}
+{"t": 1794780894370, "cmd": "state", "args": ["--full"]}
+{"t": 1794780899842, "cmd": "state", "args": ["--full"]}
+{"t": 1794780905125, "cmd": "state", "args": ["--full"]}
+{"t": 1794780910291, "cmd": "state", "args": ["--full"]}
+{"t": 1794780915495, "cmd": "state", "args": ["--full"]}
+{"t": 1794780919008, "cmd": "key", "args": ["e"]}
+{"t": 1794780920780, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780920805, "cmd": "state", "args": ["--full"]}
+{"t": 1794780926038, "cmd": "state", "args": ["--full"]}
+{"t": 1794780931487, "cmd": "state", "args": ["--full"]}
+{"t": 1794780936790, "cmd": "state", "args": ["--full"]}
+{"t": 1794780941970, "cmd": "state", "args": ["--full"]}
+{"t": 1794780946596, "cmd": "key", "args": ["e"]}
+{"t": 1794780947160, "cmd": "state", "args": ["--full"]}
+{"t": 1794780948426, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780952377, "cmd": "state", "args": ["--full"]}
+{"t": 1794780957640, "cmd": "state", "args": ["--full"]}
+{"t": 1794780962889, "cmd": "state", "args": ["--full"]}
+{"t": 1794780968070, "cmd": "state", "args": ["--full"]}
+{"t": 1794780973226, "cmd": "state", "args": ["--full"]}
+{"t": 1794780978485, "cmd": "state", "args": ["--full"]}
+{"t": 1794780983709, "cmd": "state", "args": ["--full"]}
+{"t": 1794780986607, "cmd": "key", "args": ["e"]}
+{"t": 1794780988361, "cmd": "state", "args": []}
+{"t": 1794780989021, "cmd": "state", "args": ["--full"]}
+{"t": 1794780994249, "cmd": "state", "args": ["--full"]}
+{"t": 1794780999314, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780999601, "cmd": "state", "args": ["--full"]}
+{"t": 1794781004762, "cmd": "state", "args": ["--full"]}
+{"t": 1794781009983, "cmd": "state", "args": ["--full"]}
+{"t": 1794781015207, "cmd": "state", "args": ["--full"]}
+{"t": 1794781016215, "cmd": "key", "args": ["e"]}
+{"t": 1794781017927, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781020409, "cmd": "state", "args": ["--full"]}
+{"t": 1794781025630, "cmd": "state", "args": ["--full"]}
+{"t": 1794781030795, "cmd": "state", "args": ["--full"]}
+{"t": 1794781035962, "cmd": "state", "args": ["--full"]}
+{"t": 1794781036822, "cmd": "key", "args": ["e"]}
+{"t": 1794781038456, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781041092, "cmd": "state", "args": ["--full"]}
+{"t": 1794781045295, "cmd": "key", "args": ["e"]}
+{"t": 1794781046310, "cmd": "state", "args": ["--full"]}
+{"t": 1794781047016, "cmd": "state", "args": []}
+{"t": 1794781050819, "cmd": "key", "args": ["h"]}
+{"t": 1794781051484, "cmd": "state", "args": ["--full"]}
+{"t": 1794781054482, "cmd": "shot", "args": ["home"]}
+{"t": 1794781054985, "cmd": "state", "args": []}
+{"t": 1794781056672, "cmd": "state", "args": ["--full"]}
+{"t": 1794781059353, "cmd": "key", "args": ["e"]}
+{"t": 1794781063676, "cmd": "state", "args": ["--full"]}
+{"t": 1794781063684, "cmd": "shot", "args": ["inside"]}
+{"t": 1794781064301, "cmd": "state", "args": []}
+{"t": 1794781067345, "cmd": "click", "args": ["375", "436"]}
+{"t": 1794781068891, "cmd": "state", "args": ["--full"]}
+{"t": 1794781071243, "cmd": "state", "args": []}
+{"t": 1794781074073, "cmd": "state", "args": ["--full"]}
+{"t": 1794781079284, "cmd": "state", "args": ["--full"]}
+{"t": 1794781084535, "cmd": "state", "args": ["--full"]}
+{"t": 1794781089796, "cmd": "state", "args": ["--full"]}
+{"t": 1794781094992, "cmd": "state", "args": ["--full"]}
+{"t": 1794781100184, "cmd": "state", "args": ["--full"]}
+{"t": 1794781105363, "cmd": "state", "args": ["--full"]}
+{"t": 1794781110529, "cmd": "state", "args": ["--full"]}
+{"t": 1794781115782, "cmd": "state", "args": ["--full"]}
+{"t": 1794781121015, "cmd": "state", "args": ["--full"]}
+{"t": 1794781126185, "cmd": "state", "args": ["--full"]}
+{"t": 1794781131397, "cmd": "state", "args": ["--full"]}
+{"t": 1794781136580, "cmd": "state", "args": ["--full"]}
+{"t": 1794781141827, "cmd": "state", "args": ["--full"]}
+{"t": 1794781146993, "cmd": "state", "args": ["--full"]}
+{"t": 1794781152332, "cmd": "state", "args": ["--full"]}
+{"t": 1794781157747, "cmd": "state", "args": ["--full"]}
+{"t": 1794781163107, "cmd": "state", "args": ["--full"]}
+{"t": 1794781168555, "cmd": "state", "args": ["--full"]}
+{"t": 1794781174068, "cmd": "state", "args": ["--full"]}
+{"t": 1794781179500, "cmd": "state", "args": ["--full"]}
+{"t": 1794781184807, "cmd": "state", "args": ["--full"]}
+{"t": 1794781190243, "cmd": "state", "args": ["--full"]}
+{"t": 1794781195714, "cmd": "state", "args": ["--full"]}
+{"t": 1794781201098, "cmd": "state", "args": ["--full"]}
+{"t": 1794781206479, "cmd": "state", "args": ["--full"]}
+{"t": 1794781211855, "cmd": "state", "args": ["--full"]}
+{"t": 1794781217087, "cmd": "state", "args": ["--full"]}
+{"t": 1794781222634, "cmd": "state", "args": ["--full"]}
+{"t": 1794781228133, "cmd": "state", "args": ["--full"]}
+{"t": 1794781233314, "cmd": "state", "args": ["--full"]}
+{"t": 1794781238537, "cmd": "state", "args": ["--full"]}
+{"t": 1794781243796, "cmd": "state", "args": ["--full"]}
+{"t": 1794781249090, "cmd": "state", "args": ["--full"]}
+{"t": 1794781254633, "cmd": "state", "args": ["--full"]}
+{"t": 1794781260047, "cmd": "state", "args": ["--full"]}
+{"t": 1794781265322, "cmd": "state", "args": ["--full"]}
+{"t": 1794781270628, "cmd": "state", "args": ["--full"]}
+{"t": 1794781272911, "cmd": "wait", "args": ["60"]}
+{"t": 1794781276036, "cmd": "state", "args": ["--full"]}
+{"t": 1794781281209, "cmd": "state", "args": ["--full"]}
+{"t": 1794781286451, "cmd": "state", "args": ["--full"]}
+{"t": 1794781291727, "cmd": "state", "args": ["--full"]}
+{"t": 1794781296964, "cmd": "state", "args": ["--full"]}
+{"t": 1794781302276, "cmd": "state", "args": ["--full"]}
+{"t": 1794781307587, "cmd": "state", "args": ["--full"]}
+{"t": 1794781312866, "cmd": "state", "args": ["--full"]}
+{"t": 1794781318120, "cmd": "state", "args": ["--full"]}
+{"t": 1794781323421, "cmd": "state", "args": ["--full"]}
+{"t": 1794781328724, "cmd": "state", "args": ["--full"]}
+{"t": 1794781333449, "cmd": "state", "args": []}
+{"t": 1794781334061, "cmd": "state", "args": ["--full"]}
+{"t": 1794781339494, "cmd": "state", "args": ["--full"]}
+{"t": 1794781341834, "cmd": "wait", "args": ["90"]}
+{"t": 1794781344840, "cmd": "state", "args": ["--full"]}
+{"t": 1794781350190, "cmd": "state", "args": ["--full"]}
+{"t": 1794781355598, "cmd": "state", "args": ["--full"]}
+{"t": 1794781362461, "cmd": "state", "args": ["--full"]}
+{"t": 1794781367688, "cmd": "state", "args": ["--full"]}
+{"t": 1794781372943, "cmd": "state", "args": ["--full"]}
+{"t": 1794781378178, "cmd": "state", "args": ["--full"]}
+{"t": 1794781383357, "cmd": "state", "args": ["--full"]}
+{"t": 1794781388624, "cmd": "state", "args": ["--full"]}
+{"t": 1794781393866, "cmd": "state", "args": ["--full"]}
+{"t": 1794781399064, "cmd": "state", "args": ["--full"]}
+{"t": 1794781404420, "cmd": "state", "args": ["--full"]}
+{"t": 1794781409771, "cmd": "state", "args": ["--full"]}
+{"t": 1794781415077, "cmd": "state", "args": ["--full"]}
+{"t": 1794781420288, "cmd": "state", "args": ["--full"]}
+{"t": 1794781425486, "cmd": "state", "args": ["--full"]}
+{"t": 1794781430667, "cmd": "state", "args": ["--full"]}
+{"t": 1794781432207, "cmd": "state", "args": []}
+{"t": 1794781435996, "cmd": "state", "args": ["--full"]}
+{"t": 1794781436561, "cmd": "wait", "args": ["60"]}
+{"t": 1794781441152, "cmd": "state", "args": ["--full"]}
+{"t": 1794781446678, "cmd": "state", "args": ["--full"]}
+{"t": 1794781453384, "cmd": "state", "args": ["--full"]}
+{"t": 1794781458460, "cmd": "state", "args": ["--full"]}
+{"t": 1794781463637, "cmd": "state", "args": ["--full"]}
+{"t": 1794781468810, "cmd": "state", "args": ["--full"]}
+{"t": 1794781474053, "cmd": "state", "args": ["--full"]}
+{"t": 1794781474278, "cmd": "state", "args": ["--full"]}
+{"t": 1794781504536, "cmd": "state", "args": []}
+{"t": 1794781532203, "cmd": "shot", "args": ["event1"]}
+{"t": 1794781532838, "cmd": "state", "args": ["--full"]}
+{"t": 1794781538724, "cmd": "click", "args": ["480", "348"]}
+{"t": 1794781543722, "cmd": "shot", "args": ["after1"]}
+{"t": 1794781544285, "cmd": "state", "args": []}
+{"t": 1794781544553, "cmd": "events", "args": ["8"]}
+{"t": 1794781554441, "cmd": "note", "args": ["--shot", "event1_resolved", "Tick 8359: Lost traveller event, chose 'Share a meal for the map (1 food)'. Feedback is clear: apples 40->39, toast + chronicle say a map marks stone and a cache ~160 paces south-east. But no marker/waypoint appears on screen or compass, so the 'map' is just text; also Objective 5 'Enter your settlement' still shows incomplete though I entered it with E at tick 5515."]}
+{"t": 1794781554943, "cmd": "state", "args": ["--full"]}
+{"t": 1794781560237, "cmd": "key", "args": ["e"]}
+{"t": 1794781563913, "cmd": "state", "args": []}
+{"t": 1794781564118, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781568439, "cmd": "events", "args": ["4"]}
+{"t": 1794781568668, "cmd": "state", "args": []}
+{"t": 1794781578042, "cmd": "events", "args": ["40"]}
+{"t": 1794781578166, "cmd": "note", "args": ["--shot", "obj5_done", "Objective 5 'Enter your settlement' only completed on my 2nd entry (E at tick 8495, left with Escape). First entry at tick 5515 (E, then left with the 'Exit Settlement' button at ~5543) did not complete it, although the settlement screen said 'Entered settlement.'"]}
+{"t": 1794781585764, "cmd": "face", "args": ["-137"]}
+{"t": 1794781600802, "cmd": "hold", "args": ["w", "25"]}
+{"t": 1794781626099, "cmd": "state", "args": []}
+{"t": 1794781626338, "cmd": "shot", "args": ["se"]}
+{"t": 1794781634772, "cmd": "click", "args": ["375", "476"]}
+{"t": 1794781638722, "cmd": "face", "args": ["-137"]}
+{"t": 1794781648708, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1794781669051, "cmd": "state", "args": []}
+{"t": 1794781669380, "cmd": "shot", "args": ["se2"]}
+{"t": 1794781680784, "cmd": "note", "args": ["--shot", "no_map_marker", "Tick 9423: after buying the traveller's map I headed out to look for the 'stone and cache 160 paces south-east'. There is no marker, waypoint, compass arrow or distance readout anywhere on the HUD; the only direction cue is 'Facing: north-east' in Player Info. 'Paces' are not a unit shown anywhere else in the game, so the reward can't be followed from what's on screen."]}
+{"t": 1794781681188, "cmd": "status", "args": []}
+{"t": 1794781681414, "cmd": "stop", "args": []}
+{"t": 1794781701556, "cmd": "report", "args": []}
+{"t": 1794782467084, "cmd": "stop", "args": []}

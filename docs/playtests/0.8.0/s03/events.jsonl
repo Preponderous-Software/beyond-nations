@@ -1,0 +1,91 @@
+{"type":"screen","tick":0,"wallTimeMs":1794780357053,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794780367609,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780368482,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":120000,"wallTimeMs":1794780396414,"how":"created","slot":"world-103-20261115-220636","seed":103}
+{"type":"screen","tick":120000,"wallTimeMs":1794780396422,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":120868,"wallTimeMs":1794780496294,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":121100,"wallTimeMs":1794780518175,"kind":"NationCreation","text":"Alice Wood declared the nation of Castleport, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"chronicle","tick":121152,"wallTimeMs":1794780523256,"kind":"SettlementFounded","text":"Alice Wood raised the first settlement of Castleport."}
+{"type":"status","tick":121168,"wallTimeMs":1794780524792,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":121200,"wallTimeMs":1794780528077,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1200}
+{"type":"status","tick":121200,"wallTimeMs":1794780528077,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":121252,"wallTimeMs":1794780533512,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":121252,"wallTimeMs":1794780533512,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"status","tick":121416,"wallTimeMs":1794780555376,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":121620,"wallTimeMs":1794780578305,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":121704,"wallTimeMs":1794780585448,"text":"Created nation Hamletfield."}
+{"type":"chronicle","tick":121704,"wallTimeMs":1794780585448,"kind":"NationCreation","text":"You raised a banner and named your people Hamletfield."}
+{"type":"objective_completed","tick":121752,"wallTimeMs":1794780589857,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":500}
+{"type":"status","tick":121752,"wallTimeMs":1794780589857,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":122000,"wallTimeMs":1794780613852,"text":"The founder is growing old. No one is left to take your place: bring members into Hamletfield."}
+{"type":"chronicle","tick":122000,"wallTimeMs":1794780613852,"kind":"Statecraft","text":"The founder is growing old. No one is left to take your place: bring members into Hamletfield."}
+{"type":"chronicle","tick":122052,"wallTimeMs":1794780618918,"kind":"NationCreation","text":"The nation of Westshire was born, with Stan Williams at its head."}
+{"type":"status","tick":122064,"wallTimeMs":1794780620007,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":122100,"wallTimeMs":1794780623591,"kind":"SettlementFounded","text":"Stan Williams laid the first stones of Westshire."}
+{"type":"status","tick":122348,"wallTimeMs":1794780646718,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":122372,"wallTimeMs":1794780649420,"text":"Gathered 5 stone from rock. (x3)"}
+{"type":"status","tick":123048,"wallTimeMs":1794780721404,"text":"No entities within range to interact with."}
+{"type":"status","tick":123524,"wallTimeMs":1794780786384,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":123652,"wallTimeMs":1794780803356,"kind":"NationCreation","text":"The nation of Uppertown was born, with Grace Lewis at its head."}
+{"type":"chronicle","tick":123700,"wallTimeMs":1794780808929,"kind":"NationCreation","text":"The nation of Fortburg was born, with Linda Thompson at its head."}
+{"type":"status","tick":123704,"wallTimeMs":1794780809281,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":123752,"wallTimeMs":1794780816826,"kind":"SettlementFounded","text":"Fortburg put down roots: Linda Thompson founded its first settlement."}
+{"type":"status","tick":123792,"wallTimeMs":1794780821826,"text":"You enter the land of Fortburg (Neutral)."}
+{"type":"status","tick":124012,"wallTimeMs":1794780845534,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":124184,"wallTimeMs":1794780867507,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":124200,"wallTimeMs":1794780872068,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":124200,"wallTimeMs":1794780872068,"kind":"NationCreation","text":"Karl White raised a banner and called it Whiteport."}
+{"type":"chronicle","tick":124352,"wallTimeMs":1794780890537,"kind":"SettlementFounded","text":"Uppertown put down roots: Grace Lewis founded its first settlement."}
+{"type":"status","tick":124372,"wallTimeMs":1794780892885,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":124500,"wallTimeMs":1794780906874,"kind":"NationRelationChange","text":"Castleport and Westshire have become rivals over their border."}
+{"type":"status","tick":124504,"wallTimeMs":1794780907284,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":124528,"wallTimeMs":1794780916922,"text":"This land is claimed by Fortburg. Found your settlement outside its borders. Open ground lies about 210 paces to the north."}
+{"type":"chronicle","tick":124900,"wallTimeMs":1794780956287,"kind":"SettlementFounded","text":"Karl White raised the first settlement of Whiteport."}
+{"type":"status","tick":125128,"wallTimeMs":1794780980689,"text":"This land is claimed by Fortburg. Found your settlement outside its borders. Open ground lies about 261 paces to the north."}
+{"type":"chronicle","tick":125200,"wallTimeMs":1794780987728,"kind":"StallBuilt","text":"Trade came to Westshire: Stan Williams built a stall."}
+{"type":"status","tick":125500,"wallTimeMs":1794781017311,"text":"You leave the land of Fortburg for the wilds."}
+{"type":"status","tick":125548,"wallTimeMs":1794781022892,"text":"Too close to the Village of Fortburg: 134 paces away, and settlements must be 250 paces apart. Open ground lies about 141 paces to the north."}
+{"type":"chronicle","tick":125552,"wallTimeMs":1794781024379,"kind":"StallBuilt","text":"A new stall opened in the market of Castleport, built by Alice Wood."}
+{"type":"status","tick":125688,"wallTimeMs":1794781045284,"text":"Too close to the Village of Fortburg: 240 paces away, and settlements must be 250 paces apart. Open ground lies about 10 paces to the north-west."}
+{"type":"chronicle","tick":125700,"wallTimeMs":1794781046754,"kind":"StallBuilt","text":"Grace Lewis built a market stall in Uppertown."}
+{"type":"status","tick":125772,"wallTimeMs":1794781055349,"text":"You are back on your own land."}
+{"type":"chronicle","tick":125772,"wallTimeMs":1794781055349,"kind":"SettlementFounded","text":"You laid the first stones of Hamletfield."}
+{"type":"objective_completed","tick":125800,"wallTimeMs":1794781059005,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4048}
+{"type":"status","tick":125800,"wallTimeMs":1794781059005,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":125800,"wallTimeMs":1794781059005,"kind":"NationJoin","text":"Peggy White joined Hamletfield."}
+{"type":"chronicle","tick":125900,"wallTimeMs":1794781075485,"kind":"NationCreation","text":"Irene Smith founded the nation of Westernton."}
+{"type":"save","tick":126000,"wallTimeMs":1794781087505,"count":1}
+{"type":"chronicle","tick":126000,"wallTimeMs":1794781087505,"kind":"NationRelationChange","text":"Castleport and Fortburg have become rivals over their border."}
+{"type":"status","tick":126052,"wallTimeMs":1794781095644,"text":"Peggy White (Stranger): \u0022Yes, leader? I\u0027m heading home. I stand by my own.\u0022"}
+{"type":"chronicle","tick":126400,"wallTimeMs":1794781127788,"kind":"NationCreation","text":"The nation of Southerntown was born, with Bella Thomas at its head."}
+{"type":"screen","tick":126412,"wallTimeMs":1794781128831,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":126412,"wallTimeMs":1794781128831,"text":"Entered settlement."}
+{"type":"screen","tick":126412,"wallTimeMs":1794781138157,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"objective_completed","tick":126452,"wallTimeMs":1794781143117,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":652}
+{"type":"status","tick":126452,"wallTimeMs":1794781143117,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":126752,"wallTimeMs":1794781192158,"kind":"SettlementFounded","text":"Irene Smith raised the first settlement of Westernton."}
+{"type":"chronicle","tick":126752,"wallTimeMs":1794781192158,"kind":"SettlementFounded","text":"Bella Thomas laid the first stones of Southerntown."}
+{"type":"chronicle","tick":126752,"wallTimeMs":1794781192158,"kind":"NationRelationChange","text":"Westshire and Uppertown have become rivals over their border."}
+{"type":"chronicle","tick":126752,"wallTimeMs":1794781192158,"kind":"NationRelationChange","text":"Uppertown and Fortburg have become rivals over their border."}
+{"type":"status","tick":126868,"wallTimeMs":1794781212928,"text":"Exited settlement."}
+{"type":"chronicle","tick":126952,"wallTimeMs":1794781226597,"kind":"StallBuilt","text":"A new stall opened in the market of Castleport, built by Alice Wood."}
+{"type":"status","tick":127152,"wallTimeMs":1794781265343,"text":"No entities within range to interact with."}
+{"type":"status","tick":127224,"wallTimeMs":1794781278031,"text":"Peggy White (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\u0022"}
+{"type":"chronicle","tick":127252,"wallTimeMs":1794781282714,"kind":"NationRelationChange","text":"Castleport and Whiteport have become rivals over their border."}
+{"type":"status","tick":127652,"wallTimeMs":1794781340418,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":127800,"wallTimeMs":1794781372874,"kind":"StallBuilt","text":"A new stall opened in the market of Westshire, built by Stan Williams."}
+{"type":"status","tick":127820,"wallTimeMs":1794781376230,"text":"Peggy White (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\u0022"}
+{"type":"chronicle","tick":127952,"wallTimeMs":1794781396297,"kind":"StallBuilt","text":"Grace Lewis built a market stall in Uppertown."}
+{"type":"status","tick":128048,"wallTimeMs":1794781411609,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":128248,"wallTimeMs":1794781447185,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":128252,"wallTimeMs":1794781447721,"text":"Uppertown resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":128252,"wallTimeMs":1794781447721,"kind":"NationRelationChange","text":"Hamletfield and Uppertown have become rivals over their border."}
+{"type":"screen","tick":128520,"wallTimeMs":1794781483327,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":128520,"wallTimeMs":1794781483327,"text":"Entered settlement."}
+{"type":"screen","tick":128520,"wallTimeMs":1794781485263,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":128588,"wallTimeMs":1794781521818,"text":"This settlement has no stalls yet."}
+{"type":"status","tick":128736,"wallTimeMs":1794781544390,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":128796,"wallTimeMs":1794781552795,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":128820,"wallTimeMs":1794781556129,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":128848,"wallTimeMs":1794781564684,"text":"Not confirmed in time, so nothing was done."}
+{"type":"chronicle","tick":128852,"wallTimeMs":1794781568907,"kind":"StallBuilt","text":"A new stall opened in the market of Fortburg, built by Linda Thompson."}

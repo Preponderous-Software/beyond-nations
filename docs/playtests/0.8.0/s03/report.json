@@ -1,0 +1,89 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter as a prepared ruler. Watch for the winter warning and the Season box food count, store food before winter (trees give NO apples in winter now), use Feed Residents and the Eat button. Record how many of your members die, whether the warning was clear and early enough, and whether preparing visibly helped.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 103,
+  "durationSec": 1215,
+  "outcome": "blocked",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "perf",
+      "title": "First winter is unreachable in a play session: sim runs at 5-12 tps, winter is ~52k ticks away",
+      "detail": "Starting with --season autumn puts the world at tick 120000 (Autumn day 1/2). Seasons are 2 days (30000 ticks/day), so the one-day winter banner is due at tick 150000 and winter at tick 180000. The game ran at 5-12 tps (fps 1-2) the whole session, so after ~20 real minutes it was only at tick 128852. At ~8 tps the warning is ~45 more minutes away and winter ~110 minutes away; the goal (survive the first winter) could not be played. There is no in-game way to pass time (sleep/wait) to get there.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn; enter world; pt status every few minutes (tps 5.9-10.7); pt state tick vs 180000",
+      "screenshot": "shots/winter_unreachable.png",
+      "tick": 127720
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Two-click confirm on Build Farm expires before a slow game can register the second click",
+      "detail": "Clicking Build Farm showed 'Click again to confirm: Build Farm.'; clicking again (game at 1-2 fps, the hover+click takes seconds) produced 'Not confirmed in time, so nothing was done.' A second attempt hit the same timeout. On a slow machine the confirm window seems to be wall-clock and too short; expected it to stay armed until another action or to scale with frames.",
+      "repro": "...found a settlement with 25+ wood in stockpile; stand in it; pt click 389 413; pt wait 2; pt click 389 413",
+      "screenshot": "shots/confirm_timeout.png",
+      "tick": 128848
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Nowhere to 'store food' in a settlement: Stores shows only funds, wood and stone",
+      "detail": "The settlement sheet's Stores section lists Funds and Stockpile (wood/stone) only; there is no food line and no deposit option. Winter readiness is only the HUD Season box 'Food: N of M for winter', which counts members' packs (not the player's 25 apples). A player told to store food expects to put apples in the settlement; Feed Residents stays greyed '(0 hungry)' all autumn, so there is no visible way to act on the count before winter.",
+      "repro": "...found settlement; walk to it; pt key e (settlement sheet); compare with HUD Season box",
+      "screenshot": "shots/no_food_store.png",
+      "tick": 128576
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "New member Peggy White still talks as a 'Stranger' who won't follow the leader",
+      "detail": "After Peggy White joined Hamletfield (chronicle 'Peggy White joined Hamletfield', residents 2/8), talking to her again shows 'Peggy White (Stranger): \"Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\"' Calling me leader and refusing to follow in one line makes it unclear whether she is in my nation.",
+      "repro": "...create nation (N), found settlement (F); pt walkto pawn; pt key e (she joins); pt key e again",
+      "screenshot": "shots/member_says_stranger.png",
+      "tick": 127316
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Objective 4 wood bar lags inventory: 'Wood 45/50' while holding 51 wood",
+      "detail": "With 51 wood in the inventory panel (state wood 51), Objective 4 'Found a settlement' showed 'Wood 45/50'. Earlier it showed 41/50 at 45 wood. It caught up to 50/50 a few seconds later. A player at 50+ wood is told they still need more.",
+      "repro": "...chop trees until inventory wood >= 50; look at the Objective panel bar immediately",
+      "screenshot": "shots/wood_objective_mismatch.png",
+      "tick": 124592
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Chronicle day number differs from Season box day",
+      "detail": "On the first day of autumn the chronicle says 'Day 5, morning' while the Season box says 'Autumn - day 1/2' (probe day=4). Two different day counts on screen make it hard to time the winter countdown.",
+      "repro": "pt start ... --season autumn; create a nation; read chronicle vs Season box",
+      "screenshot": "shots/chronicle_day_offby1.png",
+      "tick": 121848
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Floating settlement label clipped at top of screen and behind panels; Season box food count works well",
+      "detail": "The world-space 'Camp of Hamletfield / N here, x/8 residents' label is cut off by the top edge and overlaps the status and chronicle panels. On the plus side, the Season box shows 'Winter in 2 days' in orange from the first moment and a 'Food: N of M for winter' line that climbed 7 -> 12 -> 17 of 4 as my member laid in apples - clear and early.",
+      "repro": "...found settlement; stand in it; pt shot",
+      "screenshot": "shots/season_food_count.png",
+      "tick": 127640
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 2424.0, "Eat something": 2425.04, "Create or join a nation": 2435.04, "Found a settlement": 2516.0, "Enter your settlement": 2529.04},
+    "membersDiedInWinter": null,
+    "winterReached": false,
+    "lastTick": 128852,
+    "ticksToWinterRemaining": 51148,
+    "avgTps": 8,
+    "nationMembers": 2,
+    "seasonBoxFoodAtEnd": 17,
+    "seasonBoxFoodWanted": 4,
+    "playerApplesAtEnd": 25
+  },
+  "fun": 3,
+  "verdict": "The winter-prep feedback that exists is good: 'Winter in 2 days' is on screen from the start and the Season box food count visibly climbs as members lay in apples. But the goal could not be tested: at 5-12 tps the first winter is almost two hours of wall-clock away from an autumn start, there is no way to pass time, and there is no settlement food store or active Feed Residents to act on before winter. Shorten seasons for testing, add a wait/sleep, or make confirms and timers frame-tolerant on slow machines."
+}

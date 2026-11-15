@@ -1,0 +1,67 @@
+{
+  "session": "s08",
+  "goal": "World events: play until world events are offered, take different choices, and judge whether the consequences are clear and fair.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 108,
+  "durationSec": 1327,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Only one world event fits in a 30-minute session on a loaded machine; the second can't be reached to compare choices",
+      "detail": "With the nation created at tick ~320 and the settlement founded at tick 3859, the first player event (A lost traveller) came at tick 8359, as the 90-second post-settling rule says. The game ran at 5-13 tps on this shared machine, so reaching it took ~19 real minutes. The second event is due 5-7 game minutes later (15000+ ticks, ~25 more real minutes at ~10 tps), so a 30-minute session sees one choice and can't compare outcomes. Expected: the first two choices fit early, or the event pacing follows real play time when the sim runs below 50 tps.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 108; space; click Start; click Begin; n; chop 10 trees (walkto tree; e); f; wait for the worldEvent in pt state",
+      "screenshot": "shots/event1.png",
+      "tick": 8359
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Lost traveller 'map' reward gives no on-screen marker; '160 paces south-east' can't be followed",
+      "detail": "I chose 'Share a meal for the map (1 food)'. The cost was clear (apples 40->39), and the toast and chronicle said the map marks stone and a cache about 160 paces south-east. But nothing appears on the HUD: no waypoint, compass arrow or distance. 'Paces' isn't a unit used anywhere else, and the only direction cue is the 'Facing:' line in Player Info. I could not tell whether I reached the spot. Expected: a marker or bearing/distance readout while the map is held.",
+      "repro": "As above; at the Lost traveller sheet click option 1 (480,348); then try to find the cache from the screen alone",
+      "screenshot": "shots/no_map_marker.png",
+      "tick": 9423
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 'Enter your settlement' doesn't complete when you leave with the settlement screen's Exit Settlement button",
+      "detail": "At tick 5515 I pressed E at my settlement. The settlement screen said 'Entered settlement.' I left with its 'Exit Settlement' button, and Objective 5 stayed open. On the second try (E at 8495, then Escape, which drops you into the in-settlement HUD) it completed at tick 8503. A player who reads 'Entered settlement.' expects the objective to be done.",
+      "repro": "After founding: walk to the settlement; e; click 'Exit Settlement' (375,436); the objective stays open. Then e; Escape; it completes",
+      "screenshot": "shots/obj5_done.png",
+      "tick": 8503
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement floating label ('N here, 3/8 residents') renders huge and half-hidden behind the chronicle panel",
+      "detail": "Near your own settlement, its name/resident label is drawn in very large text across the top of the screen. It overlaps the Era panel and the chronicle, so it's hard to read and clutters the HUD. It is still behind the world-event sheet.",
+      "repro": "Found a settlement (f) and stand next to it",
+      "screenshot": "shots/founded_label.png",
+      "tick": 3951
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Escape from the settlement screen leaves you frozen in the in-settlement HUD with no hint that you are still inside",
+      "detail": "After Escape from the settlement sheet, W/Shift+W did nothing for 25 seconds; the player was still 'inside'. Only the HUD layout changing (Build Stall/Build House buttons) shows this. I expected Escape to return me to walking, or a visible 'You are inside - Exit Settlement to walk' cue.",
+      "repro": "e at own settlement; Escape; hold w",
+      "screenshot": "shots/se.png",
+      "tick": 8947
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "secondsToObjective": {"Found a settlement": 78.06, "Enter your settlement": 170.06},
+    "worldEventsOffered": 1,
+    "worldEventChoicesTaken": 1,
+    "firstWorldEventTick": 8359,
+    "ticksFromSettlementToFirstEvent": 4500,
+    "avgTps": 9
+  },
+  "fun": 3,
+  "verdict": "The world-event sheet itself works well: it pauses the world, gives three options with their costs and outcomes in plain text, and the result is echoed in a toast and the chronicle with the exact cost taken. The pacing defeats the goal, though. On a slow machine only one event arrives in a 30-minute session, so I couldn't compare choices. The 'map' reward points to a place the HUD gives no way to find."
+}

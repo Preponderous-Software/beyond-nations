@@ -1,0 +1,145 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 101,
+  "durationSec": 1323,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "First entry into your settlement does not complete objective 5 'Enter your settlement'",
+      "detail": "Objective 5 became active at tick 4352. I pressed E at the well, got the CAMP OF FARMSHIRE screen with status 'Entered settlement.' (tick 4540), then clicked Exit Settlement. The objective stayed on 'Enter your settlement' for 350+ ticks. Only a second entry (tick 4900) completed it. Expected: the first entry completes it.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 101; title, Start, Begin; chop ~11 trees (pt walkto tree; pt key e) to 50 wood; pt key n; walk >250 paces from Hamletburg; pt key f; pt key e; click Exit Settlement (375,435); pt wait 8; pt state -> objective still 5",
+      "screenshot": "shots/enter_obj_not_done.png",
+      "tick": 4892
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "'Press B inside your settlement' does nothing on the settlement panel; must click the unexplained 'Back' first",
+      "detail": "Objective 6 says to press B inside your settlement. Pressing E opens the CAMP OF FARMSHIRE panel; B there does nothing (no message, pressed twice). Outside, B says 'You are not inside a settlement.' Only after clicking 'Back' (as opposed to 'Exit Settlement') does a separate in-settlement HUD with Build Stall / Build House / etc. appear, and then B works. The difference between Back and Exit Settlement is never explained. A new player would get stuck here.",
+      "repro": "...after founding: gather 20 wood + 5 stone; pt key h; pt key e; pt key b (nothing); pt click 583 435 (Back); pt key b -> 'Stall built.'",
+      "screenshot": "shots/stall_flow.png",
+      "tick": 7652
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Founding a settlement: direction hints ('10 paces north-west') but no compass or map on screen",
+      "detail": "F gives a helpful 'Too close to the Village of Hamletburg: 241 paces away... Open ground lies about 10 paces to the north-west.' But the only orientation aid is the 'Facing:' text in Player Info, so following the hint is guesswork; it took 3 attempts and once I walked closer (229 paces). The Found Settlement button was enabled at 50 wood with no hint that the spot was invalid.",
+      "repro": "with 50 wood near (-62,89): pt key f; follow the hint; pt key f",
+      "screenshot": "shots/founded.png",
+      "tick": 4528
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Objective progress lags the inventory by several seconds",
+      "detail": "After chopping, inventory said Wood 5 while the objective said 'Wood 0/10'; later 41 vs 36/50, then 52 vs 47/50 with Found Settlement already enabled; after 'Farm built.' it still said Buildings 0/2. Makes players doubt that the action counted.",
+      "repro": "pt walkto tree; pt key e; pt shot (compare Inventory Info and Objective panel)",
+      "screenshot": "shots/wood_lag.png",
+      "tick": 3656
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 2 'Eat something' completes by itself, so the player never sees it",
+      "detail": "Apples are auto-eaten ('Ate an apple (+15 energy).' appeared with no input) so 'Eat something' completed 48 ticks after objective 1 and was never shown as the active goal. The Eat Apple button and the objective teach nothing. The apple count also looked unchanged after the auto-eat (Apples: 1), which was confusing.",
+      "repro": "start; chop 3 trees; pt events -> eat completed at tick 1200 without pressing anything",
+      "screenshot": "shots/obj2_skipped.png",
+      "tick": 1292
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Tips and objectives out of sync: 'Gather stone' tip stuck for most of the session; 'Your goals' tip arrives at objective 6",
+      "detail": "Tip 3 'Gather stone' was shown from the first chop (objective 1) until objective 6, while objectives asked for wood, a nation, a settlement. Tip 5 'Your goals are at the top left' first appeared after objective 6, long after it would have helped. The tip popup also overlaps the Inventory panel in the in-settlement HUD.",
+      "repro": "start; chop one tree; observe tip panel through objectives 1-6",
+      "screenshot": "shots/obj_wood_mismatch.png",
+      "tick": 640
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Objective 7 progress label clipped: 'mbers 2/10 • Buildings 0/2'",
+      "detail": "The 'Members' word is cut off on the left of the progress bar. The goal also needs 10 members while the camp shows 'Residents: 2/8', and nothing says how to reach 10 (the only nearby pawn is already a member; others are 250m away).",
+      "repro": "reach objective 7 (after building the stall); look at the Objective panel",
+      "screenshot": "shots/obj7_clipped.png",
+      "tick": 7980
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Settlement panel contradicts itself and leads with a confusing 'Give to' control",
+      "detail": "'Residents: 1 of 8 (0 here now). You are inside it.' The biggest control on the screen is 'Give to: you / Give' with text about giving the settlement away, which makes no sense to a new player on their first camp. The panel does not point to the next step (K for a farm, B for a stall).",
+      "repro": "found settlement; pt key e",
+      "screenshot": "shots/settle_screen.png",
+      "tick": 4540
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "E next to a member pawn inside the settlement exits the settlement instead of talking; member shown as 'Stranger'",
+      "detail": "R on Eve Wood said 'Eve Wood is already a member of Farmshire', yet E left the settlement (settlement has interact priority), and the button then read 'Talk to Eve Wood (Stranger)'. A member labelled Stranger is confusing.",
+      "repro": "inside settlement HUD: pt walkto pawn; pt key r; pt key e",
+      "screenshot": "shots/e_exits_not_talk.png",
+      "tick": 8604
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "N creates a nation instantly with a random name; no chance to name it",
+      "detail": "Pressing N made 'Farmshire' with no prompt or confirmation. Naming your nation is an expected moment of ownership. Chronicle lines are also truncated with '...' (e.g. 'with Yvonne...').",
+      "repro": "after objective 2: pt key n",
+      "screenshot": "shots/nation_no_name.png",
+      "tick": 1616
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Giant floating settlement label '1 here, 2/8 residents' drawn across the top of every screen near home",
+      "detail": "The world label is huge and translucent, sits behind HUD text, status toasts, the settlement panel title and even the PAUSED screen. It never reads as a settlement name. On founding, my character was also inside the well model and not visible.",
+      "repro": "found a settlement; stand at the well; pt key Escape",
+      "screenshot": "shots/pause_label.png",
+      "tick": 8780
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Player-facing Controls screen lists debug/cheat keys (F2-F6)",
+      "detail": "Page 3 of the Controls screen on the main menu advertises 'Spawn coins', 'Spawn wood', 'Teleport every pawn here'. A new player sees cheats as normal controls.",
+      "repro": "main menu > Controls > Next > Next",
+      "screenshot": "shots/controls3.png",
+      "tick": null
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "Game ran at 1-3 fps and 2-12 tps on the shared machine",
+      "detail": "World ran at roughly 15-20% speed (tps 2.7-12, fps 1-3), so 22 minutes of wall time covered only about 3 minutes of game time. Clicks and screenshots lagged a frame behind. Probably caused by machine load from parallel sessions, but it prevented playing a full 10 game-minutes.",
+      "repro": "pt status during play",
+      "screenshot": "shots/rock1.png",
+      "tick": 5828
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 23.04,
+      "Eat something": 24.0,
+      "Create or join a nation": 28.0,
+      "Found a settlement": 87.04,
+      "Enter your settlement": 98.0,
+      "Build a market stall": 152.0
+    },
+    "gameSecondsPlayed": 175.6,
+    "foundSettlementAttempts": 3,
+    "treesChopped": 15,
+    "buildingsBuilt": 1
+  },
+  "fun": 3,
+  "verdict": "The onboarding spine is strong: clear top-left objectives with rewards, helpful 'too close, open ground lies N paces north-west' feedback, and a lively chronicle make the first steps easy to follow. The settlement step breaks it: the Settlement panel vs. in-settlement HUD ('Back' vs 'Exit Settlement') hides where B/K work, the first entry does not count for its objective, and tips and objectives drift out of sync (stone tip shown during the wood and nation steps; 'Eat something' completes itself). Fix the settlement flow and the objective lag, and a new player would get through the first 10 minutes without confusion."
+}
