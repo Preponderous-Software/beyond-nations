@@ -120,6 +120,56 @@ namespace beyondnationstests {
             Assert.Contains(eras.getHistory(), entry => entry.isMilestone() && entry.getText() == "Testland entered the Village era.");
         }
 
+        /** A player-led nation with every Camp requirement met but the day. */
+        private Settlement makeVillageReadyButForTheDay() {
+            Nation nation = makePlayerLeader();
+            Settlement settlement = addSettlement(nation, Vector3.Zero);
+            addMembers(nation, EraRules.VillageMembers);
+            build(settlement, SettlementTiers.VILLAGE_BUILDINGS);
+            settlement.getMarket().createStall();
+            settlement.getMarket().createStall();
+            return settlement;
+        }
+
+        [Fact]
+        public void testVillage_ComesAfterOneNight_OnDayTwo() {
+            // #352: the Village waited for day 3, so a nation with everything
+            // else by minute 3 idled for about 14 minutes. One night now.
+            Assert.Equal(2, EraRules.VillageDay);
+            makeVillageReadyButForTheDay();
+            eras.evaluate(simulation);
+            Assert.Equal(Era.CAMP, eras.getEra()); // day 1
+
+            // the last tick of day 1 is still the Camp
+            TimeOfDay time = simulation.getTimeOfDay();
+            while (TimeOfDay.dayAt(simulation.getTickCounter().getTotalTicks() + 1, time.getTicksPerDay(), time.getStartFraction()) == 0) {
+                simulation.getTickCounter().increment();
+            }
+            Assert.Equal(1, EraTracker.dayOf(simulation));
+            eras.evaluate(simulation);
+            Assert.Equal(Era.CAMP, eras.getEra());
+
+            // the first tick of day 2 is the Village
+            simulation.getTickCounter().increment();
+            Assert.Equal(2, EraTracker.dayOf(simulation));
+            eras.evaluate(simulation);
+            Assert.Equal(Era.VILLAGE, eras.getEra());
+        }
+
+        [Fact]
+        public void testVillage_GateOpensWithinTenGameMinutes() {
+            // The calendar floor for the Village: a new world reaches the
+            // Village's day inside ten minutes of game time (docs/PACING.md).
+            int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
+            int ticks = 0;
+            while (EraTracker.dayOf(simulation) < EraRules.VillageDay) {
+                simulation.getTickCounter().increment();
+                ticks++;
+            }
+            Assert.True(ticks >= 5 * 60 * ticksPerSecond, "the gate opened after only " + ticks + " ticks");
+            Assert.True(ticks <= 10 * 60 * ticksPerSecond, "the gate opened after " + ticks + " ticks");
+        }
+
         [Fact]
         public void testEras_AdvanceOneAtATime_AndNeverGoBack() {
             Nation nation = makeKingdomReadyNation();
