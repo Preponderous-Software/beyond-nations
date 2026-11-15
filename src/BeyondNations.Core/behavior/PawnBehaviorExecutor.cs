@@ -252,7 +252,10 @@ namespace beyondnations {
             Settlement settlement = (Settlement) entityRepository.getEntity(pawn.getCurrentSettlementId());
             
             Market market = settlement.getMarket();
-            EntityId stallOwnerId = market.sellResources(pawn, PawnTraits.sellPriceBonusPercent(pawn));
+            // selling surplus leaves every till its float, so the player still
+            // finds a market that can pay; a hungry pawn sells to eat (#369)
+            int keepInTill = pawn.needsFood() ? 0 : Stall.TILL_RESERVE;
+            EntityId stallOwnerId = market.sellResources(pawn, PawnTraits.sellPriceBonusPercent(pawn), keepInTill);
             if (stallOwnerId == null) {
                 Log.warning("Pawn " + pawn + " tried to sell resources but was unable to.");
                 pawn.setCurrentBehaviorType(BehaviorType.NONE);
@@ -501,12 +504,13 @@ namespace beyondnations {
                 return;
             }
 
-            // remove money
-            pawn.getInventory().removeItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
-
-            // assign ownership of stall to pawn
+            // assign ownership of stall to pawn; the price goes into its till
+            // as the float it pays its first sellers with, rather than
+            // vanishing and leaving a new market with no coin (#369)
             Stall stall = market.getStallForSale();
             stall.setOwnerId(pawn.getId());
+            pawn.getInventory().removeItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
+            stall.getInventory().addItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
             nation.setRole(pawn.getId(), NationRole.MERCHANT);
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
@@ -540,13 +544,10 @@ namespace beyondnations {
             if (crafted > 0) {
                 Log.info("Pawn " + pawn.getName() + " crafted " + crafted + " batches of goods for their stall.");
             }
-            stall.transferContentsFromEntity(pawn);
+            stall.stockGoodsFrom(pawn);
 
-            // get half of coins from stall
-            int numCoins = stall.getInventory().getNumItems(ItemType.COIN);
-            int numCoinsToTransfer = numCoins / 2;
-            stall.getInventory().removeItem(ItemType.COIN, numCoinsToTransfer);
-            pawn.getInventory().addItem(ItemType.COIN, numCoinsToTransfer);
+            // take half of what the till holds above its float (#369)
+            stall.takeProfit(pawn, true);
 
             Log.debug("Pawn " + pawn.getName() + " transferred items to their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
@@ -652,10 +653,8 @@ namespace beyondnations {
                 return;
             }
 
-            // collect profit
-            int profit = stall.getInventory().getNumItems(ItemType.COIN);
-            pawn.getInventory().addItem(ItemType.COIN, profit);
-            stall.getInventory().removeItem(ItemType.COIN, profit);
+            // collect profit, leaving the till its float (#369)
+            int profit = stall.takeProfit(pawn, false);
             Log.debug("Pawn " + pawn.getName() + " collected " + profit + " coins from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }

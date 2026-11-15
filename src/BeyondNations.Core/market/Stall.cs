@@ -11,6 +11,14 @@ namespace beyondnations {
         public static readonly int STONE_COST_TO_BUILD = 5;
         public static readonly int COIN_COST_TO_PURCHASE = 100;
 
+        /**
+        * Coins a settler's stall keeps in its till to pay sellers with (#369).
+        * Merchants take their profit above it, and settlers selling surplus
+        * do not sell a till below it, so the player finds a market that can
+        * pay for a few goods. A hungry settler, selling to eat, still may.
+        */
+        public const int TILL_RESERVE = 100;
+
         public Stall() {
             ownerId = null;
             inventory = new Inventory(0);
@@ -70,8 +78,27 @@ namespace beyondnations {
             entity.getInventory().transferContentsOfInventory(inventory);
         }
 
-        public void transferContentsFromEntity(Entity entity) {
-            inventory.transferContentsOfInventory(entity.getInventory());
+        /** Stocks the stall with everything the entity carries but its coins (#418). Returns how many items moved. */
+        public int stockGoodsFrom(Entity entity) {
+            return inventory.transferGoodsOfInventory(entity.getInventory());
+        }
+
+        /**
+        * Takes coins out of the till for the owner, never below TILL_RESERVE,
+        * and returns how many: all of what is above the reserve, or half of
+        * it when half is true.
+        */
+        public int takeProfit(Entity owner, bool half) {
+            int above = inventory.getNumItems(ItemType.COIN) - TILL_RESERVE;
+            if (above <= 0) {
+                return 0;
+            }
+            int taken = half ? above / 2 : above;
+            if (taken > 0) {
+                inventory.removeItem(ItemType.COIN, taken);
+                owner.getInventory().addItem(ItemType.COIN, taken);
+            }
+            return taken;
         }
 
         // --- saving (docs/SAVES.md) ---

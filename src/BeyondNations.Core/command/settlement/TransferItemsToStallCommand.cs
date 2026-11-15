@@ -35,8 +35,12 @@ namespace beyondnations {
                 return;
             }
 
-            stall.getInventory().transferContentsOfInventory(player.getInventory());
-            player.getStatus().update("Transferred contents of inventory to stall.");
+            // goods only: the purse stays with the merchant (#418)
+            if (stall.stockGoodsFrom(player) == 0) {
+                player.getStatus().update("You have no goods to stock: your stall takes goods, not coins.");
+                return;
+            }
+            player.getStatus().update("Moved your goods to your stall. Your coins stay in your purse.");
         }
     }
 }

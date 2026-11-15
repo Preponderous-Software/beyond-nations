@@ -25,11 +25,20 @@ namespace beyondnations {
             return baseItemCosts[itemType];
         }
 
-        /** Each SUPPLY_SOFTNESS units on offer lower the price by one base cost's worth of divisor. */
-        public const int SUPPLY_SOFTNESS = 10;
+        /**
+        * Each SUPPLY_SOFTNESS units on offer lower the price by one base
+        * cost's worth of divisor. It was 10, and a stall stocked with a
+        * dozen apples sold them for under half price on Day 1 (#369).
+        */
+        public const int SUPPLY_SOFTNESS = 20;
 
-        /** The price never falls below this percentage of the base cost. */
-        public const int PRICE_FLOOR_PERCENT = 25;
+        /**
+        * The price never falls below this percentage of the base cost, after
+        * the market's pressure as well as the supply curve. It used to be a
+        * quarter of the base before pressure, which a glut could halve again,
+        * so apples fell from 42 to 8 within a game day (#369).
+        */
+        public const int PRICE_FLOOR_PERCENT = 40;
 
         /**
         * What one of these costs to buy at this market right now: the supply
@@ -42,7 +51,15 @@ namespace beyondnations {
 
         /** The price at this market if its stalls held quantityAvailable of the item. */
         public static int calculateCostAtSupply(ItemType itemType, Market market, int quantityAvailable) {
-            return applyPressure(calculateCost(getBaseCost(itemType), quantityAvailable), market.getPrices().getPressure(itemType));
+            int baseCost = getBaseCost(itemType);
+            int pressed = applyPressure(calculateCost(baseCost, quantityAvailable), market.getPrices().getPressure(itemType));
+            return System.Math.Max(pressed, floorOf(baseCost));
+        }
+
+        /** The lowest a price can go: PRICE_FLOOR_PERCENT of the base cost, and at least one coin. */
+        public static int floorOf(int baseCost) {
+            int floor = baseCost * PRICE_FLOOR_PERCENT / 100;
+            return floor < 1 ? 1 : floor;
         }
 
         /** A price leaned on by a pressure in percent (100 leaves it alone), never below one coin. */
@@ -52,20 +69,17 @@ namespace beyondnations {
         }
 
         /**
-        * A gentle supply curve: base / (1 + supply / 10), never below a quarter
-        * of the base cost (and never below one coin). Ten units on offer halve
-        * the price; it used to be base / supply, so forty apples sold for one
-        * coin each and selling was pointless.
+        * A gentle supply curve: base / (1 + supply / 20), never below
+        * PRICE_FLOOR_PERCENT of the base cost (and never below one coin).
+        * Twenty units on offer halve the price; it used to be base / supply,
+        * so forty apples sold for one coin each and selling was pointless.
         */
         public static int calculateCost(int baseCost, int quantityAvailable) {
             if (quantityAvailable < 0) {
                 quantityAvailable = 0;
             }
             long cost = (long) baseCost * SUPPLY_SOFTNESS / (SUPPLY_SOFTNESS + quantityAvailable);
-            int floor = baseCost * PRICE_FLOOR_PERCENT / 100;
-            if (floor < 1) {
-                floor = 1;
-            }
+            int floor = floorOf(baseCost);
             return cost < floor ? floor : (int) cost;
         }
 

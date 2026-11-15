@@ -133,7 +133,7 @@ namespace beyondnationstests {
 
         [Fact]
         public void testPurchaseFood_PreferredFoodUnaffordable_FallsBackToTheOther() {
-            // prepare: one of each on offer, so meat costs 45 and an apple 36;
+            // prepare: one of each on offer, so meat costs 47 and an apple 38;
             // meat is preferred at these prices but the buyer has only 44
             Market market = createMarketWithStall(1, 1);
             Pawn buyer = createBuyer(44);
@@ -144,7 +144,7 @@ namespace beyondnationstests {
             // verify
             Assert.NotNull(stallOwnerId);
             Assert.Equal(1, buyer.getInventory().getNumItems(ItemType.APPLE));
-            Assert.Equal(8, buyer.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(6, buyer.getInventory().getNumItems(ItemType.COIN));
         }
 
         [Fact]
@@ -152,9 +152,9 @@ namespace beyondnationstests {
             // prepare
             Market market = createMarketWithStall(1, 0);
 
-            // run / check: with one on offer an apple costs 40 * 10 / 11 = 36
-            Assert.False(market.canPurchaseFood(createBuyer(35)));
-            Assert.True(market.canPurchaseFood(createBuyer(36)));
+            // run / check: with one on offer an apple costs 40 * 20 / 21 = 38
+            Assert.False(market.canPurchaseFood(createBuyer(37)));
+            Assert.True(market.canPurchaseFood(createBuyer(38)));
         }
 
         [Fact]

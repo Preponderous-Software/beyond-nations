@@ -156,6 +156,33 @@ namespace beyondnations {
             otherInventory.clear();
         }
 
+        /**
+        * Transfers everything but coin from the other inventory to this one,
+        * and returns how many items moved. Stocking a stall uses this: a
+        * merchant's purse stays with the merchant (#418).
+        */
+        public int transferGoodsOfInventory(Inventory otherInventory) {
+            int moved = 0;
+            foreach (ItemSlot otherSlot in otherInventory.getSlots()) {
+                if (otherSlot.isEmpty()) {
+                    continue;
+                }
+                ItemType itemType = otherSlot.getItemStack().getItemType();
+                if (itemType == ItemType.COIN) {
+                    continue;
+                }
+                int quantity = otherSlot.getQuantity();
+                addItem(itemType, quantity);
+                moved += quantity;
+            }
+            int coins = otherInventory.getNumItems(ItemType.COIN);
+            otherInventory.clear();
+            if (coins > 0) {
+                otherInventory.addItem(ItemType.COIN, coins);
+            }
+            return moved;
+        }
+
         /** Tradeable items (anything but coin) that count as worth a trip to market. */
         public const int ABUNDANCE_THRESHOLD = 20;
 

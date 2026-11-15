@@ -210,7 +210,8 @@ namespace beyondnations {
                 else {
 
                     // if pawn has an abundance of resources, sell them
-                    if (pawn.getInventory().containsAbundanceOfResources() && market.getTotalCoins() > 10) {
+                    if (pawn.getInventory().containsAbundanceOfResources()
+                            && market.canSellTo(pawn, PawnTraits.sellPriceBonusPercent(pawn), Stall.TILL_RESERVE)) {
                         return BehaviorType.SELL_RESOURCES;
                     }
 
