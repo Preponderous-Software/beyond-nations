@@ -273,8 +273,7 @@ namespace beyondnations.web {
             if (simulation == null || !screens.isWorldActive() || ImGuiNET.ImGui.GetIO().WantCaptureMouse) {
                 return;
             }
-            InteractCommand interact = new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(),
-                simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter());
+            InteractCommand interact = InteractCommand.forSimulation(simulation);
             if (interact.hasTargetInRange(simulation.getPlayer())) {
                 // the same press E makes, so it goes through the same path
                 inputSource.key(KeyBindings.Interact, true);

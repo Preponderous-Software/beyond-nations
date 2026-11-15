@@ -187,6 +187,43 @@ namespace beyondnationstests {
             return pawn;
         }
 
+        /** The same command, with a season calendar whose clock is moved on to the first tick of this season. */
+        private InteractCommand commandIn(Season season) {
+            TickCounter tickCounter = new TickCounter();
+            SeasonCalendar calendar = new SeasonCalendar(new TimeOfDay(tickCounter));
+            calendar.advanceClockTo(tickCounter, season);
+            Assert.Equal(season, calendar.getSeason());
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            return new InteractCommand(environment, new NationRepository(random), new EventProducer(new EventRepository()),
+                entityRepository, random, tickCounter, calendar);
+        }
+
+        [Fact]
+        public void testExecute_TreeInWinter_GivesThePlayerWoodButNoApples() {
+            // the player used to be spared the bare winter trees (#456): no longer
+            AppleTree tree = addTree(new Vector3(0, 0, 3));
+            int wood = tree.getInventory().getNumItems(ItemType.WOOD);
+            Assert.True(tree.getInventory().getNumItems(ItemType.APPLE) > 0);
+
+            commandIn(Season.WINTER).execute(player);
+
+            Assert.True(tree.isMarkedForDeletion());
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(wood, player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal("Gathered " + wood + " wood from tree (bare in winter).", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_TreeInAutumn_StillGivesThePlayerItsApples() {
+            AppleTree tree = addTree(new Vector3(0, 0, 3));
+            int apples = tree.getInventory().getNumItems(ItemType.APPLE);
+
+            commandIn(Season.AUTUMN).execute(player);
+
+            Assert.Equal(apples, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Contains(" apple", player.getStatus().getStatus());
+        }
+
         [Fact]
         public void testExecute_FacingTreeWithPawnNearerAtShoulder_GathersTree() {
             // the seed-5 pacing stall: the tree 2.5 ahead, a settler 1.2 away at the side

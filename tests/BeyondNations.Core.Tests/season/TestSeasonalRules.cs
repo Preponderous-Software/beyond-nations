@@ -203,7 +203,7 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testTrees_AreBareForPawnsInWinter() {
+        public void testTrees_AreBareInWinter() {
             Assert.True(SeasonalRules.treesBearFruit(Season.SPRING));
             Assert.True(SeasonalRules.treesBearFruit(Season.SUMMER));
             Assert.True(SeasonalRules.treesBearFruit(Season.AUTUMN));

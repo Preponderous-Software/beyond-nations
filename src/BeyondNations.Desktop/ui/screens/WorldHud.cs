@@ -151,7 +151,7 @@ namespace beyondnations.desktop.ui.screens {
             float centreBottom = layout.Margin;
             if (!stackCentre) {
                 float centreY = drawStatus(width, player, layout, layout.Margin);
-                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, layout, centreY));
+                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, simulation.getSeasonCalendar().isWinter(), layout, centreY));
             }
 
             // Left column, from the top: the controls button (the touch path
@@ -195,7 +195,7 @@ namespace beyondnations.desktop.ui.screens {
                 // full width under the two of them.
                 float underBoxes = System.MathF.Max(leftTop, layout.Margin + playerBox.getExpectedHeight() + layout.Gap);
                 float centreY = drawStatus(width, player, layout, underBoxes);
-                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, layout, centreY));
+                centreBottom = drawResidentHungerWarning(width, simulation, layout, drawHungerWarning(width, player, simulation.getSeasonCalendar().isWinter(), layout, centreY));
             }
 
             // On a short window with the debug box open there is no room for
@@ -495,11 +495,22 @@ namespace beyondnations.desktop.ui.screens {
         * player is one with none, and the warning says where to get some.
         */
         public static string getHungerWarning(Player player) {
+            return getHungerWarning(player, false);
+        }
+
+        /**
+        * In winter the trees are bare for the player too
+        * (SeasonalRules.treesBearFruit), so the warning stops sending a
+        * hungry player to one.
+        */
+        public static string getHungerWarning(Player player, bool winter) {
             float energy = player.getEnergy();
             if (energy >= HungryEnergy) {
                 return null;
             }
-            string howToEat = ObjectiveKeyNames.resolve("Press {Interact} at a tree or a chicken for food, or buy food in a settlement.");
+            string howToEat = ObjectiveKeyNames.resolve(winter
+                ? "Trees are bare in winter: press {Interact} at a chicken for meat, or buy food in a settlement."
+                : "Press {Interact} at a tree or a chicken for food, or buy food in a settlement.");
             if (energy < StarvingEnergy) {
                 return "Starving! Energy " + (int) energy + ". " + howToEat;
             }
@@ -512,8 +523,8 @@ namespace beyondnations.desktop.ui.screens {
         * danger is still real. Returns the warning's bottom edge, or y when
         * there is none, so the chronicle strip can sit below it.
         */
-        private float drawHungerWarning(float width, Player player, Layout layout, float y) {
-            string warning = getHungerWarning(player);
+        private float drawHungerWarning(float width, Player player, bool winter, Layout layout, float y) {
+            string warning = getHungerWarning(player, winter);
             if (warning == null) {
                 return y;
             }

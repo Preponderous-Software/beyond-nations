@@ -769,8 +769,7 @@ namespace beyondnations.pacing {
         // --- what the bot can see ---------------------------------------------
 
         private void interact() {
-            new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(),
-                simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter()).execute(player);
+            InteractCommand.forSimulation(simulation).execute(player);
         }
 
         private Settlement homeSettlement() {
