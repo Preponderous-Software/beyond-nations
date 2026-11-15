@@ -21,16 +21,17 @@
   "shots": [
     {
       "name": "flyover", "kind": "clip", "device": "film",
-      "comment": "Seed 12 fifty minutes in (150000 ticks), the camera gliding from one nation's town across the border to its neighbour's. About two minutes under llvmpipe.",
+      "comment": "Seed 12 fifty minutes in (150000 ticks), the camera gliding from one nation's village across the border to its neighbour's. About two minutes under llvmpipe.",
       "argv+": ["--seed", "12", "--start-screen", "world", "--advance-ticks", "150000",
                 "--flyover-out", "{out_dir}/frames", "--flyover-frames", "90"],
       "glob": "frame-*.png",
       "fps": 12,
       "gif": { "fps": 12, "width": 480, "palette": "adaptive", "budget_mb": 4 },
       "video": ["mp4"], "poster": 0.24,
+      "gallery": { "width": 480, "poster": true },
       "file": "../../.github/media/flyover.gif",
-      "caption": "Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's town, the border, the next nation's town.",
-      "alt": "A flyover of seed 12 fifty minutes in: over one nation's town, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town"
+      "caption": "Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's village, the border, the next nation's village.",
+      "alt": "A flyover of seed 12 fifty minutes in: over one nation's village, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's village"
     },
     {
       "name": "seasons", "kind": "clip", "device": "desktop", "gif": false,
@@ -40,6 +41,19 @@
                 "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
       "caption": "The same spot on seed 12 in each season.",
       "alt": "The same spot on seed 12 in one season"
+    },
+    {
+      "name": "winter-forest", "kind": "clip", "device": "film",
+      "comment": "The forest-orbit GIF's stand of trees on seed 12 (docs/screenshots/tree-model), on the first day of winter: one slow circle, the UI hidden.",
+      "argv+": ["--seed", "12", "--start-screen", "world", "--advance-ticks", "50", "--season", "winter", "--time-of-day", "0.45",
+                "--flyover-out", "{out_dir}/frames", "--flyover-orbit", "--flyover-frames", "72"],
+      "glob": "frame-*.png",
+      "fps": 12,
+      "gif": { "fps": 12, "width": 480, "palette": "adaptive", "budget_mb": 4 },
+      "file": "../../.github/media/winter-forest.gif",
+      "gallery": { "width": 480 },
+      "caption": "Winter on seed 12: snow on the ground and on every crown. A winter tree gives wood and saplings, never apples.",
+      "alt": "One slow circle round a stand of trees on seed 12 on the first day of winter: pale snow-covered ground, round, tiered and oval crowns white with snow on brown trunks, their shadows on the snow, under a clear blue sky"
     },
     {
       "name": "seasons-grid", "kind": "grid", "of": "seasons",
@@ -71,6 +85,33 @@
       "file": "../../.github/media/members-tab.jpg",
       "caption": "The Members tab: every member, their loyalty, and the heir.",
       "alt": "The Members tab: the people of Blackburg, three members, the heir Ella Wood marked in gold, each member's loyalty and traits, and how the heir is chosen"
+    },
+    {
+      "name": "laws-heir", "kind": "still", "device": "desktop",
+      "argv+": ["--seed", "42", "--start-screen", "laws", "--stage-diplomacy",
+                "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "file": "../../.github/media/laws-heir.jpg",
+      "caption": "The Laws tab: who your heir is, when old age comes, and Abdicate.",
+      "alt": "The Laws tab of Blackburg: changes take 30 seconds, Defence 3, Heir: Ella Wood, the longest sworn of your people, old age comes in about 40 minutes, an Abdicate button, then taxes, conscription, borders and rationing with a button for each setting"
+    },
+    {
+      "name": "market-panel", "kind": "still", "device": "desktop",
+      "comment": "No flag opens the market panel, so click-shot.sh clicks it open the way a player does: Trade at Market on the command bar, the Stone button, then Sell, and grabs the window once state.json lists the panel. The points are the 1280x720 layout's.",
+      "argv": ["bash", "{manifest_dir}/click-shot.sh", "--out", "{out_dir}/market.png",
+               "--click", "570,642", "--click", "640,177", "--click", "761,329", "--until-panel", "market-trade", "--",
+               "dotnet", "{game}", "@common", "--seed", "42", "--start-screen", "world", "--stage-market"],
+      "glob": "market.png",
+      "file": "../../.github/media/market-panel.jpg",
+      "caption": "The market panel: pick a good, see where it sells best and what you would make, and buy or sell a chosen quantity.",
+      "alt": "The market panel in the Village of Farmwood: one button per good (apples, wood, stone) with its buy and sell price and how many you carry, stone picked; buy at 21, sell at 20, the best price in reach is 34 at the Village of Blackburg, buy here and sell there for +13 a unit; -5, -1, +1, +5 and All; Buy 1 for 21 and Sell 1 for 20; the receipt Sold 1 stone to Tilly Davies for 21 coins and this visit's net +21"
+    },
+    {
+      "name": "settlement-screen", "kind": "still", "device": "desktop",
+      "argv+": ["--seed", "42", "--start-screen", "settlement", "--stage-holdings",
+                "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
+      "file": "../../.github/media/settlement-screen.jpg",
+      "caption": "The settlement screen: one settlement's holder, people, buildings, stores and market, and who to give it to.",
+      "alt": "The settlement screen for the Camp of Southernland, 2 of 2 settlements of your nation: held by Charlie Wilson, given it by the leader; 0 of 8 residents, 22 paces north; no buildings yet, next a farm; funds 0 and an empty stockpile; 0 of 4 stalls and the prices; Prev and Next, a Give to picker with Give and Take Back, and Back"
     },
     {
       "name": "winter-warning", "kind": "still", "device": "desktop",
