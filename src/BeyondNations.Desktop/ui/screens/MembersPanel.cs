@@ -85,11 +85,19 @@ namespace beyondnations.desktop.ui.screens {
             string reason;
             Pawn heir = Succession.chooseHeir(own, player, simulation.getEntityRepository(), out reason);
             lines.Add(heir == null
-                ? "No heir: if you die now, your line ends."
+                ? "No heir: if you die now, your line ends. " + HowToGainMembers
                 : "Your heir: " + heir.getName() + ", " + reason + ".");
             lines.Add("When you die, your family comes first, then the most loyal, then the longest sworn.");
             return lines;
         }
+
+        /**
+        * The next step for a ruler with no heir, here and on the Laws tab
+        * (0.8.0 playtest s06: "No heir" was a dead end, and how to gain a
+        * member was found only in the code). It names no key.
+        */
+        public const string HowToGainMembers = "To gain members, befriend a stranger in no nation (talk, give gifts) and invite them;"
+            + " a settlement with two market stalls draws newcomers, open borders twice as fast, and the highest taxes none.";
 
         /** The player first, then every other member, oldest first; empty without a nation. */
         public static List<Row> getRows(Simulation simulation) {

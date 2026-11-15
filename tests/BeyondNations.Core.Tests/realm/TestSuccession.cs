@@ -154,7 +154,7 @@ namespace beyondnationstests {
         public void testAbdication_IsRefused_WithoutAnHeirOrANationToRule() {
             Assert.Equal("Only the ruler of a nation can abdicate.", realm.abdicate());
             Nation own = world.playerNation(1);
-            Assert.Equal("No one in " + own.getName() + " was left to take your place.", realm.abdicate());
+            Assert.Equal("No one else has joined " + own.getName() + " yet.", realm.abdicate());
             Assert.Empty(realm.getLineage());
             Assert.Equal("Player", world.player.getName());
         }
@@ -212,7 +212,7 @@ namespace beyondnationstests {
             SuccessionNotice notice = realm.consumeNotice();
             Assert.True(notice.isLineEnded());
             Assert.Null(notice.getHeirName());
-            Assert.Equal("No one in " + own.getName() + " was left to take your place.", notice.getReason());
+            Assert.Equal("No one else has joined " + own.getName() + " yet.", notice.getReason());
             // the end of the line is handed over every time
             Assert.NotNull(realm.consumeNotice());
             Assert.Equal("You died of hunger, and with no heir in " + own.getName() + " your line ended.",

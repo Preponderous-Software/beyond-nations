@@ -56,6 +56,32 @@ namespace beyondnations {
             return seasonCalendar != null && seasonCalendar.isWinter();
         }
 
+        /**
+        * How many nations the world may hold before the Village era's day
+        * (EraRules.VillageDay) and still see a stranger declare another.
+        */
+        public const int EARLY_NATION_LIMIT = 6;
+
+        /**
+        * Whether a nationless pawn (not a seceding settler) may declare a
+        * nation of its own. Any pawn with the wood used to, and by the
+        * afternoon of day 1 nearly every stranger led a nation of one -- 20
+        * and more in the chronicle, 17 within the first 74 seconds -- leaving
+        * no one for a player to court toward a first member or the Village
+        * era's ten (playtest 0.8.0 s02, s06). Now, before the Village era's
+        * day, a stranger strikes out alone only while the world has fewer
+        * than EARLY_NATION_LIMIT nations, so a young world still has a few
+        * neighbours; the rest keep gathering and stay strangers, to be
+        * invited, or to join a settlement they come near. From that day any
+        * pawn may, as before.
+        */
+        public bool mayDeclareNation(Pawn pawn) {
+            if (timeOfDay == null || timeOfDay.getDay() >= EraRules.VillageDay) {
+                return true;
+            }
+            return nationRepository.getNumberOfNations() < EARLY_NATION_LIMIT;
+        }
+
         private bool isNight() {
             return timeOfDay != null && timeOfDay.isNight();
         }
@@ -337,8 +363,9 @@ namespace beyondnations {
                     return BehaviorType.JOIN_NATION;
                 }
                 else {
-                    // if enough wood to build settlement, create nation
-                    if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD) {
+                    // if enough wood to build settlement, create nation -- early
+                    // on, only while the world has few (mayDeclareNation)
+                    if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD && mayDeclareNation(pawn)) {
                         return BehaviorType.CREATE_NATION;
                     }
                     else {

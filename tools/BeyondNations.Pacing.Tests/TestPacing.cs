@@ -182,6 +182,31 @@ namespace beyondnations.pacing.tests {
             Assert.Equal(first.Samples.Count, second.Samples.Count);
         }
 
+        /**
+        * Playtest 0.8.0 s02 and s06: by the afternoon of day 1 nearly every
+        * stranger led a nation of one (24 to 39 nations at sunset on the
+        * pacing seeds, and 0 to 3 pawns in no nation), so a ruler had no one
+        * to court. A real world, played by a bot that never courts, still has
+        * strangers at day 1's sunset and only a handful of nations.
+        */
+        [Fact]
+        public void testStrangersStayRecruitable_ThroughTheFirstDay() {
+            int sunset = (int) (4.5 * 60 * Tps);
+            PacingRunOptions options = new PacingRunOptions {
+                Seed = 1, ObjectiveLimit = 14, MaxTicks = sunset, SampleEvery = 30 * Tps, NoCourting = true
+            };
+            PacingRunResult run = PacingRun.run(options);
+
+            PacingSample atSunset = run.Samples[run.Samples.Count - 1];
+            Assert.True(atSunset.Tick >= sunset - 30 * Tps, "last sample at tick " + atSunset.Tick);
+            foreach (PacingSample sample in run.Samples) {
+                // the early cap holds (the player's own nation may be the one over it)
+                Assert.True(sample.Nations <= PawnBehaviorCalculator.EARLY_NATION_LIMIT + 1,
+                    sample.Nations + " nations at tick " + sample.Tick);
+            }
+            Assert.True(atSunset.Nationless >= 5, "only " + atSunset.Nationless + " strangers left at sunset");
+        }
+
         [Fact]
         public void testReport_NamesEveryObjectiveAndFinding() {
             PacingBudget budget = budgetOf(entry("a", 5, 60));

@@ -67,7 +67,10 @@ namespace beyondnations {
                 }
             }
             if (best == null) {
-                reason = "No one in " + nation.getName() + " was left to take your place.";
+                // a nation no one else ever joined has lost no one (0.8.0 playtest s06)
+                reason = nation.getNumberOfMembers() <= 1
+                    ? "No one else has joined " + nation.getName() + " yet."
+                    : "No one in " + nation.getName() + " was left to take your place.";
             }
             else if (bestFamily) {
                 reason = "of your family, the " + surname + "s";

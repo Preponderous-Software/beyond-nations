@@ -13,6 +13,7 @@ How long each objective takes is measured, not guessed. `tools/BeyondNations.Pac
 - It recruits nationless settlers first. They join at Acquaintance, as the hint says. Only when there are none left anywhere does it court another nation's members who neither lead it nor are Loyal by nature. Those need Loyal standing, and poaching them sours relations. It sticks with one settler for up to two minutes while that settler is out of doors.
 - It answers a world event's choice sheet a second after it comes up, with the first choice it can take that costs no coins, since it keeps its coins for gifts (drive the bandits off, dig ditches, welcome the wanderers; `PacingBot.chooseWorldEventAnswer`), through `WorldEvents.choose`, the sheet's buttons. A person cannot play on past the sheet (the host pauses the world), so the bot does not either; it used to leave every sheet to its three-minute timeout and default.
 - When a siege warning tells it to "Gift, ally or grow it", it sends the besieger a gift if it can afford one. If it loses its nation anyway, it founds a new one and starts again.
+- When its energy falls below 35 and it carries no food, it chops trees for apples before anything else, as anyone watching their bar would. With strangers left to court (below, "Strangers on the first day") it used to court for twenty minutes on end, gifting its food away, and die of hunger 21 to 30 minutes in.
 
 The bot reads the objective list generically. Ids it knows get a specific plan. Any other objective is planned from the label on its progress counter (`Wood`, `Stone`, `Members`, `Settlements`, `Funds`, `Day`), and anything else gets general play. The harness takes the objectives from `ObjectiveTracker.getObjectives()` and `getCompletedCount()`, so a reworked objective list is still measured, and it reports objectives it has no budget for instead of crashing.
 
@@ -57,9 +58,9 @@ For every objective on every seed:
 - **time**: seconds of game time from the previous objective's completion (or the start of the world) to this one's. This is the number the budget checks.
 - **completion time**: total ticks, game time and in-game day when it completed.
 
-And, every 30 seconds of game time, the curves: nations alive, pawns alive, the player's nation's members and settlements, the player's coins, funds (coins plus the nation's treasuries), wood and stone, objectives completed, and what the bot was doing.
+And, every 30 seconds of game time, the curves: nations alive, pawns alive, pawns in no nation (`nationless`, the strangers left to court), the player's nation's members and settlements, the player's coins, funds (coins plus the nation's treasuries), wood and stone, objectives completed, and what the bot was doing.
 
-And, over the whole run, how many times the player's nation was raided (and how many an hour) and how many raids it made (a **Raids** table; `raidsOnPlayer`, `raidsOnPlayerPerHour`, `raidsByPlayer` in the JSON).
+And, over the whole run, how many times the player's nation was raided (and how many an hour) and how many raids it made (a **Raids** table; `raidsOnPlayer`, `raidsOnPlayerPerHour`, `raidsByPlayer` in the JSON), and when the player's nation first had a member besides the player, an heir (`firstMemberSeconds`, and on the console line).
 
 The report goes to `pacing-out/pacing-report.md` (readable, with one curve row per minute) and `pacing-out/pacing-report.json` (everything). In CI it is the job summary of **Build and test** and the `pacing-report` artifact.
 
@@ -181,6 +182,29 @@ With the Village era at day 2 (#352, "The eras"), the same no-courting run reach
 ![When the Village era comes on seeds 1 to 10 without courting and seeds 1 to 5 with it: grey bars at 17 minutes for the day-3 gate, blue bars at 7 to 14 minutes for the day-2 gate, and orange dots for when the nation first had 10 members, just under the blue bar on most never-courting seeds and at 1 to 2 minutes for the courting bot](./screenshots/village-recruiting-reland/village-era-timing.png)
 
 So on 8 of the 10 seeds the members, not the calendar, decide when the era comes (at day 3 it was 17m 00s on all ten, whatever the player did), and courting, which the bot here never does, would bring it sooner. Seeds 1, 2, 5 and 8 reach 10 members up to 31 seconds later than in the table above, which was measured on an older develop with the era at day 3.
+
+### Strangers on the first day
+
+In the 0.8.0 playtest (s02, s06) nearly every wandering pawn had founded a nation of one by the afternoon of day 1 (17 nations by the 74th second in s06), so a new ruler had no stranger to court for a first member, an heir, or the Village era's ten. The rule was that a nationless pawn with 50 wood founds a nation of its own unless it stands within 100 units of a settlement. Now, before the Village era's day (day 2), it does so only while the world has fewer than six nations (`PawnBehaviorCalculator.EARLY_NATION_LIMIT`); from day 2, any pawn may again. `TestPacing.testStrangersStayRecruitable_ThroughTheFirstDay` runs seed 1 without courting to day 1's sunset and fails on the old rule (10 nations at 30 s).
+
+Pawns in no nation / nations alive, at day 1 noon (2 minutes in), sunset (4m 30s), the start of day 2 (7 minutes), 10 and 15 minutes, seeds 1 to 5. "Before" is this harness with the old founding rule:
+
+| | seed 1 | seed 2 | seed 3 | seed 4 | seed 5 |
+|---|---|---|---|---|---|
+| courting bot, before | 5/17, 2/24, 0/16, 0/12, 0/13 | 26/7, 1/30, 1/26, 1/17, 1/17 | 7/22, 2/34, 1/29, 1/21, 0/18 | 7/26, 3/29, 0/22, 0/22, 1/21 | 7/10, 2/39, 0/32, 1/25, 1/21 |
+| courting bot, now | 41/7, 27/6, 18/7, 8/9, 0/8 | 27/6, 15/7, 10/8, 1/9, 0/11 | 17/7, 30/7, 24/8, 3/6, 0/9 | 23/7, 20/7, 15/6, 1/9, 2/11 | 8/7, 42/7, 22/8, 5/8, 0/9 |
+| `--no-courting`, before | 3/21, 0/33, 1/26, 2/16, 0/14 | 7/6, 3/11, 2/12, 7/11, 0/18 | 11/19, 0/29, 4/22, 1/15, 1/15 | 15/28, 0/41, 0/28, 2/20, 0/21 | 13/20, 0/31, 0/21, 10/15, 0/16 |
+| `--no-courting`, now | 9/6, 16/7, 13/6, 2/6, 0/6 | 7/6, 6/6, 1/6, 1/6, 4/6 | 15/6, 7/6, 6/6, 5/7, 2/8 | 4/6, 9/6, 3/7, 9/6, 1/7 | 0/6, 14/6, 6/6, 3/6, 0/7 |
+
+Before, the world had 24 to 41 nations at sunset and 0 to 3 strangers; now it has 6 or 7 and 6 to 42 strangers, and they last into day 2. The courting bot empties the pool itself after day 2 (it invites 42 to 48 pawns an hour); a player who never courts still finds a few strangers at 15 minutes, and the world stays at 6 to 8 nations, because strangers who do not found nations walk into a settlement and join it. The courting bot has its first member 7 to 26 seconds in either way (it is faster than a person).
+
+Every binding objective and milestone is inside its budget, and the budget is unchanged. With the courting bot (`--check`): the Storehouse at 7m 10s to 7m 41s (before 7m 08s to 7m 50s), the first caravan at 7m 21s to 9m 09s (before 7m 22s to 9m 10s), succession of old age at 40m 00s on every seed (before, seed 5's founder died and the rule passed at 22m 02s). Without courting the Storehouse now comes at 7m 32s to 14m 45s, against 8m 55s to 15m 02s before. With fewer, smaller neighbours the bot's nation is raided less: 0 times in the hour on seeds 1, 3, 4 and 5 (26 on seed 2), against 25, 26, 1, 1 and 1 before.
+
+![Strangers and nations over 15 minutes with the pacing bot: before, strangers are gone by 3 minutes and 30 nations stand at sunset; now 25 to 35 strangers on average last through day 1 and the world keeps 6 to 9 nations](./screenshots/recruit-on-screen/strangers-nations-courting.png)
+
+![Strangers and nations for a player who never courts: before, none by sunset and 30 nations; now strangers remain into day 2 and the world keeps 6 to 8 nations](./screenshots/recruit-on-screen/strangers-nations-no-courting.png)
+
+The charts are drawn from two `pacing-report.json` files by `python3 tools/pacing-strangers-chart.py BEFORE.json AFTER.json OUT.png src/BeyondNations.Desktop/assets/fonts/DejaVuSans.ttf [TITLE] [MINUTES]` (ImageMagick).
 
 ## Known issues the harness found
 

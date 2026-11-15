@@ -39,6 +39,8 @@ namespace beyondnations.pacing {
 
         /** Coins the bot keeps back rather than spend on gifts. */
         private const int CoinReserve = 20;
+        /** Below this energy, with no food carried, the bot goes and finds some (recover). */
+        private const float HungryEnergy = 35f;
 
         private readonly Simulation simulation;
         private readonly Player player;
@@ -226,6 +228,15 @@ namespace beyondnations.pacing {
         */
         private bool recover() {
             if (defend()) {
+                return true;
+            }
+            // a player low on energy with nothing to eat goes and finds some, as
+            // anyone watching their bar would: trees give apples. It used to court
+            // for twenty minutes on end, gifting its food away, and starve, once
+            // the world kept strangers to court (playtest 0.8.0 s02)
+            if (player.getEnergy() < HungryEnergy && !FoodItems.hasFood(player.getInventory())) {
+                gather(EntityType.TREE);
+                activity = "finding food";
                 return true;
             }
             if (!foundedOnce) {

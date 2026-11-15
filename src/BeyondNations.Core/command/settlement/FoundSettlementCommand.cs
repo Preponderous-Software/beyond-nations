@@ -33,7 +33,8 @@ namespace beyondnations {
             // the era limits how many settlements a nation the player leads may hold (EraRules)
             if (!nation.canFoundSettlement()) {
                 player.getStatus().update("Your nation may hold only " + nation.getSettlementLimit()
-                    + (nation.getSettlementLimit() == 1 ? " settlement" : " settlements") + " in this era. Reach the next era to found more.");
+                    + (nation.getSettlementLimit() == 1 ? " settlement" : " settlements") + " in this era. "
+                    + EraRules.describeSettlementCap(nation.getSettlementLimit()));
                 return;
             }
             // the first costs wood; each one after it more wood, and stone (FoundingCost, #145)

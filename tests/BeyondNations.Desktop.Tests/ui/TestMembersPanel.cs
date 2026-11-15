@@ -132,7 +132,9 @@ namespace beyondnationstests.desktop.ui {
             Assert.Single(rows);
             Assert.Equal("You (Player) - Leader, no home", rows[0].title);
             Assert.EndsWith(": 1 member. Loyalty is how each feels about you.", lines[0]);
-            Assert.Equal("No heir: if you die now, your line ends.", lines[1]);
+            // and what to do about it (0.8.0 playtest s06)
+            Assert.Equal("No heir: if you die now, your line ends. " + MembersPanel.HowToGainMembers, lines[1]);
+            Assert.Contains("invite", lines[1]);
             Assert.Equal("When you die, your family comes first, then the most loyal, then the longest sworn.", lines[2]);
         }
 

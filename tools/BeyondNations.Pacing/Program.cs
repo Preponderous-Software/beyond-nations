@@ -100,6 +100,7 @@ namespace beyondnations.pacing {
                 Console.WriteLine("seed " + run.Seed + ": " + done + " objectives in " + run.TicksRun + " ticks ("
                     + PacingReport.clock((double) run.TicksRun / run.TicksPerSecond) + " of game time); raids on the player's nation " + run.RaidsOnPlayer
                     + " (" + run.raidsOnPlayerPerHour().ToString("0.0") + " an hour; " + run.RaidsOnPlayerSheltered + " while sheltered), by it " + run.RaidsByPlayer
+                    + "; first member " + (run.FirstMemberTick < 0 ? "never" : "at " + PacingReport.clock((double) run.FirstMemberTick / run.TicksPerSecond))
                     + "; " + EraRules.VillageMembers + " members " + (run.VillageMembersTick < 0 ? "never" : "at " + PacingReport.clock((double) run.VillageMembersTick / run.TicksPerSecond))
                     + " (" + run.MembersInvited + " invited, " + run.MembersJoinedOtherwise + " joined otherwise)");
             }

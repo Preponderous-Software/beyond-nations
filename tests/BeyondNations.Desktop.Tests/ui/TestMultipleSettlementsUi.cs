@@ -34,11 +34,25 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
-        public void testFoundSettlement_NotOffered_WhileTheEraAllowsNoMore() {
+        public void testFoundSettlement_GreyedWithTheEraThatLiftsTheCap_WhileTheEraAllowsNoMore() {
+            // 0.8.0 playtest s07: the button vanished at the cap, so a touch
+            // player was never told why, even carrying the wood and stone
             Simulation simulation = leaderWithOneSettlement(out Nation nation, out _);
             nation.setSettlementLimit(1);
+            simulation.getPlayer().getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            simulation.getPlayer().getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
 
-            Assert.Null(findFound(simulation));
+            WorldCommand command = findFound(simulation);
+            Assert.NotNull(command);
+            Assert.False(command.isEnabled());
+            Assert.Equal("Reach the Village era for a second settlement.", command.getTooltip());
+        }
+
+        [Fact]
+        public void testSettlementCapReason_NamesTheEraThatLiftsIt() {
+            Assert.Equal("Reach the Village era for a second settlement.", EraRules.describeSettlementCap(1));
+            Assert.Equal("Reach the Town era for a fourth settlement.", EraRules.describeSettlementCap(3));
+            Assert.Equal("Reach the Kingdom era for a seventh settlement.", EraRules.describeSettlementCap(6));
         }
 
         [Fact]

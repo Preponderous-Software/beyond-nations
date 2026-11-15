@@ -30,6 +30,11 @@ namespace beyondnations {
                 || inventory.getNumItems(ItemType.STONE) >= RESOURCE_GIFT_AMOUNT;
         }
 
+        /** What makes a gift, for the greyed Gift button and the refusal. */
+        public static string describeWhatMakesAGift() {
+            return "Food, " + COIN_GIFT_AMOUNT + " coins or " + RESOURCE_GIFT_AMOUNT + " wood or stone make a gift.";
+        }
+
         public void execute(Player player, Pawn pawn) {
             Inventory inventory = player.getInventory();
             bool hungry = pawn.needsFood();
@@ -70,7 +75,7 @@ namespace beyondnations {
                 reaction = "Stone? Well, thank you.";
             }
             else {
-                player.getStatus().update("You have nothing to give " + pawn.getName() + ". Food, " + COIN_GIFT_AMOUNT + " coins or " + RESOURCE_GIFT_AMOUNT + " wood or stone make a gift.");
+                player.getStatus().update("You have nothing to give " + pawn.getName() + ". " + describeWhatMakesAGift());
                 return;
             }
 

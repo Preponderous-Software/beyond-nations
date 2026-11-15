@@ -266,6 +266,28 @@ namespace beyondnations {
             }
         }
 
+        private static readonly string[] Ordinals = {
+            "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"
+        };
+
+        /**
+        * Why a nation held to limit settlements by its era cannot found
+        * another, and what to do about it: "Reach the Village era for a
+        * second settlement." It is the reason on the greyed Found Settlement
+        * button and what pressing it says (0.8.0 playtest s07: the button
+        * vanished at the cap, and only the key told why).
+        */
+        public static string describeSettlementCap(int limit) {
+            string next = limit >= 0 && limit < Ordinals.Length ? "a " + Ordinals[limit] + " settlement" : "more settlements";
+            foreach (Era era in (Era[]) System.Enum.GetValues(typeof(Era))) {
+                int allowed = settlementLimit(era);
+                if (allowed == 0 || allowed > limit) {
+                    return "Reach the " + Eras.getDisplayName(era) + " era for " + next + ".";
+                }
+            }
+            return "Reach the next era for " + next + ".";
+        }
+
         /** What reaching this era unlocks, one short phrase each. */
         public static List<string> describeUnlocks(Era era) {
             List<string> unlocks = new List<string>();

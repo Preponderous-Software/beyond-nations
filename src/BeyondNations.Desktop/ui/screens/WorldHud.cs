@@ -431,7 +431,16 @@ namespace beyondnations.desktop.ui.screens {
                     if (ImGui.Button(text + "###" + command.getLabel(), new Vector2(rect.Width, rect.Height)) && usable) {
                         clicked = command;
                     }
-                    if (tooltip != null && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+                    // an armed button stays armed while the pointer rests on it,
+                    // however slowly the frames come (ConfirmGate.hold)
+                    if (armed && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+                        confirmGate.hold(command.getLabel(), now);
+                    }
+                    // on a touch screen a tap leaves the pointer resting on the
+                    // button, and its tooltip covered the buttons beside it and
+                    // ran off the screen's edge; the tap's status line (below)
+                    // already says why a greyed one cannot be used
+                    if (tooltip != null && !TouchLayout.isActive() && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                         ImGui.BeginTooltip();
                         ImGui.TextUnformatted(tooltip);
                         ImGui.EndTooltip();

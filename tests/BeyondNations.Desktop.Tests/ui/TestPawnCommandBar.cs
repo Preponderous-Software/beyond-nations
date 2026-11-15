@@ -61,8 +61,11 @@ namespace beyondnationstests {
 
             List<string> before = labels(simulation);
             Assert.Contains("Talk to Ada (Stranger)", before);
-            Assert.DoesNotContain("Gift Ada", before);
-            Assert.DoesNotContain("Invite Ada", before);
+            // Gift and Invite are there, greyed with the reason (0.8.0 playtest s02)
+            Assert.False(find(simulation, "Gift Ada").isEnabled());
+            Assert.Equal("You have nothing to give. " + GiftPawnCommand.describeWhatMakesAGift(), find(simulation, "Gift Ada").getTooltip());
+            Assert.False(find(simulation, "Invite Ada").isEnabled());
+            Assert.Equal("Create or join a nation first, then invite people into it.", find(simulation, "Invite Ada").getTooltip());
 
             find(simulation, "Talk to Ada (Stranger)").execute();
             Assert.Equal(PawnRelations.TALK_RELATIONSHIP_GAIN, PawnRelations.getRelationship(pawn, simulation.getPlayer()));
@@ -89,6 +92,66 @@ namespace beyondnationstests {
             List<string> commands = labels(simulation);
             Assert.Contains("Gift Ada", commands);
             Assert.Contains("Invite Ada", commands);
+            Assert.True(find(simulation, "Gift Ada").isEnabled());
+        }
+
+        /**
+        * Playtest 0.8.0 s02: next to a stranger the bar showed only the
+        * nation's buttons; Invite was a key a phone does not have. Now it
+        * is always on the bar for the pawn in reach, greyed with the reason
+        * the pawn would give, and a touch on it runs the same command.
+        */
+        [Fact]
+        public void testInvite_OnTheBar_GreyedWithTheReason_UntilThePawnWouldJoin() {
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            Nation nation = playerNation(simulation);
+            Pawn pawn = addPawnNextToPlayer(simulation);
+
+            WorldCommand invite = find(simulation, "Invite Ada");
+            Assert.False(invite.isEnabled());
+            Assert.Equal("Ada doesn't know you yet. Talk to them or give a gift until they are an Acquaintance.", invite.getTooltip());
+
+            pawn.increaseRelationship(player, RelationshipTiers.ACQUAINTANCE_THRESHOLD);
+            invite = find(simulation, "Invite Ada");
+            Assert.True(invite.isEnabled());
+            invite.execute();
+            Assert.Equal(nation.getId(), pawn.getNationId());
+        }
+
+        [Fact]
+        public void testInvite_AnotherNationsLeader_WillNeverJoin() {
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            playerNation(simulation);
+            Pawn pawn = addPawnNextToPlayer(simulation);
+            Nation lowerham = new Nation("Lowerham", pawn.getId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(lowerham);
+            pawn.setNationId(lowerham.getId());
+            pawn.increaseRelationship(player, 1000);
+
+            WorldCommand invite = find(simulation, "Invite Ada");
+            Assert.False(invite.isEnabled());
+            Assert.Equal("Ada leads Lowerham; will never join.", invite.getTooltip());
+        }
+
+        [Fact]
+        public void testInvite_AnotherNationsMember_NeedsLoyal() {
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            playerNation(simulation);
+            Pawn leader = new Pawn(new Vector3(9000, 0, 9000), "Bo", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(leader);
+            Nation lowerham = new Nation("Lowerham", leader.getId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(lowerham);
+            leader.setNationId(lowerham.getId());
+            Pawn pawn = addPawnNextToPlayer(simulation);
+            lowerham.addMember(pawn.getId());
+            pawn.setNationId(lowerham.getId());
+
+            WorldCommand invite = find(simulation, "Invite Ada");
+            Assert.False(invite.isEnabled());
+            Assert.Equal("Ada belongs to Lowerham and would leave it only for a Loyal friend.", invite.getTooltip());
         }
 
         [Fact]
@@ -108,7 +171,8 @@ namespace beyondnationstests {
             pawn.increaseRelationship(player, RelationshipTiers.ACQUAINTANCE_THRESHOLD);
 
             List<string> commands = labels(simulation);
-            Assert.DoesNotContain("Invite Ada", commands);
+            Assert.False(find(simulation, "Invite Ada").isEnabled());
+            Assert.Equal("Ada is already one of " + nation.getName() + ".", find(simulation, "Invite Ada").getTooltip());
             Assert.Contains("Order Ada: Gather Wood", commands);
             Assert.Contains("Appoint Ada Merchant", commands);
 

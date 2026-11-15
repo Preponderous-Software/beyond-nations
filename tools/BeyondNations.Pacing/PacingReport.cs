@@ -140,11 +140,11 @@ namespace beyondnations.pacing {
                   .Append(" | ").Append(run.RaidsOnPlayerSheltered).Append(" | ").Append(run.RaidsByPlayer).Append(" |\n");
             }
 
-            md.Append("\n## Curves\n\nNations alive, pawns alive, and the player's nation and resources, once a minute.\n");
+            md.Append("\n## Curves\n\nNations alive, pawns alive, pawns in no nation (the strangers left to recruit), and the player's nation and resources, once a minute.\n");
             foreach (PacingRunResult run in runs) {
                 md.Append("\n### Seed ").Append(run.Seed).Append("\n\n")
-                  .Append("| time | day | nations | pawns | members | settlements | coins | funds | wood | stone | objectives | bot |\n")
-                  .Append("|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+                  .Append("| time | day | nations | pawns | nationless | members | settlements | coins | funds | wood | stone | objectives | bot |\n")
+                  .Append("|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
                 int every = MarkdownCurveEverySeconds * tps;
                 for (int i = 0; i < run.Samples.Count; i++) {
                     PacingSample p = run.Samples[i];
@@ -153,7 +153,7 @@ namespace beyondnations.pacing {
                     }
                     md.Append("| ").Append(clock((double) p.Tick / tps)).Append(" | ")
                       .Append(((double) p.Tick / ticksPerDay).ToString("0.00", CultureInfo.InvariantCulture)).Append(" | ")
-                      .Append(p.Nations).Append(" | ").Append(p.Pawns).Append(" | ").Append(p.PlayerNationMembers).Append(" | ")
+                      .Append(p.Nations).Append(" | ").Append(p.Pawns).Append(" | ").Append(p.Nationless).Append(" | ").Append(p.PlayerNationMembers).Append(" | ")
                       .Append(p.PlayerSettlements).Append(" | ").Append(p.Coins).Append(" | ").Append(p.Funds).Append(" | ")
                       .Append(p.Wood).Append(" | ").Append(p.Stone).Append(" | ").Append(p.ObjectivesCompleted).Append(" | ").Append(p.Activity).Append(" |\n");
                 }
@@ -216,6 +216,8 @@ namespace beyondnations.pacing {
                     raidsOnPlayerSheltered = r.RaidsOnPlayerSheltered,
                     raidsByPlayer = r.RaidsByPlayer,
                     villageMembersTick = r.VillageMembersTick,
+                    firstMemberTick = r.FirstMemberTick,
+                    firstMemberSeconds = r.FirstMemberTick < 0 ? -1 : (double) r.FirstMemberTick / r.TicksPerSecond,
                     villageMembersSeconds = r.VillageMembersTick < 0 ? -1 : (double) r.VillageMembersTick / r.TicksPerSecond,
                     membersInvited = r.MembersInvited,
                     membersJoinedOtherwise = r.MembersJoinedOtherwise,
@@ -237,6 +239,7 @@ namespace beyondnations.pacing {
                         tick = p.Tick,
                         nations = p.Nations,
                         pawns = p.Pawns,
+                        nationless = p.Nationless,
                         members = p.PlayerNationMembers,
                         settlements = p.PlayerSettlements,
                         coins = p.Coins,
