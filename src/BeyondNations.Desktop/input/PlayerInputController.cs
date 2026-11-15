@@ -114,7 +114,7 @@ namespace beyondnations.desktop.input {
                     player.getStatus().update("There is no one within reach to give a gift to.");
                 }
                 else {
-                    new GiftPawnCommand(simulation.getEventProducer()).execute(player, pawn);
+                    new GiftPawnCommand(simulation.getEventProducer(), simulation.getNationRepository()).execute(player, pawn);
                 }
             }
             if (inputService.wasPressedThisFrame(KeyBindings.InviteToNation)) {

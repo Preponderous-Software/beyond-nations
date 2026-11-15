@@ -467,10 +467,18 @@ namespace beyondnations.desktop.ui {
             // and inviting was a key a phone does not have). Being always
             // there, neither moves the leader's levers after them when the
             // player runs out of gifts or the pawn joins.
-            commands.Add(pawnCommand("Gift ", pawn, "", () =>
-                new GiftPawnCommand(eventProducer).execute(player, pawn))
-                .setEnabled(GiftPawnCommand.canGift(player),
-                    "You have nothing to give. " + GiftPawnCommand.describeWhatMakesAGift()));
+            bool canGift = GiftPawnCommand.canGift(player);
+            WorldCommand gift = pawnCommand("Gift ", pawn, "", () =>
+                new GiftPawnCommand(eventProducer, nationRepository).execute(player, pawn))
+                .setEnabled(canGift,
+                    "You have nothing to give. " + GiftPawnCommand.describeWhatMakesAGift());
+            // a leader of another nation can be warmed but never recruited (#371): the
+            // tooltip says so before the gift, the status line after it (the touch path)
+            string leaderWarning = GiftPawnCommand.leaderWarning(player, pawn, nationRepository);
+            if (canGift && leaderWarning.Length > 0) {
+                gift.setTooltip(leaderWarning.Trim());
+            }
+            commands.Add(gift);
 
             string inviteRefusal = InvitePawnToNationCommand.whyNot(player, pawn, nationRepository);
             commands.Add(pawnCommand("Invite ", pawn, "", () =>

@@ -160,6 +160,23 @@ namespace beyondnationstests {
             Assert.Equal(-1, realm.immigrationCooldown(settlement, baseTicks));
         }
 
+        /**
+        * The Borders law's words match what it does (#371): closed borders
+        * still let immigrants come at the usual pace (the base cooldown
+        * above), so "Closed" must not promise that strangers keep away, and
+        * "Open" is described against that pace.
+        */
+        [Fact]
+        public void testBordersText_ClosedSaysImmigrantsStillCome_OpenSaysTwiceAsOften() {
+            string closed = Laws.describe(LawType.OPEN_BORDERS, 0);
+            string open = Laws.describe(LawType.OPEN_BORDERS, 1);
+
+            Assert.DoesNotContain("keep away", closed);
+            Assert.Contains("immigrants come at the usual pace", closed);
+            Assert.Contains("Immigrants come twice as often", open);
+            Assert.Equal(50, Laws.OPEN_BORDERS_IMMIGRATION_PERCENT);
+        }
+
         [Fact]
         public void testAMemberPushedTooFar_Deserts() {
             Nation own = world.playerNation(3);

@@ -97,7 +97,7 @@ namespace beyondnations {
                             + CONSCRIPT_GATHER_LOSS_PERCENT + "% less.";
                 case LawType.OPEN_BORDERS:
                     return level == 0
-                        ? "Closed: strangers keep away."
+                        ? "Closed: immigrants come at the usual pace; no tolls, no thieves."
                         : "Immigrants come twice as often, tolls bring " + OPEN_BORDERS_TOLL + " coins a settlement and trade warms neighbours; raids take double and thieves steal.";
                 case LawType.RATIONING:
                     return level == 0
