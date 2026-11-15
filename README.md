@@ -2,14 +2,14 @@
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
 <!-- darkroom:shot flyover -->
-![A flyover of seed 12 fifty minutes in: over one nation's town, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's town](.github/media/flyover.gif)
+<img src=".github/media/flyover-poster.jpg" alt="A flyover of seed 12 fifty minutes in: over one nation&#x27;s village, its houses, fields, market stalls, trees and residents, then across the line where two nations&#x27; rings of border posts meet, to a neighbouring nation&#x27;s village (poster)" width="480"> <img src=".github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over one nation&#x27;s village, its houses, fields, market stalls, trees and residents, then across the line where two nations&#x27; rings of border posts meet, to a neighbouring nation&#x27;s village" width="480">
 
-*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's town, the border, the next nation's town.*
+*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's village, the border, the next nation's village.*
 
 [MP4 version](.github/media/flyover.mp4)
 <!-- darkroom:end -->
 
-It is the `flyover` shot in `tools/capture/media.json`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); [one of its frames at full size](./.github/media/flyover-poster.jpg) is a still of the same flight. How to reshoot it is in [CONTRIBUTING.md](./docs/CONTRIBUTING.md#refreshing-the-readmes-screenshots-and-gifs).
+It is the `flyover` shot in `tools/capture/media.json`, which runs the real simulation to mid-game (`--advance-ticks`) and films it with a scripted camera (`--flyover-out`); the still beside it is one of its frames at full size. How to reshoot it is in [CONTRIBUTING.md](./docs/CONTRIBUTING.md#refreshing-the-readmes-screenshots-and-gifs).
 
 ## Play in your browser
 
@@ -150,6 +150,14 @@ A nation can hold more than one settlement, as many as its era allows (one in th
 *The nation screen of a nation with two settlements.*
 <!-- darkroom:end -->
 
+Each settlement has its own screen: *Settlement* on the command bar (or `--start-screen settlement`) shows who holds it, its residents, buildings, funds, stockpile and market, and lets a leader give it to a member to run or take it back. The screenshot is `--seed 42 --start-screen settlement --stage-holdings`, where the newer settlement is held by a member.
+
+<!-- darkroom:shot settlement-screen -->
+![The settlement screen for the Camp of Southernland, 2 of 2 settlements of your nation: held by Charlie Wilson, given it by the leader; 0 of 8 residents, 22 paces north; no buildings yet, next a farm; funds 0 and an empty stockpile; 0 of 4 stalls and the prices; Prev and Next, a Give to picker with Give and Take Back, and Back](.github/media/settlement-screen.jpg)
+
+*The settlement screen: one settlement's holder, people, buildings, stores and market, and who to give it to.*
+<!-- darkroom:end -->
+
 ### Eras, victory and the end of a run
 ![The end-of-run screen after a Prosperity victory: the outcome, the era reached, days survived, when each era came, members, settlements and funds, then The History of Southernland, with the era milestones in gold, and Continue playing, New world and Main menu buttons](./.github/media/end-of-run-victory.png)
 
@@ -204,6 +212,14 @@ The nations screen's **Laws** tab is your court. On a short window it says how m
 | Open borders | Immigrants twice as often, 2 coins of tolls per settlement, trade warms every nation you are not at war with | Raiders carry off double; thieves take coins and wood every 30 seconds |
 | Rationing | Members' hunger drains a quarter slower | Morale: a point of loyalty every 20 seconds |
 
+The tab also names your heir, says when old age will come for you, and offers **Abdicate**, which hands the rule and all you carry to the heir (the screenshot is `--seed 42 --start-screen laws --stage-diplomacy`).
+
+<!-- darkroom:shot laws-heir -->
+![The Laws tab of Blackburg: changes take 30 seconds, Defence 3, Heir: Ella Wood, the longest sworn of your people, old age comes in about 40 minutes, an Abdicate button, then taxes, conscription, borders and rationing with a button for each setting](.github/media/laws-heir.jpg)
+
+*The Laws tab: who your heir is, when old age comes, and Abdicate.*
+<!-- darkroom:end -->
+
 Loyalty is how each member feels about you. Push someone to -15 and they desert, taking their stall with them. The **Members** tab lists every member of your nation with their loyalty, their traits and the settlement they live in, and marks your heir (`--start-screen members`; the screenshot is `--seed 42 --stage-diplomacy`).
 
 <!-- darkroom:shot members-tab -->
@@ -234,6 +250,14 @@ The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game d
 <img src="./docs/screenshots/tree-model/forest-orbit.gif" alt="A slow circle round a stand of trees in a forest on seed 12: round broadleaf crowns, tiered crowns and tall oval crowns of different sizes on brown trunks, their lower leaves a darker green, casting shadows on the grass" width="480">
 
 Trees come in three shapes -- a round broadleaf crown, a tiered crown and a tall oval one -- and in different sizes, each a trunk with layered leaves whose lower layers are darker; a sapling is a thin stem with a small crown in the shape it will grow into. Which shape and size a tree takes follows from where it stands, so a world looks the same every time it is played or loaded. (The GIF is `--seed 12 --start-screen world --advance-ticks 50 --flyover-out DIR --flyover-orbit`, which circles the thickest stand of trees near the player.)
+
+In winter the same trees stand in snow, and they are bare: chopping one gives wood and saplings but no apples, for you as for every pawn, so the food you laid in during autumn is what you eat.
+
+<!-- darkroom:shot winter-forest -->
+<img src=".github/media/winter-forest.gif" alt="One slow circle round a stand of trees on seed 12 on the first day of winter: pale snow-covered ground, round, tiered and oval crowns white with snow on brown trunks, their shadows on the snow, under a clear blue sky" width="480">
+
+*Winter on seed 12: snow on the ground and on every crown. A winter tree gives wood and saplings, never apples.*
+<!-- darkroom:end -->
 
 The land itself differs. The world is made of **regions** in patches several chunks wide: **forest** (plenty of wood, little stone), **highlands** (rich in stone, poor in food), **plains** (good farming and game) and the scarce **moor**. Every region has some stone, so a settlement outside the highlands is short of it rather than stuck, but nations do differ in what they have plenty of and what they lack, which is what trade and diplomacy will be built on. `--season winter` (or `?season=winter` in the browser) opens the game on the first day of that season; the seasons above are `--seed 12 --start-screen world --advance-ticks 50 --season NAME --time-of-day 0.45`.
 
@@ -272,6 +296,14 @@ A new world opens with five short tips, one at a time: walk and look, chop a tre
 ![A trade caravan on the road: a cart with a pack in its nation's colour, a canvas bale and its drover, labelled with where it is going and what it carries, and the command bar offering Buy wood, Sell to Caravan, Escort Caravan and Raid Caravan](./.github/media/trade-caravan.png)
 
 Every market prices its goods by what it has and who lives there. Prices fall as stalls fill up, and drift, a few points every ten seconds, toward what the settlement needs: a crowded town with an empty larder pays well over the odds for food, a camp sitting on a woodpile pays little for more wood. The market box (inside a settlement) lists what each good costs to buy and what a stall pays for one, with an arrow for which way it is moving. Buy where it is cheap, carry it, sell where it is dear. A sale is always priced as the unit lands on the stall, so buying something and selling it straight back never makes money.
+
+*Trade at Market* (on the command bar in any settlement with stalls) opens the market panel: pick a good, see the best price in reach and what a unit would make carried there, choose a quantity, and buy or sell exactly that, with a receipt and the visit's running total. `--stage-market` opens the game standing in a trading neighbour's market, one press from the panel.
+
+<!-- darkroom:shot market-panel -->
+![The market panel in the Village of Farmwood: one button per good (apples, wood, stone) with its buy and sell price and how many you carry, stone picked; buy at 21, sell at 20, the best price in reach is 34 at the Village of Blackburg, buy here and sell there for +13 a unit; -5, -1, +1, +5 and All; Buy 1 for 21 and Sell 1 for 20; the receipt Sold 1 stone to Tilly Davies for 21 coins and this visit's net +21](.github/media/market-panel.jpg)
+
+*The market panel: pick a good, see where it sells best and what you would make, and buy or sell a chosen quantity.*
+<!-- darkroom:end -->
 
 Nations led by pawns send **caravans**: a cart in the nation's colours carries what one of their settlements can spare to a dearer market within 1,200 units, never to a nation they are at war with (Hostile), and comes home with the takings. Standing beside one, the command bar lets you **buy** its goods (at the price it expects at market), **sell** it what it deals in, **escort** it (stay close until it arrives for a share of its takings and +8 with its nation) or **raid** it (everything it carries is yours, but its nation loses 30 with yours, which can mean war; without a nation, its people think less of you).
 
