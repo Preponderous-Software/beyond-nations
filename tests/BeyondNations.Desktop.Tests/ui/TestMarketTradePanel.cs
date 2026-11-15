@@ -221,6 +221,16 @@ namespace beyondnationstests.desktop.ui {
         private const float Spacing = 4f;
         private const float Padding = 8f;
 
+        [Fact]
+        public void testThePanel_FitsAPhone_WhenTheTitleAndStayLineWrap() {
+            // 390 wide, the title and the stay line each wrap to two lines
+            MarketTradePanel.Layout oneLine = MarketTradePanel.computeLayout(390, 844, 70, 9, Line, Frame, Spacing, Padding, 1f, false);
+            MarketTradePanel.Layout wrapped = MarketTradePanel.computeLayout(390, 844, 70, 9, Line, Frame, Spacing, Padding, 1f, false, 2, 2);
+            Assert.True(70 + wrapped.height <= 844);
+            // the two extra lines are counted, not left to push Close off the panel
+            Assert.True(wrapped.height >= oneLine.height || wrapped.listHeight < oneLine.listHeight);
+        }
+
         [Theory]
         [InlineData(960, 540, 22, false)]
         [InlineData(1280, 720, 22, false)]
