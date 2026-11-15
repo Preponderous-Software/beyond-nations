@@ -41,6 +41,17 @@ namespace beyondnationstests {
             Assert.DoesNotContain(lines, line => line.Key == "Victories:");
         }
 
+        /** #470: on a phone held upright "Era: Camp (1/4)  +" was cut to "Era: Camp (1/". */
+        [Fact]
+        public void testEraBox_ANarrowBox_ShortensTheToggleSoTheCountAndThePlusShow() {
+            Simulation simulation = makeSimulation();
+            // ten pixels a character
+            System.Func<string, float> measure = label => label.Length * 10f;
+            Assert.Equal("Era: Camp (1/4)  +", EraBox.toggleLabel(simulation, false, measure, 400f));
+            Assert.Equal("Camp 1/4 +", EraBox.toggleLabel(simulation, false, measure, 120f));
+            Assert.Equal("Camp 1/4 -", EraBox.toggleLabel(simulation, true, measure, 120f));
+        }
+
         [Fact]
         public void testEraBox_ATown_ShowsTheVictories() {
             Simulation simulation = makeSimulation();

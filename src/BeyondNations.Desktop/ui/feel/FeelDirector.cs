@@ -393,6 +393,24 @@ namespace beyondnations.desktop.ui.feel {
             return Math.Max(minTop, barTop - gap - cardHeight);
         }
 
+        /**
+        * The card's top on a phone held upright, where the HUD stacks the
+        * status line, the chronicle strip and the Season box down the
+        * middle (WorldHud): under the Season box (preferred) when a card
+        * cardHeight tall fits there above the command bar (barTop; 0 when
+        * none is drawn); else at fallback, under the status line, where it
+        * covers only the chronicle strip for as long as it shows (at
+        * 412x915 in a town it covered Enter Settlement and Teleport Home,
+        * and, moved up, covered the Season box instead). With no fallback
+        * it stays at preferred.
+        */
+        public static float hintCardTopStacked(float preferred, float fallback, float cardHeight, float barTop, float gap) {
+            if (barTop <= 0f || preferred + cardHeight + gap <= barTop) {
+                return preferred;
+            }
+            return fallback > 0f ? fallback : preferred;
+        }
+
         // the card's height when last drawn, to keep it clear of the bar
         private float lastHintCardHeight;
 
@@ -404,11 +422,14 @@ namespace beyondnations.desktop.ui.feel {
             }
             float cardWidth = hintCardWidth(width);
             float top = TouchLayout.getTipTop() > 0f
-                ? TouchLayout.getTipTop()
+                ? hintCardTopStacked(TouchLayout.getTipTop(), TouchLayout.getTipFallbackTop(), lastHintCardHeight, WorldHud.getBarTop(), UiScale.px(10f))
                 : hintCardTopAboveBar(hintCardTop(height, isTouch()), lastHintCardHeight, WorldHud.getBarTop(), UiScale.px(10f), height * 0.2f);
             ImGui.SetNextWindowPos(new Vector2(width / 2f, top), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowSize(new Vector2(cardWidth, 0f), ImGuiCond.Always);
-            ImGui.SetNextWindowBgAlpha(0.82f);
+            // over the chronicle strip (hintCardTopStacked) the card is all
+            // but opaque, so the strip's lines do not show through its text
+            bool overChronicle = TouchLayout.getTipTop() > 0f && top < TouchLayout.getTipTop();
+            ImGui.SetNextWindowBgAlpha(overChronicle ? 0.97f : 0.82f);
             if (ImGui.Begin("##feel-hint", HintFlags)) {
                 lastHintCardHeight = ImGui.GetWindowSize().Y;
                 Overlay.textColoured(HintHeadingColour,

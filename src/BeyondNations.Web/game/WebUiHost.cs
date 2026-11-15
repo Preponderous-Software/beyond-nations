@@ -194,6 +194,12 @@ namespace beyondnations.web {
                     break;
             }
 
+            // a screen drawn over the world (the settlement screen's title,
+            // the nations screen) leaves no room for a town's floating name;
+            // it is left out under it (LabelPlacement), as WorldHud sets it for the world
+            if (screens.getCurrent() != ScreenType.WORLD) {
+                beyondnations.desktop.text.LabelPlacement.setTopReserve(1f);
+            }
             feel?.drawOverlay(width, height, screens.getCurrent(), simulation);
             if (share.handle(action, simulation)) {
                 action = UiAction.None;

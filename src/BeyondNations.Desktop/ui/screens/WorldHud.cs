@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
 using beyondnations.desktop.input;
+using beyondnations.desktop.text;
 using beyondnations.desktop.ui.boxes;
 
 namespace beyondnations.desktop.ui.screens {
@@ -257,7 +258,11 @@ namespace beyondnations.desktop.ui.screens {
             // tracker), then the objective toast, so none of them overlap.
             float stripBottom = chroniclePanel.draw(width, height, simulation, chronicleView ?? defaultChronicleView,
                 ChroniclePanel.compactTop(centreBottom), layout.CentreWrapWidth);
+            // a town's floating name keeps below the status line and the
+            // chronicle strip rather than sit under them (LabelPlacement)
+            LabelPlacement.setTopReserve(System.MathF.Max(stripBottom, centreBottom) / height);
             TouchLayout.setTipTop(0f);
+            TouchLayout.setTipFallbackTop(0f);
             if (seasonUnderChronicle) {
                 // full width under the chronicle on a phone held upright, and
                 // a tip, while one shows, under that (FeelDirector reads
@@ -265,6 +270,8 @@ namespace beyondnations.desktop.ui.screens {
                 float seasonTop = System.MathF.Max(stripBottom, centreBottom) + layout.Gap;
                 float seasonBottom = seasonBox.draw(layout.LeftX, seasonTop, width - layout.Margin * 2f);
                 TouchLayout.setTipTop(seasonBottom + layout.Gap);
+                // with no room for it there above the bar, over the chronicle instead
+                TouchLayout.setTipFallbackTop(centreBottom + layout.Gap);
             }
             objectiveTracker.drawToast(width, height, stripBottom + layout.Gap);
 

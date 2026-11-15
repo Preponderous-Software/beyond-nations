@@ -70,6 +70,23 @@ namespace beyondnations.desktop.ui {
             tipTop = top;
         }
 
+        private static float tipFallbackTop;
+
+        /**
+        * Where a tip card goes instead when it would not fit between
+        * getTipTop and the command bar (0: none): just under the status
+        * line, over the chronicle strip, so the card covers neither the
+        * Season box nor a button (412x915 inside a town). Set by WorldHud
+        * with getTipTop.
+        */
+        public static float getTipFallbackTop() {
+            return isActive() ? tipFallbackTop : 0f;
+        }
+
+        public static void setTipFallbackTop(float top) {
+            tipFallbackTop = top;
+        }
+
         /** The host's report: what the page shows, under which setting. */
         public static void setState(TouchMode newMode, bool isActiveNow, float reserve) {
             available = true;

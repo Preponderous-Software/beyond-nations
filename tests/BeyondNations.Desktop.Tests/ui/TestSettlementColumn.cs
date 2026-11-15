@@ -185,5 +185,25 @@ namespace beyondnationstests.desktop.ui {
             // no bar drawn
             Assert.Equal(549f, FeelDirector.hintCardTopAboveBar(549f, 80f, 0f, 10f, 183f));
         }
+
+        /**
+        * A phone held upright (412x915, touch) in a town: the tip card went
+        * under the Season box and over Enter Settlement and Teleport Home.
+        * With no room there above the bar it goes under the status line,
+        * over the chronicle strip, covering neither the Season box nor a
+        * button. Numbers from the real touch layout, in CSS pixels.
+        */
+        [Fact]
+        public void onAnUprightPhoneTheTipCardCoversTheChronicleRatherThanTheSeasonBoxOrTheBar() {
+            // under the Season box (ends 543) when it fits above the bar at 553
+            Assert.Equal(553f, FeelDirector.hintCardTopStacked(553f, 296f, 0f, 0f, 5f));
+            Assert.Equal(300f, FeelDirector.hintCardTopStacked(300f, 296f, 100f, 553f, 5f));
+            // it does not: under the status line instead
+            float top = FeelDirector.hintCardTopStacked(548f, 296f, 100f, 553f, 5f);
+            Assert.Equal(296f, top);
+            Assert.True(top + 100f < 444f, "the card stops above the Season box (from 444)");
+            // no fallback given: where it was asked for
+            Assert.Equal(548f, FeelDirector.hintCardTopStacked(548f, 0f, 100f, 553f, 5f));
+        }
     }
 }
