@@ -305,7 +305,31 @@ The year turns through **spring, summer, autumn and winter**, `SeasonCalendar.DA
 
 Plains farms harvest one apple more whenever farms harvest at all. In spring and summer a chicken hatches every 30 seconds in a random chunk (always on the plains, rarely on the moor) until the world holds 50. Indoors is as warm as ever: the cold applies only outside a settlement, to the player and pawns alike.
 
-**Apples spoil, and winter trees are bare.** Without these the good seasons stored up a mild winter: pawns fell trees for wood all year, every tree carries 1 to 3 apples, and nothing rotted, so by the first day of winter a pawn carried about 200 apples and the markets held over 20,000, and both were still growing at winter's end. Now, every 30 seconds (`APPLE_SPOIL_INTERVAL_TICKS`), a pawn's apples beyond 12 (`PAWN_APPLES_KEPT`, three winter stores) and a market stall's beyond 10 (`STALL_APPLES_KEPT`) lose a sixth, rounded up (`SeasonalRules.applesSpoiling`, run by `SeasonalWorld`): a hoard halves in about two minutes, a modest store never rots. And in winter a tree a pawn fells gives wood and saplings but no apples (`treesBearFruit`); the apples stay on a tree left standing, so it bears again in spring. The player is spared both: their pack and their own stalls never rot, and a tree still gives them its apples, so a world started in winter can still teach eating and nothing the player gathered vanishes. Spoilage only removes apples, so the save format is unchanged.
+**Apples spoil, and winter trees are bare.** Without these the good seasons stored up a mild winter: pawns fell trees for wood all year, every tree carries 1 to 3 apples, and nothing rotted, so by the first day of winter a pawn carried about 200 apples and the markets held over 20,000, and both were still growing at winter's end. Now, every 30 seconds (`APPLE_SPOIL_INTERVAL_TICKS`), a pawn's apples beyond 12 (`PAWN_APPLES_KEPT`, three winter stores) and a market stall's beyond 10 (`STALL_APPLES_KEPT`) lose a sixth, rounded up (`SeasonalRules.applesSpoiling`, run by `SeasonalWorld`): a hoard halves in about two minutes, a modest store never rots. And in winter a felled tree gives wood and saplings but no apples (`treesBearFruit`), to pawns and the player alike (the status line says `Gathered 6 wood from tree (bare in winter).`); the apples stay on a tree left standing, so it bears again in spring. The player's pack and own stalls never rot, so nothing the player gathered vanishes. Spoilage only removes apples, so the save format is unchanged.
+
+**No winter apples for the player either.** The player used to be spared the bare trees, "so a world started in winter can still teach eating". That made winter mild for the player's nation: a player who stored nothing could chop trees all winter and hand the apples out with Feed Residents, so stored food and the warning a day ahead (#456) changed little. Now the trees are bare for everyone. A world started in winter (`--season winter`) still teaches eating without them: *Gather wood* rewards two apples, and a new world starts the player hungry enough (85) to eat one at once, so *Eat something* is met straight after; in winter its hint says `Trees are bare in winter; press E by a chicken for meat.` rather than promising apples from trees. The player's hunger warning says the same in winter (`Trees are bare in winter: press E at a chicken for meat, or buy food in a settlement.`), and the status line that opens winter reads `No harvests, bare trees; the cold bites outdoors.` Nothing new is saved.
+
+![Before: in winter on develop a tree still gave the player 2 apples](screenshots/no-winter-apples/winter-chop-before.png)
+
+![After: the same tree gives wood and saplings, and the status line says it is bare](screenshots/no-winter-apples/winter-chop.png)
+
+![Winter in a starving town: the player's hunger warning no longer points at trees, and the residents' warning asks for stored food](screenshots/no-winter-apples/winter-warnings.png)
+
+Measured headless with the Core simulation (the harness #456 used, extended), on seeds 103, 42, 1, 2, 3 and 7. The player joins the largest nation and either *ignores* winter (does nothing for it), *forages* (stores nothing, chops a tree near home every 10 seconds through winter and presses Feed Residents once a minute with whatever it holds), or *prepares* (carries food home from the warning on, 4 for each member, the store the warning asks for, and presses Feed Residents once a minute). Deaths of the nation's pawns in winter and the spring after:
+
+| | ignores | forages | prepares |
+| --- | --- | --- | --- |
+| A full year from a new world (20 to 58 members), before | 30 | 3 | 5 |
+| A full year from a new world, after | 30 | 30 | 24 |
+| Opened on the last day of autumn (5 members), before | 2 | 0 | 0 |
+| Opened on the last day of autumn, after | 2 | 0 | 0 |
+
+- **Ignoring winter is unchanged, to the pawn**, as it must be: the exemption only ever filled the player's pack.
+- **Winter apples were the whole of "foraging".** Chopping trees all winter fed a nation as well as storing for it did (3 deaths against 30); now it feeds no one, and the nation dies as if left alone.
+- **Preparing still helps, but less than develop suggested.** On develop most of what "preparing" handed out was winter apples (about 350 food a seed against 170 on this branch). The store the warning asks for (4 each) saves about one death in five (24 against 30); seed 2, a 58-member nation that loses 14 to 17 whatever the player does, is most of both totals. Without it: 10 against 14.
+- **The player's own winter is now real.** With the player's energy left to fall, a player who opens on the last day of autumn with no food and works outdoors through winter starves 3 times a seed (it was never: the trees fed it); one who keeps 30 apples back for themself does not starve at all.
+
+![Deaths per seed: ignoring identical before and after; foraging no longer saves the nation; the player who stores nothing starves](screenshots/no-winter-apples/winter-deaths-per-seed.png)
 
 **Pawns respond.** From autumn, a pawn carrying fewer than 4 food (`WINTER_FOOD_STORE`) leans towards food when it gathers: a chicken within 120 units, or else a tree (which carries apples) over a rock; in winter, with the trees bare, only the chicken. A hungry pawn does the same all year, and only walks to a chicken further off when there is no tree in fruit. In winter an idle pawn at home leaves half as often, since indoors burns less.
 

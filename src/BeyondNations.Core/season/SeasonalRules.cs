@@ -20,9 +20,11 @@ namespace beyondnations {
     * spoil all year: a pawn's or a market stall's apples beyond a modest store
     * rot a sixth at a time (applesSpoiling), so nobody carries a hoard into
     * winter. And in winter the trees a pawn fells are bare (treesBearFruit),
-    * so wood no longer brings food with it. The player is spared both: their
-    * pack and their own stalls never rot, and a tree still gives them its
-    * apples, so a world started in winter can still teach eating.
+    * so wood no longer brings food with it, for the player as for pawns. The
+    * player used to be spared, which left stored food and the winter warning
+    * (#456) with little to do. The player's pack and own stalls still never
+    * rot. A world started in winter still teaches eating: "Gather wood"
+    * rewards two apples, and the "Eat something" hint points at chickens.
     */
     public static class SeasonalRules {
 
@@ -79,9 +81,9 @@ namespace beyondnations {
         }
 
         /**
-        * Whether a tree a pawn fells this season carries apples. Not in
-        * winter: the fruit has fallen, so a pawn felling trees for wood gets
-        * wood and saplings and no food. (The apples stay with the tree, so a
+        * Whether a tree felled this season, by a pawn or the player, carries
+        * apples. Not in winter: the fruit has fallen, so felling trees for
+        * wood gets wood and saplings and no food. (The apples stay with the tree, so a
         * tree standing at the end of winter bears again in spring.)
         */
         public static bool treesBearFruit(Season season) {
@@ -147,7 +149,7 @@ namespace beyondnations {
                 case Season.SPRING: return "Saplings grow, chickens hatch.";
                 case Season.SUMMER: return "Long days; chickens hatch.";
                 case Season.AUTUMN: return "Farms yield double. Lay in food.";
-                default: return "No harvests, slow regrowth; the cold bites outdoors.";
+                default: return "No harvests, bare trees; the cold bites outdoors.";
             }
         }
     }

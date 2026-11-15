@@ -113,8 +113,7 @@ namespace beyondnationstests {
         }
 
         private void interact() {
-            new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(),
-                simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom()).execute(player);
+            InteractCommand.forSimulation(simulation).execute(player);
         }
 
         private void gatherWoodUntil(int target) {
@@ -178,6 +177,34 @@ namespace beyondnationstests {
                 }
             }
             return false;
+        }
+
+        [Fact]
+        public void testWorldStartedInWinter_TreesAreBare_ButTheFirstObjectivesStillTeachEating() {
+            // --season winter: trees are bare for the player too, so the first
+            // meal is the two apples "Gather wood" rewards
+            simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), Season.WINTER);
+            tickOneSecond();
+            assertCurrent("gather-wood");
+
+            gatherWoodUntil(ObjectiveCatalog.firstWoodTarget());
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(0, player.getMealsEaten());
+
+            tickOneSecond();
+            assertCurrent("eat");
+            Assert.Contains("Trees are bare in winter", tracker.getCurrent().getHint(simulation));
+            Assert.DoesNotContain("Trees drop apples", tracker.getCurrent().getHint(simulation));
+
+            // a new world starts the player a little hungry, so the reward is eaten at once
+            tickOneSecond();
+            Assert.True(player.getMealsEaten() > 0);
+            assertCurrent("join-nation");
+        }
+
+        [Fact]
+        public void testEatHint_PromisesApplesFromTreesOutsideWinter() {
+            Assert.Contains("Trees drop apples", ObjectiveCatalog.eatHint(simulation));
         }
 
         [Fact]

@@ -247,5 +247,16 @@ namespace beyondnationstests {
             player.setEnergy(WorldHud.StarvingEnergy - 1);
             Assert.StartsWith("Starving! Energy 9", WorldHud.getHungerWarning(player));
         }
+
+        [Fact]
+        public void testHungerWarning_InWinter_DoesNotSendThePlayerToABareTree() {
+            Player player = newSimulationWithSeed42().getPlayer();
+            player.setEnergy(WorldHud.HungryEnergy - 1);
+
+            string warning = WorldHud.getHungerWarning(player, true);
+
+            Assert.DoesNotContain("at a tree", warning);
+            Assert.Contains("Trees are bare in winter: press E at a chicken for meat", warning);
+        }
     }
 }
