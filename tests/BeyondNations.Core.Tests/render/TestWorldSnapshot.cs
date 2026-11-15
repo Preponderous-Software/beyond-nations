@@ -41,13 +41,19 @@ namespace beyondnationstests {
             entityRepository.addEntity(new AppleTree(new Vector3(0, 0, 0), 5, random));
             WorldSnapshot snapshot = new WorldSnapshot();
 
+            AppleTree tree = (AppleTree) entityRepository.getEntityAt(0);
+            int parts = tree.getAppearance().getParts().Count;
+
             // run
             snapshot.capture(entityRepository, null);
 
-            // verify: a tree is a trunk and a block of leaves
-            Assert.Equal(2, snapshot.getEntityItems().Count);
+            // verify: a tree is a trunk and a canopy of leaf spheres, one item each
+            Assert.True(parts >= 3);
+            Assert.Equal(parts, snapshot.getEntityItems().Count);
             Assert.Equal(PrimitiveKind.Cylinder, snapshot.getEntityItems()[0].kind);
-            Assert.Equal(PrimitiveKind.Cube, snapshot.getEntityItems()[1].kind);
+            for (int i = 1; i < parts; i++) {
+                Assert.Equal(PrimitiveKind.Sphere, snapshot.getEntityItems()[i].kind);
+            }
         }
 
         [Fact]
@@ -143,7 +149,9 @@ namespace beyondnationstests {
             // prepare
             EntityRepository entityRepository = newRepository();
             beyondnations.Environment environment = new beyondnations.Environment(3, 2, entityRepository, random);
-            entityRepository.addEntity(new AppleTree(new Vector3(0, 0, 0), 5, random));
+            AppleTree tree = new AppleTree(new Vector3(0, 0, 0), 5, random);
+            entityRepository.addEntity(tree);
+            int parts = tree.getAppearance().getParts().Count;
             WorldSnapshot snapshot = new WorldSnapshot();
 
             // run: the first captures grow the lists, after which the buffers
@@ -159,8 +167,8 @@ namespace beyondnationstests {
 
             // verify
             Assert.Equal(9, snapshot.getGroundItems().Count);
-            Assert.Equal(2, snapshot.getEntityItems().Count);
-            Assert.Equal(11, snapshot.getTotalItemCount());
+            Assert.Equal(parts, snapshot.getEntityItems().Count);
+            Assert.Equal(9 + parts, snapshot.getTotalItemCount());
             Assert.Equal(0, allocated);
         }
 
@@ -173,7 +181,8 @@ namespace beyondnationstests {
             beyondnations.Environment environment = new beyondnations.Environment(3, 2, entityRepository, random);
             Rock hidden = new Rock(new Vector3(0, 0, 0));
             entityRepository.addEntity(hidden);
-            entityRepository.addEntity(new AppleTree(new Vector3(4, 0, 4), 5, random));
+            AppleTree tree = new AppleTree(new Vector3(4, 0, 4), 5, random);
+            entityRepository.addEntity(tree);
             WorldSnapshot snapshot = new WorldSnapshot();
 
             // run
@@ -186,8 +195,8 @@ namespace beyondnationstests {
             }
             long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
 
-            // verify: the tree's two parts, and nothing from the hidden rock
-            Assert.Equal(2, snapshot.getEntityItems().Count);
+            // verify: the tree's parts, and nothing from the hidden rock
+            Assert.Equal(tree.getAppearance().getParts().Count, snapshot.getEntityItems().Count);
             Assert.Equal(0, allocated);
         }
     }

@@ -373,7 +373,23 @@ namespace beyondnations.desktop {
                 }
                 nationIndex++;
             }
-            flyover = FlyoverDirector.between(settlements, nations, simulation.getPlayer().getPosition(), options.FlyoverFrames);
+            if (options.FlyoverOrbit) {
+                List<Vector3> trees = new List<Vector3>();
+                EntityRepository entities = simulation.getEntityRepository();
+                for (int e = 0; e < entities.getEntityCount(); e++) {
+                    Entity entity = entities.getEntityAt(e);
+                    // near the player, where the land is generated all round
+                    if (entity.getType() == EntityType.TREE && !entity.isMarkedForDeletion()
+                        && Vector3.Distance(entity.getPosition(), simulation.getPlayer().getPosition()) < 40f) {
+                        trees.Add(entity.getPosition());
+                    }
+                }
+                Vector3 stand = FlyoverDirector.thickestStand(trees, 15f, simulation.getPlayer().getPosition());
+                flyover = FlyoverDirector.orbit(stand, options.FlyoverFrames);
+                Log.info("flyover: circling the thickest stand of the " + trees.Count + " trees near the player, at " + stand);
+            } else {
+                flyover = FlyoverDirector.between(settlements, nations, simulation.getPlayer().getPosition(), options.FlyoverFrames);
+            }
             Directory.CreateDirectory(options.FlyoverOut);
             Log.info("flyover: " + settlements.Count + " settlements; gliding " + flyover.getStart() + " to " + flyover.getEnd()
                 + ", " + options.FlyoverFrames + " frames to " + options.FlyoverOut);

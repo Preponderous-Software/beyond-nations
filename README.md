@@ -200,6 +200,10 @@ The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game d
 
 ![Winter comes tomorrow: the banner, the chronicle and the Season box say what your nation carries](docs/screenshots/winter-warning-and-hunger/winter-warning.png)
 
+<img src="./docs/screenshots/tree-model/forest-orbit.gif" alt="A slow circle round a stand of trees in a forest on seed 12: round broadleaf crowns, tiered crowns and tall oval crowns of different sizes on brown trunks, their lower leaves a darker green, casting shadows on the grass" width="480">
+
+Trees come in three shapes -- a round broadleaf crown, a tiered crown and a tall oval one -- and in different sizes, each a trunk with layered leaves whose lower layers are darker; a sapling is a thin stem with a small crown in the shape it will grow into. Which shape and size a tree takes follows from where it stands, so a world looks the same every time it is played or loaded. (The GIF is `--seed 12 --start-screen world --advance-ticks 50 --flyover-out DIR --flyover-orbit`, which circles the thickest stand of trees near the player.)
+
 The land itself differs. The world is made of **regions** in patches several chunks wide: **forest** (plenty of wood, little stone), **highlands** (rich in stone, poor in food), **plains** (good farming and game) and the scarce **moor**. Every region has some stone, so a settlement outside the highlands is short of it rather than stuck, but nations do differ in what they have plenty of and what they lack, which is what trade and diplomacy will be built on. `--season winter` (or `?season=winter` in the browser) opens the game on the first day of that season; the screenshot above is `--seed 42 --start-screen world --season NAME --time-of-day 0.45`.
 
 ### World events

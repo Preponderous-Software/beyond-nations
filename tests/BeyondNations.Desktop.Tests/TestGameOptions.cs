@@ -134,11 +134,14 @@ namespace beyondnationstests.desktop {
             Assert.Equal(150000, options.AdvanceTicks);
             Assert.Equal("frames", options.FlyoverOut);
             Assert.Equal(96, options.FlyoverFrames);
+            Assert.False(options.FlyoverOrbit);
+            Assert.True(GameOptions.parse(new string[] { "--flyover-orbit" }).FlyoverOrbit);
 
             string usage = GameOptions.getUsageText();
             Assert.Contains("--advance-ticks", usage);
             Assert.Contains("--flyover-out", usage);
             Assert.Contains("--flyover-frames", usage);
+            Assert.Contains("--flyover-orbit", usage);
         }
 }
 }

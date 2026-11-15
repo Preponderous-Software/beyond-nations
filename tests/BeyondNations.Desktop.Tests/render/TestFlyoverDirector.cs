@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using Xunit;
@@ -58,6 +59,32 @@ namespace beyondnationstests.desktop {
             FlyoverDirector flyover = FlyoverDirector.between(settlements, nations, player, 10);
 
             assertClose(player - new Vector3(0f, 0f, FlyoverDirector.LeadIn), flyover.getStart());
+        }
+
+        [Fact]
+        public void testOrbit_CirclesTheCentreOnce_LookingAtIt() {
+            Vector3 centre = new Vector3(10f, 2f, -5f);
+            FlyoverDirector orbit = FlyoverDirector.orbit(centre, 40);
+            Assert.True(orbit.isOrbit());
+            for (int f = 0; f < 40; f++) {
+                Vector3 ground = orbit.getGroundPoint(f);
+                float dx = ground.X - centre.X, dz = ground.Z - centre.Z;
+                Assert.Equal(FlyoverDirector.OrbitRadius, MathF.Sqrt(dx * dx + dz * dz), 3);
+                Assert.Equal(centre.Y + FlyoverDirector.OrbitHeight, orbit.getEye(f).Y, 3);
+                assertClose(centre + new Vector3(0f, 3f, 0f), orbit.getTarget(f));
+            }
+            // a quarter of the way round is a quarter turn
+            assertClose(centre + new Vector3(0f, 0f, FlyoverDirector.OrbitRadius), orbit.getGroundPoint(10));
+        }
+
+        [Fact]
+        public void testThickestStand_IsTheTreeWithTheMostNeighbours() {
+            List<Vector3> trees = new List<Vector3> {
+                new Vector3(0f, 0f, 0f), new Vector3(100f, 0f, 0f), new Vector3(104f, 0f, 0f),
+                new Vector3(100f, 0f, 5f), new Vector3(200f, 0f, 0f),
+            };
+            Assert.Equal(new Vector3(100f, 0f, 0f), FlyoverDirector.thickestStand(trees, 10f, Vector3.Zero));
+            Assert.Equal(new Vector3(7f, 0f, 7f), FlyoverDirector.thickestStand(new List<Vector3>(), 10f, new Vector3(7f, 0f, 7f)));
         }
     }
 }

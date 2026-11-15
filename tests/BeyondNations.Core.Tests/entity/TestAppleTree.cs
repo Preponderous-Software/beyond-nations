@@ -19,22 +19,23 @@ namespace beyondnationstests {
             Assert.Equal("Tree", tree.getName());
             Assert.Equal(new Vector3(0, 0, 0), tree.getPosition());
 
-            // a cylinder trunk with a cube of leaves above it, as two parts of
-            // one appearance rather than two child game objects
+            // a cylinder trunk standing on the ground, then a canopy of
+            // leaf spheres above it (#140; TestTreeShape covers the shapes)
             Appearance appearance = tree.getAppearance();
-            Assert.Equal(2, appearance.getParts().Count);
+            Assert.InRange(appearance.getParts().Count, 3, 5);
 
             AppearancePart trunk = appearance.getParts()[0];
             Assert.Equal(PrimitiveKind.Cylinder, trunk.getKind());
-            Assert.Equal(Vector3.Zero, trunk.getOffset());
-            Assert.Equal(new Vector3(1, height, 1), trunk.getScale());
+            Assert.Equal(TreeShape.GroundY, trunk.getOffset().Y - trunk.getScale().Y, 3);
             Assert.Equal(new Rgba(0.5f, 0.25f, 0), trunk.getColor());
 
-            AppearancePart leaves = appearance.getParts()[1];
-            Assert.Equal(PrimitiveKind.Cube, leaves.getKind());
-            Assert.Equal(new Vector3(0, height - 1, 0), leaves.getOffset());
-            Assert.Equal(new Vector3(3, 3, 3), leaves.getScale());
-            Assert.Equal(Rgba.Green, leaves.getColor());
+            for (int i = 1; i < appearance.getParts().Count; i++) {
+                AppearancePart leaves = appearance.getParts()[i];
+                Assert.Equal(PrimitiveKind.Sphere, leaves.getKind());
+                Assert.True(leaves.getOffset().Y > trunk.getOffset().Y);
+                Assert.Equal(0f, leaves.getColor().r);
+                Assert.Equal(0f, leaves.getColor().b);
+            }
         }
 
         [Fact]
