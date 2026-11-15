@@ -495,7 +495,9 @@ namespace beyondnations.desktop.ui.screens {
             Nation nation = player.getNationId() == null ? null : simulation.getNationRepository().getNation(player.getNationId());
             // where the player stands, so the banner counts those here the way Feed Residents does
             Settlement here = new FeedResidentsCommand(simulation.getEntityRepository()).getOwnSettlement(player);
-            string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter(), here);
+            string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter(), here)
+                // and a day before winter, the nation's stores while any member is short (WinterStores)
+                ?? WinterStores.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar());
             if (warning == null) {
                 return y;
             }

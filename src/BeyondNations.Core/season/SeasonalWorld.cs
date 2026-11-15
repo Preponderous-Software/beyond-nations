@@ -33,6 +33,22 @@ namespace beyondnations {
             this.random = random;
         }
 
+        private NationRepository nationRepository;
+        private EventProducer eventProducer;
+
+        /**
+        * Lets the winter warning name the player's nation and write its line
+        * to the chronicle (WinterStores, #353). Without it the status line
+        * still says winter is coming.
+        */
+        public void setNations(NationRepository nationRepository, EventProducer eventProducer) {
+            this.nationRepository = nationRepository;
+            this.eventProducer = eventProducer;
+        }
+
+        /** The world event id the winter warning's chronicle line goes out under. */
+        public const string WinterComingEventId = "winter-coming";
+
         public void update(int totalTicks) {
             announce(totalTicks);
             if (totalTicks % SeasonalRules.CHICKEN_HATCH_INTERVAL_TICKS == 0 && SeasonalRules.chickensHatch(calendar.getSeason())) {
@@ -116,9 +132,22 @@ namespace beyondnations {
                 return;
             }
             string message = announcementFor(today);
-            if (message != null) {
-                player.getStatus().update(message);
+            if (message == null) {
+                return;
             }
+            Nation nation = player.getNationId() == null || nationRepository == null ? null : nationRepository.getNation(player.getNationId());
+            if (nation != null && SeasonCalendar.daysUntil(today, Season.WINTER) == 1) {
+                // a day ahead, the nation's stores: on the status line, and kept in the chronicle
+                string line = WinterStores.describeForChronicle(entityRepository, nation);
+                if (line != null) {
+                    message += " " + WinterStores.describe(nation, WinterStores.count(entityRepository, nation.getId()));
+                    if (eventProducer != null) {
+                        eventProducer.produceWorldEventEvent(WinterComingEventId, line,
+                            new System.Collections.Generic.List<NationId> { nation.getId() }, null);
+                    }
+                }
+            }
+            player.getStatus().update(message);
         }
 
         /** What the status line says at the start of a day, or null for nothing. */
