@@ -1,0 +1,659 @@
+{"t": 1794780354816, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "106"]}
+{"t": 1794780390374, "cmd": "key", "args": ["space"]}
+{"t": 1794780391217, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1794780391668, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780392903, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1794780393180, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780421100, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780421990, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794780422734, "cmd": "wait", "args": ["2"]}
+{"t": 1794780424946, "cmd": "shot", "args": ["world0"]}
+{"t": 1794780425607, "cmd": "state", "args": []}
+{"t": 1794780438513, "cmd": "click", "args": ["338", "389"]}
+{"t": 1794780439763, "cmd": "key", "args": ["n"]}
+{"t": 1794780440440, "cmd": "wait", "args": ["2"]}
+{"t": 1794780442634, "cmd": "shot", "args": ["nation1"]}
+{"t": 1794780443021, "cmd": "state", "args": []}
+{"t": 1794780448504, "cmd": "key", "args": ["o"]}
+{"t": 1794780449041, "cmd": "wait", "args": ["2"]}
+{"t": 1794780451346, "cmd": "shot", "args": ["nations1"]}
+{"t": 1794780468732, "cmd": "click", "args": ["543", "45"]}
+{"t": 1794780469945, "cmd": "wait", "args": ["1"]}
+{"t": 1794780472397, "cmd": "shot", "args": ["laws1"]}
+{"t": 1794780472987, "cmd": "click", "args": ["415", "45"]}
+{"t": 1794780473803, "cmd": "wait", "args": ["1"]}
+{"t": 1794780475022, "cmd": "shot", "args": ["members1"]}
+{"t": 1794780486557, "cmd": "click", "args": ["543", "45"]}
+{"t": 1794780487539, "cmd": "wait", "args": ["1"]}
+{"t": 1794780488845, "cmd": "note", "args": ["--shot", "laws-no-heir-text", "Laws tab on a brand-new 1-member nation says 'No one in Easternwood was LEFT to take your place' - past tense 'was left' reads as if members died; nobody ever joined. Members tab phrasing ('No heir: if you die now, your line ends.') is clearer."]}
+{"t": 1794780489709, "cmd": "click", "args": ["226", "232"]}
+{"t": 1794780490865, "cmd": "wait", "args": ["1"]}
+{"t": 1794780492183, "cmd": "shot", "args": ["laws-low"]}
+{"t": 1794780502326, "cmd": "click", "args": ["226", "405"]}
+{"t": 1794780503314, "cmd": "click", "args": ["880", "161"]}
+{"t": 1794780504452, "cmd": "wait", "args": ["1"]}
+{"t": 1794780505608, "cmd": "shot", "args": ["laws-down"]}
+{"t": 1794780512926, "cmd": "click", "args": ["226", "318"]}
+{"t": 1794780513850, "cmd": "wait", "args": ["1"]}
+{"t": 1794780514985, "cmd": "shot", "args": ["laws-borders"]}
+{"t": 1794780521333, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780522231, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1794780535191, "cmd": "key", "args": ["e"]}
+{"t": 1794780536231, "cmd": "wait", "args": ["1"]}
+{"t": 1794780537448, "cmd": "shot", "args": ["talk1"]}
+{"t": 1794780537803, "cmd": "state", "args": []}
+{"t": 1794780553870, "cmd": "click", "args": ["418", "376"]}
+{"t": 1794780554948, "cmd": "face", "args": ["45"]}
+{"t": 1794780560489, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1794780562902, "cmd": "walkto", "args": ["pawn", "90"]}
+{"t": 1794780631779, "cmd": "state", "args": []}
+{"t": 1794780636742, "cmd": "walkto", "args": ["pawn", "90"]}
+{"t": 1794780677829, "cmd": "shot", "args": ["chase"]}
+{"t": 1794780678582, "cmd": "state", "args": []}
+{"t": 1794780682064, "cmd": "face", "args": ["11"]}
+{"t": 1794780683175, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780685243, "cmd": "state", "args": []}
+{"t": 1794780691479, "cmd": "face", "args": ["-34"]}
+{"t": 1794780695773, "cmd": "hold", "args": ["w", "1.5"]}
+{"t": 1794780697946, "cmd": "state", "args": []}
+{"t": 1794780704639, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1794780714526, "cmd": "state", "args": []}
+{"t": 1794780719602, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794780722198, "cmd": "state", "args": []}
+{"t": 1794780722444, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794780724794, "cmd": "state", "args": []}
+{"t": 1794780724938, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794780727245, "cmd": "state", "args": []}
+{"t": 1794780727381, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794780729651, "cmd": "state", "args": []}
+{"t": 1794780733576, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794780749080, "cmd": "key", "args": ["e"]}
+{"t": 1794780749788, "cmd": "wait", "args": ["1"]}
+{"t": 1794780751023, "cmd": "shot", "args": ["talk2"]}
+{"t": 1794780751720, "cmd": "state", "args": []}
+{"t": 1794780759099, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780761168, "cmd": "state", "args": []}
+{"t": 1794780761337, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780764379, "cmd": "state", "args": []}
+{"t": 1794780764518, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780766269, "cmd": "state", "args": []}
+{"t": 1794780766343, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780768289, "cmd": "state", "args": []}
+{"t": 1794780768572, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780770528, "cmd": "state", "args": []}
+{"t": 1794780770638, "cmd": "hold", "args": ["Shift_L+w", "1.5"]}
+{"t": 1794780772436, "cmd": "state", "args": []}
+{"t": 1794780775881, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780777180, "cmd": "state", "args": []}
+{"t": 1794780777371, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780778624, "cmd": "state", "args": []}
+{"t": 1794780778731, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780780045, "cmd": "state", "args": []}
+{"t": 1794780780315, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780781649, "cmd": "state", "args": []}
+{"t": 1794780781769, "cmd": "key", "args": ["e"]}
+{"t": 1794780782371, "cmd": "wait", "args": ["1"]}
+{"t": 1794780783520, "cmd": "shot", "args": ["talk3"]}
+{"t": 1794780783884, "cmd": "state", "args": []}
+{"t": 1794780788761, "cmd": "state", "args": ["--full"]}
+{"t": 1794780802846, "cmd": "state", "args": ["--full"]}
+{"t": 1794780803121, "cmd": "face", "args": ["-159.1"]}
+{"t": 1794780817880, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780819381, "cmd": "state", "args": ["--full"]}
+{"t": 1794780819677, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780821216, "cmd": "state", "args": ["--full"]}
+{"t": 1794780821505, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780823009, "cmd": "state", "args": ["--full"]}
+{"t": 1794780823225, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780824773, "cmd": "state", "args": ["--full"]}
+{"t": 1794780824966, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780826504, "cmd": "state", "args": ["--full"]}
+{"t": 1794780826802, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780828244, "cmd": "state", "args": ["--full"]}
+{"t": 1794780828513, "cmd": "face", "args": ["14.9"]}
+{"t": 1794780829995, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780831546, "cmd": "state", "args": ["--full"]}
+{"t": 1794780831832, "cmd": "face", "args": ["17.5"]}
+{"t": 1794780833946, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780835327, "cmd": "state", "args": ["--full"]}
+{"t": 1794780835619, "cmd": "face", "args": ["17.9"]}
+{"t": 1794780837342, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780838710, "cmd": "state", "args": ["--full"]}
+{"t": 1794780838869, "cmd": "face", "args": ["14.6"]}
+{"t": 1794780840508, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780841880, "cmd": "state", "args": ["--full"]}
+{"t": 1794780842163, "cmd": "face", "args": ["29"]}
+{"t": 1794780845461, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780846802, "cmd": "state", "args": ["--full"]}
+{"t": 1794780847094, "cmd": "face", "args": ["13.9"]}
+{"t": 1794780848227, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780849658, "cmd": "state", "args": ["--full"]}
+{"t": 1794780849929, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780851414, "cmd": "state", "args": ["--full"]}
+{"t": 1794780851701, "cmd": "face", "args": ["11.9"]}
+{"t": 1794780853091, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780854518, "cmd": "state", "args": ["--full"]}
+{"t": 1794780854746, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780856171, "cmd": "state", "args": ["--full"]}
+{"t": 1794780856436, "cmd": "face", "args": ["11.9"]}
+{"t": 1794780857631, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780859127, "cmd": "state", "args": ["--full"]}
+{"t": 1794780859407, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780861012, "cmd": "state", "args": ["--full"]}
+{"t": 1794780861315, "cmd": "face", "args": ["12.3"]}
+{"t": 1794780862828, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780864448, "cmd": "state", "args": ["--full"]}
+{"t": 1794780864709, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780866141, "cmd": "state", "args": ["--full"]}
+{"t": 1794780866495, "cmd": "face", "args": ["18.1"]}
+{"t": 1794780869123, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780869723, "cmd": "state", "args": ["--full"]}
+{"t": 1794780869835, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780871065, "cmd": "state", "args": ["--full"]}
+{"t": 1794780871585, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780872912, "cmd": "state", "args": ["--full"]}
+{"t": 1794780876565, "cmd": "key", "args": ["e"]}
+{"t": 1794780877281, "cmd": "wait", "args": ["1"]}
+{"t": 1794780878466, "cmd": "shot", "args": ["gemma1"]}
+{"t": 1794780878889, "cmd": "state", "args": []}
+{"t": 1794780884843, "cmd": "state", "args": ["--full"]}
+{"t": 1794780885101, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780886512, "cmd": "state", "args": ["--full"]}
+{"t": 1794780886823, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780888430, "cmd": "state", "args": ["--full"]}
+{"t": 1794780888836, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780890328, "cmd": "state", "args": ["--full"]}
+{"t": 1794780890698, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780892161, "cmd": "state", "args": ["--full"]}
+{"t": 1794780892450, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780893252, "cmd": "state", "args": ["--full"]}
+{"t": 1794780893481, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780894220, "cmd": "state", "args": ["--full"]}
+{"t": 1794780894619, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780896091, "cmd": "state", "args": ["--full"]}
+{"t": 1794780896320, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780897130, "cmd": "state", "args": ["--full"]}
+{"t": 1794780897359, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780898034, "cmd": "state", "args": ["--full"]}
+{"t": 1794780898345, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780899085, "cmd": "state", "args": ["--full"]}
+{"t": 1794780899267, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780899976, "cmd": "state", "args": ["--full"]}
+{"t": 1794780900303, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780900994, "cmd": "state", "args": ["--full"]}
+{"t": 1794780901238, "cmd": "face", "args": ["-14.5"]}
+{"t": 1794780902593, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780903418, "cmd": "state", "args": ["--full"]}
+{"t": 1794780903685, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780904319, "cmd": "state", "args": ["--full"]}
+{"t": 1794780904469, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780905222, "cmd": "state", "args": ["--full"]}
+{"t": 1794780905578, "cmd": "face", "args": ["-12.3"]}
+{"t": 1794780913553, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780914317, "cmd": "state", "args": ["--full"]}
+{"t": 1794780914513, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780916518, "cmd": "state", "args": ["--full"]}
+{"t": 1794780916743, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780918194, "cmd": "state", "args": ["--full"]}
+{"t": 1794780918588, "cmd": "face", "args": ["14.6"]}
+{"t": 1794780919886, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780920563, "cmd": "state", "args": ["--full"]}
+{"t": 1794780920806, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780922391, "cmd": "state", "args": ["--full"]}
+{"t": 1794780922657, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780924041, "cmd": "state", "args": ["--full"]}
+{"t": 1794780924163, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780924939, "cmd": "state", "args": ["--full"]}
+{"t": 1794780925245, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780926000, "cmd": "state", "args": ["--full"]}
+{"t": 1794780926279, "cmd": "face", "args": ["14.6"]}
+{"t": 1794780927680, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780928405, "cmd": "state", "args": ["--full"]}
+{"t": 1794780928688, "cmd": "hold", "args": ["w", "0.4"]}
+{"t": 1794780933333, "cmd": "state", "args": ["--full"]}
+{"t": 1794780933606, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780935070, "cmd": "state", "args": ["--full"]}
+{"t": 1794780935279, "cmd": "face", "args": ["12.7"]}
+{"t": 1794780936731, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780938141, "cmd": "state", "args": ["--full"]}
+{"t": 1794780938418, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780939336, "cmd": "state", "args": ["--full"]}
+{"t": 1794780939525, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780940389, "cmd": "state", "args": ["--full"]}
+{"t": 1794780940629, "cmd": "face", "args": ["13"]}
+{"t": 1794780942275, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780943178, "cmd": "state", "args": ["--full"]}
+{"t": 1794780943347, "cmd": "face", "args": ["33.3"]}
+{"t": 1794780947350, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780948360, "cmd": "state", "args": ["--full"]}
+{"t": 1794780948728, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780950150, "cmd": "state", "args": ["--full"]}
+{"t": 1794780950372, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780951807, "cmd": "state", "args": ["--full"]}
+{"t": 1794780951953, "cmd": "face", "args": ["11.6"]}
+{"t": 1794780953335, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780954174, "cmd": "state", "args": ["--full"]}
+{"t": 1794780954378, "cmd": "key", "args": ["e"]}
+{"t": 1794780955001, "cmd": "state", "args": []}
+{"t": 1794780958481, "cmd": "shot", "args": ["gemma2"]}
+{"t": 1794780958898, "cmd": "state", "args": []}
+{"t": 1794780959116, "cmd": "events", "args": ["5"]}
+{"t": 1794780965971, "cmd": "events", "args": ["40"]}
+{"t": 1794780966130, "cmd": "events", "args": ["60"]}
+{"t": 1794780973220, "cmd": "note", "args": ["--shot", "nation-glut", "By tick ~3700 (74 game s) 17 NationCreation chronicle events: almost every pawn raises its own banner within the first minute (Irene Taylor 15m from spawn founded Smallton before I could reach her). For a ruling goal this leaves very few nationless pawns to invite, and leaders never defect, so getting a first member / heir is hard."]}
+{"t": 1794780973700, "cmd": "state", "args": ["--full"]}
+{"t": 1794780973830, "cmd": "face", "args": ["12.7"]}
+{"t": 1794780975196, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780976582, "cmd": "state", "args": ["--full"]}
+{"t": 1794780976779, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780978127, "cmd": "state", "args": ["--full"]}
+{"t": 1794780978368, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780979820, "cmd": "state", "args": ["--full"]}
+{"t": 1794780980031, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780981491, "cmd": "state", "args": ["--full"]}
+{"t": 1794780981647, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780983048, "cmd": "state", "args": ["--full"]}
+{"t": 1794780983246, "cmd": "face", "args": ["16.1"]}
+{"t": 1794780984803, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780986325, "cmd": "state", "args": ["--full"]}
+{"t": 1794780986717, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794780988179, "cmd": "state", "args": ["--full"]}
+{"t": 1794780988506, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780989457, "cmd": "state", "args": ["--full"]}
+{"t": 1794780989697, "cmd": "face", "args": ["14.7"]}
+{"t": 1794780990739, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780991630, "cmd": "state", "args": ["--full"]}
+{"t": 1794780991799, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780992709, "cmd": "state", "args": ["--full"]}
+{"t": 1794780992920, "cmd": "hold", "args": ["Shift_L+w", "0.5"]}
+{"t": 1794780993839, "cmd": "state", "args": ["--full"]}
+{"t": 1794780994072, "cmd": "key", "args": ["e"]}
+{"t": 1794780994939, "cmd": "state", "args": []}
+{"t": 1794781001004, "cmd": "shot", "args": ["gemma3"]}
+{"t": 1794781001452, "cmd": "events", "args": ["3"]}
+{"t": 1794781014149, "cmd": "key", "args": ["f"]}
+{"t": 1794781014843, "cmd": "wait", "args": ["1"]}
+{"t": 1794781016045, "cmd": "shot", "args": ["found"]}
+{"t": 1794781016500, "cmd": "state", "args": []}
+{"t": 1794781016653, "cmd": "events", "args": ["3"]}
+{"t": 1794781021591, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781047827, "cmd": "key", "args": ["e"]}
+{"t": 1794781048478, "cmd": "key", "args": ["e"]}
+{"t": 1794781049073, "cmd": "key", "args": ["e"]}
+{"t": 1794781049722, "cmd": "key", "args": ["e"]}
+{"t": 1794781050485, "cmd": "key", "args": ["e"]}
+{"t": 1794781051210, "cmd": "state", "args": []}
+{"t": 1794781057878, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781084439, "cmd": "key", "args": ["e"]}
+{"t": 1794781085109, "cmd": "key", "args": ["e"]}
+{"t": 1794781085943, "cmd": "key", "args": ["e"]}
+{"t": 1794781086593, "cmd": "key", "args": ["e"]}
+{"t": 1794781087193, "cmd": "key", "args": ["e"]}
+{"t": 1794781087820, "cmd": "state", "args": []}
+{"t": 1794781087978, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781109297, "cmd": "key", "args": ["e"]}
+{"t": 1794781110059, "cmd": "key", "args": ["e"]}
+{"t": 1794781110763, "cmd": "key", "args": ["e"]}
+{"t": 1794781111400, "cmd": "key", "args": ["e"]}
+{"t": 1794781111975, "cmd": "key", "args": ["e"]}
+{"t": 1794781112668, "cmd": "state", "args": []}
+{"t": 1794781112861, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781127269, "cmd": "key", "args": ["e"]}
+{"t": 1794781127891, "cmd": "key", "args": ["e"]}
+{"t": 1794781128545, "cmd": "key", "args": ["e"]}
+{"t": 1794781129147, "cmd": "key", "args": ["e"]}
+{"t": 1794781129721, "cmd": "key", "args": ["e"]}
+{"t": 1794781130273, "cmd": "state", "args": []}
+{"t": 1794781130418, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781150680, "cmd": "key", "args": ["e"]}
+{"t": 1794781151463, "cmd": "key", "args": ["e"]}
+{"t": 1794781152221, "cmd": "key", "args": ["e"]}
+{"t": 1794781152882, "cmd": "key", "args": ["e"]}
+{"t": 1794781153468, "cmd": "key", "args": ["e"]}
+{"t": 1794781154144, "cmd": "state", "args": []}
+{"t": 1794781154385, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781155370, "cmd": "key", "args": ["e"]}
+{"t": 1794781156284, "cmd": "key", "args": ["e"]}
+{"t": 1794781157062, "cmd": "key", "args": ["e"]}
+{"t": 1794781157844, "cmd": "key", "args": ["e"]}
+{"t": 1794781158867, "cmd": "key", "args": ["e"]}
+{"t": 1794781159526, "cmd": "state", "args": []}
+{"t": 1794781159759, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781178541, "cmd": "key", "args": ["e"]}
+{"t": 1794781179293, "cmd": "key", "args": ["e"]}
+{"t": 1794781180050, "cmd": "key", "args": ["e"]}
+{"t": 1794781180611, "cmd": "key", "args": ["e"]}
+{"t": 1794781181495, "cmd": "key", "args": ["e"]}
+{"t": 1794781182219, "cmd": "state", "args": []}
+{"t": 1794781182520, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781218971, "cmd": "key", "args": ["e"]}
+{"t": 1794781219986, "cmd": "key", "args": ["e"]}
+{"t": 1794781220843, "cmd": "key", "args": ["e"]}
+{"t": 1794781221837, "cmd": "key", "args": ["e"]}
+{"t": 1794781222613, "cmd": "key", "args": ["e"]}
+{"t": 1794781223487, "cmd": "state", "args": []}
+{"t": 1794781228728, "cmd": "key", "args": ["f"]}
+{"t": 1794781229447, "cmd": "wait", "args": ["2"]}
+{"t": 1794781231748, "cmd": "shot", "args": ["founded"]}
+{"t": 1794781232905, "cmd": "events", "args": ["6"]}
+{"t": 1794781233178, "cmd": "state", "args": []}
+{"t": 1794781247447, "cmd": "key", "args": ["b"]}
+{"t": 1794781248359, "cmd": "wait", "args": ["1"]}
+{"t": 1794781249663, "cmd": "events", "args": ["4"]}
+{"t": 1794781249995, "cmd": "key", "args": ["k"]}
+{"t": 1794781250730, "cmd": "wait", "args": ["1"]}
+{"t": 1794781252075, "cmd": "shot", "args": ["kbuild"]}
+{"t": 1794781253144, "cmd": "events", "args": ["3"]}
+{"t": 1794781260617, "cmd": "key", "args": ["e"]}
+{"t": 1794781261419, "cmd": "wait", "args": ["1"]}
+{"t": 1794781262850, "cmd": "key", "args": ["b"]}
+{"t": 1794781263641, "cmd": "wait", "args": ["1"]}
+{"t": 1794781264863, "cmd": "events", "args": ["6"]}
+{"t": 1794781265063, "cmd": "shot", "args": ["inside"]}
+{"t": 1794781276123, "cmd": "note", "args": ["--shot", "settlement-header-overlap", "Settlement screen: big world-space label '0 here, 1/8 residents' renders behind and through the 'CAMP OF EASTERNWOOD' header, both readable only with effort."]}
+{"t": 1794781276793, "cmd": "click", "args": ["375", "436"]}
+{"t": 1794781277598, "cmd": "wait", "args": ["1"]}
+{"t": 1794781278742, "cmd": "key", "args": ["b"]}
+{"t": 1794781279465, "cmd": "wait", "args": ["1"]}
+{"t": 1794781280821, "cmd": "events", "args": ["4"]}
+{"t": 1794781297211, "cmd": "key", "args": ["e"]}
+{"t": 1794781297908, "cmd": "wait", "args": ["1"]}
+{"t": 1794781299136, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781300215, "cmd": "wait", "args": ["1"]}
+{"t": 1794781301550, "cmd": "key", "args": ["b"]}
+{"t": 1794781302224, "cmd": "wait", "args": ["1"]}
+{"t": 1794781303431, "cmd": "events", "args": ["5"]}
+{"t": 1794781303675, "cmd": "shot", "args": ["stall"]}
+{"t": 1794781314868, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781319618, "cmd": "key", "args": ["e"]}
+{"t": 1794781320284, "cmd": "key", "args": ["e"]}
+{"t": 1794781321019, "cmd": "key", "args": ["e"]}
+{"t": 1794781321828, "cmd": "key", "args": ["e"]}
+{"t": 1794781322605, "cmd": "key", "args": ["e"]}
+{"t": 1794781323314, "cmd": "state", "args": []}
+{"t": 1794781323490, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781324057, "cmd": "key", "args": ["e"]}
+{"t": 1794781324785, "cmd": "key", "args": ["e"]}
+{"t": 1794781325443, "cmd": "key", "args": ["e"]}
+{"t": 1794781326174, "cmd": "key", "args": ["e"]}
+{"t": 1794781326896, "cmd": "key", "args": ["e"]}
+{"t": 1794781327620, "cmd": "state", "args": []}
+{"t": 1794781327844, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781328377, "cmd": "key", "args": ["e"]}
+{"t": 1794781328976, "cmd": "key", "args": ["e"]}
+{"t": 1794781329772, "cmd": "key", "args": ["e"]}
+{"t": 1794781330506, "cmd": "key", "args": ["e"]}
+{"t": 1794781331138, "cmd": "key", "args": ["e"]}
+{"t": 1794781331920, "cmd": "state", "args": []}
+{"t": 1794781332286, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781333092, "cmd": "key", "args": ["e"]}
+{"t": 1794781333818, "cmd": "key", "args": ["e"]}
+{"t": 1794781334568, "cmd": "key", "args": ["e"]}
+{"t": 1794781335254, "cmd": "key", "args": ["e"]}
+{"t": 1794781335977, "cmd": "key", "args": ["e"]}
+{"t": 1794781336775, "cmd": "state", "args": []}
+{"t": 1794781336976, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781337274, "cmd": "key", "args": ["e"]}
+{"t": 1794781338000, "cmd": "key", "args": ["e"]}
+{"t": 1794781338666, "cmd": "key", "args": ["e"]}
+{"t": 1794781339396, "cmd": "key", "args": ["e"]}
+{"t": 1794781340173, "cmd": "key", "args": ["e"]}
+{"t": 1794781341085, "cmd": "state", "args": []}
+{"t": 1794781341340, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781342392, "cmd": "key", "args": ["e"]}
+{"t": 1794781343114, "cmd": "key", "args": ["e"]}
+{"t": 1794781343883, "cmd": "key", "args": ["e"]}
+{"t": 1794781344522, "cmd": "key", "args": ["e"]}
+{"t": 1794781345271, "cmd": "key", "args": ["e"]}
+{"t": 1794781345956, "cmd": "state", "args": []}
+{"t": 1794781346141, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781346767, "cmd": "key", "args": ["e"]}
+{"t": 1794781347626, "cmd": "key", "args": ["e"]}
+{"t": 1794781348436, "cmd": "key", "args": ["e"]}
+{"t": 1794781349095, "cmd": "key", "args": ["e"]}
+{"t": 1794781349687, "cmd": "key", "args": ["e"]}
+{"t": 1794781350476, "cmd": "state", "args": []}
+{"t": 1794781350787, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781351934, "cmd": "key", "args": ["e"]}
+{"t": 1794781352620, "cmd": "key", "args": ["e"]}
+{"t": 1794781353442, "cmd": "key", "args": ["e"]}
+{"t": 1794781354144, "cmd": "key", "args": ["e"]}
+{"t": 1794781354804, "cmd": "key", "args": ["e"]}
+{"t": 1794781355781, "cmd": "state", "args": []}
+{"t": 1794781355947, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781356397, "cmd": "key", "args": ["e"]}
+{"t": 1794781357252, "cmd": "key", "args": ["e"]}
+{"t": 1794781358025, "cmd": "key", "args": ["e"]}
+{"t": 1794781358763, "cmd": "key", "args": ["e"]}
+{"t": 1794781359381, "cmd": "key", "args": ["e"]}
+{"t": 1794781360008, "cmd": "state", "args": []}
+{"t": 1794781362485, "cmd": "events", "args": ["30"]}
+{"t": 1794781365835, "cmd": "state", "args": []}
+{"t": 1794781365915, "cmd": "shot", "args": ["now"]}
+{"t": 1794781371571, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781372536, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794781375986, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781377090, "cmd": "key", "args": ["e"]}
+{"t": 1794781377904, "cmd": "key", "args": ["e"]}
+{"t": 1794781378580, "cmd": "key", "args": ["e"]}
+{"t": 1794781379271, "cmd": "key", "args": ["e"]}
+{"t": 1794781380048, "cmd": "key", "args": ["e"]}
+{"t": 1794781380761, "cmd": "state", "args": []}
+{"t": 1794781380912, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781382103, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781384590, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781385354, "cmd": "key", "args": ["e"]}
+{"t": 1794781386131, "cmd": "key", "args": ["e"]}
+{"t": 1794781386828, "cmd": "key", "args": ["e"]}
+{"t": 1794781387595, "cmd": "key", "args": ["e"]}
+{"t": 1794781388377, "cmd": "key", "args": ["e"]}
+{"t": 1794781389042, "cmd": "state", "args": []}
+{"t": 1794781389240, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781390251, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781392886, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781404220, "cmd": "key", "args": ["e"]}
+{"t": 1794781404954, "cmd": "key", "args": ["e"]}
+{"t": 1794781405731, "cmd": "key", "args": ["e"]}
+{"t": 1794781406491, "cmd": "key", "args": ["e"]}
+{"t": 1794781407272, "cmd": "key", "args": ["e"]}
+{"t": 1794781408087, "cmd": "state", "args": []}
+{"t": 1794781408239, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781409483, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781411944, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781412224, "cmd": "key", "args": ["e"]}
+{"t": 1794781412966, "cmd": "key", "args": ["e"]}
+{"t": 1794781413648, "cmd": "key", "args": ["e"]}
+{"t": 1794781414334, "cmd": "key", "args": ["e"]}
+{"t": 1794781415175, "cmd": "key", "args": ["e"]}
+{"t": 1794781415771, "cmd": "state", "args": []}
+{"t": 1794781415862, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781416675, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781419044, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781419851, "cmd": "key", "args": ["e"]}
+{"t": 1794781420535, "cmd": "key", "args": ["e"]}
+{"t": 1794781421317, "cmd": "key", "args": ["e"]}
+{"t": 1794781422021, "cmd": "key", "args": ["e"]}
+{"t": 1794781422816, "cmd": "key", "args": ["e"]}
+{"t": 1794781423445, "cmd": "state", "args": []}
+{"t": 1794781423689, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781424567, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781426933, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781433580, "cmd": "key", "args": ["e"]}
+{"t": 1794781434192, "cmd": "key", "args": ["e"]}
+{"t": 1794781434837, "cmd": "key", "args": ["e"]}
+{"t": 1794781435647, "cmd": "key", "args": ["e"]}
+{"t": 1794781436369, "cmd": "key", "args": ["e"]}
+{"t": 1794781436912, "cmd": "state", "args": []}
+{"t": 1794781437065, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781457945, "cmd": "key", "args": ["e"]}
+{"t": 1794781458469, "cmd": "key", "args": ["e"]}
+{"t": 1794781459718, "cmd": "key", "args": ["e"]}
+{"t": 1794781460298, "cmd": "key", "args": ["e"]}
+{"t": 1794781460888, "cmd": "key", "args": ["e"]}
+{"t": 1794781461458, "cmd": "state", "args": []}
+{"t": 1794781461640, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781479383, "cmd": "key", "args": ["e"]}
+{"t": 1794781480017, "cmd": "key", "args": ["e"]}
+{"t": 1794781480633, "cmd": "key", "args": ["e"]}
+{"t": 1794781488504, "cmd": "key", "args": ["e"]}
+{"t": 1794781488974, "cmd": "key", "args": ["e"]}
+{"t": 1794781489434, "cmd": "state", "args": []}
+{"t": 1794781489492, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781526320, "cmd": "key", "args": ["e"]}
+{"t": 1794781527144, "cmd": "key", "args": ["e"]}
+{"t": 1794781527960, "cmd": "key", "args": ["e"]}
+{"t": 1794781528974, "cmd": "key", "args": ["e"]}
+{"t": 1794781529877, "cmd": "key", "args": ["e"]}
+{"t": 1794781530527, "cmd": "state", "args": []}
+{"t": 1794781531029, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781548686, "cmd": "key", "args": ["e"]}
+{"t": 1794781549560, "cmd": "key", "args": ["e"]}
+{"t": 1794781550385, "cmd": "key", "args": ["e"]}
+{"t": 1794781551046, "cmd": "key", "args": ["e"]}
+{"t": 1794781551983, "cmd": "key", "args": ["e"]}
+{"t": 1794781552746, "cmd": "state", "args": []}
+{"t": 1794781552957, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781553390, "cmd": "key", "args": ["e"]}
+{"t": 1794781554094, "cmd": "key", "args": ["e"]}
+{"t": 1794781554794, "cmd": "key", "args": ["e"]}
+{"t": 1794781555587, "cmd": "key", "args": ["e"]}
+{"t": 1794781558209, "cmd": "key", "args": ["e"]}
+{"t": 1794781559095, "cmd": "state", "args": []}
+{"t": 1794781559285, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781594240, "cmd": "key", "args": ["e"]}
+{"t": 1794781594930, "cmd": "key", "args": ["e"]}
+{"t": 1794781595712, "cmd": "key", "args": ["e"]}
+{"t": 1794781596327, "cmd": "key", "args": ["e"]}
+{"t": 1794781596932, "cmd": "key", "args": ["e"]}
+{"t": 1794781597582, "cmd": "state", "args": []}
+{"t": 1794781604048, "cmd": "state", "args": []}
+{"t": 1794781604190, "cmd": "key", "args": ["h"]}
+{"t": 1794781604873, "cmd": "wait", "args": ["1"]}
+{"t": 1794781606087, "cmd": "key", "args": ["e"]}
+{"t": 1794781606818, "cmd": "wait", "args": ["1"]}
+{"t": 1794781608001, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781608970, "cmd": "key", "args": ["b"]}
+{"t": 1794781609585, "cmd": "wait", "args": ["1"]}
+{"t": 1794781610721, "cmd": "key", "args": ["b"]}
+{"t": 1794781611337, "cmd": "wait", "args": ["1"]}
+{"t": 1794781612506, "cmd": "events", "args": ["12"]}
+{"t": 1794781616400, "cmd": "events", "args": ["200"]}
+{"t": 1794781616564, "cmd": "key", "args": ["o"]}
+{"t": 1794781617305, "cmd": "wait", "args": ["1"]}
+{"t": 1794781618525, "cmd": "click", "args": ["415", "45"]}
+{"t": 1794781619457, "cmd": "wait", "args": ["1"]}
+{"t": 1794781620630, "cmd": "shot", "args": ["members2"]}
+{"t": 1794781625818, "cmd": "click", "args": ["543", "45"]}
+{"t": 1794781626720, "cmd": "wait", "args": ["1"]}
+{"t": 1794781627936, "cmd": "click", "args": ["880", "161"]}
+{"t": 1794781628887, "cmd": "click", "args": ["98", "318"]}
+{"t": 1794781629778, "cmd": "wait", "args": ["1"]}
+{"t": 1794781630983, "cmd": "shot", "args": ["repeal"]}
+{"t": 1794781631499, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781643035, "cmd": "state", "args": []}
+{"t": 1794781643138, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794781646490, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781698148, "cmd": "key", "args": ["e"]}
+{"t": 1794781698758, "cmd": "key", "args": ["e"]}
+{"t": 1794781699379, "cmd": "key", "args": ["e"]}
+{"t": 1794781699934, "cmd": "key", "args": ["e"]}
+{"t": 1794781700475, "cmd": "key", "args": ["e"]}
+{"t": 1794781701053, "cmd": "state", "args": []}
+{"t": 1794781701182, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781701997, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781704325, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781756861, "cmd": "key", "args": ["e"]}
+{"t": 1794781757471, "cmd": "key", "args": ["e"]}
+{"t": 1794781758084, "cmd": "key", "args": ["e"]}
+{"t": 1794781758679, "cmd": "key", "args": ["e"]}
+{"t": 1794781759280, "cmd": "key", "args": ["e"]}
+{"t": 1794781759859, "cmd": "state", "args": []}
+{"t": 1794781759981, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781760821, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781763116, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781813680, "cmd": "key", "args": ["e"]}
+{"t": 1794781814273, "cmd": "key", "args": ["e"]}
+{"t": 1794781814817, "cmd": "key", "args": ["e"]}
+{"t": 1794781815308, "cmd": "key", "args": ["e"]}
+{"t": 1794781815830, "cmd": "key", "args": ["e"]}
+{"t": 1794781816339, "cmd": "state", "args": []}
+{"t": 1794781816453, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781817274, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781819462, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781866173, "cmd": "key", "args": ["e"]}
+{"t": 1794781866987, "cmd": "key", "args": ["e"]}
+{"t": 1794781867657, "cmd": "key", "args": ["e"]}
+{"t": 1794781868192, "cmd": "key", "args": ["e"]}
+{"t": 1794781868744, "cmd": "key", "args": ["e"]}
+{"t": 1794781869368, "cmd": "state", "args": []}
+{"t": 1794781869485, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781870318, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781872760, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781915555, "cmd": "key", "args": ["e"]}
+{"t": 1794781916066, "cmd": "key", "args": ["e"]}
+{"t": 1794781916569, "cmd": "key", "args": ["e"]}
+{"t": 1794781917074, "cmd": "key", "args": ["e"]}
+{"t": 1794781917601, "cmd": "key", "args": ["e"]}
+{"t": 1794781918093, "cmd": "state", "args": []}
+{"t": 1794781918183, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781918961, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781921202, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794781965574, "cmd": "key", "args": ["e"]}
+{"t": 1794781966063, "cmd": "key", "args": ["e"]}
+{"t": 1794781966585, "cmd": "key", "args": ["e"]}
+{"t": 1794781967065, "cmd": "key", "args": ["e"]}
+{"t": 1794781967621, "cmd": "key", "args": ["e"]}
+{"t": 1794781968230, "cmd": "state", "args": []}
+{"t": 1794781968319, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781969080, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794781976250, "cmd": "shot", "args": ["stuck"]}
+{"t": 1794781992533, "cmd": "state", "args": []}
+{"t": 1794781992629, "cmd": "events", "args": ["6"]}
+{"t": 1794782111649, "cmd": "click", "args": ["480", "390"]}
+{"t": 1794782112458, "cmd": "wait", "args": ["1"]}
+{"t": 1794782113538, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794782114368, "cmd": "state", "args": []}
+{"t": 1794782114453, "cmd": "hold", "args": ["Shift_L+w", "2"]}
+{"t": 1794782116667, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794782179366, "cmd": "key", "args": ["e"]}
+{"t": 1794782179861, "cmd": "key", "args": ["e"]}
+{"t": 1794782180370, "cmd": "key", "args": ["e"]}
+{"t": 1794782180843, "cmd": "state", "args": []}
+{"t": 1794782195715, "cmd": "shot", "args": ["stuck2"]}
+{"t": 1794782195999, "cmd": "state", "args": []}
+{"t": 1794782201801, "cmd": "note", "args": ["--shot", "objective-progress-clipped", "Objective 7 progress bar text is clipped on the left: shows 'nbers 1/10 · Buildings 0/2' instead of 'Members 1/10 · Buildings 0/2'."]}
+{"t": 1794782202107, "cmd": "face", "args": ["180"]}
+{"t": 1794782210058, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794782213296, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794782219040, "cmd": "key", "args": ["e"]}
+{"t": 1794782219520, "cmd": "key", "args": ["e"]}
+{"t": 1794782220009, "cmd": "key", "args": ["e"]}
+{"t": 1794782220503, "cmd": "state", "args": []}
+{"t": 1794782309607, "cmd": "key", "args": ["h"]}
+{"t": 1794782310166, "cmd": "wait", "args": ["1"]}
+{"t": 1794782311319, "cmd": "key", "args": ["e"]}
+{"t": 1794782311871, "cmd": "wait", "args": ["1"]}
+{"t": 1794782312983, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794782313844, "cmd": "key", "args": ["b"]}
+{"t": 1794782314497, "cmd": "wait", "args": ["1"]}
+{"t": 1794782315645, "cmd": "events", "args": ["4"]}
+{"t": 1794782315776, "cmd": "key", "args": ["o"]}
+{"t": 1794782316299, "cmd": "wait", "args": ["1"]}
+{"t": 1794782317421, "cmd": "click", "args": ["543", "45"]}
+{"t": 1794782318251, "cmd": "wait", "args": ["1"]}
+{"t": 1794782319333, "cmd": "click", "args": ["98", "232"]}
+{"t": 1794782320126, "cmd": "click", "args": ["880", "161"]}
+{"t": 1794782320903, "cmd": "wait", "args": ["1"]}
+{"t": 1794782321997, "cmd": "click", "args": ["226", "318"]}
+{"t": 1794782322767, "cmd": "wait", "args": ["1"]}
+{"t": 1794782323879, "cmd": "shot", "args": ["laws-final"]}
+{"t": 1794782332018, "cmd": "click", "args": ["415", "45"]}
+{"t": 1794782332872, "cmd": "wait", "args": ["1"]}
+{"t": 1794782333992, "cmd": "note", "args": ["--shot", "no-heir-path", "~22 game-minutes into a reign (tick ~11400) still 1 member: no heir, so no Abdicate button and old age is suspended. Members/Laws tabs say 'No heir' but never tell the player HOW to get a member (invite a nationless Acquaintance with E, or build 2 owned stalls to draw immigrants, with taxes not High). Nearby pawns all founded their own one-pawn nations and leaders refuse invites. Succession could not be reached in a 45-minute session."]}
+{"t": 1794782334281, "cmd": "state", "args": []}
+{"t": 1794782334393, "cmd": "events", "args": ["400"]}
+{"t": 1794782334590, "cmd": "events", "args": ["400"]}
+{"t": 1794782340839, "cmd": "key", "args": ["Escape"]}
+{"t": 1794782341374, "cmd": "stop", "args": []}
+{"t": 1794782371034, "cmd": "report", "args": []}
+{"t": 1794782466766, "cmd": "stop", "args": []}

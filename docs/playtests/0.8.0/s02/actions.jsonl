@@ -1,0 +1,173 @@
+{"t": 1794780355377, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "102"]}
+{"t": 1794780367178, "cmd": "key", "args": ["space"]}
+{"t": 1794780369803, "cmd": "shot", "args": ["menu"]}
+{"t": 1794780388090, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780391143, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780413898, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780414817, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794780417664, "cmd": "shot", "args": ["world0"]}
+{"t": 1794780418491, "cmd": "state", "args": []}
+{"t": 1794780438301, "cmd": "click", "args": ["386", "389"]}
+{"t": 1794780439064, "cmd": "click", "args": ["167", "58"]}
+{"t": 1794780441893, "cmd": "shot", "args": ["era_expanded"]}
+{"t": 1794780451053, "cmd": "click", "args": ["386", "389"]}
+{"t": 1794780453066, "cmd": "key", "args": ["n"]}
+{"t": 1794780455810, "cmd": "shot", "args": ["nation"]}
+{"t": 1794780456446, "cmd": "events", "args": ["10"]}
+{"t": 1794780473134, "cmd": "key", "args": ["f"]}
+{"t": 1794780475700, "cmd": "shot", "args": ["found1"]}
+{"t": 1794780476085, "cmd": "events", "args": ["3"]}
+{"t": 1794780486424, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780506614, "cmd": "key", "args": ["e"]}
+{"t": 1794780507855, "cmd": "key", "args": ["e"]}
+{"t": 1794780509071, "cmd": "key", "args": ["e"]}
+{"t": 1794780510421, "cmd": "key", "args": ["e"]}
+{"t": 1794780511669, "cmd": "key", "args": ["e"]}
+{"t": 1794780512815, "cmd": "state", "args": []}
+{"t": 1794780518468, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780530421, "cmd": "key", "args": ["e"]}
+{"t": 1794780531566, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780554425, "cmd": "key", "args": ["e"]}
+{"t": 1794780555762, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780571984, "cmd": "key", "args": ["e"]}
+{"t": 1794780573289, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780587273, "cmd": "key", "args": ["e"]}
+{"t": 1794780588499, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780624552, "cmd": "key", "args": ["e"]}
+{"t": 1794780625719, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780647999, "cmd": "key", "args": ["e"]}
+{"t": 1794780649348, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780672385, "cmd": "key", "args": ["e"]}
+{"t": 1794780673550, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780683632, "cmd": "key", "args": ["e"]}
+{"t": 1794780685025, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780685814, "cmd": "key", "args": ["e"]}
+{"t": 1794780687280, "cmd": "state", "args": []}
+{"t": 1794780696283, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780732361, "cmd": "key", "args": ["e"]}
+{"t": 1794780734094, "cmd": "key", "args": ["f"]}
+{"t": 1794780736795, "cmd": "shot", "args": ["found2"]}
+{"t": 1794780737298, "cmd": "events", "args": ["6"]}
+{"t": 1794780737472, "cmd": "state", "args": []}
+{"t": 1794780744672, "cmd": "note", "args": ["--shot", "village_req_unclear", "After founding the first settlement (tick 2932) the era panel still shows '[ ] Village 0/1'. A player would expect founding a settlement to tick 'Village'. It is not clear what 'Village 0/1' asks for (a settlement of some size? a building?)."]}
+{"t": 1794780745370, "cmd": "key", "args": ["b"]}
+{"t": 1794780748087, "cmd": "events", "args": ["3"]}
+{"t": 1794780748301, "cmd": "key", "args": ["k"]}
+{"t": 1794780751145, "cmd": "shot", "args": ["kbuild"]}
+{"t": 1794780757497, "cmd": "key", "args": ["e"]}
+{"t": 1794780761191, "cmd": "shot", "args": ["inside"]}
+{"t": 1794780761672, "cmd": "events", "args": ["4"]}
+{"t": 1794780768891, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794780771956, "cmd": "key", "args": ["b"]}
+{"t": 1794780775411, "cmd": "events", "args": ["3"]}
+{"t": 1794780775673, "cmd": "shot", "args": ["afterb"]}
+{"t": 1794780782211, "cmd": "move", "args": ["233", "413"]}
+{"t": 1794780784418, "cmd": "shot", "args": ["hover_house"]}
+{"t": 1794780790415, "cmd": "note", "args": ["--shot", "no_cost_tooltip", "Inside the settlement, the greyed-out 'Build House' and 'Build Farm' buttons show no tooltip or cost on hover, so a player cannot tell what a house costs or that houses raise the resident cap (needed for Members 10)."]}
+{"t": 1794780790730, "cmd": "click", "args": ["217", "476"]}
+{"t": 1794780793582, "cmd": "state", "args": []}
+{"t": 1794780793655, "cmd": "events", "args": ["3"]}
+{"t": 1794780797628, "cmd": "key", "args": ["b"]}
+{"t": 1794780800441, "cmd": "events", "args": ["3"]}
+{"t": 1794780800624, "cmd": "shot", "args": ["stall1"]}
+{"t": 1794780807990, "cmd": "click", "args": ["217", "476"]}
+{"t": 1794780811261, "cmd": "key", "args": ["b"]}
+{"t": 1794780814119, "cmd": "events", "args": ["4"]}
+{"t": 1794780814509, "cmd": "state", "args": []}
+{"t": 1794780823311, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780826387, "cmd": "events", "args": ["3"]}
+{"t": 1794780826617, "cmd": "shot", "args": ["house1"]}
+{"t": 1794780831590, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780834690, "cmd": "events", "args": ["3"]}
+{"t": 1794780834860, "cmd": "shot", "args": ["house2"]}
+{"t": 1794780842030, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780846046, "cmd": "events", "args": ["4"]}
+{"t": 1794780846387, "cmd": "state", "args": []}
+{"t": 1794780852047, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780856130, "cmd": "events", "args": ["4"]}
+{"t": 1794780861073, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780864168, "cmd": "events", "args": ["4"]}
+{"t": 1794780870164, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780874037, "cmd": "events", "args": ["3"]}
+{"t": 1794780880176, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780881245, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794780885327, "cmd": "events", "args": ["4"]}
+{"t": 1794780889585, "cmd": "note", "args": ["--shot", "confirm_timeout", "Build House needs a two-click confirm, but at the game's low frame rate (1-2 fps, tps ~10) the confirm window expired before the second click landed four times in a row ('Not confirmed in time, so nothing was done.', ticks 3668, 3756, 3840, 3904). Only two clicks fired back-to-back worked (House built, tick 3980). The confirm window seems to be ~60 ticks; it should be longer or wall-clock based."]}
+{"t": 1794780890298, "cmd": "shot", "args": ["after_house"]}
+{"t": 1794780890937, "cmd": "state", "args": []}
+{"t": 1794780900041, "cmd": "note", "args": ["--shot", "buttons_overlap", "With a resident nearby, the settlement action buttons (Appoint Trader, Order: Gather Wood, Talk to, Gift...) stack up over the Objective panel, hiding the objective text ('Reach the Village era') behind them."]}
+{"t": 1794780900582, "cmd": "wait", "args": ["15"]}
+{"t": 1794780916518, "cmd": "click", "args": ["217", "476"]}
+{"t": 1794780919547, "cmd": "events", "args": ["3"]}
+{"t": 1794780925129, "cmd": "state", "args": ["--full"]}
+{"t": 1794780929400, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780931174, "cmd": "state", "args": []}
+{"t": 1794780935728, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780937468, "cmd": "walkto", "args": ["pawn", "90"]}
+{"t": 1794781030816, "cmd": "state", "args": []}
+{"t": 1794781034533, "cmd": "face", "args": ["-33"]}
+{"t": 1794781042247, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1794781063676, "cmd": "state", "args": []}
+{"t": 1794781068527, "cmd": "key", "args": ["a", "a", "a"]}
+{"t": 1794781070081, "cmd": "hold", "args": ["Shift_L+w", "25"]}
+{"t": 1794781095537, "cmd": "state", "args": []}
+{"t": 1794781100022, "cmd": "shot", "args": ["stuck"]}
+{"t": 1794781106581, "cmd": "note", "args": ["--shot", "stuck_in_settlement", "Inside the settlement, W/A/S/D and pt walkto do nothing (player x/z stayed 16.45/163.07 for ~1400 ticks) and Escape opens the pause menu rather than leaving. The only hint that you are 'inside' is the button row; the 3D view looks like the open world, so it feels like the character is frozen. Expected: Escape or walking to leave the settlement, or a clear 'You are inside X - press E/Exit to leave' banner."]}
+{"t": 1794781107155, "cmd": "click", "args": ["381", "476"]}
+{"t": 1794781110023, "cmd": "events", "args": ["2"]}
+{"t": 1794781110230, "cmd": "state", "args": []}
+{"t": 1794781114278, "cmd": "face", "args": ["-22"]}
+{"t": 1794781116318, "cmd": "hold", "args": ["Shift_L+w", "25"]}
+{"t": 1794781141934, "cmd": "state", "args": []}
+{"t": 1794781145903, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1794781178342, "cmd": "key", "args": ["e"]}
+{"t": 1794781182223, "cmd": "shot", "args": ["talk1"]}
+{"t": 1794781182959, "cmd": "events", "args": ["4"]}
+{"t": 1794781186792, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1794781218329, "cmd": "key", "args": ["e"]}
+{"t": 1794781222434, "cmd": "shot", "args": ["talk2"]}
+{"t": 1794781223519, "cmd": "events", "args": ["3"]}
+{"t": 1794781232059, "cmd": "face", "args": ["10"]}
+{"t": 1794781233429, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1794781239971, "cmd": "state", "args": []}
+{"t": 1794781240138, "cmd": "key", "args": ["e"]}
+{"t": 1794781244108, "cmd": "shot", "args": ["talk3"]}
+{"t": 1794781245018, "cmd": "events", "args": ["3"]}
+{"t": 1794781251446, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794781261079, "cmd": "key", "args": ["e"]}
+{"t": 1794781264990, "cmd": "shot", "args": ["talk4"]}
+{"t": 1794781265896, "cmd": "events", "args": ["3"]}
+{"t": 1794781277193, "cmd": "key", "args": ["e"]}
+{"t": 1794781279853, "cmd": "key", "args": ["e"]}
+{"t": 1794781282550, "cmd": "key", "args": ["e"]}
+{"t": 1794781285264, "cmd": "events", "args": ["4"]}
+{"t": 1794781285386, "cmd": "shot", "args": ["talk5"]}
+{"t": 1794781294309, "cmd": "click", "args": ["48", "19"]}
+{"t": 1794781298306, "cmd": "shot", "args": ["controls"]}
+{"t": 1794781306326, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781308123, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794781344187, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794781376396, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794781413712, "cmd": "shot", "args": ["invite1"]}
+{"t": 1794781414272, "cmd": "events", "args": ["5"]}
+{"t": 1794781420511, "cmd": "click", "args": ["480", "345"]}
+{"t": 1794781423701, "cmd": "state", "args": []}
+{"t": 1794781428791, "cmd": "state", "args": []}
+{"t": 1794781429045, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1794781458189, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1794781517327, "cmd": "shot", "args": ["invite2"]}
+{"t": 1794781518018, "cmd": "events", "args": ["3"]}
+{"t": 1794781537748, "cmd": "walkto", "args": ["pawn", "25"]}
+{"t": 1794781565073, "cmd": "key", "args": ["r"]}
+{"t": 1794781568828, "cmd": "shot", "args": ["invite3"]}
+{"t": 1794781569156, "cmd": "events", "args": ["3"]}
+{"t": 1794781585558, "cmd": "note", "args": ["--shot", "recruit_hidden", "Recruiting is invisible on screen: next to a stranger pawn the button row offers only nation-level actions (Propose Alliance / Gift Lowerham 25 coins / Declare War), with no Invite or Gift-pawn button. Invite (R) and Gift (G) are only on page 1 of the ? Controls screen. Also, the pawn name tag sits behind the Chronicle panel (top middle), so the player can't see who they're chasing."]}
+{"t": 1794781586204, "cmd": "note", "args": ["--shot", "pawns_all_leaders", "By day 1 afternoon (tick ~8400) nearly every wandering pawn has declared or founded its own one-person nation (chronicle lists 20+ nations: Lowerham, Villageport, Townshire, Oldton, Blackburg...). Tilly Smith: 'I lead Lowerham. We are 1 strong.' This empties the pool of recruitable strangers just when the Village era needs 10 members; after the 2 auto-joins at founding I gained no members."]}
+{"t": 1794781586868, "cmd": "note", "args": ["--shot", "invite3", "Pawns are hard to reach for E/R: pt walkto pawn timed out or got 'stuck: not getting closer' 6 of 8 tries because wandering pawns move about as fast as the walking player at 1-2 fps; when I did reach Tilly Smith, she walked out of the 5-unit reach before the next key press. R then said 'There is no one within reach to invite.' (tick 8432)."]}
+{"t": 1794781587563, "cmd": "state", "args": []}
+{"t": 1794781587807, "cmd": "events", "args": ["200"]}
+{"t": 1794781588141, "cmd": "events", "args": ["200"]}
+{"t": 1794781596296, "cmd": "note", "args": ["--shot", "perf_tps", "Game ran at 1-3 fps and 3-12 tps (target 50) for the whole session. At this rate day 2 (the Day 1/2 Village requirement, ~tick 21000 from the 0.30 start) is ~35 minutes of real time away, so the time gate could not be reached in a 30-minute session. Tick 8576 at timeOfDay 0.586."]}
+{"t": 1794781596839, "cmd": "stop", "args": []}
+{"t": 1794781628856, "cmd": "report", "args": []}
+{"t": 1794782465421, "cmd": "stop", "args": []}

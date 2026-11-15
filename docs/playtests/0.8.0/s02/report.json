@@ -1,0 +1,112 @@
+{
+  "session": "s02",
+  "goal": "Reach the Village era as fast as you can. It can now come from day 2 (about 7 minutes of game time) once your nation has 10 members; use courting/recruiting and housing. Record when each Village requirement was met, what held you back, and whether the wait felt meaningful.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 102,
+  "durationSec": 1242,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Wandering pawns all found one-person nations by day 1 afternoon, leaving no strangers to recruit for Members 10",
+      "detail": "After founding my settlement, 2 pawns joined automatically (Members 3/10). By tick ~8400 the chronicle had listed 20+ new nations (Lowerham, Villageport, Townshire, Oldton, Blackburg, Westernshire...), most of them one pawn. The nearest stranger, Tilly Smith, said 'I lead Lowerham. We are 1 strong.' I gained no members after the founding, and the Members requirement looked out of reach. Expected: enough unaffiliated pawns early on that courting/inviting can get a nation to 10 by day 2.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 102; key n; chop 10 trees; key f; watch the chronicle and talk (e) to nearby pawns",
+      "screenshot": "shots/pawns_all_leaders.png",
+      "tick": 8568
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Invite (R) and pawn Gift (G) appear nowhere on screen; near a pawn the buttons are nation-level only",
+      "detail": "Standing next to stranger Tilly Smith, the button row offered Propose Alliance to Lowerham, Gift Lowerham 25 Coins, Denounce and Declare War, with no Invite or Court button and no 'R to invite' prompt. I only found R (invite) and G (gift) on page 1 of the ? Controls screen. The objective text ('Members 3/10') does not say how to get members either. Also, the pawn's floating name tag is drawn behind the Chronicle panel, so you can't see who you're chasing.",
+      "repro": "pt start ... --seed 102; create nation, found settlement; walk to a non-member pawn (pt walkto pawn); look at the button row and objective panel",
+      "screenshot": "shots/recruit_hidden.png",
+      "tick": 8560
+    },
+    {
+      "severity": "major",
+      "category": "perf",
+      "title": "1-3 fps and 3-12 tps (of 50) all session; the day-2 Village gate is ~35 real minutes away",
+      "detail": "pt state showed tps between 2.8 and 11.7 and fps 0-3 throughout. The world started at timeOfDay 0.30 on day 1, so Day 2/2 needs about 21000 ticks; at ~10 tps that is ~35 minutes of real time, longer than the whole session. At tick 8576 it was still timeOfDay 0.586. (Possibly host load from parallel sessions.)",
+      "repro": "pt start ... --seed 102; pt state repeatedly; compare tps to 50",
+      "screenshot": "shots/perf_tps.png",
+      "tick": 8656
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Two-click confirm on Build House times out before the second click lands at low frame rate",
+      "detail": "Clicking Build House shows 'Click again to confirm'. Four times in a row the second click (sent ~6-8 s later in real time, as the UI only reacts at 1-2 fps) produced 'Not confirmed in time, so nothing was done.' (ticks 3668, 3756, 3840, 3904), and the click then re-armed the confirm instead. The house was only built when I sent two clicks back to back (tick 3980). The window looks like ~60 ticks; a wall-clock window or a longer one would avoid this.",
+      "repro": "inside your settlement with 20+ wood: pt click 233 413; sleep 5; pt click 233 413; pt events 3",
+      "screenshot": "shots/confirm_timeout.png",
+      "tick": 3980
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Inside the settlement the player can't move and Escape opens Pause; nothing in the world view says why",
+      "detail": "After entering the settlement and pressing Back on the settlement sheet, the 3D view looks like the open world, but W/A/S/D and walkto do nothing (x/z stayed 16.45/163.07 for ~1400 ticks), and Escape opens the pause menu. Only the 'Exit Settlement' button leaves. Expected: Escape or walking to leave, or a clear 'Inside Blueport - Exit Settlement to leave' banner.",
+      "repro": "found a settlement; press e to enter; click Back; hold w for 20 s; pt state shows the same position",
+      "screenshot": "shots/stuck_in_settlement.png",
+      "tick": 5752
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'Village 0/1' in the era checklist is unclear and stays unticked after founding a settlement",
+      "detail": "After founding the first settlement the era panel still showed '[ ] Village 0/1'. Only later did the Objective 7 text explain 'A settlement with 2 buildings is a village'. The checklist line could say 'Village (settlement with 2 buildings) 0/1' or show 'Buildings 1/2' itself.",
+      "repro": "found a settlement; open the Era panel (+)",
+      "screenshot": "shots/village_req_unclear.png",
+      "tick": 3040
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Greyed-out Build House / Build Farm buttons show no cost or reason on hover",
+      "detail": "Hovering the disabled Build House button showed nothing (before the first stall was built), so I couldn't tell its cost or that houses raise the resident cap. Later a tooltip did appear ('Needs 14 more wood, counting the settlement's stockpile'), so it is inconsistent.",
+      "repro": "enter your settlement with <20 wood; pt move 233 413; pt shot",
+      "screenshot": "shots/no_cost_tooltip.png",
+      "tick": 3276
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement action buttons stack over the Objective panel when a resident is nearby",
+      "detail": "With Quinn Jones nearby, extra rows (Appoint Trader, Order: Gather Wood, Talk to, Gift...) cover the Objective panel, so 'Reach the Village era' is hidden behind them.",
+      "repro": "inside your settlement with a resident standing next to you; pt shot",
+      "screenshot": "shots/buttons_overlap.png",
+      "tick": 4116
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Wandering pawns are very hard to stay within reach of for E/R",
+      "detail": "pt walkto pawn timed out or reported 'stuck: not getting closer' in 6 of 8 tries, because wandering pawns move about as fast as the player. When I did reach Tilly Smith and talked, she had walked out of the 5-unit reach before my next key ('No entities within range'), and R later said 'There is no one within reach to invite.' Pawns could pause when the player approaches or talks to them.",
+      "repro": "pt walkto pawn 30; pt key e; pt key r",
+      "screenshot": "shots/invite3.png",
+      "tick": 8432
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 22.0,
+      "Eat something": 23.04,
+      "Create or join a nation": 24.0,
+      "Found a settlement": 59.04,
+      "Enter your settlement": 64.0,
+      "Build a market stall": 67.04
+    },
+    "villageRequirementStallsMetTick": 3424,
+    "villageRequirementBuildingsProgressAtEnd": "1/2 (house at tick 3980)",
+    "villageRequirementMembersAtEnd": 3,
+    "villageRequirementDayMet": false,
+    "villageEraReached": false,
+    "finalTick": 8656,
+    "typicalTps": 9
+  },
+  "fun": 2,
+  "verdict": "Stalls (2/2 at tick 3424) and the first building were quick, because the settlement stockpile was generous. Members 10 is the real wall. Two pawns join on founding, but almost every other pawn goes off to found its own one-person nation, and the Invite/Gift keys appear nowhere on screen, so courting felt hidden and futile rather than a meaningful wait. Performance (about 10 tps) also put the day-2 time gate beyond a 30-minute session."
+}

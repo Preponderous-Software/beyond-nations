@@ -1,0 +1,144 @@
+{"type":"screen","tick":0,"wallTimeMs":1794780357999,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794780387143,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780414458,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1794780474173,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780475535,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794780492289,"how":"created","slot":"world-101-20261115-220812","seed":101}
+{"type":"screen","tick":0,"wallTimeMs":1794780492305,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":504,"wallTimeMs":1794780546969,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":800,"wallTimeMs":1794780583880,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":1116,"wallTimeMs":1794780616878,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1152,"wallTimeMs":1794780620776,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1152}
+{"type":"status","tick":1152,"wallTimeMs":1794780620776,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1200,"wallTimeMs":1794780625716,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1200,"wallTimeMs":1794780625716,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":1252,"wallTimeMs":1794780630624,"kind":"NationCreation","text":"Una Taylor declared the nation of Hamletburg, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"chronicle","tick":1300,"wallTimeMs":1794780635335,"kind":"SettlementFounded","text":"Hamletburg put down roots: Una Taylor founded its first settlement."}
+{"type":"chronicle","tick":1300,"wallTimeMs":1794780635335,"kind":"NationCreation","text":"The nation of Littleburg was born, with Yvonne Thomas at its head."}
+{"type":"status","tick":1360,"wallTimeMs":1794780641413,"text":"Created nation Farmshire."}
+{"type":"chronicle","tick":1360,"wallTimeMs":1794780641413,"kind":"NationCreation","text":"You founded the nation of Farmshire."}
+{"type":"objective_completed","tick":1400,"wallTimeMs":1794780645423,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":200}
+{"type":"status","tick":1400,"wallTimeMs":1794780645423,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":1452,"wallTimeMs":1794780651005,"kind":"NationCreation","text":"The nation of Greatford was born, with Samantha Wood at its head."}
+{"type":"chronicle","tick":1700,"wallTimeMs":1794780679606,"kind":"NationCreation","text":"Katie Davies raised a banner and called it Villagetown."}
+{"type":"chronicle","tick":1752,"wallTimeMs":1794780685921,"kind":"SettlementFounded","text":"Littleburg put down roots: Yvonne Thomas founded its first settlement."}
+{"type":"status","tick":2000,"wallTimeMs":1794780714576,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":2188,"wallTimeMs":1794780738490,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":2312,"wallTimeMs":1794780750849,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2500,"wallTimeMs":1794780781141,"kind":"SettlementFounded","text":"Greatford put down roots: Samantha Wood founded its first settlement."}
+{"type":"status","tick":2592,"wallTimeMs":1794780797939,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":2700,"wallTimeMs":1794780812543,"kind":"NationCreation","text":"Abigail Roberts founded the nation of Northwood."}
+{"type":"status","tick":2836,"wallTimeMs":1794780829713,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":3076,"wallTimeMs":1794780857031,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":3100,"wallTimeMs":1794780859751,"kind":"SettlementFounded","text":"Katie Davies laid the first stones of Villagetown."}
+{"type":"chronicle","tick":3452,"wallTimeMs":1794780900960,"kind":"StallBuilt","text":"Yvonne Thomas built a market stall in Littleburg."}
+{"type":"chronicle","tick":3552,"wallTimeMs":1794780915496,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletburg, built by Una Taylor."}
+{"type":"status","tick":3568,"wallTimeMs":1794780919187,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":3668,"wallTimeMs":1794780933297,"text":"Too close to the Village of Hamletburg: 241 paces away, and settlements must be 250 paces apart. Open ground lies about 10 paces to the north-west."}
+{"type":"chronicle","tick":3752,"wallTimeMs":1794780941454,"kind":"NationCreation","text":"The nation of Littleton was born, with Daisy Williams at its head."}
+{"type":"chronicle","tick":3852,"wallTimeMs":1794780950588,"kind":"NationCreation","text":"Olivia Thomas founded the nation of Redshire."}
+{"type":"status","tick":3896,"wallTimeMs":1794780954413,"text":"Too close to the Village of Hamletburg: 229 paces away, and settlements must be 250 paces apart. Open ground lies about 30 paces to the north."}
+{"type":"chronicle","tick":3900,"wallTimeMs":1794780954788,"kind":"NationCreation","text":"Tina Johnson raised a banner and called it Bigtown."}
+{"type":"chronicle","tick":3952,"wallTimeMs":1794780961213,"kind":"NationCreation","text":"Gemma Thompson founded the nation of Blueville."}
+{"type":"chronicle","tick":4000,"wallTimeMs":1794780968674,"kind":"NationRelationChange","text":"Hamletburg and Littleburg have become rivals over their border."}
+{"type":"chronicle","tick":4052,"wallTimeMs":1794780974249,"kind":"StallBuilt","text":"Trade came to Littleburg: Yvonne Thomas built a stall."}
+{"type":"status","tick":4152,"wallTimeMs":1794780982551,"text":"Too close to the Village of Hamletburg: 244 paces away, and settlements must be 250 paces apart. Open ground lies about 10 paces to the north-west."}
+{"type":"chronicle","tick":4200,"wallTimeMs":1794780987143,"kind":"SettlementFounded","text":"Blueville put down roots: Gemma Thompson founded its first settlement."}
+{"type":"chronicle","tick":4300,"wallTimeMs":1794780997002,"kind":"StallBuilt","text":"A new stall opened in the market of Greatford, built by Samantha Wood."}
+{"type":"objective_completed","tick":4352,"wallTimeMs":1794781002027,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":2952}
+{"type":"status","tick":4352,"wallTimeMs":1794781002027,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":4352,"wallTimeMs":1794781002027,"kind":"SettlementFounded","text":"You raised the first settlement of Farmshire."}
+{"type":"chronicle","tick":4352,"wallTimeMs":1794781002027,"kind":"SettlementFounded","text":"Abigail Roberts raised the first settlement of Northwood."}
+{"type":"chronicle","tick":4352,"wallTimeMs":1794781002027,"kind":"NationCreation","text":"The nation of Blackton was born, with Alice Thompson at its head."}
+{"type":"chronicle","tick":4400,"wallTimeMs":1794781006804,"kind":"SettlementFounded","text":"Daisy Williams laid the first stones of Littleton."}
+{"type":"chronicle","tick":4400,"wallTimeMs":1794781006804,"kind":"SettlementFounded","text":"Redshire put down roots: Olivia Thomas founded its first settlement."}
+{"type":"chronicle","tick":4452,"wallTimeMs":1794781011657,"kind":"StallBuilt","text":"Trade came to Hamletburg: Una Taylor built a stall."}
+{"type":"chronicle","tick":4452,"wallTimeMs":1794781011657,"kind":"NationCreation","text":"Tina Wilson raised a banner and called it Fortressport."}
+{"type":"chronicle","tick":4452,"wallTimeMs":1794781011657,"kind":"NationCreation","text":"The nation of Bluewood was born, with Bella Smith at its head."}
+{"type":"status","tick":4504,"wallTimeMs":1794781016762,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"screen","tick":4540,"wallTimeMs":1794781020708,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":4540,"wallTimeMs":1794781020708,"text":"Entered settlement."}
+{"type":"screen","tick":4540,"wallTimeMs":1794781044206,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":4540,"wallTimeMs":1794781044206,"text":"Exited settlement."}
+{"type":"chronicle","tick":4552,"wallTimeMs":1794781045447,"kind":"NationCreation","text":"Jasmine Jones raised a banner and called it Yellowshire."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1794781070344,"kind":"NationRelationChange","text":"Littleburg and Greatford have become rivals over their border."}
+{"type":"chronicle","tick":4800,"wallTimeMs":1794781074796,"kind":"StallBuilt","text":"Trade came to Littleburg: Yvonne Thomas built a stall."}
+{"type":"chronicle","tick":4800,"wallTimeMs":1794781074796,"kind":"NationJoin","text":"Eve Wood joined Farmshire."}
+{"type":"screen","tick":4900,"wallTimeMs":1794781084903,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":4900,"wallTimeMs":1794781084903,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":548}
+{"type":"status","tick":4900,"wallTimeMs":1794781084903,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":4900,"wallTimeMs":1794781084903,"kind":"SettlementFounded","text":"Bella Smith laid the first stones of Bluewood."}
+{"type":"screen","tick":4904,"wallTimeMs":1794781089587,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"chronicle","tick":5000,"wallTimeMs":1794781101556,"kind":"StallBuilt","text":"Olivia Thomas built a market stall in Redshire."}
+{"type":"chronicle","tick":5000,"wallTimeMs":1794781101556,"kind":"NationCreation","text":"Wendy Davies raised a banner and called it Villagefield."}
+{"type":"chronicle","tick":5100,"wallTimeMs":1794781111905,"kind":"SettlementFounded","text":"Tina Johnson raised the first settlement of Bigtown."}
+{"type":"chronicle","tick":5100,"wallTimeMs":1794781111905,"kind":"StallBuilt","text":"A new stall opened in the market of Blueville, built by Gemma Thompson."}
+{"type":"chronicle","tick":5152,"wallTimeMs":1794781117104,"kind":"SettlementFounded","text":"Tina Wilson laid the first stones of Fortressport."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1794781121038,"kind":"StallBuilt","text":"A new stall opened in the market of Bluewood, built by Bella Smith."}
+{"type":"chronicle","tick":5300,"wallTimeMs":1794781128184,"kind":"SettlementFounded","text":"Wendy Davies laid the first stones of Villagefield."}
+{"type":"chronicle","tick":5352,"wallTimeMs":1794781132077,"kind":"StallBuilt","text":"Samantha Wood built a market stall in Greatford."}
+{"type":"chronicle","tick":5400,"wallTimeMs":1794781135879,"kind":"SettlementFounded","text":"Blackton put down roots: Alice Thompson founded its first settlement."}
+{"type":"chronicle","tick":5500,"wallTimeMs":1794781148266,"kind":"NationRelationChange","text":"Littleburg and Villagetown have become rivals over their border."}
+{"type":"chronicle","tick":5600,"wallTimeMs":1794781163826,"kind":"StallBuilt","text":"A new stall opened in the market of Redshire, built by Olivia Thomas."}
+{"type":"status","tick":5784,"wallTimeMs":1794781195196,"text":"Exited settlement."}
+{"type":"chronicle","tick":5852,"wallTimeMs":1794781206826,"kind":"StallBuilt","text":"A new stall opened in the market of Blueville, built by Gemma Thompson."}
+{"type":"save","tick":6000,"wallTimeMs":1794781232283,"count":1}
+{"type":"chronicle","tick":6000,"wallTimeMs":1794781232283,"kind":"SettlementFounded","text":"Jasmine Jones raised the first settlement of Yellowshire."}
+{"type":"chronicle","tick":6100,"wallTimeMs":1794781247731,"kind":"StallBuilt","text":"Trade came to Fortressport: Tina Wilson built a stall."}
+{"type":"status","tick":6292,"wallTimeMs":1794781274180,"text":"You leave the land of Farmshire for the wilds."}
+{"type":"chronicle","tick":6300,"wallTimeMs":1794781275089,"kind":"StallBuilt","text":"Trade came to Greatford: Samantha Wood built a stall."}
+{"type":"chronicle","tick":6352,"wallTimeMs":1794781281131,"kind":"StallBuilt","text":"Trade came to Redshire: Olivia Thomas built a stall."}
+{"type":"status","tick":6396,"wallTimeMs":1794781285724,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":6400,"wallTimeMs":1794781286284,"kind":"StallBuilt","text":"Una Taylor built a market stall in Hamletburg."}
+{"type":"chronicle","tick":6500,"wallTimeMs":1794781296269,"kind":"NationRelationChange","text":"Hamletburg and Blueville have become rivals over their border."}
+{"type":"chronicle","tick":6700,"wallTimeMs":1794781316649,"kind":"StallBuilt","text":"Trade came to Fortressport: Tina Wilson built a stall."}
+{"type":"status","tick":6752,"wallTimeMs":1794781322099,"text":"Hamletburg resents your border: relations are now Rival (-20). Greatford resents your border: relations are now Rival (-20). Villagetown resents your border: relations are now Rival (-20). Northwood resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Hamletburg and Farmshire have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Hamletburg and Littleton have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Littleburg and Redshire have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Farmshire and Greatford have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Farmshire and Villagetown have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Farmshire and Northwood have become rivals over their border."}
+{"type":"chronicle","tick":6752,"wallTimeMs":1794781322099,"kind":"NationRelationChange","text":"Redshire and Blueville have become rivals over their border."}
+{"type":"status","tick":6784,"wallTimeMs":1794781325501,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":6800,"wallTimeMs":1794781327206,"kind":"StallBuilt","text":"Trade came to Blueville: Gemma Thompson built a stall."}
+{"type":"status","tick":6860,"wallTimeMs":1794781334788,"text":"You are back on your own land."}
+{"type":"status","tick":6896,"wallTimeMs":1794781339534,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":7040,"wallTimeMs":1794781362910,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":7100,"wallTimeMs":1794781375681,"kind":"StallBuilt","text":"A new stall opened in the market of Redshire, built by Olivia Thomas. The market is now full."}
+{"type":"chronicle","tick":7200,"wallTimeMs":1794781387582,"kind":"StallBuilt","text":"Trade came to Fortressport: Tina Wilson built a stall."}
+{"type":"chronicle","tick":7252,"wallTimeMs":1794781394163,"kind":"NationRelationChange","text":"Hamletburg and Bluewood have become rivals over their border."}
+{"type":"status","tick":7292,"wallTimeMs":1794781398228,"text":"Gathered 5 wood and 1 apple from tree. (x2)"}
+{"type":"status","tick":7348,"wallTimeMs":1794781404639,"text":"Welcome home!"}
+{"type":"chronicle","tick":7352,"wallTimeMs":1794781405302,"kind":"StallBuilt","text":"Samantha Wood built a market stall in Greatford. The market is now full."}
+{"type":"status","tick":7412,"wallTimeMs":1794781413462,"text":"You are not inside a settlement."}
+{"type":"screen","tick":7492,"wallTimeMs":1794781423286,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":7492,"wallTimeMs":1794781423286,"text":"Entered settlement."}
+{"type":"screen","tick":7492,"wallTimeMs":1794781451699,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":7500,"wallTimeMs":1794781452388,"text":"Bigtown resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781452388,"kind":"StallBuilt","text":"Gemma Thompson built a market stall in Blueville. The market is now full."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781452388,"kind":"NationRelationChange","text":"Littleburg and Fortressport have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781452388,"kind":"NationRelationChange","text":"Farmshire and Bigtown have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781452388,"kind":"NationRelationChange","text":"Littleton and Bigtown have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781452388,"kind":"NationRelationChange","text":"Blueville and Fortressport have become rivals over their border."}
+{"type":"screen","tick":7520,"wallTimeMs":1794781457717,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":7524,"wallTimeMs":1794781470003,"from":"PAUSE","to":"WORLD"}
+{"type":"status","tick":7556,"wallTimeMs":1794781473936,"text":"Stall built."}
+{"type":"chronicle","tick":7556,"wallTimeMs":1794781473936,"kind":"StallBuilt","text":"You built a market stall in Farmshire."}
+{"type":"objective_completed","tick":7600,"wallTimeMs":1794781478416,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":2700}
+{"type":"status","tick":7600,"wallTimeMs":1794781478416,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":7700,"wallTimeMs":1794781517433,"kind":"StallBuilt","text":"Alice Thompson built a market stall in Blackton."}
+{"type":"chronicle","tick":7752,"wallTimeMs":1794781525248,"kind":"NationRelationChange","text":"Littleburg and Blackton have become rivals over their border."}
+{"type":"chronicle","tick":7752,"wallTimeMs":1794781525248,"kind":"NationRelationChange","text":"Littleton and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":7800,"wallTimeMs":1794781532775,"kind":"StallBuilt","text":"Bella Smith built a market stall in Bluewood."}
+{"type":"status","tick":7824,"wallTimeMs":1794781536650,"text":"Press K again to build a Farm (25 wood, 10 stone)."}
+{"type":"status","tick":7856,"wallTimeMs":1794781541458,"text":"Farm built."}
+{"type":"chronicle","tick":7900,"wallTimeMs":1794781547251,"kind":"StallBuilt","text":"Daisy Williams built a market stall in Littleton."}
+{"type":"chronicle","tick":8000,"wallTimeMs":1794781564711,"kind":"StallBuilt","text":"A new stall opened in the market of Littleburg, built by Yvonne Thomas. The market is now full."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781603343,"kind":"NationRelationChange","text":"Greatford and Yellowshire have become rivals over their border."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781603343,"kind":"NationRelationChange","text":"Villagetown and Yellowshire have become rivals over their border."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781603343,"kind":"NationRelationChange","text":"Northwood and Yellowshire have become rivals over their border."}
+{"type":"chronicle","tick":8300,"wallTimeMs":1794781609536,"kind":"StallBuilt","text":"Trade came to Fortressport: Tina Wilson built a stall. The market is now full."}
+{"type":"status","tick":8396,"wallTimeMs":1794781620692,"text":"Eve Wood is already a member of Farmshire."}
+{"type":"status","tick":8476,"wallTimeMs":1794781629398,"text":"Exited settlement."}
+{"type":"screen","tick":8780,"wallTimeMs":1794781662072,"from":"WORLD","to":"PAUSE"}

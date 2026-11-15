@@ -1,0 +1,98 @@
+{
+  "session": "s04",
+  "goal": "Diplomacy and war: lead a nation, meet a neighbour, try alliance, rivalry and war from the Nations screen (O).",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 104,
+  "durationSec": 2052,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Nations screen says 'An alliance needs +30' but stronger nations silently require +60",
+      "detail": "Gifted neighbour Farmshire four times (100 coins, ~8000 ticks) up to Friendly (+33), then clicked Ally: 'Farmshire declines: they are 7 to your 1 and want relations of +60 before taking on so small a partner'. The header only states +30, and the rows never show either nation's strength, so the +60 rule is learned only after spending. A new player-led nation is 1 member, so every AI neighbour is likely 2x stronger and the stated +30 rule effectively never applies early. Expected: show strength per row and the actual threshold each nation wants (e.g. 'Ally (needs +60)').",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 104; space; Start; Begin; n; gather 50 wood; f; o; Tribute Farmshire every 20 s until > +30; Ally",
+      "screenshot": "shots/allied.png",
+      "tick": 10275
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Gift spends the envoy, so Ally can never follow the gift that reaches +30",
+      "detail": "The Tribute that took Farmshire to +33 sent the envoy away; clicking Ally right after answered 'Your envoy to Farmshire is still on the road: ... 20 seconds'. Players must over-gift and then wait 20 s, with border friction eroding the score meanwhile. Expected: Ally offered in the same trip, or the gift reply to say 'you can propose an alliance when your envoy returns'.",
+      "repro": "As above; Tribute Farmshire at +23 -> +33; click Ally immediately",
+      "screenshot": "shots/envoy_after_gift.png",
+      "tick": 9167
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Founding a camp near neighbours wiped an earlier gift; border friction makes alliance a treadmill",
+      "detail": "Gift at tick 2067 took Farmshire to +10; founding my camp (tick 3927) cost -10 with five neighbours ('...resent a new settlement so near their land', shown briefly then overwritten by 'Objective complete'), and friction brought Farmshire to -2 by tick 4063 and +8 -> +5 later. Nothing warns before pressing F that founding here will anger five nations, and the resentment message is replaced on the status line almost immediately.",
+      "repro": "pt start ... --seed 104; n; o; Tribute Farmshire; gather 50 wood; walk ~120,-60; f; o",
+      "screenshot": "shots/gift_eroded.png",
+      "tick": 4063
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Nations list shows only 2 rows of 36 nations, keeps old scroll offset, and reorders between visits",
+      "detail": "Once you have a settlement the header grows and only 2 nation rows fit; with 36 nations there is no search or jump. The scroll offset persists between openings (reopened at 'Nations 3-4 of 21', hiding the two most important rows: the enemies), and rows reorder from visit to visit, so a remembered position clicks a different nation (my first Ally click went to Farmshire, not Littleham as on the previous visit). Finding Farmshire took 5-8 Up/Down clicks each time at ~2 fps.",
+      "repro": "pt start ... --seed 104; n; o; Down; Escape; found a settlement; o",
+      "screenshot": "shots/scroll_persist.png",
+      "tick": 4063
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Declared war on a neighbour has no felt consequence over ~6000 ticks",
+      "detail": "War on Littleham (neighbour, 2 to my 1) at tick 4063 and on Bluetown at 2067: by tick 10275 no raid, siege or warning had happened (sheltered-era raid cap). War reads as a label change only; the screen does not say I am sheltered or when raids could start. Peace with Bluetown was refused with a clear reason (good).",
+      "repro": "pt start ... --seed 104; n; f; o; War Littleham twice; play ~2 min of game time",
+      "screenshot": "shots/war2.png",
+      "tick": 4063
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement billboard text shows through the settlement sheet and Nations header",
+      "detail": "The large grey world-space label '0 here, 1/8 residents' draws behind the 'CAMP OF TOWNLAND' title and the Nations screen header, cluttering the top of both panels.",
+      "repro": "Found a settlement, stand in it, press e or o",
+      "screenshot": "shots/overlay_billboard.png",
+      "tick": 4087
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Laws tab: 'No one in Townland was left to take your place' reads as if someone left",
+      "detail": "For a one-member nation the heir line says 'No heir. No one in Townland was left to take your place.' Suggested: 'No heir: no one else in Townland can take your place.'",
+      "repro": "n; o; Laws",
+      "screenshot": "shots/laws.png",
+      "tick": 7051
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "'Tribute' button label used for ordinary gifts to neutral nations",
+      "detail": "Every row's coin button reads Tribute, but to a Neutral nation the reply is 'accepts your gift'; tribute (with a truce) only applies to a stronger foe. Label could switch between Gift and Tribute.",
+      "repro": "n; o; Tribute any Neutral nation",
+      "screenshot": "shots/tribute1.png",
+      "tick": 2067
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 39.0, "Eat something": 40.1, "Create or join a nation": 41.0, "Found a settlement": 79.0, "Enter your settlement": 82.1},
+    "nationsInWorldAtEnd": 36,
+    "giftsSent": 5,
+    "coinsSpentOnDiplomacy": 125,
+    "warsDeclared": 2,
+    "denunciations": 1,
+    "alliancesFormed": 0,
+    "peakRelationWithFarmshire": 33,
+    "raidsSuffered": 0,
+    "typicalTps": 9
+  },
+  "fun": 3,
+  "verdict": "Denounce, war and peace all work with clear confirm clicks and good in-character replies, and the world fills with rival nations fast. But alliance, the warm half of diplomacy, is gated by a hidden +60 rule for stronger partners that a new 1-member nation always faces, after a 10-minute gift treadmill against border friction. Show strength and each nation's real alliance threshold on the row, and make the 2-row, reshuffling 36-nation list easier to navigate."
+}

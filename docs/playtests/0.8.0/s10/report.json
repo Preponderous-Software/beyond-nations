@@ -1,0 +1,60 @@
+{
+  "session": "s10",
+  "goal": "Save/load and share-seed round trip: save from the pause menu, stop, `pt start --continue`, confirm the world is identical; then start a new world from the seed shown on the Share screen and confirm it matches.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": "Ironvale",
+  "durationSec": 482,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "New World seed box: Ctrl+A does not select all, so pasting a shared seed means backspacing the prefilled one",
+      "detail": "On the New World screen the seed box is prefilled with the previous seed ('Ironvale'). To enter the number from the Share screen I clicked the box, pressed Ctrl+A then Delete/BackSpace: nothing was selected, only one character was removed, and typing appended ('Ironval1450162717' -> seed 1889372902, a different world). I had to press BackSpace ~10 times. Expected Ctrl+A (or click-to-select-all) to select the field. May be partly low-fps modifier timing under xdotool; the seed preview line ('X is seed N') did make the mistake visible, which is good.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed Ironvale; pt key space; pt click 480 315; pt click 480 235; pt key ctrl+a; pt key Delete; pt type 1450162717; pt shot x",
+      "screenshot": "shots/ctrla-noselect.png",
+      "tick": null
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Load list rows show no seed or world name; Main Menu auto-saves even a just-begun world",
+      "detail": "After starting a fresh world from the shared seed and going Pause > Main Menu at tick 125, the Load screen lists two rows: 'Day 1 - no nation 15:13' and 'Day 1 - Westernshire 15:11'. Neither shows the seed, so two worlds of the same seed are only distinguishable by nation/timestamp. The throwaway world was auto-saved into its own slot without asking. Expected the seed (or seed word) on each row; possibly skip saving worlds with no progress.",
+      "repro": "...after a saved world exists: Pause > Main Menu; Start; enter same seed; Begin; Escape; Main Menu; Load",
+      "screenshot": "shots/load-list-no-seed.png",
+      "tick": 125
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Pause menu has Save but no Load; Load is only on the main menu",
+      "detail": "Pause menu offers Resume, Save, Share, Controls, Main Menu, Quit. The playtest brief (and a player) expects Load there too. Workaround is Main Menu (which saves first) > Load, which works. Minor friction only.",
+      "repro": "pt start ...; enter world; pt key Escape; pt shot pause",
+      "screenshot": "shots/pause-no-load.png",
+      "tick": 1428
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Share screen shows only the numeric seed, not the word seed the world was made from",
+      "detail": "World was created from 'Ironvale'; Share shows 'World seed 1450162717' and a ?seed=1450162717 link. That round-trips correctly (verified), but the memorable word is lost when sharing. Nice-to-have: show 'Ironvale (1450162717)'.",
+      "repro": "pt start ... --seed Ironvale; Begin; Escape; Share",
+      "screenshot": "shots/copylink.png",
+      "tick": 1428
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 3,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 22.0, "Eat something": 23.04, "Create or join a nation": 25.04},
+    "saveTick": 1428,
+    "continueLoadedTick": 1428,
+    "playerStateFieldsDifferingAfterContinue": 0,
+    "chronicleEntriesPreservedAfterContinue": 2,
+    "seedFromShareScreen": 1450162717,
+    "sharedSeedWorldMatchesOriginalAtStart": 1,
+    "minFps": 1
+  },
+  "fun": 3,
+  "verdict": "Save/continue and share-seed round trips both work: --continue restored tick 1428 exactly (position, yaw, coins, inventory, nation/role, objective 4, chronicle, nearby trees/rocks by id), the pause menu gives clear 'Saved: Day 1 - Westernshire, 15:09' feedback, and a new world from the Share screen's 1450162717 is identical to the 'Ironvale' world at start (same trees, rocks, pawns, region, HUD). Friction is in the edges: replacing the prefilled seed text is awkward, the Load list doesn't show seeds, and Load isn't reachable from the pause menu."
+}

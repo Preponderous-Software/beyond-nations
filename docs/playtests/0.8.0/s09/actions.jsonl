@@ -1,0 +1,310 @@
+{"t": 1794780355149, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "109"]}
+{"t": 1794780367293, "cmd": "shot", "args": ["title"]}
+{"t": 1794780388399, "cmd": "note", "args": ["--shot", "title-contrast", "Title screen: white text on light sky-blue background (~#72A5E5); measured contrast about 2.6:1, below WCAG AA 4.5:1 for the small 'Press any key or click to continue' line."]}
+{"t": 1794780409297, "cmd": "key", "args": ["space"]}
+{"t": 1794780409995, "cmd": "wait", "args": ["1"]}
+{"t": 1794780411251, "cmd": "shot", "args": ["mainmenu"]}
+{"t": 1794780437122, "cmd": "click", "args": ["480", "367"]}
+{"t": 1794780437987, "cmd": "wait", "args": ["1"]}
+{"t": 1794780439087, "cmd": "shot", "args": ["config"]}
+{"t": 1794780446659, "cmd": "click", "args": ["480", "367"]}
+{"t": 1794780447636, "cmd": "wait", "args": ["2"]}
+{"t": 1794780449881, "cmd": "shot", "args": ["config2"]}
+{"t": 1794780450920, "cmd": "state", "args": []}
+{"t": 1794780463330, "cmd": "move", "args": ["528", "276"]}
+{"t": 1794780463828, "cmd": "wait", "args": ["2"]}
+{"t": 1794780466153, "cmd": "shot", "args": ["cfg-hover-chunk"]}
+{"t": 1794780466803, "cmd": "move", "args": ["420", "388"]}
+{"t": 1794780467299, "cmd": "wait", "args": ["2"]}
+{"t": 1794780469724, "cmd": "shot", "args": ["cfg-hover-lag"]}
+{"t": 1794780486556, "cmd": "note", "args": ["--shot", "cfg-no-tooltips", "Config: 'Chunk Size', 'Location Scale', 'Lag Prevention', 'Respawn Pawns' have no explanation; hovering labels/controls shows no tooltip (waited 2s). Player cannot tell what they do or what the trade-offs are. Labels are white small text directly on light blue (~2.5:1 contrast)."]}
+{"t": 1794780487245, "cmd": "note", "args": ["--shot", "cfg-volume-label", "Config: 'Volume (sound plays in the browser version)' on the desktop build tells the player that sound does not work here, yet Volume and Mute Sound controls are offered. Confusing; hide or explain."]}
+{"t": 1794780488048, "cmd": "note", "args": ["--shot", "mainmenu-firstclick", "Main menu: first pt click on Config only highlighted the button; needed a second click to open Config (low fps ImGui). Minor at 6 fps."]}
+{"t": 1794780496207, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780496939, "cmd": "wait", "args": ["1"]}
+{"t": 1794780498157, "cmd": "state", "args": []}
+{"t": 1794780498405, "cmd": "shot", "args": ["after-esc-config"]}
+{"t": 1794780504396, "cmd": "click", "args": ["480", "419"]}
+{"t": 1794780505396, "cmd": "wait", "args": ["1"]}
+{"t": 1794780506606, "cmd": "state", "args": []}
+{"t": 1794780506880, "cmd": "shot", "args": ["controls"]}
+{"t": 1794780513234, "cmd": "click", "args": ["615", "508"]}
+{"t": 1794780514261, "cmd": "wait", "args": ["1"]}
+{"t": 1794780515450, "cmd": "shot", "args": ["controls2"]}
+{"t": 1794780519743, "cmd": "click", "args": ["615", "508"]}
+{"t": 1794780520768, "cmd": "wait", "args": ["1"]}
+{"t": 1794780522111, "cmd": "shot", "args": ["controls3"]}
+{"t": 1794780529639, "cmd": "note", "args": ["--shot", "controls3-debug", "Controls page 3 of 3 lists Debug keys F1-F6 (spawn pawn/coins/wood, teleport pawns) to every player in the normal help with no warning that they are cheats; a full page of the 3-page help is debug-only."]}
+{"t": 1794780530256, "cmd": "click", "args": ["344", "508"]}
+{"t": 1794780531347, "cmd": "wait", "args": ["1"]}
+{"t": 1794780532788, "cmd": "note", "args": ["--shot", "controls2-tap", "Controls page 2: 'Era box (tap)' uses touch wording on desktop; a mouse player should read 'click'. Also it does not say where the Era box is on screen."]}
+{"t": 1794780533371, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780534211, "cmd": "wait", "args": ["1"]}
+{"t": 1794780535470, "cmd": "state", "args": []}
+{"t": 1794780542204, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780543027, "cmd": "wait", "args": ["1"]}
+{"t": 1794780544231, "cmd": "state", "args": []}
+{"t": 1794780544378, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780550329, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780551394, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794780551957, "cmd": "wait", "args": ["3"]}
+{"t": 1794780555240, "cmd": "state", "args": []}
+{"t": 1794780555377, "cmd": "shot", "args": ["world1"]}
+{"t": 1794780581589, "cmd": "move", "args": ["298", "517"]}
+{"t": 1794780581856, "cmd": "wait", "args": ["3"]}
+{"t": 1794780585061, "cmd": "shot", "args": ["hover-enter-settle"]}
+{"t": 1794780594143, "cmd": "note", "args": ["--shot", "hover-enter-settle-note", "HUD action bar: 'Enter Settlement' and 'Plant Sapling' are greyed with no on-screen reason; the reason ('No settlement has been founded yet.') only appears as a hover tooltip, which then overlaps the button itself. Keyboard players never see it."]}
+{"t": 1794780594473, "cmd": "move", "args": ["425", "517"]}
+{"t": 1794780594642, "cmd": "wait", "args": ["3"]}
+{"t": 1794780597843, "cmd": "shot", "args": ["hover-plant"]}
+{"t": 1794780598336, "cmd": "move", "args": ["168", "58"]}
+{"t": 1794780598536, "cmd": "wait", "args": ["3"]}
+{"t": 1794780601828, "cmd": "shot", "args": ["hover-era"]}
+{"t": 1794780602365, "cmd": "move", "args": ["90", "84"]}
+{"t": 1794780602562, "cmd": "wait", "args": ["3"]}
+{"t": 1794780605809, "cmd": "shot", "args": ["hover-village"]}
+{"t": 1794780611389, "cmd": "note", "args": ["--shot", "village-unclear", "HUD top-left: 'Village: 0/4' with a yellow square and 'Era: Camp (1/4) +' have no label or tooltip on hover (waited 3s); unclear what 0/4 counts, what the yellow square is, or that '+' means clickable. Tooltip for 'Plant Sapling' ('You have no saplings.') is clipped/overlaps bottom edge."]}
+{"t": 1794780611918, "cmd": "click", "args": ["110", "58"]}
+{"t": 1794780612927, "cmd": "wait", "args": ["2"]}
+{"t": 1794780615109, "cmd": "shot", "args": ["era-click"]}
+{"t": 1794780615640, "cmd": "state", "args": []}
+{"t": 1794780620645, "cmd": "note", "args": ["--shot", "era-expand-overlap", "Clicking the Era box expands it; Objective panel is pushed down and the Inventory Info panel is displaced from bottom-left to screen middle (x~220), where the Tip window overlaps it and cuts off 'Coins: 33[9]' and the panel title 'Inventory [Info (I)]'. Expected panels to stay docked without overlapping."]}
+{"t": 1794780625067, "cmd": "click", "args": ["110", "58"]}
+{"t": 1794780625970, "cmd": "wait", "args": ["2"]}
+{"t": 1794780628142, "cmd": "click", "args": ["338", "389"]}
+{"t": 1794780629007, "cmd": "wait", "args": ["2"]}
+{"t": 1794780631177, "cmd": "shot", "args": ["tip2"]}
+{"t": 1794780637292, "cmd": "key", "args": ["i"]}
+{"t": 1794780638098, "cmd": "wait", "args": ["2"]}
+{"t": 1794780640222, "cmd": "shot", "args": ["inv"]}
+{"t": 1794780640708, "cmd": "state", "args": []}
+{"t": 1794780640974, "cmd": "key", "args": ["i"]}
+{"t": 1794780641692, "cmd": "wait", "args": ["1"]}
+{"t": 1794780642886, "cmd": "key", "args": ["o"]}
+{"t": 1794780643562, "cmd": "wait", "args": ["2"]}
+{"t": 1794780645731, "cmd": "shot", "args": ["nations"]}
+{"t": 1794780646197, "cmd": "state", "args": []}
+{"t": 1794780655199, "cmd": "click", "args": ["415", "45"]}
+{"t": 1794780656179, "cmd": "wait", "args": ["2"]}
+{"t": 1794780658333, "cmd": "shot", "args": ["nat-members"]}
+{"t": 1794780658887, "cmd": "click", "args": ["543", "45"]}
+{"t": 1794780659964, "cmd": "wait", "args": ["2"]}
+{"t": 1794780662191, "cmd": "shot", "args": ["nat-laws"]}
+{"t": 1794780662750, "cmd": "click", "args": ["671", "45"]}
+{"t": 1794780663938, "cmd": "wait", "args": ["2"]}
+{"t": 1794780666298, "cmd": "shot", "args": ["nat-manage"]}
+{"t": 1794780675504, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780676204, "cmd": "wait", "args": ["1"]}
+{"t": 1794780677412, "cmd": "key", "args": ["c"]}
+{"t": 1794780678055, "cmd": "wait", "args": ["2"]}
+{"t": 1794780680224, "cmd": "shot", "args": ["craft"]}
+{"t": 1794780680752, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780681428, "cmd": "wait", "args": ["1"]}
+{"t": 1794780682620, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780683331, "cmd": "wait", "args": ["2"]}
+{"t": 1794780685578, "cmd": "shot", "args": ["pause"]}
+{"t": 1794780686257, "cmd": "state", "args": []}
+{"t": 1794780708956, "cmd": "note", "args": ["--shot", "pause-noload", "Pause menu has Resume, Save, Share, Controls, Main Menu, Quit; there is no Load button (the playtest brief and expectations say Load is in the pause menu). 'World seed 109' label sits over the player capsule with no backing panel. Footer 'Main Menu and Quit save this world first.' is helpful."]}
+{"t": 1794780709446, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780710177, "cmd": "wait", "args": ["1"]}
+{"t": 1794780711347, "cmd": "key", "args": ["i"]}
+{"t": 1794780712127, "cmd": "wait", "args": ["2"]}
+{"t": 1794780714290, "cmd": "note", "args": ["--shot", "inventory-sparse", "Inventory screen (I) with nothing gathered shows only 'Coins: 339' and the close hint; no empty-state text, no item list, while the HUD 'Inventory Info (I)' panel already lists Wood/Stone/Apples/Saplings/Chicken Meat: 0. The full screen is less informative than the HUD. Hint text is drawn straight over the 3D world and the player model (no backing panel)."]}
+{"t": 1794780714706, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780715444, "cmd": "wait", "args": ["1"]}
+{"t": 1794780723600, "cmd": "state", "args": []}
+{"t": 1794780723844, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780752730, "cmd": "key", "args": ["e"]}
+{"t": 1794780753450, "cmd": "wait", "args": ["2"]}
+{"t": 1794780755899, "cmd": "shot", "args": ["chop1"]}
+{"t": 1794780756581, "cmd": "state", "args": []}
+{"t": 1794780767449, "cmd": "wait", "args": ["3"]}
+{"t": 1794780770577, "cmd": "state", "args": []}
+{"t": 1794780770781, "cmd": "events", "args": ["10"]}
+{"t": 1794780783302, "cmd": "note", "args": ["Floating gain text after chopping ('+2 saplings', '+2 apples', '+5 wood') is coloured green/brown text with no outline, drawn over green grass and the tree; measured contrast 2.2:1 ('+5 wood', brown on green) to 3.2:1. Hard to read, especially brown '+5 wood' over the trunk/grass. (screenshot shots/floating-gain-text.png, tick ~1250)"]}
+{"t": 1794780783488, "cmd": "click", "args": ["338", "376"]}
+{"t": 1794780784422, "cmd": "wait", "args": ["1"]}
+{"t": 1794780785555, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780786805, "cmd": "key", "args": ["e"]}
+{"t": 1794780787554, "cmd": "wait", "args": ["2"]}
+{"t": 1794780789785, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780812792, "cmd": "key", "args": ["e"]}
+{"t": 1794780813424, "cmd": "wait", "args": ["2"]}
+{"t": 1794780815666, "cmd": "shot", "args": ["chop3"]}
+{"t": 1794780816137, "cmd": "state", "args": []}
+{"t": 1794780828619, "cmd": "note", "args": ["'Objective complete! Eat something +25 coins' toast is drawn on top of the floating gain text ('+3 apples', '+... sapling') so both are partly hidden; and the chronicle line 'Day 1, morning - Una Smith declared the nation of Villageton, t...' is truncated with an ellipsis. (shots/toast-overlap.png, tick ~1600)"]}
+{"t": 1794780828897, "cmd": "note", "args": ["Objective 2 'Eat something' completed without the player eating: the game auto-ate an apple ('Ate an apple (+15 energy).' status at tick 1256) during chopping, so the 'Eat Apple' button / lesson is never exercised. (shots/chop1.png)"]}
+{"t": 1794780829160, "cmd": "move", "args": ["480", "84"]}
+{"t": 1794780829430, "cmd": "wait", "args": ["3"]}
+{"t": 1794780832817, "cmd": "shot", "args": ["chron-hover"]}
+{"t": 1794780839339, "cmd": "key", "args": ["y"]}
+{"t": 1794780839976, "cmd": "wait", "args": ["2"]}
+{"t": 1794780842245, "cmd": "shot", "args": ["chron-full"]}
+{"t": 1794780842788, "cmd": "key", "args": ["u"]}
+{"t": 1794780843569, "cmd": "wait", "args": ["2"]}
+{"t": 1794780845755, "cmd": "shot", "args": ["chron-all"]}
+{"t": 1794780855052, "cmd": "note", "args": ["--shot", "chron-translucent", "Chronicle window (Y): window background is translucent, so HUD panels behind it (Season, Player Info, Tip, Objective) show through and mix with chronicle text; the window also overlaps the Objective and Inventory panels. 'Your news' view says '4 entries. Listing 2.' (wording unclear: listing 2 of 4 because filtered?) and shows other nations' founding as 'your news' even though player has no nation, while the HUD said 'Nothing about you, your nation or its neighbours yet.'"]}
+{"t": 1794780855566, "cmd": "key", "args": ["y"]}
+{"t": 1794780856224, "cmd": "wait", "args": ["1"]}
+{"t": 1794780857543, "cmd": "key", "args": ["y"]}
+{"t": 1794780858296, "cmd": "wait", "args": ["1"]}
+{"t": 1794780859489, "cmd": "shot", "args": ["chron-hidden"]}
+{"t": 1794780860145, "cmd": "state", "args": []}
+{"t": 1794780869151, "cmd": "click", "args": ["338", "389"]}
+{"t": 1794780869969, "cmd": "wait", "args": ["1"]}
+{"t": 1794780871064, "cmd": "key", "args": ["n"]}
+{"t": 1794780871677, "cmd": "wait", "args": ["2"]}
+{"t": 1794780873800, "cmd": "shot", "args": ["nation-n"]}
+{"t": 1794780874158, "cmd": "state", "args": []}
+{"t": 1794780881315, "cmd": "note", "args": ["--shot", "nation-created", "After N: nation auto-named 'Westville' with no chance to name it; the chronicle line about the player's own nation is truncated ('You raised a banner and named your people We...'), so the name is only readable in Player Info. The action bar re-flows: a red 'Leave Nation' button appears in the exact bottom-left slot where 'Create Nation' was a moment ago, inviting an accidental click."]}
+{"t": 1794780881974, "cmd": "move", "args": ["75", "476"]}
+{"t": 1794780882300, "cmd": "wait", "args": ["3"]}
+{"t": 1794780885502, "cmd": "shot", "args": ["hover-found"]}
+{"t": 1794780886171, "cmd": "move", "args": ["90", "517"]}
+{"t": 1794780886465, "cmd": "wait", "args": ["3"]}
+{"t": 1794780889666, "cmd": "shot", "args": ["hover-leave"]}
+{"t": 1794780899569, "cmd": "note", "args": ["--shot", "hover-leave-note", "'Leave Nation' (red, bottom-left) shows no tooltip or warning on hover about what leaving costs; the 'Found Settlement' tooltip ('Needs 35 more wood.') pops up on top of the Leave Nation button. Objective progress bar 'Wood 15/50' uses white text over a yellow fill (and the Village yellow square) - white on yellow is very low contrast."]}
+{"t": 1794780904758, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780940678, "cmd": "key", "args": ["e"]}
+{"t": 1794780941439, "cmd": "wait", "args": ["1"]}
+{"t": 1794780942547, "cmd": "state", "args": []}
+{"t": 1794780942723, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780959861, "cmd": "key", "args": ["e"]}
+{"t": 1794780960465, "cmd": "wait", "args": ["1"]}
+{"t": 1794780961663, "cmd": "state", "args": []}
+{"t": 1794780961907, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780974762, "cmd": "key", "args": ["e"]}
+{"t": 1794780975391, "cmd": "wait", "args": ["1"]}
+{"t": 1794780976670, "cmd": "state", "args": []}
+{"t": 1794780976869, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780992181, "cmd": "key", "args": ["e"]}
+{"t": 1794780992946, "cmd": "wait", "args": ["1"]}
+{"t": 1794780994204, "cmd": "state", "args": []}
+{"t": 1794780994485, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781009637, "cmd": "key", "args": ["e"]}
+{"t": 1794781010401, "cmd": "wait", "args": ["1"]}
+{"t": 1794781011624, "cmd": "state", "args": []}
+{"t": 1794781011817, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781012088, "cmd": "key", "args": ["e"]}
+{"t": 1794781012868, "cmd": "wait", "args": ["1"]}
+{"t": 1794781014163, "cmd": "state", "args": []}
+{"t": 1794781014317, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781029749, "cmd": "key", "args": ["e"]}
+{"t": 1794781030365, "cmd": "wait", "args": ["1"]}
+{"t": 1794781031503, "cmd": "state", "args": []}
+{"t": 1794781031732, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781046841, "cmd": "key", "args": ["e"]}
+{"t": 1794781047483, "cmd": "wait", "args": ["1"]}
+{"t": 1794781048679, "cmd": "state", "args": []}
+{"t": 1794781053779, "cmd": "key", "args": ["f"]}
+{"t": 1794781054504, "cmd": "wait", "args": ["3"]}
+{"t": 1794781057838, "cmd": "shot", "args": ["found"]}
+{"t": 1794781058231, "cmd": "state", "args": []}
+{"t": 1794781064939, "cmd": "note", "args": ["--shot", "found-too-close", "Good: 'Too close to the Camp of Villageton: 183 paces away... Open ground lies about 70 paces to the south.' is clear and actionable. But the objective bar 'Wood 50/50' when full is white text over solid yellow, nearly unreadable (~1.9:1)."]}
+{"t": 1794781065124, "cmd": "face", "args": ["-132"]}
+{"t": 1794781076560, "cmd": "hold", "args": ["w", "6"]}
+{"t": 1794781082919, "cmd": "state", "args": []}
+{"t": 1794781087586, "cmd": "face", "args": ["116"]}
+{"t": 1794781098293, "cmd": "state", "args": []}
+{"t": 1794781098491, "cmd": "hold", "args": ["w", "8"]}
+{"t": 1794781106830, "cmd": "key", "args": ["f"]}
+{"t": 1794781107632, "cmd": "wait", "args": ["3"]}
+{"t": 1794781110906, "cmd": "state", "args": []}
+{"t": 1794781117468, "cmd": "state", "args": []}
+{"t": 1794781117890, "cmd": "face", "args": ["-84.0"]}
+{"t": 1794781124070, "cmd": "state", "args": []}
+{"t": 1794781124332, "cmd": "face", "args": ["84.0"]}
+{"t": 1794781128665, "cmd": "state", "args": []}
+{"t": 1794781129004, "cmd": "face", "args": ["-84.0"]}
+{"t": 1794781133631, "cmd": "state", "args": []}
+{"t": 1794781134006, "cmd": "face", "args": ["84.0"]}
+{"t": 1794781140750, "cmd": "hold", "args": ["w", "15"]}
+{"t": 1794781156257, "cmd": "key", "args": ["f"]}
+{"t": 1794781157096, "cmd": "wait", "args": ["3"]}
+{"t": 1794781160271, "cmd": "state", "args": []}
+{"t": 1794781166761, "cmd": "hold", "args": ["a", "2"]}
+{"t": 1794781169259, "cmd": "state", "args": []}
+{"t": 1794781175825, "cmd": "hold", "args": ["d", "13"]}
+{"t": 1794781189112, "cmd": "state", "args": []}
+{"t": 1794781192958, "cmd": "hold", "args": ["Shift_L+w", "20"]}
+{"t": 1794781213343, "cmd": "key", "args": ["f"]}
+{"t": 1794781214142, "cmd": "wait", "args": ["3"]}
+{"t": 1794781217482, "cmd": "state", "args": []}
+{"t": 1794781222407, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1794781230855, "cmd": "key", "args": ["f"]}
+{"t": 1794781231561, "cmd": "wait", "args": ["3"]}
+{"t": 1794781234800, "cmd": "shot", "args": ["found2"]}
+{"t": 1794781235442, "cmd": "state", "args": []}
+{"t": 1794781242827, "cmd": "note", "args": ["--shot", "settlement-label-overlap", "Right after founding: the settlement's large white world-space label (looks like '<name> 0/4 residents') is drawn at the top of the screen behind the status bar and chronicle panel, so it is unreadable and makes the status text hard to read; the '+50 coins' float is hidden behind the 'Objective complete!' toast again. Settlement is called just 'Settlement' (state.json) - no naming prompt."]}
+{"t": 1794781243565, "cmd": "key", "args": ["e"]}
+{"t": 1794781244641, "cmd": "wait", "args": ["3"]}
+{"t": 1794781248014, "cmd": "shot", "args": ["inside"]}
+{"t": 1794781249020, "cmd": "state", "args": []}
+{"t": 1794781260322, "cmd": "note", "args": ["--shot", "settlement-screen", "Settlement screen (E at own camp): title 'CAMP OF WESTVILLE' is overlapped by the big translucent world label '0 here, 1/8 residents' behind it; all text sits directly on the 3D scene with no backing panel (e.g. 'Prices (buy/sell): ... Stone 30/28.' over the well roof). 'Residents: 1 of 8 (0 here now). You are inside it.' contradicts itself. The handover text 'Give it to yourself to keep it if the rule passes on' is hard to parse. 'Give to: you' selector is grey-on-grey. Both 'Exit Settlement' and 'Back' buttons with no hint how they differ."]}
+{"t": 1794781260916, "cmd": "move", "args": ["584", "436"]}
+{"t": 1794781261188, "cmd": "wait", "args": ["2"]}
+{"t": 1794781263306, "cmd": "shot", "args": ["hover-back"]}
+{"t": 1794781264101, "cmd": "move", "args": ["375", "436"]}
+{"t": 1794781264483, "cmd": "wait", "args": ["2"]}
+{"t": 1794781266742, "cmd": "shot", "args": ["hover-exit"]}
+{"t": 1794781276093, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781276881, "cmd": "wait", "args": ["2"]}
+{"t": 1794781279199, "cmd": "key", "args": ["k"]}
+{"t": 1794781280033, "cmd": "wait", "args": ["2"]}
+{"t": 1794781282199, "cmd": "shot", "args": ["build-k"]}
+{"t": 1794781282890, "cmd": "state", "args": []}
+{"t": 1794781291534, "cmd": "note", "args": ["--shot", "in-settlement-hud", "In-settlement HUD (tick ~5012): Inventory Info panel jumps to screen middle (x~220,y~226) over the well and the 'Objective complete!' toast; Player Info panel at bottom-right is cut off by the window edge (only Energy and 'Nation: Westville (LEADER)' visible; Relationships/Role/Facing/Land gone); 4 rows of 13 action buttons crowd the lower-left; 'Send Caravan (Village era)' is drawn in the enabled blue style although the Village era is not reached. Market price arrows (green triangles / dashes) have no legend. Pressing K produced no visible message."]}
+{"t": 1794781291981, "cmd": "move", "args": ["560", "413"]}
+{"t": 1794781292433, "cmd": "wait", "args": ["3"]}
+{"t": 1794781295706, "cmd": "shot", "args": ["hover-caravan"]}
+{"t": 1794781296538, "cmd": "move", "args": ["233", "413"]}
+{"t": 1794781296863, "cmd": "wait", "args": ["3"]}
+{"t": 1794781300003, "cmd": "shot", "args": ["hover-buildhouse"]}
+{"t": 1794781306341, "cmd": "click", "args": ["560", "413"]}
+{"t": 1794781307337, "cmd": "wait", "args": ["3"]}
+{"t": 1794781310466, "cmd": "shot", "args": ["click-caravan"]}
+{"t": 1794781311046, "cmd": "state", "args": []}
+{"t": 1794781318525, "cmd": "note", "args": ["--shot", "caravan-status", "'Send Caravan (Village era)' button looks enabled (blue) but clicking only produces an error status. The 2-line status message ('This settlement needs a Storehouse...') overlaps and hides the chronicle header line '[Y: more]'. Also: hover tooltip for Build House ('Needs 17 more wood and 15 more stone, counting the settlement's stockpile.') covers the whole next row of buttons (shots/hover-buildhouse.png)."]}
+{"t": 1794781319046, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781319803, "cmd": "wait", "args": ["2"]}
+{"t": 1794781321949, "cmd": "state", "args": []}
+{"t": 1794781322034, "cmd": "click", "args": ["480", "449"]}
+{"t": 1794781323035, "cmd": "wait", "args": ["4"]}
+{"t": 1794781327326, "cmd": "shot", "args": ["after-mainmenu"]}
+{"t": 1794781327825, "cmd": "state", "args": []}
+{"t": 1794781332376, "cmd": "click", "args": ["480", "389"]}
+{"t": 1794781333407, "cmd": "wait", "args": ["2"]}
+{"t": 1794781335567, "cmd": "shot", "args": ["load"]}
+{"t": 1794781335964, "cmd": "state", "args": []}
+{"t": 1794781345049, "cmd": "move", "args": ["677", "187"]}
+{"t": 1794781345531, "cmd": "wait", "args": ["2"]}
+{"t": 1794781347878, "cmd": "note", "args": ["--shot", "load-delete", "Load screen: 'Delete' sits flush next to the save row in the same dark-blue style as the load button, with no red/danger styling and no tooltip on hover; easy to hit by accident (did not test whether it confirms). Main menu 'Last played: Day 1 - Westville 2026-11-15 15:22' line is small white text on light blue (~2.5:1)."]}
+{"t": 1794781348333, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781349118, "cmd": "wait", "args": ["1"]}
+{"t": 1794781350291, "cmd": "state", "args": []}
+{"t": 1794781350481, "cmd": "click", "args": ["480", "349"]}
+{"t": 1794781351407, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794781352129, "cmd": "wait", "args": ["3"]}
+{"t": 1794781355466, "cmd": "shot", "args": ["continued"]}
+{"t": 1794781355941, "cmd": "state", "args": []}
+{"t": 1794781360123, "cmd": "click", "args": ["498", "476"]}
+{"t": 1794781362461, "cmd": "wait", "args": ["3"]}
+{"t": 1794781365546, "cmd": "shot", "args": ["btn-settlement"]}
+{"t": 1794781366028, "cmd": "state", "args": []}
+{"t": 1794781368611, "cmd": "click", "args": ["498", "476"]}
+{"t": 1794781369584, "cmd": "wait", "args": ["3"]}
+{"t": 1794781372758, "cmd": "shot", "args": ["btn-settlement2"]}
+{"t": 1794781373459, "cmd": "state", "args": []}
+{"t": 1794781378537, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781379199, "cmd": "wait", "args": ["2"]}
+{"t": 1794781381418, "cmd": "move", "args": ["313", "445"]}
+{"t": 1794781381731, "cmd": "wait", "args": ["3"]}
+{"t": 1794781384924, "cmd": "shot", "args": ["hover-purchase"]}
+{"t": 1794781385470, "cmd": "move", "args": ["563", "445"]}
+{"t": 1794781385710, "cmd": "wait", "args": ["3"]}
+{"t": 1794781388852, "cmd": "shot", "args": ["hover-trade"]}
+{"t": 1794781395790, "cmd": "note", "args": ["--shot", "hover-purchase-note", "In-settlement actions 'Purchase Food', 'Sell Resources', 'Withdraw Funds' and the plain 'Settlement' button have no tooltip saying what they cost or do (hover 3s); 'Settlement' needed two clicks and turned out to reopen the settlement screen - label is vague next to 'Exit Settlement'. The 'Trade at Market' tooltip ('This settlement has no stalls yet.') covers the Player Info header."]}
+{"t": 1794781396360, "cmd": "events", "args": ["200"]}
+{"t": 1794781396531, "cmd": "stop", "args": []}
+{"t": 1794781434927, "cmd": "report", "args": []}
+{"t": 1794782467254, "cmd": "stop", "args": []}

@@ -1,0 +1,270 @@
+{"t": 1794780354966, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "101"]}
+{"t": 1794780367218, "cmd": "shot", "args": ["title"]}
+{"t": 1794780386970, "cmd": "key", "args": ["space"]}
+{"t": 1794780387784, "cmd": "wait", "args": ["2"]}
+{"t": 1794780390029, "cmd": "shot", "args": ["menu"]}
+{"t": 1794780413686, "cmd": "click", "args": ["480", "418"]}
+{"t": 1794780414497, "cmd": "wait", "args": ["2"]}
+{"t": 1794780416748, "cmd": "shot", "args": ["controls"]}
+{"t": 1794780437797, "cmd": "click", "args": ["615", "507"]}
+{"t": 1794780438601, "cmd": "wait", "args": ["1"]}
+{"t": 1794780439763, "cmd": "shot", "args": ["controls2"]}
+{"t": 1794780440193, "cmd": "click", "args": ["615", "507"]}
+{"t": 1794780441075, "cmd": "wait", "args": ["1"]}
+{"t": 1794780442266, "cmd": "shot", "args": ["controls3"]}
+{"t": 1794780451534, "cmd": "click", "args": ["343", "507"]}
+{"t": 1794780452610, "cmd": "wait", "args": ["2"]}
+{"t": 1794780454949, "cmd": "shot", "args": ["controls_p2"]}
+{"t": 1794780473200, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780473744, "cmd": "wait", "args": ["1"]}
+{"t": 1794780474975, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780475917, "cmd": "wait", "args": ["2"]}
+{"t": 1794780478196, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780491538, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780492563, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1794780493437, "cmd": "wait", "args": ["3"]}
+{"t": 1794780496687, "cmd": "shot", "args": ["world0"]}
+{"t": 1794780497210, "cmd": "state", "args": []}
+{"t": 1794780507295, "cmd": "click", "args": ["338", "388"]}
+{"t": 1794780508556, "cmd": "wait", "args": ["1"]}
+{"t": 1794780509904, "cmd": "face", "args": ["180"]}
+{"t": 1794780520858, "cmd": "shot", "args": ["turned"]}
+{"t": 1794780521478, "cmd": "state", "args": []}
+{"t": 1794780526509, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780536868, "cmd": "shot", "args": ["attree"]}
+{"t": 1794780537280, "cmd": "state", "args": []}
+{"t": 1794780546204, "cmd": "key", "args": ["e"]}
+{"t": 1794780546917, "cmd": "wait", "args": ["2"]}
+{"t": 1794780549168, "cmd": "shot", "args": ["chop1"]}
+{"t": 1794780549735, "cmd": "state", "args": []}
+{"t": 1794780550095, "cmd": "events", "args": ["5"]}
+{"t": 1794780559202, "cmd": "wait", "args": ["3"]}
+{"t": 1794780562582, "cmd": "state", "args": []}
+{"t": 1794780562767, "cmd": "note", "args": ["--shot", "obj_wood_mismatch", "After chopping first tree: inventory Wood 5 but objective panel still 'Wood 0/10'. Also 'Ate an apple (+15 energy)' status appeared though I didn't press eat; Apples still shows 1. Tip already advanced to 'Gather stone' while objective is still wood."]}
+{"t": 1794780567647, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780583330, "cmd": "key", "args": ["e"]}
+{"t": 1794780584064, "cmd": "wait", "args": ["3"]}
+{"t": 1794780587287, "cmd": "shot", "args": ["chop2"]}
+{"t": 1794780587879, "cmd": "state", "args": []}
+{"t": 1794780596752, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780616394, "cmd": "key", "args": ["e"]}
+{"t": 1794780617017, "cmd": "wait", "args": ["3"]}
+{"t": 1794780620197, "cmd": "shot", "args": ["chop3"]}
+{"t": 1794780620814, "cmd": "state", "args": []}
+{"t": 1794780621014, "cmd": "events", "args": ["6"]}
+{"t": 1794780625336, "cmd": "wait", "args": ["2"]}
+{"t": 1794780627553, "cmd": "shot", "args": ["obj2"]}
+{"t": 1794780634229, "cmd": "events", "args": ["6"]}
+{"t": 1794780634538, "cmd": "note", "args": ["--shot", "obj2_skipped", "Objective 2 'Eat something' completed on its own ~immediately after objective 1; I never saw it as the active objective nor pressed eat. Tips are still on 'Gather stone' (tip 3 of 5) while the objective is now 'Create or join a nation' - tips and objectives are out of sync."]}
+{"t": 1794780640884, "cmd": "key", "args": ["n"]}
+{"t": 1794780641609, "cmd": "wait", "args": ["3"]}
+{"t": 1794780644792, "cmd": "shot", "args": ["nation"]}
+{"t": 1794780645265, "cmd": "state", "args": []}
+{"t": 1794780651515, "cmd": "wait", "args": ["4"]}
+{"t": 1794780655778, "cmd": "shot", "args": ["obj4"]}
+{"t": 1794780656203, "cmd": "state", "args": []}
+{"t": 1794780656430, "cmd": "events", "args": ["4"]}
+{"t": 1794780668477, "cmd": "note", "args": ["--shot", "nation_no_name", "Pressing N instantly created a nation with a random name ('Farmshire') - no prompt to name it, no confirmation. As a new player I expected to choose the name. Chronicle lines are truncated with '...' (e.g. 'with Yvonne...')."]}
+{"t": 1794780669108, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780714213, "cmd": "key", "args": ["e"]}
+{"t": 1794780714968, "cmd": "wait", "args": ["1"]}
+{"t": 1794780716093, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780738109, "cmd": "key", "args": ["e"]}
+{"t": 1794780738763, "cmd": "wait", "args": ["1"]}
+{"t": 1794780739972, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780750287, "cmd": "key", "args": ["e"]}
+{"t": 1794780751021, "cmd": "wait", "args": ["1"]}
+{"t": 1794780752350, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780797303, "cmd": "key", "args": ["e"]}
+{"t": 1794780797950, "cmd": "wait", "args": ["1"]}
+{"t": 1794780799209, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780829078, "cmd": "key", "args": ["e"]}
+{"t": 1794780829812, "cmd": "wait", "args": ["1"]}
+{"t": 1794780831050, "cmd": "state", "args": []}
+{"t": 1794780839256, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780856551, "cmd": "key", "args": ["e"]}
+{"t": 1794780857358, "cmd": "wait", "args": ["1"]}
+{"t": 1794780858549, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780918084, "cmd": "key", "args": ["e"]}
+{"t": 1794780918901, "cmd": "wait", "args": ["1"]}
+{"t": 1794780920204, "cmd": "wait", "args": ["3"]}
+{"t": 1794780923462, "cmd": "shot", "args": ["wood50"]}
+{"t": 1794780923927, "cmd": "state", "args": []}
+{"t": 1794780931860, "cmd": "note", "args": ["--shot", "wood_lag", "Objective bar reads 'Wood 47/50' while inventory says Wood 52 and Found Settlement button is already enabled. Objective progress consistently lags inventory by several seconds (also 0/10 vs 5 earlier, 36/50 vs 41). Tip 'Gather stone' has been stuck for the entire session since objectives never ask for stone."]}
+{"t": 1794780932434, "cmd": "key", "args": ["f"]}
+{"t": 1794780933204, "cmd": "wait", "args": ["4"]}
+{"t": 1794780937435, "cmd": "shot", "args": ["settle"]}
+{"t": 1794780938073, "cmd": "state", "args": []}
+{"t": 1794780938328, "cmd": "events", "args": ["5"]}
+{"t": 1794780943495, "cmd": "face", "args": ["-101"]}
+{"t": 1794780951885, "cmd": "hold", "args": ["w", "2"]}
+{"t": 1794780954113, "cmd": "key", "args": ["f"]}
+{"t": 1794780954746, "cmd": "wait", "args": ["4"]}
+{"t": 1794780958960, "cmd": "shot", "args": ["settle2"]}
+{"t": 1794780959511, "cmd": "state", "args": []}
+{"t": 1794780959688, "cmd": "events", "args": ["4"]}
+{"t": 1794780965956, "cmd": "face", "args": ["-152"]}
+{"t": 1794780977685, "cmd": "state", "args": []}
+{"t": 1794780977844, "cmd": "hold", "args": ["w", "4"]}
+{"t": 1794780982186, "cmd": "key", "args": ["f"]}
+{"t": 1794780982894, "cmd": "wait", "args": ["4"]}
+{"t": 1794780987081, "cmd": "shot", "args": ["settle3"]}
+{"t": 1794780987442, "cmd": "state", "args": []}
+{"t": 1794780997287, "cmd": "hold", "args": ["w", "4"]}
+{"t": 1794781001576, "cmd": "key", "args": ["f"]}
+{"t": 1794781002260, "cmd": "wait", "args": ["4"]}
+{"t": 1794781006451, "cmd": "shot", "args": ["settle4"]}
+{"t": 1794781006880, "cmd": "state", "args": []}
+{"t": 1794781007050, "cmd": "events", "args": ["4"]}
+{"t": 1794781019727, "cmd": "note", "args": ["--shot", "founded", "Founding took 3 tries: the 'too close' message gives directions (north-west / north) but the only orientation aid on screen is the 'Facing:' text - no compass or map - so following 'about 10 paces to the north-west' is guesswork. Once founded, the settlement's floating name label is hidden behind the status toast and my character is inside the well model (not visible)."]}
+{"t": 1794781020128, "cmd": "key", "args": ["e"]}
+{"t": 1794781020796, "cmd": "wait", "args": ["4"]}
+{"t": 1794781025013, "cmd": "shot", "args": ["inside"]}
+{"t": 1794781025488, "cmd": "state", "args": []}
+{"t": 1794781025673, "cmd": "events", "args": ["4"]}
+{"t": 1794781035602, "cmd": "note", "args": ["--shot", "settle_screen", "Settlement screen: 'Residents: 1 of 8 (0 here now). You are inside it.' contradicts itself. The 'Give to: you / Give' control dominates the screen with no context for a brand-new player (why would I give away my first camp?). World label '0 here, 1/8 residents' bleeds through behind the title. No hint of what to do next here (next building needs 25 wood + 10 stone, but nothing points me to K)."]}
+{"t": 1794781035834, "cmd": "wait", "args": ["3"]}
+{"t": 1794781038973, "cmd": "events", "args": ["3"]}
+{"t": 1794781039133, "cmd": "state", "args": []}
+{"t": 1794781043087, "cmd": "click", "args": ["375", "435"]}
+{"t": 1794781044026, "cmd": "wait", "args": ["4"]}
+{"t": 1794781048222, "cmd": "shot", "args": ["exited"]}
+{"t": 1794781048784, "cmd": "events", "args": ["4"]}
+{"t": 1794781049021, "cmd": "state", "args": []}
+{"t": 1794781054252, "cmd": "wait", "args": ["5"]}
+{"t": 1794781059395, "cmd": "events", "args": ["4"]}
+{"t": 1794781059613, "cmd": "state", "args": []}
+{"t": 1794781059740, "cmd": "shot", "args": ["exited2"]}
+{"t": 1794781065032, "cmd": "status", "args": []}
+{"t": 1794781065109, "cmd": "state", "args": []}
+{"t": 1794781069627, "cmd": "wait", "args": ["8"]}
+{"t": 1794781077895, "cmd": "state", "args": []}
+{"t": 1794781083929, "cmd": "note", "args": ["--shot", "enter_obj_not_done", "Objective 5 'Enter your settlement' did NOT complete after I pressed E, got the CAMP OF FARMSHIRE screen ('Entered settlement.' status, tick 4540), and exited via 'Exit Settlement'. 300 ticks later the objective panel still says 'Enter your settlement'."]}
+{"t": 1794781084382, "cmd": "key", "args": ["e"]}
+{"t": 1794781085082, "cmd": "wait", "args": ["3"]}
+{"t": 1794781088325, "cmd": "shot", "args": ["inside2"]}
+{"t": 1794781088809, "cmd": "state", "args": []}
+{"t": 1794781089010, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781089797, "cmd": "wait", "args": ["5"]}
+{"t": 1794781094963, "cmd": "state", "args": []}
+{"t": 1794781095060, "cmd": "events", "args": ["5"]}
+{"t": 1794781101741, "cmd": "walkto", "args": ["rock", "90"]}
+{"t": 1794781194570, "cmd": "key", "args": ["e"]}
+{"t": 1794781195362, "cmd": "wait", "args": ["2"]}
+{"t": 1794781197712, "cmd": "shot", "args": ["rock1"]}
+{"t": 1794781198330, "cmd": "state", "args": []}
+{"t": 1794781202726, "cmd": "status", "args": []}
+{"t": 1794781203144, "cmd": "state", "args": []}
+{"t": 1794781208626, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1794781212045, "cmd": "state", "args": []}
+{"t": 1794781212190, "cmd": "hold", "args": ["s", "3"]}
+{"t": 1794781215546, "cmd": "state", "args": []}
+{"t": 1794781215759, "cmd": "shot", "args": ["stuck"]}
+{"t": 1794781224803, "cmd": "walkto", "args": ["rock", "120"]}
+{"t": 1794781280051, "cmd": "state", "args": []}
+{"t": 1794781285256, "cmd": "key", "args": ["e"]}
+{"t": 1794781286019, "cmd": "wait", "args": ["2"]}
+{"t": 1794781288294, "cmd": "shot", "args": ["rock1"]}
+{"t": 1794781288842, "cmd": "state", "args": []}
+{"t": 1794781302631, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1794781325100, "cmd": "key", "args": ["e"]}
+{"t": 1794781325876, "cmd": "wait", "args": ["1"]}
+{"t": 1794781327011, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1794781338698, "cmd": "key", "args": ["e"]}
+{"t": 1794781339388, "cmd": "wait", "args": ["1"]}
+{"t": 1794781340683, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1794781359256, "cmd": "key", "args": ["e"]}
+{"t": 1794781359881, "cmd": "wait", "args": ["1"]}
+{"t": 1794781362484, "cmd": "walkto", "args": ["tree", "90"]}
+{"t": 1794781397616, "cmd": "key", "args": ["e"]}
+{"t": 1794781398280, "cmd": "wait", "args": ["1"]}
+{"t": 1794781399540, "cmd": "state", "args": []}
+{"t": 1794781404304, "cmd": "key", "args": ["h"]}
+{"t": 1794781404972, "cmd": "wait", "args": ["3"]}
+{"t": 1794781408219, "cmd": "shot", "args": ["home"]}
+{"t": 1794781409081, "cmd": "state", "args": []}
+{"t": 1794781412978, "cmd": "key", "args": ["b"]}
+{"t": 1794781413740, "cmd": "wait", "args": ["3"]}
+{"t": 1794781417006, "cmd": "shot", "args": ["stall_outside"]}
+{"t": 1794781417605, "cmd": "state", "args": []}
+{"t": 1794781422888, "cmd": "key", "args": ["e"]}
+{"t": 1794781423515, "cmd": "wait", "args": ["2"]}
+{"t": 1794781425701, "cmd": "key", "args": ["b"]}
+{"t": 1794781426428, "cmd": "wait", "args": ["3"]}
+{"t": 1794781429581, "cmd": "shot", "args": ["stall_inside"]}
+{"t": 1794781430105, "cmd": "state", "args": []}
+{"t": 1794781430323, "cmd": "events", "args": ["4"]}
+{"t": 1794781437880, "cmd": "key", "args": ["b"]}
+{"t": 1794781438386, "cmd": "wait", "args": ["3"]}
+{"t": 1794781441579, "cmd": "state", "args": []}
+{"t": 1794781441728, "cmd": "click", "args": ["583", "435"]}
+{"t": 1794781442552, "cmd": "wait", "args": ["2"]}
+{"t": 1794781444728, "cmd": "key", "args": ["b"]}
+{"t": 1794781445291, "cmd": "wait", "args": ["3"]}
+{"t": 1794781448439, "cmd": "shot", "args": ["stall_b"]}
+{"t": 1794781449455, "cmd": "state", "args": []}
+{"t": 1794781449588, "cmd": "events", "args": ["4"]}
+{"t": 1794781456963, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781457464, "cmd": "wait", "args": ["3"]}
+{"t": 1794781460587, "cmd": "state", "args": []}
+{"t": 1794781460712, "cmd": "key", "args": ["b"]}
+{"t": 1794781461287, "cmd": "wait", "args": ["3"]}
+{"t": 1794781464414, "cmd": "shot", "args": ["stall_b2"]}
+{"t": 1794781464781, "cmd": "state", "args": []}
+{"t": 1794781469419, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781470105, "cmd": "wait", "args": ["3"]}
+{"t": 1794781473245, "cmd": "state", "args": []}
+{"t": 1794781473350, "cmd": "key", "args": ["b"]}
+{"t": 1794781473944, "cmd": "wait", "args": ["4"]}
+{"t": 1794781478066, "cmd": "shot", "args": ["stall_b3"]}
+{"t": 1794781478326, "cmd": "state", "args": []}
+{"t": 1794781478405, "cmd": "events", "args": ["5"]}
+{"t": 1794781486014, "cmd": "note", "args": ["--shot", "stall_flow", "Building the stall was confusing: objective says 'press B inside your settlement'. Pressing E opens the CAMP OF FARMSHIRE panel, but B does nothing there (pressed twice, no message). Only after clicking 'Back' (not 'Exit Settlement') does the in-settlement HUD appear with Build Stall etc., and B works. 'Back' vs 'Exit Settlement' meaning is unclear. In this HUD the Tip 5 popup overlaps the Inventory panel, and the screen is crowded with 13 buttons."]}
+{"t": 1794781504104, "cmd": "wait", "args": ["4"]}
+{"t": 1794781508177, "cmd": "state", "args": []}
+{"t": 1794781508276, "cmd": "events", "args": ["3"]}
+{"t": 1794781533346, "cmd": "click", "args": ["338", "341"]}
+{"t": 1794781534455, "cmd": "wait", "args": ["1"]}
+{"t": 1794781535697, "cmd": "key", "args": ["k"]}
+{"t": 1794781536496, "cmd": "wait", "args": ["3"]}
+{"t": 1794781539763, "cmd": "shot", "args": ["k1"]}
+{"t": 1794781540565, "cmd": "state", "args": []}
+{"t": 1794781540743, "cmd": "key", "args": ["k"]}
+{"t": 1794781541321, "cmd": "wait", "args": ["3"]}
+{"t": 1794781544599, "cmd": "shot", "args": ["k2"]}
+{"t": 1794781545199, "cmd": "state", "args": []}
+{"t": 1794781559134, "cmd": "note", "args": ["--shot", "obj7_clipped", "Objective 7 progress bar label is clipped on the left: reads 'mbers 2/10 • Buildings 0/2' (Members cut off). Also still 'Buildings 0/2' right after 'Farm built.' (lag). Goal needs 10 members but the camp only holds 8 residents (Residents 2/8) - unclear how a player reaches 10. 'Send Caravan (Village era)' button looks enabled though era-locked. Inventory panel floats mid-screen in the settlement HUD."]}
+{"t": 1794781559599, "cmd": "click", "args": ["105", "57"]}
+{"t": 1794781560460, "cmd": "wait", "args": ["3"]}
+{"t": 1794781563566, "cmd": "shot", "args": ["era"]}
+{"t": 1794781569434, "cmd": "wait", "args": ["2"]}
+{"t": 1794781571677, "cmd": "shot", "args": ["era2"]}
+{"t": 1794781586534, "cmd": "click", "args": ["105", "57"]}
+{"t": 1794781587449, "cmd": "state", "args": []}
+{"t": 1794781587538, "cmd": "walkto", "args": ["pawn", "90"]}
+{"t": 1794781619876, "cmd": "key", "args": ["r"]}
+{"t": 1794781620755, "cmd": "wait", "args": ["3"]}
+{"t": 1794781623934, "cmd": "shot", "args": ["invite"]}
+{"t": 1794781624308, "cmd": "state", "args": []}
+{"t": 1794781628884, "cmd": "key", "args": ["e"]}
+{"t": 1794781629488, "cmd": "wait", "args": ["3"]}
+{"t": 1794781632595, "cmd": "shot", "args": ["talk"]}
+{"t": 1794781633045, "cmd": "state", "args": []}
+{"t": 1794781643102, "cmd": "note", "args": ["--shot", "e_exits_not_talk", "Standing next to my member Eve Wood inside my settlement, pressing E (the 'talk' key) exited the settlement instead of talking to her. Once outside, the button says 'Talk to Eve Wood (Stranger)' although R said 'Eve Wood is already a member of Farmshire' - a member labelled Stranger is confusing."]}
+{"t": 1794781643563, "cmd": "click", "args": ["162", "444"]}
+{"t": 1794781644387, "cmd": "wait", "args": ["3"]}
+{"t": 1794781647573, "cmd": "shot", "args": ["talk2"]}
+{"t": 1794781647903, "cmd": "state", "args": []}
+{"t": 1794781650774, "cmd": "wait", "args": ["2"]}
+{"t": 1794781652961, "cmd": "shot", "args": ["talk3"]}
+{"t": 1794781653364, "cmd": "state", "args": []}
+{"t": 1794781661306, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781661930, "cmd": "wait", "args": ["2"]}
+{"t": 1794781664107, "cmd": "shot", "args": ["pause"]}
+{"t": 1794781664496, "cmd": "state", "args": []}
+{"t": 1794781672457, "cmd": "note", "args": ["--shot", "pause_label", "Pause menu is clear and shows 'Autosaved: Day 1 - Farmshire, 15:20.' (nice). But the settlement's giant floating label '1 here, 2/8 residents' is drawn huge across the top of every screen while near home, even behind PAUSED, and was never readable as a name."]}
+{"t": 1794781672738, "cmd": "events", "args": ["200"]}
+{"t": 1794781672873, "cmd": "status", "args": []}
+{"t": 1794781673012, "cmd": "stop", "args": []}
+{"t": 1794781711351, "cmd": "report", "args": []}
+{"t": 1794782465288, "cmd": "stop", "args": []}

@@ -1,0 +1,53 @@
+{"type":"screen","tick":0,"wallTimeMs":1794780356840,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794780367623,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780394009,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794780418415,"how":"created","slot":"world-1450162717-20261115-220658","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1794780418418,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":428,"wallTimeMs":1794780469931,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":448,"wallTimeMs":1794780472690,"text":"No entities within range to interact with."}
+{"type":"status","tick":460,"wallTimeMs":1794780474400,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":664,"wallTimeMs":1794780498246,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":680,"wallTimeMs":1794780499952,"text":"No entities within range to interact with."}
+{"type":"status","tick":696,"wallTimeMs":1794780501799,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":712,"wallTimeMs":1794780503643,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":728,"wallTimeMs":1794780505392,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":744,"wallTimeMs":1794780507114,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":952,"wallTimeMs":1794780527830,"kind":"NationCreation","text":"Isabella Wood raised a banner and called it Westville. It is the first nation this world has known."}
+{"type":"chronicle","tick":1000,"wallTimeMs":1794780532790,"kind":"SettlementFounded","text":"Isabella Wood laid the first stones of Westville."}
+{"type":"status","tick":1096,"wallTimeMs":1794780549518,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":1100,"wallTimeMs":1794780549932,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1100}
+{"type":"status","tick":1100,"wallTimeMs":1794780549932,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"status","tick":1116,"wallTimeMs":1794780551436,"text":"No entities within range to interact with."}
+{"type":"status","tick":1136,"wallTimeMs":1794780553324,"text":"No entities within range to interact with. (x2)"}
+{"type":"objective_completed","tick":1152,"wallTimeMs":1794780554948,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1152,"wallTimeMs":1794780554948,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"status","tick":1220,"wallTimeMs":1794780561997,"text":"Created nation Westernshire."}
+{"type":"chronicle","tick":1220,"wallTimeMs":1794780561997,"kind":"NationCreation","text":"You founded the nation of Westernshire."}
+{"type":"objective_completed","tick":1252,"wallTimeMs":1794780567002,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":100}
+{"type":"status","tick":1252,"wallTimeMs":1794780567002,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":1328,"wallTimeMs":1794780574830,"text":"Not enough wood. Need 40 more."}
+{"type":"screen","tick":1428,"wallTimeMs":1794780584133,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":1428,"wallTimeMs":1794780598102,"count":1}
+{"type":"status","tick":1428,"wallTimeMs":1794780598102,"text":"Game saved."}
+{"type":"screen","tick":1428,"wallTimeMs":1794780607995,"from":"PAUSE","to":"SHARE"}
+{"type":"world","tick":1428,"wallTimeMs":1794780633213,"how":"loaded","slot":"world-1450162717-20261115-220658","seed":1450162717}
+{"type":"screen","tick":1432,"wallTimeMs":1794780634039,"from":null,"to":"WORLD"}
+{"type":"chronicle","tick":1452,"wallTimeMs":1794780636135,"kind":"NationCreation","text":"The nation of Blueshire was born, with Peggy Smith at its head."}
+{"type":"chronicle","tick":1452,"wallTimeMs":1794780636135,"kind":"NationCreation","text":"Ruth Wilson founded the nation of Hamletton."}
+{"type":"chronicle","tick":1752,"wallTimeMs":1794780665624,"kind":"NationCreation","text":"Dave Watson declared the nation of Yellowfield, though none had yet sworn to it."}
+{"type":"screen","tick":1832,"wallTimeMs":1794780676029,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":1832,"wallTimeMs":1794780677724,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":1832,"wallTimeMs":1794780677724,"count":1}
+{"type":"status","tick":1832,"wallTimeMs":1794780677724,"text":"Game saved."}
+{"type":"screen","tick":1832,"wallTimeMs":1794780689726,"from":"MAIN_MENU","to":"LOAD"}
+{"type":"screen","tick":1832,"wallTimeMs":1794780700648,"from":"LOAD","to":"MAIN_MENU"}
+{"type":"screen","tick":1832,"wallTimeMs":1794780703507,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794780759720,"how":"created","slot":"world-1450162717-20261115-221239","seed":1450162717}
+{"type":"screen","tick":0,"wallTimeMs":1794780759720,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":125,"wallTimeMs":1794780786162,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":125,"wallTimeMs":1794780795031,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":125,"wallTimeMs":1794780795031,"count":2}
+{"type":"status","tick":125,"wallTimeMs":1794780795031,"text":"Game saved."}
+{"type":"screen","tick":125,"wallTimeMs":1794780811299,"from":"MAIN_MENU","to":"LOAD"}
+{"type":"world","tick":1832,"wallTimeMs":1794780826281,"how":"loaded","slot":"world-1450162717-20261115-220658","seed":1450162717}
+{"type":"screen","tick":1832,"wallTimeMs":1794780826281,"from":"LOAD","to":"WORLD"}

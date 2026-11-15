@@ -1,0 +1,96 @@
+{
+  "session": "s05",
+  "goal": "Trade: use the Trade at Market panel to buy and sell with quantities (check the profit/loss lines and receipts), appoint a Trader from your nation and watch whether traders actually carry goods between markets, build a Storehouse and send a caravan. Judge whether selling pays and whether prices make sense over time.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 105,
+  "durationSec": 1420,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Market tills are far too small for the prices: a 100-coin till buys about 1 wood at 64",
+      "detail": "At the Village of Westernville the market showed 'Wood 66/63' while its stalls held 100 coins. I carried 56 wood (about 3,500 coins of value on paper), sold 1 for 64, and the panel then said 'No till here can pay for one.' Later the till fell to 13 coins. Selling therefore barely pays: across the whole visit the panel reported 'spent 178, took 186, net +8'. The prices tell the player that gathering is lucrative, but in practice nothing can be sold in volume. Expected either tills scaled to the prices or prices that fall as the till empties. My own new stall had a 0-coin till, so it could not buy anything either.",
+      "repro": "pt start --profile beyond-nations --seed 105; chop ~14 trees; N; walk to the settlement 131m away; E; Escape; click Trade at Market; select Wood; Sell",
+      "screenshot": "shots/till_dry.png",
+      "tick": 5320
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Storehouse and caravan are locked behind the Village era (day 2), out of reach in a session",
+      "detail": "In Camp era the Send Caravan (Village era) button is lit. Clicking it gives a clear message: 'This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Village era.' The Village era needs day 2, 10 members and 2 buildings. At the 7-20 tps this machine ran, that is well over an hour of wall time, so the goal's Storehouse and caravan steps could not be tested. The button should probably look disabled until it can be used.",
+      "repro": "found a settlement; E to enter; Escape; click Send Caravan (Village era)",
+      "screenshot": "shots/caravan.png",
+      "tick": 8444
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Market panel rows move under the cursor while it is open, so clicks hit the wrong good",
+      "detail": "Between two frames the good list grew (Bricks, Axes and Pickaxes appeared) and the quantity and buy/sell rows moved down. My click on Wood, then All, landed on Saplings. One later click meant for 'All' sold 1 wood instead. At 2 fps a layout that reflows while it is open is hard to hit.",
+      "repro": "open Trade at Market at Westernville; click Wood (y~137) and then All quickly",
+      "screenshot": "shots/list_shift.png",
+      "tick": 5136
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Sell button total doesn't hold: 'Sell 6 for 178' sold 5 for 122",
+      "detail": "I bought 6 apples for 178 (the price climbed 28 to 33 as I bought, a nice touch). The sell button then read 'Sell 6 for 178', exactly what I had paid. Clicking it sold 5 for 122, and the top status still said 'Bought 6...'. The receipt line was right, and so was 'This visit: spent 178, took 186, net +8'. But the price and the till amount drifted between the preview and the click, and nothing warned about it. Apples swung 34/33 to 21/21 (zero spread) within about one game-minute.",
+      "repro": "Trade at Market at Westernville; Apples; +5; Buy; then Sell",
+      "screenshot": "shots/sell6b.png",
+      "tick": 5784
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Market panel overflows the 540px window, and Escape doesn't close it",
+      "detail": "With the full good list, the receipt and visit-total lines and the Close button fall below the bottom edge (only a sliver of Close shows at y~535). Escape opens the pause menu instead of closing the panel. While the panel is open, W and Shift+W do nothing: I held them for 25s and did not move. The only way out was to click the sliver of Close.",
+      "repro": "open Trade at Market at Westernville after a couple of trades; press Escape; hold w",
+      "screenshot": "shots/stuck.png",
+      "tick": 6412
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Couldn't appoint a Trader: there is no clear path to a serf member in the time available",
+      "detail": "Appoint Trader needs a serf member who has a home settlement. In 23 minutes I founded a nation and a settlement and built a stall (members 1/10), but recruiting pawns was too slow at 2 fps. Pawns in other nations offer no trade-related option. Nothing on screen shows traders at work (no events and no HUD lines about trader runs), so I couldn't tell whether traders carry goods between markets. The panel's 'Best price in reach: 44 at the Camp of Townfield' and 'Buy here, sell there: +15 a unit' lines are the only hint of trader logic.",
+      "repro": "full session as above; walk to a nearby pawn and talk to it",
+      "screenshot": "shots/talk.png",
+      "tick": 11312
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective 7 progress text is clipped on the left, and the floating settlement nameplate overlaps the HUD",
+      "detail": "The progress bar reads 'nbers 1/10 • Buildings 0/2' (Members cut off). The large in-world nameplate ('Village of Westernville / 3 here, 4/8 residents') draws over the top HUD and over the settlement screen's own title.",
+      "repro": "build the first stall in your settlement; look at the Objective 7 box",
+      "screenshot": "shots/stall_built.png",
+      "tick": 10072
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Building the first market stall turned two neighbours Rival (-20) in the same tick",
+      "detail": "Right after B, the status said 'Easttown resents your border: relations are now Rival (-20). Uppershire resents your border...'. The cause was the border rather than the stall, but the land was so crowded that founding took four tries at moving east. Each try was refused as too close to a new NPC village founded meanwhile: 'Open ground lies about 430 / 150 / 241 / 120 / 50 paces...'.",
+      "repro": "press F repeatedly while walking east from Westernville",
+      "screenshot": "shots/stall_built.png",
+      "tick": 10000
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 24.0, "Eat something": 25.04, "Create or join a nation": 30.0, "Found a settlement": 154.0, "Enter your settlement": 157.04, "Build a market stall": 200.0},
+    "netCoinsFromMarketVisit": 8,
+    "woodSoldBeforeTillEmpty": 1,
+    "westernvilleTillCoinsAtArrival": 100,
+    "appleRoundTripLoss": 56,
+    "tradersAppointed": 0,
+    "caravansSent": 0,
+    "typicalTps": 10
+  },
+  "fun": 3,
+  "verdict": "The Trade at Market panel itself is good: picking quantities, prices that rise as you buy, receipts, a running 'spent/took/net' line, and 'best price in reach / buy here sell there' hints. The economy behind it doesn't hold up, though: tills of 0-100 coins against goods priced 60+ mean selling barely pays, and prices swing to a zero spread within a minute. Traders, the Storehouse and caravans are gated behind members and the Village era, so a playtest session can't reach them, and nothing on screen shows traders moving goods."
+}

@@ -1,0 +1,249 @@
+{"type":"screen","tick":0,"wallTimeMs":1794780358226,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794780367614,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780370624,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794780402556,"how":"created","slot":"world-107-20261115-220642","seed":107}
+{"type":"screen","tick":0,"wallTimeMs":1794780402559,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":304,"wallTimeMs":1794780434992,"text":"Created nation Easternton."}
+{"type":"chronicle","tick":304,"wallTimeMs":1794780434992,"kind":"NationCreation","text":"You raised a banner and named your people Easternton. It is the first nation this world has known."}
+{"type":"status","tick":864,"wallTimeMs":1794780499664,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":888,"wallTimeMs":1794780502406,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":1200,"wallTimeMs":1794780531136,"kind":"NationCreation","text":"The nation of Southernwood was born, with Yvonne Brown at its head."}
+{"type":"status","tick":1364,"wallTimeMs":1794780555002,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":1380,"wallTimeMs":1794780556974,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":1400,"wallTimeMs":1794780559211,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1400}
+{"type":"status","tick":1400,"wallTimeMs":1794780559211,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1452,"wallTimeMs":1794780567450,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":1452,"wallTimeMs":1794780567450,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":1500,"wallTimeMs":1794780573204,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":48}
+{"type":"status","tick":1500,"wallTimeMs":1794780573204,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":1500,"wallTimeMs":1794780573204,"kind":"SettlementFounded","text":"Yvonne Brown laid the first stones of Southernwood."}
+{"type":"status","tick":1716,"wallTimeMs":1794780597133,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":1736,"wallTimeMs":1794780599544,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":1952,"wallTimeMs":1794780626806,"kind":"NationCreation","text":"The nation of Southville was born, with Grace Smith at its head."}
+{"type":"status","tick":1984,"wallTimeMs":1794780630717,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":2000,"wallTimeMs":1794780632946,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":2152,"wallTimeMs":1794780652258,"kind":"NationCreation","text":"Samantha Walker raised a banner and called it Hamletfield."}
+{"type":"status","tick":2236,"wallTimeMs":1794780662240,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2252,"wallTimeMs":1794780664011,"kind":"NationCreation","text":"The nation of Smallville was born, with Linda Wood at its head."}
+{"type":"chronicle","tick":2252,"wallTimeMs":1794780664011,"kind":"NationCreation","text":"The nation of Lowerwood was born, with Jasmine White at its head."}
+{"type":"status","tick":2256,"wallTimeMs":1794780664393,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":2300,"wallTimeMs":1794780670465,"kind":"NationCreation","text":"The nation of Whiteville was born, with Mia White at its head."}
+{"type":"status","tick":2520,"wallTimeMs":1794780699743,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":2532,"wallTimeMs":1794780701324,"text":"No entities within range to interact with."}
+{"type":"status","tick":2620,"wallTimeMs":1794780716946,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":2628,"wallTimeMs":1794780718101,"text":"No entities within range to interact with."}
+{"type":"status","tick":2740,"wallTimeMs":1794780736153,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2752,"wallTimeMs":1794780737418,"kind":"SettlementFounded","text":"Jasmine White laid the first stones of Lowerwood."}
+{"type":"status","tick":2760,"wallTimeMs":1794780738254,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":2880,"wallTimeMs":1794780756310,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":2892,"wallTimeMs":1794780758564,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":2900,"wallTimeMs":1794780760170,"kind":"NationCreation","text":"Bob Thomas raised a banner and called it Northernfield."}
+{"type":"chronicle","tick":2900,"wallTimeMs":1794780760170,"kind":"SettlementFounded","text":"Hamletfield put down roots: Samantha Walker founded its first settlement."}
+{"type":"chronicle","tick":2952,"wallTimeMs":1794780775979,"kind":"SettlementFounded","text":"Grace Smith laid the first stones of Southville."}
+{"type":"status","tick":3032,"wallTimeMs":1794780793322,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":3080,"wallTimeMs":1794780802190,"text":"You are back on your own land."}
+{"type":"chronicle","tick":3080,"wallTimeMs":1794780802190,"kind":"SettlementFounded","text":"Easternton put down roots: you founded its first settlement."}
+{"type":"objective_completed","tick":3100,"wallTimeMs":1794780804581,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":1600}
+{"type":"status","tick":3100,"wallTimeMs":1794780804581,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":3100,"wallTimeMs":1794780804581,"kind":"NationJoin","text":"Mia Johnson swore fealty to Easternton."}
+{"type":"screen","tick":3168,"wallTimeMs":1794780817698,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":3168,"wallTimeMs":1794780817698,"text":"Entered settlement."}
+{"type":"status","tick":3168,"wallTimeMs":1794780845565,"text":"The Camp of Easternton is now held by Mia Johnson."}
+{"type":"status","tick":3168,"wallTimeMs":1794780858286,"text":"You took back the Camp of Easternton."}
+{"type":"screen","tick":3168,"wallTimeMs":1794780872076,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":3168,"wallTimeMs":1794780872076,"text":"Exited settlement."}
+{"type":"chronicle","tick":3200,"wallTimeMs":1794780878042,"kind":"SettlementFounded","text":"Bob Thomas raised the first settlement of Northernfield."}
+{"type":"chronicle","tick":3252,"wallTimeMs":1794780884941,"kind":"NationCreation","text":"Victor Williams declared the nation of Newton, though none had yet sworn to it."}
+{"type":"chronicle","tick":3352,"wallTimeMs":1794780898612,"kind":"NationCreation","text":"Victor Evans founded the nation of Greenfield."}
+{"type":"chronicle","tick":3352,"wallTimeMs":1794780898612,"kind":"NationCreation","text":"Linda Watson founded the nation of Northton."}
+{"type":"chronicle","tick":3452,"wallTimeMs":1794780917039,"kind":"NationCreation","text":"The nation of Farmwood was born, with Oscar Evans at its head."}
+{"type":"status","tick":3632,"wallTimeMs":1794780943155,"text":"No entities within range to interact with."}
+{"type":"screen","tick":3684,"wallTimeMs":1794780950134,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":3688,"wallTimeMs":1794780957710,"from":"PAUSE","to":"WORLD"}
+{"type":"chronicle","tick":3700,"wallTimeMs":1794780960571,"kind":"NationCreation","text":"Phoebe Roberts founded the nation of Bigville."}
+{"type":"chronicle","tick":3700,"wallTimeMs":1794780960571,"kind":"NationCreation","text":"Abigail Wood raised a banner and called it Southernland."}
+{"type":"screen","tick":3764,"wallTimeMs":1794780970928,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":3764,"wallTimeMs":1794780970928,"text":"Entered settlement."}
+{"type":"screen","tick":3768,"wallTimeMs":1794780985575,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"objective_completed","tick":3800,"wallTimeMs":1794780990036,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":700}
+{"type":"status","tick":3800,"wallTimeMs":1794780990036,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":3800,"wallTimeMs":1794780990036,"kind":"SettlementFounded","text":"Victor Williams raised the first settlement of Newton."}
+{"type":"chronicle","tick":3800,"wallTimeMs":1794780990036,"kind":"SettlementFounded","text":"Oscar Evans laid the first stones of Farmwood."}
+{"type":"chronicle","tick":3952,"wallTimeMs":1794781008975,"kind":"SettlementFounded","text":"Whiteville put down roots: Mia White founded its first settlement."}
+{"type":"chronicle","tick":4052,"wallTimeMs":1794781021099,"kind":"SettlementFounded","text":"Victor Evans raised the first settlement of Greenfield."}
+{"type":"chronicle","tick":4200,"wallTimeMs":1794781042616,"kind":"SettlementFounded","text":"Abigail Wood raised the first settlement of Southernland."}
+{"type":"chronicle","tick":4300,"wallTimeMs":1794781055274,"kind":"StallBuilt","text":"Yvonne Brown built a market stall in Southernwood."}
+{"type":"chronicle","tick":4352,"wallTimeMs":1794781066083,"kind":"StallBuilt","text":"Trade came to Newton: Victor Williams built a stall."}
+{"type":"status","tick":4452,"wallTimeMs":1794781078108,"text":"Exited settlement."}
+{"type":"chronicle","tick":4452,"wallTimeMs":1794781078108,"kind":"StallBuilt","text":"Trade came to Farmwood: Oscar Evans built a stall."}
+{"type":"screen","tick":4468,"wallTimeMs":1794781080110,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":4468,"wallTimeMs":1794781080110,"text":"Entered settlement."}
+{"type":"screen","tick":4468,"wallTimeMs":1794781113168,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":4468,"wallTimeMs":1794781113168,"text":"Exited settlement."}
+{"type":"chronicle","tick":4600,"wallTimeMs":1794781126380,"kind":"StallBuilt","text":"Trade came to Southville: Grace Smith built a stall."}
+{"type":"status","tick":4640,"wallTimeMs":1794781130197,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":4656,"wallTimeMs":1794781131623,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":4680,"wallTimeMs":1794781133799,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":4752,"wallTimeMs":1794781143320,"kind":"SettlementFounded","text":"Linda Watson laid the first stones of Northton."}
+{"type":"status","tick":4804,"wallTimeMs":1794781151779,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":4820,"wallTimeMs":1794781154481,"text":"No entities within range to interact with."}
+{"type":"status","tick":4896,"wallTimeMs":1794781168759,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":4900,"wallTimeMs":1794781169421,"kind":"StallBuilt","text":"Trade came to Hamletfield: Samantha Walker built a stall."}
+{"type":"chronicle","tick":4900,"wallTimeMs":1794781169421,"kind":"NationCreation","text":"The nation of Blackburg was born, with Ella Thompson at its head."}
+{"type":"status","tick":4908,"wallTimeMs":1794781171015,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":4924,"wallTimeMs":1794781174350,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":4932,"wallTimeMs":1794781176016,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":4952,"wallTimeMs":1794781179845,"kind":"StallBuilt","text":"Trade came to Whiteville: Mia White built a stall."}
+{"type":"chronicle","tick":4952,"wallTimeMs":1794781179845,"kind":"NationCreation","text":"Phoebe Watson raised a banner and called it Blueburg."}
+{"type":"chronicle","tick":5000,"wallTimeMs":1794781188512,"kind":"NationRelationChange","text":"Southernwood and Lowerwood have become rivals over their border."}
+{"type":"chronicle","tick":5052,"wallTimeMs":1794781195831,"kind":"SettlementFounded","text":"Linda Wood raised the first settlement of Smallville."}
+{"type":"status","tick":5076,"wallTimeMs":1794781199369,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":5096,"wallTimeMs":1794781202264,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":5100,"wallTimeMs":1794781203040,"kind":"SettlementFounded","text":"Bigville put down roots: Phoebe Roberts founded its first settlement."}
+{"type":"chronicle","tick":5152,"wallTimeMs":1794781209877,"kind":"NationCreation","text":"Zach Smith declared the nation of Whiteford, though none had yet sworn to it."}
+{"type":"chronicle","tick":5152,"wallTimeMs":1794781209877,"kind":"SettlementFounded","text":"Phoebe Watson raised the first settlement of Blueburg."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1794781216486,"kind":"StallBuilt","text":"Trade came to Southernland: Abigail Wood built a stall."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1794781216486,"kind":"StallBuilt","text":"Trade came to Newton: Victor Williams built a stall."}
+{"type":"status","tick":5216,"wallTimeMs":1794781218664,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":5232,"wallTimeMs":1794781220767,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":5252,"wallTimeMs":1794781223907,"kind":"NationRelationChange","text":"Southernwood and Hamletfield have become rivals over their border."}
+{"type":"status","tick":5400,"wallTimeMs":1794781245127,"text":"You leave the land of Easternton for the wilds."}
+{"type":"chronicle","tick":5400,"wallTimeMs":1794781245127,"kind":"NationCreation","text":"Victor Wood declared the nation of Southton, though none had yet sworn to it."}
+{"type":"status","tick":5500,"wallTimeMs":1794781258848,"text":"Southville resents your border: relations are now Rival (-20). Lowerwood resents your border: relations are now Rival (-20). Northernfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":5500,"wallTimeMs":1794781258848,"kind":"NationRelationChange","text":"Easternton and Southville have become rivals over their border."}
+{"type":"chronicle","tick":5500,"wallTimeMs":1794781258848,"kind":"NationRelationChange","text":"Easternton and Lowerwood have become rivals over their border."}
+{"type":"chronicle","tick":5500,"wallTimeMs":1794781258848,"kind":"NationRelationChange","text":"Easternton and Northernfield have become rivals over their border."}
+{"type":"chronicle","tick":5552,"wallTimeMs":1794781265179,"kind":"StallBuilt","text":"Trade came to Greenfield: Victor Evans built a stall."}
+{"type":"status","tick":5556,"wallTimeMs":1794781265792,"text":"Your nation may hold only 1 settlement in this era. Reach the next era to found more."}
+{"type":"chronicle","tick":5652,"wallTimeMs":1794781278069,"kind":"StallBuilt","text":"Yvonne Brown built a market stall in Southernwood."}
+{"type":"chronicle","tick":5700,"wallTimeMs":1794781283007,"kind":"SettlementFounded","text":"Zach Smith raised the first settlement of Whiteford."}
+{"type":"chronicle","tick":5800,"wallTimeMs":1794781292260,"kind":"StallBuilt","text":"Grace Smith built a market stall in Southville."}
+{"type":"chronicle","tick":5800,"wallTimeMs":1794781292260,"kind":"StallBuilt","text":"A new stall opened in the market of Newton, built by Victor Williams."}
+{"type":"chronicle","tick":5852,"wallTimeMs":1794781296488,"kind":"NationCreation","text":"Hank Thompson declared the nation of Blackport, though none had yet sworn to it."}
+{"type":"screen","tick":5892,"wallTimeMs":1794781300918,"from":"WORLD","to":"NATIONS"}
+{"type":"status","tick":5892,"wallTimeMs":1794781351624,"text":"Easternton is now called Ashmark."}
+{"type":"screen","tick":5892,"wallTimeMs":1794781370557,"from":"NATIONS","to":"SETTLEMENT"}
+{"type":"status","tick":5892,"wallTimeMs":1794781394272,"text":"The Camp of Ashmark is now held by Mia Johnson."}
+{"type":"screen","tick":5892,"wallTimeMs":1794781405357,"from":"SETTLEMENT","to":"NATIONS"}
+{"type":"screen","tick":5892,"wallTimeMs":1794781420298,"from":"NATIONS","to":"SETTLEMENT"}
+{"type":"status","tick":5892,"wallTimeMs":1794781432689,"text":"The Camp of Ashmark is yours, and stays yours if you hand on the rule."}
+{"type":"status","tick":5892,"wallTimeMs":1794781450556,"text":"You took back the Camp of Ashmark."}
+{"type":"screen","tick":5892,"wallTimeMs":1794781468136,"from":"SETTLEMENT","to":"NATIONS"}
+{"type":"screen","tick":5896,"wallTimeMs":1794781472826,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":5900,"wallTimeMs":1794781473116,"kind":"StallBuilt","text":"A new stall opened in the market of Farmwood, built by Oscar Evans."}
+{"type":"status","tick":5936,"wallTimeMs":1794781477100,"text":"Welcome home!"}
+{"type":"status","tick":5940,"wallTimeMs":1794781477373,"text":"You are back on your own land."}
+{"type":"screen","tick":6000,"wallTimeMs":1794781513205,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"save","tick":6000,"wallTimeMs":1794781513205,"count":1}
+{"type":"status","tick":6000,"wallTimeMs":1794781513205,"text":"Entered settlement."}
+{"type":"chronicle","tick":6000,"wallTimeMs":1794781513205,"kind":"SettlementFounded","text":"Blackport put down roots: Hank Thompson founded its first settlement."}
+{"type":"screen","tick":6004,"wallTimeMs":1794781534122,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":6036,"wallTimeMs":1794781537943,"text":"Stall built."}
+{"type":"chronicle","tick":6036,"wallTimeMs":1794781537943,"kind":"StallBuilt","text":"Trade came to Ashmark: you built a stall."}
+{"type":"objective_completed","tick":6052,"wallTimeMs":1794781539785,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":2252}
+{"type":"status","tick":6052,"wallTimeMs":1794781539785,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":6052,"wallTimeMs":1794781539785,"kind":"StallBuilt","text":"A new stall opened in the market of Southernland, built by Abigail Wood."}
+{"type":"chronicle","tick":6152,"wallTimeMs":1794781552974,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletfield, built by Samantha Walker."}
+{"type":"status","tick":6168,"wallTimeMs":1794781555015,"text":"Stall built."}
+{"type":"chronicle","tick":6168,"wallTimeMs":1794781555015,"kind":"StallBuilt","text":"A new stall opened in the market of Ashmark, built by you."}
+{"type":"status","tick":6252,"wallTimeMs":1794781574751,"text":"Newton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1794781574751,"kind":"SettlementFounded","text":"Ella Thompson laid the first stones of Blackburg."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1794781574751,"kind":"NationRelationChange","text":"Ashmark and Newton have become rivals over their border."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1794781574751,"kind":"NationRelationChange","text":"Southernwood and Farmwood have become rivals over their border."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1794781574751,"kind":"NationRelationChange","text":"Southville and Farmwood have become rivals over their border."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1794781574751,"kind":"NationRelationChange","text":"Lowerwood and Whiteville have become rivals over their border."}
+{"type":"chronicle","tick":6252,"wallTimeMs":1794781574751,"kind":"NationRelationChange","text":"Whiteville and Northernfield have become rivals over their border."}
+{"type":"status","tick":6288,"wallTimeMs":1794781580364,"text":"Collected 52 wood and 15 stone from the stockpile."}
+{"type":"chronicle","tick":6300,"wallTimeMs":1794781582017,"kind":"StallBuilt","text":"A new stall opened in the market of Blueburg, built by Phoebe Watson."}
+{"type":"status","tick":6380,"wallTimeMs":1794781592355,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":6448,"wallTimeMs":1794781600445,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":6496,"wallTimeMs":1794781605787,"text":"Click again to confirm: Build Farm."}
+{"type":"chronicle","tick":6500,"wallTimeMs":1794781606472,"kind":"NationRelationChange","text":"Southernwood and Greenfield have become rivals over their border."}
+{"type":"chronicle","tick":6500,"wallTimeMs":1794781606472,"kind":"NationRelationChange","text":"Hamletfield and Southernland have become rivals over their border."}
+{"type":"chronicle","tick":6500,"wallTimeMs":1794781606472,"kind":"NationRelationChange","text":"Greenfield and Southernland have become rivals over their border."}
+{"type":"status","tick":6572,"wallTimeMs":1794781614026,"text":"Not confirmed in time, so nothing was done."}
+{"type":"status","tick":6644,"wallTimeMs":1794781622510,"text":"Click again to confirm: Build Farm."}
+{"type":"chronicle","tick":6652,"wallTimeMs":1794781623298,"kind":"StallBuilt","text":"A new stall opened in the market of Farmwood, built by Oscar Evans."}
+{"type":"chronicle","tick":6652,"wallTimeMs":1794781623298,"kind":"SettlementFounded","text":"Victor Wood raised the first settlement of Southton."}
+{"type":"chronicle","tick":6652,"wallTimeMs":1794781623298,"kind":"StallBuilt","text":"A new stall opened in the market of Blackport, built by Hank Thompson."}
+{"type":"chronicle","tick":6700,"wallTimeMs":1794781628188,"kind":"StallBuilt","text":"Trade came to Southville: Grace Smith built a stall."}
+{"type":"chronicle","tick":6700,"wallTimeMs":1794781628188,"kind":"StallBuilt","text":"A new stall opened in the market of Southernland, built by Abigail Wood."}
+{"type":"status","tick":6724,"wallTimeMs":1794781630725,"text":"Not confirmed in time, so nothing was done."}
+{"type":"chronicle","tick":6852,"wallTimeMs":1794781642756,"kind":"NationCreation","text":"Phoebe Evans raised a banner and called it Smallford."}
+{"type":"status","tick":6876,"wallTimeMs":1794781645244,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":6888,"wallTimeMs":1794781646443,"text":"Farm built."}
+{"type":"status","tick":7000,"wallTimeMs":1794781657388,"text":"Northton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":7000,"wallTimeMs":1794781657388,"kind":"NationRelationChange","text":"Ashmark and Northton have become rivals over their border."}
+{"type":"chronicle","tick":7100,"wallTimeMs":1794781667188,"kind":"StallBuilt","text":"Trade came to Greenfield: Victor Evans built a stall."}
+{"type":"chronicle","tick":7100,"wallTimeMs":1794781667188,"kind":"StallBuilt","text":"Victor Williams built a market stall in Newton. The market is now full."}
+{"type":"chronicle","tick":7100,"wallTimeMs":1794781667188,"kind":"StallBuilt","text":"A new stall opened in the market of Blueburg, built by Phoebe Watson."}
+{"type":"chronicle","tick":7352,"wallTimeMs":1794781692540,"kind":"StallBuilt","text":"Hank Thompson built a market stall in Blackport."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781702445,"kind":"NationCreation","text":"Xavier Johnson founded the nation of Bluefield."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781702445,"kind":"NationRelationChange","text":"Southernwood and Bigville have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781702445,"kind":"NationRelationChange","text":"Smallville and Whiteville have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781702445,"kind":"NationRelationChange","text":"Whiteville and Bigville have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781702445,"kind":"NationRelationChange","text":"Newton and Blueburg have become rivals over their border."}
+{"type":"chronicle","tick":7500,"wallTimeMs":1794781702445,"kind":"NationRelationChange","text":"Northton and Blueburg have become rivals over their border."}
+{"type":"status","tick":7528,"wallTimeMs":1794781704148,"text":"Sold 1 stone to Mia Johnson for 27 coins."}
+{"type":"chronicle","tick":7552,"wallTimeMs":1794781706064,"kind":"StallBuilt","text":"Trade came to Farmwood: Oscar Evans built a stall. The market is now full."}
+{"type":"world_event_offered","tick":7580,"wallTimeMs":1794781708078,"title":"Wanderers at the gate","body":"3 wanderers have come to the gates of the Camp of Ashmark, footsore and hungry. They ask to join Ashmark.","options":["Welcome them all (6 food)","Take in only the strongest","Turn them away"]}
+{"type":"status","tick":7580,"wallTimeMs":1794781720112,"text":"Wanderers came to the Camp of Ashmark, and you welcomed them all: Harriet Williams, Natalie Thompson, Olivia White joined Ashmark."}
+{"type":"chronicle","tick":7580,"wallTimeMs":1794781720112,"kind":"NationJoin","text":"Harriet Williams swore fealty to Ashmark."}
+{"type":"chronicle","tick":7580,"wallTimeMs":1794781720112,"kind":"NationJoin","text":"Natalie Thompson swore fealty to Ashmark."}
+{"type":"chronicle","tick":7580,"wallTimeMs":1794781720112,"kind":"NationJoin","text":"Olivia White threw in their lot with Ashmark."}
+{"type":"chronicle","tick":7580,"wallTimeMs":1794781720112,"kind":"WorldEvent","text":"Wanderers came to the Camp of Ashmark, and you welcomed them all: Harriet Williams, Natalie Thompson, Olivia White joined Ashmark."}
+{"type":"world_event_resolved","tick":7580,"wallTimeMs":1794781720112,"title":"Wanderers at the gate","status":"Wanderers came to the Camp of Ashmark, and you welcomed them all: Harriet Williams, Natalie Thompson, Olivia White joined Ashmark."}
+{"type":"chronicle","tick":7600,"wallTimeMs":1794781721673,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletfield, built by Samantha Walker."}
+{"type":"chronicle","tick":7600,"wallTimeMs":1794781721673,"kind":"NationCreation","text":"Hank Smith founded the nation of Littleton."}
+{"type":"chronicle","tick":7752,"wallTimeMs":1794781733903,"kind":"StallBuilt","text":"A new stall opened in the market of Southernwood, built by Yvonne Brown."}
+{"type":"status","tick":7760,"wallTimeMs":1794781734471,"text":"Bought 1 stone from Mia Johnson for 27 coins."}
+{"type":"chronicle","tick":7800,"wallTimeMs":1794781737843,"kind":"SettlementFounded","text":"Smallford put down roots: Phoebe Evans founded its first settlement."}
+{"type":"screen","tick":7812,"wallTimeMs":1794781738767,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"screen","tick":7812,"wallTimeMs":1794781770251,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":7812,"wallTimeMs":1794781770251,"text":"Exited settlement."}
+{"type":"chronicle","tick":7852,"wallTimeMs":1794781773634,"kind":"SettlementFounded","text":"Hank Smith raised the first settlement of Littleton."}
+{"type":"chronicle","tick":7900,"wallTimeMs":1794781779237,"kind":"StallBuilt","text":"Ella Thompson built a market stall in Blackburg."}
+{"type":"chronicle","tick":7900,"wallTimeMs":1794781779237,"kind":"SettlementFounded","text":"Xavier Johnson raised the first settlement of Bluefield."}
+{"type":"chronicle","tick":8000,"wallTimeMs":1794781786108,"kind":"NationRelationChange","text":"Southernwood and Whiteford have become rivals over their border."}
+{"type":"chronicle","tick":8152,"wallTimeMs":1794781795847,"kind":"StallBuilt","text":"Abigail Wood built a market stall in Southernland."}
+{"type":"status","tick":8220,"wallTimeMs":1794781807150,"text":"You leave the land of Ashmark for the wilds."}
+{"type":"status","tick":8236,"wallTimeMs":1794781808782,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781810060,"kind":"StallBuilt","text":"A new stall opened in the market of Blackport, built by Hank Thompson."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781810060,"kind":"NationCreation","text":"Nancy Walker founded the nation of Whitewood."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781810060,"kind":"NationRelationChange","text":"Greenfield and Blackport have become rivals over their border."}
+{"type":"chronicle","tick":8252,"wallTimeMs":1794781810060,"kind":"NationRelationChange","text":"Bigville and Blackport have become rivals over their border."}
+{"type":"status","tick":8260,"wallTimeMs":1794781810630,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":8352,"wallTimeMs":1794781819050,"kind":"StallBuilt","text":"Victor Evans built a market stall in Greenfield."}
+{"type":"chronicle","tick":8352,"wallTimeMs":1794781819050,"kind":"NationCreation","text":"Phoebe Jones raised a banner and called it Bluewood."}
+{"type":"status","tick":8420,"wallTimeMs":1794781823309,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":8444,"wallTimeMs":1794781825122,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":8500,"wallTimeMs":1794781828285,"kind":"SettlementFounded","text":"Bluewood put down roots: Phoebe Jones founded its first settlement."}
+{"type":"chronicle","tick":8500,"wallTimeMs":1794781828285,"kind":"NationRelationChange","text":"Southville and Blackburg have become rivals over their border."}
+{"type":"chronicle","tick":8500,"wallTimeMs":1794781828285,"kind":"NationRelationChange","text":"Newton and Blackburg have become rivals over their border."}
+{"type":"chronicle","tick":8500,"wallTimeMs":1794781828285,"kind":"NationRelationChange","text":"Northton and Blackburg have become rivals over their border."}
+{"type":"chronicle","tick":8600,"wallTimeMs":1794781834213,"kind":"StallBuilt","text":"A new stall opened in the market of Northton, built by Linda Watson."}
+{"type":"status","tick":8752,"wallTimeMs":1794781846218,"text":"Whiteville shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":8752,"wallTimeMs":1794781846218,"kind":"StallBuilt","text":"Trade came to Southville: Grace Smith built a stall. The market is now full."}
+{"type":"chronicle","tick":8752,"wallTimeMs":1794781846218,"kind":"StallBuilt","text":"Hank Smith built a market stall in Littleton."}
+{"type":"chronicle","tick":8752,"wallTimeMs":1794781846218,"kind":"StallBuilt","text":"A new stall opened in the market of Bluefield, built by Xavier Johnson."}
+{"type":"chronicle","tick":8752,"wallTimeMs":1794781846218,"kind":"NationCreation","text":"Jasmine Davies raised a banner and called it Farmport."}
+{"type":"chronicle","tick":8752,"wallTimeMs":1794781846218,"kind":"NationRelationChange","text":"Relations between Ashmark and Whiteville are now friendly against a common enemy."}
+{"type":"status","tick":8864,"wallTimeMs":1794781856594,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":8884,"wallTimeMs":1794781858821,"text":"No entities within range to interact with."}
+{"type":"status","tick":8944,"wallTimeMs":1794781866352,"text":"Welcome home!"}
+{"type":"status","tick":8952,"wallTimeMs":1794781867812,"text":"You are back on your own land."}
+{"type":"screen","tick":8988,"wallTimeMs":1794781871040,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":8988,"wallTimeMs":1794781871040,"text":"Entered settlement."}
+{"type":"screen","tick":8992,"wallTimeMs":1794781875304,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"chronicle","tick":9000,"wallTimeMs":1794781876130,"kind":"StallBuilt","text":"Trade came to Southernwood: Yvonne Brown built a stall."}
+{"type":"chronicle","tick":9000,"wallTimeMs":1794781876130,"kind":"NationRelationChange","text":"Hamletfield and Southton have become rivals over their border."}
+{"type":"chronicle","tick":9000,"wallTimeMs":1794781876130,"kind":"NationRelationChange","text":"Whiteford and Southton have become rivals over their border."}
+{"type":"chronicle","tick":9052,"wallTimeMs":1794781881116,"kind":"StallBuilt","text":"Phoebe Watson built a market stall in Blueburg."}
+{"type":"chronicle","tick":9052,"wallTimeMs":1794781881116,"kind":"NationJoin","text":"Frank Davies joined Ashmark."}
+{"type":"chronicle","tick":9100,"wallTimeMs":1794781886311,"kind":"StallBuilt","text":"Hank Thompson built a market stall in Blackport. The market is now full."}
+{"type":"status","tick":9120,"wallTimeMs":1794781888100,"text":"Click again to confirm: Build House."}
+{"type":"status","tick":9128,"wallTimeMs":1794781888727,"text":"House built. The settlement is now a Village!"}
+{"type":"chronicle","tick":9152,"wallTimeMs":1794781890810,"kind":"SettlementFounded","text":"Jasmine Davies laid the first stones of Farmport."}
+{"type":"chronicle","tick":9252,"wallTimeMs":1794781898002,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletfield, built by Samantha Walker."}
+{"type":"chronicle","tick":9300,"wallTimeMs":1794781901356,"kind":"StallBuilt","text":"Trade came to Littleton: Hank Smith built a stall."}
+{"type":"screen","tick":9304,"wallTimeMs":1794781901908,"from":"WORLD","to":"NATIONS"}
