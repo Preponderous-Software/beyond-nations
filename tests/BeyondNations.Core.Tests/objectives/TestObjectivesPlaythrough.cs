@@ -262,7 +262,10 @@ namespace beyondnationstests {
             new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
             int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
             player.setPosition(settlement.getPosition() + new Vector3(minDistance * 3, 0, minDistance * 3));
-            gatherWoodUntil(Settlement.WOOD_COST_TO_BUILD);
+            // a second settlement costs more than the first, and stone (FoundingCost, #145)
+            Nation own = simulation.getNationRepository().getNation(player.getNationId());
+            gatherWoodUntil(FoundingCost.wood(own));
+            gatherStoneUntil(FoundingCost.stone(own));
             Vector3 site = player.getPosition();
             for (int step = 0; step < 50 && tooCloseToASettlement(site, minDistance); step++) {
                 site += new Vector3(minDistance, 0, 0);
