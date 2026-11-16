@@ -47,12 +47,16 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--stage-feel` | replay the feedback effects (chips, floating "+5 wood", buildings rising, the objective flash) every couple of seconds, for screenshots |
 | `--stage-victory`, `--stage-defeat` | open on the end-of-run screen of a staged run: a Prosperity victory in the Kingdom era, or a collapse |
 | `--playtest-out DIR` | write `state.json` (what is on screen, about twice a second) and `events.jsonl` (what happened) to DIR, for playtesting agents (see [PLAYTESTING.md](./PLAYTESTING.md)) |
-| `--advance-ticks N` | run the world N ticks before the first frame, as fast as it goes, so it opens mid-game |
+| `--advance-ticks N` | run the world N ticks before the first frame, as fast as it goes, so it opens mid-game. The player sits the fast-forward out: they are kept fed meanwhile and come in at full energy, and their reign starts when they do, so old age is as far off as in a new world (`--season` likewise; #490) |
 | `--flyover-out DIR` | hide the UI, glide the camera from one nation's town across the border to a neighbour's, write every frame to DIR as a PNG and exit after `--flyover-frames N` (default 120); the README's flyover is the `flyover` shot in `tools/capture/media.json` |
 | `--flyover-orbit` | with `--flyover-out`, circle the thickest stand of trees near the player once instead (give `--advance-ticks` so the land round the player is generated); the README's tree GIF is `--seed 12 --advance-ticks 50` |
 | `--time-of-day F` | start the world at this time of day, at least 0 and below 1 (0.25 sunrise, 0.5 noon, 0.75 sunset; default 0.3) |
 | `--season NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` (default spring) |
 | `--help`, `-h` | list every switch |
+
+A fast-forwarded start is the player's fresh start (#490). Before, `--season autumn --advance-ticks 22000` with `--stage-settlement` counted the skipped days as the founder's reign (left, "Old age comes in about 3 minutes"); now the reign starts when the player does (right, "about 40 minutes", as in a new world):
+
+<img src="./screenshots/advance-ticks-fresh-player/laws-before.png" alt="Laws tab after a fast-forwarded start, before the fix: old age comes in about 3 minutes" width="400"> <img src="./screenshots/advance-ticks-fresh-player/laws-after.png" alt="The same start after the fix: old age comes in about 40 minutes" width="400">
 
 ### Troubleshooting
 
