@@ -853,5 +853,120 @@ namespace beyondnationstests.desktop.ui {
             }
             return CommandBarLayout.order(commands);
         }
+
+        // --- #486: the pawn rows are kept inside a settlement ---
+
+        /** A leader in their own settlement, with or without a resident in reach. */
+        private static List<WorldCommand> settlementWithPawn(bool pawn) {
+            List<WorldCommand> commands = new List<WorldCommand> {
+                command("Leave Nation", CommandGroup.Drastic),
+                command("Withdraw Funds", CommandGroup.Nation),
+                command("Collect Stockpile (224)", CommandGroup.Nation),
+                command("Exit Settlement", CommandGroup.Place),
+                command("Settlement", CommandGroup.Place),
+                command("Purchase Food", CommandGroup.Place),
+                command("Sell Resources", CommandGroup.Place),
+                command("Trade at Market", CommandGroup.Place),
+                command("Build Workshop", CommandGroup.Build).requireConfirm(),
+                command("Send Caravan", CommandGroup.Trade),
+                command("Eat Apple", CommandGroup.Craft),
+            };
+            if (pawn) {
+                commands.Add(command("Talk to Charlotte Lewis (Stranger)", CommandGroup.People)
+                    .setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"));
+                commands.Add(command("Gift Charlotte Lewis", CommandGroup.People).setWidthLabel("Gift " + WorldCommandBar.PawnNameSlot));
+                commands.Add(command("Invite Charlotte Lewis", CommandGroup.People).setWidthLabel("Invite " + WorldCommandBar.PawnNameSlot));
+                commands.Add(command("Order Charlotte Lewis: Gather Wood", CommandGroup.People)
+                    .setWidthLabel("Order " + WorldCommandBar.PawnNameSlot + ": Gather Wood"));
+            }
+            return CommandBarLayout.order(commands);
+        }
+
+        private static CommandBarLayout.Rect rectOf(List<WorldCommand> commands, CommandBarLayout.Result placed, string label) {
+            return placed.Buttons[commands.FindIndex(c => c.getLabel() == label)];
+        }
+
+        [Theory]
+        [InlineData(1280f, 720f, 0f, false, 1f)]
+        [InlineData(960f, 540f, 0f, false, 1f)]
+        [InlineData(1920f, 1080f, 0f, false, 1.5f)]
+        [InlineData(390f, 844f, 260f, true, 1f)]   // a phone held upright
+        [InlineData(844f, 390f, 140f, true, 1f)]   // and on its side
+        public void testAPawnComingAndGoing_MovesNoButtonAndNotTheTop(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            int needed = CommandBarLayout.countRows(WorldCommandBar.getPawnStandIns(), measure, settings);
+            settings.ReservedPeopleRows = System.Math.Min(WorldCommandBar.MaxReservedPeopleRows, needed);
+            Assert.True(settings.ReservedPeopleRows >= 1);
+            // a pawn's buttons fit in what is kept (always so on a desktop window)
+            int pawnRows = CommandBarLayout.countRows(settlementWithPawn(true).FindAll(c => c.getGroup() == CommandGroup.People), measure, settings);
+            bool fits = pawnRows <= settings.ReservedPeopleRows;
+            if (width >= 960f) {
+                Assert.True(fits, "the pawn buttons fit the kept rows at " + width);
+            }
+
+            List<WorldCommand> alone = settlementWithPawn(false);
+            List<WorldCommand> withPawn = settlementWithPawn(true);
+            CommandBarLayout.Result placedAlone = CommandBarLayout.compute(alone, measure, settings);
+            CommandBarLayout.Result placedWith = CommandBarLayout.compute(withPawn, measure, settings);
+
+            // 0.8.0 re-run s05: Eat slid under a click meant for the market as the pawn row went
+            foreach (WorldCommand command in alone) {
+                if (!fits && command.getGroup() == CommandGroup.Craft) {
+                    continue; // on a phone upright only the first kept rows hold still
+                }
+                CommandBarLayout.Rect a = rectOf(alone, placedAlone, command.getLabel());
+                CommandBarLayout.Rect b = rectOf(withPawn, placedWith, command.getLabel());
+                Assert.True(a.X == b.X && a.Y == b.Y, command.getLabel() + " moved when a pawn came into reach");
+            }
+            // the boxes and the panels hang off the bar's top, which stays put too
+            if (fits) {
+                Assert.Equal(placedAlone.Top, placedWith.Top);
+            }
+            // and nothing overlaps
+            for (int i = 0; i < withPawn.Count; i++) {
+                for (int j = i + 1; j < withPawn.Count; j++) {
+                    Assert.False(placedWith.Buttons[i].overlaps(placedWith.Buttons[j]), withPawn[i].getLabel() + " overlaps " + withPawn[j].getLabel());
+                }
+            }
+            // the pawn buttons sit in the kept rows, below Eat
+            Assert.True(rectOf(withPawn, placedWith, "Order Charlotte Lewis: Gather Wood").Y > rectOf(withPawn, placedWith, "Eat Apple").Y);
+        }
+
+        [Fact]
+        public void testTheKeptRows_AlsoCountWithNothingAfterThePawns() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> alone = settlementWithPawn(false);
+            alone.RemoveAll(c => c.getGroup() == CommandGroup.Craft);
+            CommandBarLayout.Result without = CommandBarLayout.compute(alone, measure, settings);
+            settings.ReservedPeopleRows = 2;
+            CommandBarLayout.Result kept = CommandBarLayout.compute(alone, measure, settings);
+            Assert.Equal(without.Top - 2f * (settings.ButtonHeight + settings.SpacingY), kept.Top, 3);
+            // nothing below them moved
+            for (int i = 0; i < alone.Count; i++) {
+                Assert.Equal(without.Buttons[i].Y, kept.Buttons[i].Y);
+            }
+        }
+
+        [Fact]
+        public void testOutInTheWorld_NoRowsAreKept() {
+            Simulation simulation = new Simulation(new GameConfig());
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            Assert.False(simulation.getPlayer().isCurrentlyInSettlement());
+            Assert.Equal(0, WorldCommandBar.getReservedPeopleRows(simulation, measure, settings));
+        }
+
+        [Fact]
+        public void testCountRows_WrapsLikeTheBar() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            Assert.Equal(0, CommandBarLayout.countRows(new List<WorldCommand>(), measure, settings));
+            Assert.Equal(1, CommandBarLayout.countRows(new List<WorldCommand> { command("Gift Ada", CommandGroup.People) }, measure, settings));
+            List<WorldCommand> standIns = WorldCommandBar.getPawnStandIns();
+            CommandBarLayout.Result placed = CommandBarLayout.compute(standIns, measure, settings);
+            HashSet<float> rows = new HashSet<float>();
+            foreach (CommandBarLayout.Rect rect in placed.Buttons) {
+                rows.Add(rect.Y);
+            }
+            Assert.Equal(rows.Count, CommandBarLayout.countRows(standIns, measure, settings));
+        }
     }
 }

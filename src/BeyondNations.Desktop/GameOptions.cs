@@ -186,6 +186,19 @@ namespace beyondnations.desktop {
         public bool StageMarket = false;
 
         /**
+        * As StageTrade, with the player standing in their own village with
+        * a load to send that the neighbour cannot pay for in full (#485,
+        * #486). See TradeShowcase.stageCaravan.
+        */
+        public bool StageCaravan = false;
+
+        /**
+        * The player's nation's first camp, in the Camp era, with residents
+        * about: Send Caravan locked (#479). See TradeShowcase.stageCamp.
+        */
+        public bool StageCamp = false;
+
+        /**
         * Opens a world whose run has just ended -- a Prosperity victory in
         * the Kingdom era, or a collapse -- on the end-of-run screen. See
         * EndingShowcase.
@@ -266,6 +279,8 @@ namespace beyondnations.desktop {
                     case "--stage-event":      options.StageEvent = true; break;
                     case "--stage-trade":      options.StageTrade = true; break;
                     case "--stage-market":     options.StageMarket = true; break;
+                    case "--stage-caravan":    options.StageCaravan = true; break;
+                    case "--stage-camp":       options.StageCamp = true; break;
                     case "--stage-victory":    options.StageVictory = true; break;
                     case "--stage-defeat":     options.StageDefeat = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
@@ -446,6 +461,8 @@ namespace beyondnations.desktop {
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
                 "  --stage-market          as --stage-trade, standing in the trading neighbour's market",
+                "  --stage-caravan         as --stage-trade, standing in your own village with a load to send",
+                "  --stage-camp            open in your nation's first camp, in the Camp era, residents about",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",

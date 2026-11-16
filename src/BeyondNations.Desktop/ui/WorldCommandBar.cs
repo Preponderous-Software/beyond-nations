@@ -321,6 +321,46 @@ namespace beyondnations.desktop.ui {
         /** The longest relationship tier name, which the Talk button is measured with. */
         public const string TierNameSlot = "Acquaintance";
 
+        /**
+        * The most pawn buttons the bar can show for one pawn, each as wide
+        * as it is measured (a leader beside a member with no order who could
+        * be made merchant or trader). The bar keeps the rows these take
+        * inside a settlement (CommandBarLayout.Settings.ReservedPeopleRows),
+        * so residents coming and going move nothing (#486).
+        */
+        public static List<WorldCommand> getPawnStandIns() {
+            List<WorldCommand> standIns = new List<WorldCommand>();
+            foreach (string label in new string[] {
+                    "Talk to " + PawnNameSlot + " (" + TierNameSlot + ")",
+                    "Gift " + PawnNameSlot,
+                    "Invite " + PawnNameSlot,
+                    "Order " + PawnNameSlot + ": Gather Wood",
+                    "Appoint " + PawnNameSlot + " Merchant",
+                    "Appoint " + PawnNameSlot + " Trader" }) {
+                standIns.Add(new WorldCommand(label, CommandGroup.People, () => { }));
+            }
+            return standIns;
+        }
+
+        /**
+        * The pawn rows the bar keeps: inside a settlement, as many as the
+        * stand-ins take (getPawnStandIns); out in the world, where a pawn in
+        * reach is the exception, none.
+        */
+        public static int getReservedPeopleRows(Simulation simulation, System.Func<string, float> measure, CommandBarLayout.Settings settings) {
+            if (!simulation.getPlayer().isCurrentlyInSettlement()) {
+                return 0;
+            }
+            // at most MaxReservedPeopleRows: a window wide enough for the pawn
+            // buttons in two rows keeps them all; on a phone held upright,
+            // where each takes a row, keeping six empty rows would push the bar
+            // up over the boxes, so only the first two are kept there
+            return System.Math.Min(MaxReservedPeopleRows, CommandBarLayout.countRows(getPawnStandIns(), measure, settings));
+        }
+
+        /** The most pawn rows the bar keeps empty (getReservedPeopleRows). */
+        public const int MaxReservedPeopleRows = 2;
+
         /** A pawn button: "Gift Ada", measured as "Gift Charlotte Williams". */
         private static WorldCommand pawnCommand(string before, Pawn pawn, string after, System.Action action) {
             return new WorldCommand(before + pawn.getName() + after, CommandGroup.People, action)

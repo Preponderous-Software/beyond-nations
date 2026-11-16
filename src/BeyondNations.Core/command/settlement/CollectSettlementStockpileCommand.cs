@@ -1,13 +1,20 @@
+using System.Collections.Generic;
+
 namespace beyondnations {
 
     /**
-    * The leader -- or the member the settlement was given to (#176) -- takes the wood and stone that member pawns delivered under
-    * orders out of the settlement's stockpile. Coins are left alone: those
-    * are the settlement's funds, withdrawn with WithdrawSettlementFundsCommand.
+    * The leader -- or the member the settlement was given to (#176) -- takes
+    * the goods out of the settlement's stockpile: the wood and stone member
+    * pawns delivered under orders, and whatever the leader's own caravans
+    * brought back unsold. Coins are left alone: those are the settlement's
+    * funds, withdrawn with WithdrawSettlementFundsCommand.
+    *
+    * It used to take only wood and stone, so the 15 saplings a caravan
+    * brought home unsold sat on the stockpile where nothing could reach them
+    * and the player took them for lost (0.8.0 re-run s05, #485). Now it
+    * takes every good but coin.
     */
     public class CollectSettlementStockpileCommand {
-        private static readonly ItemType[] StockpileItems = { ItemType.WOOD, ItemType.STONE };
-
         private readonly NationRepository nationRepository;
         private readonly EntityRepository entityRepository;
 
@@ -16,12 +23,25 @@ namespace beyondnations {
             this.entityRepository = entityRepository;
         }
 
+        /** Every good on the stockpile, coins aside: what Collect Stockpile would hand over. */
         public static int getStockpileSize(Settlement settlement) {
             int total = 0;
-            foreach (ItemType itemType in StockpileItems) {
-                total += settlement.getInventory().getNumItems(itemType);
+            foreach (ItemStack stack in getGoods(settlement)) {
+                total += stack.getQuantity();
             }
             return total;
+        }
+
+        /** The goods on the stockpile, coins aside, in the inventory's order (wood and stone first). */
+        public static List<ItemStack> getGoods(Settlement settlement) {
+            List<ItemStack> goods = new List<ItemStack>();
+            foreach (ItemSlot slot in settlement.getInventory().getSlots()) {
+                if (slot.isEmpty() || slot.getItemStack().getItemType() == ItemType.COIN || slot.getQuantity() <= 0) {
+                    continue;
+                }
+                goods.Add(new ItemStack(slot.getItemStack().getItemType(), slot.getQuantity()));
+            }
+            return goods;
         }
 
         public void execute(Player player) {
@@ -41,21 +61,27 @@ namespace beyondnations {
                 player.getStatus().update(refusal);
                 return;
             }
-            if (getStockpileSize(settlement) == 0) {
+            List<ItemStack> goods = getGoods(settlement);
+            if (goods.Count == 0) {
                 player.getStatus().update("The stockpile is empty. Order members to gather for the nation to fill it.");
                 return;
             }
 
-            int wood = settlement.getInventory().getNumItems(ItemType.WOOD);
-            int stone = settlement.getInventory().getNumItems(ItemType.STONE);
-            foreach (ItemType itemType in StockpileItems) {
-                int quantity = settlement.getInventory().getNumItems(itemType);
-                if (quantity > 0) {
-                    settlement.getInventory().removeItem(itemType, quantity);
-                    player.getInventory().addItem(itemType, quantity);
-                }
+            List<string> parts = new List<string>();
+            foreach (ItemStack stack in goods) {
+                settlement.getInventory().removeItem(stack.getItemType(), stack.getQuantity());
+                player.getInventory().addItem(stack.getItemType(), stack.getQuantity());
+                parts.Add(ItemNames.describeQuantity(stack.getItemType(), stack.getQuantity()));
             }
-            player.getStatus().update("Collected " + wood + " wood and " + stone + " stone from the stockpile.");
+            player.getStatus().update("Collected " + describeList(parts) + " from the stockpile.");
+        }
+
+        /** "221 wood, 67 stone and 15 saplings" */
+        private static string describeList(List<string> parts) {
+            if (parts.Count == 1) {
+                return parts[0];
+            }
+            return string.Join(", ", parts.GetRange(0, parts.Count - 1)) + " and " + parts[parts.Count - 1];
         }
     }
 }

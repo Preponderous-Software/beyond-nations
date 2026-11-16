@@ -32,10 +32,15 @@ namespace beyondnations.desktop.ui {
                 else {
                     // in their own settlement a leader still sees the button, saying what
                     // stands in the way; pressing it puts the whole reason on the status line
-                    // (playtest 0.4.1 s05: the refusal was hidden with the button)
+                    // (playtest 0.4.1 s05: the refusal was hidden with the button).
+                    // It is greyed, like every other button that cannot be used yet
+                    // (#444): lit, "Send Caravan (Village era)" looked pressable in
+                    // the Camp era (0.8.0 s05, s07; #479). The whole reason is its
+                    // tooltip, and a click or tap puts it on the status line.
                     string blocked = getBlockedSendLabel(simulation);
                     if (blocked != null) {
-                        commands.Add(new WorldCommand(blocked, CommandGroup.Trade, () => CaravanDispatchPanel.open(simulation)));
+                        commands.Add(new WorldCommand(blocked, CommandGroup.Trade, () => CaravanDispatchPanel.open(simulation))
+                            .setEnabled(false, trade.getDispatchRefusal()));
                     }
                 }
                 return;
