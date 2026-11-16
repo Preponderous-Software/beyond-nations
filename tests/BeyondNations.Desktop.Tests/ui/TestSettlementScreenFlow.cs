@@ -157,6 +157,41 @@ namespace beyondnationstests.desktop.ui {
             SettlementScreens.beforeDraw(null, screens);
         }
 
+        /**
+        * Winter2 playtest: the banner said to Feed Residents, and the ruler
+        * inside the camp with 22 apples and a starving member found only
+        * Build and Exit on this screen. Feed Residents is on it, and works.
+        */
+        [Fact]
+        public void testFeedResidents_IsOnTheScreen_AndFeedsTheHungryHere() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            Player player = simulation.getPlayer();
+            enter(simulation, camp, screens);
+            Pawn member = new Pawn(camp.getPosition(), "Katie White", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(member);
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            nation.addMember(member.getId());
+            member.setNationId(nation.getId());
+            member.getInventory().clear();
+            member.setEnergy(Pawn.STARVING_ENERGY_THRESHOLD - 1);
+            member.setCurrentSettlementId(camp.getId());
+            player.getInventory().clear();
+
+            WorldCommand feed = SettlementScreen.getBuildCommands(simulation, camp).Find(SettlementScreen.isFeedResidents);
+            Assert.NotNull(feed);
+            Assert.Equal(WorldCommandBar.feedResidentsLabel(1), feed.getLabel());
+            // nothing to give yet: greyed, saying why (a tap on the screen says so too)
+            Assert.False(feed.isEnabled());
+            Assert.Equal("You have no food to give.", feed.getDisabledReason());
+
+            player.getInventory().addItem(ItemType.APPLE, 22);
+            feed = SettlementScreen.getBuildCommands(simulation, camp).Find(SettlementScreen.isFeedResidents);
+            Assert.True(feed.isEnabled());
+            feed.execute();
+            Assert.True(FoodItems.countFood(member.getInventory()) > 0);
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
         [Fact]
         public void testTheBuildStallKey_WorksOnTheScreen() {
             Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);

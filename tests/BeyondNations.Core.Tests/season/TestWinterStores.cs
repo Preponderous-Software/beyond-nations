@@ -122,6 +122,51 @@ namespace beyondnationstests {
             Assert.Equal(0, stores.Short);
         }
 
+        /**
+        * Winter2 playtest: a camp's only member, made merchant of its new
+        * stall the night before winter, stocked the stall with her winter
+        * store along with her wood; "15 of 14" became "1 of 14" and the till
+        * filled. In autumn and winter a pawn keeps its store from market.
+        */
+        [Theory]
+        [InlineData(Season.SPRING, 0)]
+        [InlineData(Season.AUTUMN, SeasonalRules.WINTER_FOOD_STORE)]
+        [InlineData(Season.WINTER, SeasonalRules.WINTER_FOOD_STORE)]
+        public void testAMerchantStockingItsStall_KeepsItsWinterStore(Season season, int kept) {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), season);
+            settlement.getMarket().createStall();
+            Pawn merchant = addMember(simulation, nation, settlement, 95f, SeasonalRules.WINTER_FOOD_STORE + 1, true, "Katie White");
+            merchant.getInventory().addItem(ItemType.WOOD, 10);
+            settlement.getMarket().getStalls()[0].setOwnerId(merchant.getId());
+            nation.setRole(merchant.getId(), NationRole.MERCHANT);
+            merchant.setHomeSettlementId(settlement.getId());
+
+            PawnBehaviorExecutor executor = new PawnBehaviorExecutor(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(),
+                simulation.getEntityRepository(), simulation.getRandom(), simulation.getNationNameGenerator(), simulation.getTickCounter());
+            executor.setSeasonCalendar(simulation.getSeasonCalendar());
+            executor.executeBehavior(merchant, BehaviorType.TRANSFER_ITEMS_TO_STALL);
+
+            Assert.Equal(0, merchant.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(kept, FoodItems.countFood(merchant.getInventory()));
+        }
+
+        [Fact]
+        public void testSetAside_TakesTheStore_AndRestorePutsItBack() {
+            Pawn pawn = new Pawn(new System.Numerics.Vector3(0, 0, 0), "Ada", new RandomSource(1));
+            pawn.getInventory().clear();
+            pawn.getInventory().addItem(ItemType.APPLE, 20);
+            pawn.getInventory().addItem(ItemType.CHICKEN_MEAT, 2);
+            Inventory aside = WinterStoreKeeping.setAside(pawn, Season.AUTUMN);
+            Assert.Equal(22 - SeasonalRules.WINTER_FOOD_STORE, FoodItems.countFood(pawn.getInventory()));
+            // the most nourishing kept first
+            Assert.Equal(0, pawn.getInventory().getNumItems(ItemType.CHICKEN_MEAT));
+            WinterStoreKeeping.restore(pawn, aside);
+            Assert.Equal(20, pawn.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(2, pawn.getInventory().getNumItems(ItemType.CHICKEN_MEAT));
+            Assert.Null(WinterStoreKeeping.setAside(pawn, Season.SUMMER));
+        }
+
         /** The chronicle keeps the warning, naming the nation, as the last day before winter begins. */
         [Fact]
         public void testTheDayBeforeWinter_WritesTheStoresToTheChronicle_AndTheStatusLine() {
