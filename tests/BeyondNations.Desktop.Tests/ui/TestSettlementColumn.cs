@@ -207,5 +207,65 @@ namespace beyondnationstests.desktop.ui {
             // no fallback given: where it was asked for
             Assert.Equal(548f, FeelDirector.hintCardTopStacked(548f, 0f, 444f, 100f, 553f, 5f));
         }
+
+        // --- a phone (#466) ----------------------------------------------------------------------------
+
+        private static float touchFit(Column column, float columnHeight, float boxWidth, float gap, bool withSeason,
+                out bool showSettlement, out bool showMarket) {
+            WorldHud.fitTouchColumn(columnHeight, gap, boxWidth, Metrics, column.Settlement, column.Market,
+                withSeason ? column.Season : null, column.Player, out showSettlement, out showMarket);
+            List<InfoBox> shown = new List<InfoBox>();
+            if (showSettlement) {
+                shown.Add(column.Settlement);
+            }
+            if (showMarket) {
+                shown.Add(column.Market);
+            }
+            if (withSeason) {
+                shown.Add(column.Season);
+            }
+            shown.Add(column.Player);
+            return WorldHud.stackedHeight(gap, boxWidth, Metrics, shown.ToArray());
+        }
+
+        public static IEnumerable<object[]> PhoneColumns() {
+            // on its side: from the top margin down to the touch controls' band (844x390, 150 reserved)
+            yield return new object[] { 844f, 390f - 150f - 20f, true };
+            // upright: beside the era box and the objective tracker (390x844)
+            yield return new object[] { 390f, 240f, false };
+            // a tall tablet held upright has room for more
+            yield return new object[] { 768f, 600f, false };
+        }
+
+        [Theory]
+        [MemberData(nameof(PhoneColumns))]
+        public void onAPhone_TheColumnStopsAboveTheTouchControls_AndKeepsThePlayerBox(float width, float columnHeight, bool withSeason) {
+            WorldHud.Layout layout = WorldHud.Layout.compute(width, 844f, 1f);
+            Column column = stagedColumn();
+            float used = touchFit(column, columnHeight, layout.BoxWidth, layout.Gap, withSeason, out _, out _);
+            Assert.True(used <= columnHeight, width + ": " + used + " > " + columnHeight);
+        }
+
+        [Fact]
+        public void onAShortColumn_TheMarketThenTheSettlementGiveWay_ForWhatIsATapAway() {
+            WorldHud.Layout layout = WorldHud.Layout.compute(844f, 390f, 1f);
+            Column column = stagedColumn();
+
+            touchFit(column, 2000f, layout.BoxWidth, layout.Gap, true, out bool settlement, out bool market);
+            Assert.True(settlement && market);
+            Assert.False(column.Player.isCompact());
+
+            float withoutMarket = WorldHud.stackedHeight(layout.Gap, layout.BoxWidth, Metrics,
+                column.Settlement, column.Season.setCompact(true), column.Player.setCompact(true));
+            touchFit(column, withoutMarket, layout.BoxWidth, layout.Gap, true, out settlement, out market);
+            Assert.True(settlement);
+            Assert.False(market);
+
+            touchFit(column, withoutMarket - 1f, layout.BoxWidth, layout.Gap, true, out settlement, out market);
+            Assert.False(settlement);
+            Assert.False(market);
+            // the energy bar is still there
+            Assert.StartsWith("Energy", column.Player.getLines()[0]);
+        }
     }
 }

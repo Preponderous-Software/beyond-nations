@@ -114,6 +114,19 @@ game lays its screens out for a finger (`TouchLayout` in
   above the command bar, otherwise just under the status line, over the
   chronicle strip, so it covers neither the Season box nor a button; a town's floating name, which has no clear place under that
   stacked HUD, is left out while it would sit under it.
+- The command bar takes the rows left between the HUD above it and the
+  controls (on a phone on its side, between the two box columns, under the
+  chronicle strip), and when it has more buttons than that it shows them a
+  page at a time behind a **More** button at its bottom left ("More 1/5";
+  the drastic buttons get a page of their own). Inside a settlement the
+  right-hand column stops above the controls: the player box (with the
+  energy bar) and the Season box always stay, and the market box, then the
+  settlement box, are left out when there is no room for them (Trade at
+  Market and Settlement show the same). The chronicle strip shows the two
+  latest entries on a touch screen; News opens the rest (#466).
+
+  <img src="screenshots/phone-market-command-bar/phone-before.jpg" alt="Before: a phone held upright in a market town, the command bar running under the objective, chronicle and season boxes, and the market box under the touch controls" width="180"> <img src="screenshots/phone-market-command-bar/phone-after-more.jpg" alt="After: the same town, the bar below the season box with More 2/7 and Trade at Market, the right-hand column only the player box" width="180">
+  <img src="screenshots/phone-market-command-bar/landscape-before.jpg" alt="Before: a phone on its side in a market town, the command bar under the era, objective and chronicle boxes and the market box under Jump, Run and Use" width="380"> <img src="screenshots/phone-market-command-bar/landscape-after.jpg" alt="After: the bar between the box columns under the chronicle strip, with More 1/5, Purchase Food, Sell Resources and Trade at Market, and the Season and Player boxes clear of the controls" width="380">
 - A line too wide for the screen (a panel footer on a phone held upright) is
   drawn smaller rather than cut off at both edges.
 
