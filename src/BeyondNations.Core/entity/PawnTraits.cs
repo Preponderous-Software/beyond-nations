@@ -101,7 +101,10 @@ namespace beyondnations {
                 case PawnTrait.GREGARIOUS: return "Gregarious";
                 case PawnTrait.GLUTTON: return "Glutton";
                 case PawnTrait.AMBITIOUS: return "Ambitious";
-                case PawnTrait.LOYAL: return "Loyal";
+                // not plain "Loyal": that is also the top relationship tier, and a
+                // member's nameplate reading "Loyal" beside a Talk button saying
+                // "(Stranger)" read as a contradiction (playtest 0.7.1 winter s03)
+                case PawnTrait.LOYAL: return "Loyal by nature";
                 default: return trait.ToString();
             }
         }

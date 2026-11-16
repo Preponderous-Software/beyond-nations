@@ -47,6 +47,20 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testSmallerLines_NeverDrawnBelowTheFontAtlas() {
+            // at 960x540 the sheet's font scale is about 1.04; its 0.9 detail
+            // lines were drawn at 0.94 and lost the row the hyphens of
+            // "Nothing now -- but" sit on (playtest 0.7.1 winter s03)
+            float smallScreen = 1.04f;
+            Assert.Equal(1f, WorldEventSheet.smallerScale(smallScreen, 0.9f));
+            Assert.Equal(1f, WorldEventSheet.smallerScale(smallScreen, 0.8f));
+            // a larger screen keeps the proportion
+            Assert.Equal(1.35f, WorldEventSheet.smallerScale(1.5f, 0.9f), 3);
+            Assert.Equal(1f, Overlay.atLeastAtlasSize(0.5f));
+            Assert.Equal(2f, Overlay.atLeastAtlasSize(2f));
+        }
+
+        [Fact]
         public void testStageEvent_IsAFlag() {
             Assert.True(GameOptions.parse(new string[] { "--stage-event" }).StageEvent);
             Assert.False(GameOptions.parse(new string[] { }).StageEvent);

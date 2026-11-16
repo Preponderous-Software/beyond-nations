@@ -259,8 +259,8 @@ namespace beyondnations {
                             }
 
                             if (!pawn.isCurrentlyInSettlement()) {
-                                // Pawns the player has met show how they feel about the player.
-                                string nameLine = PawnRelations.hasMet(pawn, player) ? PawnRelations.describe(pawn, player) : pawn.getName();
+                                // Pawns the player has met, and the player's own people, show how they feel about the player.
+                                string nameLine = PawnRelations.nameTagLine(pawn, player);
                                 string traits = PawnTraits.describe(pawn);
                                 string nameTagText = nameLine + (traits.Length > 0 ? "\n" + traits : "") + "\n" + pawn.getCurrentBehaviorDescription();
                                 pawn.setNameTag(nameTagText);

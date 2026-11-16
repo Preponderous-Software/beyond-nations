@@ -72,6 +72,32 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testOwnMemberNeverMet_NameplateAndTalkButtonShowTheSameTier() {
+            // playtest 0.7.1 winter s03: a member who joined on their own read
+            // "Loyal" on the nameplate (the trait) and "(Stranger)" on Talk
+            Simulation simulation = createSimulation();
+            Nation nation = playerNation(simulation);
+            Pawn pawn = addPawnNextToPlayer(simulation);
+            pawn.setTraits(new[] { PawnTrait.INDUSTRIOUS, PawnTrait.LOYAL });
+            nation.addMember(pawn.getId());
+            pawn.setNationId(nation.getId());
+            Assert.False(PawnRelations.hasMet(pawn, simulation.getPlayer()));
+
+            simulation.fixedUpdate(0.02f);
+
+            string firstLine = pawn.getNameTag().Split('\n')[0];
+            Assert.Equal("Ada (Stranger)", firstLine);
+            Assert.Contains("Talk to " + firstLine, labels(simulation));
+            // the trait cannot be read as the tier
+            Assert.Contains("Industrious, Loyal by nature", pawn.getNameTag());
+
+            PawnRelations.raise(pawn, simulation.getPlayer(), RelationshipTiers.LOYAL_THRESHOLD, null);
+            simulation.fixedUpdate(0.02f);
+            Assert.Equal("Ada (Loyal)", pawn.getNameTag().Split('\n')[0]);
+            Assert.Contains("Talk to Ada (Loyal)", labels(simulation));
+        }
+
+        [Fact]
         public void testNoPawnInReach_NoPawnCommands() {
             Simulation simulation = createSimulation();
             simulation.getPlayer().setPosition(new Vector3(100000, 2, 100000));

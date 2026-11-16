@@ -93,6 +93,34 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testMarketButtons_NoStalls_SayThereIsNoOneToTradeWith() {
+            // playtest 0.7.1 winter s03: Purchase Food was enabled in a camp
+            // with no stalls and only said so once pressed
+            Simulation simulation = insideOwnCamp(out Settlement settlement);
+            Assert.Equal(0, settlement.getMarket().getNumStalls());
+            Player player = simulation.getPlayer();
+            player.getInventory().addItem(ItemType.COIN, 50);
+            player.getInventory().addItem(ItemType.WOOD, 10);
+
+            assertDisabledWith(simulation, "Purchase Food", WorldCommandBar.NoStallsReason);
+            assertDisabledWith(simulation, "Sell Resources", WorldCommandBar.NoStallsReason);
+            assertDisabledWith(simulation, MarketTradePanel.OpenLabel, WorldCommandBar.NoStallsReason);
+        }
+
+        [Fact]
+        public void testMarketButtons_WithStalls_EnabledWhenThePlayerCanPay() {
+            Simulation simulation = insideOwnTown(out Settlement settlement);
+            Assert.True(settlement.getMarket().getNumStalls() > 0);
+            Player player = simulation.getPlayer();
+            player.getInventory().addItem(ItemType.COIN, 50);
+            player.getInventory().addItem(ItemType.WOOD, 10);
+
+            Assert.True(find(simulation, "Purchase Food").isEnabled());
+            Assert.True(find(simulation, "Sell Resources").isEnabled());
+            Assert.True(find(simulation, MarketTradePanel.OpenLabel).isEnabled());
+        }
+
+        [Fact]
         public void testFeedResidents_NobodyHungry() {
             Simulation simulation = insideOwnTown(out _);
 
