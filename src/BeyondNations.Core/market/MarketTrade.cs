@@ -51,6 +51,26 @@ namespace beyondnations {
             return goods;
         }
 
+        /**
+        * The rows the panel shows, in a fixed order while it is open: the
+        * order they were first shown in, with any good that has come up
+        * since added at the end, and none taken away. A good bought out or
+        * sold off keeps its row (its Buy or Sell greys out) rather than
+        * letting the rows below it move up under the pointer: in the 0.8.0
+        * playtest (s05) Bricks, Axes and Pickaxes came into the list between
+        * two frames and a click meant for Wood landed on Saplings, the
+        * reflow #345 and #432 fixed for the command bar and the nations
+        * screen. Changes shown in place and returns it.
+        */
+        public static List<ItemType> keepOrder(List<ItemType> shown, List<ItemType> current) {
+            foreach (ItemType itemType in current) {
+                if (!shown.Contains(itemType)) {
+                    shown.Add(itemType);
+                }
+            }
+            return shown;
+        }
+
         public static Row describeRow(Market market, Entity trader, ItemType itemType) {
             return new Row {
                 itemType = itemType,
@@ -94,6 +114,39 @@ namespace beyondnations {
         /** "Buy 5 for 270", or fewer when the stalls or the purse run short, or "Can't buy". */
         public static string describeBuyButton(TradeReceipt quote) {
             return quote.isEmpty() ? "Can't buy" : "Buy " + quote.getQuantity() + " for " + quote.getCoins();
+        }
+
+        /**
+        * Whether a deal would come to exactly what a button said: the same
+        * good, the same number and the same coins. A press deals only then,
+        * so the player is never sold short of what they read (0.8.0 playtest
+        * s05: "Sell 6 for 178" sold 5 for 122, because the tills had paid
+        * out between the frame the label was drawn and the press).
+        */
+        public static bool matchesQuote(TradeReceipt shown, TradeReceipt now) {
+            return shown != null && now != null
+                && shown.getItemType() == now.getItemType()
+                && shown.isSale() == now.isSale()
+                && !shown.isEmpty()
+                && shown.getQuantity() == now.getQuantity()
+                && shown.getCoins() == now.getCoins();
+        }
+
+        /**
+        * "The market moved before your press: selling would now be 5 for
+        * 122, not 6 for 178. Nothing was sold; press Sell again for the new
+        * price." The line that refuses a press whose quote no longer holds.
+        */
+        public static string describeMovedQuote(TradeReceipt shown, TradeReceipt now) {
+            string verb = shown.isSale() ? "selling" : "buying";
+            string was = shown.getQuantity() + " for " + shown.getCoins();
+            if (now.isEmpty()) {
+                return "The market moved before your press: " + verb + " " + was + " is no longer on offer. Nothing was "
+                    + (shown.isSale() ? "sold." : "bought.");
+            }
+            return "The market moved before your press: " + verb + " would now be " + now.getQuantity() + " for " + now.getCoins()
+                + ", not " + was + ". Nothing was " + (shown.isSale() ? "sold" : "bought") + "; press "
+                + (shown.isSale() ? "Sell" : "Buy") + " again for the new price.";
         }
 
         /**

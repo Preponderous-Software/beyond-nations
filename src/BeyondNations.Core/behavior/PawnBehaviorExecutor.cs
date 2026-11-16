@@ -629,6 +629,7 @@ namespace beyondnations {
             stall.setOwnerId(pawn.getId());
             pawn.getInventory().removeItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
             stall.getInventory().addItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
+            stall.depositSavings(pawn);
             nation.setRole(pawn.getId(), NationRole.MERCHANT);
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }

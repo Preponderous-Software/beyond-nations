@@ -180,7 +180,25 @@ Traits show on the nametag (`Name (Tier)`, then `Industrious, Greedy`, then what
 ## Market
 The market system is used to buy and sell resources within a settlement. Each settlement has a market with a limited number of stalls, which can be built or purchased by pawns and by the player -- only by members of the settlement's own nation. A merchant visiting a settlement where it keeps no stall (another of its nation's, or a foreign one) is a visitor there, with nothing to stock or collect. Stall owners stock their stalls with items and collect the profit from sales. Stocking a stall (*Transfer Items*) moves goods only; the merchant's coins stay in their purse. Only a settler buys a stall and becomes a merchant: a nation's leader is refused, since the merchant role would replace theirs. Item prices are calculated from the item's base cost and the market's current supply of that item, rather than being set per stall: base / (1 + supply / 20), so twenty units on offer halve the price, never falling below 40% of the base cost (after the pressure below as well).
 
-**Coin to pay sellers** (#369). The 100 coins a settler pays for a stall go into its till as a float, rather than vanishing, and a merchant taking its profit leaves `Stall.TILL_RESERVE` (100) in the till. Settlers selling surplus do not sell a till below that reserve, so a new market can still pay the player for a few goods; the player, and a hungry pawn selling to eat, may sell into it.
+**Coin to pay sellers** (#369, then the 0.8.0 playtest). The 100 coins a settler pays for a stall go into its till as a float, rather than vanishing, together with the rest of the new merchant's savings above a purse of 30 (`Stall.MERCHANT_PURSE`): the merchant's capital. A merchant taking its profit leaves `Stall.TILL_RESERVE` (200; it was 100) in the till. Settlers selling surplus do not sell a till below that reserve, so a market can still pay the player; the player, and a hungry pawn selling to eat, may sell into it.
+
+**A thin till bids low** (`Market.getBid`). A stall pays for one unit no more than a sixth of the coins in its till (`Market.BID_TILL_DIVISOR`), and never less than the price floor (40% of the base cost), so a market short of coin buys a load at a lower price instead of one unit at the full price. As its till fills the bid climbs back to the supply curve. The market box, the panel and traders' and caravans' estimates all use the same bid. In the 0.8.0 playtest (s05, seed 105) the Village of Westernville priced wood at 66/63 with 100 coins in its one till: it bought one wood and was dry (*No till here can pay for one*), and the whole visit netted +8. That till now pays the floor, 24, for four wood, and a market opened by a settler with a typical purse buys five or more.
+
+**Where the coins come from.** None of this makes coins. They come into the world with each pawn (50 to 200) and the player, and settlements earn a coin a stall each round. They move into a market's tills when a settler buys a stall (its price and savings) and whenever anyone buys from a stall, and out again when anyone sells to a stall and when the merchant takes its profit above the reserve. The bid only lowers what a market pays, so buying and selling straight back still never comes out ahead (`TestMarketTillDepth`).
+
+Measured headless with no one playing over the first day and a half on seeds 1 to 5, sampled every 600 ticks (each seed's median market with an owned stall, then the median over the seeds), develop against these changes. A seller offers 100 of a good and keeps nothing back, as the player does:
+
+| | develop | now |
+| --- | --- | --- |
+| coins in a market's tills | 100 | 139 |
+| wood: sells for / pays | 44 / 42 | 35.5 / 24 |
+| wood a market buys from one seller, there and then | 2 (90 coins) | 5 (120 coins) |
+| apples a market buys from one seller | 6 | 8 |
+| in the first half day: wood bought / apples bought | 3.75 / 6 | 6 / 9 |
+
+A market now buys more wood for its coins, at a lower price: with a till of about 140 coins its bid is held to the price floor, 24 for wood. A seller takes about a third more coins home from one market, and the price shown is the price paid.
+
+![Coins in a market's tills, wood's buying and selling price, and the wood and apples a market can buy, over a day and a half on seeds 1 to 5, develop against this branch](screenshots/market-panel-and-tills/market-tills-over-time.png)
 
 The same market on seed 105, a third of the way into Day 1 (the playtest that found #369), before and after. The till went from 0 coins to 100 and apples from 9 to 19:
 
@@ -201,10 +219,22 @@ Over the first day and a half on seeds 1 to 5, with nobody playing (each line is
 - one button per good: what the player carries that the market buys, and what the stalls hold, each with its buy/sell price and how many the player carries (*Wood  24/24  you 20*);
 - for the chosen good, its prices and stock, the best paying market in a trader's reach (800 units, not a Hostile nation's) and the profit or loss a unit in buying here to sell there, and in selling there rather than here, in green for a gain and orange for a loss;
 - a quantity (-5, -1, +1, +5, All);
-- *Buy 5 for 120* and *Sell 5 for 97*, which name the total and deal exactly that. Each unit is priced as it lands, as five single sales would be, and a sale spreads over the stalls that can pay, the richest first, instead of stopping when one till is dry. A button that cannot deal is faded and the line under it says why (*No till here can pay for one*, *your coins cover 3*);
+- *Buy 5 for 120* and *Sell 5 for 97*, which name the total and deal exactly that or nothing. Each unit is priced as it lands, as five single sales would be, and a sale spreads over the stalls that can pay, the richest first, instead of stopping when one till is dry. A press deals what the label the player saw said (the one drawn the frame before, which at a few frames a second is half a second old); if the tills or prices have moved since, it deals nothing and says what it would be now (*The market moved before your press: selling would now be 5 for 120, not 6 for 178. Nothing was sold; press Sell again for the new price.*), and the label shows the new terms for a second press. In the 0.8.0 playtest *Sell 6 for 178* sold 5 for 122. A button that cannot deal is faded and the line under it says why (*No till here can pay for one*, *your coins cover 3*);
 - the receipt (*Sold 10 stone to Tilly Davies for 175 coins.*), which also goes on the status line, and the visit's running total (*This visit: spent 120, took 175, net +55.*).
 
-Every control is a button, so it works the same by touch; on a phone held upright the panel fits the width and the on-screen controls step aside while it is open. *Sell Resources* stays as the one-press sale of one of each good, and now says what it sold: *Sold 1 wood and 1 stone to Ann Lee for 45 coins.* `--stage-market` (`?stage-market`) opens the game standing in a trading neighbour's market.
+Every control is a button, so it works the same by touch; on a phone held upright the panel fits the width and the on-screen controls step aside while it is open.
+
+The panel holds still while it is open (0.8.0 playtest s05: goods came into the list between two frames and a click meant for Wood landed on Saplings, and at 960x540 Close was a sliver at the bottom edge). The goods keep the order they were first shown in, with any that come up added at the end and none taken away; a good sold out keeps its row and stays chosen. The panel is sized from the window when it opens: the goods (two to a row when it is 400 pixels wide or more) are in a box sized for the goods there were and one row more, which scrolls if more come; the chosen good's detail and the messages have boxes of their own that scroll when their lines run long, so the quantity, Buy, Sell and Close never move. On a short window the line saying the player stays put gives way first, then rows and lines, so the whole panel, Close included, fits at 960x540, 1280x720 and on a phone either way up (`MarketTradePanel.computeLayout`). Escape closes the panel rather than opening the pause menu, and a touch screen has the corner Close the full screens have. The player does not walk while it is open because they are inside the settlement, and the panel says so: *You are inside the settlement: close this, then Exit Settlement, to walk on.*
+
+| 0.8.0 playtest (develop), 960x540 | Now, 960x540 |
+| --- | --- |
+| ![The playtest's market panel at 960x540: the visit's total and Close run off the bottom edge](screenshots/market-panel-and-tills/panel-960-before.png) | ![The market panel at 960x540: every good two to a row, the detail and messages in boxes, Close in full](screenshots/market-panel-and-tills/panel-960-after.png) |
+
+| Develop, 390x844 (a phone held upright) | Now, 390x844, after selling all the wood the tills could pay for |
+| --- | --- |
+| <img src="screenshots/market-panel-and-tills/panel-phone-before.png" alt="The develop market panel on a phone-sized window: the tip card draws over the list of goods" width="270"> | <img src="screenshots/market-panel-and-tills/panel-phone-after.png" alt="The market panel on a phone-sized window: every good, the detail, the quantity, Buy, Sell, the receipt and Close all in view, in front of the HUD" width="270"> |
+
+*Sell Resources* stays as the one-press sale of one of each good, and now says what it sold: *Sold 1 wood and 1 stone to Ann Lee for 45 coins.* `--stage-market` (`?stage-market`) opens the game standing in a trading neighbour's market.
 
 | Before (develop) | After |
 | --- | --- |

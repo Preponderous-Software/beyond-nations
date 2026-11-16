@@ -16,8 +16,21 @@ namespace beyondnations {
         * Merchants take their profit above it, and settlers selling surplus
         * do not sell a till below it, so the player finds a market that can
         * pay for a few goods. A hungry settler, selling to eat, still may.
+        *
+        * It was 100 (#454), about one unit of wood at an early market's
+        * price, so in the 0.8.0 playtest (s05) one sale emptied the market
+        * the player walked into. At 200 a merchant leaves enough working
+        * coin in the till to buy a load from the next seller.
         */
-        public const int TILL_RESERVE = 100;
+        public const int TILL_RESERVE = 200;
+
+        /**
+        * Coins a settler keeps in its purse when it buys a stall: the rest
+        * of its savings goes into the till with the price, as the merchant's
+        * capital to buy with (0.8.0 playtest s05). A merchant eats from its
+        * own stall, and takes its profit back out above TILL_RESERVE.
+        */
+        public const int MERCHANT_PURSE = 30;
 
         public Stall() {
             ownerId = null;
@@ -99,6 +112,21 @@ namespace beyondnations {
                 owner.getInventory().addItem(ItemType.COIN, taken);
             }
             return taken;
+        }
+
+        /**
+        * Puts the owner's coins above MERCHANT_PURSE into the till, and
+        * returns how many: a new merchant's savings become the stall's
+        * capital. Coins only move from purse to till; none are made.
+        */
+        public int depositSavings(Entity owner) {
+            int savings = owner.getInventory().getNumItems(ItemType.COIN) - MERCHANT_PURSE;
+            if (savings <= 0) {
+                return 0;
+            }
+            owner.getInventory().removeItem(ItemType.COIN, savings);
+            inventory.addItem(ItemType.COIN, savings);
+            return savings;
         }
 
         // --- saving (docs/SAVES.md) ---

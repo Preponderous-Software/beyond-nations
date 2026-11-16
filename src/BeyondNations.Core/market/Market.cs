@@ -118,7 +118,42 @@ namespace beyondnations {
         * a merchant's coins out of the stall a unit at a time.
         */
         public int getSellPrice(ItemType itemType) {
-            return ItemCostCalculator.calculateCostAtSupply(itemType, this, getQuantityAvailable(itemType) + 1);
+            return getBid(itemType, getQuantityAvailable(itemType) + 1, getRichestTill());
+        }
+
+        /**
+        * A stall pays for one unit no more than this share of the coins in
+        * its till (one in BID_TILL_DIVISOR), and never less than the price
+        * floor: a market short of coin bids low and buys a load, rather than
+        * bidding the full price and paying for one (0.8.0 playtest s05: a
+        * 100-coin till bid 63 for wood, bought one, and was dry). As the till
+        * fills, the bid climbs back to the supply curve. It only ever lowers
+        * what a market pays, so it makes no coins.
+        */
+        public const int BID_TILL_DIVISOR = 6;
+
+        /**
+        * What a stall whose till holds tillCoins pays for one of these when
+        * the market holds supply once it has landed: the supply curve's
+        * price, held down to a share of the till, and no lower than the
+        * floor (ItemCostCalculator.floorOf).
+        */
+        public int getBid(ItemType itemType, int supply, int tillCoins) {
+            int curve = ItemCostCalculator.calculateCostAtSupply(itemType, this, supply);
+            int floor = ItemCostCalculator.floorOf(ItemCostCalculator.getBaseCost(itemType));
+            int share = System.Math.Max(0, tillCoins) / BID_TILL_DIVISOR;
+            return System.Math.Max(floor, System.Math.Min(curve, share));
+        }
+
+        /** The most coins any owned stall's till holds here. */
+        public int getRichestTill() {
+            int richest = 0;
+            foreach (Stall stall in stalls) {
+                if (stall.getOwnerId() != null) {
+                    richest = System.Math.Max(richest, stall.getInventory().getNumItems(ItemType.COIN));
+                }
+            }
+            return richest;
         }
 
         /**
@@ -340,14 +375,11 @@ namespace beyondnations {
                 tills[s] = stalls[s].getInventory().getNumItems(ItemType.COIN);
             }
             for (int unit = 0; unit < quantity && unit < held; unit++) {
-                int price = ItemCostCalculator.calculateCostAtSupply(itemType, this, supply + 1);
+                // the richest till buys, at the bid its coins allow (getBid)
                 int buyer = -1;
                 for (int s = 0; s < stalls.Count; s++) {
                     Stall stall = stalls[s];
                     if (stall.getOwnerId() == null || stall.getOwnerId() == entity.getId()) {
-                        continue;
-                    }
-                    if (tills[s] - price < System.Math.Max(0, keepInTill)) {
                         continue;
                     }
                     if (buyer < 0 || tills[s] > tills[buyer]) {
@@ -355,6 +387,10 @@ namespace beyondnations {
                     }
                 }
                 if (buyer < 0) {
+                    break;
+                }
+                int price = getBid(itemType, supply + 1, tills[buyer]);
+                if (tills[buyer] - price < System.Math.Max(0, keepInTill)) {
                     break;
                 }
                 tills[buyer] -= price;

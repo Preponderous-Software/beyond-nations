@@ -284,9 +284,13 @@ namespace beyondnations {
         /** What selling quantity of an item into a market would fetch, one unit at a time. */
         public static int estimateSale(Market market, ItemType itemType, int quantity) {
             int supply = market.getQuantityAvailable(itemType);
+            // the bid follows the richest till as it pays out (Market.getBid)
+            int till = market.getRichestTill();
             long total = 0;
             for (int i = 0; i < quantity; i++) {
-                total += ItemCostCalculator.calculateCostAtSupply(itemType, market, supply + i + 1);
+                int price = market.getBid(itemType, supply + i + 1, till);
+                total += price;
+                till = System.Math.Max(0, till - price);
             }
             return (int) Math.Min(total, int.MaxValue);
         }
