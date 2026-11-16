@@ -33,8 +33,8 @@ namespace beyondnations.desktop.ui.screens {
         * would cost a row of members.
         */
         public const string LoyaltyHint = "Talking and gifts raise their loyalty to you.";
-        /** Lines of detail a row may take: three, so a trader's errand fits beside loyalty and traits. */
-        public const int DetailLines = 3;
+        /** Lines of detail a row may take: four, so a trader's errand fits beside loyalty and traits on a phone. */
+        public const int DetailLines = 4;
 
         private static readonly Vector4 HeirColour = new Vector4(0.95f, 0.75f, 0.30f, 1f);
         private static readonly Vector4 DetailColour = new Vector4(0.85f, 0.85f, 0.80f, 1f);

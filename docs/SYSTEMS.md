@@ -529,6 +529,7 @@ On the name tag a trader reads *(taking goods to market)* or *(buying goods to t
 | Appoint Trader, greyed; a click says why | The Members tab | The chronicle |
 |---|---|---|
 | ![The command bar beside Ursula Williams: Appoint Ursula Williams Trader greyed, and the status line reading One trader per settlement: Ella Wood (Village of Blackburg) already trades for Blackburg](screenshots/trader-visibility/appoint-trader-reason-desktop.png) | ![The Members tab: Traders: 1 of 1 (one per settlement), and Ella Wood's row reading Trading: carrying 10 wood to the Camp of Easternton](screenshots/trader-visibility/members-trader-desktop.png) | ![The chronicle's full view: Ella Wood took up trade, bought 10 wood, sold it at the Camp of Easternton for 474 coins, and bought 10 more](screenshots/trader-visibility/chronicle-trader-desktop.png) |
+| ![Phone, upright: a tap on the greyed Appoint Ursula Williams Trader puts the reason on the status line](screenshots/trader-visibility/appoint-trader-reason-phone.png) | ![Phone, upright: the Members tab with Traders: 1 of 1 and Ella Wood's errand](screenshots/trader-visibility/members-trader-phone.png) | |
 
 Roles are saved by name, so adding `TRADER` changed no save format. Nothing about a trader is saved beyond its role: its next step is worked out afresh from the world at every decision, with no random draws, so a loaded world carries on the same way.
 
