@@ -162,12 +162,44 @@ namespace beyondnationstests {
                     offeredAt.Add(simulation.getTickCounter().getTotalTicks());
                 }
             }
-            // an hour of play: the personal events alone always fit, so one every 10-15 minutes
-            Assert.InRange(offeredAt.Count, 3, 6);
+            // an hour of play: the personal events alone always fit, so the second
+            // 5-7 minutes after the first (#370), then one every 10-15 minutes
+            Assert.InRange(offeredAt.Count, 4, 7);
             for (int i = 1; i < offeredAt.Count; i++) {
-                Assert.True(offeredAt[i] - offeredAt[i - 1] >= WorldEvents.PLAYER_EVENT_MIN_SECONDS * 5,
+                int min = i == 1 ? WorldEvents.SECOND_PLAYER_EVENT_MIN_SECONDS : WorldEvents.PLAYER_EVENT_MIN_SECONDS;
+                Assert.True(offeredAt[i] - offeredAt[i - 1] >= min * 5,
                     "player events " + offeredAt[i - 1] + " and " + offeredAt[i] + " came too close together");
             }
+            Assert.True(offeredAt[1] - offeredAt[0] <= WorldEvents.SECOND_PLAYER_EVENT_MAX_SECONDS * 5 + WorldEvents.RETRY_SECONDS * 5 * 3);
+        }
+
+        [Fact]
+        public void testTheFirstPlayerEvent_ComesSoonAfterThePlayerSettles() {
+            // #370: it used to wait 7 to 11 minutes from the start whatever the player did
+            Simulation simulation = newWorld(42);
+            WorldEvents events = simulation.getWorldEvents();
+            simulation.fixedUpdate(Step);
+            int scheduled = events.getNextPlayerEventTick();
+            Assert.True(scheduled > WorldEvents.FIRST_PLAYER_EVENT_AFTER_SETTLING_SECONDS * 50 * 2, "the clock alone should be minutes away");
+            // the player founds a nation and a settlement
+            staged(simulation);
+            int settledAt = simulation.getTickCounter().getTotalTicks();
+            simulation.fixedUpdate(Step);
+            Assert.InRange(events.getNextPlayerEventTick(), settledAt, settledAt + 1 + WorldEvents.FIRST_PLAYER_EVENT_AFTER_SETTLING_SECONDS * 50);
+            run(simulation, WorldEvents.FIRST_PLAYER_EVENT_AFTER_SETTLING_SECONDS * 50 + 2);
+            Assert.Equal(1, events.getNumPlayerEvents());
+            Assert.NotNull(events.getPending());
+        }
+
+        [Fact]
+        public void testTheFirstPlayerEvent_IsNotPulledForward_WithoutASettlement() {
+            Simulation simulation = newWorld(42);
+            WorldEvents events = simulation.getWorldEvents();
+            simulation.fixedUpdate(Step);
+            int scheduled = events.getNextPlayerEventTick();
+            run(simulation, 100);
+            Assert.Equal(scheduled, events.getNextPlayerEventTick());
+            Assert.InRange(scheduled - 1, WorldEvents.FIRST_PLAYER_EVENT_MIN_SECONDS * 50, WorldEvents.FIRST_PLAYER_EVENT_MAX_SECONDS * 50);
         }
 
         [Fact]
@@ -283,7 +315,10 @@ namespace beyondnationstests {
             DiplomacyShowcase.Staged s = staged(simulation);
             simulation.getPlayer().getInventory().setNumItems(ItemType.COIN, 100);
             offer(simulation, DroughtEvent.Id);
-            choose(simulation, 1);
+            string bought = choose(simulation, 1);
+            // the result restates what the choice did (#370)
+            Assert.Contains(DroughtEvent.GRAIN_APPLES + " apples went into the stores of the " + s.playerSettlement.getDisplayName(), bought);
+            Assert.Contains(DroughtEvent.GRAIN_COINS + " coins", bought);
             Assert.Equal(75, simulation.getPlayer().getInventory().getNumItems(ItemType.COIN));
             Assert.Equal(DroughtEvent.GRAIN_APPLES, s.playerSettlement.getInventory().getNumItems(ItemType.APPLE));
 
@@ -292,7 +327,8 @@ namespace beyondnationstests {
             Pawn member = (Pawn) other.getEntityRepository().getEntity(t.playerNation.getMemberIds()[1]);
             int before = PawnRelations.getRelationship(member, other.getPlayer());
             offer(other, DroughtEvent.Id);
-            choose(other, 2);
+            string rationed = choose(other, 2);
+            Assert.Contains("think " + DroughtEvent.RESTLESS_RELATIONSHIP + " less of you", rationed.Replace("thinks", "think"));
             Assert.Equal(before - DroughtEvent.RESTLESS_RELATIONSHIP, PawnRelations.getRelationship(member, other.getPlayer()));
             WorldEffect drought = other.getWorldEvents().findEffect(WorldEffectKind.DROUGHT, t.playerNation.getId(), null);
             Assert.Equal(DroughtEvent.DURATION_SECONDS * 50, drought.getEndTick() - drought.getStartTick());
@@ -494,6 +530,35 @@ namespace beyondnationstests {
             }
         }
 
+        /** A hungry town forms no bucket chain: in a famine winter it wore residents down to 1 energy and twenty starved at once. */
+        [Fact]
+        public void testStorehouseFire_ANationFormsNoBucketChain_ThatWouldLeaveResidentsStarving() {
+            Simulation simulation = newWorld(42);
+            DiplomacyShowcase.Staged s = staged(simulation);
+            WorldEventContext context = new WorldEventContext(simulation, simulation.getWorldEvents());
+            Settlement town = s.hostileSettlement;
+            List<Pawn> residents = context.residentsOf(town);
+            for (int i = residents.Count; i < 3; i++) {
+                Pawn pawn = new Pawn(town.getPosition(), "Resident " + i, simulation.getRandom());
+                simulation.getEntityRepository().addEntity(pawn);
+                pawn.setHomeSettlementId(town.getId());
+            }
+            residents = context.residentsOf(town);
+            foreach (Pawn resident in residents) {
+                resident.setEnergy(Pawn.MaxEnergy);
+            }
+            WorldEventInstance instance = new WorldEventInstance(StorehouseFireEvent.Id, 0, 0, false);
+            instance.setSettlementId(town.getId());
+            StorehouseFireEvent fire = new StorehouseFireEvent();
+            Assert.Equal(0, fire.chooseForNation(context, instance));
+
+            residents[0].getInventory().clear();
+            residents[0].setEnergy(Pawn.STARVING_ENERGY_THRESHOLD + StorehouseFireEvent.BUCKET_CHAIN_ENERGY - 1);
+            Assert.Equal(1, StorehouseFireEvent.countLeftStarving(context, town));
+            Assert.Equal(1, fire.chooseForNation(context, instance));
+            Assert.EndsWith("1 is already hungry and would be left starving.", fire.getChoices(context, instance)[0].getConsequence());
+        }
+
         [Fact]
         public void testRareMerchant_SellsToolsCheaply_OrTradesWoodForStone() {
             Simulation simulation = newWorld(42);
@@ -567,9 +632,11 @@ namespace beyondnationstests {
             byte[] file = File.ReadAllBytes(SaveFixtures.pathFor(3));
             Assert.Equal(3, SaveGame.check(file).FormatVersion);
             Simulation loaded = SaveGame.decode(file);
-            // the same clocks the fixture world had when it was written
+            // the clocks the fixture world had when it was written: the world's as a
+            // fresh fixture world has it, and the player's from when the first event
+            // came 7 to 11 minutes in (#370 brought it forward; a saved clock is kept)
             Simulation fresh = SaveFixtures.fixtureWorld();
-            Assert.Equal(fresh.getWorldEvents().getNextPlayerEventTick(), loaded.getWorldEvents().getNextPlayerEventTick());
+            Assert.InRange(loaded.getWorldEvents().getNextPlayerEventTick(), 1 + 420 * 50, 1 + 660 * 50);
             Assert.Equal(fresh.getWorldEvents().getNextWorldEventTick(), loaded.getWorldEvents().getNextWorldEventTick());
             run(loaded, 500);
         }

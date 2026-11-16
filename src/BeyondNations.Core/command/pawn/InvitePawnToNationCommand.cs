@@ -28,6 +28,42 @@ namespace beyondnations {
             return player.getNationId() != null && pawn.getNationId() != player.getNationId();
         }
 
+        /**
+        * Why an invitation would be turned down now, or null when the pawn
+        * would accept: the reason on the greyed Invite button (0.8.0
+        * playtest s02, where invitations had no button at all). It follows
+        * execute's rules and never names a key.
+        */
+        public static string whyNot(Player player, Pawn pawn, NationRepository nationRepository) {
+            Nation playerNation = player.getNationId() == null ? null : nationRepository.getNation(player.getNationId());
+            if (playerNation == null) {
+                return "Create or join a nation first, then invite people into it.";
+            }
+            if (pawn.getNationId() == playerNation.getId()) {
+                return pawn.getName() + " is already one of " + playerNation.getName() + ".";
+            }
+            RelationshipTier tier = PawnRelations.getTier(pawn, player);
+            Nation oldNation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (oldNation == null) {
+                if (tier < NATIONLESS_TIER_REQUIRED) {
+                    return pawn.getName() + " doesn't know you yet. Talk to them or give a gift until they are an "
+                        + RelationshipTiers.getName(NATIONLESS_TIER_REQUIRED) + ".";
+                }
+                return null;
+            }
+            if (oldNation.getLeaderId() == pawn.getId()) {
+                return pawn.getName() + " leads " + oldNation.getName() + "; will never join.";
+            }
+            if (tier < RIVAL_TIER_REQUIRED) {
+                return pawn.getName() + " belongs to " + oldNation.getName() + " and would leave it only for a "
+                    + RelationshipTiers.getName(RIVAL_TIER_REQUIRED) + " friend.";
+            }
+            if (PawnRelations.getRelationship(pawn, player) < PawnTraits.relationshipToDefect(pawn)) {
+                return pawn.getName() + " is Loyal by nature and won't leave " + oldNation.getName() + " yet.";
+            }
+            return null;
+        }
+
         public void execute(Player player, Pawn pawn) {
             if (player.getNationId() == null) {
                 player.getStatus().update("You need to be in a nation to invite anyone into it.");

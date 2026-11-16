@@ -28,8 +28,12 @@ namespace beyondnations {
         /** How often prices drift: every ten seconds at 50 ticks a second. */
         public const int ROUND_TICKS = 500;
 
-        /** The most a pressure moves in one round, in percentage points. */
-        public const int DRIFT_STEP = 5;
+        /**
+        * The most a pressure moves in one round, in percentage points. It was
+        * 5, which took a price from the plain curve to half of it in 5,000
+        * ticks, a sixth of a day (#369); at 2 that takes 12,500.
+        */
+        public const int DRIFT_STEP = 2;
 
         /** Softens the demand/stock ratio, so a handful of goods does not swing a price wildly. */
         public const int STOCK_SOFTNESS = 20;

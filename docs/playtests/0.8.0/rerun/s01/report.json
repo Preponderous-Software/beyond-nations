@@ -1,0 +1,110 @@
+{
+  "session": "s01",
+  "goal": "Play the first 10 minutes as a brand-new player who has never seen the game; note every moment of confusion.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "2f10aca1"},
+  "seed": 101,
+  "durationSec": 864,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Settlement sheet says 'Build here with what you carry' but House/Farm are paid from the stockpile",
+      "detail": "Entering my new camp, objective 6 asked me to carry 20 wood + 5 stone for a stall, and Build Stall was greyed with no cost or tooltip. Meanwhile Build House and Build Farm were enabled and built instantly while I carried 0 wood/0 stone; the stockpile went 45 wood/25 stone -> empty. The heading 'Build here with what you carry:' is wrong for two of the three buttons, and it is unclear what pays for what. Expected: costs on each button and correct wording (e.g. 'Stall: 20 wood, 5 stone from your pack; House/Farm: from the stockpile').",
+      "repro": "pt start --seed 101; gather 50 wood; N; F away from settlements; E to enter; hover Build Stall (no tooltip); click Build House with empty pack",
+      "screenshot": "shots/farm.png",
+      "tick": 7965
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 7 'Reach the Village era' progress differs from the Era panel's criteria, and its text is clipped",
+      "detail": "Objective shows 'Members 5/10 • Buildings 2/2' with the left edge clipped ('mbers 5/10'). The Era detail panel lists Village 1/1, Members 5/10, Stalls 1/2, Day 1/2 - the objective omits stalls and the day requirement, so a player following only the objective does not know to build a second stall or wait a day. 'Village: 1/4' next to 'Era: Camp' also clashes with my settlement already being called 'Village of Easttown'. Era panel text is cut off at the bottom.",
+      "repro": "continue from above; build a stall (B in settlement); exit; tap the Era box top-left",
+      "screenshot": "shots/era.png",
+      "tick": 11381
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Own nation members are labelled '(Stranger)' and refuse to 'follow' you",
+      "detail": "Abigail Brown, announced in the chronicle as having joined Easttown and shown as my heir and merchant, appears as 'Talk to ... (Stranger)' and says 'I hardly know you. Why should I follow you?'. 'Stranger' is a loyalty tier but reads as 'not a member'; the world HUD never tells me who is already in my nation (only the O > Members tab does). Also clicking 'Talk to Karl Watson' talked to Abigail instead: the action target switched as pawns moved between hover and click.",
+      "repro": "after founding, stand at your settlement among members; click 'Talk to <name> (Stranger)'",
+      "screenshot": "shots/talk2.png",
+      "tick": 14616
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Night is near-black: world unreadable, can't find trees, rocks or pawns",
+      "detail": "Around tick 17000 (about 6 game minutes in) night falls and the 3D world turns almost completely dark; only the HUD is visible. In my first 10 minutes I had to recruit members at night and could not see anyone to walk to. Expected: moonlight/ambient floor, or lit pawns/torches.",
+      "repro": "play ~6 game minutes on seed 101; walk away from the settlement",
+      "screenshot": "shots/quinn.png",
+      "tick": 18069
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Objective 2 'Eat something' completes itself via an automatic apple; player never sees it",
+      "detail": "The first chop auto-ate an apple ('Ate an apple (+15 energy)') and objective 2 completed 52 ticks after objective 1 with no input. The tutorial step that teaches eating is skipped, while an 'Eat Apple (+15)' button implies eating is manual. Related: chop status 'Gathered 4 wood and 1 apple from tree.' omits the saplings received (Saplings 1 -> 3).",
+      "repro": "pt start --seed 101; chop trees to 10 wood; watch objective 2",
+      "screenshot": "shots/obj2_auto.png",
+      "tick": 2153
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "World-space labels (pawn names, settlement '0 here, 3/8 residents') render huge and clipped over the HUD",
+      "detail": "Near the settlement its label fills the top of the screen and is cut off, and pawn labels such as 'Abigail Br... Greedy (gathering' cover the Season panel. The label also bleeds through the settlement and nations sheets behind their titles. A tree trunk also stood in the middle of my freshly founded settlement, blocking the camera.",
+      "repro": "found a settlement; stand at its centre; walk close to a pawn",
+      "screenshot": "shots/found3.png",
+      "tick": 7953
+    },
+    {
+      "severity": "polish",
+      "category": "bug",
+      "title": "Depleted rocks stay in the world and give 'Gathered 0 stone from rock.'",
+      "detail": "Trees disappear once chopped, but a rock I had already mined stayed visible and pressing E gave 'Gathered 0 stone from rock.'. Expected the rock to vanish or look depleted.",
+      "repro": "mine a rock with E (5 stone); press E at it again",
+      "screenshot": "shots/stuck.png",
+      "tick": 11500
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "N creates a nation instantly with an auto-name; own announcement truncated",
+      "detail": "Pressing N made 'Easttown' with no chance to name it or confirm. The chronicle line announcing it is truncated: 'You raised a banner and named your people Ea...', so the name is cut off at the moment it is announced.",
+      "repro": "pt start --seed 101; press N",
+      "screenshot": "shots/nation_name.png",
+      "tick": 2501
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Controls help lists debug cheats (F2-F6 spawn coins/wood/pawns) to ordinary players",
+      "detail": "Page 3 of the in-game Controls lists F4 Spawn coins, F5 Spawn wood, etc. with no warning. A new player can trivialise the economy by accident.",
+      "repro": "Main menu > Controls > Next > Next",
+      "screenshot": "shots/controls_debug.png",
+      "tick": 0
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 42.0,
+      "Eat something": 43.1,
+      "Create or join a nation": 50.0,
+      "Found a settlement": 153.1,
+      "Enter your settlement": 159.3,
+      "Build a market stall": 216.0
+    },
+    "gameMinutesPlayed": 9.0,
+    "foundAttemptsRejected": 2,
+    "membersAtEnd": 8,
+    "applesAtEnd": 27,
+    "minEnergy": 82
+  },
+  "fun": 4,
+  "verdict": "The first ten minutes are well guided: the objective box, tips and the helpful 'too close, open ground lies N paces north-west' message got me from nothing to a Village with two stalls in under four game minutes, and the world feels alive (rival raids, bandit event, newborns). Confusion came from the settlement sheet (what is paid from pack vs stockpile), the objective and the Era panel disagreeing on what the Village era needs, and loyalty tiers ('Stranger') being read as membership. Energy/food is trivially easy: apples pile up (27) and energy never dropped below 82. Night is too dark to play."
+}

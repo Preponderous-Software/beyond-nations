@@ -182,6 +182,26 @@ namespace beyondnations {
             return getAppearance().getLabel();
         }
 
+        /**
+        * Eats the most nourishing food in the pack whose whole worth fits
+        * under a full bar (FoodItems.getFoodThatFits), as the player does
+        * (#357): an apple at 85 or under, a chicken meat at 75, a cooked meat
+        * at 55. Returns the energy gained. Pawns used to eat whatever they
+        * carried below 90, so the cap took up to 5 of an apple's 15: a third
+        * of a winter's stores went nowhere, and a nation stocked to the
+        * winter target ran out on the second day (playtest s03, after #495).
+        */
+        public float eatWhatFits() {
+            ItemType? food = FoodItems.getFoodThatFits(getInventory(), MaxEnergy - energy);
+            if (!food.HasValue) {
+                return 0f;
+            }
+            getInventory().removeItem(food.Value, 1);
+            float gained = FoodItems.getEnergyRestored(food.Value);
+            setEnergy(energy + gained);
+            return gained;
+        }
+
         /** Energy burned per tick, after traits (a glutton burns more). */
         public float getMetabolism() {
             return metabolism * PawnTraits.metabolismMultiplier(this);
@@ -335,6 +355,12 @@ namespace beyondnations {
             }
             else if (getCurrentBehaviorType() == BehaviorType.SEEK_SETTLEMENT_SITE) {
                 return "(looking for land to settle)";
+            }
+            else if (getCurrentBehaviorType() == BehaviorType.TRAVEL_TO_MARKET) {
+                return "(taking goods to market)";
+            }
+            else if (getCurrentBehaviorType() == BehaviorType.BUY_TRADE_GOODS) {
+                return "(buying goods to trade)";
             }
             else {
                 return "(?)";

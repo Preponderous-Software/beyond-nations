@@ -16,6 +16,12 @@ namespace beyondnations {
                 return;
             }
             Nation nation = nationRepository.getNation(player.getNationId());
+            // buying a stall makes a merchant, which would take the leader's
+            // role and with it building stalls and withdrawing funds (#315)
+            if (nation.getRole(player.getId()) == NationRole.LEADER) {
+                player.getStatus().update("A nation's leader cannot keep a stall. Stalls are for your people to buy.");
+                return;
+            }
 
             EntityId currentSettlementId = player.getCurrentSettlementId();
             if (currentSettlementId == null) {

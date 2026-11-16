@@ -6,7 +6,7 @@ namespace beyondnations {
     /**
     * One coloured primitive, positioned relative to the thing it belongs to.
     *
-    * A tree is a cylinder trunk with a cube of leaves above it, so a single
+    * A tree is a cylinder trunk with a canopy of leaf spheres above it (TreeShape), so a single
     * shape per entity is not enough; each part carries its own offset, scale and
     * colour.
     */

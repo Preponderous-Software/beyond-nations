@@ -13,7 +13,7 @@ namespace beyondnations.desktop.ui.boxes {
     * pushed in, since it is the simulation that counts them.
     */
     public class DebugInfoBox : InfoBox {
-        public const int NumDataPoints = 23;
+        public const int NumDataPoints = 24;
 
         private readonly Simulation simulation;
         private int framesPerSecond;
@@ -101,6 +101,7 @@ namespace beyondnations.desktop.ui.boxes {
             int numLeaders = 0;
             int numMerchants = 0;
             int numSerfs = 0;
+            int numTraders = 0;
             foreach (Pawn pawn in pawns) {
                 if (pawn.getNationId() == null) {
                     continue;
@@ -116,9 +117,13 @@ namespace beyondnations.desktop.ui.boxes {
                 else if (role == NationRole.SERF) {
                     numSerfs++;
                 }
+                else if (role == NationRole.TRADER) {
+                    numTraders++;
+                }
             }
             lines.Add("Leaders: " + numLeaders);
             lines.Add("Merchants: " + numMerchants);
+            lines.Add("Traders: " + numTraders);
             lines.Add("Serfs: " + numSerfs);
 
             lines.Add("Pawn Deaths: " + simulation.getNumPawnDeaths());

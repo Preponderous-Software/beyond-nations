@@ -18,6 +18,18 @@ namespace beyondnations.pacing {
     }
 
     /**
+    * A milestone (PacingMilestones) every seed must reach, by maxSeconds of
+    * game time from the start of the world.
+    */
+    public sealed class MilestoneBudget {
+        [JsonPropertyName("id")] public string Id { get; set; }
+        [JsonPropertyName("title")] public string Title { get; set; }
+        [JsonPropertyName("maxSeconds")] public double MaxSeconds { get; set; }
+        [JsonPropertyName("advisory")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] public bool Advisory { get; set; }
+        [JsonPropertyName("note")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] public string Note { get; set; }
+    }
+
+    /**
     * docs/pacing-budget.json: the seeds and run length the harness uses, and
     * a min and max time per objective. Time is measured from the previous
     * objective's completion (or the start of the world) to this one's, in
@@ -31,6 +43,12 @@ namespace beyondnations.pacing {
         [JsonPropertyName("objectiveLimit")] public int ObjectiveLimit { get; set; } = 13;
         [JsonPropertyName("maxTicks")] public int MaxTicks { get; set; } = 2 * TimeOfDay.DefaultTicksPerDay;
         [JsonPropertyName("objectives")] public List<ObjectiveBudget> Objectives { get; set; } = new List<ObjectiveBudget>();
+        [JsonPropertyName("milestones")] public List<MilestoneBudget> Milestones { get; set; } = new List<MilestoneBudget>();
+
+        /** The ids of the milestones, for PacingRunOptions.Milestones. */
+        public List<string> milestoneIds() {
+            return Milestones.ConvertAll(m => m.Id);
+        }
 
         private static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions {
             WriteIndented = true,
@@ -72,6 +90,8 @@ namespace beyondnations.pacing {
                 budget.Seeds = previous.Seeds;
                 budget.ObjectiveLimit = previous.ObjectiveLimit;
                 budget.MaxTicks = previous.MaxTicks;
+                // a milestone's limit is a design decision, never suggested from a run
+                budget.Milestones = previous.Milestones;
             }
             foreach (PacingStats stats in PacingStats.collect(runs)) {
                 ObjectiveBudget old = previous == null ? null : previous.find(stats.Id);
@@ -165,6 +185,8 @@ namespace beyondnations.pacing {
     * its budget is written.
     */
     public static class PacingCheck {
+        /** A milestone's findings carry its id with this in front, so they never collide with an objective's. */
+        public const string MilestoneFindingPrefix = "milestone:";
 
         public static List<PacingFinding> check(List<PacingRunResult> runs, PacingBudget budget) {
             List<PacingFinding> findings = new List<PacingFinding>();
@@ -198,6 +220,26 @@ namespace beyondnations.pacing {
                     else {
                         finding.Verdict = PacingVerdict.Ok;
                         finding.Message = seconds.ToString("0.0") + " s";
+                    }
+                    findings.Add(finding);
+                }
+            }
+            foreach (MilestoneBudget milestone in budget.Milestones) {
+                foreach (PacingRunResult run in runs) {
+                    PacingFinding finding = new PacingFinding {
+                        Seed = run.Seed, Id = MilestoneFindingPrefix + milestone.Id, Title = milestone.Title, Advisory = milestone.Advisory,
+                    };
+                    int reachedAt;
+                    if (!run.Milestones.TryGetValue(milestone.Id, out reachedAt)) {
+                        finding.Verdict = PacingVerdict.Never;
+                        finding.Message = "never reached in " + ((double) run.TicksRun / run.TicksPerSecond).ToString("0") + " s (by " + milestone.MaxSeconds + " s)";
+                    }
+                    else {
+                        double seconds = (double) reachedAt / run.TicksPerSecond;
+                        finding.Verdict = seconds > milestone.MaxSeconds ? PacingVerdict.TooSlow : PacingVerdict.Ok;
+                        finding.Message = finding.Verdict == PacingVerdict.Ok
+                            ? seconds.ToString("0.0") + " s"
+                            : "too slow: reached at " + seconds.ToString("0.0") + " s > " + milestone.MaxSeconds + " s";
                     }
                     findings.Add(finding);
                 }

@@ -121,6 +121,13 @@ before either existed -- rebuilds both exactly. That makes `RegionMap`'s noise
 part of the save contract: changing it would change the regions of every saved
 world. `TestRegionMap` pins seed 42's regions so it cannot change by accident.
 
+**The ground kept for the player in the opening is derived** (`ReservedGround`,
+no format change): the opening is a function of the tick count and the
+player's home settlement and nation, the grove is a fixed distance from the
+spawn and the founder's ground a fixed distance from the player. The one piece of it that is not derived, the open ground a refused
+founding has just named, is held for two minutes and is deliberately not
+saved: a world loaded during those two minutes lets it go.
+
 What is not saved, because it is not world state: the wall-clock measurement
 behind the debug overlay's ticks per second; the recording behind Share >
 Export replay (`RunRecorder`, [SHARING.md](./SHARING.md)), which only reads the
@@ -161,7 +168,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 6.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 7.
 
 | Version | Change | Migration from the one before |
 | --- | --- | --- |
@@ -171,6 +178,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 | 4 | trade caravans and living prices: the `trade` section, `prices` in every market, and caravan entities | adds `trade` with nothing sent, and every market's `prices` empty (every item at its plain supply-curve price, no trend yet); an old world has no caravans |
 | 5 | eras and the end of a run: the `eras` section | add `eras` at the camp, with no outcome and an empty history; the era catches up with the nation one era a second as play resumes, and the chronicle's kept lines about the player are copied into the history |
 | 6 | the player's envoys (diplomacy takes game time, #424): `envoys` in the `realm` section | add `envoys` empty: every envoy is home, so the player can deal with any nation at once, as before |
+| 7 | who holds a settlement (#176): `ownerId` and `ownerName` on every settlement | add both as null on every settlement: each is held by its nation's leader, as every settlement was before |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by
@@ -229,7 +237,7 @@ merchant left with no stall in any of its nation's settlements is a serf again.
   that checks out but cannot be built; backups, fallback to the backup, the
   newer-version slot left alone, atomic writes.
 - **World events** (`TestWorldEvents`): a world with a pending choice, a bandit camp and a drought round-trips, and the original and the copy, given the same choice, run on the same; v1 and v2 saves load with the world events' clocks started from their first tick, and the v3 fixture loads and plays on.
-- **Migration** (`TestSaveMigrations`): the committed v1 to v5 fixtures load,
+- **Migration** (`TestSaveMigrations`): the committed v1 to v6 fixtures load,
   play 1,500 ticks on and save again; a save from before eras (v1 to v4) loads
   at the camp with no outcome; the migration chain runs steps in order and
   refuses a step that does not stamp its version.

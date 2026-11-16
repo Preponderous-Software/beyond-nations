@@ -207,6 +207,34 @@ namespace beyondnationstests.desktop.ui {
         }
 
         /**
+        * 0.8.0 playtests s02, s03, s07: at one or two frames a second the
+        * second click on Build House landed 6 to 13 s after the first and
+        * only re-armed it. While the pointer rests on the armed button
+        * (hold, each frame) it stays armed; once it moves off, the window
+        * runs out as before.
+        */
+        [Fact]
+        public void anArmedButtonStaysArmedWhileThePointerRestsOnIt_HoweverSlowTheFrames() {
+            Status status = new Status(new TickCounter(), 1000);
+            ConfirmGate gate = new ConfirmGate();
+            Assert.False(gate.press("Build House", 10.0));
+            gate.prompt(status, "Click Build House again to build it.");
+
+            // one frame a second for 13 s, the pointer on the button
+            for (double now = 11.0; now <= 23.0; now += 1.0) {
+                gate.update(now, status);
+                gate.hold("Build House", now);
+            }
+            Assert.Equal("Click Build House again to build it.", status.getStatus());
+            Assert.True(gate.press("Build House", 23.5));
+
+            // pointer moved off: the window lapses as before
+            Assert.False(gate.press("Build House", 30.0));
+            gate.hold("Build Farm", 31.0);
+            Assert.False(gate.isArmed("Build House", 30.0 + ConfirmGate.DefaultWindowSeconds + 1.0));
+        }
+
+        /**
         * 0.6.1/0.6.2 playtests: after the window lapsed the button reverted
         * but the status line still said "Click War again...", and asking
         * again read "(x2)", like "click twice".
@@ -302,6 +330,8 @@ namespace beyondnationstests.desktop.ui {
         [Fact]
         public void inASettlement_ExitPurchaseAndSellAreAlwaysThereInTheSameOrder() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
+            // a stall to trade at: with none, the market buttons stay greyed
+            Assert.True(settlement.getMarket().createStall());
             Player player = simulation.getPlayer();
             List<string> broke = labels(simulation);
             Assert.False(find(simulation, "Purchase Food").isEnabled());
@@ -521,7 +551,7 @@ namespace beyondnationstests.desktop.ui {
                 command("Sell Resources", CommandGroup.Place),
                 command("Build House", CommandGroup.Build).requireConfirm(),
                 command("Build Farm", CommandGroup.Build).requireConfirm(),
-                command("Send Caravan (Town era)", CommandGroup.Trade),
+                command("Send Caravan (Village era)", CommandGroup.Trade),
                 command("Craft Axe", CommandGroup.Craft),
                 command(talk, CommandGroup.People).setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"),
                 command("Gift " + pawnName, CommandGroup.People).setWidthLabel("Gift " + WorldCommandBar.PawnNameSlot),
@@ -611,11 +641,59 @@ namespace beyondnationstests.desktop.ui {
         // ---- the real bar ----
 
         /** Feed Residents is always offered in the player's own settlement, disabled while no one here is hungry. */
+        /** #357: Eat, by choice, names what it will eat and keeps one width whatever that is. */
+        [Fact]
+        public void theEatButton_NamesTheFood_AndIsDisabledOnAFullBar() {
+            Simulation simulation = inOwnCamp(out _);
+            Player player = simulation.getPlayer();
+            Assert.Null(WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Eat")));
+
+            player.getInventory().addItem(ItemType.COOKED_MEAT, 1);
+            player.getInventory().addItem(ItemType.APPLE, 1);
+            player.setEnergy(50f);
+            WorldCommand eat = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Eat"));
+            Assert.Equal("Eat Cooked Meat (+45)", eat.getLabel());
+            Assert.Equal(CommandGroup.Craft, eat.getGroup());
+            Assert.True(eat.isEnabled());
+            eat.execute();
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.COOKED_MEAT));
+
+            player.setEnergy(Player.MaxEnergy);
+            WorldCommand full = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Eat"));
+            Assert.False(full.isEnabled());
+            Assert.Equal(eat.getWidthLabel(), full.getWidthLabel());
+        }
+
+        /** #353: in autumn, with no one hungry, Feed Residents stocks those short of winter stores. */
+        [Fact]
+        public void inAutumn_FeedResidentsOffersToStockThoseLowOnFood() {
+            Simulation simulation = inOwnCamp(out Settlement settlement);
+            Player player = simulation.getPlayer();
+            simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), Season.AUTUMN);
+            Pawn pawn = new Pawn(settlement.getPosition() + new Vector3(400, 0, 400), "Member", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(pawn);
+            pawn.setNationId(player.getNationId());
+            simulation.getNationRepository().getNation(player.getNationId()).addMember(pawn.getId());
+            pawn.getInventory().clear();
+            pawn.setEnergy(95f);
+            pawn.setCurrentSettlementId(settlement.getId());
+            player.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE + 2);
+
+            WorldCommand feed = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Feed Residents"));
+            Assert.Equal(WorldCommandBar.feedResidentsLabel(0, 1), feed.getLabel());
+            Assert.Equal("Feed Residents (1 short for winter)", feed.getLabel());
+            Assert.True(feed.isEnabled());
+            feed.execute();
+            Assert.Equal(SeasonalRules.WINTER_FOOD_STORE, FoodItems.countFood(pawn.getInventory()));
+        }
+
         [Fact]
         public void inTheOwnSettlement_FeedResidentsHoldsItsPlace_AndCountsWhomItWillFeed() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
             Player player = simulation.getPlayer();
             CommandBarLayout.Settings settings = settingsFor(960f, 540f, 0f, false, 1f, out _, out _);
+            // the player carries food throughout, so the Eat button is there both times
+            player.getInventory().addItem(ItemType.APPLE, 3);
             List<WorldCommand> none = WorldCommandBar.getCommands(simulation);
             WorldCommand feedNone = none.Find(c => c.getLabel() == WorldCommandBar.feedResidentsLabel(0));
             Assert.NotNull(feedNone);
@@ -630,7 +708,6 @@ namespace beyondnationstests.desktop.ui {
             pawn.getInventory().clear();
             pawn.setEnergy(50f);
             pawn.setCurrentSettlementId(settlement.getId());
-            player.getInventory().addItem(ItemType.APPLE, 3);
 
             List<WorldCommand> one = WorldCommandBar.getCommands(simulation);
             Assert.Equal(none.Count, one.Count);
@@ -707,6 +784,415 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(prompt, player.getStatus().getStatus());
             key.update(player, 30.0 + ConfirmGate.DefaultWindowSeconds + 1.0);
             Assert.Equal(ConfirmGate.LapsedMessage, player.getStatus().getStatus());
+        }
+
+        /**
+        * #345 as the 0.6.0 playtest's s09 saw it, replayed against today's
+        * bar: the pointer held still at one spot while pawns came and went.
+        * The Talk button changed pawn under it, an Order row came and went,
+        * Send Caravan jumped between rows, and a pawn row appearing between
+        * the two clicks of Declare War re-armed it instead of confirming.
+        * Now nothing already on the bar moves, a different pawn under the
+        * pointer takes no click until it has stood still for ButtonSettle's
+        * wait, and the armed War survives the new row.
+        */
+        [Theory]
+        [MemberData(nameof(Screens))]
+        public void session09sReflow_MovesNothing_SwapsNoClick_AndKeepsTheArmedWar(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            List<WorldCommand>[] frames = {
+                session09Bar(null, false),
+                session09Bar("Charlotte Johnson", false),
+                session09Bar("Charlotte Johnson", true),
+                session09Bar("Abigail Evans", true),
+                session09Bar("Abigail Evans", false),
+                session09Bar(null, false),
+            };
+
+            // every button on the bar throughout keeps one place, Send Caravan and War included
+            Dictionary<string, CommandBarLayout.Rect> first = place(frames[0], settings);
+            foreach (List<WorldCommand> commands in frames) {
+                Dictionary<string, CommandBarLayout.Rect> now = place(commands, settings);
+                foreach (KeyValuePair<string, CommandBarLayout.Rect> entry in first) {
+                    Assert.Equal(entry.Value, now[entry.Key]);
+                }
+            }
+
+            // Talk changes pawn in the same slot: the pointer resting there gets no click at once
+            CommandBarLayout.Rect slot = place(frames[2], settings)["Talk to Charlotte Johnson (Stranger)"];
+            Assert.Equal(slot, place(frames[3], settings)["Talk to Abigail Evans (Stranger)"]);
+            ButtonSettle settle = new ButtonSettle();
+            Assert.False(settle.isSettled("Talk to Charlotte Johnson (Stranger)", slot.X, slot.Y, 0.0));
+            settle.endFrame();
+            Assert.True(settle.isSettled("Talk to Charlotte Johnson (Stranger)", slot.X, slot.Y, 5.0));
+            settle.endFrame();
+            Assert.False(settle.isSettled("Talk to Abigail Evans (Stranger)", slot.X, slot.Y, 5.1));
+            settle.endFrame();
+
+            // War armed with no pawn near; a pawn row appears; the second click is still on War and confirms it
+            ConfirmGate gate = new ConfirmGate();
+            Assert.False(gate.press("Declare War on Newham", 10.0));
+            Assert.Equal(first["Declare War on Newham"], place(frames[2], settings)["Declare War on Newham"]);
+            Assert.True(gate.press("Declare War on Newham", 13.0));
+        }
+
+        /** The bar in s09: out in the world near Newham, with pawn, and its Order row, when given. */
+        private static List<WorldCommand> session09Bar(string pawn, bool orders) {
+            List<WorldCommand> commands = new List<WorldCommand> {
+                command("Enter Settlement", CommandGroup.Place),
+                command("Send Caravan", CommandGroup.Trade),
+                command("Offer Peace to Newham", CommandGroup.Trade),
+                command("Leave Nation", CommandGroup.Drastic).requireConfirm(),
+                command("Declare War on Newham", CommandGroup.Drastic).requireConfirm(),
+            };
+            if (pawn != null) {
+                commands.Add(command("Talk to " + pawn + " (Stranger)", CommandGroup.People)
+                    .setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"));
+                if (orders) {
+                    commands.Add(command("Order " + pawn + ": Gather Wood", CommandGroup.People)
+                        .setWidthLabel("Order " + WorldCommandBar.PawnNameSlot + ": Gather Wood"));
+                }
+            }
+            return CommandBarLayout.order(commands);
+        }
+
+        // --- #486: the pawn rows are kept inside a settlement ---
+
+        /** A leader in their own settlement, with or without a resident in reach. */
+        private static List<WorldCommand> settlementWithPawn(bool pawn) {
+            List<WorldCommand> commands = new List<WorldCommand> {
+                command("Leave Nation", CommandGroup.Drastic),
+                command("Withdraw Funds", CommandGroup.Nation),
+                command("Collect Stockpile (224)", CommandGroup.Nation),
+                command("Exit Settlement", CommandGroup.Place),
+                command("Settlement", CommandGroup.Place),
+                command("Purchase Food", CommandGroup.Place),
+                command("Sell Resources", CommandGroup.Place),
+                command("Trade at Market", CommandGroup.Place),
+                command("Build Workshop", CommandGroup.Build).requireConfirm(),
+                command("Send Caravan", CommandGroup.Trade),
+                command("Eat Apple", CommandGroup.Craft),
+            };
+            if (pawn) {
+                commands.Add(command("Talk to Charlotte Lewis (Stranger)", CommandGroup.People)
+                    .setWidthLabel("Talk to " + WorldCommandBar.PawnNameSlot + " (" + WorldCommandBar.TierNameSlot + ")"));
+                commands.Add(command("Gift Charlotte Lewis", CommandGroup.People).setWidthLabel("Gift " + WorldCommandBar.PawnNameSlot));
+                commands.Add(command("Invite Charlotte Lewis", CommandGroup.People).setWidthLabel("Invite " + WorldCommandBar.PawnNameSlot));
+                commands.Add(command("Order Charlotte Lewis: Gather Wood", CommandGroup.People)
+                    .setWidthLabel("Order " + WorldCommandBar.PawnNameSlot + ": Gather Wood"));
+            }
+            return CommandBarLayout.order(commands);
+        }
+
+        private static CommandBarLayout.Rect rectOf(List<WorldCommand> commands, CommandBarLayout.Result placed, string label) {
+            return placed.Buttons[commands.FindIndex(c => c.getLabel() == label)];
+        }
+
+        [Theory]
+        [InlineData(1280f, 720f, 0f, false, 1f)]
+        [InlineData(960f, 540f, 0f, false, 1f)]
+        [InlineData(1920f, 1080f, 0f, false, 1.5f)]
+        [InlineData(390f, 844f, 260f, true, 1f)]   // a phone held upright
+        [InlineData(844f, 390f, 140f, true, 1f)]   // and on its side
+        public void testAPawnComingAndGoing_MovesNoButtonAndNotTheTop(float width, float height, float reserve, bool touch, float uiScale) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, touch, uiScale, out _, out _);
+            int needed = CommandBarLayout.countRows(WorldCommandBar.getPawnStandIns(), measure, settings);
+            settings.ReservedPeopleRows = System.Math.Min(WorldCommandBar.MaxReservedPeopleRows, needed);
+            Assert.True(settings.ReservedPeopleRows >= 1);
+            // a pawn's buttons fit in what is kept (always so on a desktop window)
+            int pawnRows = CommandBarLayout.countRows(settlementWithPawn(true).FindAll(c => c.getGroup() == CommandGroup.People), measure, settings);
+            bool fits = pawnRows <= settings.ReservedPeopleRows;
+            if (width >= 960f) {
+                Assert.True(fits, "the pawn buttons fit the kept rows at " + width);
+            }
+
+            List<WorldCommand> alone = settlementWithPawn(false);
+            List<WorldCommand> withPawn = settlementWithPawn(true);
+            CommandBarLayout.Result placedAlone = CommandBarLayout.compute(alone, measure, settings);
+            CommandBarLayout.Result placedWith = CommandBarLayout.compute(withPawn, measure, settings);
+
+            // 0.8.0 re-run s05: Eat slid under a click meant for the market as the pawn row went
+            foreach (WorldCommand command in alone) {
+                if (!fits && command.getGroup() == CommandGroup.Craft) {
+                    continue; // on a phone upright only the first kept rows hold still
+                }
+                CommandBarLayout.Rect a = rectOf(alone, placedAlone, command.getLabel());
+                CommandBarLayout.Rect b = rectOf(withPawn, placedWith, command.getLabel());
+                Assert.True(a.X == b.X && a.Y == b.Y, command.getLabel() + " moved when a pawn came into reach");
+            }
+            // the boxes and the panels hang off the bar's top, which stays put too
+            if (fits) {
+                Assert.Equal(placedAlone.Top, placedWith.Top);
+            }
+            // and nothing overlaps
+            for (int i = 0; i < withPawn.Count; i++) {
+                for (int j = i + 1; j < withPawn.Count; j++) {
+                    Assert.False(placedWith.Buttons[i].overlaps(placedWith.Buttons[j]), withPawn[i].getLabel() + " overlaps " + withPawn[j].getLabel());
+                }
+            }
+            // the pawn buttons sit in the kept rows, below Eat
+            Assert.True(rectOf(withPawn, placedWith, "Order Charlotte Lewis: Gather Wood").Y > rectOf(withPawn, placedWith, "Eat Apple").Y);
+        }
+
+        [Fact]
+        public void testTheKeptRows_AlsoCountWithNothingAfterThePawns() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> alone = settlementWithPawn(false);
+            alone.RemoveAll(c => c.getGroup() == CommandGroup.Craft);
+            CommandBarLayout.Result without = CommandBarLayout.compute(alone, measure, settings);
+            settings.ReservedPeopleRows = 2;
+            CommandBarLayout.Result kept = CommandBarLayout.compute(alone, measure, settings);
+            Assert.Equal(without.Top - 2f * (settings.ButtonHeight + settings.SpacingY), kept.Top, 3);
+            // nothing below them moved
+            for (int i = 0; i < alone.Count; i++) {
+                Assert.Equal(without.Buttons[i].Y, kept.Buttons[i].Y);
+            }
+        }
+
+        [Fact]
+        public void testOutInTheWorld_NoRowsAreKept() {
+            Simulation simulation = new Simulation(new GameConfig());
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            Assert.False(simulation.getPlayer().isCurrentlyInSettlement());
+            Assert.Equal(0, WorldCommandBar.getReservedPeopleRows(simulation, measure, settings));
+        }
+
+        [Fact]
+        public void testCountRows_WrapsLikeTheBar() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            Assert.Equal(0, CommandBarLayout.countRows(new List<WorldCommand>(), measure, settings));
+            Assert.Equal(1, CommandBarLayout.countRows(new List<WorldCommand> { command("Gift Ada", CommandGroup.People) }, measure, settings));
+            List<WorldCommand> standIns = WorldCommandBar.getPawnStandIns();
+            CommandBarLayout.Result placed = CommandBarLayout.compute(standIns, measure, settings);
+            HashSet<float> rows = new HashSet<float>();
+            foreach (CommandBarLayout.Rect rect in placed.Buttons) {
+                rows.Add(rect.Y);
+            }
+            Assert.Equal(rows.Count, CommandBarLayout.countRows(standIns, measure, settings));
+        }
+
+        // --- a phone's bar, a page at a time (#466) ----------------------------------------------------
+
+        public static IEnumerable<object[]> PhoneBars() {
+            // CSS pixels, with the controls' band main.js reserves; the rows the HUD leaves the bar
+            yield return new object[] { 844f, 390f, 150f, 2 };
+            yield return new object[] { 844f, 390f, 150f, 1 };
+            yield return new object[] { 390f, 844f, 220f, 3 };
+            yield return new object[] { 390f, 844f, 220f, 2 };
+        }
+
+        [Theory]
+        [MemberData(nameof(PhoneBars))]
+        public void onAPhone_EveryButtonIsOnSomePage_WithinTheRowsTheBarHas(float width, float height, float reserve, int maxRows) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, true, 1f, out WorldHud.Layout layout, out bool stackCentre);
+            settings.Left = WorldHud.getBarLeft(layout, true, stackCentre);
+            settings.MaxRows = maxRows;
+            List<WorldCommand> commands = busySettlement();
+            CommandBarLayout.Result first = CommandBarLayout.compute(commands, measure, settings);
+            Assert.True(first.isPaged());
+            float lowestTop = settings.Bottom - maxRows * settings.ButtonHeight - (maxRows - 1) * settings.SpacingY;
+
+            int[] pagesShowing = new int[commands.Count];
+            for (int page = 0; page < first.PageCount; page++) {
+                CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings, page);
+                Assert.Equal(page, result.Page);
+                Assert.Equal(first.PageCount, result.PageCount);
+                // More, and the bar's top, stay put whatever the page
+                Assert.Equal(first.More, result.More);
+                Assert.Equal(first.Top, result.Top);
+                Assert.True(result.Top >= lowestTop - 0.01f, "page " + page + " takes more than " + maxRows + " rows");
+                bool anyDrastic = false;
+                bool anyOther = false;
+                for (int i = 0; i < commands.Count; i++) {
+                    if (!result.Shown[i]) {
+                        continue;
+                    }
+                    pagesShowing[i]++;
+                    CommandBarLayout.Rect button = result.Buttons[i];
+                    string label = commands[i].getLabel();
+                    Assert.True(button.X >= settings.Left && button.Right <= settings.Right + 0.01f, label + " runs off the bar");
+                    Assert.True(button.Y >= result.Top - 0.01f && button.Bottom <= settings.Bottom + 0.01f, label + " runs out of the bar's rows");
+                    Assert.False(button.overlaps(result.More), label + " is under More");
+                    for (int j = i + 1; j < commands.Count; j++) {
+                        if (result.Shown[j]) {
+                            Assert.False(button.overlaps(result.Buttons[j]), label + " overlaps " + commands[j].getLabel());
+                        }
+                    }
+                    if (commands[i].getGroup() == CommandGroup.Drastic) {
+                        anyDrastic = true;
+                    } else {
+                        anyOther = true;
+                    }
+                }
+                // the drastic buttons are still apart: a page of their own
+                Assert.False(anyDrastic && anyOther, "page " + page + " mixes drastic and other buttons");
+            }
+            for (int i = 0; i < commands.Count; i++) {
+                Assert.True(pagesShowing[i] == 1, commands[i].getLabel() + " is on " + pagesShowing[i] + " pages");
+            }
+            // the page wraps round, so More can keep counting up
+            Assert.Equal(0, CommandBarLayout.compute(commands, measure, settings, first.PageCount).Page);
+        }
+
+        [Fact]
+        public void aBarThatFitsItsRows_IsNotPaged_AndLaysOutAsBefore() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> commands = busySettlement();
+            Dictionary<string, CommandBarLayout.Rect> unlimited = place(commands, settings);
+            settings.MaxRows = 12;
+            CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings);
+            Assert.False(result.isPaged());
+            for (int i = 0; i < commands.Count; i++) {
+                Assert.True(result.Shown[i]);
+                Assert.Equal(unlimited[commands[i].getLabel()], result.Buttons[i]);
+            }
+        }
+
+        [Fact]
+        public void theRowsLeftUnderTheHud_AreCountedWhole_AndAtLeastOne() {
+            Assert.Equal(3, CommandBarLayout.rowsBetween(100f, 200f, 30f, 4f));
+            Assert.Equal(2, CommandBarLayout.rowsBetween(100f, 165f, 30f, 4f));
+            Assert.Equal(1, CommandBarLayout.rowsBetween(190f, 200f, 30f, 4f));
+            Assert.Equal("More 2/3", CommandBarLayout.getMoreLabel(1, 3));
+        }
+
+        [Fact]
+        public void onATouchScreen_TheChronicleStripIsShorter_ToLeaveTheBarItsRows() {
+            Assert.Equal(ChroniclePanel.RecentCount, ChroniclePanel.recentCount(false));
+            Assert.True(ChroniclePanel.recentCount(true) < ChroniclePanel.RecentCount);
+            Assert.True(ChroniclePanel.recentCount(true) >= 1);
+        }
+
+        [Fact]
+        public void onAPhoneOnItsSide_TheBarKeepsBetweenTheColumns() {
+            WorldHud.Layout landscape = WorldHud.Layout.compute(844f, 390f, 1f);
+            Assert.False(WorldHud.isStackCentre(844f, landscape, true));
+            Assert.Equal(landscape.LeftX + landscape.BoxWidth + landscape.Gap, WorldHud.getBarLeft(landscape, true, false));
+            // upright, and on a desktop, the bar starts at the margin as before
+            WorldHud.Layout upright = WorldHud.Layout.compute(390f, 844f, 1f);
+            Assert.True(WorldHud.isStackCentre(390f, upright, true));
+            Assert.Equal(upright.Margin, WorldHud.getBarLeft(upright, true, true));
+            Assert.Equal(landscape.Margin, WorldHud.getBarLeft(landscape, false, false));
+        }
+
+        [Theory]
+        [InlineData(844f, 390f, 140f, 2)]
+        [InlineData(390f, 844f, 260f, 2)]
+        [InlineData(390f, 844f, 260f, 1)]
+        public void onAPhone_TheGreyedAppointTrader_IsOnAPawnPage_WithinTheBar(float width, float height, float reserve, int maxRows) {
+            // --stage-trader (#493): a serf beside the player, the one trader slot taken
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            TraderShowcase.stage(simulation);
+            List<WorldCommand> commands = WorldCommandBar.getCommands(simulation);
+            int appoint = commands.FindIndex(c => c.getLabel().StartsWith("Appoint ") && c.getLabel().EndsWith(" Trader"));
+            Assert.True(appoint >= 0, "no Appoint Trader on the bar");
+            Assert.False(commands[appoint].isEnabled());
+
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, true, 1f, out WorldHud.Layout layout, out bool stackCentre);
+            settings.Left = WorldHud.getBarLeft(layout, true, stackCentre);
+            settings.ReservedPeopleRows = WorldCommandBar.getReservedPeopleRows(simulation, measure, settings);
+            settings.MaxRows = maxRows;
+            CommandBarLayout.Result first = CommandBarLayout.compute(commands, measure, settings);
+            int found = 0;
+            for (int page = 0; page < first.PageCount; page++) {
+                CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings, page);
+                if (!result.Shown[appoint]) {
+                    continue;
+                }
+                found++;
+                CommandBarLayout.Rect button = result.Buttons[appoint];
+                Assert.True(button.X >= settings.Left && button.Right <= settings.Right + 0.01f, "Appoint Trader runs off the bar");
+                Assert.True(button.Y >= result.Top - 0.01f && button.Bottom <= settings.Bottom + 0.01f, "Appoint Trader is out of the bar's rows");
+                Assert.False(button.overlaps(result.More));
+                for (int i = 0; i < commands.Count; i++) {
+                    if (i != appoint && result.Shown[i]) {
+                        Assert.False(button.overlaps(result.Buttons[i]), "Appoint Trader overlaps " + commands[i].getLabel());
+                    }
+                }
+            }
+            Assert.Equal(1, found);
+        }
+
+        // --- #466 with #486: the kept pawn rows on a paged bar ----------------------------------------
+
+        /** Every command on page page, by label (CommandBarLayout.compute with that page). */
+        private static Dictionary<string, CommandBarLayout.Rect> pageOf(List<WorldCommand> commands, CommandBarLayout.Settings settings, int page,
+                out CommandBarLayout.Result result) {
+            result = CommandBarLayout.compute(commands, measure, settings, page);
+            Dictionary<string, CommandBarLayout.Rect> shown = new Dictionary<string, CommandBarLayout.Rect>();
+            for (int i = 0; i < commands.Count; i++) {
+                if (result.Shown[i]) {
+                    shown[commands[i].getLabel()] = result.Buttons[i];
+                }
+            }
+            return shown;
+        }
+
+        [Theory]
+        [InlineData(844f, 390f, 140f, 2)]   // a phone on its side, between the columns
+        [InlineData(390f, 844f, 260f, 2)]   // upright
+        [InlineData(390f, 844f, 260f, 1)]
+        public void onAPagedBar_TheKeptPawnRowsCount_ButAddNoEmptyPage_AndAPawnMovesNoOtherButton(float width, float height, float reserve, int maxRows) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, true, 1f, out WorldHud.Layout layout, out bool stackCentre);
+            settings.Left = WorldHud.getBarLeft(layout, true, stackCentre);
+            int needed = CommandBarLayout.countRows(WorldCommandBar.getPawnStandIns(), measure, settings);
+            settings.ReservedPeopleRows = System.Math.Min(WorldCommandBar.MaxReservedPeopleRows, needed);
+            List<WorldCommand> alone = settlementWithPawn(false);
+            List<WorldCommand> withPawn = settlementWithPawn(true);
+
+            // the kept rows count toward MaxRows: a bar that would fit without them is paged with them
+            CommandBarLayout.Settings roomy = settings;
+            roomy.MaxRows = 0;
+            CommandBarLayout.Result unpaged = CommandBarLayout.compute(alone, measure, roomy);
+            roomy.ReservedPeopleRows = 0;
+            CommandBarLayout.Result unkept = CommandBarLayout.compute(alone, measure, roomy);
+            float step = settings.ButtonHeight + settings.SpacingY;
+            int rowsWithout = (int) System.MathF.Round((settings.Bottom - unkept.Top + settings.SpacingY - settings.DrasticGap) / step);
+            roomy.ReservedPeopleRows = settings.ReservedPeopleRows;
+            roomy.MaxRows = rowsWithout;
+            Assert.True(unpaged.Top < unkept.Top);
+            Assert.True(CommandBarLayout.compute(alone, measure, roomy).isPaged(), "the kept rows were not counted toward MaxRows");
+
+            settings.MaxRows = maxRows;
+            CommandBarLayout.Result first = CommandBarLayout.compute(alone, measure, settings);
+            CommandBarLayout.Result firstWith = CommandBarLayout.compute(withPawn, measure, settings);
+            Assert.True(first.isPaged());
+            // no pawn in reach: no page is left empty for one
+            for (int page = 0; page < first.PageCount; page++) {
+                Assert.NotEmpty(pageOf(alone, settings, page, out _));
+            }
+            // a pawn in reach adds pages at the end, and every other button keeps its page and place
+            Assert.True(firstWith.PageCount > first.PageCount);
+            Assert.Equal(first.Top, firstWith.Top);
+            Assert.Equal(first.More, firstWith.More);
+            for (int page = 0; page < first.PageCount; page++) {
+                Dictionary<string, CommandBarLayout.Rect> before = pageOf(alone, settings, page, out _);
+                Dictionary<string, CommandBarLayout.Rect> after = pageOf(withPawn, settings, page, out _);
+                Assert.Equal(before, after);
+            }
+            // the pawns' pages hold only pawn buttons, after the drastic page
+            bool sawDrastic = false;
+            for (int page = 0; page < firstWith.PageCount; page++) {
+                CommandBarLayout.Result result = CommandBarLayout.compute(withPawn, measure, settings, page);
+                bool people = false;
+                bool other = false;
+                for (int i = 0; i < withPawn.Count; i++) {
+                    if (!result.Shown[i]) {
+                        continue;
+                    }
+                    CommandGroup group = withPawn[i].getGroup();
+                    sawDrastic = sawDrastic || group == CommandGroup.Drastic;
+                    if (group == CommandGroup.People) {
+                        people = true;
+                        Assert.True(sawDrastic, "a pawn page comes before the drastic page");
+                    } else {
+                        other = true;
+                    }
+                }
+                Assert.False(people && other, "page " + page + " mixes pawn and other buttons");
+            }
         }
     }
 }

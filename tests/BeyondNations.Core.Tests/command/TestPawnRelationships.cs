@@ -110,6 +110,36 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testNameTagLine_StrangerInTheWorld_JustTheName() {
+            Pawn pawn = addPawn("Ada");
+            Assert.Equal("Ada", PawnRelations.nameTagLine(pawn, player));
+        }
+
+        [Fact]
+        public void testNameTagLine_OwnMemberNeverMet_ShowsTheTierTalkShows() {
+            Nation nation = playerNation();
+            Pawn pawn = addPawn("Ada");
+            nation.addMember(pawn.getId());
+            pawn.setNationId(nation.getId());
+
+            Assert.Equal("Ada (Stranger)", PawnRelations.nameTagLine(pawn, player));
+            Assert.Equal(PawnRelations.describe(pawn, player), PawnRelations.nameTagLine(pawn, player));
+        }
+
+        [Fact]
+        public void testNameTagLine_MetPawn_ShowsTheTier() {
+            Pawn pawn = addPawn("Ada");
+            PawnRelations.raise(pawn, player, RelationshipTiers.FRIEND_THRESHOLD, null);
+            Assert.Equal("Ada (Friend)", PawnRelations.nameTagLine(pawn, player));
+        }
+
+        [Fact]
+        public void testLoyalTrait_NamedSoItIsNotReadAsTheTier() {
+            Assert.Equal("Loyal by nature", PawnTraits.getName(PawnTrait.LOYAL));
+            Assert.NotEqual(RelationshipTiers.getName(RelationshipTier.LOYAL), PawnTraits.getName(PawnTrait.LOYAL));
+        }
+
+        [Fact]
         public void testFindPawnInRange_OnlyWithinReach() {
             Pawn far = addPawn("Far", new Vector3(20, 0, 0));
             Assert.Null(PawnRelations.findPawnInRange(player, environment));
@@ -332,6 +362,74 @@ namespace beyondnationstests {
             Assert.Equal(100, player.getInventory().getNumItems(ItemType.COIN));
             Assert.Equal(1, pawn.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(GiftPawnCommand.HUNGRY_FOOD_GIFT_GAIN, PawnRelations.getRelationship(pawn, player));
+        }
+
+        // --- gifts to a leader (#371) ---
+
+        [Fact]
+        public void testGift_RivalLeader_WarmsButWarnsItWillNeverJoin() {
+            playerNation();
+            Pawn leader = addPawn("Rex");
+            pawnNation("Rivalia", leader);
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, leader);
+
+            Assert.Equal(GiftPawnCommand.COIN_GIFT_GAIN, PawnRelations.getRelationship(leader, player));
+            Assert.EndsWith(" Rex leads Rivalia and will never join your nation.", status());
+            Assert.Equal(" Rex leads Rivalia and will never join your nation.", GiftPawnCommand.leaderWarning(player, leader, nationRepository));
+        }
+
+        [Fact]
+        public void testGift_RivalLeader_WarnsAPlayerWithoutANationToo() {
+            Pawn leader = addPawn("Rex");
+            pawnNation("Rivalia", leader);
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, leader);
+
+            Assert.Contains("Rex leads Rivalia", status());
+        }
+
+        [Fact]
+        public void testGift_RivalMemberOrNationless_NoLeaderWarning() {
+            playerNation();
+            Pawn leader = addPawn("Rex");
+            Nation rival = pawnNation("Rivalia", leader);
+            Pawn member = addPawn("Ada");
+            join(rival, member);
+            Pawn loner = addPawn("Bea");
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, member);
+            Assert.DoesNotContain("never join", status());
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, loner);
+            Assert.DoesNotContain("never join", status());
+            Assert.Equal("", GiftPawnCommand.leaderWarning(player, member, nationRepository));
+            Assert.Equal("", GiftPawnCommand.leaderWarning(player, loner, nationRepository));
+        }
+
+        [Fact]
+        public void testGift_OwnMember_NoLeaderWarning() {
+            Nation home = playerNation();
+            Pawn member = addPawn("Ada");
+            join(home, member);
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, member);
+
+            Assert.DoesNotContain("never join", status());
+            Assert.Equal(GiftPawnCommand.COIN_GIFT_GAIN, PawnRelations.getRelationship(member, player));
+        }
+
+        [Fact]
+        public void testGift_NothingToGive_ToALeader_NoWarningEither() {
+            Pawn leader = addPawn("Rex");
+            pawnNation("Rivalia", leader);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, leader);
+
+            Assert.StartsWith("You have nothing to give Rex.", status());
         }
 
         [Fact]
@@ -651,6 +749,39 @@ namespace beyondnationstests {
             Assert.Equal(3, player.getInventory().getNumItems(ItemType.STONE));
             Assert.Equal(50, settlement.getFunds());
             Assert.Equal(0, CollectSettlementStockpileCommand.getStockpileSize(settlement));
+        }
+
+        [Fact]
+        public void testCollectStockpile_TakesEveryGood_NotJustWoodAndStone() {
+            // #485: a caravan's unsold saplings sat on the stockpile out of reach
+            Nation home = playerNation();
+            Settlement settlement = addSettlement(home);
+            settlement.getInventory().addItem(ItemType.WOOD, 4);
+            settlement.getInventory().addItem(ItemType.SAPLING, 15);
+            settlement.getInventory().addItem(ItemType.APPLE, 2);
+            settlement.addFunds(50);
+            player.setCurrentSettlementId(settlement.getId());
+
+            Assert.Equal(21, CollectSettlementStockpileCommand.getStockpileSize(settlement));
+            new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player);
+
+            Assert.Equal(4, player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(15, player.getInventory().getNumItems(ItemType.SAPLING));
+            Assert.Equal(2, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(50, settlement.getFunds());
+            Assert.Equal(0, CollectSettlementStockpileCommand.getStockpileSize(settlement));
+            Assert.Equal("Collected 4 wood, 15 saplings and 2 apples from the stockpile.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testCollectStockpile_OnlySaplings_IsNotEmpty() {
+            Nation home = playerNation();
+            Settlement settlement = addSettlement(home);
+            settlement.getInventory().addItem(ItemType.SAPLING, 1);
+            player.setCurrentSettlementId(settlement.getId());
+            new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player);
+            Assert.Equal(1, player.getInventory().getNumItems(ItemType.SAPLING));
+            Assert.Equal("Collected 1 sapling from the stockpile.", player.getStatus().getStatus());
         }
 
         // --- appoint merchant ---

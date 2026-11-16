@@ -31,6 +31,7 @@ namespace beyondnations.web {
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
+        private readonly SettlementScreen settlementScreen = new SettlementScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
         private readonly SuccessionScreen successionScreen = new SuccessionScreen();
@@ -67,6 +68,7 @@ namespace beyondnations.web {
             this.gameConfig = gameConfig;
             this.saves = saves;
             this.share = share;
+            nationScreen.setTextPlatform(share.getPlatform());
         }
 
         public bool consumeQuitRequest() {
@@ -122,6 +124,8 @@ namespace beyondnations.web {
             // the safe area: the canvas less any notch or rounded corners
             float width = backend.getUiWidth(cssWidth);
             float height = backend.getUiHeight(cssHeight);
+            // entering a settlement, or a button asking for it, opens the settlement screen (#178)
+            SettlementScreens.beforeDraw(simulation, screens);
             UiAction action = UiAction.None;
             switch (screens.getCurrent()) {
                 case ScreenType.TITLE:
@@ -183,8 +187,19 @@ namespace beyondnations.web {
                         action = endOfRunScreen.draw(width, height, simulation);
                     }
                     break;
+                case ScreenType.SETTLEMENT:
+                    if (simulation != null) {
+                        action = settlementScreen.draw(width, height, simulation);
+                    }
+                    break;
             }
 
+            // a screen drawn over the world (the settlement screen's title,
+            // the nations screen) leaves no room for a town's floating name;
+            // it is left out under it (LabelPlacement), as WorldHud sets it for the world
+            if (screens.getCurrent() != ScreenType.WORLD) {
+                beyondnations.desktop.text.LabelPlacement.setTopReserve(1f);
+            }
             feel?.drawOverlay(width, height, screens.getCurrent(), simulation);
             if (share.handle(action, simulation)) {
                 action = UiAction.None;
@@ -253,6 +268,9 @@ namespace beyondnations.web {
                     // the ended world is saved, then the New World screen asks for a seed as Start does
                     newWorldRequested = true;
                     screens.goTo(ScreenType.NEW_WORLD);
+                    break;
+                case UiAction.CloseSettlement:
+                    screens.closeSettlement();
                     break;
             }
         }

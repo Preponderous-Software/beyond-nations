@@ -297,12 +297,23 @@ namespace beyondnations.desktop {
             // --- end #280 ---
             if (options.StartSeason.HasValue) {
                 simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+                // the days skipped are not the player's: their reign starts now (#490)
+                simulation.startPlayerFresh();
             }
 
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
             }
-            if (options.StageDiplomacy) {
+            if (options.StageOutpost) {
+                OutpostShowcase.stage(simulation);
+            }
+            if (options.StageHoldings) {
+                HoldingsShowcase.stage(simulation);
+            }
+            if (options.StageTrader) {
+                TraderShowcase.stage(simulation);
+            }
+            else if (options.StageDiplomacy) {
                 DiplomacyShowcase.stage(simulation);
             }
             if (options.StageSuccession) {
@@ -312,7 +323,16 @@ namespace beyondnations.desktop {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
-            if (options.StageTrade) {
+            if (options.StageCamp) {
+                TradeShowcase.stageCamp(simulation);
+            }
+            else if (options.StageCaravan) {
+                TradeShowcase.stageCaravan(simulation);
+            }
+            else if (options.StageMarket) {
+                TradeShowcase.stageMarket(simulation);
+            }
+            else if (options.StageTrade) {
                 TradeShowcase.stage(simulation);
             }
             if (options.StageVictory || options.StageDefeat) {
@@ -343,13 +363,19 @@ namespace beyondnations.desktop {
         /**
         * --advance-ticks: the same fixed steps the window runs, without
         * waiting for the clock, so the world opens mid-game. A world event
-        * waiting on the player does not stop it: the player is not playing.
+        * waiting on the player does not stop it: the player is not playing,
+        * so they are kept fed meanwhile and start fresh at the end (#490).
         */
         private void advanceTicks(int ticks) {
             Log.info("advancing the world " + ticks + " ticks");
             float step = (float) fixedTimeStep;
             for (int i = 0; i < ticks; i++) {
-                simulation.fixedUpdate(step);
+                simulation.fixedUpdateWithPlayerAway(step);
+            }
+            // the player comes in fed and young, not having lived the skipped ticks (#490)
+            simulation.startPlayerFresh();
+            if (options.StageSuccession) {
+                simulation.getPlayer().setEnergy(0.001f);
             }
             Log.info("advanced to tick " + simulation.getTickCounter().getTotalTicks()
                 + ": " + simulation.getNationRepository().getNations().Count + " nations");
@@ -370,7 +396,23 @@ namespace beyondnations.desktop {
                 }
                 nationIndex++;
             }
-            flyover = FlyoverDirector.between(settlements, nations, simulation.getPlayer().getPosition(), options.FlyoverFrames);
+            if (options.FlyoverOrbit) {
+                List<Vector3> trees = new List<Vector3>();
+                EntityRepository entities = simulation.getEntityRepository();
+                for (int e = 0; e < entities.getEntityCount(); e++) {
+                    Entity entity = entities.getEntityAt(e);
+                    // near the player, where the land is generated all round
+                    if (entity.getType() == EntityType.TREE && !entity.isMarkedForDeletion()
+                        && Vector3.Distance(entity.getPosition(), simulation.getPlayer().getPosition()) < 40f) {
+                        trees.Add(entity.getPosition());
+                    }
+                }
+                Vector3 stand = FlyoverDirector.thickestStand(trees, 15f, simulation.getPlayer().getPosition());
+                flyover = FlyoverDirector.orbit(stand, options.FlyoverFrames);
+                Log.info("flyover: circling the thickest stand of the " + trees.Count + " trees near the player, at " + stand);
+            } else {
+                flyover = FlyoverDirector.between(settlements, nations, simulation.getPlayer().getPosition(), options.FlyoverFrames);
+            }
             Directory.CreateDirectory(options.FlyoverOut);
             Log.info("flyover: " + settlements.Count + " settlements; gliding " + flyover.getStart() + " to " + flyover.getEnd()
                 + ", " + options.FlyoverFrames + " frames to " + options.FlyoverOut);
@@ -405,6 +447,11 @@ namespace beyondnations.desktop {
             loadWorld(latest.Slot);
             if (simulation == null) {
                 screens.goTo(ScreenType.MAIN_MENU);
+            }
+            else if (options.StartScreen != ScreenType.TITLE && options.StartScreen != ScreenType.WORLD) {
+                // --continue --start-screen laws: the loaded world, with that screen over it,
+                // so a saved run (tools/BeyondNations.Pacing --save-at) can be screenshotted there
+                screens.goTo(options.StartScreen);
             }
         }
 
@@ -521,7 +568,9 @@ namespace beyondnations.desktop {
             inputService.update();
 
             if (inputService.wasPressedThisFrame(KeyBindings.Pause)) {
-                if (!screens.escapePressed()) {
+                // Escape over the market panel closes the panel, not the world
+                bool closedPanel = screens.getCurrent() == ScreenType.WORLD && MarketTradePanel.escapePressed();
+                if (!closedPanel && !screens.escapePressed()) {
                     window.Close();
                 }
             }
@@ -574,6 +623,10 @@ namespace beyondnations.desktop {
             // the nations list scrolls with the arrow and page keys
             if (screens.getCurrent() == ScreenType.NATIONS) {
                 beyondnations.desktop.ui.screens.NationScreen.readScrollKeys(inputService);
+            }
+            // the build-stall key works on the settlement screen, as the objective's hint says (playtest 0.8.0 s01)
+            if (screens.getCurrent() == ScreenType.SETTLEMENT) {
+                beyondnations.desktop.ui.screens.SettlementScreen.readKeys(simulation, inputService);
             }
 
             // C opens and closes the crafting screen (#47) the same way.
@@ -780,6 +833,9 @@ namespace beyondnations.desktop {
                 }
                 if (CaravanDispatchPanel.isOpen()) {
                     playtestView.OpenPanels.Add("caravan-dispatch");
+                }
+                if (MarketTradePanel.isOpen()) {
+                    playtestView.OpenPanels.Add("market-trade");
                 }
                 if (simulation.getWorldEvents().isAwaitingPlayer()) {
                     playtestView.OpenPanels.Add("world-event");

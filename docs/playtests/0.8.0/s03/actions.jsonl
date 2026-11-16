@@ -1,0 +1,182 @@
+{"t": 1794780355028, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "103", "--season", "autumn"]}
+{"t": 1794780366763, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1794780366878, "cmd": "key", "args": ["space"]}
+{"t": 1794780367418, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1794780367919, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780369013, "cmd": "await", "args": ["NEW_WORLD", "20"]}
+{"t": 1794780369268, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780395314, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780396291, "cmd": "await", "args": ["WORLD", "40"]}
+{"t": 1794780396760, "cmd": "shot", "args": ["world0"]}
+{"t": 1794780397349, "cmd": "state", "args": []}
+{"t": 1794780424150, "cmd": "state", "args": ["--full"]}
+{"t": 1794780424493, "cmd": "status", "args": []}
+{"t": 1794780452806, "cmd": "shot", "args": ["w1"]}
+{"t": 1794780469005, "cmd": "click", "args": ["337", "388"]}
+{"t": 1794780470095, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780495765, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794780497475, "cmd": "wait", "args": ["2"]}
+{"t": 1794780499680, "cmd": "state", "args": []}
+{"t": 1794780507476, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780524274, "cmd": "key", "args": ["e"]}
+{"t": 1794780525041, "cmd": "wait", "args": ["1"]}
+{"t": 1794780526254, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780554692, "cmd": "key", "args": ["e"]}
+{"t": 1794780555387, "cmd": "wait", "args": ["1"]}
+{"t": 1794780556662, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780577661, "cmd": "key", "args": ["e"]}
+{"t": 1794780578311, "cmd": "wait", "args": ["1"]}
+{"t": 1794780579624, "cmd": "state", "args": []}
+{"t": 1794780579814, "cmd": "shot", "args": ["w2"]}
+{"t": 1794780585063, "cmd": "key", "args": ["n"]}
+{"t": 1794780585771, "cmd": "wait", "args": ["2"]}
+{"t": 1794780588024, "cmd": "shot", "args": ["nation"]}
+{"t": 1794780588732, "cmd": "state", "args": []}
+{"t": 1794780600690, "cmd": "note", "args": ["--shot", "chronicle_day_offby1", "Chronicle says 'Day 5, morning' while Season box says 'Autumn - day 1/2' and state day=4; day numbering differs between chronicle and probe (chronicle likely 1-based) - two different day counts on screen are confusing when timing winter."]}
+{"t": 1794780601281, "cmd": "click", "args": ["337", "375"]}
+{"t": 1794780602248, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794780619470, "cmd": "key", "args": ["e"]}
+{"t": 1794780620235, "cmd": "wait", "args": ["1"]}
+{"t": 1794780621390, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794780646303, "cmd": "key", "args": ["e"]}
+{"t": 1794780647086, "cmd": "wait", "args": ["1"]}
+{"t": 1794780648303, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794780648709, "cmd": "key", "args": ["e"]}
+{"t": 1794780649460, "cmd": "wait", "args": ["1"]}
+{"t": 1794780650707, "cmd": "state", "args": []}
+{"t": 1794780659312, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780720986, "cmd": "key", "args": ["e"]}
+{"t": 1794780721661, "cmd": "wait", "args": ["1"]}
+{"t": 1794780723073, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780785609, "cmd": "key", "args": ["e"]}
+{"t": 1794780786215, "cmd": "wait", "args": ["1"]}
+{"t": 1794780787458, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780808855, "cmd": "key", "args": ["e"]}
+{"t": 1794780809504, "cmd": "wait", "args": ["1"]}
+{"t": 1794780811278, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780845127, "cmd": "key", "args": ["e"]}
+{"t": 1794780845742, "cmd": "wait", "args": ["1"]}
+{"t": 1794780846995, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780866605, "cmd": "key", "args": ["e"]}
+{"t": 1794780867465, "cmd": "wait", "args": ["1"]}
+{"t": 1794780868668, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780869134, "cmd": "key", "args": ["e"]}
+{"t": 1794780869771, "cmd": "wait", "args": ["1"]}
+{"t": 1794780870900, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780892237, "cmd": "key", "args": ["e"]}
+{"t": 1794780893079, "cmd": "wait", "args": ["1"]}
+{"t": 1794780894264, "cmd": "state", "args": []}
+{"t": 1794780900889, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794780914081, "cmd": "key", "args": ["e"]}
+{"t": 1794780914825, "cmd": "wait", "args": ["1"]}
+{"t": 1794780916525, "cmd": "key", "args": ["f"]}
+{"t": 1794780917278, "cmd": "wait", "args": ["2"]}
+{"t": 1794780919472, "cmd": "state", "args": []}
+{"t": 1794780919753, "cmd": "shot", "args": ["settle"]}
+{"t": 1794780927998, "cmd": "note", "args": ["--shot", "wood_objective_mismatch", "Objective 4 bar shows 'Wood 45/50' while Inventory shows Wood: 51 (state inventory wood 51). Objective wood counter lags/undercounts inventory, so player with 50+ wood is told they still need more."]}
+{"t": 1794780928458, "cmd": "click", "args": ["337", "388"]}
+{"t": 1794780929512, "cmd": "face", "args": ["-88"]}
+{"t": 1794780936803, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1794780945180, "cmd": "state", "args": []}
+{"t": 1794780950237, "cmd": "face", "args": ["-168"]}
+{"t": 1794780960721, "cmd": "state", "args": []}
+{"t": 1794780965996, "cmd": "face", "args": ["40"]}
+{"t": 1794780969420, "cmd": "hold", "args": ["Shift_L+w", "10"]}
+{"t": 1794780979888, "cmd": "state", "args": []}
+{"t": 1794780980139, "cmd": "key", "args": ["f"]}
+{"t": 1794780980848, "cmd": "wait", "args": ["2"]}
+{"t": 1794780983141, "cmd": "state", "args": []}
+{"t": 1794780997317, "cmd": "face", "args": ["-72"]}
+{"t": 1794781002775, "cmd": "shot", "args": ["facing"]}
+{"t": 1794781003254, "cmd": "state", "args": []}
+{"t": 1794781009599, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1794781022088, "cmd": "key", "args": ["f"]}
+{"t": 1794781022825, "cmd": "wait", "args": ["2"]}
+{"t": 1794781025112, "cmd": "state", "args": []}
+{"t": 1794781030398, "cmd": "hold", "args": ["Shift_L+w", "14"]}
+{"t": 1794781044787, "cmd": "key", "args": ["f"]}
+{"t": 1794781045385, "cmd": "wait", "args": ["2"]}
+{"t": 1794781047575, "cmd": "state", "args": []}
+{"t": 1794781051515, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1794781054784, "cmd": "key", "args": ["f"]}
+{"t": 1794781055445, "cmd": "wait", "args": ["2"]}
+{"t": 1794781057656, "cmd": "state", "args": []}
+{"t": 1794781057824, "cmd": "shot", "args": ["founded"]}
+{"t": 1794781068997, "cmd": "click", "args": ["337", "401"]}
+{"t": 1794781069962, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1794781094532, "cmd": "key", "args": ["e"]}
+{"t": 1794781095102, "cmd": "wait", "args": ["2"]}
+{"t": 1794781097284, "cmd": "shot", "args": ["talk"]}
+{"t": 1794781097762, "cmd": "state", "args": []}
+{"t": 1794781101740, "cmd": "state", "args": ["--full"]}
+{"t": 1794781105811, "cmd": "walkto", "args": ["settlement", "40"]}
+{"t": 1794781128280, "cmd": "key", "args": ["e"]}
+{"t": 1794781128881, "cmd": "wait", "args": ["2"]}
+{"t": 1794781131028, "cmd": "shot", "args": ["inside"]}
+{"t": 1794781131330, "cmd": "state", "args": []}
+{"t": 1794781136855, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781137817, "cmd": "wait", "args": ["2"]}
+{"t": 1794781140068, "cmd": "shot", "args": ["inworld"]}
+{"t": 1794781140959, "cmd": "state", "args": []}
+{"t": 1794781151052, "cmd": "note", "args": ["--shot", "objective5_not_completed", "Entered the settlement (E -> SETTLEMENT screen 'CAMP OF HAMLETFIELD', 'Entered settlement.'), returned with Back, but Objective 5 'Enter your settlement' is still not completed (state objective completed=4). Also Season box shows 'Food: 7 of 4 for winter' with 2/8 residents: the 4 is the want for one member, unclear the player (21 apples) is not counted."]}
+{"t": 1794781156449, "cmd": "walkto", "args": ["pawn", "50"]}
+{"t": 1794781212119, "cmd": "key", "args": ["e"]}
+{"t": 1794781212981, "cmd": "wait", "args": ["1"]}
+{"t": 1794781214268, "cmd": "state", "args": []}
+{"t": 1794781221305, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1794781264890, "cmd": "key", "args": ["e"]}
+{"t": 1794781265749, "cmd": "wait", "args": ["1"]}
+{"t": 1794781267126, "cmd": "state", "args": []}
+{"t": 1794781276473, "cmd": "hold", "args": ["w", "0.6"]}
+{"t": 1794781277499, "cmd": "key", "args": ["e"]}
+{"t": 1794781278238, "cmd": "wait", "args": ["1"]}
+{"t": 1794781279648, "cmd": "state", "args": []}
+{"t": 1794781291608, "cmd": "note", "args": ["--shot", "member_says_stranger", "Peggy White joined Hamletfield (chronicle: 'Peggy White joined Hamletfield', residents 2/8) yet talking to her again shows 'Peggy White (Stranger): \"Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\"' - a member of my nation calls me leader and refuses to follow in one line; mixed signals about whether she is mine."]}
+{"t": 1794781292211, "cmd": "events", "args": ["15"]}
+{"t": 1794781302227, "cmd": "walkto", "args": ["settlement", "40"]}
+{"t": 1794781326320, "cmd": "shot", "args": ["hud2"]}
+{"t": 1794781327217, "cmd": "status", "args": []}
+{"t": 1794781338385, "cmd": "note", "args": ["--shot", "season_food_count", "Season box now reads 'Food: 12 of 4 for winter' (was 7 of 4): my one member (Peggy) is laying in apples herself in autumn - preparation is visible on screen and climbing. Good. But the floating 'Camp of Hamletfield / N here, x/8 residents' world label is clipped by the top of the screen and sits behind the status/chronicle panels."]}
+{"t": 1794781339017, "cmd": "click", "args": ["473", "476"]}
+{"t": 1794781340105, "cmd": "wait", "args": ["2"]}
+{"t": 1794781342549, "cmd": "state", "args": []}
+{"t": 1794781351402, "cmd": "note", "args": ["--shot", "winter_unreachable", "Pacing/perf: after 16 real minutes the game is only at tick 127664 (day 4, 0.555, Autumn day 1/2). The sim runs at 5-12 tps (status: tps 5.9-10.7, fps 1-2) instead of 50. Winter warning is only due on the last day before winter (tick 150000) and winter starts at tick 180000; at ~8 tps that is ~47 min and ~110 min of wall-clock away, so the first winter cannot be reached in a 35-minute session. No in-game way to pass time (no sleep/wait) found."]}
+{"t": 1794781357656, "cmd": "walkto", "args": ["pawn", "90"]}
+{"t": 1794781375881, "cmd": "key", "args": ["e"]}
+{"t": 1794781376630, "cmd": "wait", "args": ["1"]}
+{"t": 1794781378025, "cmd": "state", "args": []}
+{"t": 1794781382756, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794781410878, "cmd": "key", "args": ["e"]}
+{"t": 1794781411553, "cmd": "wait", "args": ["1"]}
+{"t": 1794781412808, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794781440841, "cmd": "key", "args": ["e"]}
+{"t": 1794781441468, "cmd": "wait", "args": ["1"]}
+{"t": 1794781442590, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794781446970, "cmd": "key", "args": ["e"]}
+{"t": 1794781447769, "cmd": "wait", "args": ["1"]}
+{"t": 1794781448886, "cmd": "state", "args": []}
+{"t": 1794781452745, "cmd": "walkto", "args": ["settlement", "40"]}
+{"t": 1794781482896, "cmd": "key", "args": ["e"]}
+{"t": 1794781483413, "cmd": "wait", "args": ["1"]}
+{"t": 1794781484511, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781485267, "cmd": "wait", "args": ["2"]}
+{"t": 1794781487321, "cmd": "shot", "args": ["feed"]}
+{"t": 1794781502843, "cmd": "state", "args": []}
+{"t": 1794781519698, "cmd": "note", "args": ["--shot", "no_food_store", "Settlement sheet 'Stores' lists only Funds and Stockpile (67 wood, 8 stone) - no food line and no way here to deposit apples for winter. The only place food-for-winter shows is the Season box 'Food: N of M', which counts members' packs. As a player told to 'store food before winter' I expected to put my 25 apples into the settlement; instead I have to carry them and use Feed Residents from the HUD (greyed '0 hungry' in autumn)."]}
+{"t": 1794781520739, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781521726, "cmd": "wait", "args": ["2"]}
+{"t": 1794781524062, "cmd": "shot", "args": ["hud3"]}
+{"t": 1794781542988, "cmd": "click", "args": ["389", "413"]}
+{"t": 1794781544056, "cmd": "wait", "args": ["2"]}
+{"t": 1794781546281, "cmd": "state", "args": []}
+{"t": 1794781546472, "cmd": "shot", "args": ["farm"]}
+{"t": 1794781547185, "cmd": "events", "args": ["5"]}
+{"t": 1794781554559, "cmd": "click", "args": ["389", "413"]}
+{"t": 1794781555509, "cmd": "wait", "args": ["2"]}
+{"t": 1794781558209, "cmd": "state", "args": []}
+{"t": 1794781558481, "cmd": "shot", "args": ["farm2"]}
+{"t": 1794781568431, "cmd": "note", "args": ["--shot", "confirm_timeout", "Build Farm two-click confirm: first click shows 'Click again to confirm: Build Farm.', a second pt click on the same button ~20s wall later (tick 128736 -> ~128800, game at 1-2 fps) gives 'Not confirmed in time, so nothing was done.' The confirm window is too short for a slow machine; at low fps a player cannot confirm. Expected the confirm to wait for game ticks or stay armed until another action."]}
+{"t": 1794781568926, "cmd": "state", "args": []}
+{"t": 1794781569113, "cmd": "stop", "args": []}
+{"t": 1794781601110, "cmd": "report", "args": []}
+{"t": 1794782465569, "cmd": "stop", "args": []}

@@ -35,9 +35,24 @@ namespace beyondnations.desktop.ui {
     *   stand-in name (WorldCommand.getWidthLabel), so one pawn's long name
     *   or warming tier moves nothing; a longer label is shortened with
     *   "..." (fitLabel). Playtest 0.6.2 s02, finding 17.
+    * - Inside a settlement, where residents walk into and out of reach all
+    *   the time, the pawn rows are kept whether or not a pawn is there
+    *   (Settings.ReservedPeopleRows), and the tool shortcuts and Eat start a
+    *   row of their own above them: a pawn row coming and going moved Eat
+    *   under a click meant for the market, and the boxes and the caravan
+    *   panel with the bar's top (0.8.0 re-run s05, #486).
     * - Nothing goes left of Left or right of Right: the caller keeps Right
     *   short of the right-hand column of boxes, and a label too long for the
     *   bar is clipped to it rather than running off the window.
+    * - A bar given at most MaxRows rows (a phone, whose HUD leaves the bar
+    *   two or three rows above the touch controls) that needs more is shown
+    *   a page at a time behind a More button, which always sits first, at
+    *   the bottom left (#466: in a market town Trade at Market ran under
+    *   the HUD boxes). The pages keep the bar's order, the drastic buttons
+    *   start a page of their own, so they are still apart from the rest,
+    *   the pawn buttons come last, on pages of their own, so a resident
+    *   coming or going moves no other button (#486, in place of the kept
+    *   rows), and every page takes the same rows, so turning one moves no box.
     */
     public static class CommandBarLayout {
         public const string ConfirmPrefix = "Confirm ";
@@ -55,6 +70,20 @@ namespace beyondnations.desktop.ui {
             public float WidthStep;
             /** Extra space between the drastic row and the rows under it. */
             public float DrasticGap;
+            /**
+            * Rows kept for the pawn buttons whether or not a pawn is in reach
+            * (0: none kept). With rows kept, the groups after the pawns
+            * (Craft: Eat, Craft Axe) start a row of their own above them, and
+            * the bar's top counts them, so a resident walking into or out of
+            * reach moves no button and no box (#486).
+            */
+            public int ReservedPeopleRows;
+            /**
+            * The most rows the bar may take, the drastic row included (0:
+            * as many as it needs). A bar that needs more is paged behind a
+            * More button.
+            */
+            public int MaxRows;
         }
 
         public struct Rect {
@@ -72,10 +101,29 @@ namespace beyondnations.desktop.ui {
         }
 
         public class Result {
-            /** One per command, in the order given. */
+            /** One per command, in the order given; empty for one not on the page shown. */
             public Rect[] Buttons;
+            /** Whether each command is on the page shown (every one, when the bar is not paged). */
+            public bool[] Shown;
             /** The top of the highest row, or Bottom when there are no buttons. */
             public float Top;
+            /** How many pages the bar has: 1 when everything fits. */
+            public int PageCount = 1;
+            /** The page shown, 0 to PageCount - 1. */
+            public int Page;
+            /** Where the More button goes; only when PageCount > 1. */
+            public Rect More;
+
+            public bool isPaged() {
+                return PageCount > 1;
+            }
+        }
+
+        public const string MoreLabel = "More";
+
+        /** "More 1/3": which page is showing, and that tapping shows the next. */
+        public static string getMoreLabel(int page, int pageCount) {
+            return MoreLabel + " " + (page + 1) + "/" + pageCount;
         }
 
         /** What a button says while it waits for the second click. */
@@ -145,20 +193,43 @@ namespace beyondnations.desktop.ui {
         private static float flow(List<WorldCommand> commands, bool drastic, float bottom, System.Func<string, float> measure,
                 Settings settings, Rect[] buttons) {
             float rowY = bottom - settings.ButtonHeight;
+            float step = settings.ButtonHeight + settings.SpacingY;
             float x = settings.Left;
             bool rowEmpty = true;
             bool any = false;
             bool inPeople = false;
+            // the kept pawn rows (ReservedPeopleRows), placed once the groups before them are
+            int reserve = drastic ? 0 : System.Math.Max(0, settings.ReservedPeopleRows);
+            bool reserved = false;
+            bool pastPeople = false;
+            float peopleTop = float.MaxValue;
+            float top = bottom;
             for (int i = 0; i < commands.Count; i++) {
                 if ((commands[i].getGroup() == CommandGroup.Drastic) != drastic) {
                     continue;
                 }
                 float width = buttonWidth(commands[i], measure, settings);
+                CommandGroup group = commands[i].getGroup();
+                if (reserve > 0 && !reserved && group >= CommandGroup.People) {
+                    // where the pawn rows start: here, on a row of their own
+                    float peopleRow = rowEmpty ? rowY : rowY - step;
+                    peopleTop = peopleRow - (reserve - 1) * step;
+                    top = System.MathF.Min(top, peopleTop);
+                    reserved = true;
+                }
+                if (reserve > 0 && !pastPeople && group > CommandGroup.People) {
+                    // after the pawns: a row of its own above the kept rows (or
+                    // above the pawns' own buttons, should they ever need more)
+                    rowY = System.MathF.Min(peopleTop - step, rowEmpty ? rowY : rowY - step);
+                    x = settings.Left;
+                    rowEmpty = true;
+                    pastPeople = true;
+                }
                 // the pawn buttons start a row of their own
-                bool firstPerson = !inPeople && commands[i].getGroup() == CommandGroup.People;
+                bool firstPerson = !inPeople && group == CommandGroup.People;
                 inPeople = inPeople || firstPerson;
                 if (!rowEmpty && (firstPerson || x + settings.SpacingX + width > settings.Right)) {
-                    rowY -= settings.ButtonHeight + settings.SpacingY;
+                    rowY -= step;
                     x = settings.Left;
                     rowEmpty = true;
                 }
@@ -170,13 +241,47 @@ namespace beyondnations.desktop.ui {
                 rowEmpty = false;
                 any = true;
             }
-            return any ? rowY : bottom;
+            if (reserve > 0 && !reserved) {
+                // no pawn and nothing after them: the kept rows still count toward the top
+                float peopleRow = rowEmpty ? rowY : rowY - step;
+                top = System.MathF.Min(top, peopleRow - (reserve - 1) * step);
+                reserved = true;
+            }
+            float highest = any ? rowY : bottom;
+            return reserved ? System.MathF.Min(highest, top) : highest;
         }
 
-        /** Lays out commands, which should already be in order(). */
-        public static Result compute(List<WorldCommand> commands, System.Func<string, float> measure, Settings settings) {
+        /**
+        * How many rows these commands take on a bar of these settings when
+        * they start a row of their own: what ReservedPeopleRows is worked out
+        * from, with the pawn buttons a leader could see (WorldCommandBar.getPawnStandIns).
+        */
+        public static int countRows(List<WorldCommand> commands, System.Func<string, float> measure, Settings settings) {
+            int rows = 0;
+            float x = settings.Left;
+            bool rowEmpty = true;
+            foreach (WorldCommand command in commands) {
+                float width = buttonWidth(command, measure, settings);
+                if (rowEmpty || x + settings.SpacingX + width > settings.Right) {
+                    rows++;
+                    x = settings.Left + width;
+                    rowEmpty = false;
+                    continue;
+                }
+                x += settings.SpacingX + width;
+            }
+            return rows;
+        }
+
+        /**
+        * Lays out commands, which should already be in order(). page is the
+        * page to show when the bar has to be paged (Settings.MaxRows); it is
+        * wrapped round, so a caller can keep counting up.
+        */
+        public static Result compute(List<WorldCommand> commands, System.Func<string, float> measure, Settings settings, int page = 0) {
             Result result = new Result();
             result.Buttons = new Rect[commands.Count];
+            result.Shown = new bool[commands.Count];
             result.Top = settings.Bottom;
             if (commands.Count == 0) {
                 return result;
@@ -186,7 +291,140 @@ namespace beyondnations.desktop.ui {
             float restBottom = top < settings.Bottom ? top - settings.SpacingY - settings.DrasticGap : settings.Bottom;
             float restTop = flow(commands, false, restBottom, measure, settings, result.Buttons);
             result.Top = restTop < restBottom ? restTop : top;
+            // the kept pawn rows count, empty or not (ReservedPeopleRows)
+            int rows = rowsSpanned(top, settings.Bottom, settings) + rowsSpanned(restTop, restBottom, settings);
+            if (settings.MaxRows > 0 && rows > settings.MaxRows) {
+                return paged(commands, measure, settings, page);
+            }
+            for (int i = 0; i < commands.Count; i++) {
+                result.Shown[i] = true;
+            }
             return result;
+        }
+
+        /** How many rows fit between top and bottom (0 when top is not above bottom). */
+        private static int rowsSpanned(float top, float bottom, Settings settings) {
+            if (top >= bottom) {
+                return 0;
+            }
+            return (int) System.MathF.Round((bottom - top + settings.SpacingY) / (settings.ButtonHeight + settings.SpacingY));
+        }
+
+        /**
+        * The bar a page at a time: More first, at the bottom left, then the
+        * commands in order, rows stacking upwards, a new page whenever the
+        * next would need a row past MaxRows. The drastic commands start a
+        * page of their own, and the pawn buttons come last of all, on pages
+        * of their own.
+        *
+        * ReservedPeopleRows does not apply here. It keeps rows empty so a
+        * pawn walking into reach moves nothing (#486); a paged bar keeps
+        * still another way: every page takes the same MaxRows rows, and with
+        * the pawns' pages last, a pawn coming or going adds or removes pages
+        * after every other button, so Eat, the tools and the market stay on
+        * the same page in the same place. Kept rows here would only be an
+        * empty page, or fewer buttons a page, when no one is in reach. (They
+        * do count toward MaxRows when compute decides whether to page.) The
+        * pawns' pages also come after the drastic page, so a pawn walking
+        * away while their page shows wraps the bar round to the first page,
+        * never onto Declare War.
+        */
+        private static Result paged(List<WorldCommand> commands, System.Func<string, float> measure, Settings settings, int page) {
+            int count = commands.Count;
+            // the flowing commands first, then the drastic ones, then the pawns'
+            List<int> order = new List<int>(count);
+            foreach (bool drasticPass in new[] { false, true }) {
+                for (int i = 0; i < count; i++) {
+                    CommandGroup group = commands[i].getGroup();
+                    if ((group == CommandGroup.Drastic) == drasticPass && group != CommandGroup.People) {
+                        order.Add(i);
+                    }
+                }
+            }
+            for (int i = 0; i < count; i++) {
+                if (commands[i].getGroup() == CommandGroup.People) {
+                    order.Add(i);
+                }
+            }
+            float barWidth = settings.Right - settings.Left;
+            // as wide as "More 9/9" from the start, so the count changing moves nothing
+            float moreWidth = System.MathF.Max(settings.MinButtonWidth, measure(getMoreLabel(8, 9)) + settings.TextPadding);
+            if (settings.WidthStep > 0f) {
+                moreWidth = System.MathF.Ceiling(moreWidth / settings.WidthStep - 0.001f) * settings.WidthStep;
+            }
+            moreWidth = System.MathF.Min(moreWidth, barWidth);
+            float rowStep = settings.ButtonHeight + settings.SpacingY;
+            float firstX = settings.Left + moreWidth;
+
+            int[] pageOf = new int[count];
+            Rect[] rects = new Rect[count];
+            int pageIndex = 0;
+            int row = 0;
+            float x = firstX;
+            bool pageEmpty = true;
+            bool inPeople = false;
+            bool inDrastic = false;
+            foreach (int i in order) {
+                WorldCommand command = commands[i];
+                float buttonW = buttonWidth(command, measure, settings);
+                bool firstDrastic = !inDrastic && command.getGroup() == CommandGroup.Drastic;
+                bool firstPerson = !inPeople && command.getGroup() == CommandGroup.People;
+                inDrastic = inDrastic || firstDrastic;
+                inPeople = inPeople || firstPerson;
+                if ((firstDrastic || firstPerson) && !pageEmpty) {
+                    pageIndex++;
+                    row = 0;
+                    x = firstX;
+                    pageEmpty = true;
+                }
+                bool rowStarted = x > settings.Left;
+                if (rowStarted && x + settings.SpacingX + buttonW > settings.Right) {
+                    // a new row, or a new page when the rows are used up
+                    if (row + 1 < settings.MaxRows) {
+                        row++;
+                        x = settings.Left;
+                    }
+                    else if (!pageEmpty) {
+                        pageIndex++;
+                        row = 0;
+                        x = firstX;
+                        pageEmpty = true;
+                    }
+                }
+                if (x > settings.Left) {
+                    x += settings.SpacingX;
+                }
+                // a button too wide to go beside More on a page of one row is narrowed to fit
+                buttonW = System.MathF.Max(1f, System.MathF.Min(buttonW, settings.Right - x));
+                rects[i] = new Rect { X = x, Y = settings.Bottom - settings.ButtonHeight - row * rowStep, Width = buttonW, Height = settings.ButtonHeight };
+                pageOf[i] = pageIndex;
+                x += buttonW;
+                pageEmpty = false;
+            }
+
+            Result result = new Result();
+            result.Buttons = new Rect[count];
+            result.Shown = new bool[count];
+            result.PageCount = pageIndex + 1;
+            result.Page = ((page % result.PageCount) + result.PageCount) % result.PageCount;
+            for (int i = 0; i < count; i++) {
+                if (pageOf[i] == result.Page) {
+                    result.Buttons[i] = rects[i];
+                    result.Shown[i] = true;
+                }
+            }
+            result.More = new Rect { X = settings.Left, Y = settings.Bottom - settings.ButtonHeight, Width = moreWidth, Height = settings.ButtonHeight };
+            // every page takes the same rows, so turning one moves nothing above the bar
+            result.Top = settings.Bottom - settings.ButtonHeight - (settings.MaxRows - 1) * rowStep;
+            return result;
+        }
+
+        /**
+        * The rows a bar between ceiling and bottom has room for, at least
+        * one: Settings.MaxRows for a bar that must stay under the boxes above it.
+        */
+        public static int rowsBetween(float ceiling, float bottom, float buttonHeight, float spacingY) {
+            return System.Math.Max(1, (int) System.MathF.Floor((bottom - ceiling + spacingY) / (buttonHeight + spacingY)));
         }
     }
 }

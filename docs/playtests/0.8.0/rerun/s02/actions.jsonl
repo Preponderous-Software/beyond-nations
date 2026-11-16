@@ -1,0 +1,232 @@
+{"t": 1794789328744, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "102"]}
+{"t": 1794789332426, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1794789332476, "cmd": "key", "args": ["space"]}
+{"t": 1794789334954, "cmd": "shot", "args": ["menu"]}
+{"t": 1794789338783, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789339517, "cmd": "await", "args": ["NEW_WORLD", "15"]}
+{"t": 1794789339767, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789340487, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1794789342931, "cmd": "shot", "args": ["w0"]}
+{"t": 1794789343033, "cmd": "state", "args": []}
+{"t": 1794789346549, "cmd": "click", "args": ["377", "389"]}
+{"t": 1794789347261, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794789348967, "cmd": "shot", "args": ["era"]}
+{"t": 1794789355081, "cmd": "click", "args": ["435", "376"]}
+{"t": 1794789355795, "cmd": "key", "args": ["n"]}
+{"t": 1794789357247, "cmd": "shot", "args": ["nation"]}
+{"t": 1794789357351, "cmd": "state", "args": []}
+{"t": 1794789359634, "cmd": "key", "args": ["f"]}
+{"t": 1794789361085, "cmd": "shot", "args": ["found0"]}
+{"t": 1794789361194, "cmd": "state", "args": []}
+{"t": 1794789363516, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789370458, "cmd": "key", "args": ["e"]}
+{"t": 1794789371413, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794789372668, "cmd": "state", "args": []}
+{"t": 1794789375333, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789379238, "cmd": "key", "args": ["e"]}
+{"t": 1794789379689, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789383598, "cmd": "key", "args": ["e"]}
+{"t": 1794789384056, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789390647, "cmd": "key", "args": ["e"]}
+{"t": 1794789391097, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789397667, "cmd": "key", "args": ["e"]}
+{"t": 1794789398118, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789404804, "cmd": "key", "args": ["e"]}
+{"t": 1794789405249, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789413846, "cmd": "key", "args": ["e"]}
+{"t": 1794789414297, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789423071, "cmd": "key", "args": ["e"]}
+{"t": 1794789423525, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789426403, "cmd": "key", "args": ["e"]}
+{"t": 1794789426853, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789431301, "cmd": "key", "args": ["e"]}
+{"t": 1794789431751, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789452369, "cmd": "key", "args": ["e"]}
+{"t": 1794789452825, "cmd": "state", "args": []}
+{"t": 1794789454947, "cmd": "key", "args": ["f"]}
+{"t": 1794789456404, "cmd": "shot", "args": ["found1"]}
+{"t": 1794789456535, "cmd": "state", "args": []}
+{"t": 1794789456579, "cmd": "events", "args": ["10"]}
+{"t": 1794789460785, "cmd": "state", "args": ["--full"]}
+{"t": 1794789463413, "cmd": "key", "args": ["e"]}
+{"t": 1794789465367, "cmd": "shot", "args": ["inside"]}
+{"t": 1794789465502, "cmd": "state", "args": []}
+{"t": 1794789470185, "cmd": "move", "args": ["480", "352"]}
+{"t": 1794789471742, "cmd": "shot", "args": ["househover"]}
+{"t": 1794789478018, "cmd": "note", "args": ["--shot", "house_no_cost", "Settlement screen: Build House button is greyed out with no cost shown (Farm cost is listed under Buildings, Stall cost only in objective). Hovering shows no tooltip; player can't tell what a House needs. Tick ~5626."]}
+{"t": 1794789478147, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794789479861, "cmd": "walkto", "args": ["rock", "120"]}
+{"t": 1794789490970, "cmd": "key", "args": ["e"]}
+{"t": 1794789491421, "cmd": "state", "args": []}
+{"t": 1794789494657, "cmd": "walkto", "args": ["rock", "120"]}
+{"t": 1794789516004, "cmd": "key", "args": ["e"]}
+{"t": 1794789516454, "cmd": "walkto", "args": ["rock", "120"]}
+{"t": 1794789537339, "cmd": "key", "args": ["e"]}
+{"t": 1794789537789, "cmd": "walkto", "args": ["rock", "120"]}
+{"t": 1794789550236, "cmd": "key", "args": ["e"]}
+{"t": 1794789550700, "cmd": "walkto", "args": ["rock", "120"]}
+{"t": 1794789555821, "cmd": "key", "args": ["e"]}
+{"t": 1794789556276, "cmd": "state", "args": []}
+{"t": 1794789559079, "cmd": "key", "args": ["e"]}
+{"t": 1794789559531, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794789565995, "cmd": "key", "args": ["e"]}
+{"t": 1794789566446, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794789575361, "cmd": "key", "args": ["e"]}
+{"t": 1794789575816, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794789583397, "cmd": "key", "args": ["e"]}
+{"t": 1794789583845, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794789597227, "cmd": "key", "args": ["e"]}
+{"t": 1794789597677, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794789680410, "cmd": "key", "args": ["e"]}
+{"t": 1794789680859, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794789762116, "cmd": "key", "args": ["e"]}
+{"t": 1794789762569, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794789844056, "cmd": "key", "args": ["e"]}
+{"t": 1794789844507, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794789926623, "cmd": "key", "args": ["e"]}
+{"t": 1794789927080, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794790010750, "cmd": "key", "args": ["e"]}
+{"t": 1794790011192, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794790093255, "cmd": "key", "args": ["e"]}
+{"t": 1794790093696, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794790105306, "cmd": "status", "args": []}
+{"t": 1794790105346, "cmd": "state", "args": []}
+{"t": 1794790105380, "cmd": "shot", "args": ["stuck"]}
+{"t": 1794790111793, "cmd": "note", "args": ["--shot", "event_e_zero", "While the 'A bountiful harvest' world event sheet is open (world paused, tps 0), pressing E next to a tree still runs the interaction and shows 'Gathered 0 wood from tree. (x6)'. Expected E to be ignored (or the sheet to swallow input). Also the objective reads 'Wood 16/20' while inventory has 20 wood. Tick 9802."]}
+{"t": 1794790111921, "cmd": "click", "args": ["480", "463"]}
+{"t": 1794790113625, "cmd": "state", "args": []}
+{"t": 1794790116961, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790122815, "cmd": "key", "args": ["e"]}
+{"t": 1794790123257, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790123462, "cmd": "key", "args": ["e"]}
+{"t": 1794790123916, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790130602, "cmd": "key", "args": ["e"]}
+{"t": 1794790131046, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790132298, "cmd": "key", "args": ["e"]}
+{"t": 1794790132747, "cmd": "state", "args": []}
+{"t": 1794790135604, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790143199, "cmd": "key", "args": ["e"]}
+{"t": 1794790143647, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790146491, "cmd": "key", "args": ["e"]}
+{"t": 1794790146943, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790154660, "cmd": "key", "args": ["e"]}
+{"t": 1794790155100, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790166472, "cmd": "key", "args": ["e"]}
+{"t": 1794790166912, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790173553, "cmd": "key", "args": ["e"]}
+{"t": 1794790173993, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790177760, "cmd": "key", "args": ["e"]}
+{"t": 1794790178204, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794790178899, "cmd": "key", "args": ["e"]}
+{"t": 1794790179352, "cmd": "state", "args": []}
+{"t": 1794790181552, "cmd": "key", "args": ["h"]}
+{"t": 1794790183997, "cmd": "key", "args": ["e"]}
+{"t": 1794790185947, "cmd": "shot", "args": ["home2"]}
+{"t": 1794790186068, "cmd": "state", "args": []}
+{"t": 1794790188151, "cmd": "click", "args": ["182", "352"]}
+{"t": 1794790189863, "cmd": "click", "args": ["182", "352"]}
+{"t": 1794790191564, "cmd": "shot", "args": ["stalls"]}
+{"t": 1794790191694, "cmd": "state", "args": []}
+{"t": 1794790195486, "cmd": "click", "args": ["480", "352"]}
+{"t": 1794790197191, "cmd": "click", "args": ["777", "352"]}
+{"t": 1794790198890, "cmd": "shot", "args": ["built"]}
+{"t": 1794790199011, "cmd": "state", "args": []}
+{"t": 1794790204573, "cmd": "click", "args": ["480", "352"]}
+{"t": 1794790206275, "cmd": "state", "args": []}
+{"t": 1794790206310, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794790208509, "cmd": "shot", "args": ["out1"]}
+{"t": 1794790208642, "cmd": "events", "args": ["8"]}
+{"t": 1794790214831, "cmd": "note", "args": ["--shot", "objective_clipped", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: reads 'mbers 3/10 • Buildings 2/2'. Also the objective says 'Buildings 2/2' while the era panel lists 'Stalls 2/2' — different words for the same requirement? Tick 12903."]}
+{"t": 1794790214960, "cmd": "walkto", "args": ["pawn", "120"]}
+{"t": 1794790223761, "cmd": "key", "args": ["e"]}
+{"t": 1794790225201, "cmd": "shot", "args": ["talk1"]}
+{"t": 1794790225310, "cmd": "state", "args": []}
+{"t": 1794790228541, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794790230244, "cmd": "state", "args": ["--full"]}
+{"t": 1794790233506, "cmd": "face", "args": ["-109"]}
+{"t": 1794790235349, "cmd": "hold", "args": ["w", "1.4"]}
+{"t": 1794790236819, "cmd": "state", "args": ["--full"]}
+{"t": 1794790239081, "cmd": "face", "args": ["149"]}
+{"t": 1794790241802, "cmd": "hold", "args": ["w", "0.5"]}
+{"t": 1794790242369, "cmd": "state", "args": ["--full"]}
+{"t": 1794790242406, "cmd": "key", "args": ["e"]}
+{"t": 1794790243847, "cmd": "shot", "args": ["talkJ"]}
+{"t": 1794790246298, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794790249325, "cmd": "key", "args": ["e"]}
+{"t": 1794790250765, "cmd": "shot", "args": ["talkJ2"]}
+{"t": 1794790250949, "cmd": "state", "args": []}
+{"t": 1794790256745, "cmd": "key", "args": ["h"]}
+{"t": 1794790258186, "cmd": "key", "args": ["e"]}
+{"t": 1794790260129, "cmd": "click", "args": ["480", "352"]}
+{"t": 1794790261833, "cmd": "click", "args": ["480", "352"]}
+{"t": 1794790263533, "cmd": "shot", "args": ["houses3"]}
+{"t": 1794790263673, "cmd": "state", "args": []}
+{"t": 1794790268959, "cmd": "note", "args": ["--shot", "town_vs_era", "After 4 houses + 1 farm the settlement screen says 'The settlement is now a Town!' / 'TOWN OF WESTHAM' while the nation era is still Camp and Village era isn't reached. Settlement tiers share names with eras (Village, Town), which is confusing. Also 'Build here with what you carry' while houses were paid from the stockpile with an empty inventory. Tick ~14700."]}
+{"t": 1794790269092, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794790269795, "cmd": "state", "args": []}
+{"t": 1794790272720, "cmd": "hold", "args": ["s", "1"]}
+{"t": 1794790273791, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1794790275455, "cmd": "key", "args": ["r"]}
+{"t": 1794790276901, "cmd": "state", "args": []}
+{"t": 1794790280502, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794790283604, "cmd": "walkto", "args": ["pawn", "120"]}
+{"t": 1794790293692, "cmd": "key", "args": ["r"]}
+{"t": 1794790295133, "cmd": "shot", "args": ["recruit1"]}
+{"t": 1794790295278, "cmd": "state", "args": []}
+{"t": 1794790297784, "cmd": "key", "args": ["e"]}
+{"t": 1794790299238, "cmd": "key", "args": ["r"]}
+{"t": 1794790300682, "cmd": "state", "args": []}
+{"t": 1794790300716, "cmd": "shot", "args": ["recruit2"]}
+{"t": 1794790306734, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790308436, "cmd": "state", "args": []}
+{"t": 1794790308476, "cmd": "click", "args": ["161", "445"]}
+{"t": 1794790310175, "cmd": "state", "args": []}
+{"t": 1794790310210, "cmd": "key", "args": ["r"]}
+{"t": 1794790311653, "cmd": "state", "args": []}
+{"t": 1794790315581, "cmd": "click", "args": ["161", "445"]}
+{"t": 1794790316781, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790317985, "cmd": "click", "args": ["161", "445"]}
+{"t": 1794790319189, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790320391, "cmd": "click", "args": ["161", "445"]}
+{"t": 1794790321590, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790322791, "cmd": "key", "args": ["r"]}
+{"t": 1794790324231, "cmd": "state", "args": []}
+{"t": 1794790324267, "cmd": "shot", "args": ["court"]}
+{"t": 1794790328549, "cmd": "note", "args": ["--shot", "court", "Courting a Stranger (Yvonne Thomas): R said 'I don't even know you. (needs Acquaintance)'. It took 4 talks + 4 ten-coin gifts before R worked ('joined Westham! Members: 7'), but no relationship meter or progress toward Acquaintance is shown anywhere, so the player can't tell how close they are. Tick 17501."]}
+{"t": 1794790328713, "cmd": "state", "args": ["--full"]}
+{"t": 1794790332277, "cmd": "wait", "args": ["20"]}
+{"t": 1794790352328, "cmd": "state", "args": []}
+{"t": 1794790352366, "cmd": "wait", "args": ["20"]}
+{"t": 1794790372421, "cmd": "state", "args": []}
+{"t": 1794790372460, "cmd": "wait", "args": ["20"]}
+{"t": 1794790392507, "cmd": "state", "args": []}
+{"t": 1794790392547, "cmd": "wait", "args": ["20"]}
+{"t": 1794790412600, "cmd": "state", "args": []}
+{"t": 1794790412637, "cmd": "wait", "args": ["20"]}
+{"t": 1794790432690, "cmd": "state", "args": []}
+{"t": 1794790432730, "cmd": "wait", "args": ["20"]}
+{"t": 1794790452798, "cmd": "state", "args": []}
+{"t": 1794790455981, "cmd": "face", "args": ["90"]}
+{"t": 1794790457599, "cmd": "hold", "args": ["Shift_L+w", "4"]}
+{"t": 1794790461714, "cmd": "state", "args": ["--full"]}
+{"t": 1794790464752, "cmd": "walkto", "args": ["pawn", "60"]}
+{"t": 1794790525761, "cmd": "key", "args": ["r"]}
+{"t": 1794790526718, "cmd": "state", "args": []}
+{"t": 1794790526765, "cmd": "key", "args": ["e"]}
+{"t": 1794790527712, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790528917, "cmd": "key", "args": ["e"]}
+{"t": 1794790529859, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790531059, "cmd": "key", "args": ["e"]}
+{"t": 1794790532001, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790533204, "cmd": "key", "args": ["e"]}
+{"t": 1794790534148, "cmd": "click", "args": ["409", "445"]}
+{"t": 1794790535352, "cmd": "key", "args": ["r"]}
+{"t": 1794790536793, "cmd": "state", "args": []}
+{"t": 1794790538975, "cmd": "state", "args": []}
+{"t": 1794790539015, "cmd": "events", "args": ["6"]}
+{"t": 1794790539055, "cmd": "shot", "args": ["now"]}
+{"t": 1794790553892, "cmd": "note", "args": ["--shot", "village_era", "Village era reached at tick 26852 (537 s game): era_changed Camp->Village, +100 coins, unlocks Storehouse/Workshop/3 settlements. Requirement timeline: Village(settlement) 1/1 and Stalls 2/2 at tick 12871; Day 2 began ~tick 20990; Members 10/10 last, at 26852 (Bella Taylor joined). Members was the binding constraint; only 1 of 10 came from my own courting, the rest drifted in via housing."]}
+{"t": 1794790557814, "cmd": "click", "args": ["480", "25"]}
+{"t": 1794790558562, "cmd": "stop", "args": []}
+{"t": 1794790615292, "cmd": "report", "args": []}
+{"t": 1794790977283, "cmd": "stop", "args": []}

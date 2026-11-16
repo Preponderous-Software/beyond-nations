@@ -29,8 +29,29 @@ namespace beyondnationstests {
 
         private void tick(int count) {
             for (int i = 0; i < count; i++) {
+                answerWorldEvent();
                 simulation.fixedUpdate(FixedDeltaTime);
             }
+        }
+
+        /**
+        * A person must answer a world event's sheet (the host pauses the world
+        * while it is up); the script answers as the pacing bot does. The first event now comes within a minute and a
+        * half of founding (#370), in the middle of this arc.
+        */
+        private void answerWorldEvent() {
+            WorldEvents events = simulation.getWorldEvents();
+            WorldEventInstance pending = events.getPending();
+            if (pending == null) {
+                return;
+            }
+            // the first choice that costs no coins: the script spends its coins on gifts to recruit
+            List<WorldEventChoice> choices = events.getPendingChoices(simulation);
+            int choice = choices.FindIndex(c => c.isAvailable() && !c.getLabel().Contains(" coins)"));
+            if (choice < 0) {
+                choice = choices.FindIndex(c => c.isAvailable());
+            }
+            Assert.NotNull(events.choose(simulation, choice));
         }
 
         /** One second of game time: exactly one objective evaluation. */
@@ -81,9 +102,18 @@ namespace beyondnationstests {
             return false;
         }
 
+        private List<string> worldEventLines() {
+            List<string> lines = new List<string>();
+            foreach (ChronicleEntry entry in simulation.getChronicle().getEntries()) {
+                if (entry.getEventType() == EventType.WorldEvent) {
+                    lines.Add(entry.getTick() + " " + entry.getText());
+                }
+            }
+            return lines;
+        }
+
         private void interact() {
-            new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(),
-                simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom()).execute(player);
+            InteractCommand.forSimulation(simulation).execute(player);
         }
 
         private void gatherWoodUntil(int target) {
@@ -147,6 +177,34 @@ namespace beyondnationstests {
                 }
             }
             return false;
+        }
+
+        [Fact]
+        public void testWorldStartedInWinter_TreesAreBare_ButTheFirstObjectivesStillTeachEating() {
+            // --season winter: trees are bare for the player too, so the first
+            // meal is the two apples "Gather wood" rewards
+            simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), Season.WINTER);
+            tickOneSecond();
+            assertCurrent("gather-wood");
+
+            gatherWoodUntil(ObjectiveCatalog.firstWoodTarget());
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(0, player.getMealsEaten());
+
+            tickOneSecond();
+            assertCurrent("eat");
+            Assert.Contains("Trees are bare in winter", tracker.getCurrent().getHint(simulation));
+            Assert.DoesNotContain("Trees drop apples", tracker.getCurrent().getHint(simulation));
+
+            // a new world starts the player a little hungry, so the reward is eaten at once
+            tickOneSecond();
+            Assert.True(player.getMealsEaten() > 0);
+            assertCurrent("join-nation");
+        }
+
+        [Fact]
+        public void testEatHint_PromisesApplesFromTreesOutsideWinter() {
+            Assert.Contains("Trees drop apples", ObjectiveCatalog.eatHint(simulation));
         }
 
         [Fact]
@@ -231,15 +289,22 @@ namespace beyondnationstests {
             Assert.Equal(SettlementTier.VILLAGE, settlement.getTier());
             // Settlers joining on their own once just made the 10 members; with
             // founders now reaching their sites (#402) more nations share the
-            // wanderers, so after a while the player recruits, as a player
-            // would: gifts to a nationless pawn until it knows them, then an
-            // invitation (from a neighbour if no one is left without a nation).
+            // wanderers, so the player recruits, as a player would: gifts to a
+            // nationless pawn until it knows them, then an invitation (from a
+            // neighbour if no one is left without a nation). It used to wait
+            // five minutes first; with the spawn's ground kept for the player
+            // (ReservedGround) the world unfolds differently, and on seed 42 by
+            // then every settler had a nation and one Loyal neighbour cost the
+            // whole purse, leaving the nation at 8.
             for (int second = 0; second < 1200 && tracker.getCurrent().getId() == "grow-nation"; second++) {
-                if (second >= 300 && second % 60 == 0 && ObjectiveCatalog.members(simulation) < EraRules.VillageMembers) {
+                if (second % 60 == 0 && ObjectiveCatalog.members(simulation) < EraRules.VillageMembers) {
                     recruitAPawn();
                 }
                 tickOneSecond();
             }
+            Assert.True(tracker.getCurrent().getId() == "sell-resources", "still " + tracker.getCurrent().getId() + ": "
+                + ObjectiveCatalog.members(simulation) + " members, " + player.getInventory().getNumItems(ItemType.COIN) + " coins, "
+                + simulation.getWorldEvents().getNumPlayerEvents() + " world events; " + string.Join(" | ", worldEventLines()));
             assertCurrent("sell-resources");
             Assert.Equal(Era.VILLAGE, simulation.getEraTracker().getEra());
             Assert.True(ObjectiveCatalog.members(simulation) >= ObjectiveCatalog.NationGrowthTarget);
@@ -262,7 +327,10 @@ namespace beyondnationstests {
             new ExitSettlementCommand(simulation.getEntityRepository()).execute(player);
             int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
             player.setPosition(settlement.getPosition() + new Vector3(minDistance * 3, 0, minDistance * 3));
-            gatherWoodUntil(Settlement.WOOD_COST_TO_BUILD);
+            // a second settlement costs more than the first, and stone (FoundingCost, #145)
+            Nation own = simulation.getNationRepository().getNation(player.getNationId());
+            gatherWoodUntil(FoundingCost.wood(own));
+            gatherStoneUntil(FoundingCost.stone(own));
             Vector3 site = player.getPosition();
             for (int step = 0; step < 50 && tooCloseToASettlement(site, minDistance); step++) {
                 site += new Vector3(minDistance, 0, 0);

@@ -1,0 +1,94 @@
+{"type":"screen","tick":0,"wallTimeMs":1794780357469,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794780409445,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780439781,"from":"MAIN_MENU","to":"CONFIG"}
+{"type":"screen","tick":0,"wallTimeMs":1794780496245,"from":"CONFIG","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780504982,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1794780533491,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794780543253,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794780551053,"how":"created","slot":"world-109-20261115-220911","seed":109}
+{"type":"screen","tick":0,"wallTimeMs":1794780551066,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"screen","tick":816,"wallTimeMs":1794780637674,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":820,"wallTimeMs":1794780641491,"from":"INVENTORY","to":"WORLD"}
+{"type":"screen","tick":836,"wallTimeMs":1794780643345,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":840,"wallTimeMs":1794780676058,"from":"NATIONS","to":"WORLD"}
+{"type":"screen","tick":856,"wallTimeMs":1794780677810,"from":"WORLD","to":"CRAFTING"}
+{"type":"screen","tick":860,"wallTimeMs":1794780681190,"from":"CRAFTING","to":"WORLD"}
+{"type":"screen","tick":872,"wallTimeMs":1794780683377,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":876,"wallTimeMs":1794780709701,"from":"PAUSE","to":"WORLD"}
+{"type":"screen","tick":896,"wallTimeMs":1794780711922,"from":"WORLD","to":"INVENTORY"}
+{"type":"screen","tick":900,"wallTimeMs":1794780715234,"from":"INVENTORY","to":"WORLD"}
+{"type":"status","tick":1256,"wallTimeMs":1794780753410,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":1352,"wallTimeMs":1794780772152,"kind":"NationCreation","text":"Una Smith declared the nation of Villageton, though none had yet sworn to it. It is the first nation this world has known."}
+{"type":"chronicle","tick":1400,"wallTimeMs":1794780780407,"kind":"SettlementFounded","text":"Villageton put down roots: Una Smith founded its first settlement."}
+{"type":"status","tick":1420,"wallTimeMs":1794780787353,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1452,"wallTimeMs":1794780792986,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1452}
+{"type":"status","tick":1452,"wallTimeMs":1794780792986,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1500,"wallTimeMs":1794780801478,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1500,"wallTimeMs":1794780801478,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"status","tick":1580,"wallTimeMs":1794780813265,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":1600,"wallTimeMs":1794780815775,"kind":"NationCreation","text":"Grace Davies declared the nation of Bigford, though none had yet sworn to it."}
+{"type":"chronicle","tick":1652,"wallTimeMs":1794780822550,"kind":"SettlementFounded","text":"Bigford put down roots: Grace Davies founded its first settlement."}
+{"type":"status","tick":1788,"wallTimeMs":1794780840073,"text":"Chronicle: full history."}
+{"type":"status","tick":1816,"wallTimeMs":1794780843455,"text":"Chronicle: showing all nations."}
+{"type":"chronicle","tick":1900,"wallTimeMs":1794780855209,"kind":"NationCreation","text":"Bob Smith founded the nation of Townburg."}
+{"type":"status","tick":1908,"wallTimeMs":1794780856363,"text":"Chronicle hidden."}
+{"type":"status","tick":1920,"wallTimeMs":1794780857898,"text":"Chronicle: recent entries."}
+{"type":"status","tick":2004,"wallTimeMs":1794780871489,"text":"Created nation Westville."}
+{"type":"chronicle","tick":2004,"wallTimeMs":1794780871489,"kind":"NationCreation","text":"You raised a banner and named your people Westville."}
+{"type":"objective_completed","tick":2052,"wallTimeMs":1794780878036,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":552}
+{"type":"status","tick":2052,"wallTimeMs":1794780878036,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":2252,"wallTimeMs":1794780904064,"kind":"StallBuilt","text":"Una Smith built a market stall in Villageton."}
+{"type":"chronicle","tick":2252,"wallTimeMs":1794780904064,"kind":"NationCreation","text":"Zach Jones declared the nation of Whitewood, though none had yet sworn to it."}
+{"type":"status","tick":2488,"wallTimeMs":1794780941277,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":2652,"wallTimeMs":1794780960541,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":2748,"wallTimeMs":1794780975084,"text":"Gathered 4 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":2800,"wallTimeMs":1794780979349,"kind":"NationCreation","text":"Mike Evans raised a banner and called it Uppershire."}
+{"type":"chronicle","tick":2852,"wallTimeMs":1794780984281,"kind":"StallBuilt","text":"Trade came to Villageton: Una Smith built a stall."}
+{"type":"status","tick":2940,"wallTimeMs":1794780992640,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":3112,"wallTimeMs":1794781010193,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":3136,"wallTimeMs":1794781012633,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":3268,"wallTimeMs":1794781030279,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3300,"wallTimeMs":1794781033442,"kind":"SettlementFounded","text":"Townburg put down roots: Bob Smith founded its first settlement."}
+{"type":"status","tick":3416,"wallTimeMs":1794781047411,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":3476,"wallTimeMs":1794781054436,"text":"Too close to the Camp of Villageton: 183 paces away, and settlements must be 250 paces apart. Open ground lies about 70 paces to the south."}
+{"type":"chronicle","tick":3500,"wallTimeMs":1794781057345,"kind":"SettlementFounded","text":"Zach Jones laid the first stones of Whitewood."}
+{"type":"chronicle","tick":3700,"wallTimeMs":1794781082478,"kind":"StallBuilt","text":"Trade came to Villageton: Una Smith built a stall."}
+{"type":"chronicle","tick":3800,"wallTimeMs":1794781094184,"kind":"SettlementFounded","text":"Mike Evans laid the first stones of Uppershire."}
+{"type":"chronicle","tick":3852,"wallTimeMs":1794781100877,"kind":"NationCreation","text":"Lily Smith declared the nation of Castletown, though none had yet sworn to it."}
+{"type":"status","tick":3912,"wallTimeMs":1794781107091,"text":"Too close to the Camp of Villageton: 140 paces away, and settlements must be 250 paces apart. Open ground lies about 120 paces to the south."}
+{"type":"chronicle","tick":4000,"wallTimeMs":1794781116614,"kind":"NationRelationChange","text":"Villageton and Bigford have become rivals over their border."}
+{"type":"chronicle","tick":4152,"wallTimeMs":1794781127837,"kind":"StallBuilt","text":"Trade came to Bigford: Grace Davies built a stall."}
+{"type":"chronicle","tick":4152,"wallTimeMs":1794781127837,"kind":"NationCreation","text":"Wendy Lewis founded the nation of Redwood."}
+{"type":"chronicle","tick":4300,"wallTimeMs":1794781141083,"kind":"SettlementFounded","text":"Lily Smith laid the first stones of Castletown."}
+{"type":"chronicle","tick":4300,"wallTimeMs":1794781141083,"kind":"NationCreation","text":"Ursula Robinson raised a banner and called it Southernshire."}
+{"type":"status","tick":4412,"wallTimeMs":1794781156739,"text":"Too close to the Village of Villageton: 103 paces away, and settlements must be 250 paces apart. Open ground lies about 150 paces to the south."}
+{"type":"chronicle","tick":4500,"wallTimeMs":1794781168323,"kind":"NationCreation","text":"The nation of Southernham was born, with Victor Davies at its head."}
+{"type":"status","tick":4504,"wallTimeMs":1794781168725,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":4652,"wallTimeMs":1794781191264,"kind":"SettlementFounded","text":"Southernshire put down roots: Ursula Robinson founded its first settlement."}
+{"type":"status","tick":4796,"wallTimeMs":1794781213948,"text":"Too close to the Village of Villageton: 224 paces away, and settlements must be 250 paces apart. Open ground lies about 30 paces to the south."}
+{"type":"chronicle","tick":4800,"wallTimeMs":1794781214634,"kind":"NationCreation","text":"The nation of Southernfield was born, with Mia Wood at its head."}
+{"type":"status","tick":4896,"wallTimeMs":1794781231376,"text":"Settlement founded. Villageton and Bigford and Whitewood and Uppershire and Castletown resent a new settlement so near their land."}
+{"type":"chronicle","tick":4896,"wallTimeMs":1794781231376,"kind":"SettlementFounded","text":"You raised the first settlement of Westville."}
+{"type":"objective_completed","tick":4900,"wallTimeMs":1794781232116,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":2848}
+{"type":"status","tick":4900,"wallTimeMs":1794781232116,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"screen","tick":4968,"wallTimeMs":1794781244345,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":4968,"wallTimeMs":1794781244345,"text":"Entered settlement."}
+{"type":"screen","tick":4972,"wallTimeMs":1794781276963,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":4996,"wallTimeMs":1794781280081,"text":"A Farm needs 25 wood, 10 stone. Need 22 more wood, 10 more stone."}
+{"type":"objective_completed","tick":5000,"wallTimeMs":1794781280747,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":100}
+{"type":"status","tick":5000,"wallTimeMs":1794781280747,"text":"Objective complete: Enter your settlement."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1794781307266,"kind":"NationCreation","text":"Charlotte Watson founded the nation of Southshire."}
+{"type":"chronicle","tick":5200,"wallTimeMs":1794781307266,"kind":"NationCreation","text":"Yvonne Davies raised a banner and called it Blueburg."}
+{"type":"status","tick":5204,"wallTimeMs":1794781307756,"text":"This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Village era."}
+{"type":"chronicle","tick":5252,"wallTimeMs":1794781314120,"kind":"SettlementFounded","text":"Redwood put down roots: Wendy Lewis founded its first settlement."}
+{"type":"chronicle","tick":5252,"wallTimeMs":1794781314120,"kind":"SettlementFounded","text":"Yvonne Davies laid the first stones of Blueburg."}
+{"type":"screen","tick":5296,"wallTimeMs":1794781319643,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":5296,"wallTimeMs":1794781323857,"from":"PAUSE","to":"MAIN_MENU"}
+{"type":"save","tick":5296,"wallTimeMs":1794781323857,"count":1}
+{"type":"status","tick":5296,"wallTimeMs":1794781323857,"text":"Game saved."}
+{"type":"screen","tick":5296,"wallTimeMs":1794781332984,"from":"MAIN_MENU","to":"LOAD"}
+{"type":"screen","tick":5296,"wallTimeMs":1794781348453,"from":"LOAD","to":"MAIN_MENU"}
+{"type":"world","tick":5296,"wallTimeMs":1794781351740,"how":"loaded","slot":"world-109-20261115-220911","seed":109}
+{"type":"screen","tick":5296,"wallTimeMs":1794781351740,"from":"MAIN_MENU","to":"WORLD"}
+{"type":"screen","tick":5352,"wallTimeMs":1794781363946,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"screen","tick":5356,"wallTimeMs":1794781378947,"from":"SETTLEMENT","to":"WORLD"}

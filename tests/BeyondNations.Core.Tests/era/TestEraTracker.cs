@@ -120,6 +120,56 @@ namespace beyondnationstests {
             Assert.Contains(eras.getHistory(), entry => entry.isMilestone() && entry.getText() == "Testland entered the Village era.");
         }
 
+        /** A player-led nation with every Camp requirement met but the day. */
+        private Settlement makeVillageReadyButForTheDay() {
+            Nation nation = makePlayerLeader();
+            Settlement settlement = addSettlement(nation, Vector3.Zero);
+            addMembers(nation, EraRules.VillageMembers);
+            build(settlement, SettlementTiers.VILLAGE_BUILDINGS);
+            settlement.getMarket().createStall();
+            settlement.getMarket().createStall();
+            return settlement;
+        }
+
+        [Fact]
+        public void testVillage_ComesAfterOneNight_OnDayTwo() {
+            // #352: the Village waited for day 3, so a nation with everything
+            // else by minute 3 idled for about 14 minutes. One night now.
+            Assert.Equal(2, EraRules.VillageDay);
+            makeVillageReadyButForTheDay();
+            eras.evaluate(simulation);
+            Assert.Equal(Era.CAMP, eras.getEra()); // day 1
+
+            // the last tick of day 1 is still the Camp
+            TimeOfDay time = simulation.getTimeOfDay();
+            while (TimeOfDay.dayAt(simulation.getTickCounter().getTotalTicks() + 1, time.getTicksPerDay(), time.getStartFraction()) == 0) {
+                simulation.getTickCounter().increment();
+            }
+            Assert.Equal(1, EraTracker.dayOf(simulation));
+            eras.evaluate(simulation);
+            Assert.Equal(Era.CAMP, eras.getEra());
+
+            // the first tick of day 2 is the Village
+            simulation.getTickCounter().increment();
+            Assert.Equal(2, EraTracker.dayOf(simulation));
+            eras.evaluate(simulation);
+            Assert.Equal(Era.VILLAGE, eras.getEra());
+        }
+
+        [Fact]
+        public void testVillage_GateOpensWithinTenGameMinutes() {
+            // The calendar floor for the Village: a new world reaches the
+            // Village's day inside ten minutes of game time (docs/PACING.md).
+            int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
+            int ticks = 0;
+            while (EraTracker.dayOf(simulation) < EraRules.VillageDay) {
+                simulation.getTickCounter().increment();
+                ticks++;
+            }
+            Assert.True(ticks >= 5 * 60 * ticksPerSecond, "the gate opened after only " + ticks + " ticks");
+            Assert.True(ticks <= 10 * 60 * ticksPerSecond, "the gate opened after " + ticks + " ticks");
+        }
+
         [Fact]
         public void testEras_AdvanceOneAtATime_AndNeverGoBack() {
             Nation nation = makeKingdomReadyNation();
@@ -152,7 +202,7 @@ namespace beyondnationstests {
             Assert.False(own.canAddBuilding(BuildingType.STOREHOUSE));
             Assert.True(own.canAddBuilding(BuildingType.HOUSE));
             Assert.True(own.canAddBuilding(BuildingType.FARM));
-            // a pawn-led nation is never held back
+            // a pawn-led nation builds as it likes (only its tier waits on the calendar)
             Assert.True(theirs.canAddBuilding(BuildingType.WORKSHOP));
             Assert.True(theirs.canAddBuilding(BuildingType.STOREHOUSE));
             Assert.True(simulation.getNationRepository().getNation(theirs.getNationId()).canFoundSettlement());
@@ -175,10 +225,35 @@ namespace beyondnationstests {
             eras.evaluate(simulation);
             Assert.Equal(Era.VILLAGE, eras.getEra());
             Assert.True(settlement.canAddBuilding(BuildingType.WORKSHOP));
-            Assert.False(settlement.canAddBuilding(BuildingType.STOREHOUSE));
-            eras.evaluate(simulation);
-            Assert.Equal(Era.TOWN, eras.getEra());
+            // the storehouse, and with it caravans, come with the Village, not the Town (#373)
             Assert.True(settlement.canAddBuilding(BuildingType.STOREHOUSE));
+        }
+
+        [Fact]
+        public void testAPawnLedSettlement_IsNoTownBeforeTheTownErasDay() {
+            Settlement theirs = addSettlement(makePawnNation("Pawnland"), new Vector3(3000, 1, 0));
+            eras.applyRules(simulation);
+            // houses and farms go up as before; it is a village however many it has
+            build(theirs, SettlementTiers.TOWN_BUILDINGS + 1);
+            Assert.Equal(SettlementTier.VILLAGE, theirs.getTier());
+            Assert.NotNull(BuildingPlanner.suggestNext(theirs));
+
+            passToDay(EraRules.VillageDay);
+            eras.applyRules(simulation);
+            Assert.Equal(SettlementTier.VILLAGE, theirs.getTier());
+
+            passToDay(EraRules.TownDay);
+            eras.applyRules(simulation);
+            Assert.Equal(SettlementTier.TOWN, theirs.getTier());
+        }
+
+        [Fact]
+        public void testTheCalendarEra_FollowsTheErasDays() {
+            Assert.Equal(Era.CAMP, EraRules.calendarEra(1));
+            Assert.Equal(Era.CAMP, EraRules.calendarEra(EraRules.VillageDay - 1));
+            Assert.Equal(Era.VILLAGE, EraRules.calendarEra(EraRules.VillageDay));
+            Assert.Equal(Era.TOWN, EraRules.calendarEra(EraRules.TownDay));
+            Assert.Equal(Era.KINGDOM, EraRules.calendarEra(EraRules.KingdomDay));
         }
 
         [Fact]

@@ -142,15 +142,91 @@ namespace beyondnationstests.desktop.ui {
             new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
 
             // playtest 0.4.1 s05: the button and its refusal were both hidden
-            Assert.Contains("Send Caravan (Town era)", labels(simulation));
-            find(simulation, "Send Caravan (Town era)").execute();
+            Assert.Contains("Send Caravan (Village era)", labels(simulation));
+            string reason = "This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Village era.";
+            WorldCommand send = find(simulation, "Send Caravan (Village era)");
+            // #479: greyed like any other button that cannot be used yet, with the whole reason
+            Assert.False(send.isEnabled());
+            Assert.Equal(reason, send.getDisabledReason());
+            Assert.Equal(reason, send.getTooltip());
+            // a click or a tap on it says why (WorldHud.explainDisabled), with no keys named
+            beyondnations.desktop.ui.screens.WorldHud.explainDisabled(send, player.getStatus());
+            Assert.Equal(reason, player.getStatus().getStatus());
             Assert.False(CaravanDispatchPanel.isOpen());
-            Assert.Equal("This settlement needs a Storehouse before it can send caravans. The Storehouse is unlocked in the Town era.",
-                player.getStatus().getStatus());
+            // and the panel still refuses if something presses it anyway
+            send.execute();
+            Assert.False(CaravanDispatchPanel.isOpen());
+            Assert.StartsWith(reason, player.getStatus().getStatus());
 
-            // in the Town era, the Storehouse is what is missing
+            // in the Town era, the Storehouse is what is missing; still greyed
             settlement.setBuildingEra(Era.TOWN);
             Assert.Contains("Send Caravan (needs Storehouse)", labels(simulation));
+            Assert.False(find(simulation, "Send Caravan (needs Storehouse)").isEnabled());
+            Assert.Equal("This settlement needs a Storehouse before it can send caravans.",
+                find(simulation, "Send Caravan (needs Storehouse)").getDisabledReason());
+        }
+
+        [Fact]
+        public void testSendCaravan_IsEnabled_WhenACaravanCanGo() {
+            Simulation simulation = stagedWorld(out TradeShowcase.Staged staged);
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(simulation.getPlayer(), staged.playerSettlement);
+            Assert.True(find(simulation, CaravanCommands.SendCaravanLabel).isEnabled());
+        }
+
+        [Fact]
+        public void testTheEstimate_SaysWhenTheMarketCannotPayForItAll() {
+            Simulation simulation = stagedWorld(out TradeShowcase.Staged staged);
+            Player player = simulation.getPlayer();
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, staged.playerSettlement);
+            find(simulation, CaravanCommands.SendCaravanLabel).execute();
+            Settlement destination = CaravanDispatchPanel.getDestination(simulation);
+            // a poor market: empty tills and treasury
+            foreach (Stall stall in destination.getMarket().getStalls()) {
+                stall.getInventory().removeItem(ItemType.COIN, stall.getInventory().getNumItems(ItemType.COIN));
+            }
+            destination.removeFunds(destination.getFunds());
+            destination.addFunds(3);
+            CaravanDispatchPanel.changeLoad(simulation, ItemType.STONE, CaravanDispatchPanel.LoadStep);
+
+            string estimate = CaravanDispatchPanel.getEstimate(simulation);
+            // #485: the cap is said, and what happens to the rest
+            Assert.Contains("can pay only about 3", estimate);
+            Assert.EndsWith("What it cannot pay for comes home.", estimate);
+            CaravanDispatchPanel.close();
+        }
+
+        [Fact]
+        public void testThePanel_HoldsItsTopAndRows_WhileOpen() {
+            Simulation simulation = stagedWorld(out TradeShowcase.Staged staged);
+            Player player = simulation.getPlayer();
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, staged.playerSettlement);
+            find(simulation, CaravanCommands.SendCaravanLabel).execute();
+            Assert.True(CaravanDispatchPanel.isOpen());
+
+            // #486: a new status line or warning offers a lower top; the panel stays put
+            Assert.Equal(120f, CaravanDispatchPanel.holdTop(120f, 1280f, 720f));
+            Assert.Equal(120f, CaravanDispatchPanel.holdTop(154f, 1280f, 720f));
+            // a new window size takes the offered top again
+            Assert.Equal(90f, CaravanDispatchPanel.holdTop(90f, 390f, 844f));
+
+            // a good's row stays when the last of it is gone (eaten, sold) while the panel is open
+            List<ItemType> before = CaravanDispatchPanel.getShownGoods(simulation);
+            Assert.Contains(ItemType.STONE, before);
+            player.getInventory().removeItem(ItemType.STONE, player.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal(before, CaravanDispatchPanel.getShownGoods(simulation));
+
+            // reopening starts afresh
+            CaravanDispatchPanel.close();
+            find(simulation, CaravanCommands.SendCaravanLabel).execute();
+            Assert.DoesNotContain(ItemType.STONE, CaravanDispatchPanel.getShownGoods(simulation));
+            Assert.Equal(154f, CaravanDispatchPanel.holdTop(154f, 1280f, 720f));
+            CaravanDispatchPanel.close();
+        }
+
+        [Fact]
+        public void testThePanelWidth_IsFixedForTheWindow() {
+            Assert.Equal(CaravanDispatchPanel.MaxPanelWidth, CaravanDispatchPanel.getPanelWidth(1920f, 1f));
+            Assert.Equal(390f - 32f, CaravanDispatchPanel.getPanelWidth(390f, 1f));
         }
     }
 }

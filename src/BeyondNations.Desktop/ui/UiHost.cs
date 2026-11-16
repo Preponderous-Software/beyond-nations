@@ -40,6 +40,7 @@ namespace beyondnations.desktop.ui {
         private readonly InventoryScreen inventoryScreen = new InventoryScreen();
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
+        private readonly SettlementScreen settlementScreen = new SettlementScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
         private readonly SuccessionScreen successionScreen = new SuccessionScreen();
@@ -72,6 +73,7 @@ namespace beyondnations.desktop.ui {
 
         public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig, SaveSession saves, ShareSession share) {
             this.controller = new ImGuiController(gl, window, input, configureForUiScale);
+            UiTheme.apply();
             this.input = input;
             foreach (IMouse mouse in input.Mice) {
                 mouse.MouseDown += (_, button) => clicks.recordPress(button);
@@ -80,6 +82,7 @@ namespace beyondnations.desktop.ui {
             this.gameConfig = gameConfig;
             this.saves = saves;
             this.share = share;
+            nationScreen.setTextPlatform(share.getPlatform());
         }
 
         /**
@@ -175,6 +178,8 @@ namespace beyondnations.desktop.ui {
             replayClicksShorterThanAFrame();
             controller.Update((float) deltaTime);
 
+            // entering a settlement, or a button asking for it, opens the settlement screen (#178)
+            SettlementScreens.beforeDraw(simulation, screens);
             UiAction action = UiAction.None;
             switch (screens.getCurrent()) {
                 case ScreenType.TITLE:
@@ -236,8 +241,19 @@ namespace beyondnations.desktop.ui {
                         action = endOfRunScreen.draw(width, height, simulation);
                     }
                     break;
+                case ScreenType.SETTLEMENT:
+                    if (simulation != null) {
+                        action = settlementScreen.draw(width, height, simulation);
+                    }
+                    break;
             }
 
+            // a screen drawn over the world (the settlement screen's title,
+            // the nations screen) leaves no room for a town's floating name;
+            // it is left out under it (LabelPlacement), as WorldHud sets it for the world
+            if (screens.getCurrent() != ScreenType.WORLD) {
+                beyondnations.desktop.text.LabelPlacement.setTopReserve(1f);
+            }
             feel?.drawOverlay(width, height, screens.getCurrent(), simulation);
             if (share.handle(action, simulation)) {
                 action = UiAction.None;
@@ -331,6 +347,9 @@ namespace beyondnations.desktop.ui {
                     // the ended world is saved, then the New World screen asks for a seed as Start does
                     newWorldRequested = true;
                     screens.goTo(ScreenType.NEW_WORLD);
+                    break;
+                case UiAction.CloseSettlement:
+                    screens.closeSettlement();
                     break;
             }
         }

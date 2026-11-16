@@ -141,6 +141,72 @@ namespace beyondnationstests {
             Assert.Equal(before, countPawns());
         }
 
+        // --- a nation that cannot feed its members (#489) ----------------------
+
+        [Fact]
+        public void testNoChild_WhileAQuarterOfTheNationIsHungry() {
+            Settlement settlement = makeSettlement();
+            Pawn ada = addResident(settlement, "Ada Smith");
+            Pawn bo = addResident(settlement, "Bo Jones");
+            befriend(ada, bo, 50);
+            settlement.getInventory().addItem(ItemType.APPLE, 20);
+            // one of three members hungry, with nothing in the pack
+            ada.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            Assert.True(ada.needsFood());
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+            Assert.True(growth.cannotFeed(nation.getId()));
+
+            // fed again, the couple has its child
+            ada.setEnergy(Pawn.MaxEnergy);
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS * 2);
+            Assert.Equal(before + 1, countPawns());
+        }
+
+        [Fact]
+        public void testNoChild_InWinter_WhileTheMembersCarryLessThanTheWinterWants() {
+            Settlement settlement = makeSettlement();
+            Pawn ada = addResident(settlement, "Ada Smith");
+            Pawn bo = addResident(settlement, "Bo Jones");
+            befriend(ada, bo, 50);
+            settlement.getInventory().addItem(ItemType.APPLE, 20);
+            TickCounter clock = new TickCounter();
+            growth.setSeasonCalendar(new SeasonCalendar(new TimeOfDay(clock)));
+            while (new SeasonCalendar(new TimeOfDay(clock)).getSeason() != Season.WINTER) {
+                clock.increment();
+            }
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+            Assert.Equal(before, countPawns());
+
+            // with the store in every pack, the winter can feed one more
+            foreach (Entity entity in entityRepository.getEntitiesOfType(EntityType.PAWN)) {
+                entity.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE);
+            }
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS * 2);
+            Assert.Equal(before + 1, countPawns());
+        }
+
+        [Fact]
+        public void testHungryNation_DrawsNoNewcomer() {
+            Settlement settlement = makeSettlement();
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            Assert.True(PopulationGrowth.isThriving(settlement));
+            Pawn leader = (Pawn) entityRepository.getEntity(nation.getLeaderId());
+            leader.setEnergy(Pawn.STARVING_ENERGY_THRESHOLD - 1);
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+            Assert.Equal(0, growth.getNumImmigrants());
+        }
+
         [Fact]
         public void testNoChild_WithoutRoom() {
             Settlement settlement = makeSettlement();
@@ -247,6 +313,76 @@ namespace beyondnationstests {
                     Assert.NotEmpty(pawn.getTraits());
                 }
             }
+        }
+
+        /** A thriving village of the player's nation, in a world already at its pawn limit. */
+        private Settlement makePlayerVillageInAFullWorld() {
+            Settlement settlement = makeSettlement();
+            nation.setLeaderId(player.getId());
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            settlement.setResidentCount(1);
+            Assert.True(PopulationGrowth.isThriving(settlement));
+            gameConfig.setMaxNumPawns(countPawns());
+            return settlement;
+        }
+
+        [Fact]
+        public void testFullWorld_StillDrawsNewcomersToThePlayersNation() {
+            makePlayerVillageInAFullWorld();
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            // #371: a full world used to draw no newcomer at all, so the player's nation stopped growing
+            Assert.Equal(before + 1, countPawns());
+            Assert.Equal(1, growth.getNumImmigrants());
+        }
+
+        [Fact]
+        public void testFullWorld_DrawsNoNewcomerToAPawnLedNation() {
+            Settlement settlement = makeSettlement();
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            settlement.setResidentCount(1);
+            gameConfig.setMaxNumPawns(countPawns());
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+            Assert.Equal(0, growth.getNumImmigrants());
+        }
+
+        [Fact]
+        public void testPlayersNation_GrowsNoFurtherThanTheHeadroomPastTheLimit() {
+            makePlayerVillageInAFullWorld();
+            int limit = countPawns();
+            for (int i = 0; i < PopulationGrowth.PLAYER_NATION_HEADROOM; i++) {
+                entityRepository.addEntity(new Pawn(new Vector3(500, 0, 500), "Far Away " + i, random));
+            }
+            gameConfig.setMaxNumPawns(limit);
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+        }
+
+        [Fact]
+        public void testFullWorld_PlayersCoupleStillHasAChild() {
+            Settlement settlement = makePlayerVillageInAFullWorld();
+            Pawn ada = addResident(settlement, "Ada Smith");
+            Pawn bo = addResident(settlement, "Bo Jones");
+            befriend(ada, bo, 50);
+            settlement.getInventory().addItem(ItemType.APPLE, 20);
+            int members = nation.getNumberOfMembers();
+            gameConfig.setMaxNumPawns(countPawns());
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(1, growth.getNumBirths());
+            Assert.Equal(members + 1, nation.getNumberOfMembers());
         }
 
         [Fact]

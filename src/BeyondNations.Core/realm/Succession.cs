@@ -67,7 +67,10 @@ namespace beyondnations {
                 }
             }
             if (best == null) {
-                reason = "No one in " + nation.getName() + " was left to take your place.";
+                // a nation no one else ever joined has lost no one (0.8.0 playtest s06)
+                reason = nation.getNumberOfMembers() <= 1
+                    ? "No one else has joined " + nation.getName() + " yet."
+                    : "No one in " + nation.getName() + " was left to take your place.";
             }
             else if (bestFamily) {
                 reason = "of your family, the " + surname + "s";
@@ -83,8 +86,18 @@ namespace beyondnations {
 
         /** Folds the heir into the player, as the class comment describes. */
         public static void crown(Pawn heir, Nation nation, Player player, EntityRepository entityRepository, Diplomacy diplomacy, GameConfig gameConfig) {
-            // the old ruler's belongings: left where they fell, unless the world keeps inventories
-            if (!gameConfig.getKeepInventoryOnDeath()) {
+            crown(heir, nation, player, entityRepository, diplomacy, gameConfig, false);
+        }
+
+        /**
+        * As crown above. bequeathed is true when the old ruler's rule ended
+        * in peace -- old age or abdication -- and their belongings pass to
+        * the heir with the rule; otherwise they are left where the ruler
+        * fell, unless the world keeps inventories.
+        */
+        public static void crown(Pawn heir, Nation nation, Player player, EntityRepository entityRepository, Diplomacy diplomacy, GameConfig gameConfig,
+                bool bequeathed) {
+            if (!bequeathed && !gameConfig.getKeepInventoryOnDeath()) {
                 foreach (ItemDrop drop in ItemDrop.dropContentsOf(player.getInventory(), player.getPosition())) {
                     entityRepository.addEntity(drop);
                 }

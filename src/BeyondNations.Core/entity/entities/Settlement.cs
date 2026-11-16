@@ -18,6 +18,13 @@ namespace beyondnations {
         // the era whose buildings this settlement may put up, when the player
         // leads its nation (EraTracker.applyRules); null for no limit
         private Era? buildingEra = null;
+        // the member of its nation who holds it (#176), or null when it is
+        // held by whoever leads the nation (SettlementOwnership); the name
+        // is kept for the nametag
+        private EntityId ownerId = null;
+        private string ownerName = null;
+        // set every tick by EraTracker.applyRules; not saved
+        private SettlementTier tierCap = SettlementTier.TOWN;
 
         public static readonly int WOOD_COST_TO_BUILD = 50;
 
@@ -74,9 +81,46 @@ namespace beyondnations {
             this.color = nation.getColor();
             this.nationName = nation.getName();
             this.siegeText = null;
+            // a captured settlement is the new nation's leader's
+            this.ownerId = null;
+            this.ownerName = null;
             updateNameTag();
             drawnLayoutSignature = long.MinValue;
             refreshAppearance();
+        }
+
+        /** The nation took a new name (RenameNationCommand): the nametag follows. */
+        public void renameNation(string name) {
+            if (this.nationName == name) {
+                return;
+            }
+            this.nationName = name;
+            updateNameTag();
+        }
+
+        // ownership (#176) ----------------------------------------------------------------------------------
+
+        /** The member who holds the settlement, or null when its nation's leader does (SettlementOwnership). */
+        public EntityId getOwnerId() {
+            return ownerId;
+        }
+
+        /** The holder's name as the nametag shows it; null when the leader holds it. */
+        public string getOwnerName() {
+            return ownerName;
+        }
+
+        /** Gives the settlement to a member, or back to the leader with null. */
+        public void setOwner(EntityId ownerId, string ownerName) {
+            if (ownerId == null) {
+                ownerName = null;
+            }
+            if (this.ownerId == ownerId && this.ownerName == ownerName) {
+                return;
+            }
+            this.ownerId = ownerId;
+            this.ownerName = ownerName;
+            updateNameTag();
         }
 
         // territory -----------------------------------------------------------------------------------------
@@ -171,6 +215,19 @@ namespace beyondnations {
         }
 
         /**
+        * The highest tier this settlement may count as just now: a village,
+        * however many buildings it has, while a pawn-led nation waits on the
+        * calendar for its towns (EraRules.pawnLedTierCap).
+        */
+        public SettlementTier getTierCap() {
+            return tierCap;
+        }
+
+        public void setTierCap(SettlementTier cap) {
+            tierCap = cap;
+        }
+
+        /**
         * Puts a building up in the next free slot and applies what it does. The
         * caller has already taken the materials. Returns false, changing
         * nothing, when there is no room for it.
@@ -189,7 +246,8 @@ namespace beyondnations {
         }
 
         public SettlementTier getTier() {
-            return SettlementTiers.fromBuildingCount(buildings.Count);
+            SettlementTier tier = SettlementTiers.fromBuildingCount(buildings.Count);
+            return tier > tierCap ? tierCap : tier;
         }
 
         /**
@@ -274,6 +332,9 @@ namespace beyondnations {
 
         private void updateNameTag() {
             string label = getDisplayName() + "\n";
+            if (ownerName != null) {
+                label += "Held by " + ownerName + "\n";
+            }
             label += getCurrentlyPresentEntitiesCount() + " here, " + residentCount + "/" + getResidentCap() + " residents";
             if (siegeText != null) {
                 label += "\n" + siegeText;
@@ -303,6 +364,8 @@ namespace beyondnations {
             writer.write("drawnLayoutSignature", drawnLayoutSignature);
             writer.write("claimRadius", claimRadius);
             writer.write("siegeText", siegeText);
+            writer.write("ownerId", ownerId);
+            writer.write("ownerName", ownerName);
         }
 
         internal override void loadState(JsonElement element, SaveReader reader) {
@@ -319,6 +382,8 @@ namespace beyondnations {
             drawnLayoutSignature = SaveReader.getLong(element, "drawnLayoutSignature");
             claimRadius = SaveReader.getFloat(element, "claimRadius");
             siegeText = SaveReader.getString(element, "siegeText");
+            ownerId = reader.getEntityId(element, "ownerId");
+            ownerName = SaveReader.getString(element, "ownerName");
         }
     }
 }

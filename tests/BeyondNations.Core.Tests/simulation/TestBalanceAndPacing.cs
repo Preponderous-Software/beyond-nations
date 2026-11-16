@@ -98,11 +98,11 @@ namespace beyondnationstests {
 
         [Theory]
         [InlineData(40, 0, 40)]
-        [InlineData(40, 1, 36)]
-        [InlineData(40, 10, 20)]
-        [InlineData(40, 20, 13)]
-        [InlineData(40, 40, 10)]   // was 1 coin: base / quantity
-        [InlineData(40, 1000, 10)] // floor: a quarter of the base cost
+        [InlineData(40, 1, 38)]
+        [InlineData(40, 10, 26)]
+        [InlineData(40, 20, 20)]   // twenty on offer halve it (#369: ten used to)
+        [InlineData(40, 40, 16)]   // was 1 coin: base / quantity; then 10
+        [InlineData(40, 1000, 16)] // floor: 40% of the base cost (#369: a quarter)
         [InlineData(2, 1000, 1)]   // never below one coin
         public void testSupplyCurve_IsGentleWithAFloor(int baseCost, int quantity, int expected) {
             Assert.Equal(expected, ItemCostCalculator.calculateCost(baseCost, quantity));
@@ -114,7 +114,7 @@ namespace beyondnationstests {
             for (int quantity = 0; quantity < 200; quantity++) {
                 int cost = ItemCostCalculator.calculateCost(60, quantity);
                 Assert.True(cost <= previous);
-                Assert.True(cost >= 15);
+                Assert.True(cost >= 24);
                 previous = cost;
             }
         }

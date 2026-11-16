@@ -99,6 +99,28 @@ namespace beyondnations.pacing {
                 md.Append("\n");
             }
 
+            if (budget != null && budget.Milestones.Count > 0) {
+                md.Append("\n## Milestones\n\nWhen late content was first reached, from the start of the world (docs/PACING.md, \"Milestones\").\n\n| Milestone | ");
+                foreach (int seed in seeds) {
+                    md.Append("seed ").Append(seed).Append(" | ");
+                }
+                md.Append("by |\n|---|");
+                foreach (int seed in seeds) {
+                    md.Append("---|");
+                }
+                md.Append("---|\n");
+                foreach (MilestoneBudget milestone in budget.Milestones) {
+                    md.Append("| ").Append(milestone.Title).Append(" `").Append(milestone.Id).Append("` | ");
+                    foreach (PacingRunResult run in runs) {
+                        int reachedAt;
+                        md.Append(run.Milestones.TryGetValue(milestone.Id, out reachedAt)
+                            ? clock((double) reachedAt / tps) + " (day " + ((double) reachedAt / ticksPerDay + 1).ToString("0.0", CultureInfo.InvariantCulture) + ")"
+                            : "never").Append(" | ");
+                    }
+                    md.Append(clock(milestone.MaxSeconds)).Append(milestone.Advisory ? " (advisory)" : "").Append(" |\n");
+                }
+            }
+
             List<PacingFinding> problems = findings == null ? new List<PacingFinding>() : findings.FindAll(f => f.Verdict != PacingVerdict.Ok);
             md.Append("\n## Findings\n\n");
             if (problems.Count == 0) {
@@ -118,11 +140,11 @@ namespace beyondnations.pacing {
                   .Append(" | ").Append(run.RaidsOnPlayerSheltered).Append(" | ").Append(run.RaidsByPlayer).Append(" |\n");
             }
 
-            md.Append("\n## Curves\n\nNations alive, pawns alive, and the player's nation and resources, once a minute.\n");
+            md.Append("\n## Curves\n\nNations alive, pawns alive, pawns in no nation (the strangers left to recruit), and the player's nation and resources, once a minute.\n");
             foreach (PacingRunResult run in runs) {
                 md.Append("\n### Seed ").Append(run.Seed).Append("\n\n")
-                  .Append("| time | day | nations | pawns | members | settlements | coins | funds | wood | stone | objectives | bot |\n")
-                  .Append("|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+                  .Append("| time | day | nations | pawns | nationless | members | settlements | coins | funds | wood | stone | objectives | bot |\n")
+                  .Append("|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
                 int every = MarkdownCurveEverySeconds * tps;
                 for (int i = 0; i < run.Samples.Count; i++) {
                     PacingSample p = run.Samples[i];
@@ -131,7 +153,7 @@ namespace beyondnations.pacing {
                     }
                     md.Append("| ").Append(clock((double) p.Tick / tps)).Append(" | ")
                       .Append(((double) p.Tick / ticksPerDay).ToString("0.00", CultureInfo.InvariantCulture)).Append(" | ")
-                      .Append(p.Nations).Append(" | ").Append(p.Pawns).Append(" | ").Append(p.PlayerNationMembers).Append(" | ")
+                      .Append(p.Nations).Append(" | ").Append(p.Pawns).Append(" | ").Append(p.Nationless).Append(" | ").Append(p.PlayerNationMembers).Append(" | ")
                       .Append(p.PlayerSettlements).Append(" | ").Append(p.Coins).Append(" | ").Append(p.Funds).Append(" | ")
                       .Append(p.Wood).Append(" | ").Append(p.Stone).Append(" | ").Append(p.ObjectivesCompleted).Append(" | ").Append(p.Activity).Append(" |\n");
                 }
@@ -193,6 +215,13 @@ namespace beyondnations.pacing {
                     raidsOnPlayerPerHour = r.raidsOnPlayerPerHour(),
                     raidsOnPlayerSheltered = r.RaidsOnPlayerSheltered,
                     raidsByPlayer = r.RaidsByPlayer,
+                    villageMembersTick = r.VillageMembersTick,
+                    firstMemberTick = r.FirstMemberTick,
+                    firstMemberSeconds = r.FirstMemberTick < 0 ? -1 : (double) r.FirstMemberTick / r.TicksPerSecond,
+                    villageMembersSeconds = r.VillageMembersTick < 0 ? -1 : (double) r.VillageMembersTick / r.TicksPerSecond,
+                    membersInvited = r.MembersInvited,
+                    membersJoinedOtherwise = r.MembersJoinedOtherwise,
+                    milestones = r.Milestones,
                     objectives = r.Objectives.ConvertAll(t => new {
                         index = t.Index,
                         id = t.Id,
@@ -210,6 +239,7 @@ namespace beyondnations.pacing {
                         tick = p.Tick,
                         nations = p.Nations,
                         pawns = p.Pawns,
+                        nationless = p.Nationless,
                         members = p.PlayerNationMembers,
                         settlements = p.PlayerSettlements,
                         coins = p.Coins,

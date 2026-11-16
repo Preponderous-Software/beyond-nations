@@ -72,6 +72,47 @@ namespace beyondnations {
             return pawn;
         }
 
+        /**
+        * How near the player has to come for the pawn they are walking up to
+        * to stop and wait: a little wider than INTERACTION_RANGE, so a pawn
+        * waits while the player closes the last few paces.
+        */
+        public const float HOLD_RANGE = INTERACTION_RANGE + 3f;
+
+        /**
+        * The pawn out in the wilds that stops for the player: the nearest
+        * drawn pawn, when the player (also outside) is within HOLD_RANGE of
+        * it -- the one the command bar's Talk, Gift and Invite would act on
+        * once in reach. Null for none. Wandering pawns walk about as fast as
+        * the player, and in playtest 0.8.0 s02 walking up to one failed 6
+        * times in 8 and the one reached walked out of reach before the next
+        * key. A pawn held this way only stands still (Simulation); it decides
+        * what to do as before and goes on once the player moves off.
+        */
+        public static Pawn findPawnToHold(Player player, Environment environment) {
+            if (player.isCurrentlyInSettlement()) {
+                return null;
+            }
+            Pawn pawn = environment.getNearestVisiblePawn(player.getPosition());
+            if (pawn == null || pawn.isCurrentlyInSettlement()) {
+                return null;
+            }
+            return Vector3.Distance(player.getPosition(), pawn.getPosition()) < HOLD_RANGE ? pawn : null;
+        }
+
+        /**
+        * The first line of a pawn's nameplate: "Alice (Friend)", the same name
+        * and tier the command bar's Talk button shows, once the pawn has met
+        * the player or is one of the player's own people; just "Alice" for a
+        * stranger out in the world. A member who joined the player's nation
+        * on their own has never met the player, and their nameplate showed
+        * no tier while Talk said "(Stranger)" (playtest 0.7.1 winter s03).
+        */
+        public static string nameTagLine(Pawn pawn, Player player) {
+            bool ownPeople = player.getNationId() != null && player.getNationId().Equals(pawn.getNationId());
+            return hasMet(pawn, player) || ownPeople ? describe(pawn, player) : pawn.getName();
+        }
+
         /** "Alice (Friend)" -- how status lines and buttons name a pawn. */
         public static string describe(Pawn pawn, Player player) {
             return pawn.getName() + " (" + getTierName(pawn, player) + ")";

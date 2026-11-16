@@ -1,0 +1,109 @@
+{
+  "description": "The live browser build at phone and desktop sizes, shot with darkroom's web backend (https://github.com/Preponderous-Software/darkroom): one shot per device, each opening the game once per screen through the URL options of docs/WEB.md and writing one still per screen. Needs Node.js and Playwright (cd src/BeyondNations.Web/smoke && npm ci && npx playwright install chromium; then NODE_PATH=src/BeyondNations.Web/smoke/node_modules). Run: darkroom shoot tools/capture/web.json. --var base=http://localhost:8080/ shoots a local publish instead. See docs/CONTRIBUTING.md.",
+  "out": "../../docs/screenshots/web-phone-shotlist",
+  "vars": {
+    "base": "https://beyond-nations.play.danielstephenson.dev/",
+    "q": "no-saves&seed=42"
+  },
+  "budgets": { "still_kb": 400 },
+  "defaults": {
+    "backend": "web",
+    "kind": "still",
+    "comment": "Headless Chromium draws WebGL with SwiftShader at about 4 to 9 frames a second at DPR 3, and every goto boots the .NET runtime again, so the waits are long. ready waits for the game's own status (window.beyondNations.status(), docs/WEB.md): 15 frames drawn and, in the world, something drawn.",
+    "url": "{base}?{q}",
+    "waitUntil": "load",
+    "ready": "(() => { const s = window.beyondNations && window.beyondNations.status(); return !!(s && s.frames > 15 && (s.screen !== 'WORLD' || s.instancesDrawn > 0)); })()",
+    "readyTimeout": 240000,
+    "screenshotTimeout": 240000,
+    "timeout": 2400,
+    "retries": 1,
+    "quality": 84
+  },
+  "shots": [
+    {
+      "name": "phone", "device": "phone",
+      "comment": "390x844 at DPR 3 with touch. The rotate hint shows once per page load and covers the middle of the screen; its OK button is tapped at (334, 338) before the screens behind it are shot. Trade at Market sits at (207, 367) in the market town's command bar.",
+      "caption": "The browser build on a phone held upright (390x844, touch).",
+      "alt": "Beyond Nations on a phone held upright",
+      "steps": [
+        { "wait": 4000 }, { "capture": "phone-title" },
+        { "goto": "?{q}&start-screen=new-world" }, { "wait": 4000 }, { "capture": "phone-new-world" },
+        { "goto": "?{q}&start-screen=world" }, { "wait": 8000 }, { "capture": "phone-world" },
+        { "tap": [334, 338] }, { "wait": 4000 }, { "capture": "phone-world-command-bar" },
+        { "goto": "?{q}&start-screen=controls" }, { "wait": 4000 }, { "capture": "phone-controls" },
+        { "goto": "?{q}&start-screen=nations&stage-diplomacy" }, { "wait": 5000 }, { "capture": "phone-nations" },
+        { "goto": "?{q}&start-screen=members&stage-diplomacy" }, { "wait": 5000 }, { "capture": "phone-members" },
+        { "goto": "?{q}&start-screen=laws&stage-diplomacy" }, { "wait": 5000 }, { "capture": "phone-laws" },
+        { "goto": "?{q}&start-screen=manage&stage-diplomacy" }, { "wait": 5000 }, { "capture": "phone-manage" },
+        { "goto": "?{q}&start-screen=settlement&stage-market" }, { "wait": 5000 }, { "capture": "phone-settlement" },
+        { "goto": "?{q}&start-screen=world&stage-market" }, { "wait": 8000 }, { "capture": "phone-market-town" },
+        { "tap": [334, 338] }, { "wait": 3000 },
+        { "tap": [207, 367] }, { "wait": 5000 }, { "capture": "phone-market-panel" }
+      ]
+    },
+    {
+      "name": "landscape", "device": "landscape-phone",
+      "comment": "844x390 at DPR 3 with touch. Trade at Market is not visible in the market town's command bar on its side (it runs under the Era and Objective boxes), so no market panel shot here.",
+      "caption": "The browser build on a phone on its side (844x390, touch).",
+      "alt": "Beyond Nations on a phone on its side",
+      "steps": [
+        { "wait": 4000 }, { "capture": "landscape-title" },
+        { "goto": "?{q}&start-screen=new-world" }, { "wait": 4000 }, { "capture": "landscape-new-world" },
+        { "goto": "?{q}&start-screen=world" }, { "wait": 8000 }, { "capture": "landscape-world" },
+        { "goto": "?{q}&start-screen=controls" }, { "wait": 4000 }, { "capture": "landscape-controls" },
+        { "goto": "?{q}&start-screen=nations&stage-diplomacy" }, { "wait": 5000 }, { "capture": "landscape-nations" },
+        { "goto": "?{q}&start-screen=members&stage-diplomacy" }, { "wait": 5000 }, { "capture": "landscape-members" },
+        { "goto": "?{q}&start-screen=laws&stage-diplomacy" }, { "wait": 5000 }, { "capture": "landscape-laws" },
+        { "goto": "?{q}&start-screen=manage&stage-diplomacy" }, { "wait": 5000 }, { "capture": "landscape-manage" },
+        { "goto": "?{q}&start-screen=settlement&stage-market" }, { "wait": 5000 }, { "capture": "landscape-settlement" },
+        { "goto": "?{q}&start-screen=world&stage-market" }, { "wait": 8000 }, { "capture": "landscape-market-town" }
+      ]
+    },
+    {
+      "name": "desktop", "device": "desktop",
+      "comment": "1280x720, mouse. Trade at Market sits at (569, 642) in the market town's command bar.",
+      "caption": "The browser build on a desktop (1280x720, mouse).",
+      "alt": "Beyond Nations in a desktop browser",
+      "steps": [
+        { "wait": 4000 }, { "capture": "desktop-title" },
+        { "goto": "?{q}&start-screen=new-world" }, { "wait": 4000 }, { "capture": "desktop-new-world" },
+        { "goto": "?{q}&start-screen=world" }, { "wait": 8000 }, { "capture": "desktop-world" },
+        { "goto": "?{q}&start-screen=controls" }, { "wait": 4000 }, { "capture": "desktop-controls" },
+        { "goto": "?{q}&start-screen=nations&stage-diplomacy" }, { "wait": 5000 }, { "capture": "desktop-nations" },
+        { "goto": "?{q}&start-screen=members&stage-diplomacy" }, { "wait": 5000 }, { "capture": "desktop-members" },
+        { "goto": "?{q}&start-screen=laws&stage-diplomacy" }, { "wait": 5000 }, { "capture": "desktop-laws" },
+        { "goto": "?{q}&start-screen=manage&stage-diplomacy" }, { "wait": 5000 }, { "capture": "desktop-manage" },
+        { "goto": "?{q}&start-screen=settlement&stage-market" }, { "wait": 5000 }, { "capture": "desktop-settlement" },
+        { "goto": "?{q}&start-screen=world&stage-market" }, { "wait": 8000 }, { "capture": "desktop-market-town" },
+        { "tap": [569, 642] }, { "wait": 5000 }, { "capture": "desktop-market-panel" }
+      ]
+    },
+    {
+      "name": "phone-staged", "device": "phone",
+      "comment": "The screens #471 opened to the browser: a lived-in town (stage-settlement), a nation with two settlements (stage-outpost) and the winter warning, which is stage-settlement on the first day of autumn run 22000 ticks to the morning of its last day (as media.json's winter-warning). The page runs those ticks in slices between frames and status().advancing counts down to 0. The rotate hint's OK is tapped at (334, 338) as in the phone shot.",
+      "caption": "The browser build's staged screens on a phone held upright (390x844, touch).",
+      "alt": "Beyond Nations on a phone held upright: a lived-in town, a nation with two settlements, and the warning the day before winter",
+      "steps": [
+        { "goto": "?{q}&start-screen=world&stage-settlement" }, { "wait": 8000 },
+        { "tap": [334, 338] }, { "wait": 4000 }, { "capture": "phone-town" },
+        { "goto": "?{q}&start-screen=nations&stage-outpost" }, { "wait": 5000 }, { "capture": "phone-two-settlements" },
+        { "goto": "?{q}&start-screen=world&stage-settlement&season=autumn&advance-ticks=22000" },
+        { "waitFor": "window.beyondNations.status().advancing === 0", "timeout": 900000 },
+        { "tap": [334, 338] }, { "wait": 5000 }, { "capture": "phone-winter-warning" }
+      ]
+    },
+    {
+      "name": "desktop-staged", "device": "desktop",
+      "comment": "As phone-staged, at 1280x720 with a mouse.",
+      "caption": "The browser build's staged screens on a desktop (1280x720, mouse).",
+      "alt": "Beyond Nations in a desktop browser: a lived-in town, a nation with two settlements, and the warning the day before winter",
+      "steps": [
+        { "goto": "?{q}&start-screen=world&stage-settlement" }, { "wait": 8000 }, { "capture": "desktop-town" },
+        { "goto": "?{q}&start-screen=nations&stage-outpost" }, { "wait": 5000 }, { "capture": "desktop-two-settlements" },
+        { "goto": "?{q}&start-screen=world&stage-settlement&season=autumn&advance-ticks=22000" },
+        { "waitFor": "window.beyondNations.status().advancing === 0", "timeout": 900000 },
+        { "wait": 5000 }, { "capture": "desktop-winter-warning" }
+      ]
+    }
+  ]
+}

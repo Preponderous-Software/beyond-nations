@@ -1,0 +1,285 @@
+{"t": 1794789330005, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "101"]}
+{"t": 1794789334080, "cmd": "shot", "args": ["title"]}
+{"t": 1794789337434, "cmd": "key", "args": ["space"]}
+{"t": 1794789337951, "cmd": "await", "args": ["MAIN_MENU", "20"]}
+{"t": 1794789338048, "cmd": "shot", "args": ["menu"]}
+{"t": 1794789340498, "cmd": "click", "args": ["480", "419"]}
+{"t": 1794789341270, "cmd": "wait", "args": ["1"]}
+{"t": 1794789342362, "cmd": "shot", "args": ["controls"]}
+{"t": 1794789344999, "cmd": "click", "args": ["615", "507"]}
+{"t": 1794789345742, "cmd": "wait", "args": ["1"]}
+{"t": 1794789346831, "cmd": "shot", "args": ["controls2"]}
+{"t": 1794789346964, "cmd": "click", "args": ["615", "507"]}
+{"t": 1794789347711, "cmd": "wait", "args": ["1"]}
+{"t": 1794789348792, "cmd": "shot", "args": ["controls3"]}
+{"t": 1794789352589, "cmd": "note", "args": ["--shot", "controls_debug", "Controls screen page 3 lists debug cheats (F2-F6 spawn coins/wood/pawns) to ordinary players with no 'debug only' warning; a new player may use them and trivialise the economy."]}
+{"t": 1794789352714, "cmd": "click", "args": ["480", "507"]}
+{"t": 1794789353456, "cmd": "wait", "args": ["1"]}
+{"t": 1794789354544, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789355301, "cmd": "await", "args": ["NEW_WORLD", "10"]}
+{"t": 1794789355598, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794789357830, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789358587, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794789358681, "cmd": "wait", "args": ["2"]}
+{"t": 1794789360758, "cmd": "shot", "args": ["world0"]}
+{"t": 1794789360906, "cmd": "state", "args": []}
+{"t": 1794789363788, "cmd": "click", "args": ["338", "389"]}
+{"t": 1794789364559, "cmd": "wait", "args": ["1"]}
+{"t": 1794789365643, "cmd": "shot", "args": ["tip2"]}
+{"t": 1794789365795, "cmd": "state", "args": []}
+{"t": 1794789368701, "cmd": "click", "args": ["338", "376"]}
+{"t": 1794789369458, "cmd": "face", "args": ["180"]}
+{"t": 1794789372884, "cmd": "shot", "args": ["turned"]}
+{"t": 1794789373024, "cmd": "state", "args": []}
+{"t": 1794789376748, "cmd": "click", "args": ["338", "376"]}
+{"t": 1794789377491, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794789378431, "cmd": "key", "args": ["e"]}
+{"t": 1794789378932, "cmd": "wait", "args": ["1"]}
+{"t": 1794789380010, "cmd": "shot", "args": ["chop1"]}
+{"t": 1794789380151, "cmd": "state", "args": []}
+{"t": 1794789383975, "cmd": "events", "args": ["10"]}
+{"t": 1794789387070, "cmd": "click", "args": ["338", "389"]}
+{"t": 1794789387811, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794789392059, "cmd": "state", "args": []}
+{"t": 1794789392152, "cmd": "key", "args": ["e"]}
+{"t": 1794789392644, "cmd": "wait", "args": ["1"]}
+{"t": 1794789393728, "cmd": "shot", "args": ["chop2"]}
+{"t": 1794789393886, "cmd": "state", "args": []}
+{"t": 1794789393958, "cmd": "events", "args": ["3"]}
+{"t": 1794789398615, "cmd": "note", "args": ["--shot", "chop_msg", "Chop status says 'Gathered 4 wood and 1 apple from tree.' but Saplings went 1->3; saplings received are not mentioned. Also the whole tree vanishes after a single E press (5 wood) which is surprising but fine. First chop also auto-ate an apple ('Ate an apple (+15 energy)') without me asking. tick ~1589"]}
+{"t": 1794789398780, "cmd": "click", "args": ["338", "402"]}
+{"t": 1794789399519, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794789404274, "cmd": "key", "args": ["e"]}
+{"t": 1794789404752, "cmd": "wait", "args": ["2"]}
+{"t": 1794789406838, "cmd": "shot", "args": ["obj1"]}
+{"t": 1794789406983, "cmd": "state", "args": []}
+{"t": 1794789407056, "cmd": "events", "args": ["5"]}
+{"t": 1794789412356, "cmd": "note", "args": ["--shot", "obj2_auto", "Objective 2 'Eat something' completed itself 52 ticks after objective 1 (tick 2153) with no player action - an apple was auto-eaten. I never saw the objective or chose to eat; the 'Eat Apple (+15)' button suggests eating is manual. Also the chronicle header reads 'your news' but lists five other people's nations."]}
+{"t": 1794789412503, "cmd": "key", "args": ["n"]}
+{"t": 1794789412982, "cmd": "wait", "args": ["2"]}
+{"t": 1794789415060, "cmd": "shot", "args": ["nation"]}
+{"t": 1794789415202, "cmd": "state", "args": []}
+{"t": 1794789419299, "cmd": "note", "args": ["--shot", "nation_name", "Pressing N creates a nation instantly with an auto-generated name (Easttown); no prompt to name it or confirm. My own chronicle line is truncated: 'You raised a banner and named your people Ea...' so the name is cut off where it is announced."]}
+{"t": 1794789419457, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789428238, "cmd": "key", "args": ["e"]}
+{"t": 1794789428744, "cmd": "wait", "args": ["1"]}
+{"t": 1794789429830, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789436687, "cmd": "key", "args": ["e"]}
+{"t": 1794789437170, "cmd": "wait", "args": ["1"]}
+{"t": 1794789438257, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789443751, "cmd": "key", "args": ["e"]}
+{"t": 1794789444244, "cmd": "wait", "args": ["1"]}
+{"t": 1794789445330, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789454646, "cmd": "key", "args": ["e"]}
+{"t": 1794789455135, "cmd": "wait", "args": ["1"]}
+{"t": 1794789456210, "cmd": "state", "args": []}
+{"t": 1794789458615, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789477270, "cmd": "key", "args": ["e"]}
+{"t": 1794789477766, "cmd": "wait", "args": ["1"]}
+{"t": 1794789478847, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789486362, "cmd": "key", "args": ["e"]}
+{"t": 1794789486879, "cmd": "wait", "args": ["1"]}
+{"t": 1794789487972, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789491423, "cmd": "key", "args": ["e"]}
+{"t": 1794789491932, "cmd": "wait", "args": ["1"]}
+{"t": 1794789493011, "cmd": "state", "args": []}
+{"t": 1794789493087, "cmd": "shot", "args": ["wood50"]}
+{"t": 1794789496711, "cmd": "key", "args": ["f"]}
+{"t": 1794789497195, "cmd": "wait", "args": ["2"]}
+{"t": 1794789499277, "cmd": "shot", "args": ["found"]}
+{"t": 1794789499420, "cmd": "state", "args": []}
+{"t": 1794789499501, "cmd": "events", "args": ["4"]}
+{"t": 1794789503568, "cmd": "face", "args": ["113"]}
+{"t": 1794789506099, "cmd": "shot", "args": ["facing"]}
+{"t": 1794789506252, "cmd": "state", "args": []}
+{"t": 1794789509034, "cmd": "face", "args": ["-135"]}
+{"t": 1794789511663, "cmd": "state", "args": []}
+{"t": 1794789511749, "cmd": "hold", "args": ["Shift_L+w", "8"]}
+{"t": 1794789519911, "cmd": "state", "args": []}
+{"t": 1794789519996, "cmd": "key", "args": ["f"]}
+{"t": 1794789520492, "cmd": "wait", "args": ["2"]}
+{"t": 1794789522571, "cmd": "shot", "args": ["found2"]}
+{"t": 1794789522740, "cmd": "state", "args": []}
+{"t": 1794789529872, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794789533020, "cmd": "key", "args": ["f"]}
+{"t": 1794789533517, "cmd": "wait", "args": ["2"]}
+{"t": 1794789535623, "cmd": "shot", "args": ["found3"]}
+{"t": 1794789535797, "cmd": "state", "args": []}
+{"t": 1794789535893, "cmd": "events", "args": ["5"]}
+{"t": 1794789541944, "cmd": "note", "args": ["--shot", "found3", "After founding (tick 7653), the settlement's floating label '0 here, 3/8 residents' renders huge and clipped off the top of the screen, a tree trunk stands right in the middle of the new settlement blocking the camera, and the player capsule sits inside the well model. Also the probe calls my settlement just 'Settlement' - no name shown anywhere on the HUD."]}
+{"t": 1794789542094, "cmd": "key", "args": ["e"]}
+{"t": 1794789542598, "cmd": "wait", "args": ["2"]}
+{"t": 1794789544680, "cmd": "shot", "args": ["enter"]}
+{"t": 1794789544868, "cmd": "state", "args": []}
+{"t": 1794789548840, "cmd": "move", "args": ["182", "352"]}
+{"t": 1794789548936, "cmd": "wait", "args": ["1"]}
+{"t": 1794789550041, "cmd": "shot", "args": ["stallhover"]}
+{"t": 1794789554392, "cmd": "note", "args": ["--shot", "stallhover", "Settlement sheet: objective 6 'Build a market stall' needs Wood 0/20 Stone 0/5 carried, while the settlement stockpile shows 45 wood, 25 stone. 'Build Stall' is greyed with no tooltip or cost shown, while 'Build House' and 'Build Farm' are enabled even though I carry nothing. Unclear what pays for what (carried vs stockpile). Also the world-space label '2 here, 3/8 residents' bleeds through behind the sheet title."]}
+{"t": 1794789554570, "cmd": "click", "args": ["480", "352"]}
+{"t": 1794789555327, "cmd": "wait", "args": ["2"]}
+{"t": 1794789557412, "cmd": "shot", "args": ["house"]}
+{"t": 1794789557598, "cmd": "state", "args": []}
+{"t": 1794789557679, "cmd": "events", "args": ["3"]}
+{"t": 1794789561332, "cmd": "click", "args": ["777", "352"]}
+{"t": 1794789562075, "cmd": "wait", "args": ["2"]}
+{"t": 1794789564150, "cmd": "shot", "args": ["farm"]}
+{"t": 1794789564348, "cmd": "state", "args": []}
+{"t": 1794789568564, "cmd": "note", "args": ["--shot", "farm", "Settlement sheet says 'Build here with what you carry:' but Build House and Build Farm were paid from the settlement stockpile (45 wood/25 stone -> empty) while I carried 0 wood/0 stone. Only Build Stall needs carried goods. Label is wrong/misleading. Upside: two clicks turned Camp into Village very quickly (tick ~8000)."]}
+{"t": 1794789568725, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794789569464, "cmd": "wait", "args": ["2"]}
+{"t": 1794789571548, "cmd": "shot", "args": ["exited"]}
+{"t": 1794789571714, "cmd": "state", "args": []}
+{"t": 1794789575662, "cmd": "walkto", "args": ["rock"]}
+{"t": 1794789580219, "cmd": "key", "args": ["e"]}
+{"t": 1794789580708, "cmd": "wait", "args": ["1"]}
+{"t": 1794789581795, "cmd": "state", "args": []}
+{"t": 1794789581885, "cmd": "shot", "args": ["rock1"]}
+{"t": 1794789586044, "cmd": "note", "args": ["--shot", "rock1", "World-space name labels for nearby pawns are drawn huge ('Abigail Br... Greedy (gathering') and overlap the HUD panels; same for the settlement label. Label size seems not to scale down with proximity. tick ~8200"]}
+{"t": 1794789586203, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789593779, "cmd": "key", "args": ["e"]}
+{"t": 1794789594260, "cmd": "wait", "args": ["1"]}
+{"t": 1794789595342, "cmd": "state", "args": []}
+{"t": 1794789595417, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789595909, "cmd": "key", "args": ["e"]}
+{"t": 1794789596393, "cmd": "wait", "args": ["1"]}
+{"t": 1794789597488, "cmd": "state", "args": []}
+{"t": 1794789597563, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789623012, "cmd": "key", "args": ["e"]}
+{"t": 1794789623525, "cmd": "wait", "args": ["1"]}
+{"t": 1794789624607, "cmd": "state", "args": []}
+{"t": 1794789624689, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789629407, "cmd": "key", "args": ["e"]}
+{"t": 1794789629910, "cmd": "wait", "args": ["1"]}
+{"t": 1794789631007, "cmd": "state", "args": []}
+{"t": 1794789634342, "cmd": "key", "args": ["h"]}
+{"t": 1794789634825, "cmd": "wait", "args": ["2"]}
+{"t": 1794789636932, "cmd": "state", "args": []}
+{"t": 1794789637005, "cmd": "key", "args": ["e"]}
+{"t": 1794789637499, "cmd": "wait", "args": ["2"]}
+{"t": 1794789639580, "cmd": "key", "args": ["b"]}
+{"t": 1794789640070, "cmd": "wait", "args": ["2"]}
+{"t": 1794789642156, "cmd": "shot", "args": ["stall"]}
+{"t": 1794789642335, "cmd": "state", "args": []}
+{"t": 1794789642427, "cmd": "events", "args": ["6"]}
+{"t": 1794789647758, "cmd": "click", "args": ["480", "352"]}
+{"t": 1794789648529, "cmd": "wait", "args": ["2"]}
+{"t": 1794789650609, "cmd": "click", "args": ["777", "352"]}
+{"t": 1794789651360, "cmd": "wait", "args": ["2"]}
+{"t": 1794789653447, "cmd": "shot", "args": ["builds2"]}
+{"t": 1794789653636, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794789654386, "cmd": "wait", "args": ["3"]}
+{"t": 1794789657470, "cmd": "state", "args": []}
+{"t": 1794789657550, "cmd": "events", "args": ["8"]}
+{"t": 1794789661627, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794789662370, "cmd": "wait", "args": ["2"]}
+{"t": 1794789664445, "cmd": "shot", "args": ["era"]}
+{"t": 1794789664606, "cmd": "state", "args": []}
+{"t": 1794789671254, "cmd": "note", "args": ["--shot", "era", "Objective 7 'Reach the Village era' progress shows 'Members 5/10 • Buildings 2/2' (text clipped on the left: 'mbers 5/10'), but the Era detail panel lists different criteria: Village 1/1, Members 5/10, Stalls 1/2, Day 1/2. The objective omits stalls and day; the bar label 'Village: 1/4' next to 'Era: Camp' is also confusing because my settlement is already called 'Village of Easttown'. Era panel text is cut off at the bottom ('Sheltered until the Town era: no sieges, border...') and the Inventory panel jumps right to overlap the view."]}
+{"t": 1794789675069, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794789675823, "cmd": "state", "args": ["--full"]}
+{"t": 1794789677968, "cmd": "state", "args": ["--full"]}
+{"t": 1794789683103, "cmd": "walkto", "args": ["rock"]}
+{"t": 1794789696300, "cmd": "key", "args": ["e"]}
+{"t": 1794789696783, "cmd": "wait", "args": ["1"]}
+{"t": 1794789697867, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789761390, "cmd": "key", "args": ["e"]}
+{"t": 1794789761889, "cmd": "wait", "args": ["1"]}
+{"t": 1794789762962, "cmd": "state", "args": []}
+{"t": 1794789763036, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789809683, "cmd": "shot", "args": ["stuck"]}
+{"t": 1794789809847, "cmd": "state", "args": []}
+{"t": 1794789814221, "cmd": "note", "args": ["--shot", "stuck", "Pressing E at a rock I had already mined gave 'Gathered 0 stone from rock.' - the rock stays visible and interactable after it is empty (trees disappear when used up; rocks do not). tick ~11500. Also a 'Bandit camp' world event popped up mid-walk at tick ~12137 (sheet pauses the world; reads well, clear options)."]}
+{"t": 1794789814406, "cmd": "click", "args": ["480", "392"]}
+{"t": 1794789815148, "cmd": "wait", "args": ["2"]}
+{"t": 1794789817224, "cmd": "state", "args": []}
+{"t": 1794789817302, "cmd": "events", "args": ["3"]}
+{"t": 1794789819991, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794789823864, "cmd": "key", "args": ["e"]}
+{"t": 1794789824355, "cmd": "wait", "args": ["1"]}
+{"t": 1794789825440, "cmd": "state", "args": []}
+{"t": 1794789825527, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794789834256, "cmd": "key", "args": ["e"]}
+{"t": 1794789834739, "cmd": "wait", "args": ["1"]}
+{"t": 1794789835821, "cmd": "state", "args": []}
+{"t": 1794789835943, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794789845657, "cmd": "key", "args": ["e"]}
+{"t": 1794789846133, "cmd": "wait", "args": ["1"]}
+{"t": 1794789847210, "cmd": "state", "args": []}
+{"t": 1794789847289, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794789853748, "cmd": "key", "args": ["e"]}
+{"t": 1794789854248, "cmd": "wait", "args": ["1"]}
+{"t": 1794789855322, "cmd": "state", "args": []}
+{"t": 1794789858091, "cmd": "key", "args": ["h"]}
+{"t": 1794789858569, "cmd": "wait", "args": ["2"]}
+{"t": 1794789860656, "cmd": "key", "args": ["e"]}
+{"t": 1794789861154, "cmd": "wait", "args": ["2"]}
+{"t": 1794789863248, "cmd": "key", "args": ["b"]}
+{"t": 1794789863738, "cmd": "wait", "args": ["2"]}
+{"t": 1794789865807, "cmd": "shot", "args": ["stall2"]}
+{"t": 1794789866011, "cmd": "state", "args": []}
+{"t": 1794789869983, "cmd": "click", "args": ["375", "438"]}
+{"t": 1794789870717, "cmd": "wait", "args": ["2"]}
+{"t": 1794789872810, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794789873565, "cmd": "wait", "args": ["1"]}
+{"t": 1794789874637, "cmd": "shot", "args": ["era2"]}
+{"t": 1794789874895, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794789875645, "cmd": "state", "args": []}
+{"t": 1794789878704, "cmd": "click", "args": ["162", "445"]}
+{"t": 1794789879451, "cmd": "wait", "args": ["2"]}
+{"t": 1794789881528, "cmd": "shot", "args": ["talk"]}
+{"t": 1794789881792, "cmd": "state", "args": []}
+{"t": 1794789885484, "cmd": "click", "args": ["162", "445"]}
+{"t": 1794789886219, "cmd": "wait", "args": ["2"]}
+{"t": 1794789888300, "cmd": "shot", "args": ["talk2"]}
+{"t": 1794789888579, "cmd": "state", "args": []}
+{"t": 1794789888666, "cmd": "events", "args": ["3"]}
+{"t": 1794789895267, "cmd": "note", "args": ["--shot", "talk2", "Talking: Abigail Brown, announced in the chronicle as having 'joined Easttown' and listed as my settlement's merchant, is shown as '(Stranger)' and says 'I hardly know you. Why should I follow you?'. 'Stranger' is a relationship tier but reads as 'not in my nation'; I can't tell on screen who is already a member. Also the buttons said 'Talk to Karl Watson' but the click talked to Abigail - the action target switched between hover and click as pawns moved (tick 14616)."]}
+{"t": 1794789895542, "cmd": "state", "args": ["--full"]}
+{"t": 1794789897829, "cmd": "key", "args": ["o"]}
+{"t": 1794789898313, "cmd": "wait", "args": ["2"]}
+{"t": 1794789900387, "cmd": "shot", "args": ["nations"]}
+{"t": 1794789903400, "cmd": "click", "args": ["415", "45"]}
+{"t": 1794789904159, "cmd": "wait", "args": ["2"]}
+{"t": 1794789906231, "cmd": "shot", "args": ["members"]}
+{"t": 1794789910437, "cmd": "key", "args": ["Escape"]}
+{"t": 1794789910970, "cmd": "wait", "args": ["1"]}
+{"t": 1794789912045, "cmd": "state", "args": ["--full"]}
+{"t": 1794789915468, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794789918623, "cmd": "state", "args": []}
+{"t": 1794789918718, "cmd": "hold", "args": ["Shift_L+w", "3"]}
+{"t": 1794789921887, "cmd": "state", "args": []}
+{"t": 1794789924577, "cmd": "walkto", "args": ["pawn", "50"]}
+{"t": 1794789975347, "cmd": "shot", "args": ["quinn"]}
+{"t": 1794789975546, "cmd": "state", "args": []}
+{"t": 1794789979715, "cmd": "note", "args": ["--shot", "quinn", "Night falls around tick 17000 (~6 game minutes in) and the world becomes near-black: no trees, rocks or pawns visible, only the HUD. A new player cannot navigate or find anyone to recruit at night without the probe."]}
+{"t": 1794789979930, "cmd": "walkto", "args": ["pawn", "50"]}
+{"t": 1794790031443, "cmd": "state", "args": []}
+{"t": 1794790035059, "cmd": "hold", "args": ["Shift_L+w", "1"]}
+{"t": 1794790036209, "cmd": "state", "args": []}
+{"t": 1794790036289, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1794790067596, "cmd": "shot", "args": ["victor"]}
+{"t": 1794790067823, "cmd": "state", "args": []}
+{"t": 1794790071954, "cmd": "key", "args": ["h"]}
+{"t": 1794790072438, "cmd": "wait", "args": ["40"]}
+{"t": 1794790112550, "cmd": "state", "args": []}
+{"t": 1794790112634, "cmd": "events", "args": ["6"]}
+{"t": 1794790116486, "cmd": "wait", "args": ["30"]}
+{"t": 1794790146588, "cmd": "state", "args": []}
+{"t": 1794790146681, "cmd": "shot", "args": ["t10"]}
+{"t": 1794790152756, "cmd": "key", "args": ["Escape"]}
+{"t": 1794790153229, "cmd": "wait", "args": ["1"]}
+{"t": 1794790154299, "cmd": "shot", "args": ["pause"]}
+{"t": 1794790157018, "cmd": "click", "args": ["480", "327"]}
+{"t": 1794790157763, "cmd": "wait", "args": ["2"]}
+{"t": 1794790159834, "cmd": "shot", "args": ["saved"]}
+{"t": 1794790160083, "cmd": "events", "args": ["3"]}
+{"t": 1794790160151, "cmd": "click", "args": ["480", "286"]}
+{"t": 1794790160896, "cmd": "wait", "args": ["1"]}
+{"t": 1794790161965, "cmd": "status", "args": []}
+{"t": 1794790164846, "cmd": "wait", "args": ["25"]}
+{"t": 1794790189938, "cmd": "state", "args": []}
+{"t": 1794790192826, "cmd": "shot", "args": ["final"]}
+{"t": 1794790193146, "cmd": "events", "args": ["200"]}
+{"t": 1794790193235, "cmd": "stop", "args": []}
+{"t": 1794790219997, "cmd": "report", "args": []}
+{"t": 1794790977257, "cmd": "stop", "args": []}

@@ -10,6 +10,23 @@ namespace beyondnationstests {
         private readonly RandomSource random = new RandomSource(20260816);
 
 
+        /** A pawn put out of its nation while indoors (Realm.expel, a warned-against claimant) walks out; it used to crash the calculator. */
+        [Fact]
+        public void testComputeBehaviorType_NationlessPawnInsideASettlement_LeavesIt() {
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), null, Rgba.White, "Aland", random);
+            entityRepository.addEntity(settlement);
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(pawn);
+            pawn.setCurrentSettlementId(settlement.getId());
+            pawn.setEnergy(100);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            Assert.Equal(BehaviorType.EXIT_SETTLEMENT, calculator.computeBehaviorType(pawn));
+        }
+
         /**
             * Input: pawn is nationless, no settlements nearby and does not have enough wood to create a settlement
             * Expected output: GATHER_RESOURCES
@@ -71,6 +88,31 @@ namespace beyondnationstests {
             Assert.Equal(BehaviorType.JOIN_NATION, behaviorType);
 
             // cleanup
+        }
+
+        /**
+            * Input: pawn is nationless, settlement within range, but its nation cannot feed its members
+            * Expected output: not JOIN_NATION (#489: no newcomers join a nation going hungry)
+        */
+        [Fact]
+        public void testComputeBehaviorType_Nationless_PassesByANationGoingHungry() {
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn nationLeader = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(nationLeader);
+            Nation nation = new Nation("test", nationLeader.getId(), random);
+            nationRepository.addNation(nation);
+            nationLeader.setNationId(nation.getId());
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), nation.getId(), nation.getColor(), nation.getName(), random);
+            entityRepository.addEntity(settlement);
+            // the nation's only member is hungry, with nothing to eat
+            nationLeader.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(pawn);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            Assert.NotEqual(BehaviorType.JOIN_NATION, calculator.computeBehaviorType(pawn));
         }
 
         /**
@@ -415,7 +457,8 @@ namespace beyondnationstests {
             settlement.getMarket().createStall();
             Stall stall = settlement.getMarket().getStallForSale();
             stall.setOwnerId(merchant.getId());
-            stall.getInventory().addItem(ItemType.COIN, 100);
+            // enough to pay for goods and still keep the till's float (#369)
+            stall.getInventory().addItem(ItemType.COIN, Stall.TILL_RESERVE + 100);
 
             // prepare pawn
             Pawn pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
@@ -470,7 +513,8 @@ namespace beyondnationstests {
             settlement.getMarket().createStall();
             Stall stall = settlement.getMarket().getStallForSale();
             stall.setOwnerId(merchant.getId());
-            stall.getInventory().addItem(ItemType.COIN, 200);
+            // a stall's worth of profit above the float it keeps
+            stall.getInventory().addItem(ItemType.COIN, Stall.TILL_RESERVE + Stall.COIN_COST_TO_PURCHASE);
 
             // prepare calculator
             GameConfig gameConfig = new GameConfig();
@@ -836,7 +880,8 @@ namespace beyondnationstests {
             TickCounter tickCounter = new TickCounter();
 
             Pawn pawn = makeHungryPawnWithADistantHome(entityRepository, nationRepository);
-            // thirty apples on offer: 40 * 10 / 40 = 10 coins each, which the pawn has
+            // thirty apples on offer: 40 * 20 / 50 = 16 coins each, which the pawn has
+            pawn.getInventory().setNumItems(ItemType.COIN, 16);
             stockHomeMarket(entityRepository, pawn, ItemType.APPLE, 30);
 
             PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, gameConfig, tickCounter, random);

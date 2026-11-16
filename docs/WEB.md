@@ -109,7 +109,28 @@ game lays its screens out for a finger (`TouchLayout` in
 - The HUD leaves the controls' band clear: the command bar and the boxes stop
   above it, the inventory box is left out (Bag opens the full list), and on a
   phone held upright the status line and chronicle go under the objective
-  tracker rather than over it.
+  tracker rather than over it. Upright, while a tip card shows the Season box
+  drops its region lines, and the card goes under the Season box when it fits
+  above the command bar, otherwise just under the status line, over the
+  chronicle strip, so it covers neither the Season box nor a button; a town's floating name, which has no clear place under that
+  stacked HUD, is left out while it would sit under it.
+- The command bar takes the rows left between the HUD above it and the
+  controls (on a phone on its side, between the two box columns, under the
+  chronicle strip), and when it has more buttons than that it shows them a
+  page at a time behind a **More** button at its bottom left ("More 1/5";
+  the drastic buttons get a page of their own, and the buttons for the person in reach come last, on pages of their own, so someone walking by moves no other button). Inside a settlement the
+  right-hand column stops above the controls: the player box (with the
+  energy bar) and the Season box always stay, and the market box, then the
+  settlement box, are left out when there is no room for them (Trade at
+  Market and Settlement show the same). The chronicle strip shows the two
+  latest entries on a touch screen; News opens the rest (#466).
+
+  <img src="screenshots/phone-market-command-bar/phone-before.jpg" alt="Before: a phone held upright in a market town, the command bar running under the objective, chronicle and season boxes, and the market box under the touch controls" width="180"> <img src="screenshots/phone-market-command-bar/phone-after-more.jpg" alt="After: the same town, the bar below the season box with More 2/8 and Trade at Market, the right-hand column only the player box" width="180"> <img src="screenshots/phone-market-command-bar/phone-trader-pawn-page.jpg" alt="The last page of the bar beside a serf: Order Ursula Williams: Gather Wood, and Appoint Ursula Williams Trader greyed, the one trader slot being taken" width="180">
+  <img src="screenshots/phone-market-command-bar/landscape-before.jpg" alt="Before: a phone on its side in a market town, the command bar under the era, objective and chronicle boxes and the market box under Jump, Run and Use" width="380"> <img src="screenshots/phone-market-command-bar/landscape-after.jpg" alt="After: the bar between the box columns under the chronicle strip, with More 1/5, Purchase Food, Sell Resources and Trade at Market, and the Season and Player boxes clear of the controls" width="380">
+- A line too wide for the screen (a panel footer on a phone held upright) is
+  drawn smaller rather than cut off at both edges.
+
+  <img src="screenshots/phone-ui-leftovers/phone-town-pair.jpg" alt="A phone held upright in a town, before and after: before, the tip card covers Enter Settlement and Teleport Home and the town's name is cut off at the top behind the boxes; after, the Season box is compact, the tip sits over the chronicle strip, the command bar is clear, and the name is left out" width="420">
 - No line names a key or a mouse button: objective hints, status lines, panel
   footers, the chronicle and the tips name the button instead ("press Use",
   "Realm", "Tap Close"), all from one table (`ObjectiveKeyNames`), and the
@@ -151,6 +172,10 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `render-distance=N` | starting render distance |
 | `time-of-day=F` | starting time of day, 0 to 1 |
 | `stage-feel` | replay the feedback effects every 20 frames, for screenshots |
+| `stage-settlement` | open with a lived-in settlement standing ahead of the player, as the desktop's `--stage-settlement` |
+| `stage-outpost` | open leading a Village-era nation with two settlements |
+| `stage-diplomacy`, `stage-succession`, `stage-event`, `stage-trade`, `stage-market`, `stage-victory`, `stage-defeat` | the desktop's other staged openings ([CONTRIBUTING.md](./CONTRIBUTING.md)) |
+| `advance-ticks=N` | run the world N ticks so it opens mid-game, at most 50,000 (a larger number is lowered to that, with a warning). Unlike the desktop, which runs them before its first frame, the page runs them in slices of 200 ms a frame and draws the world fast-forwarding meanwhile, so it stays responsive; `window.beyondNations.status().advancing` counts the ticks left. As on the desktop, the player sits it out: they are kept fed, come in at full energy, and their reign starts when they do (#490). `?stage-settlement&season=autumn&advance-ticks=22000` reaches the winter warning. |
 | `season=NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |
 | `exit-after-frames=N`, `screenshot-after-frames=N` | for automated runs |
@@ -159,6 +184,10 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 Anything unknown or malformed is dropped with a console warning. (On the
 desktop a bad option ends the process; in a page that would take the runtime
 down with it, so nothing unusable reaches `GameOptions.parse`.)
+
+The warning the day before winter in the browser, `?no-saves&seed=42&start-screen=world&stage-settlement&season=autumn&advance-ticks=22000` (the `phone-staged` and `desktop-staged` shots in `tools/capture/web.json`):
+
+<img src="./screenshots/web-phone-shotlist/desktop-winter-warning.jpg" alt="The browser build at 1280x720 the night before winter: a banner says winter comes tomorrow and that 9 of Southernland's 17 members are short of food, and the Season box reads Autumn, day 2 of 2, Winter in 1 day" width="560"> <img src="./screenshots/web-phone-shotlist/phone-winter-warning.jpg" alt="The same warning on a phone held upright" width="180">
 
 ### Sharing
 

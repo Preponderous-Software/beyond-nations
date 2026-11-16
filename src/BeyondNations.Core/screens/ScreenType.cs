@@ -20,6 +20,10 @@ namespace beyondnations {
         SHARE,
         // a victory or a defeat -- including a line with no heir -- : the outcome,
         // the run's numbers and its history (EraTracker)
-        END_OF_RUN
+        END_OF_RUN,
+        // one settlement: who holds it, its people, buildings, stores and
+        // market, and what its holder can do with it (#178); opened on
+        // entering a settlement and from the nations screen
+        SETTLEMENT
     }
 }

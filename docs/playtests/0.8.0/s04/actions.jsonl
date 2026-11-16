@@ -1,0 +1,303 @@
+{"t": 1794780354515, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "104"]}
+{"t": 1794780366869, "cmd": "key", "args": ["space"]}
+{"t": 1794780369466, "cmd": "shot", "args": ["menu"]}
+{"t": 1794780394272, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780397270, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780426174, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780427217, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794780431222, "cmd": "shot", "args": ["world1"]}
+{"t": 1794780432865, "cmd": "state", "args": []}
+{"t": 1794780441584, "cmd": "key", "args": ["o"]}
+{"t": 1794780445262, "cmd": "shot", "args": ["nations0"]}
+{"t": 1794780445672, "cmd": "state", "args": []}
+{"t": 1794780451036, "cmd": "key", "args": ["o"]}
+{"t": 1794780453869, "cmd": "key", "args": ["n"]}
+{"t": 1794780457614, "cmd": "shot", "args": ["afterN"]}
+{"t": 1794780458249, "cmd": "state", "args": []}
+{"t": 1794780458600, "cmd": "events", "args": ["10"]}
+{"t": 1794780499184, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780517689, "cmd": "key", "args": ["e"]}
+{"t": 1794780519536, "cmd": "key", "args": ["e"]}
+{"t": 1794780521328, "cmd": "key", "args": ["e"]}
+{"t": 1794780523157, "cmd": "key", "args": ["e"]}
+{"t": 1794780524896, "cmd": "key", "args": ["e"]}
+{"t": 1794780526786, "cmd": "state", "args": []}
+{"t": 1794780527080, "cmd": "events", "args": ["8"]}
+{"t": 1794780532168, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780567187, "cmd": "key", "args": ["e"]}
+{"t": 1794780569129, "cmd": "state", "args": ["--full"]}
+{"t": 1794780580313, "cmd": "state", "args": []}
+{"t": 1794780580630, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794780635100, "cmd": "key", "args": ["e"]}
+{"t": 1794780636875, "cmd": "key", "args": ["e"]}
+{"t": 1794780637710, "cmd": "state", "args": []}
+{"t": 1794780641338, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780645543, "cmd": "key", "args": ["e"]}
+{"t": 1794780647301, "cmd": "key", "args": ["o"]}
+{"t": 1794780651016, "cmd": "shot", "args": ["nations1"]}
+{"t": 1794780651642, "cmd": "key", "args": ["o"]}
+{"t": 1794780663258, "cmd": "key", "args": ["o"]}
+{"t": 1794780666046, "cmd": "click", "args": ["300", "273"]}
+{"t": 1794780669152, "cmd": "shot", "args": ["ally_decline"]}
+{"t": 1794780669785, "cmd": "state", "args": []}
+{"t": 1794780683213, "cmd": "shot", "args": ["ally_decline2"]}
+{"t": 1794780684046, "cmd": "events", "args": ["6"]}
+{"t": 1794780693102, "cmd": "click", "args": ["123", "273"]}
+{"t": 1794780697100, "cmd": "shot", "args": ["tribute1"]}
+{"t": 1794780697727, "cmd": "state", "args": []}
+{"t": 1794780704062, "cmd": "click", "args": ["836", "338"]}
+{"t": 1794780707976, "cmd": "shot", "args": ["denounce1"]}
+{"t": 1794780708450, "cmd": "state", "args": []}
+{"t": 1794780711647, "cmd": "click", "args": ["836", "338"]}
+{"t": 1794780715615, "cmd": "shot", "args": ["denounce2"]}
+{"t": 1794780715904, "cmd": "state", "args": []}
+{"t": 1794780722051, "cmd": "click", "args": ["657", "404"]}
+{"t": 1794780726206, "cmd": "state", "args": []}
+{"t": 1794780726460, "cmd": "click", "args": ["657", "404"]}
+{"t": 1794780730399, "cmd": "shot", "args": ["war1"]}
+{"t": 1794780731007, "cmd": "state", "args": []}
+{"t": 1794780737053, "cmd": "click", "args": ["880", "215"]}
+{"t": 1794780741107, "cmd": "shot", "args": ["nations_down"]}
+{"t": 1794780741597, "cmd": "key", "args": ["o"]}
+{"t": 1794780743393, "cmd": "key", "args": ["o"]}
+{"t": 1794780752957, "cmd": "state", "args": []}
+{"t": 1794780753247, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780753605, "cmd": "key", "args": ["e"]}
+{"t": 1794780755382, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780756107, "cmd": "key", "args": ["e"]}
+{"t": 1794780757930, "cmd": "state", "args": []}
+{"t": 1794780767171, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780769878, "cmd": "state", "args": []}
+{"t": 1794780770011, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780801468, "cmd": "key", "args": ["e"]}
+{"t": 1794780803245, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780817726, "cmd": "key", "args": ["e"]}
+{"t": 1794780819472, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780824995, "cmd": "key", "args": ["e"]}
+{"t": 1794780826848, "cmd": "state", "args": []}
+{"t": 1794780833647, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780878877, "cmd": "key", "args": ["e"]}
+{"t": 1794780880587, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780901565, "cmd": "key", "args": ["e"]}
+{"t": 1794780903307, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780944256, "cmd": "key", "args": ["e"]}
+{"t": 1794780946014, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780946375, "cmd": "key", "args": ["e"]}
+{"t": 1794780948236, "cmd": "state", "args": []}
+{"t": 1794780948463, "cmd": "events", "args": ["15"]}
+{"t": 1794780952858, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794780981032, "cmd": "key", "args": ["e"]}
+{"t": 1794780982867, "cmd": "key", "args": ["f"]}
+{"t": 1794780986666, "cmd": "shot", "args": ["found"]}
+{"t": 1794780987204, "cmd": "state", "args": []}
+{"t": 1794780997068, "cmd": "key", "args": ["o"]}
+{"t": 1794781000808, "cmd": "shot", "args": ["nations2"]}
+{"t": 1794781010620, "cmd": "note", "args": ["--shot", "scroll_persist", "Nations screen reopened scrolled to 'Nations 3-4 of 21' (scroll offset kept from an earlier visit), so the first two rows (neighbours/enemies, the most important) are hidden until Up is pressed; with a settlement the header grows and only 2 rows fit"]}
+{"t": 1794781011035, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781015028, "cmd": "shot", "args": ["nations3"]}
+{"t": 1794781020652, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781024707, "cmd": "shot", "args": ["nations4"]}
+{"t": 1794781030748, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781033182, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781035525, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781037906, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781040407, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781042804, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781045334, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781047910, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781050375, "cmd": "shot", "args": ["nations5"]}
+{"t": 1794781057272, "cmd": "move", "args": ["480", "340"]}
+{"t": 1794781057545, "cmd": "scroll", "args": ["-2"]}
+{"t": 1794781060166, "cmd": "shot", "args": ["nations6"]}
+{"t": 1794781069643, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781072038, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781074614, "cmd": "shot", "args": ["nations7"]}
+{"t": 1794781080211, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781083168, "cmd": "shot", "args": ["nations8"]}
+{"t": 1794781094507, "cmd": "click", "args": ["123", "309"]}
+{"t": 1794781098438, "cmd": "state", "args": []}
+{"t": 1794781098625, "cmd": "events", "args": ["40"]}
+{"t": 1794781102323, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781104783, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781107222, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781109797, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781112264, "cmd": "shot", "args": ["nations9"]}
+{"t": 1794781117482, "cmd": "click", "args": ["480", "309"]}
+{"t": 1794781121460, "cmd": "state", "args": []}
+{"t": 1794781121616, "cmd": "shot", "args": ["peace1"]}
+{"t": 1794781121932, "cmd": "state", "args": []}
+{"t": 1794781124819, "cmd": "click", "args": ["657", "375"]}
+{"t": 1794781127672, "cmd": "click", "args": ["657", "375"]}
+{"t": 1794781131532, "cmd": "shot", "args": ["war2"]}
+{"t": 1794781131855, "cmd": "state", "args": []}
+{"t": 1794781138979, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781141713, "cmd": "key", "args": ["e"]}
+{"t": 1794781145436, "cmd": "state", "args": []}
+{"t": 1794781150778, "cmd": "shot", "args": ["settlement"]}
+{"t": 1794781151363, "cmd": "key", "args": ["e"]}
+{"t": 1794781154033, "cmd": "state", "args": []}
+{"t": 1794781162423, "cmd": "note", "args": ["--shot", "overlay_billboard", "The settlement's world-space billboard text '0 here, 1/8 residents' (huge grey letters) draws behind/through the settlement sheet title and the Nations screen header, cluttering the top of both panels"]}
+{"t": 1794781163366, "cmd": "click", "args": ["583", "436"]}
+{"t": 1794781167346, "cmd": "state", "args": []}
+{"t": 1794781172147, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794781253486, "cmd": "key", "args": ["e"]}
+{"t": 1794781255251, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794781274865, "cmd": "key", "args": ["e"]}
+{"t": 1794781276677, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794781315080, "cmd": "key", "args": ["e"]}
+{"t": 1794781316845, "cmd": "walkto", "args": ["tree", "80"]}
+{"t": 1794781334364, "cmd": "key", "args": ["e"]}
+{"t": 1794781336184, "cmd": "state", "args": []}
+{"t": 1794781336431, "cmd": "events", "args": ["30"]}
+{"t": 1794781532261, "cmd": "key", "args": ["o"]}
+{"t": 1794781536059, "cmd": "shot", "args": ["n10"]}
+{"t": 1794781544071, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781546613, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781549326, "cmd": "shot", "args": ["n11"]}
+{"t": 1794781549996, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781551070, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781553562, "cmd": "shot", "args": ["n12"]}
+{"t": 1794781561714, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781564781, "cmd": "shot", "args": ["n13"]}
+{"t": 1794781578083, "cmd": "click", "args": ["123", "375"]}
+{"t": 1794781582126, "cmd": "state", "args": []}
+{"t": 1794781582325, "cmd": "note", "args": ["--shot", "gift_eroded", "Alliance with neighbour Farmshire is a treadmill: gift at tick 2067 -> +10, founding my camp near their border (-10) and border friction took it to -2 by tick 4063; second gift -> +8, by tick ~5400 back to +5; third gift now. Gifts are +10 per 20 s envoy trip but friction is ~-1 per 5 s, so +30 needs ~5 gifts and many minutes. Neither the founding penalty nor the friction rate is shown before acting"]}
+{"t": 1794781589145, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781589853, "cmd": "events", "args": ["200"]}
+{"t": 1794781594441, "cmd": "events", "args": ["400"]}
+{"t": 1794781601028, "cmd": "key", "args": ["o"]}
+{"t": 1794781603738, "cmd": "click", "args": ["544", "45"]}
+{"t": 1794781607784, "cmd": "shot", "args": ["laws"]}
+{"t": 1794781608157, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781614029, "cmd": "state", "args": []}
+{"t": 1794781614272, "cmd": "state", "args": []}
+{"t": 1794781619540, "cmd": "state", "args": []}
+{"t": 1794781624729, "cmd": "state", "args": []}
+{"t": 1794781630030, "cmd": "state", "args": []}
+{"t": 1794781635268, "cmd": "state", "args": []}
+{"t": 1794781640577, "cmd": "state", "args": []}
+{"t": 1794781645764, "cmd": "state", "args": []}
+{"t": 1794781651078, "cmd": "state", "args": []}
+{"t": 1794781656279, "cmd": "state", "args": []}
+{"t": 1794781661697, "cmd": "state", "args": []}
+{"t": 1794781666882, "cmd": "state", "args": []}
+{"t": 1794781672080, "cmd": "state", "args": []}
+{"t": 1794781677280, "cmd": "state", "args": []}
+{"t": 1794781682507, "cmd": "state", "args": []}
+{"t": 1794781687670, "cmd": "state", "args": []}
+{"t": 1794781693656, "cmd": "key", "args": ["o"]}
+{"t": 1794781696263, "cmd": "click", "args": ["288", "45"]}
+{"t": 1794781700145, "cmd": "shot", "args": ["n14"]}
+{"t": 1794781705169, "cmd": "click", "args": ["792", "252"]}
+{"t": 1794781708093, "cmd": "shot", "args": ["n15"]}
+{"t": 1794781713524, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781715857, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781718213, "cmd": "click", "args": ["880", "252"]}
+{"t": 1794781721061, "cmd": "shot", "args": ["n16"]}
+{"t": 1794781727035, "cmd": "click", "args": ["123", "309"]}
+{"t": 1794781731064, "cmd": "state", "args": []}
+{"t": 1794781731239, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781735018, "cmd": "state", "args": []}
+{"t": 1794781739187, "cmd": "state", "args": []}
+{"t": 1794781743388, "cmd": "state", "args": []}
+{"t": 1794781747636, "cmd": "state", "args": []}
+{"t": 1794781751775, "cmd": "state", "args": []}
+{"t": 1794781756702, "cmd": "state", "args": []}
+{"t": 1794781761001, "cmd": "state", "args": []}
+{"t": 1794781765176, "cmd": "state", "args": []}
+{"t": 1794781769290, "cmd": "state", "args": []}
+{"t": 1794781773426, "cmd": "state", "args": []}
+{"t": 1794781777628, "cmd": "state", "args": []}
+{"t": 1794781781796, "cmd": "state", "args": []}
+{"t": 1794781785907, "cmd": "state", "args": []}
+{"t": 1794781790004, "cmd": "state", "args": []}
+{"t": 1794781794119, "cmd": "state", "args": []}
+{"t": 1794781798239, "cmd": "state", "args": []}
+{"t": 1794781802366, "cmd": "state", "args": []}
+{"t": 1794781806484, "cmd": "state", "args": []}
+{"t": 1794781811040, "cmd": "state", "args": []}
+{"t": 1794781815163, "cmd": "state", "args": []}
+{"t": 1794781819263, "cmd": "state", "args": []}
+{"t": 1794781823466, "cmd": "state", "args": []}
+{"t": 1794781827634, "cmd": "state", "args": []}
+{"t": 1794781831726, "cmd": "state", "args": []}
+{"t": 1794781835854, "cmd": "state", "args": []}
+{"t": 1794781840007, "cmd": "state", "args": []}
+{"t": 1794781844160, "cmd": "state", "args": []}
+{"t": 1794781848305, "cmd": "state", "args": []}
+{"t": 1794781852522, "cmd": "state", "args": []}
+{"t": 1794781856691, "cmd": "state", "args": []}
+{"t": 1794781860861, "cmd": "state", "args": []}
+{"t": 1794781865127, "cmd": "state", "args": []}
+{"t": 1794781869384, "cmd": "state", "args": []}
+{"t": 1794781873569, "cmd": "state", "args": []}
+{"t": 1794781877718, "cmd": "state", "args": []}
+{"t": 1794781882025, "cmd": "state", "args": []}
+{"t": 1794781886166, "cmd": "state", "args": []}
+{"t": 1794781890325, "cmd": "state", "args": []}
+{"t": 1794781894455, "cmd": "state", "args": []}
+{"t": 1794781898595, "cmd": "state", "args": []}
+{"t": 1794781902751, "cmd": "state", "args": []}
+{"t": 1794781906900, "cmd": "state", "args": []}
+{"t": 1794781910988, "cmd": "state", "args": []}
+{"t": 1794781915089, "cmd": "state", "args": []}
+{"t": 1794781919211, "cmd": "state", "args": []}
+{"t": 1794781922311, "cmd": "state", "args": []}
+{"t": 1794781923366, "cmd": "state", "args": []}
+{"t": 1794781925893, "cmd": "status", "args": []}
+{"t": 1794781926107, "cmd": "shot", "args": ["stall"]}
+{"t": 1794781927516, "cmd": "state", "args": []}
+{"t": 1794781929748, "cmd": "state", "args": ["--full"]}
+{"t": 1794781931752, "cmd": "state", "args": []}
+{"t": 1794781937028, "cmd": "state", "args": []}
+{"t": 1794781940093, "cmd": "click", "args": ["480", "347"]}
+{"t": 1794781943922, "cmd": "state", "args": []}
+{"t": 1794781947011, "cmd": "state", "args": []}
+{"t": 1794781950151, "cmd": "state", "args": []}
+{"t": 1794781953269, "cmd": "state", "args": []}
+{"t": 1794781956397, "cmd": "state", "args": []}
+{"t": 1794781959486, "cmd": "state", "args": []}
+{"t": 1794781962547, "cmd": "state", "args": []}
+{"t": 1794781965642, "cmd": "state", "args": []}
+{"t": 1794781971047, "cmd": "key", "args": ["o"]}
+{"t": 1794781974922, "cmd": "shot", "args": ["n17"]}
+{"t": 1794782112552, "cmd": "click", "args": ["123", "309"]}
+{"t": 1794782128715, "cmd": "state", "args": []}
+{"t": 1794782128777, "cmd": "click", "args": ["300", "309"]}
+{"t": 1794782171296, "cmd": "shot", "args": ["alliance"]}
+{"t": 1794782191218, "cmd": "state", "args": []}
+{"t": 1794782195211, "cmd": "click", "args": ["123", "309"]}
+{"t": 1794782199008, "cmd": "state", "args": []}
+{"t": 1794782201701, "cmd": "click", "args": ["300", "309"]}
+{"t": 1794782205638, "cmd": "shot", "args": ["alliance2"]}
+{"t": 1794782268001, "cmd": "state", "args": []}
+{"t": 1794782285061, "cmd": "note", "args": ["--shot", "envoy_after_gift", "Gift to Farmshire took relations to +33 (alliance needs +30), but clicking Ally right after says the envoy is on the road for 20 s; the gift itself spends the envoy, so you must over-gift and then wait while border friction erodes the score before the Ally click is allowed"]}
+{"t": 1794782296239, "cmd": "key", "args": ["Escape"]}
+{"t": 1794782296807, "cmd": "state", "args": []}
+{"t": 1794782299936, "cmd": "state", "args": []}
+{"t": 1794782303143, "cmd": "state", "args": []}
+{"t": 1794782306263, "cmd": "state", "args": []}
+{"t": 1794782309381, "cmd": "state", "args": []}
+{"t": 1794782312510, "cmd": "state", "args": []}
+{"t": 1794782315666, "cmd": "state", "args": []}
+{"t": 1794782318866, "cmd": "state", "args": []}
+{"t": 1794782321989, "cmd": "state", "args": []}
+{"t": 1794782325126, "cmd": "state", "args": []}
+{"t": 1794782328231, "cmd": "state", "args": []}
+{"t": 1794782331371, "cmd": "state", "args": []}
+{"t": 1794782334496, "cmd": "state", "args": []}
+{"t": 1794782337758, "cmd": "state", "args": []}
+{"t": 1794782340912, "cmd": "state", "args": []}
+{"t": 1794782344066, "cmd": "state", "args": []}
+{"t": 1794782351143, "cmd": "state", "args": []}
+{"t": 1794782352974, "cmd": "key", "args": ["o"]}
+{"t": 1794782370784, "cmd": "shot", "args": ["n18"]}
+{"t": 1794782397057, "cmd": "click", "args": ["300", "309"]}
+{"t": 1794782400927, "cmd": "shot", "args": ["allied"]}
+{"t": 1794782401233, "cmd": "state", "args": []}
+{"t": 1794782401344, "cmd": "events", "args": ["30"]}
+{"t": 1794782405552, "cmd": "note", "args": ["--shot", "allied", "After 4 gifts (100 coins, ~10 min real) reaching Friendly +33, Ally is declined: 'they are 7 to your 1 and want relations of +60'. The Nations screen header says only 'An alliance needs +30', rows show no strength, so the +60 rule for stronger nations is a hidden requirement discovered only after spending. Every neighbour I had was stronger (1-member nation)"]}
+{"t": 1794782405783, "cmd": "stop", "args": []}
+{"t": 1794782408519, "cmd": "events", "args": ["500"]}
+{"t": 1794782438384, "cmd": "report", "args": []}
+{"t": 1794782466275, "cmd": "stop", "args": []}

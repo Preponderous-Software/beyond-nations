@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Numerics;
 using System.Text;
@@ -71,6 +72,10 @@ namespace beyondnations.web {
         private ScreenType lastPublishedScreen = (ScreenType) (-1);
         private bool tapPending;
         private int tapsInteracted;
+        // ?advance-ticks still to run (advanceChunk)
+        private int advanceTicksLeft;
+        /** Main-thread time a frame given to ?advance-ticks. */
+        private const int AdvanceBudgetMs = 200;
 
         public WebGame(GameOptions options, double devicePixelRatio) {
             this.options = options;
@@ -138,11 +143,19 @@ namespace beyondnations.web {
             }
             if (options.StartSeason.HasValue) {
                 simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+                // the days skipped are not the player's: their reign starts now (#490)
+                simulation.startPlayerFresh();
             }
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
             }
-            if (options.StageDiplomacy) {
+            if (options.StageOutpost) {
+                OutpostShowcase.stage(simulation);
+            }
+            if (options.StageTrader) {
+                TraderShowcase.stage(simulation);
+            }
+            else if (options.StageDiplomacy) {
                 DiplomacyShowcase.stage(simulation);
             }
             if (options.StageSuccession) {
@@ -152,11 +165,19 @@ namespace beyondnations.web {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
-            if (options.StageTrade) {
+            if (options.StageMarket) {
+                TradeShowcase.stageMarket(simulation);
+            }
+            else if (options.StageTrade) {
                 TradeShowcase.stage(simulation);
             }
             if (options.StageVictory || options.StageDefeat) {
                 EndingShowcase.stage(simulation, options.StageVictory);
+            }
+            if (options.AdvanceTicks > 0) {
+                // run over the next frames (advanceChunk), not here, so the page stays responsive
+                advanceTicksLeft = options.AdvanceTicks;
+                Log.info("advancing the world " + advanceTicksLeft + " ticks");
             }
             if (options.RenderDistance > 0) {
                 applyStartingRenderDistance(simulation.getPlayer(), options.RenderDistance);
@@ -178,6 +199,7 @@ namespace beyondnations.web {
             simulation = loaded;
             share.beginWorld(simulation);
             accumulator = 0;
+            advanceTicksLeft = 0;
             feel.beginWorld(simulation, false);
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
@@ -270,8 +292,7 @@ namespace beyondnations.web {
             if (simulation == null || !screens.isWorldActive() || ImGuiNET.ImGui.GetIO().WantCaptureMouse) {
                 return;
             }
-            InteractCommand interact = new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(),
-                simulation.getEventProducer(), simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter());
+            InteractCommand interact = InteractCommand.forSimulation(simulation);
             if (interact.hasTargetInRange(simulation.getPlayer())) {
                 // the same press E makes, so it goes through the same path
                 inputSource.key(KeyBindings.Interact, true);
@@ -292,6 +313,10 @@ namespace beyondnations.web {
         private void update(double deltaTime) {
             readInput();
             runHousekeeping();
+            if (!stopped && simulation != null && advanceTicksLeft > 0) {
+                advanceChunk();
+                return;
+            }
             if (stopped || !screens.shouldAdvanceSimulation() || simulation == null) {
                 return;
             }
@@ -322,6 +347,38 @@ namespace beyondnations.web {
             }
         }
 
+        /**
+        * ?advance-ticks (Game.advanceTicks): the same fixed steps the window
+        * runs, without waiting for the clock, so the world opens mid-game. The
+        * desktop runs them all before its first frame; a page that did that
+        * would freeze for as long as they take (tens of seconds for the
+        * winter warning's 22,000 on a phone), so here they run in slices of
+        * AdvanceBudgetMs a frame and the world is drawn, fast-forwarding, in
+        * between. As on the desktop, a world event waiting on the player does
+        * not stop it, the player is kept fed and starts fresh at the end (#490),
+        * and nothing else steps until it is done. WebOptions
+        * caps the count (WebOptions.MaxAdvanceTicks).
+        */
+        private void advanceChunk() {
+            float step = (float) fixedTimeStep;
+            long started = Stopwatch.GetTimestamp();
+            long budget = Stopwatch.Frequency * AdvanceBudgetMs / 1000;
+            do {
+                simulation.fixedUpdateWithPlayerAway(step);
+                advanceTicksLeft--;
+            } while (advanceTicksLeft > 0 && Stopwatch.GetTimestamp() - started < budget);
+            accumulator = 0;
+            if (advanceTicksLeft == 0) {
+                // the player comes in fed and young, not having lived the skipped ticks (#490)
+                simulation.startPlayerFresh();
+                if (options.StageSuccession) {
+                    simulation.getPlayer().setEnergy(0.001f);
+                }
+                Log.info("advanced to tick " + simulation.getTickCounter().getTotalTicks()
+                    + ": " + simulation.getNationRepository().getNations().Count + " nations");
+            }
+        }
+
         private void runHousekeeping() {
             if (options.ScreenshotAfterFrames > 0 && framesRendered == options.ScreenshotAfterFrames) {
                 screenshotRequested = true;
@@ -336,7 +393,9 @@ namespace beyondnations.web {
             inputService.update();
 
             if (inputService.wasPressedThisFrame(KeyBindings.Pause)) {
-                if (!screens.escapePressed()) {
+                // Escape over the market panel closes the panel, not the world
+                bool closedPanel = screens.getCurrent() == ScreenType.WORLD && MarketTradePanel.escapePressed();
+                if (!closedPanel && !screens.escapePressed()) {
                     close();
                     return;
                 }
@@ -358,6 +417,9 @@ namespace beyondnations.web {
             }
             if (screens.getCurrent() == ScreenType.NATIONS) {
                 beyondnations.desktop.ui.screens.NationScreen.readScrollKeys(inputService);
+            }
+            if (screens.getCurrent() == ScreenType.SETTLEMENT) {
+                beyondnations.desktop.ui.screens.SettlementScreen.readKeys(simulation, inputService);
             }
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleCrafting)) {
                 screens.craftingPressed();
@@ -494,6 +556,8 @@ namespace beyondnations.web {
             json.Append(",\"frames\":").Append(framesRendered);
             json.Append(",\"fixedSteps\":").Append(fixedStepsRun);
             json.Append(",\"world\":").Append(simulation != null ? "true" : "false");
+            // ticks of ?advance-ticks still to run; 0 once the world is where it was asked to be
+            json.Append(",\"advancing\":").Append(advanceTicksLeft);
             json.Append(",\"tick\":").Append(simulation != null ? simulation.getTickCounter().getTotalTicks() : 0);
             json.Append(",\"renderer\":\"").Append(renderer.getName()).Append('"');
             json.Append(",\"drawCalls\":").Append(renderer.getDrawCallCount());
@@ -516,6 +580,8 @@ namespace beyondnations.web {
             json.Append(",\"worldEvent\":").Append(WorldEventSheet.getView(simulation) != null ? "true" : "false");
             // likewise the caravan dispatch panel (Send Caravan), whose buttons run down the screen
             json.Append(",\"caravanPanel\":").Append(CaravanDispatchPanel.isOpen() ? "true" : "false");
+            // and the market panel (Trade at Market, #182)
+            json.Append(",\"marketPanel\":").Append(MarketTradePanel.isOpen() ? "true" : "false");
             if (simulation != null) {
                 Vector3 position = simulation.getPlayer().getPosition();
                 json.Append(",\"playerX\":").Append(position.X.ToString("0.##", CultureInfo.InvariantCulture));

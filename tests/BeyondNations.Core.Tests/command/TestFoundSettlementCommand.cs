@@ -108,8 +108,8 @@ namespace beyondnationstests {
             Assert.Equal(Settlement.WOOD_COST_TO_BUILD, player.getInventory().getNumItems(ItemType.WOOD));
             Assert.Null(player.getHomeSettlementId());
             // which settlement, how far, the minimum and the way out (playtests 0.4.1: seven sessions guessed)
-            Assert.Equal("Too close to the Camp of Otherland: " + (gameConfig.getMinDistanceBetweenSettlements() - 1) + " away, and settlements must be "
-                + gameConfig.getMinDistanceBetweenSettlements() + " apart. Open ground lies about 10 to the west.", player.getStatus().getStatus());
+            Assert.Equal("Too close to the Camp of Otherland: " + (gameConfig.getMinDistanceBetweenSettlements() - 1) + " paces away, and settlements must be "
+                + gameConfig.getMinDistanceBetweenSettlements() + " paces apart. Open ground lies about 10 paces to the west.", player.getStatus().getStatus());
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace beyondnationstests {
 
             command.execute(player);
 
-            Assert.StartsWith("Too close to the " + nearest.getDisplayName() + ": 120 away", player.getStatus().getStatus());
+            Assert.StartsWith("Too close to the " + nearest.getDisplayName() + ": 120 paces away", player.getStatus().getStatus());
             // open ground lies east or west, clear of both
             string status = player.getStatus().getStatus();
             Assert.True(status.EndsWith(" to the east.") || status.EndsWith(" to the west."), status);
@@ -148,6 +148,23 @@ namespace beyondnationstests {
             Assert.Equal("east", Compass.describe(Vector3.Zero, new Vector3(10, 5, 0)));
             Assert.Equal("south-west", Compass.describe(Vector3.Zero, new Vector3(-10, 0, -10)));
             Assert.Equal("here", Compass.describe(Vector3.Zero, Vector3.Zero));
+        }
+
+        [Fact]
+        public void testCompass_Facing_NamesTheDirectionAlongTheGround() {
+            // a fresh player faces +Z, north (#374)
+            Assert.Equal("north", Compass.facing(player.getForward()));
+            Assert.Equal("north-west", Compass.facing(new Vector3(-1, 3, 1)));
+            Assert.Equal("here", Compass.facing(Vector3.UnitY));
+        }
+
+        [Fact]
+        public void testNearestOpenSite_NoneWithinTheSearch_SaysSoInPaces() {
+            // a settlement here with a spacing wider than the search leaves nowhere open
+            addSettlementAt(Vector3.Zero);
+
+            Assert.Equal("No open ground lies within " + (int) SettlementSites.SEARCH_RADIUS + " paces.",
+                SettlementSites.describeNearestOpenSite(entityRepository, Vector3.Zero, 5000, player.getNationId()));
         }
 
         [Fact]
@@ -194,6 +211,87 @@ namespace beyondnationstests {
             Assert.Same(settlement, founded.getSettlement());
             Assert.Equal(player.getId(), founded.getFounderId());
             Assert.Equal("Settlement founded.", player.getStatus().getStatus());
+        }
+            // --- further settlements (#145) ---
+
+        [Fact]
+        public void testFoundingCost_RisesWithEachSettlementHeld() {
+            Assert.Equal(Settlement.WOOD_COST_TO_BUILD, FoundingCost.wood(0));
+            Assert.Equal(0, FoundingCost.stone(0));
+            Assert.Equal(75, FoundingCost.wood(1));
+            Assert.Equal(10, FoundingCost.stone(1));
+            Assert.Equal(100, FoundingCost.wood(2));
+            Assert.Equal(20, FoundingCost.stone(2));
+            Assert.Equal(Settlement.WOOD_COST_TO_BUILD + " wood", FoundingCost.describe((Nation) null));
+        }
+
+        private Settlement foundFirstAt(Nation nation, Vector3 position) {
+            player.setPosition(position);
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            command.execute(player);
+            Assert.Equal(1, nation.getNumberOfSettlements());
+            return (Settlement) entityRepository.getEntity(nation.getSettlement(0));
+        }
+
+        [Fact]
+        public void testExecute_SecondSettlement_CostsMoreWoodAndStone_AndKeepsTheHome() {
+            Nation nation = makePlayerLeader();
+            Settlement first = foundFirstAt(nation, Vector3.Zero);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1) + 3);
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1) + 2);
+
+            command.execute(player);
+
+            Assert.Equal(2, nation.getNumberOfSettlements());
+            Assert.Equal(3, player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(2, player.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal(first.getId(), player.getHomeSettlementId());
+            Assert.Equal("Settlement founded. Your nation now holds 2 settlements.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_SecondSettlement_ShortOfStone_KeepsEverything() {
+            Nation nation = makePlayerLeader();
+            foundFirstAt(nation, Vector3.Zero);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            player.getInventory().addItem(ItemType.STONE, 4);
+
+            command.execute(player);
+
+            Assert.Equal(1, nation.getNumberOfSettlements());
+            Assert.Equal(FoundingCost.wood(1), player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(4, player.getInventory().getNumItems(ItemType.STONE));
+            Assert.Equal("Founding another settlement takes 75 wood and 10 stone. Need 6 more stone.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_SecondSettlement_WithOnlyTheFirstOnesWood_IsRefused() {
+            Nation nation = makePlayerLeader();
+            foundFirstAt(nation, Vector3.Zero);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
+
+            command.execute(player);
+
+            Assert.Equal(1, nation.getNumberOfSettlements());
+            Assert.Equal("Not enough wood for another settlement. Need 25 more.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExecute_HomeLost_TheNextSettlementBecomesHome() {
+            Nation nation = makePlayerLeader();
+            foundFirstAt(nation, Vector3.Zero);
+            player.setHomeSettlementId(null);
+            player.setPosition(new Vector3(gameConfig.getMinDistanceBetweenSettlements() * 4, 0, 0));
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
+
+            command.execute(player);
+
+            Assert.Equal(nation.getSettlement(1), player.getHomeSettlementId());
         }
     }
 }

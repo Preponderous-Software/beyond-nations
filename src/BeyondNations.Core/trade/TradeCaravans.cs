@@ -284,9 +284,13 @@ namespace beyondnations {
         /** What selling quantity of an item into a market would fetch, one unit at a time. */
         public static int estimateSale(Market market, ItemType itemType, int quantity) {
             int supply = market.getQuantityAvailable(itemType);
+            // the bid follows the richest till as it pays out (Market.getBid)
+            int till = market.getRichestTill();
             long total = 0;
             for (int i = 0; i < quantity; i++) {
-                total += ItemCostCalculator.calculateCostAtSupply(itemType, market, supply + i + 1);
+                int price = market.getBid(itemType, supply + i + 1, till);
+                total += price;
+                till = System.Math.Max(0, till - price);
             }
             return (int) Math.Min(total, int.MaxValue);
         }
@@ -499,7 +503,10 @@ namespace beyondnations {
         * Sells the cargo at the destination, a unit at a time at the price it
         * fetches as it lands: to whichever stall there has the most coin and
         * can pay, and once no stall can, to the settlement itself for its
-        * stockpile while the treasury can. What does not sell rides home.
+        * stockpile while the treasury can. What does not sell rides home,
+        * and the player is told so: in the 0.8.0 re-run (s05, #485) a caravan
+        * sold its wood and stone, said nothing of its 15 saplings, and the
+        * player took them for lost.
         */
         private void deliver(Caravan caravan, Settlement destination) {
             Market market = destination.getMarket();
@@ -551,7 +558,8 @@ namespace beyondnations {
                 string story;
                 bool notable;
                 if (caravan.isPlayerOwned()) {
-                    story = "Your caravan sold " + goods + " at the " + destination.getDisplayName() + " for " + takings + " coins.";
+                    story = "Your caravan sold " + goods + " at the " + destination.getDisplayName() + " for " + takings + " coins."
+                        + describeUnsold(caravan, destination);
                     player.getStatus().update(story);
                     notable = true;
                 }
@@ -565,6 +573,18 @@ namespace beyondnations {
             caravan.setEscortId(null);
             caravan.setState(CaravanState.RETURNING);
             refreshLabel(caravan);
+        }
+
+        /**
+        * " Nobody at the Village of Eastton could pay for 15 saplings; they
+        * ride home to the stockpile.", or "" when everything sold.
+        */
+        public static string describeUnsold(Caravan caravan, Settlement destination) {
+            if (caravan.getCargoCount() == 0) {
+                return "";
+            }
+            return " Nobody at the " + destination.getDisplayName() + " could pay for " + caravan.describeCargo()
+                + "; " + (caravan.getCargoCount() == 1 ? "it rides" : "they ride") + " home to the stockpile.";
         }
 
         /** The stall at a market with the most coin that can pay price, or null. Never the caravan's own. */
@@ -601,14 +621,20 @@ namespace beyondnations {
             numEscorted++;
             string whose = caravan.isPlayerOwned() ? "your caravan" : (nation != null ? "a " + nation.getName() + " caravan" : "a caravan");
             string story = "You rode guard on " + whose + " to the " + destination.getDisplayName() + ", which sold " + goods + " for "
-                + takings + " coins.";
+                + takings + " coins." + (caravan.isPlayerOwned() ? describeUnsold(caravan, destination) : "");
             player.getStatus().update("Escort done: " + reward + " coins for your trouble." + goodwill);
             List<EntityId> entities = new List<EntityId> { player.getId() };
             produce(CaravanEventKind.Escorted, caravan, story, true, destination.getNationId(), entities);
         }
 
-        /** Home again: the takings go into the treasury, and anything unsold onto the stockpile. */
+        /**
+        * Home again: the takings go into the treasury, and anything unsold
+        * onto the stockpile, where Collect Stockpile hands it back (#485: it
+        * used to take only wood and stone, so returned saplings and food sat
+        * there out of reach). The homecoming line says what came back.
+        */
         private void returnHome(Caravan caravan, Settlement home) {
+            string unsold = caravan.getCargoCount() > 0 ? caravan.describeCargo() : null;
             int coins = 0;
             foreach (ItemSlot slot in caravan.getInventory().getSlots()) {
                 if (slot.isEmpty()) {
@@ -623,7 +649,8 @@ namespace beyondnations {
             caravan.getInventory().clear();
             caravan.markForDeletion();
             if (caravan.isPlayerOwned()) {
-                string story = "Your caravan came home to the " + home.getDisplayName() + " with " + coins + " coins for the treasury.";
+                string story = "Your caravan came home to the " + home.getDisplayName() + " with " + coins + " coins for the treasury"
+                    + (unsold != null ? " and " + unsold + " it could not sell, now on the stockpile." : ".");
                 player.getStatus().update(story);
                 produce(CaravanEventKind.Returned, caravan, story, true, null, null);
             }

@@ -11,7 +11,11 @@ namespace beyondnations.desktop.ui.screens {
     * offer peace, declare war, denounce -- offered by the same rules as the
     * command bar (NationDiplomacy), which is the whole of the player's
     * diplomacy. A second tab, Laws, is the court: the nation's laws
-    * (LawsPanel).
+    * (LawsPanel). A third, Members, lists the player's own people, their
+    * loyalty and the heir (MembersPanel). A fourth, Manage, is where the
+    * leader renames the nation, hands it on or disbands it, and where its
+    * settlements are listed with who holds each and an Open button for the
+    * settlement screen (ManagePanel, #175, #176, #178).
     *
     * The list puts the nations that matter first -- at war, at odds,
     * neighbours, allies, then the rest nearest first -- and scrolls when
@@ -30,6 +34,8 @@ namespace beyondnations.desktop.ui.screens {
         public const string NoOtherNations = "No other nation has been founded yet.";
         public const string NationsTab = "Nations";
         public const string LawsTab = "Laws";
+        public const string MembersTab = "Members";
+        public const string ManageTab = "Manage";
 
         private const float DesignButtonWidth = 96f;
         private const float DesignButtonGap = 8f;
@@ -37,9 +43,22 @@ namespace beyondnations.desktop.ui.screens {
 
         /** --start-screen laws opens the screen on its Laws tab. */
         public static bool startOnLaws = false;
+        /** --start-screen members opens the screen on its Members tab. */
+        public static bool startOnMembers = false;
+        /** --start-screen manage opens the screen on its Manage tab. */
+        public static bool startOnManage = false;
 
         private readonly LawsPanel lawsPanel = new LawsPanel();
+        private readonly MembersPanel membersPanel = new MembersPanel();
+        private readonly ManagePanel managePanel = new ManagePanel();
         private bool showingLaws = startOnLaws;
+        private bool showingMembers = startOnMembers && !startOnLaws;
+        private bool showingManage = startOnManage && !startOnLaws && !startOnMembers;
+
+        /** Where the Manage tab asks for a typed name on a platform the game cannot type into. */
+        public void setTextPlatform(ISharePlatform platform) {
+            managePanel.setTextPlatform(platform);
+        }
         /** The first row of the list on screen; the list scrolls when the nations outnumber the screen. */
         private int firstRow;
         // War and Denounce take two clicks, as on the command bar (#368)
@@ -47,9 +66,8 @@ namespace beyondnations.desktop.ui.screens {
         // the row order shown when the screen opened; kept until it is
         // closed, so a click never re-sorts a row out from under the pointer
         private readonly List<NationId> shownOrder = new List<NationId>();
-        // when the screen was last drawn: a longer gap means it was closed
-        private double lastDrawn = double.NegativeInfinity;
-        private const double ReopenGapSeconds = 1.0;
+        // the frame the screen was last drawn on (wasClosed)
+        private int lastDrawnFrame = NeverDrawn;
         // "Confirm Denounce" would not fit a button; the status line names the action
         public const string ArmedLabel = "Confirm";
         /** How far a drag across the list has gone toward the next row. */
@@ -114,10 +132,45 @@ namespace beyondnations.desktop.ui.screens {
             else {
                 lines.Add("Only the leader of " + own.getName() + " can speak for it.");
             }
+            lines.AddRange(describeOwnSettlements(simulation, own, leads));
             foreach (Settlement settlement in simulation.getDiplomacy().getSettlements(own)) {
                 if (settlement.getSiegeText() != null) {
                     lines.Add("Your " + SettlementTiers.getDisplayName(settlement.getTier()).ToLowerInvariant() + ": " + settlement.getSiegeText() + "!");
                 }
+            }
+            return lines;
+        }
+
+        /** At most this many of the nation's settlements are listed by name; the rest are counted. */
+        public const int ListedSettlements = 6;
+
+        /**
+        * Which settlements the nation holds, where each lies from the player
+        * and which is home (#145), and, for a leader, what founding another
+        * costs or why it cannot be founded yet.
+        */
+        public static List<string> describeOwnSettlements(Simulation simulation, Nation own, bool leads) {
+            List<string> lines = new List<string>();
+            Player player = simulation.getPlayer();
+            List<Settlement> settlements = simulation.getDiplomacy().getSettlements(own);
+            int limit = own.getSettlementLimit();
+            string heading = "Settlements: " + settlements.Count + (limit > 0 ? " of the " + limit + " this era allows" : "");
+            lines.Add(heading + (settlements.Count == 0 ? "." : ":"));
+            for (int i = 0; i < settlements.Count && i < ListedSettlements; i++) {
+                Settlement settlement = settlements[i];
+                int distance = (int) Territory.groundDistance(player.getPosition(), settlement.getPosition());
+                string where = distance < 1 ? "here" : distance + " paces " + Compass.describe(player.getPosition(), settlement.getPosition());
+                bool home = settlement.getId().Equals(player.getHomeSettlementId());
+                lines.Add("  " + settlement.getDisplayName() + ": " + settlement.getResidentCount() + "/" + settlement.getResidentCap()
+                    + " residents, " + where + (home ? " (your home)" : "") + ".");
+            }
+            if (settlements.Count > ListedSettlements) {
+                lines.Add("  and " + (settlements.Count - ListedSettlements) + " more.");
+            }
+            if (leads && settlements.Count > 0) {
+                lines.Add(own.canFoundSettlement()
+                    ? ObjectiveKeyNames.resolve("Another settlement costs " + FoundingCost.describe(own) + ": far from other settlements, press {FoundSettlement}.")
+                    : "Reach the next era to found another settlement.");
             }
             return lines;
         }
@@ -206,6 +259,35 @@ namespace beyondnations.desktop.ui.screens {
             return kept;
         }
 
+        /** No frame yet: the first draw always counts as an opening. */
+        public const int NeverDrawn = -1;
+
+        /**
+        * Whether the screen was closed since it was last drawn: a frame went
+        * by without it. Counted in frames, not seconds, so that a slow frame
+        * is not taken for a reopen (0.6.4 playtest s04: at 1-3 fps every
+        * frame looked like one, so the list re-sorted under the pointer and
+        * an armed click was forgotten).
+        */
+        public static bool wasClosed(int frame, int lastDrawnFrame) {
+            return frame - lastDrawnFrame > 1;
+        }
+
+        /**
+        * Whether a press of War or Denounce is refused because the envoy to
+        * the target is still away, with the wait on the status line. Asked
+        * before the press arms the gate, so that the player is not asked to
+        * confirm something that would only be refused. The press was of
+        * something else, so it disarms what was armed.
+        */
+        public static bool refusedByEnvoy(ConfirmGate gate, Player player, Realm realm, Nation own, Nation target) {
+            if (!NationDiplomacy.isEnvoyAway(player, realm, own, target)) {
+                return false;
+            }
+            gate.disarm();
+            return true;
+        }
+
         /** "Click again to declare war on Blackport." -- and to break a truce, when there is one. */
         public static string getWarPrompt(Realm realm, Nation own, Nation target, bool touch) {
             string click = touch ? "Tap" : "Click";
@@ -270,6 +352,53 @@ namespace beyondnations.desktop.ui.screens {
 
         public void showLaws(bool laws) {
             showingLaws = laws;
+            if (laws) {
+                showingMembers = false;
+                showingManage = false;
+            }
+        }
+
+        public bool isShowingMembers() {
+            return showingMembers;
+        }
+
+        public void showMembers(bool members) {
+            showingMembers = members;
+            if (members) {
+                showingLaws = false;
+                showingManage = false;
+            }
+        }
+
+        public bool isShowingManage() {
+            return showingManage;
+        }
+
+        public void showManage(bool manage) {
+            showingManage = manage;
+            if (manage) {
+                showingLaws = false;
+                showingMembers = false;
+            }
+        }
+
+        /**
+        * The status line as this screen shows it: keys or buttons named
+        * (ObjectiveKeyNames), less any sentence telling the player to open
+        * this screen ("Press Realm to see the nations."), which read oddly
+        * with the screen already open.
+        */
+        public static string statusLine(string raw) {
+            if (string.IsNullOrEmpty(raw)) {
+                return raw;
+            }
+            string trimmed = System.Text.RegularExpressions.Regex.Replace(raw, @"\s*[^.!?]*\{ToggleNations\}[^.!?]*[.!?]?", "").Trim();
+            return ObjectiveKeyNames.resolve(trimmed);
+        }
+
+        /** "> Laws <" for the tab showing, "Laws" for the others. */
+        public static string tabLabel(string tab, bool showing) {
+            return showing ? "> " + tab + " <" : tab;
         }
 
         public UiAction draw(float width, float height, Simulation simulation) {
@@ -281,27 +410,52 @@ namespace beyondnations.desktop.ui.screens {
             // below the corner Close on a touch screen (TouchLayout)
             float y = System.MathF.Max(System.MathF.Max(height / 18f, UiScale.px(12f)), Overlay.touchCloseBottom());
 
+            // here rather than in drawNations, so that a look at the Laws or
+            // Members tab does not count as closing the screen
+            int frame = ImGui.GetFrameCount();
+            if (wasClosed(frame, lastDrawnFrame)) {
+                shownOrder.Clear();
+                confirmGate.disarm();
+            }
+            lastDrawnFrame = frame;
+            // a "Click War/Denounce again" prompt whose window has lapsed is taken back
+            confirmGate.update(ImGui.GetTime(), simulation.getPlayer().getStatus());
+
             Overlay.beginFullScreen("##nation-screen", width, height);
             Overlay.dimBackground(width, height);
 
-            // the two tabs, as big buttons so a thumb finds them
-            float tabWidth = System.MathF.Min(UiScale.px(DesignTabWidth), (width - left * 2f - buttonGap) / 2f);
-            float tabsX = (width - tabWidth * 2f - buttonGap) / 2f;
-            if (Overlay.buttonAt((showingLaws ? NationsTab : "> " + NationsTab + " <") + "##tab-nations", tabsX, y, tabWidth, buttonHeight)) {
+            // the four tabs, as big buttons so a thumb finds them
+            const int tabs = 4;
+            float tabWidth = System.MathF.Min(UiScale.px(DesignTabWidth), (width - left * 2f - buttonGap * (tabs - 1)) / tabs);
+            float tabsX = (width - tabWidth * tabs - buttonGap * (tabs - 1)) / 2f;
+            bool showingNations = !showingLaws && !showingMembers && !showingManage;
+            if (Overlay.buttonAt(tabLabel(NationsTab, showingNations) + "##tab-nations", tabsX, y, tabWidth, buttonHeight)) {
                 showingLaws = false;
+                showingMembers = false;
+                showingManage = false;
             }
-            if (Overlay.buttonAt((showingLaws ? "> " + LawsTab + " <" : LawsTab) + "##tab-laws", tabsX + tabWidth + buttonGap, y, tabWidth, buttonHeight)) {
-                showingLaws = true;
+            if (Overlay.buttonAt(tabLabel(MembersTab, showingMembers) + "##tab-members", tabsX + tabWidth + buttonGap, y, tabWidth, buttonHeight)) {
+                showMembers(true);
+            }
+            if (Overlay.buttonAt(tabLabel(LawsTab, showingLaws) + "##tab-laws", tabsX + (tabWidth + buttonGap) * 2f, y, tabWidth, buttonHeight)) {
+                showLaws(true);
+            }
+            if (Overlay.buttonAt(tabLabel(ManageTab, showingManage) + "##tab-manage", tabsX + (tabWidth + buttonGap) * 3f, y, tabWidth, buttonHeight)) {
+                showManage(true);
             }
             y += buttonHeight + lineHeight * 0.9f;
 
             Player player = simulation.getPlayer();
             System.Action pending = showingLaws
-                ? lawsPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight)
+                ? lawsPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
+                : showingMembers
+                ? membersPanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
+                : showingManage
+                ? managePanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
             // the answer goes on the status line, shown here too since the HUD is hidden
-            string status = ObjectiveKeyNames.resolve(player.getStatus().getStatus());
+            string status = statusLine(player.getStatus().getStatus());
             if (!string.IsNullOrEmpty(status)) {
                 drawWrappedCentred(status, height / 34f, height - lineHeight * 3.1f, width, left, lineHeight * 0.75f, 3);
             }
@@ -374,13 +528,6 @@ namespace beyondnations.desktop.ui.screens {
             y += lineHeight * 0.3f;
 
             double now = ImGui.GetTime();
-            if (now - lastDrawn > ReopenGapSeconds) {
-                shownOrder.Clear();
-                confirmGate.disarm();
-            }
-            lastDrawn = now;
-            // a "Click War/Denounce again" prompt whose window has lapsed is taken back
-            confirmGate.update(now, simulation.getPlayer().getStatus());
             List<Row> rows = keepOrder(getRows(simulation), shownOrder);
             if (rows.Count == 0) {
                 Overlay.textCentered(NoOtherNations, height / 32f, y, width);
@@ -413,28 +560,7 @@ namespace beyondnations.desktop.ui.screens {
                     : System.MathF.Max(textStep * textLines + buttonGap, buttonHeight + buttonGap);
             }
 
-            // scrolling: the wheel, the keys (via the host), a drag across the list, or Up/Down
-            ImGuiIOPtr io = ImGui.GetIO();
-            int move = pendingScroll;
-            pendingScroll = 0;
-            if (io.MouseWheel != 0f) {
-                move += io.MouseWheel > 0f ? -1 : 1;
-            }
-            if (ImGui.IsMouseDragging(ImGuiMouseButton.Left) && io.MousePos.Y >= listTop && io.MousePos.Y <= listBottom) {
-                dragCarry -= io.MouseDelta.Y;
-                float rowHeight = System.MathF.Max(buttonHeight, lineHeight);
-                while (dragCarry >= rowHeight) {
-                    move++;
-                    dragCarry -= rowHeight;
-                }
-                while (dragCarry <= -rowHeight) {
-                    move--;
-                    dragCarry += rowHeight;
-                }
-            }
-            else {
-                dragCarry = 0f;
-            }
+            int move = readScroll(listTop, listBottom, System.MathF.Max(buttonHeight, lineHeight));
             int lastPage = countFittingFromEnd(steps, listBottom - listTop);
             firstRow = clampFirstRow(firstRow + move, rows.Count, lastPage);
             int visible = countFitting(steps, firstRow, listBottom - listTop);
@@ -484,16 +610,21 @@ namespace beyondnations.desktop.ui.screens {
                     string warLabel = confirmGate.isArmed(warKey, now) ? ArmedLabel : "War";
                     if (row.canDeclareWar && Overlay.buttonAt(warLabel + "###war" + i, x + slot * 3f, by, buttonWidth, buttonHeight)) {
                         Nation own = nationRepository.getNation(player.getNationId());
-                        pending = confirmGate.press(warKey, now)
-                            ? () => new DeclareWarCommand(nationRepository, realm).execute(player, target)
-                            : () => confirmGate.prompt(player.getStatus(), getWarPrompt(realm, own, target, TouchLayout.isActive()));
+                        if (!refusedByEnvoy(confirmGate, player, realm, own, target)) {
+                            pending = confirmGate.press(warKey, now)
+                                ? () => new DeclareWarCommand(nationRepository, realm).execute(player, target)
+                                : () => confirmGate.prompt(player.getStatus(), getWarPrompt(realm, own, target, TouchLayout.isActive()));
+                        }
                     }
                     string denounceKey = "denounce:" + target.getId();
                     string denounceLabel = confirmGate.isArmed(denounceKey, now) ? ArmedLabel : "Denounce";
                     if (Overlay.buttonAt(denounceLabel + "###denounce" + i, x + slot * 4f, by, buttonWidth, buttonHeight)) {
-                        pending = confirmGate.press(denounceKey, now)
-                            ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy(), realm).execute(player, target)
-                            : () => confirmGate.prompt(player.getStatus(), (TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
+                        Nation own = nationRepository.getNation(player.getNationId());
+                        if (!refusedByEnvoy(confirmGate, player, realm, own, target)) {
+                            pending = confirmGate.press(denounceKey, now)
+                                ? () => new DenounceNationCommand(nationRepository, simulation.getDiplomacy(), realm).execute(player, target)
+                                : () => confirmGate.prompt(player.getStatus(), (TouchLayout.isActive() ? "Tap" : "Click") + " Denounce again to denounce " + target.getName() + ".");
+                        }
                     }
                 }
                 y += steps[i];
@@ -501,8 +632,37 @@ namespace beyondnations.desktop.ui.screens {
             return pending;
         }
 
+        /**
+        * Rows to move whichever list is showing by this frame: the wheel, the
+        * keys (via the host), or a drag between listTop and listBottom. Asked
+        * by both tabs, so that keys pressed on one do not wait for the other.
+        */
+        private int readScroll(float listTop, float listBottom, float rowHeight) {
+            ImGuiIOPtr io = ImGui.GetIO();
+            int move = pendingScroll;
+            pendingScroll = 0;
+            if (io.MouseWheel != 0f) {
+                move += io.MouseWheel > 0f ? -1 : 1;
+            }
+            if (ImGui.IsMouseDragging(ImGuiMouseButton.Left) && io.MousePos.Y >= listTop && io.MousePos.Y <= listBottom) {
+                dragCarry -= io.MouseDelta.Y;
+                while (dragCarry >= rowHeight) {
+                    move++;
+                    dragCarry -= rowHeight;
+                }
+                while (dragCarry <= -rowHeight) {
+                    move--;
+                    dragCarry += rowHeight;
+                }
+            }
+            else {
+                dragCarry = 0f;
+            }
+            return move;
+        }
+
         /** How many rows from first fit in the height; at least one, so a tall row is never stuck off screen. */
-        private static int countFitting(float[] steps, int first, float space) {
+        public static int countFitting(float[] steps, int first, float space) {
             int count = 0;
             float used = 0f;
             for (int i = first; i < steps.Length; i++) {
@@ -516,7 +676,7 @@ namespace beyondnations.desktop.ui.screens {
         }
 
         /** How many rows at the end of the list fit in the height, which is how far down the list may scroll. */
-        private static int countFittingFromEnd(float[] steps, float space) {
+        public static int countFittingFromEnd(float[] steps, float space) {
             int count = 0;
             float used = 0f;
             for (int i = steps.Length - 1; i >= 0; i--) {

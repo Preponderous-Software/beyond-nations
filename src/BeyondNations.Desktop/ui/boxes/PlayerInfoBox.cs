@@ -29,7 +29,7 @@ namespace beyondnations.desktop.ui.boxes {
         }
 
         public override List<string> getLines() {
-            List<string> lines = new List<string>(4);
+            List<string> lines = new List<string>(6);
             lines.Add("Energy: " + (int) player.getEnergy());
             if (isCompact()) {
                 // the energy bar and whose the player is, in one line: in a
@@ -56,11 +56,23 @@ namespace beyondnations.desktop.ui.boxes {
                 lines.Add("Role: none");
             }
 
+            // founding hints give compass directions, so say which way W walks (#374)
+            lines.Add("Facing: " + Compass.facing(player.getForward()));
+
             if (entityRepository != null) {
                 lines.Add("Land: " + Territory.describeFor(player, entityRepository, nationRepository));
             }
 
             return lines;
+        }
+
+        /** The energy line is a bar, a framed row, rather than a line of text. */
+        protected override float getExtraHeight(Metrics metrics) {
+            return metrics.FrameRowHeight - metrics.LineHeight;
+        }
+
+        protected override int countRows(int index, string line, float textWidth, System.Func<string, float> measure) {
+            return index == 0 ? 1 : base.countRows(index, line, textWidth, measure);
         }
 
         /**

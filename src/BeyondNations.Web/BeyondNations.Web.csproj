@@ -99,6 +99,7 @@
     <Compile Include="$(DesktopDir)render/ViewFrustum.cs" Link="shared/render/ViewFrustum.cs" />
     <Compile Include="$(DesktopDir)text/LabelBillboard.cs" Link="shared/text/LabelBillboard.cs" />
     <Compile Include="$(DesktopDir)text/LabelCulling.cs" Link="shared/text/LabelCulling.cs" />
+    <Compile Include="$(DesktopDir)text/LabelPlacement.cs" Link="shared/text/LabelPlacement.cs" />
     <Compile Include="$(DesktopDir)text/LabelQuadBuffer.cs" Link="shared/text/LabelQuadBuffer.cs" />
     <Compile Include="$(DesktopDir)ui/**/*.cs" Exclude="$(DesktopDir)ui/UiHost.cs" Link="shared/ui/%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>

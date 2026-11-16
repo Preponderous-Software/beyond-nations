@@ -396,7 +396,10 @@ namespace beyondnationstests {
             executor.executeBehavior(pawn, BehaviorType.PURCHASE_STALL);
 
             Assert.NotNull(home.getMarket().getStall(pawn.getId()));
-            Assert.Equal(Stall.COIN_COST_TO_PURCHASE, pawn.getInventory().getNumItems(ItemType.COIN));
+            // the price and the savings above a purse go into the till (0.8.0 playtest s05)
+            Assert.Equal(Stall.MERCHANT_PURSE, pawn.getInventory().getNumItems(ItemType.COIN));
+            Assert.Equal(Stall.COIN_COST_TO_PURCHASE * 2 - Stall.MERCHANT_PURSE,
+                home.getMarket().getStall(pawn.getId()).getInventory().getNumItems(ItemType.COIN));
             Assert.Equal(NationRole.MERCHANT, own.getRole(pawn.getId()));
         }
 

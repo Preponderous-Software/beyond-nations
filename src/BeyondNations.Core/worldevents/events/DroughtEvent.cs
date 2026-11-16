@@ -62,7 +62,7 @@ namespace beyondnations {
                     "The drought lasts the day, but " + GRAIN_APPLES + " apples go into the stores now.",
                     "Needs " + GRAIN_COINS + " coins"),
                 new WorldEventChoice("Ration and wait for rain",
-                    "Costs nothing, but the drought lasts the day and your people grow restless with you."),
+                    "Costs nothing, but the drought lasts the day and every member of your nation thinks " + RESTLESS_RELATIONSHIP + " less of you."),
             };
         }
 
@@ -96,15 +96,23 @@ namespace beyondnations {
                 if (stores != null) {
                     stores.getInventory().addItem(ItemType.APPLE, GRAIN_APPLES);
                 }
-                text = "drought struck " + n + "; " + who + " bought grain from passing traders to see it through.";
+                // say what came of it: the apples, and where they went (#370)
+                text = "drought struck " + n + "; " + who + " bought grain from passing traders for " + GRAIN_COINS + " coins, and "
+                    + GRAIN_APPLES + " apples went into the stores" + (stores == null ? "" : " of the " + stores.getDisplayName()) + ".";
             }
             else {
+                int restless = 0;
                 if (instance.isForPlayer()) {
                     foreach (Pawn member in context.membersOf(nation)) {
                         member.decreaseRelationship(context.getPlayer(), RESTLESS_RELATIONSHIP);
+                        restless++;
                     }
                 }
                 text = "drought struck " + n + ", and " + who + " rationed the stores and waited for rain.";
+                if (restless > 0) {
+                    text += " " + (restless == 1 ? "Its one member now thinks " : "Its " + restless + " members each now think ")
+                        + RESTLESS_RELATIONSHIP + " less of you.";
+                }
             }
             context.getWorldEvents().addEffect(new WorldEffect(WorldEffectKind.DROUGHT, nation.getId(), null,
                 context.getTick(), context.getTick() + context.ticks(duration), 0));

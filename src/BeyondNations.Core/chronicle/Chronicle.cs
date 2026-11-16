@@ -256,6 +256,8 @@ namespace beyondnations {
                     return describeWorldEvent(e as WorldEventEvent, nations, entities);
                 case EventType.Caravan:
                     return describeCaravan((CaravanEvent) e, nations, entities);
+                case EventType.Trader:
+                    return describeTrader(e as TraderEvent, nations, entities);
                 default:
                     // ChunkGenerate: noise.
                     return null;
@@ -580,6 +582,22 @@ namespace beyondnations {
             }
             nations.AddRange(e.getNationIds());
             entities.AddRange(e.getEntityIds());
+            return e.getStory();
+        }
+
+        /**
+        * A trader's doings (#487) are told only for the player's own nation:
+        * taking up trade, being appointed, each load bought and each load
+        * sold. Other nations' traders go about their business unrecorded.
+        */
+        private string describeTrader(TraderEvent e, List<NationId> nations, List<EntityId> entities) {
+            if (e == null || string.IsNullOrEmpty(e.getStory()) || !isPlayersNation(e.getNationId())) {
+                return null;
+            }
+            nations.Add(e.getNationId());
+            if (e.getTrader() != null) {
+                entities.Add(e.getTrader().getId());
+            }
             return e.getStory();
         }
 

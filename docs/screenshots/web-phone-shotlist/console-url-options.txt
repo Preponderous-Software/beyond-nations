@@ -1,0 +1,20 @@
+Console of the live build (0.7.1-SNAPSHOT+g8567139), headless Chromium 1280x720, 2026-11-15, opened at
+https://beyond-nations.play.danielstephenson.dev/?start-screen=world&stage-settlement&stage-outpost&advance-ticks=22000&no-saves&seed=42
+
+warning: ignoring unknown option stage-settlement
+warning: ignoring unknown option stage-outpost
+warning: ignoring unknown option advance-ticks
+log: options from the URL: --start-screen world --no-saves --seed 42
+log: strata info: host-context surface, WebGL 2: WebKit WebGL | OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+log: Strata 0.7.0 (ABI 1.12) on WebKit WebGL | OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))
+log: world renderer: strata
+log: world-space labels ready: font DejaVu Sans at 32px, atlas 1024x1024, 94 glyphs packed across 1 atlas texture(s)
+log: sound: webaudio
+log: screen: TITLE -> WORLD
+log: world seed: 42
+log: world created
+log: host ready: 50 ticks per second
+log: framebuffer resized to 1280x720 (1280x720 CSS px at devicePixelRatio 1)
+
+The three darkroom shots (phone, landscape, desktop; 33 page loads in all) logged no console errors,
+page errors or failed requests (tools/capture/.darkroom/takes/<device>/meta.json, consoleErrors: []).

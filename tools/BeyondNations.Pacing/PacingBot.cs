@@ -39,6 +39,8 @@ namespace beyondnations.pacing {
 
         /** Coins the bot keeps back rather than spend on gifts. */
         private const int CoinReserve = 20;
+        /** Below this energy, with no food carried, the bot goes and finds some (recover). */
+        private const float HungryEnergy = 35f;
 
         private readonly Simulation simulation;
         private readonly Player player;
@@ -55,10 +57,18 @@ namespace beyondnations.pacing {
         /** How long the bot courts one settler before trying another: two minutes at the default rate. */
         private const int CourtingTicks = 120 * TickCounter.DefaultTicksPerSecond;
 
-        public PacingBot(Simulation simulation) {
+        /** When set, the bot never courts a pawn (PacingRunOptions.NoCourting). */
+        private readonly bool noCourting;
+        private bool inviting = false;
+
+        public PacingBot(Simulation simulation, bool noCourting = false) {
             this.simulation = simulation ?? throw new ArgumentNullException(nameof(simulation));
             this.player = simulation.getPlayer();
+            this.noCourting = noCourting;
         }
+
+        /** Whether the bot is in the middle of an invitation, so a join it causes can be told from one it did not. */
+        public bool isInviting() { return inviting; }
 
         /** What the bot was last doing, for the report. */
         public string getActivity() { return activity; }
@@ -125,7 +135,53 @@ namespace beyondnations.pacing {
 
         // --- deciding ---------------------------------------------------------
 
+        /** Ticks the bot reads a world event's sheet before it chooses: one second, as it reads any reply. */
+        private const int EventReadingTicks = TickCounter.DefaultTicksPerSecond;
+
+        /**
+        * Takes a choice on a world event waiting for the player, after a
+        * second of reading it, as a person must: the host pauses the world
+        * while the sheet is up, so nobody plays on past one. The bot keeps
+        * its coins for gifts (chooseWorldEventAnswer). It used to leave the
+        * sheet for its three-minute timeout and its default, which a person
+        * cannot do; once the first event came within a minute and a half of
+        * founding (#370), the default for bandits (bar the gates) robbed the
+        * bot's village every minute for a day and a half and starved its
+        * recruiting of coins. Returns whether it acted.
+        */
+        /**
+        * The choice a player saving coins for gifts takes: the first one it
+        * can take that does not cost coins (the sheets list the most
+        * active answer first: drive the bandits off, dig ditches, welcome
+        * the wanderers), else the first it can take. -1 when none can be.
+        */
+        public static int chooseWorldEventAnswer(List<WorldEventChoice> choices) {
+            int free = choices.FindIndex(c => c.isAvailable() && !c.getLabel().Contains(" coins)"));
+            return free >= 0 ? free : choices.FindIndex(c => c.isAvailable());
+        }
+
+        private bool answerWorldEvent() {
+            WorldEvents events = simulation.getWorldEvents();
+            WorldEventInstance pending = events.getPending();
+            if (pending == null) {
+                return false;
+            }
+            activity = "answering a world event";
+            stop();
+            if (simulation.getTickCounter().getTotalTicks() - pending.getStartTick() < EventReadingTicks) {
+                return true;
+            }
+            int choice = chooseWorldEventAnswer(events.getPendingChoices(simulation));
+            if (choice >= 0) {
+                events.choose(simulation, choice);
+            }
+            return true;
+        }
+
         private void decide() {
+            if (answerWorldEvent()) {
+                return;
+            }
             if (recover()) {
                 return;
             }
@@ -172,6 +228,15 @@ namespace beyondnations.pacing {
         */
         private bool recover() {
             if (defend()) {
+                return true;
+            }
+            // a player low on energy with nothing to eat goes and finds some, as
+            // anyone watching their bar would: trees give apples. It used to court
+            // for twenty minutes on end, gifting its food away, and starve, once
+            // the world kept strangers to court (playtest 0.8.0 s02)
+            if (player.getEnergy() < HungryEnergy && !FoodItems.hasFood(player.getInventory())) {
+                gather(EntityType.TREE);
+                activity = "finding food";
                 return true;
             }
             if (!foundedOnce) {
@@ -280,8 +345,14 @@ namespace beyondnations.pacing {
                     simulation.getEntityRepository()).execute(player);
                 return;
             }
-            if (WorldView.wood(simulation) < Settlement.WOOD_COST_TO_BUILD) {
+            // a second settlement and after cost more wood, and stone (FoundingCost)
+            Nation own = simulation.getNationRepository().getNation(player.getNationId());
+            if (WorldView.wood(simulation) < FoundingCost.wood(own)) {
                 gather(EntityType.TREE);
+                return;
+            }
+            if (WorldView.stone(simulation) < FoundingCost.stone(own)) {
+                gather(EntityType.ROCK);
                 return;
             }
             activity = "founding a settlement";
@@ -486,12 +557,118 @@ namespace beyondnations.pacing {
                 buildStall();
                 return;
             }
+            if (tradeByCaravan()) {
+                return;
+            }
             sellResources();
+        }
+
+        /**
+        * The Funds hint's other road: "send a caravan from a Storehouse"
+        * (EraRules.hintFor). Once the era unlocks the storehouse, a leader
+        * with none puts one up in the home settlement, and a leader with one
+        * loads what it carries on a caravan to the first market the dispatch
+        * panel offers, with a caravan free. False when there is nothing of
+        * this to do, and the bot sells at market instead.
+        */
+        private bool tradeByCaravan() {
+            if (!WorldView.isLeader(simulation)) {
+                return false;
+            }
+            Settlement depot = settlementWithStorehouse();
+            if (depot == null) {
+                Settlement home = homeSettlement();
+                if (home == null || !home.canAddBuilding(BuildingType.STOREHOUSE)) {
+                    return false;
+                }
+                Inventory stockpile = home.getInventory();
+                if (WorldView.wood(simulation) + stockpile.getNumItems(ItemType.WOOD) < BuildingCatalog.getWoodCost(BuildingType.STOREHOUSE)) {
+                    gather(EntityType.TREE);
+                    return true;
+                }
+                if (WorldView.stone(simulation) + stockpile.getNumItems(ItemType.STONE) < BuildingCatalog.getStoneCost(BuildingType.STOREHOUSE)) {
+                    gather(EntityType.ROCK);
+                    return true;
+                }
+                activity = "building a storehouse";
+                if (player.getCurrentSettlementId() == home.getId()) {
+                    new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, BuildingType.STOREHOUSE);
+                    return true;
+                }
+                leaveSettlementIfInside();
+                if (approach(home.getPosition())) {
+                    interact();
+                }
+                return true;
+            }
+            return sendCaravan(depot);
+        }
+
+        /**
+        * Loads what the bot carries on a caravan from depot, walking there
+        * first. False when no caravan is free or it carries too little.
+        */
+        private bool sendCaravan(Settlement depot) {
+            TradeCaravans trade = simulation.getTradeCaravans();
+            int carried = WorldView.wood(simulation) + WorldView.stone(simulation);
+            if (trade.getNumPlayerCaravans() >= TradeCaravans.MAX_PLAYER_CARAVANS || carried < SellBatch) {
+                return false;
+            }
+            activity = "sending a caravan";
+            if (player.getCurrentSettlementId() != depot.getId()) {
+                leaveSettlementIfInside();
+                if (approach(depot.getPosition())) {
+                    interact();
+                }
+                return true;
+            }
+            List<Settlement> destinations = trade.getDestinations(depot, player.getNationId());
+            if (destinations.Count == 0) {
+                return false;
+            }
+            Dictionary<ItemType, int> load = new Dictionary<ItemType, int>();
+            int room = TradeCaravans.MAX_PLAYER_CARGO;
+            foreach (ItemType itemType in new[] { ItemType.WOOD, ItemType.STONE }) {
+                int quantity = Math.Min(room, player.getInventory().getNumItems(itemType));
+                if (quantity > 0) {
+                    load[itemType] = quantity;
+                    room -= quantity;
+                }
+            }
+            trade.dispatchPlayerCaravan(destinations[0], load, simulation.getTickCounter().getTotalTicks());
+            return true;
+        }
+
+        /** One of the nation's settlements with a storehouse, or null. */
+        private Settlement settlementWithStorehouse() {
+            Nation nation = WorldView.playerNation(simulation);
+            if (nation == null) {
+                return null;
+            }
+            foreach (EntityId settlementId in nation.getSettlements()) {
+                if (simulation.getEntityRepository().getEntity(settlementId) is Settlement settlement
+                        && settlement.getNumBuildings(BuildingType.STOREHOUSE) > 0) {
+                    return settlement;
+                }
+            }
+            return null;
         }
 
         private void growNation() {
             if (player.getNationId() == null) {
                 joinNation();
+                return;
+            }
+            if (noCourting) {
+                // build up and let the world bring the members
+                activity = "growing without courting";
+                earnFunds();
+                return;
+            }
+            // recruiting needs no wood or stone: once the era message announces the
+            // storehouse ("Unlocked: Storehouse (more market stalls, and caravans)"), a
+            // leader puts one up, then sends what it carries on a free caravan on the way
+            if (tradeByCaravan()) {
                 return;
             }
             activity = "recruiting settlers";
@@ -522,8 +699,10 @@ namespace beyondnations.pacing {
                 ? InvitePawnToNationCommand.NATIONLESS_TIER_REQUIRED
                 : InvitePawnToNationCommand.RIVAL_TIER_REQUIRED;
             if (PawnRelations.getTier(inReach, player) >= needed) {
+                inviting = true;
                 new InvitePawnToNationCommand(simulation.getNationRepository(), simulation.getEventProducer(),
                     simulation.getEntityRepository()).execute(player, inReach);
+                inviting = false;
                 recruitId = null;
                 return;
             }
@@ -601,8 +780,7 @@ namespace beyondnations.pacing {
         // --- what the bot can see ---------------------------------------------
 
         private void interact() {
-            new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(),
-                simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter()).execute(player);
+            InteractCommand.forSimulation(simulation).execute(player);
         }
 
         private Settlement homeSettlement() {

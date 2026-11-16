@@ -33,6 +33,10 @@ namespace beyondnations {
 
         // added later; appended so earlier values keep their numbers
         CONTRIBUTE_TO_STOCKPILE,
-        SEEK_SETTLEMENT_SITE
+        SEEK_SETTLEMENT_SITE,
+
+        // the trader role (#167, Traders)
+        BUY_TRADE_GOODS,
+        TRAVEL_TO_MARKET
     }
 }

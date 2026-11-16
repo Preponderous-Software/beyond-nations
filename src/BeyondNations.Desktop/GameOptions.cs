@@ -136,6 +136,9 @@ namespace beyondnations.desktop {
         * SettlementShowcase.
         */
         public bool StageSettlement = false;
+        public bool StageOutpost = false;
+        /** As StageOutpost, with the second settlement given to a member and the player outside it (#176). */
+        public bool StageHoldings = false;
 
         /**
         * Replays the feedback effects every couple of seconds -- chips,
@@ -174,6 +177,34 @@ namespace beyondnations.desktop {
         * road just ahead of the player. See TradeShowcase.
         */
         public bool StageTrade = false;
+
+        /**
+        * As StageTrade, with the player already standing in the trading
+        * neighbour's market, whose merchant has coins and wood: the market
+        * panel (Trade at Market) is one press away. See TradeShowcase.stageMarket.
+        */
+        public bool StageMarket = false;
+
+        /**
+        * As StageTrade, with the player standing in their own village with
+        * a load to send that the neighbour cannot pay for in full (#485,
+        * #486). See TradeShowcase.stageCaravan.
+        */
+        public bool StageCaravan = false;
+
+        /**
+        * The player's nation's first camp, in the Camp era, with residents
+        * about: Send Caravan locked (#479). See TradeShowcase.stageCamp.
+        */
+        public bool StageCamp = false;
+
+        /**
+        * As StageDiplomacy, with the nation's one trader at work and another
+        * serf beside the player, so Appoint Trader shows greyed with its
+        * reason, and a neighbour twice the player's strength at +35 (#487,
+        * #478). See TraderShowcase.
+        */
+        public bool StageTrader = false;
 
         /**
         * Opens a world whose run has just ended -- a Prosperity victory in
@@ -218,11 +249,13 @@ namespace beyondnations.desktop {
         * over the two closest settlements of different nations, the UI is
         * hidden, the world runs a fixed number of ticks a frame, every frame
         * is written there as a PNG, and the run exits after FlyoverFrames. Null,
-        * the default, plays normally. tools/readme-flyover.sh turns the
-        * frames into the README's GIF.
+        * the default, plays normally. The flyover shot in tools/capture/media.json
+        * turns the frames into the README's GIF.
         */
         public string FlyoverOut = null;
         public int FlyoverFrames = 120;
+        /** With FlyoverOut: circle the thickest stand of trees instead of gliding between settlements (#140). */
+        public bool FlyoverOrbit = false;
 
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
@@ -246,11 +279,17 @@ namespace beyondnations.desktop {
                     case "--no-labels":        options.NoLabels = true; break;
                     case "--debug-mode":       options.DebugMode = true; break;
                     case "--stage-settlement": options.StageSettlement = true; break;
+                    case "--stage-outpost":    options.StageOutpost = true; break;
+                    case "--stage-holdings":   options.StageHoldings = true; break;
                     case "--stage-diplomacy":  options.StageDiplomacy = true; break;
                     case "--stage-feel":       options.StageFeel = true; break;
                     case "--stage-succession": options.StageDiplomacy = true; options.StageSuccession = true; break;
                     case "--stage-event":      options.StageEvent = true; break;
                     case "--stage-trade":      options.StageTrade = true; break;
+                    case "--stage-market":     options.StageMarket = true; break;
+                    case "--stage-caravan":    options.StageCaravan = true; break;
+                    case "--stage-camp":       options.StageCamp = true; break;
+                    case "--stage-trader":     options.StageTrader = true; break;
                     case "--stage-victory":    options.StageVictory = true; break;
                     case "--stage-defeat":     options.StageDefeat = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
@@ -264,6 +303,7 @@ namespace beyondnations.desktop {
                     case "--playtest-out":     options.PlaytestOut = textAfter(args, ref i); break;
                     case "--advance-ticks":    options.AdvanceTicks = intAfter(args, ref i, options.AdvanceTicks); break;
                     case "--flyover-out":      options.FlyoverOut = textAfter(args, ref i); break;
+                    case "--flyover-orbit":    options.FlyoverOrbit = true; break;
                     case "--flyover-frames":   options.FlyoverFrames = intAfter(args, ref i, options.FlyoverFrames); break;
                     case "--help":
                     case "-h":
@@ -318,10 +358,21 @@ namespace beyondnations.desktop {
                     // the nations screen, opened on its Laws tab
                     beyondnations.desktop.ui.screens.NationScreen.startOnLaws = true;
                     return ScreenType.NATIONS;
+                case "members":
+                    // the nations screen, opened on its Members tab
+                    beyondnations.desktop.ui.screens.NationScreen.startOnMembers = true;
+                    return ScreenType.NATIONS;
+                case "manage":
+                    // the nations screen, opened on its Manage tab
+                    beyondnations.desktop.ui.screens.NationScreen.startOnManage = true;
+                    return ScreenType.NATIONS;
+                case "settlement":
+                    // the settlement screen (#178), on the settlement the player is in or nearest to
+                    return ScreenType.SETTLEMENT;
                 case "new-world": return ScreenType.NEW_WORLD;
                 case "share":     return ScreenType.SHARE;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -409,13 +460,19 @@ namespace beyondnations.desktop {
                 "  --continue              open in the most recently saved world (Continue on the main menu)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
+                "  --stage-outpost         open leading a Village-era nation with two settlements",
+                "  --stage-holdings        as --stage-outpost, the second settlement held by a member",
                 "  --stage-diplomacy       open leading a nation between a friendly and a hostile neighbour",
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
                 "  --stage-victory         open on the end-of-run screen of a won run (--stage-defeat: a lost one)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
-                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, crafting, load, new-world or share",
+                "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",
+                "  --stage-market          as --stage-trade, standing in the trading neighbour's market",
+                "  --stage-caravan         as --stage-trade, standing in your own village with a load to send",
+                "  --stage-camp            open in your nation's first camp, in the Camp era, residents about",
+                "  --stage-trader          as --stage-diplomacy, with the nation's trader at work and its slot taken",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",
@@ -423,6 +480,7 @@ namespace beyondnations.desktop {
                 "  --advance-ticks N       run the world N ticks before the first frame, to start mid-game",
                 "  --flyover-out DIR       glide over two nations' settlements with the UI hidden, write each frame to DIR, then exit",
                 "  --flyover-frames N      how many frames the flyover writes (default 120)",
+                "  --flyover-orbit         with --flyover-out, circle the thickest stand of trees instead (give --advance-ticks so the land is generated)",
                 "  --help, -h              print this and exit"
             });
         }

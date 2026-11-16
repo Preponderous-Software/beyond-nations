@@ -1,0 +1,129 @@
+{
+  "session": "s07",
+  "goal": "Settlements: found a first settlement, then a second one (later settlements cost more wood and stone; Found Settlement on the command bar says what you lack). Open the settlement screen, give a settlement to a member and take it back, and use the nations screen's Manage tab (rename the nation, list settlements). Record anything confusing about costs, ownership or which settlement is home.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "eefb1f7b"},
+  "seed": 107,
+  "durationSec": 1566,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Second settlement is gated behind the Village era, which needs game day 2: unreachable in a normal-length session",
+      "detail": "With 48 wood, 126 m from my camp, pressing F gave 'Your nation may hold only 1 settlement in this era. Reach the next era to found more.' The Village era needs a village-tier settlement, 10 members, 2 stalls AND Day 2/2. I got the village tier (farm + house), 2 stalls and 6/10 members by tick 9304, but day 2 starts at tick 30000. At the 6-12 tps this machine managed, that is 30-55 more real minutes. The goal's idea of a second settlement that costs more wood and stone never comes up: the era cap blocks it first. Expected: a second settlement reachable in the first in-game day, or the cap explained up front.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 107; key n; chop ~9 trees; key f (first settlement); chop more; walk 120+ m away; key f",
+      "screenshot": "shots/era_panel.png",
+      "tick": 5556
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Found Settlement button vanishes from the command bar when blocked by the era cap",
+      "detail": "Before the first settlement the greyed Found Settlement button had a useful tooltip ('Needs 50 more wood.'). Once you hold one settlement the button disappears entirely, even in the wilds with enough wood, so the player gets no 'what you lack' hint. Only pressing F (or reading the Nations tab) reveals the one-settlement-per-era cap. Expected: a greyed button with that reason as its tooltip.",
+      "repro": "after founding the first settlement, walk 120+ m into the wilds; look at the command bar; key f",
+      "screenshot": "shots/press_f.png",
+      "tick": 5556
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Enter your settlement' objective does not complete if you leave via Exit Settlement",
+      "detail": "The world is paused on the settlement screen (tps 0, tick frozen at 3168). Entering with E, then leaving with the obvious 'Exit Settlement' button, never completes objective 5, even after waiting. It completes only when you leave with Esc/Back, which keeps you 'inside' in world view (tick 3800). While in that state you cannot walk (walkto timed out and E re-opened the screen). Twice I believed I had done the objective.",
+      "repro": "after founding: walkto settlement; key e; click Exit Settlement (375,436); objective 5 still open. Then key e; key Escape; it completes a tick later",
+      "screenshot": "shots/objective5_not_done.png",
+      "tick": 3168
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Ownership vs home is confusing: a settlement 'held by Mia Johnson' is still 'your home'",
+      "detail": "After Give to Mia, the Manage list reads 'Camp of Ashmark: held by Mia Johnson, 2/8 residents, 129 paces south-west (your home).' The settlement screen still says 'It is your home.' Nothing explains what holding means versus home, or what Mia may do with the stockpile (29 wood, 15 stone). Give and Take Back themselves worked and gave clear status lines.",
+      "repro": "O -> Manage -> Open -> > (Mia Johnson) -> Give; Back",
+      "screenshot": "shots/manage_after_give.png",
+      "tick": 5892
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "'Give to: you' and 'Take Back' are different actions with nearly identical presentation",
+      "detail": "Give with 'you' selected makes the settlement personally yours ('stays yours if you hand on the rule'). Take Back returns it to 'held by you, as leader'. The difference is real but explained by one dense sentence. Take Back stays visible when you already hold it, and after each Give the picker jumps to another person, which invites misclicks.",
+      "repro": "settlement screen with Mia holding: click Give with 'Give to: you'; then Take Back",
+      "screenshot": "shots/give_to_you.png",
+      "tick": 5892
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Click-to-confirm on Build Farm expires before a second click on a slow machine",
+      "detail": "First click on Build Farm at tick 6380 showed 'Click again to confirm'. A second click about 13 s later (fps 1-2) gave 'Not confirmed in time, so nothing was done.' Only two back-to-back clicks worked (tick 6876, then 'Farm built' at 6888). The window seems short in game ticks or frames.",
+      "repro": "inside settlement (Esc from screen) with 60 wood 15 stone: click Build Farm (386,413); wait ~10 s; click again",
+      "screenshot": "shots/farm_try.png",
+      "tick": 6652
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Market window overlaps the command bar; a layout shift made me sell stone I meant to buy",
+      "detail": "With a pawn nearby, the command bar grows extra rows ('Order Mia Johnson: Gather Wood', Talk, Gift, Craft, Eat Apple) that draw over the market's Buy/Sell row. Selecting the Stone row moved the controls, and my next click at (487,328), meant for +5, sold 1 stone to Mia for 27 coins. I needed stone for a House.",
+      "repro": "in settlement: Trade at Market (563,445) with Mia nearby; click Stone row (480,177); click (487,328)",
+      "screenshot": "shots/market_stone.png",
+      "tick": 7448
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "'Village' names both a settlement tier and the next era",
+      "detail": "Building a House shows 'The settlement is now a Village!' while the era stays Camp (1/4). The era checklist under 'To reach the Village era' has a line 'Village 1/1'. The objective says 'Buildings 2/2' for the same requirement. It is easy to think the era is already reached.",
+      "repro": "build stall x2, farm, house inside settlement; read status and era panel",
+      "screenshot": "shots/village_tier.png",
+      "tick": 9128
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress bar text clipped on the left ('bers 2/10 · Buildings 0/2')",
+      "detail": "Objective 7's progress bar cuts off the start of 'Members 2/10 · Buildings 0/2'.",
+      "repro": "reach objective 7 (Reach the Village era); look at the top-left objective box",
+      "screenshot": "shots/era2.png",
+      "tick": 6276
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlement screen text sits over the 3D scene with no backdrop; residents line is confusing",
+      "detail": "The giant floating '0 here 2/8 residents' label, the well and trees show through behind the Ownership/People text. 'Residents: 2 of 8 (0 here now)' next to 'You are inside it' reads as a contradiction.",
+      "repro": "walkto settlement; key e",
+      "screenshot": "shots/settlement_screen_overlay.png",
+      "tick": 3168
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Settlements have no names of their own; a sworn member is labelled 'Stranger'",
+      "detail": "Rename works well ('Easternton is now called Ashmark.'), and the list follows ('Camp of Ashmark'). Settlements are only '<Tier> of <Nation>' (the probe just says 'Settlement'), so several would be told apart only by paces and direction. The Hand-to picker shows my sworn member as 'Mia Johnson (Stranger, 0)'.",
+      "repro": "O -> Manage; type a name in the box; Rename",
+      "screenshot": "shots/renamed.png",
+      "tick": 5892
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 28.0,
+      "Eat something": 29.04,
+      "Create or join a nation": 30.0,
+      "Found a settlement": 62.0,
+      "Enter your settlement": 76.0,
+      "Build a market stall": 121.04
+    },
+    "settlementsFounded": 1,
+    "firstSettlementWoodCost": 50,
+    "nationSettlementCapInCampEra": 1,
+    "membersAtStop": 6,
+    "tickAtStop": 9304,
+    "typicalTps": 8
+  },
+  "fun": 3,
+  "verdict": "The first settlement, the settlement screen, Give/Take Back and the Manage tab (rename, settlement list with distance and 'your home', Open from afar) all work and give clear status lines. A second settlement is out of reach in a normal session: the one-per-era cap needs the Village era, and that era requires game day 2. The Found Settlement button just disappears instead of saying so. Ownership is the confusing part: held vs home vs 'yours as leader' vs 'yours personally' needs one plain explanation."
+}

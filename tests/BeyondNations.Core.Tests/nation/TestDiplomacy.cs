@@ -327,7 +327,7 @@ namespace beyondnationstests {
             Nation defender = world.playerNation(2);
             world.settlement(attacker, 0, 0);
             Settlement lost = world.settlement(defender, 300, 0);
-            world.settlement(defender, 3000, 0);
+            Settlement kept = world.settlement(defender, 3000, 0);
             world.player.setHomeSettlementId(lost.getId());
             lost.getMarket().createStall();
             Stall stall = lost.getMarket().getStalls()[0];
@@ -338,7 +338,8 @@ namespace beyondnationstests {
 
             Assert.NotNull(world.nations.getNation(defender.getId()));
             Assert.Equal(1, defender.getNumberOfSettlements());
-            Assert.Null(world.player.getHomeSettlementId());
+            // the player moves home to the settlement the nation keeps (#145), not to nowhere
+            Assert.Equal(kept.getId(), world.player.getHomeSettlementId());
             Assert.Null(stall.getOwnerId());
             Assert.Equal(4, world.player.getInventory().getNumItems(ItemType.APPLE));
             Assert.Equal(attacker.getName() + " has captured your camp!", world.player.getStatus().getStatus());

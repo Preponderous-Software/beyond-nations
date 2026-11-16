@@ -84,6 +84,8 @@ namespace beyondnations {
                 signature = signature * 8 + stallState(stalls[i]);
             }
             signature = signature * 16 + settlement.getNumBuildings();
+            // a pawn-led village becomes a town (and is fenced) when the calendar allows (EraRules.pawnLedTierCap)
+            signature = signature * 4 + (int) settlement.getTier();
             signature = signature * 8 + getStockpileLevel(settlement.getInventory(), ItemType.WOOD);
             signature = signature * 8 + getStockpileLevel(settlement.getInventory(), ItemType.STONE);
             // the border moves in whole units, so a claim nudged by a fraction does not redraw

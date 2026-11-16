@@ -11,18 +11,32 @@ namespace beyondnations {
         private EventProducer eventProducer;
         private EntityRepository entityRepository;
         private TickCounter tickCounter;
+        private SeasonCalendar seasonCalendar;
 
         public InteractCommand(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random)
             : this(environment, nationRepository, eventProducer, entityRepository, random, null) {
         }
 
+        public InteractCommand(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, TickCounter tickCounter)
+            : this(environment, nationRepository, eventProducer, entityRepository, random, tickCounter, null) {
+        }
+
+        /** Every host builds it this way: the simulation's own tick counter and season calendar. */
+        public static InteractCommand forSimulation(Simulation simulation) {
+            return new InteractCommand(simulation.getEnvironment(), simulation.getNationRepository(), simulation.getEventProducer(),
+                simulation.getEntityRepository(), simulation.getRandom(), simulation.getTickCounter(), simulation.getSeasonCalendar());
+        }
+
         /**
         * The tick counter times the talk cooldown (see TalkToPawnCommand).
         * Without one every conversation happens at tick 0, so only the first
-        * ever warms a relationship.
+        * ever warms a relationship. The season calendar decides whether a
+        * felled tree carries apples (SeasonalRules.treesBearFruit); without one
+        * every tree does, as in spring.
         */
-        public InteractCommand(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, TickCounter tickCounter) {
+        public InteractCommand(Environment environment, NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository, RandomSource random, TickCounter tickCounter, SeasonCalendar seasonCalendar) {
             this.tickCounter = tickCounter;
+            this.seasonCalendar = seasonCalendar;
             this.random = random;
             this.environment = environment;
             this.nationRepository = nationRepository;
@@ -77,13 +91,21 @@ namespace beyondnations {
                 // A tree carries apples as well as wood, and the message used
                 // to name only the wood, so apples -- the food a hungry player
                 // is looking for -- arrived unannounced.
-                int wood = tree.getInventory().getNumItems(ItemType.WOOD);
-                int apples = tree.getInventory().getNumItems(ItemType.APPLE);
-                player.getInventory().transferContentsOfInventory(tree.getInventory());
+                // In winter a tree is bare for the player as it is for pawns
+                // (SeasonalRules.treesBearFruit). The player used to be spared,
+                // which made stored food and the winter warning moot (#456).
+                bool bare = seasonCalendar != null && !SeasonalRules.treesBearFruit(seasonCalendar.getSeason());
+                Inventory haul = tree.getInventory();
+                if (bare) {
+                    haul.removeItem(ItemType.APPLE, haul.getNumItems(ItemType.APPLE));
+                }
+                int wood = haul.getNumItems(ItemType.WOOD);
+                int apples = haul.getNumItems(ItemType.APPLE);
+                player.getInventory().transferContentsOfInventory(haul);
                 GatherBonus bonus = Tools.applyGatherBonus(player.getInventory(), EntityType.TREE);
                 player.getStatus().update((apples > 0
                     ? "Gathered " + (wood + bonus.getAmount()) + " wood and " + apples + (apples == 1 ? " apple" : " apples") + " from tree"
-                    : "Gathered " + (wood + bonus.getAmount()) + " wood from tree") + describeBonus(bonus, player.getInventory()));
+                    : "Gathered " + (wood + bonus.getAmount()) + " wood from tree" + (bare ? " (bare in winter)" : "")) + describeBonus(bonus, player.getInventory()));
             }
             else if (target == rock) {
                 rock.markForDeletion();

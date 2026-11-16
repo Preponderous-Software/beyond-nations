@@ -33,12 +33,24 @@ namespace beyondnations {
             // the era limits how many settlements a nation the player leads may hold (EraRules)
             if (!nation.canFoundSettlement()) {
                 player.getStatus().update("Your nation may hold only " + nation.getSettlementLimit()
-                    + (nation.getSettlementLimit() == 1 ? " settlement" : " settlements") + " in this era. Reach the next era to found more.");
+                    + (nation.getSettlementLimit() == 1 ? " settlement" : " settlements") + " in this era. "
+                    + EraRules.describeSettlementCap(nation.getSettlementLimit()));
                 return;
             }
-            // if not enough wood
-            if (player.getInventory().getNumItems(ItemType.WOOD) < Settlement.WOOD_COST_TO_BUILD) {
-                player.getStatus().update("Not enough wood. Need " + (Settlement.WOOD_COST_TO_BUILD - player.getInventory().getNumItems(ItemType.WOOD)) + " more.");
+            // the first costs wood; each one after it more wood, and stone (FoundingCost, #145)
+            int woodCost = FoundingCost.wood(nation);
+            int stoneCost = FoundingCost.stone(nation);
+            int woodShort = woodCost - player.getInventory().getNumItems(ItemType.WOOD);
+            int stoneShort = stoneCost - player.getInventory().getNumItems(ItemType.STONE);
+            if (woodShort > 0 || stoneShort > 0) {
+                string ordinal = nation.getNumberOfSettlements() == 0 ? "" : " another settlement";
+                if (stoneShort <= 0) {
+                    player.getStatus().update("Not enough wood" + (ordinal == "" ? "" : " for" + ordinal) + ". Need " + woodShort + " more.");
+                }
+                else {
+                    player.getStatus().update("Founding" + ordinal + " takes " + FoundingCost.describe(nation) + ". Need "
+                        + (woodShort > 0 ? woodShort + " more wood and " : "") + stoneShort + " more stone.");
+                }
                 return;
             }
 
@@ -46,29 +58,37 @@ namespace beyondnations {
             int minDistance = gameConfig.getMinDistanceBetweenSettlements();
             string objection = Territory.getFoundingObjection(entityRepository, nationRepository, player.getPosition(), nation.getId());
             if (objection != null) {
+                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
                 player.getStatus().update(objection + " Found your settlement outside its borders. "
-                    + SettlementSites.describeNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
+                    + SettlementSites.describeOpenSite(player.getPosition(), site));
                 return;
             }
 
             // nor within the minimum distance of another settlement: name it, and the way out
             Settlement tooClose = SettlementSites.findTooClose(entityRepository, player.getPosition(), minDistance);
             if (tooClose != null) {
-                player.getStatus().update(SettlementSites.describeTooClose(entityRepository, player.getPosition(), tooClose, minDistance, nation.getId()));
+                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
+                player.getStatus().update(SettlementSites.describeTooClose(player.getPosition(), tooClose, minDistance, site));
                 return;
             }
 
-            // remove wood
-            player.getInventory().removeItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            player.getInventory().removeItem(ItemType.WOOD, woodCost);
+            if (stoneCost > 0) {
+                player.getInventory().removeItem(ItemType.STONE, stoneCost);
+            }
 
             // create settlement
             Settlement settlement = new Settlement(player.getPosition(), player.getNationId(), nation.getColor(), nation.getName(), random);
             entityRepository.addEntity(settlement);
-            nationRepository.getNation(player.getNationId()).addSettlement(settlement.getId());
-            player.setHomeSettlementId(settlement.getId());
+            bool first = nation.getNumberOfSettlements() == 0;
+            nation.addSettlement(settlement.getId());
+            // the leader's home stays where it was: a second settlement is an outpost, not a move
+            if (first || !nation.getSettlements().Contains(player.getHomeSettlementId())) {
+                player.setHomeSettlementId(settlement.getId());
+            }
             List<Nation> offended = Territory.recordFounding(settlement, entityRepository, nationRepository);
             if (offended.Count == 0) {
-                player.getStatus().update("Settlement founded.");
+                player.getStatus().update(first ? "Settlement founded." : "Settlement founded. Your nation now holds " + nation.getNumberOfSettlements() + " settlements.");
             }
             else {
                 List<string> names = new List<string>();
@@ -78,6 +98,17 @@ namespace beyondnations {
                 player.getStatus().update("Settlement founded. " + string.Join(" and ", names) + " resent a new settlement so near their land.");
             }
             eventProducer.produceSettlementFoundedEvent(settlement, nation, player.getId());
+        }
+
+        /**
+        * Tells the player which open ground the refusal names, so the world
+        * holds it for them while they walk there (ReservedGround, #433).
+        */
+        private static Vector3? pointOut(Player player, Vector3? site) {
+            if (site != null) {
+                player.pointOutOpenGround(site.Value);
+            }
+            return site;
         }
     }
 }

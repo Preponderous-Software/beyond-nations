@@ -68,6 +68,17 @@ namespace beyondnations.desktop.text {
         }
 
         /**
+        * getLineHeight for a label drawn screenScale times the usual size (a
+        * settlement's name): its cap is screenScale times the usual share of
+        * the screen, so it stays that much larger than a nametag up close
+        * without filling the view.
+        */
+        public float getLineHeight(float designLineHeight, Vector3 labelPosition, Matrix4x4 view, Matrix4x4 projection, float screenScale) {
+            float distance = Vector3.Distance(labelPosition, LabelBillboard.getEyePosition(view));
+            return getLineHeightAt(designLineHeight, distance, projection.M22, maxScreenFraction * Math.Max(1f, screenScale));
+        }
+
+        /**
         * The sizing on its own. projectionYScale is the projection's M22,
         * 1 / tan(fovY / 2): a line h units tall at distance d covers
         * h * M22 / (2 d) of the screen's height.

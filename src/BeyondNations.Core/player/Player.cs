@@ -18,6 +18,11 @@ namespace beyondnations {
         // longer owns a Rigidbody to push around; #220 turns this into motion.
         private float horizontalInput = 0;
         private float verticalInput = 0;
+        // trying to walk while inside a settlement, as of the last step (not saved: only says so once per push)
+        private bool pushingInside = false;
+
+        /** Said once when the player tries to walk while inside a settlement, where they cannot (playtest 0.8.0 s02, s08). */
+        public const string CannotWalkInsideMessage = "You are inside the settlement and cannot walk here. Choose Exit Settlement to walk back out.";
         private bool jumpRequested = false;
 
         // Facing, in radians. Replaces the transform rotation the Rigidbody
@@ -133,10 +138,42 @@ namespace beyondnations {
         }
 
         public void fixedUpdate() {
-            if (isCurrentlyInSettlement()) {
-                return;
+            fixedUpdate(1f);
+        }
+
+        /**
+        * One step: movement out in the world, then eating and the burn,
+        * indoors as well as out. burnMultiplier scales the burn: the host
+        * passes the settlement rate indoors and the winter cold outdoors
+        * (Simulation). The burn used to stop inside a settlement altogether,
+        * so a player could sit out a winter at a steady 92 while fifty pawns
+        * starved around them (playtest 0.5.0 s03, #357).
+        */
+        public void fixedUpdate(float burnMultiplier) {
+            if (!isCurrentlyInSettlement()) {
+                move();
+                pushingInside = false;
+            } else {
+                sayHowToWalkOut();
             }
 
+            if (energy < EatBelowEnergy) {
+                eatIfCarryingFood();
+            }
+
+            energy -= metabolism * burnMultiplier;
+        }
+
+        /** Once per push of the stick or a movement key while inside: why nothing moves, and how to leave. */
+        private void sayHowToWalkOut() {
+            bool pushing = horizontalInput != 0 || verticalInput != 0 || autoWalk;
+            if (pushing && !pushingInside && status != null) {
+                status.prompt(CannotWalkInsideMessage);
+            }
+            pushingInside = pushing;
+        }
+
+        private void move() {
             if (horizontalInput != 0) {
                 // Two degrees per step, as the transform rotation did.
                 yaw += horizontalInput * 2f * (System.MathF.PI / 180f);
@@ -154,12 +191,6 @@ namespace beyondnations {
             // jump impulse -- so it is carried over rather than overwritten.
             Vector3 horizontalVelocity = getForward() * forwardAmount * currentSpeed;
             setVelocity(new Vector3(horizontalVelocity.X, getVelocity().Y, horizontalVelocity.Z));
-
-            if (energy < EatBelowEnergy) {
-                eatIfCarryingFood();
-            }
-
-            energy -= metabolism;
         }
 
         public float getMetabolism() {
@@ -194,6 +225,23 @@ namespace beyondnations {
 
         public void setHomeSettlementId(EntityId settlementId) {
             this.homeSettlementId = settlementId;
+        }
+
+        // The open ground a refused founding last pointed the player to, until
+        // ReservedGround takes it to hold for them (#433). Not saved: a hold
+        // lasts seconds.
+        private Vector3? pointedOutGround = null;
+
+        /** A refusal to found here named open ground at site (FoundSettlementCommand). */
+        public void pointOutOpenGround(Vector3 site) {
+            pointedOutGround = site;
+        }
+
+        /** The ground last pointed out and not yet taken, cleared by the call. */
+        public Vector3? takePointedOutGround() {
+            Vector3? site = pointedOutGround;
+            pointedOutGround = null;
+            return site;
         }
 
         public Status getStatus() {
@@ -294,16 +342,59 @@ namespace beyondnations {
         }
 
         /**
-        * Eats the most nourishing food carried, if any. Which item types count as
-        * food, and what each restores, belongs to FoodItems (#83) -- an apple is
-        * no longer the only thing the player will eat.
+        * Eats the most nourishing food carried whose whole worth fits under a
+        * full bar (FoodItems.getFoodThatFits), and says so on the status line.
+        * Before #357 it ate the most nourishing food at once below 90, so a
+        * cooked meat lost most of its 45 to the cap and was no better than an
+        * apple, and food vanished from the pack unannounced. A player carrying
+        * only rich food now keeps it until it can all be used.
         */
         private void eatIfCarryingFood() {
-            int restored = FoodItems.consumeMostNourishingFood(getInventory());
-            if (restored > 0) {
-                energy = System.Math.Min(energy + restored, MaxEnergy);
-                mealsEaten++;
+            ItemType? food = FoodItems.getFoodThatFits(getInventory(), MaxEnergy - energy);
+            if (food.HasValue) {
+                eat(food.Value);
             }
+        }
+
+        /**
+        * Eat now, by choice (the Eat button): the food that fits, or when none
+        * does, the least nourishing, so the least is lost to the cap. Returns
+        * whether anything was eaten.
+        */
+        public bool eatNow() {
+            ItemType? food = getFoodToEatNow();
+            if (!food.HasValue) {
+                getStatus().update(FoodItems.hasFood(getInventory()) ? "You are full." : "You have no food.");
+                return false;
+            }
+            eat(food.Value);
+            return true;
+        }
+
+        /** What eatNow would eat, or null when the player is full or carries no food. */
+        public ItemType? getFoodToEatNow() {
+            if (energy >= MaxEnergy) {
+                return null;
+            }
+            ItemType? food = FoodItems.getFoodThatFits(getInventory(), MaxEnergy - energy);
+            return food.HasValue ? food : FoodItems.getLeastNourishingFood(getInventory());
+        }
+
+        private void eat(ItemType food) {
+            getInventory().removeItem(food, 1);
+            int restored = FoodItems.getEnergyRestored(food);
+            energy = System.Math.Min(energy + restored, MaxEnergy);
+            mealsEaten++;
+            getStatus().update("Ate " + describeOne(food) + " (+" + restored + " energy).");
+        }
+
+        /** "an apple", "chicken meat", "cooked meat". */
+        public static string describeOne(ItemType food) {
+            string name = ItemNames.getSingularName(food);
+            if (ItemNames.isUncountable(food)) {
+                return name;
+            }
+            return ("aeiou".IndexOf(name[0]) >= 0 ? "an " : "a ") + name;
         }
 
         public int getMealsEaten() {

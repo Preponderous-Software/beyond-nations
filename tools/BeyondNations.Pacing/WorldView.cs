@@ -34,6 +34,17 @@ namespace beyondnations.pacing {
             return nation == null ? 0 : nation.getNumberOfMembers();
         }
 
+        /** Living pawns in no nation: the strangers left to court (docs/PACING.md, "Recruiting"). */
+        public static int nationlessPawns(Simulation simulation) {
+            int count = 0;
+            foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(EntityType.PAWN)) {
+                if (entity is Pawn pawn && pawn.getNationId() == null) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
         public static int settlements(Simulation simulation) {
             Nation nation = playerNation(simulation);
             return nation == null ? 0 : nation.getNumberOfSettlements();

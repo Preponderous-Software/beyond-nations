@@ -36,6 +36,19 @@ namespace beyondnations {
         private static int mediumCoinReward() { return System.Math.Max(1, Stall.COIN_COST_TO_PURCHASE / 2); }
         private static int largeCoinReward() { return Stall.COIN_COST_TO_PURCHASE; }
 
+        /**
+        * The "Eat something" hint. Trees are bare in winter for the player as
+        * for pawns (SeasonalRules.treesBearFruit), so in a world started in
+        * winter it does not promise apples from trees: the first meal there
+        * is the two apples "Gather wood" rewards, or a chicken's meat.
+        */
+        public static string eatHint(Simulation s) {
+            if (s != null && s.getSeasonCalendar() != null && !SeasonalRules.treesBearFruit(s.getSeasonCalendar().getSeason())) {
+                return "Carry food and you eat it when your energy runs low. Trees are bare in winter; press {Interact} by a chicken for meat.";
+            }
+            return "Carry food and you eat it when your energy runs low. Trees drop apples; press {Interact} by a chicken for meat.";
+        }
+
         public static List<Objective> firstArc() {
             return new List<Objective> {
                 new Objective("gather-wood", "Gather wood",
@@ -45,7 +58,7 @@ namespace beyondnations {
 
                 new Objective("eat", "Eat something",
                     s => ObjectiveProgress.flag(s.getPlayer().getMealsEaten() > 0),
-                    "Carry food and you eat it when your energy runs low. Trees drop apples; press {Interact} by a chicken for meat.",
+                    eatHint,
                     ObjectiveReward.coins(smallCoinReward())),
 
                 new Objective("join-nation", "Create or join a nation",
@@ -91,7 +104,7 @@ namespace beyondnations {
 
                 new Objective("second-settlement", "Found a second settlement",
                     s => ObjectiveProgress.count("Settlements", settlements(s), ArcSettlementTarget),
-                    "Travel well away from your first, then press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood.",
+                    s => "Travel well away from your first, then press {FoundSettlement} with " + FoundingCost.describe(playerNation(s)) + ".",
                     ObjectiveReward.coins(largeCoinReward() * 2)),
             };
         }
@@ -144,7 +157,7 @@ namespace beyondnations {
                     }
                     return new Objective(id, "Hold " + target + " settlements",
                         s => ObjectiveProgress.count("Settlements", settlements(s), target),
-                        "Press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood, far from other settlements.",
+                        s => "Press {FoundSettlement} with " + FoundingCost.describe(playerNation(s)) + ", far from other settlements.",
                         reward.and(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD / 4), true);
                 }
                 default: {

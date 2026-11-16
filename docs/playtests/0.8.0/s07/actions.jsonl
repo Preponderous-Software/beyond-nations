@@ -1,0 +1,289 @@
+{"t": 1794780354566, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "107"]}
+{"t": 1794780367343, "cmd": "key", "args": ["space"]}
+{"t": 1794780370048, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780373101, "cmd": "shot", "args": ["newworld"]}
+{"t": 1794780401866, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794780402822, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794780403339, "cmd": "shot", "args": ["world1"]}
+{"t": 1794780404868, "cmd": "state", "args": []}
+{"t": 1794780433931, "cmd": "key", "args": ["n"]}
+{"t": 1794780436519, "cmd": "shot", "args": ["nation"]}
+{"t": 1794780437185, "cmd": "state", "args": []}
+{"t": 1794780446079, "cmd": "click", "args": ["425", "389"]}
+{"t": 1794780448840, "cmd": "move", "args": ["75", "476"]}
+{"t": 1794780452591, "cmd": "shot", "args": ["found_hover"]}
+{"t": 1794780453290, "cmd": "status", "args": []}
+{"t": 1794780473076, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780499037, "cmd": "key", "args": ["e"]}
+{"t": 1794780501727, "cmd": "key", "args": ["e"]}
+{"t": 1794780504553, "cmd": "state", "args": []}
+{"t": 1794780512928, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780554213, "cmd": "key", "args": ["e"]}
+{"t": 1794780556615, "cmd": "key", "args": ["e"]}
+{"t": 1794780558802, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780596488, "cmd": "key", "args": ["e"]}
+{"t": 1794780598753, "cmd": "key", "args": ["e"]}
+{"t": 1794780601057, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780630231, "cmd": "key", "args": ["e"]}
+{"t": 1794780632387, "cmd": "key", "args": ["e"]}
+{"t": 1794780634675, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780661609, "cmd": "key", "args": ["e"]}
+{"t": 1794780663843, "cmd": "key", "args": ["e"]}
+{"t": 1794780666082, "cmd": "state", "args": []}
+{"t": 1794780671599, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780698556, "cmd": "key", "args": ["e"]}
+{"t": 1794780700755, "cmd": "key", "args": ["e"]}
+{"t": 1794780702891, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780714869, "cmd": "key", "args": ["e"]}
+{"t": 1794780717119, "cmd": "key", "args": ["e"]}
+{"t": 1794780719386, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780735495, "cmd": "key", "args": ["e"]}
+{"t": 1794780737656, "cmd": "key", "args": ["e"]}
+{"t": 1794780739872, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780755110, "cmd": "key", "args": ["e"]}
+{"t": 1794780757303, "cmd": "key", "args": ["e"]}
+{"t": 1794780759743, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794780792830, "cmd": "key", "args": ["e"]}
+{"t": 1794780795018, "cmd": "key", "args": ["e"]}
+{"t": 1794780797023, "cmd": "state", "args": []}
+{"t": 1794780801727, "cmd": "key", "args": ["f"]}
+{"t": 1794780805505, "cmd": "shot", "args": ["founded1"]}
+{"t": 1794780806056, "cmd": "state", "args": []}
+{"t": 1794780806284, "cmd": "events", "args": ["5"]}
+{"t": 1794780817146, "cmd": "key", "args": ["e"]}
+{"t": 1794780820819, "cmd": "shot", "args": ["inside1"]}
+{"t": 1794780821472, "cmd": "state", "args": []}
+{"t": 1794780833956, "cmd": "note", "args": ["--shot", "settlement_screen_overlay", "Settlement screen text is drawn directly over the 3D scene with no backdrop; the giant floating '0 here 2/8 residents' label and the well/tree bleed through behind Ownership/People text. Also 'Residents: 2 of 8 (0 here now)' alongside 'You are inside it' is confusing — am I not 'here'?"]}
+{"t": 1794780834657, "cmd": "click", "args": ["775", "398"]}
+{"t": 1794780838675, "cmd": "shot", "args": ["give_cycle"]}
+{"t": 1794780843980, "cmd": "click", "args": ["865", "398"]}
+{"t": 1794780847996, "cmd": "shot", "args": ["gave_mia"]}
+{"t": 1794780848684, "cmd": "events", "args": ["4"]}
+{"t": 1794780856041, "cmd": "note", "args": ["--shot", "gave_to_mia", "Give works: 'The Camp of Easternton is now held by Mia Johnson.' But People still says 'It is your home' though Mia holds it, and the picker resets to 'Give to: you' with both Give and Take Back shown — two buttons that seem to do the same thing (give to you vs take back)."]}
+{"t": 1794780856746, "cmd": "click", "args": ["855", "398"]}
+{"t": 1794780860678, "cmd": "shot", "args": ["took_back"]}
+{"t": 1794780861846, "cmd": "events", "args": ["2"]}
+{"t": 1794780870377, "cmd": "click", "args": ["375", "436"]}
+{"t": 1794780874176, "cmd": "hold", "args": ["w", "6"]}
+{"t": 1794780881818, "cmd": "shot", "args": ["away1"]}
+{"t": 1794780882483, "cmd": "state", "args": []}
+{"t": 1794780887283, "cmd": "events", "args": ["8"]}
+{"t": 1794780900424, "cmd": "note", "args": ["--shot", "objective5_not_done", "Entered my settlement (E at the well, SETTLEMENT screen at tick 3168), gave/took it back, exited via Exit Settlement. Objective 5 'Enter your settlement' is still open afterwards. The tick stayed at 3168 the whole time I was on the settlement screen (world paused), so the objective check never ran while I was inside."]}
+{"t": 1794780900987, "cmd": "move", "args": ["75", "476"]}
+{"t": 1794780904226, "cmd": "shot", "args": ["found2_hover"]}
+{"t": 1794780911870, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1794780942393, "cmd": "key", "args": ["e"]}
+{"t": 1794780949082, "cmd": "state", "args": []}
+{"t": 1794780949323, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780953027, "cmd": "state", "args": []}
+{"t": 1794780957198, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780959853, "cmd": "walkto", "args": ["settlement", "40"]}
+{"t": 1794780966833, "cmd": "state", "args": []}
+{"t": 1794780969951, "cmd": "key", "args": ["e"]}
+{"t": 1794780978686, "cmd": "state", "args": []}
+{"t": 1794780978901, "cmd": "events", "args": ["3"]}
+{"t": 1794780984543, "cmd": "note", "args": ["--shot", "objective5_stuck_again", "Second attempt: E at my settlement at tick 3764, waited 8 s real time on the settlement screen: tps 0, tick frozen, objective 5 still not complete. The tutorial chain cannot advance past 'Enter your settlement'."]}
+{"t": 1794780985042, "cmd": "key", "args": ["Escape"]}
+{"t": 1794780989777, "cmd": "state", "args": []}
+{"t": 1794781005730, "cmd": "state", "args": []}
+{"t": 1794781005902, "cmd": "events", "args": ["4"]}
+{"t": 1794781006160, "cmd": "shot", "args": ["after_esc"]}
+{"t": 1794781014632, "cmd": "note", "args": ["--shot", "after_esc", "Correction to earlier note: objective 5 completes if you leave the settlement screen with Esc/Back (you stay 'inside' in world view, tick 3800). Leaving with 'Exit Settlement' (the more obvious button) never completes it, because the world is paused on the settlement screen. Easy to get stuck believing you did it."]}
+{"t": 1794781015087, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781077447, "cmd": "key", "args": ["e"]}
+{"t": 1794781079691, "cmd": "key", "args": ["e"]}
+{"t": 1794781081900, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781082536, "cmd": "key", "args": ["e"]}
+{"t": 1794781084765, "cmd": "key", "args": ["e"]}
+{"t": 1794781086981, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781087363, "cmd": "key", "args": ["e"]}
+{"t": 1794781089603, "cmd": "key", "args": ["e"]}
+{"t": 1794781091786, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781092373, "cmd": "key", "args": ["e"]}
+{"t": 1794781094570, "cmd": "key", "args": ["e"]}
+{"t": 1794781096664, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781097216, "cmd": "key", "args": ["e"]}
+{"t": 1794781099354, "cmd": "key", "args": ["e"]}
+{"t": 1794781101514, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781102651, "cmd": "key", "args": ["e"]}
+{"t": 1794781104841, "cmd": "key", "args": ["e"]}
+{"t": 1794781106931, "cmd": "state", "args": []}
+{"t": 1794781111903, "cmd": "click", "args": ["375", "436"]}
+{"t": 1794781115774, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781131089, "cmd": "key", "args": ["e"]}
+{"t": 1794781133187, "cmd": "key", "args": ["e"]}
+{"t": 1794781135352, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781151243, "cmd": "key", "args": ["e"]}
+{"t": 1794781153416, "cmd": "key", "args": ["e"]}
+{"t": 1794781155700, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781167577, "cmd": "key", "args": ["e"]}
+{"t": 1794781169885, "cmd": "key", "args": ["e"]}
+{"t": 1794781172377, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781172806, "cmd": "key", "args": ["e"]}
+{"t": 1794781175097, "cmd": "key", "args": ["e"]}
+{"t": 1794781177332, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781198904, "cmd": "key", "args": ["e"]}
+{"t": 1794781201192, "cmd": "key", "args": ["e"]}
+{"t": 1794781203489, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794781217674, "cmd": "key", "args": ["e"]}
+{"t": 1794781220206, "cmd": "key", "args": ["e"]}
+{"t": 1794781222676, "cmd": "state", "args": []}
+{"t": 1794781228735, "cmd": "state", "args": []}
+{"t": 1794781229045, "cmd": "state", "args": []}
+{"t": 1794781234929, "cmd": "face", "args": ["30"]}
+{"t": 1794781238168, "cmd": "hold", "args": ["Shift_L+w", "15"]}
+{"t": 1794781253779, "cmd": "state", "args": []}
+{"t": 1794781254100, "cmd": "state", "args": []}
+{"t": 1794781254526, "cmd": "shot", "args": ["walk2"]}
+{"t": 1794781265056, "cmd": "key", "args": ["f"]}
+{"t": 1794781268709, "cmd": "shot", "args": ["press_f"]}
+{"t": 1794781269436, "cmd": "events", "args": ["3"]}
+{"t": 1794781280318, "cmd": "note", "args": ["--shot", "press_f", "Found Settlement button is simply absent from the command bar in the wilds (126 m from my camp, 48 wood). Only pressing F reveals: 'Your nation may hold only 1 settlement in this era. Reach the next era to found more.' The button should stay visible, greyed, with that reason as its tooltip (it did show 'Needs 50 more wood' before the first)."]}
+{"t": 1794781281018, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794781284992, "cmd": "shot", "args": ["era_panel"]}
+{"t": 1794781297914, "cmd": "note", "args": ["--shot", "era_panel", "Second settlement is era-gated: Village era needs a Village-tier settlement 0/1, Members 2/10, Stalls 0/2 and Day 1/2. At ~7 tps on this machine, day 2 alone is ~24,000 ticks (~55 real minutes) away at tick 5676, so a second settlement is out of reach in a 40-min session. Also: expanding this era panel shoves the Inventory Info window to the middle of the screen."]}
+{"t": 1794781298466, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794781300469, "cmd": "key", "args": ["o"]}
+{"t": 1794781304306, "cmd": "shot", "args": ["nations1"]}
+{"t": 1794781314332, "cmd": "click", "args": ["671", "45"]}
+{"t": 1794781318256, "cmd": "shot", "args": ["manage1"]}
+{"t": 1794781324716, "cmd": "click", "args": ["350", "122"]}
+{"t": 1794781327801, "cmd": "type", "args": ["Ashmark"]}
+{"t": 1794781331293, "cmd": "shot", "args": ["rename_typed"]}
+{"t": 1794781341733, "cmd": "shot", "args": ["rename_typed2"]}
+{"t": 1794781350046, "cmd": "click", "args": ["860", "122"]}
+{"t": 1794781355260, "cmd": "shot", "args": ["renamed"]}
+{"t": 1794781356258, "cmd": "events", "args": ["3"]}
+{"t": 1794781356672, "cmd": "state", "args": []}
+{"t": 1794781365355, "cmd": "note", "args": ["--shot", "renamed", "Rename works and is clear: 'Easternton is now called Ashmark.'; the settlement list follows ('Camp of Ashmark ... (your home)'). Settlements have no name of their own (probe calls it just 'Settlement'), so with several they would all be 'Camp/Village of <nation>' told apart only by paces and direction. Also the Hand-to picker labels my sworn member as 'Mia Johnson (Stranger, 0)'."]}
+{"t": 1794781365619, "cmd": "click", "args": ["872", "270"]}
+{"t": 1794781370573, "cmd": "shot", "args": ["open_from_manage"]}
+{"t": 1794781371177, "cmd": "state", "args": []}
+{"t": 1794781380944, "cmd": "shot", "args": ["open_from_manage2"]}
+{"t": 1794781389185, "cmd": "click", "args": ["775", "398"]}
+{"t": 1794781393114, "cmd": "click", "args": ["865", "398"]}
+{"t": 1794781398058, "cmd": "shot", "args": ["remote_give"]}
+{"t": 1794781398717, "cmd": "events", "args": ["2"]}
+{"t": 1794781404207, "cmd": "click", "args": ["480", "436"]}
+{"t": 1794781409228, "cmd": "shot", "args": ["manage_after_give"]}
+{"t": 1794781409711, "cmd": "state", "args": []}
+{"t": 1794781418479, "cmd": "note", "args": ["--shot", "manage_after_give", "Manage list reads 'Camp of Ashmark: held by Mia Johnson, 2/8 residents, 129 paces south-west (your home).' Held by someone else yet 'your home' — no explanation of the difference between holding a settlement and it being your home, or what Mia can now do with its stockpile (29 wood, 15 stone)."]}
+{"t": 1794781418964, "cmd": "click", "args": ["872", "270"]}
+{"t": 1794781424931, "cmd": "shot", "args": ["remote_open2"]}
+{"t": 1794781431789, "cmd": "click", "args": ["728", "398"]}
+{"t": 1794781437688, "cmd": "shot", "args": ["give_to_you"]}
+{"t": 1794781438014, "cmd": "events", "args": ["2"]}
+{"t": 1794781446674, "cmd": "note", "args": ["--shot", "give_to_you", "Give with 'you' selected is NOT the same as Take Back: it makes the camp mine personally ('yours, and stays yours if you hand on the rule'), while Take Back returns it to 'held by you, as leader'. The distinction is real but only explained by one dense line; a 'Take Back' button stays visible even when I already hold it, and after each Give the picker jumps to a different person. Easy to misclick."]}
+{"t": 1794781447312, "cmd": "click", "args": ["855", "398"]}
+{"t": 1794781461429, "cmd": "shot", "args": ["take_back_from_self"]}
+{"t": 1794781461967, "cmd": "events", "args": ["1"]}
+{"t": 1794781467824, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781472386, "cmd": "state", "args": []}
+{"t": 1794781472477, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781476117, "cmd": "state", "args": []}
+{"t": 1794781476235, "cmd": "key", "args": ["h"]}
+{"t": 1794781480784, "cmd": "shot", "args": ["home_h"]}
+{"t": 1794781496449, "cmd": "state", "args": []}
+{"t": 1794781496499, "cmd": "events", "args": ["3"]}
+{"t": 1794781500724, "cmd": "walkto", "args": ["settlement", "30"]}
+{"t": 1794781505029, "cmd": "key", "args": ["e"]}
+{"t": 1794781509633, "cmd": "key", "args": ["b"]}
+{"t": 1794781514239, "cmd": "shot", "args": ["stall_b"]}
+{"t": 1794781514844, "cmd": "events", "args": ["3"]}
+{"t": 1794781533682, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781537561, "cmd": "key", "args": ["b"]}
+{"t": 1794781542244, "cmd": "shot", "args": ["stall_b2"]}
+{"t": 1794781542991, "cmd": "events", "args": ["4"]}
+{"t": 1794781543160, "cmd": "state", "args": []}
+{"t": 1794781554476, "cmd": "key", "args": ["b"]}
+{"t": 1794781559423, "cmd": "events", "args": ["2"]}
+{"t": 1794781559696, "cmd": "state", "args": []}
+{"t": 1794781559874, "cmd": "click", "args": ["108", "58"]}
+{"t": 1794781563929, "cmd": "shot", "args": ["era2"]}
+{"t": 1794781578204, "cmd": "note", "args": ["--shot", "era2", "Objective 7 progress bar text is clipped on the left: shows 'bers 2/10 · Buildings 0/2' (should read 'Members 2/10 · Buildings 0/2'). Also the objective counts 'Buildings 0/2' while the era checklist says 'Village 0/1' for the same requirement."]}
+{"t": 1794781579021, "cmd": "click", "args": ["213", "476"]}
+{"t": 1794781584001, "cmd": "state", "args": []}
+{"t": 1794781584360, "cmd": "events", "args": ["1"]}
+{"t": 1794781590943, "cmd": "click", "args": ["386", "413"]}
+{"t": 1794781595829, "cmd": "events", "args": ["2"]}
+{"t": 1794781595995, "cmd": "move", "args": ["233", "413"]}
+{"t": 1794781599199, "cmd": "shot", "args": ["house_hover"]}
+{"t": 1794781599539, "cmd": "state", "args": []}
+{"t": 1794781604320, "cmd": "click", "args": ["386", "413"]}
+{"t": 1794781609425, "cmd": "events", "args": ["2"]}
+{"t": 1794781609648, "cmd": "state", "args": []}
+{"t": 1794781609943, "cmd": "move", "args": ["233", "413"]}
+{"t": 1794781613199, "cmd": "shot", "args": ["house_hover"]}
+{"t": 1794781621167, "cmd": "click", "args": ["386", "413"]}
+{"t": 1794781627153, "cmd": "events", "args": ["3"]}
+{"t": 1794781627290, "cmd": "state", "args": []}
+{"t": 1794781634755, "cmd": "shot", "args": ["farm_try"]}
+{"t": 1794781635152, "cmd": "state", "args": []}
+{"t": 1794781635357, "cmd": "state", "args": []}
+{"t": 1794781644311, "cmd": "click", "args": ["386", "413"]}
+{"t": 1794781645241, "cmd": "click", "args": ["386", "413"]}
+{"t": 1794781651218, "cmd": "events", "args": ["3"]}
+{"t": 1794781651441, "cmd": "state", "args": []}
+{"t": 1794781658032, "cmd": "note", "args": ["--shot", "farm_try", "Build Farm uses click-to-confirm, but the confirm window expires in game time: first click at tick 6380, second click ~13 s real later at 1-2 fps -> 'Not confirmed in time, so nothing was done.' On a slow machine a normal human second click misses it; only two back-to-back clicks worked (tick 6876/6888)."]}
+{"t": 1794781658627, "cmd": "move", "args": ["233", "413"]}
+{"t": 1794781662891, "cmd": "shot", "args": ["house_hover2"]}
+{"t": 1794781671622, "cmd": "click", "args": ["563", "445"]}
+{"t": 1794781676861, "cmd": "shot", "args": ["market"]}
+{"t": 1794781683730, "cmd": "click", "args": ["563", "445"]}
+{"t": 1794781690533, "cmd": "state", "args": []}
+{"t": 1794781690645, "cmd": "shot", "args": ["market2"]}
+{"t": 1794781699051, "cmd": "note", "args": ["--shot", "market2", "Market panel overlaps the command bar: when a pawn (Mia) is near, the new 'Order Mia Johnson: Gather Wood' / 'Talk to' / 'Gift' / Craft / Eat Apple buttons draw on top of the market's Buy/Sell row ('Buy 1 for 43', 'Sell 1 for 41' are mostly hidden). Clicking there is a gamble about which window gets it."]}
+{"t": 1794781699392, "cmd": "click", "args": ["480", "177"]}
+{"t": 1794781703209, "cmd": "click", "args": ["487", "328"]}
+{"t": 1794781707076, "cmd": "click", "args": ["487", "328"]}
+{"t": 1794781710964, "cmd": "shot", "args": ["market_stone"]}
+{"t": 1794781718684, "cmd": "note", "args": ["--shot", "market_stone", "Selected Stone in the market, then clicked where '+5' sat a moment earlier (487,328): instead 'Sold 1 stone to Mia Johnson for 27 coins' — the market layout shifted after selecting a row, so the click landed on a sell control. Wanted to buy stone for a House, lost one instead."]}
+{"t": 1794781719065, "cmd": "click", "args": ["480", "333"]}
+{"t": 1794781724956, "cmd": "shot", "args": ["after_event"]}
+{"t": 1794781725298, "cmd": "events", "args": ["3"]}
+{"t": 1794781733558, "cmd": "click", "args": ["357", "385"]}
+{"t": 1794781737410, "cmd": "click", "args": ["480", "477"]}
+{"t": 1794781740383, "cmd": "click", "args": ["375", "476"]}
+{"t": 1794781745125, "cmd": "state", "args": []}
+{"t": 1794781745322, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794781745885, "cmd": "key", "args": ["e"]}
+{"t": 1794781748021, "cmd": "key", "args": ["e"]}
+{"t": 1794781750139, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794781750834, "cmd": "key", "args": ["e"]}
+{"t": 1794781752883, "cmd": "key", "args": ["e"]}
+{"t": 1794781755100, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794781756915, "cmd": "key", "args": ["e"]}
+{"t": 1794781759011, "cmd": "key", "args": ["e"]}
+{"t": 1794781761061, "cmd": "state", "args": []}
+{"t": 1794781768160, "cmd": "click", "args": ["375", "436"]}
+{"t": 1794781771993, "cmd": "state", "args": []}
+{"t": 1794781772141, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794781808215, "cmd": "key", "args": ["e"]}
+{"t": 1794781810290, "cmd": "key", "args": ["e"]}
+{"t": 1794781812334, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794781822693, "cmd": "key", "args": ["e"]}
+{"t": 1794781824811, "cmd": "key", "args": ["e"]}
+{"t": 1794781826844, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794781855997, "cmd": "key", "args": ["e"]}
+{"t": 1794781858144, "cmd": "key", "args": ["e"]}
+{"t": 1794781860313, "cmd": "state", "args": []}
+{"t": 1794781865217, "cmd": "key", "args": ["h"]}
+{"t": 1794781869845, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1794781870458, "cmd": "key", "args": ["e"]}
+{"t": 1794781875059, "cmd": "key", "args": ["Escape"]}
+{"t": 1794781879734, "cmd": "shot", "args": ["before_house"]}
+{"t": 1794781880107, "cmd": "state", "args": []}
+{"t": 1794781886873, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794781887718, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794781893619, "cmd": "events", "args": ["4"]}
+{"t": 1794781893708, "cmd": "state", "args": []}
+{"t": 1794781901297, "cmd": "shot", "args": ["village_tier"]}
+{"t": 1794781901553, "cmd": "key", "args": ["o"]}
+{"t": 1794781906102, "cmd": "click", "args": ["671", "45"]}
+{"t": 1794781910910, "cmd": "shot", "args": ["manage_village"]}
+{"t": 1794781919435, "cmd": "note", "args": ["--shot", "village_tier", "After Farm + House: 'The settlement is now a Village!' but the era is still Camp (1/4). 'Village' means both a settlement tier and the next era (checklist line 'Village 1/1' under 'To reach the Village era'), easy to think you've reached the era. Remaining gates Members 6/10 and Day 1/2 (day 2 at tick 30000; now tick ~9150). Also the red Leave Nation button at bottom-left collapsed to a thin red line under the taller command bar."]}
+{"t": 1794781919662, "cmd": "state", "args": []}
+{"t": 1794781919760, "cmd": "events", "args": ["200"]}
+{"t": 1794781919855, "cmd": "stop", "args": []}
+{"t": 1794781958384, "cmd": "report", "args": []}
+{"t": 1794782466925, "cmd": "stop", "args": []}

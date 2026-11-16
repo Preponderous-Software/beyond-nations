@@ -196,7 +196,15 @@ namespace beyondnationstests {
             Assert.Single(simulation.getWorldEvents().getEffects());
 
             run(simulation, WorldEvents.BANDIT_THEFT_SECONDS * 50 + 1);
-            Assert.True(s.friendlySettlement.getFunds() <= 50 - WorldEvents.BANDIT_THEFT_COINS);
+            // against the same world left alone for as long: the settlement
+            // also earns in that minute (stall income, taxes), so the theft
+            // shows as a shortfall rather than against the 50 it started with
+            Simulation unrobbed = newWorld();
+            DiplomacyShowcase.Staged control = staged(unrobbed);
+            setFunds(control.friendlySettlement, 50);
+            run(unrobbed, WorldEvents.BANDIT_THEFT_SECONDS * 50 + 1);
+            Assert.True(s.friendlySettlement.getFunds() <= control.friendlySettlement.getFunds() - WorldEvents.BANDIT_THEFT_COINS,
+                "robbed " + s.friendlySettlement.getFunds() + ", left alone " + control.friendlySettlement.getFunds());
 
             // the player does not lead it: it is not the player's to deal with
             Assert.False(simulation.getWorldEvents().offerStandingBanditCamp(simulation, s.friendlySettlement.getId()));

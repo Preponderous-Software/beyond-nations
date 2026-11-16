@@ -46,6 +46,19 @@ namespace beyondnations {
             this.realm = realm;
         }
 
+        // ground kept for the player in the opening (territory/ReservedGround); null in most tests
+        private ReservedGround reservedGround;
+
+        /** Keeps pawns off the spawn grove and from founding on ground held for the player (#351, #433). */
+        public void setReservedGround(ReservedGround reservedGround) {
+            this.reservedGround = reservedGround;
+        }
+
+        /** What a pawn may not gather from now (the spawn grove in the opening), or null when it may gather anything. */
+        private System.Func<Entity, bool> guardedResources() {
+            return reservedGround != null && reservedGround.isOpening() ? reservedGround.isGuarded : null;
+        }
+
         public void executeBehavior(Pawn pawn, BehaviorType behaviorType) {
             switch (behaviorType) {
                 case BehaviorType.NONE:
@@ -54,7 +67,10 @@ namespace beyondnations {
                     executeGatherResourcesBehavior(pawn);
                     break;
                 case BehaviorType.SELL_RESOURCES:
+                    // a pawn's winter store is not for sale (WinterStoreKeeping)
+                    Inventory keptToSell = WinterStoreKeeping.setAside(pawn, currentSeason());
                     executeSellResourcesBehavior(pawn);
+                    WinterStoreKeeping.restore(pawn, keptToSell);
                     break;
                 case BehaviorType.WANDER:
                     executeWanderBehavior(pawn);
@@ -84,7 +100,10 @@ namespace beyondnations {
                     executePurchaseStallBehavior(pawn);
                     break;
                 case BehaviorType.TRANSFER_ITEMS_TO_STALL:
+                    // nor stocked on a merchant's stall (WinterStoreKeeping)
+                    Inventory keptToStock = WinterStoreKeeping.setAside(pawn, currentSeason());
                     executeTransferItemsToStallBehavior(pawn);
+                    WinterStoreKeeping.restore(pawn, keptToStock);
                     break;
                 case BehaviorType.JOIN_NATION:
                     executeJoinNationBehavior(pawn);
@@ -110,10 +129,21 @@ namespace beyondnations {
                 case BehaviorType.SEEK_SETTLEMENT_SITE:
                     executeSeekSettlementSiteBehavior(pawn);
                     break;
+                case BehaviorType.BUY_TRADE_GOODS:
+                    executeBuyTradeGoodsBehavior(pawn);
+                    break;
+                case BehaviorType.TRAVEL_TO_MARKET:
+                    executeTravelToMarketBehavior(pawn);
+                    break;
                 default:
                     Log.error("Behavior type " + behaviorType + " is not implemented.");
                     break;
             }
+        }
+
+        /** The season now; without a calendar it is always spring. */
+        private Season currentSeason() {
+            return seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
         }
 
         /** Whether the trees pawns fell carry apples now: not in winter. Without a calendar it is always spring. */
@@ -122,7 +152,7 @@ namespace beyondnations {
         }
 
         private void executeGatherResourcesBehavior(Pawn pawn) {
-            if (!pawn.hasTargetEntity() || !isGatherable(pawn.getTargetEntity().getType())) {
+            if (!pawn.hasTargetEntity() || !isGatherable(pawn.getTargetEntity().getType()) || isChasingAFarChicken(pawn)) {
                 Entity target = selectGatherTarget(pawn);
                 if (target != null) {
                     pawn.setTargetEntity(target);
@@ -188,8 +218,33 @@ namespace beyondnations {
          * The entity types a pawn gathers from by walking up to them and taking
          * their inventory -- the same set the player's interact command harvests.
          */
+        /** How often a pawn walking to a far chicken for food looks for something nearer: once a second. */
+        public const int FAR_CHICKEN_RECHECK_TICKS = 50;
+
         private static bool isGatherable(EntityType type) {
             return type == EntityType.TREE || type == EntityType.ROCK || type == EntityType.CHICKEN;
+        }
+
+        /**
+        * Whether a pawn after food is walking to a chicken beyond hunting
+        * range, which it took only for want of anything nearer: it looks
+        * again once a second (FAR_CHICKEN_RECHECK_TICKS), so the spring's
+        * first fruit or a nearer chicken turns it round. A starving pawn kept
+        * the far chicken it had chosen in winter into spring and died on the
+        * road (#484).
+        */
+        private bool isChasingAFarChicken(Pawn pawn) {
+            if (tickCounter == null || tickCounter.getTotalTicks() % FAR_CHICKEN_RECHECK_TICKS != 0) {
+                return false;
+            }
+            Entity target = pawn.getTargetEntity();
+            if (target == null || target.getType() != EntityType.CHICKEN) {
+                return false;
+            }
+            if (Vector3.Distance(pawn.getPosition(), target.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
+                return false;
+            }
+            return pawn.needsFood() || (seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason()));
         }
 
         /**
@@ -209,6 +264,7 @@ namespace beyondnations {
          * go for stone (docs/SYSTEMS.md, "Seasons").
          */
         private Entity selectGatherTarget(Pawn pawn) {
+            System.Func<Entity, bool> guarded = guardedResources();
             bool hungry = pawn.needsFood();
             bool wantsStores = seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason());
             if (hungry || wantsStores) {
@@ -216,8 +272,13 @@ namespace beyondnations {
                 if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
                     return nearestChicken;
                 }
-                Entity nearestFruit = environment.getNearestTree(pawn.getPosition());
-                if (nearestFruit != null && treesBearFruit() && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
+                // the nearest tree in fruit, not the nearest tree: after winter the
+                // nearest is often bare (grown from a sapling, or picked), and a
+                // starving pawn walked past fruit 25 m off to a chicken 1,500 m
+                // away and died on the way (#484)
+                Entity nearestFruit = !treesBearFruit() ? null : environment.getNearestEntityOfType(pawn.getPosition(), EntityType.TREE,
+                    tree => (guarded != null && guarded(tree)) || tree.getInventory().getNumItems(ItemType.APPLE) == 0);
+                if (nearestFruit != null) {
                     return nearestFruit;
                 }
                 if (hungry && nearestChicken != null) {
@@ -225,8 +286,9 @@ namespace beyondnations {
                 }
             }
 
-            Entity nearestTree = environment.getNearestTree(pawn.getPosition());
-            Entity nearestRock = environment.getNearestRock(pawn.getPosition());
+            // never the trees and rocks by the player's spawn in the opening (ReservedGround, #351)
+            Entity nearestTree = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.TREE, guarded);
+            Entity nearestRock = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.ROCK, guarded);
 
             // Wood enough for a stall but short of the stone a house takes: go for a rock,
             // rocks are scarce and the nearest-wins rule rarely picks one.
@@ -252,7 +314,15 @@ namespace beyondnations {
             Settlement settlement = (Settlement) entityRepository.getEntity(pawn.getCurrentSettlementId());
             
             Market market = settlement.getMarket();
-            EntityId stallOwnerId = market.sellResources(pawn, PawnTraits.sellPriceBonusPercent(pawn));
+            Nation pawnNation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (Traders.isTrader(pawnNation, pawn.getId())) {
+                sellTraderLoad(pawn, settlement);
+                return;
+            }
+            // selling surplus leaves every till its float, so the player still
+            // finds a market that can pay; a hungry pawn sells to eat (#369)
+            int keepInTill = pawn.needsFood() ? 0 : Stall.TILL_RESERVE;
+            EntityId stallOwnerId = market.sellResources(pawn, PawnTraits.sellPriceBonusPercent(pawn), keepInTill);
             if (stallOwnerId == null) {
                 Log.warning("Pawn " + pawn + " tried to sell resources but was unable to.");
                 pawn.setCurrentBehaviorType(BehaviorType.NONE);
@@ -274,6 +344,115 @@ namespace beyondnations {
                 }
             }
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        /**
+        * A trader sells its whole load at once, good by good (Market.sellUnits),
+        * leaving every till its float; a sale at another nation's market warms
+        * the two nations a little, as the player's does (Diplomacy.recordTrade).
+        */
+        private void sellTraderLoad(Pawn pawn, Settlement settlement) {
+            Market market = settlement.getMarket();
+            int keepInTill = pawn.needsFood() ? 0 : Stall.TILL_RESERVE;
+            int sold = 0;
+            int takings = 0;
+            List<string> goods = new List<string>();
+            foreach (ItemType itemType in MarketPricing.PricedItems) {
+                int quantity = pawn.getInventory().getNumItems(itemType);
+                if (quantity <= 0 || !Market.isSoldInBulk(itemType)) {
+                    continue;
+                }
+                TradeReceipt receipt = market.sellUnits(pawn, itemType, quantity, keepInTill);
+                sold += receipt.getQuantity();
+                takings += receipt.getCoins();
+                if (receipt.getQuantity() > 0) {
+                    goods.Add(ItemNames.describeQuantity(itemType, receipt.getQuantity()));
+                }
+                foreach (EntityId buyerId in receipt.getCounterparties()) {
+                    Entity buyer = entityRepository.getEntity(buyerId);
+                    if (buyer != null) {
+                        increaseRelationshipWith(pawn, buyer);
+                    }
+                }
+            }
+            if (sold > 0) {
+                Diplomacy.recordTrade(nationRepository, pawn.getNationId(), settlement);
+                Log.debug("Trader " + pawn.getName() + " sold " + sold + " goods at " + settlement.getDisplayName());
+                Nation nation = nationRepository.getNation(pawn.getNationId());
+                if (nation != null) {
+                    eventProducer.produceTraderEvent(new TraderEvent(TraderEventKind.Sold, pawn, nation.getId(),
+                        Traders.describeSale(pawn, nation, string.Join(", ", goods), takings, settlement)));
+                }
+            }
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+        }
+
+        /**
+        * A trader (or a serf taking up trade, #167) buys the load its best
+        * run from this market calls for (Traders.planRun). A serf becomes a
+        * trader with its first load.
+        */
+        private void executeBuyTradeGoodsBehavior(Pawn pawn) {
+            pawn.setCurrentBehaviorType(BehaviorType.NONE);
+            Settlement here = pawn.getCurrentSettlementId() == null ? null : entityRepository.getEntity(pawn.getCurrentSettlementId()) as Settlement;
+            Nation nation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (here == null || nation == null) {
+                return;
+            }
+            NationRole role = nation.getRole(pawn.getId());
+            if (role == NationRole.SERF) {
+                if (!nation.getId().Equals(here.getNationId()) || !Traders.hasRoomForTrader(nation)) {
+                    return;
+                }
+            }
+            else if (role != NationRole.TRADER) {
+                return;
+            }
+            Traders.TradeRun run = Traders.planRun(pawn, here, Traders.getMarkets(entityRepository, nationRepository, here, pawn.getNationId()));
+            if (run == null) {
+                return;
+            }
+            if (role == NationRole.SERF) {
+                nation.setRole(pawn.getId(), NationRole.TRADER);
+                Log.info("Pawn " + pawn.getName() + " took up trade in " + here.getDisplayName() + ".");
+                // told, not just done (#487): the role used to change in silence
+                eventProducer.produceTraderEvent(new TraderEvent(TraderEventKind.TookUpTrade, pawn, nation.getId(),
+                    pawn.getName() + " took up trade for " + nation.getName() + " at the " + here.getDisplayName()
+                    + " (one trader per settlement)."));
+            }
+            TradeReceipt receipt = here.getMarket().buyUnits(pawn, run.good, run.quantity);
+            if (!receipt.isEmpty()) {
+                eventProducer.produceTraderEvent(new TraderEvent(TraderEventKind.Bought, pawn, nation.getId(),
+                    Traders.describePurchase(pawn, nation, receipt, here, run.destination)));
+            }
+            foreach (EntityId sellerId in receipt.getCounterparties()) {
+                Entity seller = entityRepository.getEntity(sellerId);
+                if (seller != null) {
+                    increaseRelationshipWith(pawn, seller);
+                }
+            }
+        }
+
+        /** A trader on the road walks to whichever market pays most for its load, and goes in. */
+        private void executeTravelToMarketBehavior(Pawn pawn) {
+            if (pawn.isCurrentlyInSettlement()) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            Settlement destination = Traders.findDestinationOnTheRoad(entityRepository, nationRepository, pawn);
+            if (destination == null) {
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            if (pawn.getTargetEntity() != destination) {
+                pawn.setTargetEntity(destination);
+            }
+            if (pawn.isAtTargetEntity(20)) {
+                SettlementLife.admit(pawn, destination);
+                pawn.setCurrentBehaviorType(BehaviorType.NONE);
+                return;
+            }
+            pawn.moveTowardsTargetEntity();
         }
 
         private void executeWanderBehavior(Pawn pawn) {
@@ -343,7 +522,9 @@ namespace beyondnations {
                 return;
             }
             // never inside another nation's land, nor past what the era allows (EraRules)
-            if (!nation.canFoundSettlement() || Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null) {
+            // nor on ground held for the player (ReservedGround, #433)
+            if (!nation.canFoundSettlement() || Territory.getFoundingObjection(entityRepository, nationRepository, targetPosition, nation.getId()) != null
+                    || (reservedGround != null && gameConfig != null && !reservedGround.allowsPawnFounding(targetPosition, gameConfig.getMinDistanceBetweenSettlements()))) {
                 pawn.setCurrentBehaviorType(BehaviorType.WANDER);
                 return;
             }
@@ -501,12 +682,14 @@ namespace beyondnations {
                 return;
             }
 
-            // remove money
-            pawn.getInventory().removeItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
-
-            // assign ownership of stall to pawn
+            // assign ownership of stall to pawn; the price goes into its till
+            // as the float it pays its first sellers with, rather than
+            // vanishing and leaving a new market with no coin (#369)
             Stall stall = market.getStallForSale();
             stall.setOwnerId(pawn.getId());
+            pawn.getInventory().removeItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
+            stall.getInventory().addItem(ItemType.COIN, Stall.COIN_COST_TO_PURCHASE);
+            stall.depositSavings(pawn);
             nation.setRole(pawn.getId(), NationRole.MERCHANT);
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
@@ -540,13 +723,10 @@ namespace beyondnations {
             if (crafted > 0) {
                 Log.info("Pawn " + pawn.getName() + " crafted " + crafted + " batches of goods for their stall.");
             }
-            stall.transferContentsFromEntity(pawn);
+            stall.stockGoodsFrom(pawn);
 
-            // get half of coins from stall
-            int numCoins = stall.getInventory().getNumItems(ItemType.COIN);
-            int numCoinsToTransfer = numCoins / 2;
-            stall.getInventory().removeItem(ItemType.COIN, numCoinsToTransfer);
-            pawn.getInventory().addItem(ItemType.COIN, numCoinsToTransfer);
+            // take half of what the till holds above its float (#369)
+            stall.takeProfit(pawn, true);
 
             Log.debug("Pawn " + pawn.getName() + " transferred items to their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
@@ -652,10 +832,8 @@ namespace beyondnations {
                 return;
             }
 
-            // collect profit
-            int profit = stall.getInventory().getNumItems(ItemType.COIN);
-            pawn.getInventory().addItem(ItemType.COIN, profit);
-            stall.getInventory().removeItem(ItemType.COIN, profit);
+            // collect profit, leaving the till its float (#369)
+            int profit = stall.takeProfit(pawn, false);
             Log.debug("Pawn " + pawn.getName() + " collected " + profit + " coins from their stall.");
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
@@ -744,7 +922,7 @@ namespace beyondnations {
             List<Entity> settlements = entityRepository.getEntitiesOfType(EntityType.SETTLEMENT);
             Vector3 away = gameConfig == null
                 ? computeAwayFromSettlements(pawn.getPosition(), settlements)
-                : computeTowardSettlementSite(pawn.getPosition(), settlements, gameConfig.getMinDistanceBetweenSettlements());
+                : computeTowardSettlementSite(pawn.getPosition(), settlements, gameConfig.getMinDistanceBetweenSettlements(), reservedGround);
             if (away == Vector3.Zero) {
                 return;
             }
@@ -776,9 +954,9 @@ namespace beyondnations {
         * (#402, found while #395 was diagnosed). A fixed point to walk to
         * gets closer with every step.
         */
-        public static Vector3? findSettlementSite(Vector3 position, List<Entity> settlements, float minDistance) {
+        public static Vector3? findSettlementSite(Vector3 position, List<Entity> settlements, float minDistance, ReservedGround reserved = null) {
             float required = minDistance + SiteMargin;
-            if (clearance(position, settlements) > required) {
+            if (clearance(position, settlements, reserved) > required) {
                 return position;
             }
             for (float radius = SiteSearchStep; radius <= SiteSearchRange; radius += SiteSearchStep) {
@@ -787,7 +965,7 @@ namespace beyondnations {
                 for (int i = 0; i < SiteSearchAngles; i++) {
                     float angle = i * 2f * System.MathF.PI / SiteSearchAngles;
                     Vector3 candidate = new Vector3(position.X + radius * System.MathF.Cos(angle), position.Y, position.Z + radius * System.MathF.Sin(angle));
-                    float room = clearance(candidate, settlements);
+                    float room = clearance(candidate, settlements, reserved);
                     if (room > bestRoom) {
                         bestRoom = room;
                         best = candidate;
@@ -801,8 +979,8 @@ namespace beyondnations {
         }
 
         /** The unit direction to findSettlementSite's point, or away from the settlements when there is none in range; zero once there. */
-        public static Vector3 computeTowardSettlementSite(Vector3 position, List<Entity> settlements, float minDistance) {
-            Vector3? site = findSettlementSite(position, settlements, minDistance);
+        public static Vector3 computeTowardSettlementSite(Vector3 position, List<Entity> settlements, float minDistance, ReservedGround reserved = null) {
+            Vector3? site = findSettlementSite(position, settlements, minDistance, reserved);
             if (site == null) {
                 return computeAwayFromSettlements(position, settlements);
             }
@@ -811,9 +989,13 @@ namespace beyondnations {
             return toward.LengthSquared() < 0.01f ? Vector3.Zero : VectorMath.normalized(toward);
         }
 
-        /** The horizontal distance from the position to the nearest settlement (MaxValue with none). */
-        private static float clearance(Vector3 position, List<Entity> settlements) {
-            float nearest = float.MaxValue;
+        /**
+        * The horizontal distance from the position to the nearest settlement
+        * (MaxValue with none), or to the edge of the ground reserved for the
+        * player when that is nearer (ReservedGround.getRoom).
+        */
+        private static float clearance(Vector3 position, List<Entity> settlements, ReservedGround reserved = null) {
+            float nearest = reserved == null ? float.MaxValue : reserved.getRoom(position);
             foreach (Entity settlement in settlements) {
                 float dx = position.X - settlement.getPosition().X;
                 float dz = position.Z - settlement.getPosition().Z;
@@ -866,6 +1048,16 @@ namespace beyondnations {
         }
 
         // helpers -----------------------------------------------------------------------------------------------
+
+        /** A trade with a stall's keeper, pawn or player, warms the two by one. */
+        private void increaseRelationshipWith(Pawn pawn, Entity other) {
+            if (other is Pawn) {
+                increaseRelationship(pawn, (Pawn) other, 1);
+            }
+            else if (other is Player) {
+                increaseRelationship(pawn, (Player) other, 1);
+            }
+        }
 
         private void increaseRelationship(Pawn pawn, Pawn otherPawn, int amount) {
             pawn.increaseRelationship(otherPawn, amount);

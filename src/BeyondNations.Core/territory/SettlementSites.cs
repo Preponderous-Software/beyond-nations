@@ -88,24 +88,33 @@ namespace beyondnations {
             return nearest;
         }
 
-        /** "Open ground lies about 90 to the south-west." or, when none is near, "No open ground lies within 1000." */
+        /** "Open ground lies about 90 paces to the south-west." or, when none is near, "No open ground lies within 1000 paces." */
         public static string describeNearestOpenSite(EntityRepository entityRepository, Vector3 from, int minDistance, NationId founder) {
-            Vector3? site = findNearestOpenSite(entityRepository, from, minDistance, founder);
+            return describeOpenSite(from, findNearestOpenSite(entityRepository, from, minDistance, founder));
+        }
+
+        /** describeNearestOpenSite for a site already found (null for none). */
+        public static string describeOpenSite(Vector3 from, Vector3? site) {
             if (site == null) {
-                return "No open ground lies within " + (int) SEARCH_RADIUS + ".";
+                return "No open ground lies within " + (int) SEARCH_RADIUS + " paces.";
             }
             int distance = (int) System.MathF.Ceiling(Territory.groundDistance(from, site.Value));
-            return "Open ground lies about " + distance + " to the " + Compass.describe(from, site.Value) + ".";
+            return "Open ground lies about " + distance + " paces to the " + Compass.describe(from, site.Value) + ".";
         }
 
         /**
-        * "Too close to the Camp of Aland: 175 away, and settlements must be
-        * 250 apart. Open ground lies about 80 to the west."
+        * "Too close to the Camp of Aland: 175 paces away, and settlements must be
+        * 250 paces apart. Open ground lies about 80 paces to the west."
         */
         public static string describeTooClose(EntityRepository entityRepository, Vector3 position, Settlement tooClose, int minDistance, NationId founder) {
+            return describeTooClose(position, tooClose, minDistance, findNearestOpenSite(entityRepository, position, minDistance, founder));
+        }
+
+        /** describeTooClose for an open site already found (null for none). */
+        public static string describeTooClose(Vector3 position, Settlement tooClose, int minDistance, Vector3? site) {
             int distance = (int) Vector3.Distance(position, tooClose.getPosition());
-            return "Too close to the " + tooClose.getDisplayName() + ": " + distance + " away, and settlements must be " + minDistance + " apart. "
-                + describeNearestOpenSite(entityRepository, position, minDistance, founder);
+            return "Too close to the " + tooClose.getDisplayName() + ": " + distance + " paces away, and settlements must be " + minDistance + " paces apart. "
+                + describeOpenSite(position, site);
         }
     }
 
@@ -123,6 +132,11 @@ namespace beyondnations {
             float angle = System.MathF.Atan2(dz, dx);
             int index = (int) System.MathF.Round(angle / (System.MathF.PI / 4f));
             return Points[((index % Points.Length) + Points.Length) % Points.Length];
+        }
+
+        /** Which way a direction points along the ground, e.g. Player.getForward() as "north-east"; "here" for a vertical or zero one. */
+        public static string facing(Vector3 direction) {
+            return describe(Vector3.Zero, direction);
         }
     }
 }

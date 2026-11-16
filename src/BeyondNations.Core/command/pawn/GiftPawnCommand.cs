@@ -5,7 +5,9 @@ namespace beyondnations {
     * given is chosen for the pawn: food first when it is hungry (it is worth
     * the most to a pawn that needs it), otherwise coins, then any food, then
     * wood or stone. The relationship rises by how much the gift is worth to
-    * that pawn right now.
+    * that pawn right now. A pawn that leads another nation will never join
+    * the player's (InvitePawnToNationCommand), so a gift to one says so:
+    * the gift still warms it, but it buys no member (#371).
     */
     public class GiftPawnCommand {
         public const int HUNGRY_FOOD_GIFT_GAIN = 6;
@@ -16,9 +18,44 @@ namespace beyondnations {
         public const int RESOURCE_GIFT_GAIN = 1;
 
         private readonly EventProducer eventProducer;
+        private readonly NationRepository nationRepository;
 
-        public GiftPawnCommand(EventProducer eventProducer) {
+        public GiftPawnCommand(EventProducer eventProducer) : this(eventProducer, null) {
+        }
+
+        /** With a nation repository, a gift to another nation's leader carries leaderWarning. */
+        public GiftPawnCommand(EventProducer eventProducer, NationRepository nationRepository) {
             this.eventProducer = eventProducer;
+            this.nationRepository = nationRepository;
+        }
+
+        /**
+        * The nation this pawn leads, when it is not the player's own; null
+        * otherwise. Such a pawn never accepts an invitation.
+        */
+        public static Nation getRivalNationLed(Player player, Pawn pawn, NationRepository nationRepository) {
+            if (nationRepository == null || pawn.getNationId() == null || pawn.getNationId() == player.getNationId()) {
+                return null;
+            }
+            Nation nation = nationRepository.getNation(pawn.getNationId());
+            if (nation == null || !pawn.getId().Equals(nation.getLeaderId())) {
+                return null;
+            }
+            return nation;
+        }
+
+        /**
+        * " Alice leads Ashford and will never join your nation." for a pawn
+        * that leads another nation, or "" -- appended to the gift's status
+        * line and used as the Gift button's tooltip, so a player courting a
+        * leader for a member learns it before spending more on it.
+        */
+        public static string leaderWarning(Player player, Pawn pawn, NationRepository nationRepository) {
+            Nation nation = getRivalNationLed(player, pawn, nationRepository);
+            if (nation == null) {
+                return "";
+            }
+            return " " + pawn.getName() + " leads " + nation.getName() + " and will never join your nation.";
         }
 
         /** Whether the player holds anything this command could give. */
@@ -28,6 +65,11 @@ namespace beyondnations {
                 || inventory.getNumItems(ItemType.COIN) >= COIN_GIFT_AMOUNT
                 || inventory.getNumItems(ItemType.WOOD) >= RESOURCE_GIFT_AMOUNT
                 || inventory.getNumItems(ItemType.STONE) >= RESOURCE_GIFT_AMOUNT;
+        }
+
+        /** What makes a gift, for the greyed Gift button and the refusal. */
+        public static string describeWhatMakesAGift() {
+            return "Food, " + COIN_GIFT_AMOUNT + " coins or " + RESOURCE_GIFT_AMOUNT + " wood or stone make a gift.";
         }
 
         public void execute(Player player, Pawn pawn) {
@@ -70,7 +112,7 @@ namespace beyondnations {
                 reaction = "Stone? Well, thank you.";
             }
             else {
-                player.getStatus().update("You have nothing to give " + pawn.getName() + ". Food, " + COIN_GIFT_AMOUNT + " coins or " + RESOURCE_GIFT_AMOUNT + " wood or stone make a gift.");
+                player.getStatus().update("You have nothing to give " + pawn.getName() + ". " + describeWhatMakesAGift());
                 return;
             }
 
@@ -79,7 +121,8 @@ namespace beyondnations {
             bool tierUp = PawnRelations.raise(pawn, player, gain, eventProducer);
 
             player.getStatus().update("You gave " + pawn.getName() + " " + quantity + " " + itemType.ToString().ToLower() + ". "
-                + PawnRelations.describe(pawn, player) + ": \"" + reaction + "\"" + PawnRelations.tierUpSuffix(tierUp, pawn, player));
+                + PawnRelations.describe(pawn, player) + ": \"" + reaction + "\"" + PawnRelations.tierUpSuffix(tierUp, pawn, player)
+                + leaderWarning(player, pawn, nationRepository));
         }
     }
 }

@@ -124,5 +124,10 @@ namespace beyondnations {
             eventRepository.addEvent(caravanEvent);
             Log.debug("Produced event: " + caravanEvent);
         }
+
+        public void produceTraderEvent(TraderEvent traderEvent) {
+            eventRepository.addEvent(traderEvent);
+            Log.debug("Produced event: " + traderEvent);
+        }
     }
 }

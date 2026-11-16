@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 
@@ -38,8 +39,77 @@ namespace beyondnations {
             this.seasonCalendar = seasonCalendar;
         }
 
+        // ground kept for the player in the opening (territory/ReservedGround); null in most tests
+        private ReservedGround reservedGround;
+
+        /** Keeps pawns from founding on the ground held for the player (#433). */
+        public void setReservedGround(ReservedGround reservedGround) {
+            this.reservedGround = reservedGround;
+        }
+
+        /** Whether a settlement founded here would leave the player's reserved ground open. */
+        private bool clearOfReservedGround(Pawn pawn) {
+            return reservedGround == null || reservedGround.allowsPawnFounding(pawn.getPosition(), gameConfig.getMinDistanceBetweenSettlements());
+        }
+
+        /** The season now; without a calendar it is always spring. */
+        private Season currentSeason() {
+            return seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
+        }
+
+        /** Whether the pawn carries an abundance to sell or stock, not counting the winter store it keeps (WinterStoreKeeping). */
+        private bool hasAbundanceBeyondStore(Pawn pawn) {
+            Inventory kept = WinterStoreKeeping.setAside(pawn, currentSeason());
+            bool abundance = pawn.getInventory().containsAbundanceOfResources();
+            WinterStoreKeeping.restore(pawn, kept);
+            return abundance;
+        }
+
         private bool isWinter() {
             return seasonCalendar != null && seasonCalendar.isWinter();
+        }
+
+        /**
+        * Whether the nation holding this settlement cannot feed its members
+        * (WinterStores.cannotFeed), so a nationless pawn passes it by rather
+        * than join and be another mouth (#489). Asked only by a nationless
+        * pawn at a settlement's edge, so counting each time is cheap.
+        */
+        private bool nationCannotFeed(Settlement settlement) {
+            Season season = seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
+            return WinterStores.cannotFeed(entityRepository, settlement.getNationId(), season);
+        }
+
+        /**
+        * How many nations the world may hold before the Village era's day
+        * (EraRules.VillageDay) and still see a stranger declare another.
+        */
+        public const int EARLY_NATION_LIMIT = 6;
+
+        /**
+        * Whether a nationless pawn (not a seceding settler) may declare a
+        * nation of its own. Any pawn with the wood used to, and by the
+        * afternoon of day 1 nearly every stranger led a nation of one -- 20
+        * and more in the chronicle, 17 within the first 74 seconds -- leaving
+        * no one for a player to court toward a first member or the Village
+        * era's ten (playtest 0.8.0 s02, s06). Now, before the Village era's
+        * day, a stranger strikes out alone only while the world has fewer
+        * than EARLY_NATION_LIMIT nations, so a young world still has a few
+        * neighbours; the rest keep gathering and stay strangers, to be
+        * invited, or to join a settlement they come near. From that day any
+        * pawn may, as before -- except in winter, when no one strikes out
+        * alone: with the nations it passes unable to feed newcomers (#489),
+        * strangers declared a nation of one apiece, and a winter's chronicle
+        * filled with nations born to starve.
+        */
+        public bool mayDeclareNation(Pawn pawn) {
+            if (isWinter()) {
+                return false;
+            }
+            if (timeOfDay == null || timeOfDay.getDay() >= EraRules.VillageDay) {
+                return true;
+            }
+            return nationRepository.getNumberOfNations() < EARLY_NATION_LIMIT;
         }
 
         private bool isNight() {
@@ -160,8 +230,17 @@ namespace beyondnations {
                 return BehaviorType.EXIT_SETTLEMENT;
             }
 
-            Nation nation = nationRepository.getNation(pawn.getNationId());
+            Nation nation = pawn.getNationId() == null ? null : nationRepository.getNation(pawn.getNationId());
+            if (nation == null) {
+                // a pawn put out of its nation while indoors (a claimant warned against,
+                // Realm.expel) has no business here: it used to crash this method
+                return BehaviorType.EXIT_SETTLEMENT;
+            }
             NationRole role = nation.getRole(pawn.getId());
+
+            if (role == NationRole.TRADER) {
+                return computeTraderBehaviorInSettlement(pawn, currentSettlement);
+            }
 
             if (role == NationRole.LEADER) {
                 if (pawn.getInventory().getNumItems(ItemType.COIN) < 100 && currentSettlement.getFunds() > 100) {
@@ -209,8 +288,19 @@ namespace beyondnations {
                 }
                 else {
 
+                    // with a stake and no stall to buy, a serf at home may take up
+                    // trade (#167), while its nation has fewer traders than settlements
+                    if (isAtHome(pawn) && canTakeUpTrade(pawn, nation, currentSettlement)) {
+                        return BehaviorType.BUY_TRADE_GOODS;
+                    }
+
                     // if pawn has an abundance of resources, sell them
-                    if (pawn.getInventory().containsAbundanceOfResources() && market.getTotalCoins() > 10) {
+                    // (not counting its winter store, which it keeps: WinterStoreKeeping)
+                    Inventory kept = WinterStoreKeeping.setAside(pawn, currentSeason());
+                    bool sells = pawn.getInventory().containsAbundanceOfResources()
+                        && market.canSellTo(pawn, PawnTraits.sellPriceBonusPercent(pawn), Stall.TILL_RESERVE);
+                    WinterStoreKeeping.restore(pawn, kept);
+                    if (sells) {
                         return BehaviorType.SELL_RESOURCES;
                     }
 
@@ -250,7 +340,7 @@ namespace beyondnations {
                     if (pawn.getInventory().getNumItems(ItemType.WOOD) > 0 || pawn.getInventory().getNumItems(ItemType.STONE) > 0) {
                         return BehaviorType.TRANSFER_ITEMS_TO_STALL;
                     }
-                    if (stall.getInventory().getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE * 2) {
+                    if (stall.getInventory().getNumItems(ItemType.COIN) >= Stall.TILL_RESERVE + Stall.COIN_COST_TO_PURCHASE) {
                         return BehaviorType.COLLECT_PROFIT_FROM_STALL;
                     }
                 }
@@ -304,11 +394,16 @@ namespace beyondnations {
                 Settlement nearestSettlement = (Settlement) environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
                 // an ambitious pawn only joins when practically inside the settlement (PawnTraits)
                 if (nearestSettlement != null && Vector3.Distance(pawn.getPosition(), nearestSettlement.getPosition()) < PawnTraits.joinRange(pawn, gameConfig.getSettlementJoinRange())) {
-                    return BehaviorType.JOIN_NATION;
+                    // not a nation that cannot feed the members it has (#489): it
+                    // walks on, gathering, rather than join and be another mouth --
+                    // nor declare a nation of one on the doorstep, which in a
+                    // hungry winter left a world of 29 nations
+                    return nationCannotFeed(nearestSettlement) ? BehaviorType.GATHER_RESOURCES : BehaviorType.JOIN_NATION;
                 }
                 else {
-                    // if enough wood to build settlement, create nation
-                    if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD) {
+                    // if enough wood to build settlement, create nation -- early
+                    // on, only while the world has few (mayDeclareNation)
+                    if (pawn.getInventory().getNumItems(ItemType.WOOD) >= Settlement.WOOD_COST_TO_BUILD && mayDeclareNation(pawn)) {
                         return BehaviorType.CREATE_NATION;
                     }
                     else {
@@ -332,7 +427,7 @@ namespace beyondnations {
                     // if no settlements within x units, create settlement
                     Entity nearestSettlement = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
                     int distanceToNearestSettlement = nearestSettlement == null ? int.MaxValue : (int)Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition());
-                    if (nearestSettlement == null || distanceToNearestSettlement > gameConfig.getMinDistanceBetweenSettlements()) {
+                    if ((nearestSettlement == null || distanceToNearestSettlement > gameConfig.getMinDistanceBetweenSettlements()) && clearOfReservedGround(pawn)) {
                         return BehaviorType.CONSTRUCT_SETTLEMENT;
                     }
                     else {
@@ -361,10 +456,65 @@ namespace beyondnations {
                 }
             }
 
+            if (role == NationRole.TRADER) {
+                // a load to sell: off to whichever market pays most for it
+                if (Traders.hasGoodsToSell(pawn.getInventory()) && findTraderDestination(pawn) != null) {
+                    return BehaviorType.TRAVEL_TO_MARKET;
+                }
+                // empty-handed with a purse: home, to plan the next run
+                if (!Traders.hasGoodsToSell(pawn.getInventory())
+                        && pawn.getInventory().getNumItems(ItemType.COIN) >= Traders.MIN_PROFIT) {
+                    return BehaviorType.GO_TO_HOME_SETTLEMENT;
+                }
+                // broke: it gathers like anyone, and carries the haul to the best market
+            }
+
             if (hasReasonToGoHome(pawn, role)) {
                 return BehaviorType.GO_TO_HOME_SETTLEMENT;
             }
             return BehaviorType.GATHER_RESOURCES;
+        }
+
+        /**
+        * A trader in a settlement (#167, Traders): with a load, it sells here
+        * if no market in reach pays more, or walks out to the one that does;
+        * empty-handed, it buys a load here when a run from here pays.
+        */
+        private BehaviorType computeTraderBehaviorInSettlement(Pawn pawn, Settlement here) {
+            Inventory carried = pawn.getInventory();
+            List<Settlement> markets = Traders.getMarkets(entityRepository, nationRepository, here, pawn.getNationId());
+            if (Traders.hasGoodsToSell(carried)) {
+                Settlement best = Traders.findBestMarketFor(carried, here, markets);
+                if (best == here && here.getMarket().canSellTo(pawn, PawnTraits.sellPriceBonusPercent(pawn), Stall.TILL_RESERVE)) {
+                    return BehaviorType.SELL_RESOURCES;
+                }
+                if (best != null && best != here) {
+                    return BehaviorType.EXIT_SETTLEMENT;
+                }
+            }
+            else if (Traders.planRun(pawn, here, markets) != null) {
+                return BehaviorType.BUY_TRADE_GOODS;
+            }
+            return rollIdleExit(pawn) ? BehaviorType.EXIT_SETTLEMENT : BehaviorType.NONE;
+        }
+
+        /**
+        * Whether a serf standing in one of its nation's settlements would take
+        * up trade now: it has the stake, its nation has room for another
+        * trader, and a run from this market would pay.
+        */
+        private bool canTakeUpTrade(Pawn pawn, Nation nation, Settlement here) {
+            if (pawn.getInventory().getNumItems(ItemType.COIN) < Traders.TRADER_STAKE) {
+                return false;
+            }
+            if (!nation.getId().Equals(here.getNationId()) || !Traders.hasRoomForTrader(nation)) {
+                return false;
+            }
+            return Traders.planRun(pawn, here, Traders.getMarkets(entityRepository, nationRepository, here, pawn.getNationId())) != null;
+        }
+
+        private Settlement findTraderDestination(Pawn pawn) {
+            return Traders.findDestinationOnTheRoad(entityRepository, nationRepository, pawn);
         }
 
         /**
@@ -406,7 +556,8 @@ namespace beyondnations {
 
         private bool isFarEnoughToSettle(Pawn pawn) {
             Entity nearestSettlement = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
-            return nearestSettlement == null || Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition()) > gameConfig.getMinDistanceBetweenSettlements();
+            return (nearestSettlement == null || Vector3.Distance(nearestSettlement.getPosition(), pawn.getPosition()) > gameConfig.getMinDistanceBetweenSettlements())
+                && clearOfReservedGround(pawn);
         }
 
         private bool hasReasonToGoHome(Pawn pawn, NationRole role) {
@@ -427,13 +578,13 @@ namespace beyondnations {
                 return BuildingPlanner.chooseNext(home, inventory) != null;
             }
             if (role == NationRole.MERCHANT) {
-                return inventory.containsAbundanceOfResources();
+                return hasAbundanceBeyondStore(pawn);
             }
             if (role == NationRole.SERF) {
                 if (inventory.getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE && market.getNumStallsForSale() > 0) {
                     return true;
                 }
-                if (!inventory.containsAbundanceOfResources()) {
+                if (!hasAbundanceBeyondStore(pawn)) {
                     return false;
                 }
                 // to sell it, or, with no coin at the market, to hand it in

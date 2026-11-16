@@ -99,6 +99,93 @@ namespace beyondnations {
             return staged;
         }
 
+        /**
+        * The trade road, with the player walked into the trading neighbour's
+        * village and standing in its market (--stage-market): the market
+        * panel (#182) and the merchant's coins and wood are right there.
+        */
+        public static Staged stageMarket(Simulation simulation) {
+            Staged staged = stage(simulation);
+            Player player = simulation.getPlayer();
+            // at the edge of the square, on the side the player came from, facing in
+            Vector3 centre = staged.traderSettlement.getPosition();
+            Vector3 back = player.getPosition() - centre;
+            back = Vector3.Normalize(new Vector3(back.X, 0f, back.Z));
+            player.setPosition(new Vector3(centre.X + back.X * 18f, player.getPosition().Y, centre.Z + back.Z * 18f));
+            player.turn(System.MathF.Atan2(-back.X, -back.Z) - player.getYaw());
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, staged.traderSettlement);
+            // a stall a day into trading, as in the 0.8.0 playtest (s05): food,
+            // crafted goods and tools, so the panel lists the full run of goods
+            Inventory stock = staged.traderSettlement.getMarket().getStalls()[0].getInventory();
+            stock.addItem(ItemType.APPLE, 8);
+            stock.addItem(ItemType.CHICKEN_MEAT, 3);
+            stock.addItem(ItemType.BRICKS, 4);
+            stock.addItem(ItemType.PLANKS, 4);
+            stock.addItem(ItemType.AXE, 1);
+            stock.addItem(ItemType.PICKAXE, 1);
+            stock.addItem(ItemType.SAPLING, 6);
+            player.getStatus().update("You are in the " + staged.traderSettlement.getDisplayName() + "'s market. Trade at Market to buy and sell.");
+            return staged;
+        }
+
+        /**
+        * The trade road, with the player standing in their own village
+        * carrying the load from the 0.8.0 re-run (s05): 5 wood, 10 stone and
+        * 15 saplings, and the neighbour's market short of coin, so a caravan
+        * sent there sells some and brings the rest home (--stage-caravan;
+        * #485, #486). Send Caravan is one press away.
+        */
+        public static Staged stageCaravan(Simulation simulation) {
+            Staged staged = stage(simulation);
+            Player player = simulation.getPlayer();
+            walkInto(player, staged.playerSettlement, simulation);
+            Inventory pack = player.getInventory();
+            pack.setNumItems(ItemType.WOOD, 5);
+            pack.setNumItems(ItemType.STONE, 10);
+            pack.setNumItems(ItemType.SAPLING, 15);
+            Stall stall = staged.traderSettlement.getMarket().getStalls()[0];
+            stall.getInventory().setNumItems(ItemType.COIN, 150);
+            staged.traderSettlement.removeFunds(staged.traderSettlement.getFunds());
+            player.getStatus().update("You are in the " + staged.playerSettlement.getDisplayName() + ". Send Caravan to trade with "
+                + staged.traders.getName() + ".");
+            return staged;
+        }
+
+        /**
+        * A leader standing in their nation's first camp, in the Camp era,
+        * with residents about: Send Caravan is there but locked until the
+        * Village era's Storehouse (--stage-camp; #479).
+        */
+        public static Settlement stageCamp(Simulation simulation) {
+            Player player = simulation.getPlayer();
+            NationRepository nationRepository = simulation.getNationRepository();
+            simulation.getWorldGenerator().update();
+            new NationCreateCommand(nationRepository, simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            Nation nation = nationRepository.getNation(player.getNationId());
+            Vector3 forward = player.getForward();
+            forward = Vector3.Normalize(new Vector3(forward.X, 0f, forward.Z));
+            Settlement camp = place(simulation, nation, player.getPosition() + forward * 40f, 0);
+            player.setHomeSettlementId(camp.getId());
+            addPawns(simulation, nation, camp, PlayerPawns);
+            simulation.getEraTracker().applyRules(simulation);
+            walkInto(player, camp, simulation);
+            player.getInventory().addItem(ItemType.WOOD, 20);
+            player.getInventory().addItem(ItemType.APPLE, 4);
+            player.getStatus().update("You are in your camp, the " + camp.getDisplayName() + ".");
+            return camp;
+        }
+
+        /** Stands the player at the edge of a settlement's square, facing in, and enters it. */
+        private static void walkInto(Player player, Settlement settlement, Simulation simulation) {
+            Vector3 centre = settlement.getPosition();
+            Vector3 back = player.getPosition() - centre;
+            back = back.LengthSquared() > 0f ? Vector3.Normalize(new Vector3(back.X, 0f, back.Z)) : Vector3.UnitZ;
+            player.setPosition(new Vector3(centre.X + back.X * 18f, player.getPosition().Y, centre.Z + back.Z * 18f));
+            player.turn(System.MathF.Atan2(-back.X, -back.Z) - player.getYaw());
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, settlement);
+        }
+
         private static Settlement place(Simulation simulation, Nation nation, Vector3 site, int buildings) {
             Vector3 at = new Vector3(site.X, simulation.getPlayer().getPosition().Y, site.Z);
             Settlement settlement = new Settlement(at, nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());

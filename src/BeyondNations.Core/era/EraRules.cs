@@ -31,16 +31,16 @@ namespace beyondnations {
     * What each era asks and what it gives, in one table so the tracker, the
     * HUD, the objectives and the docs never disagree about a number.
     *
-    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls; day 3
+    *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls; day 2
     *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7
     *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 3,000 funds; day 19
     *
-    * Unlocks, for a nation the player leads (pawn-led nations are never held
-    * back -- the era is the player's run, not the world's):
+    * Unlocks, for a nation the player leads:
     *
     *   Camp      houses and farms; one settlement; no sieges (nor in the Village)
-    *   Village   the workshop (planks and bricks); up to 3 settlements
-    *   Town      the storehouse (more stalls); up to 6 settlements
+    *   Village   the workshop (planks and bricks) and the storehouse (more
+    *             stalls, and caravans); up to 3 settlements
+    *   Town      up to 6 settlements
     *   Kingdom   as many settlements as the land holds; Prosperity victory
     */
     public static class EraRules {
@@ -61,13 +61,20 @@ namespace beyondnations {
         public const int KingdomFunds = 3000;
 
         // Each era also waits on the calendar (a day is ten minutes at the
-        // default rates): a nation that settlers flock to is a village in two
-        // minutes on most seeds, so two nights have to pass before it is
-        // one in name, and so on up. These set the floor of the pacing
-        // (Village from about 17 minutes, Town about an hour, Kingdom about
-        // three hours); the other requirements set how long a nation takes
-        // above it.
-        public const int VillageDay = 3;
+        // default rates): a nation that courts every settler is a village in
+        // two minutes on most seeds, so a night has to pass before it is one
+        // in name, and so on up. These set the floor of the pacing (Village
+        // from 7 minutes, Town about an hour, Kingdom about three hours); the
+        // other requirements set how long a nation takes above it.
+        //
+        // The Village waits for day 2, not day 3 (#352): at day 3 a nation
+        // that had everything else by minute 3 idled for 14 minutes with
+        // nothing that could bring the era sooner. Now a nation that grows on
+        // its own (no courting) reaches 10 members between minutes 3 and 13,
+        // so on most seeds the members, which courting and housing speed up,
+        // decide when the era comes, and the calendar only stops the
+        // two-minute village (docs/PACING.md, "The eras").
+        public const int VillageDay = 2;
         public const int TownDay = 7;
         public const int KingdomDay = 19;
 
@@ -158,9 +165,10 @@ namespace beyondnations {
                 case "Stalls":
                     return "Inside your settlement, press {BuildStall} with " + Stall.WOOD_COST_TO_BUILD + " wood and " + Stall.STONE_COST_TO_BUILD + " stone.";
                 case "Settlements":
-                    return "Far from other settlements, press {FoundSettlement} with " + Settlement.WOOD_COST_TO_BUILD + " wood.";
+                    return "Far from other settlements, press {FoundSettlement} with " + FoundingCost.wood(requirement.current)
+                        + " wood" + (FoundingCost.stone(requirement.current) > 0 ? " and " + FoundingCost.stone(requirement.current) + " stone" : "") + ".";
                 case "Funds":
-                    return "Your coins and your settlements' treasuries. Stalls earn coin; sell at market.";
+                    return "Your coins and your settlements' treasuries. Stalls earn coin; sell at market, or send a caravan from a Storehouse.";
                 case "Day":
                     return "An era is not built in a day: hold on, and keep growing, until day " + requirement.target + ".";
             }
@@ -173,13 +181,50 @@ namespace beyondnations {
         public static Era unlockedIn(BuildingType type) {
             switch (type) {
                 case BuildingType.WORKSHOP: return Era.VILLAGE;
-                case BuildingType.STOREHOUSE: return Era.TOWN;
+                // the Village, not the Town: caravans need a storehouse, and the
+                // Town era's day 7 put the first caravan an hour into a run (#373)
+                case BuildingType.STOREHOUSE: return Era.VILLAGE;
                 default: return Era.CAMP;
             }
         }
 
         public static bool unlocksBuilding(Era era, BuildingType type) {
             return era >= unlockedIn(type);
+        }
+
+        // --- the world's calendar, for nations led by pawns ---
+
+        /**
+        * The era the calendar alone allows on this day: the era a nation
+        * that met every other requirement at once would be in. A settlement
+        * of a nation led by a pawn is no town before this reaches the Town
+        * era (pawnLedTierCap), so a neighbour is not a town on day 1 while
+        * the player is a camp (0.6.0 playtest s05, #373).
+        */
+        public static Era calendarEra(int day) {
+            if (day >= KingdomDay) {
+                return Era.KINGDOM;
+            }
+            if (day >= TownDay) {
+                return Era.TOWN;
+            }
+            if (day >= VillageDay) {
+                return Era.VILLAGE;
+            }
+            return Era.CAMP;
+        }
+
+        /**
+        * The highest tier a settlement of a pawn-led nation counts as in this
+        * calendar era: a village until the Town era's day, as the player's
+        * nation cannot be a Town-era nation before it, however many
+        * buildings it has. What it builds is not held back: capping its
+        * buildings left pawns homeless, and holding its workshop and
+        * storehouse to the calendar too, and either way seed 42 lost over
+        * half its people in its first winter (TestSeasonalRules).
+        */
+        public static SettlementTier pawnLedTierCap(Era calendar) {
+            return calendar < Era.TOWN ? SettlementTier.VILLAGE : SettlementTier.TOWN;
         }
 
         /**
@@ -221,6 +266,28 @@ namespace beyondnations {
             }
         }
 
+        private static readonly string[] Ordinals = {
+            "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"
+        };
+
+        /**
+        * Why a nation held to limit settlements by its era cannot found
+        * another, and what to do about it: "Reach the Village era for a
+        * second settlement." It is the reason on the greyed Found Settlement
+        * button and what pressing it says (0.8.0 playtest s07: the button
+        * vanished at the cap, and only the key told why).
+        */
+        public static string describeSettlementCap(int limit) {
+            string next = limit >= 0 && limit < Ordinals.Length ? "a " + Ordinals[limit] + " settlement" : "more settlements";
+            foreach (Era era in (Era[]) System.Enum.GetValues(typeof(Era))) {
+                int allowed = settlementLimit(era);
+                if (allowed == 0 || allowed > limit) {
+                    return "Reach the " + Eras.getDisplayName(era) + " era for " + next + ".";
+                }
+            }
+            return "Reach the next era for " + next + ".";
+        }
+
         /** What reaching this era unlocks, one short phrase each. */
         public static List<string> describeUnlocks(Era era) {
             List<string> unlocks = new List<string>();
@@ -242,7 +309,7 @@ namespace beyondnations {
         private static string describeBuildingBenefit(BuildingType type) {
             switch (type) {
                 case BuildingType.WORKSHOP: return " (craft planks and bricks)";
-                case BuildingType.STOREHOUSE: return " (more market stalls)";
+                case BuildingType.STOREHOUSE: return " (more market stalls, and caravans)";
             }
             return "";
         }

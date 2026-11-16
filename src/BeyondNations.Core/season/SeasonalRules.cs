@@ -20,9 +20,11 @@ namespace beyondnations {
     * spoil all year: a pawn's or a market stall's apples beyond a modest store
     * rot a sixth at a time (applesSpoiling), so nobody carries a hoard into
     * winter. And in winter the trees a pawn fells are bare (treesBearFruit),
-    * so wood no longer brings food with it. The player is spared both: their
-    * pack and their own stalls never rot, and a tree still gives them its
-    * apples, so a world started in winter can still teach eating.
+    * so wood no longer brings food with it, for the player as for pawns. The
+    * player used to be spared, which left stored food and the winter warning
+    * (#456) with little to do. The player's pack and own stalls still never
+    * rot. A world started in winter still teaches eating: "Gather wood"
+    * rewards two apples, and the "Eat something" hint points at chickens.
     */
     public static class SeasonalRules {
 
@@ -30,10 +32,28 @@ namespace beyondnations {
         public const float WINTER_COLD_MULTIPLIER = 1.3f;
 
         /**
-        * Food a pawn wants to carry into winter. From autumn on, a pawn holding
-        * less leans towards food when it gathers (PawnBehaviorExecutor).
+        * Food a pawn wants to carry into winter: what a member of a nation that
+        * shelters at home eats in a winter. From autumn on, a pawn holding
+        * less leans towards food when it gathers (PawnBehaviorExecutor), and
+        * the winter warning, the Season box and Feed Residents all aim at it
+        * for each member.
+        *
+        * A pawn burns 0.0035 energy a tick on average (Pawn's 0.002-0.005), at
+        * 0.8 of that indoors and 1.3 out in the cold. Members of a sheltering
+        * nation still spend a fifth to half of a winter outdoors (measured
+        * 15-55% over seeds 101-108, a player's camp of six to eleven), so at
+        * 30% outdoors a winter of DAYS_PER_SEASON days of 30,000 ticks burns
+        * about 200 energy: 13 apples at 15 each. The measured burn was
+        * 166-231 a member (gluttons burn half again).
+        *
+        * It was 4 (#488), then 12 (#495) with the sum done indoors only; and
+        * pawns ate below 90 energy, so the full bar took up to 5 of an apple's
+        * 15 and a third of the stores went nowhere (playtest s03: a camp
+        * stocked to the target was empty early on the second winter day).
+        * Pawns now eat what fits (Pawn.eatWhatFits). TestSeasonalRules
+        * .testWinterFoodStore_IsWhatAShelteringWinterEats checks the sum.
         */
-        public const int WINTER_FOOD_STORE = 4;
+        public const int WINTER_FOOD_STORE = 14;
 
         /** Ticks between chicken hatchings in spring and summer: 30 seconds. */
         public const int CHICKEN_HATCH_INTERVAL_TICKS = 1500;
@@ -54,10 +74,13 @@ namespace beyondnations {
         public const int APPLE_SPOIL_INTERVAL_TICKS = 1500;
 
         /**
-        * Apples a pawn keeps without any spoiling: three times WINTER_FOOD_STORE, so
-        * the store laid in for winter never rots, only a hoard does.
+        * Apples a pawn keeps without any spoiling: the WINTER_FOOD_STORE, so
+        * the store laid in for winter never rots, only a hoard does, and Feed
+        * Residents, which stocks a member up to the store, never hands over an
+        * apple that will rot. The Season box counts only what keeps and says
+        * how much is rotting (WinterStores.Count.Spoiling).
         */
-        public const int PAWN_APPLES_KEPT = 3 * WINTER_FOOD_STORE;
+        public const int PAWN_APPLES_KEPT = WINTER_FOOD_STORE;
 
         /** Apples a market stall keeps without any spoiling: a small stock that still sells through winter. */
         public const int STALL_APPLES_KEPT = 10;
@@ -79,9 +102,9 @@ namespace beyondnations {
         }
 
         /**
-        * Whether a tree a pawn fells this season carries apples. Not in
-        * winter: the fruit has fallen, so a pawn felling trees for wood gets
-        * wood and saplings and no food. (The apples stay with the tree, so a
+        * Whether a tree felled this season, by a pawn or the player, carries
+        * apples. Not in winter: the fruit has fallen, so felling trees for
+        * wood gets wood and saplings and no food. (The apples stay with the tree, so a
         * tree standing at the end of winter bears again in spring.)
         */
         public static bool treesBearFruit(Season season) {
@@ -147,7 +170,7 @@ namespace beyondnations {
                 case Season.SPRING: return "Saplings grow, chickens hatch.";
                 case Season.SUMMER: return "Long days; chickens hatch.";
                 case Season.AUTUMN: return "Farms yield double. Lay in food.";
-                default: return "No harvests, slow regrowth; the cold bites outdoors.";
+                default: return "No harvests, bare trees; the cold bites outdoors.";
             }
         }
     }

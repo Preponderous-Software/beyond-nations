@@ -12,7 +12,10 @@ namespace beyondnations {
     * Two clocks, both on the events' own random stream so that nothing here
     * shifts the rest of a seeded world:
     *
-    *   - the player's: about every PLAYER_EVENT_MIN_SECONDS to
+    *   - the player's: the first within a minute and a half of the player's
+    *     nation having a settlement (or 5 to 7 minutes in, whichever is
+    *     sooner), the second 5 to 7 minutes after it, and from then on about
+    *     every PLAYER_EVENT_MIN_SECONDS to
     *     PLAYER_EVENT_MAX_SECONDS (10 to 15 minutes of play) an event is
     *     offered to the player, chosen by weight from the personal events and,
     *     if the player leads a nation, that nation's events. It waits as a
@@ -31,8 +34,19 @@ namespace beyondnations {
     public class WorldEvents {
         public const int PLAYER_EVENT_MIN_SECONDS = 600;
         public const int PLAYER_EVENT_MAX_SECONDS = 900;
-        public const int FIRST_PLAYER_EVENT_MIN_SECONDS = 420;
-        public const int FIRST_PLAYER_EVENT_MAX_SECONDS = 660;
+        public const int FIRST_PLAYER_EVENT_MIN_SECONDS = 300;
+        public const int FIRST_PLAYER_EVENT_MAX_SECONDS = 420;
+        /**
+        * Once the player leads a nation with a settlement, the first event
+        * comes no later than this. It used to wait out a clock of 7 to 11
+        * minutes from the start, and the next 10 to 15 minutes more, so a
+        * session of normal length met one choice and could not compare
+        * outcomes (#370).
+        */
+        public const int FIRST_PLAYER_EVENT_AFTER_SETTLING_SECONDS = 90;
+        /** The second event comes sooner than the rest, so the first ten minutes or so hold two choices (#370). */
+        public const int SECOND_PLAYER_EVENT_MIN_SECONDS = 300;
+        public const int SECOND_PLAYER_EVENT_MAX_SECONDS = 420;
         public const int WORLD_EVENT_MIN_SECONDS = 240;
         public const int WORLD_EVENT_MAX_SECONDS = 420;
         /** When nothing fits the player's situation, look again this much later. */
@@ -142,17 +156,42 @@ namespace beyondnations {
                     resolvePending(context, choice);
                 }
             }
-            else if (tick >= nextPlayerEventTick) {
-                if (startPlayerEvent(context)) {
-                    nextPlayerEventTick = tick + random.range(PLAYER_EVENT_MIN_SECONDS, PLAYER_EVENT_MAX_SECONDS + 1) * ticksPerSecond(simulation);
-                } else {
-                    nextPlayerEventTick = tick + RETRY_SECONDS * ticksPerSecond(simulation);
+            else {
+                bringFirstEventForward(context, tick, ticksPerSecond(simulation));
+                if (tick >= nextPlayerEventTick) {
+                    if (startPlayerEvent(context)) {
+                        bool first = numPlayerEvents == 1;
+                        nextPlayerEventTick = tick + (first
+                            ? random.range(SECOND_PLAYER_EVENT_MIN_SECONDS, SECOND_PLAYER_EVENT_MAX_SECONDS + 1)
+                            : random.range(PLAYER_EVENT_MIN_SECONDS, PLAYER_EVENT_MAX_SECONDS + 1)) * ticksPerSecond(simulation);
+                    } else {
+                        nextPlayerEventTick = tick + RETRY_SECONDS * ticksPerSecond(simulation);
+                    }
                 }
             }
 
             if (tick >= nextWorldEventTick) {
                 runNationEvent(context);
                 nextWorldEventTick = tick + random.range(WORLD_EVENT_MIN_SECONDS, WORLD_EVENT_MAX_SECONDS + 1) * ticksPerSecond(simulation);
+            }
+        }
+
+        /**
+        * Before the player's first event: once they lead a nation with a
+        * settlement, it comes within FIRST_PLAYER_EVENT_AFTER_SETTLING_SECONDS.
+        * Draws no random number, so the stream is unchanged.
+        */
+        private void bringFirstEventForward(WorldEventContext context, int tick, int ticksPerSecond) {
+            if (numPlayerEvents > 0) {
+                return;
+            }
+            int latest = tick + FIRST_PLAYER_EVENT_AFTER_SETTLING_SECONDS * ticksPerSecond;
+            if (nextPlayerEventTick <= latest) {
+                return;
+            }
+            Nation nation = playerLedNation(context);
+            if (nation != null && nation.getNumberOfSettlements() > 0) {
+                nextPlayerEventTick = latest;
             }
         }
 

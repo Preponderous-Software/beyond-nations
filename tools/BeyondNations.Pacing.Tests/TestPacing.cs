@@ -15,6 +15,21 @@ namespace beyondnations.pacing.tests {
     public class TestPacing {
         private const int Tps = 50;
 
+        [Fact]
+        public void testTheBot_AnswersAWorldEvent_WithoutSpendingCoins_WhenItCan() {
+            List<WorldEventChoice> bandits = new List<WorldEventChoice> {
+                new WorldEventChoice("Raise a militia and drive them off", "worn out"),
+                new WorldEventChoice("Pay them to leave (40 coins)", "gone"),
+                new WorldEventChoice("Bar the gates and wait", "robbed"),
+            };
+            Assert.Equal(0, PacingBot.chooseWorldEventAnswer(bandits));
+            bandits[0] = new WorldEventChoice("Raise a militia and drive them off", "worn out", "Needs 6 members");
+            Assert.Equal(2, PacingBot.chooseWorldEventAnswer(bandits));
+            List<WorldEventChoice> onlyCoins = new List<WorldEventChoice> { new WorldEventChoice("Pay a healer (30 coins)", "cured") };
+            Assert.Equal(0, PacingBot.chooseWorldEventAnswer(onlyCoins));
+            Assert.Equal(-1, PacingBot.chooseWorldEventAnswer(new List<WorldEventChoice> { new WorldEventChoice("A", "a", "never") }));
+        }
+
         private static PacingRunResult runOf(int seed, params ObjectiveTiming[] timings) {
             PacingRunResult run = new PacingRunResult { Seed = seed, TicksPerSecond = Tps, TicksPerDay = 30000 };
             run.Objectives.AddRange(timings);
@@ -95,6 +110,42 @@ namespace beyondnations.pacing.tests {
         }
 
         [Fact]
+        public void testMilestones_FailWhenLateOrNeverReached_PerSeed() {
+            PacingBudget budget = new PacingBudget();
+            budget.Milestones.Add(new MilestoneBudget { Id = "caravan", Title = "Send a caravan", MaxSeconds = 600 });
+            budget.Milestones.Add(new MilestoneBudget { Id = "succession", Title = "Succession", MaxSeconds = 600, Advisory = true });
+            PacingRunResult early = runOf(1);
+            early.TicksRun = 1000 * Tps;
+            early.Milestones["caravan"] = 300 * Tps;
+            PacingRunResult late = runOf(2);
+            late.TicksRun = 1000 * Tps;
+            late.Milestones["caravan"] = 700 * Tps;
+            PacingRunResult never = runOf(3);
+            never.TicksRun = 1000 * Tps;
+
+            List<PacingFinding> findings = PacingCheck.check(new List<PacingRunResult> { early, late, never }, budget);
+            List<PacingFinding> caravan = findings.FindAll(f => f.Id == PacingCheck.MilestoneFindingPrefix + "caravan");
+            Assert.Equal(new[] { PacingVerdict.Ok, PacingVerdict.TooSlow, PacingVerdict.Never }, caravan.ConvertAll(f => f.Verdict));
+            Assert.Equal(new[] { 2, 3 }, findings.FindAll(f => f.isFailure()).ConvertAll(f => f.Seed));
+            // an advisory milestone never reached only warns
+            Assert.Contains(findings, f => f.Id == PacingCheck.MilestoneFindingPrefix + "succession" && f.Verdict == PacingVerdict.Never && !f.isFailure());
+        }
+
+        [Fact]
+        public void testSuggest_KeepsTheMilestones() {
+            PacingBudget previous = budgetOf(entry("a", 3, 999));
+            previous.Milestones.Add(new MilestoneBudget { Id = "caravan", Title = "Send a caravan", MaxSeconds = 600 });
+            PacingBudget suggested = PacingBudget.suggest(new List<PacingRunResult> { runOf(1, done("a", 20)) }, previous);
+            Assert.Equal(600, Assert.Single(suggested.Milestones).MaxSeconds);
+        }
+
+        [Fact]
+        public void testCheckedInBudget_WatchesKnownMilestones() {
+            PacingBudget budget = PacingBudget.load(Path.Combine(repoRoot(), "docs", "pacing-budget.json"));
+            Assert.Equal(new List<string>(PacingMilestones.All), budget.milestoneIds());
+        }
+
+        [Fact]
         public void testSuggest_KeepsAStricterHandSetMinimumOnlyIfLower() {
             List<PacingRunResult> runs = new List<PacingRunResult> { runOf(1, done("a", 20)), runOf(2, done("a", 40)) };
             PacingBudget suggested = PacingBudget.suggest(runs, budgetOf(entry("a", 3, 999)));
@@ -129,6 +180,31 @@ namespace beyondnations.pacing.tests {
                 Assert.Equal(first.Objectives[i].CompletedAtTick, second.Objectives[i].CompletedAtTick);
             }
             Assert.Equal(first.Samples.Count, second.Samples.Count);
+        }
+
+        /**
+        * Playtest 0.8.0 s02 and s06: by the afternoon of day 1 nearly every
+        * stranger led a nation of one (24 to 39 nations at sunset on the
+        * pacing seeds, and 0 to 3 pawns in no nation), so a ruler had no one
+        * to court. A real world, played by a bot that never courts, still has
+        * strangers at day 1's sunset and only a handful of nations.
+        */
+        [Fact]
+        public void testStrangersStayRecruitable_ThroughTheFirstDay() {
+            int sunset = (int) (4.5 * 60 * Tps);
+            PacingRunOptions options = new PacingRunOptions {
+                Seed = 1, ObjectiveLimit = 14, MaxTicks = sunset, SampleEvery = 30 * Tps, NoCourting = true
+            };
+            PacingRunResult run = PacingRun.run(options);
+
+            PacingSample atSunset = run.Samples[run.Samples.Count - 1];
+            Assert.True(atSunset.Tick >= sunset - 30 * Tps, "last sample at tick " + atSunset.Tick);
+            foreach (PacingSample sample in run.Samples) {
+                // the early cap holds (the player's own nation may be the one over it)
+                Assert.True(sample.Nations <= PawnBehaviorCalculator.EARLY_NATION_LIMIT + 1,
+                    sample.Nations + " nations at tick " + sample.Tick);
+            }
+            Assert.True(atSunset.Nationless >= 5, "only " + atSunset.Nationless + " strangers left at sunset");
         }
 
         [Fact]

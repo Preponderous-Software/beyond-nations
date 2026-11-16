@@ -46,6 +46,29 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testLawsPanel_NamesTheHeir_AndWhenOldAgeComes() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            string reason;
+            Pawn heir = simulation.getRealm().getHeir(out reason);
+            Assert.NotNull(heir);
+
+            List<string> lines = LawsPanel.getLines(simulation);
+
+            Assert.Equal("Heir: " + heir.getName() + ", " + reason + ". Old age comes in about 40 minutes.", lines[lines.Count - 1]);
+            Assert.True(LawsPanel.canAbdicate(simulation));
+        }
+
+        [Fact]
+        public void testSuccessionScreen_SaysTheRulerAbdicated() {
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            simulation.getRealm().abdicate();
+
+            Assert.Equal("The founder gave up the rule after a reign of less than an hour.", SuccessionScreen.getLines(simulation)[0]);
+        }
+
+        [Fact]
         public void testLawsPanel_ShowsAChangeComingIn() {
             DiplomacyShowcase.Staged result;
             Simulation simulation = staged(out result);
@@ -65,6 +88,58 @@ namespace beyondnationstests.desktop.ui {
 
             Assert.Equal(new List<string> { "You belong to no nation, and live under no laws. Found one (N) to make them." }, LawsPanel.getLines(simulation));
             Assert.Empty(LawsPanel.getRows(simulation));
+        }
+
+        [Fact]
+        public void testLawsPanel_EveryLawCanBeScrolledTo_WhenTheyDoNotAllFit() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window end = LawsPanel.fit(steps, 100f, 400f, 38f, 99);
+
+            Assert.Equal(2, end.firstRow);
+            Assert.Equal(2, end.visible);
+            Assert.Equal(steps.Length, end.firstRow + end.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_ALawOutOfSight_IsSignalled_AndMakesRoomForTheStrip() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window top = LawsPanel.fit(steps, 100f, 400f, 38f, 0);
+
+            Assert.True(top.overflow);
+            Assert.Equal(138f, top.listTop);
+            Assert.Equal(0, top.firstRow);
+            Assert.Equal(2, top.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_AWindowShorterThanALaw_StillShowsOne() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window last = LawsPanel.fit(steps, 0f, 50f, 38f, 99);
+
+            Assert.Equal(3, last.firstRow);
+            Assert.Equal(1, last.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_WhenEveryLawFits_NothingScrollsAndNoRoomIsTaken() {
+            float[] steps = { 100f, 100f, 100f, 100f };
+
+            LawsPanel.Window all = LawsPanel.fit(steps, 0f, 400f, 38f, 2);
+
+            Assert.False(all.overflow);
+            Assert.Equal(0f, all.listTop);
+            Assert.Equal(0, all.firstRow);
+            Assert.Equal(4, all.visible);
+        }
+
+        [Fact]
+        public void testLawsPanel_TheCountLine_SaysWhichLawsAreShown() {
+            Assert.Equal("Laws 1-2 of 4. Scroll for more.", LawsPanel.describeShown(0, 2, 4, false));
+            Assert.Equal("Laws 3-4 of 4. Drag or tap Up/Down for more.", LawsPanel.describeShown(2, 2, 4, true));
+            Assert.Equal("Law 4 of 4. Scroll for more.", LawsPanel.describeShown(3, 1, 4, false));
         }
 
         [Fact]

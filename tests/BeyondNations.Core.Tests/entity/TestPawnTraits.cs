@@ -172,8 +172,10 @@ namespace beyondnationstests {
             stall.setOwnerId(new EntityId());
             Pawn greedy = makePawn(PawnTrait.GREEDY);
             greedy.getInventory().addItem(ItemType.WOOD, 1);
-            int price = ItemCostCalculator.calculateCostBasedOnSupply(ItemType.WOOD, market);
+            // a till that holds just the floor price bids the floor (Market.getBid)
+            int price = ItemCostCalculator.floorOf(ItemCostCalculator.getBaseCost(ItemType.WOOD));
             stall.getInventory().addItem(ItemType.COIN, price);
+            Assert.Equal(price, market.getSellPrice(ItemType.WOOD));
 
             Assert.Null(market.sellResources(greedy, PawnTraits.sellPriceBonusPercent(greedy)));
             Assert.NotNull(market.sellResources(greedy));
@@ -332,7 +334,7 @@ namespace beyondnationstests {
             pawn.setTraits(new[] { PawnTrait.LOYAL, PawnTrait.GREEDY });
             simulation.getEntityRepository().addEntity(pawn);
             simulation.fixedUpdate(1f / 50f);
-            Assert.StartsWith("Ada Smith\nLoyal, Greedy\n", pawn.getNameTag());
+            Assert.StartsWith("Ada Smith\nLoyal by nature, Greedy\n", pawn.getNameTag());
         }
     }
 }
