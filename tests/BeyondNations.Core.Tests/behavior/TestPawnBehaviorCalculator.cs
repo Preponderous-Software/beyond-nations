@@ -91,6 +91,31 @@ namespace beyondnationstests {
         }
 
         /**
+            * Input: pawn is nationless, settlement within range, but its nation cannot feed its members
+            * Expected output: not JOIN_NATION (#489: no newcomers join a nation going hungry)
+        */
+        [Fact]
+        public void testComputeBehaviorType_Nationless_PassesByANationGoingHungry() {
+            EntityRepository entityRepository = new EntityRepository(random);
+            Environment environment = new Environment(5, 5, entityRepository, random);
+            NationRepository nationRepository = new NationRepository(random);
+            Pawn nationLeader = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(nationLeader);
+            Nation nation = new Nation("test", nationLeader.getId(), random);
+            nationRepository.addNation(nation);
+            nationLeader.setNationId(nation.getId());
+            Settlement settlement = new Settlement(new Vector3(0, 0, 0), nation.getId(), nation.getColor(), nation.getName(), random);
+            entityRepository.addEntity(settlement);
+            // the nation's only member is hungry, with nothing to eat
+            nationLeader.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            Pawn pawn = new Pawn(new Vector3(0, 0, 0), "test", random);
+            entityRepository.addEntity(pawn);
+            PawnBehaviorCalculator calculator = new PawnBehaviorCalculator(environment, entityRepository, nationRepository, new GameConfig(), new TickCounter(), random);
+
+            Assert.NotEqual(BehaviorType.JOIN_NATION, calculator.computeBehaviorType(pawn));
+        }
+
+        /**
             * Input: pawn is nationless, settlement not within range, enough wood to create settlement
             * Expected output: CREATE_NATION
         */

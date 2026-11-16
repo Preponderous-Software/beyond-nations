@@ -122,6 +122,7 @@ namespace beyondnations {
             seasonCalendar = new SeasonCalendar(timeOfDay);
             pawnBehaviorCalculator.setSeasonCalendar(seasonCalendar);
             pawnBehaviorExecutor.setSeasonCalendar(seasonCalendar);
+            populationGrowth.setSeasonCalendar(seasonCalendar);
             seasonalWorld = new SeasonalWorld(seasonCalendar, regionMap, environment, entityRepository, gameConfig, player, random);
             seasonalWorld.setNations(nationRepository, eventProducer);
             worldPalette = new WorldPalette(seasonCalendar, regionMap);

@@ -66,6 +66,22 @@ namespace beyondnationstests {
             Assert.Equal(BehaviorType.CREATE_NATION, calculator.computeBehaviorType(pawn));
         }
 
+        /** #489: in winter no stranger strikes out alone, or each one turned from a hungry nation founds its own. */
+        [Fact]
+        public void inWinter_NoStrangerDeclaresANation() {
+            int firstDayOfWinter = 3 * SeasonCalendar.DAYS_PER_SEASON;
+            PawnBehaviorCalculator calculator = calculatorOnDay(firstDayOfWinter, 0, out Pawn pawn);
+            TickCounter clock = new TickCounter();
+            int ticks = (int) ((firstDayOfWinter + 0.5f - TimeOfDay.DefaultStartFraction) * TimeOfDay.DefaultTicksPerDay);
+            for (int i = 0; i < ticks; i++) {
+                clock.increment();
+            }
+            calculator.setSeasonCalendar(new SeasonCalendar(new TimeOfDay(clock)));
+
+            Assert.False(calculator.mayDeclareNation(pawn));
+            Assert.Equal(BehaviorType.GATHER_RESOURCES, calculator.computeBehaviorType(pawn));
+        }
+
         private static Simulation createSimulation() {
             GameConfig config = new GameConfig();
             config.setWorldSeed(1234);

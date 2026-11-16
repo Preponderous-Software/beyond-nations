@@ -141,6 +141,72 @@ namespace beyondnationstests {
             Assert.Equal(before, countPawns());
         }
 
+        // --- a nation that cannot feed its members (#489) ----------------------
+
+        [Fact]
+        public void testNoChild_WhileAQuarterOfTheNationIsHungry() {
+            Settlement settlement = makeSettlement();
+            Pawn ada = addResident(settlement, "Ada Smith");
+            Pawn bo = addResident(settlement, "Bo Jones");
+            befriend(ada, bo, 50);
+            settlement.getInventory().addItem(ItemType.APPLE, 20);
+            // one of three members hungry, with nothing in the pack
+            ada.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            Assert.True(ada.needsFood());
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+            Assert.True(growth.cannotFeed(nation.getId()));
+
+            // fed again, the couple has its child
+            ada.setEnergy(Pawn.MaxEnergy);
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS * 2);
+            Assert.Equal(before + 1, countPawns());
+        }
+
+        [Fact]
+        public void testNoChild_InWinter_WhileTheMembersCarryLessThanTheWinterWants() {
+            Settlement settlement = makeSettlement();
+            Pawn ada = addResident(settlement, "Ada Smith");
+            Pawn bo = addResident(settlement, "Bo Jones");
+            befriend(ada, bo, 50);
+            settlement.getInventory().addItem(ItemType.APPLE, 20);
+            TickCounter clock = new TickCounter();
+            growth.setSeasonCalendar(new SeasonCalendar(new TimeOfDay(clock)));
+            while (new SeasonCalendar(new TimeOfDay(clock)).getSeason() != Season.WINTER) {
+                clock.increment();
+            }
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+            Assert.Equal(before, countPawns());
+
+            // with the store in every pack, the winter can feed one more
+            foreach (Entity entity in entityRepository.getEntitiesOfType(EntityType.PAWN)) {
+                entity.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE);
+            }
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS * 2);
+            Assert.Equal(before + 1, countPawns());
+        }
+
+        [Fact]
+        public void testHungryNation_DrawsNoNewcomer() {
+            Settlement settlement = makeSettlement();
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.FARM);
+            Assert.True(PopulationGrowth.isThriving(settlement));
+            Pawn leader = (Pawn) entityRepository.getEntity(nation.getLeaderId());
+            leader.setEnergy(Pawn.STARVING_ENERGY_THRESHOLD - 1);
+            int before = countPawns();
+
+            growth.update(PopulationGrowth.TICKS_BETWEEN_CHECKS);
+
+            Assert.Equal(before, countPawns());
+            Assert.Equal(0, growth.getNumImmigrants());
+        }
+
         [Fact]
         public void testNoChild_WithoutRoom() {
             Settlement settlement = makeSettlement();

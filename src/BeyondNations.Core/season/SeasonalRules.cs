@@ -32,10 +32,23 @@ namespace beyondnations {
         public const float WINTER_COLD_MULTIPLIER = 1.3f;
 
         /**
-        * Food a pawn wants to carry into winter. From autumn on, a pawn holding
-        * less leans towards food when it gathers (PawnBehaviorExecutor).
+        * Food a pawn wants to carry into winter: what a member eats in a winter
+        * spent at home. From autumn on, a pawn holding less leans towards food
+        * when it gathers (PawnBehaviorExecutor), and the winter warning, the
+        * Season box and Feed Residents all aim at it for each member.
+        *
+        * A pawn burns 0.0035 energy a tick on average (Pawn's 0.002-0.005), at
+        * 0.8 of that indoors, over a winter of DAYS_PER_SEASON days of 30,000
+        * ticks: 168 energy, or about 11 apples at 15 each. It was 4, enough for
+        * about half a winter day, so a nation the Season box showed as ready
+        * ("Food: 32 of 20") ran out on the first day (#488). Out in the cold a
+        * pawn eats nearer 20 (x1.3), and a starving pawn indoors rations
+        * (WINTER_SHELTER_MULTIPLIER), so this is the honest middle: a member
+        * who stays in and carries this much sees out the winter.
+        * TestSeasonalRules.testWinterFoodStore_IsWhatAWinterAtHomeEats checks
+        * the sum against the pawns' own numbers.
         */
-        public const int WINTER_FOOD_STORE = 4;
+        public const int WINTER_FOOD_STORE = 12;
 
         /** Ticks between chicken hatchings in spring and summer: 30 seconds. */
         public const int CHICKEN_HATCH_INTERVAL_TICKS = 1500;
@@ -56,10 +69,11 @@ namespace beyondnations {
         public const int APPLE_SPOIL_INTERVAL_TICKS = 1500;
 
         /**
-        * Apples a pawn keeps without any spoiling: three times WINTER_FOOD_STORE, so
-        * the store laid in for winter never rots, only a hoard does.
+        * Apples a pawn keeps without any spoiling: the WINTER_FOOD_STORE, so
+        * the store laid in for winter never rots, only a hoard does. (It was
+        * three times a store of 4: the same 12 apples.)
         */
-        public const int PAWN_APPLES_KEPT = 3 * WINTER_FOOD_STORE;
+        public const int PAWN_APPLES_KEPT = WINTER_FOOD_STORE;
 
         /** Apples a market stall keeps without any spoiling: a small stock that still sells through winter. */
         public const int STALL_APPLES_KEPT = 10;

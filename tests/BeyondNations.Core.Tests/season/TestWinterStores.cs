@@ -75,10 +75,11 @@ namespace beyondnationstests {
 
             Assert.Null(WinterStores.describeWarning(entities, nation, simulation.getSeasonCalendar()));
             jumpToDayOfYear(simulation, LastDayOfAutumn);
-            Assert.Equal("Winter comes tomorrow. " + nation.getName() + "'s 2 members carry 3 food of the 8 they want for winter; 2 are short. Bring food home and Feed Residents.",
+            Assert.Equal("Winter comes tomorrow. " + nation.getName() + "'s 2 members carry 3 food of the " + 2 * SeasonalRules.WINTER_FOOD_STORE
+                + " they need for winter; 2 are short. Bring food home and Feed Residents.",
                 WinterStores.describeWarning(entities, nation, simulation.getSeasonCalendar()));
 
-            member.getInventory().addItem(ItemType.APPLE, 10);
+            member.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE - 1);
             Assert.Contains("1 is short", WinterStores.describeWarning(entities, nation, simulation.getSeasonCalendar()));
         }
 
@@ -124,6 +125,37 @@ namespace beyondnationstests {
             Assert.Equal(0, FoodItems.countFood(away.getInventory()));
             Assert.Equal(20 - 1 - (SeasonalRules.WINTER_FOOD_STORE - 1), player.getInventory().getNumItems(ItemType.APPLE));
             Assert.StartsWith("You fed 1 and stocked 1 resident for winter", player.getStatus().getStatus());
+        }
+
+        // --- a nation that cannot feed its members (#489) ----------------------
+
+        [Fact]
+        public void testCannotFeed_AQuarterHungry_InAnySeason() {
+            Assert.False(WinterStores.cannotFeed(new WinterStores.Count(0, 0, 0, 0), Season.WINTER));
+            Assert.False(WinterStores.cannotFeed(new WinterStores.Count(8, 100, 0, 1), Season.SUMMER));
+            Assert.True(WinterStores.cannotFeed(new WinterStores.Count(8, 100, 0, 2), Season.SUMMER));
+            Assert.True(WinterStores.cannotFeed(new WinterStores.Count(1, 0, 1, 1), Season.SPRING));
+        }
+
+        [Fact]
+        public void testCannotFeed_InWinter_WhenTheStoresAreShortOfTheWinter() {
+            int wanted = 5 * SeasonalRules.WINTER_FOOD_STORE;
+            Assert.True(WinterStores.cannotFeed(new WinterStores.Count(5, wanted - 1, 1, 0), Season.WINTER));
+            Assert.False(WinterStores.cannotFeed(new WinterStores.Count(5, wanted, 0, 0), Season.WINTER));
+            // in autumn there is still time to lay food in
+            Assert.False(WinterStores.cannotFeed(new WinterStores.Count(5, 0, 5, 0), Season.AUTUMN));
+        }
+
+        [Fact]
+        public void testCount_CountsTheHungry() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            addMember(simulation, nation, settlement, 95f, 0, true);
+            addMember(simulation, nation, settlement, 50f, 0, true);
+            addMember(simulation, nation, settlement, 50f, 1, true);
+            WinterStores.Count stores = WinterStores.count(simulation.getEntityRepository(), nation.getId());
+            // the third has food to eat, so is not hungry
+            Assert.Equal(1, stores.Hungry);
+            Assert.True(WinterStores.cannotFeed(stores, Season.SUMMER));
         }
 
         [Fact]

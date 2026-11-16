@@ -141,7 +141,7 @@ namespace beyondnations {
         }
 
         private void executeGatherResourcesBehavior(Pawn pawn) {
-            if (!pawn.hasTargetEntity() || !isGatherable(pawn.getTargetEntity().getType())) {
+            if (!pawn.hasTargetEntity() || !isGatherable(pawn.getTargetEntity().getType()) || isChasingAFarChicken(pawn)) {
                 Entity target = selectGatherTarget(pawn);
                 if (target != null) {
                     pawn.setTargetEntity(target);
@@ -207,8 +207,33 @@ namespace beyondnations {
          * The entity types a pawn gathers from by walking up to them and taking
          * their inventory -- the same set the player's interact command harvests.
          */
+        /** How often a pawn walking to a far chicken for food looks for something nearer: once a second. */
+        public const int FAR_CHICKEN_RECHECK_TICKS = 50;
+
         private static bool isGatherable(EntityType type) {
             return type == EntityType.TREE || type == EntityType.ROCK || type == EntityType.CHICKEN;
+        }
+
+        /**
+        * Whether a pawn after food is walking to a chicken beyond hunting
+        * range, which it took only for want of anything nearer: it looks
+        * again once a second (FAR_CHICKEN_RECHECK_TICKS), so the spring's
+        * first fruit or a nearer chicken turns it round. A starving pawn kept
+        * the far chicken it had chosen in winter into spring and died on the
+        * road (#484).
+        */
+        private bool isChasingAFarChicken(Pawn pawn) {
+            if (tickCounter == null || tickCounter.getTotalTicks() % FAR_CHICKEN_RECHECK_TICKS != 0) {
+                return false;
+            }
+            Entity target = pawn.getTargetEntity();
+            if (target == null || target.getType() != EntityType.CHICKEN) {
+                return false;
+            }
+            if (Vector3.Distance(pawn.getPosition(), target.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
+                return false;
+            }
+            return pawn.needsFood() || (seasonCalendar != null && SeasonalRules.wantsStores(pawn, seasonCalendar.getSeason()));
         }
 
         /**
@@ -236,8 +261,13 @@ namespace beyondnations {
                 if (nearestChicken != null && Vector3.Distance(pawn.getPosition(), nearestChicken.getPosition()) <= SeasonalRules.STORES_HUNT_RANGE) {
                     return nearestChicken;
                 }
-                Entity nearestFruit = environment.getNearestEntityOfType(pawn.getPosition(), EntityType.TREE, guarded);
-                if (nearestFruit != null && treesBearFruit() && nearestFruit.getInventory().getNumItems(ItemType.APPLE) > 0) {
+                // the nearest tree in fruit, not the nearest tree: after winter the
+                // nearest is often bare (grown from a sapling, or picked), and a
+                // starving pawn walked past fruit 25 m off to a chicken 1,500 m
+                // away and died on the way (#484)
+                Entity nearestFruit = !treesBearFruit() ? null : environment.getNearestEntityOfType(pawn.getPosition(), EntityType.TREE,
+                    tree => (guarded != null && guarded(tree)) || tree.getInventory().getNumItems(ItemType.APPLE) == 0);
+                if (nearestFruit != null) {
                     return nearestFruit;
                 }
                 if (hungry && nearestChicken != null) {
