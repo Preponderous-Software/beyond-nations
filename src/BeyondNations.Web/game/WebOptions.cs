@@ -36,7 +36,7 @@ namespace beyondnations.web {
         };
 
         private static readonly HashSet<string> FlagOptions = new HashSet<string> {
-            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-settlement", "stage-outpost", "stage-diplomacy", "stage-feel", "stage-succession", "stage-event", "stage-trade", "stage-market", "stage-victory", "stage-defeat", "no-saves", "continue",
+            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-settlement", "stage-outpost", "stage-diplomacy", "stage-feel", "stage-succession", "stage-event", "stage-trade", "stage-market", "stage-trader", "stage-victory", "stage-defeat", "no-saves", "continue",
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {

@@ -199,6 +199,14 @@ namespace beyondnations.desktop {
         public bool StageCamp = false;
 
         /**
+        * As StageDiplomacy, with the nation's one trader at work and another
+        * serf beside the player, so Appoint Trader shows greyed with its
+        * reason, and a neighbour twice the player's strength at +35 (#487,
+        * #478). See TraderShowcase.
+        */
+        public bool StageTrader = false;
+
+        /**
         * Opens a world whose run has just ended -- a Prosperity victory in
         * the Kingdom era, or a collapse -- on the end-of-run screen. See
         * EndingShowcase.
@@ -281,6 +289,7 @@ namespace beyondnations.desktop {
                     case "--stage-market":     options.StageMarket = true; break;
                     case "--stage-caravan":    options.StageCaravan = true; break;
                     case "--stage-camp":       options.StageCamp = true; break;
+                    case "--stage-trader":     options.StageTrader = true; break;
                     case "--stage-victory":    options.StageVictory = true; break;
                     case "--stage-defeat":     options.StageDefeat = true; break;
                     case "--first-person":     options.FirstPerson = true; break;
@@ -463,6 +472,7 @@ namespace beyondnations.desktop {
                 "  --stage-market          as --stage-trade, standing in the trading neighbour's market",
                 "  --stage-caravan         as --stage-trade, standing in your own village with a load to send",
                 "  --stage-camp            open in your nation's first camp, in the Camp era, residents about",
+                "  --stage-trader          as --stage-diplomacy, with the nation's trader at work and its slot taken",
                 "  --time-of-day F         start the world at this time of day, 0..1 (0.25 sunrise, 0.5 noon; default 0.3)",
                 "  --season NAME           start on the first day of spring, summer, autumn or winter (default spring)",
                 "  --ui-scale F            draw the UI F times its design size, 1..4 (default: the monitor's scale)",

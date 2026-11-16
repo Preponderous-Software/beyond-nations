@@ -233,6 +233,63 @@ namespace beyondnations {
             return "buying " + ItemNames.getSingularName(run.good) + " to sell at the " + run.destination.getDisplayName();
         }
 
+        /** "10 wood, 3 stone": the goods a trader carries that a market buys, or "nothing". */
+        public static string describeLoad(Inventory carried) {
+            List<string> parts = new List<string>();
+            foreach (ItemType itemType in MarketPricing.PricedItems) {
+                int quantity = carried.getNumItems(itemType);
+                if (quantity > 0 && Market.isSoldInBulk(itemType)) {
+                    parts.Add(ItemNames.describeQuantity(itemType, quantity));
+                }
+            }
+            return parts.Count == 0 ? "nothing" : string.Join(", ", parts);
+        }
+
+        /**
+        * What a trader is up to, for the Members tab (#487: "nothing on
+        * screen shows what a trader carries or where it is going"):
+        * "Trading: carrying 10 wood to the Village of Yland." or
+        * "Trading: 40 coins in hand, waiting for a run worth the walk."
+        */
+        public static string describeActivity(EntityRepository entityRepository, NationRepository nationRepository, Pawn trader) {
+            Settlement here = trader.getCurrentSettlementId() == null ? null
+                : entityRepository.getEntity(trader.getCurrentSettlementId()) as Settlement;
+            int coins = trader.getInventory().getNumItems(ItemType.COIN);
+            if (hasGoodsToSell(trader.getInventory())) {
+                Settlement destination = here != null
+                    ? findBestMarketFor(trader.getInventory(), here, getMarkets(entityRepository, nationRepository, here, trader.getNationId()))
+                    : findDestinationOnTheRoad(entityRepository, nationRepository, trader);
+                string load = describeLoad(trader.getInventory());
+                if (destination == null) {
+                    return "Trading: carrying " + load + ", with no market in reach that would pay for it.";
+                }
+                return destination == here
+                    ? "Trading: selling " + load + " at the " + destination.getDisplayName() + "."
+                    : "Trading: carrying " + load + " to the " + destination.getDisplayName() + ".";
+            }
+            if (here != null) {
+                TradeRun run = planRun(trader, here, getMarkets(entityRepository, nationRepository, here, trader.getNationId()));
+                if (run != null) {
+                    return "Trading: " + describeRun(run) + ".";
+                }
+            }
+            return "Trading: " + coins + " coins in hand, waiting for a run worth the walk (at least " + MIN_PROFIT
+                + " coins of profit within reach).";
+        }
+
+        /** The chronicle's line when a trader buys its load (TraderEvent). */
+        public static string describePurchase(Pawn trader, Nation nation, TradeReceipt receipt, Settlement here, Settlement destination) {
+            return nation.getName() + "'s trader " + trader.getName() + " bought " + ItemNames.describeQuantity(receipt.getItemType(), receipt.getQuantity())
+                + " at the " + here.getDisplayName() + " for " + receipt.getCoins() + " coins"
+                + (destination == null ? "." : ", to sell at the " + destination.getDisplayName() + ".");
+        }
+
+        /** The chronicle's line when a trader sells its load (TraderEvent). */
+        public static string describeSale(Pawn trader, Nation nation, string goods, int coins, Settlement here) {
+            return nation.getName() + "'s trader " + trader.getName() + " sold " + goods + " at the " + here.getDisplayName()
+                + " for " + coins + " coins.";
+        }
+
         private static float groundDistance(Vector3 a, Vector3 b) {
             return Vector3.Distance(new Vector3(a.X, 0f, a.Z), new Vector3(b.X, 0f, b.Z));
         }

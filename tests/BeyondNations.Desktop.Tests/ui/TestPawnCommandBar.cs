@@ -182,6 +182,41 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testAppointTrader_StaysOnTheBar_GreyedWithWhoHoldsTheSlot() {
+            // #487: with the one trader slot taken the button vanished
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            Nation nation = playerNation(simulation);
+            Settlement settlement = new Settlement(new Vector3(500, 0, 500), nation.getId(), nation.getColor(), nation.getName(), simulation.getRandom());
+            simulation.getEntityRepository().addEntity(settlement);
+            nation.addSettlement(settlement.getId());
+
+            Pawn pawn = addPawnNextToPlayer(simulation);
+            nation.addMember(pawn.getId());
+            pawn.setNationId(nation.getId());
+            pawn.setHomeSettlementId(settlement.getId());
+            player.getInventory().clear();
+            player.getInventory().addItem(ItemType.COIN, Traders.TRADER_STAKE);
+
+            Assert.True(find(simulation, "Appoint Ada Trader").isEnabled());
+
+            Pawn charlotte = new Pawn(new Vector3(500, 0, 500), "Charlotte Evans", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(charlotte);
+            nation.addMember(charlotte.getId());
+            charlotte.setNationId(nation.getId());
+            charlotte.setHomeSettlementId(settlement.getId());
+            nation.setRole(charlotte.getId(), NationRole.TRADER);
+
+            WorldCommand appoint = find(simulation, "Appoint Ada Trader");
+            Assert.NotNull(appoint);
+            Assert.False(appoint.isEnabled());
+            Assert.StartsWith("One trader per settlement: Charlotte Evans", appoint.getTooltip());
+            // a tap on the greyed button puts the reason on the status line (touch path)
+            beyondnations.desktop.ui.screens.WorldHud.explainDisabled(appoint, player.getStatus());
+            Assert.StartsWith("One trader per settlement: Charlotte Evans", player.getStatus().getLatest());
+        }
+
+        [Fact]
         public void testGKey_GiftsNearestPawn() {
             Simulation simulation = createSimulation();
             Player player = simulation.getPlayer();
