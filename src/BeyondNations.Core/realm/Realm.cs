@@ -690,6 +690,17 @@ namespace beyondnations {
         // world warns again, so a reign never ends unannounced, however old the save.
         private int oldAgeWarnedAt = -1;
 
+        /**
+        * The reign starts now: the host calls this when the player first
+        * takes control of a world it fast-forwarded (--season,
+        * --advance-ticks), so the years the world ran without them do not
+        * count toward old age (#490). A reign already in the lineage is untouched.
+        */
+        public void beginReignNow() {
+            reignStartTick = now();
+            oldAgeWarnedAt = -1;
+        }
+
         /** How long the current ruler has reigned, in ticks. */
         public int getReignTicks() {
             return now() - reignStartTick;

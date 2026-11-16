@@ -297,6 +297,8 @@ namespace beyondnations.desktop {
             // --- end #280 ---
             if (options.StartSeason.HasValue) {
                 simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+                // the days skipped are not the player's: their reign starts now (#490)
+                simulation.startPlayerFresh();
             }
 
             if (options.StageSettlement) {
@@ -352,13 +354,19 @@ namespace beyondnations.desktop {
         /**
         * --advance-ticks: the same fixed steps the window runs, without
         * waiting for the clock, so the world opens mid-game. A world event
-        * waiting on the player does not stop it: the player is not playing.
+        * waiting on the player does not stop it: the player is not playing,
+        * so they are kept fed meanwhile and start fresh at the end (#490).
         */
         private void advanceTicks(int ticks) {
             Log.info("advancing the world " + ticks + " ticks");
             float step = (float) fixedTimeStep;
             for (int i = 0; i < ticks; i++) {
-                simulation.fixedUpdate(step);
+                simulation.fixedUpdateWithPlayerAway(step);
+            }
+            // the player comes in fed and young, not having lived the skipped ticks (#490)
+            simulation.startPlayerFresh();
+            if (options.StageSuccession) {
+                simulation.getPlayer().setEnergy(0.001f);
             }
             Log.info("advanced to tick " + simulation.getTickCounter().getTotalTicks()
                 + ": " + simulation.getNationRepository().getNations().Count + " nations");

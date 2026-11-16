@@ -181,6 +181,27 @@ namespace beyondnations {
         public NationResources getNationResources() { return nationResources; }
         public int getNumPlayerDeaths() { return numPlayerDeaths; }
 
+        /**
+        * One fixed step of a fast-forward the player sits out (--advance-ticks):
+        * the player is kept fed, so they cannot starve -- or die and be
+        * succeeded -- while they are not playing (#490).
+        */
+        public void fixedUpdateWithPlayerAway(float fixedDeltaTime) {
+            player.setEnergy(Player.MaxEnergy);
+            fixedUpdate(fixedDeltaTime);
+        }
+
+        /**
+        * The player takes control of a world the host fast-forwarded
+        * (--season, --advance-ticks): they start as from a fresh world --
+        * full energy, and a reign that starts now rather than at tick 0,
+        * so old age is as far off as in an ordinary new game (#490).
+        */
+        public void startPlayerFresh() {
+            player.setEnergy(Player.MaxEnergy);
+            realm.beginReignNow();
+        }
+
         public void fixedUpdate(float fixedDeltaTime) {
                     tickCounter.increment();
                     // messages said during this step share the status line

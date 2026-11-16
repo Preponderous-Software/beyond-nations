@@ -143,6 +143,8 @@ namespace beyondnations.web {
             }
             if (options.StartSeason.HasValue) {
                 simulation.getSeasonCalendar().advanceClockTo(simulation.getTickCounter(), options.StartSeason.Value);
+                // the days skipped are not the player's: their reign starts now (#490)
+                simulation.startPlayerFresh();
             }
             if (options.StageSettlement) {
                 SettlementShowcase.stage(simulation);
@@ -350,7 +352,8 @@ namespace beyondnations.web {
         * winter warning's 22,000 on a phone), so here they run in slices of
         * AdvanceBudgetMs a frame and the world is drawn, fast-forwarding, in
         * between. As on the desktop, a world event waiting on the player does
-        * not stop it, and nothing else steps until it is done. WebOptions
+        * not stop it, the player is kept fed and starts fresh at the end (#490),
+        * and nothing else steps until it is done. WebOptions
         * caps the count (WebOptions.MaxAdvanceTicks).
         */
         private void advanceChunk() {
@@ -358,11 +361,16 @@ namespace beyondnations.web {
             long started = Stopwatch.GetTimestamp();
             long budget = Stopwatch.Frequency * AdvanceBudgetMs / 1000;
             do {
-                simulation.fixedUpdate(step);
+                simulation.fixedUpdateWithPlayerAway(step);
                 advanceTicksLeft--;
             } while (advanceTicksLeft > 0 && Stopwatch.GetTimestamp() - started < budget);
             accumulator = 0;
             if (advanceTicksLeft == 0) {
+                // the player comes in fed and young, not having lived the skipped ticks (#490)
+                simulation.startPlayerFresh();
+                if (options.StageSuccession) {
+                    simulation.getPlayer().setEnergy(0.001f);
+                }
                 Log.info("advanced to tick " + simulation.getTickCounter().getTotalTicks()
                     + ": " + simulation.getNationRepository().getNations().Count + " nations");
             }
