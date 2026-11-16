@@ -131,11 +131,12 @@ namespace beyondnationstests.desktop.ui {
 
             Assert.Single(rows);
             Assert.Equal("You (Player) - Leader, no home", rows[0].title);
-            Assert.EndsWith(": 1 member. Loyalty is how each feels about you.", lines[0]);
+            Assert.EndsWith(": 1 member. Talking and gifts raise their loyalty to you.", lines[0]);
             // and what to do about it (0.8.0 playtest s06)
             Assert.Equal("No heir: if you die now, your line ends. " + MembersPanel.HowToGainMembers, lines[1]);
             Assert.Contains("invite", lines[1]);
             Assert.Equal("When you die, your family comes first, then the most loyal, then the longest sworn.", lines[2]);
+            Assert.Equal(3, lines.Count);
         }
 
         [Fact]
@@ -147,6 +148,54 @@ namespace beyondnationstests.desktop.ui {
             Assert.Empty(MembersPanel.getRows(simulation));
             Assert.Equal(new List<string> { "You belong to no nation, so no one is sworn to you. Found one (N) or join one (J)." },
                 MembersPanel.getLines(simulation));
+        }
+
+        /**
+        * #344: a member strolling about the player's own settlement can be
+        * reached, talked to and gifted, and the loyalty that builds shows on
+        * this tab as a real tier rather than "Stranger". Played through the
+        * same reach lookup and commands the keys and the command bar use, in
+        * the --stage-settlement world, with the player both at the plaza and
+        * inside the settlement.
+        */
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void testLoyaltyBuiltAtHome_ShowsOnTheMembersTab(bool playerInside) {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Settlement home = SettlementShowcase.stage(simulation);
+            Player player = simulation.getPlayer();
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            if (playerInside) {
+                new EnterSettlementCommand(simulation.getEntityRepository()).execute(player, home);
+            }
+
+            MembersPanel.Row before = MembersPanel.getRows(simulation)[1];
+            Assert.Equal("Loyalty: Stranger (0)", before.detail.Substring(0, "Loyalty: Stranger (0)".Length));
+            Pawn member = pawnOf(simulation, before);
+            Assert.True(member.isCurrentlyInSettlement());
+            player.setPosition(member.getPosition() + new System.Numerics.Vector3(0.5f, 0, 0));
+
+            Pawn reached = PawnRelations.findPawnInRange(player, simulation.getEnvironment());
+            Assert.Same(member, reached);
+            Assert.True(nation.isMember(reached.getId()));
+
+            new TalkToPawnCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getTickCounter()).execute(player, reached);
+            player.getInventory().addItem(ItemType.COIN, 10 * GiftPawnCommand.COIN_GIFT_AMOUNT);
+            while (PawnRelations.getTier(reached, player) < RelationshipTier.FRIEND) {
+                new GiftPawnCommand(simulation.getEventProducer(), simulation.getNationRepository()).execute(player, reached);
+            }
+            Assert.DoesNotContain("never join", player.getStatus().getStatus());
+
+            MembersPanel.Row after = MembersPanel.getRows(simulation).Find(r => r.id == member.getId());
+            int loyalty = PawnRelations.getRelationship(member, player);
+            Assert.True(loyalty >= RelationshipTiers.FRIEND_THRESHOLD);
+            Assert.Equal(loyalty, after.loyalty);
+            Assert.StartsWith("Loyalty: Friend (" + loyalty + ").", after.detail);
+            // the most loyal member is now the heir
+            Assert.True(after.isHeir);
         }
 
         [Fact]

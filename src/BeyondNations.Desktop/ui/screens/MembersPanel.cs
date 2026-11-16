@@ -25,6 +25,14 @@ namespace beyondnations.desktop.ui.screens {
     public class MembersPanel {
         public const string NoNation = "You belong to no nation, so no one is sworn to you. Found one ({CreateNewNation}) or join one ({JoinNation}).";
         public const string HeirMark = "HEIR";
+        /**
+        * Members who joined without being courted (newcomers, births) start
+        * as Strangers; the tab says how that changes, in words with no key
+        * in them, since talking and gifting work on members at home too (#344).
+        * It ends the first line rather than adding one, which on a phone
+        * would cost a row of members.
+        */
+        public const string LoyaltyHint = "Talking and gifts raise their loyalty to you.";
 
         private static readonly Vector4 HeirColour = new Vector4(0.95f, 0.75f, 0.30f, 1f);
         private static readonly Vector4 DetailColour = new Vector4(0.85f, 0.85f, 0.80f, 1f);
@@ -81,7 +89,7 @@ namespace beyondnations.desktop.ui.screens {
             }
             int members = own.getNumberOfMembers();
             lines.Add("The people of " + own.getName() + ": " + members + (members == 1 ? " member" : " members")
-                + ". Loyalty is how each feels about you.");
+                + ". " + LoyaltyHint);
             string reason;
             Pawn heir = Succession.chooseHeir(own, player, simulation.getEntityRepository(), out reason);
             lines.Add(heir == null

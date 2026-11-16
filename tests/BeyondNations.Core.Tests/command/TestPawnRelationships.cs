@@ -334,6 +334,74 @@ namespace beyondnationstests {
             Assert.Equal(GiftPawnCommand.HUNGRY_FOOD_GIFT_GAIN, PawnRelations.getRelationship(pawn, player));
         }
 
+        // --- gifts to a leader (#371) ---
+
+        [Fact]
+        public void testGift_RivalLeader_WarmsButWarnsItWillNeverJoin() {
+            playerNation();
+            Pawn leader = addPawn("Rex");
+            pawnNation("Rivalia", leader);
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, leader);
+
+            Assert.Equal(GiftPawnCommand.COIN_GIFT_GAIN, PawnRelations.getRelationship(leader, player));
+            Assert.EndsWith(" Rex leads Rivalia and will never join your nation.", status());
+            Assert.Equal(" Rex leads Rivalia and will never join your nation.", GiftPawnCommand.leaderWarning(player, leader, nationRepository));
+        }
+
+        [Fact]
+        public void testGift_RivalLeader_WarnsAPlayerWithoutANationToo() {
+            Pawn leader = addPawn("Rex");
+            pawnNation("Rivalia", leader);
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, leader);
+
+            Assert.Contains("Rex leads Rivalia", status());
+        }
+
+        [Fact]
+        public void testGift_RivalMemberOrNationless_NoLeaderWarning() {
+            playerNation();
+            Pawn leader = addPawn("Rex");
+            Nation rival = pawnNation("Rivalia", leader);
+            Pawn member = addPawn("Ada");
+            join(rival, member);
+            Pawn loner = addPawn("Bea");
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, member);
+            Assert.DoesNotContain("never join", status());
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, loner);
+            Assert.DoesNotContain("never join", status());
+            Assert.Equal("", GiftPawnCommand.leaderWarning(player, member, nationRepository));
+            Assert.Equal("", GiftPawnCommand.leaderWarning(player, loner, nationRepository));
+        }
+
+        [Fact]
+        public void testGift_OwnMember_NoLeaderWarning() {
+            Nation home = playerNation();
+            Pawn member = addPawn("Ada");
+            join(home, member);
+            player.getInventory().addItem(ItemType.COIN, 100);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, member);
+
+            Assert.DoesNotContain("never join", status());
+            Assert.Equal(GiftPawnCommand.COIN_GIFT_GAIN, PawnRelations.getRelationship(member, player));
+        }
+
+        [Fact]
+        public void testGift_NothingToGive_ToALeader_NoWarningEither() {
+            Pawn leader = addPawn("Rex");
+            pawnNation("Rivalia", leader);
+
+            new GiftPawnCommand(eventProducer, nationRepository).execute(player, leader);
+
+            Assert.StartsWith("You have nothing to give Rex.", status());
+        }
+
         [Fact]
         public void testGift_FedPawn_GetsCoinsFirst() {
             Pawn pawn = addPawn("Ada");
