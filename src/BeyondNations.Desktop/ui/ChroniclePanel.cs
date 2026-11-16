@@ -32,6 +32,16 @@ namespace beyondnations.desktop.ui {
     */
     public class ChroniclePanel {
         public const int RecentCount = 5;
+        /**
+        * The strip on a touch screen: a phone has room for only a few rows
+        * of the command bar under it (#466), and News opens the rest.
+        */
+        public const int TouchRecentCount = 2;
+
+        /** How many entries the strip shows. */
+        public static int recentCount(bool touch) {
+            return touch ? TouchRecentCount : RecentCount;
+        }
 
         /** The full view's help, with key tokens (ObjectiveKeyNames); the strip's heading is recentHeading. */
         public const string CycleHint = "{ToggleChronicle} cycles views";
@@ -291,7 +301,7 @@ namespace beyondnations.desktop.ui {
             if (ImGui.Begin("##chronicle-recent", CompactFlags)) {
                 float lineWidth = ImGui.GetContentRegionAvail().X;
                 Overlay.textColoured(HintColour, fitToWidth(ObjectiveKeyNames.resolve(recentHeading(scope)), lineWidth, s => ImGui.CalcTextSize(s).X));
-                List<ChronicleEntry> recent = ChroniclePanel.recent(chronicle.getEntries(), focus, scope, RecentCount);
+                List<ChronicleEntry> recent = ChroniclePanel.recent(chronicle.getEntries(), focus, scope, recentCount(TouchLayout.isActive()));
                 if (recent.Count == 0) {
                     Overlay.textColoured(HintColour, fitToWidth(emptyMessage(scope, false), lineWidth, s => ImGui.CalcTextSize(s).X));
                 }

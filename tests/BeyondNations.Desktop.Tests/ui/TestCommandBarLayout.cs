@@ -968,5 +968,229 @@ namespace beyondnationstests.desktop.ui {
             }
             Assert.Equal(rows.Count, CommandBarLayout.countRows(standIns, measure, settings));
         }
+
+        // --- a phone's bar, a page at a time (#466) ----------------------------------------------------
+
+        public static IEnumerable<object[]> PhoneBars() {
+            // CSS pixels, with the controls' band main.js reserves; the rows the HUD leaves the bar
+            yield return new object[] { 844f, 390f, 150f, 2 };
+            yield return new object[] { 844f, 390f, 150f, 1 };
+            yield return new object[] { 390f, 844f, 220f, 3 };
+            yield return new object[] { 390f, 844f, 220f, 2 };
+        }
+
+        [Theory]
+        [MemberData(nameof(PhoneBars))]
+        public void onAPhone_EveryButtonIsOnSomePage_WithinTheRowsTheBarHas(float width, float height, float reserve, int maxRows) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, true, 1f, out WorldHud.Layout layout, out bool stackCentre);
+            settings.Left = WorldHud.getBarLeft(layout, true, stackCentre);
+            settings.MaxRows = maxRows;
+            List<WorldCommand> commands = busySettlement();
+            CommandBarLayout.Result first = CommandBarLayout.compute(commands, measure, settings);
+            Assert.True(first.isPaged());
+            float lowestTop = settings.Bottom - maxRows * settings.ButtonHeight - (maxRows - 1) * settings.SpacingY;
+
+            int[] pagesShowing = new int[commands.Count];
+            for (int page = 0; page < first.PageCount; page++) {
+                CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings, page);
+                Assert.Equal(page, result.Page);
+                Assert.Equal(first.PageCount, result.PageCount);
+                // More, and the bar's top, stay put whatever the page
+                Assert.Equal(first.More, result.More);
+                Assert.Equal(first.Top, result.Top);
+                Assert.True(result.Top >= lowestTop - 0.01f, "page " + page + " takes more than " + maxRows + " rows");
+                bool anyDrastic = false;
+                bool anyOther = false;
+                for (int i = 0; i < commands.Count; i++) {
+                    if (!result.Shown[i]) {
+                        continue;
+                    }
+                    pagesShowing[i]++;
+                    CommandBarLayout.Rect button = result.Buttons[i];
+                    string label = commands[i].getLabel();
+                    Assert.True(button.X >= settings.Left && button.Right <= settings.Right + 0.01f, label + " runs off the bar");
+                    Assert.True(button.Y >= result.Top - 0.01f && button.Bottom <= settings.Bottom + 0.01f, label + " runs out of the bar's rows");
+                    Assert.False(button.overlaps(result.More), label + " is under More");
+                    for (int j = i + 1; j < commands.Count; j++) {
+                        if (result.Shown[j]) {
+                            Assert.False(button.overlaps(result.Buttons[j]), label + " overlaps " + commands[j].getLabel());
+                        }
+                    }
+                    if (commands[i].getGroup() == CommandGroup.Drastic) {
+                        anyDrastic = true;
+                    } else {
+                        anyOther = true;
+                    }
+                }
+                // the drastic buttons are still apart: a page of their own
+                Assert.False(anyDrastic && anyOther, "page " + page + " mixes drastic and other buttons");
+            }
+            for (int i = 0; i < commands.Count; i++) {
+                Assert.True(pagesShowing[i] == 1, commands[i].getLabel() + " is on " + pagesShowing[i] + " pages");
+            }
+            // the page wraps round, so More can keep counting up
+            Assert.Equal(0, CommandBarLayout.compute(commands, measure, settings, first.PageCount).Page);
+        }
+
+        [Fact]
+        public void aBarThatFitsItsRows_IsNotPaged_AndLaysOutAsBefore() {
+            CommandBarLayout.Settings settings = settingsFor(1280f, 720f, 0f, false, 1f, out _, out _);
+            List<WorldCommand> commands = busySettlement();
+            Dictionary<string, CommandBarLayout.Rect> unlimited = place(commands, settings);
+            settings.MaxRows = 12;
+            CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings);
+            Assert.False(result.isPaged());
+            for (int i = 0; i < commands.Count; i++) {
+                Assert.True(result.Shown[i]);
+                Assert.Equal(unlimited[commands[i].getLabel()], result.Buttons[i]);
+            }
+        }
+
+        [Fact]
+        public void theRowsLeftUnderTheHud_AreCountedWhole_AndAtLeastOne() {
+            Assert.Equal(3, CommandBarLayout.rowsBetween(100f, 200f, 30f, 4f));
+            Assert.Equal(2, CommandBarLayout.rowsBetween(100f, 165f, 30f, 4f));
+            Assert.Equal(1, CommandBarLayout.rowsBetween(190f, 200f, 30f, 4f));
+            Assert.Equal("More 2/3", CommandBarLayout.getMoreLabel(1, 3));
+        }
+
+        [Fact]
+        public void onATouchScreen_TheChronicleStripIsShorter_ToLeaveTheBarItsRows() {
+            Assert.Equal(ChroniclePanel.RecentCount, ChroniclePanel.recentCount(false));
+            Assert.True(ChroniclePanel.recentCount(true) < ChroniclePanel.RecentCount);
+            Assert.True(ChroniclePanel.recentCount(true) >= 1);
+        }
+
+        [Fact]
+        public void onAPhoneOnItsSide_TheBarKeepsBetweenTheColumns() {
+            WorldHud.Layout landscape = WorldHud.Layout.compute(844f, 390f, 1f);
+            Assert.False(WorldHud.isStackCentre(844f, landscape, true));
+            Assert.Equal(landscape.LeftX + landscape.BoxWidth + landscape.Gap, WorldHud.getBarLeft(landscape, true, false));
+            // upright, and on a desktop, the bar starts at the margin as before
+            WorldHud.Layout upright = WorldHud.Layout.compute(390f, 844f, 1f);
+            Assert.True(WorldHud.isStackCentre(390f, upright, true));
+            Assert.Equal(upright.Margin, WorldHud.getBarLeft(upright, true, true));
+            Assert.Equal(landscape.Margin, WorldHud.getBarLeft(landscape, false, false));
+        }
+
+        [Theory]
+        [InlineData(844f, 390f, 140f, 2)]
+        [InlineData(390f, 844f, 260f, 2)]
+        [InlineData(390f, 844f, 260f, 1)]
+        public void onAPhone_TheGreyedAppointTrader_IsOnAPawnPage_WithinTheBar(float width, float height, float reserve, int maxRows) {
+            // --stage-trader (#493): a serf beside the player, the one trader slot taken
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            TraderShowcase.stage(simulation);
+            List<WorldCommand> commands = WorldCommandBar.getCommands(simulation);
+            int appoint = commands.FindIndex(c => c.getLabel().StartsWith("Appoint ") && c.getLabel().EndsWith(" Trader"));
+            Assert.True(appoint >= 0, "no Appoint Trader on the bar");
+            Assert.False(commands[appoint].isEnabled());
+
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, true, 1f, out WorldHud.Layout layout, out bool stackCentre);
+            settings.Left = WorldHud.getBarLeft(layout, true, stackCentre);
+            settings.ReservedPeopleRows = WorldCommandBar.getReservedPeopleRows(simulation, measure, settings);
+            settings.MaxRows = maxRows;
+            CommandBarLayout.Result first = CommandBarLayout.compute(commands, measure, settings);
+            int found = 0;
+            for (int page = 0; page < first.PageCount; page++) {
+                CommandBarLayout.Result result = CommandBarLayout.compute(commands, measure, settings, page);
+                if (!result.Shown[appoint]) {
+                    continue;
+                }
+                found++;
+                CommandBarLayout.Rect button = result.Buttons[appoint];
+                Assert.True(button.X >= settings.Left && button.Right <= settings.Right + 0.01f, "Appoint Trader runs off the bar");
+                Assert.True(button.Y >= result.Top - 0.01f && button.Bottom <= settings.Bottom + 0.01f, "Appoint Trader is out of the bar's rows");
+                Assert.False(button.overlaps(result.More));
+                for (int i = 0; i < commands.Count; i++) {
+                    if (i != appoint && result.Shown[i]) {
+                        Assert.False(button.overlaps(result.Buttons[i]), "Appoint Trader overlaps " + commands[i].getLabel());
+                    }
+                }
+            }
+            Assert.Equal(1, found);
+        }
+
+        // --- #466 with #486: the kept pawn rows on a paged bar ----------------------------------------
+
+        /** Every command on page page, by label (CommandBarLayout.compute with that page). */
+        private static Dictionary<string, CommandBarLayout.Rect> pageOf(List<WorldCommand> commands, CommandBarLayout.Settings settings, int page,
+                out CommandBarLayout.Result result) {
+            result = CommandBarLayout.compute(commands, measure, settings, page);
+            Dictionary<string, CommandBarLayout.Rect> shown = new Dictionary<string, CommandBarLayout.Rect>();
+            for (int i = 0; i < commands.Count; i++) {
+                if (result.Shown[i]) {
+                    shown[commands[i].getLabel()] = result.Buttons[i];
+                }
+            }
+            return shown;
+        }
+
+        [Theory]
+        [InlineData(844f, 390f, 140f, 2)]   // a phone on its side, between the columns
+        [InlineData(390f, 844f, 260f, 2)]   // upright
+        [InlineData(390f, 844f, 260f, 1)]
+        public void onAPagedBar_TheKeptPawnRowsCount_ButAddNoEmptyPage_AndAPawnMovesNoOtherButton(float width, float height, float reserve, int maxRows) {
+            CommandBarLayout.Settings settings = settingsFor(width, height, reserve, true, 1f, out WorldHud.Layout layout, out bool stackCentre);
+            settings.Left = WorldHud.getBarLeft(layout, true, stackCentre);
+            int needed = CommandBarLayout.countRows(WorldCommandBar.getPawnStandIns(), measure, settings);
+            settings.ReservedPeopleRows = System.Math.Min(WorldCommandBar.MaxReservedPeopleRows, needed);
+            List<WorldCommand> alone = settlementWithPawn(false);
+            List<WorldCommand> withPawn = settlementWithPawn(true);
+
+            // the kept rows count toward MaxRows: a bar that would fit without them is paged with them
+            CommandBarLayout.Settings roomy = settings;
+            roomy.MaxRows = 0;
+            CommandBarLayout.Result unpaged = CommandBarLayout.compute(alone, measure, roomy);
+            roomy.ReservedPeopleRows = 0;
+            CommandBarLayout.Result unkept = CommandBarLayout.compute(alone, measure, roomy);
+            float step = settings.ButtonHeight + settings.SpacingY;
+            int rowsWithout = (int) System.MathF.Round((settings.Bottom - unkept.Top + settings.SpacingY - settings.DrasticGap) / step);
+            roomy.ReservedPeopleRows = settings.ReservedPeopleRows;
+            roomy.MaxRows = rowsWithout;
+            Assert.True(unpaged.Top < unkept.Top);
+            Assert.True(CommandBarLayout.compute(alone, measure, roomy).isPaged(), "the kept rows were not counted toward MaxRows");
+
+            settings.MaxRows = maxRows;
+            CommandBarLayout.Result first = CommandBarLayout.compute(alone, measure, settings);
+            CommandBarLayout.Result firstWith = CommandBarLayout.compute(withPawn, measure, settings);
+            Assert.True(first.isPaged());
+            // no pawn in reach: no page is left empty for one
+            for (int page = 0; page < first.PageCount; page++) {
+                Assert.NotEmpty(pageOf(alone, settings, page, out _));
+            }
+            // a pawn in reach adds pages at the end, and every other button keeps its page and place
+            Assert.True(firstWith.PageCount > first.PageCount);
+            Assert.Equal(first.Top, firstWith.Top);
+            Assert.Equal(first.More, firstWith.More);
+            for (int page = 0; page < first.PageCount; page++) {
+                Dictionary<string, CommandBarLayout.Rect> before = pageOf(alone, settings, page, out _);
+                Dictionary<string, CommandBarLayout.Rect> after = pageOf(withPawn, settings, page, out _);
+                Assert.Equal(before, after);
+            }
+            // the pawns' pages hold only pawn buttons, after the drastic page
+            bool sawDrastic = false;
+            for (int page = 0; page < firstWith.PageCount; page++) {
+                CommandBarLayout.Result result = CommandBarLayout.compute(withPawn, measure, settings, page);
+                bool people = false;
+                bool other = false;
+                for (int i = 0; i < withPawn.Count; i++) {
+                    if (!result.Shown[i]) {
+                        continue;
+                    }
+                    CommandGroup group = withPawn[i].getGroup();
+                    sawDrastic = sawDrastic || group == CommandGroup.Drastic;
+                    if (group == CommandGroup.People) {
+                        people = true;
+                        Assert.True(sawDrastic, "a pawn page comes before the drastic page");
+                    } else {
+                        other = true;
+                    }
+                }
+                Assert.False(people && other, "page " + page + " mixes pawn and other buttons");
+            }
+        }
     }
 }
