@@ -375,6 +375,79 @@ namespace beyondnationstests {
             Assert.Contains("came home", world.player.getStatus().getStatus());
         }
 
+        /**
+        * #485, from the 0.8.0 re-run (s05): 5 wood, 10 stone and 15 saplings
+        * to a market whose coin ran out after the wood and stone. The
+        * saplings were never mentioned again and Collect Stockpile did not
+        * hand them back. Now the sale line and the homecoming line say what
+        * did not sell, it lands on the home stockpile, and Collect Stockpile
+        * returns every good to the player -- nothing is lost.
+        */
+        [Fact]
+        public void testThePlayersCaravan_BringsHomeWhatDidNotSell_AndCollectStockpileHandsItBack() {
+            Nation own = world.playerNation(2);
+            Settlement home = world.settlement(own, -300, 0);
+            home.addBuilding(BuildingType.STOREHOUSE);
+            world.player.setCurrentSettlementId(home.getId());
+            world.player.getInventory().addItem(ItemType.WOOD, 5);
+            world.player.getInventory().addItem(ItemType.STONE, 10);
+            world.player.getInventory().addItem(ItemType.SAPLING, 15);
+            // a market that can pay for some of it, not all
+            merchantStall.getInventory().setNumItems(ItemType.COIN, 120);
+            int coins = coinsInWorld();
+
+            Caravan caravan = trade.dispatchPlayerCaravan(market, new Dictionary<ItemType, int> {
+                [ItemType.WOOD] = 5, [ItemType.STONE] = 10, [ItemType.SAPLING] = 15 }, tick);
+            Assert.NotNull(caravan);
+            roll(40000, () => caravan.getState() == CaravanState.RETURNING);
+            int unsold = caravan.getCargoCount();
+            Assert.True(unsold > 0, "the market ran out of coin before the cart was empty");
+            Assert.True(caravan.getInventory().getNumItems(ItemType.SAPLING) > 0, "the saplings, last in the cart, did not sell");
+            string sale = world.player.getStatus().getStatus();
+            Assert.Contains("Nobody at the " + market.getDisplayName() + " could pay for", sale);
+            Assert.Contains(ItemNames.describeQuantity(ItemType.SAPLING, caravan.getInventory().getNumItems(ItemType.SAPLING)), sale);
+            Assert.EndsWith("home to the stockpile.", sale);
+
+            int saplingsUnsold = caravan.getInventory().getNumItems(ItemType.SAPLING);
+            roll(40000, () => caravan.isMarkedForDeletion());
+            Assert.True(caravan.isMarkedForDeletion());
+            string homecoming = world.player.getStatus().getStatus();
+            Assert.Contains("came home", homecoming);
+            Assert.Contains(ItemNames.describeQuantity(ItemType.SAPLING, saplingsUnsold), homecoming);
+            Assert.EndsWith("now on the stockpile.", homecoming);
+            Assert.Equal(saplingsUnsold, home.getInventory().getNumItems(ItemType.SAPLING));
+            Assert.Equal(coins, coinsInWorld());
+
+            // every good is accounted for: sold into the market, or home on the stockpile
+            int inMarket = 0;
+            foreach (ItemType itemType in new[] { ItemType.WOOD, ItemType.STONE, ItemType.SAPLING }) {
+                inMarket += merchantStall.getInventory().getNumItems(itemType) + market.getInventory().getNumItems(itemType);
+            }
+            Assert.Equal(30, inMarket + CollectSettlementStockpileCommand.getStockpileSize(home));
+            Assert.Equal(unsold, CollectSettlementStockpileCommand.getStockpileSize(home));
+
+            // and the leader takes them back
+            new CollectSettlementStockpileCommand(world.nations, world.entities).execute(world.player);
+            Assert.Equal(saplingsUnsold, world.player.getInventory().getNumItems(ItemType.SAPLING));
+            Assert.Equal(0, CollectSettlementStockpileCommand.getStockpileSize(home));
+            Assert.Contains(ItemNames.describeQuantity(ItemType.SAPLING, saplingsUnsold), world.player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testThePlayersCaravan_ThatSellsEverything_SaysNothingOfLeftovers() {
+            Nation own = world.playerNation(2);
+            Settlement home = world.settlement(own, -300, 0);
+            home.addBuilding(BuildingType.STOREHOUSE);
+            world.player.setCurrentSettlementId(home.getId());
+            world.player.getInventory().addItem(ItemType.STONE, 5);
+            Caravan caravan = trade.dispatchPlayerCaravan(market, new Dictionary<ItemType, int> { [ItemType.STONE] = 5 }, tick);
+            roll(40000, () => caravan.getState() == CaravanState.RETURNING);
+            Assert.DoesNotContain("Nobody", world.player.getStatus().getStatus());
+            Assert.Equal("", TradeCaravans.describeUnsold(caravan, market));
+            roll(40000, () => caravan.isMarkedForDeletion());
+            Assert.EndsWith("coins for the treasury.", world.player.getStatus().getStatus());
+        }
+
         [Fact]
         public void testThePlayer_CannotLoadWhatTheyDoNotHave() {
             Nation own = world.playerNation(2);

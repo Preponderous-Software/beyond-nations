@@ -410,6 +410,8 @@ namespace beyondnations.desktop.ui.screens {
             ImGuiStylePtr style = ImGui.GetStyle();
             CommandBarLayout.Settings settings = barSettings(width, barRight, height, layout,
                 UiScale.get(), Overlay.frameHeight(), style.ItemSpacing.X, style.ItemSpacing.Y, style.FramePadding.X * 2f);
+            // inside a settlement the pawn rows are kept, pawn or no pawn (#486)
+            settings.ReservedPeopleRows = WorldCommandBar.getReservedPeopleRows(simulation, label => ImGui.CalcTextSize(label).X, settings);
             CommandBarLayout.Result placed = CommandBarLayout.compute(commands, label => ImGui.CalcTextSize(label).X, settings);
             Vector2 padding = style.WindowPadding;
             double now = ImGui.GetTime();

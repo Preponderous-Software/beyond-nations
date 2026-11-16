@@ -721,6 +721,39 @@ namespace beyondnationstests {
             Assert.Equal(0, CollectSettlementStockpileCommand.getStockpileSize(settlement));
         }
 
+        [Fact]
+        public void testCollectStockpile_TakesEveryGood_NotJustWoodAndStone() {
+            // #485: a caravan's unsold saplings sat on the stockpile out of reach
+            Nation home = playerNation();
+            Settlement settlement = addSettlement(home);
+            settlement.getInventory().addItem(ItemType.WOOD, 4);
+            settlement.getInventory().addItem(ItemType.SAPLING, 15);
+            settlement.getInventory().addItem(ItemType.APPLE, 2);
+            settlement.addFunds(50);
+            player.setCurrentSettlementId(settlement.getId());
+
+            Assert.Equal(21, CollectSettlementStockpileCommand.getStockpileSize(settlement));
+            new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player);
+
+            Assert.Equal(4, player.getInventory().getNumItems(ItemType.WOOD));
+            Assert.Equal(15, player.getInventory().getNumItems(ItemType.SAPLING));
+            Assert.Equal(2, player.getInventory().getNumItems(ItemType.APPLE));
+            Assert.Equal(50, settlement.getFunds());
+            Assert.Equal(0, CollectSettlementStockpileCommand.getStockpileSize(settlement));
+            Assert.Equal("Collected 4 wood, 15 saplings and 2 apples from the stockpile.", player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testCollectStockpile_OnlySaplings_IsNotEmpty() {
+            Nation home = playerNation();
+            Settlement settlement = addSettlement(home);
+            settlement.getInventory().addItem(ItemType.SAPLING, 1);
+            player.setCurrentSettlementId(settlement.getId());
+            new CollectSettlementStockpileCommand(nationRepository, entityRepository).execute(player);
+            Assert.Equal(1, player.getInventory().getNumItems(ItemType.SAPLING));
+            Assert.Equal("Collected 1 sapling from the stockpile.", player.getStatus().getStatus());
+        }
+
         // --- appoint merchant ---
 
         [Fact]

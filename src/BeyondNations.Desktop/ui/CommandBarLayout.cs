@@ -35,6 +35,12 @@ namespace beyondnations.desktop.ui {
     *   stand-in name (WorldCommand.getWidthLabel), so one pawn's long name
     *   or warming tier moves nothing; a longer label is shortened with
     *   "..." (fitLabel). Playtest 0.6.2 s02, finding 17.
+    * - Inside a settlement, where residents walk into and out of reach all
+    *   the time, the pawn rows are kept whether or not a pawn is there
+    *   (Settings.ReservedPeopleRows), and the tool shortcuts and Eat start a
+    *   row of their own above them: a pawn row coming and going moved Eat
+    *   under a click meant for the market, and the boxes and the caravan
+    *   panel with the bar's top (0.8.0 re-run s05, #486).
     * - Nothing goes left of Left or right of Right: the caller keeps Right
     *   short of the right-hand column of boxes, and a label too long for the
     *   bar is clipped to it rather than running off the window.
@@ -55,6 +61,14 @@ namespace beyondnations.desktop.ui {
             public float WidthStep;
             /** Extra space between the drastic row and the rows under it. */
             public float DrasticGap;
+            /**
+            * Rows kept for the pawn buttons whether or not a pawn is in reach
+            * (0: none kept). With rows kept, the groups after the pawns
+            * (Craft: Eat, Craft Axe) start a row of their own above them, and
+            * the bar's top counts them, so a resident walking into or out of
+            * reach moves no button and no box (#486).
+            */
+            public int ReservedPeopleRows;
         }
 
         public struct Rect {
@@ -145,20 +159,43 @@ namespace beyondnations.desktop.ui {
         private static float flow(List<WorldCommand> commands, bool drastic, float bottom, System.Func<string, float> measure,
                 Settings settings, Rect[] buttons) {
             float rowY = bottom - settings.ButtonHeight;
+            float step = settings.ButtonHeight + settings.SpacingY;
             float x = settings.Left;
             bool rowEmpty = true;
             bool any = false;
             bool inPeople = false;
+            // the kept pawn rows (ReservedPeopleRows), placed once the groups before them are
+            int reserve = drastic ? 0 : System.Math.Max(0, settings.ReservedPeopleRows);
+            bool reserved = false;
+            bool pastPeople = false;
+            float peopleTop = float.MaxValue;
+            float top = bottom;
             for (int i = 0; i < commands.Count; i++) {
                 if ((commands[i].getGroup() == CommandGroup.Drastic) != drastic) {
                     continue;
                 }
                 float width = buttonWidth(commands[i], measure, settings);
+                CommandGroup group = commands[i].getGroup();
+                if (reserve > 0 && !reserved && group >= CommandGroup.People) {
+                    // where the pawn rows start: here, on a row of their own
+                    float peopleRow = rowEmpty ? rowY : rowY - step;
+                    peopleTop = peopleRow - (reserve - 1) * step;
+                    top = System.MathF.Min(top, peopleTop);
+                    reserved = true;
+                }
+                if (reserve > 0 && !pastPeople && group > CommandGroup.People) {
+                    // after the pawns: a row of its own above the kept rows (or
+                    // above the pawns' own buttons, should they ever need more)
+                    rowY = System.MathF.Min(peopleTop - step, rowEmpty ? rowY : rowY - step);
+                    x = settings.Left;
+                    rowEmpty = true;
+                    pastPeople = true;
+                }
                 // the pawn buttons start a row of their own
-                bool firstPerson = !inPeople && commands[i].getGroup() == CommandGroup.People;
+                bool firstPerson = !inPeople && group == CommandGroup.People;
                 inPeople = inPeople || firstPerson;
                 if (!rowEmpty && (firstPerson || x + settings.SpacingX + width > settings.Right)) {
-                    rowY -= settings.ButtonHeight + settings.SpacingY;
+                    rowY -= step;
                     x = settings.Left;
                     rowEmpty = true;
                 }
@@ -170,7 +207,36 @@ namespace beyondnations.desktop.ui {
                 rowEmpty = false;
                 any = true;
             }
-            return any ? rowY : bottom;
+            if (reserve > 0 && !reserved) {
+                // no pawn and nothing after them: the kept rows still count toward the top
+                float peopleRow = rowEmpty ? rowY : rowY - step;
+                top = System.MathF.Min(top, peopleRow - (reserve - 1) * step);
+                reserved = true;
+            }
+            float highest = any ? rowY : bottom;
+            return reserved ? System.MathF.Min(highest, top) : highest;
+        }
+
+        /**
+        * How many rows these commands take on a bar of these settings when
+        * they start a row of their own: what ReservedPeopleRows is worked out
+        * from, with the pawn buttons a leader could see (WorldCommandBar.getPawnStandIns).
+        */
+        public static int countRows(List<WorldCommand> commands, System.Func<string, float> measure, Settings settings) {
+            int rows = 0;
+            float x = settings.Left;
+            bool rowEmpty = true;
+            foreach (WorldCommand command in commands) {
+                float width = buttonWidth(command, measure, settings);
+                if (rowEmpty || x + settings.SpacingX + width > settings.Right) {
+                    rows++;
+                    x = settings.Left + width;
+                    rowEmpty = false;
+                    continue;
+                }
+                x += settings.SpacingX + width;
+            }
+            return rows;
         }
 
         /** Lays out commands, which should already be in order(). */

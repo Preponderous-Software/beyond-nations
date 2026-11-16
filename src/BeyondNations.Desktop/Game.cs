@@ -320,7 +320,13 @@ namespace beyondnations.desktop {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
-            if (options.StageMarket) {
+            if (options.StageCamp) {
+                TradeShowcase.stageCamp(simulation);
+            }
+            else if (options.StageCaravan) {
+                TradeShowcase.stageCaravan(simulation);
+            }
+            else if (options.StageMarket) {
                 TradeShowcase.stageMarket(simulation);
             }
             else if (options.StageTrade) {
