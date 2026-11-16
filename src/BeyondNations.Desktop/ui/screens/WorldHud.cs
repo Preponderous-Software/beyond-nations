@@ -711,7 +711,7 @@ namespace beyondnations.desktop.ui.screens {
             Settlement here = new FeedResidentsCommand(simulation.getEntityRepository()).getOwnSettlement(player);
             string warning = ResidentHunger.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar().isWinter(), here)
                 // and a day before winter, the nation's stores while any member is short (WinterStores)
-                ?? WinterStores.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar());
+                ?? WinterStores.describeWarning(simulation.getEntityRepository(), nation, simulation.getSeasonCalendar(), here);
             if (warning == null) {
                 return y;
             }

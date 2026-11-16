@@ -29,8 +29,8 @@ namespace beyondnationstests {
             return simulation;
         }
 
-        private static Pawn addMember(Simulation simulation, Nation nation, Settlement settlement, float energy, int apples, bool present) {
-            Pawn pawn = new Pawn(settlement.getPosition(), "Member", simulation.getRandom());
+        private static Pawn addMember(Simulation simulation, Nation nation, Settlement settlement, float energy, int apples, bool present, string name = "Member") {
+            Pawn pawn = new Pawn(settlement.getPosition(), name, simulation.getRandom());
             simulation.getEntityRepository().addEntity(pawn);
             pawn.setNationId(nation.getId());
             nation.addMember(pawn.getId());
@@ -76,11 +76,50 @@ namespace beyondnationstests {
             Assert.Null(WinterStores.describeWarning(entities, nation, simulation.getSeasonCalendar()));
             jumpToDayOfYear(simulation, LastDayOfAutumn);
             Assert.Equal("Winter comes tomorrow. " + nation.getName() + "'s 2 members carry 3 food of the " + 2 * SeasonalRules.WINTER_FOOD_STORE
-                + " they need for winter; 2 are short. Bring food home and Feed Residents.",
+                + " they need for winter; 2 are short: Member and Member. Bring food home and Feed Residents.",
                 WinterStores.describeWarning(entities, nation, simulation.getSeasonCalendar()));
 
             member.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE - 1);
             Assert.Contains("1 is short", WinterStores.describeWarning(entities, nation, simulation.getSeasonCalendar()));
+        }
+
+        /**
+        * Playtest s03 after #495: the banner said "1 is short ... Feed
+        * Residents" while the button, which stocks only those standing in the
+        * settlement, read "(0 hungry)". The banner names who is short and
+        * whether they are here, counting as the button does.
+        */
+        [Fact]
+        public void testWarning_NamesWhoIsShort_AndWhetherTheyAreHere() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            EntityRepository entities = simulation.getEntityRepository();
+            Pawn ada = addMember(simulation, nation, settlement, 95f, 1, true, "Ada Smith");
+            addMember(simulation, nation, settlement, 95f, 0, false, "Bo Jones");
+            addMember(simulation, nation, settlement, 95f, SeasonalRules.WINTER_FOOD_STORE, true);
+            jumpToDayOfYear(simulation, LastDayOfAutumn);
+            SeasonCalendar calendar = simulation.getSeasonCalendar();
+
+            Assert.EndsWith("2 are short: Ada Smith and Bo Jones. Bring food home and Feed Residents.",
+                WinterStores.describeWarning(entities, nation, calendar));
+            Assert.EndsWith("2 are short: Ada Smith and Bo Jones. Feed Residents stocks the 1 here; Bo Jones must come home first.",
+                WinterStores.describeWarning(entities, nation, calendar, settlement));
+            Assert.Equal(1, new FeedResidentsCommand(entities).countLowOnStoresHere(simulation.getPlayer(), Season.AUTUMN));
+
+            ada.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE);
+            Assert.EndsWith("1 is short: Bo Jones, who is not here. Feed Residents stocks only those here: they must come home.",
+                WinterStores.describeWarning(entities, nation, calendar, settlement));
+            Assert.Equal(0, new FeedResidentsCommand(entities).countLowOnStoresHere(simulation.getPlayer(), Season.AUTUMN));
+        }
+
+        /** Apples beyond the kept store rot, so the stores count only what keeps and say how much is rotting. */
+        [Fact]
+        public void testCount_LeavesOutWhatWillRot() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            addMember(simulation, nation, settlement, 95f, SeasonalRules.PAWN_APPLES_KEPT + 5, true);
+            WinterStores.Count stores = WinterStores.count(simulation.getEntityRepository(), nation.getId());
+            Assert.Equal(SeasonalRules.PAWN_APPLES_KEPT, stores.Food);
+            Assert.Equal(5, stores.Spoiling);
+            Assert.Equal(0, stores.Short);
         }
 
         /** The chronicle keeps the warning, naming the nation, as the last day before winter begins. */

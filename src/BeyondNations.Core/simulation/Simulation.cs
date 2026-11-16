@@ -224,10 +224,8 @@ namespace beyondnations {
                         if (entity.getType() == EntityType.PAWN) {
                             Pawn pawn = (Pawn) entity;
 
-                            // update energy
-                            if (pawn.getEnergy() < 90) {
-                                pawn.setEnergy(pawn.getEnergy() + FoodItems.consumeMostNourishingFood(pawn.getInventory()));
-                            }
+                            // update energy: a pawn eats what fits (Pawn.eatWhatFits)
+                            pawn.eatWhatFits();
 
                             if (pawn.isCurrentlyInSettlement()) {
                                 // a starving pawn sheltering in winter rations (SeasonalRules, #353)

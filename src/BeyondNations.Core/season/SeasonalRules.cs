@@ -32,23 +32,28 @@ namespace beyondnations {
         public const float WINTER_COLD_MULTIPLIER = 1.3f;
 
         /**
-        * Food a pawn wants to carry into winter: what a member eats in a winter
-        * spent at home. From autumn on, a pawn holding less leans towards food
-        * when it gathers (PawnBehaviorExecutor), and the winter warning, the
-        * Season box and Feed Residents all aim at it for each member.
+        * Food a pawn wants to carry into winter: what a member of a nation that
+        * shelters at home eats in a winter. From autumn on, a pawn holding
+        * less leans towards food when it gathers (PawnBehaviorExecutor), and
+        * the winter warning, the Season box and Feed Residents all aim at it
+        * for each member.
         *
         * A pawn burns 0.0035 energy a tick on average (Pawn's 0.002-0.005), at
-        * 0.8 of that indoors, over a winter of DAYS_PER_SEASON days of 30,000
-        * ticks: 168 energy, or about 11 apples at 15 each. It was 4, enough for
-        * about half a winter day, so a nation the Season box showed as ready
-        * ("Food: 32 of 20") ran out on the first day (#488). Out in the cold a
-        * pawn eats nearer 20 (x1.3), and a starving pawn indoors rations
-        * (WINTER_SHELTER_MULTIPLIER), so this is the honest middle: a member
-        * who stays in and carries this much sees out the winter.
-        * TestSeasonalRules.testWinterFoodStore_IsWhatAWinterAtHomeEats checks
-        * the sum against the pawns' own numbers.
+        * 0.8 of that indoors and 1.3 out in the cold. Members of a sheltering
+        * nation still spend a fifth to half of a winter outdoors (measured
+        * 15-55% over seeds 101-108, a player's camp of six to eleven), so at
+        * 30% outdoors a winter of DAYS_PER_SEASON days of 30,000 ticks burns
+        * about 200 energy: 13 apples at 15 each. The measured burn was
+        * 166-231 a member (gluttons burn half again).
+        *
+        * It was 4 (#488), then 12 (#495) with the sum done indoors only; and
+        * pawns ate below 90 energy, so the full bar took up to 5 of an apple's
+        * 15 and a third of the stores went nowhere (playtest s03: a camp
+        * stocked to the target was empty early on the second winter day).
+        * Pawns now eat what fits (Pawn.eatWhatFits). TestSeasonalRules
+        * .testWinterFoodStore_IsWhatAShelteringWinterEats checks the sum.
         */
-        public const int WINTER_FOOD_STORE = 12;
+        public const int WINTER_FOOD_STORE = 14;
 
         /** Ticks between chicken hatchings in spring and summer: 30 seconds. */
         public const int CHICKEN_HATCH_INTERVAL_TICKS = 1500;
@@ -70,8 +75,10 @@ namespace beyondnations {
 
         /**
         * Apples a pawn keeps without any spoiling: the WINTER_FOOD_STORE, so
-        * the store laid in for winter never rots, only a hoard does. (It was
-        * three times a store of 4: the same 12 apples.)
+        * the store laid in for winter never rots, only a hoard does, and Feed
+        * Residents, which stocks a member up to the store, never hands over an
+        * apple that will rot. The Season box counts only what keeps and says
+        * how much is rotting (WinterStores.Count.Spoiling).
         */
         public const int PAWN_APPLES_KEPT = WINTER_FOOD_STORE;
 

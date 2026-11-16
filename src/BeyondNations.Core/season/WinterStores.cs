@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace beyondnations {
 
     /**
@@ -21,15 +23,26 @@ namespace beyondnations {
             public readonly int Short;
             /** Members who need food and carry none (Pawn.needsFood). */
             public readonly int Hungry;
+            /**
+            * Apples carried beyond the store a pawn keeps (SeasonalRules.PAWN_APPLES_KEPT),
+            * which rot a sixth at a time: not in Food, since they will not last
+            * the winter. A ruler who stocked to "101 of 72" watched 23 of it
+            * vanish before winter with nothing to say why (playtest s03, #495).
+            */
+            public readonly int Spoiling;
 
-            public Count(int members, int food, int shortOfStores) : this(members, food, shortOfStores, 0) {
+            public Count(int members, int food, int shortOfStores) : this(members, food, shortOfStores, 0, 0) {
             }
 
-            public Count(int members, int food, int shortOfStores, int hungry) {
+            public Count(int members, int food, int shortOfStores, int hungry) : this(members, food, shortOfStores, hungry, 0) {
+            }
+
+            public Count(int members, int food, int shortOfStores, int hungry, int spoiling) {
                 Members = members;
                 Food = food;
                 Short = shortOfStores;
                 Hungry = hungry;
+                Spoiling = spoiling;
             }
 
             /** The food the members want between them: WINTER_FOOD_STORE each. */
@@ -41,26 +54,76 @@ namespace beyondnations {
             int food = 0;
             int shortOfStores = 0;
             int hungry = 0;
+            int spoiling = 0;
             if (nationId == null) {
                 return new Count(0, 0, 0);
             }
-            int entityCount = entityRepository.getEntityCount();
-            for (int i = 0; i < entityCount; i++) {
-                Pawn pawn = entityRepository.getEntityAt(i) as Pawn;
-                if (pawn == null || pawn.isMarkedForDeletion() || !nationId.Equals(pawn.getNationId())) {
-                    continue;
-                }
+            foreach (Pawn pawn in getMembers(entityRepository, nationId)) {
                 members++;
-                int carried = FoodItems.countFood(pawn.getInventory());
-                food += carried;
-                if (carried < SeasonalRules.WINTER_FOOD_STORE) {
+                int rotting = spoilingIn(pawn);
+                int kept = FoodItems.countFood(pawn.getInventory()) - rotting;
+                food += kept;
+                spoiling += rotting;
+                if (kept < SeasonalRules.WINTER_FOOD_STORE) {
                     shortOfStores++;
                 }
                 if (pawn.needsFood()) {
                     hungry++;
                 }
             }
-            return new Count(members, food, shortOfStores, hungry);
+            return new Count(members, food, shortOfStores, hungry, spoiling);
+        }
+
+        /** The nation's living member pawns, in repository order. */
+        public static List<Pawn> getMembers(EntityRepository entityRepository, NationId nationId) {
+            List<Pawn> members = new List<Pawn>();
+            if (nationId == null) {
+                return members;
+            }
+            int entityCount = entityRepository.getEntityCount();
+            for (int i = 0; i < entityCount; i++) {
+                Pawn pawn = entityRepository.getEntityAt(i) as Pawn;
+                if (pawn != null && !pawn.isMarkedForDeletion() && nationId.Equals(pawn.getNationId())) {
+                    members.Add(pawn);
+                }
+            }
+            return members;
+        }
+
+        /** The apples a pawn carries beyond what it keeps from spoiling. */
+        public static int spoilingIn(Pawn pawn) {
+            return System.Math.Max(0, pawn.getInventory().getNumItems(ItemType.APPLE) - SeasonalRules.PAWN_APPLES_KEPT);
+        }
+
+        /** The food a pawn carries that will keep: everything but the apples beyond its kept store. */
+        public static int keptBy(Pawn pawn) {
+            return FoodItems.countFood(pawn.getInventory()) - spoilingIn(pawn);
+        }
+
+        /** The members carrying less than WINTER_FOOD_STORE food that keeps. */
+        public static List<Pawn> getShort(EntityRepository entityRepository, NationId nationId) {
+            return getMembers(entityRepository, nationId).FindAll(p => keptBy(p) < SeasonalRules.WINTER_FOOD_STORE);
+        }
+
+        /** The most short members the warning names before it says "and N more". */
+        public const int MaxNamed = 3;
+
+        /** "Ada", "Ada and Bo", "Ada, Bo and Cy", "Ada, Bo, Cy and 2 more". */
+        public static string nameList(List<Pawn> pawns) {
+            List<string> names = new List<string>();
+            for (int i = 0; i < pawns.Count && i < MaxNamed; i++) {
+                names.Add(pawns[i].getName());
+            }
+            if (pawns.Count > MaxNamed) {
+                names.Add((pawns.Count - MaxNamed) + " more");
+            }
+            if (names.Count == 0) {
+                return "";
+            }
+            if (names.Count == 1) {
+                return names[0];
+            }
+            return string.Join(", ", names.GetRange(0, names.Count - 1)) + " and " + names[names.Count - 1];
         }
 
         /**
@@ -111,7 +174,7 @@ namespace beyondnations {
         * food of the 60 they need for winter; 4 are short. Bring food home and
         * Feed Residents."
         */
-        public static string describeWarning(EntityRepository entityRepository, Nation nation, SeasonCalendar calendar) {
+        public static string describeWarning(EntityRepository entityRepository, Nation nation, SeasonCalendar calendar, Settlement here = null) {
             if (nation == null || !isWarningDue(calendar)) {
                 return null;
             }
@@ -119,8 +182,39 @@ namespace beyondnations {
             if (stores.Members == 0 || stores.Short == 0) {
                 return null;
             }
-            return "Winter comes tomorrow. " + describe(nation, stores).TrimEnd('.') + "; " + stores.Short
-                + (stores.Short == 1 ? " is" : " are") + " short. Bring food home and Feed Residents.";
+            return "Winter comes tomorrow. " + describe(nation, stores).TrimEnd('.') + "; "
+                + describeShort(getShort(entityRepository, nation.getId()), nation, here);
+        }
+
+        /**
+        * Who is short and what to do, the way Feed Residents counts (#495
+        * playtest s03): the banner said "1 is short ... Feed Residents" while
+        * the button, which stocks only the members standing in the
+        * settlement, read "(0 hungry)" and nothing named the one short.
+        * here is the player's own settlement they stand in, or null.
+        *
+        *   "1 is short: Katie Williams. Bring food home and Feed Residents."
+        *   "3 are short: Ada, Bo and Cy. Feed Residents stocks the 2 here; Cy must come home first."
+        *   "1 is short: Katie Williams, who is not here. Feed Residents stocks only those here: they must come home."
+        */
+        public static string describeShort(List<Pawn> shortMembers, Nation nation, Settlement here) {
+            if (here != null && !nation.getId().Equals(here.getNationId())) {
+                here = null;
+            }
+            string head = shortMembers.Count + (shortMembers.Count == 1 ? " is" : " are") + " short: " + nameList(shortMembers);
+            if (here == null) {
+                return head + ". Bring food home and Feed Residents.";
+            }
+            List<Pawn> away = shortMembers.FindAll(p => !here.getId().Equals(p.getCurrentSettlementId()));
+            int shortHere = shortMembers.Count - away.Count;
+            if (shortHere == 0) {
+                return head + (shortMembers.Count == 1 ? ", who is not here" : ", none of them here")
+                    + ". Feed Residents stocks only those here: they must come home.";
+            }
+            if (away.Count == 0) {
+                return head + ". Feed Residents stocks the " + shortHere + " here.";
+            }
+            return head + ". Feed Residents stocks the " + shortHere + " here; " + nameList(away) + " must come home first.";
         }
 
         /**
