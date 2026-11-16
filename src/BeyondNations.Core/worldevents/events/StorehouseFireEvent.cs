@@ -57,9 +57,29 @@ namespace beyondnations {
                 + " stone are piled. The flames are spreading fast.";
         }
 
+        /**
+        * How many residents a bucket chain would leave starving: hungry, with
+        * nothing to eat, and under Pawn.STARVING_ENERGY_THRESHOLD once it has
+        * worn them out.
+        */
+        public static int countLeftStarving(WorldEventContext context, Settlement settlement) {
+            int starving = 0;
+            if (settlement == null) {
+                return 0;
+            }
+            foreach (Pawn resident in context.residentsOf(settlement)) {
+                if (resident.needsFood() && resident.getEnergy() - BUCKET_CHAIN_ENERGY < Pawn.STARVING_ENERGY_THRESHOLD) {
+                    starving++;
+                }
+            }
+            return starving;
+        }
+
         public List<WorldEventChoice> getChoices(WorldEventContext context, WorldEventInstance instance) {
+            int leftStarving = countLeftStarving(context, context.getSettlement(instance.getSettlementId()));
             return new List<WorldEventChoice> {
-                new WorldEventChoice("Form a bucket chain", "Only a quarter of the stockpile is lost, but every resident is worn out."),
+                new WorldEventChoice("Form a bucket chain", "Only a quarter of the stockpile is lost, but every resident is worn out."
+                    + (leftStarving == 0 ? "" : " " + leftStarving + (leftStarving == 1 ? " is" : " are") + " already hungry and would be left starving.")),
                 new WorldEventChoice("Save the stone, let the wood burn", "All the wood is lost; the stone is saved."),
                 new WorldEventChoice("Let it burn out", "Nobody is hurt, but three quarters of the stockpile goes up in smoke."),
             };
@@ -69,8 +89,15 @@ namespace beyondnations {
             return 2;
         }
 
+        /**
+        * A nation's own choice: a bucket chain with hands enough for one,
+        * unless it would leave residents starving. In a hungry winter the
+        * chain took residents sheltering at 10-30 energy down to 1, and a
+        * town lost twenty in a few seconds (seed 42, #484).
+        */
         public int chooseForNation(WorldEventContext context, WorldEventInstance instance) {
-            return context.residentsOf(context.getSettlement(instance.getSettlementId())).Count >= 3 ? 0 : 1;
+            Settlement settlement = context.getSettlement(instance.getSettlementId());
+            return context.residentsOf(settlement).Count >= 3 && countLeftStarving(context, settlement) == 0 ? 0 : 1;
         }
 
         public string resolve(WorldEventContext context, WorldEventInstance instance, int choice) {

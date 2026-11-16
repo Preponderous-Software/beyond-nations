@@ -57,6 +57,17 @@ namespace beyondnations {
         }
 
         /**
+        * Whether the nation holding this settlement cannot feed its members
+        * (WinterStores.cannotFeed), so a nationless pawn passes it by rather
+        * than join and be another mouth (#489). Asked only by a nationless
+        * pawn at a settlement's edge, so counting each time is cheap.
+        */
+        private bool nationCannotFeed(Settlement settlement) {
+            Season season = seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
+            return WinterStores.cannotFeed(entityRepository, settlement.getNationId(), season);
+        }
+
+        /**
         * How many nations the world may hold before the Village era's day
         * (EraRules.VillageDay) and still see a stranger declare another.
         */
@@ -73,9 +84,15 @@ namespace beyondnations {
         * than EARLY_NATION_LIMIT nations, so a young world still has a few
         * neighbours; the rest keep gathering and stay strangers, to be
         * invited, or to join a settlement they come near. From that day any
-        * pawn may, as before.
+        * pawn may, as before -- except in winter, when no one strikes out
+        * alone: with the nations it passes unable to feed newcomers (#489),
+        * strangers declared a nation of one apiece, and a winter's chronicle
+        * filled with nations born to starve.
         */
         public bool mayDeclareNation(Pawn pawn) {
+            if (isWinter()) {
+                return false;
+            }
             if (timeOfDay == null || timeOfDay.getDay() >= EraRules.VillageDay) {
                 return true;
             }
@@ -360,7 +377,11 @@ namespace beyondnations {
                 Settlement nearestSettlement = (Settlement) environment.getNearestEntityOfType(pawn.getPosition(), EntityType.SETTLEMENT);
                 // an ambitious pawn only joins when practically inside the settlement (PawnTraits)
                 if (nearestSettlement != null && Vector3.Distance(pawn.getPosition(), nearestSettlement.getPosition()) < PawnTraits.joinRange(pawn, gameConfig.getSettlementJoinRange())) {
-                    return BehaviorType.JOIN_NATION;
+                    // not a nation that cannot feed the members it has (#489): it
+                    // walks on, gathering, rather than join and be another mouth --
+                    // nor declare a nation of one on the doorstep, which in a
+                    // hungry winter left a world of 29 nations
+                    return nationCannotFeed(nearestSettlement) ? BehaviorType.GATHER_RESOURCES : BehaviorType.JOIN_NATION;
                 }
                 else {
                     // if enough wood to build settlement, create nation -- early

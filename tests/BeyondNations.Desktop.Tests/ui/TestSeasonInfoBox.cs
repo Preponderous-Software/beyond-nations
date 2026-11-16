@@ -84,5 +84,30 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal("Winter: no harvests", SeasonInfoBox.getWinterLine(calendarAtDay(winterStarts)));
             Assert.StartsWith("Autumn - day 2/", SeasonInfoBox.getSeasonLine(calendarAtDay(winterStarts - 1)));
         }
+
+        /** #489: the box says why no one is joining while the nation cannot feed its members. */
+        [Fact]
+        public void testTheFamineLine_ShowsWhileTheNationCannotFeedItsMembers() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Player player = simulation.getPlayer();
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            Pawn member = new Pawn(player.getPosition(), "Member", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(member);
+            member.setNationId(nation.getId());
+            nation.addMember(member.getId());
+            member.getInventory().clear();
+            SeasonInfoBox box = new SeasonInfoBox(simulation);
+
+            Assert.Null(SeasonInfoBox.getFamineLine(simulation.getSeasonCalendar(), simulation.getEntityRepository(), player));
+            Assert.DoesNotContain(SeasonInfoBox.FamineLine, box.getLines());
+
+            member.setEnergy(Pawn.HUNGRY_ENERGY_THRESHOLD - 1);
+            Assert.Equal(SeasonInfoBox.FamineLine, SeasonInfoBox.getFamineLine(simulation.getSeasonCalendar(), simulation.getEntityRepository(), player));
+            Assert.Contains(SeasonInfoBox.FamineLine, box.getLines());
+        }
     }
 }

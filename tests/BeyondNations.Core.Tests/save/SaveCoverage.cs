@@ -151,7 +151,7 @@ namespace beyondnationstests {
             [typeof(PopulationGrowth)] = new Entry {
                 Saved = new[] { "random", "nameGenerator", "lastBirthTicks", "lastImmigrationTicks", "lastSettlerTicks", "numSettlers",
                     "numSecessions", "lastWandererTick", "numBirths", "numImmigrants", "numWanderers" },
-                Derived = new[] { "entityRepository", "nationRepository", "environment", "eventProducer", "gameConfig", "player", "realm" },
+                Derived = new[] { "entityRepository", "nationRepository", "environment", "eventProducer", "gameConfig", "player", "realm", "seasonCalendar" },
             },
             [typeof(PawnNameGenerator)] = new Entry { Saved = new[] { "generated" }, Derived = new[] { "random" } },
             [typeof(NationNameGenerator)] = new Entry { Saved = new[] { "generated" }, Derived = new[] { "random" } },

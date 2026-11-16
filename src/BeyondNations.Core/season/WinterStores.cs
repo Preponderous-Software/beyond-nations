@@ -14,16 +14,22 @@ namespace beyondnations {
     */
     public static class WinterStores {
 
-        /** A nation's members, the food they carry, and how many carry less than they want for winter. */
+        /** A nation's members, the food they carry, how many carry less than they want for winter, and how many are hungry. */
         public readonly struct Count {
             public readonly int Members;
             public readonly int Food;
             public readonly int Short;
+            /** Members who need food and carry none (Pawn.needsFood). */
+            public readonly int Hungry;
 
-            public Count(int members, int food, int shortOfStores) {
+            public Count(int members, int food, int shortOfStores) : this(members, food, shortOfStores, 0) {
+            }
+
+            public Count(int members, int food, int shortOfStores, int hungry) {
                 Members = members;
                 Food = food;
                 Short = shortOfStores;
+                Hungry = hungry;
             }
 
             /** The food the members want between them: WINTER_FOOD_STORE each. */
@@ -34,6 +40,7 @@ namespace beyondnations {
             int members = 0;
             int food = 0;
             int shortOfStores = 0;
+            int hungry = 0;
             if (nationId == null) {
                 return new Count(0, 0, 0);
             }
@@ -49,25 +56,59 @@ namespace beyondnations {
                 if (carried < SeasonalRules.WINTER_FOOD_STORE) {
                     shortOfStores++;
                 }
+                if (pawn.needsFood()) {
+                    hungry++;
+                }
             }
-            return new Count(members, food, shortOfStores);
+            return new Count(members, food, shortOfStores, hungry);
         }
+
+        /**
+        * Whether a nation cannot feed its members, so that no child is born
+        * in its settlements and no newcomer joins it (#489): a quarter or
+        * more of its members hungry, in any season, or in winter its members
+        * carrying less food between them than the winter wants (the Season
+        * box's "Food: 0 of 44"). In the 0.8.0 playtest a nation at "Food: 0"
+        * took in a child and three newcomers in one winter, each another
+        * mouth, and the target rose from 28 to 44 while the stores ran out.
+        */
+        public static bool cannotFeed(Count stores, Season season) {
+            if (stores.Members == 0) {
+                return false;
+            }
+            if (stores.Hungry * FAMINE_HUNGRY_DIVISOR >= stores.Members) {
+                return true;
+            }
+            return season == Season.WINTER && stores.Food < stores.Wanted;
+        }
+
+        /** cannotFeed for a nation now. */
+        public static bool cannotFeed(EntityRepository entityRepository, NationId nationId, Season season) {
+            return nationId != null && cannotFeed(count(entityRepository, nationId), season);
+        }
+
+        /** A nation with one member in this many hungry cannot feed its members (cannotFeed): a quarter. */
+        public const int FAMINE_HUNGRY_DIVISOR = 4;
 
         /** Whether the warning is due: on the last day before winter. */
         public static bool isWarningDue(SeasonCalendar calendar) {
             return calendar.getDaysUntilWinter() == 1;
         }
 
-        /** "Fortham's 5 members carry 9 food of the 20 they want for winter." */
+        /**
+        * "Fortham's 5 members carry 9 food of the 60 they need for winter."
+        * WINTER_FOOD_STORE each is what a member eats in a winter at home, so
+        * the sum is what the winter will take, not a token (#488).
+        */
         public static string describe(Nation nation, Count stores) {
             return nation.getName() + "'s " + stores.Members + (stores.Members == 1 ? " member carries " : " members carry ")
-                + stores.Food + " food of the " + stores.Wanted + " " + (stores.Members == 1 ? "it wants" : "they want") + " for winter.";
+                + stores.Food + " food of the " + stores.Wanted + " " + (stores.Members == 1 ? "it needs" : "they need") + " for winter.";
         }
 
         /**
         * The HUD banner on the last day before winter while any member is
         * short, or null: "Winter comes tomorrow. Fortham's 5 members carry 9
-        * food of the 20 they want for winter; 4 are short. Bring food home and
+        * food of the 60 they need for winter; 4 are short. Bring food home and
         * Feed Residents."
         */
         public static string describeWarning(EntityRepository entityRepository, Nation nation, SeasonCalendar calendar) {
@@ -85,7 +126,7 @@ namespace beyondnations {
         /**
         * The chronicle's line as the last day before winter begins, or null
         * for a nation with no members: "Winter comes tomorrow, and Fortham's 5
-        * members carry 9 food of the 20 they want for winter."
+        * members carry 9 food of the 60 they need for winter."
         */
         public static string describeForChronicle(EntityRepository entityRepository, Nation nation) {
             if (nation == null) {

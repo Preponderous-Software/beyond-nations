@@ -141,6 +141,21 @@ namespace beyondnationstests {
             Assert.False(SeasonalRules.wantsStores(pawn, Season.AUTUMN));
         }
 
+        /**
+        * The winter store is what a member eats in a winter at home (#488): it
+        * was 4, half a winter day, and a nation shown as ready ran out on the
+        * first day. The average pawn burns (0.002 + 0.005) / 2 energy a tick
+        * (Pawn), at the settlement's rate indoors, for the whole winter.
+        */
+        [Fact]
+        public void testWinterFoodStore_IsWhatAWinterAtHomeEats() {
+            float averageMetabolism = (0.002f + 0.005f) / 2f;
+            float indoors = new GameConfig().getSettlementMetabolismMultiplier();
+            float winterTicks = SeasonCalendar.DAYS_PER_SEASON * TimeOfDay.DefaultTicksPerDay;
+            float apples = averageMetabolism * indoors * winterTicks / FoodItems.getEnergyRestored(ItemType.APPLE);
+            Assert.InRange(SeasonalRules.WINTER_FOOD_STORE, apples, apples + 2);
+        }
+
         [Fact]
         public void testApples_SpoilOnlyBeyondTheKeptStore() {
             Assert.Equal(0, SeasonalRules.applesSpoiling(0, SeasonalRules.PAWN_APPLES_KEPT));
@@ -280,17 +295,21 @@ namespace beyondnationstests {
             // second spring, measured 2 deaths (0 before pawn energy was capped at a
             // full bar; 6 before starving pawns foraged instead of walking back and
             // forth to a market that could not feed them). Since day-1 founding was
-            // limited (#482), seed 42 measures 7, six of them in the first quarter day
-            // (pawns already starving as winter ends). Over seeds 41-48 spring deaths
-            // averaged 1.6 before and 2.75 after (0-7 a seed), with 96-100 pawns alive,
-            // so the bound allows one bad seed, not a spring that keeps starving.
+            // limited (#482), seed 42 measured 7, six of them in the first quarter day
+            // (pawns already starving as winter ends), and the bound was raised to 8.
+            // Since a hungry pawn takes the nearest tree in fruit and gives up a far
+            // chicken, and a hungry town forms no bucket chain (#484), seed 42
+            // measures 4, all in the first quarter day; over seeds 41-56 spring deaths
+            // average 2.0 (0-4 a seed, against 2.5 and 0-7 before), and after the first
+            // quarter day 3 in all 16 seeds (4 before). The bound allows one more than
+            // the worst seed, not a spring that keeps starving.
             int deathsAtSpring = simulation.getNumPawnDeaths();
             for (int i = 0; i < TimeOfDay.DefaultTicksPerDay; i++) {
                 simulation.fixedUpdate(1f / 50f);
             }
             Assert.Equal(Season.SPRING, simulation.getSeasonCalendar().getSeason());
             int springDeaths = simulation.getNumPawnDeaths() - deathsAtSpring;
-            Assert.True(springDeaths <= 8, springDeaths + " pawns died in the first half of spring");
+            Assert.True(springDeaths <= 5, springDeaths + " pawns died in the first half of spring");
         }
 
         private static int countStallFood(Simulation simulation) {

@@ -11,6 +11,8 @@ namespace beyondnations.desktop.ui.boxes {
     *
     *   Autumn - day 2/2, year 1
     *   Winter in 1 day!          (amber; in winter, blue: "Winter: no harvests")
+    *   Food: 9 of 60 for winter  (autumn and winter, for a member of a nation)
+    *   Too little food: no births or newcomers  (amber, while the nation cannot feed its members)
     *   Region: Forest
     *   plenty of wood, little stone
     */
@@ -52,6 +54,22 @@ namespace beyondnations.desktop.ui.boxes {
             return "Food: " + stores.Food + " of " + stores.Wanted + " for winter";
         }
 
+        /** The line shown while the player's nation cannot feed its members (WinterStores.cannotFeed, #489). */
+        public const string FamineLine = "Too little food: no births or newcomers";
+
+        /**
+        * FamineLine while the player's nation cannot feed its members, so
+        * that no child is born and no newcomer joins it, and null otherwise:
+        * the playtest's ruler watched four mouths arrive at "Food: 0" with
+        * nothing to say why or how to stop it.
+        */
+        public static string getFamineLine(SeasonCalendar calendar, EntityRepository entityRepository, Player player) {
+            if (player.getNationId() == null) {
+                return null;
+            }
+            return WinterStores.cannotFeed(entityRepository, player.getNationId(), calendar.getSeason()) ? FamineLine : null;
+        }
+
         public override List<string> getLines() {
             List<string> lines = new List<string>(4);
             lines.Add(getSeasonLine(calendar));
@@ -62,6 +80,10 @@ namespace beyondnations.desktop.ui.boxes {
             string stores = getStoresLine(calendar, entityRepository, player);
             if (stores != null) {
                 lines.Add(stores);
+            }
+            string famine = getFamineLine(calendar, entityRepository, player);
+            if (famine != null) {
+                lines.Add(famine);
             }
             Region region = regionMap.regionAt(player.getPosition());
             if (isCompact()) {
@@ -106,6 +128,9 @@ namespace beyondnations.desktop.ui.boxes {
                 foreach (string part in TextWrap.wrap(lines[i], width, text => ImGui.CalcTextSize(text).X)) {
                     if (hasWarning && i == 1) {
                         Overlay.textColoured(calendar.isWinter() ? WinterColour : WarningColour, part);
+                    }
+                    else if (lines[i] == FamineLine) {
+                        Overlay.textColoured(WarningColour, part);
                     }
                     else {
                         ImGui.TextUnformatted(part);

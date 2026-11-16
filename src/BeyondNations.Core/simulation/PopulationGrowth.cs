@@ -30,6 +30,10 @@ namespace beyondnations {
     *   - brings wanderers: a world that has fallen below WANDERER_FLOOR pawns
     *     has a nationless wanderer turn up somewhere already generated.
     *
+    * A nation that cannot feed its members (WinterStores.cannotFeed: a
+    * quarter of them hungry, or in winter less food than the winter wants)
+    * has no children and draws no newcomers until it can (#489).
+    *
     * Nothing here takes the world past GameConfig.getMaxNumPawns() while lag
     * prevention is on, except births and newcomers in a settlement of the
     * player's nation, which may take it PLAYER_NATION_HEADROOM past it. Draws from its own RandomSource, so growth never
@@ -72,6 +76,8 @@ namespace beyondnations {
         private readonly Player player;
         // the player's laws (realm/) can put immigrants off or draw them in
         private Realm realm;
+        // the season, for whether a nation can feed its members (WinterStores.cannotFeed); none is spring
+        private SeasonCalendar seasonCalendar;
 
         private readonly Dictionary<EntityId, int> lastBirthTicks = new Dictionary<EntityId, int>();
         private readonly Dictionary<EntityId, int> lastImmigrationTicks = new Dictionary<EntityId, int>();
@@ -97,6 +103,16 @@ namespace beyondnations {
 
         public void setRealm(Realm realm) {
             this.realm = realm;
+        }
+
+        public void setSeasonCalendar(SeasonCalendar seasonCalendar) {
+            this.seasonCalendar = seasonCalendar;
+        }
+
+        /** Whether a nation cannot feed its members now (WinterStores.cannotFeed), so it neither bears nor draws newcomers. */
+        public bool cannotFeed(NationId nationId) {
+            Season season = seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
+            return WinterStores.cannotFeed(entityRepository, nationId, season);
         }
 
         public int getNumBirths() { return numBirths; }
@@ -125,6 +141,8 @@ namespace beyondnations {
                 }
             }
             int numPawns = pawns.Count;
+            // counted once a check, not once a settlement
+            Dictionary<NationId, bool> hungryNations = new Dictionary<NationId, bool>();
 
             foreach (Settlement settlement in settlements) {
                 List<Pawn> present = new List<Pawn>();
@@ -145,6 +163,17 @@ namespace beyondnations {
                 }
                 if (!hasRoomForMorePawns(numPawns) && !(playerLeads(settlement) && numPawns < gameConfig.getMaxNumPawns() + PLAYER_NATION_HEADROOM)) {
                     continue;
+                }
+                if (settlement.getNationId() != null) {
+                    bool hungry;
+                    if (!hungryNations.TryGetValue(settlement.getNationId(), out hungry)) {
+                        hungry = cannotFeed(settlement.getNationId());
+                        hungryNations[settlement.getNationId()] = hungry;
+                    }
+                    if (hungry) {
+                        // no child and no newcomer while the nation cannot feed those it has (#489)
+                        continue;
+                    }
                 }
                 if (tryBirth(settlement, residents, totalTicks)) {
                     numPawns++;

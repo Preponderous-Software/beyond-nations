@@ -530,6 +530,35 @@ namespace beyondnationstests {
             }
         }
 
+        /** A hungry town forms no bucket chain: in a famine winter it wore residents down to 1 energy and twenty starved at once. */
+        [Fact]
+        public void testStorehouseFire_ANationFormsNoBucketChain_ThatWouldLeaveResidentsStarving() {
+            Simulation simulation = newWorld(42);
+            DiplomacyShowcase.Staged s = staged(simulation);
+            WorldEventContext context = new WorldEventContext(simulation, simulation.getWorldEvents());
+            Settlement town = s.hostileSettlement;
+            List<Pawn> residents = context.residentsOf(town);
+            for (int i = residents.Count; i < 3; i++) {
+                Pawn pawn = new Pawn(town.getPosition(), "Resident " + i, simulation.getRandom());
+                simulation.getEntityRepository().addEntity(pawn);
+                pawn.setHomeSettlementId(town.getId());
+            }
+            residents = context.residentsOf(town);
+            foreach (Pawn resident in residents) {
+                resident.setEnergy(Pawn.MaxEnergy);
+            }
+            WorldEventInstance instance = new WorldEventInstance(StorehouseFireEvent.Id, 0, 0, false);
+            instance.setSettlementId(town.getId());
+            StorehouseFireEvent fire = new StorehouseFireEvent();
+            Assert.Equal(0, fire.chooseForNation(context, instance));
+
+            residents[0].getInventory().clear();
+            residents[0].setEnergy(Pawn.STARVING_ENERGY_THRESHOLD + StorehouseFireEvent.BUCKET_CHAIN_ENERGY - 1);
+            Assert.Equal(1, StorehouseFireEvent.countLeftStarving(context, town));
+            Assert.Equal(1, fire.chooseForNation(context, instance));
+            Assert.EndsWith("1 is already hungry and would be left starving.", fire.getChoices(context, instance)[0].getConsequence());
+        }
+
         [Fact]
         public void testRareMerchant_SellsToolsCheaply_OrTradesWoodForStone() {
             Simulation simulation = newWorld(42);

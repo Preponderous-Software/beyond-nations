@@ -675,7 +675,7 @@ namespace beyondnationstests.desktop.ui {
             pawn.getInventory().clear();
             pawn.setEnergy(95f);
             pawn.setCurrentSettlementId(settlement.getId());
-            player.getInventory().addItem(ItemType.APPLE, 10);
+            player.getInventory().addItem(ItemType.APPLE, SeasonalRules.WINTER_FOOD_STORE + 2);
 
             WorldCommand feed = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Feed Residents"));
             Assert.Equal(WorldCommandBar.feedResidentsLabel(0, 1), feed.getLabel());
