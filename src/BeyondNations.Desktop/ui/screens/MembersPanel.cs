@@ -98,20 +98,25 @@ namespace beyondnations.desktop.ui.screens {
                 ? "No heir: if you die now, your line ends. " + HowToGainMembers
                 : "Your heir: " + heir.getName() + ", " + reason + ".");
             lines.Add("When you die, your family comes first, then the most loyal, then the longest sworn.");
-            lines.Add(describeTraderSlots(own));
+            string traders = describeTraderSlots(own);
+            if (traders != null) {
+                lines.Add(traders);
+            }
             return lines;
         }
 
         /**
         * "Traders: 1 of 1 (one per settlement)." with how to appoint one
         * while a slot is free (#487: the role was invisible until a member
-        * took it on their own). It names no key.
+        * took it on their own). It names no key. Null for a nation with no
+        * settlement, which can keep no trader.
         */
         public static string describeTraderSlots(Nation own) {
             int traders = Traders.countTraders(own);
             int slots = own.getNumberOfSettlements();
             if (slots == 0) {
-                return "Traders: none until you found a settlement (one trader per settlement).";
+                // no settlement, no trader: the line would only cost a phone a row
+                return null;
             }
             return "Traders: " + traders + " of " + slots + " (one per settlement)."
                 + (traders < slots ? " Stand by a serf and choose Appoint Trader, or one may take up trade on their own." : "");
