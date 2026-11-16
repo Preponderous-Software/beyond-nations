@@ -152,7 +152,10 @@ namespace beyondnations.web {
             if (options.StageOutpost) {
                 OutpostShowcase.stage(simulation);
             }
-            if (options.StageDiplomacy) {
+            if (options.StageTrader) {
+                TraderShowcase.stage(simulation);
+            }
+            else if (options.StageDiplomacy) {
                 DiplomacyShowcase.stage(simulation);
             }
             if (options.StageSuccession) {

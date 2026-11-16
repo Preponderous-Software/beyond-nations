@@ -230,5 +230,28 @@ namespace beyondnationstests.desktop.ui {
                 NationScreen.startOnMembers = false;
             }
         }
+
+        [Fact]
+        public void testTraders_TheSlotsAreCounted_AndATradersRowSaysWhatItIsDoing() {
+            // #487: the trader role was invisible
+            DiplomacyShowcase.Staged result;
+            Simulation simulation = staged(out result);
+            Nation own = result.playerNation;
+            int slots = own.getNumberOfSettlements();
+
+            Assert.Contains("Traders: 0 of " + slots + " (one per settlement). Stand by a serf and choose Appoint Trader,"
+                + " or one may take up trade on their own.", MembersPanel.getLines(simulation));
+
+            List<MembersPanel.Row> rows = MembersPanel.getRows(simulation);
+            Pawn trader = pawnOf(simulation, rows[1]);
+            own.setRole(trader.getId(), NationRole.TRADER);
+            string activity = Traders.describeActivity(simulation.getEntityRepository(), simulation.getNationRepository(), trader);
+
+            MembersPanel.Row row = MembersPanel.getRows(simulation)[1];
+            Assert.Equal("Trader", row.role);
+            Assert.StartsWith("Trading: ", activity);
+            Assert.Contains(activity, row.detail);
+            Assert.Contains("Traders: 1 of " + slots + " (one per settlement).", MembersPanel.getLines(simulation)[3]);
+        }
     }
 }

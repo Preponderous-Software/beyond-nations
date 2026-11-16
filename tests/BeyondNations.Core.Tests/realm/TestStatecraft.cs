@@ -186,9 +186,11 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testAlliance_IsRefusedInWar_AndByAMuchStrongerNation_BelowPlus60() {
+        public void testAlliance_IsRefusedInWar_ButAMuchStrongerNationAgreesAtPlus30() {
+            // #478 (owner decision): the bar is +30 for every nation, as the
+            // Nations screen says; a stronger nation no longer wants +60
             Nation own = world.playerNation(1);
-            Nation strong = world.pawnNation("Aland", 3);
+            Nation strong = world.pawnNation("Aland", 7);
             ProposeAllianceCommand propose = new ProposeAllianceCommand(world.nations, realm);
 
             declareWar(strong);
@@ -197,14 +199,16 @@ namespace beyondnationstests {
             Assert.Equal("Aland will not ally with a nation it is at war with. Offer peace first.", status());
 
             realm.makePeace(own, strong);
-            world.relations.adjust(own, strong, 35 - world.relations.getScore(own, strong));
+            world.relations.adjust(own, strong, NationRelations.ALLIANCE_REQUIRES - 1 - world.relations.getScore(own, strong));
             propose.execute(world.player, strong);
             Assert.False(world.relations.isAllied(own, strong));
-            Assert.Equal("Aland declines: they are 3 to your 1 and want relations of +60 before taking on so small a partner (now Friendly (+35)).", status());
+            Assert.Contains("an alliance needs +" + NationRelations.ALLIANCE_REQUIRES, status());
 
-            world.relations.adjust(own, strong, 25);
+            world.relations.adjust(own, strong, 1);
+            Assert.True(realm.getDiplomacy().getStrength(strong) >= 2 * realm.getDiplomacy().getStrength(own));
             propose.execute(world.player, strong);
             Assert.True(world.relations.isAllied(own, strong));
+            Assert.Equal("Aland agrees: " + own.getName() + " and Aland are now allies.", status());
         }
 
         // --- the envoy: dealing takes game time (#424) ---------------------------------------------

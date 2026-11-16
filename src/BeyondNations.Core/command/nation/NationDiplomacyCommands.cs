@@ -139,15 +139,14 @@ namespace beyondnations {
     }
 
     /**
-    * Proposes an alliance, which is accepted once relations reach +30. With
-    * the realm in hand the answer weighs strength too: no nation allies
-    * with one it is at war with, and a nation twice the player's strength
-    * wants +60 before it takes on so small a partner.
+    * Proposes an alliance, which is accepted once relations reach +30
+    * (NationRelations.ALLIANCE_REQUIRES) -- the same bar for every nation,
+    * whatever its size, so the number the Nations screen shows is the real
+    * one (#478: a hidden +60 for a nation twice the player's strength was
+    * dropped). With the realm in hand, no nation allies with one it is at
+    * war with.
     */
     public class ProposeAllianceCommand {
-        /** What a nation at least twice the player's strength wants before it allies. */
-        public const int STRONG_PARTNER_REQUIRES = 60;
-
         private readonly NationRepository nationRepository;
         private readonly Realm realm;
 
@@ -185,16 +184,6 @@ namespace beyondnations {
                 player.getStatus().update(target.getName() + " declines: relations are " + relations.describe(own, target)
                     + "; an alliance needs +" + NationRelations.ALLIANCE_REQUIRES + ". Gifts help.");
                 return;
-            }
-            if (realm != null) {
-                int ours = realm.getDiplomacy().getStrength(own);
-                int theirs = realm.getDiplomacy().getStrength(target);
-                if (theirs >= 2 * ours && relations.getScore(own, target) < STRONG_PARTNER_REQUIRES) {
-                    player.getStatus().update(target.getName() + " declines: they are " + theirs + " to your " + ours
-                        + " and want relations of +" + STRONG_PARTNER_REQUIRES + " before taking on so small a partner (now "
-                        + relations.describe(own, target) + ").");
-                    return;
-                }
             }
             relations.formAlliance(own, target);
             realm?.sendEnvoy(own, target);

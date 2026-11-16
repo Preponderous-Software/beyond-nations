@@ -534,12 +534,15 @@ namespace beyondnations.desktop.ui {
                     commands.Add(pawnCommand("Appoint ", pawn, " Merchant", () =>
                         new AppointMerchantCommand(nationRepository, entityRepository, eventProducer).execute(player, pawn)));
                 }
-                if (LeaderPawnCommands.canAppointTrader(player, pawn, nationRepository)) {
-                    commands.Add(pawnCommand("Appoint ", pawn, " Trader", () =>
-                        new AppointTraderCommand(nationRepository, eventProducer).execute(player, pawn))
-                        .setEnabled(player.getInventory().getNumItems(ItemType.COIN) >= Traders.TRADER_STAKE,
-                            "A trader needs a stake of " + Traders.TRADER_STAKE + " coins from you."));
-                }
+                // Appoint Trader is there for every member, greyed with the
+                // reason when it cannot be done (#487: with the one trader
+                // slot taken the button vanished and nothing said why). The
+                // reason shows on hover, and on a phone a tap on the greyed
+                // button puts it on the status line.
+                string traderRefusal = LeaderPawnCommands.whyNotAppointTrader(player, pawn, nationRepository, entityRepository);
+                commands.Add(pawnCommand("Appoint ", pawn, " Trader", () =>
+                    new AppointTraderCommand(nationRepository, eventProducer, entityRepository).execute(player, pawn))
+                    .setEnabled(traderRefusal == null, traderRefusal));
             }
         }
     }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace beyondnations {
 
     /**
@@ -42,6 +44,60 @@ namespace beyondnations {
             Nation nation = nationRepository.getNation(player.getNationId());
             return nation.getRole(pawn.getId()) == NationRole.SERF && pawn.getHomeSettlementId() != null
                 && Traders.hasRoomForTrader(nation);
+        }
+
+        /**
+        * Why the leader cannot make this member a trader right now, or null
+        * when they can (#487: with the nation's one trader slot taken the
+        * button simply vanished, and nothing said why). Only for a member of
+        * the player's own nation other than the leader; the command bar
+        * shows Appoint Trader greyed with this reason.
+        */
+        public static string whyNotAppointTrader(Player player, Pawn pawn, NationRepository nationRepository, EntityRepository entityRepository) {
+            if (!playerLeads(player, pawn, nationRepository)) {
+                return "Only the leader of " + pawn.getName() + "'s nation can appoint it.";
+            }
+            Nation nation = nationRepository.getNation(player.getNationId());
+            NationRole role = nation.getRole(pawn.getId());
+            if (role == NationRole.TRADER) {
+                return pawn.getName() + " is already your trader.";
+            }
+            if (role != NationRole.SERF) {
+                return pawn.getName() + " is already a " + role.ToString().ToLower() + ".";
+            }
+            if (pawn.getHomeSettlementId() == null) {
+                return pawn.getName() + " has no home settlement to trade from.";
+            }
+            if (!Traders.hasRoomForTrader(nation)) {
+                return describeTraderSlotsFull(nation, entityRepository);
+            }
+            if (player.getInventory().getNumItems(ItemType.COIN) < Traders.TRADER_STAKE) {
+                return "A trader needs a stake of " + Traders.TRADER_STAKE + " coins from you.";
+            }
+            return null;
+        }
+
+        /**
+        * "One trader per settlement: Charlotte Evans already trades for the
+        * Camp of Farmshire." -- the issue's own wording -- naming who holds
+        * each slot, and how to open another.
+        */
+        public static string describeTraderSlotsFull(Nation nation, EntityRepository entityRepository) {
+            List<string> holders = new List<string>();
+            foreach (EntityId memberId in nation.getMemberIds()) {
+                if (nation.getRole(memberId) != NationRole.TRADER) {
+                    continue;
+                }
+                Pawn trader = entityRepository.getEntity(memberId) as Pawn;
+                if (trader == null) {
+                    continue;
+                }
+                Settlement home = getHome(trader, entityRepository);
+                holders.Add(trader.getName() + (home == null ? "" : " (" + home.getDisplayName() + ")"));
+            }
+            string who = holders.Count == 0 ? "" : (holders.Count == 1 ? " " + holders[0] + " already trades for " + nation.getName() + "."
+                : " Already trading: " + string.Join(", ", holders) + ".");
+            return "One trader per settlement:" + who + " Found another settlement to take on another trader.";
         }
 
         public static Settlement getHome(Pawn pawn, EntityRepository entityRepository) {
@@ -155,10 +211,14 @@ namespace beyondnations {
 
         private readonly NationRepository nationRepository;
         private readonly EventProducer eventProducer;
+        private readonly EntityRepository entityRepository;
 
-        public AppointTraderCommand(NationRepository nationRepository, EventProducer eventProducer) {
+        // entityRepository is optional so existing callers keep compiling;
+        // with it, a full set of trader slots names who holds them (#487)
+        public AppointTraderCommand(NationRepository nationRepository, EventProducer eventProducer, EntityRepository entityRepository = null) {
             this.nationRepository = nationRepository;
             this.eventProducer = eventProducer;
+            this.entityRepository = entityRepository;
         }
 
         public bool execute(Player player, Pawn pawn) {
@@ -172,7 +232,9 @@ namespace beyondnations {
                 return false;
             }
             if (!Traders.hasRoomForTrader(nation)) {
-                player.getStatus().update(nation.getName() + " already has a trader for each of its settlements.");
+                player.getStatus().update(entityRepository != null
+                    ? LeaderPawnCommands.describeTraderSlotsFull(nation, entityRepository)
+                    : nation.getName() + " already has a trader for each of its settlements.");
                 return false;
             }
             if (player.getInventory().getNumItems(ItemType.COIN) < Traders.TRADER_STAKE) {
@@ -186,6 +248,8 @@ namespace beyondnations {
             player.getStatus().update("You made " + pawn.getName() + " a trader, with a stake of " + Traders.TRADER_STAKE + " coins. "
                 + PawnRelations.describe(pawn, player) + ": \"Buy low, sell high. I'll be on the road.\""
                 + PawnRelations.tierUpSuffix(tierUp, pawn, player));
+            eventProducer?.produceTraderEvent(new TraderEvent(TraderEventKind.Appointed, pawn, nation.getId(),
+                "You made " + pawn.getName() + " a trader for " + nation.getName() + ", with a stake of " + Traders.TRADER_STAKE + " coins."));
             return true;
         }
     }

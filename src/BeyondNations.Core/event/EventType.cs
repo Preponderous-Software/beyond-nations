@@ -21,6 +21,8 @@ namespace beyondnations {
         // a ruler's acts and the fate of their line: laws, war and peace, succession (realm/)
         Statecraft,
         WorldEvent,
-        Caravan
+        Caravan,
+        // a trader of a nation took up trade, bought a load or sold it (#487, trade/Traders)
+        Trader
     }
 }

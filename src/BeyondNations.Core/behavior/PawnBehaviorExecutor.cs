@@ -314,6 +314,8 @@ namespace beyondnations {
             Market market = settlement.getMarket();
             int keepInTill = pawn.needsFood() ? 0 : Stall.TILL_RESERVE;
             int sold = 0;
+            int takings = 0;
+            List<string> goods = new List<string>();
             foreach (ItemType itemType in MarketPricing.PricedItems) {
                 int quantity = pawn.getInventory().getNumItems(itemType);
                 if (quantity <= 0 || !Market.isSoldInBulk(itemType)) {
@@ -321,6 +323,10 @@ namespace beyondnations {
                 }
                 TradeReceipt receipt = market.sellUnits(pawn, itemType, quantity, keepInTill);
                 sold += receipt.getQuantity();
+                takings += receipt.getCoins();
+                if (receipt.getQuantity() > 0) {
+                    goods.Add(ItemNames.describeQuantity(itemType, receipt.getQuantity()));
+                }
                 foreach (EntityId buyerId in receipt.getCounterparties()) {
                     Entity buyer = entityRepository.getEntity(buyerId);
                     if (buyer != null) {
@@ -331,6 +337,11 @@ namespace beyondnations {
             if (sold > 0) {
                 Diplomacy.recordTrade(nationRepository, pawn.getNationId(), settlement);
                 Log.debug("Trader " + pawn.getName() + " sold " + sold + " goods at " + settlement.getDisplayName());
+                Nation nation = nationRepository.getNation(pawn.getNationId());
+                if (nation != null) {
+                    eventProducer.produceTraderEvent(new TraderEvent(TraderEventKind.Sold, pawn, nation.getId(),
+                        Traders.describeSale(pawn, nation, string.Join(", ", goods), takings, settlement)));
+                }
             }
             pawn.setCurrentBehaviorType(BehaviorType.NONE);
         }
@@ -363,8 +374,16 @@ namespace beyondnations {
             if (role == NationRole.SERF) {
                 nation.setRole(pawn.getId(), NationRole.TRADER);
                 Log.info("Pawn " + pawn.getName() + " took up trade in " + here.getDisplayName() + ".");
+                // told, not just done (#487): the role used to change in silence
+                eventProducer.produceTraderEvent(new TraderEvent(TraderEventKind.TookUpTrade, pawn, nation.getId(),
+                    pawn.getName() + " took up trade for " + nation.getName() + " at the " + here.getDisplayName()
+                    + " (one trader per settlement)."));
             }
             TradeReceipt receipt = here.getMarket().buyUnits(pawn, run.good, run.quantity);
+            if (!receipt.isEmpty()) {
+                eventProducer.produceTraderEvent(new TraderEvent(TraderEventKind.Bought, pawn, nation.getId(),
+                    Traders.describePurchase(pawn, nation, receipt, here, run.destination)));
+            }
             foreach (EntityId sellerId in receipt.getCounterparties()) {
                 Entity seller = entityRepository.getEntity(sellerId);
                 if (seller != null) {

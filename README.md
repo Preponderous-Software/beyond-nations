@@ -189,7 +189,7 @@ Hostility has stakes. A stronger hostile neighbour raids your nearest settlement
 As a leader you deal with other nations from the nations screen (`O`) or from the command bar while standing in their land, and every answer comes with its reason:
 
 - **Tribute** of 25 coins (+10, paid into their treasury). Paid to a stronger nation you are at war or at odds with, it also buys a minute's truce: no raids, no sieges.
-- **Ally**: accepted at +30, and a nation twice your strength wants +60 before it takes on so small a partner. Not offered while you are at war or at odds (Rival or worse): make peace first.
+- **Ally**: accepted at +30 by every nation, large or small: the number the Nations screen shows is the real bar. Not offered while you are at war or at odds (Rival or worse): make peace first.
 - **War**: on any nation you are not already at war with, a Rival included. Relations drop to Hostile and stay down while it lasts, any alliance with them breaks, and their allies think less of you. Where your lands meet, the stronger side raids and besieges.
 - **Peace** (once you are at war or at odds): refused when too much blood lies between you (-90 or worse), or by an enemy twice your strength unless a tribute has softened them; accepted, the war ends with a minute's truce and relations at Neutral.
 - **Denounce** (-25, and it ends any alliance).

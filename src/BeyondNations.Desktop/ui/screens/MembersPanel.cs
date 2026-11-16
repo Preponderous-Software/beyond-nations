@@ -33,6 +33,8 @@ namespace beyondnations.desktop.ui.screens {
         * would cost a row of members.
         */
         public const string LoyaltyHint = "Talking and gifts raise their loyalty to you.";
+        /** Lines of detail a row may take: four, so a trader's errand fits beside loyalty and traits on a phone. */
+        public const int DetailLines = 4;
 
         private static readonly Vector4 HeirColour = new Vector4(0.95f, 0.75f, 0.30f, 1f);
         private static readonly Vector4 DetailColour = new Vector4(0.85f, 0.85f, 0.80f, 1f);
@@ -96,7 +98,28 @@ namespace beyondnations.desktop.ui.screens {
                 ? "No heir: if you die now, your line ends. " + HowToGainMembers
                 : "Your heir: " + heir.getName() + ", " + reason + ".");
             lines.Add("When you die, your family comes first, then the most loyal, then the longest sworn.");
+            string traders = describeTraderSlots(own);
+            if (traders != null) {
+                lines.Add(traders);
+            }
             return lines;
+        }
+
+        /**
+        * "Traders: 1 of 1 (one per settlement)." with how to appoint one
+        * while a slot is free (#487: the role was invisible until a member
+        * took it on their own). It names no key. Null for a nation with no
+        * settlement, which can keep no trader.
+        */
+        public static string describeTraderSlots(Nation own) {
+            int traders = Traders.countTraders(own);
+            int slots = own.getNumberOfSettlements();
+            if (slots == 0) {
+                // no settlement, no trader: the line would only cost a phone a row
+                return null;
+            }
+            return "Traders: " + traders + " of " + slots + " (one per settlement)."
+                + (traders < slots ? " Stand by a serf and choose Appoint Trader, or one may take up trade on their own." : "");
         }
 
         /**
@@ -138,8 +161,11 @@ namespace beyondnations.desktop.ui.screens {
                 int loyalty = PawnRelations.getRelationship(pawn, player);
                 string traits = PawnTraits.describe(pawn);
                 string title = (isHeir ? HeirMark + ": " : "") + pawn.getName() + " - " + role + ", " + home;
+                // a trader's row says what it carries and where (#487)
+                string activity = own.getRole(id) == NationRole.TRADER
+                    ? " " + Traders.describeActivity(entities, simulation.getNationRepository(), pawn) : "";
                 string detail = "Loyalty: " + RelationshipTiers.getName(RelationshipTiers.fromValue(loyalty)) + " (" + loyalty + ")."
-                    + (traits.Length > 0 ? " " + traits + "." : "");
+                    + activity + (traits.Length > 0 ? " " + traits + "." : "");
                 rows.Add(new Row(id, false, isHeir, title, detail, role, home, loyalty, traits));
             }
             return rows;
@@ -200,7 +226,7 @@ namespace beyondnations.desktop.ui.screens {
                 List<string> detail = TextWrap.wrap(rows[i].detail, columnWidth, line => ImGui.CalcTextSize(line).X * detailScale);
                 titles.Add(title);
                 details.Add(detail);
-                steps[i] = titleStep * System.Math.Min(2, title.Count) + detailStep * System.Math.Min(2, detail.Count) + buttonGap * 1.5f;
+                steps[i] = titleStep * System.Math.Min(2, title.Count) + detailStep * System.Math.Min(DetailLines, detail.Count) + buttonGap * 1.5f;
             }
 
             float listBottom = height - lineHeight * 3.2f;
@@ -242,7 +268,7 @@ namespace beyondnations.desktop.ui.screens {
                 }
                 ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(DetailColour));
                 List<string> detail = details[i];
-                for (int line = 0; line < detail.Count && line < 2; line++) {
+                for (int line = 0; line < detail.Count && line < DetailLines; line++) {
                     Overlay.textAtScaled(detail[line], detailSize, left, y);
                     y += detailStep;
                 }
