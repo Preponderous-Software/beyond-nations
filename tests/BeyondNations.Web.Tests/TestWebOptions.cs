@@ -100,9 +100,47 @@ namespace beyondnationstests.web {
             Assert.Equal(ScreenType.SHARE, GameOptions.parse(parse("?start-screen=share").ToArray()).StartScreen);
         }
 
+        /** #471: the browser dropped these as unknown, so the town and two-settlement shots could not be taken there. */
+        [Fact]
+        public void theSettlementAndOutpostStagesCanBeAskedFor() {
+            List<string> warnings = new List<string>();
+            List<string> args = parse("?start-screen=world&stage-settlement&stage-outpost=1", warnings);
+            Assert.Equal(new[] { "--start-screen", "world", "--stage-settlement", "--stage-outpost" }, args);
+            Assert.Empty(warnings);
+            GameOptions options = GameOptions.parse(args.ToArray());
+            Assert.True(options.StageSettlement);
+            Assert.True(options.StageOutpost);
+        }
+
+        /** The winter warning's shot: 22,000 ticks from the first day of autumn (tools/capture/web.json). */
+        [Fact]
+        public void advanceTicksIsPassedThrough() {
+            List<string> warnings = new List<string>();
+            List<string> args = parse("?stage-settlement&season=autumn&advance-ticks=22000", warnings);
+            Assert.Empty(warnings);
+            GameOptions options = GameOptions.parse(args.ToArray());
+            Assert.Equal(22000, options.AdvanceTicks);
+            Assert.True(options.StageSettlement);
+            Assert.Equal(Season.AUTUMN, options.StartSeason);
+        }
+
+        /** A page runs at most MaxAdvanceTicks; more is lowered to it with a warning, not dropped. */
+        [Fact]
+        public void advanceTicksIsCappedForAPage() {
+            List<string> warnings = new List<string>();
+            List<string> args = parse("?advance-ticks=150000", warnings);
+            Assert.Equal(new[] { "--advance-ticks", WebOptions.MaxAdvanceTicks.ToString() }, args);
+            Assert.Single(warnings);
+            Assert.Equal(WebOptions.MaxAdvanceTicks, GameOptions.parse(args.ToArray()).AdvanceTicks);
+
+            warnings.Clear();
+            Assert.Equal(new[] { "--advance-ticks", WebOptions.MaxAdvanceTicks.ToString() }, parse("?advance-ticks=" + WebOptions.MaxAdvanceTicks, warnings));
+            Assert.Empty(warnings);
+        }
+
         [Fact]
         public void zeroOrFalseLeavesAFlagOff() {
-            Assert.Empty(parse("?debug-mode=0&no-culling=false"));
+            Assert.Empty(parse("?debug-mode=0&no-culling=false&stage-settlement=0&stage-outpost=false"));
         }
 
         /**
@@ -120,6 +158,11 @@ namespace beyondnationstests.web {
         [InlineData("?time-of-day=NaN")]
         [InlineData("?season=monsoon")]
         [InlineData("?debug-mode=maybe")]
+        [InlineData("?advance-ticks=0")]
+        [InlineData("?advance-ticks=-100")]
+        [InlineData("?advance-ticks=lots")]
+        [InlineData("?advance-ticks")]
+        [InlineData("?stage-outpost=maybe")]
         [InlineData("?width=800&height=600&no-vsync&smoke-resize&no-usage-reporting&help")]
         [InlineData("?utm_source=arcade&fbclid=x")]
         public void anythingUnusableIsDroppedWithAWarning(string query) {

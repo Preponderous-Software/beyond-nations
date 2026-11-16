@@ -22,12 +22,21 @@ namespace beyondnations.web {
     */
     public static class WebOptions {
 
+        /**
+        * The most ?advance-ticks a page will run: about two and a half days of
+        * the world at the default 50 ticks a second, past the winter warning
+        * (22,000 from the first day of autumn). WebGame runs them in slices
+        * between frames; more would keep a phone fast-forwarding for minutes.
+        * A larger number is lowered to this, with a warning.
+        */
+        public const int MaxAdvanceTicks = 50000;
+
         private static readonly HashSet<string> IntOptions = new HashSet<string> {
             "ticks-per-second", "exit-after-frames", "screenshot-after-frames", "render-distance",
         };
 
         private static readonly HashSet<string> FlagOptions = new HashSet<string> {
-            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-diplomacy", "stage-feel", "stage-succession", "stage-event", "stage-trade", "stage-market", "stage-victory", "stage-defeat", "no-saves", "continue",
+            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-settlement", "stage-outpost", "stage-diplomacy", "stage-feel", "stage-succession", "stage-event", "stage-trade", "stage-market", "stage-victory", "stage-defeat", "no-saves", "continue",
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {
@@ -71,6 +80,17 @@ namespace beyondnations.web {
                         args.Add(value);
                     } else {
                         warn("ignoring seed=: expected a number or some text");
+                    }
+                } else if (name == "advance-ticks") {
+                    if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int ticks) && ticks > 0) {
+                        if (ticks > MaxAdvanceTicks) {
+                            warn("advance-ticks=" + value + " is more than a page runs; advancing " + MaxAdvanceTicks);
+                            ticks = MaxAdvanceTicks;
+                        }
+                        args.Add("--advance-ticks");
+                        args.Add(ticks.ToString(CultureInfo.InvariantCulture));
+                    } else {
+                        warn("ignoring advance-ticks=" + value + ": expected a whole number above 0");
                     }
                 } else if (IntOptions.Contains(name)) {
                     if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int number)
