@@ -195,6 +195,9 @@ namespace beyondnations {
                     // list of positions to generate chunks at
                     List<Vector3> positionsToGenerateChunksAt = new List<Vector3>();
 
+                    // the pawn the player is walking up to waits for them (PawnRelations.findPawnToHold)
+                    Pawn heldPawn = PawnRelations.findPawnToHold(player, environment);
+
                     foreach (Entity entity in entityRepository.getEntities()) {
                         if (entity.getType() == EntityType.PAWN) {
                             Pawn pawn = (Pawn) entity;
@@ -229,6 +232,10 @@ namespace beyondnations {
                             int ticksBetweenBehaviorExecutions = gameConfig.getTicksBetweenBehaviorExecutions();
                             if (tickCounter.getTotalTicks() % ticksBetweenBehaviorExecutions == 0) {
                                 pawnBehaviorExecutor.executeBehavior(pawn, pawn.getCurrentBehaviorType());
+                            }
+                            if (pawn == heldPawn) {
+                                Vector3 held = pawn.getVelocity();
+                                pawn.setVelocity(new Vector3(0, held.Y, 0));
                             }
 
                             if (!pawn.isCurrentlyInSettlement()) {

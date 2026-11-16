@@ -65,17 +65,21 @@ namespace beyondnations.desktop.ui {
                         .execute(player)));
 
                 // offered to a leader with no settlement yet, and again (#145)
-                // whenever the era lets the nation hold another; enabled once
-                // they carry what it costs (FoundingCost) and stand outside
+                // out in the wilds; enabled once the era lets the nation hold
+                // another and they carry what it costs (FoundingCost). At the
+                // era's cap it stays, greyed, saying which era lifts it
+                // (0.8.0 playtest s07: it vanished, and only F told why)
                 if (player.getId() == nation.getLeaderId()
-                        && (nation.getNumberOfSettlements() == 0 || (nation.canFoundSettlement() && !player.isCurrentlyInSettlement()))) {
+                        && (nation.getNumberOfSettlements() == 0 || !player.isCurrentlyInSettlement())) {
                     int woodShort = FoundingCost.wood(nation) - inventory.getNumItems(ItemType.WOOD);
                     int stoneShort = FoundingCost.stone(nation) - inventory.getNumItems(ItemType.STONE);
+                    bool capped = !nation.canFoundSettlement();
                     commands.Add(new WorldCommand("Found Settlement", CommandGroup.Nation, () =>
                         new FoundSettlementCommand(nationRepository, simulation.getEventProducer(), entityRepository, simulation.getGameConfig(), simulation.getRandom())
                             .execute(player))
-                        .setEnabled(woodShort <= 0 && stoneShort <= 0,
-                            describeShortfall(System.Math.Max(0, woodShort), System.Math.Max(0, stoneShort))));
+                        .setEnabled(!capped && woodShort <= 0 && stoneShort <= 0,
+                            capped ? EraRules.describeSettlementCap(nation.getSettlementLimit())
+                                : describeShortfall(System.Math.Max(0, woodShort), System.Math.Max(0, stoneShort))));
                 }
 
                 if (!player.isCurrentlyInSettlement() && player.getHomeSettlementId() != null) {
@@ -457,15 +461,21 @@ namespace beyondnations.desktop.ui {
                 .setWidthLabel("Talk to " + PawnNameSlot + " (" + TierNameSlot + ")")
                 .setTooltip("Talk to " + PawnRelations.describeWithTraits(pawn, player)));
 
-            if (GiftPawnCommand.canGift(player)) {
-                commands.Add(pawnCommand("Gift ", pawn, "", () =>
-                    new GiftPawnCommand(eventProducer).execute(player, pawn)));
-            }
+            // Gift and Invite are always there for the pawn in reach, greyed
+            // with the reason when they cannot be done (0.8.0 playtest s02:
+            // next to a stranger the bar showed only the nation's buttons,
+            // and inviting was a key a phone does not have). Being always
+            // there, neither moves the leader's levers after them when the
+            // player runs out of gifts or the pawn joins.
+            commands.Add(pawnCommand("Gift ", pawn, "", () =>
+                new GiftPawnCommand(eventProducer).execute(player, pawn))
+                .setEnabled(GiftPawnCommand.canGift(player),
+                    "You have nothing to give. " + GiftPawnCommand.describeWhatMakesAGift()));
 
-            if (InvitePawnToNationCommand.isApplicable(player, pawn)) {
-                commands.Add(pawnCommand("Invite ", pawn, "", () =>
-                    new InvitePawnToNationCommand(nationRepository, eventProducer, entityRepository).execute(player, pawn)));
-            }
+            string inviteRefusal = InvitePawnToNationCommand.whyNot(player, pawn, nationRepository);
+            commands.Add(pawnCommand("Invite ", pawn, "", () =>
+                new InvitePawnToNationCommand(nationRepository, eventProducer, entityRepository).execute(player, pawn))
+                .setEnabled(inviteRefusal == null, inviteRefusal));
 
             if (LeaderPawnCommands.playerLeads(player, pawn, nationRepository)) {
                 if (pawn.getOrder() == null) {

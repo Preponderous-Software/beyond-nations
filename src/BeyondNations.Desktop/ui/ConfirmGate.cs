@@ -62,6 +62,21 @@ namespace beyondnations.desktop.ui {
             return armedKey != null && armedKey == key && now - armedAt <= windowSeconds && now >= armedAt;
         }
 
+        /**
+        * Keeps an armed press armed while the pointer rests on its button
+        * (called each frame the armed button is hovered): its window starts
+        * again from now. On a slow machine, at one or two frames a second, a
+        * second click on Build House or Build Farm landed 6 to 13 seconds
+        * after the first and only re-armed it (0.8.0 playtests s02, s03,
+        * s07); a pointer that has not left the button has not changed its
+        * mind. Moving off it lets the window run out as before.
+        */
+        public void hold(string key, double now) {
+            if (isArmed(key, now)) {
+                armedAt = now;
+            }
+        }
+
         public void disarm() {
             armedKey = null;
         }

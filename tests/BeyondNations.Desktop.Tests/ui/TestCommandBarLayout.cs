@@ -207,6 +207,34 @@ namespace beyondnationstests.desktop.ui {
         }
 
         /**
+        * 0.8.0 playtests s02, s03, s07: at one or two frames a second the
+        * second click on Build House landed 6 to 13 s after the first and
+        * only re-armed it. While the pointer rests on the armed button
+        * (hold, each frame) it stays armed; once it moves off, the window
+        * runs out as before.
+        */
+        [Fact]
+        public void anArmedButtonStaysArmedWhileThePointerRestsOnIt_HoweverSlowTheFrames() {
+            Status status = new Status(new TickCounter(), 1000);
+            ConfirmGate gate = new ConfirmGate();
+            Assert.False(gate.press("Build House", 10.0));
+            gate.prompt(status, "Click Build House again to build it.");
+
+            // one frame a second for 13 s, the pointer on the button
+            for (double now = 11.0; now <= 23.0; now += 1.0) {
+                gate.update(now, status);
+                gate.hold("Build House", now);
+            }
+            Assert.Equal("Click Build House again to build it.", status.getStatus());
+            Assert.True(gate.press("Build House", 23.5));
+
+            // pointer moved off: the window lapses as before
+            Assert.False(gate.press("Build House", 30.0));
+            gate.hold("Build Farm", 31.0);
+            Assert.False(gate.isArmed("Build House", 30.0 + ConfirmGate.DefaultWindowSeconds + 1.0));
+        }
+
+        /**
         * 0.6.1/0.6.2 playtests: after the window lapsed the button reverted
         * but the status line still said "Click War again...", and asking
         * again read "(x2)", like "click twice".

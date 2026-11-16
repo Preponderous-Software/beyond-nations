@@ -24,6 +24,8 @@ namespace beyondnations.pacing {
         public int Tick;
         public int Nations;
         public int Pawns;
+        /** Pawns in no nation: the strangers left to recruit. */
+        public int Nationless;
         public int PlayerNationMembers;
         public int PlayerSettlements;
         public int Coins;
@@ -82,6 +84,8 @@ namespace beyondnations.pacing {
         public int RaidsOnPlayerSheltered;
         /** The first tick the player's nation had the Village era's members (EraRules.VillageMembers), or -1. */
         public int VillageMembersTick = -1;
+        /** The first tick the player's nation had a member besides the player (an heir), or -1. */
+        public int FirstMemberTick = -1;
         /** Members the player's nation took by invitation (courting), and that joined it otherwise. */
         public int MembersInvited;
         public int MembersJoinedOtherwise;
@@ -180,6 +184,9 @@ namespace beyondnations.pacing {
                     previousCompletionTick = tick;
                     recorded++;
                 }
+                if (result.FirstMemberTick < 0 && WorldView.members(simulation) >= 2) {
+                    result.FirstMemberTick = tick;
+                }
                 if (result.VillageMembersTick < 0 && WorldView.members(simulation) >= EraRules.VillageMembers) {
                     result.VillageMembersTick = tick;
                 }
@@ -237,6 +244,7 @@ namespace beyondnations.pacing {
                 Tick = simulation.getTickCounter().getTotalTicks(),
                 Nations = simulation.getNationRepository().getNumberOfNations(),
                 Pawns = simulation.getEntityRepository().getEntitiesOfType(EntityType.PAWN).Count,
+                Nationless = WorldView.nationlessPawns(simulation),
                 PlayerNationMembers = WorldView.members(simulation),
                 PlayerSettlements = WorldView.settlements(simulation),
                 Coins = inventory.getNumItems(ItemType.COIN),
