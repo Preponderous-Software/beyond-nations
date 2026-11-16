@@ -183,6 +183,46 @@ namespace beyondnationstests.desktop.ui {
             Assert.DoesNotContain(ControlsScreen.getRows(), row => row.Section.StartsWith(ControlsScreen.KeyboardPrefix));
         }
 
+        /**
+        * The leftovers the 2026-11-15 lanes saw on the desktop build at phone
+        * size, checked as a phone shows them: the nations screen's footer and
+        * the first tip name the button, not "O or Esc" or "W A S D".
+        */
+        [Fact]
+        public void theNationsFooterAndTheFirstTipNameNoKeysOnATouchScreen() {
+            try {
+                TouchLayout.setState(TouchMode.On, true, 120f);
+                Assert.Equal(ObjectiveKeyNames.TouchCloseHint, ObjectiveKeyNames.closeHint(NationScreen.CloseHint));
+                string walk = OnboardingHints.text(OnboardingHints.Step.Move, TouchLayout.isActive());
+                assertNamesNoKey(walk);
+                Assert.DoesNotContain("W A S D", walk);
+                Assert.Contains("stick", walk);
+            }
+            finally {
+                TouchLayout.reset();
+            }
+            Assert.Equal("(Press O or Esc to close)", ObjectiveKeyNames.closeHint(NationScreen.CloseHint));
+            Assert.Contains("W A S D", OnboardingHints.text(OnboardingHints.Step.Move, TouchLayout.isActive()));
+        }
+
+        /** With the nations screen open, its status line does not tell the player to open it. */
+        [Fact]
+        public void theNationsScreenDropsTheSentenceThatSaysToOpenIt() {
+            Assert.Equal("Fortburg is besieging your village.",
+                NationScreen.statusLine("Fortburg is besieging your village. Press {ToggleNations} to see the nations."));
+            Assert.Equal("Peace with Aland.", NationScreen.statusLine("Peace with Aland."));
+            Assert.Equal("", NationScreen.statusLine("Press {ToggleNations} to see the nations."));
+            Assert.Null(NationScreen.statusLine(null));
+        }
+
+        /** A centred line wider than a phone is drawn smaller, not cut off at both edges. */
+        [Fact]
+        public void aCentredLineTooWideForTheScreenIsScaledToFit() {
+            Assert.Equal(1.5f, Overlay.fitScale(1.5f, 300f, 380f));
+            Assert.Equal(1.5f * 380f / 500f, Overlay.fitScale(1.5f, 500f, 380f), 4);
+            Assert.Equal(1.5f, Overlay.fitScale(1.5f, 0f, 380f));
+        }
+
         [Fact]
         public void theKeyDetectorCatchesKeysButNotArticles() {
             Assert.Equal("O", namedKey("Press O to see the nations."));

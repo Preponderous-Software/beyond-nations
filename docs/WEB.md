@@ -109,7 +109,15 @@ game lays its screens out for a finger (`TouchLayout` in
 - The HUD leaves the controls' band clear: the command bar and the boxes stop
   above it, the inventory box is left out (Bag opens the full list), and on a
   phone held upright the status line and chronicle go under the objective
-  tracker rather than over it.
+  tracker rather than over it. Upright, while a tip card shows the Season box
+  drops its region lines, and the card goes under the Season box when it fits
+  above the command bar, otherwise just under the status line, over the
+  chronicle strip, so it covers neither the Season box nor a button; a town's floating name, which has no clear place under that
+  stacked HUD, is left out while it would sit under it.
+- A line too wide for the screen (a panel footer on a phone held upright) is
+  drawn smaller rather than cut off at both edges.
+
+  <img src="screenshots/phone-ui-leftovers/phone-town-pair.jpg" alt="A phone held upright in a town, before and after: before, the tip card covers Enter Settlement and Teleport Home and the town's name is cut off at the top behind the boxes; after, the Season box is compact, the tip sits over the chronicle strip, the command bar is clear, and the name is left out" width="420">
 - No line names a key or a mouse button: objective hints, status lines, panel
   footers, the chronicle and the tips name the button instead ("press Use",
   "Realm", "Tap Close"), all from one table (`ObjectiveKeyNames`), and the
@@ -151,7 +159,7 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `render-distance=N` | starting render distance |
 | `time-of-day=F` | starting time of day, 0 to 1 |
 | `stage-feel` | replay the feedback effects every 20 frames, for screenshots |
-| `stage-settlement` | open with a lived-in settlement standing ahead of the player |
+| `stage-settlement` | open with a lived-in settlement standing ahead of the player, as the desktop's `--stage-settlement` |
 | `stage-outpost` | open leading a Village-era nation with two settlements |
 | `stage-diplomacy`, `stage-succession`, `stage-event`, `stage-trade`, `stage-market`, `stage-victory`, `stage-defeat` | the desktop's other staged openings ([CONTRIBUTING.md](./CONTRIBUTING.md)) |
 | `advance-ticks=N` | run the world N ticks so it opens mid-game, at most 50,000 (a larger number is lowered to that, with a warning). Unlike the desktop, which runs them before its first frame, the page runs them in slices of 200 ms a frame and draws the world fast-forwarding meanwhile, so it stays responsive; `window.beyondNations.status().advancing` counts the ticks left. `?stage-settlement&season=autumn&advance-ticks=22000` reaches the winter warning. |

@@ -39,6 +39,15 @@ namespace beyondnationstests.web {
             Assert.Equal(new[] { "--stage-diplomacy", "--start-screen", "nations" }, args);
         }
 
+        /** The README's town shot, on a phone: WebGame stages it, so the page lets it through. */
+        [Fact]
+        public void theSettlementStageCanBeAskedFor() {
+            List<string> warnings = new List<string>();
+            GameOptions options = GameOptions.parse(parse("?stage-settlement&start-screen=world", warnings).ToArray());
+            Assert.Empty(warnings);
+            Assert.True(options.StageSettlement);
+        }
+
         [Fact]
         public void theSeasonOptionIsPassedThrough() {
             GameOptions options = GameOptions.parse(parse("?season=Winter").ToArray());

@@ -382,6 +382,20 @@ namespace beyondnations.desktop.ui.screens {
             }
         }
 
+        /**
+        * The status line as this screen shows it: keys or buttons named
+        * (ObjectiveKeyNames), less any sentence telling the player to open
+        * this screen ("Press Realm to see the nations."), which read oddly
+        * with the screen already open.
+        */
+        public static string statusLine(string raw) {
+            if (string.IsNullOrEmpty(raw)) {
+                return raw;
+            }
+            string trimmed = System.Text.RegularExpressions.Regex.Replace(raw, @"\s*[^.!?]*\{ToggleNations\}[^.!?]*[.!?]?", "").Trim();
+            return ObjectiveKeyNames.resolve(trimmed);
+        }
+
         /** "> Laws <" for the tab showing, "Laws" for the others. */
         public static string tabLabel(string tab, bool showing) {
             return showing ? "> " + tab + " <" : tab;
@@ -441,7 +455,7 @@ namespace beyondnations.desktop.ui.screens {
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
             // the answer goes on the status line, shown here too since the HUD is hidden
-            string status = ObjectiveKeyNames.resolve(player.getStatus().getStatus());
+            string status = statusLine(player.getStatus().getStatus());
             if (!string.IsNullOrEmpty(status)) {
                 drawWrappedCentred(status, height / 34f, height - lineHeight * 3.1f, width, left, lineHeight * 0.75f, 3);
             }

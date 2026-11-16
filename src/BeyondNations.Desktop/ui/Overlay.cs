@@ -93,6 +93,21 @@ namespace beyondnations.desktop.ui {
             return fontSizeInPixels / BaseFontSize;
         }
 
+        /** The most of the screen's width a centred line may take before it is drawn smaller. */
+        public const float CentredLineShare = 0.94f;
+
+        /**
+        * The font scale a line measured textWidth wide at scale is drawn at
+        * so that it fits available: scale when it already fits, else scaled
+        * down in proportion.
+        */
+        public static float fitScale(float scale, float textWidth, float available) {
+            if (textWidth <= available || textWidth <= 0f || available <= 0f) {
+                return scale;
+            }
+            return scale * available / textWidth;
+        }
+
         /**
         * Draws text centred on the point (width / 2, centreY), which is what
         * a GUI.Label with TextAnchor.MiddleCenter did inside its rect.
@@ -101,6 +116,14 @@ namespace beyondnations.desktop.ui {
             float scale = fontScaleFor(fontSize);
             ImGui.SetWindowFontScale(scale);
             Vector2 size = ImGui.CalcTextSize(text);
+            // a line wider than the screen (a phone held upright: "(Tap
+            // Close, top right, to go back)" ran off both edges) is drawn
+            // smaller rather than cut off
+            float fitted = fitScale(scale, size.X, width * CentredLineShare);
+            if (fitted < scale) {
+                ImGui.SetWindowFontScale(fitted);
+                size = ImGui.CalcTextSize(text);
+            }
             ImGui.SetCursorPos(new Vector2((width - size.X) * 0.5f, centreY - size.Y * 0.5f));
             ImGui.TextUnformatted(text);
             ImGui.SetWindowFontScale(1f);

@@ -46,6 +46,26 @@ namespace beyondnations.desktop.ui.boxes {
             return "Era: " + Eras.getDisplayName(era) + " (" + Eras.number(era) + "/" + Eras.count() + ")";
         }
 
+        /** "Camp 1/4": the headline without "Era:" and the brackets, for a narrow box. */
+        public static string shortHeadline(Simulation simulation) {
+            Era era = simulation.getEraTracker().getEra();
+            return Eras.getDisplayName(era) + " " + Eras.number(era) + "/" + Eras.count();
+        }
+
+        /**
+        * The toggle's label, "Era: Camp (1/4)  +": or, when that is wider
+        * than room (measure gives a label's width), the short "Camp 1/4 +",
+        * so on a phone held upright neither the count nor the "+" is cut
+        * off ("Era: Camp (1/", #470).
+        */
+        public static string toggleLabel(Simulation simulation, bool expanded, System.Func<string, float> measure, float room) {
+            string full = headline(simulation) + (expanded ? "  -" : "  +");
+            if (measure(full) <= room) {
+                return full;
+            }
+            return shortHeadline(simulation) + (expanded ? " -" : " +");
+        }
+
         /** "Town: 2/4", or the victory goal in the last era. */
         public static string progressLabel(Simulation simulation) {
             EraTracker eras = simulation.getEraTracker();
@@ -161,7 +181,8 @@ namespace beyondnations.desktop.ui.boxes {
                 float buttonHeight = TouchLayout.isActive()
                     ? System.MathF.Max(TouchLayout.MinTarget, Overlay.frameHeight())
                     : Overlay.frameHeight() + UiScale.px(6f);
-                bool toggled = ImGui.Button(headline(simulation) + (expanded ? "  -" : "  +") + "##era-toggle",
+                float room = ImGui.GetContentRegionAvail().X - ImGui.GetStyle().FramePadding.X * 2f;
+                bool toggled = ImGui.Button(toggleLabel(simulation, expanded, label => ImGui.CalcTextSize(label).X, room) + "##era-toggle",
                     new Vector2(-1f, buttonHeight));
                 ImGui.PopStyleColor();
                 if (toggled) {

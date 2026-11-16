@@ -103,13 +103,23 @@ namespace beyondnations.web {
                     labelsCulled++;
                     continue;
                 }
-                currentWorldUnitsPerPixel = culling.getLineHeight(LineHeightInWorldUnits, label.position, view, projection) / font.LineHeight;
+                // a label may ask to be drawn larger (a settlement's name); 0 means normal size.
+                // Up close it is still capped to a share of the screen, that share
+                // scaled with it, so a town's name never fills the view.
+                float labelScale = label.scale > 0f ? label.scale : 1f;
+                currentWorldUnitsPerPixel = culling.getLineHeight(LineHeightInWorldUnits * labelScale, label.position, view, projection, labelScale) / font.LineHeight;
                 Vector2 measured = font.MeasureString(label.text);
                 currentPenOffset = LabelBillboard.getCenteringOffset(measured);
-                // a label may ask to be drawn larger (a settlement's name); 0 means normal size
-                float labelScale = label.scale > 0f ? label.scale : 1f;
-                currentWorldUnitsPerPixel = LineHeightInWorldUnits * labelScale / font.LineHeight;
                 currentAnchor = label.position + new Vector3(0f, HeightAboveEntity, 0f);
+                if (LabelPlacement.keepsClearOfTop(labelScale)) {
+                    // a town's name slides down rather than run off the top or
+                    // under the HUD, or is left out where the HUD fills the top
+                    if (!LabelPlacement.tryPlace(currentAnchor, measured.Y * currentWorldUnitsPerPixel, view, projection, LabelPlacement.getTopReserve(), out float drop)) {
+                        labelsCulled++;
+                        continue;
+                    }
+                    currentAnchor -= currentUp * drop;
+                }
                 font.DrawText(this, label.text, Vector2.Zero, new FSColor(color.X, color.Y, color.Z, color.W * alpha));
                 labelsDrawn++;
             }
