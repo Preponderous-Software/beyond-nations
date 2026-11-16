@@ -93,6 +93,18 @@ namespace beyondnations.desktop.ui {
             return fontSizeInPixels / BaseFontSize;
         }
 
+        /**
+        * A font scale no smaller than the atlas the font was rasterised at
+        * (1). The UI font is a bitmap font; drawn smaller, it loses whole
+        * rows of pixels, and a one-pixel-high stroke such as a hyphen can
+        * vanish: the world event sheet's "Nothing now -- but if the claimant
+        * wins anyway" read "Nothing now    but" at 960x540 (playtest 0.7.1
+        * winter s03). Larger scales only repeat rows, so they keep every stroke.
+        */
+        public static float atLeastAtlasSize(float scale) {
+            return System.MathF.Max(1f, scale);
+        }
+
         /** The most of the screen's width a centred line may take before it is drawn smaller. */
         public const float CentredLineShare = 0.94f;
 

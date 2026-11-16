@@ -84,6 +84,12 @@ namespace beyondnations.desktop.ui {
             float textWidth = panelWidth - padding * 2f;
             float fontScale = scale / UiScale.get();
             float lineHeight = Overlay.BaseFontSize * fontScale + 4f * scale;
+            // the smaller lines (the heading, each choice's detail and the
+            // note under them) are never drawn below the atlas size, where the
+            // bitmap font drops the row a hyphen is drawn on
+            float headingScale = smallerScale(fontScale, 0.8f);
+            float detailScale = smallerScale(fontScale, 0.9f);
+            float detailLineHeight = lineHeight * detailScale / fontScale;
 
             // Overlay.beginFullScreen's window never comes to the front, and the
             // HUD boxes and command bar would sit on top of the sheet and take
@@ -102,10 +108,10 @@ namespace beyondnations.desktop.ui {
             List<List<string>> details = new List<List<string>>();
             float buttonsHeight = 0f;
             foreach (Row row in view.Rows) {
-                ImGui.SetWindowFontScale(fontScale * 0.9f);
+                ImGui.SetWindowFontScale(detailScale);
                 List<string> detail = TextWrap.wrap(row.Detail, buttonTextWidth, s => ImGui.CalcTextSize(s).X);
                 details.Add(detail);
-                buttonsHeight += buttonHeight(detail.Count, lineHeight, scale) + 8f * scale;
+                buttonsHeight += buttonHeight(detail.Count, lineHeight, detailLineHeight, scale) + 8f * scale;
             }
             float panelHeight = padding + lineHeight * 0.8f + lineHeight * 1.5f + body.Count * lineHeight + 10f * scale
                 + buttonsHeight + lineHeight + padding;
@@ -115,7 +121,7 @@ namespace beyondnations.desktop.ui {
             Overlay.fillLocalRect(new Vector2(x0, top), new Vector2(panelWidth, 4f * scale), new Vector4(0.95f, 0.75f, 0.30f, 1f));
 
             float y = top + padding;
-            ImGui.SetWindowFontScale(fontScale * 0.8f);
+            ImGui.SetWindowFontScale(headingScale);
             ImGui.SetCursorPos(new Vector2(x0 + padding, y));
             Overlay.textColoured(new Vector4(0.95f, 0.75f, 0.30f, 1f), Heading);
             y += lineHeight * 0.8f;
@@ -135,7 +141,7 @@ namespace beyondnations.desktop.ui {
             for (int i = 0; i < view.Rows.Count; i++) {
                 Row row = view.Rows[i];
                 List<string> detail = details[i];
-                float h = buttonHeight(detail.Count, lineHeight, scale);
+                float h = buttonHeight(detail.Count, lineHeight, detailLineHeight, scale);
                 ImGui.SetWindowFontScale(fontScale);
                 if (row.Available) {
                     if (Overlay.buttonAt("##world-event-choice-" + i, x0 + padding, y, textWidth, h)) {
@@ -148,16 +154,16 @@ namespace beyondnations.desktop.ui {
                 ImGui.SetCursorPos(new Vector2(x0 + padding * 2f, ty));
                 Overlay.textColoured(row.Available ? new Vector4(1f, 1f, 1f, 1f) : new Vector4(0.55f, 0.55f, 0.55f, 1f), (i + 1) + ". " + row.Label);
                 ty += lineHeight;
-                ImGui.SetWindowFontScale(fontScale * 0.9f);
+                ImGui.SetWindowFontScale(detailScale);
                 foreach (string line in detail) {
                     ImGui.SetCursorPos(new Vector2(x0 + padding * 2f, ty));
                     Overlay.textColoured(row.Available ? new Vector4(0.85f, 0.85f, 0.7f, 1f) : new Vector4(1f, 0.6f, 0.35f, 1f), line);
-                    ty += lineHeight * 0.9f;
+                    ty += detailLineHeight;
                 }
                 y += h + 8f * scale;
             }
 
-            ImGui.SetWindowFontScale(fontScale * 0.8f);
+            ImGui.SetWindowFontScale(headingScale);
             ImGui.SetCursorPos(new Vector2(x0 + padding, y));
             Overlay.textColoured(new Vector4(0.7f, 0.7f, 0.7f, 1f), PausedNote);
             ImGui.SetWindowFontScale(1f);
@@ -170,8 +176,13 @@ namespace beyondnations.desktop.ui {
             return true;
         }
 
-        private static float buttonHeight(int detailLines, float lineHeight, float scale) {
-            return System.MathF.Max(MinButtonHeight * scale, 16f * scale + lineHeight + detailLines * lineHeight * 0.9f);
+        private static float buttonHeight(int detailLines, float lineHeight, float detailLineHeight, float scale) {
+            return System.MathF.Max(MinButtonHeight * scale, 16f * scale + lineHeight + detailLines * detailLineHeight);
+        }
+
+        /** fontScale times share, the size of the sheet's smaller lines, kept at or above the atlas size (Overlay.atLeastAtlasSize). */
+        public static float smallerScale(float fontScale, float share) {
+            return Overlay.atLeastAtlasSize(fontScale * share);
         }
     }
 }

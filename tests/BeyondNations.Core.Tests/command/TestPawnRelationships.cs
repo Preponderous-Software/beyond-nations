@@ -110,6 +110,36 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testNameTagLine_StrangerInTheWorld_JustTheName() {
+            Pawn pawn = addPawn("Ada");
+            Assert.Equal("Ada", PawnRelations.nameTagLine(pawn, player));
+        }
+
+        [Fact]
+        public void testNameTagLine_OwnMemberNeverMet_ShowsTheTierTalkShows() {
+            Nation nation = playerNation();
+            Pawn pawn = addPawn("Ada");
+            nation.addMember(pawn.getId());
+            pawn.setNationId(nation.getId());
+
+            Assert.Equal("Ada (Stranger)", PawnRelations.nameTagLine(pawn, player));
+            Assert.Equal(PawnRelations.describe(pawn, player), PawnRelations.nameTagLine(pawn, player));
+        }
+
+        [Fact]
+        public void testNameTagLine_MetPawn_ShowsTheTier() {
+            Pawn pawn = addPawn("Ada");
+            PawnRelations.raise(pawn, player, RelationshipTiers.FRIEND_THRESHOLD, null);
+            Assert.Equal("Ada (Friend)", PawnRelations.nameTagLine(pawn, player));
+        }
+
+        [Fact]
+        public void testLoyalTrait_NamedSoItIsNotReadAsTheTier() {
+            Assert.Equal("Loyal by nature", PawnTraits.getName(PawnTrait.LOYAL));
+            Assert.NotEqual(RelationshipTiers.getName(RelationshipTier.LOYAL), PawnTraits.getName(PawnTrait.LOYAL));
+        }
+
+        [Fact]
         public void testFindPawnInRange_OnlyWithinReach() {
             Pawn far = addPawn("Far", new Vector3(20, 0, 0));
             Assert.Null(PawnRelations.findPawnInRange(player, environment));

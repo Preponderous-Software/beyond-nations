@@ -330,6 +330,8 @@ namespace beyondnationstests.desktop.ui {
         [Fact]
         public void inASettlement_ExitPurchaseAndSellAreAlwaysThereInTheSameOrder() {
             Simulation simulation = inOwnCamp(out Settlement settlement);
+            // a stall to trade at: with none, the market buttons stay greyed
+            Assert.True(settlement.getMarket().createStall());
             Player player = simulation.getPlayer();
             List<string> broke = labels(simulation);
             Assert.False(find(simulation, "Purchase Food").isEnabled());

@@ -334,7 +334,7 @@ namespace beyondnationstests {
             pawn.setTraits(new[] { PawnTrait.LOYAL, PawnTrait.GREEDY });
             simulation.getEntityRepository().addEntity(pawn);
             simulation.fixedUpdate(1f / 50f);
-            Assert.StartsWith("Ada Smith\nLoyal, Greedy\n", pawn.getNameTag());
+            Assert.StartsWith("Ada Smith\nLoyal by nature, Greedy\n", pawn.getNameTag());
         }
     }
 }

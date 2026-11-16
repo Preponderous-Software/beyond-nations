@@ -30,6 +30,9 @@ namespace beyondnations.desktop.ui {
         /** Opens the settlement screen from inside a settlement (#178). */
         public const string SettlementLabel = "Settlement";
 
+        /** Why Purchase Food, Sell Resources and Trade at Market are greyed in a settlement with no market stalls. */
+        public const string NoStallsReason = "This settlement has no stalls yet.";
+
         /** The Build buttons' order, which is the same every time (not the planner's, which shifts). */
         public static readonly BuildingType[] BuildOrder = {
             BuildingType.HOUSE, BuildingType.FARM, BuildingType.STOREHOUSE, BuildingType.WORKSHOP
@@ -127,20 +130,28 @@ namespace beyondnations.desktop.ui {
                 commands.Insert(1, new WorldCommand(SettlementLabel, CommandGroup.Place, () =>
                     SettlementScreen.requestOpen(here)));
 
+                // a settlement with no stalls has no one to buy from or sell to:
+                // the market buttons are greyed with that as the reason, rather
+                // than enabled and answering "This settlement does not have any
+                // stalls." when pressed (playtest 0.7.1 winter s03)
+                Settlement marketHere = entityRepository.getEntity(here) as Settlement;
+                bool hasStalls = marketHere != null && marketHere.getMarket() != null && marketHere.getMarket().getNumStalls() > 0;
+
                 commands.Add(new WorldCommand("Purchase Food", CommandGroup.Place, () =>
                     new PurchaseFoodFromMarketCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(inventory.getNumItems(ItemType.COIN) > 0, "You have no coins."));
+                    .setEnabled(hasStalls && inventory.getNumItems(ItemType.COIN) > 0,
+                        hasStalls ? "You have no coins." : NoStallsReason));
 
                 // whatever the market buys, food included (playtest 0.6.1 s03: five
                 // chicken meat left the button greyed out)
                 commands.Add(new WorldCommand("Sell Resources", CommandGroup.Place, () =>
                     new SellResourcesAtMarketCommand(nationRepository, entityRepository).execute(player))
-                    .setEnabled(Market.hasAnythingToSell(inventory), "You are carrying nothing the market buys."));
+                    .setEnabled(hasStalls && Market.hasAnythingToSell(inventory),
+                        hasStalls ? "You are carrying nothing the market buys." : NoStallsReason));
 
                 // the market panel (#182): pick a good, a quantity, and see the total before dealing
-                Settlement marketHere = entityRepository.getEntity(here) as Settlement;
                 commands.Add(new WorldCommand(MarketTradePanel.OpenLabel, CommandGroup.Place, () => MarketTradePanel.open(simulation))
-                    .setEnabled(marketHere != null && marketHere.getMarket().getNumStalls() > 0, "This settlement has no stalls yet."));
+                    .setEnabled(hasStalls, NoStallsReason));
             }
 
             return CommandBarLayout.order(commands);
