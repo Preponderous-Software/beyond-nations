@@ -11,7 +11,7 @@ namespace beyondnations.desktop.ui.boxes {
     *
     *   Autumn - day 2/2, year 1
     *   Winter in 1 day!          (amber; in winter, blue: "Winter: no harvests")
-    *   Food: 9 of 60 for winter  (autumn and winter, for a member of a nation)
+    *   Food: 9 of 84 for winter  (autumn and winter, for a member of a nation)
     *   Too little food: no births or newcomers  (amber, while the nation cannot feed its members)
     *   Region: Forest
     *   plenty of wood, little stone
@@ -37,7 +37,7 @@ namespace beyondnations.desktop.ui.boxes {
         }
 
         /**
-        * "Food: 9 of 20 for winter" in autumn and winter for a member of a
+        * "Food: 9 of 84 for winter, 3 rotting" in autumn and winter for a member of a
         * nation with pawns, and null otherwise: the food the nation's members
         * carry against the WINTER_FOOD_STORE each wants (WinterStores, #353).
         * Before it, no screen showed a nation's food at all.
@@ -51,7 +51,8 @@ namespace beyondnations.desktop.ui.boxes {
             if (stores.Members == 0) {
                 return null;
             }
-            return "Food: " + stores.Food + " of " + stores.Wanted + " for winter";
+            // apples beyond what a member keeps rot within minutes, so they are not stores (#495 playtest)
+            return "Food: " + stores.Food + " of " + stores.Wanted + " for winter" + (stores.Spoiling > 0 ? ", " + stores.Spoiling + " rotting" : "");
         }
 
         /** The line shown while the player's nation cannot feed its members (WinterStores.cannotFeed, #489). */
