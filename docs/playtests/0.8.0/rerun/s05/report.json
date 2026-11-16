@@ -1,0 +1,126 @@
+{
+  "session": "s05",
+  "goal": "Trade: use the Trade at Market panel to buy and sell with quantities (check the profit/loss lines and receipts), appoint a Trader from your nation and watch whether traders actually carry goods between markets, build a Storehouse and send a caravan. Judge whether selling pays and whether prices make sense over time.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "2f10aca1"},
+  "seed": 105,
+  "durationSec": 1347,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Caravan cargo the destination does not buy (15 saplings, 1 stone) vanishes; homecoming message only mentions coins",
+      "detail": "Send Caravan panel: loaded 5 wood, 10 stone, 15 saplings to the Village of Eastton (rows said saplings 'here 8, there 18'), estimate 'worth about 228 coins'. Chronicle: 'Your caravan sold 5 wood, 9 stone at the Village of Eastton for 228 coins', then 'came home ... with 228 coins for the treasury'. The 15 saplings and 1 stone never came back: not in inventory, and Collect Stockpile returned only wood/stone, then 'The stockpile is empty.' Expected unsold goods returned (the code comment says onto the stockpile) and the homecoming line to say so. The estimate also silently valued the saplings at 0, which contradicts the 'there 18' row.",
+      "repro": "pt start --seed 105; reach Village era, build Storehouse inside your settlement; Send Caravan; pick Eastton (4/9); +5 wood, +5x2 stone, +5x3 saplings; Send; wait ~6000 ticks; read chronicle; Collect Stockpile",
+      "screenshot": "shots/home.png",
+      "tick": 34241
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Command bar and Send Caravan panel reflow when pawns walk in/out of range, so clicks land on the wrong button",
+      "detail": "Inside a settlement the command bar adds/removes the Order/Talk/Gift/Invite row for the nearest pawn as residents walk around. Buttons shift under the pointer: a click aimed at 'Trade at Market' ate an apple ('Ate an apple (+15 energy)'), a click on 'Settlement' hovered 'Collect Stockpile'. The Send Caravan panel is anchored to the bar and jumps ~34 px up/down between clicks (and grows when the estimate line appears), so '+5 Saplings' presses hit Wood or nothing and '<' missed. At a few fps this happens on most multi-click sequences.",
+      "repro": "Enter your settlement with several residents milling around; open Send Caravan; take screenshots between +5 clicks and watch the panel move",
+      "screenshot": "shots/loaded.png",
+      "tick": 27003
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Trader role is invisible: no Appoint Trader button or reason, and the self-made trader never visibly trades",
+      "detail": "Charlotte Evans appeared as 'Trader' in O > Members without any status/chronicle line saying she took up trade. Because the nation already had one trader per settlement, no 'Appoint ... Trader' button appears on any serf and nothing explains why. Over ticks ~19000-35000 (night and the next morning) she was always within ~10 m of home, and no event or chronicle line ever mentions a trader buying or selling. Nothing on screen shows what a trader carries or where it is heading, so I could not judge whether traders move goods between markets.",
+      "repro": "pt start --seed 105; found a settlement and let members join; O > Members; walk up to a serf member and look for Appoint Trader on the command bar; track the trader with pt state nearest pawns",
+      "screenshot": "shots/trader_idle.png",
+      "tick": 21091
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "Trade at Market advice line recommends a worse market: 'Best price in reach: 21 ... Sell there, not here: -1 a unit'",
+      "detail": "With apples selling at 22 here, the panel said 'Best price in reach: 21 at the Village of Bigwood. Sell there, not here: -1 a unit.' Selling there pays less, so the advice is backwards. Later the line shows 'Buy here, sell there: -5 a unit (a loss)' in orange as the 'best' route, which is also odd to show as advice.",
+      "repro": "Inside your settlement with a stall, Trade at Market, select Apples (tick ~13400)",
+      "screenshot": "shots/sell_there_worse.png",
+      "tick": 13451
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Home market tills run dry after a handful of units; prices swing hard with merchant cash",
+      "detail": "After selling 6 apples and 3 wood the tills held 10 coins and the panel said 'No till here can pay for one' / 'Can't sell' while I carried 62 wood and 58 stone. Selling pays per unit (apples 16-25, wood 24) but the volume per visit is tiny. Apple sell price went 22 -> 16 -> 25 -> 16 within about a minute of game time, following the till; wood stayed at exactly 24/24 (zero spread) throughout; stone fell from 26/22 to 15/12. Round trip buy 6 apples for 141 / sell 6 for 117 lost 24 (~17%), which is sane. The 'tills can pay for N' feedback is good.",
+      "repro": "Trade at Market; sell apples x6, wood x3; watch prices and the till line",
+      "screenshot": "shots/wood2.png",
+      "tick": 31389
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Travelling merchant event says axe+pickaxe are 'worth hundreds at any market' but tools cannot be sold",
+      "detail": "The event offers 'an axe and a pickaxe for 50 coins, worth hundreds at any market'. The Trade at Market panel lists only Apples/Wood/Stone/Saplings; tools cannot be sold. The event also says the merchant 'hails you on the road' while I was inside my village.",
+      "repro": "Wait for the 'A travelling merchant' world event (tick ~30013 on seed 105), buy the tools, open Trade at Market",
+      "screenshot": "shots/merchant_ev.png",
+      "tick": 30013
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Market receipt / net profit line hidden in a two-line scroll box",
+      "detail": "After a sale the 'This visit: spent X, took Y, net Z' receipt is below the fold of a tiny scroll area under the Buy/Sell buttons; it only shows after scrolling. The receipt itself is clear and correct (spent 141, took 104, net -37).",
+      "repro": "Trade at Market; sell 6 apples; look under the Buy/Sell buttons",
+      "screenshot": "shots/receipt.png",
+      "tick": 13900
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Duplicate settlement names in caravan destinations and chronicle",
+      "detail": "The caravan destination list shows 'Village of Lowerfield' as both 1/9 and 2/9, told apart only by distance, and the chronicle reads 'A caravan from Lowerfield sold 20 wood at the Village of Lowerfield', which looks like a caravan selling at home.",
+      "repro": "Send Caravan; step through destinations with >",
+      "screenshot": "shots/dest2.png",
+      "tick": 25500
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress text clipped: 'bers 5/10 · Buildings 0/2'",
+      "detail": "Objective 7's progress bar text is wider than the bar and the start ('Mem') is cut off.",
+      "repro": "Reach objective 7 (Reach the Village era) and look at the top-left objective box",
+      "screenshot": "shots/objective_clipped.png",
+      "tick": 13155
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "HUD overlaps inside a settlement: Inventory panel over the Chronicle, nameplates over text",
+      "detail": "The Inventory Info panel's title sits on top of the chronicle lines, pawn nameplates ('Samantha Lewis / Greedy, Ambitious') draw over the chronicle, and the big '7 here, 11/12 residents' world text bleeds through behind the top of the HUD.",
+      "repro": "Enter your settlement with Stay Inside and look at the top-middle of the screen",
+      "screenshot": "shots/bar2.png",
+      "tick": 30437
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 8,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 23.06,
+      "Eat something": 24.02,
+      "Create or join a nation": 95.0,
+      "Found a settlement": 163.04,
+      "Enter your settlement": 165.6,
+      "Build a market stall": 259.02,
+      "Reach the Village era": 420.06,
+      "Sell resources at market": 421.02
+    },
+    "marketSales": 3,
+    "marketBuys": 1,
+    "coinsFromMarketSales": 293,
+    "roundTripLossApples6": 24,
+    "caravansSent": 1,
+    "caravanTakings": 228,
+    "caravanTripTicks": 6258,
+    "caravanGoodsLost": 16,
+    "tradersAppointed": 0,
+    "traderRunsObserved": 0
+  },
+  "fun": 3,
+  "verdict": "The Trade at Market panel works: quantity buttons, slippage-aware totals, till limits and a clear receipt make buying and selling understandable, and selling raw goods does pay (16-24 a unit), though home tills run dry after a few units. The caravan loop (Storehouse -> Send Caravan -> sold -> came home with 228 coins) is satisfying, but goods the destination won't buy silently disappear, and panels that jump as pawns walk past cause misclicks. Traders are a black box: no appoint button with a reason, no events, and the one self-appointed trader never visibly left home."
+}

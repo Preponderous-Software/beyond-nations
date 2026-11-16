@@ -1,0 +1,74 @@
+{
+  "session": "s02",
+  "goal": "Reach the Village era as fast as you can. It can now come from day 2 (about 7 minutes of game time) once your nation has 10 members; use courting/recruiting and housing. Record when each Village requirement was met, what held you back, and whether the wait felt meaningful.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "2f10aca1"},
+  "seed": 102,
+  "durationSec": 1230,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Courting a Stranger shows no relationship progress toward Acquaintance",
+      "detail": "Pressing R on Yvonne Thomas said 'I don't even know you. (needs Acquaintance)'. Talking once and gifting 10 coins changed nothing visible; it took 4 talks + 4 gifts (40 coins) before R worked ('Yvonne Thomas joined Westham! Members: 7'). The pawn label stayed '(Stranger)' throughout with no meter or hint how close Acquaintance is, while another pawn (Xavier, already a member) became Acquaintance after one talk. Expected a visible relationship bar or 'x more talks' hint.",
+      "repro": "pt start --seed 102; found a settlement; sprint away; pt walkto pawn 120; pt key r; then click Talk (161,445) and Gift (409,445) repeatedly, pressing r after each round",
+      "screenshot": "shots/court.png",
+      "tick": 17501
+    },
+    {
+      "severity": "minor",
+      "category": "bug",
+      "title": "E still interacts (\"Gathered 0 wood from tree\") while a world-event sheet pauses the world",
+      "detail": "With the 'A bountiful harvest' world event open (tps 0, 'The world waits while you decide'), pressing E beside a tree printed 'Gathered 0 wood from tree. (x6)'. Expected input to be swallowed by the sheet. Also the objective read 'Wood 16/20' while the inventory held 20 wood. A player chopping in a rhythm can lose time not noticing the event because the status line keeps updating.",
+      "repro": "pt start --seed 102; gather with walkto tree / key e until a world event appears (~tick 9800); press e next to a tree",
+      "screenshot": "shots/event_e_zero.png",
+      "tick": 9802
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Settlement tiers reuse era names (Village, Town) and confuse the Village-era checklist",
+      "detail": "The Camp-era checklist item 'Village 0/1' means 'have a settlement at Village tier', which isn't explained; it only ticked after building a House + Farm. Two more houses later the settlement screen announced 'The settlement is now a Town!' / 'TOWN OF WESTHAM' while the nation was still in the Camp era. Also the objective bar says 'Buildings 2/2' where the era panel says 'Stalls 2/2', and the build row says 'Build here with what you carry' while houses were paid from the stockpile with an empty inventory.",
+      "repro": "pt start --seed 102; found settlement; enter; build 2 stalls, house, farm, then 2 more houses",
+      "screenshot": "shots/town_vs_era.png",
+      "tick": 14855
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Build House button shows no cost on the settlement screen",
+      "detail": "Inside the camp the Build House button is greyed out and hovering gives no tooltip; the Buildings section only lists 'Next: Farm, 25 wood, 10 stone'. A player planning for the Village era (which depends on houses for members) cannot tell what a House needs. It later turned out ~20 wood / 15 stone.",
+      "repro": "pt start --seed 102; found settlement; press e to enter; pt move 480 352",
+      "screenshot": "shots/house_no_cost.png",
+      "tick": 5626
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress bar text clipped on the left",
+      "detail": "Objective 7 'Reach the Village era' progress bar reads 'mbers 3/10 • Buildings 2/2'; the leading 'Me' is cut off. Persisted for the whole objective.",
+      "repro": "pt start --seed 102; reach objective 7 (after building a stall)",
+      "screenshot": "shots/objective_clipped.png",
+      "tick": 12903
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 7,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Found a settlement": 106.0,
+      "Enter your settlement": 112.5,
+      "Build a market stall": 258.1,
+      "Reach the Village era": 537.0
+    },
+    "villageReqSettlementTierSec": 257.4,
+    "villageReqStallsSec": 257.4,
+    "villageReqDay2Sec": 420,
+    "villageReqMembers10Sec": 537.0,
+    "membersFromOwnRecruiting": 1,
+    "membersFromHousingOrDrift": 9,
+    "coinsSpentCourting": 40
+  },
+  "fun": 3,
+  "verdict": "Village era came at 537 s of game time (day 2 started at about 420 s). Members was the only thing holding it back: settlement tier and stalls were done by 257 s. The wait was mostly passive, though: 9 of 10 members drifted in through housing, and courting a stranger took 4 talks and 4 gifts with no visible progress, so recruiting felt like guesswork. Making recruiting visible (a relationship meter) and keeping settlement tiers from reusing era names would make this goal read much more clearly."
+}

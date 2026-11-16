@@ -1,0 +1,129 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter as a prepared ruler. Watch for the winter warning and the Season box food count, store food before winter (trees give NO apples in winter now), use Feed Residents and the Eat button. Record how many of your members die, whether the warning was clear and early enough, and whether preparing visibly helped.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "2f10aca1"},
+  "seed": 103,
+  "durationSec": 1589,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Winter food stores collapse within one winter day despite preparation; nothing left for the player to do",
+      "detail": "I entered winter over-prepared: Season box 'Food: 30-32 of 20', all residents stocked via Feed Residents, ~30 apples carried. By Winter day 1 midday it was 'Food: 22 of 36', by afternoon 'Food: 4 of 40', by dusk 'Food: 0 of 44', and at Winter day 2/2 night the banner read '10 members hungry, 3 starving'. Fed in total ~45 apples, 7 chicken meat and every apple the market would sell (5 apples cost 150 coins, then price rose to 54-80 and 'No one is selling food'). Trees are bare, the nearest chickens were 1700m away after I hunted the close ones. Preparing visibly helped for the first ~half day only; after that, demand outran any food a player can obtain. I expected stocking ~150% of the stated target before winter to carry the village through, or at least for the target to stay fixed.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn --advance-ticks 25000; create nation (N), found settlement (F), gather ~50 apples, Feed Residents until 0 hungry before winter; pt wait in the settlement through Winter day 1 and watch the Season box",
+      "screenshot": "shots/famine.png",
+      "tick": 196600
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Members keep joining and being born mid-winter, raising the food target during a famine",
+      "detail": "During winter, Grace Thompson was born (tick 171002), Dave Robinson, Charlotte Walker and Rachel Evans joined/swore fealty; residents went 8/12 -> 12/12 and the winter target 28 -> 44 while food was 0. A ruler has no visible way to stop recruitment when the village cannot feed itself. Expected immigration/births to pause or slow when stores are short, or a control to close the gates.",
+      "repro": "As above; watch chronicle 'joined Northernton' / 'welcomed a newborn' lines while Season box shows Food 0 of N",
+      "screenshot": "shots/food_collapse.png",
+      "tick": 191969
+    },
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "--advance-ticks start: player spawns at Energy ~1 and dies of hunger ~10 s in, then dies of old age ~1 game day later",
+      "detail": "Entering the world at tick 145000 the player had Energy 1.1 and a 'Starving!' banner; player_death at tick 145496 before reaching the nearest tree (10.9m). 'The founder is growing old' fired at tick 148501, ~70 s into play, and the founder died of old age at tick 178500 (~11 game minutes of actual play). The succession screen reports 'a reign of 5 days and 22 hours' (ticks since world tick 0), though the nation was founded around tick 148300. The pre-advance appears to age and starve the player character, so the player's own life ends almost immediately. Expected the player to spawn fresh (full energy, young) at the end of the pre-advance, and reign length to count from founding.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn --advance-ticks 25000; Start, Begin; pt state shows energy ~1; pt events shows player_death ~500 ticks later; keep playing ~33000 ticks -> 'You died of old age'",
+      "screenshot": "shots/start_starving.png",
+      "tick": 145496
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Winter warning says '1 is short ... Feed Residents' while Feed Residents is disabled ('0 hungry')",
+      "detail": "Before winter the banner read 'Northernton's 4 members carry 25 food of the 16 they want for winter; 1 is short. Bring food home and Feed Residents.' Inside the settlement the Feed Residents button was grey '(0 hungry)' with tooltip 'No one here is hungry or short of winter stores.' The short member was presumably away, but the warning does not say so (later hunger banners do: '1 here, 1 outside the walls' - good). '1 is short' next to '25 of 16' is also confusing at first read (it means one member, not one food).",
+      "repro": "Found settlement near end of Autumn day 2/2; enter it while banner says 'N is short'; hover Feed Residents",
+      "screenshot": "shots/feed_disabled_but_short.png",
+      "tick": 160358
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Market panel advertises apple prices when no food can be bought",
+      "detail": "Market Info shows 'Apples 67/32', 'Apples 75/30', 'Apples 80/24' while Purchase Food answers 'No one is selling food at this market or you do not have enough money to purchase food' (I had 104-191 coins). The message does not say which of the two reasons applies. Expected the stock (0) to be shown or the button to be disabled with a clear reason.",
+      "repro": "In winter with food scarce, inside own village click Purchase Food repeatedly until it fails; compare Market Info",
+      "screenshot": "shots/famine.png",
+      "tick": 197013
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "No per-member food view: cannot see who is short of winter stores",
+      "detail": "O > Members lists role and loyalty only. With warnings like '4 are short' and 'outside the walls', there is no place to see which members are short or where they are.",
+      "repro": "Press O, click Members during the winter warning",
+      "screenshot": "shots/members_no_food.png",
+      "tick": 171922
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Winter warning arrives only ~half a day before winter and only after founding",
+      "detail": "Season box shows 'Winter in 1 day!' from the start, but the food count and the winter warning banner only appear once you have a settlement; with an autumn start that left about 6.5 game minutes (~20000 ticks). The warning itself was clear and stayed on screen, and the Season box 'Food: X of Y for winter' line is a good, glanceable gauge. But it understated need: 32 of 20 at the start of winter was not nearly enough.",
+      "repro": "Start with --season autumn; found settlement; read banner and Season box",
+      "screenshot": "shots/winter_warning_ambiguous.png",
+      "tick": 151373
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Objective progress text clipped on the left ('nbers 5/10')",
+      "detail": "Objective 7 'Reach the Village era' progress bar shows 'nbers 5/10 • Buildings 1/2'; the label is right-aligned and overflows the bar to the left.",
+      "repro": "Reach Objective 7 and look at the top-left objective box",
+      "screenshot": "shots/objective_clipped.png",
+      "tick": 157030
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Missing dash glyph in world event option text",
+      "detail": "'A claimant stirs' option 3 reads 'Nothing now    but if the claimant wins anyway, they will remember.' The dash between the clauses renders as blank space.",
+      "repro": "Wait for the 'A claimant stirs' world event",
+      "screenshot": "shots/claimant_dash.png",
+      "tick": 182103
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Day numbering differs between chronicle and Season box",
+      "detail": "The chronicle labels events 'Day 6' while the probe says day 5 and the Season box says 'Autumn - day 2/2'. Three different day counts on one screen.",
+      "repro": "Look at chronicle and Season box at the same moment",
+      "screenshot": "shots/t2.png",
+      "tick": 147774
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 8,
+    "deaths": 2,
+    "secondsToObjective": {
+      "Gather wood": 2927.0,
+      "Eat something": 3000.0,
+      "Create or join a nation": 3001.0,
+      "Found a settlement": 3021.1,
+      "Enter your settlement": 3028.1,
+      "Build a market stall": 3131.0,
+      "Reach the Village era": 3684.1,
+      "Sell resources at market": 3685.0
+    },
+    "memberDeathsInWinter": 0,
+    "membersHungryAtEnd": 10,
+    "membersStarvingAtEnd": 3,
+    "playerDeathsHunger": 1,
+    "playerDeathsOldAge": 1,
+    "winterFoodAtWinterStart": 28,
+    "winterFoodTargetAtWinterStart": 28,
+    "winterFoodAtEnd": 0,
+    "winterFoodTargetAtEnd": 44,
+    "residentsAtWinterStart": 8,
+    "residentsAtEnd": 12,
+    "winterDayReached": 2,
+    "warningLeadGameSeconds": 399
+  },
+  "fun": 3,
+  "verdict": "The winter loop reads well: 'Winter in 1 day!', the Season box 'Food: X of Y for winter' gauge, and hunger banners that say who is hungry and where are clear, and Feed Residents does what it says. But preparing only bought about half a winter day: stores went from 32 of 20 to 0 of 44 by the end of Winter day 1 as members kept joining and eating, the market ran dry, and the player had nothing left to do. No member had died by Winter day 2 night, but 10 were hungry and 3 starving. Separately, an --advance-ticks start spawns the player starving and old, so they die of hunger in 10 s and of old age about 1 game day later."
+}
