@@ -50,11 +50,11 @@ namespace beyondnationstests {
 
             addMember(simulation, nation, settlement, 70f, true);
             Assert.Null(ResidentHunger.describeWarning(entities, nation, false));
-            Assert.Equal(nation.getName() + ": 1 member hungry: in the " + settlement.getDisplayName() + ". Bring food home and Feed Residents.",
+            Assert.Equal(nation.getName() + ": 1 member hungry (Member): in the " + settlement.getDisplayName() + ". Bring food home and Feed Residents.",
                 ResidentHunger.describeWarning(entities, nation, true));
 
             addMember(simulation, nation, settlement, 20f, false);
-            Assert.Equal(nation.getName() + ": 2 members hungry, 1 starving: 1 in the " + settlement.getDisplayName() + ", 1 outside the walls. Bring food home and Feed Residents.",
+            Assert.Equal(nation.getName() + ": 2 members hungry, 1 starving (Member and Member): 1 in the " + settlement.getDisplayName() + ", 1 outside the walls. Bring food home and Feed Residents.",
                 ResidentHunger.describeWarning(entities, nation, false));
         }
 
@@ -75,7 +75,7 @@ namespace beyondnationstests {
             FeedResidentsCommand command = new FeedResidentsCommand(entities);
 
             Assert.Equal(2, command.countHungryHere(player));
-            Assert.Equal(nation.getName() + ": 3 members hungry, 1 starving: 2 here, 1 outside the walls. Feed Residents feeds the 2 here.",
+            Assert.Equal(nation.getName() + ": 3 members hungry, 1 starving (Member, Member and Member): 2 here, 1 outside the walls. Feed Residents feeds the 2 here.",
                 ResidentHunger.describeWarning(entities, nation, true, command.getOwnSettlement(player)));
         }
 
@@ -89,7 +89,7 @@ namespace beyondnationstests {
             FeedResidentsCommand command = new FeedResidentsCommand(entities);
 
             Assert.Equal(1, command.countHungryHere(player));
-            Assert.Equal(nation.getName() + ": 1 member hungry: here. Feed Residents feeds the 1 here.",
+            Assert.Equal(nation.getName() + ": 1 member hungry (Member): here. Feed Residents feeds the 1 here.",
                 ResidentHunger.describeWarning(entities, nation, false, command.getOwnSettlement(player)));
             // away from home, a merely hungry member outside winter is still no alarm
             Assert.Null(ResidentHunger.describeWarning(entities, nation, false));
@@ -108,7 +108,7 @@ namespace beyondnationstests {
             Assert.Equal(1, command.execute(player));
 
             Assert.Equal(0, command.countHungryHere(player));
-            Assert.Equal(nation.getName() + ": 1 member hungry: outside the walls. Only those here can be fed: they must come home.",
+            Assert.Equal(nation.getName() + ": 1 member hungry (Member): outside the walls. Only those here can be fed: they must come home.",
                 ResidentHunger.describeWarning(entities, nation, true, command.getOwnSettlement(player)));
         }
 

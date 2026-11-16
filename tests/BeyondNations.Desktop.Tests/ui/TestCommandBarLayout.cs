@@ -681,7 +681,7 @@ namespace beyondnationstests.desktop.ui {
 
             WorldCommand feed = WorldCommandBar.getCommands(simulation).Find(c => c.getLabel().StartsWith("Feed Residents"));
             Assert.Equal(WorldCommandBar.feedResidentsLabel(0, 1), feed.getLabel());
-            Assert.Equal("Feed Residents (1 low on food)", feed.getLabel());
+            Assert.Equal("Feed Residents (1 short for winter)", feed.getLabel());
             Assert.True(feed.isEnabled());
             feed.execute();
             Assert.Equal(SeasonalRules.WINTER_FOOD_STORE, FoodItems.countFood(pawn.getInventory()));

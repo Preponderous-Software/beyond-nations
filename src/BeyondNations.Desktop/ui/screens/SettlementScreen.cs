@@ -45,7 +45,7 @@ namespace beyondnations.desktop.ui.screens {
         /** Under the buttons while the player is inside, in place of the close hint. */
         public const string InsideHint = "Exit Settlement walks you out; Stay Inside keeps you here.";
         /** Over the Build buttons. */
-        public const string BuildNote = "Build here with what you carry:";
+        public const string BuildNote = "Build or feed residents with what you carry:";
         public const string ExitLabel = "Exit Settlement";
         public const string GiveLabel = "Give";
         public const string TakeBackLabel = "Take Back";
@@ -246,11 +246,20 @@ namespace beyondnations.desktop.ui.screens {
                 return build;
             }
             foreach (WorldCommand command in WorldCommandBar.getCommands(simulation)) {
-                if (command.getGroup() == CommandGroup.Build) {
+                // and Feed Residents, which the hunger and winter banners name: the
+                // screen covers the command bar, and in the winter2 playtest a ruler
+                // inside the camp with 22 apples and a starving member found only
+                // Build and Exit here (#497 follow-up)
+                if (command.getGroup() == CommandGroup.Build || isFeedResidents(command)) {
                     build.Add(command);
                 }
             }
             return build;
+        }
+
+        /** Whether this is the command bar's Feed Residents button. */
+        public static bool isFeedResidents(WorldCommand command) {
+            return command.getLabel().StartsWith("Feed Residents");
         }
 
         /** The build-stall key on this screen does what it does in the world (the objective's hint names it). */

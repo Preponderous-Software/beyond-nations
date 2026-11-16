@@ -179,6 +179,8 @@ namespace beyondnations.desktop.ui {
             int lowHere = feed.countLowOnStoresHere(player, season);
             commands.Add(new WorldCommand(feedResidentsLabel(hungryHere, lowHere), CommandGroup.Place, () => feed.execute(player, season))
                 .setWidthLabel(FeedResidentsWidthLabel)
+                // while it can act, what it does; greyed, the hover says why instead
+                .setTooltip((hungryHere > 0 || lowHere > 0) && FoodItems.hasFood(player.getInventory()) ? feedResidentsTooltip(season) : null)
                 .setEnabled((hungryHere > 0 || lowHere > 0) && FoodItems.hasFood(player.getInventory()),
                     hungryHere > 0 || lowHere > 0 ? "You have no food to give."
                     : FeedResidentsCommand.stocksForWinter(season) ? "No one here is hungry or short of winter stores." : "No one here is hungry."));
@@ -284,17 +286,28 @@ namespace beyondnations.desktop.ui {
 
         /**
         * "Feed Residents (3 hungry)", or in autumn and winter with no one here
-        * hungry but some short of winter stores, "Feed Residents (4 low on food)".
+        * hungry but some short of winter stores, "Feed Residents (4 short for
+        * winter)": it stocks members before they are hungry, and a ruler in
+        * the winter2 playtest, reading "low on food", thought it fed only the
+        * hungry and found no way to lay food in for members.
         */
         public static string feedResidentsLabel(int hungryHere, int lowHere) {
             if (hungryHere == 0 && lowHere > 0) {
-                return "Feed Residents (" + lowHere + " low on food)";
+                return "Feed Residents (" + lowHere + " short for winter)";
             }
             return feedResidentsLabel(hungryHere);
         }
 
         /** The longer of the two labels, so the button keeps one width whichever it shows. */
-        public const string FeedResidentsWidthLabel = "Feed Residents (0 low on food)";
+        public const string FeedResidentsWidthLabel = "Feed Residents (0 short for winter)";
+
+        /** What Feed Residents does, on hover (and in the settlement screen's note). */
+        public static string feedResidentsTooltip(Season season) {
+            return FeedResidentsCommand.stocksForWinter(season)
+                ? "Gives your food to the members standing here: the hungry first, then anyone short of the "
+                    + SeasonalRules.WINTER_FOOD_STORE + " food each needs for winter, before they go hungry."
+                : "Gives your food to the hungry members standing here.";
+        }
 
         /** "Eat Cooked Meat (+45)", measured as the longest food's label so it keeps one width. */
         public static string eatLabel(ItemType food) {

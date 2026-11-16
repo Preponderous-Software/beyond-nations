@@ -72,8 +72,12 @@ namespace beyondnations {
             if (starving == 0 && hungryHere == 0 && (!winter || hungry.Count == 0)) {
                 return null;
             }
+            // named, the starving first, so the ruler knows whom to find (winter2 playtest:
+            // "1 member hungry: outside the walls" with no name for the one member)
+            List<Pawn> named = hungry.FindAll(p => p.isStarving());
+            named.AddRange(hungry.FindAll(p => !p.isStarving()));
             string counts = nation.getName() + ": " + hungry.Count + (hungry.Count == 1 ? " member" : " members") + " hungry"
-                + (starving > 0 ? ", " + starving + " starving" : "");
+                + (starving > 0 ? ", " + starving + " starving" : "") + " (" + WinterStores.nameList(named) + ")";
             string advice;
             if (here == null) {
                 advice = "Bring food home and Feed Residents.";

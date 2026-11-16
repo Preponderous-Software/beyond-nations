@@ -52,6 +52,19 @@ namespace beyondnations {
             return reservedGround == null || reservedGround.allowsPawnFounding(pawn.getPosition(), gameConfig.getMinDistanceBetweenSettlements());
         }
 
+        /** The season now; without a calendar it is always spring. */
+        private Season currentSeason() {
+            return seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
+        }
+
+        /** Whether the pawn carries an abundance to sell or stock, not counting the winter store it keeps (WinterStoreKeeping). */
+        private bool hasAbundanceBeyondStore(Pawn pawn) {
+            Inventory kept = WinterStoreKeeping.setAside(pawn, currentSeason());
+            bool abundance = pawn.getInventory().containsAbundanceOfResources();
+            WinterStoreKeeping.restore(pawn, kept);
+            return abundance;
+        }
+
         private bool isWinter() {
             return seasonCalendar != null && seasonCalendar.isWinter();
         }
@@ -282,8 +295,12 @@ namespace beyondnations {
                     }
 
                     // if pawn has an abundance of resources, sell them
-                    if (pawn.getInventory().containsAbundanceOfResources()
-                            && market.canSellTo(pawn, PawnTraits.sellPriceBonusPercent(pawn), Stall.TILL_RESERVE)) {
+                    // (not counting its winter store, which it keeps: WinterStoreKeeping)
+                    Inventory kept = WinterStoreKeeping.setAside(pawn, currentSeason());
+                    bool sells = pawn.getInventory().containsAbundanceOfResources()
+                        && market.canSellTo(pawn, PawnTraits.sellPriceBonusPercent(pawn), Stall.TILL_RESERVE);
+                    WinterStoreKeeping.restore(pawn, kept);
+                    if (sells) {
                         return BehaviorType.SELL_RESOURCES;
                     }
 
@@ -561,13 +578,13 @@ namespace beyondnations {
                 return BuildingPlanner.chooseNext(home, inventory) != null;
             }
             if (role == NationRole.MERCHANT) {
-                return inventory.containsAbundanceOfResources();
+                return hasAbundanceBeyondStore(pawn);
             }
             if (role == NationRole.SERF) {
                 if (inventory.getNumItems(ItemType.COIN) >= Stall.COIN_COST_TO_PURCHASE && market.getNumStallsForSale() > 0) {
                     return true;
                 }
-                if (!inventory.containsAbundanceOfResources()) {
+                if (!hasAbundanceBeyondStore(pawn)) {
                     return false;
                 }
                 // to sell it, or, with no coin at the market, to hand it in

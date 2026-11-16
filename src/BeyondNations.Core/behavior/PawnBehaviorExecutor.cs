@@ -67,7 +67,10 @@ namespace beyondnations {
                     executeGatherResourcesBehavior(pawn);
                     break;
                 case BehaviorType.SELL_RESOURCES:
+                    // a pawn's winter store is not for sale (WinterStoreKeeping)
+                    Inventory keptToSell = WinterStoreKeeping.setAside(pawn, currentSeason());
                     executeSellResourcesBehavior(pawn);
+                    WinterStoreKeeping.restore(pawn, keptToSell);
                     break;
                 case BehaviorType.WANDER:
                     executeWanderBehavior(pawn);
@@ -97,7 +100,10 @@ namespace beyondnations {
                     executePurchaseStallBehavior(pawn);
                     break;
                 case BehaviorType.TRANSFER_ITEMS_TO_STALL:
+                    // nor stocked on a merchant's stall (WinterStoreKeeping)
+                    Inventory keptToStock = WinterStoreKeeping.setAside(pawn, currentSeason());
                     executeTransferItemsToStallBehavior(pawn);
+                    WinterStoreKeeping.restore(pawn, keptToStock);
                     break;
                 case BehaviorType.JOIN_NATION:
                     executeJoinNationBehavior(pawn);
@@ -133,6 +139,11 @@ namespace beyondnations {
                     Log.error("Behavior type " + behaviorType + " is not implemented.");
                     break;
             }
+        }
+
+        /** The season now; without a calendar it is always spring. */
+        private Season currentSeason() {
+            return seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
         }
 
         /** Whether the trees pawns fell carry apples now: not in winter. Without a calendar it is always spring. */
