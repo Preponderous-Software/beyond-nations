@@ -1,0 +1,342 @@
+{"t": 1794789329263, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "103", "--season", "autumn", "--advance-ticks", "25000"]}
+{"t": 1794789332365, "cmd": "await", "args": ["TITLE", "30"]}
+{"t": 1794789332418, "cmd": "key", "args": ["space"]}
+{"t": 1794789334884, "cmd": "shot", "args": ["menu"]}
+{"t": 1794789338360, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789341088, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789341796, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1794789346241, "cmd": "shot", "args": ["w1"]}
+{"t": 1794789346448, "cmd": "state", "args": []}
+{"t": 1794789348583, "cmd": "state", "args": ["--full"]}
+{"t": 1794789348622, "cmd": "events", "args": ["20"]}
+{"t": 1794789354033, "cmd": "note", "args": ["--shot", "start_starving", "Fresh world (seed 103, --season autumn --advance-ticks 25000) starts with player at Energy ~1, 'Starving!' banner, and Season box 'Winter in 1 day!'. No food count shown in Season box at start (player has no settlement)."]}
+{"t": 1794789354205, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1794789358637, "cmd": "key", "args": ["e"]}
+{"t": 1794789360087, "cmd": "key", "args": ["e"]}
+{"t": 1794789361540, "cmd": "state", "args": []}
+{"t": 1794789361586, "cmd": "shot", "args": ["t1"]}
+{"t": 1794789364522, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789369417, "cmd": "key", "args": ["e"]}
+{"t": 1794789370377, "cmd": "key", "args": ["e"]}
+{"t": 1794789370832, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789374783, "cmd": "key", "args": ["e"]}
+{"t": 1794789375732, "cmd": "key", "args": ["e"]}
+{"t": 1794789376179, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789378468, "cmd": "key", "args": ["e"]}
+{"t": 1794789379413, "cmd": "key", "args": ["e"]}
+{"t": 1794789379867, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789386539, "cmd": "key", "args": ["e"]}
+{"t": 1794789387484, "cmd": "key", "args": ["e"]}
+{"t": 1794789387926, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789392460, "cmd": "key", "args": ["e"]}
+{"t": 1794789393411, "cmd": "key", "args": ["e"]}
+{"t": 1794789393856, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789398270, "cmd": "key", "args": ["e"]}
+{"t": 1794789399217, "cmd": "key", "args": ["e"]}
+{"t": 1794789399666, "cmd": "state", "args": []}
+{"t": 1794789399709, "cmd": "shot", "args": ["t2"]}
+{"t": 1794789404839, "cmd": "events", "args": ["30"]}
+{"t": 1794789410002, "cmd": "note", "args": ["player_death at tick 145496, only ~500 ticks (10 game s) after entering the world at tick 145000: spawn energy was ~1.1 and draining ~0.15/s, nearest tree 10.9m away but walking there + chopping wasn't fast enough. Chronicle then shows 'Hunger brought you low, but you rose again.' New player dies before they can act (may be caused by --advance-ticks draining player energy pre-spawn)."]}
+{"t": 1794789410042, "cmd": "key", "args": ["n"]}
+{"t": 1794789412489, "cmd": "shot", "args": ["n1"]}
+{"t": 1794789416070, "cmd": "key", "args": ["f"]}
+{"t": 1794789417514, "cmd": "move", "args": ["75", "476"]}
+{"t": 1794789419577, "cmd": "shot", "args": ["f1"]}
+{"t": 1794789419708, "cmd": "events", "args": ["3"]}
+{"t": 1794789422069, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789430688, "cmd": "key", "args": ["e"]}
+{"t": 1794789431640, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789437125, "cmd": "key", "args": ["e"]}
+{"t": 1794789438078, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789441454, "cmd": "key", "args": ["e"]}
+{"t": 1794789442414, "cmd": "key", "args": ["f"]}
+{"t": 1794789444857, "cmd": "shot", "args": ["f2"]}
+{"t": 1794789444968, "cmd": "events", "args": ["6"]}
+{"t": 1794789445011, "cmd": "state", "args": []}
+{"t": 1794789448503, "cmd": "face", "args": ["-117"]}
+{"t": 1794789451172, "cmd": "hold", "args": ["Shift_L+w", "12"]}
+{"t": 1794789463298, "cmd": "key", "args": ["f"]}
+{"t": 1794789465756, "cmd": "events", "args": ["4"]}
+{"t": 1794789465802, "cmd": "shot", "args": ["f3"]}
+{"t": 1794789467990, "cmd": "hold", "args": ["w", "4.5"]}
+{"t": 1794789472579, "cmd": "key", "args": ["f"]}
+{"t": 1794789475027, "cmd": "events", "args": ["4"]}
+{"t": 1794789475081, "cmd": "shot", "args": ["f4"]}
+{"t": 1794789477644, "cmd": "state", "args": []}
+{"t": 1794789477690, "cmd": "status", "args": []}
+{"t": 1794789481364, "cmd": "click", "args": ["480", "463"]}
+{"t": 1794789484077, "cmd": "hold", "args": ["w", "4"]}
+{"t": 1794789488173, "cmd": "key", "args": ["f"]}
+{"t": 1794789490622, "cmd": "events", "args": ["6"]}
+{"t": 1794789490661, "cmd": "shot", "args": ["f5"]}
+{"t": 1794789496707, "cmd": "note", "args": ["--shot", "winter_warning_ambiguous", "Winter warning on founding: 'Northernton's 1 member carries 2 food of the 4 it wants for winter; 1 is short.' Season box says 'Food: 2 of 4 for winter'. '1 is short' is ambiguous next to 2-of-4 (reads as 1 food short, though 2 are missing; likely means 1 member is short). Warning appeared only on founding with 'Winter in 1 day!'."]}
+{"t": 1794789496839, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1794789497048, "cmd": "key", "args": ["e"]}
+{"t": 1794789499497, "cmd": "shot", "args": ["in1"]}
+{"t": 1794789503083, "cmd": "click", "args": ["583", "437"]}
+{"t": 1794789505799, "cmd": "shot", "args": ["in2"]}
+{"t": 1794789512603, "cmd": "state", "args": ["--full"]}
+{"t": 1794789515507, "cmd": "move", "args": ["130", "444"]}
+{"t": 1794789517565, "cmd": "shot", "args": ["hov1"]}
+{"t": 1794789517681, "cmd": "move", "args": ["840", "418"]}
+{"t": 1794789519733, "cmd": "shot", "args": ["hov2"]}
+{"t": 1794789526831, "cmd": "click", "args": ["425", "311"]}
+{"t": 1794789528537, "cmd": "click", "args": ["375", "476"]}
+{"t": 1794789531256, "cmd": "state", "args": []}
+{"t": 1794789533725, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1794789543011, "cmd": "key", "args": ["e"]}
+{"t": 1794789543962, "cmd": "key", "args": ["e"]}
+{"t": 1794789544413, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1794789547285, "cmd": "key", "args": ["e"]}
+{"t": 1794789548236, "cmd": "key", "args": ["e"]}
+{"t": 1794789548689, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1794789554288, "cmd": "key", "args": ["e"]}
+{"t": 1794789555236, "cmd": "key", "args": ["e"]}
+{"t": 1794789555681, "cmd": "walkto", "args": ["rock", "40"]}
+{"t": 1794789559561, "cmd": "key", "args": ["e"]}
+{"t": 1794789560516, "cmd": "key", "args": ["e"]}
+{"t": 1794789560971, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789566615, "cmd": "key", "args": ["e"]}
+{"t": 1794789567564, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789572091, "cmd": "key", "args": ["e"]}
+{"t": 1794789573041, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789581380, "cmd": "key", "args": ["e"]}
+{"t": 1794789582342, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789587291, "cmd": "key", "args": ["e"]}
+{"t": 1794789588245, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789594887, "cmd": "key", "args": ["e"]}
+{"t": 1794789595844, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794789598132, "cmd": "key", "args": ["e"]}
+{"t": 1794789599083, "cmd": "state", "args": []}
+{"t": 1794789601393, "cmd": "key", "args": ["h"]}
+{"t": 1794789604844, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1794789605378, "cmd": "key", "args": ["e"]}
+{"t": 1794789607833, "cmd": "click", "args": ["583", "437"]}
+{"t": 1794789610537, "cmd": "shot", "args": ["home2"]}
+{"t": 1794789614795, "cmd": "click", "args": ["425", "280"]}
+{"t": 1794789616505, "cmd": "click", "args": ["388", "413"]}
+{"t": 1794789619220, "cmd": "events", "args": ["4"]}
+{"t": 1794789619267, "cmd": "click", "args": ["81", "413"]}
+{"t": 1794789621980, "cmd": "events", "args": ["4"]}
+{"t": 1794789622024, "cmd": "shot", "args": ["built"]}
+{"t": 1794789624342, "cmd": "click", "args": ["81", "413"]}
+{"t": 1794789627048, "cmd": "events", "args": ["4"]}
+{"t": 1794789627095, "cmd": "click", "args": ["388", "413"]}
+{"t": 1794789629311, "cmd": "click", "args": ["388", "413"]}
+{"t": 1794789632018, "cmd": "events", "args": ["4"]}
+{"t": 1794789632056, "cmd": "shot", "args": ["built"]}
+{"t": 1794789638322, "cmd": "note", "args": ["--shot", "objective_clipped", "Objective 7 'Reach the Village era' progress bar text is clipped on the left: shows 'nbers 5/10 • Buildings 1/2' instead of 'Members 5/10 • Buildings 1/2'. Also the 'Village: 1/4' era bar in the top-left overlaps the yellow fill."]}
+{"t": 1794789638447, "cmd": "state", "args": []}
+{"t": 1794789642821, "cmd": "key", "args": ["e"]}
+{"t": 1794789644268, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1794789649385, "cmd": "key", "args": ["e"]}
+{"t": 1794789650340, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1794789658454, "cmd": "key", "args": ["e"]}
+{"t": 1794789659401, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1794789665655, "cmd": "key", "args": ["e"]}
+{"t": 1794789666611, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1794789669850, "cmd": "key", "args": ["e"]}
+{"t": 1794789670807, "cmd": "walkto", "args": ["tree", "50"]}
+{"t": 1794789679889, "cmd": "key", "args": ["e"]}
+{"t": 1794789680842, "cmd": "walkto", "args": ["rock", "50"]}
+{"t": 1794789683736, "cmd": "key", "args": ["e"]}
+{"t": 1794789684685, "cmd": "key", "args": ["e"]}
+{"t": 1794789685129, "cmd": "walkto", "args": ["rock", "50"]}
+{"t": 1794789691360, "cmd": "key", "args": ["e"]}
+{"t": 1794789692310, "cmd": "key", "args": ["e"]}
+{"t": 1794789692765, "cmd": "state", "args": []}
+{"t": 1794789695010, "cmd": "key", "args": ["h"]}
+{"t": 1794789698466, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1794789699153, "cmd": "key", "args": ["e"]}
+{"t": 1794789701601, "cmd": "click", "args": ["583", "437"]}
+{"t": 1794789704308, "cmd": "key", "args": ["k"]}
+{"t": 1794789706755, "cmd": "key", "args": ["k"]}
+{"t": 1794789709204, "cmd": "events", "args": ["6"]}
+{"t": 1794789709250, "cmd": "shot", "args": ["house"]}
+{"t": 1794789716027, "cmd": "move", "args": ["130", "444"]}
+{"t": 1794789718076, "cmd": "note", "args": ["--shot", "feed_disabled_but_short", "Winter warning says 'Northernton's 4 members carry 25 food of the 16 they want for winter; 1 is short. Bring food home and Feed Residents.' but inside the settlement the Feed Residents button is greyed '(0 hungry)' and its tooltip says 'No one here is hungry or short of winter stores.' The warning tells me to do something the UI won't let me do, and doesn't say WHO is short or where they are."]}
+{"t": 1794789722706, "cmd": "wait", "args": ["90"]}
+{"t": 1794789812837, "cmd": "state", "args": []}
+{"t": 1794789812880, "cmd": "shot", "args": ["pre_winter"]}
+{"t": 1794789816225, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789818941, "cmd": "events", "args": ["4"]}
+{"t": 1794789818986, "cmd": "shot", "args": ["fed"]}
+{"t": 1794789822864, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789825570, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789828274, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789830985, "cmd": "events", "args": ["8"]}
+{"t": 1794789831028, "cmd": "shot", "args": ["fed2"]}
+{"t": 1794789835937, "cmd": "wait", "args": ["75"]}
+{"t": 1794789911060, "cmd": "state", "args": []}
+{"t": 1794789911118, "cmd": "events", "args": ["30"]}
+{"t": 1794789914324, "cmd": "shot", "args": ["dusk"]}
+{"t": 1794789914526, "cmd": "wait", "args": ["65"]}
+{"t": 1794789979623, "cmd": "state", "args": []}
+{"t": 1794789979664, "cmd": "events", "args": ["40"]}
+{"t": 1794789979708, "cmd": "shot", "args": ["winter1"]}
+{"t": 1794789984087, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789986291, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789988500, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789990702, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789992903, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794789995105, "cmd": "events", "args": ["10"]}
+{"t": 1794789995149, "cmd": "shot", "args": ["fed3"]}
+{"t": 1794789995353, "cmd": "state", "args": []}
+{"t": 1794789998947, "cmd": "wait", "args": ["20"]}
+{"t": 1794790019005, "cmd": "state", "args": []}
+{"t": 1794790019055, "cmd": "events", "args": ["30"]}
+{"t": 1794790019095, "cmd": "shot", "args": ["winter2"]}
+{"t": 1794790025723, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790028430, "cmd": "events", "args": ["3"]}
+{"t": 1794790028465, "cmd": "key", "args": ["Escape"]}
+{"t": 1794790029925, "cmd": "shot", "args": ["esc"]}
+{"t": 1794790030110, "cmd": "key", "args": ["Escape"]}
+{"t": 1794790032535, "cmd": "key", "args": ["o"]}
+{"t": 1794790034985, "cmd": "shot", "args": ["nations"]}
+{"t": 1794790037935, "cmd": "click", "args": ["414", "45"]}
+{"t": 1794790040635, "cmd": "shot", "args": ["members"]}
+{"t": 1794790046220, "cmd": "note", "args": ["--shot", "members_no_food", "Members tab (O > Members) lists each member's role and loyalty but not their food/winter stores, so when the warning says 'N are short' there is no way to see which members are short or whether they are at home."]}
+{"t": 1794790046407, "cmd": "key", "args": ["Escape"]}
+{"t": 1794790047860, "cmd": "wait", "args": ["60"]}
+{"t": 1794790107948, "cmd": "state", "args": []}
+{"t": 1794790107988, "cmd": "events", "args": ["40"]}
+{"t": 1794790108026, "cmd": "shot", "args": ["w3"]}
+{"t": 1794790114998, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790117714, "cmd": "events", "args": ["3"]}
+{"t": 1794790117752, "cmd": "move", "args": ["313", "444"]}
+{"t": 1794790119802, "cmd": "shot", "args": ["purch_hover"]}
+{"t": 1794790120010, "cmd": "state", "args": []}
+{"t": 1794790125361, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790128069, "cmd": "events", "args": ["3"]}
+{"t": 1794790128108, "cmd": "shot", "args": ["purch1"]}
+{"t": 1794790130535, "cmd": "state", "args": []}
+{"t": 1794790134736, "cmd": "wait", "args": ["50"]}
+{"t": 1794790184820, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790187028, "cmd": "state", "args": []}
+{"t": 1794790187070, "cmd": "wait", "args": ["50"]}
+{"t": 1794790237127, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790239327, "cmd": "state", "args": []}
+{"t": 1794790239363, "cmd": "wait", "args": ["50"]}
+{"t": 1794790260289, "cmd": "status", "args": []}
+{"t": 1794790260329, "cmd": "events", "args": ["120"]}
+{"t": 1794790263016, "cmd": "shot", "args": ["succession"]}
+{"t": 1794790263134, "cmd": "state", "args": ["--full"]}
+{"t": 1794790271886, "cmd": "note", "args": ["Founder died of OLD AGE at tick 178500, only ~33,500 ticks (~1.1 game days, ~11 min) after entering the world at tick 145000. 'The founder is growing old' warning fired at tick 148501, ~70 s into play. Succession screen says 'reign of 5 days and 22 hours' = ticks since world tick 0, though the nation was created at ~tick 148300. With --advance-ticks the player character ages (and starves) during the pre-advance, so a 'fresh' player is near death from both hunger and age."]}
+{"t": 1794790271920, "cmd": "click", "args": ["480", "248"]}
+{"t": 1794790274620, "cmd": "shot", "args": ["after_succ"]}
+{"t": 1794790279381, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1794790287297, "cmd": "key", "args": ["e"]}
+{"t": 1794790289449, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790289737, "cmd": "click", "args": ["583", "437"]}
+{"t": 1794790291662, "cmd": "state", "args": []}
+{"t": 1794790291700, "cmd": "events", "args": ["80"]}
+{"t": 1794790291736, "cmd": "shot", "args": ["w4"]}
+{"t": 1794790292436, "cmd": "shot", "args": ["in3"]}
+{"t": 1794790299279, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790301978, "cmd": "click", "args": ["216", "475"]}
+{"t": 1794790304679, "cmd": "events", "args": ["4"]}
+{"t": 1794790304715, "cmd": "state", "args": []}
+{"t": 1794790304751, "cmd": "shot", "args": ["in4"]}
+{"t": 1794790308464, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790310665, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790312867, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790315068, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790317275, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790319475, "cmd": "events", "args": ["8"]}
+{"t": 1794790319511, "cmd": "state", "args": []}
+{"t": 1794790319548, "cmd": "shot", "args": ["in5"]}
+{"t": 1794790323976, "cmd": "wait", "args": ["55"]}
+{"t": 1794790379066, "cmd": "shot", "args": ["w5"]}
+{"t": 1794790379198, "cmd": "state", "args": []}
+{"t": 1794790379233, "cmd": "events", "args": ["60"]}
+{"t": 1794790384308, "cmd": "note", "args": ["--shot", "claimant_dash", "World event 'A claimant stirs', option 3 subtitle renders 'Nothing now    but if the claimant wins anyway, they will remember.' - the dash between clauses shows as blank space (missing glyph in the font, likely an em dash)."]}
+{"t": 1794790384423, "cmd": "click", "args": ["480", "463"]}
+{"t": 1794790387124, "cmd": "shot", "args": ["w6"]}
+{"t": 1794790392412, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790395113, "cmd": "click", "args": ["427", "444"]}
+{"t": 1794790397815, "cmd": "events", "args": ["4"]}
+{"t": 1794790397864, "cmd": "state", "args": []}
+{"t": 1794790397906, "cmd": "shot", "args": ["sell"]}
+{"t": 1794790401697, "cmd": "click", "args": ["427", "444"]}
+{"t": 1794790403602, "cmd": "click", "args": ["427", "444"]}
+{"t": 1794790405506, "cmd": "click", "args": ["427", "444"]}
+{"t": 1794790407407, "cmd": "click", "args": ["427", "444"]}
+{"t": 1794790409307, "cmd": "click", "args": ["427", "444"]}
+{"t": 1794790411210, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790413113, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790415014, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790416917, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790418823, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790420726, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790422627, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790424540, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790426446, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790429158, "cmd": "events", "args": ["20"]}
+{"t": 1794790429202, "cmd": "state", "args": []}
+{"t": 1794790429240, "cmd": "shot", "args": ["buy2"]}
+{"t": 1794790434674, "cmd": "key", "args": ["b"]}
+{"t": 1794790436621, "cmd": "key", "args": ["b"]}
+{"t": 1794790439061, "cmd": "events", "args": ["6"]}
+{"t": 1794790439097, "cmd": "state", "args": []}
+{"t": 1794790442650, "cmd": "key", "args": ["e"]}
+{"t": 1794790444590, "cmd": "state", "args": []}
+{"t": 1794790444628, "cmd": "walkto", "args": ["chicken", "60"]}
+{"t": 1794790474816, "cmd": "key", "args": ["e"]}
+{"t": 1794790476258, "cmd": "key", "args": ["e"]}
+{"t": 1794790477701, "cmd": "state", "args": []}
+{"t": 1794790477744, "cmd": "events", "args": ["5"]}
+{"t": 1794790477785, "cmd": "shot", "args": ["chicken"]}
+{"t": 1794790482259, "cmd": "walkto", "args": ["chicken", "40"]}
+{"t": 1794790518279, "cmd": "key", "args": ["e"]}
+{"t": 1794790519525, "cmd": "walkto", "args": ["chicken", "40"]}
+{"t": 1794790528549, "cmd": "key", "args": ["e"]}
+{"t": 1794790529798, "cmd": "walkto", "args": ["chicken", "40"]}
+{"t": 1794790532784, "cmd": "key", "args": ["e"]}
+{"t": 1794790534027, "cmd": "walkto", "args": ["chicken", "40"]}
+{"t": 1794790548034, "cmd": "key", "args": ["e"]}
+{"t": 1794790549281, "cmd": "state", "args": []}
+{"t": 1794790549318, "cmd": "shot", "args": ["chicken2"]}
+{"t": 1794790551898, "cmd": "key", "args": ["h"]}
+{"t": 1794790558409, "cmd": "walkto", "args": ["settlement", "20"]}
+{"t": 1794790558861, "cmd": "key", "args": ["e"]}
+{"t": 1794790561312, "cmd": "click", "args": ["583", "437"]}
+{"t": 1794790564020, "cmd": "shot", "args": ["home3"]}
+{"t": 1794790594854, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790597082, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790599298, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790601517, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790603443, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790605376, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790607331, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790609273, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790611520, "cmd": "events", "args": ["12"]}
+{"t": 1794790611584, "cmd": "state", "args": []}
+{"t": 1794790611665, "cmd": "shot", "args": ["home4"]}
+{"t": 1794790621403, "cmd": "note", "args": ["--shot", "food_collapse", "Mid-winter (Winter day 1/2, tick ~191600) the Season box food fell from 'Food: 22 of 36' (tick ~183900) to 'Food: 4 of 40' (tick ~189900) while I was away hunting ~2 game min; target keeps rising as members swear fealty / newborns arrive in winter (8->11 residents). Market lists 'Apples 67/32' but Purchase Food says 'No one is selling food at this market'. 7 chicken meat + all purchasable apples only reached 6 of 40. Preparing (30+ of 20 at winter start) did not keep stores ahead of demand."]}
+{"t": 1794790621566, "cmd": "wait", "args": ["70"]}
+{"t": 1794790691689, "cmd": "state", "args": []}
+{"t": 1794790691761, "cmd": "events", "args": ["80"]}
+{"t": 1794790691816, "cmd": "shot", "args": ["w7"]}
+{"t": 1794790696798, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790698705, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790700631, "cmd": "click", "args": ["313", "444"]}
+{"t": 1794790702558, "cmd": "click", "args": ["130", "444"]}
+{"t": 1794790704766, "cmd": "events", "args": ["6"]}
+{"t": 1794790704814, "cmd": "wait", "args": ["60"]}
+{"t": 1794790764904, "cmd": "events", "args": ["100"]}
+{"t": 1794790764936, "cmd": "state", "args": []}
+{"t": 1794790764971, "cmd": "shot", "args": ["w8"]}
+{"t": 1794790772237, "cmd": "note", "args": ["--shot", "famine", "Winter day 1/2 dusk (tick ~196600): 'Food: 0 of 44 for winter', banner 'Northernton: 5 members hungry, 1 starving: all here.' Market still advertises Apples 75/30 but Purchase Food fails ('No one is selling food'). Meanwhile 'Rachel Evans joined Northernton' mid-famine, raising the target. Village is 12/12 residents with nothing a player can do: trees bare, chickens 1700m away, market empty."]}
+{"t": 1794790772419, "cmd": "wait", "args": ["80"]}
+{"t": 1794790852547, "cmd": "events", "args": ["150"]}
+{"t": 1794790852615, "cmd": "state", "args": []}
+{"t": 1794790852673, "cmd": "shot", "args": ["w9"]}
+{"t": 1794790858440, "cmd": "wait", "args": ["60"]}
+{"t": 1794790918507, "cmd": "events", "args": ["200"]}
+{"t": 1794790918549, "cmd": "state", "args": []}
+{"t": 1794790918584, "cmd": "shot", "args": ["final"]}
+{"t": 1794790918750, "cmd": "events", "args": ["300"]}
+{"t": 1794790918792, "cmd": "stop", "args": []}
+{"t": 1794790957857, "cmd": "report", "args": []}
+{"t": 1794790961139, "cmd": "report", "args": []}
+{"t": 1794790977309, "cmd": "stop", "args": []}

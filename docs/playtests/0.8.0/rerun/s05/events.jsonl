@@ -1,0 +1,358 @@
+{"type":"screen","tick":0,"wallTimeMs":1794789329371,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794789332319,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794789336328,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794789337131,"how":"created","slot":"world-105-20261116-003537","seed":105}
+{"type":"screen","tick":0,"wallTimeMs":1794789337133,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":461,"wallTimeMs":1794789347332,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":477,"wallTimeMs":1794789347733,"text":"No entities within range to interact with."}
+{"type":"status","tick":493,"wallTimeMs":1794789348096,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":509,"wallTimeMs":1794789348488,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":529,"wallTimeMs":1794789348974,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":813,"wallTimeMs":1794789355539,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":829,"wallTimeMs":1794789355969,"text":"No entities within range to interact with."}
+{"type":"status","tick":845,"wallTimeMs":1794789356364,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":861,"wallTimeMs":1794789356770,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":877,"wallTimeMs":1794789357177,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":1125,"wallTimeMs":1794789363094,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":1145,"wallTimeMs":1794789363580,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":1153,"wallTimeMs":1794789363758,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1153}
+{"type":"status","tick":1153,"wallTimeMs":1794789363758,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":1153,"wallTimeMs":1794789363758,"kind":"NationCreation","text":"Oscar Smith raised a banner and called it Lowerfield. It is the first nation this world has known."}
+{"type":"status","tick":1161,"wallTimeMs":1794789363941,"text":"No entities within range to interact with."}
+{"type":"status","tick":1177,"wallTimeMs":1794789364312,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1193,"wallTimeMs":1794789364697,"text":"No entities within range to interact with. (x3)"}
+{"type":"objective_completed","tick":1201,"wallTimeMs":1794789364888,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1201,"wallTimeMs":1794789364888,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":1201,"wallTimeMs":1794789364888,"kind":"SettlementFounded","text":"Oscar Smith laid the first stones of Lowerfield."}
+{"type":"status","tick":1465,"wallTimeMs":1794789370830,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":1485,"wallTimeMs":1794789371246,"text":"No entities within range to interact with."}
+{"type":"status","tick":1505,"wallTimeMs":1794789371640,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1525,"wallTimeMs":1794789372037,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":1545,"wallTimeMs":1794789372450,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":1553,"wallTimeMs":1794789372606,"kind":"NationCreation","text":"The nation of Easternham was born, with Hank Evans at its head."}
+{"type":"chronicle","tick":1553,"wallTimeMs":1794789372606,"kind":"NationCreation","text":"Eve Robinson declared the nation of Eastshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":1750,"wallTimeMs":1794789376615,"kind":"SettlementFounded","text":"Eastshire put down roots: Eve Robinson founded its first settlement."}
+{"type":"chronicle","tick":1851,"wallTimeMs":1794789378634,"kind":"NationCreation","text":"Phoebe Lewis raised a banner and called it Yellowfield."}
+{"type":"chronicle","tick":1902,"wallTimeMs":1794789379673,"kind":"SettlementFounded","text":"Phoebe Lewis laid the first stones of Yellowfield."}
+{"type":"chronicle","tick":1902,"wallTimeMs":1794789379673,"kind":"NationCreation","text":"Mike Davies founded the nation of Bigwood."}
+{"type":"status","tick":1950,"wallTimeMs":1794789380664,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":1970,"wallTimeMs":1794789381061,"text":"No entities within range to interact with."}
+{"type":"status","tick":1990,"wallTimeMs":1794789381461,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2010,"wallTimeMs":1794789381885,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2030,"wallTimeMs":1794789382301,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":2046,"wallTimeMs":1794789382632,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":2230,"wallTimeMs":1794789386647,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":2250,"wallTimeMs":1794789387035,"text":"No entities within range to interact with."}
+{"type":"status","tick":2269,"wallTimeMs":1794789387434,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2289,"wallTimeMs":1794789387834,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2309,"wallTimeMs":1794789388230,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":2329,"wallTimeMs":1794789388651,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":2453,"wallTimeMs":1794789391226,"kind":"NationCreation","text":"Dave Evans declared the nation of Smallfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":2453,"wallTimeMs":1794789391226,"kind":"SettlementFounded","text":"Bigwood put down roots: Mike Davies founded its first settlement."}
+{"type":"status","tick":2589,"wallTimeMs":1794789394186,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":2605,"wallTimeMs":1794789394541,"text":"No entities within range to interact with."}
+{"type":"status","tick":2625,"wallTimeMs":1794789394978,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2645,"wallTimeMs":1794789395398,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":2653,"wallTimeMs":1794789395577,"kind":"SettlementFounded","text":"Hank Evans laid the first stones of Easternham."}
+{"type":"status","tick":2661,"wallTimeMs":1794789395749,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":2681,"wallTimeMs":1794789396193,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":2885,"wallTimeMs":1794789400605,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":2905,"wallTimeMs":1794789401035,"text":"No entities within range to interact with."}
+{"type":"status","tick":2921,"wallTimeMs":1794789401391,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":2941,"wallTimeMs":1794789401817,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":2961,"wallTimeMs":1794789402240,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":3253,"wallTimeMs":1794789408660,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":3269,"wallTimeMs":1794789409000,"text":"No entities within range to interact with."}
+{"type":"status","tick":3289,"wallTimeMs":1794789409420,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":3309,"wallTimeMs":1794789409853,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":3329,"wallTimeMs":1794789410279,"text":"No entities within range to interact with. (x4)"}
+{"type":"chronicle","tick":3853,"wallTimeMs":1794789421945,"kind":"SettlementFounded","text":"Smallfield put down roots: Dave Evans founded its first settlement."}
+{"type":"status","tick":3873,"wallTimeMs":1794789422389,"text":"You enter the land of Bigwood."}
+{"type":"chronicle","tick":4001,"wallTimeMs":1794789425078,"kind":"NationRelationChange","text":"Lowerfield and Eastshire have become rivals over their border."}
+{"type":"chronicle","tick":4250,"wallTimeMs":1794789430198,"kind":"NationRelationChange","text":"Lowerfield and Yellowfield have become rivals over their border."}
+{"type":"status","tick":4502,"wallTimeMs":1794789435577,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":4642,"wallTimeMs":1794789438454,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":4662,"wallTimeMs":1794789438863,"text":"No entities within range to interact with."}
+{"type":"status","tick":4682,"wallTimeMs":1794789439260,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":4702,"wallTimeMs":1794789439655,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":4722,"wallTimeMs":1794789440059,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":4746,"wallTimeMs":1794789440546,"text":"Created nation Littletown."}
+{"type":"chronicle","tick":4746,"wallTimeMs":1794789440546,"kind":"NationCreation","text":"Under your hand, the nation of Littletown was born."}
+{"type":"objective_completed","tick":4750,"wallTimeMs":1794789440626,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":3549}
+{"type":"status","tick":4750,"wallTimeMs":1794789440626,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":4750,"wallTimeMs":1794789440626,"kind":"NationRelationChange","text":"Lowerfield and Bigwood have become rivals over their border."}
+{"type":"chronicle","tick":4952,"wallTimeMs":1794789444755,"kind":"StallBuilt","text":"Trade came to Eastshire: Eve Robinson built a stall."}
+{"type":"chronicle","tick":5003,"wallTimeMs":1794789445773,"kind":"NationRelationChange","text":"Lowerfield and Easternham have become rivals over their border."}
+{"type":"status","tick":5131,"wallTimeMs":1794789448348,"text":"You leave the land of Bigwood for the wilds."}
+{"type":"status","tick":5183,"wallTimeMs":1794789449441,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":5207,"wallTimeMs":1794789449911,"text":"No entities within range to interact with."}
+{"type":"status","tick":5227,"wallTimeMs":1794789450310,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":5243,"wallTimeMs":1794789450655,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":5267,"wallTimeMs":1794789451120,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":5285,"wallTimeMs":1794789451494,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":5509,"wallTimeMs":1794789456083,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":5525,"wallTimeMs":1794789456453,"text":"No entities within range to interact with."}
+{"type":"status","tick":5545,"wallTimeMs":1794789456924,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":5561,"wallTimeMs":1794789457271,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":5581,"wallTimeMs":1794789457720,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":5597,"wallTimeMs":1794789458075,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":5812,"wallTimeMs":1794789462590,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":5836,"wallTimeMs":1794789463069,"text":"No entities within range to interact with."}
+{"type":"status","tick":5852,"wallTimeMs":1794789463406,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":5875,"wallTimeMs":1794789463869,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":5895,"wallTimeMs":1794789464259,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":5914,"wallTimeMs":1794789464639,"text":"No entities within range to interact with. (x5)"}
+{"type":"save","tick":6003,"wallTimeMs":1794789466479,"count":1}
+{"type":"chronicle","tick":6251,"wallTimeMs":1794789471702,"kind":"NationRelationChange","text":"Easternham and Smallfield have become rivals over their border."}
+{"type":"chronicle","tick":6251,"wallTimeMs":1794789471702,"kind":"NationRelationChange","text":"Yellowfield and Smallfield have become rivals over their border."}
+{"type":"status","tick":6363,"wallTimeMs":1794789474122,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":6383,"wallTimeMs":1794789474522,"text":"No entities within range to interact with."}
+{"type":"status","tick":6403,"wallTimeMs":1794789474937,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":6423,"wallTimeMs":1794789475360,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":6443,"wallTimeMs":1794789475758,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":6463,"wallTimeMs":1794789476145,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":6565,"wallTimeMs":1794789478246,"text":"Too close to the Village of Bigwood: 226 paces away, and settlements must be 250 paces apart. Open ground lies about 30 paces to the east."}
+{"type":"status","tick":6987,"wallTimeMs":1794789486950,"text":"Too close to the Village of Bigwood: 217 paces away, and settlements must be 250 paces apart. Open ground lies about 41 paces to the north-east."}
+{"type":"chronicle","tick":7503,"wallTimeMs":1794789498043,"kind":"StallBuilt","text":"Trade came to Yellowfield: Phoebe Lewis built a stall."}
+{"type":"chronicle","tick":7703,"wallTimeMs":1794789502276,"kind":"StallBuilt","text":"A new stall opened in the market of Eastshire, built by Eve Robinson."}
+{"type":"status","tick":8116,"wallTimeMs":1794789510835,"text":"Settlement founded. Lowerfield and Bigwood resent a new settlement so near their land."}
+{"type":"chronicle","tick":8116,"wallTimeMs":1794789510835,"kind":"SettlementFounded","text":"You laid the first stones of Littletown."}
+{"type":"status","tick":8120,"wallTimeMs":1794789510937,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":8152,"wallTimeMs":1794789511747,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3402}
+{"type":"status","tick":8152,"wallTimeMs":1794789511747,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"screen","tick":8280,"wallTimeMs":1794789514970,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":8280,"wallTimeMs":1794789514970,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":128}
+{"type":"status","tick":8280,"wallTimeMs":1794789514970,"text":"Objective complete: Enter your settlement."}
+{"type":"screen","tick":8280,"wallTimeMs":1794789523101,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":8280,"wallTimeMs":1794789523101,"text":"Exited settlement."}
+{"type":"status","tick":8571,"wallTimeMs":1794789529594,"text":"You leave the land of Littletown for the wilds."}
+{"type":"status","tick":8651,"wallTimeMs":1794789531274,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":8671,"wallTimeMs":1794789531660,"text":"No entities within range to interact with."}
+{"type":"status","tick":8694,"wallTimeMs":1794789532123,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":8713,"wallTimeMs":1794789532498,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":8731,"wallTimeMs":1794789532868,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":8754,"wallTimeMs":1794789533339,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":8801,"wallTimeMs":1794789534256,"kind":"NationJoin","text":"Isabella Brown joined Littletown."}
+{"type":"status","tick":9003,"wallTimeMs":1794789538531,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1794789538531,"kind":"NationRelationChange","text":"Lowerfield and Eastshire are now hostile."}
+{"type":"chronicle","tick":9003,"wallTimeMs":1794789538531,"kind":"NationRaid","text":"Lowerfield raided Eastshire and carried off 5 coins."}
+{"type":"status","tick":9015,"wallTimeMs":1794789538783,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":9035,"wallTimeMs":1794789539230,"text":"No entities within range to interact with."}
+{"type":"status","tick":9055,"wallTimeMs":1794789539655,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":9071,"wallTimeMs":1794789540006,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":9091,"wallTimeMs":1794789540425,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":9107,"wallTimeMs":1794789540782,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":9251,"wallTimeMs":1794789543830,"kind":"NationJoin","text":"Charlotte Thompson joined Littletown."}
+{"type":"chronicle","tick":9251,"wallTimeMs":1794789543830,"kind":"NationRelationChange","text":"Lowerfield and Yellowfield are now hostile."}
+{"type":"chronicle","tick":9303,"wallTimeMs":1794789544977,"kind":"StallBuilt","text":"Eve Robinson built a market stall in Eastshire."}
+{"type":"status","tick":9578,"wallTimeMs":1794789551251,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":9594,"wallTimeMs":1794789551620,"text":"No entities within range to interact with."}
+{"type":"status","tick":9610,"wallTimeMs":1794789552016,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":9626,"wallTimeMs":1794789552397,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":9646,"wallTimeMs":1794789552854,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":9662,"wallTimeMs":1794789553249,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":9750,"wallTimeMs":1794789555379,"kind":"NationRelationChange","text":"Lowerfield and Bigwood are now hostile."}
+{"type":"status","tick":9982,"wallTimeMs":1794789560728,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":9998,"wallTimeMs":1794789561072,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1794789561168,"kind":"NationRelationChange","text":"Lowerfield and Easternham are now hostile."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1794789561168,"kind":"NationRaid","text":"Raiders from Lowerfield struck Easternham, taking 5 wood, 5 stone."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1794789561168,"kind":"NationRaid","text":"Lowerfield raided Yellowfield and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":10002,"wallTimeMs":1794789561168,"kind":"NationRaid","text":"Lowerfield raided Bigwood and carried off 5 wood."}
+{"type":"status","tick":10018,"wallTimeMs":1794789561541,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":10034,"wallTimeMs":1794789561878,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":10054,"wallTimeMs":1794789562340,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":10070,"wallTimeMs":1794789562696,"text":"No entities within range to interact with. (x5)"}
+{"type":"chronicle","tick":10450,"wallTimeMs":1794789570996,"kind":"StallBuilt","text":"A new stall opened in the market of Bigwood, built by Mike Davies."}
+{"type":"status","tick":10462,"wallTimeMs":1794789571266,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":10478,"wallTimeMs":1794789571622,"text":"No entities within range to interact with."}
+{"type":"status","tick":10498,"wallTimeMs":1794789572016,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":10502,"wallTimeMs":1794789572097,"text":"Lowerfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":10502,"wallTimeMs":1794789572097,"kind":"NationRelationChange","text":"Lowerfield and Littletown have become rivals over their border."}
+{"type":"status","tick":10518,"wallTimeMs":1794789572440,"text":"No entities within range to interact with."}
+{"type":"status","tick":10538,"wallTimeMs":1794789572824,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":10561,"wallTimeMs":1794789573296,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":10751,"wallTimeMs":1794789577231,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowfield, built by Phoebe Lewis."}
+{"type":"chronicle","tick":11102,"wallTimeMs":1794789584497,"kind":"StallBuilt","text":"A new stall opened in the market of Smallfield, built by Dave Evans."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1794789587729,"kind":"NationRelationChange","text":"Lowerfield and Smallfield have formed an alliance."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1794789587729,"kind":"NationRelationChange","text":"Smallfield and Easternham are now hostile."}
+{"type":"chronicle","tick":11250,"wallTimeMs":1794789587729,"kind":"NationRelationChange","text":"Smallfield and Yellowfield are now hostile."}
+{"type":"status","tick":11442,"wallTimeMs":1794789592337,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":11458,"wallTimeMs":1794789592703,"text":"No entities within range to interact with."}
+{"type":"status","tick":11478,"wallTimeMs":1794789593182,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":11494,"wallTimeMs":1794789593568,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":11502,"wallTimeMs":1794789593755,"kind":"StallBuilt","text":"Eve Robinson built a market stall in Eastshire. The market is now full."}
+{"type":"status","tick":11510,"wallTimeMs":1794789593940,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":11530,"wallTimeMs":1794789594397,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":11750,"wallTimeMs":1794789599159,"text":"Eastshire has fallen and been disbanded."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1794789599159,"kind":"SettlementCapture","text":"Lowerfield captured a camp from Eastshire."}
+{"type":"chronicle","tick":11750,"wallTimeMs":1794789599159,"kind":"NationDisband","text":"The banners of Eastshire came down when Lowerfield took its last camp."}
+{"type":"save","tick":12002,"wallTimeMs":1794789604440,"count":2}
+{"type":"chronicle","tick":12002,"wallTimeMs":1794789604440,"kind":"NationRaid","text":"Raiders from Smallfield struck Easternham, taking 5 wood."}
+{"type":"chronicle","tick":12002,"wallTimeMs":1794789604440,"kind":"NationRaid","text":"Smallfield raided Yellowfield and carried off 3 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":12202,"wallTimeMs":1794789608719,"kind":"StallBuilt","text":"Trade came to Bigwood: Mike Davies built a stall."}
+{"type":"world_event_offered","tick":12613,"wallTimeMs":1794789617025,"title":"A lost traveller","body":"A lost traveller stumbles up to you, half-starved. In return for help they offer a map, marked with a spot rich in stone and a buried cache, about 160 paces to the north, in the moor.","options":["Share a meal for the map (1 food)","Buy the map (15 coins)","Send them on their way"]}
+{"type":"status","tick":12613,"wallTimeMs":1794789655166,"text":"No entities within range to interact with."}
+{"type":"status","tick":12613,"wallTimeMs":1794789655582,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789656011,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789656418,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789656841,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789657240,"text":"No entities within range to interact with. (x6)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789718824,"text":"No entities within range to interact with. (x7)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789719249,"text":"No entities within range to interact with. (x8)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789719658,"text":"No entities within range to interact with. (x9)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789720085,"text":"No entities within range to interact with. (x10)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789720405,"text":"No entities within range to interact with. (x11)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789720814,"text":"No entities within range to interact with. (x12)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789782365,"text":"No entities within range to interact with. (x13)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789782756,"text":"No entities within range to interact with. (x14)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789783154,"text":"No entities within range to interact with. (x15)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789783582,"text":"No entities within range to interact with. (x16)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789783983,"text":"No entities within range to interact with. (x17)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789784407,"text":"No entities within range to interact with. (x18)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789846453,"text":"No entities within range to interact with. (x19)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789846860,"text":"No entities within range to interact with. (x20)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789847195,"text":"No entities within range to interact with. (x21)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789847662,"text":"No entities within range to interact with. (x22)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789848052,"text":"No entities within range to interact with. (x23)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789848461,"text":"No entities within range to interact with. (x24)"}
+{"type":"status","tick":12613,"wallTimeMs":1794789896589,"text":"You traded a meal to a lost traveller for a map; it marks stone and a cache about 160 paces to the north."}
+{"type":"chronicle","tick":12613,"wallTimeMs":1794789896589,"kind":"WorldEvent","text":"You traded a meal to a lost traveller for a map; it marks stone and a cache about 160 paces to the north."}
+{"type":"world_event_resolved","tick":12613,"wallTimeMs":1794789896589,"title":"A lost traveller","status":"You traded a meal to a lost traveller for a map; it marks stone and a cache about 160 paces to the north."}
+{"type":"status","tick":12675,"wallTimeMs":1794789897854,"text":"Welcome home!"}
+{"type":"status","tick":12683,"wallTimeMs":1794789898035,"text":"You are back on your own land."}
+{"type":"chronicle","tick":12703,"wallTimeMs":1794789898490,"kind":"NationJoin","text":"Charlotte Evans threw in their lot with Littletown."}
+{"type":"chronicle","tick":12903,"wallTimeMs":1794789902901,"kind":"NationJoin","text":"Bob Wood threw in their lot with Littletown."}
+{"type":"screen","tick":12915,"wallTimeMs":1794789903128,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":12915,"wallTimeMs":1794789903128,"text":"You are inside the settlement and cannot walk here. Choose Exit Settlement to walk back out."}
+{"type":"status","tick":12915,"wallTimeMs":1794789906030,"text":"Stall built."}
+{"type":"chronicle","tick":12915,"wallTimeMs":1794789906030,"kind":"StallBuilt","text":"Trade came to Littletown: you built a stall."}
+{"type":"screen","tick":12915,"wallTimeMs":1794789912411,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":12919,"wallTimeMs":1794789912495,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"objective_completed","tick":12951,"wallTimeMs":1794789913266,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":4671}
+{"type":"status","tick":12951,"wallTimeMs":1794789913266,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1794789915057,"kind":"NationRelationChange","text":"Relations between Easternham and Smallfield are now rival."}
+{"type":"chronicle","tick":13251,"wallTimeMs":1794789923116,"kind":"NationRelationChange","text":"Easternham and Smallfield are now hostile over their border."}
+{"type":"chronicle","tick":13451,"wallTimeMs":1794789928614,"kind":"StallBuilt","text":"A new stall opened in the market of Easternham, built by Hank Evans."}
+{"type":"status","tick":13647,"wallTimeMs":1794789933653,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":13803,"wallTimeMs":1794789937694,"text":"Sold 6 apples to Isabella Brown for 104 coins."}
+{"type":"status","tick":14003,"wallTimeMs":1794789942951,"text":"Yellowfield has fallen and been disbanded. Bigwood has fallen and been disbanded."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1794789942951,"kind":"NationRelationChange","text":"Relations between Easternham and Smallfield are now rival."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1794789942951,"kind":"SettlementCapture","text":"Lowerfield captured a village from Yellowfield."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1794789942951,"kind":"NationDisband","text":"With its last village taken by Lowerfield, Yellowfield passed into history."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1794789942951,"kind":"SettlementCapture","text":"After a siege, a village of Bigwood fell to Lowerfield."}
+{"type":"chronicle","tick":14003,"wallTimeMs":1794789942951,"kind":"NationDisband","text":"Bigwood is no more; its last village fell to Lowerfield."}
+{"type":"chronicle","tick":14051,"wallTimeMs":1794789944230,"kind":"NationCreation","text":"The nation of Eastton was born, with Bob Roberts at its head."}
+{"type":"chronicle","tick":14051,"wallTimeMs":1794789944230,"kind":"NationCreation","text":"Stan Wilson founded the nation of Lowershire."}
+{"type":"chronicle","tick":14103,"wallTimeMs":1794789945638,"kind":"SettlementFounded","text":"Eastton put down roots: Bob Roberts founded its first settlement."}
+{"type":"chronicle","tick":14203,"wallTimeMs":1794789948355,"kind":"StallBuilt","text":"Bob Roberts built a market stall in Eastton."}
+{"type":"chronicle","tick":14251,"wallTimeMs":1794789949546,"kind":"StallBuilt","text":"Trade came to Eastton: Bob Roberts built a stall."}
+{"type":"chronicle","tick":14303,"wallTimeMs":1794789950758,"kind":"StallBuilt","text":"Bob Roberts built a market stall in Eastton."}
+{"type":"status","tick":14335,"wallTimeMs":1794789951535,"text":"Bought 6 apples from Isabella Brown for 141 coins."}
+{"type":"status","tick":14679,"wallTimeMs":1794789959861,"text":"Sold 6 apples to Isabella Brown for 117 coins."}
+{"type":"chronicle","tick":14703,"wallTimeMs":1794789960439,"kind":"SettlementFounded","text":"Lowershire put down roots: Stan Wilson founded its first settlement."}
+{"type":"chronicle","tick":14803,"wallTimeMs":1794789962968,"kind":"StallBuilt","text":"A new stall opened in the market of Lowershire, built by Stan Wilson."}
+{"type":"chronicle","tick":14851,"wallTimeMs":1794789964103,"kind":"StallBuilt","text":"Stan Wilson built a market stall in Lowershire."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1794789967849,"kind":"NationRelationChange","text":"Relations between Easternham and Lowerfield are now rival."}
+{"type":"status","tick":15251,"wallTimeMs":1794789974034,"text":"Easternham shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1794789974034,"kind":"NationRelationChange","text":"Easternham and Smallfield are now hostile over their border."}
+{"type":"chronicle","tick":15251,"wallTimeMs":1794789974034,"kind":"NationRelationChange","text":"Relations between Easternham and Littletown are now friendly against a common enemy."}
+{"type":"status","tick":15327,"wallTimeMs":1794789975884,"text":"Collected 135 wood and 118 stone from the stockpile."}
+{"type":"chronicle","tick":15351,"wallTimeMs":1794789976419,"kind":"NationJoin","text":"Katie Evans swore fealty to Littletown."}
+{"type":"status","tick":15503,"wallTimeMs":1794789980127,"text":"Click again to confirm: Build House."}
+{"type":"chronicle","tick":15503,"wallTimeMs":1794789980127,"kind":"NationJoin","text":"Natalie Watson swore fealty to Littletown."}
+{"type":"chronicle","tick":15551,"wallTimeMs":1794789981318,"kind":"StallBuilt","text":"Trade came to Lowerfield: Oscar Smith built a stall."}
+{"type":"status","tick":15575,"wallTimeMs":1794789981884,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":15859,"wallTimeMs":1794789988664,"text":"Farm built."}
+{"type":"status","tick":15931,"wallTimeMs":1794789990340,"text":"Click again to confirm: Build House."}
+{"type":"chronicle","tick":16003,"wallTimeMs":1794789991998,"kind":"NationRelationChange","text":"Lowerfield and Easternham are now hostile over their border."}
+{"type":"status","tick":16007,"wallTimeMs":1794789992100,"text":"House built. The settlement is now a Village!"}
+{"type":"status","tick":16311,"wallTimeMs":1794789999333,"text":"Click again to confirm: Build Stall."}
+{"type":"status","tick":16379,"wallTimeMs":1794790001054,"text":"Stall built."}
+{"type":"chronicle","tick":16379,"wallTimeMs":1794790001054,"kind":"StallBuilt","text":"Trade came to Littletown: you built a stall."}
+{"type":"chronicle","tick":16551,"wallTimeMs":1794790005748,"kind":"NationJoin","text":"Samantha Lewis joined Littletown."}
+{"type":"screen","tick":16711,"wallTimeMs":1794790010104,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":16715,"wallTimeMs":1794790024662,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":17003,"wallTimeMs":1794790032576,"kind":"NationRelationChange","text":"Eastton and Lowershire have become rivals over their border."}
+{"type":"save","tick":18003,"wallTimeMs":1794790059127,"count":3}
+{"type":"status","tick":18003,"wallTimeMs":1794790059127,"text":"Autosaved."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1794790059127,"kind":"Caravan","text":"Easternham sent a caravan of 20 wood from the Village of Easternham to the Village of Littletown."}
+{"type":"chronicle","tick":18003,"wallTimeMs":1794790059127,"kind":"Caravan","text":"Smallfield sent a caravan of 20 wood from the Village of Smallfield to the Village of Littletown."}
+{"type":"chronicle","tick":18703,"wallTimeMs":1794790077916,"kind":"WorldEvent","text":"A fever broke out in the Village of Eastton; Bob Roberts shut the sick away until it passed."}
+{"type":"status","tick":18751,"wallTimeMs":1794790079192,"text":"Easternham has fallen and been disbanded."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1794790079192,"kind":"SettlementCapture","text":"After a siege, a village of Easternham fell to Lowerfield."}
+{"type":"chronicle","tick":18751,"wallTimeMs":1794790079192,"kind":"NationDisband","text":"With its last village taken by Lowerfield, Easternham passed into history."}
+{"type":"chronicle","tick":18803,"wallTimeMs":1794790080538,"kind":"NationCreation","text":"Phoebe Lewis declared the nation of Westton, though none had yet sworn to it."}
+{"type":"chronicle","tick":18851,"wallTimeMs":1794790081757,"kind":"SettlementFounded","text":"Phoebe Lewis raised the first settlement of Westton."}
+{"type":"status","tick":18899,"wallTimeMs":1794790083020,"text":"Natalie Watson (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? I stand by my own.\u0022"}
+{"type":"status","tick":19263,"wallTimeMs":1794790092841,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":19503,"wallTimeMs":1794790099229,"text":"Quinn Thompson was born to Charlotte Thompson and Bob Wood."}
+{"type":"chronicle","tick":19503,"wallTimeMs":1794790099229,"kind":"PawnSpawn","text":"Quinn Thompson was born in Littletown."}
+{"type":"chronicle","tick":19703,"wallTimeMs":1794790104686,"kind":"NationJoin","text":"Littletown welcomed Harriet Jones into its ranks."}
+{"type":"chronicle","tick":20451,"wallTimeMs":1794790125165,"kind":"StallBuilt","text":"Samantha Wood built a market stall in Lowerfield."}
+{"type":"chronicle","tick":20503,"wallTimeMs":1794790126671,"kind":"StallBuilt","text":"Trade came to Lowerfield: Yvonne Jones built a stall. The market is now full."}
+{"type":"chronicle","tick":20551,"wallTimeMs":1794790128010,"kind":"StallBuilt","text":"Yvonne Jones built a market stall in Lowerfield."}
+{"type":"chronicle","tick":20551,"wallTimeMs":1794790128010,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerfield, built by Samantha Wood. The market is now full."}
+{"type":"objective_completed","tick":21003,"wallTimeMs":1794790140467,"number":7,"id":"grow-nation","title":"Reach the Village era","ticksTaken":8052}
+{"type":"era_changed","tick":21003,"wallTimeMs":1794790140467,"from":"Camp","to":"Village"}
+{"type":"status","tick":21003,"wallTimeMs":1794790140467,"text":"A new era: Littletown is now a Village. Unlocked: Storehouse (more market stalls, and caravans), Workshop (craft planks and bricks), up to 3 settlements. Objective complete: Reach the Village era. \u002B100 coins."}
+{"type":"objective_completed","tick":21051,"wallTimeMs":1794790141820,"number":8,"id":"sell-resources","title":"Sell resources at market","ticksTaken":48}
+{"type":"status","tick":21051,"wallTimeMs":1794790141820,"text":"Objective complete: Sell resources at market. \u002B50 coins."}
+{"type":"chronicle","tick":21551,"wallTimeMs":1794790155648,"kind":"StallBuilt","text":"Zach Williams built a market stall in Lowerfield."}
+{"type":"chronicle","tick":21603,"wallTimeMs":1794790157114,"kind":"StallBuilt","text":"Bob Walker built a market stall in Lowerfield."}
+{"type":"chronicle","tick":21603,"wallTimeMs":1794790157114,"kind":"StallBuilt","text":"Trade came to Lowerfield: Zach Williams built a stall."}
+{"type":"chronicle","tick":21651,"wallTimeMs":1794790158382,"kind":"StallBuilt","text":"Bob Walker built a market stall in Lowerfield."}
+{"type":"chronicle","tick":21651,"wallTimeMs":1794790158382,"kind":"StallBuilt","text":"Trade came to Lowerfield: Zach Williams built a stall. The market is now full."}
+{"type":"chronicle","tick":21703,"wallTimeMs":1794790159741,"kind":"StallBuilt","text":"Trade came to Lowerfield: Zach Williams built a stall."}
+{"type":"chronicle","tick":22539,"wallTimeMs":1794790182474,"kind":"Caravan","text":"A caravan from Lowerfield sold 20 wood at the Village of Lowerfield for 486 coins."}
+{"type":"chronicle","tick":22639,"wallTimeMs":1794790185246,"kind":"Caravan","text":"A caravan from Smallfield sold 11 wood at the Village of Littletown for 264 coins."}
+{"type":"save","tick":24003,"wallTimeMs":1794790220091,"count":4}
+{"type":"status","tick":24003,"wallTimeMs":1794790220091,"text":"Autosaved."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1794790220091,"kind":"NationRelationChange","text":"Eastton and Lowershire are now hostile."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1794790220091,"kind":"NationRaid","text":"Raiders from Eastton struck Lowershire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":24883,"wallTimeMs":1794790242588,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":25071,"wallTimeMs":1794790247237,"text":"Click again to confirm: Build Storehouse."}
+{"type":"status","tick":25139,"wallTimeMs":1794790248956,"text":"Storehouse built."}
+{"type":"status","tick":25503,"wallTimeMs":1794790258194,"text":"Eve Thompson was born to Charlotte Thompson and Isabella Brown."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1794790258194,"kind":"PawnSpawn","text":"Eve Thompson was born in Littletown."}
+{"type":"status","tick":26751,"wallTimeMs":1794790290282,"text":"Lowershire has fallen and been disbanded."}
+{"type":"chronicle","tick":26751,"wallTimeMs":1794790290282,"kind":"SettlementCapture","text":"Eastton captured a village from Lowershire."}
+{"type":"chronicle","tick":26751,"wallTimeMs":1794790290282,"kind":"NationDisband","text":"With its last village taken by Eastton, Lowershire passed into history."}
+{"type":"chronicle","tick":26803,"wallTimeMs":1794790291583,"kind":"NationCreation","text":"Fiona Robinson founded the nation of Northburg."}
+{"type":"chronicle","tick":27051,"wallTimeMs":1794790297970,"kind":"NationJoin","text":"Charlotte Lewis joined Littletown."}
+{"type":"status","tick":27983,"wallTimeMs":1794790321771,"text":"You sent a caravan of 5 wood, 10 stone, 15 saplings from the Village of Littletown to the Village of Eastton."}
+{"type":"chronicle","tick":27983,"wallTimeMs":1794790321771,"kind":"Caravan","text":"You sent a caravan of 5 wood, 10 stone, 15 saplings from the Village of Littletown to the Village of Eastton."}
+{"type":"chronicle","tick":28103,"wallTimeMs":1794790324756,"kind":"SettlementFounded","text":"Fiona Robinson laid the first stones of Northburg."}
+{"type":"chronicle","tick":28203,"wallTimeMs":1794790327123,"kind":"StallBuilt","text":"Trade came to Northburg: Fiona Robinson built a stall."}
+{"type":"chronicle","tick":28251,"wallTimeMs":1794790328248,"kind":"StallBuilt","text":"A new stall opened in the market of Northburg, built by Fiona Robinson."}
+{"type":"chronicle","tick":28303,"wallTimeMs":1794790329540,"kind":"StallBuilt","text":"A new stall opened in the market of Northburg, built by Fiona Robinson."}
+{"type":"chronicle","tick":28351,"wallTimeMs":1794790330717,"kind":"StallBuilt","text":"Trade came to Northburg: Fiona Robinson built a stall. The market is now full."}
+{"type":"chronicle","tick":28503,"wallTimeMs":1794790334372,"kind":"NationLeave","text":"Harriet Jones walked away from Littletown."}
+{"type":"chronicle","tick":28603,"wallTimeMs":1794790336782,"kind":"NationCreation","text":"Harriet Jones raised a banner and called it Littleville."}
+{"type":"chronicle","tick":28951,"wallTimeMs":1794790346409,"kind":"StallBuilt","text":"Trade came to Westton: Phoebe Lewis built a stall."}
+{"type":"chronicle","tick":29453,"wallTimeMs":1794790357529,"kind":"SettlementFounded","text":"Littleville put down roots: Harriet Jones founded its first settlement."}
+{"type":"save","tick":30001,"wallTimeMs":1794790369615,"count":5}
+{"type":"status","tick":30001,"wallTimeMs":1794790369615,"text":"Autosaved."}
+{"type":"world_event_offered","tick":30013,"wallTimeMs":1794790369881,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone","Decline"]}
+{"type":"status","tick":30013,"wallTimeMs":1794790429215,"text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"chronicle","tick":30013,"wallTimeMs":1794790429215,"kind":"WorldEvent","text":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"world_event_resolved","tick":30013,"wallTimeMs":1794790429215,"title":"A travelling merchant","status":"You bought an axe and a pickaxe from a travelling merchant for 50 coins."}
+{"type":"status","tick":30497,"wallTimeMs":1794790440139,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":30501,"wallTimeMs":1794790440229,"kind":"NationRelationChange","text":"Lowerfield and Northburg have become rivals over their border."}
+{"type":"chronicle","tick":31001,"wallTimeMs":1794790451781,"kind":"NationRelationChange","text":"Relations between Northburg and Lowerfield are now neutral."}
+{"type":"status","tick":31101,"wallTimeMs":1794790454396,"text":"Your caravan sold 5 wood, 9 stone at the Village of Eastton for 228 coins."}
+{"type":"chronicle","tick":31101,"wallTimeMs":1794790454396,"kind":"Caravan","text":"Your caravan sold 5 wood, 9 stone at the Village of Eastton for 228 coins."}
+{"type":"status","tick":31345,"wallTimeMs":1794790460396,"text":"Sold 3 wood to Natalie Watson and Isabella Brown for 72 coins."}
+{"type":"status","tick":31501,"wallTimeMs":1794790464049,"text":"Mia Thompson was born to Charlotte Thompson and Isabella Brown."}
+{"type":"chronicle","tick":31501,"wallTimeMs":1794790464049,"kind":"PawnSpawn","text":"Mia Thompson was born in Littletown."}
+{"type":"chronicle","tick":31753,"wallTimeMs":1794790469980,"kind":"NationRelationChange","text":"Lowerfield and Littleville have become rivals over their border."}
+{"type":"chronicle","tick":31753,"wallTimeMs":1794790469980,"kind":"NationRelationChange","text":"Northburg and Littleville have become rivals over their border."}
+{"type":"status","tick":34241,"wallTimeMs":1794790531590,"text":"Your caravan came home to the Village of Littletown with 228 coins for the treasury."}
+{"type":"chronicle","tick":34241,"wallTimeMs":1794790531590,"kind":"Caravan","text":"Your caravan came home to the Village of Littletown with 228 coins for the treasury."}
+{"type":"save","tick":36001,"wallTimeMs":1794790593942,"count":6}
+{"type":"status","tick":36001,"wallTimeMs":1794790593942,"text":"Autosaved."}
+{"type":"status","tick":36117,"wallTimeMs":1794790597350,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":36753,"wallTimeMs":1794790618120,"kind":"NationRelationChange","text":"Lowerfield and Littleville are now hostile."}
+{"type":"chronicle","tick":37501,"wallTimeMs":1794790639880,"kind":"NationLeave","text":"Samantha Lewis left Littletown."}
+{"type":"chronicle","tick":37553,"wallTimeMs":1794790641323,"kind":"NationCreation","text":"Samantha Lewis founded the nation of Greenfield."}
+{"type":"status","tick":37913,"wallTimeMs":1794790651750,"text":"Collected 221 wood and 67 stone from the stockpile."}
+{"type":"screen","tick":38097,"wallTimeMs":1794790671984,"from":"WORLD","to":"SETTLEMENT"}

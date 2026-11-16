@@ -1,0 +1,499 @@
+{"type":"screen","tick":0,"wallTimeMs":1794789330060,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794789332433,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794789338833,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":145000,"wallTimeMs":1794789343156,"how":"created","slot":"world-103-20261116-003543","seed":103}
+{"type":"screen","tick":145000,"wallTimeMs":1794789343158,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":145496,"wallTimeMs":1794789353041,"text":"You died."}
+{"type":"chronicle","tick":145496,"wallTimeMs":1794789353041,"kind":"PlayerDeath","text":"Hunger brought you low, but you rose again."}
+{"type":"player_death","tick":145496,"wallTimeMs":1794789353041,"total":1}
+{"type":"status","tick":145502,"wallTimeMs":1794789353182,"text":"You enter the land of Smallville."}
+{"type":"status","tick":145621,"wallTimeMs":1794789355556,"text":"You leave the land of Smallville for the wilds."}
+{"type":"chronicle","tick":145753,"wallTimeMs":1794789358193,"kind":"NationRelationChange","text":"Fortressfield and Castleland have formed an alliance."}
+{"type":"status","tick":145777,"wallTimeMs":1794789358701,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":145849,"wallTimeMs":1794789360116,"text":"No entities within range to interact with."}
+{"type":"status","tick":146000,"wallTimeMs":1794789363137,"text":"Hamletville has fallen and been disbanded."}
+{"type":"chronicle","tick":146000,"wallTimeMs":1794789363137,"kind":"NationRaid","text":"Castleland raided Smallville and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":146000,"wallTimeMs":1794789363137,"kind":"SettlementCapture","text":"Farmshire captured a village from Hamletville."}
+{"type":"chronicle","tick":146000,"wallTimeMs":1794789363137,"kind":"NationDisband","text":"Hamletville is no more; its last village fell to Farmshire."}
+{"type":"chronicle","tick":146000,"wallTimeMs":1794789363137,"kind":"NationRaid","text":"Raiders from Castleland struck Hamletfield, taking 5 stone."}
+{"type":"chronicle","tick":146000,"wallTimeMs":1794789363137,"kind":"NationRaid","text":"Castleland raided Smallburg and carried off 5 stone."}
+{"type":"status","tick":146304,"wallTimeMs":1794789369475,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":146348,"wallTimeMs":1794789370418,"text":"No entities within range to interact with."}
+{"type":"objective_completed","tick":146352,"wallTimeMs":1794789370519,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1352}
+{"type":"status","tick":146352,"wallTimeMs":1794789370519,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"status","tick":146566,"wallTimeMs":1794789374862,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":146611,"wallTimeMs":1794789375753,"text":"No entities within range to interact with."}
+{"type":"status","tick":146747,"wallTimeMs":1794789378482,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":146797,"wallTimeMs":1794789379477,"text":"No entities within range to interact with."}
+{"type":"status","tick":147143,"wallTimeMs":1794789386622,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":147189,"wallTimeMs":1794789387526,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":147301,"wallTimeMs":1794789389786,"kind":"StallBuilt","text":"Stan Williams built a market stall in Fortressfield."}
+{"type":"chronicle","tick":147401,"wallTimeMs":1794789391788,"kind":"StallBuilt","text":"A new stall opened in the market of Smallville, built by Alice Wood."}
+{"type":"status","tick":147438,"wallTimeMs":1794789392528,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":147485,"wallTimeMs":1794789393453,"text":"No entities within range to interact with."}
+{"type":"status","tick":147729,"wallTimeMs":1794789398358,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":147774,"wallTimeMs":1794789399270,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":147801,"wallTimeMs":1794789399805,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletfield, built by Samantha Lewis."}
+{"type":"chronicle","tick":147901,"wallTimeMs":1794789401822,"kind":"StallBuilt","text":"Trade came to Farmshire: Bob Watson built a stall."}
+{"type":"chronicle","tick":148150,"wallTimeMs":1794789406810,"kind":"StallBuilt","text":"Trade came to Smallville: Alice Wood built a stall."}
+{"type":"chronicle","tick":148150,"wallTimeMs":1794789406810,"kind":"StallBuilt","text":"Dave Williams built a market stall in Smallburg."}
+{"type":"status","tick":148313,"wallTimeMs":1794789410081,"text":"Created nation Northernton."}
+{"type":"chronicle","tick":148313,"wallTimeMs":1794789410081,"kind":"NationCreation","text":"You raised a banner and named your people Northernton."}
+{"type":"status","tick":148501,"wallTimeMs":1794789413858,"text":"The founder is growing old. No one is left to take your place: bring members into Northernton."}
+{"type":"chronicle","tick":148501,"wallTimeMs":1794789413858,"kind":"Statecraft","text":"The founder is growing old. No one is left to take your place: bring members into Northernton."}
+{"type":"chronicle","tick":148553,"wallTimeMs":1794789414883,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressfield, built by Stan Williams."}
+{"type":"status","tick":148613,"wallTimeMs":1794789416107,"text":"Not enough wood. Need 13 more."}
+{"type":"chronicle","tick":148852,"wallTimeMs":1794789422454,"kind":"StallBuilt","text":"Bob Watson built a market stall in Farmshire."}
+{"type":"chronicle","tick":149000,"wallTimeMs":1794789426844,"kind":"StallBuilt","text":"A new stall opened in the market of Smallburg, built by Dave Williams."}
+{"type":"status","tick":149156,"wallTimeMs":1794789430782,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":149466,"wallTimeMs":1794789437237,"text":"Gathered 4 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":149501,"wallTimeMs":1794789437929,"kind":"StallBuilt","text":"Alice Wood built a market stall in Smallville."}
+{"type":"status","tick":149680,"wallTimeMs":1794789441517,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":149730,"wallTimeMs":1794789442516,"text":"Too close to the Village of Castleland: 165 paces away, and settlements must be 250 paces apart. Open ground lies about 360 paces to the south-west."}
+{"type":"chronicle","tick":149752,"wallTimeMs":1794789442947,"kind":"StallBuilt","text":"Bob Watson built a market stall in Farmshire."}
+{"type":"chronicle","tick":149900,"wallTimeMs":1794789445908,"kind":"StallBuilt","text":"A new stall opened in the market of Smallburg, built by Dave Williams."}
+{"type":"objective_completed","tick":150000,"wallTimeMs":1794789447927,"number":2,"id":"eat","title":"Eat something","ticksTaken":3648}
+{"type":"status","tick":150000,"wallTimeMs":1794789447927,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":150000,"wallTimeMs":1794789447927,"kind":"StallBuilt","text":"Trade came to Fortressfield: Stan Williams built a stall."}
+{"type":"objective_completed","tick":150050,"wallTimeMs":1794789448931,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":50}
+{"type":"status","tick":150050,"wallTimeMs":1794789448931,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":150050,"wallTimeMs":1794789448931,"kind":"StallBuilt","text":"Trade came to Hamletfield: Samantha Lewis built a stall."}
+{"type":"status","tick":150472,"wallTimeMs":1794789457674,"text":"You enter the land of Smallville (Neutral)."}
+{"type":"status","tick":150662,"wallTimeMs":1794789461844,"text":"You leave the land of Smallville for the wilds."}
+{"type":"status","tick":150737,"wallTimeMs":1794789463374,"text":"Too close to the Village of Smallville: 173 paces away, and settlements must be 250 paces apart. Open ground lies about 81 paces to the east."}
+{"type":"chronicle","tick":150753,"wallTimeMs":1794789463738,"kind":"StallBuilt","text":"Bob Watson built a market stall in Farmshire."}
+{"type":"chronicle","tick":150753,"wallTimeMs":1794789463738,"kind":"NationRelationChange","text":"Fortressfield and Farmshire have formed an alliance."}
+{"type":"world_event_offered","tick":150753,"wallTimeMs":1794789463738,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone","Decline"]}
+{"type":"status","tick":150753,"wallTimeMs":1794789472700,"text":"Too close to the Village of Smallville: 173 paces away, and settlements must be 250 paces apart. Open ground lies about 81 paces to the east. (x2)"}
+{"type":"status","tick":150753,"wallTimeMs":1794789481970,"text":"A travelling merchant offered you a rare deal, and you let it pass."}
+{"type":"chronicle","tick":150753,"wallTimeMs":1794789481970,"kind":"WorldEvent","text":"A travelling merchant offered you a rare deal, and you let it pass."}
+{"type":"world_event_resolved","tick":150753,"wallTimeMs":1794789481970,"title":"A travelling merchant","status":"A travelling merchant offered you a rare deal, and you let it pass."}
+{"type":"save","tick":151001,"wallTimeMs":1794789487612,"count":1}
+{"type":"chronicle","tick":151001,"wallTimeMs":1794789487612,"kind":"NationRaid","text":"Raiders from Fortressfield struck Smallville, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":151001,"wallTimeMs":1794789487612,"kind":"NationRaid","text":"Raiders from Farmshire struck Smallville, taking 5 coins, 2 wood, 5 stone."}
+{"type":"chronicle","tick":151001,"wallTimeMs":1794789487612,"kind":"NationRaid","text":"Raiders from Fortressfield struck Hamletfield, taking 5 coins."}
+{"type":"chronicle","tick":151001,"wallTimeMs":1794789487612,"kind":"NationRaid","text":"Fortressfield raided Smallburg and carried off 5 coins."}
+{"type":"chronicle","tick":151001,"wallTimeMs":1794789487612,"kind":"NationRaid","text":"Farmshire raided Hamletfield and carried off 5 coins."}
+{"type":"status","tick":151033,"wallTimeMs":1794789488267,"text":"You are back on your own land."}
+{"type":"chronicle","tick":151033,"wallTimeMs":1794789488267,"kind":"SettlementFounded","text":"You raised the first settlement of Northernton."}
+{"type":"objective_completed","tick":151053,"wallTimeMs":1794789488736,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":1003}
+{"type":"status","tick":151053,"wallTimeMs":1794789488736,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":151053,"wallTimeMs":1794789488736,"kind":"NationJoin","text":"Lily Wilson joined Northernton."}
+{"type":"chronicle","tick":151301,"wallTimeMs":1794789494676,"kind":"NationJoin","text":"Mike Thompson swore fealty to Northernton."}
+{"type":"screen","tick":151405,"wallTimeMs":1794789497184,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":151405,"wallTimeMs":1794789497184,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":352}
+{"type":"status","tick":151405,"wallTimeMs":1794789497184,"text":"Objective complete: Enter your settlement."}
+{"type":"screen","tick":151405,"wallTimeMs":1794789503628,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":151409,"wallTimeMs":1794789503735,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"chronicle","tick":151701,"wallTimeMs":1794789510842,"kind":"StallBuilt","text":"A new stall opened in the market of Castleland, built by Yvonne Wilson."}
+{"type":"chronicle","tick":151701,"wallTimeMs":1794789510842,"kind":"NationCreation","text":"Quinn Wood founded the nation of Greenport."}
+{"type":"chronicle","tick":151753,"wallTimeMs":1794789512096,"kind":"StallBuilt","text":"Trade came to Smallville: Alice Wood built a stall."}
+{"type":"chronicle","tick":152353,"wallTimeMs":1794789526222,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletfield, built by Samantha Lewis."}
+{"type":"chronicle","tick":152401,"wallTimeMs":1794789527353,"kind":"SettlementFounded","text":"Quinn Wood laid the first stones of Greenport."}
+{"type":"status","tick":152477,"wallTimeMs":1794789529101,"text":"Exited settlement."}
+{"type":"chronicle","tick":152753,"wallTimeMs":1794789535857,"kind":"NationRelationChange","text":"Hamletfield and Smallburg swore an alliance."}
+{"type":"chronicle","tick":152901,"wallTimeMs":1794789539260,"kind":"NationCreation","text":"The nation of Northfield was born, with Ursula Jones at its head."}
+{"type":"chronicle","tick":152953,"wallTimeMs":1794789540397,"kind":"SettlementFounded","text":"Ursula Jones laid the first stones of Northfield."}
+{"type":"chronicle","tick":153001,"wallTimeMs":1794789541481,"kind":"NationJoin","text":"Mike Roberts swore fealty to Northernton."}
+{"type":"status","tick":153077,"wallTimeMs":1794789543154,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":153121,"wallTimeMs":1794789544102,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":153153,"wallTimeMs":1794789544786,"kind":"StallBuilt","text":"Trade came to Farmshire: Bob Watson built a stall."}
+{"type":"chronicle","tick":153201,"wallTimeMs":1794789545852,"kind":"StallBuilt","text":"Trade came to Smallville: Alice Wood built a stall."}
+{"type":"status","tick":153269,"wallTimeMs":1794789547365,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":153301,"wallTimeMs":1794789548076,"kind":"StallBuilt","text":"Stan Williams built a market stall in Fortressfield. The market is now full."}
+{"type":"status","tick":153313,"wallTimeMs":1794789548337,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":153353,"wallTimeMs":1794789549230,"kind":"StallBuilt","text":"A new stall opened in the market of Smallburg, built by Dave Williams."}
+{"type":"status","tick":153500,"wallTimeMs":1794789552458,"text":"Smallville resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":153500,"wallTimeMs":1794789552458,"kind":"NationRelationChange","text":"Smallville and Northernton have become rivals over their border."}
+{"type":"status","tick":153572,"wallTimeMs":1794789553942,"text":"You leave the land of Northernton for the wilds."}
+{"type":"status","tick":153592,"wallTimeMs":1794789554373,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":153636,"wallTimeMs":1794789555314,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":153800,"wallTimeMs":1794789558832,"kind":"StallBuilt","text":"Trade came to Castleland: Yvonne Wilson built a stall."}
+{"type":"status","tick":153836,"wallTimeMs":1794789559713,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":153872,"wallTimeMs":1794789560619,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":154136,"wallTimeMs":1794789566731,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":154300,"wallTimeMs":1794789570400,"kind":"StallBuilt","text":"Trade came to Smallburg: Dave Williams built a stall."}
+{"type":"status","tick":154376,"wallTimeMs":1794789572166,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":154712,"wallTimeMs":1794789579808,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":154752,"wallTimeMs":1794789580801,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletfield, built by Samantha Lewis."}
+{"type":"chronicle","tick":154752,"wallTimeMs":1794789580801,"kind":"NationRelationChange","text":"Smallville and Greenport have become rivals over their border."}
+{"type":"status","tick":154780,"wallTimeMs":1794789581508,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":154852,"wallTimeMs":1794789583204,"kind":"NationCreation","text":"Wendy White founded the nation of Smallford."}
+{"type":"status","tick":155044,"wallTimeMs":1794789587392,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":155152,"wallTimeMs":1794789589668,"kind":"SettlementFounded","text":"Wendy White laid the first stones of Smallford."}
+{"type":"chronicle","tick":155152,"wallTimeMs":1794789589668,"kind":"NationCreation","text":"Gemma Walker founded the nation of Littleville."}
+{"type":"chronicle","tick":155252,"wallTimeMs":1794789591850,"kind":"NationRelationChange","text":"Smallville and Northfield have become rivals over their border."}
+{"type":"chronicle","tick":155300,"wallTimeMs":1794789592895,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Ursula Jones."}
+{"type":"chronicle","tick":155352,"wallTimeMs":1794789593967,"kind":"StallBuilt","text":"A new stall opened in the market of Farmshire, built by Mike Jones."}
+{"type":"status","tick":155400,"wallTimeMs":1794789594938,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":155563,"wallTimeMs":1794789598215,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":155702,"wallTimeMs":1794789600992,"kind":"StallBuilt","text":"Alice Wood built a market stall in Smallville. The market is now full."}
+{"type":"status","tick":155726,"wallTimeMs":1794789601490,"text":"Welcome home!"}
+{"type":"status","tick":155730,"wallTimeMs":1794789601588,"text":"You are back on your own land."}
+{"type":"chronicle","tick":155750,"wallTimeMs":1794789602090,"kind":"SettlementFounded","text":"Littleville put down roots: Gemma Walker founded its first settlement."}
+{"type":"chronicle","tick":155850,"wallTimeMs":1794789604549,"kind":"StallBuilt","text":"A new stall opened in the market of Farmshire, built by Bob Watson."}
+{"type":"chronicle","tick":155850,"wallTimeMs":1794789604549,"kind":"StallBuilt","text":"A new stall opened in the market of Castleland, built by Yvonne Wilson."}
+{"type":"screen","tick":155890,"wallTimeMs":1794789605528,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":155890,"wallTimeMs":1794789605528,"text":"Entered settlement."}
+{"type":"screen","tick":155890,"wallTimeMs":1794789608388,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":155894,"wallTimeMs":1794789608481,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"chronicle","tick":155950,"wallTimeMs":1794789609896,"kind":"NationCreation","text":"Fiona Wood raised a banner and called it Oldwood."}
+{"type":"chronicle","tick":155950,"wallTimeMs":1794789609896,"kind":"NationCreation","text":"Karl Thompson founded the nation of Northernfield."}
+{"type":"chronicle","tick":156050,"wallTimeMs":1794789612402,"kind":"StallBuilt","text":"Eve Thomas built a market stall in Farmshire."}
+{"type":"chronicle","tick":156050,"wallTimeMs":1794789612402,"kind":"NationCreation","text":"Tilly Lewis declared the nation of Oldville, though none had yet sworn to it."}
+{"type":"status","tick":156238,"wallTimeMs":1794789617079,"text":"Click again to confirm: Build Farm."}
+{"type":"status","tick":156346,"wallTimeMs":1794789619779,"text":"Click again to confirm: Build Stall."}
+{"type":"chronicle","tick":156450,"wallTimeMs":1794789622470,"kind":"SettlementFounded","text":"Karl Thompson raised the first settlement of Northernfield."}
+{"type":"chronicle","tick":156502,"wallTimeMs":1794789623886,"kind":"SettlementFounded","text":"Tilly Lewis raised the first settlement of Oldville."}
+{"type":"status","tick":156538,"wallTimeMs":1794789624870,"text":"Stall built."}
+{"type":"chronicle","tick":156538,"wallTimeMs":1794789624870,"kind":"StallBuilt","text":"You built a market stall in Northernton."}
+{"type":"objective_completed","tick":156550,"wallTimeMs":1794789625196,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":5145}
+{"type":"status","tick":156550,"wallTimeMs":1794789625196,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"status","tick":156642,"wallTimeMs":1794789627624,"text":"Click again to confirm: Build Farm."}
+{"type":"chronicle","tick":156654,"wallTimeMs":1794789627938,"kind":"WorldEvent","text":"A fever broke out in the Village of Farmshire; Bob Watson paid a healer, and every patient recovered."}
+{"type":"chronicle","tick":156702,"wallTimeMs":1794789629176,"kind":"SettlementFounded","text":"Fiona Wood laid the first stones of Oldwood."}
+{"type":"status","tick":156730,"wallTimeMs":1794789629914,"text":"Farm built."}
+{"type":"chronicle","tick":156802,"wallTimeMs":1794789631798,"kind":"NationJoin","text":"Judy Thomas threw in their lot with Northernton."}
+{"type":"chronicle","tick":156850,"wallTimeMs":1794789633078,"kind":"StallBuilt","text":"Yvonne Wilson built a market stall in Castleland."}
+{"type":"save","tick":157002,"wallTimeMs":1794789637203,"count":2}
+{"type":"chronicle","tick":157102,"wallTimeMs":1794789639906,"kind":"StallBuilt","text":"Trade came to Hamletfield: Samantha Lewis built a stall."}
+{"type":"status","tick":157218,"wallTimeMs":1794789642972,"text":"Exited settlement."}
+{"type":"chronicle","tick":157402,"wallTimeMs":1794789647833,"kind":"NationCreation","text":"The nation of Fortressham was born, with Olivia Wood at its head."}
+{"type":"status","tick":157470,"wallTimeMs":1794789649452,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":157502,"wallTimeMs":1794789650188,"kind":"NationRelationChange","text":"Smallville and Smallford have become rivals over their border."}
+{"type":"chronicle","tick":157602,"wallTimeMs":1794789652418,"kind":"StallBuilt","text":"A new stall opened in the market of Smallburg, built by Dave Williams."}
+{"type":"chronicle","tick":157602,"wallTimeMs":1794789652418,"kind":"StallBuilt","text":"Trade came to Northfield: Ursula Jones built a stall."}
+{"type":"status","tick":157882,"wallTimeMs":1794789658564,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":158002,"wallTimeMs":1794789661100,"kind":"NationRelationChange","text":"Farmshire and Littleville have become rivals over their border."}
+{"type":"status","tick":158090,"wallTimeMs":1794789662974,"text":"You leave the land of Northernton for the wilds."}
+{"type":"status","tick":158214,"wallTimeMs":1794789665725,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":158250,"wallTimeMs":1794789666493,"text":"Fortressfield shares an enemy with you: relations are now Friendly (\u002B20). Farmshire shares an enemy with you: relations are now Friendly (\u002B20). Castleland shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":158250,"wallTimeMs":1794789666493,"kind":"NationRelationChange","text":"Relations between Fortressfield and Northernton are now friendly against a common enemy."}
+{"type":"chronicle","tick":158250,"wallTimeMs":1794789666493,"kind":"NationRelationChange","text":"Relations between Farmshire and Northernton are now friendly against a common enemy."}
+{"type":"chronicle","tick":158250,"wallTimeMs":1794789666493,"kind":"NationRelationChange","text":"Relations between Castleland and Northernton are now friendly against a common enemy."}
+{"type":"chronicle","tick":158350,"wallTimeMs":1794789668620,"kind":"SettlementFounded","text":"Fortressham put down roots: Olivia Wood founded its first settlement."}
+{"type":"status","tick":158414,"wallTimeMs":1794789669975,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":158750,"wallTimeMs":1794789677083,"text":"Northernfield resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":158750,"wallTimeMs":1794789677083,"kind":"NationRelationChange","text":"Farmshire and Oldville have become rivals over their border."}
+{"type":"chronicle","tick":158750,"wallTimeMs":1794789677083,"kind":"NationRelationChange","text":"Northernton and Northernfield have become rivals over their border."}
+{"type":"chronicle","tick":158750,"wallTimeMs":1794789677083,"kind":"NationRelationChange","text":"Northfield and Oldville have become rivals over their border."}
+{"type":"chronicle","tick":158750,"wallTimeMs":1794789677083,"kind":"NationRelationChange","text":"Smallford and Northernfield have become rivals over their border."}
+{"type":"chronicle","tick":158750,"wallTimeMs":1794789677083,"kind":"NationRelationChange","text":"Smallford and Oldville have become rivals over their border."}
+{"type":"status","tick":158882,"wallTimeMs":1794789679987,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":159002,"wallTimeMs":1794789682505,"kind":"NationRelationChange","text":"Farmshire and Oldwood have become rivals over their border."}
+{"type":"status","tick":159062,"wallTimeMs":1794789683803,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":159106,"wallTimeMs":1794789684732,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":159202,"wallTimeMs":1794789686692,"kind":"StallBuilt","text":"Tilly Lewis built a market stall in Oldville."}
+{"type":"status","tick":159414,"wallTimeMs":1794789691425,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":159454,"wallTimeMs":1794789692368,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":159474,"wallTimeMs":1794789692832,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":159570,"wallTimeMs":1794789695081,"text":"You are back on your own land."}
+{"type":"chronicle","tick":159650,"wallTimeMs":1794789697080,"kind":"StallBuilt","text":"Trade came to Fortressham: Olivia Wood built a stall."}
+{"type":"screen","tick":159738,"wallTimeMs":1794789699261,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":159738,"wallTimeMs":1794789699261,"text":"Entered settlement."}
+{"type":"screen","tick":159738,"wallTimeMs":1794789702213,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":159742,"wallTimeMs":1794789702311,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"chronicle","tick":159750,"wallTimeMs":1794789702514,"kind":"NationRelationChange","text":"Smallville and Greenport are now hostile."}
+{"type":"status","tick":159826,"wallTimeMs":1794789704379,"text":"Press K again to build a House (20 wood, 15 stone)."}
+{"type":"status","tick":159922,"wallTimeMs":1794789706824,"text":"House built. The settlement is now a Village!"}
+{"type":"chronicle","tick":160202,"wallTimeMs":1794789713756,"kind":"StallBuilt","text":"Trade came to Oldville: Tilly Lewis built a stall."}
+{"type":"chronicle","tick":160250,"wallTimeMs":1794789715001,"kind":"NationRelationChange","text":"Smallville and Northfield are now hostile."}
+{"type":"chronicle","tick":160550,"wallTimeMs":1794789722662,"kind":"NationJoin","text":"Gemma Davies joined Northernton."}
+{"type":"chronicle","tick":160602,"wallTimeMs":1794789723921,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Ursula Jones."}
+{"type":"chronicle","tick":160750,"wallTimeMs":1794789727566,"kind":"NationRelationChange","text":"Northfield and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":160750,"wallTimeMs":1794789727566,"kind":"NationRelationChange","text":"Oldwood and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":160902,"wallTimeMs":1794789731330,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressham, built by Olivia Wood."}
+{"type":"chronicle","tick":161002,"wallTimeMs":1794789733757,"kind":"NationRaid","text":"Raiders from Smallville struck Northfield, taking 3 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":161850,"wallTimeMs":1794789754264,"kind":"StallBuilt","text":"Trade came to Oldville: Tilly Lewis built a stall."}
+{"type":"chronicle","tick":161850,"wallTimeMs":1794789754264,"kind":"NationCreation","text":"Mia White declared the nation of Townburg, though none had yet sworn to it."}
+{"type":"chronicle","tick":161902,"wallTimeMs":1794789755463,"kind":"StallBuilt","text":"A new stall opened in the market of Northfield, built by Ursula Jones. The market is now full."}
+{"type":"chronicle","tick":161902,"wallTimeMs":1794789755463,"kind":"SettlementFounded","text":"Townburg put down roots: Mia White founded its first settlement."}
+{"type":"chronicle","tick":162002,"wallTimeMs":1794789757815,"kind":"NationRaid","text":"Smallville raided Greenport and carried off 5 wood."}
+{"type":"chronicle","tick":162250,"wallTimeMs":1794789763703,"kind":"StallBuilt","text":"A new stall opened in the market of Fortressham, built by Olivia Wood."}
+{"type":"chronicle","tick":162250,"wallTimeMs":1794789763703,"kind":"NationRelationChange","text":"Smallville and Oldville have formed an alliance."}
+{"type":"status","tick":162502,"wallTimeMs":1794789769676,"text":"Greenport has fallen and been disbanded."}
+{"type":"chronicle","tick":162502,"wallTimeMs":1794789769676,"kind":"NationRelationChange","text":"Smallville and Smallford are now hostile."}
+{"type":"chronicle","tick":162502,"wallTimeMs":1794789769676,"kind":"SettlementCapture","text":"After a siege, a village of Greenport fell to Smallville."}
+{"type":"chronicle","tick":162502,"wallTimeMs":1794789769676,"kind":"NationDisband","text":"The banners of Greenport came down when Smallville took its last village."}
+{"type":"chronicle","tick":162750,"wallTimeMs":1794789775347,"kind":"StallBuilt","text":"Trade came to Smallville: Quinn Wood built a stall."}
+{"type":"save","tick":163002,"wallTimeMs":1794789781639,"count":3}
+{"type":"status","tick":163002,"wallTimeMs":1794789781639,"text":"Northfield has fallen and been disbanded."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1794789781639,"kind":"NationRelationChange","text":"Farmshire and Smallford have formed an alliance."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1794789781639,"kind":"NationRelationChange","text":"Farmshire and Littleville are now hostile."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1794789781639,"kind":"SettlementCapture","text":"Smallville captured a village from Northfield."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1794789781639,"kind":"NationDisband","text":"Northfield is no more; its last village fell to Smallville."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1794789781639,"kind":"NationRaid","text":"Smallville raided Smallford and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":163002,"wallTimeMs":1794789781639,"kind":"NationRaid","text":"Raiders from Farmshire struck Littleville, taking 5 wood."}
+{"type":"chronicle","tick":163102,"wallTimeMs":1794789784816,"kind":"StallBuilt","text":"A new stall opened in the market of Farmshire, built by Eve Thomas."}
+{"type":"chronicle","tick":163402,"wallTimeMs":1794789794145,"kind":"StallBuilt","text":"A new stall opened in the market of Oldville, built by Tilly Lewis."}
+{"type":"chronicle","tick":163502,"wallTimeMs":1794789796903,"kind":"NationRelationChange","text":"Oldville and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":163550,"wallTimeMs":1794789798178,"kind":"NationCreation","text":"Natalie White founded the nation of Greatwood."}
+{"type":"chronicle","tick":163750,"wallTimeMs":1794789803596,"kind":"NationRelationChange","text":"Smallville and Northernfield swore an alliance."}
+{"type":"chronicle","tick":163750,"wallTimeMs":1794789803596,"kind":"NationRelationChange","text":"Farmshire and Oldville are now hostile."}
+{"type":"chronicle","tick":163750,"wallTimeMs":1794789803596,"kind":"NationRelationChange","text":"Northernfield and Smallford are now hostile."}
+{"type":"chronicle","tick":163750,"wallTimeMs":1794789803596,"kind":"NationRelationChange","text":"Oldville and Smallford are now hostile."}
+{"type":"chronicle","tick":163850,"wallTimeMs":1794789806261,"kind":"NationCreation","text":"Abigail Johnson declared the nation of Fortressshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":163902,"wallTimeMs":1794789807730,"kind":"SettlementFounded","text":"Natalie White laid the first stones of Greatwood."}
+{"type":"chronicle","tick":163950,"wallTimeMs":1794789809023,"kind":"StallBuilt","text":"Yvonne Wilson built a market stall in Castleland."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794789810410,"kind":"NationRelationChange","text":"Farmshire and Oldwood are now hostile."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794789810410,"kind":"NationRelationChange","text":"Relations between Fortressham and Oldville are now neutral."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794789810410,"kind":"NationRaid","text":"Farmshire raided Oldwood and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794789810410,"kind":"NationRaid","text":"Farmshire raided Oldville and carried off 5 coins, 2 wood."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794789810410,"kind":"NationRaid","text":"Northernfield raided Smallford and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794789810410,"kind":"NationRaid","text":"Oldville raided Smallford and carried off 5 wood."}
+{"type":"chronicle","tick":164150,"wallTimeMs":1794789814346,"kind":"StallBuilt","text":"Alice Smith built a market stall in Smallville."}
+{"type":"chronicle","tick":164150,"wallTimeMs":1794789814346,"kind":"NationCreation","text":"Xavier Johnson founded the nation of Cityham."}
+{"type":"chronicle","tick":164202,"wallTimeMs":1794789815686,"kind":"StallBuilt","text":"Trade came to Smallville: Fiona Walker built a stall."}
+{"type":"chronicle","tick":164202,"wallTimeMs":1794789815686,"kind":"StallBuilt","text":"Trade came to Fortressham: Olivia Wood built a stall. The market is now full."}
+{"type":"status","tick":164242,"wallTimeMs":1794789816774,"text":"You stocked 1 resident for winter in the Village of Northernton."}
+{"type":"chronicle","tick":164250,"wallTimeMs":1794789816984,"kind":"NationRelationChange","text":"Smallford and Townburg have become rivals over their border."}
+{"type":"chronicle","tick":164250,"wallTimeMs":1794789816984,"kind":"NationRelationChange","text":"Fortressham and Townburg have become rivals over their border."}
+{"type":"chronicle","tick":164302,"wallTimeMs":1794789818370,"kind":"StallBuilt","text":"A new stall opened in the market of Oldville, built by Tilly Lewis."}
+{"type":"status","tick":164490,"wallTimeMs":1794789823410,"text":"You stocked 1 resident for winter in the Village of Northernton. (x2)"}
+{"type":"status","tick":164582,"wallTimeMs":1794789825896,"text":"No one here is hungry or short of winter stores."}
+{"type":"chronicle","tick":164602,"wallTimeMs":1794789826435,"kind":"NationCreation","text":"Stan Robinson declared the nation of Northland, though none had yet sworn to it."}
+{"type":"chronicle","tick":164950,"wallTimeMs":1794789835905,"kind":"SettlementFounded","text":"Cityham put down roots: Xavier Johnson founded its first settlement."}
+{"type":"status","tick":165026,"wallTimeMs":1794789838049,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":165102,"wallTimeMs":1794789840244,"kind":"StallBuilt","text":"Trade came to Littleville: Gemma Walker built a stall."}
+{"type":"chronicle","tick":165150,"wallTimeMs":1794789841507,"kind":"StallBuilt","text":"Trade came to Smallville: Alice Smith built a stall."}
+{"type":"chronicle","tick":165450,"wallTimeMs":1794789849470,"kind":"StallBuilt","text":"Trade came to Farmshire: Eve Thomas built a stall."}
+{"type":"chronicle","tick":165450,"wallTimeMs":1794789849470,"kind":"SettlementFounded","text":"Fortressshire put down roots: Abigail Johnson founded its first settlement."}
+{"type":"chronicle","tick":165502,"wallTimeMs":1794789850882,"kind":"NationRelationChange","text":"Oldville and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":165650,"wallTimeMs":1794789854956,"kind":"StallBuilt","text":"A new stall opened in the market of Smallburg, built by Dave Williams."}
+{"type":"chronicle","tick":165702,"wallTimeMs":1794789856363,"kind":"StallBuilt","text":"Bob Watson built a market stall in Farmshire."}
+{"type":"status","tick":165750,"wallTimeMs":1794789857676,"text":"Littleville has fallen and been disbanded."}
+{"type":"chronicle","tick":165750,"wallTimeMs":1794789857676,"kind":"NationRelationChange","text":"Fortressham and Oldwood are now hostile."}
+{"type":"chronicle","tick":165750,"wallTimeMs":1794789857676,"kind":"SettlementCapture","text":"After a siege, a village of Littleville fell to Farmshire."}
+{"type":"chronicle","tick":165750,"wallTimeMs":1794789857676,"kind":"NationDisband","text":"The banners of Littleville came down when Farmshire took its last village."}
+{"type":"chronicle","tick":166002,"wallTimeMs":1794789864493,"kind":"NationRaid","text":"Fortressham raided Oldwood and carried off 5 stone."}
+{"type":"chronicle","tick":166250,"wallTimeMs":1794789871063,"kind":"NationRelationChange","text":"Smallford and Greatwood have become rivals over their border."}
+{"type":"chronicle","tick":166302,"wallTimeMs":1794789872465,"kind":"SettlementFounded","text":"Stan Robinson laid the first stones of Northland."}
+{"type":"status","tick":166750,"wallTimeMs":1794789884559,"text":"Oldwood has fallen and been disbanded."}
+{"type":"chronicle","tick":166750,"wallTimeMs":1794789884559,"kind":"SettlementCapture","text":"After a siege, a village of Oldwood fell to Farmshire."}
+{"type":"chronicle","tick":166750,"wallTimeMs":1794789884559,"kind":"NationDisband","text":"The banners of Oldwood came down when Farmshire took its last village."}
+{"type":"chronicle","tick":167002,"wallTimeMs":1794789891602,"kind":"NationRelationChange","text":"Relations between Fortressham and Oldville are now neutral."}
+{"type":"chronicle","tick":167002,"wallTimeMs":1794789891602,"kind":"NationRaid","text":"Smallford raided Northernfield and carried off 5 stone."}
+{"type":"chronicle","tick":167002,"wallTimeMs":1794789891602,"kind":"NationRaid","text":"Smallford raided Oldville and carried off 5 coins."}
+{"type":"chronicle","tick":167250,"wallTimeMs":1794789898430,"kind":"NationRelationChange","text":"Smallford and Cityham have become rivals over their border."}
+{"type":"chronicle","tick":167250,"wallTimeMs":1794789898430,"kind":"NationRelationChange","text":"Fortressfield and Smallford swore an alliance."}
+{"type":"chronicle","tick":167250,"wallTimeMs":1794789898430,"kind":"NationRelationChange","text":"Castleland and Smallford swore an alliance."}
+{"type":"chronicle","tick":167502,"wallTimeMs":1794789905552,"kind":"NationRelationChange","text":"Oldville and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":167750,"wallTimeMs":1794789913193,"kind":"NationRelationChange","text":"Fortressham and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":167750,"wallTimeMs":1794789913193,"kind":"NationRelationChange","text":"Greatwood and Fortressshire have become rivals over their border."}
+{"type":"chronicle","tick":168002,"wallTimeMs":1794789921153,"kind":"NationRaid","text":"Smallford raided Smallville and carried off 5 coins."}
+{"type":"status","tick":168250,"wallTimeMs":1794789928396,"text":"Smallford shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":168250,"wallTimeMs":1794789928396,"kind":"NationRelationChange","text":"Relations between Northernton and Smallford are now friendly against a common enemy."}
+{"type":"chronicle","tick":168330,"wallTimeMs":1794789930723,"kind":"Caravan","text":"A caravan from Townburg sold 20 wood at the Village of Fortressfield for 480 coins."}
+{"type":"chronicle","tick":168502,"wallTimeMs":1794789935747,"kind":"NationRelationChange","text":"Hamletfield and Oldville swore an alliance."}
+{"type":"chronicle","tick":168502,"wallTimeMs":1794789935747,"kind":"NationRelationChange","text":"Northernfield and Oldville swore an alliance."}
+{"type":"chronicle","tick":168750,"wallTimeMs":1794789943109,"kind":"NationRelationChange","text":"Northernfield and Northland have become rivals over their border."}
+{"type":"chronicle","tick":168750,"wallTimeMs":1794789943109,"kind":"NationRelationChange","text":"Cityham and Northland have become rivals over their border."}
+{"type":"save","tick":169002,"wallTimeMs":1794789950784,"count":4}
+{"type":"status","tick":169002,"wallTimeMs":1794789950784,"text":"Autosaved."}
+{"type":"chronicle","tick":169002,"wallTimeMs":1794789950784,"kind":"NationRelationChange","text":"Relations between Fortressham and Oldville are now neutral."}
+{"type":"chronicle","tick":169250,"wallTimeMs":1794789957703,"kind":"NationRelationChange","text":"Smallford and Townburg are now hostile."}
+{"type":"chronicle","tick":169250,"wallTimeMs":1794789957703,"kind":"NationRelationChange","text":"Townburg and Fortressham are now hostile."}
+{"type":"chronicle","tick":169502,"wallTimeMs":1794789964367,"kind":"NationRelationChange","text":"Oldville and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":169550,"wallTimeMs":1794789965685,"kind":"NationJoin","text":"Northernton welcomed Wendy Jones into its ranks."}
+{"type":"chronicle","tick":170002,"wallTimeMs":1794789978102,"kind":"NationRaid","text":"Smallford raided Townburg and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":170002,"wallTimeMs":1794789978102,"kind":"NationRaid","text":"Raiders from Townburg struck Fortressham, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":170238,"wallTimeMs":1794789984648,"text":"You stocked 4 residents for winter in the Village of Northernton."}
+{"type":"chronicle","tick":170250,"wallTimeMs":1794789984986,"kind":"NationRelationChange","text":"Smallville and Fortressham have become rivals over their border."}
+{"type":"chronicle","tick":170250,"wallTimeMs":1794789984986,"kind":"NationRelationChange","text":"Smallford and Fortressham swore an alliance."}
+{"type":"status","tick":170314,"wallTimeMs":1794789986704,"text":"No one here is hungry or short of winter stores."}
+{"type":"status","tick":170398,"wallTimeMs":1794789989065,"text":"You stocked 1 resident for winter in the Village of Northernton."}
+{"type":"status","tick":170470,"wallTimeMs":1794789991059,"text":"No one here is hungry or short of winter stores."}
+{"type":"status","tick":170646,"wallTimeMs":1794789995813,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":171002,"wallTimeMs":1794790005588,"text":"Grace Thompson was born to Mike Thompson and Mike Roberts. Winter has come. No harvests, bare trees; the cold bites outdoors."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Fortressfield raided Smallville and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Farmshire raided Smallville and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Castleland struck Smallville, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Smallford struck Smallville, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Fortressfield raided Hamletfield and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Fortressfield struck Smallburg, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Farmshire struck Hamletfield, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Farmshire raided Oldville and carried off 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Castleland struck Smallburg, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Smallford struck Northernfield, taking 5 coins, 5 stone."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Smallford struck Oldville, taking 5 coins."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Raiders from Smallford struck Townburg, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"NationRaid","text":"Fortressham raided Townburg and carried off 5 wood, 3 stone."}
+{"type":"chronicle","tick":171002,"wallTimeMs":1794790005588,"kind":"PawnSpawn","text":"Northernton welcomed a newborn, Grace Thompson."}
+{"type":"chronicle","tick":171250,"wallTimeMs":1794790012504,"kind":"NationRelationChange","text":"Smallford and Greatwood are now hostile."}
+{"type":"status","tick":171758,"wallTimeMs":1794790026235,"text":"You stocked 2 residents for winter in the Village of Northernton."}
+{"type":"screen","tick":171838,"wallTimeMs":1794790028546,"from":"WORLD","to":"PAUSE"}
+{"type":"screen","tick":171842,"wallTimeMs":1794790030222,"from":"PAUSE","to":"WORLD"}
+{"type":"screen","tick":171922,"wallTimeMs":1794790032551,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":171926,"wallTimeMs":1794790046488,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":172250,"wallTimeMs":1794790055104,"kind":"NationRelationChange","text":"Smallford and Cityham are now hostile."}
+{"type":"chronicle","tick":172750,"wallTimeMs":1794790068465,"kind":"NationRelationChange","text":"Oldville and Fortressham are now hostile."}
+{"type":"chronicle","tick":172750,"wallTimeMs":1794790068465,"kind":"NationRelationChange","text":"Fortressham and Fortressshire are now hostile."}
+{"type":"chronicle","tick":173002,"wallTimeMs":1794790075359,"kind":"NationRaid","text":"Raiders from Oldville struck Fortressham, taking 5 coins, 5 wood, 3 stone."}
+{"type":"status","tick":173750,"wallTimeMs":1794790095463,"text":"Northland shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":173750,"wallTimeMs":1794790095463,"kind":"NationRelationChange","text":"Relations between Northernton and Northland are now friendly against a common enemy."}
+{"type":"chronicle","tick":173750,"wallTimeMs":1794790095463,"kind":"NationRelationChange","text":"Smallford and Northland have formed an alliance."}
+{"type":"chronicle","tick":173750,"wallTimeMs":1794790095463,"kind":"NationRelationChange","text":"Northernfield and Northland are now hostile."}
+{"type":"chronicle","tick":173750,"wallTimeMs":1794790095463,"kind":"NationRelationChange","text":"Northland and Cityham are now hostile."}
+{"type":"status","tick":174002,"wallTimeMs":1794790102429,"text":"Greatwood has fallen and been disbanded."}
+{"type":"chronicle","tick":174002,"wallTimeMs":1794790102429,"kind":"NationRelationChange","text":"Northernfield and Townburg swore an alliance."}
+{"type":"chronicle","tick":174002,"wallTimeMs":1794790102429,"kind":"SettlementCapture","text":"Smallford captured a camp from Greatwood."}
+{"type":"chronicle","tick":174002,"wallTimeMs":1794790102429,"kind":"NationDisband","text":"The banners of Greatwood came down when Smallford took its last camp."}
+{"type":"chronicle","tick":174002,"wallTimeMs":1794790102429,"kind":"NationRaid","text":"Raiders from Townburg struck Fortressham, taking 5 coins, 5 wood."}
+{"type":"status","tick":174470,"wallTimeMs":1794790115522,"text":"You stocked 5 residents for winter in the Village of Northernton."}
+{"type":"status","tick":174850,"wallTimeMs":1794790125885,"text":"You purchased food from Lily Wilson. Relationship increased to 1."}
+{"type":"save","tick":175002,"wallTimeMs":1794790130136,"count":5}
+{"type":"status","tick":175002,"wallTimeMs":1794790130136,"text":"Fortressham shares an enemy with you: relations are now Friendly (\u002B20). Cityham has fallen and been disbanded."}
+{"type":"chronicle","tick":175002,"wallTimeMs":1794790130136,"kind":"NationRelationChange","text":"Relations between Northernton and Fortressham are now friendly against a common enemy."}
+{"type":"chronicle","tick":175002,"wallTimeMs":1794790130136,"kind":"SettlementCapture","text":"After a siege, a camp of Cityham fell to Smallford."}
+{"type":"chronicle","tick":175002,"wallTimeMs":1794790130136,"kind":"NationDisband","text":"The banners of Cityham came down when Smallford took its last camp."}
+{"type":"status","tick":175502,"wallTimeMs":1794790144011,"text":"Fortressshire has fallen and been disbanded."}
+{"type":"chronicle","tick":175502,"wallTimeMs":1794790144011,"kind":"SettlementCapture","text":"Fortressham captured a camp from Fortressshire."}
+{"type":"chronicle","tick":175502,"wallTimeMs":1794790144011,"kind":"NationDisband","text":"The banners of Fortressshire came down when Fortressham took its last camp."}
+{"type":"chronicle","tick":175502,"wallTimeMs":1794790144011,"kind":"LeadershipChange","text":"The rule of Fortressham passed from Olivia Wood to Alice Walker."}
+{"type":"chronicle","tick":175502,"wallTimeMs":1794790144011,"kind":"WorldEvent","text":"With Townburg\u0027s gold behind them, Alice Walker seized the leadership of Fortressham."}
+{"type":"status","tick":176262,"wallTimeMs":1794790165365,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":176502,"wallTimeMs":1794790171919,"text":"Northland has fallen and been disbanded."}
+{"type":"chronicle","tick":176502,"wallTimeMs":1794790171919,"kind":"SettlementCapture","text":"After a siege, a camp of Northland fell to Northernfield."}
+{"type":"chronicle","tick":176502,"wallTimeMs":1794790171919,"kind":"NationDisband","text":"With its last camp taken by Northernfield, Northland passed into history."}
+{"type":"status","tick":176990,"wallTimeMs":1794790185346,"text":"You stocked 6 residents for winter in the Village of Northernton."}
+{"type":"status","tick":177002,"wallTimeMs":1794790185666,"text":"Charlotte Wilson was born to Lily Wilson and Mike Thompson."}
+{"type":"chronicle","tick":177002,"wallTimeMs":1794790185666,"kind":"NationRelationChange","text":"Relations between Townburg and Smallford are now rival."}
+{"type":"chronicle","tick":177002,"wallTimeMs":1794790185666,"kind":"PawnSpawn","text":"Northernton welcomed a newborn, Charlotte Wilson."}
+{"type":"chronicle","tick":177250,"wallTimeMs":1794790192711,"kind":"StallBuilt","text":"Trade came to Hamletfield: Samantha Lewis built a stall. The market is now full."}
+{"type":"chronicle","tick":177250,"wallTimeMs":1794790192711,"kind":"NationRelationChange","text":"Smallford and Townburg are now hostile over their border."}
+{"type":"chronicle","tick":177250,"wallTimeMs":1794790192711,"kind":"NationRelationChange","text":"Smallville and Fortressham are now hostile."}
+{"type":"chronicle","tick":177350,"wallTimeMs":1794790195353,"kind":"StallBuilt","text":"Karl Thompson built a market stall in Northernfield."}
+{"type":"chronicle","tick":177502,"wallTimeMs":1794790199154,"kind":"StallBuilt","text":"Trade came to Smallburg: Dave Williams built a stall. The market is now full."}
+{"type":"chronicle","tick":177550,"wallTimeMs":1794790200312,"kind":"StallBuilt","text":"Tilly Lewis built a market stall in Oldville. The market is now full."}
+{"type":"chronicle","tick":177802,"wallTimeMs":1794790206563,"kind":"StallBuilt","text":"Trade came to Farmshire: Samantha Watson built a stall."}
+{"type":"chronicle","tick":178002,"wallTimeMs":1794790211502,"kind":"NationRelationChange","text":"Relations between Townburg and Smallford are now rival."}
+{"type":"chronicle","tick":178002,"wallTimeMs":1794790211502,"kind":"NationRaid","text":"Smallville raided Fortressham and carried off 5 coins."}
+{"type":"chronicle","tick":178002,"wallTimeMs":1794790211502,"kind":"NationRaid","text":"Castleland raided Hamletfield and carried off 2 coins."}
+{"type":"screen","tick":178500,"wallTimeMs":1794790223674,"from":"WORLD","to":"SUCCESSION"}
+{"type":"status","tick":178500,"wallTimeMs":1794790223674,"text":"You died. You go on as Lily Wilson, the most loyal of your people."}
+{"type":"chronicle","tick":178500,"wallTimeMs":1794790223674,"kind":"Statecraft","text":"You died of old age. Lily Wilson, the most loyal of your people, took up the rule of Northernton."}
+{"type":"screen","tick":178500,"wallTimeMs":1794790272389,"from":"SUCCESSION","to":"WORLD"}
+{"type":"chronicle","tick":178553,"wallTimeMs":1794790273426,"kind":"NationJoin","text":"Northernton welcomed Dave Robinson into its ranks."}
+{"type":"chronicle","tick":178601,"wallTimeMs":1794790274383,"kind":"StallBuilt","text":"A new stall opened in the market of Castleland, built by Yvonne Wilson."}
+{"type":"chronicle","tick":178751,"wallTimeMs":1794790277465,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Mia White."}
+{"type":"chronicle","tick":179003,"wallTimeMs":1794790283549,"kind":"StallBuilt","text":"A new stall opened in the market of Northernfield, built by Karl Thompson."}
+{"type":"screen","tick":179155,"wallTimeMs":1794790287395,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":179155,"wallTimeMs":1794790287395,"text":"Entered settlement."}
+{"type":"screen","tick":179155,"wallTimeMs":1794790289962,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":179159,"wallTimeMs":1794790290060,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"status","tick":179567,"wallTimeMs":1794790299868,"text":"You stocked 4 residents for winter in the Village of Northernton."}
+{"type":"status","tick":179679,"wallTimeMs":1794790302534,"text":"Collected 178 wood and 165 stone from the stockpile."}
+{"type":"status","tick":179963,"wallTimeMs":1794790309055,"text":"You purchased food from Mike Thompson. Relationship increased to 1."}
+{"type":"chronicle","tick":180003,"wallTimeMs":1794790309987,"kind":"NationRelationChange","text":"Fortressfield and Fortressham have formed an alliance."}
+{"type":"chronicle","tick":180003,"wallTimeMs":1794790309987,"kind":"NationRelationChange","text":"Castleland and Fortressham have formed an alliance."}
+{"type":"status","tick":180055,"wallTimeMs":1794790311185,"text":"You purchased food from Mike Thompson. Relationship increased to 2."}
+{"type":"status","tick":180147,"wallTimeMs":1794790313402,"text":"You purchased food from Mike Thompson. Relationship increased to 3."}
+{"type":"status","tick":180239,"wallTimeMs":1794790315606,"text":"You purchased food from Mike Thompson. Relationship increased to 4."}
+{"type":"chronicle","tick":180251,"wallTimeMs":1794790315885,"kind":"NationRelationChange","text":"Smallville and Townburg swore an alliance."}
+{"type":"chronicle","tick":180251,"wallTimeMs":1794790315885,"kind":"NationRelationChange","text":"Oldville and Townburg have formed an alliance."}
+{"type":"chronicle","tick":180303,"wallTimeMs":1794790317112,"kind":"StallBuilt","text":"A new stall opened in the market of Smallford, built by Wendy White."}
+{"type":"chronicle","tick":180303,"wallTimeMs":1794790317112,"kind":"StallBuilt","text":"Mia White built a market stall in Townburg."}
+{"type":"status","tick":180335,"wallTimeMs":1794790317870,"text":"You purchased food from Mike Thompson. Relationship increased to 5."}
+{"type":"chronicle","tick":180403,"wallTimeMs":1794790319525,"kind":"StallBuilt","text":"A new stall opened in the market of Northernfield, built by Karl Thompson."}
+{"type":"save","tick":181003,"wallTimeMs":1794790334089,"count":6}
+{"type":"status","tick":181003,"wallTimeMs":1794790334089,"text":"Autosaved."}
+{"type":"chronicle","tick":181251,"wallTimeMs":1794790339830,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Mia White."}
+{"type":"chronicle","tick":181351,"wallTimeMs":1794790342217,"kind":"StallBuilt","text":"Wendy White built a market stall in Smallford."}
+{"type":"chronicle","tick":181503,"wallTimeMs":1794790345856,"kind":"StallBuilt","text":"Trade came to Farmshire: Bob Watson built a stall. The market is now full."}
+{"type":"chronicle","tick":181663,"wallTimeMs":1794790349703,"kind":"Caravan","text":"A caravan from Smallville sold 20 wood at the Village of Smallville for 480 coins."}
+{"type":"world_event_offered","tick":182103,"wallTimeMs":1794790360299,"title":"A claimant stirs","body":"Ella Evans of Smallville claims the right to lead it in place of Alice Wood, and has come in secret asking for your backing.","options":["Back the claimant (20 coins)","Warn Smallville\u0027s leader","Stay out of it"]}
+{"type":"status","tick":182103,"wallTimeMs":1794790384999,"text":"Ella Evans\u0027s claim to lead Smallville came to nothing, and you kept well out of it."}
+{"type":"chronicle","tick":182103,"wallTimeMs":1794790384999,"kind":"WorldEvent","text":"Ella Evans\u0027s claim to lead Smallville came to nothing, and you kept well out of it."}
+{"type":"world_event_resolved","tick":182103,"wallTimeMs":1794790384999,"title":"A claimant stirs","status":"Ella Evans\u0027s claim to lead Smallville came to nothing, and you kept well out of it."}
+{"type":"chronicle","tick":182403,"wallTimeMs":1794790392249,"kind":"StallBuilt","text":"Karl Thompson built a market stall in Northernfield."}
+{"type":"status","tick":182435,"wallTimeMs":1794790392998,"text":"You stocked 5 residents for winter in the Village of Northernton. 1 still short of winter stores: bring more food."}
+{"type":"chronicle","tick":182451,"wallTimeMs":1794790393367,"kind":"StallBuilt","text":"Xavier Johnson built a market stall in Smallford."}
+{"type":"status","tick":182551,"wallTimeMs":1794790395684,"text":"Sold 1 wood, 1 stone and 1 sapling to Mike Thompson for 52 coins. Relationship increased to 6."}
+{"type":"status","tick":182823,"wallTimeMs":1794790402227,"text":"Sold 1 wood, 1 stone and 1 sapling to Mike Thompson for 51 coins. Relationship increased to 7."}
+{"type":"status","tick":182903,"wallTimeMs":1794790404136,"text":"Sold 1 wood, 1 stone and 1 sapling to Mike Thompson for 44 coins. Relationship increased to 8."}
+{"type":"status","tick":182983,"wallTimeMs":1794790406033,"text":"Sold 1 wood, 1 stone and 1 sapling to Mike Thompson for 44 coins. Relationship increased to 9."}
+{"type":"status","tick":183003,"wallTimeMs":1794790406530,"text":"Grace Thompson was born to Mike Thompson and Mike Roberts."}
+{"type":"chronicle","tick":183003,"wallTimeMs":1794790406530,"kind":"PawnSpawn","text":"Northernton welcomed a newborn, Grace Thompson."}
+{"type":"status","tick":183063,"wallTimeMs":1794790407975,"text":"Sold 1 wood and 1 sapling to Mike Thompson for 32 coins. Relationship increased to 10."}
+{"type":"status","tick":183143,"wallTimeMs":1794790409867,"text":"No merchant here can pay: the richest has 3 coins, and your cheapest good (sapling) sells for 8."}
+{"type":"status","tick":183223,"wallTimeMs":1794790411814,"text":"You purchased food from Mike Thompson. Relationship increased to 11."}
+{"type":"status","tick":183227,"wallTimeMs":1794790411908,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":183251,"wallTimeMs":1794790412483,"kind":"NationRelationChange","text":"Smallford and Townburg are now hostile over their border."}
+{"type":"status","tick":183303,"wallTimeMs":1794790413695,"text":"You purchased food from Mike Thompson. Relationship increased to 12."}
+{"type":"status","tick":183383,"wallTimeMs":1794790415585,"text":"You purchased food from Mike Thompson. Relationship increased to 13."}
+{"type":"status","tick":183463,"wallTimeMs":1794790417485,"text":"You purchased food from Mike Thompson. Relationship increased to 14."}
+{"type":"status","tick":183543,"wallTimeMs":1794790419408,"text":"You purchased food from Mike Thompson. Relationship increased to 15."}
+{"type":"status","tick":183619,"wallTimeMs":1794790421237,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"status","tick":183699,"wallTimeMs":1794790423150,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x2)"}
+{"type":"status","tick":183775,"wallTimeMs":1794790425057,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x3)"}
+{"type":"status","tick":183851,"wallTimeMs":1794790426989,"text":"You stocked 4 residents for winter in the Village of Northernton. 4 still short of winter stores: bring more food."}
+{"type":"chronicle","tick":184103,"wallTimeMs":1794790433430,"kind":"StallBuilt","text":"A new stall opened in the market of Townburg, built by Mia White. The market is now full."}
+{"type":"chronicle","tick":184151,"wallTimeMs":1794790434622,"kind":"StallBuilt","text":"A new stall opened in the market of Northernfield, built by Karl Thompson."}
+{"type":"status","tick":184159,"wallTimeMs":1794790434820,"text":"Stall built."}
+{"type":"chronicle","tick":184159,"wallTimeMs":1794790434820,"kind":"StallBuilt","text":"You built a market stall in Northernton."}
+{"type":"objective_completed","tick":184203,"wallTimeMs":1794790435900,"number":7,"id":"grow-nation","title":"Reach the Village era","ticksTaken":27653}
+{"type":"era_changed","tick":184203,"wallTimeMs":1794790435900,"from":"Camp","to":"Village"}
+{"type":"status","tick":184203,"wallTimeMs":1794790435900,"text":"A new era: Northernton is now a Village. Unlocked: Storehouse (more market stalls, and caravans), Workshop (craft planks and bricks), up to 3 settlements. Objective complete: Reach the Village era. \u002B100 coins."}
+{"type":"status","tick":184235,"wallTimeMs":1794790436712,"text":"Stall built."}
+{"type":"chronicle","tick":184235,"wallTimeMs":1794790436712,"kind":"StallBuilt","text":"A new stall opened in the market of Northernton, built by you."}
+{"type":"objective_completed","tick":184251,"wallTimeMs":1794790437124,"number":8,"id":"sell-resources","title":"Sell resources at market","ticksTaken":48}
+{"type":"status","tick":184251,"wallTimeMs":1794790437124,"text":"Objective complete: Sell resources at market. \u002B50 coins."}
+{"type":"status","tick":184475,"wallTimeMs":1794790442735,"text":"Exited settlement."}
+{"type":"status","tick":184952,"wallTimeMs":1794790453395,"text":"You leave the land of Northernton for the wilds."}
+{"type":"status","tick":185040,"wallTimeMs":1794790455223,"text":"You enter the land of Northernfield (Rival)."}
+{"type":"status","tick":185733,"wallTimeMs":1794790469997,"text":"You leave the land of Northernfield for the wilds."}
+{"type":"status","tick":185979,"wallTimeMs":1794790474911,"text":"Harvested chicken meat."}
+{"type":"status","tick":186049,"wallTimeMs":1794790476309,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":186651,"wallTimeMs":1794790488366,"kind":"StallBuilt","text":"A new stall opened in the market of Northernfield, built by Karl Thompson."}
+{"type":"save","tick":187001,"wallTimeMs":1794790495510,"count":7}
+{"type":"status","tick":187001,"wallTimeMs":1794790495510,"text":"You enter the land of Northernfield (Rival)."}
+{"type":"chronicle","tick":187052,"wallTimeMs":1794790496537,"kind":"StallBuilt","text":"Wendy White built a market stall in Smallford."}
+{"type":"status","tick":187352,"wallTimeMs":1794790502556,"text":"You leave the land of Northernfield for the wilds."}
+{"type":"chronicle","tick":187551,"wallTimeMs":1794790506552,"kind":"NationJoin","text":"Charlotte Walker swore fealty to Northernton."}
+{"type":"status","tick":188112,"wallTimeMs":1794790518382,"text":"Harvested chicken meat."}
+{"type":"status","tick":188584,"wallTimeMs":1794790528675,"text":"Harvested chicken meat. (x2)"}
+{"type":"status","tick":188785,"wallTimeMs":1794790532869,"text":"Harvested chicken meat. (x3)"}
+{"type":"chronicle","tick":189102,"wallTimeMs":1794790539291,"kind":"StallBuilt","text":"Trade came to Northernfield: Karl Thompson built a stall."}
+{"type":"status","tick":189369,"wallTimeMs":1794790545098,"text":"Ate chicken meat (\u002B25 energy)."}
+{"type":"status","tick":189513,"wallTimeMs":1794790548151,"text":"Harvested chicken meat."}
+{"type":"chronicle","tick":189601,"wallTimeMs":1794790549927,"kind":"StallBuilt","text":"Trade came to Castleland: Yvonne Wilson built a stall."}
+{"type":"status","tick":189701,"wallTimeMs":1794790552050,"text":"You are back on your own land."}
+{"type":"screen","tick":189873,"wallTimeMs":1794790559002,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":189873,"wallTimeMs":1794790559002,"text":"Entered settlement."}
+{"type":"screen","tick":189873,"wallTimeMs":1794790561927,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":189877,"wallTimeMs":1794790562048,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"chronicle","tick":190653,"wallTimeMs":1794790582971,"kind":"StallBuilt","text":"Wendy White built a market stall in Smallford."}
+{"type":"chronicle","tick":190753,"wallTimeMs":1794790585553,"kind":"StallBuilt","text":"Trade came to Northernfield: Karl Thompson built a stall. The market is now full."}
+{"type":"status","tick":191101,"wallTimeMs":1794790595426,"text":"You fed 1 and stocked 6 residents for winter in the Village of Northernton. 7 still short of winter stores: bring more food."}
+{"type":"status","tick":191173,"wallTimeMs":1794790597574,"text":"You have no food to give."}
+{"type":"status","tick":191353,"wallTimeMs":1794790602051,"text":"You purchased food from Wendy Jones. Relationship increased to 1."}
+{"type":"status","tick":191421,"wallTimeMs":1794790603978,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"status","tick":191481,"wallTimeMs":1794790606037,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x2)"}
+{"type":"chronicle","tick":191501,"wallTimeMs":1794790606843,"kind":"StallBuilt","text":"A new stall opened in the market of Castleland, built by Yvonne Wilson. The market is now full."}
+{"type":"status","tick":191533,"wallTimeMs":1794790607946,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x3)"}
+{"type":"status","tick":191593,"wallTimeMs":1794790609956,"text":"You stocked 1 resident for winter in the Village of Northernton. 6 still short of winter stores: bring more food."}
+{"type":"save","tick":193001,"wallTimeMs":1794790671757,"count":8}
+{"type":"status","tick":193001,"wallTimeMs":1794790671757,"text":"Autosaved."}
+{"type":"chronicle","tick":193401,"wallTimeMs":1794790684371,"kind":"WorldEvent","text":"Bandits camped outside the Camp of Smallville; Alice Wood raised a militia of Smallville and drove them off."}
+{"type":"chronicle","tick":193753,"wallTimeMs":1794790694100,"kind":"StallBuilt","text":"Wendy White built a market stall in Smallford."}
+{"type":"status","tick":193865,"wallTimeMs":1794790697354,"text":"No one is selling food at this market or you do not have enough money to purchase food."}
+{"type":"status","tick":193933,"wallTimeMs":1794790699225,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x2)"}
+{"type":"status","tick":194001,"wallTimeMs":1794790701217,"text":"No one is selling food at this market or you do not have enough money to purchase food. (x3)"}
+{"type":"status","tick":194061,"wallTimeMs":1794790702952,"text":"You have no food to give."}
+{"type":"chronicle","tick":196553,"wallTimeMs":1794790762678,"kind":"NationJoin","text":"Rachel Evans joined Northernton."}
+{"type":"save","tick":199001,"wallTimeMs":1794790825401,"count":9}
+{"type":"status","tick":199001,"wallTimeMs":1794790825401,"text":"Autosaved."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Fortressfield struck Smallville, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Farmshire struck Smallville, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Castleland raided Smallville and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Smallford raided Smallville and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Smallville struck Fortressham, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Fortressfield struck Hamletfield, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Fortressfield raided Smallburg and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Farmshire raided Hamletfield and carried off 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Farmshire struck Oldville, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Castleland raided Hamletfield and carried off 2 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Castleland struck Smallburg, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Smallford struck Oldville, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Smallford struck Townburg, taking 5 coins."}
+{"type":"chronicle","tick":201001,"wallTimeMs":1794790879727,"kind":"NationRaid","text":"Raiders from Oldville struck Fortressham, taking 3 coins."}

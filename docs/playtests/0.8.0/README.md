@@ -1,5 +1,7 @@
 # Playtest evidence: 0.8.0
 
+> **Re-run after the fixes:** four sessions (s01, s02, s03, s05) were re-run on `2f10aca1`, after #481, #482 and #483, at low load. See [rerun/README.md](rerun/README.md).
+
 This is the release-candidate playtest for 0.8.0, run on `develop` at **`eefb1f7b`**. The game reported its version as `0.7.1-SNAPSHOT`; the version is bumped when the release is cut. The code at `eefb1f7b` is identical to the release candidate `0cab574`: the commits between them change only the README, its media, docs/CONTRIBUTING.md and the media-capture tooling under `tools/capture/`.
 
 The run used [playtester](https://github.com/Preponderous-Software/playtester) with its `beyond-nations` profile ([docs/PLAYTESTING.md](../../PLAYTESTING.md)).

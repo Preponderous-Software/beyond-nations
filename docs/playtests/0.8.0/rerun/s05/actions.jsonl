@@ -1,0 +1,263 @@
+{"t": 1794789328698, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "105"]}
+{"t": 1794789332301, "cmd": "key", "args": ["space"]}
+{"t": 1794789332766, "cmd": "shot", "args": ["menu"]}
+{"t": 1794789335852, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789336586, "cmd": "await", "args": ["NEW_WORLD", "15"]}
+{"t": 1794789336639, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794789337359, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1794789337608, "cmd": "shot", "args": ["world0"]}
+{"t": 1794789337745, "cmd": "state", "args": []}
+{"t": 1794789341337, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789347208, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789349267, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789355431, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789357490, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789363018, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789365076, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789370730, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789372797, "cmd": "state", "args": []}
+{"t": 1794789375013, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794789380555, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789383016, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794789386513, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789388973, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794789394071, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789396544, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789400525, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789402590, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789408538, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789410598, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789438394, "cmd": "key", "args": ["e", "e", "e", "e", "e"]}
+{"t": 1794789440463, "cmd": "key", "args": ["n"]}
+{"t": 1794789441915, "cmd": "shot", "args": ["nation"]}
+{"t": 1794789442022, "cmd": "state", "args": []}
+{"t": 1794789444510, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789449387, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789451851, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789455989, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789458464, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789462537, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789465000, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789474055, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789476516, "cmd": "state", "args": []}
+{"t": 1794789478143, "cmd": "key", "args": ["f"]}
+{"t": 1794789480595, "cmd": "shot", "args": ["found"]}
+{"t": 1794789480716, "cmd": "state", "args": []}
+{"t": 1794789480752, "cmd": "events", "args": ["5"]}
+{"t": 1794789482736, "cmd": "face", "args": ["-44"]}
+{"t": 1794789483773, "cmd": "hold", "args": ["w", "3"]}
+{"t": 1794789486869, "cmd": "key", "args": ["f"]}
+{"t": 1794789489317, "cmd": "state", "args": []}
+{"t": 1794789489352, "cmd": "shot", "args": ["found2"]}
+{"t": 1794789495353, "cmd": "face", "args": ["-129"]}
+{"t": 1794789497979, "cmd": "state", "args": []}
+{"t": 1794789501107, "cmd": "shot", "args": ["face1"]}
+{"t": 1794789504977, "cmd": "key", "args": ["Return"]}
+{"t": 1794789505429, "cmd": "face", "args": ["-103"]}
+{"t": 1794789506678, "cmd": "hold", "args": ["w", "4"]}
+{"t": 1794789510759, "cmd": "key", "args": ["f"]}
+{"t": 1794789513214, "cmd": "state", "args": []}
+{"t": 1794789514841, "cmd": "key", "args": ["e"]}
+{"t": 1794789517300, "cmd": "shot", "args": ["inside"]}
+{"t": 1794789517429, "cmd": "state", "args": []}
+{"t": 1794789522518, "cmd": "click", "args": ["375", "437"]}
+{"t": 1794789524227, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789531202, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789533673, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789538715, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789541182, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789551114, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789553579, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789560607, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789563086, "cmd": "state", "args": []}
+{"t": 1794789565550, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789571161, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789573630, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789592223, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789594696, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789655099, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789657565, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789718729, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789721189, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789782269, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789784730, "cmd": "walkto", "args": ["tree", "60"]}
+{"t": 1794789846331, "cmd": "key", "args": ["e", "e", "e", "e", "e", "e"]}
+{"t": 1794789848799, "cmd": "walkto", "args": ["rock", "60"]}
+{"t": 1794789888018, "cmd": "state", "args": []}
+{"t": 1794789892647, "cmd": "shot", "args": ["event1"]}
+{"t": 1794789892760, "cmd": "state", "args": ["--full"]}
+{"t": 1794789896046, "cmd": "click", "args": ["480", "345"]}
+{"t": 1794789897752, "cmd": "key", "args": ["h"]}
+{"t": 1794789901201, "cmd": "state", "args": []}
+{"t": 1794789903060, "cmd": "key", "args": ["e"]}
+{"t": 1794789905508, "cmd": "click", "args": ["182", "351"]}
+{"t": 1794789908218, "cmd": "shot", "args": ["stall"]}
+{"t": 1794789908344, "cmd": "state", "args": []}
+{"t": 1794789911895, "cmd": "click", "args": ["583", "437"]}
+{"t": 1794789914605, "cmd": "shot", "args": ["stay"]}
+{"t": 1794789914751, "cmd": "events", "args": ["6"]}
+{"t": 1794789919947, "cmd": "note", "args": ["--shot", "objective_clipped", "Objective 7 progress bar text clipped: shows 'bers 5/10 · Buildings 0/2' (Members cut off) in the objective box at top-left"]}
+{"t": 1794789920160, "cmd": "click", "args": ["562", "444"]}
+{"t": 1794789922882, "cmd": "shot", "args": ["market1"]}
+{"t": 1794789929003, "cmd": "note", "args": ["--shot", "sell_there_worse", "Trade at Market (apples): line says 'Best price in reach: 21 at the Village of Bigwood. Sell there, not here: -1 a unit' while this market pays 22 — advises selling at a worse price"]}
+{"t": 1794789929129, "cmd": "click", "args": ["601", "306"]}
+{"t": 1794789930837, "cmd": "shot", "args": ["market2"]}
+{"t": 1794789937127, "cmd": "state", "args": []}
+{"t": 1794789937178, "cmd": "click", "args": ["601", "346"]}
+{"t": 1794789938891, "cmd": "shot", "args": ["sold6"]}
+{"t": 1794789939034, "cmd": "state", "args": []}
+{"t": 1794789944116, "cmd": "move", "args": ["470", "395"]}
+{"t": 1794789944165, "cmd": "scroll", "args": ["2"]}
+{"t": 1794789945584, "cmd": "shot", "args": ["receipt"]}
+{"t": 1794789950907, "cmd": "note", "args": ["--shot", "receipt", "Receipt/profit lines live in a 2-line scroll box under the buttons; the 'This visit: spent 0, took 104, net +104' line is only visible after scrolling (tick ~13900). Works, but easy to miss"]}
+{"t": 1794789951060, "cmd": "click", "args": ["357", "346"]}
+{"t": 1794789952769, "cmd": "move", "args": ["470", "395"]}
+{"t": 1794789952819, "cmd": "scroll", "args": ["3"]}
+{"t": 1794789953413, "cmd": "shot", "args": ["bought"]}
+{"t": 1794789953557, "cmd": "state", "args": []}
+{"t": 1794789959344, "cmd": "click", "args": ["601", "346"]}
+{"t": 1794789961047, "cmd": "shot", "args": ["soldback"]}
+{"t": 1794789961179, "cmd": "state", "args": []}
+{"t": 1794789967612, "cmd": "click", "args": ["479", "429"]}
+{"t": 1794789969315, "cmd": "shot", "args": ["bar1"]}
+{"t": 1794789969502, "cmd": "state", "args": []}
+{"t": 1794789975371, "cmd": "click", "args": ["213", "475"]}
+{"t": 1794789977072, "cmd": "state", "args": []}
+{"t": 1794789979614, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794789981331, "cmd": "click", "args": ["389", "413"]}
+{"t": 1794789984041, "cmd": "shot", "args": ["built"]}
+{"t": 1794789984220, "cmd": "state", "args": []}
+{"t": 1794789988148, "cmd": "click", "args": ["385", "413"]}
+{"t": 1794789989859, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794789991565, "cmd": "click", "args": ["233", "413"]}
+{"t": 1794789994268, "cmd": "state", "args": []}
+{"t": 1794789994314, "cmd": "events", "args": ["8"]}
+{"t": 1794789998782, "cmd": "click", "args": ["81", "413"]}
+{"t": 1794790000485, "cmd": "click", "args": ["81", "413"]}
+{"t": 1794790003187, "cmd": "click", "args": ["105", "57"]}
+{"t": 1794790005887, "cmd": "shot", "args": ["era"]}
+{"t": 1794790006066, "cmd": "state", "args": []}
+{"t": 1794790010025, "cmd": "key", "args": ["o"]}
+{"t": 1794790012467, "cmd": "shot", "args": ["nations"]}
+{"t": 1794790015474, "cmd": "click", "args": ["415", "44"]}
+{"t": 1794790018177, "cmd": "shot", "args": ["members"]}
+{"t": 1794790024570, "cmd": "key", "args": ["Escape"]}
+{"t": 1794790025012, "cmd": "state", "args": ["--full"]}
+{"t": 1794790037384, "cmd": "wait", "args": ["40"]}
+{"t": 1794790077458, "cmd": "state", "args": []}
+{"t": 1794790077497, "cmd": "shot", "args": ["t1"]}
+{"t": 1794790082530, "cmd": "click", "args": ["160", "382"]}
+{"t": 1794790085232, "cmd": "shot", "args": ["talk"]}
+{"t": 1794790085419, "cmd": "state", "args": []}
+{"t": 1794790088547, "cmd": "state", "args": ["--full"]}
+{"t": 1794790088596, "cmd": "wait", "args": ["12"]}
+{"t": 1794790100647, "cmd": "state", "args": ["--full"]}
+{"t": 1794790100686, "cmd": "wait", "args": ["12"]}
+{"t": 1794790112740, "cmd": "state", "args": ["--full"]}
+{"t": 1794790112791, "cmd": "wait", "args": ["12"]}
+{"t": 1794790124844, "cmd": "state", "args": ["--full"]}
+{"t": 1794790124886, "cmd": "wait", "args": ["12"]}
+{"t": 1794790143210, "cmd": "note", "args": ["--shot", "trader_idle", "Charlotte Evans is listed as Trader (O > Members) but no event/chronicle said she became one, nothing on screen shows what she carries or where she is going, and over ticks 19083-20431 she stays within 5 m of home. There is no Appoint Trader button for other serfs and no text saying why (one trader per settlement is the cap)"]}
+{"t": 1794790147915, "cmd": "wait", "args": ["15"]}
+{"t": 1794790162967, "cmd": "state", "args": ["--full"]}
+{"t": 1794790163007, "cmd": "wait", "args": ["15"]}
+{"t": 1794790178047, "cmd": "state", "args": ["--full"]}
+{"t": 1794790178089, "cmd": "wait", "args": ["15"]}
+{"t": 1794790193144, "cmd": "state", "args": ["--full"]}
+{"t": 1794790193193, "cmd": "wait", "args": ["15"]}
+{"t": 1794790208236, "cmd": "state", "args": ["--full"]}
+{"t": 1794790208272, "cmd": "wait", "args": ["15"]}
+{"t": 1794790223314, "cmd": "state", "args": ["--full"]}
+{"t": 1794790223349, "cmd": "wait", "args": ["15"]}
+{"t": 1794790238396, "cmd": "state", "args": ["--full"]}
+{"t": 1794790241751, "cmd": "state", "args": []}
+{"t": 1794790241791, "cmd": "shot", "args": ["village"]}
+{"t": 1794790246711, "cmd": "click", "args": ["553", "413"]}
+{"t": 1794790248409, "cmd": "click", "args": ["553", "413"]}
+{"t": 1794790251108, "cmd": "state", "args": []}
+{"t": 1794790251144, "cmd": "click", "args": ["312", "382"]}
+{"t": 1794790253846, "cmd": "shot", "args": ["caravan1"]}
+{"t": 1794790257414, "cmd": "click", "args": ["241", "382"]}
+{"t": 1794790260113, "cmd": "shot", "args": ["caravan2"]}
+{"t": 1794790264278, "cmd": "click", "args": ["303", "96"]}
+{"t": 1794790265978, "cmd": "shot", "args": ["dest2"]}
+{"t": 1794790266124, "cmd": "click", "args": ["303", "96"]}
+{"t": 1794790267822, "cmd": "shot", "args": ["dest3"]}
+{"t": 1794790267940, "cmd": "click", "args": ["303", "96"]}
+{"t": 1794790269642, "cmd": "shot", "args": ["dest4"]}
+{"t": 1794790278727, "cmd": "click", "args": ["239", "96"]}
+{"t": 1794790280427, "cmd": "click", "args": ["239", "96"]}
+{"t": 1794790282130, "cmd": "click", "args": ["303", "255"]}
+{"t": 1794790283331, "cmd": "click", "args": ["303", "255"]}
+{"t": 1794790284531, "cmd": "click", "args": ["303", "255"]}
+{"t": 1794790285732, "cmd": "click", "args": ["303", "135"]}
+{"t": 1794790287435, "cmd": "shot", "args": ["loaded"]}
+{"t": 1794790296813, "cmd": "note", "args": ["--shot", "loaded", "Send Caravan panel jumps: once the first good is loaded an estimate line appears and the auto-sized panel re-centres ~34 px higher, so the next clicks land on different buttons (my +5 Saplings presses hit Wood/nothing, '<' missed). Also '5 goods (wood), worth about 13 coins there' while the row says wood sells 24 there — estimate looks ~10x low or unexplained"]}
+{"t": 1794790296955, "cmd": "click", "args": ["239", "63"]}
+{"t": 1794790298652, "cmd": "click", "args": ["239", "63"]}
+{"t": 1794790300354, "cmd": "shot", "args": ["dst"]}
+{"t": 1794790306039, "cmd": "click", "args": ["315", "255"]}
+{"t": 1794790307742, "cmd": "shot", "args": ["l1"]}
+{"t": 1794790312972, "cmd": "click", "args": ["315", "222"]}
+{"t": 1794790313671, "cmd": "click", "args": ["315", "222"]}
+{"t": 1794790314370, "cmd": "click", "args": ["315", "222"]}
+{"t": 1794790315069, "cmd": "click", "args": ["315", "182"]}
+{"t": 1794790315771, "cmd": "click", "args": ["315", "182"]}
+{"t": 1794790316472, "cmd": "shot", "args": ["l2"]}
+{"t": 1794790321219, "cmd": "state", "args": []}
+{"t": 1794790321254, "cmd": "click", "args": ["283", "280"]}
+{"t": 1794790323953, "cmd": "shot", "args": ["sent"]}
+{"t": 1794790324111, "cmd": "state", "args": []}
+{"t": 1794790329228, "cmd": "wait", "args": ["15"]}
+{"t": 1794790344278, "cmd": "state", "args": ["--full"]}
+{"t": 1794790344316, "cmd": "wait", "args": ["15"]}
+{"t": 1794790359372, "cmd": "state", "args": ["--full"]}
+{"t": 1794790359417, "cmd": "wait", "args": ["15"]}
+{"t": 1794790374464, "cmd": "state", "args": ["--full"]}
+{"t": 1794790374502, "cmd": "wait", "args": ["15"]}
+{"t": 1794790389564, "cmd": "state", "args": ["--full"]}
+{"t": 1794790389603, "cmd": "wait", "args": ["15"]}
+{"t": 1794790404645, "cmd": "state", "args": ["--full"]}
+{"t": 1794790404685, "cmd": "wait", "args": ["15"]}
+{"t": 1794790419725, "cmd": "state", "args": ["--full"]}
+{"t": 1794790424384, "cmd": "shot", "args": ["merchant_ev"]}
+{"t": 1794790428664, "cmd": "click", "args": ["480", "345"]}
+{"t": 1794790430373, "cmd": "state", "args": []}
+{"t": 1794790432349, "cmd": "shot", "args": ["bar2"]}
+{"t": 1794790438628, "cmd": "note", "args": ["--shot", "bar2", "HUD overlap inside settlement: Inventory Info panel sits on top of the Chronicle box (its title line covers 'Day 2, dawn...'), and a pawn nameplate ('Samantha Lewis / Greedy, Ambitious') draws over the chronicle text"]}
+{"t": 1794790438747, "cmd": "click", "args": ["562", "444"]}
+{"t": 1794790441445, "cmd": "shot", "args": ["market3"]}
+{"t": 1794790450027, "cmd": "note", "args": ["--shot", "market3", "Command bar reflows when a pawn walks into/out of range (pawn rows Order/Talk/Gift/Invite appear/disappear), so buttons shift under the pointer: clicking where 'Trade at Market' was ate an apple instead ('Ate an apple (+15 energy)'), tick ~30450. Same root as the caravan panel jumping"]}
+{"t": 1794790450144, "cmd": "note", "args": ["--shot", "market3", "Travelling merchant event says an axe and pickaxe are 'worth hundreds at any market', but the Trade at Market panel only lists Apples/Wood/Stone/Saplings — tools cannot be sold anywhere I found"]}
+{"t": 1794790450261, "cmd": "click", "args": ["591", "143"]}
+{"t": 1794790451967, "cmd": "click", "args": ["600", "323"]}
+{"t": 1794790453673, "cmd": "shot", "args": ["wood"]}
+{"t": 1794790459799, "cmd": "click", "args": ["600", "363"]}
+{"t": 1794790461510, "cmd": "state", "args": []}
+{"t": 1794790461558, "cmd": "shot", "args": ["wood2"]}
+{"t": 1794790469096, "cmd": "note", "args": ["--shot", "wood2", "Markets run dry fast: after selling 6 apples and 3 wood the tills hold 10 coins and the panel says 'No till here can pay for one' / 'Can't sell' (tick 31389). With 62 wood and 58 stone on hand, the home market can absorb only a handful per visit — selling pays per unit (16-24 coins) but volume is capped by merchant cash"]}
+{"t": 1794790469214, "cmd": "click", "args": ["479", "446"]}
+{"t": 1794790469916, "cmd": "wait", "args": ["15"]}
+{"t": 1794790484970, "cmd": "state", "args": ["--full"]}
+{"t": 1794790485015, "cmd": "wait", "args": ["15"]}
+{"t": 1794790500062, "cmd": "state", "args": ["--full"]}
+{"t": 1794790500101, "cmd": "wait", "args": ["15"]}
+{"t": 1794790515145, "cmd": "state", "args": ["--full"]}
+{"t": 1794790515186, "cmd": "wait", "args": ["15"]}
+{"t": 1794790530243, "cmd": "state", "args": ["--full"]}
+{"t": 1794790530294, "cmd": "wait", "args": ["15"]}
+{"t": 1794790545347, "cmd": "state", "args": ["--full"]}
+{"t": 1794790545399, "cmd": "wait", "args": ["15"]}
+{"t": 1794790560462, "cmd": "state", "args": ["--full"]}
+{"t": 1794790564425, "cmd": "state", "args": []}
+{"t": 1794790564461, "cmd": "shot", "args": ["home"]}
+{"t": 1794790651217, "cmd": "click", "args": ["213", "475"]}
+{"t": 1794790652919, "cmd": "state", "args": []}
+{"t": 1794790660188, "cmd": "note", "args": ["--shot", "home", "Caravan: loaded 5 wood, 10 stone, 15 saplings (estimate 'worth about 228'). It sold 5 wood + 9 stone at Eastton for 228 and 'came home ... with 228 coins'. The 15 saplings and 1 stone are never mentioned again: not in my inventory, and Collect Stockpile returned only wood/stone. Panel estimate silently priced saplings at 0 though the row said 'here 8, there 18'"]}
+{"t": 1794790663878, "cmd": "events", "args": ["3"]}
+{"t": 1794790666456, "cmd": "click", "args": ["497", "475"]}
+{"t": 1794790669158, "cmd": "shot", "args": ["settle2"]}
+{"t": 1794790674871, "cmd": "state", "args": []}
+{"t": 1794790674918, "cmd": "stop", "args": []}
+{"t": 1794790708700, "cmd": "report", "args": []}
+{"t": 1794790977336, "cmd": "stop", "args": []}

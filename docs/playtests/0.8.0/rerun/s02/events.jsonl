@@ -1,0 +1,202 @@
+{"type":"screen","tick":0,"wallTimeMs":1794789329699,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794789332492,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794789339258,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794789340263,"how":"created","slot":"world-102-20261116-003540","seed":102}
+{"type":"screen","tick":0,"wallTimeMs":1794789340265,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":773,"wallTimeMs":1794789355853,"text":"Created nation Westham."}
+{"type":"chronicle","tick":773,"wallTimeMs":1794789355853,"kind":"NationCreation","text":"Under your hand, the nation of Westham was born. It is the first nation this world has known."}
+{"type":"status","tick":964,"wallTimeMs":1794789359705,"text":"Not enough wood. Need 50 more."}
+{"type":"chronicle","tick":1300,"wallTimeMs":1794789366497,"kind":"NationCreation","text":"The nation of Littleham was born, with Tina Wilson at its head."}
+{"type":"status","tick":1468,"wallTimeMs":1794789370615,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":1508,"wallTimeMs":1794789371514,"text":"No entities within range to interact with."}
+{"type":"status","tick":1524,"wallTimeMs":1794789371894,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":1540,"wallTimeMs":1794789372271,"text":"No entities within range to interact with. (x3)"}
+{"type":"chronicle","tick":1600,"wallTimeMs":1794789373676,"kind":"NationCreation","text":"Ursula Smith declared the nation of Eastford, though none had yet sworn to it."}
+{"type":"status","tick":1848,"wallTimeMs":1794789379327,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":1852,"wallTimeMs":1794789379434,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":1852}
+{"type":"status","tick":1852,"wallTimeMs":1794789379434,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":1900,"wallTimeMs":1794789380613,"number":2,"id":"eat","title":"Eat something","ticksTaken":48}
+{"type":"status","tick":1900,"wallTimeMs":1794789380613,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":1952,"wallTimeMs":1794789381765,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":1952,"wallTimeMs":1794789381765,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":2000,"wallTimeMs":1794789382849,"kind":"SettlementFounded","text":"Ursula Smith laid the first stones of Eastford."}
+{"type":"chronicle","tick":2000,"wallTimeMs":1794789382849,"kind":"NationCreation","text":"Mia Evans declared the nation of Bigburg, though none had yet sworn to it."}
+{"type":"status","tick":2036,"wallTimeMs":1794789383727,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":2152,"wallTimeMs":1794789386475,"kind":"NationCreation","text":"The nation of Cityport was born, with Dave Taylor at its head."}
+{"type":"status","tick":2344,"wallTimeMs":1794789390779,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":2400,"wallTimeMs":1794789391972,"kind":"SettlementFounded","text":"Mia Evans laid the first stones of Bigburg."}
+{"type":"chronicle","tick":2451,"wallTimeMs":1794789392996,"kind":"NationCreation","text":"The nation of Hamletford was born, with Karl Evans at its head."}
+{"type":"status","tick":2686,"wallTimeMs":1794789397759,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":3000,"wallTimeMs":1794789404095,"kind":"SettlementFounded","text":"Cityport put down roots: Dave Taylor founded its first settlement."}
+{"type":"status","tick":3040,"wallTimeMs":1794789404944,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3052,"wallTimeMs":1794789405202,"kind":"SettlementFounded","text":"Tina Wilson laid the first stones of Littleham."}
+{"type":"chronicle","tick":3303,"wallTimeMs":1794789410427,"kind":"StallBuilt","text":"Trade came to Littleham: Tina Wilson built a stall."}
+{"type":"status","tick":3463,"wallTimeMs":1794789413928,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3603,"wallTimeMs":1794789416903,"kind":"SettlementFounded","text":"Hamletford put down roots: Karl Evans founded its first settlement."}
+{"type":"status","tick":3905,"wallTimeMs":1794789423145,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3953,"wallTimeMs":1794789424104,"kind":"StallBuilt","text":"A new stall opened in the market of Littleham, built by Tina Wilson."}
+{"type":"status","tick":4068,"wallTimeMs":1794789426467,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":4299,"wallTimeMs":1794789431363,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":4351,"wallTimeMs":1794789432398,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletford, built by Karl Evans."}
+{"type":"status","tick":4502,"wallTimeMs":1794789435528,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":4902,"wallTimeMs":1794789445997,"kind":"StallBuilt","text":"A new stall opened in the market of Cityport, built by Dave Taylor."}
+{"type":"status","tick":5186,"wallTimeMs":1794789452471,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":5250,"wallTimeMs":1794789453851,"kind":"NationRelationChange","text":"Bigburg and Cityport have become rivals over their border."}
+{"type":"objective_completed","tick":5302,"wallTimeMs":1794789455010,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":3350}
+{"type":"status","tick":5302,"wallTimeMs":1794789455010,"text":"You are back on your own land. Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":5302,"wallTimeMs":1794789455010,"kind":"SettlementFounded","text":"You raised the first settlement of Westham."}
+{"type":"chronicle","tick":5302,"wallTimeMs":1794789455010,"kind":"NationJoin","text":"Yvonne Brown threw in their lot with Westham."}
+{"type":"chronicle","tick":5502,"wallTimeMs":1794789460333,"kind":"NationRelationChange","text":"Littleham and Eastford have become rivals over their border."}
+{"type":"screen","tick":5626,"wallTimeMs":1794789463531,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":5626,"wallTimeMs":1794789463531,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":324}
+{"type":"status","tick":5626,"wallTimeMs":1794789463531,"text":"Objective complete: Enter your settlement."}
+{"type":"screen","tick":5626,"wallTimeMs":1794789478666,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":5626,"wallTimeMs":1794789478666,"text":"Exited settlement."}
+{"type":"chronicle","tick":5702,"wallTimeMs":1794789480675,"kind":"StallBuilt","text":"Tina Wilson built a market stall in Littleham."}
+{"type":"save","tick":6002,"wallTimeMs":1794789489423,"count":1}
+{"type":"chronicle","tick":6002,"wallTimeMs":1794789489423,"kind":"NationRelationChange","text":"Eastford and Hamletford have become rivals over their border."}
+{"type":"status","tick":6062,"wallTimeMs":1794789491074,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":6150,"wallTimeMs":1794789493430,"kind":"StallBuilt","text":"Dave Taylor built a market stall in Cityport."}
+{"type":"status","tick":6350,"wallTimeMs":1794789499374,"text":"You leave the land of Westham for the wilds."}
+{"type":"chronicle","tick":6402,"wallTimeMs":1794789501171,"kind":"StallBuilt","text":"Ursula Smith built a market stall in Eastford."}
+{"type":"chronicle","tick":6802,"wallTimeMs":1794789513119,"kind":"StallBuilt","text":"A new stall opened in the market of Littleham, built by Tina Wilson."}
+{"type":"status","tick":6906,"wallTimeMs":1794789516158,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":7202,"wallTimeMs":1794789524353,"kind":"StallBuilt","text":"Dave Taylor built a market stall in Cityport."}
+{"type":"status","tick":7726,"wallTimeMs":1794789537459,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":7750,"wallTimeMs":1794789538113,"text":"Eastford resents your border: relations are now Rival (-20). Cityport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1794789538113,"kind":"NationRelationChange","text":"Westham and Eastford have become rivals over their border."}
+{"type":"chronicle","tick":7750,"wallTimeMs":1794789538113,"kind":"NationRelationChange","text":"Westham and Cityport have become rivals over their border."}
+{"type":"chronicle","tick":7802,"wallTimeMs":1794789539428,"kind":"StallBuilt","text":"Tina Wilson built a market stall in Littleham."}
+{"type":"chronicle","tick":8050,"wallTimeMs":1794789546893,"kind":"NationJoin","text":"Xavier Robinson swore fealty to Westham."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1794789548468,"kind":"StallBuilt","text":"A new stall opened in the market of Eastford, built by Ursula Smith."}
+{"type":"chronicle","tick":8102,"wallTimeMs":1794789548468,"kind":"StallBuilt","text":"Mia Evans built a market stall in Bigburg."}
+{"type":"status","tick":8162,"wallTimeMs":1794789550449,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":8302,"wallTimeMs":1794789554472,"kind":"StallBuilt","text":"Trade came to Cityport: Dave Taylor built a stall."}
+{"type":"status","tick":8358,"wallTimeMs":1794789555949,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"status","tick":8482,"wallTimeMs":1794789559220,"text":"No entities within range to interact with."}
+{"type":"status","tick":8750,"wallTimeMs":1794789566116,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":9002,"wallTimeMs":1794789572955,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":9094,"wallTimeMs":1794789575490,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":9398,"wallTimeMs":1794789583525,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":9450,"wallTimeMs":1794789584792,"kind":"StallBuilt","text":"Ursula Smith built a market stall in Eastford."}
+{"type":"chronicle","tick":9502,"wallTimeMs":1794789586109,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletford, built by Karl Evans."}
+{"type":"world_event_offered","tick":9802,"wallTimeMs":1794789594596,"title":"A bountiful harvest","body":"The trees and fields of Westham are heavy with fruit: 10 apples more than anyone expected. What should be done with them?","options":["Fill the stores","Sell the surplus","Hold a feast"]}
+{"type":"status","tick":9802,"wallTimeMs":1794789597346,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":9802,"wallTimeMs":1794789680514,"text":"Gathered 0 wood from tree."}
+{"type":"status","tick":9802,"wallTimeMs":1794789762289,"text":"Gathered 0 wood from tree. (x2)"}
+{"type":"status","tick":9802,"wallTimeMs":1794789844220,"text":"Gathered 0 wood from tree. (x3)"}
+{"type":"status","tick":9802,"wallTimeMs":1794789926780,"text":"Gathered 0 wood from tree. (x4)"}
+{"type":"status","tick":9802,"wallTimeMs":1794790010929,"text":"Gathered 0 wood from tree. (x5)"}
+{"type":"status","tick":9802,"wallTimeMs":1794790093410,"text":"Gathered 0 wood from tree. (x6)"}
+{"type":"status","tick":9802,"wallTimeMs":1794790112474,"text":"A bountiful harvest came in across Westham, and you held a feast that was talked about for days."}
+{"type":"chronicle","tick":9802,"wallTimeMs":1794790112474,"kind":"WorldEvent","text":"A bountiful harvest came in across Westham, and you held a feast that was talked about for days."}
+{"type":"world_event_resolved","tick":9802,"wallTimeMs":1794790112474,"title":"A bountiful harvest","status":"A bountiful harvest came in across Westham, and you held a feast that was talked about for days."}
+{"type":"chronicle","tick":9902,"wallTimeMs":1794790114937,"kind":"StallBuilt","text":"A new stall opened in the market of Cityport, built by Dave Taylor."}
+{"type":"status","tick":10218,"wallTimeMs":1794790123010,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":10238,"wallTimeMs":1794790123619,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":10250,"wallTimeMs":1794790124013,"kind":"NationRelationChange","text":"Cityport and Bigburg are now hostile."}
+{"type":"chronicle","tick":10350,"wallTimeMs":1794790126785,"kind":"StallBuilt","text":"Trade came to Bigburg: Mia Evans built a stall."}
+{"type":"status","tick":10506,"wallTimeMs":1794790130724,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":10578,"wallTimeMs":1794790132393,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":10702,"wallTimeMs":1794790135152,"kind":"StallBuilt","text":"Ursula Smith built a market stall in Eastford. The market is now full."}
+{"type":"chronicle","tick":10802,"wallTimeMs":1794790137406,"kind":"StallBuilt","text":"Trade came to Littleham: Tina Wilson built a stall. The market is now full."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1794790142067,"kind":"NationRelationChange","text":"Hamletford and Eastford are now hostile."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1794790142067,"kind":"NationRaid","text":"Hamletford raided Eastford and carried off 5 coins, 5 wood, 1 stone."}
+{"type":"chronicle","tick":11002,"wallTimeMs":1794790142067,"kind":"NationRaid","text":"Raiders from Cityport struck Bigburg, taking 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":11054,"wallTimeMs":1794790143284,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":11198,"wallTimeMs":1794790146655,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":11558,"wallTimeMs":1794790154744,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":11850,"wallTimeMs":1794790161029,"kind":"StallBuilt","text":"A new stall opened in the market of Bigburg, built by Mia Evans."}
+{"type":"chronicle","tick":11902,"wallTimeMs":1794790162234,"kind":"StallBuilt","text":"Dave Taylor built a market stall in Cityport. The market is now full."}
+{"type":"save","tick":12002,"wallTimeMs":1794790164534,"count":2}
+{"type":"status","tick":12094,"wallTimeMs":1794790166519,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":12403,"wallTimeMs":1794790173632,"text":"Gathered 5 wood and 3 apples from tree. (x2)"}
+{"type":"status","tick":12599,"wallTimeMs":1794790177869,"text":"Gathered 5 wood and 3 apples from tree. (x3)"}
+{"type":"status","tick":12655,"wallTimeMs":1794790179003,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":12751,"wallTimeMs":1794790180934,"text":"Littleham shares an enemy with you: relations are now Friendly (\u002B20). Bigburg shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1794790180934,"kind":"NationRelationChange","text":"Relations between Westham and Littleham are now friendly against a common enemy."}
+{"type":"chronicle","tick":12751,"wallTimeMs":1794790180934,"kind":"NationRelationChange","text":"Relations between Westham and Bigburg are now friendly against a common enemy."}
+{"type":"status","tick":12787,"wallTimeMs":1794790181689,"text":"Welcome home!"}
+{"type":"status","tick":12791,"wallTimeMs":1794790181805,"text":"You are back on your own land."}
+{"type":"screen","tick":12871,"wallTimeMs":1794790184155,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":12871,"wallTimeMs":1794790184155,"text":"Entered settlement."}
+{"type":"status","tick":12871,"wallTimeMs":1794790188677,"text":"Stall built."}
+{"type":"chronicle","tick":12871,"wallTimeMs":1794790188677,"kind":"StallBuilt","text":"A new stall opened in the market of Westham, built by you."}
+{"type":"status","tick":12871,"wallTimeMs":1794790190411,"text":"Stall built. (x2)"}
+{"type":"chronicle","tick":12871,"wallTimeMs":1794790190411,"kind":"StallBuilt","text":"Trade came to Westham: you built a stall."}
+{"type":"status","tick":12871,"wallTimeMs":1794790196077,"text":"House built."}
+{"type":"status","tick":12871,"wallTimeMs":1794790197745,"text":"Farm built. The settlement is now a Village!"}
+{"type":"status","tick":12871,"wallTimeMs":1794790205100,"text":"House built."}
+{"type":"screen","tick":12871,"wallTimeMs":1794790206847,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":12871,"wallTimeMs":1794790206847,"text":"Exited settlement."}
+{"type":"objective_completed","tick":12903,"wallTimeMs":1794790207705,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":7277}
+{"type":"status","tick":12903,"wallTimeMs":1794790207705,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":13003,"wallTimeMs":1794790211012,"kind":"NationRelationChange","text":"Relations between Littleham and Eastford are now neutral."}
+{"type":"chronicle","tick":13203,"wallTimeMs":1794790218274,"kind":"NationJoin","text":"Jasmine Walker joined Westham."}
+{"type":"screen","tick":13423,"wallTimeMs":1794790223841,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":13423,"wallTimeMs":1794790223841,"text":"Entered settlement."}
+{"type":"screen","tick":13423,"wallTimeMs":1794790229019,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":13423,"wallTimeMs":1794790229019,"text":"Exited settlement."}
+{"type":"chronicle","tick":13502,"wallTimeMs":1794790230615,"kind":"NationRelationChange","text":"Littleham and Eastford have become rivals over their border."}
+{"type":"chronicle","tick":13550,"wallTimeMs":1794790231608,"kind":"NationJoin","text":"Eve Robinson threw in their lot with Westham."}
+{"type":"status","tick":14079,"wallTimeMs":1794790242431,"text":"No entities within range to interact with."}
+{"type":"status","tick":14305,"wallTimeMs":1794790246957,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":14426,"wallTimeMs":1794790249376,"text":"Xavier Robinson (Acquaintance): \u0022Hello, leader. Westham is 5 strong now. I\u0027m glad to be part of it. I stand by my own.\u0022 Xavier Robinson now knows you by name."}
+{"type":"chronicle","tick":14651,"wallTimeMs":1794790253946,"kind":"StallBuilt","text":"Karl Evans built a market stall in Hamletford."}
+{"type":"status","tick":14795,"wallTimeMs":1794790256834,"text":"Welcome home!"}
+{"type":"screen","tick":14855,"wallTimeMs":1794790258274,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":14855,"wallTimeMs":1794790258274,"text":"Entered settlement."}
+{"type":"status","tick":14855,"wallTimeMs":1794790260646,"text":"House built."}
+{"type":"status","tick":14855,"wallTimeMs":1794790262330,"text":"House built. The settlement is now a Town!"}
+{"type":"screen","tick":14855,"wallTimeMs":1794790269637,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":14855,"wallTimeMs":1794790269637,"text":"Exited settlement."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1794790273311,"kind":"StallBuilt","text":"A new stall opened in the market of Bigburg, built by Mia Evans."}
+{"type":"chronicle","tick":15003,"wallTimeMs":1794790273311,"kind":"NationRelationChange","text":"Relations between Littleham and Eastford are now neutral."}
+{"type":"status","tick":15113,"wallTimeMs":1794790275541,"text":"Xavier Robinson is already a member of Westham."}
+{"type":"status","tick":15500,"wallTimeMs":1794790283476,"text":"You leave the land of Westham for the wilds."}
+{"type":"chronicle","tick":15500,"wallTimeMs":1794790283476,"kind":"NationRelationChange","text":"Littleham and Eastford have become rivals over their border."}
+{"type":"chronicle","tick":15851,"wallTimeMs":1794790290735,"kind":"NationJoin","text":"Oscar Johnson threw in their lot with Westham."}
+{"type":"status","tick":16001,"wallTimeMs":1794790293737,"text":"Yvonne Thomas (Stranger): \u0022I don\u0027t even know you.\u0022 (needs Acquaintance)"}
+{"type":"status","tick":16206,"wallTimeMs":1794790297840,"text":"Yvonne Thomas (Stranger): \u0022Who are you? I don\u0027t belong to any nation. Is it supper time yet?\u0022"}
+{"type":"status","tick":16279,"wallTimeMs":1794790299301,"text":"Yvonne Thomas (Stranger): \u0022I don\u0027t even know you.\u0022 (needs Acquaintance)"}
+{"type":"chronicle","tick":16501,"wallTimeMs":1794790303738,"kind":"NationRelationChange","text":"Littleham and Hamletford swore an alliance."}
+{"type":"status","tick":16675,"wallTimeMs":1794790307225,"text":"You gave Yvonne Thomas 10 coin. Yvonne Thomas (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":16764,"wallTimeMs":1794790309002,"text":"Yvonne Thomas (Stranger): \u0022Who are you? I don\u0027t belong to any nation. Is it supper time yet?\u0022"}
+{"type":"status","tick":16827,"wallTimeMs":1794790310250,"text":"Yvonne Thomas (Stranger): \u0022I don\u0027t even know you.\u0022 (needs Acquaintance)"}
+{"type":"status","tick":17118,"wallTimeMs":1794790316079,"text":"Yvonne Thomas (Stranger): \u0022Who are you? I don\u0027t belong to any nation. Is it supper time yet?\u0022"}
+{"type":"status","tick":17178,"wallTimeMs":1794790317300,"text":"You gave Yvonne Thomas 10 coin. Yvonne Thomas (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Yvonne Thomas now knows you by name."}
+{"type":"status","tick":17238,"wallTimeMs":1794790318485,"text":"Yvonne Thomas (Acquaintance): \u0022Oh, hello again. I don\u0027t belong to any nation. I\u0027d join Westham if you asked. Is it supper time yet?\u0022"}
+{"type":"status","tick":17297,"wallTimeMs":1794790319675,"text":"You gave Yvonne Thomas 10 coin. Yvonne Thomas (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":17359,"wallTimeMs":1794790320912,"text":"Yvonne Thomas (Acquaintance): \u0022Oh, hello again. I don\u0027t belong to any nation. I\u0027d join Westham if you asked. Is it supper time yet?\u0022"}
+{"type":"status","tick":17416,"wallTimeMs":1794790322063,"text":"You gave Yvonne Thomas 10 coin. Yvonne Thomas (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":17456,"wallTimeMs":1794790322855,"text":"Yvonne Thomas joined Westham! Members: 7."}
+{"type":"chronicle","tick":17456,"wallTimeMs":1794790322855,"kind":"NationJoin","text":"Yvonne Thomas threw in their lot with Westham."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1794790323760,"kind":"NationRelationChange","text":"Eastford and Cityport have formed an alliance."}
+{"type":"save","tick":18000,"wallTimeMs":1794790333787,"count":3}
+{"type":"status","tick":18000,"wallTimeMs":1794790333787,"text":"Autosaved."}
+{"type":"chronicle","tick":18000,"wallTimeMs":1794790333787,"kind":"NationRaid","text":"Eastford raided Hamletford and carried off 5 coins, 5 wood."}
+{"type":"status","tick":18807,"wallTimeMs":1794790349901,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":20353,"wallTimeMs":1794790380840,"kind":"WorldEvent","text":"A fever broke out in the Village of Bigburg; Mia Evans shut the sick away until it passed."}
+{"type":"chronicle","tick":20501,"wallTimeMs":1794790383814,"kind":"NationRelationChange","text":"Eastford and Littleham are now hostile."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1794790393802,"kind":"NationRaid","text":"Raiders from Eastford struck Littleham, taking 5 coins."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1794790393802,"kind":"NationRaid","text":"Eastford raided Hamletford and carried off 5 coins."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1794790393802,"kind":"NationRaid","text":"Raiders from Cityport struck Bigburg, taking 5 coins, 1 wood."}
+{"type":"status","tick":22501,"wallTimeMs":1794790423843,"text":"Victor Brown was born to Yvonne Brown and Xavier Robinson."}
+{"type":"chronicle","tick":22501,"wallTimeMs":1794790423843,"kind":"PawnSpawn","text":"Westham welcomed a newborn, Victor Brown."}
+{"type":"status","tick":23304,"wallTimeMs":1794790439931,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"save","tick":24001,"wallTimeMs":1794790453955,"count":4}
+{"type":"status","tick":24001,"wallTimeMs":1794790453955,"text":"Autosaved."}
+{"type":"chronicle","tick":24052,"wallTimeMs":1794790454980,"kind":"NationJoin","text":"Gemma Brown threw in their lot with Westham."}
+{"type":"objective_completed","tick":26852,"wallTimeMs":1794790511145,"number":7,"id":"grow-nation","title":"Reach the Village era","ticksTaken":13949}
+{"type":"era_changed","tick":26852,"wallTimeMs":1794790511145,"from":"Camp","to":"Village"}
+{"type":"status","tick":26852,"wallTimeMs":1794790511145,"text":"A new era: Westham is now a Village. Unlocked: Storehouse (more market stalls, and caravans), Workshop (craft planks and bricks), up to 3 settlements. Objective complete: Reach the Village era. \u002B100 coins."}
+{"type":"chronicle","tick":26852,"wallTimeMs":1794790511145,"kind":"NationJoin","text":"Westham welcomed Bella Taylor into its ranks."}
+{"type":"status","tick":27533,"wallTimeMs":1794790525817,"text":"There is no one within reach to invite."}
+{"type":"status","tick":27581,"wallTimeMs":1794790526868,"text":"No entities within range to interact with."}
+{"type":"status","tick":27673,"wallTimeMs":1794790528947,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":27753,"wallTimeMs":1794790530675,"kind":"NationJoin","text":"Katie Roberts joined Westham."}
+{"type":"status","tick":27773,"wallTimeMs":1794790531106,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":27805,"wallTimeMs":1794790531807,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":27873,"wallTimeMs":1794790533255,"text":"No entities within range to interact with."}
+{"type":"status","tick":27973,"wallTimeMs":1794790535415,"text":"There is no one within reach to invite."}
+{"type":"world_event_offered","tick":28201,"wallTimeMs":1794790540386,"title":"Sickness","body":"A fever is spreading through the Town of Westham. 3 of its people have taken to their beds, and more may follow.","options":["Pay a healer (20 coins)","Quarantine the sick","Let it run its course"]}

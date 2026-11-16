@@ -1,0 +1,217 @@
+{"type":"screen","tick":0,"wallTimeMs":1794789330809,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794789337450,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794789340972,"from":"MAIN_MENU","to":"CONTROLS"}
+{"type":"screen","tick":0,"wallTimeMs":1794789353181,"from":"CONTROLS","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794789355013,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":0,"wallTimeMs":1794789358314,"how":"created","slot":"world-101-20261116-003558","seed":101}
+{"type":"screen","tick":0,"wallTimeMs":1794789358315,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":973,"wallTimeMs":1794789378594,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":1201,"wallTimeMs":1794789384478,"kind":"NationCreation","text":"Una Taylor raised a banner and called it Greatville. It is the first nation this world has known."}
+{"type":"chronicle","tick":1253,"wallTimeMs":1794789385776,"kind":"SettlementFounded","text":"Una Taylor laid the first stones of Greatville."}
+{"type":"status","tick":1529,"wallTimeMs":1794789392208,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":1601,"wallTimeMs":1794789393768,"kind":"NationCreation","text":"The nation of Fortresstown was born, with Samantha Wood at its head."}
+{"type":"chronicle","tick":1653,"wallTimeMs":1794789394902,"kind":"SettlementFounded","text":"Fortresstown put down roots: Samantha Wood founded its first settlement."}
+{"type":"chronicle","tick":1653,"wallTimeMs":1794789394902,"kind":"NationCreation","text":"Samantha Taylor raised a banner and called it Blackham."}
+{"type":"chronicle","tick":1753,"wallTimeMs":1794789397104,"kind":"NationCreation","text":"Katie Jones raised a banner and called it Littlefield."}
+{"type":"chronicle","tick":1901,"wallTimeMs":1794789400450,"kind":"SettlementFounded","text":"Littlefield put down roots: Katie Jones founded its first settlement."}
+{"type":"status","tick":2077,"wallTimeMs":1794789404399,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":2101,"wallTimeMs":1794789404956,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2101}
+{"type":"status","tick":2101,"wallTimeMs":1794789404956,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"objective_completed","tick":2153,"wallTimeMs":1794789406054,"number":2,"id":"eat","title":"Eat something","ticksTaken":52}
+{"type":"status","tick":2153,"wallTimeMs":1794789406054,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"chronicle","tick":2153,"wallTimeMs":1794789406054,"kind":"NationCreation","text":"Karl Davies raised a banner and called it Fortressville."}
+{"type":"chronicle","tick":2301,"wallTimeMs":1794789409262,"kind":"NationCreation","text":"Tilly Taylor declared the nation of Newshire, though none had yet sworn to it."}
+{"type":"chronicle","tick":2353,"wallTimeMs":1794789410344,"kind":"SettlementFounded","text":"Tilly Taylor laid the first stones of Newshire."}
+{"type":"chronicle","tick":2401,"wallTimeMs":1794789411408,"kind":"SettlementFounded","text":"Fortressville put down roots: Karl Davies founded its first settlement."}
+{"type":"status","tick":2457,"wallTimeMs":1794789412610,"text":"Created nation Easttown."}
+{"type":"chronicle","tick":2457,"wallTimeMs":1794789412610,"kind":"NationCreation","text":"You raised a banner and named your people Easttown."}
+{"type":"objective_completed","tick":2501,"wallTimeMs":1794789413520,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":348}
+{"type":"status","tick":2501,"wallTimeMs":1794789413520,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":2701,"wallTimeMs":1794789417715,"kind":"SettlementFounded","text":"Samantha Taylor raised the first settlement of Blackham."}
+{"type":"chronicle","tick":3053,"wallTimeMs":1794789425631,"kind":"StallBuilt","text":"Trade came to Newshire: Tilly Taylor built a stall."}
+{"type":"status","tick":3157,"wallTimeMs":1794789428327,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":3517,"wallTimeMs":1794789436792,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":3601,"wallTimeMs":1794789438639,"kind":"StallBuilt","text":"Samantha Wood built a market stall in Fortresstown."}
+{"type":"status","tick":3753,"wallTimeMs":1794789442084,"text":"You enter the land of Littlefield (Neutral)."}
+{"type":"status","tick":3825,"wallTimeMs":1794789443814,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":3953,"wallTimeMs":1794789446769,"kind":"StallBuilt","text":"Tilly Taylor built a market stall in Newshire."}
+{"type":"chronicle","tick":4001,"wallTimeMs":1794789447789,"kind":"StallBuilt","text":"Una Taylor built a market stall in Greatville."}
+{"type":"chronicle","tick":4001,"wallTimeMs":1794789447789,"kind":"NationRelationChange","text":"Greatville and Fortresstown have become rivals over their border."}
+{"type":"chronicle","tick":4253,"wallTimeMs":1794789453426,"kind":"NationRelationChange","text":"Greatville and Littlefield have become rivals over their border."}
+{"type":"status","tick":4313,"wallTimeMs":1794789454746,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":4501,"wallTimeMs":1794789458829,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":4601,"wallTimeMs":1794789461071,"kind":"StallBuilt","text":"A new stall opened in the market of Littlefield, built by Katie Jones."}
+{"type":"chronicle","tick":4653,"wallTimeMs":1794789462188,"kind":"StallBuilt","text":"Tilly Taylor built a market stall in Newshire."}
+{"type":"chronicle","tick":4753,"wallTimeMs":1794789464319,"kind":"NationRelationChange","text":"Greatville and Newshire have become rivals over their border."}
+{"type":"chronicle","tick":4753,"wallTimeMs":1794789464319,"kind":"NationRelationChange","text":"Fortresstown and Fortressville have become rivals over their border."}
+{"type":"chronicle","tick":4753,"wallTimeMs":1794789464319,"kind":"NationRelationChange","text":"Littlefield and Fortressville have become rivals over their border."}
+{"type":"chronicle","tick":5001,"wallTimeMs":1794789470096,"kind":"NationRelationChange","text":"Greatville and Blackham have become rivals over their border."}
+{"type":"status","tick":5141,"wallTimeMs":1794789473687,"text":"You leave the land of Littlefield for the wilds."}
+{"type":"chronicle","tick":5253,"wallTimeMs":1794789476526,"kind":"StallBuilt","text":"Trade came to Fortresstown: Samantha Wood built a stall."}
+{"type":"status","tick":5285,"wallTimeMs":1794789477336,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":5553,"wallTimeMs":1794789483994,"kind":"StallBuilt","text":"Trade came to Newshire: Tilly Taylor built a stall."}
+{"type":"status","tick":5653,"wallTimeMs":1794789486436,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":5869,"wallTimeMs":1794789491516,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"save","tick":6001,"wallTimeMs":1794789494454,"count":1}
+{"type":"status","tick":6105,"wallTimeMs":1794789496765,"text":"Too close to the Camp of Fortressville: 167 paces away, and settlements must be 250 paces apart. Open ground lies about 170 paces to the north-west."}
+{"type":"chronicle","tick":6753,"wallTimeMs":1794789511529,"kind":"StallBuilt","text":"Trade came to Littlefield: Katie Jones built a stall."}
+{"type":"status","tick":6861,"wallTimeMs":1794789514091,"text":"You enter the land of Fortressville (Neutral)."}
+{"type":"status","tick":7033,"wallTimeMs":1794789518806,"text":"You leave the land of Fortressville for the wilds."}
+{"type":"status","tick":7085,"wallTimeMs":1794789520099,"text":"Too close to the Village of Fortressville: 144 paces away, and settlements must be 250 paces apart. Open ground lies about 111 paces to the south-west."}
+{"type":"chronicle","tick":7453,"wallTimeMs":1794789528669,"kind":"StallBuilt","text":"Trade came to Fortresstown: Samantha Wood built a stall."}
+{"type":"chronicle","tick":7601,"wallTimeMs":1794789532274,"kind":"StallBuilt","text":"Trade came to Newshire: Tilly Taylor built a stall."}
+{"type":"status","tick":7637,"wallTimeMs":1794789533125,"text":"Settlement founded. Fortressville resent a new settlement so near their land."}
+{"type":"chronicle","tick":7637,"wallTimeMs":1794789533125,"kind":"SettlementFounded","text":"You raised the first settlement of Easttown."}
+{"type":"status","tick":7641,"wallTimeMs":1794789533236,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":7653,"wallTimeMs":1794789533585,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":5152}
+{"type":"status","tick":7653,"wallTimeMs":1794789533585,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":7653,"wallTimeMs":1794789533585,"kind":"NationJoin","text":"Abigail Brown joined Easttown."}
+{"type":"chronicle","tick":7653,"wallTimeMs":1794789533585,"kind":"NationJoin","text":"Rachel Wilson threw in their lot with Easttown."}
+{"type":"screen","tick":7965,"wallTimeMs":1794789542195,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":7965,"wallTimeMs":1794789542195,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":312}
+{"type":"status","tick":7965,"wallTimeMs":1794789542195,"text":"Objective complete: Enter your settlement."}
+{"type":"status","tick":7965,"wallTimeMs":1794789555167,"text":"House built."}
+{"type":"status","tick":7965,"wallTimeMs":1794789561909,"text":"Farm built. The settlement is now a Village!"}
+{"type":"screen","tick":7965,"wallTimeMs":1794789569289,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":7965,"wallTimeMs":1794789569289,"text":"Exited settlement."}
+{"type":"chronicle","tick":8153,"wallTimeMs":1794789574269,"kind":"StallBuilt","text":"Trade came to Fortresstown: Samantha Wood built a stall. The market is now full."}
+{"type":"chronicle","tick":8253,"wallTimeMs":1794789577045,"kind":"StallBuilt","text":"Tilly Taylor built a market stall in Newshire. The market is now full."}
+{"type":"status","tick":8373,"wallTimeMs":1794789580293,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":8453,"wallTimeMs":1794789582274,"kind":"NationJoin","text":"Karl Watson threw in their lot with Easttown."}
+{"type":"status","tick":8941,"wallTimeMs":1794789593894,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":9001,"wallTimeMs":1794789595246,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":9033,"wallTimeMs":1794789595985,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":9053,"wallTimeMs":1794789596427,"kind":"StallBuilt","text":"A new stall opened in the market of Greatville, built by Una Taylor."}
+{"type":"chronicle","tick":9053,"wallTimeMs":1794789596427,"kind":"NationJoin","text":"Bella Thomas swore fealty to Easttown."}
+{"type":"chronicle","tick":9253,"wallTimeMs":1794789600808,"kind":"NationRelationChange","text":"Greatville and Littlefield are now hostile."}
+{"type":"chronicle","tick":9501,"wallTimeMs":1794789606440,"kind":"NationRelationChange","text":"Fortresstown and Greatville are now hostile."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1794789611956,"kind":"NationRelationChange","text":"Greatville and Fortressville have formed an alliance."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1794789611956,"kind":"NationRelationChange","text":"Fortressville and Fortresstown are now hostile."}
+{"type":"chronicle","tick":9753,"wallTimeMs":1794789611956,"kind":"NationRelationChange","text":"Fortressville and Littlefield are now hostile."}
+{"type":"status","tick":10001,"wallTimeMs":1794789617826,"text":"Fortressville resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRelationChange","text":"Fortressville and Easttown have become rivals over their border."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRelationChange","text":"Greatville and Blackham are now hostile."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRaid","text":"Greatville raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRaid","text":"Greatville raided Blackham and carried off 5 wood, 5 stone."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRaid","text":"Greatville raided Littlefield and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRaid","text":"Fortressville raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":10001,"wallTimeMs":1794789617826,"kind":"NationRaid","text":"Raiders from Fortressville struck Littlefield, taking 5 coins, 5 wood."}
+{"type":"status","tick":10033,"wallTimeMs":1794789618614,"text":"You leave the land of Easttown for the wilds."}
+{"type":"status","tick":10205,"wallTimeMs":1794789623116,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":10469,"wallTimeMs":1794789629543,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"status","tick":10681,"wallTimeMs":1794789634434,"text":"You are back on your own land."}
+{"type":"screen","tick":10777,"wallTimeMs":1794789637161,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":10777,"wallTimeMs":1794789637161,"text":"Entered settlement."}
+{"type":"status","tick":10777,"wallTimeMs":1794789639716,"text":"Stall built."}
+{"type":"chronicle","tick":10777,"wallTimeMs":1794789639716,"kind":"StallBuilt","text":"Trade came to Easttown: you built a stall."}
+{"type":"status","tick":10777,"wallTimeMs":1794789648383,"text":"House built."}
+{"type":"status","tick":10777,"wallTimeMs":1794789651128,"text":"Farm built."}
+{"type":"screen","tick":10777,"wallTimeMs":1794789654262,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":10777,"wallTimeMs":1794789654262,"text":"Exited settlement."}
+{"type":"objective_completed","tick":10801,"wallTimeMs":1794789654942,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":2836}
+{"type":"status","tick":10801,"wallTimeMs":1794789654942,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"chronicle","tick":11601,"wallTimeMs":1794789677266,"kind":"StallBuilt","text":"Trade came to Fortressville: Karl Davies built a stall."}
+{"type":"chronicle","tick":11753,"wallTimeMs":1794789681426,"kind":"StallBuilt","text":"A new stall opened in the market of Greatville, built by Una Taylor."}
+{"type":"save","tick":12001,"wallTimeMs":1794789687592,"count":2}
+{"type":"status","tick":12001,"wallTimeMs":1794789687592,"text":"Littlefield has fallen and been disbanded."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1794789687592,"kind":"SettlementCapture","text":"Greatville captured a village from Littlefield."}
+{"type":"chronicle","tick":12001,"wallTimeMs":1794789687592,"kind":"NationDisband","text":"With its last village taken by Greatville, Littlefield passed into history."}
+{"type":"world_event_offered","tick":12137,"wallTimeMs":1794789690718,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Village of Easttown. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":12137,"wallTimeMs":1794789696362,"text":"Gathered 5 stone from rock."}
+{"type":"status","tick":12137,"wallTimeMs":1794789761474,"text":"Gathered 0 stone from rock."}
+{"type":"status","tick":12137,"wallTimeMs":1794789814954,"text":"Bandits camped outside the Village of Easttown; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":12137,"wallTimeMs":1794789814954,"kind":"WorldEvent","text":"Bandits camped outside the Village of Easttown; you paid them 30 coins to go away."}
+{"type":"world_event_resolved","tick":12137,"wallTimeMs":1794789814954,"title":"Bandit camp","status":"Bandits camped outside the Village of Easttown; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":12253,"wallTimeMs":1794789817672,"kind":"NationRelationChange","text":"Greatville and Newshire are now hostile."}
+{"type":"status","tick":12493,"wallTimeMs":1794789823027,"text":"You leave the land of Easttown for the wilds."}
+{"type":"status","tick":12533,"wallTimeMs":1794789823915,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":12752,"wallTimeMs":1794789828493,"text":"Blackham has fallen and been disbanded."}
+{"type":"chronicle","tick":12752,"wallTimeMs":1794789828493,"kind":"SettlementCapture","text":"After a siege, a village of Blackham fell to Greatville."}
+{"type":"chronicle","tick":12752,"wallTimeMs":1794789828493,"kind":"NationDisband","text":"The banners of Blackham came down when Greatville took its last village."}
+{"type":"chronicle","tick":12800,"wallTimeMs":1794789829558,"kind":"NationCreation","text":"The nation of Hamletland was born, with Hank Brown at its head."}
+{"type":"status","tick":12996,"wallTimeMs":1794789834329,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":13000,"wallTimeMs":1794789834443,"kind":"NationRelationChange","text":"Relations between Newshire and Greatville are now rival."}
+{"type":"chronicle","tick":13052,"wallTimeMs":1794789835906,"kind":"SettlementFounded","text":"Hamletland put down roots: Hank Brown founded its first settlement."}
+{"type":"chronicle","tick":13100,"wallTimeMs":1794789837247,"kind":"StallBuilt","text":"Una Taylor built a market stall in Greatville."}
+{"type":"chronicle","tick":13152,"wallTimeMs":1794789838889,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletland, built by Hank Brown."}
+{"type":"chronicle","tick":13200,"wallTimeMs":1794789840410,"kind":"StallBuilt","text":"Trade came to Hamletland: Hank Brown built a stall."}
+{"type":"chronicle","tick":13252,"wallTimeMs":1794789841960,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletland, built by Hank Brown."}
+{"type":"chronicle","tick":13300,"wallTimeMs":1794789843324,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletland, built by Hank Brown. The market is now full."}
+{"type":"chronicle","tick":13300,"wallTimeMs":1794789843324,"kind":"StallBuilt","text":"Trade came to Greatville: Lily Jones built a stall."}
+{"type":"status","tick":13407,"wallTimeMs":1794789845732,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":13450,"wallTimeMs":1794789846608,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletland, built by Hank Brown."}
+{"type":"status","tick":13501,"wallTimeMs":1794789847641,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":13501,"wallTimeMs":1794789847641,"kind":"StallBuilt","text":"Hank Brown built a market stall in Hamletland. The market is now full."}
+{"type":"chronicle","tick":13600,"wallTimeMs":1794789849696,"kind":"StallBuilt","text":"Trade came to Hamletland: Hank Brown built a stall."}
+{"type":"chronicle","tick":13600,"wallTimeMs":1794789849696,"kind":"StallBuilt","text":"A new stall opened in the market of Greatville, built by Gemma Lewis."}
+{"type":"chronicle","tick":13652,"wallTimeMs":1794789850833,"kind":"StallBuilt","text":"Hank Brown built a market stall in Hamletland. The market is now full."}
+{"type":"chronicle","tick":13652,"wallTimeMs":1794789850833,"kind":"StallBuilt","text":"Trade came to Greatville: Gemma Lewis built a stall."}
+{"type":"chronicle","tick":13700,"wallTimeMs":1794789851947,"kind":"StallBuilt","text":"Gemma Lewis built a market stall in Greatville."}
+{"type":"chronicle","tick":13752,"wallTimeMs":1794789853142,"kind":"StallBuilt","text":"Trade came to Greatville: Gemma Lewis built a stall."}
+{"type":"status","tick":13780,"wallTimeMs":1794789853829,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":13952,"wallTimeMs":1794789857793,"kind":"WorldEvent","text":"Drought struck Hamletland, and Hank Brown rationed the stores and waited for rain."}
+{"type":"status","tick":13968,"wallTimeMs":1794789858148,"text":"Welcome home!"}
+{"type":"status","tick":13972,"wallTimeMs":1794789858259,"text":"You are back on your own land."}
+{"type":"chronicle","tick":14000,"wallTimeMs":1794789859007,"kind":"NationRelationChange","text":"Fortresstown and Newshire have formed an alliance."}
+{"type":"screen","tick":14064,"wallTimeMs":1794789860769,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":14064,"wallTimeMs":1794789860769,"text":"Entered settlement."}
+{"type":"status","tick":14064,"wallTimeMs":1794789863280,"text":"Stall built."}
+{"type":"chronicle","tick":14064,"wallTimeMs":1794789863280,"kind":"StallBuilt","text":"Trade came to Easttown: you built a stall."}
+{"type":"screen","tick":14064,"wallTimeMs":1794789870494,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":14064,"wallTimeMs":1794789870494,"text":"Exited settlement."}
+{"type":"chronicle","tick":14252,"wallTimeMs":1794789875719,"kind":"NationRelationChange","text":"Greatville and Newshire are now hostile over their border."}
+{"type":"status","tick":14616,"wallTimeMs":1794789885959,"text":"Abigail Brown (Stranger): \u0022Yes, leader? I hardly know you. Why should I follow you? Mind you, nothing\u0027s free.\u0022"}
+{"type":"status","tick":15000,"wallTimeMs":1794789896951,"text":"Fortresstown shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":15000,"wallTimeMs":1794789896951,"kind":"NationRelationChange","text":"Relations between Fortresstown and Easttown are now friendly against a common enemy."}
+{"type":"chronicle","tick":15000,"wallTimeMs":1794789896951,"kind":"NationRaid","text":"Raiders from Greatville struck Newshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"screen","tick":15032,"wallTimeMs":1794789897949,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":15036,"wallTimeMs":1794789910513,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":15252,"wallTimeMs":1794789917112,"kind":"NationJoin","text":"Ruth Taylor threw in their lot with Easttown."}
+{"type":"status","tick":15300,"wallTimeMs":1794789918263,"text":"You leave the land of Easttown for the wilds."}
+{"type":"chronicle","tick":15500,"wallTimeMs":1794789923637,"kind":"NationRelationChange","text":"Greatville and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":16000,"wallTimeMs":1794789936774,"kind":"NationRelationChange","text":"Relations between Hamletland and Greatville are now neutral."}
+{"type":"chronicle","tick":16252,"wallTimeMs":1794789942313,"kind":"NationRelationChange","text":"Newshire and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":16650,"wallTimeMs":1794789950669,"kind":"StallBuilt","text":"Trade came to Greatville: Gemma Lewis built a stall."}
+{"type":"chronicle","tick":16650,"wallTimeMs":1794789950669,"kind":"StallBuilt","text":"Harriet Smith built a market stall in Greatville."}
+{"type":"chronicle","tick":16701,"wallTimeMs":1794789951692,"kind":"StallBuilt","text":"Trade came to Greatville: Gemma Lewis built a stall. The market is now full."}
+{"type":"chronicle","tick":17002,"wallTimeMs":1794789957828,"kind":"NationRelationChange","text":"Relations between Hamletland and Newshire are now neutral."}
+{"type":"chronicle","tick":17403,"wallTimeMs":1794789965863,"kind":"StallBuilt","text":"A new stall opened in the market of Greatville, built by Ella Watson."}
+{"type":"chronicle","tick":17403,"wallTimeMs":1794789965863,"kind":"StallBuilt","text":"Charlotte Williams built a market stall in Greatville."}
+{"type":"chronicle","tick":17403,"wallTimeMs":1794789965863,"kind":"StallBuilt","text":"Victor Davies built a market stall in Greatville."}
+{"type":"chronicle","tick":17451,"wallTimeMs":1794789966832,"kind":"StallBuilt","text":"Trade came to Greatville: Ella Watson built a stall. The market is now full."}
+{"type":"chronicle","tick":17501,"wallTimeMs":1794789967831,"kind":"StallBuilt","text":"Ella Watson built a market stall in Greatville."}
+{"type":"save","tick":18001,"wallTimeMs":1794789978201,"count":3}
+{"type":"status","tick":18001,"wallTimeMs":1794789978201,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":18053,"wallTimeMs":1794789979248,"kind":"NationJoin","text":"Dave Williams threw in their lot with Easttown."}
+{"type":"chronicle","tick":18250,"wallTimeMs":1794789983276,"kind":"NationRelationChange","text":"Newshire and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":19002,"wallTimeMs":1794789998364,"kind":"NationRelationChange","text":"Relations between Hamletland and Newshire are now neutral."}
+{"type":"chronicle","tick":19250,"wallTimeMs":1794790003340,"kind":"NationRelationChange","text":"Greatville and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":20002,"wallTimeMs":1794790018588,"kind":"NationRelationChange","text":"Relations between Hamletland and Greatville are now neutral."}
+{"type":"chronicle","tick":20876,"wallTimeMs":1794790036455,"kind":"Caravan","text":"A caravan from Newshire sold 20 wood at the Village of Fortresstown for 480 coins."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1794790038956,"kind":"NationRaid","text":"Raiders from Greatville struck Fortresstown, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1794790038956,"kind":"NationRaid","text":"Raiders from Greatville struck Newshire, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":21000,"wallTimeMs":1794790038956,"kind":"NationRaid","text":"Fortressville raided Fortresstown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":21048,"wallTimeMs":1794790039912,"kind":"Caravan","text":"A caravan from Greatville sold 20 wood at the Village of Greatville for 480 coins."}
+{"type":"chronicle","tick":21251,"wallTimeMs":1794790044026,"kind":"NationRelationChange","text":"Greatville and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":22003,"wallTimeMs":1794790059306,"kind":"NationRelationChange","text":"Relations between Hamletland and Greatville are now neutral."}
+{"type":"status","tick":22501,"wallTimeMs":1794790069524,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":22501,"wallTimeMs":1794790069524,"kind":"NationRelationChange","text":"Newshire and Hamletland have become rivals over their border."}
+{"type":"status","tick":22623,"wallTimeMs":1794790071972,"text":"You are back on your own land."}
+{"type":"chronicle","tick":23003,"wallTimeMs":1794790081418,"kind":"NationRelationChange","text":"Relations between Hamletland and Newshire are now neutral."}
+{"type":"chronicle","tick":23751,"wallTimeMs":1794790100148,"kind":"NationRelationChange","text":"Greatville and Hamletland have become rivals over their border."}
+{"type":"save","tick":24003,"wallTimeMs":1794790106681,"count":4}
+{"type":"status","tick":24003,"wallTimeMs":1794790106681,"text":"Charlie Wilson was born to Rachel Wilson and Karl Watson."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1794790106681,"kind":"NationRelationChange","text":"Relations between Hamletland and Greatville are now neutral."}
+{"type":"chronicle","tick":24003,"wallTimeMs":1794790106681,"kind":"PawnSpawn","text":"Easttown welcomed a newborn, Charlie Wilson."}
+{"type":"chronicle","tick":25251,"wallTimeMs":1794790138365,"kind":"NationRelationChange","text":"Newshire and Hamletland have become rivals over their border."}
+{"type":"chronicle","tick":25503,"wallTimeMs":1794790144835,"kind":"Caravan","text":"Newshire sent a caravan of 20 wood from the Village of Newshire to the Village of Easttown."}
+{"type":"screen","tick":25799,"wallTimeMs":1794790152792,"from":"WORLD","to":"PAUSE"}
+{"type":"save","tick":25799,"wallTimeMs":1794790157633,"count":5}
+{"type":"status","tick":25799,"wallTimeMs":1794790157633,"text":"Game saved."}
+{"type":"screen","tick":25799,"wallTimeMs":1794790160671,"from":"PAUSE","to":"WORLD"}
+{"type":"chronicle","tick":26003,"wallTimeMs":1794790166024,"kind":"NationRelationChange","text":"Relations between Hamletland and Newshire are now neutral."}
+{"type":"chronicle","tick":26051,"wallTimeMs":1794790167282,"kind":"StallBuilt","text":"A new stall opened in the market of Greatville, built by Ella Watson. The market is now full."}
+{"type":"chronicle","tick":26751,"wallTimeMs":1794790185077,"kind":"NationRelationChange","text":"Greatville and Hamletland have become rivals over their border."}
+{"type":"status","tick":26999,"wallTimeMs":1794790191346,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":27003,"wallTimeMs":1794790191461,"kind":"NationRelationChange","text":"Relations between Hamletland and Greatville are now neutral."}
+{"type":"chronicle","tick":27051,"wallTimeMs":1794790192706,"kind":"NationJoin","text":"Rachel Watson joined Easttown."}
