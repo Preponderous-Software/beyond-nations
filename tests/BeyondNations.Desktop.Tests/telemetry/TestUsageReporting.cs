@@ -100,7 +100,7 @@ namespace beyondnationstests.desktop.telemetry {
                 Assert.Contains("--no-usage-reporting", notice);
                 Assert.Contains("TRACE_USAGE_REPORTING=off", notice);
                 Assert.Contains("DO_NOT_TRACK=1", notice);
-                Assert.EndsWith("Details: https://github.com/Stephenson-Software/trace#usage-reporting", notice);
+                Assert.EndsWith("Details: https://danielstephenson.dev/usage-reporting", notice);
             }
         }
 
@@ -232,6 +232,97 @@ namespace beyondnationstests.desktop.telemetry {
                 Assert.Equal("config", client.DisabledReason);
                 Assert.Single(warnings);
                 Assert.Equal("{ \"usageReporting\": { \"enabled\": fals", File.ReadAllText(settingsPath));
+                Assert.Null(stub.Body);
+            }
+        }
+
+        [Theory]
+        [InlineData("\"false\"")]
+        [InlineData("\"off\"")]
+        [InlineData("\"no\"")]
+        [InlineData("\"flase\"")]
+        [InlineData("0")]
+        [InlineData("null")]
+        public void testAnEnabledThatDoesNotClearlyMeanOnTurnsReportingOff(string enabled) {
+            // these used to be ignored, leaving the bundled default (on) in force
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings("{ \"usageReporting\": { \"enabled\": " + enabled + " } }");
+
+                TraceClient client = start();
+                client.Dispose();
+
+                Assert.Equal("config", client.DisabledReason);
+                Assert.Null(stub.Body);
+            }
+        }
+
+        [Fact]
+        public void testAnEnabledOnStringTurnsReportingOn() {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings("{ \"usageReporting\": { \"enabled\": \"on\" } }");
+
+                TraceClient client = start();
+                bool enabled = client.IsEnabled;
+                client.Dispose();
+
+                Assert.True(enabled);
+                Assert.NotNull(stub.Body);
+            }
+        }
+
+        [Theory]
+        [InlineData("{ \"usageReporting\": false }")]
+        [InlineData("{ \"usageReporting\": \"off\" }")]
+        [InlineData("{ \"usageReporting\": null }")]
+        [InlineData("[]")]
+        [InlineData("false")]
+        public void testSettingsThatAreNotTheExpectedObjectCountAsOffAndAreLeftAlone(string json) {
+            // a "usageReporting" or a root that is not an object used to be skipped, i.e. on
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings(json);
+
+                TraceClient client = start();
+                client.Dispose();
+
+                Assert.Equal("config", client.DisabledReason);
+                Assert.Equal(json, File.ReadAllText(settingsPath));
+                Assert.Null(stub.Body);
+            }
+        }
+
+        [Fact]
+        public void testAFirstRunWithTheCommandLineSwitchRecordsReportingOff() {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+
+                start(switchedOff: true).Dispose();
+                TraceClient later = start();
+                later.Dispose();
+
+                Assert.Contains("\"enabled\": false", File.ReadAllText(settingsPath));
+                Assert.Equal("config", later.DisabledReason);
+                Assert.Null(stub.Body);
+            }
+        }
+
+        [Theory]
+        [InlineData("TRACE_USAGE_REPORTING", "off")]
+        [InlineData("DO_NOT_TRACK", "1")]
+        public void testAFirstRunUnderTheEnvironmentRecordsReportingOff(string variable, string value) {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                Environment.SetEnvironmentVariable(variable, value);
+                start().Dispose();
+                Environment.SetEnvironmentVariable(variable, null);
+
+                TraceClient later = start();
+                later.Dispose();
+
+                Assert.Contains("\"enabled\": false", File.ReadAllText(settingsPath));
+                Assert.Equal("config", later.DisabledReason);
                 Assert.Null(stub.Body);
             }
         }

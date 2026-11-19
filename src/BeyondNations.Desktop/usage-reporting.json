@@ -1,6 +1,6 @@
 // Usage reporting defaults, shipped with the game. Reporting is on unless the
 // player turns it off; see "Usage reporting" in the README and
-// https://github.com/Stephenson-Software/trace#usage-reporting.
+// https://danielstephenson.dev/usage-reporting.
 //
 // Do not edit this copy to opt out -- it is replaced on every build. Set
 // "usageReporting": { "enabled": false } in the settings.json the game creates

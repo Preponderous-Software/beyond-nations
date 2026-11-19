@@ -30,8 +30,16 @@ namespace beyondnations.desktop.telemetry {
     *
     * The bundled usage-reporting.json carries the defaults (enabled, endpoint,
     * key). settings.json lives in the game's data directory and is the
-    * player's; it is created on first run with reporting shown as enabled, so
-    * the switch is visible on disk, and it is never rewritten after that.
+    * player's; it is created on first run with the switch visible on disk --
+    * enabled, unless that first run was already opted out (environment or
+    * --no-usage-reporting), in which case it records "enabled": false so the
+    * opt-out outlives the variable or flag -- and it is never rewritten
+    * after that.
+    *
+    * Every switch fails closed: "enabled" reports only when it is true (or the
+    * string "true", "on", "yes" or "1"); "false", "off", 0, null or a typo are
+    * off, as is a "usageReporting" that is not an object, a settings.json
+    * whose root is not an object, and one that cannot be read.
     * Its "endpoint" and "key" entries, when present, override the bundled
     * ones -- which is how a run is pointed at a local server instead of the
     * real one.
@@ -44,7 +52,7 @@ namespace beyondnations.desktop.telemetry {
         public const string SettingsFileName = "settings.json";
         public const string InstallIdFileName = "trace-install-id";
         public const string InstallIdVariable = "TRACE_INSTALL_ID";
-        public const string DetailsUrl = "https://github.com/Stephenson-Software/trace#usage-reporting";
+        public const string DetailsUrl = "https://danielstephenson.dev/usage-reporting";
 
         private static readonly JsonDocumentOptions JsonOptions = new JsonDocumentOptions {
             CommentHandling = JsonCommentHandling.Skip,
@@ -91,7 +99,8 @@ namespace beyondnations.desktop.telemetry {
         * settings.json counts as reporting off, since a player who edited it
         * by hand was most likely turning it off.
         */
-        public static Settings load(string defaultsPath, string settingsPath, Action<string> warn) {
+        public static Settings load(string defaultsPath, string settingsPath, Action<string> warn,
+                                    bool switchedOff = false) {
             Settings settings = new Settings();
             try {
                 using (JsonDocument defaults = JsonDocument.Parse(File.ReadAllText(defaultsPath), JsonOptions)) {
@@ -105,21 +114,32 @@ namespace beyondnations.desktop.telemetry {
             try {
                 if (!File.Exists(settingsPath)) {
                     settings.FirstRun = true;
+                    // A first run that is already opted out records "off", so
+                    // a later run without the variable or flag does not report.
+                    bool optedOut = switchedOff || TraceClient.EnvironmentDisables();
                     Directory.CreateDirectory(Path.GetDirectoryName(settingsPath));
                     File.WriteAllText(settingsPath,
                         "{" + System.Environment.NewLine
                         + "    \"usageReporting\": {" + System.Environment.NewLine
-                        + "        \"enabled\": true" + System.Environment.NewLine
+                        + "        \"enabled\": " + (optedOut ? "false" : "true") + System.Environment.NewLine
                         + "    }" + System.Environment.NewLine
                         + "}" + System.Environment.NewLine);
                     return settings;
                 }
                 using (JsonDocument player = JsonDocument.Parse(File.ReadAllText(settingsPath), JsonOptions)) {
                     JsonElement block;
-                    if (player.RootElement.ValueKind == JsonValueKind.Object
-                        && player.RootElement.TryGetProperty("usageReporting", out block)
-                        && block.ValueKind == JsonValueKind.Object) {
-                        readInto(block, settings);
+                    if (player.RootElement.ValueKind != JsonValueKind.Object) {
+                        // Not the settings this game writes: it may have been an
+                        // attempt to opt out, so it never counts as "on".
+                        warn(settingsPath + " is not a JSON object; usage reporting stays off until it is fixed");
+                        settings.Enabled = false;
+                    } else if (player.RootElement.TryGetProperty("usageReporting", out block)) {
+                        if (block.ValueKind == JsonValueKind.Object) {
+                            readInto(block, settings);
+                        } else {
+                            // "usageReporting": false (or "off", ...) is the switch itself.
+                            settings.Enabled = enabledFrom(block);
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -132,17 +152,29 @@ namespace beyondnations.desktop.telemetry {
         private static void readInto(JsonElement block, Settings settings) {
             JsonElement value;
             if (block.TryGetProperty("enabled", out value)) {
-                if (value.ValueKind == JsonValueKind.False) {
-                    settings.Enabled = false;
-                } else if (value.ValueKind == JsonValueKind.True) {
-                    settings.Enabled = true;
-                }
+                settings.Enabled = enabledFrom(value);
             }
             if (block.TryGetProperty("endpoint", out value) && value.ValueKind == JsonValueKind.String) {
                 settings.Endpoint = value.GetString();
             }
             if (block.TryGetProperty("key", out value) && value.ValueKind == JsonValueKind.String) {
                 settings.Key = value.GetString();
+            }
+        }
+
+        /**
+        * A JSON value read as the reporting switch, failing closed: true, or a
+        * string the client reads as on ("true", "on", "yes", "1"), is on;
+        * anything else -- false, "false", "off", 0, null, a typo -- is off.
+        */
+        private static bool enabledFrom(JsonElement value) {
+            switch (value.ValueKind) {
+                case JsonValueKind.True:
+                    return true;
+                case JsonValueKind.String:
+                    return TraceClient.AllowsReporting(value.GetString());
+                default:
+                    return false;
             }
         }
 
@@ -182,7 +214,7 @@ namespace beyondnations.desktop.telemetry {
         public static TraceClient start(bool switchedOff, string defaultsPath, string settingsPath,
                                         Action<string> info, Action<string> warn) {
             try {
-                Settings settings = load(defaultsPath, settingsPath, warn);
+                Settings settings = load(defaultsPath, settingsPath, warn, switchedOff);
                 string endpoint = string.IsNullOrWhiteSpace(settings.Endpoint)
                     ? "https://trace.danielstephenson.dev"
                     : settings.Endpoint;
