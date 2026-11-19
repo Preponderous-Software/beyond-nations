@@ -100,7 +100,7 @@ namespace beyondnationstests.desktop.telemetry {
                 Assert.Contains("--no-usage-reporting", notice);
                 Assert.Contains("TRACE_USAGE_REPORTING=off", notice);
                 Assert.Contains("DO_NOT_TRACK=1", notice);
-                Assert.EndsWith("Details: https://github.com/Stephenson-Software/trace#usage-reporting", notice);
+                Assert.EndsWith("Details: https://danielstephenson.dev/usage-reporting", notice);
             }
         }
 
