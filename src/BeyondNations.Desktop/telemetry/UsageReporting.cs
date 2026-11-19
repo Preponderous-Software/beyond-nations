@@ -52,7 +52,7 @@ namespace beyondnations.desktop.telemetry {
         public const string SettingsFileName = "settings.json";
         public const string InstallIdFileName = "trace-install-id";
         public const string InstallIdVariable = "TRACE_INSTALL_ID";
-        public const string DetailsUrl = "https://github.com/Stephenson-Software/trace#usage-reporting";
+        public const string DetailsUrl = "https://danielstephenson.dev/usage-reporting";
 
         private static readonly JsonDocumentOptions JsonOptions = new JsonDocumentOptions {
             CommentHandling = JsonCommentHandling.Skip,
