@@ -441,10 +441,10 @@ The first run creates a `settings.json` in the game's data directory (`~/.local/
   ```
 
 - the command-line switch `--no-usage-reporting`, for one run
-- the environment variable `TRACE_USAGE_REPORTING=off` (also `false`, `0`, `no`), which turns off every program that reports to trace
-- the environment variable `DO_NOT_TRACK=1` (see [consoledonottrack.com](https://consoledonottrack.com))
+- the environment variable `TRACE_USAGE_REPORTING=off` (any value other than blank, `true`, `on`, `yes` or `1` counts), which turns off every program that reports to trace
+- the environment variable `DO_NOT_TRACK=1` (any value other than blank, `0`, `false`, `off` or `no` counts; see [consoledonottrack.com](https://consoledonottrack.com))
 
-The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
+If the switch or either variable already turns reporting off on the very first run, `settings.json` is created with `"enabled": false`, so reporting stays off on later runs without it. Every switch fails closed: `enabled` reports only when it is `true` (or the string `"true"`, `"on"`, `"yes"` or `"1"`), so `"false"`, `"off"`, `0` or `null` keep reporting off, as do a `"usageReporting"` that is not an object (such as `"usageReporting": false`) and a `settings.json` that cannot be read or is not an object; the file is never rewritten in those cases. The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
 
 The [browser build](./docs/WEB.md#usage-reporting-off) sends nothing: the reporting code is not part of it.
 

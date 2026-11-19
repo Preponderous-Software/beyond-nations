@@ -45,7 +45,7 @@ here.
 | | |
 | --- | --- |
 | File | `src/BeyondNations.Desktop/telemetry/TraceClient.cs` |
-| Upstream | <https://github.com/Stephenson-Software/trace-client-csharp>, 0.3.0 |
+| Upstream | <https://github.com/Stephenson-Software/trace-client-csharp>, 0.4.0 |
 | Licence | MIT (stated in the file's header, which is kept as is) |
 
 The one-file client behind the `startup` usage report; see "Usage reporting"
