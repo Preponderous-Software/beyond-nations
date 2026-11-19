@@ -39,7 +39,11 @@ namespace beyondnations.desktop.telemetry {
     * Every switch fails closed: "enabled" reports only when it is true (or the
     * string "true", "on", "yes" or "1"); "false", "off", 0, null or a typo are
     * off, as is a "usageReporting" that is not an object, a settings.json
-    * whose root is not an object, and one that cannot be read.
+    * whose root is not an object, and one that cannot be read. So is an
+    * opt-out written under another spelling: a "usage_reporting",
+    * "usage-reporting" or "UsageReporting" block (or value) that is not clearly
+    * on, or an "enable" / "Enabled" switch that is not clearly on, or a
+    * "disabled" switch that is on, in any such block (see hasNearMissOptOut).
     * Its "endpoint" and "key" entries, when present, override the bundled
     * ones -- which is how a run is pointed at a local server instead of the
     * real one.
@@ -141,12 +145,69 @@ namespace beyondnations.desktop.telemetry {
                             settings.Enabled = enabledFrom(block);
                         }
                     }
+                    if (player.RootElement.ValueKind == JsonValueKind.Object
+                            && hasNearMissOptOut(player.RootElement)) {
+                        // An opt-out written under another spelling is an opt-out.
+                        settings.Enabled = false;
+                    }
                 }
             } catch (Exception e) {
                 warn("could not read " + settingsPath + " (" + e.Message + "); usage reporting stays off until it is fixed");
                 settings.Enabled = false;
             }
             return settings;
+        }
+
+        /**
+        * Whether the settings root holds an attempt to turn usage reporting off
+        * that is not written exactly as "usageReporting": { "enabled": ... }.
+        * Such a setting would not be recognised and the bundled default (on)
+        * would stand. A player who wrote any of these did not ask for
+        * reporting, so each counts as off:
+        *   - a top-level key that spells "usage reporting" another way
+        *     ("usage_reporting", "usage-reporting", "UsageReporting", ...)
+        *     holding a value, or an "enabled"-like key, that is not clearly on;
+        *   - "usageReporting": "off" -- a value instead of a block;
+        *   - inside any such block, a key that spells "enabled" another way
+        *     ("enable", "Enabled", ...) that is not clearly on, or one that
+        *     spells "disabled" whose value is on.
+        */
+        public static bool hasNearMissOptOut(JsonElement root) {
+            foreach (JsonProperty property in root.EnumerateObject()) {
+                if (!normalise(property.Name).Contains("usagereport")) {
+                    continue;
+                }
+                JsonElement value = property.Value;
+                if (value.ValueKind != JsonValueKind.Object) {
+                    if (!enabledFrom(value)) {
+                        return true;
+                    }
+                    continue;
+                }
+                foreach (JsonProperty child in value.EnumerateObject()) {
+                    if (property.Name == "usageReporting" && child.Name == "enabled") {
+                        continue; // the switch itself, read by load
+                    }
+                    string name = normalise(child.Name);
+                    if (name.Contains("disabl") && enabledFrom(child.Value)) {
+                        return true;
+                    }
+                    if (name.Contains("enabl") && !enabledFrom(child.Value)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static string normalise(string key) {
+            System.Text.StringBuilder letters = new System.Text.StringBuilder();
+            foreach (char c in key.ToLowerInvariant()) {
+                if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+                    letters.Append(c);
+                }
+            }
+            return letters.ToString();
         }
 
         private static void readInto(JsonElement block, Settings settings) {
