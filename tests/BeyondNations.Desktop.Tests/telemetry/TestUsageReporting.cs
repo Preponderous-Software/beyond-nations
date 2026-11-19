@@ -257,6 +257,51 @@ namespace beyondnationstests.desktop.telemetry {
             }
         }
 
+        [Theory]
+        [InlineData("{ \"usage_reporting\": { \"enabled\": false } }")]
+        [InlineData("{ \"usage-reporting\": { \"enabled\": \"off\" } }")]
+        [InlineData("{ \"UsageReporting\": { \"enabled\": \"false\" } }")]
+        [InlineData("{ \"usage_reporting\": \"off\" }")]
+        [InlineData("{ \"usageReporting\": { \"enable\": false } }")]
+        [InlineData("{ \"usageReporting\": { \"Enabled\": \"no\" } }")]
+        [InlineData("{ \"usageReporting\": { \"disabled\": true } }")]
+        [InlineData("{ \"usageReporting\": { \"enabled\": true, \"disabled\": \"yes\" } }")]
+        public void testAnOptOutWrittenUnderANearMissNameIsAnOptOut(string json) {
+            // these used to be ignored, leaving the bundled default (on) in force
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings(json);
+
+                TraceClient client = start();
+                client.Dispose();
+
+                Assert.False(client.IsEnabled);
+                Assert.Equal("config", client.DisabledReason);
+                Assert.Equal(json, File.ReadAllText(settingsPath));
+                Assert.Null(stub.Body);
+            }
+        }
+
+        [Theory]
+        [InlineData("{ \"usage_reporting\": { \"enabled\": true } }")]
+        [InlineData("{ \"usage-reporting\": \"on\" }")]
+        [InlineData("{ \"usageReporting\": { \"enabled\": true, \"enable\": \"yes\" } }")]
+        [InlineData("{ \"usageReporting\": { \"enabled\": true, \"disabled\": false } }")]
+        [InlineData("{ \"usageReporting\": { \"enabled\": true, \"disabled\": \"no\" } }")]
+        public void testNearMissNamesThatSayOnAreNotAnOptOut(string json) {
+            using (Stub stub = new Stub()) {
+                writeDefaults(stub.BaseUrl, "test-key");
+                writeSettings(json);
+
+                TraceClient client = start();
+                bool enabled = client.IsEnabled;
+                client.Dispose();
+
+                Assert.True(enabled);
+                Assert.NotNull(stub.Body);
+            }
+        }
+
         [Fact]
         public void testAnEnabledOnStringTurnsReportingOn() {
             using (Stub stub = new Stub()) {
