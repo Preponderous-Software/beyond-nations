@@ -104,7 +104,8 @@ namespace beyondnations.desktop.ui.boxes {
 
         /**
         * "Winter in N days" once winter is WarnDaysAhead days away or nearer,
-        * what winter means while it lasts, and null otherwise.
+        * "Winter in N hours!" through the last day before it, what winter
+        * means while it lasts, and null otherwise.
         */
         public static string getWinterLine(SeasonCalendar calendar) {
             if (calendar.isWinter()) {
@@ -114,7 +115,21 @@ namespace beyondnations.desktop.ui.boxes {
             if (days > WarnDaysAhead) {
                 return null;
             }
+            if (days == 1) {
+                // --- #501 ---
+                // the last day counts down in hours: at 0.8 of it the box still
+                // read "Winter in 1 day!" with winter a few game hours away
+                int hours = hoursLeftInDay(calendar.getTimeOfDay().getFraction());
+                if (hours < 24) {
+                    return "Winter in " + hours + (hours == 1 ? " hour!" : " hours!");
+                }
+            }
             return "Winter in " + days + (days == 1 ? " day!" : " days");
+        }
+
+        /** Game hours (24 to a day) left before midnight, rounded up: 24 at midnight, 1 in the last hour. */
+        public static int hoursLeftInDay(float fraction) {
+            return System.Math.Clamp((int) System.MathF.Ceiling((1f - fraction) * 24f), 1, 24);
         }
 
         /**
