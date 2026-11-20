@@ -85,6 +85,42 @@ namespace beyondnationstests.desktop.ui {
             Assert.StartsWith("Autumn - day 2/", SeasonInfoBox.getSeasonLine(calendarAtDay(winterStarts - 1)));
         }
 
+        private static SeasonCalendar calendarAtTick(long totalTicks) {
+            TickCounter ticks = new TickCounter();
+            TimeOfDay timeOfDay = new TimeOfDay(ticks, TimeOfDay.DefaultTicksPerDay, 0f);
+            for (long i = 0; i < totalTicks; i++) {
+                ticks.increment();
+            }
+            return new SeasonCalendar(timeOfDay);
+        }
+
+        /** #501: through the last day before winter the warning counts hours, not "1 day!". */
+        [Fact]
+        public void testTheLastDayBeforeWinter_CountsDownInHours() {
+            long lastDay = (3L * SeasonCalendar.DAYS_PER_SEASON - 1) * TimeOfDay.DefaultTicksPerDay;
+            long hour = TimeOfDay.DefaultTicksPerDay / 24;
+
+            Assert.Equal("Winter in 1 day!", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay)));
+            // half-hour offsets keep clear of whole-hour float rounding
+            Assert.Equal("Winter in 23 hours!", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay + hour + hour / 2)));
+            Assert.Equal("Winter in 12 hours!", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay + 12 * hour + hour / 2)));
+            // the playtest's moment: 0.8 of the last autumn day
+            Assert.Equal("Winter in 5 hours!", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay + TimeOfDay.DefaultTicksPerDay * 4 / 5)));
+            Assert.Equal("Winter in 1 hour!", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay + TimeOfDay.DefaultTicksPerDay - 1)));
+            Assert.Equal("Winter: no harvests", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay + TimeOfDay.DefaultTicksPerDay)));
+            // two days out still counts days, however late in the day
+            Assert.Equal("Winter in 2 days", SeasonInfoBox.getWinterLine(calendarAtTick(lastDay - 1)));
+        }
+
+        [Fact]
+        public void testHoursLeftInDay_RoundsUpAndStaysInRange() {
+            Assert.Equal(24, SeasonInfoBox.hoursLeftInDay(0f));
+            Assert.Equal(12, SeasonInfoBox.hoursLeftInDay(0.51f));
+            Assert.Equal(5, SeasonInfoBox.hoursLeftInDay(0.8f));
+            Assert.Equal(1, SeasonInfoBox.hoursLeftInDay(0.99f));
+            Assert.Equal(1, SeasonInfoBox.hoursLeftInDay(1f));
+        }
+
         /** #489: the box says why no one is joining while the nation cannot feed its members. */
         [Fact]
         public void testTheFamineLine_ShowsWhileTheNationCannotFeedItsMembers() {
