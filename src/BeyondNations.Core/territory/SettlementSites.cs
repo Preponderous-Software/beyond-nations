@@ -112,9 +112,30 @@ namespace beyondnations {
 
         /** describeTooClose for an open site already found (null for none). */
         public static string describeTooClose(Vector3 position, Settlement tooClose, int minDistance, Vector3? site) {
+            return describeTooClose(position, tooClose, minDistance) + " " + describeOpenSite(position, site);
+        }
+
+        /** "Too close to the Camp of Aland: 175 paces away, and settlements must be 250 paces apart." with no way out named. */
+        private static string describeTooClose(Vector3 position, Settlement tooClose, int minDistance) {
             int distance = (int) Vector3.Distance(position, tooClose.getPosition());
-            return "Too close to the " + tooClose.getDisplayName() + ": " + distance + " paces away, and settlements must be " + minDistance + " paces apart. "
-                + describeOpenSite(position, site);
+            return "Too close to the " + tooClose.getDisplayName() + ": " + distance + " paces away, and settlements must be " + minDistance + " paces apart.";
+        }
+
+        /**
+        * Why founder may not found a settlement at position, or null when it
+        * may: another nation's claim, then a settlement too close, checked as
+        * FoundSettlementCommand checks them. Unlike the command's refusal it
+        * leaves out the way to open ground, so it costs one pass over the
+        * settlements rather than a search, and can grey the Found Settlement
+        * button every frame (#503).
+        */
+        public static string describeWhyNotHere(EntityRepository entityRepository, NationRepository nationRepository, Vector3 position, int minDistance, NationId founder) {
+            string objection = Territory.getFoundingObjection(entityRepository, nationRepository, position, founder);
+            if (objection != null) {
+                return objection + " Found your settlement outside its borders.";
+            }
+            Settlement tooClose = findTooClose(entityRepository, position, minDistance);
+            return tooClose == null ? null : describeTooClose(position, tooClose, minDistance);
         }
     }
 

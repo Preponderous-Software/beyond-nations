@@ -129,6 +129,50 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testWhyNotHere_OpenGround_IsNull() {
+            Nation nation = makePlayerLeader();
+            addSettlementAt(new Vector3(gameConfig.getMinDistanceBetweenSettlements(), 0, 0));
+
+            Assert.Null(SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero,
+                gameConfig.getMinDistanceBetweenSettlements(), nation.getId()));
+        }
+
+        [Fact]
+        public void testWhyNotHere_TooClose_NamesTheSettlementAndSpacing_WithoutTheWayOut() {
+            Nation nation = makePlayerLeader();
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
+            addSettlementAt(new Vector3(minDistance - 1, 0, 0));
+
+            Assert.Equal("Too close to the Camp of Otherland: " + (minDistance - 1) + " paces away, and settlements must be "
+                + minDistance + " paces apart.",
+                SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero, minDistance, nation.getId()));
+        }
+
+        [Fact]
+        public void testWhyNotHere_InsideAnotherNationsClaim_SaysWhoseLand_BeforeTheSpacing() {
+            Nation nation = makePlayerLeader();
+            addSettlementAt(new Vector3(30, 0, 0));
+
+            Assert.Equal("This land is claimed by Otherland. Found your settlement outside its borders.",
+                SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero,
+                    gameConfig.getMinDistanceBetweenSettlements(), nation.getId()));
+        }
+
+        [Fact]
+        public void testWhyNotHere_AgreesWithTheCommand_WhichStillNamesTheWayOut() {
+            makePlayerLeader();
+            player.setPosition(Vector3.Zero);
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
+            addSettlementAt(new Vector3(minDistance - 1, 0, 0));
+            string reason = SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero, minDistance, player.getNationId());
+
+            command.execute(player);
+
+            Assert.Equal(reason + " Open ground lies about 10 paces to the west.", player.getStatus().getStatus());
+        }
+
+        [Fact]
         public void testNearestOpenSite_IsClearOfEverySettlement() {
             makePlayerLeader();
             addSettlementAt(new Vector3(100, 0, 0));
