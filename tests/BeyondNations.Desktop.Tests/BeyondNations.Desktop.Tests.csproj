@@ -30,4 +30,9 @@
     <ProjectReference Include="../../src/BeyondNations.Desktop/BeyondNations.Desktop.csproj" />
   </ItemGroup>
 
+  <!-- The save fakes (ISaveStorage, IClock) live with the save tests in Core.Tests, where the storage contract runs over them. -->
+  <ItemGroup>
+    <Compile Include="../BeyondNations.Core.Tests/save/fakes/*.cs" Link="save/fakes/%(Filename)%(Extension)" />
+  </ItemGroup>
+
 </Project>

@@ -51,18 +51,6 @@ namespace beyondnations {
     }
 
     /**
-    * A save that cannot be loaded: corrupt, from a newer version, or not a
-    * save at all. The message is meant for the player.
-    */
-    public class SaveFormatException : Exception {
-        public SaveFormatException(string message) : base(message) {
-        }
-
-        public SaveFormatException(string message, Exception inner) : base(message, inner) {
-        }
-    }
-
-    /**
     * Reads what SaveWriter wrote, and keeps the one thing a load needs beyond
     * the JSON: identity. Ids compare by value, but the simulation compares
     * entities and nations by reference in places, so every reference to an

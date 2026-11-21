@@ -21,6 +21,7 @@ namespace beyondnations.desktop.ui {
         public const string RunOverFeedback = "Your line has ended, so this world is not saved again; Load brings back the last save.";
 
         private readonly SaveSlots slots;
+        private readonly IClock clock;
         private readonly string gameVersion;
         private readonly bool enabled;
 
@@ -32,8 +33,14 @@ namespace beyondnations.desktop.ui {
         // every save that reached the disk, manual or automatic (--playtest-out reports them)
         private int savesWritten;
 
-        public SaveSession(ISaveStorage storage, string gameVersion, bool enabled) {
+        /** Saves stamped by the machine's clock (SystemClock). */
+        public SaveSession(ISaveStorage storage, string gameVersion, bool enabled)
+            : this(storage, new SystemClock(), gameVersion, enabled) {
+        }
+
+        public SaveSession(ISaveStorage storage, IClock clock, string gameVersion, bool enabled) {
             this.slots = new SaveSlots(storage);
+            this.clock = clock;
             this.gameVersion = gameVersion;
             this.enabled = enabled;
         }
@@ -60,6 +67,11 @@ namespace beyondnations.desktop.ui {
             return feedbackIsError;
         }
 
+        /** A new world gets a slot of its own, named for now; nothing is written until it is first saved. */
+        public void beginNewWorld(Simulation simulation) {
+            beginNewWorld(simulation, clock.utcNow());
+        }
+
         /** A new world gets a slot of its own; nothing is written until it is first saved. */
         public void beginNewWorld(Simulation simulation, DateTime nowUtc) {
             currentSlot = SaveSlots.newSlotName(simulation.getRandom().getSeed(), nowUtc);
@@ -81,7 +93,7 @@ namespace beyondnations.desktop.ui {
                 return false;
             }
             try {
-                SaveHeader header = slots.write(currentSlot, SaveGame.encode(simulation, gameVersion));
+                SaveHeader header = slots.write(currentSlot, SaveGame.encode(simulation, gameVersion, clock.utcNow()));
                 lastSaveTick = simulation.getTickCounter().getTotalTicks();
                 savesWritten++;
                 feedback = (automatic ? "Autosaved: " : "Saved: ") + header.describe() + ", "
