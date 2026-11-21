@@ -77,12 +77,20 @@ namespace beyondnations.desktop.ui {
                     int woodShort = FoundingCost.wood(nation) - inventory.getNumItems(ItemType.WOOD);
                     int stoneShort = FoundingCost.stone(nation) - inventory.getNumItems(ItemType.STONE);
                     bool capped = !nation.canFoundSettlement();
+                    bool affords = woodShort <= 0 && stoneShort <= 0;
+                    // --- #503 --- greyed, too, on another nation's land or too
+                    // near a settlement, with the command's own reason in the
+                    // order it checks: cap, cost, then the ground
+                    string notHere = capped || !affords ? null
+                        : SettlementSites.describeWhyNotHere(entityRepository, nationRepository, player.getPosition(),
+                            simulation.getGameConfig().getMinDistanceBetweenSettlements(), nation.getId());
                     commands.Add(new WorldCommand("Found Settlement", CommandGroup.Nation, () =>
                         new FoundSettlementCommand(nationRepository, simulation.getEventProducer(), entityRepository, simulation.getGameConfig(), simulation.getRandom())
                             .execute(player))
-                        .setEnabled(!capped && woodShort <= 0 && stoneShort <= 0,
+                        .setEnabled(!capped && affords && notHere == null,
                             capped ? EraRules.describeSettlementCap(nation.getSettlementLimit())
-                                : describeShortfall(System.Math.Max(0, woodShort), System.Math.Max(0, stoneShort))));
+                                : !affords ? describeShortfall(System.Math.Max(0, woodShort), System.Math.Max(0, stoneShort))
+                                : notHere));
                 }
 
                 if (!player.isCurrentlyInSettlement() && player.getHomeSettlementId() != null) {
