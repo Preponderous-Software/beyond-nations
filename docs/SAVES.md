@@ -236,6 +236,13 @@ merchant left with no stall in any of its nation's settlements is a serf again.
   files, foreign files, newer versions, header and body that disagree, a world
   that checks out but cannot be built; backups, fallback to the backup, the
   newer-version slot left alone, atomic writes.
+- **Storage** (`SaveStorageContract`): what every `ISaveStorage` promises
+  (an empty storage lists nothing, a write reads back whole, a second write
+  replaces the first, removing nothing is fine, stored bytes are not the
+  caller's arrays), run against the desktop's files and the tests' memory
+  fake. The code's layout -- model, core, ports, adapters -- is in
+  [src/BeyondNations.Core/save/README.md](../src/BeyondNations.Core/save/README.md),
+  and `TestSaveLayers` keeps the core free of files, clocks and adapters.
 - **World events** (`TestWorldEvents`): a world with a pending choice, a bandit camp and a drought round-trips, and the original and the copy, given the same choice, run on the same; v1 and v2 saves load with the world events' clocks started from their first tick, and the v3 fixture loads and plays on.
 - **Migration** (`TestSaveMigrations`): the committed v1 to v6 fixtures load,
   play 1,500 ticks on and save again; a save from before eras (v1 to v4) loads

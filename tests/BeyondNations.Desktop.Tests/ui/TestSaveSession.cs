@@ -9,32 +9,6 @@ using beyondnations.desktop.ui.screens;
 
 namespace beyondnationstests {
 
-    /** Saves held in memory, as localStorage holds them in the browser. */
-    public class MemorySaveStorage : ISaveStorage {
-        public readonly Dictionary<string, byte[]> Files = new Dictionary<string, byte[]>();
-        public string FailWritesWith;
-
-        public IReadOnlyList<string> listNames() {
-            return new List<string>(Files.Keys);
-        }
-
-        public byte[] read(string name) {
-            byte[] data;
-            return Files.TryGetValue(name, out data) ? (byte[]) data.Clone() : null;
-        }
-
-        public void writeAtomically(string name, byte[] data) {
-            if (FailWritesWith != null) {
-                throw new IOException(FailWritesWith);
-            }
-            Files[name] = (byte[]) data.Clone();
-        }
-
-        public void remove(string name) {
-            Files.Remove(name);
-        }
-    }
-
     /**
     * When the host saves, and what it tells the player (docs/SAVES.md).
     */
@@ -145,6 +119,42 @@ namespace beyondnationstests {
             saves.delete(saves.getCurrentSlot());
             Assert.Empty(storage.Files);
             Assert.Empty(saves.list());
+        }
+
+        [Fact]
+        public void testASave_IsStampedWithTheTimeItWasMade_AndSaysItInLocalTime() {
+            MemorySaveStorage storage = new MemorySaveStorage();
+            SaveSession saves = new SaveSession(storage, "test", true);
+            Simulation simulation = world(4);
+            saves.beginNewWorld(simulation, DateTime.UtcNow);
+            DateTime before = DateTime.UtcNow;
+            Assert.True(saves.save(simulation, false));
+            DateTime after = DateTime.UtcNow;
+            SaveHeader header = SaveGame.readHeader(storage.Files[saves.getCurrentSlot() + SaveSlots.Extension]);
+            Assert.InRange(header.SavedAtUtc, before.AddSeconds(-1), after.AddSeconds(1));
+            Assert.Matches(@"^Saved: Day 1 - no nation, \d\d:\d\d\.$", saves.getFeedback());
+            Assert.Equal("Saved: " + header.describe() + ", "
+                + header.SavedAtUtc.ToLocalTime().ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture) + ".",
+                saves.getFeedback());
+        }
+
+        [Fact]
+        public void testTheClock_NamesTheSlot_AndStampsEverySave() {
+            MemorySaveStorage storage = new MemorySaveStorage();
+            FixedClock clock = new FixedClock(new DateTime(2026, 10, 18, 14, 22, 33, DateTimeKind.Utc));
+            SaveSession saves = new SaveSession(storage, clock, "test", true);
+            Simulation simulation = world(4);
+            saves.beginNewWorld(simulation);
+            Assert.Equal("world-4-20261018-142233", saves.getCurrentSlot());
+
+            clock.Now = new DateTime(2026, 10, 18, 15, 0, 0, DateTimeKind.Utc);
+            Assert.True(saves.save(simulation, false));
+            byte[] file = storage.Files["world-4-20261018-142233" + SaveSlots.Extension];
+            Assert.Equal(clock.Now, SaveGame.readHeader(file).SavedAtUtc);
+            Assert.Equal(SaveGame.encode(simulation, "test", clock.Now), file);
+            Assert.Equal("Saved: Day 1 - no nation, "
+                + clock.Now.ToLocalTime().ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture) + ".",
+                saves.getFeedback());
         }
 
         [Fact]

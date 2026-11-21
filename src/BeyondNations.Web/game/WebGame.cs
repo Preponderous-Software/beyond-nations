@@ -184,7 +184,7 @@ namespace beyondnations.web {
                 Log.info("starting render distance: " + simulation.getPlayer().getRenderDistance());
             }
             culler.setEnabled(!options.NoCulling);
-            saves.beginNewWorld(simulation, DateTime.UtcNow);
+            saves.beginNewWorld(simulation);
             feel.beginWorld(simulation, true);
             share.beginWorld(simulation);
             Log.info("world created");

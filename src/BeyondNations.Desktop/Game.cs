@@ -354,7 +354,7 @@ namespace beyondnations.desktop {
             culler.setEnabled(!options.NoCulling);
             // --- end #219 ---
 
-            saves.beginNewWorld(simulation, DateTime.UtcNow);
+            saves.beginNewWorld(simulation);
             feel.beginWorld(simulation, true);
             share.beginWorld(simulation);
             playtest?.worldStarted(simulation, "created", saves.getCurrentSlot());
