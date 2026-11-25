@@ -29,10 +29,14 @@ namespace beyondnations.desktop.ui.screens {
             public readonly string Keys;
             public readonly string Action;
 
-            public Row(string section, string keys, string action) {
+            /** A further line of the row before it, on a narrow screen (wrapRows). */
+            public readonly bool Continues;
+
+            public Row(string section, string keys, string action, bool continues = false) {
                 Section = section;
                 Keys = keys;
                 Action = action;
+                Continues = continues;
             }
         }
 
@@ -60,6 +64,7 @@ namespace beyondnations.desktop.ui.screens {
                 rows.Add(new Row(TouchSection, "Use", "Gather, talk, pick up, enter"));
                 rows.Add(new Row(TouchSection, "Jump / Run", "Jump; run on or off"));
                 rows.Add(new Row(TouchSection, "Button row", "Bag, Craft, Realm (nations), News, View, ?, Menu"));
+                rows.Add(new Row(TouchSection, "Top strip", "Journal; tap the season, a meter or the Next line for more"));
                 rows.Add(new Row(TouchSection, "Drag a panel", "Scroll it; Close (top right) shuts it"));
             }
             const string move = "Moving";
@@ -78,6 +83,7 @@ namespace beyondnations.desktop.ui.screens {
             rows.Add(new Row(act, keys(KeyBindings.PlantSapling), "Plant a sapling"));
             rows.Add(new Row(act, keys(KeyBindings.ToggleInventory), "Inventory"));
             rows.Add(new Row(act, keys(KeyBindings.ToggleCrafting), "Crafting: tools, cooked meat, planks, bricks"));
+            rows.Add(new Row(act, keys(KeyBindings.ToggleJournal), "Journal: goals, chronicle, era, inventory, nation"));
 
             const string nation = "Nations and settlements";
             rows.Add(new Row(nation, keys(KeyBindings.CreateNewNation), "Create a nation"));
@@ -92,9 +98,9 @@ namespace beyondnations.desktop.ui.screens {
             const string view = "View and game";
             rows.Add(new Row(view, "Right mouse (hold)", "Steer and tilt the view"));
             rows.Add(new Row(view, keys(KeyBindings.ToggleCameraView), "First / third person"));
-            rows.Add(new Row(view, keys(KeyBindings.ToggleChronicle), "Chronicle: recent, full history, hidden"));
+            rows.Add(new Row(view, keys(KeyBindings.ToggleChronicle), "Chronicle: news toasts, full history, hidden"));
             rows.Add(new Row(view, keys(KeyBindings.ToggleChronicleScope), "Chronicle: your news / all nations"));
-            rows.Add(new Row(view, "Era box (tap)", "Era: what the next needs, unlocks, victories"));
+            rows.Add(new Row(view, "Top strip (tap)", "Journal; the season, meters and Next line open it too"));
             rows.Add(new Row(view, keys(KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance), "Render distance up / down"));
             rows.Add(new Row(view, keys(KeyBindings.TakeScreenshot), "Screenshot"));
             rows.Add(new Row(view, keys(KeyBindings.ShowControls), "This list"));
@@ -126,6 +132,30 @@ namespace beyondnations.desktop.ui.screens {
                 names.Add(KeyNames.describe(key));
             }
             return string.Join(" / ", names);
+        }
+
+        /** The most of a narrow screen's width the key column takes. */
+        public const float NarrowKeyShare = 0.4f;
+
+        /**
+        * The rows with each one's keys and action wrapped to their columns,
+        * as one row per line: the first line of a row carries its keys (or
+        * their first line) and the rest carry what is left, with Keys empty
+        * when the keys ran out first. assignColumns keeps a row's lines
+        * together. A row that fits stays one line.
+        */
+        public static List<Row> wrapRows(List<Row> rows, float keyWidth, float actionWidth, System.Func<string, float> measure) {
+            List<Row> wrapped = new List<Row>();
+            foreach (Row row in rows) {
+                List<string> keys = TextWrap.wrap(row.Keys, keyWidth, measure);
+                List<string> action = TextWrap.wrap(row.Action, actionWidth, measure);
+                int lines = System.Math.Max(1, System.Math.Max(keys.Count, action.Count));
+                for (int i = 0; i < lines; i++) {
+                    string key = i < keys.Count ? keys[i] : "";
+                    wrapped.Add(new Row(row.Section, key, i < action.Count ? action[i] : "", i > 0));
+                }
+            }
+            return wrapped;
         }
 
         public const string PreviousLabel = "< Prev";
@@ -160,7 +190,9 @@ namespace beyondnations.desktop.ui.screens {
                     }
                     lines += gap + 1;
                     last = rows[i].Section;
-                } else if (lines >= linesPerColumn) {
+                } else if (lines >= linesPerColumn
+                        || (!rows[i].Continues && lines + linesOf(rows, i) > linesPerColumn && linesOf(rows, i) < linesPerColumn)) {
+                    // a wrapped row starts a column rather than split, unless it is taller than one
                     current++;
                     lines = 1;
                 }
@@ -168,6 +200,15 @@ namespace beyondnations.desktop.ui.screens {
                 lines++;
             }
             return column;
+        }
+
+        /** How many lines the row at index takes: itself and the lines that continue it. */
+        private static int linesOf(List<Row> rows, int index) {
+            int count = 1;
+            while (index + count < rows.Count && rows[index + count].Continues) {
+                count++;
+            }
+            return count;
         }
 
         public UiAction draw(float width, float height) {
@@ -201,6 +242,15 @@ namespace beyondnations.desktop.ui.screens {
                 actionColumn = System.MathF.Max(actionColumn, ImGui.CalcTextSize(row.Action).X);
             }
             float columnWidth = keyColumn + gutter + actionColumn;
+            // a screen narrower than one column (a phone held upright, #468)
+            // wraps each row into the width it has, rather than run off the edge
+            float available = width - margin * 2f;
+            if (columnWidth > available) {
+                keyColumn = System.MathF.Min(keyColumn, available * NarrowKeyShare);
+                actionColumn = System.MathF.Max(UiScale.px(40f), available - keyColumn - gutter);
+                rows = wrapRows(rows, keyColumn, actionColumn, label => ImGui.CalcTextSize(label).X);
+                columnWidth = keyColumn + gutter + actionColumn;
+            }
             int across = System.Math.Clamp((int) ((width - margin) / (columnWidth + margin)), 1, 3);
             int linesPerColumn = (int) ((listBottom - top) / lineHeight);
             int[] column = assignColumns(rows, linesPerColumn);

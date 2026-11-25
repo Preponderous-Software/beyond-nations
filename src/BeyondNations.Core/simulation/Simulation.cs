@@ -903,6 +903,8 @@ namespace beyondnations {
             StallOwnership.reconcile(entityRepository, nationRepository);
             // the era's limits on the player's nation are derived, not saved
             eraTracker.applyRules(this);
+            // nor are the strangers left, which the members hint reads
+            eraTracker.countPeople(this);
         }
 
         /**

@@ -95,6 +95,9 @@ namespace beyondnationstests.desktop.ui {
             foreach (string label in new[] { "Village", "Town", "Towns", "Members", "Stalls", "Settlements", "Funds", "Day" }) {
                 lines.Add(ObjectiveKeyNames.resolve(EraRules.hintFor(new EraRequirement(label, 0, 3))));
             }
+            // how to gain members once no stranger is left, or the world is full
+            lines.Add(ObjectiveKeyNames.resolve(ObjectiveCatalog.NoStrangersMembersHint));
+            lines.Add(ObjectiveKeyNames.resolve(ObjectiveCatalog.WorldFullMembersHint));
 
             // panel footers and help lines
             lines.Add(TitleScreen.continueHint());

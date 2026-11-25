@@ -1,0 +1,163 @@
+{"t": 1794813984586, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/beyond-nations", "--seed", "103", "--season", "autumn", "--advance-ticks", "25000"]}
+{"t": 1794813987854, "cmd": "key", "args": ["space"]}
+{"t": 1794813990295, "cmd": "shot", "args": ["menu"]}
+{"t": 1794813994661, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794813997360, "cmd": "click", "args": ["480", "315"]}
+{"t": 1794813998056, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1794814001694, "cmd": "shot", "args": ["w0"]}
+{"t": 1794814001896, "cmd": "state", "args": []}
+{"t": 1794814016383, "cmd": "click", "args": ["425", "389"]}
+{"t": 1794814017080, "cmd": "key", "args": ["n"]}
+{"t": 1794814019530, "cmd": "shot", "args": ["n1"]}
+{"t": 1794814019783, "cmd": "state", "args": []}
+{"t": 1794814025085, "cmd": "key", "args": ["f"]}
+{"t": 1794814027578, "cmd": "state", "args": []}
+{"t": 1794814027636, "cmd": "shot", "args": ["f1"]}
+{"t": 1794814031196, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814040374, "cmd": "key", "args": ["e"]}
+{"t": 1794814041351, "cmd": "key", "args": ["e"]}
+{"t": 1794814042342, "cmd": "key", "args": ["e"]}
+{"t": 1794814043313, "cmd": "key", "args": ["e"]}
+{"t": 1794814044267, "cmd": "key", "args": ["e"]}
+{"t": 1794814045245, "cmd": "key", "args": ["e"]}
+{"t": 1794814046223, "cmd": "state", "args": []}
+{"t": 1794814053251, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814057799, "cmd": "key", "args": ["e"]}
+{"t": 1794814058271, "cmd": "key", "args": ["e"]}
+{"t": 1794814058746, "cmd": "key", "args": ["e"]}
+{"t": 1794814059231, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814064934, "cmd": "key", "args": ["e"]}
+{"t": 1794814065410, "cmd": "key", "args": ["e"]}
+{"t": 1794814065881, "cmd": "key", "args": ["e"]}
+{"t": 1794814066364, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814076222, "cmd": "key", "args": ["e"]}
+{"t": 1794814076691, "cmd": "key", "args": ["e"]}
+{"t": 1794814077167, "cmd": "key", "args": ["e"]}
+{"t": 1794814077653, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814082861, "cmd": "key", "args": ["e"]}
+{"t": 1794814083342, "cmd": "key", "args": ["e"]}
+{"t": 1794814083804, "cmd": "key", "args": ["e"]}
+{"t": 1794814084270, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814093878, "cmd": "key", "args": ["e"]}
+{"t": 1794814094319, "cmd": "key", "args": ["e"]}
+{"t": 1794814094785, "cmd": "key", "args": ["e"]}
+{"t": 1794814095259, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814114338, "cmd": "key", "args": ["e"]}
+{"t": 1794814114809, "cmd": "key", "args": ["e"]}
+{"t": 1794814115259, "cmd": "key", "args": ["e"]}
+{"t": 1794814115731, "cmd": "state", "args": []}
+{"t": 1794814118318, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814126360, "cmd": "key", "args": ["e"]}
+{"t": 1794814126843, "cmd": "key", "args": ["e"]}
+{"t": 1794814127313, "cmd": "key", "args": ["e"]}
+{"t": 1794814127780, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814136569, "cmd": "key", "args": ["e"]}
+{"t": 1794814137046, "cmd": "key", "args": ["e"]}
+{"t": 1794814137518, "cmd": "key", "args": ["e"]}
+{"t": 1794814137995, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814146909, "cmd": "key", "args": ["e"]}
+{"t": 1794814147438, "cmd": "key", "args": ["e"]}
+{"t": 1794814147928, "cmd": "key", "args": ["e"]}
+{"t": 1794814148398, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814213529, "cmd": "key", "args": ["e"]}
+{"t": 1794814214006, "cmd": "key", "args": ["e"]}
+{"t": 1794814214488, "cmd": "key", "args": ["e"]}
+{"t": 1794814215022, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814278174, "cmd": "key", "args": ["e"]}
+{"t": 1794814278611, "cmd": "key", "args": ["e"]}
+{"t": 1794814279052, "cmd": "key", "args": ["e"]}
+{"t": 1794814279492, "cmd": "state", "args": []}
+{"t": 1794814283034, "cmd": "shot", "args": ["ev1"]}
+{"t": 1794814288564, "cmd": "note", "args": ["--shot", "emdash_missing", "World event 'A claimant stirs' option 3 description reads 'Nothing now   but if the claimant wins...' - a gap where a dash glyph should be (font lacks em dash?)"]}
+{"t": 1794814288750, "cmd": "click", "args": ["480", "465"]}
+{"t": 1794814290471, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814297903, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794814299210, "cmd": "state", "args": []}
+{"t": 1794814302232, "cmd": "walkto", "args": ["tree"]}
+{"t": 1794814306731, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794814308014, "cmd": "key", "args": ["f"]}
+{"t": 1794814310495, "cmd": "shot", "args": ["settle"]}
+{"t": 1794814310672, "cmd": "state", "args": []}
+{"t": 1794814314574, "cmd": "face", "args": ["127"]}
+{"t": 1794814318220, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1794814324364, "cmd": "key", "args": ["f"]}
+{"t": 1794814326875, "cmd": "state", "args": []}
+{"t": 1794814335450, "cmd": "walkto", "args": ["pawn"]}
+{"t": 1794814344662, "cmd": "shot", "args": ["pawn1"]}
+{"t": 1794814344853, "cmd": "state", "args": []}
+{"t": 1794814351238, "cmd": "state", "args": ["--full"]}
+{"t": 1794814354545, "cmd": "walkto", "args": ["settlement"]}
+{"t": 1794814366573, "cmd": "key", "args": ["e"]}
+{"t": 1794814369067, "cmd": "shot", "args": ["inside"]}
+{"t": 1794814369269, "cmd": "state", "args": []}
+{"t": 1794814373668, "cmd": "click", "args": ["583", "438"]}
+{"t": 1794814376382, "cmd": "shot", "args": ["stay"]}
+{"t": 1794814376510, "cmd": "state", "args": []}
+{"t": 1794814387427, "cmd": "click", "args": ["375", "476"]}
+{"t": 1794814389130, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794814407600, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794814408859, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794814418497, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794814419759, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794814428578, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794814429832, "cmd": "walkto", "args": ["tree", "40"]}
+{"t": 1794814437307, "cmd": "key", "args": ["e", "e", "e"]}
+{"t": 1794814438562, "cmd": "state", "args": []}
+{"t": 1794814588942, "cmd": "key", "args": ["h"]}
+{"t": 1794814595526, "cmd": "shot", "args": ["home1"]}
+{"t": 1794814595742, "cmd": "state", "args": []}
+{"t": 1794814605930, "cmd": "note", "args": ["--shot", "winter_warning", "Winter warning banner a day ahead: 'Northernfield's 3 members carry 59 food of the 36 they need for winter; 1 is short.' Clear and honest-looking; Season box agrees (Food: 59 of 36)."]}
+{"t": 1794814606126, "cmd": "click", "args": ["205", "476"]}
+{"t": 1794814608861, "cmd": "shot", "args": ["in2"]}
+{"t": 1794814609037, "cmd": "state", "args": []}
+{"t": 1794814611825, "cmd": "click", "args": ["583", "438"]}
+{"t": 1794814614568, "cmd": "shot", "args": ["in3"]}
+{"t": 1794814626324, "cmd": "note", "args": ["--shot", "feed_disabled", "Banner says '1 is short. Bring food home and Feed Residents.' but inside my settlement the button reads 'Feed Residents (0 hungry)' and is disabled; camp label says '0 here, 4/8 residents' though member Katie Williams stands inside the ring. No screen says WHICH member is short or where they are, so the advice cannot be followed."]}
+{"t": 1794814626498, "cmd": "state", "args": []}
+{"t": 1794814634880, "cmd": "walkto", "args": ["pawn"]}
+{"t": 1794814648093, "cmd": "shot", "args": ["gift0"]}
+{"t": 1794814655137, "cmd": "wait", "args": ["90"]}
+{"t": 1794814745285, "cmd": "state", "args": []}
+{"t": 1794814745339, "cmd": "shot", "args": ["wait1"]}
+{"t": 1794814755265, "cmd": "click", "args": ["130", "445"]}
+{"t": 1794814757970, "cmd": "shot", "args": ["fed1"]}
+{"t": 1794814758260, "cmd": "events", "args": ["6"]}
+{"t": 1794814762528, "cmd": "wait", "args": ["100"]}
+{"t": 1794814862680, "cmd": "state", "args": []}
+{"t": 1794814862750, "cmd": "shot", "args": ["wait2"]}
+{"t": 1794814868219, "cmd": "click", "args": ["130", "445"]}
+{"t": 1794814870972, "cmd": "events", "args": ["4"]}
+{"t": 1794814871037, "cmd": "shot", "args": ["fed2"]}
+{"t": 1794814876128, "cmd": "wait", "args": ["80"]}
+{"t": 1794814956262, "cmd": "state", "args": []}
+{"t": 1794814956318, "cmd": "shot", "args": ["w_start"]}
+{"t": 1794814959510, "cmd": "wait", "args": ["60"]}
+{"t": 1794815019662, "cmd": "state", "args": []}
+{"t": 1794815019746, "cmd": "shot", "args": ["w_start2"]}
+{"t": 1794815028927, "cmd": "note", "args": ["--shot", "winter_day1_start", "Winter day 1/2 begins (tick ~171400): Season box 'Food: 78 of 72 for winter', 3 low on food. 30 ticks of game minute earlier (tick 167689) it read 101 of 72 right after I stocked everyone; 23 food gone in ~3700 ticks (~74 game s) before winter even started."]}
+{"t": 1794815029149, "cmd": "click", "args": ["130", "445"]}
+{"t": 1794815031850, "cmd": "events", "args": ["4"]}
+{"t": 1794815031883, "cmd": "shot", "args": ["fed3"]}
+{"t": 1794815039761, "cmd": "wait", "args": ["90"]}
+{"t": 1794815129868, "cmd": "state", "args": []}
+{"t": 1794815129917, "cmd": "shot", "args": ["wd1"]}
+{"t": 1794815140244, "cmd": "note", "args": ["--shot", "famine_line", "Winter day 1 (tick ~176000): Food fell 83 -> 68 of 72 in ~4200 ticks (84 game s) with 6 members sheltering at home; 'Too little food: no births or newcomers' appears correctly. At this burn (~0.18 food/member/game-minute... ~15 food per 84 s for 6) the 12-per-member target covers well under one winter day, not the whole winter."]}
+{"t": 1794815140539, "cmd": "click", "args": ["312", "445"]}
+{"t": 1794815143265, "cmd": "shot", "args": ["purchase"]}
+{"t": 1794815143519, "cmd": "events", "args": ["4"]}
+{"t": 1794815146786, "cmd": "click", "args": ["130", "445"]}
+{"t": 1794815148544, "cmd": "events", "args": ["3"]}
+{"t": 1794815148620, "cmd": "shot", "args": ["fed4"]}
+{"t": 1794815148957, "cmd": "wait", "args": ["100"]}
+{"t": 1794815249110, "cmd": "state", "args": []}
+{"t": 1794815249155, "cmd": "shot", "args": ["wd2"]}
+{"t": 1794815256776, "cmd": "wait", "args": ["100"]}
+{"t": 1794815356891, "cmd": "state", "args": []}
+{"t": 1794815356932, "cmd": "shot", "args": ["wd3"]}
+{"t": 1794815361535, "cmd": "click", "args": ["480", "348"]}
+{"t": 1794815363238, "cmd": "wait", "args": ["100"]}
+{"t": 1794815463328, "cmd": "state", "args": []}
+{"t": 1794815463361, "cmd": "shot", "args": ["wd4"]}
+{"t": 1794815471288, "cmd": "note", "args": ["--shot", "winter_midday", "Winter day 1 midday (tick 186769): Food 51 of 72, 6 members, no deaths, no newcomers or births since the famine line appeared. Burn since winter start ~0.0024 food/tick for 6 members (~37 food in 15300 ticks incl. ~10 I handed out); projects to empty around tick ~208000, early winter day 2 of 2. Player is out of apples (1 left) and trees are bare."]}
+{"t": 1794815471416, "cmd": "stop", "args": []}
+{"t": 1794815495818, "cmd": "report", "args": []}

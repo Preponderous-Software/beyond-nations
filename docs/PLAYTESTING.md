@@ -62,7 +62,7 @@ tools/playtest/pt.sh state                            # compact state.json
 tools/playtest/pt.sh walkto tree                      # turn to it, walk until within reach
 tools/playtest/pt.sh key e                            # chop
 tools/playtest/pt.sh events 5                         # what the game says happened
-tools/playtest/pt.sh note --shot hud "the season box is cut off"
+tools/playtest/pt.sh note --shot hud "the season chip is cut off"
 tools/playtest/pt.sh stop
 ```
 

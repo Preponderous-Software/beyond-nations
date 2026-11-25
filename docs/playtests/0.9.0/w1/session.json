@@ -1,0 +1,27 @@
+{
+  "session": "w1",
+  "dir": "<pt-root>/w1",
+  "profile": "beyond-nations",
+  "display": ":102",
+  "window": "2097159",
+  "size": "960x540",
+  "seed": "103",
+  "args": [],
+  "command": [
+    "/root/wt/bn-integration/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
+    "--width",
+    "960",
+    "--height",
+    "540",
+    "--no-usage-reporting",
+    "--seed",
+    "103",
+    "--playtest-out",
+    "<pt-root>/w1/out"
+  ],
+  "probe": true,
+  "ticksPerSecond": 50,
+  "startedAtMs": 1795556203165,
+  "version": "0.8.1-SNAPSHOT",
+  "commit": "2167959c"
+}

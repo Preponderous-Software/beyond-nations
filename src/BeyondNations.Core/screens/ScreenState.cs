@@ -51,7 +51,8 @@ namespace beyondnations {
                 || screen == ScreenType.SUCCESSION
                 || screen == ScreenType.SHARE
                 || screen == ScreenType.END_OF_RUN
-                || screen == ScreenType.SETTLEMENT;
+                || screen == ScreenType.SETTLEMENT
+                || screen == ScreenType.JOURNAL;
         }
 
         /**
@@ -144,6 +145,25 @@ namespace beyondnations {
         }
 
         /**
+        * The journal key opens the Journal from the world and closes it
+        * again, as the inventory key does for the inventory.
+        */
+        public void journalPressed() {
+            if (current == ScreenType.WORLD) {
+                goTo(ScreenType.JOURNAL);
+            } else if (current == ScreenType.JOURNAL) {
+                goTo(ScreenType.WORLD);
+            }
+        }
+
+        /** The HUD's Journal button: opens it from the world; means nothing elsewhere. */
+        public void openJournal() {
+            if (current == ScreenType.WORLD) {
+                goTo(ScreenType.JOURNAL);
+            }
+        }
+
+        /**
         * Opens the settlement screen (#178) from the world -- on entering a
         * settlement, or from the command bar inside one -- or from the
         * nations screen's list of settlements. It closes back to where it
@@ -190,7 +210,7 @@ namespace beyondnations {
                 return true;
             }
             if (current == ScreenType.INVENTORY || current == ScreenType.NATIONS || current == ScreenType.CRAFTING
-                    || current == ScreenType.SUCCESSION) {
+                    || current == ScreenType.SUCCESSION || current == ScreenType.JOURNAL) {
                 goTo(ScreenType.WORLD);
                 return true;
             }

@@ -1,0 +1,87 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter as a prepared ruler. You start on the eve of winter (autumn, advanced). Watch the Season box and the winter warning: is the food target honest and reachable? Use Feed Residents / stores to prepare, then play into winter. Measure: food per member at winter start and through winter, whether stores run out (and on which winter day), member deaths, and whether members join or are born while the nation is short of food (the Season box should say 'Too little food: no births or newcomers'). Report whether a prepared ruler gets through winter.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "c392340b"},
+  "seed": 103,
+  "durationSec": 1487,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "Winter food target (12 per member) is not honest: a nation meeting it burns most of it in half a winter day",
+      "detail": "I stocked every member to the target with Feed Residents before winter (Season box 101 of 72 at tick 167689, banner gone). By winter day 1 start (tick ~171400) it read 78 of 72; by tick 176481 68 of 72 (famine line on); after two more Feed Residents presses (~10 apples) it was 51 of 72 at tick 186769, winter day 1 midday, with all 6 members sheltering at home. Burn ~0.0024 food/tick for 6 members, i.e. ~24 food per member per 2-day winter, about twice the 12 the Season box and banner aim at. At this rate the stores empty around tick ~208000, early on winter day 2 of 2. Expected: a nation shown as 'Food: N of N for winter' to see out the winter, as the WINTER_FOOD_STORE comment promises.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn --advance-ticks 25000; N to create a nation; chop ~13 trees; F to found; enter settlement, Stay Inside; press Feed Residents whenever it shows 'low on food'; pt wait and read the Season box Food line every ~90 s.",
+      "screenshot": "shots/famine_line.png",
+      "tick": 176481
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Stocked food evaporates before winter starts: 101 -> 78 in ~3700 ticks right after Feed Residents",
+      "detail": "Right after stocking everyone (101 of 72, tick 167689) the total fell 23 in ~74 game seconds while still autumn. Food handed over above 12 per pawn seems to rot or be eaten immediately, so the margin a careful ruler builds is lost and 3 members were 'low on food' again by the first winter morning. Nothing on screen explains where the food went.",
+      "repro": "As above; read Season box at tick ~167700 and again at ~171400.",
+      "screenshot": "shots/winter_day1_start.png",
+      "tick": 171837
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Winter banner says 'Feed Residents' but the button is disabled and nothing says which member is short or where",
+      "detail": "Banner: 'Northernfield's 3 members carry 59 food of the 36 they need for winter; 1 is short. Bring food home and Feed Residents.' Inside my camp the button read 'Feed Residents (0 hungry)' (disabled) and the camp label said '0 here, 4/8 residents' though member Katie Williams stood inside the ring. Only members physically in the settlement count, and no screen names the short member, so the advice could not be followed until the pawn happened to come home.",
+      "repro": "As above; enter settlement around tick 160600 while banner says 1 is short.",
+      "screenshot": "shots/feed_disabled.png",
+      "tick": 161005
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Purchase Food button is enabled in a settlement with no stalls, then just says there are none",
+      "detail": "In winter, short on food, I pressed Purchase Food in my Camp: status 'This settlement does not have any stalls.' The button looked available; it should be disabled with the reason as its tooltip, as Trade at Market is.",
+      "repro": "Found a settlement with no stall, enter it, press Purchase Food.",
+      "screenshot": "shots/purchase.png",
+      "tick": 176505
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Own nation's members are labelled 'Stranger' in Talk button",
+      "detail": "Members who joined Northernfield (Katie Williams, Harriet Evans, Alice Walker) show 'Talk to X (Stranger)' while their nameplate says 'Loyal'. Reads as a contradiction for a ruler's own people.",
+      "repro": "Stand near any member in your settlement and read the command bar.",
+      "screenshot": "shots/wait1.png",
+      "tick": 163985
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "World event option text has a blank gap where a dash should be",
+      "detail": "'A claimant stirs' option 3 reads 'Nothing now   but if the claimant wins anyway, they will remember.' The font likely lacks the em dash glyph.",
+      "repro": "Play until the 'A claimant stirs' world event (tick ~150754 on seed 103).",
+      "screenshot": "shots/emdash_missing.png",
+      "tick": 150754
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "secondsToObjective": {
+      "Gather wood": 2952.0,
+      "Eat something": 2991.0,
+      "Create or join a nation": 2992.0,
+      "Found a settlement": 3038.0,
+      "Enter your settlement": 3054.7
+    },
+    "membersAtWinterStart": 6,
+    "foodAtWinterStart": 78,
+    "foodTargetAtWinterStart": 72,
+    "foodPerMemberAtWinterStart": 13.0,
+    "foodPerMemberWinterDay1Midday": 8.5,
+    "foodBurnPerTickWinter": 0.0024,
+    "projectedStoresEmptyWinterDay": 2,
+    "observedWinterTicks": 15300,
+    "joinsOrBirthsWhileShort": 0,
+    "applesHandedOutWithFeedResidents": 22
+  },
+  "fun": 3,
+  "verdict": "The winter warning, Season box food line and famine line all work and read clearly, and Feed Residents is a satisfying one-press stock-up; no one joined or was born once food fell short. But the 12-per-member target is about half of what members actually eat at home: a ruler who stocked everyone to the target was already below it on the first winter morning and projects to run dry early on winter day 2, with trees bare and no stall to buy from. I observed only half of winter day 1 (no deaths yet), so survival through the whole winter is unconfirmed but looks unlikely without a larger store."
+}

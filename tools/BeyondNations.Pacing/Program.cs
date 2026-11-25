@@ -116,6 +116,7 @@ namespace beyondnations.pacing {
             }
 
             List<PacingFinding> findings = budget == null ? new List<PacingFinding>() : PacingCheck.check(runs, budget);
+            findings.AddRange(PacingUnlocks.check(runs));
             Directory.CreateDirectory(outDir);
             string markdown = PacingReport.markdown(runs, budget, findings);
             File.WriteAllText(Path.Combine(outDir, "pacing-report.md"), markdown);

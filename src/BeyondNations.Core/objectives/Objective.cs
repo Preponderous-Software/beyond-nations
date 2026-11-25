@@ -32,13 +32,13 @@ namespace beyondnations {
         }
 
         public string getId() { return id; }
-        public string getTitle() { return title; }
-        public ObjectiveReward getReward() { return reward; }
+        public virtual string getTitle() { return title; }
+        public virtual ObjectiveReward getReward() { return reward; }
 
         /** True for the endless goals that follow the first arc. */
         public bool isAmbition() { return ambition; }
 
-        public ObjectiveProgress evaluate(Simulation simulation) {
+        public virtual ObjectiveProgress evaluate(Simulation simulation) {
             return progress(simulation);
         }
 
@@ -46,7 +46,7 @@ namespace beyondnations {
         * The hint, still carrying "{HintKey}" tokens; the host resolves them
         * with ObjectiveHint.resolve.
         */
-        public string getHint(Simulation simulation) {
+        public virtual string getHint(Simulation simulation) {
             return hint(simulation) ?? "";
         }
     }

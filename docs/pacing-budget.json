@@ -56,7 +56,7 @@
       "title": "Reach the Village era",
       "minSeconds": 300,
       "maxSeconds": 1800,
-      "note": "The Village era (EraRules): a village, 10 members, 2 stalls and day 2. Aimed at 7-15 minutes of play: the courting bot meets the rest within two minutes and waits for day 2 (7m 00s from the start, 6m 33s to 6m 47s after the previous step on seeds 1 to 5); a player who never courts is held by the members on 8 of 10 seeds and gets there in 7 to 14 minutes (docs/PACING.md). It was day 3 (17 minutes) until #352 found the wait for it was 14 minutes with nothing to do. Under 5 minutes would mean the era no longer waits for its day."
+      "note": "The Village era (EraRules): a village, 10 members, 2 stalls and day 2. Aimed at 7-15 minutes of play: the courting bot meets the rest within two minutes and waits for day 2 (7m 00s from the start, 6m 33s to 6m 47s after the previous step on seeds 1 to 5); a player who never courts gets there in 7m 00s to 11m 11s on seeds 1 to 10, held by the members on 5 of them (re-measured for #371 on 0.8.1-SNAPSHOT; docs/PACING.md, Recruiting). It was day 3 (17 minutes) until #352 found the wait for it was 14 minutes with nothing to do. Under 5 minutes would mean the era no longer waits for its day."
     },
     {
       "id": "sell-resources",
@@ -73,26 +73,27 @@
     },
     {
       "id": "ambition-0",
-      "title": "Grow your nation to 16",
+      "title": "Grow your nation to 34",
       "minSeconds": 5,
       "maxSeconds": 2400,
       "advisory": true,
-      "note": "Advisory: recruiting slows once every settler has a nation (docs/PACING.md)."
+      "note": "Advisory. The target is the nation's members when the ambition appears plus 5, never below the era's floor (ScaledAmbition): it was \"Grow your nation to 16\", met within a second on every seed. Now 34 to 40 members on seeds 1 to 5 (23 on seed 2) and 35 to 127 s (docs/PACING.md, Ambitions). Once no stranger is left it asks for 3 more buildings instead."
     },
     {
       "id": "ambition-1",
-      "title": "Amass 1000 coins",
+      "title": "Amass 1200 coins",
       "minSeconds": 30,
       "maxSeconds": 3900,
       "advisory": true,
-      "note": "Advisory. Raised from 500 to 1,000 for the Village era: the arc's rewards and treasuries passed 500 before it came up."
+      "note": "Advisory. The target is the nation's funds when the ambition appears plus a fifth (at least 500), rounded up to a hundred, never below the era's floor of 1,000: 1,100 to 1,400 on seeds 1 to 5, 37 to 68 s. It was a flat 1,000, met within a second on three seeds of five without courting."
     },
     {
       "id": "ambition-2",
-      "title": "Hold 3 settlements",
+      "title": "Put up 29 buildings",
       "minSeconds": 0,
       "maxSeconds": 300,
-      "advisory": true
+      "advisory": true,
+      "note": "One settlement more than the nation holds; at the Village era's limit of three, 3 more buildings than it has. It was \"Hold 3 settlements\", met within a second on four seeds of five; now 6 to 30 s."
     },
     {
       "id": "ambition-3",
@@ -100,15 +101,15 @@
       "minSeconds": 0,
       "maxSeconds": 5400,
       "advisory": true,
-      "note": "The Town era: a town, 18 members, 2 settlements, 1,000 funds and day 7. Aimed at about an hour; see docs/PACING.md for the measured times. Often reached before the ambition comes up, so no minimum. Advisory: on some seeds recruiting stalls short of 18 members."
+      "note": "The Town era: a town, 18 members, 2 settlements, 1,000 funds and day 4. Aimed at about half an hour (it was day 7, and the bot waited 47 minutes on the calendar alone); see docs/PACING.md for the measured times. Often reached before the ambition comes up, so no minimum. Advisory: on some seeds recruiting stalls short of 18 members."
     },
     {
       "id": "ambition-4",
-      "title": "Grow your nation to 25",
-      "minSeconds": 300,
-      "maxSeconds": 3600,
+      "title": "Put up 35 buildings",
+      "minSeconds": 0,
+      "maxSeconds": 600,
       "advisory": true,
-      "note": "Advisory: the Kingdom era's members, which the bot is slow to recruit."
+      "note": "Advisory. The members ambition of the Town era. By then no stranger is left on any seed, so it asks for 3 more buildings (room for births and newcomers) rather than members, which then barely grow: asked for 5 more, the bot sat on \"Grow your nation to 87\" for three and a half hours. It was \"Grow your nation to 25\", met within a second on every seed, against a minimum of 300 s that this entry had only because it was advisory. Now 6 to 34 s: the bot builds as soon as it is asked and has the stone, so no minimum."
     }
   ],
   "milestones": [
@@ -126,6 +127,11 @@
       "id": "succession",
       "title": "The rule passes to an heir",
       "maxSeconds": 3600
+    },
+    {
+      "id": "town-era",
+      "title": "Reach the Town era",
+      "maxSeconds": 2400
     }
   ]
 }

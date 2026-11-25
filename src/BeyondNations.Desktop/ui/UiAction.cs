@@ -40,6 +40,10 @@ namespace beyondnations.desktop.ui {
         NewWorld,
         // the settlement screen (#178): back to the world or the nations
         // screen it was opened from
-        CloseSettlement
+        CloseSettlement,
+        // the Journal, on the tab JournalScreen.open was given
+        OpenJournal,
+        // the world HUD's top strip: the pause menu
+        OpenPause
     }
 }

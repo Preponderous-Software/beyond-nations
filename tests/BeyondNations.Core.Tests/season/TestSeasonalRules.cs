@@ -257,6 +257,7 @@ namespace beyondnationstests {
             float foodPerPawnLateWinter = -1;
             int stallFoodLateWinter = -1;
             float emptyHandedLateWinter = -1;
+            int deathsAtWinter = -1;
             for (int i = 0; i < ticks; i++) {
                 simulation.fixedUpdate(1f / 50f);
                 if (i % 3000 != 0 || i <= 30000) {
@@ -280,6 +281,7 @@ namespace beyondnationstests {
                     continue;
                 }
                 if (foodPerPawnAtWinter < 0) {
+                    deathsAtWinter = simulation.getNumPawnDeaths();
                     foodPerPawnAtWinter = foodPerPawn;
                     stallFoodAtWinter = countStallFood(simulation);
                 }
@@ -310,6 +312,13 @@ namespace beyondnationstests {
             Assert.True(fewestPawns >= 60, "the population fell to " + fewestPawns);
             Assert.True(simulation.getNumPawnDeaths() < 40, simulation.getNumPawnDeaths() + " pawns died in a year");
             Assert.True(simulation.getEntityRepository().getNumEntitiesOfType(EntityType.TREE) > 200, "spring brings the trees back");
+
+            // and winter still bites (#504): after the 0.8.0 food fixes seed 42 lost 2
+            // pawns a winter, with starving pawns indoors burning at a quarter of the
+            // rate; at 0.4 (SeasonalRules.WINTER_SHELTER_MULTIPLIER) it loses 12, and
+            // seeds 41-56 average 5.4. The floor is well under that, not a measurement.
+            int winterDeaths = simulation.getNumPawnDeaths() - deathsAtWinter;
+            Assert.True(winterDeaths >= 4, "only " + winterDeaths + " pawns died in winter");
 
             // and spring recovers rather than starving on: over the first half of the
             // second spring, measured 2 deaths (0 before pawn energy was capped at a

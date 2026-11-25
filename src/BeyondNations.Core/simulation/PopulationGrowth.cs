@@ -111,8 +111,7 @@ namespace beyondnations {
 
         /** Whether a nation cannot feed its members now (WinterStores.cannotFeed), so it neither bears nor draws newcomers. */
         public bool cannotFeed(NationId nationId) {
-            Season season = seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
-            return WinterStores.cannotFeed(entityRepository, nationId, season);
+            return WinterStores.cannotFeed(entityRepository, nationId, seasonCalendar);
         }
 
         public int getNumBirths() { return numBirths; }

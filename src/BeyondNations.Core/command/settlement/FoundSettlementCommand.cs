@@ -54,21 +54,10 @@ namespace beyondnations {
                 return;
             }
 
-            // never inside another nation's land; the refusal says which way open ground lies
-            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
-            string objection = Territory.getFoundingObjection(entityRepository, nationRepository, player.getPosition(), nation.getId());
-            if (objection != null) {
-                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
-                player.getStatus().update(objection + " Found your settlement outside its borders. "
-                    + SettlementSites.describeOpenSite(player.getPosition(), site));
-                return;
-            }
-
-            // nor within the minimum distance of another settlement: name it, and the way out
-            Settlement tooClose = SettlementSites.findTooClose(entityRepository, player.getPosition(), minDistance);
-            if (tooClose != null) {
-                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, player.getPosition(), minDistance, nation.getId()));
-                player.getStatus().update(SettlementSites.describeTooClose(player.getPosition(), tooClose, minDistance, site));
+            // never inside another nation's land, nor too near a settlement; the refusal says which way open ground lies
+            string groundRefusal = explainGround(player, nation.getId());
+            if (groundRefusal != null) {
+                player.getStatus().update(groundRefusal);
                 return;
             }
 
@@ -98,6 +87,30 @@ namespace beyondnations {
                 player.getStatus().update("Settlement founded. " + string.Join(" and ", names) + " resent a new settlement so near their land.");
             }
             eventProducer.produceSettlementFoundedEvent(settlement, nation, player.getId());
+        }
+
+        /**
+        * Why founder may not found a settlement where the player stands, with
+        * the way to the nearest open ground, or null when the ground is open.
+        * The open ground it names is pointed out to the player, so the world
+        * holds it for them (#433). It runs the open-ground search, so it is
+        * for a refusal or a tap on the greyed button (#521), not for every
+        * frame: SettlementSites.describeWhyNotHere is the cheap reason.
+        */
+        public string explainGround(Player player, NationId founder) {
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
+            Vector3 position = player.getPosition();
+            string objection = Territory.getFoundingObjection(entityRepository, nationRepository, position, founder);
+            if (objection != null) {
+                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, position, minDistance, founder));
+                return objection + " Found your settlement outside its borders. " + SettlementSites.describeOpenSite(position, site);
+            }
+            Settlement tooClose = SettlementSites.findTooClose(entityRepository, position, minDistance);
+            if (tooClose != null) {
+                Vector3? site = pointOut(player, SettlementSites.findNearestOpenSite(entityRepository, position, minDistance, founder));
+                return SettlementSites.describeTooClose(position, tooClose, minDistance, site);
+            }
+            return null;
         }
 
         /**

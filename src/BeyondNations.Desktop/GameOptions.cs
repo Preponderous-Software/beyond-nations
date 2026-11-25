@@ -58,6 +58,15 @@ namespace beyondnations.desktop {
         public int ScreenshotAfterFrames = 0;
 
         /**
+        * Fixed steps every frame runs, ignoring the wall clock (FixedStepClock),
+        * so a staged screenshot shows the same scene for the same seed and frame
+        * count however loaded the machine is. -1, the default, means 1 when
+        * --screenshot-after-frames is given and 0 (follow the wall clock, as
+        * normal play and staged play do) otherwise; --lockstep N sets it.
+        */
+        public int LockstepSteps = -1;
+
+        /**
         * Record draw calls, frame times and render-loop allocation, and print
         * them on shutdown. The instanced renderer makes claims about scale and
         * about allocating nothing per object; this is how a run proves them.
@@ -220,6 +229,12 @@ namespace beyondnations.desktop {
         * player's saves alone. See docs/SAVES.md.
         */
         public bool NoSaves = false;
+        /**
+        * --all-unlocked: the whole HUD from the first second, with no unlock
+        * cards (HudUnlocks.allUnlocked), for captures and for players who
+        * know the game.
+        */
+        public bool AllUnlocked = false;
 
         /**
         * Open straight into the most recently saved world, as Continue on the
@@ -227,6 +242,11 @@ namespace beyondnations.desktop {
         * is no save to continue.
         */
         public bool Continue = false;
+
+        /** --stage-journal [tab]: the Journal opens over the world on this tab. */
+        public beyondnations.desktop.ui.journal.JournalTab StageJournalTab = beyondnations.desktop.ui.journal.JournalTab.Goals;
+        /** --stage-journal tab:N: the N-th tile's card is open (from 1); 0 for none. */
+        public int StageJournalCard = 0;
 
         /**
         * Where a playtesting agent reads the game (docs/PLAYTESTING.md):
@@ -257,6 +277,36 @@ namespace beyondnations.desktop {
         /** With FlyoverOut: circle the thickest stand of trees instead of gliding between settlements (#140). */
         public bool FlyoverOrbit = false;
 
+        /** True when any --stage-* flag was given. */
+        public bool isStaged() {
+            return StageSettlement || StageOutpost || StageHoldings || StageFeel || StageDiplomacy || StageEvent
+                || StageSuccession || StageTrade || StageMarket || StageCaravan || StageCamp || StageTrader
+                || StageVictory || StageDefeat;
+        }
+
+        /**
+        * Whether the HUD starts with everything unlocked: --all-unlocked,
+        * any --stage-* flag, or a world started part-way through
+        * (--advance-ticks, --season), whose nations, settlements and season
+        * a new game's first-steps HUD would hide (no Create or Join Nation,
+        * no Talk).
+        */
+        public bool startsAllUnlocked() {
+            return AllUnlocked || isStaged() || AdvanceTicks > 0 || StartSeason != null;
+        }
+
+        /**
+        * The fixed steps each frame runs in lockstep, or 0 to follow the wall
+        * clock: LockstepSteps when it was given, else 1 for a screenshot or
+        * staged run and 0 for normal play.
+        */
+        public int lockstepStepsPerFrame() {
+            if (LockstepSteps >= 0) {
+                return LockstepSteps;
+            }
+            return ScreenshotAfterFrames > 0 ? 1 : 0;
+        }
+
         public static GameOptions parse(string[] args) {
             GameOptions options = new GameOptions();
             for (int i = 0; i < args.Length; i++) {
@@ -267,6 +317,7 @@ namespace beyondnations.desktop {
                     case "--ticks-per-second": options.TicksPerSecond = intAfter(args, ref i, options.TicksPerSecond); break;
                     case "--exit-after-frames":options.ExitAfterFrames = intAfter(args, ref i, options.ExitAfterFrames); break;
                     case "--screenshot-after-frames": options.ScreenshotAfterFrames = intAfter(args, ref i, options.ScreenshotAfterFrames); break;
+                    case "--lockstep":         options.LockstepSteps = intAfter(args, ref i, options.LockstepSteps); break;
                     case "--seed":
                         options.SeedText = textAfter(args, ref i);
                         options.Seed = WorldSeed.fromText(options.SeedText);
@@ -292,9 +343,16 @@ namespace beyondnations.desktop {
                     case "--stage-trader":     options.StageTrader = true; break;
                     case "--stage-victory":    options.StageVictory = true; break;
                     case "--stage-defeat":     options.StageDefeat = true; break;
+                    case "--stage-journal":
+                        // the Journal over the world, on a tab when one follows
+                        options.StartScreen = ScreenType.JOURNAL;
+                        options.StageJournalTab = journalTabAfter(args, ref i, out options.StageJournalCard);
+                        beyondnations.desktop.ui.screens.JournalScreen.requestTab(options.StageJournalTab, options.StageJournalCard);
+                        break;
                     case "--first-person":     options.FirstPerson = true; break;
                     case "--no-usage-reporting": options.NoUsageReporting = true; break;
                     case "--no-saves":         options.NoSaves = true; break;
+                    case "--all-unlocked":     options.AllUnlocked = true; break;
                     case "--continue":         options.Continue = true; break;
                     case "--start-screen":     options.StartScreen = screenAfter(args, ref i); break;
                     case "--time-of-day":      options.TimeOfDay = timeOfDayAfter(args, ref i); break;
@@ -318,6 +376,25 @@ namespace beyondnations.desktop {
                 }
             }
             return options;
+        }
+
+        /**
+        * The tab after --stage-journal, when the next argument names one
+        * (goals, chronicle, era, inventory or nation, optionally with :N for
+        * the N-th tile's card open); Goals otherwise, and the next argument
+        * is left for the parser.
+        */
+        private static beyondnations.desktop.ui.journal.JournalTab journalTabAfter(string[] args, ref int i, out int card) {
+            card = 0;
+            if (i + 1 < args.Length && !args[i + 1].StartsWith("-")) {
+                if (!beyondnations.desktop.ui.journal.JournalTabs.tryParseStage(args[i + 1], out beyondnations.desktop.ui.journal.JournalTab tab, out card)) {
+                    Console.Error.WriteLine("unknown journal tab: " + args[i + 1] + " (expected " + string.Join(", ", beyondnations.desktop.ui.journal.JournalTabs.Names) + ", optionally with :N)");
+                    System.Environment.Exit(2);
+                }
+                i++;
+                return tab;
+            }
+            return beyondnations.desktop.ui.journal.JournalTab.Goals;
         }
 
         private static Season seasonAfter(string[] args, ref int i) {
@@ -369,10 +446,11 @@ namespace beyondnations.desktop {
                 case "settlement":
                     // the settlement screen (#178), on the settlement the player is in or nearest to
                     return ScreenType.SETTLEMENT;
+                case "journal":   return ScreenType.JOURNAL;
                 case "new-world": return ScreenType.NEW_WORLD;
                 case "share":     return ScreenType.SHARE;
             }
-            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share)");
+            Console.Error.WriteLine("unknown screen: " + args[i] + " (expected title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, journal, load, new-world or share)");
             System.Environment.Exit(2);
             return ScreenType.TITLE;
         }
@@ -447,6 +525,8 @@ namespace beyondnations.desktop {
                 "  --ticks-per-second N    simulation rate       (default 50)",
                 "  --exit-after-frames N   render N frames then exit; 0 runs until closed",
                 "  --screenshot-after-frames N  take a screenshot once N frames have rendered; 0 disables",
+                "  --lockstep N            run exactly N ticks a frame, ignoring the clock (default 1 with",
+                "                          --screenshot-after-frames or --stage-*, so staged shots repeat; 0 = real time)",
                 "  --seed S                world seed: a number, or any text (hashed to one); 0 picks one",
                 "  --no-vsync              do not wait for vertical sync",
                 "  --smoke-resize          resize part-way through, to exercise resize handling",
@@ -457,6 +537,7 @@ namespace beyondnations.desktop {
                 "  --first-person          open in first person; V toggles the view mid-run",
                 "  --no-usage-reporting    send nothing to trace this run (see README, Usage reporting)",
                 "  --no-saves              do not autosave, save on quit or offer saved worlds this run",
+                "  --all-unlocked          show the whole HUD from the start, with no unlock cards",
                 "  --continue              open in the most recently saved world (Continue on the main menu)",
                 "  --debug-mode            open with the F1 debug overlay already on",
                 "  --stage-settlement      open with a lived-in settlement standing ahead of the player",
@@ -466,6 +547,7 @@ namespace beyondnations.desktop {
                 "  --stage-feel            replay the feedback effects (chips, +5 wood, rising buildings) for screenshots",
                 "  --stage-event           open with a world event waiting on a choice (with --stage-diplomacy, one for your nation)",
                 "  --stage-victory         open on the end-of-run screen of a won run (--stage-defeat: a lost one)",
+                "  --stage-journal [tab]   open on the Journal over the world (goals, chronicle, era, inventory or nation)",
                 "  --stage-succession      as --stage-diplomacy, with the player about to die and an heir to take over",
                 "  --start-screen NAME     open on title, main-menu, config, world, pause, inventory, controls, nations, laws, members, manage, settlement, crafting, load, new-world or share",
                 "  --stage-trade           open beside a trade caravan, leading a nation that can send its own",

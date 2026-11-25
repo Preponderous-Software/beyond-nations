@@ -76,8 +76,7 @@ namespace beyondnations {
         * pawn at a settlement's edge, so counting each time is cheap.
         */
         private bool nationCannotFeed(Settlement settlement) {
-            Season season = seasonCalendar == null ? Season.SPRING : seasonCalendar.getSeason();
-            return WinterStores.cannotFeed(entityRepository, settlement.getNationId(), season);
+            return WinterStores.cannotFeed(entityRepository, settlement.getNationId(), seasonCalendar);
         }
 
         /**

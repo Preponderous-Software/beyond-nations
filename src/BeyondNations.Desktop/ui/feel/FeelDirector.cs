@@ -213,6 +213,10 @@ namespace beyondnations.desktop.ui.feel {
                     play(SoundCue.ObjectiveComplete, 1f);
                     juice.flash();
                     break;
+                case FeelEventKind.WorldEventWaiting:
+                    play(SoundCue.WorldEvent, 1f);
+                    juice.flash();
+                    break;
                 case FeelEventKind.Raided:
                     play(SoundCue.CombatHit, 1f);
                     juice.shake(0.25f);
@@ -421,7 +425,20 @@ namespace beyondnations.desktop.ui.feel {
         // the card's height when last drawn, to keep it clear of the bar
         private float lastHintCardHeight;
 
+        // the world HUD shows the tip through its one-at-a-time overlay queue (WorldHud)
+        private bool tipCardDrawnElsewhere;
+
+        /** True when the world HUD draws the tip card (its overlay queue), so this draws none. */
+        public void setTipCardDrawnElsewhere(bool value) {
+            tipCardDrawnElsewhere = value;
+            // that HUD has the Next line, so the tips that only repeat an objective are left out
+            hints.setObjectivesShown(value);
+        }
+
         private void drawHintCard(float width, float height, Simulation world) {
+            if (tipCardDrawnElsewhere) {
+                return;
+            }
             OnboardingHints.Step? step = hints.getVisible();
             // The objective toast says something more important; the tip waits.
             if (step == null || ObjectiveTrackerBox.isToastShowing(world)) {
@@ -442,7 +459,7 @@ namespace beyondnations.desktop.ui.feel {
                 lastHintCardHeight = ImGui.GetWindowSize().Y;
                 TouchLayout.setTipHeight(lastHintCardHeight);
                 Overlay.textColoured(HintHeadingColour,
-                    "Tip " + hints.getNumber() + " of " + OnboardingHints.Steps.Length + ": " + OnboardingHints.title(step.Value));
+                    "Tip " + hints.getNumber() + " of " + hints.getTotal() + ": " + OnboardingHints.title(step.Value));
                 ImGui.PushTextWrapPos(0f);
                 ImGui.TextUnformatted(OnboardingHints.text(step.Value, isTouch()));
                 ImGui.PopTextWrapPos();

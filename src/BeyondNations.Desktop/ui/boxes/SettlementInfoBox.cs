@@ -18,6 +18,13 @@ namespace beyondnations.desktop.ui.boxes {
             this.entityRepository = entityRepository;
         }
 
+        public override string getChipText() { return "Settlement"; }
+
+        /** Under siege, the collapsed chip says so. */
+        public override HudBadge getBadge() {
+            return settlement.getSiegeText() != null ? HudBadge.Danger : HudBadge.None;
+        }
+
         public override List<string> getLines() {
             Nation nation = nationRepository.getNation(settlement.getNationId());
 

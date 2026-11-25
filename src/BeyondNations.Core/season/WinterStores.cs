@@ -47,6 +47,22 @@ namespace beyondnations {
 
             /** The food the members want between them: WINTER_FOOD_STORE each. */
             public int Wanted { get { return Members * SeasonalRules.WINTER_FOOD_STORE; } }
+
+            /**
+            * The food the members want for what is left of the season: Wanted
+            * before winter, and in winter Wanted times the part of winter
+            * still to come (winterProgress in [0, 1)), rounded up. The famine
+            * line came on by midday of winter's first day for a nation on
+            * track: the stores fell as they were eaten while the target stayed
+            * at the full winter's (playtest w2f).
+            */
+            public int wantedFor(Season season, float winterProgress) {
+                if (season != Season.WINTER) {
+                    return Wanted;
+                }
+                float left = 1f - System.Math.Clamp(winterProgress, 0f, 1f);
+                return (int) System.MathF.Ceiling(Wanted * left - 0.0001f);
+            }
         }
 
         public static Count count(EntityRepository entityRepository, NationId nationId) {
@@ -136,18 +152,37 @@ namespace beyondnations {
         * mouth, and the target rose from 28 to 44 while the stores ran out.
         */
         public static bool cannotFeed(Count stores, Season season) {
+            return cannotFeed(stores, season, 0f);
+        }
+
+        /**
+        * cannotFeed part way through winter: the stores are measured against
+        * what the rest of winter needs (Count.wantedFor), not the whole
+        * winter's, since the members have eaten the rest already.
+        */
+        public static bool cannotFeed(Count stores, Season season, float winterProgress) {
             if (stores.Members == 0) {
                 return false;
             }
             if (stores.Hungry * FAMINE_HUNGRY_DIVISOR >= stores.Members) {
                 return true;
             }
-            return season == Season.WINTER && stores.Food < stores.Wanted;
+            return season == Season.WINTER && stores.Food < stores.wantedFor(season, winterProgress);
         }
 
-        /** cannotFeed for a nation now. */
+        /** cannotFeed for a nation now, at the start of the season. */
         public static bool cannotFeed(EntityRepository entityRepository, NationId nationId, Season season) {
             return nationId != null && cannotFeed(count(entityRepository, nationId), season);
+        }
+
+        /** cannotFeed for a nation now, by the calendar; without one it is always spring. */
+        public static bool cannotFeed(EntityRepository entityRepository, NationId nationId, SeasonCalendar calendar) {
+            if (nationId == null) {
+                return false;
+            }
+            Season season = calendar == null ? Season.SPRING : calendar.getSeason();
+            float progress = calendar == null ? 0f : calendar.getSeasonProgress();
+            return cannotFeed(count(entityRepository, nationId), season, progress);
         }
 
         /** A nation with one member in this many hungry cannot feed its members (cannotFeed): a quarter. */

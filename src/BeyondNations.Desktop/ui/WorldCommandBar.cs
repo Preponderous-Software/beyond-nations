@@ -90,7 +90,13 @@ namespace beyondnations.desktop.ui {
                         .setEnabled(!capped && affords && notHere == null,
                             capped ? EraRules.describeSettlementCap(nation.getSettlementLimit())
                                 : !affords ? describeShortfall(System.Math.Max(0, woodShort), System.Math.Max(0, stoneShort))
-                                : notHere));
+                                : notHere)
+                        // the greyed reason leaves out the way to open ground
+                        // (too slow to search every frame); a tap or click
+                        // searches, names it and points it out, as F does (#521)
+                        .setTapExplanation(notHere == null ? null : () =>
+                            new FoundSettlementCommand(nationRepository, simulation.getEventProducer(), entityRepository, simulation.getGameConfig(), simulation.getRandom())
+                                .explainGround(player, nation.getId())));
                 }
 
                 if (!player.isCurrentlyInSettlement() && player.getHomeSettlementId() != null) {
@@ -163,6 +169,81 @@ namespace beyondnations.desktop.ui {
             }
 
             return CommandBarLayout.order(commands);
+        }
+
+        /** Where the player stands, which decides what a phone's bar shows first (frontFirst). */
+        public enum BarContext {
+            /** Out in the world. */
+            Wilds,
+            /** In a settlement of the player's own nation. */
+            OwnSettlement,
+            /** In any other settlement: a market town to trade in. */
+            OtherSettlement
+        }
+
+        public static BarContext contextOf(Simulation simulation) {
+            Player player = simulation.getPlayer();
+            if (!player.isCurrentlyInSettlement()) {
+                return BarContext.Wilds;
+            }
+            Settlement settlement = simulation.getEntityRepository().getEntity(player.getCurrentSettlementId()) as Settlement;
+            return settlement != null && player.getNationId() != null && settlement.getNationId() == player.getNationId()
+                ? BarContext.OwnSettlement
+                : BarContext.OtherSettlement;
+        }
+
+        /**
+        * The buttons a phone's bar puts first, where it stands (#512): what
+        * a player uses most there, by the start of the label. In another
+        * nation's town that is its market; in their own, feeding the
+        * residents, the settlement screen (which builds, too) and the way
+        * out; out in the world, the way into a settlement or home.
+        */
+        public static string[] frontLabels(BarContext context) {
+            switch (context) {
+                case BarContext.OtherSettlement:
+                    return new[] { MarketTradePanel.OpenLabel, "Purchase Food", "Sell Resources", "Exit Settlement", SettlementLabel };
+                case BarContext.OwnSettlement:
+                    return new[] { "Feed Residents", SettlementLabel, "Exit Settlement", MarketTradePanel.OpenLabel, "Purchase Food", "Sell Resources" };
+                default:
+                    return new[] { "Enter Settlement", "Teleport Home", "Found Settlement", "Plant Sapling" };
+            }
+        }
+
+        /**
+        * The order a phone's paged bar takes (#512): the front buttons for
+        * where the player stands (frontLabels), in that order, then the
+        * rest in the bar's own order. The bar shows the first page of it and
+        * the rest are in the More sheet (CommandSheet). The front buttons
+        * are always there in their place (offered greyed rather than left
+        * out), so what comes and goes is after them and moves none of them.
+        * The desktop's bar, which is never paged, keeps the group order.
+        */
+        public static List<WorldCommand> frontFirst(List<WorldCommand> commands, BarContext context) {
+            List<WorldCommand> ordered = new List<WorldCommand>(commands.Count);
+            foreach (string front in frontLabels(context)) {
+                foreach (WorldCommand command in commands) {
+                    if (!ordered.Contains(command) && isFront(command, front)) {
+                        ordered.Add(command);
+                        break;
+                    }
+                }
+            }
+            foreach (WorldCommand command in commands) {
+                if (!ordered.Contains(command)) {
+                    ordered.Add(command);
+                }
+            }
+            return ordered;
+        }
+
+        /** Whether a button is the front one named: "Settlement" exactly, the rest by how they start ("Feed Residents (3 hungry)"). */
+        private static bool isFront(WorldCommand command, string front) {
+            if (command.getGroup() == CommandGroup.Drastic || command.getGroup() == CommandGroup.People) {
+                return false;
+            }
+            string label = command.getLabel();
+            return front == SettlementLabel ? label == front : label.StartsWith(front);
         }
 
         /** The buttons for a settlement of the player's own nation that they are standing in. */

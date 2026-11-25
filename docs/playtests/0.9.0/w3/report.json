@@ -1,0 +1,56 @@
+{
+  "session": "w3",
+  "goal": "bn-full at 390x844 (phone-sized desktop window): settlement screen, tip card vs settlement boxes, Journal, controls list, nations screen, world-event sheet. Touch mode is browser-only (TouchLayout.isAvailable false on desktop), so the touch More sheet could not be tested.",
+  "build": {
+    "version": "0.8.1-SNAPSHOT",
+    "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-full"
+  },
+  "seed": 103,
+  "durationSec": 600,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "Inside a settlement on a phone, the info boxes cover the tip card, the toast and the Next line",
+      "detail": "After Stay Inside at 390x844, the tall narrow Market Info box (left) and Settlement Info box (right) draw over the Next line, the 'You are inside the settlement' toast and the 'Walk and look' tip card. The card's Got it button is hidden; only No tips can be reached. So the answer to the coordinator's question is yes, in reverse: the settlement boxes cover the tip card.",
+      "screenshot": "shots/w3_overlap.png"
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Staged world still runs the new-game Next line and tips",
+      "detail": "In a --stage-settlement world (leader of a 9-resident Town), Next says 'Gather wood - Wood 0/10', Tip 1 of 5 shows, and the Journal shows 0/9 goals with Nation/Settle locked.",
+      "screenshot": "shots/w3_world.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Nations screen has no backing panel on a phone",
+      "detail": "At 390 px the text and buttons draw straight over the 3D world (a pawn shows through between Ally and War), which hurts readability. There is also a gap in the Tribute/Ally/_/War/Denounce row.",
+      "screenshot": "shots/w3_nations.png"
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Journal footer clipped at phone height",
+      "detail": "'(J or Esc closes; arrows or Tab turn the page; click a tile for more)' wraps and its second line is cut off at the bottom edge.",
+      "screenshot": "shots/w3_journal.png"
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Feed Residents label truncated on the phone settlement screen",
+      "detail": "'Feed Residents (0 hu...'.",
+      "screenshot": "shots/w3_settle.png"
+    }
+  ],
+  "metrics": {
+    "controlsListFits": true,
+    "worldEventSheetFits": true,
+    "settlementScreenScrolls": true,
+    "touchModeTestable": false
+  },
+  "fun": 3,
+  "verdict": "Most screens fit a 390 px window well: the settlement screen scrolls, the controls list, the Journal and the world-event sheet all fit. The one real problem is the in-settlement HUD, where the two info boxes bury the tip card and the Next line. The touch-only command bar and More sheet need the browser build to test."
+}

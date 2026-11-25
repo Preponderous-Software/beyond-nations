@@ -205,15 +205,17 @@ namespace beyondnations.desktop.ui.screens {
         /** Draws the panel from y down. It holds no commands, so it returns null. */
         public System.Action draw(float width, float height, Simulation simulation, float y, float left, float lineHeight,
                 float buttonGap, float buttonHeight, LawsPanel.ScrollReader readScroll) {
-            foreach (string line in getLines(simulation)) {
-                y = NationScreen.drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 3);
-            }
-            y += lineHeight * 0.3f;
+            // sized for a narrow screen too, and wrapped whole (#467, #506)
+            float textHeight = Overlay.textHeightFor(width, height);
+            float headerSize = Overlay.atLeastAtlasFontSize(textHeight / 36f);
+            float headerStep = lineHeight * 0.7f;
+            List<string> header = NationScreen.wrapHeader(getLines(simulation), width - left * 2f,
+                line => ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(headerSize), int.MaxValue);
 
             float columnWidth = width - left * 2f;
-            float titleSize = height / 32f;
+            float titleSize = Overlay.atLeastAtlasFontSize(textHeight / 32f);
             float titleScale = Overlay.fontScaleFor(titleSize);
-            float detailSize = height / 38f;
+            float detailSize = Overlay.atLeastAtlasFontSize(textHeight / 38f);
             float detailScale = Overlay.fontScaleFor(detailSize);
             float titleStep = lineHeight * 0.75f;
             float detailStep = lineHeight * 0.65f;
@@ -229,30 +231,53 @@ namespace beyondnations.desktop.ui.screens {
                 steps[i] = titleStep * System.Math.Min(2, title.Count) + detailStep * System.Math.Min(DetailLines, detail.Count) + buttonGap * 1.5f;
             }
 
-            float listBottom = height - lineHeight * 3.2f;
+            float listBottom = NationScreen.listBottom(height, lineHeight);
             float stripHeight = buttonHeight + buttonGap;
-            LawsPanel.Window window = LawsPanel.fit(steps, y, listBottom, stripHeight, firstRow);
+            // a header with no room under it for the first member scrolls
+            // with the list rather than push it under the status line (#506, #511)
+            int folded = rows.Count > 0 && !NationScreen.headerFits(header.Count, headerStep,
+                listBottom - y - lineHeight * 0.3f - stripHeight - steps[0]) ? header.Count : 0;
+            if (folded == 0) {
+                foreach (string line in header) {
+                    Overlay.textCentered(line, headerSize, y, width);
+                    y += headerStep;
+                }
+            }
+            y += lineHeight * 0.3f;
+            float[] items = NationScreen.withHeader(steps, folded, headerStep);
+            LawsPanel.Window window = LawsPanel.fit(items, y, listBottom, stripHeight, firstRow);
             int move = readScroll(window.listTop, listBottom, rows.Count > 0 ? steps[0] : lineHeight);
-            window = LawsPanel.fit(steps, y, listBottom, stripHeight, firstRow + move);
+            window = LawsPanel.fit(items, y, listBottom, stripHeight, firstRow + move);
             firstRow = window.firstRow;
             if (window.overflow) {
                 float arrowWidth = System.MathF.Min(UiScale.px(80f), columnWidth / 5f);
                 float lineWidth = width - (arrowWidth + buttonGap) * 2f;
-                NationScreen.drawWrappedCentred(describeShown(firstRow, window.visible, rows.Count, TouchLayout.isActive()), height / 38f,
-                    y + (buttonHeight - lineHeight * 0.7f) * 0.5f, lineWidth, left, lineHeight * 0.7f, 1);
+                int firstMember;
+                int shownMembers;
+                NationScreen.shownRows(firstRow, window.visible, folded, out firstMember, out shownMembers);
+                NationScreen.drawCountLine(shownMembers == 0
+                        ? NationScreen.describeBelow(rows.Count, "member", "members", TouchLayout.isActive())
+                        : describeShown(firstMember, shownMembers, rows.Count, TouchLayout.isActive()), textHeight / 38f,
+                    y, lineWidth, left, lineHeight * 0.7f, buttonHeight);
                 float ax = width - left - arrowWidth * 2f - buttonGap;
                 int page = System.Math.Max(1, window.visible - 1);
                 if (Overlay.buttonAt("Up##members-up", ax, y, arrowWidth, buttonHeight)) {
-                    window = LawsPanel.fit(steps, y, listBottom, stripHeight, firstRow - page);
+                    window = LawsPanel.fit(items, y, listBottom, stripHeight, firstRow - page);
                 }
                 if (Overlay.buttonAt("Down##members-down", ax + arrowWidth + buttonGap, y, arrowWidth, buttonHeight)) {
-                    window = LawsPanel.fit(steps, y, listBottom, stripHeight, firstRow + page);
+                    window = LawsPanel.fit(items, y, listBottom, stripHeight, firstRow + page);
                 }
                 firstRow = window.firstRow;
             }
             y = window.listTop;
 
-            for (int i = firstRow; i < firstRow + window.visible; i++) {
+            for (int item = firstRow; item < firstRow + window.visible; item++) {
+                if (item < folded) {
+                    Overlay.textCentered(header[item], headerSize, y + headerStep * 0.5f, width);
+                    y += headerStep;
+                    continue;
+                }
+                int i = item - folded;
                 Row row = rows[i];
                 // the heir in gold, so the mark is seen before it is read
                 if (row.isHeir) {

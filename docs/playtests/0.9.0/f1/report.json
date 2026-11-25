@@ -1,0 +1,56 @@
+{
+  "session": "f1",
+  "goal": "bn-full: new game, seed 103, normal start, about 5 minutes: contextual HUD, unlock cards, Next line, Journal, overlays.",
+  "build": {
+    "version": "0.8.1-SNAPSHOT",
+    "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-full"
+  },
+  "seed": 103,
+  "durationSec": 420,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Old tutorial tip contradicts the Next line",
+      "detail": "'Tip 3 of 5: Gather stone' shows while Next says 'Create or join a nation'. Later 'Tip 4 of 5: Found a settlement' says 'Press N to start a nation' after the nation already exists. The 5-step tip track and the Next line/unlock cards are two tutorials at once.",
+      "screenshot": "shots/f1_tip_vs_next.png"
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Toasts and cards show together and overlap HUD boxes",
+      "detail": "After founding, the status toast covers the 'Carrying ...' box (cut at 'saplings') while a News card covers the settlement nameplate. At the start, the Welcome toast and the Tip card show together.",
+      "screenshot": "shots/f1_overlap.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Nations unlock card arrives before the Next line asks for it",
+      "detail": "With Next still 'Gather wood - Wood 5/10', the 'Nations: start a nation of your own, or join one' card and the Create/Join buttons appear. That is sensible, but it pulls a step ahead of the Next line.",
+      "screenshot": "shots/f1_chop1.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Top-strip meters are low-contrast when idle",
+      "detail": "The energy, apple and coin meters render grey-on-grey (e.g. '97' and '0') until they change.",
+      "screenshot": "shots/f1_chop2.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Journal goal track markers are misaligned",
+      "detail": "On the Goals page, the second completed marker sits below the progress line, out of line with the others.",
+      "screenshot": "shots/f1_journal.png"
+    }
+  ],
+  "metrics": {
+    "firstCommandBarButtons": 0,
+    "unlockOrder": "(empty) -> Nations card + Create/Join after first wood -> Eat Apple -> Found Settlement card after nation -> Enter/Teleport/Plant after founding",
+    "journalOpens": true,
+    "deaths": 0
+  },
+  "fun": 4,
+  "verdict": "The first bar starts empty and unlocks in a sensible order. The Next line is clear and the picture Journal reads well (Goals tile detail, Era and Nation pages). The 'one overlay at a time' promise does not hold: toasts stack with cards and with each other, and the old 5-tip track still runs beside the new Next line."
+}

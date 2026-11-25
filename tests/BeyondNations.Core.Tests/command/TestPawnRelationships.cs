@@ -622,16 +622,30 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testOrder_StrangerMember_RefusesOrders() {
+        public void testOrder_StrangerMember_TakesOrder() {
+            // #507: orders go by membership; a member who joined on its own
+            // (a newcomer, a child) is a Stranger and still takes them
             Nation home = playerNation();
             addSettlement(home);
             Pawn pawn = addPawn("Ada");
             join(home, pawn);
+            Assert.Equal(RelationshipTier.STRANGER, PawnRelations.getTier(pawn, player));
 
             new OrderPawnToGatherCommand(nationRepository).execute(player, pawn);
 
-            Assert.Null(pawn.getOrder());
-            Assert.Contains("needs Acquaintance", status());
+            Assert.NotNull(pawn.getOrder());
+            Assert.Equal(home.getId(), pawn.getOrder().getNationId());
+            Assert.DoesNotContain("needs", status());
+            Assert.Contains("I hardly know you, but you lead Homeland. I'll gather 10 wood.", status());
+        }
+
+        [Theory]
+        [InlineData(RelationshipTier.STRANGER, "I hardly know you, but you lead Homeland. I'll gather 10 wood.")]
+        [InlineData(RelationshipTier.ACQUAINTANCE, "I'll gather 10 wood for Homeland.")]
+        [InlineData(RelationshipTier.FRIEND, "Happy to. I'll gather 10 wood for Homeland.")]
+        [InlineData(RelationshipTier.LOYAL, "Consider it done. I'll gather 10 wood for Homeland.")]
+        public void testOrderReply_EveryTierTakesTheOrder_InItsOwnWords(RelationshipTier tier, string expected) {
+            Assert.Equal(expected, PawnDialogue.orderReply(tier, "gather 10 wood", "Homeland"));
         }
 
         [Fact]

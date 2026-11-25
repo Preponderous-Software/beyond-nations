@@ -28,7 +28,8 @@ namespace beyondnations {
     * 3. Hostility has stakes. Between two hostile neighbours the stronger
     *    raids the weaker's nearest settlement every few rounds (coins, wood
     *    and stone from its treasury and stockpile) -- a sheltered player's
-    *    nation at most once every SHELTERED_RAID_EVERY_ROUNDS, and a nation
+    *    nation at most once every SHELTERED_RAID_EVERY_ROUNDS, the player's
+    *    nation after its shelter at most once every PLAYER_RAID_EVERY_ROUNDS, and a nation
     *    the player leads only a nation it is at war with -- and if it is at least
     *    twice as strong (and no mere band: a strength of four or more) and
     *    its own nearest settlement is of at least the
@@ -93,6 +94,17 @@ namespace beyondnations {
         */
         public const int SHELTERED_RAID_EVERY_ROUNDS = 24;
 
+        /**
+        * Once its shelter has ended (the Town era), the player's nation is
+        * raided at most once in this many rounds (a minute), by whichever
+        * hostile neighbour comes first. It was every hostile neighbour every
+        * RAID_EVERY_ROUNDS: on pacing seed 2 the Town era's first minute
+        * brought seven raids every 20 seconds, and the status line was a wall
+        * of them (docs/PACING.md, "Calendar waits"). Other nations still raid
+        * each other every RAID_EVERY_ROUNDS.
+        */
+        public const int PLAYER_RAID_EVERY_ROUNDS = 12;
+
         private readonly NationRepository nationRepository;
         private readonly EntityRepository entityRepository;
         private readonly EventProducer eventProducer;
@@ -103,8 +115,9 @@ namespace beyondnations {
         private int round = 0;
         private readonly Dictionary<EntityId, int> siegeProgress = new Dictionary<EntityId, int>();
         private readonly Dictionary<EntityId, Nation> besiegers = new Dictionary<EntityId, Nation>();
-        // a sheltered nation has been raided this round (SHELTERED_RAID_EVERY_ROUNDS); only within a round
-        private bool shelteredRaidedThisRound = false;
+        // the player's nation has been raided this round (SHELTERED_RAID_EVERY_ROUNDS,
+        // PLAYER_RAID_EVERY_ROUNDS); only within a round
+        private bool playerRaidedThisRound = false;
         // the named state last told to the player for each other nation, so a
         // drift see-sawing across a boundary is not told over and over;
         // transient: after a load the next change is told once more
@@ -187,7 +200,7 @@ namespace beyondnations {
             }
 
             HashSet<EntityId> besiegedThisRound = new HashSet<EntityId>();
-            shelteredRaidedThisRound = false;
+            playerRaidedThisRound = false;
             for (int i = 0; i < nations.Count; i++) {
                 for (int j = i + 1; j < nations.Count; j++) {
                     if (exists(nations[i]) && exists(nations[j])) {
@@ -322,8 +335,8 @@ namespace beyondnations {
             }
 
             if (round % RAID_EVERY_ROUNDS == 0 && mayRaid(defender)) {
-                if (raid(attacker, defender, target, base_) && defender.isSheltered()) {
-                    shelteredRaidedThisRound = true;
+                if (raid(attacker, defender, target, base_) && (defender.isSheltered() || isPlayersNation(defender))) {
+                    playerRaidedThisRound = true;
                 }
             }
 
@@ -361,13 +374,17 @@ namespace beyondnations {
         /**
         * Whether a raid on this nation may come this round: any raid round,
         * but a sheltered nation (the player's, before the Town era) is raided
-        * at most once every SHELTERED_RAID_EVERY_ROUNDS.
+        * at most once every SHELTERED_RAID_EVERY_ROUNDS, and the player's
+        * nation after that at most once every PLAYER_RAID_EVERY_ROUNDS.
         */
         private bool mayRaid(Nation victim) {
-            if (!victim.isSheltered()) {
-                return true;
+            if (victim.isSheltered()) {
+                return round % SHELTERED_RAID_EVERY_ROUNDS == 0 && !playerRaidedThisRound;
             }
-            return round % SHELTERED_RAID_EVERY_ROUNDS == 0 && !shelteredRaidedThisRound;
+            if (isPlayersNation(victim)) {
+                return round % PLAYER_RAID_EVERY_ROUNDS == 0 && !playerRaidedThisRound;
+            }
+            return true;
         }
 
         /** Carries off what it can; returns false if there was nothing to take. */

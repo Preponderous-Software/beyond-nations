@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 
@@ -121,6 +122,27 @@ namespace beyondnations.pacing {
                 }
             }
 
+            md.Append(PacingUnlocks.markdown(runs));
+            md.Append("\n## Calendar waits\n\nFor each era, when the player's nation first had every requirement to leave it but the day, and how long it then waited on the calendar alone, with nothing that could bring the next era sooner (docs/PACING.md, \"Calendar waits\").\n\n| Era | ");
+            foreach (int seed in seeds) {
+                md.Append("seed ").Append(seed).Append(" | ");
+            }
+            md.Append("\n|---|");
+            foreach (int seed in seeds) {
+                md.Append("---|");
+            }
+            md.Append("\n");
+            foreach (Era era in new[] { Era.CAMP, Era.VILLAGE, Era.TOWN }) {
+                md.Append("| ").Append(Eras.getDisplayName(era)).Append(" | ");
+                foreach (PacingRunResult run in runs) {
+                    int readyAt;
+                    md.Append(run.CalendarReadyTick.TryGetValue(era.ToString(), out readyAt)
+                        ? "ready " + clock((double) readyAt / tps) + ", waited " + clock((double) run.CalendarWaitTicks[era.ToString()] / tps)
+                        : "–").Append(" | ");
+                }
+                md.Append("\n");
+            }
+
             List<PacingFinding> problems = findings == null ? new List<PacingFinding>() : findings.FindAll(f => f.Verdict != PacingVerdict.Ok);
             md.Append("\n## Findings\n\n");
             if (problems.Count == 0) {
@@ -222,6 +244,9 @@ namespace beyondnations.pacing {
                     membersInvited = r.MembersInvited,
                     membersJoinedOtherwise = r.MembersJoinedOtherwise,
                     milestones = r.Milestones,
+                    unlocks = r.Unlocks,
+                    calendarReadyTick = r.CalendarReadyTick,
+                    calendarWaitSeconds = r.CalendarWaitTicks.ToDictionary(kv => kv.Key, kv => (double) kv.Value / r.TicksPerSecond),
                     objectives = r.Objectives.ConvertAll(t => new {
                         index = t.Index,
                         id = t.Id,

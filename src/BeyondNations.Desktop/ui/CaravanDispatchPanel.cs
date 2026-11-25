@@ -25,6 +25,8 @@ namespace beyondnations.desktop.ui {
 
         private static bool isOpenFlag;
         private static int destinationIndex;
+        // the market the panel opens on when it is in reach (preferDestination), else the nearest
+        private static Settlement preferredDestination;
         private static readonly Dictionary<ItemType, int> load = new Dictionary<ItemType, int>();
         // the goods rows, in the order they were first shown (getShownGoods)
         private static readonly List<ItemType> shownGoods = new List<ItemType>();
@@ -53,7 +55,7 @@ namespace beyondnations.desktop.ui {
         public static void open(Simulation simulation) {
             MarketTradePanel.close();
             isOpenFlag = true;
-            destinationIndex = 0;
+            destinationIndex = indexOfPreferred(simulation);
             load.Clear();
             shownGoods.Clear();
             heldTop = -1f;
@@ -133,6 +135,27 @@ namespace beyondnations.desktop.ui {
             }
             destinationIndex = ((destinationIndex % destinations.Count) + destinations.Count) % destinations.Count;
             return destinations[destinationIndex];
+        }
+
+        /**
+        * Opens the panel on this market whenever it is in reach, rather than
+        * on the nearest one. --stage-caravan points it at the staged trading
+        * neighbour: the nearest market changes as the world runs (wandering
+        * pawns found camps closer by within a minute or so of play), and how
+        * many ticks run before a shot follows the wall clock, so the same
+        * seed opened on Greentown one run and on a new, penniless camp the
+        * next (#514). Null goes back to the nearest. Host-side only; not saved.
+        */
+        public static void preferDestination(Settlement settlement) {
+            preferredDestination = settlement;
+        }
+
+        private static int indexOfPreferred(Simulation simulation) {
+            if (preferredDestination == null) {
+                return 0;
+            }
+            int index = getDestinations(simulation).IndexOf(preferredDestination);
+            return index < 0 ? 0 : index;
         }
 
         public static void nextDestination(int step) {
@@ -244,7 +267,8 @@ namespace beyondnations.desktop.ui {
                 close();
                 return;
             }
-            float buttonHeight = System.MathF.Max(Overlay.frameHeight() + UiScale.px(8f), UiScale.px(36f));
+            // a fingertip's height on a touch screen (#469)
+            float buttonHeight = Overlay.touchHeight(System.MathF.Max(Overlay.frameHeight() + UiScale.px(8f), UiScale.px(36f)));
             float small = UiScale.px(56f);
             float wide = UiScale.px(120f);
             float panelWidth = getPanelWidth(width, UiScale.get());

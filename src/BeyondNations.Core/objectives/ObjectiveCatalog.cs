@@ -131,34 +131,46 @@ namespace beyondnations {
 
             switch (category) {
                 case 0: {
-                    int target = eraMembers(era) + NationGrowthStep * (tier - 1);
-                    return new Objective(id, "Grow your nation to " + target,
-                        s => ObjectiveProgress.count("Members", members(s), target),
-                        "Befriend settlers and press {InviteToNation}. Nationless settlers also join nearby settlements.",
-                        reward, true);
+                    int floor = eraMembers(era) + NationGrowthStep * (tier - 1);
+                    ObjectiveReward roomReward = reward.and(ItemType.STONE, BuildingCatalog.getStoneCost(BuildingType.HOUSE));
+                    return new ScaledAmbition(id, membersGoal(floor, reward),
+                        s => {
+                            if (s.getEraTracker().getStrangersLeft() == 0) {
+                                // no stranger left to invite: a nation grows only by births and newcomers,
+                                // which need room, or by winning people over, so ask for the room
+                                return buildingsGoal(System.Math.Max(3 + 3 * tier, nationBuildings(s) + BuildingsStep), roomReward, membersHint);
+                            }
+                            return membersGoal(System.Math.Max(floor, members(s) + NationGrowthStep), reward);
+                        },
+                        (label, target) => label == "Members" ? membersGoal(target, reward)
+                            : label == "Buildings" ? buildingsGoal(target, roomReward, membersHint) : null);
                 }
                 case 1: {
-                    int target = eraFunds(era) + fundsStep() * (tier - 1);
-                    return new Objective(id, "Amass " + target + " coins",
-                        s => ObjectiveProgress.count("Funds", funds(s), target),
-                        "Counts your coins and your settlements' treasuries. Sell at market and build stalls.",
-                        reward, true);
+                    int floor = eraFunds(era) + fundsStep() * (tier - 1);
+                    return new ScaledAmbition(id, fundsGoal(floor, reward),
+                        s => fundsGoal(System.Math.Max(floor, fundsTarget(funds(s))), reward),
+                        (label, target) => label == "Funds" ? fundsGoal(target, reward) : null);
                 }
                 case 2: {
-                    int target = ArcSettlementTarget + tier;
+                    int floor = ArcSettlementTarget + tier;
+                    int buildingsFloor = 3 + 3 * tier;
                     int limit = EraRules.settlementLimit(era);
-                    if (limit > 0 && target > limit) {
-                        // the era will not let the nation hold more: grow the ones it has
-                        int buildings = 3 + 3 * tier;
-                        return new Objective(id, "Put up " + buildings + " buildings",
-                            s => ObjectiveProgress.count("Buildings", nationBuildings(s), buildings),
-                            "Across all your settlements. Inside one, press {BuildBuilding} with wood and stone.",
-                            reward.and(ItemType.STONE, BuildingCatalog.getStoneCost(BuildingType.HOUSE)), true);
-                    }
-                    return new Objective(id, "Hold " + target + " settlements",
-                        s => ObjectiveProgress.count("Settlements", settlements(s), target),
-                        s => "Press {FoundSettlement} with " + FoundingCost.describe(playerNation(s)) + ", far from other settlements.",
-                        reward.and(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD / 4), true);
+                    ObjectiveReward settlementReward = reward.and(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD / 4);
+                    ObjectiveReward buildingsReward = reward.and(ItemType.STONE, BuildingCatalog.getStoneCost(BuildingType.HOUSE));
+                    AmbitionGoal floorGoal = limit > 0 && floor > limit
+                        ? buildingsGoal(buildingsFloor, buildingsReward)
+                        : settlementsGoal(floor, settlementReward);
+                    return new ScaledAmbition(id, floorGoal,
+                        s => {
+                            int target = System.Math.Max(floor, settlements(s) + 1);
+                            if (limit > 0 && target > limit) {
+                                // the era will not let the nation hold more: grow the ones it has
+                                return buildingsGoal(System.Math.Max(buildingsFloor, nationBuildings(s) + BuildingsStep), buildingsReward);
+                            }
+                            return settlementsGoal(target, settlementReward);
+                        },
+                        (label, target) => label == "Settlements" ? settlementsGoal(target, settlementReward)
+                            : label == "Buildings" ? buildingsGoal(target, buildingsReward) : null);
                 }
                 default: {
                     Era? next = Eras.next(era);
@@ -178,6 +190,67 @@ namespace beyondnations {
             }
         }
 
+        /** Buildings a "Put up N buildings" ambition asks for beyond those the nation has. */
+        public const int BuildingsStep = 3;
+
+        /**
+        * The funds a funds ambition asks for when the nation has these: a
+        * funds step more, or a fifth more for a rich nation, rounded up to
+        * a hundred so the title reads "Amass 2300 coins", not "2263".
+        */
+        public static int fundsTarget(int funds) {
+            int target = System.Math.Max(0, funds) + System.Math.Max(fundsStep(), funds / 5);
+            return (target + 99) / 100 * 100;
+        }
+
+        private static AmbitionGoal membersGoal(int target, ObjectiveReward reward) {
+            return new AmbitionGoal("Members", target, "Grow your nation to " + target, members, membersHint, reward);
+        }
+
+        private static AmbitionGoal fundsGoal(int target, ObjectiveReward reward) {
+            return new AmbitionGoal("Funds", target, "Amass " + target + " coins", funds,
+                _ => "Counts your coins and your settlements' treasuries. Sell at market and build stalls.", reward);
+        }
+
+        private static AmbitionGoal settlementsGoal(int target, ObjectiveReward reward) {
+            return new AmbitionGoal("Settlements", target, "Hold " + target + " settlements", settlements,
+                s => "Press {FoundSettlement} with " + FoundingCost.describe(playerNation(s)) + ", far from other settlements.", reward);
+        }
+
+        private static AmbitionGoal buildingsGoal(int target, ObjectiveReward reward, System.Func<Simulation, string> hint = null) {
+            return new AmbitionGoal("Buildings", target, "Put up " + target + " buildings", nationBuildings,
+                hint ?? (_ => "Across all your settlements. Inside one, press {BuildBuilding} with wood and stone."), reward);
+        }
+
+        /**
+        * How to gain members. While strangers in no nation are left, befriend
+        * and invite them; once every pawn in the world belongs to a nation
+        * (EraTracker counts them once a second), inviting a stranger is no
+        * longer a way, so it says what still is: room and food for births
+        * and newcomers, or winning over another nation's people. Once the
+        * world is full, births and newcomers stop too. It names no key, as
+        * the Invite button on a phone is not a key.
+        */
+        public static string membersHint(Simulation simulation) {
+            EraTracker tracker = simulation.getEraTracker();
+            if (tracker.getStrangersLeft() != 0) {
+                return InviteMembersHint;
+            }
+            return tracker.isWorldFull() ? WorldFullMembersHint : NoStrangersMembersHint;
+        }
+
+        public const string InviteMembersHint =
+            "Befriend settlers and press {InviteToNation}; homes with room draw newcomers and families.";
+
+        public const string NoStrangersMembersHint =
+            "No strangers are left: every settler belongs to a nation. Put up houses so your settlements have room, and keep food in"
+            + " store, for births and newcomers; or win over another nation's people with talk and gifts until they are Loyal, then invite them.";
+
+        public const string WorldFullMembersHint =
+            "No strangers are left, and the world is full: no child is born and no newcomer comes until it has room."
+            + " Put up houses so your settlements are ready, and win over another nation's people with talk and gifts"
+            + " until they are Loyal, then invite them.";
+
         /** The members an era's nation-size ambitions start from. */
         public static int eraMembers(Era era) {
             switch (era) {
@@ -193,7 +266,9 @@ namespace beyondnations {
             switch (era) {
                 // the arc's rewards and treasuries already make 500 (docs/PACING.md)
                 case Era.VILLAGE: return EraRules.TownFunds;
-                case Era.TOWN: return EraRules.KingdomFunds;
+                // half the Kingdom's: a step on the way, so the Town era's first
+                // funds ambition does not hold back its settlements ambition
+                case Era.TOWN: return EraRules.KingdomFunds / 2;
                 case Era.KINGDOM: return VictoryRules.ProsperityFunds * 2 / 3;
                 default: return Stall.COIN_COST_TO_PURCHASE * 2;
             }
@@ -218,7 +293,8 @@ namespace beyondnations {
             if (unmet == null) {
                 return "";
             }
-            return unmet.Value.describe() + ". " + EraRules.hintFor(unmet.Value);
+            string hint = unmet.Value.label == "Members" ? membersHint(simulation) : EraRules.hintFor(unmet.Value);
+            return unmet.Value.describe() + ". " + hint;
         }
 
         /** What each further lap of funds ambitions adds: five stalls' worth. */

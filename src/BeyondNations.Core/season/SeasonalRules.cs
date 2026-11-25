@@ -14,7 +14,7 @@ namespace beyondnations {
     *
     * Plains farms harvest one apple more whenever farms harvest at all
     * (RegionCatalog.farmBonus). Indoors in winter, a starving pawn burns
-    * energy at a quarter of the rate (shelterMultiplier, #353).
+    * energy at 0.4 of the rate (shelterMultiplier, #353, #504).
     *
     * Two rules keep the good seasons from storing up a mild winter. Apples
     * spoil all year: a pawn's or a market stall's apples beyond a modest store
@@ -138,11 +138,20 @@ namespace beyondnations {
         * How much slower a starving pawn burns energy while it shelters in a
         * settlement in winter: it huddles by the fire and rations what is left.
         * In the 0.5.0 and 0.6.0 playtests pawns starved by the dozen "within
-        * the walls" in one winter (#353); at a quarter of the rate a pawn that
-        * gets home with its last reserves lasts out most of a winter, long
-        * enough for a farm in spring, a market apple or Feed Residents.
+        * the walls" in one winter (#353), so it was set to a quarter.
+        *
+        * It is the one knob for how harsh winter is (#504). After the 0.8.0
+        * food fixes (#495, #497, #499) a quarter left winter almost harmless:
+        * 2.3 deaths a winter over seeds 41-56, against about 10 before. At 0.4
+        * a starving pawn that gets home on its last 40 energy lasts about a
+        * day of the two-day winter (a quarter lasted about two), so a nation
+        * that goes into winter short starves late in winter unless someone
+        * feeds it: 5.4 deaths a winter over seeds 41-56 (2 to 12 a seed). A
+        * nation stocked to WINTER_FOOD_STORE never starves, so it is untouched:
+        * a player's camp stocked to it loses 1 member over seeds 101-108, as
+        * before, and an unstocked one loses 37 of 56, against 23.
         */
-        public const float WINTER_SHELTER_MULTIPLIER = 0.25f;
+        public const float WINTER_SHELTER_MULTIPLIER = 0.4f;
 
         /** The factor on energy a pawn burns inside a settlement, after GameConfig's settlement multiplier. */
         public static float shelterMultiplier(Season season, bool starving) {

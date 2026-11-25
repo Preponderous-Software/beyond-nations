@@ -89,6 +89,21 @@ namespace beyondnations.desktop.ui.boxes {
         }
 
         /**
+        * "Objective 2: Build a house - Wood 12/40": the heading, the title
+        * and the counter, for the collapsed chip.
+        */
+        public static string chipLine(ObjectiveTracker tracker) {
+            Objective current = tracker.getCurrent();
+            if (current == null) {
+                return heading(tracker);
+            }
+            string counter = tracker.getCurrentProgress().hasCounter()
+                ? tracker.getCurrentProgress().describe()
+                : null;
+            return heading(tracker) + ": " + current.getTitle() + (counter != null ? " - " + counter : "");
+        }
+
+        /**
         * Draws the panel and returns its bottom edge, as InfoBox.draw does,
         * so anything stacked under it can start there.
         */
@@ -99,13 +114,31 @@ namespace beyondnations.desktop.ui.boxes {
                 return y;
             }
             float bottom = y;
-            ObjectiveProgress progress = tracker.getCurrentProgress();
 
             ImGui.SetNextWindowPos(new Vector2(x, y), ImGuiCond.Always);
             ImGui.SetNextWindowSize(new Vector2(width, 0), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.6f);
             if (ImGui.Begin("##objective-tracker", PanelFlags)) {
-                Overlay.textColoured(HeadingColour, heading(tracker));
+                drawContents(true);
+                bottom = y + ImGui.GetWindowSize().Y;
+                lastHeight = ImGui.GetWindowSize().Y;
+            }
+            ImGui.End();
+            return bottom;
+        }
+
+        /** The title, the counter and the hint; the heading too, unless a title strip shows it. */
+        private void drawContents(bool withHeading) {
+            ObjectiveTracker tracker = simulation.getObjectiveTracker();
+            Objective current = tracker.getCurrent();
+            if (current == null) {
+                return;
+            }
+            ObjectiveProgress progress = tracker.getCurrentProgress();
+            {
+                if (withHeading) {
+                    Overlay.textColoured(HeadingColour, heading(tracker));
+                }
                 ImGui.PushTextWrapPos(0f);
                 ImGui.TextUnformatted(current.getTitle());
                 ImGui.PopTextWrapPos();
@@ -122,11 +155,7 @@ namespace beyondnations.desktop.ui.boxes {
                     ImGui.PopTextWrapPos();
                     ImGui.PopStyleColor();
                 }
-                bottom = y + ImGui.GetWindowSize().Y;
-                lastHeight = ImGui.GetWindowSize().Y;
             }
-            ImGui.End();
-            return bottom;
         }
 
         /**
@@ -144,12 +173,15 @@ namespace beyondnations.desktop.ui.boxes {
         * HUD sets below the status line, the hunger warning and the chronicle strip
         * so none of them sit on top of each other on a narrow window.
         */
-        public void drawToast(float screenWidth, float screenHeight, float minY) {
+        public void drawToast(float screenWidth, float screenHeight, float minY, bool atMinY = false) {
             string text = toastText(simulation);
             if (text == null) {
                 return;
             }
-            ImGui.SetNextWindowPos(new Vector2(screenWidth / 2f, Math.Max(minY, screenHeight * 0.16f)), ImGuiCond.Always, new Vector2(0.5f, 0f));
+            // atMinY: exactly there (a phone held upright, where the HUD stacks
+            // and a sixth of the way down is inside the boxes or the bar)
+            float y = atMinY ? minY : Math.Max(minY, screenHeight * 0.16f);
+            ImGui.SetNextWindowPos(new Vector2(screenWidth / 2f, y), ImGuiCond.Always, new Vector2(0.5f, 0f));
             ImGui.SetNextWindowBgAlpha(0.75f);
             if (ImGui.Begin("##objective-toast", PanelFlags | ImGuiWindowFlags.AlwaysAutoResize)) {
                 Overlay.textColoured(HeadingColour, "Objective complete!");

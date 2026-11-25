@@ -145,7 +145,7 @@ namespace beyondnations.desktop.ui.screens {
             List<Section> sections = new List<Section>();
             sections.Add(new Section("Ownership", describeOwnership(simulation, settlement)));
             sections.Add(new Section("People", describePeople(simulation, settlement)));
-            sections.Add(new Section("Buildings", describeBuildings(settlement)));
+            sections.Add(new Section("Buildings", describeBuildings(settlement, simulation.getPlayer().getInventory())));
             Nation own = simulation.getNationRepository().getNation(simulation.getPlayer().getNationId());
             bool ours = own != null && settlement.getNationId() == own.getId();
             sections.Add(new Section("Stores", ours ? describeStores(settlement)
@@ -241,21 +241,132 @@ namespace beyondnations.desktop.ui.screens {
         * anywhere else, or where the player may not build.
         */
         public static List<WorldCommand> getBuildCommands(Simulation simulation, Settlement settlement) {
+            return getBuildCommands(simulation, settlement, false);
+        }
+
+        /**
+        * The same, and with payWithCoins the building buttons buy instead
+        * (getBuyCommand): "Buy House (1,980)", paying coins for the wood and
+        * stone the player is short of. Either way the last button is the
+        * Pay with Coins / Pay with Materials toggle (PayToggleLabel), while
+        * any building has room here.
+        */
+        public static List<WorldCommand> getBuildCommands(Simulation simulation, Settlement settlement, bool payWithCoins) {
             List<WorldCommand> build = new List<WorldCommand>();
             if (settlement == null || simulation.getPlayer().getCurrentSettlementId() != settlement.getId()) {
                 return build;
             }
+            bool anyBuilding = false;
             foreach (WorldCommand command in WorldCommandBar.getCommands(simulation)) {
                 // and Feed Residents, which the hunger and winter banners name: the
                 // screen covers the command bar, and in the winter2 playtest a ruler
                 // inside the camp with 22 apples and a starving member found only
                 // Build and Exit here (#497 follow-up)
                 if (command.getGroup() == CommandGroup.Build || isFeedResidents(command)) {
+                    BuildingType? type = buildingOf(command);
+                    if (type != null) {
+                        anyBuilding = true;
+                        if (payWithCoins) {
+                            build.Add(getBuyCommand(simulation, settlement, type.Value));
+                            continue;
+                        }
+                    }
                     build.Add(command);
                 }
             }
+            if (anyBuilding) {
+                build.Add(new WorldCommand(payToggleLabel(payWithCoins), CommandGroup.Build, () => SettlementScreen.payWithCoins = !payWithCoins)
+                    .setTooltip(payWithCoins ? PayWithMaterialsTooltip : PayWithCoinsTooltip));
+            }
             return build;
         }
+
+        /** The toggle that turns the building buttons from Build into Buy and back. */
+        public const string PayWithCoinsLabel = "Pay with Coins";
+        public const string PayWithMaterialsLabel = "Pay with Materials";
+        public const string PayWithCoinsTooltip = "Buy buildings with coins: they pay for the wood and stone you are short of.";
+        public const string PayWithMaterialsTooltip = "Build with the wood and stone you carry and the stockpile.";
+
+        /** Whether the screen's building buttons buy with coins (the toggle). Remembered while the game runs. */
+        private static bool payWithCoins;
+
+        public static bool isPayingWithCoins() {
+            return payWithCoins;
+        }
+
+        public static void setPayingWithCoins(bool value) {
+            payWithCoins = value;
+        }
+
+        public static string payToggleLabel(bool payWithCoins) {
+            return payWithCoins ? PayWithMaterialsLabel : PayWithCoinsLabel;
+        }
+
+        /** Whether this is the screen's Pay with Coins / Pay with Materials toggle. */
+        public static bool isPayToggle(WorldCommand command) {
+            return command.getLabel() == PayWithCoinsLabel || command.getLabel() == PayWithMaterialsLabel;
+        }
+
+        /** Whether this is a Buy button (getBuyCommand), which asks for a second tap. */
+        public static bool isBuy(WorldCommand command) {
+            return command.getLabel().StartsWith("Buy ");
+        }
+
+        /** The building a command bar "Build House" button builds, or null for any other button. */
+        private static BuildingType? buildingOf(WorldCommand command) {
+            foreach (BuildingType type in WorldCommandBar.BuildOrder) {
+                if (command.getLabel() == WorldCommandBar.buildLabel(type)) {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        /** "Buy House (1,980)": the coins for what the player and the stockpile are short of. */
+        public static string buyLabel(BuildingType type, int price) {
+            return "Buy " + BuildingCatalog.getDisplayName(type) + " (" + BuildingPurchase.formatCoins(price) + ")";
+        }
+
+        /**
+        * Buys a building with coins (BuyBuildingCommand), greyed with the
+        * reason while the purse falls short or the materials already cover it.
+        */
+        public static WorldCommand getBuyCommand(Simulation simulation, Settlement settlement, BuildingType type) {
+            Player player = simulation.getPlayer();
+            Inventory carried = player.getInventory();
+            int price = BuildingPurchase.getCoinPrice(settlement, carried, type);
+            string whyNot = BuildingPurchase.describeWhyNot(settlement, carried, type);
+            return new WorldCommand(buyLabel(type, price), CommandGroup.Build, () =>
+                new BuyBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, type))
+                .setEnabled(whyNot == null, whyNot)
+                .setTooltip(whyNot == null ? "Pays " + BuildingPurchase.describeShortfall(settlement, carried, type) + "." : null)
+                .requireConfirm();
+        }
+
+        /** "Buy with coins (you have 5,210):" */
+        public static string buyNote(Player player) {
+            return "Buy with coins (you have " + coinsOf(player) + "):";
+        }
+
+        private static string coinsOf(Player player) {
+            return BuildingPurchase.formatCoins(player.getInventory().getNumItems(ItemType.COIN));
+        }
+
+        /** What an armed Buy button says: "Buy House (1,980)" becomes "Confirm: 1,980 coins". */
+        public static string confirmLabel(string buyLabel) {
+            int open = buyLabel.LastIndexOf('(');
+            if (open < 0 || !buyLabel.EndsWith(")")) {
+                return "Confirm";
+            }
+            return "Confirm: " + buyLabel.Substring(open + 1, buyLabel.Length - open - 2) + " coins";
+        }
+
+        /** How long an armed Buy button waits for its second tap. */
+        public const double BuyArmSeconds = 4.0;
+
+        /** The Buy button waiting for its second tap, and since when. */
+        private string armedBuy;
+        private double armedAt;
 
         /** Whether this is the command bar's Feed Residents button. */
         public static bool isFeedResidents(WorldCommand command) {
@@ -297,6 +408,17 @@ namespace beyondnations.desktop.ui.screens {
 
         /** "Town, 5 of 8 buildings: 2 houses, 2 farms, 1 storehouse." and what comes next. */
         public static List<string> describeBuildings(Settlement settlement) {
+            return describeBuildings(settlement, null);
+        }
+
+        /**
+        * describeBuildings, with the next building's price for what the
+        * player is short of beside its full price when they differ: the
+        * text read "or 2,160 coins" while the button read "Buy Farm (1,764)"
+        * and nothing said why (playtest w1): "or 2,160 coins (1,764 with
+        * what you have)". carried is the player's pack, or null.
+        */
+        public static List<string> describeBuildings(Settlement settlement, Inventory carried) {
             List<string> lines = new List<string>();
             string tier = SettlementTiers.getDisplayName(settlement.getTier());
             int count = settlement.getNumBuildings();
@@ -315,7 +437,11 @@ namespace beyondnations.desktop.ui.screens {
             }
             BuildingType? next = BuildingPlanner.suggestNext(settlement);
             if (next != null) {
-                lines.Add("Next: " + BuildingCatalog.getDisplayName(next.Value) + ", " + BuildingCatalog.describeCost(next.Value) + ".");
+                int full = BuildingPurchase.getFullCoinPrice(settlement, next.Value);
+                int yours = carried == null ? full : BuildingPurchase.getCoinPrice(settlement, carried, next.Value);
+                string withWhatYouHave = yours > 0 && yours < full ? " (" + BuildingPurchase.formatCoins(yours) + " with what you have)" : "";
+                lines.Add("Next: " + BuildingCatalog.getDisplayName(next.Value) + ", " + BuildingCatalog.describeCost(next.Value)
+                    + ", or " + BuildingPurchase.formatCoins(full) + " coins" + withWhatYouHave + ".");
             }
             return lines;
         }
@@ -514,10 +640,16 @@ namespace beyondnations.desktop.ui.screens {
             float hintTop = height - lineHeight * 0.6f - hintStep * hintLines;
             float statusTop = hintTop - lineHeight * 1.5f;
             // the Build buttons, while the player stands inside one of their own (s01)
-            List<WorldCommand> build = getBuildCommands(simulation, settlement);
+            List<WorldCommand> build = getBuildCommands(simulation, settlement, payWithCoins);
+            // the Pay with Coins toggle sits in the note's row, not in the grid, so it adds no row on a phone
+            WorldCommand payToggle = build.Find(isPayToggle);
+            if (payToggle != null) {
+                build.Remove(payToggle);
+            }
             int perRow = narrow ? 2 : System.Math.Max(1, System.Math.Min(build.Count, 4));
             int buildRows = (build.Count + perRow - 1) / perRow;
-            float buildHeight = build.Count == 0 ? 0f : hintStep + gap * 2f + (buttonHeight + gap) * buildRows;
+            float noteRow = payToggle != null ? buttonHeight : hintStep;
+            float buildHeight = build.Count == 0 ? 0f : noteRow + gap * 2f + (buttonHeight + gap) * buildRows;
             // on a phone, Give and Take Back go under the picker, and the note may take three lines
             bool stackGive = narrow && actions.canGive;
             int actionRows = 1 + (actions.canGive || actions.canTakeBack || actions.canHandBack ? 1 : 0) + (stackGive ? 1 : 0);
@@ -529,8 +661,8 @@ namespace beyondnations.desktop.ui.screens {
             bool twoColumns = width >= UiScale.px(860f);
             float columnGap = UiScale.px(24f);
             float columnWidth = twoColumns ? (width - left * 2f - columnGap) / 2f : width - left * 2f;
-            float headingSize = height / 32f;
-            float textSize = height / 36f;
+            float headingSize = Overlay.atLeastAtlasFontSize(height / 32f);
+            float textSize = Overlay.atLeastAtlasFontSize(height / 36f);
             float textScale = Overlay.fontScaleFor(textSize);
             float headingStep = lineHeight * 0.8f;
             float textStep = lineHeight * 0.68f;
@@ -596,9 +728,34 @@ namespace beyondnations.desktop.ui.screens {
             float rowWidth = width - left * 2f;
             float buildY = actionsTop;
             if (build.Count > 0) {
-                Overlay.textCentered(BuildNote, height / 40f, buildY, width);
-                buildY += hintStep + gap;
+                string note = payWithCoins ? buyNote(player) : BuildNote;
+                if (payToggle == null) {
+                    Overlay.textCentered(note, height / 40f, buildY, width);
+                } else {
+                    // a phone: the toggle alone, full width, with the purse on it;
+                    // wider: the note, and the toggle at the row's end
+                    float toggleWidth = narrow ? rowWidth : System.MathF.Min(UiScale.px(220f), rowWidth / 4f);
+                    string toggleText = narrow ? payToggle.getLabel() + " (" + coinsOf(player) + " coins)" : payToggle.getLabel();
+                    if (!narrow) {
+                        Overlay.textCentered(note, height / 40f, buildY + (buttonHeight - hintStep) * 0.5f, width);
+                    }
+                    if (Overlay.buttonAt(fitLabel(toggleText, toggleWidth) + "##settlement-pay", left + rowWidth - toggleWidth, buildY, toggleWidth, buttonHeight)) {
+                        WorldCommand chosen = payToggle;
+                        armedBuy = null;
+                        pending = () => chosen.execute();
+                    }
+                    if (!TouchLayout.isActive() && ImGui.IsItemHovered()) {
+                        ImGui.BeginTooltip();
+                        ImGui.TextUnformatted(payToggle.getTooltip());
+                        ImGui.EndTooltip();
+                    }
+                }
+                buildY += noteRow + gap;
                 float each = (rowWidth - gap * (perRow - 1)) / perRow;
+                double now = keyClock.Elapsed.TotalSeconds;
+                if (armedBuy != null && now - armedAt > BuyArmSeconds) {
+                    armedBuy = null;
+                }
                 for (int i = 0; i < build.Count; i++) {
                     WorldCommand command = build[i];
                     float bx = left + (each + gap) * (i % perRow);
@@ -606,16 +763,30 @@ namespace beyondnations.desktop.ui.screens {
                     if (!command.isEnabled()) {
                         ImGui.BeginDisabled();
                     }
-                    bool pressed = Overlay.buttonAt(fitLabel(command.getLabel(), each) + "##settlement-build-" + i, bx, by, each, buttonHeight);
+                    // a purchase of thousands takes a second tap: the first arms it and shows the price
+                    bool armed = isBuy(command) && command.isEnabled() && command.getLabel() == armedBuy;
+                    string shown = armed ? confirmLabel(command.getLabel()) : command.getLabel();
+                    bool pressed = Overlay.buttonAt(fitLabel(shown, each) + "##settlement-build-" + i, bx, by, each, buttonHeight);
+                    // what a Buy pays for, or why it is greyed (no hover on a touch screen: a tap says why, below)
+                    string hover = isBuy(command) ? command.getTooltip() : null;
+                    if (hover != null && !TouchLayout.isActive() && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+                        ImGui.BeginTooltip();
+                        ImGui.TextUnformatted(hover);
+                        ImGui.EndTooltip();
+                    }
                     if (!command.isEnabled()) {
                         ImGui.EndDisabled();
                         // no hover on a touch screen: a tap on a greyed button says what is missing (#444)
                         if (ImGui.IsMouseClicked(ImGuiMouseButton.Left) && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                             WorldHud.explainDisabled(command, player.getStatus());
                         }
+                    } else if (pressed && isBuy(command) && !armed) {
+                        armedBuy = command.getLabel();
+                        armedAt = now;
                     } else if (pressed) {
                         // one press: the screen is still and nothing slides under the pointer, as on the bar
                         WorldCommand chosen = command;
+                        armedBuy = null;
                         pending = () => chosen.execute();
                     }
                 }

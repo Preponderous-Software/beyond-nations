@@ -181,6 +181,10 @@ namespace beyondnations {
                 throw new SaveFormatException("the save's current objective is not '" + currentId + "' in this version");
             }
             currentProgress = ObjectiveProgress.load(SaveReader.property(element, "currentProgress"));
+            // a scaled ambition's target is the one its saved counter shows (ScaledAmbition)
+            if (getCurrent() is ScaledAmbition scaled) {
+                scaled.restore(currentProgress);
+            }
             evaluatedOnce = SaveReader.getBool(element, "evaluatedOnce");
             int last = SaveReader.getInt(element, "lastCompleted");
             lastCompleted = last >= 0 && last < objectives.Count ? objectives[last] : null;

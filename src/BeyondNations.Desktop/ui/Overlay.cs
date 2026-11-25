@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
 
@@ -105,6 +106,17 @@ namespace beyondnations.desktop.ui {
             return System.MathF.Max(1f, scale);
         }
 
+        /**
+        * A Unity-style font size no smaller than the atlas size: the size
+        * atLeastAtlasSize keeps a scale at. A panel that wraps its lines at
+        * fontScaleFor(size) and then draws them with textAtScaled floors the
+        * size once, where it measures, so the lines it wrapped are the lines
+        * that are drawn.
+        */
+        public static float atLeastAtlasFontSize(float fontSizeInPixels) {
+            return System.MathF.Max(BaseFontSize, fontSizeInPixels);
+        }
+
         /** The most of the screen's width a centred line may take before it is drawn smaller. */
         public const float CentredLineShare = 0.94f;
 
@@ -121,23 +133,51 @@ namespace beyondnations.desktop.ui {
         }
 
         /**
+        * The scale a centred line measured textWidth wide at scale is drawn
+        * at: fitScale, but never below the atlas size (atLeastAtlasSize),
+        * where the bitmap font loses the rows hyphens and full stops sit on
+        * (#505). A line that still does not fit at that size is wrapped
+        * (textCentered) rather than shrunk further.
+        */
+        public static float centredLineScale(float scale, float textWidth, float available) {
+            return atLeastAtlasSize(fitScale(atLeastAtlasSize(scale), textWidth, available));
+        }
+
+        /**
         * Draws text centred on the point (width / 2, centreY), which is what
         * a GUI.Label with TextAnchor.MiddleCenter did inside its rect.
         */
         public static void textCentered(string text, float fontSize, float centreY, float width) {
-            float scale = fontScaleFor(fontSize);
+            // never below the atlas size: the bitmap font drops the rows a
+            // hyphen and a full stop are drawn on (#505)
+            float scale = atLeastAtlasSize(fontScaleFor(fontSize));
             ImGui.SetWindowFontScale(scale);
             Vector2 size = ImGui.CalcTextSize(text);
             // a line wider than the screen (a phone held upright: "(Tap
             // Close, top right, to go back)" ran off both edges) is drawn
-            // smaller rather than cut off
-            float fitted = fitScale(scale, size.X, width * CentredLineShare);
+            // smaller rather than cut off, down to the atlas size
+            float available = width * CentredLineShare;
+            float fitted = centredLineScale(scale, size.X, available);
             if (fitted < scale) {
                 ImGui.SetWindowFontScale(fitted);
                 size = ImGui.CalcTextSize(text);
             }
-            ImGui.SetCursorPos(new Vector2((width - size.X) * 0.5f, centreY - size.Y * 0.5f));
-            ImGui.TextUnformatted(text);
+            if (size.X <= available) {
+                ImGui.SetCursorPos(new Vector2((width - size.X) * 0.5f, centreY - size.Y * 0.5f));
+                ImGui.TextUnformatted(text);
+            } else {
+                // still too wide at the atlas size: wrapped, each line
+                // centred, the block centred on centreY
+                List<string> lines = TextWrap.wrap(text, available, s => ImGui.CalcTextSize(s).X);
+                float step = size.Y + ImGui.GetStyle().ItemSpacing.Y * fitted;
+                float y = centreY - (step * lines.Count - ImGui.GetStyle().ItemSpacing.Y * fitted) * 0.5f;
+                foreach (string line in lines) {
+                    float lineWidth = ImGui.CalcTextSize(line).X;
+                    ImGui.SetCursorPos(new Vector2(System.MathF.Max(0f, (width - lineWidth) * 0.5f), y));
+                    ImGui.TextUnformatted(line);
+                    y += step;
+                }
+            }
             ImGui.SetWindowFontScale(1f);
         }
 
@@ -211,10 +251,12 @@ namespace beyondnations.desktop.ui {
 
         /**
         * Left-aligned text at (x, y) at a Unity-style font size, using the
-        * same calls textCentered does.
+        * same calls textCentered does. Never below the atlas size, where the
+        * bitmap font drops hyphens and full stops; a caller that wraps the
+        * text first measures at atLeastAtlasFontSize(fontSize) to match.
         */
         public static void textAtScaled(string text, float fontSize, float x, float y) {
-            ImGui.SetWindowFontScale(fontScaleFor(fontSize));
+            ImGui.SetWindowFontScale(atLeastAtlasSize(fontScaleFor(fontSize)));
             ImGui.SetCursorPos(new Vector2(x, y));
             ImGui.TextUnformatted(text);
             ImGui.SetWindowFontScale(1f);
@@ -244,9 +286,39 @@ namespace beyondnations.desktop.ui {
             return clicked;
         }
 
+        /** Where the touch Close button starts on the left, for a row that may sit beside it. */
+        public static float touchCloseLeft(float width) {
+            return width - UiScale.px(96f) - UiScale.px(8f) - ImGui.GetStyle().WindowPadding.X;
+        }
+
         /** Where the touch Close button ends, so full-width text can start below it; 0 without touch. */
         public static float touchCloseBottom() {
             return TouchLayout.isActive() ? UiScale.px(TouchLayout.MinTarget + 16f) : 0f;
+        }
+
+        /**
+        * How tall a screen is taken to be when a panel sizes its text by the
+        * screen's height (the Unity screens' fontSize = height / N). On a
+        * narrow, tall screen (a phone held upright, 390x844) that made the
+        * text as big as on a 1280x844 desktop, in a third of the width, so
+        * lines were cut off and lists pushed off the screen (#467). The
+        * height counts for no more than NarrowTextAspect times the width;
+        * any screen wider than that (every desktop window, a phone on its
+        * side) is unchanged.
+        */
+        public static float textHeightFor(float width, float height) {
+            return System.MathF.Min(height, width * NarrowTextAspect);
+        }
+
+        /** See textHeightFor: 390 wide counts as about 507 high. */
+        public const float NarrowTextAspect = 1.3f;
+
+        /**
+        * A panel button's height: as asked on the desktop, and never under
+        * a fingertip (TouchLayout.MinTarget) on a touch screen (#469).
+        */
+        public static float touchHeight(float height) {
+            return TouchLayout.isActive() ? System.MathF.Max(height, UiScale.px(TouchLayout.MinTarget)) : height;
         }
 
         public static bool buttonAt(string label, float x, float y, float width, float height) {
