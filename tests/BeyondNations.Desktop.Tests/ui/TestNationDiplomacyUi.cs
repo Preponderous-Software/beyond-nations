@@ -138,7 +138,7 @@ namespace beyondnationstests.desktop.ui {
             config.setWorldSeed(42);
             Simulation simulation = new Simulation(config);
 
-            Assert.Equal(new List<string> { "You belong to no nation. Press N to found one, or J to join one." }, NationScreen.getHeaderLines(simulation));
+            Assert.Equal(new List<string> { "You belong to no nation. Press N to found one, or T to join one." }, NationScreen.getHeaderLines(simulation));
             Assert.Empty(NationScreen.getRows(simulation));
         }
 

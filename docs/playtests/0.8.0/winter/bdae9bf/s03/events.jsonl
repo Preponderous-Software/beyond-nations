@@ -1,0 +1,451 @@
+{"type":"screen","tick":0,"wallTimeMs":1794817606767,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794817607062,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794817612349,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":145000,"wallTimeMs":1794817622626,"how":"created","slot":"world-103-20261116-082702","seed":103}
+{"type":"screen","tick":145000,"wallTimeMs":1794817622627,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"chronicle","tick":145252,"wallTimeMs":1794817629295,"kind":"NationRelationChange","text":"Greatburg and Yellowford have formed an alliance."}
+{"type":"status","tick":145503,"wallTimeMs":1794817634631,"text":"Southernland has fallen and been disbanded."}
+{"type":"chronicle","tick":145503,"wallTimeMs":1794817634631,"kind":"NationRelationChange","text":"Blackville and Towntown are now hostile over their border."}
+{"type":"chronicle","tick":145503,"wallTimeMs":1794817634631,"kind":"NationRelationChange","text":"Hamletwood and Bigville are now hostile."}
+{"type":"chronicle","tick":145503,"wallTimeMs":1794817634631,"kind":"SettlementCapture","text":"Easternton captured a camp from Southernland."}
+{"type":"chronicle","tick":145503,"wallTimeMs":1794817634631,"kind":"NationDisband","text":"With its last camp taken by Easternton, Southernland passed into history."}
+{"type":"status","tick":145607,"wallTimeMs":1794817636742,"text":"Created nation Lowerburg."}
+{"type":"chronicle","tick":145607,"wallTimeMs":1794817636742,"kind":"NationCreation","text":"You founded the nation of Lowerburg."}
+{"type":"chronicle","tick":145751,"wallTimeMs":1794817639695,"kind":"NationRelationChange","text":"Lowerham and Easternton swore an alliance."}
+{"type":"chronicle","tick":145751,"wallTimeMs":1794817639695,"kind":"NationRelationChange","text":"Towntown and Yellowville are now hostile."}
+{"type":"chronicle","tick":145751,"wallTimeMs":1794817639695,"kind":"NationRelationChange","text":"Yellowford and Yellowville are now hostile."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1794817644765,"kind":"NationRelationChange","text":"Lowershire and Newshire swore an alliance."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1794817644765,"kind":"NationRaid","text":"Hamletwood raided Bigville and carried off 4 wood, 5 stone."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1794817644765,"kind":"NationRaid","text":"Raiders from Lowerham struck Newford, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":146002,"wallTimeMs":1794817644765,"kind":"NationRaid","text":"Raiders from Blackville struck Towntown, taking 5 coins."}
+{"type":"status","tick":146217,"wallTimeMs":1794817649073,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":146236,"wallTimeMs":1794817649447,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":146251,"wallTimeMs":1794817649754,"kind":"NationRelationChange","text":"Redland and Cityville have become rivals over their border."}
+{"type":"chronicle","tick":146251,"wallTimeMs":1794817649754,"kind":"NationRelationChange","text":"Towntown and Yellowford swore an alliance."}
+{"type":"status","tick":146260,"wallTimeMs":1794817649927,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":146282,"wallTimeMs":1794817650362,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":146303,"wallTimeMs":1794817650779,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":146327,"wallTimeMs":1794817651260,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":146878,"wallTimeMs":1794817662957,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":147002,"wallTimeMs":1794817665782,"text":"Lowershire has fallen and been disbanded."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1794817665782,"kind":"NationRelationChange","text":"Hamletwood and Greatton have become rivals over their border."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1794817665782,"kind":"SettlementCapture","text":"Hamletwood captured a village from Lowershire."}
+{"type":"chronicle","tick":147002,"wallTimeMs":1794817665782,"kind":"NationDisband","text":"With its last village taken by Hamletwood, Lowershire passed into history."}
+{"type":"status","tick":147030,"wallTimeMs":1794817666369,"text":"You leave the land of Hamletwood for the wilds."}
+{"type":"status","tick":147078,"wallTimeMs":1794817667365,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"objective_completed","tick":147102,"wallTimeMs":1794817667904,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2102}
+{"type":"status","tick":147102,"wallTimeMs":1794817667904,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":147201,"wallTimeMs":1794817669925,"kind":"StallBuilt","text":"Stan Williams built a market stall in Lowerham."}
+{"type":"status","tick":147342,"wallTimeMs":1794817672752,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"chronicle","tick":147500,"wallTimeMs":1794817675918,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerport, built by Linda Brown."}
+{"type":"chronicle","tick":147500,"wallTimeMs":1794817675918,"kind":"StallBuilt","text":"Fiona Wilson built a market stall in Yellowford."}
+{"type":"chronicle","tick":147500,"wallTimeMs":1794817675918,"kind":"NationRelationChange","text":"Blackville and Cityville swore an alliance."}
+{"type":"chronicle","tick":147552,"wallTimeMs":1794817676953,"kind":"StallBuilt","text":"Fiona Robinson built a market stall in Easternton."}
+{"type":"chronicle","tick":147601,"wallTimeMs":1794817677949,"kind":"StallBuilt","text":"Victor Johnson built a market stall in Westernford."}
+{"type":"chronicle","tick":147601,"wallTimeMs":1794817677949,"kind":"StallBuilt","text":"Bob Watson built a market stall in Easternton."}
+{"type":"chronicle","tick":147701,"wallTimeMs":1794817679938,"kind":"StallBuilt","text":"Fiona Wilson built a market stall in Yellowford."}
+{"type":"status","tick":147752,"wallTimeMs":1794817680963,"text":"Newshire has fallen and been disbanded."}
+{"type":"chronicle","tick":147752,"wallTimeMs":1794817680963,"kind":"SettlementCapture","text":"Redland captured a village from Newshire."}
+{"type":"chronicle","tick":147752,"wallTimeMs":1794817680963,"kind":"NationDisband","text":"Newshire is no more; its last village fell to Redland."}
+{"type":"chronicle","tick":147801,"wallTimeMs":1794817681956,"kind":"StallBuilt","text":"Ursula Evans built a market stall in Greatburg."}
+{"type":"chronicle","tick":147901,"wallTimeMs":1794817683973,"kind":"StallBuilt","text":"Trade came to Lowerport: Linda Brown built a stall."}
+{"type":"chronicle","tick":148003,"wallTimeMs":1794817686010,"kind":"StallBuilt","text":"Una Thompson built a market stall in Greatton."}
+{"type":"chronicle","tick":148050,"wallTimeMs":1794817686954,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletwood, built by Frank Taylor."}
+{"type":"status","tick":148253,"wallTimeMs":1794817691811,"text":"Bigville has fallen and been disbanded."}
+{"type":"chronicle","tick":148253,"wallTimeMs":1794817691811,"kind":"SettlementCapture","text":"After a siege, a village of Bigville fell to Hamletwood."}
+{"type":"chronicle","tick":148253,"wallTimeMs":1794817691811,"kind":"NationDisband","text":"The banners of Bigville came down when Hamletwood took its last village."}
+{"type":"status","tick":148261,"wallTimeMs":1794817692014,"text":"You enter the land of Hamletwood (Neutral)."}
+{"type":"status","tick":148353,"wallTimeMs":1794817694219,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":148453,"wallTimeMs":1794817696533,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowford, built by Fiona Wilson."}
+{"type":"status","tick":148501,"wallTimeMs":1794817697610,"text":"Yellowford has fallen and been disbanded. Towntown has fallen and been disbanded."}
+{"type":"chronicle","tick":148501,"wallTimeMs":1794817697610,"kind":"StallBuilt","text":"A new stall opened in the market of Easternton, built by Fiona Roberts."}
+{"type":"chronicle","tick":148501,"wallTimeMs":1794817697610,"kind":"SettlementCapture","text":"Lowerham captured a village from Yellowford."}
+{"type":"chronicle","tick":148501,"wallTimeMs":1794817697610,"kind":"NationDisband","text":"With its last village taken by Lowerham, Yellowford passed into history."}
+{"type":"chronicle","tick":148501,"wallTimeMs":1794817697610,"kind":"SettlementCapture","text":"After a siege, a village of Towntown fell to Blackville."}
+{"type":"chronicle","tick":148501,"wallTimeMs":1794817697610,"kind":"NationDisband","text":"The banners of Towntown came down when Blackville took its last village."}
+{"type":"chronicle","tick":148553,"wallTimeMs":1794817698790,"kind":"StallBuilt","text":"A new stall opened in the market of Easternton, built by Fiona Roberts."}
+{"type":"status","tick":148613,"wallTimeMs":1794817700252,"text":"You leave the land of Hamletwood for the wilds."}
+{"type":"status","tick":148633,"wallTimeMs":1794817700726,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":148657,"wallTimeMs":1794817701322,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":148801,"wallTimeMs":1794817705611,"kind":"StallBuilt","text":"Trade came to Blackville: Katie Jones built a stall."}
+{"type":"chronicle","tick":148801,"wallTimeMs":1794817705611,"kind":"StallBuilt","text":"A new stall opened in the market of Redland, built by Daisy Evans."}
+{"type":"chronicle","tick":148801,"wallTimeMs":1794817705611,"kind":"StallBuilt","text":"Trade came to Westernford: Victor Johnson built a stall."}
+{"type":"status","tick":148977,"wallTimeMs":1794817711149,"text":"Gathered 6 wood and 2 apples from tree. (x2)"}
+{"type":"chronicle","tick":149001,"wallTimeMs":1794817711882,"kind":"StallBuilt","text":"Hank White built a market stall in Hamletwood."}
+{"type":"chronicle","tick":149001,"wallTimeMs":1794817711882,"kind":"StallBuilt","text":"Grace Robinson built a market stall in Hamletwood."}
+{"type":"chronicle","tick":149101,"wallTimeMs":1794817714883,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Judy Lewis."}
+{"type":"status","tick":149189,"wallTimeMs":1794817717018,"text":"Gathered 6 wood and 2 apples from tree. (x3)"}
+{"type":"chronicle","tick":149201,"wallTimeMs":1794817717272,"kind":"StallBuilt","text":"Trade came to Easternton: Fiona Robinson built a stall."}
+{"type":"chronicle","tick":149301,"wallTimeMs":1794817719505,"kind":"StallBuilt","text":"Trade came to Greatton: Una Thompson built a stall."}
+{"type":"chronicle","tick":149353,"wallTimeMs":1794817720644,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerham, built by Stan Williams."}
+{"type":"chronicle","tick":149353,"wallTimeMs":1794817720644,"kind":"StallBuilt","text":"Alice Thompson built a market stall in Hamletwood."}
+{"type":"chronicle","tick":149453,"wallTimeMs":1794817722845,"kind":"StallBuilt","text":"Frank Taylor built a market stall in Hamletwood."}
+{"type":"status","tick":149504,"wallTimeMs":1794817723872,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":149536,"wallTimeMs":1794817724521,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"objective_completed","tick":149550,"wallTimeMs":1794817724806,"number":2,"id":"eat","title":"Eat something","ticksTaken":2448}
+{"type":"status","tick":149550,"wallTimeMs":1794817724806,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":149600,"wallTimeMs":1794817725819,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":50}
+{"type":"status","tick":149600,"wallTimeMs":1794817725819,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"chronicle","tick":149651,"wallTimeMs":1794817726874,"kind":"StallBuilt","text":"Trade came to Lowerport: Linda Brown built a stall."}
+{"type":"chronicle","tick":149703,"wallTimeMs":1794817728036,"kind":"StallBuilt","text":"Trade came to Greatburg: Ursula Evans built a stall."}
+{"type":"chronicle","tick":149743,"wallTimeMs":1794817728943,"kind":"Caravan","text":"A caravan from Easternton sold 17 wood at the Village of Newford for 408 coins."}
+{"type":"status","tick":149787,"wallTimeMs":1794817729949,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"chronicle","tick":149903,"wallTimeMs":1794817732693,"kind":"StallBuilt","text":"Trade came to Yellowville: Judy Lewis built a stall."}
+{"type":"status","tick":149943,"wallTimeMs":1794817733718,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":149983,"wallTimeMs":1794817734729,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":150203,"wallTimeMs":1794817739909,"kind":"StallBuilt","text":"A new stall opened in the market of Easternton, built by Fiona Robinson. The market is now full."}
+{"type":"chronicle","tick":150303,"wallTimeMs":1794817742149,"kind":"StallBuilt","text":"Katie Jones built a market stall in Blackville."}
+{"type":"chronicle","tick":150451,"wallTimeMs":1794817745139,"kind":"StallBuilt","text":"A new stall opened in the market of Greatton, built by Una Thompson."}
+{"type":"chronicle","tick":150451,"wallTimeMs":1794817745139,"kind":"StallBuilt","text":"Alice Thompson built a market stall in Hamletwood."}
+{"type":"chronicle","tick":150451,"wallTimeMs":1794817745139,"kind":"StallBuilt","text":"Trade came to Lowerport: Linda Brown built a stall. The market is now full."}
+{"type":"chronicle","tick":150703,"wallTimeMs":1794817750218,"kind":"StallBuilt","text":"Trade came to Hamletwood: Frank Taylor built a stall."}
+{"type":"world_event_offered","tick":150752,"wallTimeMs":1794817751193,"title":"A claimant stirs","body":"Alice Thompson of Hamletwood claims the right to lead it in place of Frank Taylor, and has come in secret asking for your backing.","options":["Back the claimant (20 coins)","Warn Hamletwood\u0027s leader","Stay out of it"]}
+{"type":"status","tick":150752,"wallTimeMs":1794817760159,"text":"Alice Thompson seized the leadership of Hamletwood without Lowerburg\u0027s help, and has not forgotten it."}
+{"type":"chronicle","tick":150752,"wallTimeMs":1794817760159,"kind":"LeadershipChange","text":"Hamletwood has a new leader: Alice Thompson."}
+{"type":"chronicle","tick":150752,"wallTimeMs":1794817760159,"kind":"WorldEvent","text":"Alice Thompson seized the leadership of Hamletwood without Lowerburg\u0027s help, and has not forgotten it."}
+{"type":"world_event_resolved","tick":150752,"wallTimeMs":1794817760159,"title":"A claimant stirs","status":"Alice Thompson seized the leadership of Hamletwood without Lowerburg\u0027s help, and has not forgotten it."}
+{"type":"status","tick":150843,"wallTimeMs":1794817762004,"text":"You enter the land of Hamletwood (Neutral)."}
+{"type":"chronicle","tick":150850,"wallTimeMs":1794817762144,"kind":"NationCreation","text":"Charlotte Jones raised a banner and called it Blacktown."}
+{"type":"save","tick":151002,"wallTimeMs":1794817765295,"count":1}
+{"type":"chronicle","tick":151050,"wallTimeMs":1794817766244,"kind":"StallBuilt","text":"A new stall opened in the market of Blackville, built by Abigail Robinson."}
+{"type":"chronicle","tick":151150,"wallTimeMs":1794817768255,"kind":"StallBuilt","text":"Judy Lewis built a market stall in Yellowville."}
+{"type":"chronicle","tick":151200,"wallTimeMs":1794817769297,"kind":"StallBuilt","text":"Trade came to Lowerham: Stan Williams built a stall."}
+{"type":"status","tick":151252,"wallTimeMs":1794817770348,"text":"Greatburg has fallen and been disbanded."}
+{"type":"chronicle","tick":151252,"wallTimeMs":1794817770348,"kind":"StallBuilt","text":"Ursula Evans built a market stall in Greatburg."}
+{"type":"chronicle","tick":151252,"wallTimeMs":1794817770348,"kind":"NationRelationChange","text":"Cityville and Redland are now hostile."}
+{"type":"chronicle","tick":151252,"wallTimeMs":1794817770348,"kind":"SettlementCapture","text":"After a siege, a village of Greatburg fell to Blackville."}
+{"type":"chronicle","tick":151252,"wallTimeMs":1794817770348,"kind":"NationDisband","text":"The banners of Greatburg came down when Blackville took its last village."}
+{"type":"chronicle","tick":151350,"wallTimeMs":1794817772319,"kind":"StallBuilt","text":"Trade came to Blackville: Katie Jones built a stall."}
+{"type":"chronicle","tick":151451,"wallTimeMs":1794817774361,"kind":"SettlementFounded","text":"Charlotte Jones laid the first stones of Blacktown."}
+{"type":"chronicle","tick":151503,"wallTimeMs":1794817775420,"kind":"StallBuilt","text":"Trade came to Hamletwood: Alice Thompson built a stall."}
+{"type":"status","tick":151817,"wallTimeMs":1794817781776,"text":"This land is claimed by Hamletwood. Found your settlement outside its borders. Open ground lies about 280 paces to the south."}
+{"type":"chronicle","tick":151851,"wallTimeMs":1794817782471,"kind":"StallBuilt","text":"Trade came to Greatton: Una Thompson built a stall. The market is now full."}
+{"type":"chronicle","tick":151851,"wallTimeMs":1794817782471,"kind":"StallBuilt","text":"Judy Lewis built a market stall in Yellowville."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1794817785508,"kind":"NationRelationChange","text":"Hamletwood and Easternton have become rivals over their border."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1794817785508,"kind":"NationRelationChange","text":"Redland and Fortressland have become rivals over their border."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1794817785508,"kind":"NationRelationChange","text":"Relations between Hamletwood and Easternton are now neutral."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1794817785508,"kind":"NationRelationChange","text":"Greatton and Hamletwood are now hostile."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1794817785508,"kind":"NationRaid","text":"Greatton raided Hamletwood and carried off 5 coins, 3 wood, 5 stone."}
+{"type":"chronicle","tick":152003,"wallTimeMs":1794817785508,"kind":"NationRaid","text":"Cityville raided Redland and carried off 5 coins, 2 wood."}
+{"type":"chronicle","tick":152152,"wallTimeMs":1794817788518,"kind":"StallBuilt","text":"A new stall opened in the market of Easternton, built by Bob Watson."}
+{"type":"status","tick":152190,"wallTimeMs":1794817789256,"text":"You leave the land of Hamletwood for the wilds."}
+{"type":"chronicle","tick":152201,"wallTimeMs":1794817789481,"kind":"StallBuilt","text":"Trade came to Blackville: Abigail Robinson built a stall."}
+{"type":"chronicle","tick":152551,"wallTimeMs":1794817796745,"kind":"StallBuilt","text":"Alice Thompson built a market stall in Hamletwood. The market is now full."}
+{"type":"status","tick":152683,"wallTimeMs":1794817799664,"text":"Too close to the Village of Hamletwood: 118 paces away, and settlements must be 250 paces apart. Open ground lies about 150 paces to the south-west."}
+{"type":"chronicle","tick":152803,"wallTimeMs":1794817802492,"kind":"StallBuilt","text":"Stan Williams built a market stall in Lowerham."}
+{"type":"chronicle","tick":152851,"wallTimeMs":1794817803609,"kind":"StallBuilt","text":"A new stall opened in the market of Blackville, built by Katie Jones."}
+{"type":"chronicle","tick":152903,"wallTimeMs":1794817805163,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Judy Lewis."}
+{"type":"chronicle","tick":153003,"wallTimeMs":1794817807759,"kind":"NationRaid","text":"Greatton raided Newford and carried off 5 coins."}
+{"type":"chronicle","tick":153051,"wallTimeMs":1794817808943,"kind":"StallBuilt","text":"A new stall opened in the market of Blackville, built by Abigail Robinson."}
+{"type":"status","tick":153271,"wallTimeMs":1794817814176,"text":"Too close to the Village of Hamletwood: 221 paces away, and settlements must be 250 paces apart. Open ground lies about 30 paces to the west."}
+{"type":"chronicle","tick":153503,"wallTimeMs":1794817820039,"kind":"StallBuilt","text":"Trade came to Redland: Daisy Evans built a stall."}
+{"type":"status","tick":153655,"wallTimeMs":1794817823686,"text":"Settlement founded. Hamletwood resent a new settlement so near their land."}
+{"type":"chronicle","tick":153655,"wallTimeMs":1794817823686,"kind":"SettlementFounded","text":"You raised the first settlement of Lowerburg."}
+{"type":"status","tick":153663,"wallTimeMs":1794817823903,"text":"You are back on your own land."}
+{"type":"objective_completed","tick":153703,"wallTimeMs":1794817824980,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":4103}
+{"type":"status","tick":153703,"wallTimeMs":1794817824980,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":153703,"wallTimeMs":1794817824980,"kind":"StallBuilt","text":"Katie Jones built a market stall in Blackville."}
+{"type":"chronicle","tick":153751,"wallTimeMs":1794817826306,"kind":"NationRelationChange","text":"Hamletwood and Blacktown have become rivals over their border."}
+{"type":"chronicle","tick":153751,"wallTimeMs":1794817826306,"kind":"NationRelationChange","text":"Fortressland and Blacktown have become rivals over their border."}
+{"type":"status","tick":153887,"wallTimeMs":1794817829966,"text":"Entered settlement."}
+{"type":"screen","tick":153891,"wallTimeMs":1794817830078,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":153891,"wallTimeMs":1794817830078,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":188}
+{"type":"status","tick":153891,"wallTimeMs":1794817830078,"text":"Objective complete: Enter your settlement."}
+{"type":"screen","tick":153891,"wallTimeMs":1794817837876,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":153891,"wallTimeMs":1794817837876,"text":"Exited settlement."}
+{"type":"status","tick":154003,"wallTimeMs":1794817840627,"text":"Hamletwood resents your border: relations are now Rival (-20). Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":154003,"wallTimeMs":1794817840627,"kind":"StallBuilt","text":"Judy Lewis built a market stall in Yellowville."}
+{"type":"chronicle","tick":154003,"wallTimeMs":1794817840627,"kind":"NationRelationChange","text":"Hamletwood and Lowerburg have become rivals over their border."}
+{"type":"status","tick":154111,"wallTimeMs":1794817843132,"text":"Gathered 5 stone from rock."}
+{"type":"chronicle","tick":154251,"wallTimeMs":1794817846508,"kind":"NationRelationChange","text":"Hamletwood and Easternton have become rivals over their border."}
+{"type":"chronicle","tick":154251,"wallTimeMs":1794817846508,"kind":"SettlementCapture","text":"After a siege, a village of Redland fell to Cityville."}
+{"type":"status","tick":154371,"wallTimeMs":1794817849243,"text":"Gathered 5 stone from rock. (x2)"}
+{"type":"chronicle","tick":154503,"wallTimeMs":1794817852056,"kind":"StallBuilt","text":"Trade came to Fortressland: Victor Lewis built a stall."}
+{"type":"chronicle","tick":154602,"wallTimeMs":1794817854100,"kind":"StallBuilt","text":"Trade came to Blackville: Katie Taylor built a stall."}
+{"type":"chronicle","tick":154653,"wallTimeMs":1794817855112,"kind":"StallBuilt","text":"Quinn Wood built a market stall in Cityville."}
+{"type":"status","tick":154657,"wallTimeMs":1794817855192,"text":"Gathered 5 stone from rock. (x3)"}
+{"type":"status","tick":154927,"wallTimeMs":1794817860691,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":154951,"wallTimeMs":1794817861178,"kind":"StallBuilt","text":"Stan Williams built a market stall in Lowerham."}
+{"type":"chronicle","tick":155001,"wallTimeMs":1794817862219,"kind":"NationRelationChange","text":"Relations between Hamletwood and Easternton are now neutral."}
+{"type":"status","tick":155216,"wallTimeMs":1794817866669,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"chronicle","tick":155251,"wallTimeMs":1794817867363,"kind":"StallBuilt","text":"Katie Jones built a market stall in Blackville."}
+{"type":"status","tick":155401,"wallTimeMs":1794817870368,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"chronicle","tick":155552,"wallTimeMs":1794817873399,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletwood, built by Lily Roberts."}
+{"type":"chronicle","tick":155700,"wallTimeMs":1794817876361,"kind":"StallBuilt","text":"A new stall opened in the market of Yellowville, built by Judy Lewis."}
+{"type":"status","tick":155843,"wallTimeMs":1794817879224,"text":"You leave the land of Lowerburg for the wilds."}
+{"type":"status","tick":155859,"wallTimeMs":1794817879541,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"chronicle","tick":155900,"wallTimeMs":1794817880346,"kind":"StallBuilt","text":"Trade came to Lowerham: Fiona Wilson built a stall."}
+{"type":"chronicle","tick":155900,"wallTimeMs":1794817880346,"kind":"StallBuilt","text":"A new stall opened in the market of Cityville, built by Quinn Wood."}
+{"type":"chronicle","tick":155951,"wallTimeMs":1794817881367,"kind":"StallBuilt","text":"Fiona Wilson built a market stall in Lowerham. The market is now full."}
+{"type":"status","tick":156089,"wallTimeMs":1794817884124,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"chronicle","tick":156250,"wallTimeMs":1794817887364,"kind":"NationRelationChange","text":"Hamletwood and Easternton have become rivals over their border."}
+{"type":"chronicle","tick":156300,"wallTimeMs":1794817888364,"kind":"StallBuilt","text":"Judy Lewis built a market stall in Yellowville. The market is now full."}
+{"type":"status","tick":156406,"wallTimeMs":1794817890470,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"chronicle","tick":156600,"wallTimeMs":1794817894350,"kind":"StallBuilt","text":"Victor Lewis built a market stall in Fortressland."}
+{"type":"status","tick":156695,"wallTimeMs":1794817896376,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"chronicle","tick":156751,"wallTimeMs":1794817897495,"kind":"NationRelationChange","text":"Hamletwood and Redland swore an alliance."}
+{"type":"chronicle","tick":156751,"wallTimeMs":1794817897495,"kind":"NationRelationChange","text":"Greatton and Cityville swore an alliance."}
+{"type":"chronicle","tick":156903,"wallTimeMs":1794817900532,"kind":"StallBuilt","text":"A new stall opened in the market of Blackville, built by Katie Jones."}
+{"type":"chronicle","tick":156903,"wallTimeMs":1794817900532,"kind":"StallBuilt","text":"Trade came to Cityville: Quinn Wood built a stall."}
+{"type":"save","tick":157000,"wallTimeMs":1794817902576,"count":2}
+{"type":"chronicle","tick":157000,"wallTimeMs":1794817902576,"kind":"NationRelationChange","text":"Redland and Fortressland are now hostile."}
+{"type":"chronicle","tick":157000,"wallTimeMs":1794817902576,"kind":"NationRaid","text":"Redland raided Fortressland and carried off 5 coins, 5 stone."}
+{"type":"status","tick":157052,"wallTimeMs":1794817903624,"text":"You are back on your own land."}
+{"type":"screen","tick":157406,"wallTimeMs":1794817911541,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":157406,"wallTimeMs":1794817911541,"text":"Entered settlement."}
+{"type":"status","tick":157406,"wallTimeMs":1794817913443,"text":"Farm built."}
+{"type":"screen","tick":157406,"wallTimeMs":1794817919973,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":157406,"wallTimeMs":1794817919973,"text":"Exited settlement."}
+{"type":"screen","tick":157434,"wallTimeMs":1794817920745,"from":"WORLD","to":"NATIONS"}
+{"type":"screen","tick":157438,"wallTimeMs":1794817934679,"from":"NATIONS","to":"WORLD"}
+{"type":"chronicle","tick":157550,"wallTimeMs":1794817937349,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerham, built by Stan Williams."}
+{"type":"chronicle","tick":157550,"wallTimeMs":1794817937349,"kind":"StallBuilt","text":"Trade came to Blackville: Katie Jones built a stall. The market is now full."}
+{"type":"status","tick":157770,"wallTimeMs":1794817941857,"text":"You leave the land of Lowerburg for the wilds."}
+{"type":"chronicle","tick":157850,"wallTimeMs":1794817943456,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletwood, built by Alice Thompson."}
+{"type":"chronicle","tick":157953,"wallTimeMs":1794817945515,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Victor Johnson."}
+{"type":"chronicle","tick":158254,"wallTimeMs":1794817951564,"kind":"WorldEvent","text":"A fever broke out in the Village of Newford; Ella Wood paid a healer, and every patient recovered."}
+{"type":"status","tick":158503,"wallTimeMs":1794817956575,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":158752,"wallTimeMs":1794817961642,"text":"Lowerham shares an enemy with you: relations are now Friendly (\u002B20). Greatton shares an enemy with you: relations are now Friendly (\u002B20). Cityville shares an enemy with you: relations are now Friendly (\u002B20). Blacktown shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":158752,"wallTimeMs":1794817961642,"kind":"NationRelationChange","text":"Relations between Lowerham and Lowerburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":158752,"wallTimeMs":1794817961642,"kind":"NationRelationChange","text":"Relations between Greatton and Lowerburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":158752,"wallTimeMs":1794817961642,"kind":"NationRelationChange","text":"Relations between Cityville and Lowerburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":158752,"wallTimeMs":1794817961642,"kind":"NationRelationChange","text":"Relations between Lowerburg and Blacktown are now friendly against a common enemy."}
+{"type":"chronicle","tick":158752,"wallTimeMs":1794817961642,"kind":"NationRelationChange","text":"Hamletwood and Blacktown are now hostile."}
+{"type":"chronicle","tick":158752,"wallTimeMs":1794817961642,"kind":"NationRelationChange","text":"Fortressland and Blacktown are now hostile."}
+{"type":"chronicle","tick":158903,"wallTimeMs":1794817964687,"kind":"StallBuilt","text":"Trade came to Cityville: Quinn Wood built a stall."}
+{"type":"chronicle","tick":159050,"wallTimeMs":1794817967629,"kind":"StallBuilt","text":"A new stall opened in the market of Lowerham, built by Stan Williams."}
+{"type":"chronicle","tick":159552,"wallTimeMs":1794817977660,"kind":"StallBuilt","text":"Trade came to Fortressland: Victor Lewis built a stall."}
+{"type":"status","tick":159752,"wallTimeMs":1794817981672,"text":"Fortressland has fallen and been disbanded."}
+{"type":"chronicle","tick":159752,"wallTimeMs":1794817981672,"kind":"SettlementCapture","text":"Redland captured a village from Fortressland."}
+{"type":"chronicle","tick":159752,"wallTimeMs":1794817981672,"kind":"NationDisband","text":"The banners of Fortressland came down when Redland took its last village."}
+{"type":"status","tick":159893,"wallTimeMs":1794817984471,"text":"You enter the land of Hamletwood (Rival)."}
+{"type":"chronicle","tick":160000,"wallTimeMs":1794817986617,"kind":"StallBuilt","text":"Trade came to Redland: Daisy Evans built a stall."}
+{"type":"chronicle","tick":160150,"wallTimeMs":1794817989623,"kind":"StallBuilt","text":"Trade came to Westernford: Victor Johnson built a stall."}
+{"type":"status","tick":160250,"wallTimeMs":1794817991636,"text":"Easternton shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":160250,"wallTimeMs":1794817991636,"kind":"NationRelationChange","text":"Relations between Easternton and Lowerburg are now friendly against a common enemy."}
+{"type":"chronicle","tick":160401,"wallTimeMs":1794817994660,"kind":"StallBuilt","text":"Trade came to Cityville: Quinn Wood built a stall."}
+{"type":"chronicle","tick":160501,"wallTimeMs":1794817996656,"kind":"NationRelationChange","text":"Redland and Westernford have become rivals over their border."}
+{"type":"chronicle","tick":160850,"wallTimeMs":1794818003635,"kind":"StallBuilt","text":"A new stall opened in the market of Blacktown, built by Charlotte Jones."}
+{"type":"chronicle","tick":161001,"wallTimeMs":1794818006663,"kind":"NationRaid","text":"Raiders from Hamletwood struck Blacktown, taking 1 coins."}
+{"type":"chronicle","tick":161252,"wallTimeMs":1794818011680,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":161252,"wallTimeMs":1794818011680,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":161252,"wallTimeMs":1794818011680,"kind":"NationRelationChange","text":"Easternton and Hamletwood are now hostile."}
+{"type":"chronicle","tick":161350,"wallTimeMs":1794818013899,"kind":"StallBuilt","text":"Stan Williams built a market stall in Lowerham. The market is now full."}
+{"type":"status","tick":161500,"wallTimeMs":1794818016952,"text":"Blacktown has fallen and been disbanded."}
+{"type":"chronicle","tick":161500,"wallTimeMs":1794818016952,"kind":"SettlementCapture","text":"Hamletwood captured a village from Blacktown."}
+{"type":"chronicle","tick":161500,"wallTimeMs":1794818016952,"kind":"NationDisband","text":"The banners of Blacktown came down when Hamletwood took its last village."}
+{"type":"chronicle","tick":161953,"wallTimeMs":1794818026017,"kind":"StallBuilt","text":"Trade came to Cityville: Quinn Wood built a stall."}
+{"type":"chronicle","tick":162000,"wallTimeMs":1794818026956,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":162000,"wallTimeMs":1794818026956,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"chronicle","tick":162000,"wallTimeMs":1794818026956,"kind":"NationRaid","text":"Raiders from Hamletwood struck Greatton, taking 5 coins, 3 wood, 5 stone."}
+{"type":"chronicle","tick":162000,"wallTimeMs":1794818026956,"kind":"NationRaid","text":"Easternton raided Hamletwood and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"status","tick":162053,"wallTimeMs":1794818028019,"text":"Welcome home!"}
+{"type":"status","tick":162060,"wallTimeMs":1794818028159,"text":"You are back on your own land."}
+{"type":"chronicle","tick":162503,"wallTimeMs":1794818037016,"kind":"StallBuilt","text":"Victor Johnson built a market stall in Westernford."}
+{"type":"chronicle","tick":162600,"wallTimeMs":1794818038967,"kind":"StallBuilt","text":"A new stall opened in the market of Redland, built by Charlotte Lewis."}
+{"type":"save","tick":163001,"wallTimeMs":1794818047374,"count":3}
+{"type":"status","tick":163001,"wallTimeMs":1794818047374,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":163153,"wallTimeMs":1794818051057,"kind":"StallBuilt","text":"Trade came to Redland: Charlotte Lewis built a stall."}
+{"type":"chronicle","tick":163253,"wallTimeMs":1794818053487,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":163253,"wallTimeMs":1794818053487,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":163551,"wallTimeMs":1794818059941,"kind":"StallBuilt","text":"Victor Johnson built a market stall in Westernford."}
+{"type":"status","tick":163731,"wallTimeMs":1794818063542,"text":"You leave the land of Lowerburg for the wilds."}
+{"type":"chronicle","tick":163900,"wallTimeMs":1794818066927,"kind":"StallBuilt","text":"Trade came to Cityville: Quinn Wood built a stall."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794818068962,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":164002,"wallTimeMs":1794818068962,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"chronicle","tick":164751,"wallTimeMs":1794818084030,"kind":"StallBuilt","text":"A new stall opened in the market of Cityville, built by Quinn Wood. The market is now full."}
+{"type":"status","tick":164809,"wallTimeMs":1794818085184,"text":"You gave Katie White 10 coin. Katie White (Stranger): \u0022Coins? That\u0027s generous of you.\u0022"}
+{"type":"status","tick":164863,"wallTimeMs":1794818086267,"text":"Katie White (Stranger): \u0022Who are you? I\u0027m loyal to Lowerham. Is it supper time yet?\u0022"}
+{"type":"chronicle","tick":164951,"wallTimeMs":1794818088047,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Victor Johnson."}
+{"type":"status","tick":165222,"wallTimeMs":1794818093471,"text":"You gave Katie White 10 coin. Katie White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 Katie White now knows you by name."}
+{"type":"chronicle","tick":165250,"wallTimeMs":1794818094044,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":165250,"wallTimeMs":1794818094044,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":165250,"wallTimeMs":1794818094044,"kind":"NationRelationChange","text":"Greatton and Easternton have formed an alliance."}
+{"type":"status","tick":165272,"wallTimeMs":1794818094481,"text":"You gave Katie White 10 coin. Katie White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":165321,"wallTimeMs":1794818095477,"text":"You gave Katie White 10 coin. Katie White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":165372,"wallTimeMs":1794818096496,"text":"You gave Katie White 10 coin. Katie White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"status","tick":165420,"wallTimeMs":1794818097477,"text":"You gave Katie White 10 coin. Katie White (Acquaintance): \u0022Coins? That\u0027s generous of you.\u0022 (x5)"}
+{"type":"status","tick":165473,"wallTimeMs":1794818098524,"text":"You gave Katie White 10 coin. Katie White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 Katie White now counts you as a friend!"}
+{"type":"chronicle","tick":165473,"wallTimeMs":1794818098524,"kind":"PawnRelationshipIncrease","text":"Katie White of Lowerham now counts you a friend."}
+{"type":"status","tick":165666,"wallTimeMs":1794818102392,"text":"You gave Katie White 10 coin. Katie White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":165713,"wallTimeMs":1794818103339,"text":"You gave Katie White 10 coin. Katie White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":165765,"wallTimeMs":1794818104376,"text":"You gave Katie White 10 coin. Katie White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"status","tick":165816,"wallTimeMs":1794818105401,"text":"You gave Katie White 10 coin. Katie White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x5)"}
+{"type":"status","tick":165866,"wallTimeMs":1794818106387,"text":"You gave Katie White 10 coin. Katie White (Friend): \u0022Coins? That\u0027s generous of you.\u0022 (x6)"}
+{"type":"chronicle","tick":166000,"wallTimeMs":1794818109071,"kind":"NationRelationChange","text":"Redland and Westernford are now hostile."}
+{"type":"chronicle","tick":166000,"wallTimeMs":1794818109071,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":166000,"wallTimeMs":1794818109071,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"chronicle","tick":166000,"wallTimeMs":1794818109071,"kind":"NationRaid","text":"Redland raided Westernford and carried off 5 coins, 3 stone."}
+{"type":"status","tick":166171,"wallTimeMs":1794818112504,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022"}
+{"type":"status","tick":166222,"wallTimeMs":1794818113522,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x2)"}
+{"type":"status","tick":166269,"wallTimeMs":1794818114474,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x3)"}
+{"type":"status","tick":166320,"wallTimeMs":1794818115485,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x4)"}
+{"type":"status","tick":166371,"wallTimeMs":1794818116506,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x5)"}
+{"type":"status","tick":166420,"wallTimeMs":1794818117485,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x6)"}
+{"type":"status","tick":166470,"wallTimeMs":1794818118494,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x7)"}
+{"type":"status","tick":166519,"wallTimeMs":1794818119475,"text":"Katie White (Friend): \u0022Hello, friend! I\u0027m loyal to Lowerham. Is it supper time yet?\u0022 (x8)"}
+{"type":"status","tick":166791,"wallTimeMs":1794818124960,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 Katie White is now loyal to you!"}
+{"type":"chronicle","tick":166791,"wallTimeMs":1794818124960,"kind":"PawnRelationshipIncrease","text":"Katie White of Lowerham is now loyal to you."}
+{"type":"status","tick":166841,"wallTimeMs":1794818125955,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x2)"}
+{"type":"status","tick":166888,"wallTimeMs":1794818126892,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x3)"}
+{"type":"status","tick":166939,"wallTimeMs":1794818127905,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x4)"}
+{"type":"status","tick":166987,"wallTimeMs":1794818128883,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x5)"}
+{"type":"status","tick":167037,"wallTimeMs":1794818129883,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x6)"}
+{"type":"status","tick":167090,"wallTimeMs":1794818130942,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x7)"}
+{"type":"status","tick":167140,"wallTimeMs":1794818131943,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x8)"}
+{"type":"status","tick":167187,"wallTimeMs":1794818132880,"text":"You gave Katie White 10 coin. Katie White (Loyal): \u0022Coins? That\u0027s generous of you.\u0022 (x9)"}
+{"type":"chronicle","tick":167252,"wallTimeMs":1794818134182,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":167252,"wallTimeMs":1794818134182,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"status","tick":167481,"wallTimeMs":1794818138769,"text":"Katie White left Lowerham and joined Lowerburg! Members: 2. Lowerham resents it: relations Friendly (\u002B39)."}
+{"type":"chronicle","tick":167481,"wallTimeMs":1794818138769,"kind":"NationLeave","text":"Katie White walked away from Lowerham."}
+{"type":"chronicle","tick":167481,"wallTimeMs":1794818138769,"kind":"NationJoin","text":"Katie White swore fealty to Lowerburg."}
+{"type":"status","tick":167499,"wallTimeMs":1794818139132,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":167702,"wallTimeMs":1794818143204,"kind":"WorldEvent","text":"Rain returned to Easternton, and its farms grew green again."}
+{"type":"chronicle","tick":168001,"wallTimeMs":1794818149177,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":168001,"wallTimeMs":1794818149177,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"status","tick":168171,"wallTimeMs":1794818152573,"text":"You are back on your own land."}
+{"type":"screen","tick":168235,"wallTimeMs":1794818154013,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":168235,"wallTimeMs":1794818154013,"text":"Entered settlement."}
+{"type":"status","tick":168235,"wallTimeMs":1794818161075,"text":"Stall built."}
+{"type":"chronicle","tick":168235,"wallTimeMs":1794818161075,"kind":"StallBuilt","text":"Trade came to Lowerburg: you built a stall."}
+{"type":"screen","tick":168235,"wallTimeMs":1794818165212,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":168235,"wallTimeMs":1794818165212,"text":"Exited settlement."}
+{"type":"objective_completed","tick":168251,"wallTimeMs":1794818165584,"number":6,"id":"build-stall","title":"Build a market stall","ticksTaken":14360}
+{"type":"status","tick":168251,"wallTimeMs":1794818165584,"text":"Objective complete: Build a market stall. \u002B50 coins."}
+{"type":"save","tick":169003,"wallTimeMs":1794818184443,"count":4}
+{"type":"status","tick":169003,"wallTimeMs":1794818184443,"text":"Autosaved."}
+{"type":"chronicle","tick":169251,"wallTimeMs":1794818190521,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":169251,"wallTimeMs":1794818190521,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":169751,"wallTimeMs":1794818202254,"kind":"NationRelationChange","text":"Westernford and Cityville have formed an alliance."}
+{"type":"chronicle","tick":170003,"wallTimeMs":1794818208161,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":170003,"wallTimeMs":1794818208161,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"status","tick":171003,"wallTimeMs":1794818231589,"text":"Winter has come. No harvests, bare trees; the cold bites outdoors."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Raiders from Lowerham struck Hamletwood, taking 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Raiders from Greatton struck Hamletwood, taking 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Raiders from Easternton struck Hamletwood, taking 2 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Cityville raided Hamletwood and carried off 2 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Lowerham raided Newford and carried off 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Lowerham raided Lowerport and carried off 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Raiders from Greatton struck Newford, taking 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Raiders from Blackville struck Newford, taking 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Greatton raided Lowerport and carried off 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Blackville raided Lowerport and carried off 2 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Raiders from Redland struck Westernford, taking 5 coins."}
+{"type":"chronicle","tick":171003,"wallTimeMs":1794818231589,"kind":"NationRaid","text":"Cityville raided Redland and carried off 5 coins."}
+{"type":"chronicle","tick":171251,"wallTimeMs":1794818237306,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":171251,"wallTimeMs":1794818237306,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"status","tick":171771,"wallTimeMs":1794818249487,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":172003,"wallTimeMs":1794818255085,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":172003,"wallTimeMs":1794818255085,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"chronicle","tick":172471,"wallTimeMs":1794818265962,"kind":"Caravan","text":"A caravan from Easternton sold 20 wood at the Village of Lowerham for 480 coins."}
+{"type":"chronicle","tick":173251,"wallTimeMs":1794818283885,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":173251,"wallTimeMs":1794818283885,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":174003,"wallTimeMs":1794818301120,"kind":"NationRelationChange","text":"Relations between Yellowville and Lowerham are now neutral."}
+{"type":"chronicle","tick":174003,"wallTimeMs":1794818301120,"kind":"NationRelationChange","text":"Relations between Yellowville and Easternton are now neutral."}
+{"type":"screen","tick":174471,"wallTimeMs":1794818311915,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":174471,"wallTimeMs":1794818311915,"text":"Entered settlement."}
+{"type":"screen","tick":174471,"wallTimeMs":1794818320775,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":174471,"wallTimeMs":1794818320775,"text":"Exited settlement."}
+{"type":"save","tick":175003,"wallTimeMs":1794818333178,"count":5}
+{"type":"status","tick":175003,"wallTimeMs":1794818333178,"text":"Autosaved."}
+{"type":"status","tick":175231,"wallTimeMs":1794818338401,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":175251,"wallTimeMs":1794818338848,"kind":"NationRelationChange","text":"Lowerham and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":175251,"wallTimeMs":1794818338848,"kind":"NationRelationChange","text":"Easternton and Yellowville have become rivals over their border."}
+{"type":"chronicle","tick":175503,"wallTimeMs":1794818344664,"kind":"NationRelationChange","text":"Hamletwood and Yellowville swore an alliance."}
+{"type":"chronicle","tick":177103,"wallTimeMs":1794818382192,"kind":"WorldEvent","text":"Fire broke out at the storehouse in the Town of Cityville; Quinn Wood saved the stone and let the wood burn, and 41 wood was lost."}
+{"type":"chronicle","tick":177503,"wallTimeMs":1794818391457,"kind":"StallBuilt","text":"Trade came to Hamletwood: Alice Thompson built a stall."}
+{"type":"chronicle","tick":177551,"wallTimeMs":1794818392568,"kind":"StallBuilt","text":"Daisy Evans built a market stall in Redland."}
+{"type":"chronicle","tick":178403,"wallTimeMs":1794818412432,"kind":"StallBuilt","text":"Victor Johnson built a market stall in Westernford. The market is now full."}
+{"type":"status","tick":178695,"wallTimeMs":1794818419562,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":178803,"wallTimeMs":1794818422987,"kind":"StallBuilt","text":"Trade came to Hamletwood: Alice Thompson built a stall."}
+{"type":"chronicle","tick":178803,"wallTimeMs":1794818422987,"kind":"StallBuilt","text":"Daisy Evans built a market stall in Redland."}
+{"type":"chronicle","tick":179003,"wallTimeMs":1794818429460,"kind":"NationRelationChange","text":"Newford and Yellowville have formed an alliance."}
+{"type":"chronicle","tick":179003,"wallTimeMs":1794818429460,"kind":"NationRelationChange","text":"Lowerport and Yellowville have formed an alliance."}
+{"type":"chronicle","tick":180251,"wallTimeMs":1794818458917,"kind":"NationRelationChange","text":"Lowerham and Yellowville are now hostile."}
+{"type":"chronicle","tick":180251,"wallTimeMs":1794818458917,"kind":"NationRelationChange","text":"Easternton and Yellowville are now hostile."}
+{"type":"chronicle","tick":180951,"wallTimeMs":1794818475328,"kind":"StallBuilt","text":"A new stall opened in the market of Redland, built by Daisy Evans."}
+{"type":"status","tick":180959,"wallTimeMs":1794818475506,"text":"Entered settlement."}
+{"type":"screen","tick":180963,"wallTimeMs":1794818475596,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"screen","tick":180963,"wallTimeMs":1794818482478,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":180963,"wallTimeMs":1794818482478,"text":"Exited settlement."}
+{"type":"save","tick":181003,"wallTimeMs":1794818483497,"count":6}
+{"type":"chronicle","tick":181003,"wallTimeMs":1794818483497,"kind":"StallBuilt","text":"A new stall opened in the market of Easternton, built by Fiona Roberts."}
+{"type":"chronicle","tick":181003,"wallTimeMs":1794818483497,"kind":"NationRaid","text":"Lowerham raided Yellowville and carried off 5 coins."}
+{"type":"chronicle","tick":181003,"wallTimeMs":1794818483497,"kind":"NationRaid","text":"Raiders from Easternton struck Yellowville, taking 5 coins."}
+{"type":"world_event_offered","tick":182103,"wallTimeMs":1794818509570,"title":"A travelling merchant","body":"A merchant with a mule train hails you on the road. They are heading for the coast and want to travel light: an axe and a pickaxe for 50 coins, worth hundreds at any market, or stone for your wood.","options":["Buy an axe and a pickaxe (50 coins)","Trade 20 wood for 15 stone (unavailable)","Decline"]}
+{"type":"status","tick":182103,"wallTimeMs":1794818640620,"text":"A travelling merchant offered you a rare deal, and you let it pass."}
+{"type":"chronicle","tick":182103,"wallTimeMs":1794818640620,"kind":"WorldEvent","text":"A travelling merchant offered you a rare deal, and you let it pass."}
+{"type":"world_event_resolved","tick":182103,"wallTimeMs":1794818640620,"title":"A travelling merchant","status":"A travelling merchant offered you a rare deal, and you let it pass."}
+{"type":"status","tick":182155,"wallTimeMs":1794818641852,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":182303,"wallTimeMs":1794818645406,"kind":"StallBuilt","text":"Lily Roberts built a market stall in Hamletwood."}
+{"type":"chronicle","tick":182551,"wallTimeMs":1794818651410,"kind":"StallBuilt","text":"Alice Thompson built a market stall in Hamletwood. The market is now full."}
+{"type":"chronicle","tick":182851,"wallTimeMs":1794818658814,"kind":"StallBuilt","text":"Trade came to Easternton: Fiona Robinson built a stall."}
+{"type":"chronicle","tick":182903,"wallTimeMs":1794818660084,"kind":"StallBuilt","text":"A new stall opened in the market of Easternton, built by Fiona Robinson. The market is now full."}
+{"type":"chronicle","tick":183951,"wallTimeMs":1794818685671,"kind":"StallBuilt","text":"A new stall opened in the market of Redland, built by Daisy Evans."}
+{"type":"status","tick":185619,"wallTimeMs":1794818729414,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":186151,"wallTimeMs":1794818742690,"kind":"StallBuilt","text":"Daisy Evans built a market stall in Redland. The market is now full."}
+{"type":"save","tick":187003,"wallTimeMs":1794818763728,"count":7}
+{"type":"status","tick":187003,"wallTimeMs":1794818763728,"text":"Autosaved."}
+{"type":"chronicle","tick":187551,"wallTimeMs":1794818777607,"kind":"StallBuilt","text":"Lily Roberts built a market stall in Hamletwood."}
+{"type":"status","tick":189079,"wallTimeMs":1794818815501,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":190403,"wallTimeMs":1794818848999,"kind":"StallBuilt","text":"A new stall opened in the market of Redland, built by Wendy White."}
+{"type":"chronicle","tick":192251,"wallTimeMs":1794818894840,"kind":"StallBuilt","text":"A new stall opened in the market of Newford, built by Ella Wood."}
+{"type":"status","tick":192543,"wallTimeMs":1794818902236,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"save","tick":193003,"wallTimeMs":1794818915323,"count":8}
+{"type":"chronicle","tick":194851,"wallTimeMs":1794818963699,"kind":"WorldEvent","text":"A fever broke out in the Town of Westernford; Victor Johnson paid a healer, and every patient recovered."}
+{"type":"chronicle","tick":195403,"wallTimeMs":1794818977103,"kind":"StallBuilt","text":"Trade came to Newford: Ella Wood built a stall. The market is now full."}
+{"type":"chronicle","tick":195803,"wallTimeMs":1794818986761,"kind":"StallBuilt","text":"A new stall opened in the market of Hamletwood, built by Lily Roberts."}
+{"type":"status","tick":196003,"wallTimeMs":1794818991819,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":197047,"wallTimeMs":1794819018416,"text":"Entered settlement."}
+{"type":"screen","tick":197051,"wallTimeMs":1794819018551,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"screen","tick":197051,"wallTimeMs":1794819028307,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":197051,"wallTimeMs":1794819028307,"text":"Exited settlement."}
+{"type":"save","tick":199003,"wallTimeMs":1794819076138,"count":9}
+{"type":"status","tick":199003,"wallTimeMs":1794819076138,"text":"Autosaved."}
+{"type":"status","tick":199467,"wallTimeMs":1794819086868,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Lowerham raided Hamletwood and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Greatton raided Hamletwood and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Easternton raided Hamletwood and carried off 2 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Raiders from Cityville struck Hamletwood, taking 2 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Raiders from Lowerham struck Newford, taking 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Lowerham raided Lowerport and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Raiders from Lowerham struck Yellowville, taking 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Greatton raided Newford and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Blackville raided Newford and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Raiders from Greatton struck Lowerport, taking 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Raiders from Blackville struck Lowerport, taking 2 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Easternton raided Yellowville and carried off 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Raiders from Redland struck Westernford, taking 5 coins."}
+{"type":"chronicle","tick":201003,"wallTimeMs":1794819122380,"kind":"NationRaid","text":"Cityville raided Redland and carried off 5 coins."}
+{"type":"chronicle","tick":202471,"wallTimeMs":1794819155903,"kind":"Caravan","text":"A caravan from Lowerham sold 20 wood at the Town of Easternton for 480 coins."}
+{"type":"status","tick":202927,"wallTimeMs":1794819166220,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"save","tick":205003,"wallTimeMs":1794819214027,"count":10}
+{"type":"status","tick":205003,"wallTimeMs":1794819214027,"text":"Autosaved."}
+{"type":"status","tick":206387,"wallTimeMs":1794819247735,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":209851,"wallTimeMs":1794819341949,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":210351,"wallTimeMs":1794819354016,"kind":"WorldEvent","text":"A fever broke out in the Town of Hamletwood; Alice Thompson paid a healer, and every patient recovered."}
+{"type":"save","tick":211003,"wallTimeMs":1794819369958,"count":11}
+{"type":"status","tick":211003,"wallTimeMs":1794819369958,"text":"Autosaved."}
+{"type":"chronicle","tick":212003,"wallTimeMs":1794819394170,"kind":"StallBuilt","text":"Katie Taylor built a market stall in Blackville."}
+{"type":"status","tick":213311,"wallTimeMs":1794819425771,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":216771,"wallTimeMs":1794819515183,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"save","tick":217003,"wallTimeMs":1794819521464,"count":12}
+{"type":"chronicle","tick":219603,"wallTimeMs":1794819588136,"kind":"StallBuilt","text":"A new stall opened in the market of Blackville, built by Katie Taylor. The market is now full."}
+{"type":"status","tick":220235,"wallTimeMs":1794819604644,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"world_event_offered","tick":221951,"wallTimeMs":1794819650378,"title":"Bandit camp","body":"Bandits have made camp in the woods outside the Camp of Lowerburg. Until they are dealt with they will rob it of 5 coins, 5 wood and 5 stone every minute.","options":["Raise a militia and drive them off (unavailable)","Pay them to leave (30 coins)","Bar the gates and wait"]}
+{"type":"status","tick":221951,"wallTimeMs":1794819763875,"text":"Bandits camped outside the Camp of Lowerburg; you paid them 30 coins to go away."}
+{"type":"chronicle","tick":221951,"wallTimeMs":1794819763875,"kind":"WorldEvent","text":"Bandits camped outside the Camp of Lowerburg; you paid them 30 coins to go away."}
+{"type":"world_event_resolved","tick":221951,"wallTimeMs":1794819763875,"title":"Bandit camp","status":"Bandits camped outside the Camp of Lowerburg; you paid them 30 coins to go away."}
+{"type":"screen","tick":221979,"wallTimeMs":1794819764617,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"status","tick":221979,"wallTimeMs":1794819764617,"text":"Entered settlement."}
+{"type":"screen","tick":221979,"wallTimeMs":1794819772651,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":221979,"wallTimeMs":1794819772651,"text":"Exited settlement."}
+{"type":"save","tick":223003,"wallTimeMs":1794819798101,"count":13}
+{"type":"status","tick":223003,"wallTimeMs":1794819798101,"text":"Autosaved."}
+{"type":"status","tick":223151,"wallTimeMs":1794819802666,"text":"Grace Williams has died."}
+{"type":"chronicle","tick":223151,"wallTimeMs":1794819802666,"kind":"PawnDeath","text":"Grace Williams of Newford died of hunger within the walls."}
+{"type":"pawn_death","tick":223151,"wallTimeMs":1794819802666,"count":1,"total":1}
+{"type":"status","tick":223163,"wallTimeMs":1794819803050,"text":"Grace Williams and Una Wood have died."}
+{"type":"chronicle","tick":223163,"wallTimeMs":1794819803050,"kind":"PawnDeath","text":"Hunger claimed Una Wood of Newford within the walls."}
+{"type":"pawn_death","tick":223163,"wallTimeMs":1794819803050,"count":1,"total":2}
+{"type":"status","tick":223695,"wallTimeMs":1794819816577,"text":"Ate an apple (\u002B15 energy)."}

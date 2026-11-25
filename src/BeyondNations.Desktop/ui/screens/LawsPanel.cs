@@ -165,32 +165,20 @@ namespace beyondnations.desktop.ui.screens {
         /** Draws the panel from y down. Returns the command a tapped button asks for, to run after drawing. */
         public System.Action draw(float width, float height, Simulation simulation, float y, float left, float lineHeight,
                 float buttonGap, float buttonHeight, ScrollReader readScroll) {
-            foreach (string line in getLines(simulation)) {
-                y = NationScreen.drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 4);
-            }
-            y += lineHeight * 0.3f;
+            // sized for a narrow screen too, and wrapped whole (#467, #506)
+            float textHeight = Overlay.textHeightFor(width, height);
+            float headerSize = Overlay.atLeastAtlasFontSize(textHeight / 36f);
+            float headerStep = lineHeight * 0.7f;
+            List<string> header = NationScreen.wrapHeader(getLines(simulation), width - left * 2f,
+                line => ImGuiNET.ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(headerSize), int.MaxValue);
 
             Player player = simulation.getPlayer();
             Nation own = simulation.getNationRepository().getNation(player.getNationId());
             bool leads = own != null && own.getLeaderId().Equals(player.getId());
             System.Action pending = null;
-
-            // abdication: two presses, since it cannot be taken back (ConfirmGate)
-            double now = ImGuiNET.ImGui.GetTime();
-            abdicateGate.update(now, player.getStatus());
-            if (canAbdicate(simulation)) {
-                float abdicateWidth = System.MathF.Min(UiScale.px(200f), width - left * 2f);
-                string label = (abdicateGate.isArmed(AbdicateLabel, now) ? "Confirm abdication" : AbdicateLabel) + "##abdicate";
-                if (Overlay.buttonAt(label, (width - abdicateWidth) / 2f, y, abdicateWidth, buttonHeight)) {
-                    pending = abdicateGate.press(AbdicateLabel, now)
-                        ? (System.Action) (() => simulation.getRealm().abdicate())
-                        : () => abdicateGate.prompt(player.getStatus(), TouchLayout.isActive() ? AbdicatePrompt : AbdicatePromptKeys);
-                }
-                y += buttonHeight + buttonGap * 2f;
-            }
             float textStep = lineHeight * 0.7f;
             float columnWidth = width - left * 2f;
-            float effectSize = height / 40f;
+            float effectSize = Overlay.atLeastAtlasFontSize(textHeight / 40f);
             float effectScale = Overlay.fontScaleFor(effectSize);
             float effectStep = textStep * 0.8f;
             List<Row> rows = getRows(simulation);
@@ -201,34 +189,71 @@ namespace beyondnations.desktop.ui.screens {
                 effects.Add(effect);
                 steps[i] = textStep + effectStep * System.Math.Min(2, effect.Count) + (leads ? buttonHeight + buttonGap : 0f) + buttonGap * 2f;
             }
-
-            // scrolling, as on the nations list: the wheel, the keys, a drag, or Up/Down
-            float listBottom = height - lineHeight * 3.2f;
+            float listBottom = NationScreen.listBottom(height, lineHeight);
             float stripHeight = buttonHeight + buttonGap;
-            Window window = fit(steps, y, listBottom, stripHeight, firstRow);
+            bool abdicate = canAbdicate(simulation);
+            float abdicateHeight = abdicate ? buttonHeight + buttonGap * 2f : 0f;
+            // a header with no room under it (and Abdicate) for the first law
+            // scrolls with the list rather than push it under the status line (#511)
+            int folded = rows.Count > 0 && !NationScreen.headerFits(header.Count, headerStep,
+                listBottom - y - lineHeight * 0.3f - abdicateHeight - stripHeight - steps[0]) ? header.Count : 0;
+            if (folded == 0) {
+                foreach (string line in header) {
+                    Overlay.textCentered(line, headerSize, y, width);
+                    y += headerStep;
+                }
+            }
+            y += lineHeight * 0.3f;
+
+            // abdication: two presses, since it cannot be taken back (ConfirmGate)
+            double now = ImGuiNET.ImGui.GetTime();
+            abdicateGate.update(now, player.getStatus());
+            if (abdicate) {
+                float abdicateWidth = System.MathF.Min(UiScale.px(200f), width - left * 2f);
+                string label = (abdicateGate.isArmed(AbdicateLabel, now) ? "Confirm abdication" : AbdicateLabel) + "##abdicate";
+                if (Overlay.buttonAt(label, (width - abdicateWidth) / 2f, y, abdicateWidth, buttonHeight)) {
+                    pending = abdicateGate.press(AbdicateLabel, now)
+                        ? (System.Action) (() => simulation.getRealm().abdicate())
+                        : () => abdicateGate.prompt(player.getStatus(), TouchLayout.isActive() ? AbdicatePrompt : AbdicatePromptKeys);
+                }
+                y += buttonHeight + buttonGap * 2f;
+            }
+            float[] items = NationScreen.withHeader(steps, folded, headerStep);
+            Window window = fit(items, y, listBottom, stripHeight, firstRow);
             int move = readScroll(window.listTop, listBottom, rows.Count > 0 ? steps[0] : lineHeight);
-            window = fit(steps, y, listBottom, stripHeight, firstRow + move);
+            window = fit(items, y, listBottom, stripHeight, firstRow + move);
             firstRow = window.firstRow;
             if (window.overflow) {
                 float arrowWidth = System.MathF.Min(UiScale.px(80f), columnWidth / 5f);
                 float lineWidth = width - (arrowWidth + buttonGap) * 2f;
-                NationScreen.drawWrappedCentred(describeShown(firstRow, window.visible, rows.Count, TouchLayout.isActive()), height / 38f,
-                    y + (buttonHeight - lineHeight * 0.7f) * 0.5f, lineWidth, left, lineHeight * 0.7f, 1);
+                int firstLaw;
+                int shownLaws;
+                NationScreen.shownRows(firstRow, window.visible, folded, out firstLaw, out shownLaws);
+                NationScreen.drawCountLine(shownLaws == 0
+                        ? NationScreen.describeBelow(rows.Count, "law", "laws", TouchLayout.isActive())
+                        : describeShown(firstLaw, shownLaws, rows.Count, TouchLayout.isActive()), textHeight / 38f,
+                    y, lineWidth, left, lineHeight * 0.7f, buttonHeight);
                 float ax = width - left - arrowWidth * 2f - buttonGap;
                 int page = System.Math.Max(1, window.visible - 1);
                 if (Overlay.buttonAt("Up##laws-up", ax, y, arrowWidth, buttonHeight)) {
-                    window = fit(steps, y, listBottom, stripHeight, firstRow - page);
+                    window = fit(items, y, listBottom, stripHeight, firstRow - page);
                 }
                 if (Overlay.buttonAt("Down##laws-down", ax + arrowWidth + buttonGap, y, arrowWidth, buttonHeight)) {
-                    window = fit(steps, y, listBottom, stripHeight, firstRow + page);
+                    window = fit(items, y, listBottom, stripHeight, firstRow + page);
                 }
                 firstRow = window.firstRow;
             }
             y = window.listTop;
 
-            for (int i = firstRow; i < firstRow + window.visible; i++) {
+            for (int item = firstRow; item < firstRow + window.visible; item++) {
+                if (item < folded) {
+                    Overlay.textCentered(header[item], headerSize, y + headerStep * 0.5f, width);
+                    y += headerStep;
+                    continue;
+                }
+                int i = item - folded;
                 Row row = rows[i];
-                Overlay.textAtScaled(row.title, height / 32f, left, y);
+                Overlay.textAtScaled(row.title, textHeight / 32f, left, y);
                 y += textStep;
                 List<string> effect = effects[i];
                 for (int line = 0; line < effect.Count && line < 2; line++) {

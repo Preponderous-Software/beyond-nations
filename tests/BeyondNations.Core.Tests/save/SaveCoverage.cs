@@ -146,7 +146,7 @@ namespace beyondnationstests {
                 Saved = new[] { "round", "siegeProgress", "besiegers" },
                 Derived = new[] { "nationRepository", "entityRepository", "eventProducer", "player", "realm" },
                 // reset every round; and only what the status line has already told
-                Transient = new[] { "shelteredRaidedThisRound", "toldPlayer" },
+                Transient = new[] { "playerRaidedThisRound", "toldPlayer" },
             },
             [typeof(PopulationGrowth)] = new Entry {
                 Saved = new[] { "random", "nameGenerator", "lastBirthTicks", "lastImmigrationTicks", "lastSettlerTicks", "numSettlers",
@@ -181,6 +181,14 @@ namespace beyondnationstests {
                 Derived = new[] { "objectives", "ambitionFactory" },
             },
             [typeof(Objective)] = new Entry { Derived = new[] { "id", "title", "progress", "hint", "reward", "ambition" } },
+            [typeof(ScaledAmbition)] = new Entry {
+                // the catalog's code and the era's floor, rebuilt with the ambition
+                Derived = new[] { "choose", "rebuild", "floor" },
+                // the current ambition's goal comes back from its saved progress counter (ObjectiveTracker.load);
+                // a finished one's is not saved, and shows its era's floor after a load (ScaledAmbition)
+                Transient = new[] { "goal" },
+            },
+            [typeof(AmbitionGoal)] = new Entry { Derived = new[] { "label", "target", "title", "measure", "hint", "reward" } },
             [typeof(ObjectiveReward)] = new Entry { Derived = new[] { "items" } },
             [typeof(ObjectiveProgress)] = saved("complete", "label", "current", "target", "secondLabel", "secondCurrent", "secondTarget"),
             [typeof(Chronicle)] = new Entry {
@@ -210,9 +218,13 @@ namespace beyondnationstests {
             [typeof(LostTravellerEvent)] = new Entry(),
             [typeof(StorehouseFireEvent)] = new Entry(),
             [typeof(RareMerchantEvent)] = new Entry(),
-            [typeof(EraTracker)] = saved("era", "reachedTicks", "outcome", "outcomeTick", "outcomeAcknowledged", "everHeldSettlement",
-                "collapseSinceTick", "nationName", "peakMembers", "peakSettlements", "peakFunds", "history", "lastChronicleSequence",
-                "ambitionEras"),
+            [typeof(EraTracker)] = new Entry {
+                Saved = new[] { "era", "reachedTicks", "outcome", "outcomeTick", "outcomeAcknowledged", "everHeldSettlement",
+                    "collapseSinceTick", "nationName", "peakMembers", "peakSettlements", "peakFunds", "history", "lastChronicleSequence",
+                    "ambitionEras" },
+                // counted again once a second, and at the end of a load, for the members hint
+                Transient = new[] { "strangersLeft", "worldFull" },
+            },
             [typeof(HistoryEntry)] = saved("tick", "day", "partOfDay", "text", "milestone"),
             [typeof(PawnBehaviorCalculator)] = new Entry {
                 Derived = new[] { "random", "environment", "entityRepository", "nationRepository", "gameConfig", "tickCounter", "timeOfDay", "seasonCalendar", "reservedGround" },

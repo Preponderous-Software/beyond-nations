@@ -289,6 +289,15 @@ namespace beyondnations.desktop.ui {
             return bottom;
         }
 
+        /** What makes an entry new to the strip: its stamp and its line; null with none. */
+        public static string newestKey(List<ChronicleEntry> newest) {
+            if (newest == null || newest.Count == 0) {
+                return null;
+            }
+            ChronicleEntry entry = newest[newest.Count - 1];
+            return entry.getTick() + "|" + entry.getLine();
+        }
+
         private float drawRecent(float width, float top, float maxWidth, Chronicle chronicle, Player player, int nowTick, ChronicleFocus focus, ChronicleScope scope) {
             float panelWidth = Math.Min(compactWidth(width), maxWidth);
             if (panelWidth <= 0f) {
@@ -301,6 +310,17 @@ namespace beyondnations.desktop.ui {
             if (ImGui.Begin("##chronicle-recent", CompactFlags)) {
                 float lineWidth = ImGui.GetContentRegionAvail().X;
                 Overlay.textColoured(HintColour, fitToWidth(ObjectiveKeyNames.resolve(recentHeading(scope)), lineWidth, s => ImGui.CalcTextSize(s).X));
+                drawRecentLines(chronicle, player, nowTick, focus, scope);
+                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
+            }
+            ImGui.End();
+            return bottom;
+        }
+
+        /** The strip's entries, newest first, in the current window. */
+        private void drawRecentLines(Chronicle chronicle, Player player, int nowTick, ChronicleFocus focus, ChronicleScope scope) {
+            {
+                float lineWidth = ImGui.GetContentRegionAvail().X;
                 List<ChronicleEntry> recent = ChroniclePanel.recent(chronicle.getEntries(), focus, scope, recentCount(TouchLayout.isActive()));
                 if (recent.Count == 0) {
                     Overlay.textColoured(HintColour, fitToWidth(emptyMessage(scope, false), lineWidth, s => ImGui.CalcTextSize(s).X));
@@ -313,10 +333,7 @@ namespace beyondnations.desktop.ui {
                     string line = fitToWidth(focus != null ? displayLine(entry, focus) : displayLine(entry, player), lineWidth, s => ImGui.CalcTextSize(s).X);
                     drawStampedLine(line, mine ? MineMarker.Length + entry.getTimestamp().Length : entry.getTimestamp().Length, mine, alpha);
                 }
-                bottom = ImGui.GetWindowPos().Y + ImGui.GetWindowSize().Y;
             }
-            ImGui.End();
-            return bottom;
         }
 
         private void drawFull(float width, float height, Chronicle chronicle, Player player, ChronicleView view, ChronicleFocus focus) {

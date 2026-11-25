@@ -17,6 +17,17 @@
     <AssemblyName>BeyondNations.Pacing</AssemblyName>
   </PropertyGroup>
 
+  <!--
+    The HUD's unlock rules are pure logic over Core (UnlockSnapshot), so the
+    harness compiles them in and checks that each comes before the objective
+    that points at it (PacingUnlocks; docs/PACING.md, "Unlocks").
+  -->
+  <ItemGroup>
+    <Compile Include="../../src/BeyondNations.Desktop/ui/progression/IHudUnlocks.cs" Link="progression/IHudUnlocks.cs" />
+    <Compile Include="../../src/BeyondNations.Desktop/ui/progression/UnlockSnapshot.cs" Link="progression/UnlockSnapshot.cs" />
+    <Compile Include="../../src/BeyondNations.Desktop/ui/progression/HudUnlocks.cs" Link="progression/HudUnlocks.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="../../src/BeyondNations.Core/BeyondNations.Core.csproj" />
   </ItemGroup>

@@ -145,5 +145,125 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(SeasonInfoBox.FamineLine, SeasonInfoBox.getFamineLine(simulation.getSeasonCalendar(), simulation.getEntityRepository(), player));
             Assert.Contains(SeasonInfoBox.FamineLine, box.getLines());
         }
-    }
+    
+        /** #500: a ruler whose nation has no members yet still sees a food line, saying who needs food and how to get them. */
+        [Fact]
+        public void testTheStoresLine_ForANationWithNoMembersYet_SaysSo_InAutumnAndWinter() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            Player player = simulation.getPlayer();
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            Assert.Equal(0, WinterStores.count(simulation.getEntityRepository(), player.getNationId()).Members);
+            int winterStarts = 3 * SeasonCalendar.DAYS_PER_SEASON;
+
+            Assert.Equal(SeasonInfoBox.NoMembersLine,
+                SeasonInfoBox.getStoresLine(calendarAtDay(winterStarts - 1), simulation.getEntityRepository(), player));
+            Assert.Equal(SeasonInfoBox.NoMembersLine,
+                SeasonInfoBox.getStoresLine(calendarAtDay(winterStarts), simulation.getEntityRepository(), player));
+            // not in spring, nor without a nation
+            Assert.Null(SeasonInfoBox.getStoresLine(calendarAtDay(0), simulation.getEntityRepository(), player));
+            Assert.Null(SeasonInfoBox.getFamineLine(calendarAtDay(winterStarts), simulation.getEntityRepository(), player));
+            // it names no key, so it reads the same by touch
+            Assert.Null(TestTouchText.namedKey(SeasonInfoBox.NoMembersLine));
+
+            // once a member joins, the count takes over
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            Pawn member = new Pawn(player.getPosition(), "Member", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(member);
+            member.setNationId(nation.getId());
+            nation.addMember(member.getId());
+            member.getInventory().clear();
+            Assert.Equal("Food: 0 of " + SeasonalRules.WINTER_FOOD_STORE + " for winter",
+                SeasonInfoBox.getStoresLine(calendarAtDay(winterStarts - 1), simulation.getEntityRepository(), player));
+        }
+    
+        private static SeasonCalendar calendarAtDayAndFraction(int day, float fraction) {
+            TickCounter ticks = new TickCounter();
+            TimeOfDay timeOfDay = new TimeOfDay(ticks, TimeOfDay.DefaultTicksPerDay, 0f);
+            long target = (long) day * TimeOfDay.DefaultTicksPerDay + (long) (fraction * TimeOfDay.DefaultTicksPerDay);
+            for (long i = 0; i < target; i++) {
+                ticks.increment();
+            }
+            return new SeasonCalendar(timeOfDay);
+        }
+
+        private static Pawn memberOf(Simulation simulation, Player player, int apples) {
+            Nation nation = simulation.getNationRepository().getNation(player.getNationId());
+            Pawn member = new Pawn(player.getPosition(), "Member", simulation.getRandom());
+            simulation.getEntityRepository().addEntity(member);
+            member.setNationId(nation.getId());
+            nation.addMember(member.getId());
+            member.getInventory().clear();
+            member.getInventory().addItem(ItemType.APPLE, apples);
+            member.setEnergy(95f);
+            return member;
+        }
+
+        private static Simulation withNation(out Player player) {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            player = simulation.getPlayer();
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            return simulation;
+        }
+
+        /**
+        * Playtest w2f: four members on track showed "Too little food" by
+        * midday of winter's first day, the target still the whole winter's
+        * 56. Mid-winter the line and the famine warning measure the rest of it.
+        */
+        [Fact]
+        public void testMidWinter_AnOnTrackNation_ShowsNoFamineLine_AndAShortOneDoes() {
+            Simulation simulation = withNation(out Player player);
+            int winterStarts = 3 * SeasonCalendar.DAYS_PER_SEASON;
+            Pawn[] members = new Pawn[4];
+            for (int i = 0; i < members.Length; i++) {
+                // half way through winter, each has half its store left
+                members[i] = memberOf(simulation, player, SeasonalRules.WINTER_FOOD_STORE / 2);
+            }
+            SeasonCalendar midWinter = calendarAtDay(winterStarts + SeasonCalendar.DAYS_PER_SEASON / 2);
+            int rest = 4 * SeasonalRules.WINTER_FOOD_STORE / 2;
+            Assert.Equal("Food: " + rest + " of " + rest + " to spring",
+                SeasonInfoBox.getStoresLine(midWinter, simulation.getEntityRepository(), player));
+            Assert.Null(SeasonInfoBox.getFamineLine(midWinter, simulation.getEntityRepository(), player));
+
+            // one member ate ahead and is now short: the nation is short of the rest of winter
+            members[0].getInventory().removeItem(ItemType.APPLE, 3);
+            Assert.Equal(SeasonInfoBox.FamineLine, SeasonInfoBox.getFamineLine(midWinter, simulation.getEntityRepository(), player));
+
+            // the autumn target is the whole winter's, as before
+            Assert.Equal("Food: " + (rest - 3) + " of " + (4 * SeasonalRules.WINTER_FOOD_STORE) + " for winter",
+                SeasonInfoBox.getStoresLine(calendarAtDay(winterStarts - 1), simulation.getEntityRepository(), player));
+            Assert.Null(SeasonInfoBox.getFamineLine(calendarAtDay(winterStarts - 1), simulation.getEntityRepository(), player));
+        }
+
+        /** By midday of winter's first day, a nation that has eaten an eighth of its store is still on track. */
+        [Fact]
+        public void testMiddayOfWintersFirstDay_AnOnTrackNation_ShowsNoFamineLine() {
+            Simulation simulation = withNation(out Player player);
+            int winterStarts = 3 * SeasonCalendar.DAYS_PER_SEASON;
+            SeasonCalendar midday = calendarAtDayAndFraction(winterStarts, 0.5f);
+            float progress = midday.getSeasonProgress();
+            int left = (int) System.MathF.Ceiling(SeasonalRules.WINTER_FOOD_STORE * (1f - progress));
+            for (int i = 0; i < 4; i++) {
+                memberOf(simulation, player, left);
+            }
+            Assert.Null(SeasonInfoBox.getFamineLine(midday, simulation.getEntityRepository(), player));
+        }
+
+        /** Playtest w2: "17 of 14, 5 rotting" read as more rotting than the 3 over; the rotting apples are on top of the count. */
+        [Fact]
+        public void testTheStoresLine_SaysTheRottingApplesAreOnTopOfTheCount() {
+            Simulation simulation = withNation(out Player player);
+            Pawn member = memberOf(simulation, player, SeasonalRules.PAWN_APPLES_KEPT + 5);
+            member.getInventory().addItem(ItemType.COOKED_MEAT, 3);
+            int winterStarts = 3 * SeasonCalendar.DAYS_PER_SEASON;
+            Assert.Equal("Food: " + (SeasonalRules.WINTER_FOOD_STORE + 3) + " of " + SeasonalRules.WINTER_FOOD_STORE + " for winter, +5 rotting",
+                SeasonInfoBox.getStoresLine(calendarAtDay(winterStarts - 1), simulation.getEntityRepository(), player));
+        }
+}
 }

@@ -80,9 +80,9 @@ namespace beyondnations.desktop {
         private int lastLoggedRenderDistance;
         // --- end #219 ---
 
-        // Fixed-step accumulator
+        // Fixed-step accumulator; in lockstep, a fixed number of steps a frame
         private readonly double fixedTimeStep;
-        private double accumulator;
+        private readonly FixedStepClock stepClock;
 
         private int framesRendered;
         private bool smokeResizeDone;
@@ -110,6 +110,7 @@ namespace beyondnations.desktop {
             }
             gameConfig.setTicksPerSecond(options.TicksPerSecond);
             this.fixedTimeStep = 1.0 / options.TicksPerSecond;
+            this.stepClock = new FixedStepClock(fixedTimeStep, options.MaxCatchUpSteps, options.lockstepStepsPerFrame());
         }
 
         public int getFramesRendered() {
@@ -174,6 +175,9 @@ namespace beyondnations.desktop {
             Log.info("GL vendor:   " + gl.GetStringS(StringName.Vendor));
             Log.info("GL renderer: " + gl.GetStringS(StringName.Renderer));
             Log.info("GL version:  " + gl.GetStringS(StringName.Version));
+            if (stepClock.isLockstep()) {
+                Log.info("lockstep: " + options.lockstepStepsPerFrame() + " tick(s) a frame, ignoring the clock (--lockstep 0 to follow it)");
+            }
 
             gl.Enable(EnableCap.DepthTest);
             gl.Enable(EnableCap.CullFace);
@@ -286,9 +290,9 @@ namespace beyondnations.desktop {
             // world. --seed and --start-screen world arrive with it filled in.
             gameConfig.setWorldSeed(share.getChosenSeed());
             simulation = new Simulation(gameConfig);
-            // The objective tracker (top left) carries the step-by-step guidance
+            // The Next line (top of the HUD) carries the step-by-step guidance
             // now, so the opening line points at it rather than competing with it.
-            simulation.getPlayer().getStatus().update("Welcome! Your first objective is at the top left.");
+            simulation.getPlayer().getStatus().update("Welcome! The Next line at the top says what to do.");
 
             // --- #280 ---
             if (options.TimeOfDay >= 0f) {
@@ -327,7 +331,8 @@ namespace beyondnations.desktop {
                 TradeShowcase.stageCamp(simulation);
             }
             else if (options.StageCaravan) {
-                TradeShowcase.stageCaravan(simulation);
+                // open Send Caravan on the staged neighbour, however many ticks run before the shot (#514)
+                CaravanDispatchPanel.preferDestination(TradeShowcase.stageCaravan(simulation).traderSettlement);
             }
             else if (options.StageMarket) {
                 TradeShowcase.stageMarket(simulation);
@@ -356,6 +361,8 @@ namespace beyondnations.desktop {
 
             saves.beginNewWorld(simulation);
             feel.beginWorld(simulation, true);
+            // only a new, unstaged game unlocks the HUD as it goes
+            ui.beginWorld(simulation, true, options.startsAllUnlocked());
             share.beginWorld(simulation);
             playtest?.worldStarted(simulation, "created", saves.getCurrentSlot());
         }
@@ -429,8 +436,9 @@ namespace beyondnations.desktop {
             }
             simulation = loaded;
             share.beginWorld(simulation);
-            accumulator = 0;
+            stepClock.reset();
             feel.beginWorld(simulation, false);
+            ui.beginWorld(simulation, false, options.startsAllUnlocked());
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
             playtest?.worldStarted(simulation, "loaded", slot);
@@ -494,25 +502,20 @@ namespace beyondnations.desktop {
             }
             // the world waits while a world event's choice sheet is up
             if (simulation.getWorldEvents().isAwaitingPlayer()) {
-                accumulator = 0;
+                stepClock.reset();
                 return;
             }
 
-            accumulator += deltaTime;
+            // The clock clamps the backlog so that a long stall -- a
+            // breakpoint, a resize, a paused window -- cannot make the next
+            // frame run thousands of steps trying to catch up; in lockstep
+            // (staged screenshots) it ignores the wall clock altogether.
+            stepClock.beginFrame(deltaTime);
 
-            // Clamp the backlog so that a long stall -- a breakpoint, a resize,
-            // a paused window -- cannot make the next frame run thousands of
-            // steps trying to catch up.
-            double maxBacklog = fixedTimeStep * options.MaxCatchUpSteps;
-            if (accumulator > maxBacklog) {
-                accumulator = maxBacklog;
-            }
-
-            while (accumulator >= fixedTimeStep) {
+            while (stepClock.tryTakeStep()) {
                 // fixedUpdate increments the tick counter itself; one fixed
                 // step is exactly one tick.
                 simulation.fixedUpdate((float) fixedTimeStep);
-                accumulator -= fixedTimeStep;
                 fixedStepsRun++;
                 saves.onFixedStep(simulation);
                 share.onFixedStep(simulation);
@@ -617,6 +620,14 @@ namespace beyondnations.desktop {
             }
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleNations)) {
                 screens.nationsPressed();
+            }
+            // J opens and closes the Journal the same way; while it is open the
+            // arrows and Tab turn its pages
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleJournal)) {
+                screens.journalPressed();
+            }
+            else if (screens.getCurrent() == ScreenType.JOURNAL) {
+                beyondnations.desktop.ui.screens.JournalScreen.readKeys(inputService);
             }
             // --- end #181 ---
 
@@ -836,6 +847,9 @@ namespace beyondnations.desktop {
                 }
                 if (MarketTradePanel.isOpen()) {
                     playtestView.OpenPanels.Add("market-trade");
+                }
+                if (CommandSheet.isOpen()) {
+                    playtestView.OpenPanels.Add("command-sheet");
                 }
                 if (simulation.getWorldEvents().isAwaitingPlayer()) {
                     playtestView.OpenPanels.Add("world-event");

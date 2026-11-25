@@ -146,7 +146,7 @@ namespace beyondnationstests.desktop.ui {
             Simulation simulation = new Simulation(config);
 
             Assert.Empty(MembersPanel.getRows(simulation));
-            Assert.Equal(new List<string> { "You belong to no nation, so no one is sworn to you. Found one (N) or join one (J)." },
+            Assert.Equal(new List<string> { "You belong to no nation, so no one is sworn to you. Found one (N) or join one (T)." },
                 MembersPanel.getLines(simulation));
         }
 

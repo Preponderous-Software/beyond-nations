@@ -1,0 +1,71 @@
+{
+  "session": "w1",
+  "goal": "bn-integration: normal-start opening, seed 103: gather, nation, found, recruit, order a Stranger member, Pay with Coins.",
+  "build": {
+    "version": "0.8.1-SNAPSHOT",
+    "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-integration"
+  },
+  "seed": 103,
+  "durationSec": 420,
+  "outcome": "achieved",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Settlement screen shows two coin prices for the same farm",
+      "detail": "Buildings line: 'Next: Farm, 25 wood, 10 stone, or 2,160 coins'. With Pay with Coins on, the button reads 'Buy Farm (1,764)'. The code means it (full price vs. the price of the shortfall after carried wood/stone), but nothing on screen says why they differ.",
+      "screenshot": "shots/paycoins_price.png"
+    },
+    {
+      "severity": "minor",
+      "category": "balance",
+      "title": "Pay with Coins is out of reach in the opening",
+      "detail": "At the first visit the player has 211 coins; Buy House is 1,584 and Buy Farm 1,764. Both buttons stay greyed ('Needs 1,584 coins; you have 211.'). Fine as a late-game option, but it does nothing for a new player.",
+      "screenshot": "shots/paycoins_hover.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Build Stall keeps its 'Build' label in coin mode, with no tooltip",
+      "detail": "With Pay with Coins on, House and Farm become 'Buy X (price)' but Stall stays 'Build Stall', greyed, with no hover reason.",
+      "screenshot": "shots/paycoins_stall.png"
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Order button vanishes while the pawn walks away",
+      "detail": "Ordering a Stranger member works: Dave Davies (Stranger) says 'I hardly know you, but you lead Northernfield. I'll gather 10 wood.' But members walk out of reach between the approach and the click (at 5 fps), the Order row disappears and the click lands on nothing. It took 3 tries over two pawns.",
+      "screenshot": "shots/order3.png"
+    },
+    {
+      "severity": "polish",
+      "category": "text",
+      "title": "Own members still read '(Stranger)' on Talk",
+      "detail": "Oscar Robinson, a member who had just sworn fealty, shows 'Talk to Oscar Robinson (Stranger)'. The new Order flavour text makes this deliberate, but it still looks contradictory next to 'swore fealty'.",
+      "screenshot": "shots/near_pawn.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Hover tooltip on the greyed Found Settlement drops the open-ground hint",
+      "detail": "Tapping the button gives the full status: '...Open ground lies about 200 paces to the south-east.' The hover tooltip stops at '...must be 250 paces apart.' and lies across the Leave Nation button and the Player Info box.",
+      "screenshot": "shots/found_grey2.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Inventory box jumps to mid-screen when the command bar grows",
+      "detail": "With 3-4 command rows near a pawn, Inventory Info moves to x~220,y~230 and floats over the world. Inside a settlement it covers the Chronicle lines and the settlement nameplate.",
+      "screenshot": "shots/near_pawn3.png"
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 5,
+    "deaths": 0,
+    "foundSettlementTick": 7502,
+    "openGroundHintFollowed": "twice (SE, then SW); second hint led straight to a valid site",
+    "strangerOrderWorked": true
+  },
+  "fun": 3,
+  "verdict": "The opening works end to end. The open-ground hint gets you to a valid site, ordering a Stranger member works, and Pay with Coins toggles cleanly. The rough edges are price wording and buttons that move or vanish at low fps."
+}

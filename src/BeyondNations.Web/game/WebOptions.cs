@@ -36,11 +36,11 @@ namespace beyondnations.web {
         };
 
         private static readonly HashSet<string> FlagOptions = new HashSet<string> {
-            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-settlement", "stage-outpost", "stage-diplomacy", "stage-feel", "stage-succession", "stage-event", "stage-trade", "stage-market", "stage-trader", "stage-victory", "stage-defeat", "no-saves", "continue",
+            "render-stats", "no-culling", "no-labels", "debug-mode", "first-person", "stage-settlement", "stage-outpost", "stage-diplomacy", "stage-feel", "stage-succession", "stage-event", "stage-trade", "stage-market", "stage-camp", "stage-caravan", "stage-trader", "stage-victory", "stage-defeat", "all-unlocked", "no-saves", "continue",
         };
 
         private static readonly Dictionary<string, string[]> ChoiceOptions = new Dictionary<string, string[]> {
-            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations", "laws", "members", "manage", "settlement", "crafting", "load", "new-world", "share" } },
+            { "start-screen", new[] { "title", "main-menu", "config", "world", "pause", "inventory", "controls", "nations", "laws", "members", "manage", "settlement", "crafting", "journal", "load", "new-world", "share" } },
             { "season", new[] { "spring", "summer", "autumn", "winter" } },
         };
 
@@ -80,6 +80,16 @@ namespace beyondnations.web {
                         args.Add(value);
                     } else {
                         warn("ignoring seed=: expected a number or some text");
+                    }
+                } else if (name == "stage-journal") {
+                    // ?stage-journal or ?stage-journal=era: the Journal over the world, on a tab
+                    if (value == "" || value == "1" || value.Equals("true", StringComparison.OrdinalIgnoreCase)) {
+                        args.Add("--stage-journal");
+                    } else if (beyondnations.desktop.ui.journal.JournalTabs.tryParseStage(value, out _, out _)) {
+                        args.Add("--stage-journal");
+                        args.Add(value.ToLowerInvariant());
+                    } else {
+                        warn("ignoring stage-journal=" + value + ": expected one of " + string.Join(", ", beyondnations.desktop.ui.journal.JournalTabs.Names));
                     }
                 } else if (name == "advance-ticks") {
                     if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int ticks) && ticks > 0) {

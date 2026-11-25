@@ -1,0 +1,180 @@
+{"t": 1795556201811, "cmd": "start", "args": ["--profile", "beyond-nations", "--game-dir", "/root/wt/bn-integration", "--seed", "103", "--width", "960", "--height", "540"]}
+{"t": 1795556203257, "cmd": "shot", "args": ["title"]}
+{"t": 1795556207385, "cmd": "key", "args": ["space"]}
+{"t": 1795556207910, "cmd": "wait", "args": ["1"]}
+{"t": 1795556208987, "cmd": "click", "args": ["480", "315"]}
+{"t": 1795556209788, "cmd": "wait", "args": ["1"]}
+{"t": 1795556210883, "cmd": "shot", "args": ["start"]}
+{"t": 1795556215027, "cmd": "click", "args": ["480", "315"]}
+{"t": 1795556215796, "cmd": "await", "args": ["WORLD", "30"]}
+{"t": 1795556216291, "cmd": "wait", "args": ["2"]}
+{"t": 1795556218361, "cmd": "state", "args": []}
+{"t": 1795556218440, "cmd": "shot", "args": ["world0"]}
+{"t": 1795556223676, "cmd": "click", "args": ["337", "389"]}
+{"t": 1795556224459, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556233680, "cmd": "key", "args": ["e"]}
+{"t": 1795556234187, "cmd": "wait", "args": ["1"]}
+{"t": 1795556235266, "cmd": "key", "args": ["e"]}
+{"t": 1795556235760, "cmd": "wait", "args": ["1"]}
+{"t": 1795556236818, "cmd": "key", "args": ["e"]}
+{"t": 1795556237350, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556245569, "cmd": "key", "args": ["e"]}
+{"t": 1795556246059, "cmd": "wait", "args": ["1"]}
+{"t": 1795556247140, "cmd": "key", "args": ["e"]}
+{"t": 1795556247642, "cmd": "wait", "args": ["1"]}
+{"t": 1795556248736, "cmd": "key", "args": ["e"]}
+{"t": 1795556249215, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556269988, "cmd": "key", "args": ["e"]}
+{"t": 1795556270501, "cmd": "wait", "args": ["1"]}
+{"t": 1795556271573, "cmd": "key", "args": ["e"]}
+{"t": 1795556272050, "cmd": "wait", "args": ["1"]}
+{"t": 1795556273126, "cmd": "key", "args": ["e"]}
+{"t": 1795556273643, "cmd": "state", "args": []}
+{"t": 1795556276372, "cmd": "shot", "args": ["pre_nation"]}
+{"t": 1795556276556, "cmd": "click", "args": ["66", "517"]}
+{"t": 1795556277362, "cmd": "wait", "args": ["2"]}
+{"t": 1795556279430, "cmd": "shot", "args": ["create_nation"]}
+{"t": 1795556285322, "cmd": "click", "args": ["74", "476"]}
+{"t": 1795556286104, "cmd": "wait", "args": ["1"]}
+{"t": 1795556287167, "cmd": "shot", "args": ["found_grey"]}
+{"t": 1795556287399, "cmd": "events", "args": ["3"]}
+{"t": 1795556294337, "cmd": "click", "args": ["337", "376"]}
+{"t": 1795556295127, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556305412, "cmd": "key", "args": ["e"]}
+{"t": 1795556305895, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556306668, "cmd": "key", "args": ["e"]}
+{"t": 1795556307177, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556307948, "cmd": "key", "args": ["e"]}
+{"t": 1795556308470, "cmd": "state", "args": []}
+{"t": 1795556308546, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556325538, "cmd": "key", "args": ["e"]}
+{"t": 1795556326088, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556326853, "cmd": "key", "args": ["e"]}
+{"t": 1795556327347, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556328129, "cmd": "key", "args": ["e"]}
+{"t": 1795556328632, "cmd": "state", "args": []}
+{"t": 1795556328731, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556338731, "cmd": "key", "args": ["e"]}
+{"t": 1795556339224, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556339994, "cmd": "key", "args": ["e"]}
+{"t": 1795556340489, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556341276, "cmd": "key", "args": ["e"]}
+{"t": 1795556341769, "cmd": "state", "args": []}
+{"t": 1795556341835, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556349618, "cmd": "key", "args": ["e"]}
+{"t": 1795556350112, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556350883, "cmd": "key", "args": ["e"]}
+{"t": 1795556351372, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556352161, "cmd": "key", "args": ["e"]}
+{"t": 1795556352674, "cmd": "state", "args": []}
+{"t": 1795556352746, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556380260, "cmd": "key", "args": ["e"]}
+{"t": 1795556380758, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556381556, "cmd": "key", "args": ["e"]}
+{"t": 1795556382065, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556382845, "cmd": "key", "args": ["e"]}
+{"t": 1795556383386, "cmd": "state", "args": []}
+{"t": 1795556383471, "cmd": "walkto", "args": ["tree", "30"]}
+{"t": 1795556402569, "cmd": "key", "args": ["e"]}
+{"t": 1795556403111, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556403877, "cmd": "key", "args": ["e"]}
+{"t": 1795556404363, "cmd": "wait", "args": ["0.7"]}
+{"t": 1795556405132, "cmd": "key", "args": ["e"]}
+{"t": 1795556405663, "cmd": "state", "args": []}
+{"t": 1795556408386, "cmd": "key", "args": ["f"]}
+{"t": 1795556408920, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556410490, "cmd": "shot", "args": ["found1"]}
+{"t": 1795556410698, "cmd": "events", "args": ["4"]}
+{"t": 1795556410760, "cmd": "state", "args": []}
+{"t": 1795556417942, "cmd": "click", "args": ["337", "389"]}
+{"t": 1795556418702, "cmd": "click", "args": ["74", "476"]}
+{"t": 1795556419464, "cmd": "wait", "args": ["1"]}
+{"t": 1795556420554, "cmd": "shot", "args": ["found_grey2"]}
+{"t": 1795556420780, "cmd": "events", "args": ["1"]}
+{"t": 1795556420841, "cmd": "face", "args": ["-145"]}
+{"t": 1795556426419, "cmd": "hold", "args": ["w", "12"]}
+{"t": 1795556438555, "cmd": "key", "args": ["f"]}
+{"t": 1795556439046, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556440625, "cmd": "events", "args": ["3"]}
+{"t": 1795556440687, "cmd": "shot", "args": ["found2"]}
+{"t": 1795556451668, "cmd": "click", "args": ["337", "402"]}
+{"t": 1795556452409, "cmd": "face", "args": ["90"]}
+{"t": 1795556455058, "cmd": "hold", "args": ["w", "6"]}
+{"t": 1795556461200, "cmd": "state", "args": []}
+{"t": 1795556461275, "cmd": "key", "args": ["f"]}
+{"t": 1795556461767, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556463343, "cmd": "events", "args": ["2"]}
+{"t": 1795556468641, "cmd": "shot", "args": ["f3"]}
+{"t": 1795556476764, "cmd": "face", "args": ["-159"]}
+{"t": 1795556481092, "cmd": "hold", "args": ["w", "15"]}
+{"t": 1795556496218, "cmd": "state", "args": []}
+{"t": 1795556496282, "cmd": "key", "args": ["f"]}
+{"t": 1795556496759, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556498324, "cmd": "events", "args": ["2"]}
+{"t": 1795556502095, "cmd": "face", "args": ["-97"]}
+{"t": 1795556505330, "cmd": "hold", "args": ["w", "11"]}
+{"t": 1795556516450, "cmd": "key", "args": ["f"]}
+{"t": 1795556516921, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556518483, "cmd": "events", "args": ["2"]}
+{"t": 1795556518545, "cmd": "shot", "args": ["found3"]}
+{"t": 1795556524867, "cmd": "click", "args": ["209", "476"]}
+{"t": 1795556525615, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556527177, "cmd": "state", "args": []}
+{"t": 1795556527244, "cmd": "shot", "args": ["settlement1"]}
+{"t": 1795556532108, "cmd": "click", "args": ["811", "314"]}
+{"t": 1795556532839, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556534398, "cmd": "shot", "args": ["paycoins1"]}
+{"t": 1795556534581, "cmd": "events", "args": ["2"]}
+{"t": 1795556539185, "cmd": "move", "args": ["480", "200"]}
+{"t": 1795556539287, "cmd": "wait", "args": ["1"]}
+{"t": 1795556540356, "cmd": "shot", "args": ["paycoins2"]}
+{"t": 1795556540557, "cmd": "move", "args": ["590", "352"]}
+{"t": 1795556540653, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556542209, "cmd": "shot", "args": ["paycoins_hover"]}
+{"t": 1795556549080, "cmd": "move", "args": ["368", "352"]}
+{"t": 1795556549152, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556550717, "cmd": "shot", "args": ["paycoins_stall"]}
+{"t": 1795556550912, "cmd": "note", "args": ["--shot", "paycoins_price", "Pay with Coins: Buildings line says 'Next: Farm, 25 wood, 10 stone, or 2,160 coins' while the coins button says 'Buy Farm (1,764)'. Two different coin prices for the same farm on one screen."]}
+{"t": 1795556563569, "cmd": "click", "args": ["376", "438"]}
+{"t": 1795556564316, "cmd": "wait", "args": ["1"]}
+{"t": 1795556565374, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1795556583636, "cmd": "shot", "args": ["near_pawn"]}
+{"t": 1795556590152, "cmd": "click", "args": ["138", "414"]}
+{"t": 1795556590882, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556592447, "cmd": "shot", "args": ["order1"]}
+{"t": 1795556592672, "cmd": "events", "args": ["3"]}
+{"t": 1795556598478, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1795556611868, "cmd": "shot", "args": ["near_pawn2"]}
+{"t": 1795556615795, "cmd": "state", "args": []}
+{"t": 1795556615862, "cmd": "walkto", "args": ["pawn", "40"]}
+{"t": 1795556629597, "cmd": "state", "args": []}
+{"t": 1795556632831, "cmd": "hold", "args": ["Shift_L+w", "6"]}
+{"t": 1795556638990, "cmd": "walkto", "args": ["pawn", "30"]}
+{"t": 1795556651656, "cmd": "state", "args": []}
+{"t": 1795556651730, "cmd": "shot", "args": ["near_pawn3"]}
+{"t": 1795556659847, "cmd": "move", "args": ["240", "439"]}
+{"t": 1795556659947, "cmd": "wait", "args": ["1"]}
+{"t": 1795556661046, "cmd": "shot", "args": ["invite_hover"]}
+{"t": 1795556661323, "cmd": "click", "args": ["341", "476"]}
+{"t": 1795556662141, "cmd": "wait", "args": ["2"]}
+{"t": 1795556664212, "cmd": "state", "args": []}
+{"t": 1795556667050, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1795556675482, "cmd": "shot", "args": ["near_dave"]}
+{"t": 1795556680543, "cmd": "click", "args": ["146", "414"]}
+{"t": 1795556681381, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795556682949, "cmd": "shot", "args": ["order2"]}
+{"t": 1795556683209, "cmd": "state", "args": []}
+{"t": 1795556693908, "cmd": "walkto", "args": ["pawn", "20"]}
+{"t": 1795556706562, "cmd": "click", "args": ["146", "414"]}
+{"t": 1795556707377, "cmd": "wait", "args": ["0.5"]}
+{"t": 1795556708011, "cmd": "state", "args": []}
+{"t": 1795556708141, "cmd": "shot", "args": ["order3"]}
+{"t": 1795556714137, "cmd": "note", "args": ["--shot", "order3", "Order works on a Stranger member (Dave Davies: 'I hardly know you, but you lead Northernfield. I'll gather 10 wood.'). But at 5 fps the pawn walks out of reach between walkto and the click; the Order button vanishes and the click lands on nothing. Took 3 tries over two pawns."]}
+{"t": 1795556714436, "cmd": "click", "args": ["48", "19"]}
+{"t": 1795556715223, "cmd": "wait", "args": ["1"]}
+{"t": 1795556716335, "cmd": "shot", "args": ["controls"]}
+{"t": 1795556716576, "cmd": "log", "args": ["30"]}
+{"t": 1795556721778, "cmd": "key", "args": ["Escape"]}
+{"t": 1795556722317, "cmd": "stop", "args": []}
+{"t": 1795561443567, "cmd": "report", "args": []}
+{"t": 1795561447914, "cmd": "report", "args": []}

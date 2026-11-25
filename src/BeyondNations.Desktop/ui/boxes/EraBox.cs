@@ -36,6 +36,13 @@ namespace beyondnations.desktop.ui.boxes {
             ImGuiWindowFlags.NoNav;
 
         private bool expanded;
+        /** A collapse or a siege under way is a danger; the siege countdown a warning. */
+        public static HudBadge badgeFor(string collapse, string siegeUnderWay, string siegeCountdown) {
+            if (collapse != null || siegeUnderWay != null) {
+                return HudBadge.Danger;
+            }
+            return siegeCountdown != null ? HudBadge.Warning : HudBadge.None;
+        }
 
         public bool isExpanded() { return expanded; }
         public void setExpanded(bool value) { expanded = value; }
@@ -176,6 +183,16 @@ namespace beyondnations.desktop.ui.boxes {
             ImGui.SetNextWindowSize(new Vector2(width, 0), ImGuiCond.Always);
             ImGui.SetNextWindowBgAlpha(0.6f);
             if (ImGui.Begin("##era-box", PanelFlags)) {
+                drawContents(simulation, maxBottom);
+                bottom = y + ImGui.GetWindowSize().Y;
+            }
+            ImGui.End();
+            return bottom;
+        }
+
+        /** The toggle, the bar, the warnings and, when open, the detail, in the current window. */
+        private void drawContents(Simulation simulation, float maxBottom) {
+            {
                 ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(HeadingColour));
                 // a button, not a hover: the touch path to the detail
                 float buttonHeight = TouchLayout.isActive()
@@ -220,10 +237,7 @@ namespace beyondnations.desktop.ui.boxes {
                         ImGui.EndChild();
                     }
                 }
-                bottom = y + ImGui.GetWindowSize().Y;
             }
-            ImGui.End();
-            return bottom;
         }
 
         /** The height the detail lines take wrapped to this width, as ImGui lays them out. */

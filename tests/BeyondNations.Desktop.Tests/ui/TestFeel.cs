@@ -356,6 +356,30 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testHints_BesideANextLine_LeaveOutTheOnesThatRepeatAnObjective() {
+            Simulation simulation = makeSimulation();
+            FeelSettings settings = new FeelSettings();
+            OnboardingHints hints = new OnboardingHints(settings);
+            hints.setObjectivesShown(true);
+            hints.begin(true);
+            hints.update(simulation, OnboardingHints.FirstDelaySeconds + 0.1f);
+            Assert.Equal(OnboardingHints.Step.Move, hints.getVisible());
+            Assert.Equal(3, hints.getTotal());
+            hints.dismiss();
+            hints.update(simulation, OnboardingHints.BetweenSeconds + 0.1f);
+            Assert.Equal(OnboardingHints.Step.Chop, hints.getVisible());
+            Assert.Equal(2, hints.getNumber());
+            hints.dismiss();
+            hints.update(simulation, OnboardingHints.BetweenSeconds + 0.1f);
+            // not "Gather stone" or "Found a settlement", which the Next line says when it is time
+            Assert.Equal(OnboardingHints.Step.Goals, hints.getVisible());
+            Assert.Equal(3, hints.getNumber());
+            // passed over, not done: the old HUD would still show them
+            Assert.False(settings.isHintDone("stone"));
+            Assert.False(settings.isHintDone("found"));
+        }
+
+        [Fact]
         public void testHints_DoneOnesAreNeverShownAgain() {
             Simulation simulation = makeSimulation();
             FeelSettings settings = new FeelSettings();
@@ -452,6 +476,38 @@ namespace beyondnationstests {
             }
             text.Append(simulation.getChronicle().getEntries().Count);
             return text.ToString();
+        }
+    
+        /** #502: a world event that stops the world is heard once, so a player waiting without watching knows. */
+        [Fact]
+        public void testAWorldEventStoppingTheWorld_IsHeardOnce() {
+            Simulation simulation = makeSimulation();
+            RecordingSoundService sound = new RecordingSoundService();
+            FeelDirector director = makeDirector(simulation, sound);
+            sound.played.Clear();
+
+            Assert.True(simulation.getWorldEvents().startPlayerEventNow(simulation, RareMerchantEvent.Id));
+            director.frame(simulation, ScreenType.WORLD, 0.016);
+            director.frame(simulation, ScreenType.WORLD, 0.016);
+            director.frame(simulation, ScreenType.WORLD, 0.016);
+
+            Assert.Equal(1, sound.played.FindAll(c => c == SoundCue.WorldEvent).Count);
+
+            // chosen and gone: nothing more
+            simulation.getWorldEvents().choose(simulation, simulation.getWorldEvents().getPendingChoices(simulation).Count - 1);
+            director.frame(simulation, ScreenType.WORLD, 0.016);
+            Assert.Equal(1, sound.played.FindAll(c => c == SoundCue.WorldEvent).Count);
+        }
+
+        [Fact]
+        public void testAWorldEventAlreadyWaitingWhenAWorldLoads_IsNotAnnounced() {
+            Simulation simulation = makeSimulation();
+            Assert.True(simulation.getWorldEvents().startPlayerEventNow(simulation, RareMerchantEvent.Id));
+            RecordingSoundService sound = new RecordingSoundService();
+            FeelDirector director = makeDirector(simulation, sound, newWorld: false);
+            director.frame(simulation, ScreenType.WORLD, 0.016);
+
+            Assert.DoesNotContain(SoundCue.WorldEvent, sound.played);
         }
     }
 }

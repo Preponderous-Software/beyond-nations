@@ -34,6 +34,22 @@ namespace beyondnationstests.desktop {
         }
 
         [Fact]
+        public void testAllUnlocked_IsOffByDefaultAndSetByTheFlag() {
+            Assert.False(GameOptions.parse(new string[] { }).AllUnlocked);
+            Assert.True(GameOptions.parse(new string[] { "--all-unlocked" }).AllUnlocked);
+        }
+
+        [Fact]
+        public void testStartsAllUnlocked_ForStagedAdvancedOrSeasonedWorlds() {
+            Assert.False(GameOptions.parse(new string[] { }).startsAllUnlocked());
+            Assert.True(GameOptions.parse(new string[] { "--all-unlocked" }).startsAllUnlocked());
+            Assert.True(GameOptions.parse(new string[] { "--stage-settlement" }).startsAllUnlocked());
+            // a world started part-way through has nations and settlements a first-steps HUD would hide
+            Assert.True(GameOptions.parse(new string[] { "--advance-ticks", "25000" }).startsAllUnlocked());
+            Assert.True(GameOptions.parse(new string[] { "--season", "autumn" }).startsAllUnlocked());
+        }
+
+        [Fact]
         public void testSeedTakesANumberOrText() {
             GameOptions number = GameOptions.parse(new string[] { "--seed", "42" });
             Assert.Equal(42, number.Seed);

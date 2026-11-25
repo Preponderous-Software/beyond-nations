@@ -1,0 +1,2 @@
+{"t": 1795558655918, "text": "bn-full: two status toasts stack (winter warning + wanderers) and a Settlers card shows at once; the toasts cover the left HUD boxes ('Food: 14 of 56 for winter, 1 r...', 'Carrying ... +...').", "screenshot": "shots/w2f_pileup.png", "tick": 151272}
+{"t": 1795560056224, "text": "bn-full: the Food box truncates the famine warning ('Food: 52 of 56 for winter - Too... !'); the hover tooltip of Feed Residents runs off the right edge of the 960 px window.", "screenshot": "shots/wn_trunc.png", "tick": 186692}

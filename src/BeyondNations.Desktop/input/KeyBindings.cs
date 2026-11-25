@@ -28,7 +28,8 @@ namespace beyondnations.desktop.input {
         public static readonly Key Jump = Key.Space;
         public static readonly Key Sprint = Key.ShiftLeft;
         public static readonly Key CreateNewNation = Key.N;
-        public static readonly Key JoinNation = Key.J;
+        // T, not J: J opens the Journal (contextual HUD, 2026-11-24)
+        public static readonly Key JoinNation = Key.T;
         public static readonly Key LeaveNation = Key.L;
         public static readonly Key FoundSettlement = Key.F;
         public static readonly Key PlantSapling = Key.P;
@@ -41,6 +42,8 @@ namespace beyondnations.desktop.input {
         public static readonly Key ToggleAutoWalk = Key.Insert;
         public static readonly Key ToggleCameraView = Key.V;
         public static readonly Key ToggleChronicle = Key.Y;
+        // the picture journal: goals, chronicle, era, inventory, nation
+        public static readonly Key ToggleJournal = Key.J;
         // Your news / all nations, next to Y (ChronicleScope).
         public static readonly Key ToggleChronicleScope = Key.U;
         public static readonly Key IncreaseRenderDistance = Key.PageUp;

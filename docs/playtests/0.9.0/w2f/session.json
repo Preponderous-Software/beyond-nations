@@ -1,0 +1,36 @@
+{
+  "session": "w2f",
+  "dir": "<pt-root>/w2f",
+  "profile": "beyond-nations",
+  "display": ":102",
+  "window": "2097159",
+  "size": "960x540",
+  "seed": "103",
+  "args": [
+    "--season",
+    "autumn",
+    "--advance-ticks",
+    "25000"
+  ],
+  "command": [
+    "/root/wt/bn-full/src/BeyondNations.Desktop/bin/Release/net8.0/BeyondNations.Desktop",
+    "--width",
+    "960",
+    "--height",
+    "540",
+    "--no-usage-reporting",
+    "--seed",
+    "103",
+    "--playtest-out",
+    "<pt-root>/w2f/out",
+    "--season",
+    "autumn",
+    "--advance-ticks",
+    "25000"
+  ],
+  "probe": true,
+  "ticksPerSecond": 50,
+  "startedAtMs": 1795558435862,
+  "version": "0.8.1-SNAPSHOT",
+  "commit": "2167959c"
+}

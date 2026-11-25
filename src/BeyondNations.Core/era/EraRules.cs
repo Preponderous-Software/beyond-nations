@@ -32,8 +32,8 @@ namespace beyondnations {
     * HUD, the objectives and the docs never disagree about a number.
     *
     *   Camp -> Village   a village (2 buildings), 10 members, 2 market stalls; day 2
-    *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7
-    *   Town -> Kingdom   2 towns, 25 members, 4 settlements, 3,000 funds; day 19
+    *   Village -> Town   a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 4
+    *   Town -> Kingdom   3 towns, 40 members, 5 settlements, 6,000 funds; day 6
     *
     * Unlocks, for a nation the player leads:
     *
@@ -55,16 +55,20 @@ namespace beyondnations {
         public const int TownSettlements = 2;
         public const int TownFunds = 1000;
 
-        public const int KingdomTowns = 2;
-        public const int KingdomMembers = 25;
-        public const int KingdomSettlements = 4;
-        public const int KingdomFunds = 3000;
+        // Raised with the Kingdom's day brought from 19 to 6 (docs/PACING.md,
+        // "Calendar waits"): at 2 towns, 25 members, 4 settlements and 3,000
+        // funds the courting bot had them all 27 to 37 minutes in, and then
+        // waited 140 to 150 minutes on the calendar alone.
+        public const int KingdomTowns = 3;
+        public const int KingdomMembers = 40;
+        public const int KingdomSettlements = 5;
+        public const int KingdomFunds = 6000;
 
         // Each era also waits on the calendar (a day is ten minutes at the
         // default rates): a nation that courts every settler is a village in
         // two minutes on most seeds, so a night has to pass before it is one
         // in name, and so on up. These set the floor of the pacing (Village
-        // from 7 minutes, Town about an hour, Kingdom about three hours); the
+        // from 7 minutes, Town from 27, Kingdom from 47); the
         // other requirements set how long a nation takes above it.
         //
         // The Village waits for day 2, not day 3 (#352): at day 3 a nation
@@ -74,9 +78,24 @@ namespace beyondnations {
         // so on most seeds the members, which courting and housing speed up,
         // decide when the era comes, and the calendar only stops the
         // two-minute village (docs/PACING.md, "The eras").
+        //
+        // The Town waits for day 4, not day 7, for the same reason: at day 7
+        // (57 minutes in) the pacing bot had every other requirement by
+        // minute 8 to 10 and then waited 35 to 49 minutes on the calendar
+        // alone, at its settlement cap, with the world's strangers all taken
+        // and its objective list stuck on "Reach the Town era", so a 45 to
+        // 60 minute session never saw the Town era, its sixth settlement or
+        // a siege. A nation that does not court still had them by minute 10
+        // to 18 (docs/PACING.md, "Calendar waits").
+        //
+        // The Kingdom waits for day 6, not day 19, and asks for more: at day
+        // 19 (177 minutes in) the Kingdom came at 177m 00s on every seed, and
+        // a Prosperity victory within a minute of it, so the calendar, not
+        // play, decided the end of a run. Now the funds and towns decide it,
+        // and the calendar only stops a nation that has them before minute 47.
         public const int VillageDay = 2;
-        public const int TownDay = 7;
-        public const int KingdomDay = 19;
+        public const int TownDay = 4;
+        public const int KingdomDay = 6;
 
         /**
         * What the player's nation must have to leave this era; empty in the
@@ -161,7 +180,7 @@ namespace beyondnations {
                         + ". Inside yours, press {BuildBuilding} with wood and stone.";
                 }
                 case "Members":
-                    return "Befriend settlers and press {InviteToNation}; homes with room draw newcomers and families.";
+                    return ObjectiveCatalog.InviteMembersHint;
                 case "Stalls":
                     return "Inside your settlement, press {BuildStall} with " + Stall.WOOD_COST_TO_BUILD + " wood and " + Stall.STONE_COST_TO_BUILD + " stone.";
                 case "Settlements":
@@ -182,7 +201,7 @@ namespace beyondnations {
             switch (type) {
                 case BuildingType.WORKSHOP: return Era.VILLAGE;
                 // the Village, not the Town: caravans need a storehouse, and the
-                // Town era's day 7 put the first caravan an hour into a run (#373)
+                // Town era's day (day 7 then) put the first caravan an hour into a run (#373)
                 case BuildingType.STOREHOUSE: return Era.VILLAGE;
                 default: return Era.CAMP;
             }

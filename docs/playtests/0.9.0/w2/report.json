@@ -1,0 +1,44 @@
+{
+  "session": "w2",
+  "goal": "bn-integration: winter from autumn (--season autumn --advance-ticks 25000), seed 103. Stopped at winter start when the coordinator switched trees.",
+  "build": {
+    "version": "0.8.1-SNAPSHOT",
+    "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-integration"
+  },
+  "seed": 103,
+  "durationSec": 1200,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Season box: 'N rotting' sits oddly beside the food total",
+      "detail": "Last autumn night: 'Food: 17 of 14 for winter, 5 rotting' (1 member). 5 rotting is more than the 3 above target, and nothing says what rots or where.",
+      "screenshot": "shots/w2_home.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Purchase Food / Sell Resources look pressable in a stall-less camp",
+      "detail": "Inside a camp with 0 stalls, the command bar shows Purchase Food and Sell Resources in the enabled style.",
+      "screenshot": "shots/w2_inside.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Objective progress lags inventory",
+      "detail": "The objective showed 'Wood 44/50' while the player carried 50 (state.json); it caught up a few seconds later. The same lag shows on bn-full.",
+      "screenshot": "shots/w2_stuck.png"
+    }
+  ],
+  "metrics": {
+    "membersAtWinterStart": 1,
+    "foodAtWinterStart": 16,
+    "foodTargetAtWinterStart": 14,
+    "deaths": 0,
+    "noMembersYetLineSeen": true,
+    "worldEventLongWaitNoteSeen": true
+  },
+  "fun": 3,
+  "verdict": "The 'no members yet' line, the world-event sheet's long-wait note and the em-dash fix all show correctly. Winter itself was measured on bn-full (w2f) instead."
+}

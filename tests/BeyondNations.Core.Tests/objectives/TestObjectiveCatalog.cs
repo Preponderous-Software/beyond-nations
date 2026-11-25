@@ -376,6 +376,198 @@ namespace beyondnationstests {
             }
         }
 
+        /** Adds members to the player's nation until it has this many. */
+        private void growTo(Nation nation, int members) {
+            while (nation.getNumberOfMembers() < members) {
+                nation.addMember(new EntityId());
+            }
+        }
+
+        [Fact]
+        public void testMembersAmbition_AsksForMoreThanTheNationHasWhenItAppears() {
+            // the fun pass: "Grow your nation to 16" and "to 25" were met within a second of appearing
+            Nation nation = makePlayerLeader();
+            growTo(nation, 30);
+            Objective ambition = ObjectiveCatalog.ambition(0, Era.VILLAGE);
+            ObjectiveProgress progress = ambition.evaluate(simulation);
+            Assert.False(progress.isComplete());
+            Assert.Equal(30 + ObjectiveCatalog.NationGrowthStep, progress.getTarget());
+            Assert.Equal("Grow your nation to 35", ambition.getTitle());
+
+            // the target is set once, when the ambition appears; growing does not move it
+            growTo(nation, 40);
+            Assert.True(ambition.evaluate(simulation).isComplete());
+            Assert.Equal("Grow your nation to 35", ambition.getTitle());
+        }
+
+        [Fact]
+        public void testMembersAmbition_NoStrangerLeft_AsksForRoomInstead() {
+            // in a world with no stranger left, members came so slowly that the
+            // pacing bot sat on "Grow your nation to 87" for three hours
+            Nation nation = makePlayerLeader();
+            Settlement first = addSettlement(nation, Vector3.Zero);
+            for (int i = 0; i < 7; i++) {
+                first.addBuilding(BuildingType.HOUSE);
+            }
+            foreach (Entity entity in simulation.getEntityRepository().getEntities()) {
+                if (entity is Pawn pawn) {
+                    pawn.setNationId(nation.getId());
+                }
+            }
+            growTo(nation, 30);
+            simulation.getEraTracker().countPeople(simulation);
+            Objective ambition = ObjectiveCatalog.ambition(0, Era.VILLAGE);
+            ObjectiveProgress progress = ambition.evaluate(simulation);
+            Assert.False(progress.isComplete());
+            Assert.Equal("Buildings", progress.getLabel());
+            Assert.Equal(ObjectiveCatalog.nationBuildings(simulation) + ObjectiveCatalog.BuildingsStep, progress.getTarget());
+            Assert.StartsWith("Put up ", ambition.getTitle());
+            // and says why: no stranger is left, and houses make room for births and newcomers
+            Assert.Equal(ObjectiveCatalog.NoStrangersMembersHint, ambition.getHint(simulation));
+
+            // and a save gives it back as it was
+            ScaledAmbition rebuilt = (ScaledAmbition) ObjectiveCatalog.ambition(0, Era.VILLAGE);
+            Assert.True(rebuilt.restore(progress));
+            Assert.Equal(ambition.getTitle(), rebuilt.getTitle());
+        }
+
+        [Fact]
+        public void testMembersAmbition_NeverBelowTheEraFloor() {
+            Nation nation = makePlayerLeader();
+            growTo(nation, 3);
+            Assert.Equal(ObjectiveCatalog.eraMembers(Era.TOWN), ObjectiveCatalog.ambition(0, Era.TOWN).evaluate(simulation).getTarget());
+        }
+
+        [Fact]
+        public void testFundsAmbition_AsksForMoreThanTheNationHasWhenItAppears() {
+            Nation nation = makePlayerLeader();
+            Settlement first = addSettlement(nation, Vector3.Zero);
+            first.addFunds(1763 - ObjectiveCatalog.funds(simulation));
+            Objective ambition = ObjectiveCatalog.ambition(1, Era.VILLAGE);
+            ObjectiveProgress progress = ambition.evaluate(simulation);
+            Assert.False(progress.isComplete());
+            // a funds step more, rounded up to a hundred
+            Assert.Equal(2300, progress.getTarget());
+            Assert.Equal("Amass 2300 coins", ambition.getTitle());
+            Assert.Equal(0, ObjectiveCatalog.fundsTarget(20000) % 100);
+            Assert.Equal(24000, ObjectiveCatalog.fundsTarget(20000));
+        }
+
+        [Fact]
+        public void testSettlementsAmbition_AsksForOneMoreThanTheNationHolds() {
+            Nation nation = makePlayerLeader();
+            for (int i = 0; i < 3; i++) {
+                addSettlement(nation, new Vector3(1000 * i, 0, 0));
+            }
+            Objective ambition = ObjectiveCatalog.ambition(2, Era.TOWN);
+            Assert.False(ambition.evaluate(simulation).isComplete());
+            Assert.Equal("Hold 4 settlements", ambition.getTitle());
+        }
+
+        [Fact]
+        public void testSettlementsAmbition_AtTheEraLimit_AsksForMoreBuildingsThanTheNationHas() {
+            Nation nation = makePlayerLeader();
+            Settlement first = addSettlement(nation, Vector3.Zero);
+            addSettlement(nation, new Vector3(1000, 0, 0));
+            addSettlement(nation, new Vector3(2000, 0, 0));
+            for (int i = 0; i < 8; i++) {
+                first.addBuilding(BuildingType.HOUSE);
+            }
+            // the Village holds three: a fourth would be past its limit
+            Objective ambition = ObjectiveCatalog.ambition(2, Era.VILLAGE);
+            ObjectiveProgress progress = ambition.evaluate(simulation);
+            Assert.False(progress.isComplete());
+            Assert.Equal("Buildings", progress.getLabel());
+            Assert.Equal(ObjectiveCatalog.nationBuildings(simulation) + ObjectiveCatalog.BuildingsStep, progress.getTarget());
+            Assert.StartsWith("Put up ", ambition.getTitle());
+            Assert.False(ambition.getReward().isEmpty());
+        }
+
+        [Fact]
+        public void testScaledAmbition_RestoresItsTargetFromASavedCounter() {
+            Nation nation = makePlayerLeader();
+            growTo(nation, 30);
+            Objective original = ObjectiveCatalog.ambition(0, Era.VILLAGE);
+            ObjectiveProgress saved = original.evaluate(simulation);
+
+            // a load rebuilds the ambition, then gives it the saved counter;
+            // the nation has grown since, and the target must not follow it
+            growTo(nation, 34);
+            ScaledAmbition rebuilt = (ScaledAmbition) ObjectiveCatalog.ambition(0, Era.VILLAGE);
+            Assert.True(rebuilt.restore(saved));
+            Assert.Equal(original.getTitle(), rebuilt.getTitle());
+            Assert.Equal(saved.getTarget(), rebuilt.evaluate(simulation).getTarget());
+
+            // a counter that is not this ambition's is refused, and it chooses afresh
+            ScaledAmbition other = (ScaledAmbition) ObjectiveCatalog.ambition(0, Era.VILLAGE);
+            Assert.False(other.restore(ObjectiveProgress.count("Funds", 0, 500)));
+            Assert.False(other.restore(ObjectiveProgress.flag(false)));
+            Assert.Equal(34 + ObjectiveCatalog.NationGrowthStep, other.evaluate(simulation).getTarget());
+        }
+
+        [Fact]
+        public void testMembersHint_WhileStrangersAreLeft_SaysInvite() {
+            makePlayerLeader();
+            EraTracker eras = simulation.getEraTracker();
+            simulation.getEntityRepository().addEntity(new Pawn(new Vector3(5, 0, 5), "Stranger", simulation.getRandom()));
+            eras.countPeople(simulation);
+            Assert.True(eras.getStrangersLeft() > 0);
+            Assert.Equal(ObjectiveCatalog.InviteMembersHint, ObjectiveCatalog.membersHint(simulation));
+        }
+
+        [Fact]
+        public void testMembersHint_NoStrangerLeft_PointsToWhatStillGrowsANation() {
+            Nation nation = makePlayerLeader();
+            // every pawn in the world joins some nation
+            foreach (Entity entity in simulation.getEntityRepository().getEntities()) {
+                if (entity is Pawn pawn) {
+                    pawn.setNationId(nation.getId());
+                }
+            }
+            EraTracker eras = simulation.getEraTracker();
+            eras.countPeople(simulation);
+            Assert.Equal(0, eras.getStrangersLeft());
+            Assert.False(eras.isWorldFull());
+            string hint = ObjectiveCatalog.membersHint(simulation);
+            Assert.Equal(ObjectiveCatalog.NoStrangersMembersHint, hint);
+            Assert.DoesNotContain("{", hint);
+            Assert.Contains("houses", hint);
+            Assert.Contains("another nation", hint);
+
+            // the era hint says it too, once members are what the era waits on
+            Settlement village = addSettlement(nation, Vector3.Zero);
+            for (int i = 0; i < SettlementTiers.VILLAGE_BUILDINGS; i++) {
+                village.addBuilding(BuildingType.HOUSE);
+            }
+            Assert.StartsWith("Members ", ObjectiveCatalog.eraHint(simulation));
+            Assert.EndsWith(hint, ObjectiveCatalog.eraHint(simulation));
+            // and so does the members ambition
+            growTo(nation, 30);
+            Assert.Equal(hint, ObjectiveCatalog.ambition(0, Era.VILLAGE).getHint(simulation));
+        }
+
+        [Fact]
+        public void testMembersHint_FullWorld_SaysOnlyWinningPeopleOverIsLeft() {
+            Nation nation = makePlayerLeader();
+            GameConfig config = simulation.getGameConfig();
+            int full = config.getMaxNumPawns() + PopulationGrowth.PLAYER_NATION_HEADROOM;
+            int pawns = simulation.getEntityRepository().getNumEntitiesOfType(EntityType.PAWN);
+            for (int i = pawns; i < full; i++) {
+                simulation.getEntityRepository().addEntity(new Pawn(new Vector3(i, 0, 0), "Pawn " + i, simulation.getRandom()));
+            }
+            foreach (Entity entity in simulation.getEntityRepository().getEntities()) {
+                if (entity is Pawn pawn) {
+                    pawn.setNationId(nation.getId());
+                }
+            }
+            EraTracker eras = simulation.getEraTracker();
+            eras.countPeople(simulation);
+            Assert.Equal(config.getLagPreventionEnabled(), eras.isWorldFull());
+            if (eras.isWorldFull()) {
+                Assert.Equal(ObjectiveCatalog.WorldFullMembersHint, ObjectiveCatalog.membersHint(simulation));
+            }
+        }
+
         [Fact]
         public void testEraAmbition_MetOnceTheEraIsReached() {
             Objective toTown = ObjectiveCatalog.ambition(3, Era.VILLAGE);

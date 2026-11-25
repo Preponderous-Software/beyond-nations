@@ -1,0 +1,2 @@
+{"t": 1795558275799, "text": "bn-full: tip card 'Tip 3 of 5: Gather stone' shows while the Next line says 'Create or join a nation'; two different instructions at once.", "screenshot": "shots/f1_tip_vs_next.png", "tick": 2089}
+{"t": 1795558423328, "text": "bn-full: after founding, the status toast overlaps the 'Carrying ...' box (text cut at 'saplings') and a News card covers the settlement nameplate at the same time: toast + card together, not one overlay.", "screenshot": "shots/f1_overlap.png", "tick": 4589}

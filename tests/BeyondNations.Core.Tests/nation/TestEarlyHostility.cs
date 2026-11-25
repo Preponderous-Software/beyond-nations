@@ -128,18 +128,46 @@ namespace beyondnationstests {
         }
 
         [Fact]
-        public void testRaidsOnThePlayer_OnceTheShelterEnds_ComeAsBefore() {
+        public void testRaidsOnThePlayer_OnceTheShelterEnds_ComeOnceAMinute() {
+            // The Town era ends the shelter. Every hostile neighbour used to
+            // raid every fourth round from then on: on pacing seed 2 seven of
+            // them did, every 20 seconds (docs/PACING.md, "Calendar waits").
+            // Now one raid a minute, from whichever comes first: more than the
+            // shelter's one every two minutes, so the era still has stakes.
             DiplomacyFixture world = new DiplomacyFixture();
             Nation own = world.playerNation(1);
             Nation a = world.pawnNation("Aland", 3);
+            Nation b = world.pawnNation("Bshire", 3);
             Settlement camp = world.settlement(own, 0, 0);
             world.settlement(a, 300, 0);
+            world.settlement(b, -300, 0);
             camp.addFunds(1000);
             world.relations.adjust(own, a, -80);
+            world.relations.adjust(own, b, -80);
 
             world.rounds(2 * Diplomacy.SHELTERED_RAID_EVERY_ROUNDS);
 
-            Assert.Equal(2 * Diplomacy.SHELTERED_RAID_EVERY_ROUNDS / Diplomacy.RAID_EVERY_ROUNDS, raidsOn(world, own));
+            Assert.False(own.isSheltered());
+            // two hostile neighbours every fourth round each would be 24 raids; sheltered, 2
+            Assert.Equal(2 * Diplomacy.SHELTERED_RAID_EVERY_ROUNDS / Diplomacy.PLAYER_RAID_EVERY_ROUNDS, raidsOn(world, own));
+            Assert.Equal(0, Diplomacy.PLAYER_RAID_EVERY_ROUNDS % Diplomacy.RAID_EVERY_ROUNDS);
+            Assert.True(Diplomacy.PLAYER_RAID_EVERY_ROUNDS < Diplomacy.SHELTERED_RAID_EVERY_ROUNDS);
+        }
+
+        [Fact]
+        public void testRaidsBetweenOtherNations_AreNotRationed() {
+            DiplomacyFixture world = new DiplomacyFixture();
+            world.playerNation(1);
+            Nation a = world.pawnNation("Aland", 4);
+            Nation b = world.pawnNation("Bshire", 3);
+            Settlement target = world.settlement(b, 0, 0);
+            world.settlement(a, 300, 0);
+            target.addFunds(1000);
+            world.relations.adjust(a, b, -80);
+
+            world.rounds(2 * Diplomacy.SHELTERED_RAID_EVERY_ROUNDS);
+
+            Assert.Equal(2 * Diplomacy.SHELTERED_RAID_EVERY_ROUNDS / Diplomacy.RAID_EVERY_ROUNDS, raidsOn(world, b));
         }
 
         [Fact]
@@ -152,7 +180,7 @@ namespace beyondnationstests {
             camp.addFunds(12);
             world.relations.adjust(own, a, -80);
 
-            world.rounds(Diplomacy.RAID_EVERY_ROUNDS);
+            world.rounds(Diplomacy.PLAYER_RAID_EVERY_ROUNDS);
 
             string status = world.player.getStatus().getStatus();
             Assert.Contains("Aland raided your camp: 5 coins taken.", status);

@@ -1,0 +1,635 @@
+{
+  "runDir": "/root/wt/bn-full/docs/playtests/0.9.0",
+  "generated": "2026-11-24 17:11",
+  "sessions": [
+    {
+      "session": "f1",
+      "profile": "beyond-nations",
+      "goal": "bn-full: new game, seed 103, normal start, about 5 minutes: contextual HUD, unlock cards, Next line, Journal, overlays.",
+      "outcome": "achieved",
+      "fun": 4,
+      "durationSec": 420,
+      "seed": 103,
+      "build": {
+        "version": "0.8.1-SNAPSHOT",
+        "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-full"
+      },
+      "verdict": "The first bar starts empty and unlocks in a sensible order. The Next line is clear and the picture Journal reads well (Goals tile detail, Era and Nation pages). The 'one overlay at a time' promise does not hold: toasts stack with cards and with each other, and the old 5-tip track still runs beside the new Next line.",
+      "reportValid": true,
+      "reported": {
+        "firstCommandBarButtons": 0,
+        "unlockOrder": "(empty) -> Nations card + Create/Join after first wood -> Eat Apple -> Found Settlement card after nation -> Enter/Teleport/Plant after founding",
+        "journalOpens": true,
+        "deaths": 0
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 0,
+        "loads": 0,
+        "eventCounts": {},
+        "lastTick": 0
+      },
+      "ticksPerSecond": 50,
+      "notes": 2,
+      "crash": null
+    },
+    {
+      "session": "w1",
+      "profile": "beyond-nations",
+      "goal": "bn-integration: normal-start opening, seed 103: gather, nation, found, recruit, order a Stranger member, Pay with Coins.",
+      "outcome": "achieved",
+      "fun": 3,
+      "durationSec": 420,
+      "seed": 103,
+      "build": {
+        "version": "0.8.1-SNAPSHOT",
+        "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-integration"
+      },
+      "verdict": "The opening works end to end. The open-ground hint gets you to a valid site, ordering a Stranger member works, and Pay with Coins toggles cleanly. The rough edges are price wording and buttons that move or vanish at low fps.",
+      "reportValid": true,
+      "reported": {
+        "objectivesCompleted": 5,
+        "deaths": 0,
+        "foundSettlementTick": 7502,
+        "openGroundHintFollowed": "twice (SE, then SW); second hint led straight to a valid site",
+        "strangerOrderWorked": true
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 0,
+        "loads": 0,
+        "eventCounts": {},
+        "lastTick": 0
+      },
+      "ticksPerSecond": 50,
+      "notes": 2,
+      "crash": null
+    },
+    {
+      "session": "w2",
+      "profile": "beyond-nations",
+      "goal": "bn-integration: winter from autumn (--season autumn --advance-ticks 25000), seed 103. Stopped at winter start when the coordinator switched trees.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 1200,
+      "seed": 103,
+      "build": {
+        "version": "0.8.1-SNAPSHOT",
+        "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-integration"
+      },
+      "verdict": "The 'no members yet' line, the world-event sheet's long-wait note and the em-dash fix all show correctly. Winter itself was measured on bn-full (w2f) instead.",
+      "reportValid": true,
+      "reported": {
+        "membersAtWinterStart": 1,
+        "foodAtWinterStart": 16,
+        "foodTargetAtWinterStart": 14,
+        "deaths": 0,
+        "noMembersYetLineSeen": true,
+        "worldEventLongWaitNoteSeen": true
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 0,
+        "loads": 0,
+        "eventCounts": {},
+        "lastTick": 0
+      },
+      "ticksPerSecond": 50,
+      "notes": 0,
+      "crash": null
+    },
+    {
+      "session": "w2f",
+      "profile": "beyond-nations",
+      "goal": "bn-full: survive the first winter as a prepared ruler, seed 103, --season autumn --advance-ticks 25000, 960x540. Stock members to 14 with Feed Residents, then watch unaided.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 2700,
+      "seed": 103,
+      "build": {
+        "version": "0.8.1-SNAPSHOT",
+        "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-full"
+      },
+      "verdict": "A nation stocked to 14 food a member gets through winter. It held 56 of 56 at winter's start, and unaided from tick 183400 it burned about 0.00024 food a member a tick (0.0004 at c392340), heading for about 3 a member left at the thaw, with 0 deaths over 50,300 winter ticks (winter day 2, about 70% of the way). I stopped about 10,000 ticks before spring for the deadline. Balance looks right. What misleads is the presentation: a 'too little food' warning from midday of day 1 on a nation that is on track, and HUD boxes that cut off that warning.",
+      "reportValid": true,
+      "reported": {
+        "membersAtWinterStart": 4,
+        "foodAtWinterStart": 56,
+        "foodTargetAtWinterStart": 56,
+        "foodPerMemberAtWinterStart": 14.0,
+        "applesHandedOutWithFeedResidentsInWinter": 9,
+        "feedingStoppedAtTick": 183400,
+        "foodPerMemberWinterDay1Midday": 13.0,
+        "foodPerMemberWinterDay2Start": 9.75,
+        "foodPerMemberAtTick221400": 5.5,
+        "foodBurnPerTickWinterUnaided": 0.00095,
+        "burnPerMemberPerTick": 0.00024,
+        "projectedFoodAtWinterEnd": "about 12 (3 a member)",
+        "observedWinterTicks": 50300,
+        "deaths": 0,
+        "springReached": false
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 0,
+        "loads": 0,
+        "eventCounts": {},
+        "lastTick": 0
+      },
+      "ticksPerSecond": 50,
+      "notes": 2,
+      "crash": null
+    },
+    {
+      "session": "w3",
+      "profile": "beyond-nations",
+      "goal": "bn-full at 390x844 (phone-sized desktop window): settlement screen, tip card vs settlement boxes, Journal, controls list, nations screen, world-event sheet. Touch mode is browser-only (TouchLayout.isAvailable false on desktop), so the touch More sheet could not be tested.",
+      "outcome": "partial",
+      "fun": 3,
+      "durationSec": 600,
+      "seed": 103,
+      "build": {
+        "version": "0.8.1-SNAPSHOT",
+        "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-full"
+      },
+      "verdict": "Most screens fit a 390 px window well: the settlement screen scrolls, the controls list, the Journal and the world-event sheet all fit. The one real problem is the in-settlement HUD, where the two info boxes bury the tip card and the Next line. The touch-only command bar and More sheet need the browser build to test.",
+      "reportValid": true,
+      "reported": {
+        "controlsListFits": true,
+        "worldEventSheetFits": true,
+        "settlementScreenScrolls": true,
+        "touchModeTestable": false
+      },
+      "derived": {
+        "objectivesCompleted": 0,
+        "objectives": [],
+        "progressReached": null,
+        "deaths": 0,
+        "saves": 0,
+        "loads": 0,
+        "eventCounts": {},
+        "lastTick": 0
+      },
+      "ticksPerSecond": 50,
+      "notes": 1,
+      "crash": null
+    }
+  ],
+  "severityCounts": {
+    "blocker": 0,
+    "major": 1,
+    "minor": 11,
+    "polish": 15
+  },
+  "findingReports": 27,
+  "findings": [
+    {
+      "title": "Inside a settlement on a phone, the info boxes cover the tip card, the toast and the Next line",
+      "severity": "major",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w3"
+      ],
+      "reports": 1,
+      "detail": "After Stay Inside at 390x844, the tall narrow Market Info box (left) and Settlement Info box (right) draw over the Next line, the 'You are inside the settlement' toast and the 'Walk and look' tip card. The card's Got it button is hidden; only No tips can be reached. So the answer to the coordinator's question is yes, in reverse: the settlement boxes cover the tip card.",
+      "repro": null,
+      "screenshots": [
+        "w3/shots/w3_overlap.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Toasts and cards show together and overlap HUD boxes",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "f1",
+        "w2f"
+      ],
+      "reports": 2,
+      "detail": "After founding, the status toast covers the 'Carrying ...' box (cut at 'saplings') while a News card covers the settlement nameplate. At the start, the Welcome toast and the Tip card show together.",
+      "repro": null,
+      "screenshots": [
+        "f1/shots/f1_overlap.png",
+        "w2f/shots/w2f_pileup.png"
+      ],
+      "alsoTitled": [
+        "Toasts stack and cover the left HUD boxes"
+      ]
+    },
+    {
+      "title": "A --season autumn world starts with an empty command bar",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2f"
+      ],
+      "reports": 1,
+      "detail": "With '--season autumn --advance-ticks 25000', the HUD treats the world as a new game: no Create/Join Nation buttons until N is pressed, and no Talk button for a pawn within reach. If staged worlds are meant to get everything, this flag is not counted as staged.",
+      "repro": null,
+      "screenshots": [
+        "w2f/shots/w2f_bar.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Famine warning fires on a nation that is on track",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2f"
+      ],
+      "reports": 1,
+      "detail": "The target stays at the whole-winter 56 (14 x 4) all winter. As stores are eaten normally, 'Food: 52 of 56 for winter - Too... !' (too little food) appears by winter day 1 midday, although the burn rate leaves about 10 food at winter's end. The warning should compare against what is left of winter, or say 'on track'.",
+      "repro": null,
+      "screenshots": [
+        "w2f/shots/wn2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "HUD boxes truncate the key winter text",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2f"
+      ],
+      "reports": 1,
+      "detail": "'Food: 52 of 56 for winter - Too... !' and 'Food: 56 of 56 for winter, 22 rot...' are cut with an ellipsis at 960 px. The famine line, the most important part, is the part lost.",
+      "repro": null,
+      "screenshots": [
+        "w2f/shots/wn_trunc.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Old tutorial tip contradicts the Next line",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "f1"
+      ],
+      "reports": 1,
+      "detail": "'Tip 3 of 5: Gather stone' shows while Next says 'Create or join a nation'. Later 'Tip 4 of 5: Found a settlement' says 'Press N to start a nation' after the nation already exists. The 5-step tip track and the Next line/unlock cards are two tutorials at once.",
+      "repro": null,
+      "screenshots": [
+        "f1/shots/f1_tip_vs_next.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Order button vanishes while the pawn walks away",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "Ordering a Stranger member works: Dave Davies (Stranger) says 'I hardly know you, but you lead Northernfield. I'll gather 10 wood.' But members walk out of reach between the approach and the click (at 5 fps), the Order row disappears and the click lands on nothing. It took 3 tries over two pawns.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/order3.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Pay with Coins is out of reach in the opening",
+      "severity": "minor",
+      "categories": [
+        "balance"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "At the first visit the player has 211 coins; Buy House is 1,584 and Buy Farm 1,764. Both buttons stay greyed ('Needs 1,584 coins; you have 211.'). Fine as a late-game option, but it does nothing for a new player.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/paycoins_hover.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Season box: 'N rotting' sits oddly beside the food total",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2"
+      ],
+      "reports": 1,
+      "detail": "Last autumn night: 'Food: 17 of 14 for winter, 5 rotting' (1 member). 5 rotting is more than the 3 above target, and nothing says what rots or where.",
+      "repro": null,
+      "screenshots": [
+        "w2/shots/w2_home.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Settlement screen shows two coin prices for the same farm",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "Buildings line: 'Next: Farm, 25 wood, 10 stone, or 2,160 coins'. With Pay with Coins on, the button reads 'Buy Farm (1,764)'. The code means it (full price vs. the price of the shortfall after carried wood/stone), but nothing on screen says why they differ.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/paycoins_price.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Staged world still runs the new-game Next line and tips",
+      "severity": "minor",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w3"
+      ],
+      "reports": 1,
+      "detail": "In a --stage-settlement world (leader of a 9-resident Town), Next says 'Gather wood - Wood 0/10', Tip 1 of 5 shows, and the Journal shows 0/9 goals with Nation/Settle locked.",
+      "repro": null,
+      "screenshots": [
+        "w3/shots/w3_world.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Feed Residents label is truncated on the settlement screen",
+      "severity": "polish",
+      "categories": [
+        "text",
+        "ux"
+      ],
+      "sessions": [
+        "w2f",
+        "w3"
+      ],
+      "reports": 2,
+      "detail": "The settlement screen shows 'Feed Residents (1 short fo...' while the in-world bar shows '(1 short for winter)' in full.",
+      "repro": null,
+      "screenshots": [
+        "w2f/shots/w2f_settle3.png",
+        "w3/shots/w3_settle.png"
+      ],
+      "alsoTitled": [
+        "Feed Residents label truncated on the phone settlement screen"
+      ]
+    },
+    {
+      "title": "'N rotting' shows beside an exact '56 of 56'",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2f"
+      ],
+      "reports": 1,
+      "detail": "'Food: 56 of 56 for winter, 22 rot...' does not tell the player whether 22 food is about to be lost.",
+      "repro": null,
+      "screenshots": [
+        "w2f/shots/wf3.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Build Stall keeps its 'Build' label in coin mode, with no tooltip",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "With Pay with Coins on, House and Farm become 'Buy X (price)' but Stall stays 'Build Stall', greyed, with no hover reason.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/paycoins_stall.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Feed Residents tooltip runs off the right edge",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2f"
+      ],
+      "reports": 1,
+      "detail": "'Gives your food to the members standing here: ... before they go h' is clipped at 960 px.",
+      "repro": null,
+      "screenshots": [
+        "w2f/shots/wn2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Hover tooltip on the greyed Found Settlement drops the open-ground hint",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "Tapping the button gives the full status: '...Open ground lies about 200 paces to the south-east.' The hover tooltip stops at '...must be 250 paces apart.' and lies across the Leave Nation button and the Player Info box.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/found_grey2.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Inventory box jumps to mid-screen when the command bar grows",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "With 3-4 command rows near a pawn, Inventory Info moves to x~220,y~230 and floats over the world. Inside a settlement it covers the Chronicle lines and the settlement nameplate.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/near_pawn3.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Journal footer clipped at phone height",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "w3"
+      ],
+      "reports": 1,
+      "detail": "'(J or Esc closes; arrows or Tab turn the page; click a tile for more)' wraps and its second line is cut off at the bottom edge.",
+      "repro": null,
+      "screenshots": [
+        "w3/shots/w3_journal.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Journal goal track markers are misaligned",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "f1"
+      ],
+      "reports": 1,
+      "detail": "On the Goals page, the second completed marker sits below the progress line, out of line with the others.",
+      "repro": null,
+      "screenshots": [
+        "f1/shots/f1_journal.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations screen has no backing panel on a phone",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w3"
+      ],
+      "reports": 1,
+      "detail": "At 390 px the text and buttons draw straight over the 3D world (a pawn shows through between Ally and War), which hurts readability. There is also a gap in the Tribute/Ally/_/War/Denounce row.",
+      "repro": null,
+      "screenshots": [
+        "w3/shots/w3_nations.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Nations unlock card arrives before the Next line asks for it",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "f1"
+      ],
+      "reports": 1,
+      "detail": "With Next still 'Gather wood - Wood 5/10', the 'Nations: start a nation of your own, or join one' card and the Create/Join buttons appear. That is sensible, but it pulls a step ahead of the Next line.",
+      "repro": null,
+      "screenshots": [
+        "f1/shots/f1_chop1.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Objective progress lags inventory",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2"
+      ],
+      "reports": 1,
+      "detail": "The objective showed 'Wood 44/50' while the player carried 50 (state.json); it caught up a few seconds later. The same lag shows on bn-full.",
+      "repro": null,
+      "screenshots": [
+        "w2/shots/w2_stuck.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Own members still read '(Stranger)' on Talk",
+      "severity": "polish",
+      "categories": [
+        "text"
+      ],
+      "sessions": [
+        "w1"
+      ],
+      "reports": 1,
+      "detail": "Oscar Robinson, a member who had just sworn fealty, shows 'Talk to Oscar Robinson (Stranger)'. The new Order flavour text makes this deliberate, but it still looks contradictory next to 'swore fealty'.",
+      "repro": null,
+      "screenshots": [
+        "w1/shots/near_pawn.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Purchase Food / Sell Resources look pressable in a stall-less camp",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "w2"
+      ],
+      "reports": 1,
+      "detail": "Inside a camp with 0 stalls, the command bar shows Purchase Food and Sell Resources in the enabled style.",
+      "repro": null,
+      "screenshots": [
+        "w2/shots/w2_inside.png"
+      ],
+      "alsoTitled": []
+    },
+    {
+      "title": "Top-strip meters are low-contrast when idle",
+      "severity": "polish",
+      "categories": [
+        "ux"
+      ],
+      "sessions": [
+        "f1"
+      ],
+      "reports": 1,
+      "detail": "The energy, apple and coin meters render grey-on-grey (e.g. '97' and '0') until they change.",
+      "repro": null,
+      "screenshots": [
+        "f1/shots/f1_chop2.png"
+      ],
+      "alsoTitled": []
+    }
+  ],
+  "objectiveTimings": [],
+  "problems": []
+}

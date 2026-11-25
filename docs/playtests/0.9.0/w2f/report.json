@@ -1,0 +1,81 @@
+{
+  "session": "w2f",
+  "goal": "bn-full: survive the first winter as a prepared ruler, seed 103, --season autumn --advance-ticks 25000, 960x540. Stock members to 14 with Feed Residents, then watch unaided.",
+  "build": {
+    "version": "0.8.1-SNAPSHOT",
+    "commit": "2167959c (develop) + uncommitted lanes @ /root/wt/bn-full"
+  },
+  "seed": 103,
+  "durationSec": 2700,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Famine warning fires on a nation that is on track",
+      "detail": "The target stays at the whole-winter 56 (14 x 4) all winter. As stores are eaten normally, 'Food: 52 of 56 for winter - Too... !' (too little food) appears by winter day 1 midday, although the burn rate leaves about 10 food at winter's end. The warning should compare against what is left of winter, or say 'on track'.",
+      "screenshot": "shots/wn2.png"
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "HUD boxes truncate the key winter text",
+      "detail": "'Food: 52 of 56 for winter - Too... !' and 'Food: 56 of 56 for winter, 22 rot...' are cut with an ellipsis at 960 px. The famine line, the most important part, is the part lost.",
+      "screenshot": "shots/wn_trunc.png"
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Toasts stack and cover the left HUD boxes",
+      "detail": "The winter warning toast and the wanderers toast stack under the Next line with a Settlers card at the same time, cutting off the Food and Carrying boxes. The winter warning toast stays up for minutes.",
+      "screenshot": "shots/w2f_pileup.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "'N rotting' shows beside an exact '56 of 56'",
+      "detail": "'Food: 56 of 56 for winter, 22 rot...' does not tell the player whether 22 food is about to be lost.",
+      "screenshot": "shots/wf3.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Feed Residents tooltip runs off the right edge",
+      "detail": "'Gives your food to the members standing here: ... before they go h' is clipped at 960 px.",
+      "screenshot": "shots/wn2.png"
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Feed Residents label is truncated on the settlement screen",
+      "detail": "The settlement screen shows 'Feed Residents (1 short fo...' while the in-world bar shows '(1 short for winter)' in full.",
+      "screenshot": "shots/w2f_settle3.png"
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "A --season autumn world starts with an empty command bar",
+      "detail": "With '--season autumn --advance-ticks 25000', the HUD treats the world as a new game: no Create/Join Nation buttons until N is pressed, and no Talk button for a pawn within reach. If staged worlds are meant to get everything, this flag is not counted as staged.",
+      "screenshot": "shots/w2f_bar.png"
+    }
+  ],
+  "metrics": {
+    "membersAtWinterStart": 4,
+    "foodAtWinterStart": 56,
+    "foodTargetAtWinterStart": 56,
+    "foodPerMemberAtWinterStart": 14.0,
+    "applesHandedOutWithFeedResidentsInWinter": 9,
+    "feedingStoppedAtTick": 183400,
+    "foodPerMemberWinterDay1Midday": 13.0,
+    "foodPerMemberWinterDay2Start": 9.75,
+    "foodPerMemberAtTick221400": 5.5,
+    "foodBurnPerTickWinterUnaided": 0.00095,
+    "burnPerMemberPerTick": 0.00024,
+    "projectedFoodAtWinterEnd": "about 12 (3 a member)",
+    "observedWinterTicks": 50300,
+    "deaths": 0,
+    "springReached": false
+  },
+  "fun": 3,
+  "verdict": "A nation stocked to 14 food a member gets through winter. It held 56 of 56 at winter's start, and unaided from tick 183400 it burned about 0.00024 food a member a tick (0.0004 at c392340), heading for about 3 a member left at the thaw, with 0 deaths over 50,300 winter ticks (winter day 2, about 70% of the way). I stopped about 10,000 ticks before spring for the deadline. Balance looks right. What misleads is the presentation: a 'too little food' warning from midday of day 1 on a nation that is on track, and HUD boxes that cut off that warning."
+}

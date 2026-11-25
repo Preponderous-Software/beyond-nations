@@ -228,5 +228,50 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(CaravanDispatchPanel.MaxPanelWidth, CaravanDispatchPanel.getPanelWidth(1920f, 1f));
             Assert.Equal(390f - 32f, CaravanDispatchPanel.getPanelWidth(390f, 1f));
         }
+
+        // --stage-caravan, as the host runs it: staged, then however many ticks the
+        // wall clock allows before the shot, then Send Caravan with a load (#514)
+        private static string[] stagedCaravanShot(int ticksBeforeShot) {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(105);
+            Simulation simulation = new Simulation(config);
+            CaravanDispatchPanel.preferDestination(TradeShowcase.stageCaravan(simulation).traderSettlement);
+            for (int i = 0; i < ticksBeforeShot; i++) {
+                simulation.fixedUpdate(1f / simulation.getTickCounter().getTicksPerSecond());
+            }
+            CaravanDispatchPanel.open(simulation);
+            CaravanDispatchPanel.changeLoad(simulation, ItemType.STONE, CaravanDispatchPanel.LoadStep);
+            Settlement destination = CaravanDispatchPanel.getDestination(simulation);
+            // the nation's name: the settlement itself grows from Camp to Village as it runs
+            string[] shot = { simulation.getNationRepository().getNation(destination.getNationId()).getName(), CaravanDispatchPanel.getEstimate(simulation) };
+            CaravanDispatchPanel.close();
+            CaravanDispatchPanel.preferDestination(null);
+            return shot;
+        }
+
+        [Fact]
+        public void testStageCaravan_OpensOnTheSameMarketRunAfterRunOnOneSeed() {
+            string[] first = stagedCaravanShot(0);
+            string[] second = stagedCaravanShot(0);
+            Assert.Equal(first, second);
+            // by 2000 ticks wandering pawns on seed 105 have founded two camps nearer
+            // than the staged neighbour, and the panel used to open on one of them,
+            // whose market could pay "only about 0"
+            string[] later = stagedCaravanShot(2000);
+            Assert.Equal(first[0], later[0]);
+            Assert.DoesNotContain("only about 0", later[1]);
+        }
+
+        [Fact]
+        public void testPreferDestination_FallsBackToTheNearestWhenOutOfReach() {
+            TradeShowcase.Staged staged;
+            Simulation simulation = stagedWorld(out staged);
+            new EnterSettlementCommand(simulation.getEntityRepository()).execute(simulation.getPlayer(), staged.playerSettlement);
+            CaravanDispatchPanel.preferDestination(staged.playerSettlement); // never a destination from itself
+            CaravanDispatchPanel.open(simulation);
+            Assert.Same(CaravanDispatchPanel.getDestinations(simulation)[0], CaravanDispatchPanel.getDestination(simulation));
+            CaravanDispatchPanel.close();
+            CaravanDispatchPanel.preferDestination(null);
+        }
     }
 }

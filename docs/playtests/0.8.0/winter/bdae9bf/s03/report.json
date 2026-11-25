@@ -1,0 +1,92 @@
+{
+  "session": "s03",
+  "goal": "Survive the first winter as a prepared ruler. You start on the eve of winter (autumn, advanced). Watch the Season box and the winter warning: is the food target honest and reachable? Use Feed Residents / stores to prepare, then play into winter. Measure: food per member at winter start and through winter, whether stores run out (and on which winter day), member deaths, and whether members join or are born while the nation is short of food (the Season box should say 'Too little food: no births or newcomers'). Report whether a prepared ruler gets through winter. Play as far into winter as the budget allows — use `pt wait` in long stretches once stocked, so you see winter day 2 and ideally the first morning of spring. Also check the Season box rotting line (\"N rotting\") and that the winter banner names who is short.",
+  "build": {"version": "0.7.1-SNAPSHOT", "commit": "bdae9bf6"},
+  "seed": 103,
+  "durationSec": 2233,
+  "outcome": "partial",
+  "findings": [
+    {
+      "severity": "major",
+      "category": "bug",
+      "title": "Banner says a member is starving in the camp and to 'Feed Residents', but the settlement screen has no Feed Residents button",
+      "detail": "On winter day 2 the banner read 'Lowerburg: 1 member hungry, 1 starving: in the Camp of Lowerburg. Bring food home and Feed Residents.' I had 22 apples and went into the camp (11 people there, Katie White, the only member, among them), but the settlement screen showed only Build Stall/House/Farm and Exit/Stay Inside. No Feed Residents button appeared, so the banner's advice could not be followed. I expected a Feed Residents button whenever a hungry member is inside.",
+      "repro": "pt start --profile beyond-nations --game-dir /root/beyond-nations --seed 103 --season autumn --advance-ticks 25000; create nation, found camp, build farm + stall, recruit one pawn (gift to Loyal, Invite); pt wait into winter day 2 until banner says starving in the camp; press E at the camp",
+      "screenshot": "shots/no_feed_button.png",
+      "tick": 221979
+    },
+    {
+      "severity": "major",
+      "category": "balance",
+      "title": "'Food: 15 of 14 for winter' at autumn's last night became 'Food: 1 of 14' at winter morning, with no explanation",
+      "detail": "Right after Katie White joined, the Season box showed 'Food: 15 of 14 for winter, 8 rotting' (then '6 rotting'), so the nation looked stocked. About 5000 ticks later, at winter day 1, it showed 'Food: 1 of 14' and then 0-2 for the rest of winter. No status or chronicle line said where the food went. The likely cause: Katie became merchant of the stall I had just built, and settlement funds rose 12 -> 25 -> 58 -> 107 coins as visitors bought from it. So the eve-of-winter target looked honest but did not hold: the member traded away her winter store.",
+      "repro": "As above; build a stall in the camp just before winter; compare the Season box before and after the winter turn (ticks 168263 -> 173647); enter the camp and see 'merchants: Katie White' and funds rising",
+      "screenshot": "shots/winter_start_food_crash.png",
+      "tick": 173647
+    },
+    {
+      "severity": "major",
+      "category": "ux",
+      "title": "A well-stocked ruler has no way to put food in a member's store before she is hungry",
+      "detail": "I carried 29-37 apples through winter while the nation showed 'Food: 0-2 of 14'. The camp's 'Stockpile: empty' has no deposit action, and Feed Residents only exists for hungry members (and did not appear even then, see the first finding). Gift on a member gives only coins. A ruler who prepares cannot turn their own food into the nation's winter stores, so the target is not reachable by the player. My own apples also do not count in the Food line.",
+      "repro": "Carry apples into winter as leader with one member; enter the camp while the member is not hungry; look for any deposit or feed option",
+      "screenshot": "shots/no_prestock.png",
+      "tick": 197051
+    },
+    {
+      "severity": "minor",
+      "category": "text",
+      "title": "Hunger banner does not name the hungry member",
+      "detail": "The banner said 'Lowerburg: 1 member hungry: outside the walls. Bring food home and Feed Residents.' and later '1 member hungry, 1 starving: in the Camp of Lowerburg'. It never named Katie White, even though she was the only member. 'Outside the walls' gives no way to find her or bring her home. I expected the banner to name who is short, as the goal describes.",
+      "repro": "As above; pt wait on winter day 1 until the hunger banner appears",
+      "screenshot": "shots/banner_no_name.png",
+      "tick": 180923
+    },
+    {
+      "severity": "minor",
+      "category": "ux",
+      "title": "Season box shows no food line for a ruler with a settlement until a pawn joins",
+      "detail": "As leader of Lowerburg with a camp and farm in late autumn, the Season box showed only 'Winter in 1 day!' and the region, with no food target. The food line appears only once a pawn member exists. Recruiting the first member cost 200 coins of gifts (20 gifts of 10 coins) to reach Loyal, and the winter warning gives no hint of that. Also, 'Winter in 1 day!' was still shown at 0.8 of the last autumn day, when winter was only hours away.",
+      "repro": "pt start ...; N to create a nation; found a camp; read the Season box",
+      "screenshot": "shots/katie_joined.png",
+      "tick": 168140
+    },
+    {
+      "severity": "minor",
+      "category": "perf",
+      "title": "World events pause the world in the middle of long waits",
+      "detail": "A 'travelling merchant' and later a 'Bandit camp' world event each froze the world ('The world waits while you decide'). One of them wasted about 2 minutes of a 150 s wait with almost no ticks passing. Winter takes about 25 wall-clock minutes at ~41 tps, so a player who waits for winter to pass loses time unless they keep checking the screen. A notification or sound would help.",
+      "repro": "pt wait 150 during winter; tick advanced only 180639 -> 182103",
+      "screenshot": "shots/w4.png",
+      "tick": 182103
+    },
+    {
+      "severity": "polish",
+      "category": "ux",
+      "title": "Found Settlement button is enabled inside another nation's land, then fails",
+      "detail": "At (8,5) in Hamletwood land the Found Settlement button was enabled. Pressing F gave 'This land is claimed by Hamletwood... Open ground lies about 280 paces to the south', and the next try gave 'Too close to the Village of Hamletwood'. The messages are good, but the button could be greyed with that reason as its tooltip, like Invite is.",
+      "repro": "Gather 50 wood; stand near world origin; press F",
+      "screenshot": "shots/loc.png",
+      "tick": 151879
+    }
+  ],
+  "metrics": {
+    "objectivesCompleted": 6,
+    "deaths": 0,
+    "secondsToObjective": {"Gather wood": 2942.0, "Eat something": 2991.0, "Create or join a nation": 2992.0, "Found a settlement": 3074.1, "Enter your settlement": 3077.8, "Build a market stall": 3365.0},
+    "membersAtWinterStart": 1,
+    "foodPerMemberEveOfWinter": 15,
+    "foodPerMemberWinterDay1Morning": 1,
+    "foodPerMemberWinterDay2Late": 0,
+    "storesRanOutWinterDay": 1,
+    "memberDeaths": 0,
+    "memberStarvingWinterDay": 2,
+    "joinsOrBirthsWhileShort": 0,
+    "rulerApplesCarriedIntoWinter": 36,
+    "lastTickReached": 224343,
+    "springReached": 0,
+    "coinsSpentToRecruitOneMember": 200
+  },
+  "fun": 2,
+  "verdict": "A prepared ruler cannot get through winter as designed. The eve-of-winter 'Food: 15 of 14' lasted until morning: the only member traded her store away through the new stall. After that the ruler, carrying 30+ apples, had no way to restock her, and on winter day 2 the 'Feed Residents' banner pointed at a button that never appeared while she starved in the camp. The rotting line and the famine line ('Too little food: no births or newcomers') work and read clearly, but the warning names no one, and the ruler's only food lever is missing."
+}

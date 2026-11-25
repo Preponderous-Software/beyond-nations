@@ -84,7 +84,7 @@ On a touch screen the page shows its own controls over the world, and the
 game lays its screens out for a finger (`TouchLayout` in
 `src/BeyondNations.Desktop/ui`, set only by the browser build):
 
-![A phone on its side: the joystick bottom left with its knob pushed up, the Bag, Craft, Realm, News, View, ? and Menu buttons along the bottom, and Jump, Run and Use bottom right, with the objective tracker, season and player boxes above them](../.github/media/touch-landscape.png)
+![A phone on its side: the joystick bottom left with its knob pushed up, the Bag, Craft, Realm, News, View, ? and Menu buttons along the bottom, and Jump, Run and Use bottom right, with the objective tracker, season and player boxes of the HUD before the contextual one above them](../.github/media/touch-landscape.png)
 
 | Control | Does |
 | --- | --- |
@@ -106,29 +106,98 @@ game lays its screens out for a finger (`TouchLayout` in
   the saved worlds) scrolls it; a press is only sent when the finger lifts
   without having travelled, so a drag that starts on a button never presses
   it. A tap on a slider (the settings screen) sets it there.
-- The HUD leaves the controls' band clear: the command bar and the boxes stop
-  above it, the inventory box is left out (Bag opens the full list), and on a
-  phone held upright the status line and chronicle go under the objective
-  tracker rather than over it. Upright, while a tip card shows the Season box
-  drops its region lines, and the card goes under the Season box when it fits
-  above the command bar, otherwise just under the status line, over the
-  chronicle strip, so it covers neither the Season box nor a button; a town's floating name, which has no clear place under that
-  stacked HUD, is left out while it would sit under it.
+- The HUD leaves the controls' band clear: the command bar and every chip,
+  box and card stop above it (`HudPanels`). Bag opens the full inventory. A
+  town's floating name keeps below what the HUD stacks at the top, and is
+  left out when that would push it too far down the screen (`LabelPlacement`).
+- **The HUD shows only what is needed now** (see [SYSTEMS.md](./SYSTEMS.md#the-world-hud-host)):
+  a thin top strip (season and day, icon meters lit only when low or
+  changing, and **Journal**; the button row keeps **?** and **Menu**), one
+  *Next* line, and chips and boxes only while they matter, every one a tap
+  target that opens the Journal and none of them over the command bar or the
+  controls. Tips, unlock cards and toasts show one at a time, under the
+  middle of the HUD, with touch-sized *Got it* and *No tips*.
+
+  <img src="screenshots/contextual-hud/portrait-world-pair.jpg" alt="A phone held upright in a new world, before and after: before, the era, objective, season and player boxes and the chronicle strip fill the top half; after, a thin strip with Spring 1/2, the energy, food and coin meters and Journal, the Next line, and the tip card" width="420">
+  <img src="screenshots/contextual-hud/portrait-autumn-pair.jpg" alt="The last day of autumn on a phone held upright, before and after: after, the winter and food chips and the winter banner under the top strip" width="420">
+  <img src="screenshots/contextual-hud/portrait-market-pair.jpg" alt="A market town on a phone held upright, before and after: after, the settlement and market boxes side by side under the Next line" width="420">
+  <img src="screenshots/contextual-hud/landscape-world-pair.jpg" alt="A new world on a phone on its side, before and after: after, the top strip, the Next line and the tip, clear of the joystick and the buttons" width="420">
+  <img src="screenshots/contextual-hud/landscape-autumn-pair.jpg" alt="Autumn on a phone on its side, before and after" width="420">
+  <img src="screenshots/contextual-hud/landscape-market-pair.jpg" alt="A market town on a phone on its side, before and after: after, the settlement and market boxes down the right" width="420">
+
+  <img src="screenshots/journal/phone-goals.jpg" alt="The Journal on a phone held upright, on its Goals tab: the goals as picture tiles" width="180"> <img src="screenshots/journal/phone-nation.jpg" alt="The Journal's Nation tab on a phone held upright" width="180"> <img src="screenshots/journal/landscape-goals.jpg" alt="The Journal's Goals tab on a phone on its side" width="380">
+
+  <img src="screenshots/hud-fixes/before-phone-inside.png" alt="Before: inside Bigburg on a phone held upright, a tall Market Info box covers the Next line and the tip, beside the Settlement Info box" width="180"> <img src="screenshots/hud-fixes/after-phone-inside.png" alt="After: the settlement and market boxes side by side under the Next line, the market box short, and the tip clear below them" width="180"> <img src="screenshots/hud-fixes/after-phone-inside-tall-bar.png" alt="After, with a taller command bar: the boxes still fit above it" width="180">
 - The command bar takes the rows left between the HUD above it and the
-  controls (on a phone on its side, between the two box columns, under the
-  chronicle strip), and when it has more buttons than that it shows them a
-  page at a time behind a **More** button at its bottom left ("More 1/5";
-  the drastic buttons get a page of their own, and the buttons for the person in reach come last, on pages of their own, so someone walking by moves no other button). Inside a settlement the
-  right-hand column stops above the controls: the player box (with the
-  energy bar) and the Season box always stay, and the market box, then the
-  settlement box, are left out when there is no room for them (Trade at
-  Market and Settlement show the same). The chronicle strip shows the two
-  latest entries on a touch screen; News opens the rest (#466).
+  controls, across the whole width, and when it has more buttons than that
+  it shows the first page of them beside a **More** button at its bottom
+  left, which opens the rest in a sheet (below, #512). Inside a settlement on
+  a phone held upright the settlement and market boxes sit side by side
+  under the Next line, and the market lists fewer prices when room is short,
+  so neither runs over the bar; on its side they go down the right, as on a
+  desktop. Chronicle news comes as toasts, one at a time; News opens the full
+  chronicle (#466). The pictures below are from #512, before the contextual
+  HUD.
 
   <img src="screenshots/phone-market-command-bar/phone-before.jpg" alt="Before: a phone held upright in a market town, the command bar running under the objective, chronicle and season boxes, and the market box under the touch controls" width="180"> <img src="screenshots/phone-market-command-bar/phone-after-more.jpg" alt="After: the same town, the bar below the season box with More 2/8 and Trade at Market, the right-hand column only the player box" width="180"> <img src="screenshots/phone-market-command-bar/phone-trader-pawn-page.jpg" alt="The last page of the bar beside a serf: Order Ursula Williams: Gather Wood, and Appoint Ursula Williams Trader greyed, the one trader slot being taken" width="180">
   <img src="screenshots/phone-market-command-bar/landscape-before.jpg" alt="Before: a phone on its side in a market town, the command bar under the era, objective and chronicle boxes and the market box under Jump, Run and Use" width="380"> <img src="screenshots/phone-market-command-bar/landscape-after.jpg" alt="After: the bar between the box columns under the chronicle strip, with More 1/5, Purchase Food, Sell Resources and Trade at Market, and the Season and Player boxes clear of the controls" width="380">
 - A line too wide for the screen (a panel footer on a phone held upright) is
   drawn smaller rather than cut off at both edges.
+- The nations screen sizes its text by the screen's width as well as its
+  height (`Overlay.textHeightFor`: a phone held upright counts as 1.3 times
+  its width high), so its lines wrap whole instead of being cut. Each tab's
+  list ends above a band at the foot of the screen that holds the footer and
+  up to three lines of status, which grow up from the footer. A header with
+  no room under it for the first row (a phone on its side) scrolls with the
+  list, in front of its rows, so every row's buttons can be reached (#467,
+  #506, #511). Every button on it, the caravan panel's and the market
+  panel's are at least 44 pixels tall (#469); on a wide screen its tabs sit
+  beside the corner Close rather than under it.
+- A controls list too narrow for its two columns wraps each row into them
+  (#468). The Season and player boxes that #465 and #512 fitted clear of the
+  joystick and the bar are gone; the top strip and the chips that replaced
+  them keep clear of both through `HudPanels`.
+
+  <img src="screenshots/phone-touch-layout/portrait-nations-pair.jpg" alt="The Realm screen's Nations tab on a phone held upright, before and after: before, the text is cut off, the status line is printed over the nation list and the rows run off the bottom; after, the header wraps whole and both nations show with Tribute, Ally, Peace, War and Denounce" width="420">
+  <img src="screenshots/phone-touch-layout/landscape-nations-pair.jpg" alt="The Nations tab on a phone on its side, before and after: before, the status line is printed over the nation rows; after, the header scrolls with the list under Up and Down, and Close sits in the corner beside the tabs" width="560">
+  <img src="screenshots/phone-touch-layout/portrait-members-pair.jpg" alt="The Members tab on a phone held upright, before and after: before, the text is so large the header runs into the rows and only two members fit; after, it is sized by the width and all three members show" width="420">
+  <img src="screenshots/phone-touch-layout/landscape-members-pair.jpg" alt="The Members tab on a phone on its side, before and after" width="560">
+  <img src="screenshots/phone-touch-layout/portrait-laws-pair.jpg" alt="The Laws tab on a phone held upright, before and after" width="420">
+  <img src="screenshots/phone-touch-layout/landscape-laws-pair.jpg" alt="The Laws tab on a phone on its side, before and after" width="560">
+  <img src="screenshots/phone-touch-layout/portrait-manage-pair.jpg" alt="The Manage tab on a phone held upright, before and after" width="420">
+  <img src="screenshots/phone-touch-layout/landscape-manage-pair.jpg" alt="The Manage tab on a phone on its side, before and after" width="560">
+  <img src="screenshots/phone-touch-layout/portrait-controls-pair.jpg" alt="The controls list on a phone held upright, before and after: after, each row wraps into the two columns" width="420">
+  <img src="screenshots/phone-touch-layout/portrait-world-pair.jpg" alt="A new world on a phone held upright, before and after: after, the era box reads Era: Camp (1/4) in full and the objective hint fits on two lines" width="420">
+  <img src="screenshots/phone-touch-layout/landscape-world-pair.jpg" alt="The world on a phone on its side, before and after the touch-layout fixes" width="560">
+  <img src="screenshots/phone-touch-layout/portrait-market-town-pair.jpg" alt="A market town on a phone held upright, before and after" width="420">
+  <img src="screenshots/phone-touch-layout/desktop390-market-town-pair.jpg" alt="A market town in a desktop browser window 390 pixels wide, before and after" width="420">
+
+  An earlier pass on the same screens on a phone on its side (844x390), the
+  text drawn whole and at a readable size instead of printed over itself or
+  shrunk:
+
+  <img src="screenshots/leftovers/landscape-nations-844x390-pair.jpg" alt="The Nations tab at 844x390, before and after: before, the Tribute and Each dealing lines are printed over each other; after, each wraps whole" width="380"> <img src="screenshots/leftovers/landscape-members-844x390-pair.jpg" alt="The Members tab at 844x390, before and after" width="380">
+  <img src="screenshots/leftovers/landscape-manage-844x390-pair.jpg" alt="The Manage tab at 844x390, before and after" width="380"> <img src="screenshots/leftovers/landscape-settlement-844x390-pair.jpg" alt="The settlement screen at 844x390, before and after: before, its lines are tiny and clipped; after, Ownership, People and Buildings read at full size above Scroll for more" width="380">
+- A phone's command bar keeps one page (#512). The buttons used most where
+  the player stands come first (`WorldCommandBar.frontFirst`): in another
+  nation's town Trade at Market, Purchase Food and Sell Resources; in their
+  own settlement Feed Residents, Settlement and Exit Settlement; out in the
+  world Enter Settlement and Teleport Home. More, at the bar's bottom left,
+  opens a sheet over the HUD with every other button under headings in the
+  bar's group order (`CommandSheet`), the ones that cannot be undone last and
+  still asking twice; Close takes More's place. Every sheet button waits the
+  same half second as the bar's before it takes a tap (`ButtonSettle`), and
+  the sheet says why a greyed one cannot be used. The desktop's bar, which
+  is never paged, is unchanged.
+
+  <img src="screenshots/command-bar-grouping/portrait-market-town-pair.jpg" alt="A phone held upright in a market town: before, More 1/3 with the town's buttons spread over three pages; after, one page with More, Trade at Market, Purchase Food, Sell Resources, Exit Settlement and Settlement, and More opening a sheet with the foreign nation's buttons, Talk, Gift and Invite for the person in reach, the tools and Eat, and Leave Nation, Denounce and Declare War in red at the bottom" width="560">
+  <img src="screenshots/command-bar-grouping/portrait-camp-pair.jpg" alt="A phone held upright in the player's own camp: before, More 1/6 with Collect Stockpile, Exit Settlement and Withdraw Funds; after, More with Feed Residents, Settlement and Exit Settlement, and the sheet with Nation, This place, Build, Trade and other nations, Tools and food, and Cannot be undone" width="560">
+  <img src="screenshots/command-bar-grouping/landscape-market-town-pair.jpg" alt="The same market town on a phone on its side, before and after: the town's buttons on one page beside More" width="560">
+  <img src="screenshots/command-bar-grouping/landscape-camp-pair.jpg" alt="The player's own camp on a phone on its side, before and after: Feed Residents, Settlement and Exit Settlement first, the rest under More" width="560">
+- The inventory box, which #513 left out of a window too narrow for a second
+  column of boxes (390 wide), is no longer drawn at all: the *Carrying* chip
+  shows what the player holds, and the Journal's Inventory tab and the
+  inventory screen list it all. The pictures below are from #513.
 
   <img src="screenshots/phone-ui-leftovers/phone-town-pair.jpg" alt="A phone held upright in a town, before and after: before, the tip card covers Enter Settlement and Teleport Home and the town's name is cut off at the top behind the boxes; after, the Season box is compact, the tip sits over the chronicle strip, the command bar is clear, and the name is left out" width="420">
 - No line names a key or a mouse button: objective hints, status lines, panel
@@ -174,7 +243,8 @@ names, so `?ticks-per-second=20&seed=42&start-screen=world&debug-mode` is
 | `stage-feel` | replay the feedback effects every 20 frames, for screenshots |
 | `stage-settlement` | open with a lived-in settlement standing ahead of the player, as the desktop's `--stage-settlement` |
 | `stage-outpost` | open leading a Village-era nation with two settlements |
-| `stage-diplomacy`, `stage-succession`, `stage-event`, `stage-trade`, `stage-market`, `stage-victory`, `stage-defeat` | the desktop's other staged openings ([CONTRIBUTING.md](./CONTRIBUTING.md)) |
+| `stage-diplomacy`, `stage-succession`, `stage-event`, `stage-trade`, `stage-market`, `stage-camp`, `stage-caravan`, `stage-victory`, `stage-defeat` | the desktop's other staged openings ([CONTRIBUTING.md](./CONTRIBUTING.md)) |
+| `stage-journal` or `stage-journal=TAB` | open on the Journal over the world, on `goals`, `chronicle`, `era`, `inventory` or `nation`; `TAB:N` also opens the N-th tile's card, for screenshots |
 | `advance-ticks=N` | run the world N ticks so it opens mid-game, at most 50,000 (a larger number is lowered to that, with a warning). Unlike the desktop, which runs them before its first frame, the page runs them in slices of 200 ms a frame and draws the world fast-forwarding meanwhile, so it stays responsive; `window.beyondNations.status().advancing` counts the ticks left. As on the desktop, the player sits it out: they are kept fed, come in at full energy, and their reign starts when they do (#490). `?stage-settlement&season=autumn&advance-ticks=22000` reaches the winter warning. |
 | `season=NAME` | start on the first day of `spring`, `summer`, `autumn` or `winter` |
 | `debug-mode`, `first-person`, `no-labels`, `no-culling`, `render-stats` | switches (`=1`/`=true` also work; `=0`/`=false` leave them off) |

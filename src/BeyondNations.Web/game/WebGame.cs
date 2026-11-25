@@ -135,9 +135,9 @@ namespace beyondnations.web {
             // The New World screen's seed (docs/SHARING.md); ?seed= fills it in.
             gameConfig.setWorldSeed(share.getChosenSeed());
             simulation = new Simulation(gameConfig);
-            // The objective tracker (top left) carries the step-by-step guidance
+            // The Next line (top of the HUD) carries the step-by-step guidance
             // now, so the opening line points at it rather than competing with it.
-            simulation.getPlayer().getStatus().update("Welcome! Your first objective is at the top left.");
+            simulation.getPlayer().getStatus().update("Welcome! The Next line at the top says what to do.");
             if (options.TimeOfDay >= 0f) {
                 simulation.getTimeOfDay().setStartFraction(options.TimeOfDay);
             }
@@ -165,7 +165,14 @@ namespace beyondnations.web {
             if (options.StageEvent) {
                 simulation.getWorldEvents().startPlayerEventNow(simulation, WanderersEvent.Id);
             }
-            if (options.StageMarket) {
+            if (options.StageCamp) {
+                TradeShowcase.stageCamp(simulation);
+            }
+            else if (options.StageCaravan) {
+                // open Send Caravan on the staged neighbour, as the desktop does (#514)
+                CaravanDispatchPanel.preferDestination(TradeShowcase.stageCaravan(simulation).traderSettlement);
+            }
+            else if (options.StageMarket) {
                 TradeShowcase.stageMarket(simulation);
             }
             else if (options.StageTrade) {
@@ -186,6 +193,8 @@ namespace beyondnations.web {
             culler.setEnabled(!options.NoCulling);
             saves.beginNewWorld(simulation);
             feel.beginWorld(simulation, true);
+            // only a new, unstaged game unlocks the HUD as it goes
+            ui.beginWorld(simulation, true, options.startsAllUnlocked());
             share.beginWorld(simulation);
             Log.info("world created");
         }
@@ -201,6 +210,7 @@ namespace beyondnations.web {
             accumulator = 0;
             advanceTicksLeft = 0;
             feel.beginWorld(simulation, false);
+            ui.beginWorld(simulation, false, options.startsAllUnlocked());
             culler.setEnabled(!options.NoCulling);
             screens.goTo(ScreenType.WORLD);
             Log.info("world loaded");
@@ -415,6 +425,12 @@ namespace beyondnations.web {
             if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleNations)) {
                 screens.nationsPressed();
             }
+            if (simulation != null && inputService.wasPressedThisFrame(KeyBindings.ToggleJournal)) {
+                screens.journalPressed();
+            }
+            else if (screens.getCurrent() == ScreenType.JOURNAL) {
+                beyondnations.desktop.ui.screens.JournalScreen.readKeys(inputService);
+            }
             if (screens.getCurrent() == ScreenType.NATIONS) {
                 beyondnations.desktop.ui.screens.NationScreen.readScrollKeys(inputService);
             }
@@ -582,6 +598,8 @@ namespace beyondnations.web {
             json.Append(",\"caravanPanel\":").Append(CaravanDispatchPanel.isOpen() ? "true" : "false");
             // and the market panel (Trade at Market, #182)
             json.Append(",\"marketPanel\":").Append(MarketTradePanel.isOpen() ? "true" : "false");
+            // and a phone's More sheet, the command bar's other buttons (#512)
+            json.Append(",\"commandSheet\":").Append(CommandSheet.isOpen() ? "true" : "false");
             if (simulation != null) {
                 Vector3 position = simulation.getPlayer().getPosition();
                 json.Append(",\"playerX\":").Append(position.X.ToString("0.##", CultureInfo.InvariantCulture));

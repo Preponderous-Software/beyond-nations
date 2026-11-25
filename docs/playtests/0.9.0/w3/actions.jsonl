@@ -1,0 +1,50 @@
+{"t": 1795561292765, "cmd": "start", "args": ["--game-dir", "/root/wt/bn-full", "--seed", "103", "--width", "390", "--height", "844", "--stage-settlement"]}
+{"t": 1795561294114, "cmd": "wait", "args": ["3"]}
+{"t": 1795561297155, "cmd": "state", "args": []}
+{"t": 1795561297194, "cmd": "shot", "args": ["w3_0"]}
+{"t": 1795561301214, "cmd": "key", "args": ["space"]}
+{"t": 1795561301657, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795561303198, "cmd": "shot", "args": ["w3_menu"]}
+{"t": 1795561307548, "cmd": "click", "args": ["195", "467"]}
+{"t": 1795561308252, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795561309788, "cmd": "shot", "args": ["w3_new"]}
+{"t": 1795561313744, "cmd": "click", "args": ["195", "467"]}
+{"t": 1795561314441, "cmd": "await", "args": ["WORLD", "60"]}
+{"t": 1795561314873, "cmd": "wait", "args": ["3"]}
+{"t": 1795561317909, "cmd": "state", "args": []}
+{"t": 1795561317937, "cmd": "shot", "args": ["w3_world"]}
+{"t": 1795561323786, "cmd": "click", "args": ["209", "756"]}
+{"t": 1795561324488, "cmd": "wait", "args": ["2"]}
+{"t": 1795561326521, "cmd": "state", "args": []}
+{"t": 1795561326553, "cmd": "shot", "args": ["w3_settle"]}
+{"t": 1795561331189, "cmd": "scroll", "args": ["3"]}
+{"t": 1795561331774, "cmd": "wait", "args": ["1"]}
+{"t": 1795561332807, "cmd": "shot", "args": ["w3_settle_scroll"]}
+{"t": 1795561332888, "cmd": "click", "args": ["286", "659"]}
+{"t": 1795561333589, "cmd": "wait", "args": ["2"]}
+{"t": 1795561335624, "cmd": "shot", "args": ["w3_inside"]}
+{"t": 1795561343650, "cmd": "note", "args": ["--shot", "w3_overlap", "bn-full 390x844: inside a settlement, the Market Info and Settlement Info boxes draw over the Next line, the 'You are inside the settlement' toast and the Walk-and-look tip card. The card's Got it button is hidden under Market Info; only No tips can be reached."]}
+{"t": 1795561343738, "cmd": "key", "args": ["j"]}
+{"t": 1795561344177, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795561345712, "cmd": "shot", "args": ["w3_journal"]}
+{"t": 1795561345800, "cmd": "key", "args": ["j"]}
+{"t": 1795561346246, "cmd": "wait", "args": ["1"]}
+{"t": 1795561347283, "cmd": "click", "args": ["286", "22"]}
+{"t": 1795561347982, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795561349516, "cmd": "shot", "args": ["w3_journal_btn"]}
+{"t": 1795561356437, "cmd": "state", "args": []}
+{"t": 1795561356472, "cmd": "key", "args": ["Escape"]}
+{"t": 1795561356909, "cmd": "wait", "args": ["1"]}
+{"t": 1795561357944, "cmd": "state", "args": []}
+{"t": 1795561357983, "cmd": "click", "args": ["316", "22"]}
+{"t": 1795561358680, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795561360212, "cmd": "shot", "args": ["w3_controls"]}
+{"t": 1795561365676, "cmd": "key", "args": ["Escape"]}
+{"t": 1795561366112, "cmd": "wait", "args": ["1"]}
+{"t": 1795561367148, "cmd": "key", "args": ["o"]}
+{"t": 1795561367586, "cmd": "wait", "args": ["1.5"]}
+{"t": 1795561369120, "cmd": "shot", "args": ["w3_nations"]}
+{"t": 1795561377872, "cmd": "key", "args": ["Escape"]}
+{"t": 1795561378315, "cmd": "stop", "args": []}
+{"t": 1795561443685, "cmd": "report", "args": []}
+{"t": 1795561448032, "cmd": "report", "args": []}

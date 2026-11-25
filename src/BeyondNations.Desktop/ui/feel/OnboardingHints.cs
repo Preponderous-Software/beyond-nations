@@ -85,7 +85,13 @@ namespace beyondnations.desktop.ui.feel {
 
         /** 1-based position of the visible tip, for "Tip 2 of 5". */
         public int getNumber() {
-            return index + 1;
+            int number = 1;
+            for (int i = 0; i < index && i < Steps.Length; i++) {
+                if (!(objectivesShown && duplicatesObjectives(Steps[i]))) {
+                    number++;
+                }
+            }
+            return number;
         }
 
         public void update(Simulation simulation, float deltaSeconds) {
@@ -138,13 +144,43 @@ namespace beyondnations.desktop.ui.feel {
         }
 
         private void skipFinished(Simulation simulation) {
-            while (index < Steps.Length && (settings.isHintDone(id(Steps[index])) || alreadyMet(Steps[index], simulation))) {
-                if (!settings.isHintDone(id(Steps[index]))) {
+            while (index < Steps.Length && (settings.isHintDone(id(Steps[index])) || alreadyMet(Steps[index], simulation)
+                    || (objectivesShown && duplicatesObjectives(Steps[index])))) {
+                // one passed over only because the Next line says it is not marked done
+                if (!settings.isHintDone(id(Steps[index])) && alreadyMet(Steps[index], simulation)) {
                     settings.markHintDone(id(Steps[index]));
                 }
                 index++;
                 baselineTaken = false;
             }
+        }
+
+        private bool objectivesShown;
+
+        /**
+        * Whether the HUD shows the objectives as a Next line (the contextual
+        * HUD does): then the tips that only repeat an objective, and so
+        * contradict the Next line once it has moved on (gather stone, found
+        * a settlement), are passed over.
+        */
+        public void setObjectivesShown(bool shown) {
+            objectivesShown = shown;
+        }
+
+        /** The tips that say what an objective says: left out beside a Next line. */
+        public static bool duplicatesObjectives(Step step) {
+            return step == Step.Stone || step == Step.Found;
+        }
+
+        /** The tips that can show, for "Tip 2 of 3": all of them, or those the Next line does not repeat. */
+        public int getTotal() {
+            int total = 0;
+            foreach (Step step in Steps) {
+                if (!(objectivesShown && duplicatesObjectives(step))) {
+                    total++;
+                }
+            }
+            return total;
         }
 
         /** Met before the tip was ever shown: a settlement already standing. */
@@ -200,7 +236,7 @@ namespace beyondnations.desktop.ui.feel {
                         : "Press " + KeyNames.describe(KeyBindings.CreateNewNation) + " to start a nation, gather 50 wood, then press "
                           + KeyNames.describe(KeyBindings.FoundSettlement) + " to found a settlement.";
                 default:
-                    return "Your goals are at the top left: your era (tap it to see what the next one needs) and your current objective. Each one you finish earns a reward.";
+                    return "The Next line at the top says what to do now; the Journal button there shows your goals, your era and your news. Each objective you finish earns a reward.";
             }
         }
 

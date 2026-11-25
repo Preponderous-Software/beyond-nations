@@ -313,11 +313,51 @@ namespace beyondnations.desktop.ui.screens {
         */
         public static string describeShown(int firstRow, int shown, int total, bool touch) {
             string order = "neighbours and enemies first.";
+            if (shown <= 0) {
+                // only the header, scrolled into the list, is showing (#511)
+                return describeBelow(total, "other nation", "other nations", touch);
+            }
             if (shown >= total) {
                 return total + (total == 1 ? " other nation, " : " other nations, ") + order;
             }
             return "Nations " + (firstRow + 1) + "-" + (firstRow + shown) + " of " + total + ", " + order
                 + (touch ? " Drag or tap Up/Down for more." : " Scroll for more.");
+        }
+
+        /**
+        * Whether a header of lines lines, step apart, fits in room. When it
+        * does not, drawNations scrolls it with the list (#511).
+        */
+        public static bool headerFits(int lines, float step, float room) {
+            return lines * step <= room;
+        }
+
+        /**
+        * A list's item heights with folded header lines (each step high) in
+        * front of its rows: what a tab scrolls when its header does not fit
+        * above the list (headerFits).
+        */
+        public static float[] withHeader(float[] steps, int folded, float step) {
+            float[] items = new float[folded + steps.Length];
+            for (int i = 0; i < items.Length; i++) {
+                items[i] = i < folded ? step : steps[i - folded];
+            }
+            return items;
+        }
+
+        /**
+        * Of the items first to first + visible, with folded header lines in
+        * front, the first list row shown and how many rows are shown (0 when
+        * only header lines are), for the count line.
+        */
+        public static void shownRows(int first, int visible, int folded, out int firstShown, out int shown) {
+            firstShown = System.Math.Max(0, first - folded);
+            shown = System.Math.Max(0, first + visible - System.Math.Max(first, folded));
+        }
+
+        /** "3 members below. Drag or tap Down.": the count line while only folded header lines show. */
+        public static string describeBelow(int total, string one, string many, bool touch) {
+            return total + " " + (total == 1 ? one : many) + " below." + (touch ? " Drag or tap Down." : " Scroll down.");
         }
 
         /** The first row to show, kept so that the list never scrolls past its ends. */
@@ -404,11 +444,14 @@ namespace beyondnations.desktop.ui.screens {
         public UiAction draw(float width, float height, Simulation simulation) {
             float buttonWidth = UiScale.px(DesignButtonWidth);
             float buttonGap = UiScale.px(DesignButtonGap);
-            float lineHeight = System.MathF.Max(UiScale.px(26f), height / 22f);
-            float buttonHeight = System.MathF.Max(lineHeight - 4f, UiScale.px(30f));
+            // text sized for the screen's width as well as its height, so a
+            // phone held upright gets lines that fit it (Overlay.textHeightFor, #467)
+            float textHeight = Overlay.textHeightFor(width, height);
+            float lineHeight = System.MathF.Max(UiScale.px(26f), textHeight / 22f);
+            // a fingertip's height on a touch screen (#469)
+            float buttonHeight = Overlay.touchHeight(System.MathF.Max(lineHeight - 4f, UiScale.px(30f)));
             float left = System.MathF.Max(width * 0.04f, UiScale.px(16f));
-            // below the corner Close on a touch screen (TouchLayout)
-            float y = System.MathF.Max(System.MathF.Max(height / 18f, UiScale.px(12f)), Overlay.touchCloseBottom());
+            float y = System.MathF.Max(height / 18f, UiScale.px(12f));
 
             // here rather than in drawNations, so that a look at the Laws or
             // Members tab does not count as closing the screen
@@ -428,6 +471,14 @@ namespace beyondnations.desktop.ui.screens {
             const int tabs = 4;
             float tabWidth = System.MathF.Min(UiScale.px(DesignTabWidth), (width - left * 2f - buttonGap * (tabs - 1)) / tabs);
             float tabsX = (width - tabWidth * tabs - buttonGap * (tabs - 1)) / 2f;
+            // below the corner Close on a touch screen (TouchLayout), unless
+            // the tabs clear it (a phone on its side: the row under it cost
+            // the lists a row, #467)
+            if (Overlay.touchCloseBottom() > 0f && tabsX + tabWidth * tabs + buttonGap * (tabs - 1) > Overlay.touchCloseLeft(width) - buttonGap) {
+                y = System.MathF.Max(y, Overlay.touchCloseBottom());
+            } else if (Overlay.touchCloseBottom() > 0f) {
+                y = System.MathF.Max(y, UiScale.px(8f));
+            }
             bool showingNations = !showingLaws && !showingMembers && !showingManage;
             if (Overlay.buttonAt(tabLabel(NationsTab, showingNations) + "##tab-nations", tabsX, y, tabWidth, buttonHeight)) {
                 showingLaws = false;
@@ -454,12 +505,20 @@ namespace beyondnations.desktop.ui.screens {
                 ? managePanel.draw(width, height, simulation, y, left, lineHeight, buttonGap, buttonHeight, readScroll)
                 : drawNations(width, height, simulation, y, left, lineHeight, buttonWidth, buttonGap, buttonHeight);
 
-            // the answer goes on the status line, shown here too since the HUD is hidden
+            // the answer goes on the status line, shown here too since the HUD is hidden;
+            // it grows up from the footer into a band no list reaches (listBottom, #467)
             string status = statusLine(player.getStatus().getStatus());
             if (!string.IsNullOrEmpty(status)) {
-                drawWrappedCentred(status, height / 34f, height - lineHeight * 3.1f, width, left, lineHeight * 0.75f, 3);
+                float statusSize = Overlay.atLeastAtlasFontSize(textHeight / 34f);
+                List<string> statusLines = TextWrap.wrap(status, width - left * 2f,
+                    line => ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(statusSize));
+                int shown = System.Math.Min(StatusLines, statusLines.Count);
+                float statusY = height - lineHeight * 1.6f - lineHeight * 0.75f * (shown - 1);
+                for (int i = 0; i < shown; i++) {
+                    Overlay.textCentered(statusLines[i], statusSize, statusY + lineHeight * 0.75f * i, width);
+                }
             }
-            Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint), height / 34f, height - lineHeight * 0.7f, width);
+            Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint), textHeight / 34f, height - lineHeight * 0.7f, width);
             Overlay.end();
             // a finger has no O or Escape (TouchLayout)
             UiAction action = Overlay.touchCloseButton("nations", width) ? UiAction.ResumeWorld : UiAction.None;
@@ -469,8 +528,62 @@ namespace beyondnations.desktop.ui.screens {
             return action;
         }
 
+        /** The most lines the status line takes at the foot of the screen. */
+        public const int StatusLines = 3;
+
+        /**
+        * Where a tab's list must end: above the band at the foot of the
+        * screen that holds the footer and up to StatusLines lines of status,
+        * which grow up from the footer. The list used to end a little below
+        * where the status started, so a long status was drawn over the last
+        * row (#467).
+        */
+        public static float listBottom(float height, float lineHeight) {
+            return height - lineHeight * (1.6f + 0.75f * (StatusLines - 1) + 0.45f);
+        }
+
+        /**
+        * A tab's header, line by line, wrapped to the screen and never cut
+        * mid-sentence by a line cap (#467, #506), but stopping at maxBottom
+        * so the list under it keeps room for its first row and its buttons
+        * (#511). A header that does not fit ends its last line in "...".
+        * Returns the y after the last line drawn.
+        */
+        internal static float drawHeader(List<string> header, float fontSize, float y, float width, float margin, float step, float maxBottom) {
+            fontSize = Overlay.atLeastAtlasFontSize(fontSize);
+            float scale = Overlay.fontScaleFor(fontSize);
+            List<string> lines = wrapHeader(header, width - margin * 2f, line => ImGui.CalcTextSize(line).X * scale,
+                System.Math.Max(1, (int) ((maxBottom - y) / step)));
+            foreach (string line in lines) {
+                Overlay.textCentered(line, fontSize, y, width);
+                y += step;
+            }
+            return y;
+        }
+
+        /**
+        * The header's lines wrapped to maxWidth, at most maxLines of them;
+        * when some are left out, the last kept line ends in "..." so the cut
+        * shows. Kept apart from drawing so it can be tested.
+        */
+        public static List<string> wrapHeader(List<string> header, float maxWidth, System.Func<string, float> measure, int maxLines) {
+            List<string> all = new List<string>();
+            foreach (string line in header) {
+                all.AddRange(TextWrap.wrap(line, maxWidth, measure));
+            }
+            if (all.Count <= maxLines) {
+                return all;
+            }
+            List<string> kept = all.GetRange(0, System.Math.Max(1, maxLines));
+            int last = kept.Count - 1;
+            string cut = CommandBarLayout.fitLabel(kept[last], measure, maxWidth - measure(CommandBarLayout.Ellipsis));
+            kept[last] = cut.EndsWith(CommandBarLayout.Ellipsis) ? cut : cut + CommandBarLayout.Ellipsis;
+            return kept;
+        }
+
         /** Centred text wrapped to the screen's width, at most maxLines lines. Returns the y after the last line. */
         internal static float drawWrappedCentred(string text, float fontSize, float y, float width, float margin, float step, int maxLines) {
+            fontSize = Overlay.atLeastAtlasFontSize(fontSize);
             float scale = Overlay.fontScaleFor(fontSize);
             List<string> lines = TextWrap.wrap(text, width - margin * 2f, line => ImGui.CalcTextSize(line).X * scale);
             for (int i = 0; i < lines.Count && i < maxLines; i++) {
@@ -480,8 +593,24 @@ namespace beyondnations.desktop.ui.screens {
             return y;
         }
 
+        /**
+        * The count line beside a list's Up/Down ("Nations 1-2 of 5, ...
+        * Drag or tap Up/Down for more."), centred in the strip's height, on
+        * two lines when the strip is tall enough for them (a touch screen's
+        * 44-pixel buttons; upright it was cut after its first line, #467).
+        */
+        internal static void drawCountLine(string text, float fontSize, float y, float lineWidth, float margin, float step, float stripHeight) {
+            int lines = stripHeight >= step * 2f ? 2 : 1;
+            fontSize = Overlay.atLeastAtlasFontSize(fontSize);
+            float scale = Overlay.fontScaleFor(fontSize);
+            int count = System.Math.Min(lines, TextWrap.wrap(text, lineWidth - margin * 2f, line => ImGui.CalcTextSize(line).X * scale).Count);
+            float top = y + (stripHeight - step * count) * 0.5f + step * 0.5f;
+            drawWrappedCentred(text, fontSize, top, lineWidth, margin, step, lines);
+        }
+
         /** Left-aligned text wrapped to maxWidth, at most maxLines lines. Returns the y after the last line. */
         internal static float drawWrappedLeft(string text, float fontSize, float x, float y, float maxWidth, float step, int maxLines) {
+            fontSize = Overlay.atLeastAtlasFontSize(fontSize);
             float scale = Overlay.fontScaleFor(fontSize);
             List<string> lines = TextWrap.wrap(text, maxWidth, line => ImGui.CalcTextSize(line).X * scale);
             for (int i = 0; i < lines.Count && i < maxLines; i++) {
@@ -522,16 +651,9 @@ namespace beyondnations.desktop.ui.screens {
 
         private System.Action drawNations(float width, float height, Simulation simulation, float y, float left, float lineHeight,
                 float buttonWidth, float buttonGap, float buttonHeight) {
-            foreach (string line in getHeaderLines(simulation)) {
-                y = drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 4);
-            }
-            y += lineHeight * 0.3f;
-
+            float textHeight = Overlay.textHeightFor(width, height);
             double now = ImGui.GetTime();
             List<Row> rows = keepOrder(getRows(simulation), shownOrder);
-            if (rows.Count == 0) {
-                Overlay.textCentered(NoOtherNations, height / 32f, y, width);
-            }
 
             // five slots to a row, each always in the same place so a button
             // never slides under the pointer: beside the text on a wide
@@ -546,41 +668,72 @@ namespace beyondnations.desktop.ui.screens {
             float buttonsX = width - left - buttonsWidth;
             float textWidth = stacked ? width - left * 2f : buttonsX - left - buttonGap;
             float textStep = lineHeight * 0.75f;
-            float fontSize = height / 34f;
-
-            // the count line and Up/Down sit above the list
-            float listTop = y + buttonHeight + buttonGap;
-            float listBottom = height - lineHeight * 3.2f;
+            float fontSize = Overlay.atLeastAtlasFontSize(textHeight / 34f);
             float[] steps = new float[rows.Count];
+            float tallest = 0f;
             for (int i = 0; i < rows.Count; i++) {
                 int textLines = System.Math.Min(3, TextWrap.wrap(rows[i].text, textWidth,
                     line => ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(fontSize)).Count);
                 steps[i] = stacked
                     ? textStep * textLines + buttonHeight + buttonGap * 2f
                     : System.MathF.Max(textStep * textLines + buttonGap, buttonHeight + buttonGap);
+                tallest = System.MathF.Max(tallest, steps[i]);
+            }
+            float listBottom = NationScreen.listBottom(height, lineHeight);
+
+            // The header and the list share the screen. When the header
+            // leaves no room under it for the count line, Up/Down and one
+            // whole row with its buttons (a phone: the rows went under the
+            // status line, and Ally could not be reached, #511), its lines
+            // scroll with the list, above the first nation, so nothing is
+            // cut and every row's buttons can be reached.
+            float headerSize = Overlay.atLeastAtlasFontSize(textHeight / 36f);
+            float headerStep = lineHeight * 0.7f;
+            List<string> header = wrapHeader(getHeaderLines(simulation), width - left * 2f,
+                line => ImGui.CalcTextSize(line).X * Overlay.fontScaleFor(headerSize), int.MaxValue);
+            float headerRoom = listBottom - lineHeight * 0.3f - (buttonHeight + buttonGap) - tallest - y;
+            int folded = rows.Count > 0 && !headerFits(header.Count, headerStep, headerRoom) ? header.Count : 0;
+            if (folded == 0) {
+                foreach (string line in header) {
+                    Overlay.textCentered(line, headerSize, y, width);
+                    y += headerStep;
+                }
+            }
+            y += lineHeight * 0.3f;
+
+            if (rows.Count == 0) {
+                Overlay.textCentered(NoOtherNations, textHeight / 32f, y, width);
             }
 
+            // the list's items: the folded header lines, then the nations
+            float[] items = withHeader(steps, folded, headerStep);
+
+            // the count line and Up/Down sit above the list
+            float listTop = y + buttonHeight + buttonGap;
             int move = readScroll(listTop, listBottom, System.MathF.Max(buttonHeight, lineHeight));
-            int lastPage = countFittingFromEnd(steps, listBottom - listTop);
-            firstRow = clampFirstRow(firstRow + move, rows.Count, lastPage);
-            int visible = countFitting(steps, firstRow, listBottom - listTop);
+            int lastPage = countFittingFromEnd(items, listBottom - listTop);
+            firstRow = clampFirstRow(firstRow + move, items.Length, lastPage);
+            int visible = countFitting(items, firstRow, listBottom - listTop);
 
             if (rows.Count > 0) {
-                bool overflow = visible < rows.Count;
+                bool overflow = visible < items.Length;
                 float arrowWidth = overflow ? System.MathF.Min(UiScale.px(80f), (width - left * 2f) / 5f) : 0f;
                 float lineWidth = width - (overflow ? (arrowWidth + buttonGap) * 2f : 0f);
-                drawWrappedCentred(describeShown(firstRow, visible, rows.Count, TouchLayout.isActive()), height / 38f,
-                    y + (buttonHeight - lineHeight * 0.7f) * 0.5f, lineWidth, left, lineHeight * 0.7f, 1);
                 if (overflow) {
                     float ax = width - left - arrowWidth * 2f - buttonGap;
                     if (Overlay.buttonAt("Up##nations-up", ax, y, arrowWidth, buttonHeight)) {
-                        firstRow = clampFirstRow(firstRow - System.Math.Max(1, visible - 1), rows.Count, lastPage);
+                        firstRow = clampFirstRow(firstRow - System.Math.Max(1, visible - 1), items.Length, lastPage);
                     }
                     if (Overlay.buttonAt("Down##nations-down", ax + arrowWidth + buttonGap, y, arrowWidth, buttonHeight)) {
-                        firstRow = clampFirstRow(firstRow + System.Math.Max(1, visible - 1), rows.Count, lastPage);
+                        firstRow = clampFirstRow(firstRow + System.Math.Max(1, visible - 1), items.Length, lastPage);
                     }
-                    visible = countFitting(steps, firstRow, listBottom - listTop);
+                    visible = countFitting(items, firstRow, listBottom - listTop);
                 }
+                int firstNation;
+                int shownNations;
+                shownRows(firstRow, visible, folded, out firstNation, out shownNations);
+                drawCountLine(describeShown(firstNation, shownNations, rows.Count, TouchLayout.isActive()), textHeight / 38f,
+                    y, lineWidth, left, lineHeight * 0.7f, buttonHeight);
             }
             y = listTop;
 
@@ -588,8 +741,14 @@ namespace beyondnations.desktop.ui.screens {
             Player player = simulation.getPlayer();
             NationRepository nationRepository = simulation.getNationRepository();
             Realm realm = simulation.getRealm();
-            int last = System.Math.Min(rows.Count, firstRow + visible);
-            for (int i = firstRow; i < last; i++) {
+            int last = System.Math.Min(items.Length, firstRow + visible);
+            for (int item = firstRow; item < last; item++) {
+                if (item < folded) {
+                    Overlay.textCentered(header[item], headerSize, y + headerStep * 0.5f, width);
+                    y += headerStep;
+                    continue;
+                }
+                int i = item - folded;
                 Row row = rows[i];
                 float textBottom = drawWrappedLeft(row.text, fontSize, left, y, textWidth, textStep, 3);
                 if (row.canAct) {

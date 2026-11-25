@@ -57,6 +57,7 @@ namespace beyondnations.web {
                 case SoundCue.HungerWarning: return "hunger";
                 case SoundCue.CombatHit: return "hit";
                 case SoundCue.UiClick: return "click";
+                case SoundCue.WorldEvent: return "event";
                 default: return "objective";
             }
         }

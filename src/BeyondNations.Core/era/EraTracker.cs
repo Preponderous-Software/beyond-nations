@@ -38,6 +38,9 @@ namespace beyondnations {
         private int lastChronicleSequence = -1;
         // the era each ambition was made in, by its index, so a save rebuilds the same list
         private List<Era> ambitionEras = new List<Era>();
+        // counted once a second for the members hint, and not saved: -1 until the first count
+        private int strangersLeft = -1;
+        private bool worldFull = false;
 
         private static int[] newReachedTicks() {
             int[] ticks = new int[Eras.count()];
@@ -62,6 +65,40 @@ namespace beyondnations {
         public int getPeakSettlements() { return peakSettlements; }
         public int getPeakFunds() { return peakFunds; }
         public IReadOnlyList<HistoryEntry> getHistory() { return history; }
+
+        /**
+        * Living pawns in no nation, the strangers the player could still
+        * befriend and invite, as of the last second; -1 before the first
+        * count (ObjectiveCatalog.membersHint).
+        */
+        public int getStrangersLeft() { return strangersLeft; }
+
+        /**
+        * Whether, as of the last second, the world held as many pawns as it
+        * may even for the player's nation (GameConfig.getMaxNumPawns() plus
+        * PopulationGrowth.PLAYER_NATION_HEADROOM), so no child is born and
+        * no newcomer comes anywhere.
+        */
+        public bool isWorldFull() { return worldFull; }
+
+        /** Counts the strangers left and whether the world is full; no allocation. */
+        public void countPeople(Simulation simulation) {
+            EntityRepository entities = simulation.getEntityRepository();
+            int pawns = 0;
+            int strangers = 0;
+            for (int i = 0; i < entities.getEntityCount(); i++) {
+                if (entities.getEntityAt(i) is Pawn pawn && !pawn.isMarkedForDeletion()) {
+                    pawns++;
+                    if (pawn.getNationId() == null) {
+                        strangers++;
+                    }
+                }
+            }
+            strangersLeft = strangers;
+            GameConfig config = simulation.getGameConfig();
+            worldFull = config != null && config.getLagPreventionEnabled()
+                && pawns >= config.getMaxNumPawns() + PopulationGrowth.PLAYER_NATION_HEADROOM;
+        }
 
         /** True once, until acknowledged: the host shows the end-of-run screen. */
         public bool shouldShowOutcome() {
@@ -157,6 +194,7 @@ namespace beyondnations {
         */
         public void evaluate(Simulation simulation) {
             collectHistory(simulation);
+            countPeople(simulation);
             NationStanding standing = NationStanding.of(simulation);
             if (standing != null) {
                 nationName = standing.nation.getName();

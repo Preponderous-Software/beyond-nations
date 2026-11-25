@@ -109,13 +109,15 @@ namespace beyondnations {
     }
 
     /**
-    * A leader orders a member pawn to gather for the nation. The pawn has to
-    * know the leader (Acquaintance) to take orders; a stranger shrugs it off.
-    * Delivery happens on its own as the pawn goes about its life -- see
-    * NationOrderDelivery.
+    * A leader orders a member pawn to gather for the nation. Orders go by
+    * membership (#507): any member takes them, whatever it thinks of the
+    * leader. A member that joined on its own (a newcomer, a child) has never
+    * met the leader and is a Stranger; it used to refuse until the leader
+    * talked it up to Acquaintance. Now the relationship only colours the
+    * reply (relationship.PawnDialogue.orderReply). Delivery happens on its
+    * own as the pawn goes about its life -- see NationOrderDelivery.
     */
     public class OrderPawnToGatherCommand {
-        public const RelationshipTier TIER_REQUIRED = RelationshipTier.ACQUAINTANCE;
 
         private readonly NationRepository nationRepository;
 
@@ -138,10 +140,6 @@ namespace beyondnations {
                 player.getStatus().update(who + ": \"Gather for what? We have no settlement to bring it to.\"");
                 return;
             }
-            if (PawnRelations.getTier(pawn, player) < TIER_REQUIRED) {
-                player.getStatus().update(who + ": \"I hardly know you. Why should I take your orders?\" (needs " + RelationshipTiers.getName(TIER_REQUIRED) + ")");
-                return;
-            }
             NationOrder current = pawn.getOrder();
             if (current != null && !current.isComplete() && current.getNationId() == nation.getId()) {
                 player.getStatus().update(who + ": \"I'm already on it -- " + current.describe() + ".\"");
@@ -149,7 +147,7 @@ namespace beyondnations {
             }
             NationOrder order = new NationOrder(nation.getId(), itemType, quantity);
             pawn.setOrder(order);
-            player.getStatus().update(who + ": \"I'll " + order.describeTask() + " for " + nation.getName() + ".\"");
+            player.getStatus().update(who + ": \"" + PawnDialogue.orderReply(PawnRelations.getTier(pawn, player), order.describeTask(), nation.getName()) + "\"");
         }
     }
 

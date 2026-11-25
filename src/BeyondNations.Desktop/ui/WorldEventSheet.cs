@@ -27,6 +27,38 @@ namespace beyondnations.desktop.ui {
         public const string PausedNote = "The world waits while you decide.";
         public const float MinButtonHeight = 48f;
 
+        /** How long the sheet waits before its note says how long the world has stood still (#502). */
+        public const double LongWaitSeconds = 10.0;
+
+        // the event the sheet is showing, and when (ImGui time) it came up
+        private WorldEventInstance shownEvent;
+        private double shownSince;
+
+        /**
+        * The note under the choices: PausedNote at first, and once the
+        * choice has waited LongWaitSeconds, how long the world has stood
+        * still and that it stays so until the player chooses. A player who
+        * left the game to wait out winter came back to find two minutes of
+        * a long wait gone, with only "The world waits while you decide." to
+        * say why (#502).
+        */
+        public static string pausedNote(double secondsWaiting) {
+            if (secondsWaiting < LongWaitSeconds) {
+                return PausedNote;
+            }
+            return "The world has stood still for " + describeWait(secondsWaiting) + ", waiting for your choice. Nothing moves until you choose.";
+        }
+
+        /** "40 seconds", "1 minute", "2 minutes": whole seconds under a minute, whole minutes after. */
+        public static string describeWait(double seconds) {
+            int whole = (int) System.Math.Max(0, System.Math.Floor(seconds));
+            if (whole < 60) {
+                return whole + (whole == 1 ? " second" : " seconds");
+            }
+            int minutes = whole / 60;
+            return minutes + (minutes == 1 ? " minute" : " minutes");
+        }
+
         private const ImGuiWindowFlags SheetFlags =
             ImGuiWindowFlags.NoDecoration |
             ImGuiWindowFlags.NoSavedSettings |
@@ -74,8 +106,16 @@ namespace beyondnations.desktop.ui {
         public bool draw(float width, float height, Simulation simulation) {
             View view = getView(simulation);
             if (view == null) {
+                shownEvent = null;
                 return false;
             }
+            double now = ImGui.GetTime();
+            WorldEventInstance pending = simulation.getWorldEvents().getPending();
+            if (pending != shownEvent) {
+                shownEvent = pending;
+                shownSince = now;
+            }
+            string note = pausedNote(now - shownSince);
             float scale = System.Math.Clamp(System.MathF.Min(width / 640f, height / 520f), 1f, 1.5f) * UiScale.get();
             float gutter = System.MathF.Max(16f, UiScale.px(16f));
             float panelWidth = System.MathF.Min(width - gutter * 2f, 640f * scale);
@@ -113,8 +153,11 @@ namespace beyondnations.desktop.ui {
                 details.Add(detail);
                 buttonsHeight += buttonHeight(detail.Count, lineHeight, detailLineHeight, scale) + 8f * scale;
             }
+            ImGui.SetWindowFontScale(headingScale);
+            List<string> noteLines = TextWrap.wrap(note, textWidth, s => ImGui.CalcTextSize(s).X);
+            float noteLineHeight = lineHeight * headingScale / fontScale;
             float panelHeight = padding + lineHeight * 0.8f + lineHeight * 1.5f + body.Count * lineHeight + 10f * scale
-                + buttonsHeight + lineHeight + padding;
+                + buttonsHeight + System.MathF.Max(lineHeight, noteLines.Count * noteLineHeight) + padding;
             float top = System.MathF.Max(gutter, height - panelHeight - gutter * 0.5f);
 
             Overlay.fillLocalRect(new Vector2(x0, top), new Vector2(panelWidth, height - top), new Vector4(0.10f, 0.10f, 0.13f, 0.97f));
@@ -164,8 +207,13 @@ namespace beyondnations.desktop.ui {
             }
 
             ImGui.SetWindowFontScale(headingScale);
-            ImGui.SetCursorPos(new Vector2(x0 + padding, y));
-            Overlay.textColoured(new Vector4(0.7f, 0.7f, 0.7f, 1f), PausedNote);
+            // amber once the wait has gone on, so a returning player sees it stopped (#502)
+            Vector4 noteColour = note == PausedNote ? new Vector4(0.7f, 0.7f, 0.7f, 1f) : new Vector4(0.95f, 0.75f, 0.30f, 1f);
+            foreach (string line in noteLines) {
+                ImGui.SetCursorPos(new Vector2(x0 + padding, y));
+                Overlay.textColoured(noteColour, line);
+                y += noteLineHeight;
+            }
             ImGui.SetWindowFontScale(1f);
             Overlay.end();
 

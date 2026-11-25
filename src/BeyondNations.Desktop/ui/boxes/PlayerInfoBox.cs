@@ -28,6 +28,23 @@ namespace beyondnations.desktop.ui.boxes {
             this.entityRepository = entityRepository;
         }
 
+        /** "Energy 85": the one number the chip must not hide. */
+        public override string getChipText() {
+            return "Energy " + (int) player.getEnergy();
+        }
+
+        /** Hungry or starving, the collapsed chip says so (the warning under the status line says how to eat). */
+        public override HudBadge getBadge() {
+            return badgeFor(player.getEnergy());
+        }
+
+        public static HudBadge badgeFor(float energy) {
+            if (energy < screens.WorldHud.StarvingEnergy) {
+                return HudBadge.Danger;
+            }
+            return energy < screens.WorldHud.HungryEnergy ? HudBadge.Warning : HudBadge.None;
+        }
+
         public override List<string> getLines() {
             List<string> lines = new List<string>(6);
             lines.Add("Energy: " + (int) player.getEnergy());
