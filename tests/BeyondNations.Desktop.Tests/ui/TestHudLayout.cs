@@ -15,6 +15,48 @@ namespace beyondnationstests.desktop.ui {
     */
     public class TestHudLayout {
 
+        // --- chips beside the centred banners on a wide screen ----------------------
+
+        [Theory]
+        [InlineData(844f, 390f, 1f)]
+        [InlineData(1024f, 768f, 1f)]
+        [InlineData(1100f, 720f, 1f)]
+        [InlineData(1280f, 720f, 1f)]
+        [InlineData(1920f, 1080f, 1f)]
+        [InlineData(1920f, 1080f, 1.5f)]
+        [InlineData(2560f, 1440f, 2f)]
+        public void theChips_neverReachIntoTheCentredBannersBand(float width, float height, float scale) {
+            WorldHud.Layout layout = WorldHud.Layout.compute(width, height, scale);
+            float centreWidth = System.MathF.Min(layout.CentreWrapWidth, width - layout.Margin * 2f);
+            float room = WorldHud.chipRoomBeside(layout, width, centreWidth);
+            float centreLeft = (width - centreWidth) / 2f;
+            if (room >= layout.BoxWidth) {
+                // beside the banners, clear of their band
+                Assert.True(layout.LeftX + room + layout.Gap <= centreLeft + 0.01f, width + ": " + (layout.LeftX + room) + " > " + centreLeft);
+            }
+            Assert.True(room <= layout.BoxWidth * 1.4f);
+        }
+
+        [Fact]
+        public void aPhoneOnItsSide_keepsItsChipsABoxWide_besideTheBanners() {
+            // 844x390: the 1.4-box chips ran 70 px into the centred band
+            WorldHud.Layout layout = WorldHud.Layout.compute(844f, 390f, 1f);
+            float centreWidth = System.MathF.Min(layout.CentreWrapWidth, 844f - layout.Margin * 2f);
+            Assert.True(layout.LeftX + layout.BoxWidth * 1.4f > (844f - centreWidth) / 2f);
+            Assert.True(WorldHud.chipRoomBeside(layout, 844f, centreWidth) >= layout.BoxWidth);
+        }
+
+        [Fact]
+        public void aToastWiderThanTheClearBand_startsBelowTheChips() {
+            WorldHud.Layout layout = WorldHud.Layout.compute(844f, 390f, 1f);
+            // chips 1.4 boxes wide reach under a 380-wide card; a box wide, they clear it
+            Assert.True(WorldHud.overlaysChips(layout, 844f, layout.BoxWidth * 1.4f, 380f));
+            Assert.False(WorldHud.overlaysChips(layout, 844f, layout.BoxWidth, 380f));
+            Assert.True(WorldHud.overlaysChips(layout, 844f, layout.BoxWidth, 600f));
+            WorldHud.Layout wide = WorldHud.Layout.compute(1920f, 1080f, 1f);
+            Assert.False(WorldHud.overlaysChips(wide, 1920f, wide.BoxWidth * 1.4f, 380f));
+        }
+
         // --- no-go rects: the command bar and the touch controls --------------------
 
         [Theory]

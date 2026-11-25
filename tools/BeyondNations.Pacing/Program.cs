@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace beyondnations.pacing {
@@ -102,7 +103,10 @@ namespace beyondnations.pacing {
                     + " (" + run.raidsOnPlayerPerHour().ToString("0.0") + " an hour; " + run.RaidsOnPlayerSheltered + " while sheltered), by it " + run.RaidsByPlayer
                     + "; first member " + (run.FirstMemberTick < 0 ? "never" : "at " + PacingReport.clock((double) run.FirstMemberTick / run.TicksPerSecond))
                     + "; " + EraRules.VillageMembers + " members " + (run.VillageMembersTick < 0 ? "never" : "at " + PacingReport.clock((double) run.VillageMembersTick / run.TicksPerSecond))
-                    + " (" + run.MembersInvited + " invited, " + run.MembersJoinedOtherwise + " joined otherwise)");
+                    + " (" + run.MembersInvited + " invited, " + run.MembersJoinedOtherwise + " joined otherwise)"
+                    + "; eras " + string.Join(", ", run.EraTicks.Select(kv => kv.Key + " " + PacingReport.clock((double) kv.Value / run.TicksPerSecond)))
+                    + "; outcome " + run.Outcome + (run.OutcomeTick < 0 ? "" : " at " + PacingReport.clock((double) run.OutcomeTick / run.TicksPerSecond))
+                    + "; upgrades " + run.UpgradesBought + " (" + run.UpgradeCoins + " coins)");
             }
             Console.WriteLine(seeds.Count + " seeds in " + watch.Elapsed.TotalSeconds.ToString("0.0") + " s");
 

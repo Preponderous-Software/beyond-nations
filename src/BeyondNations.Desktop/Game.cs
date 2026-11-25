@@ -396,7 +396,8 @@ namespace beyondnations.desktop {
             foreach (Nation nation in simulation.getNationRepository().getNations()) {
                 foreach (EntityId settlementId in nation.getSettlements()) {
                     Entity settlement = simulation.getEntityRepository().getEntity(settlementId);
-                    if (settlement != null) {
+                    // lived-in places only: an empty outpost makes a dull flyover (seed 12 picked two after #492)
+                    if (settlement is Settlement place && place.getResidentCount() > 0) {
                         settlements.Add(settlement.getPosition());
                         nations.Add(nationIndex);
                     }

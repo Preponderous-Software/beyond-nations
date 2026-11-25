@@ -211,36 +211,82 @@ namespace beyondnationstests.desktop.ui {
             Assert.Null(feed.chronicle(40, new[] { new KeyValuePair<int, string>(40, "old news") }));
         }
 
+        /** Stands on the land for long enough that it counts (HudFeed.LandSettleSeconds), returning the toast if any. */
+        private static OverlayItem stand(HudFeed feed, ref double now, string owner, bool own, string region, string note, bool inSettlement = false) {
+            now += HudFeed.LandRecentSeconds + 10;
+            OverlayItem first = feed.land(owner, own, region, note, inSettlement, now);
+            Assert.Null(first);
+            now += HudFeed.LandSettleSeconds;
+            return feed.land(owner, own, region, note, inSettlement, now);
+        }
+
         [Fact]
         public void aBorderCrossing_isAToast_oncePerCrossing_andNotOnLoad() {
             HudFeed feed = new HudFeed();
+            double now = 0;
             // the first look (a new world or a load) only takes note
-            Assert.Null(feed.land("Aland", true, "Plains", "good farming and game", false));
-            Assert.Null(feed.land("Aland", true, "Plains", "good farming and game", false));
+            Assert.Null(feed.land("Aland", true, "Plains", "good farming and game", false, now));
+            Assert.Null(stand(feed, ref now, "Aland", true, "Plains", "good farming and game"));
 
-            OverlayItem rival = feed.land("Blackburg", false, "Plains", "good farming and game", false);
+            OverlayItem rival = stand(feed, ref now, "Blackburg", false, "Plains", "good farming and game");
             Assert.Equal(OverlayKind.Toast, rival.Kind);
             Assert.Equal("Now on Blackburg's land", rival.Title);
             Assert.Equal(feed.getLandKey(), rival.Key);
-            Assert.Null(feed.land("Blackburg", false, "Plains", "good farming and game", false));
+            Assert.Null(stand(feed, ref now, "Blackburg", false, "Plains", "good farming and game"));
 
-            OverlayItem wilds = feed.land(null, false, "Plains", "good farming and game", false);
+            OverlayItem wilds = stand(feed, ref now, null, false, "Plains", "good farming and game");
             Assert.Equal("Unclaimed land", wilds.Title);
             Assert.NotEqual(rival.Key, wilds.Key);
 
-            OverlayItem forest = feed.land(null, false, "Forest", "plenty of wood, little stone", false);
+            OverlayItem forest = stand(feed, ref now, null, false, "Forest", "plenty of wood, little stone");
             Assert.Equal("Into the Forest", forest.Title);
             Assert.Equal("plenty of wood, little stone", forest.Body);
 
             // inside a settlement nothing is looked at: entering and leaving is no crossing
-            Assert.Null(feed.land("Aland", true, "Forest", "", true));
-            Assert.Equal("Back on your own land", feed.land("Aland", true, "Forest", "", false).Title);
-            Assert.Null(feed.land("Aland", true, "Forest", "", true));
-            Assert.Null(feed.land("Aland", true, "Forest", "", false));
+            Assert.Null(stand(feed, ref now, "Aland", true, "Forest", "", true));
+            Assert.Equal("Back on your own land", stand(feed, ref now, "Aland", true, "Forest", "").Title);
+            Assert.Null(stand(feed, ref now, "Aland", true, "Forest", "", true));
+            Assert.Null(stand(feed, ref now, "Aland", true, "Forest", ""));
 
             // a load (reset) announces nothing again
             feed.reset();
-            Assert.Null(feed.land("Blackburg", false, "Moor", "", false));
+            Assert.Null(feed.land("Blackburg", false, "Moor", "", false, now));
+        }
+
+        [Fact]
+        public void aFewStepsOverABorderAndBack_sayNothing() {
+            HudFeed feed = new HudFeed();
+            Assert.Null(feed.land(null, false, "Plains", "", false, 0));
+            // across the region border for a moment, then back
+            Assert.Null(feed.land(null, false, "Forest", "", false, 1.0));
+            Assert.Null(feed.land(null, false, "Forest", "", false, 1.0 + HudFeed.LandSettleSeconds / 2));
+            Assert.Null(feed.land(null, false, "Plains", "", false, 1.5 + HudFeed.LandSettleSeconds / 2));
+            Assert.Null(feed.land(null, false, "Plains", "", false, 20));
+            // staying over the border counts once it has settled
+            Assert.Null(feed.land(null, false, "Forest", "", false, 30));
+            OverlayItem forest = feed.land(null, false, "Forest", "", false, 30 + HudFeed.LandSettleSeconds);
+            Assert.Equal("Into the Forest", forest.Title);
+        }
+
+        [Fact]
+        public void walkingAlongABorder_doesNotRepeatTheSameToasts() {
+            HudFeed feed = new HudFeed();
+            double t = 0;
+            Assert.Null(feed.land(null, false, "Plains", "", false, t));
+            int toasts = 0;
+            // back and forth, each side held long enough to settle, for a minute
+            for (int i = 0; i < 10; i++) {
+                string region = i % 2 == 0 ? "Forest" : "Plains";
+                t += 1;
+                if (feed.land(null, false, region, "", false, t) != null) toasts++;
+                t += HudFeed.LandSettleSeconds + 1;
+                if (feed.land(null, false, region, "", false, t) != null) toasts++;
+            }
+            Assert.Equal(1, toasts); // only the first step into the forest
+            // long after, the forest is news again
+            t += HudFeed.LandRecentSeconds + 10;
+            Assert.Null(feed.land(null, false, "Forest", "", false, t));
+            Assert.NotNull(feed.land(null, false, "Forest", "", false, t + HudFeed.LandSettleSeconds));
         }
 
         [Fact]

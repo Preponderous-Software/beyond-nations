@@ -245,6 +245,30 @@ namespace beyondnations {
             return true;
         }
 
+        /**
+        * Raises one of this settlement's buildings a level (BuildingUpgrades)
+        * and applies what it does: a storehouse allows another market stall
+        * at once; a house's room and a farm's harvest are read from the
+        * level. The caller has taken the coins.
+        */
+        internal void upgradeBuilding(Building building) {
+            building.raiseLevel();
+            if (building.getType() == BuildingType.STOREHOUSE) {
+                market.increaseMaxNumStalls(BuildingUpgrades.STOREHOUSE_STALLS_PER_LEVEL);
+            }
+            updateNameTag();
+            refreshAppearance();
+        }
+
+        /** How many levels of upgrade this settlement's buildings have, all told. */
+        public int getNumUpgrades() {
+            int levels = 0;
+            foreach (Building building in buildings) {
+                levels += building.getLevel();
+            }
+            return levels;
+        }
+
         public SettlementTier getTier() {
             SettlementTier tier = SettlementTiers.fromBuildingCount(buildings.Count);
             return tier > tierCap ? tierCap : tier;
@@ -252,10 +276,16 @@ namespace beyondnations {
 
         /**
         * How many pawns may call this settlement home: a base, and more for each
-        * house.
+        * house (more again for an upgraded one, BuildingUpgrades).
         */
         public int getResidentCap() {
-            return BuildingCatalog.BASE_RESIDENTS + BuildingCatalog.HOUSE_RESIDENTS * getNumBuildings(BuildingType.HOUSE);
+            int cap = BuildingCatalog.BASE_RESIDENTS;
+            foreach (Building building in buildings) {
+                if (building.getType() == BuildingType.HOUSE) {
+                    cap += BuildingUpgrades.houseResidents(building.getLevel());
+                }
+            }
+            return cap;
         }
 
         /**
@@ -281,15 +311,22 @@ namespace beyondnations {
         }
 
         /**
-        * Each farm stocks one apple into the merchant stall holding the fewest,
+        * Each farm stocks one apple (more when upgraded, BuildingUpgrades)
+        * into the merchant stall holding the fewest,
         * so farms feed the market rather than piling up out of reach. With no
         * merchant there is nobody to sell the harvest and nothing is produced.
         * Returns how many apples were stocked.
         */
         public int harvestFarms() {
-            int farms = getNumBuildings(BuildingType.FARM);
+            // an upgraded farm stocks more than one apple (BuildingUpgrades)
+            int apples = 0;
+            foreach (Building building in buildings) {
+                if (building.getType() == BuildingType.FARM) {
+                    apples += BuildingUpgrades.farmApples(building.getLevel());
+                }
+            }
             int stocked = 0;
-            for (int i = 0; i < farms; i++) {
+            for (int i = 0; i < apples; i++) {
                 Stall emptiest = null;
                 foreach (Stall stall in market.getStalls()) {
                     if (stall.getOwnerId() == null) {
@@ -357,6 +394,7 @@ namespace beyondnations {
                 writer.beginObject();
                 writer.writeEnum("type", building.getType());
                 writer.write("slot", building.getSlot());
+                writer.write("level", building.getLevel());
                 writer.endObject();
             }
             writer.endArray();
@@ -376,7 +414,10 @@ namespace beyondnations {
             market.load(SaveReader.property(element, "market"), reader);
             buildings = new List<Building>();
             foreach (JsonElement building in SaveReader.property(element, "buildings").EnumerateArray()) {
-                buildings.Add(new Building(SaveReader.getEnum<BuildingType>(building, "type"), SaveReader.getInt(building, "slot")));
+                BuildingType type = SaveReader.getEnum<BuildingType>(building, "type");
+                // A level outside 0..max (a hand-edited or damaged save) is clamped rather than trusted.
+                int level = System.Math.Clamp(SaveReader.getInt(building, "level"), 0, BuildingUpgrades.getMaxLevel(type));
+                buildings.Add(new Building(type, SaveReader.getInt(building, "slot"), level));
             }
             residentCount = SaveReader.getInt(element, "residentCount");
             drawnLayoutSignature = SaveReader.getLong(element, "drawnLayoutSignature");

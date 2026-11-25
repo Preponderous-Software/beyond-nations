@@ -121,7 +121,7 @@ namespace beyondnations.desktop.ui.screens {
             int minutes = (realm.getTicksUntilOldAge() + ticksPerMinute - 1) / ticksPerMinute;
             string age = minutes <= 1 ? " Old age comes within the minute." : " Old age comes in about " + minutes + " minutes.";
             if (heir == null) {
-                return "No heir. " + reason + " Old age will not take you before you have one. " + MembersPanel.HowToGainMembers;
+                return "No heir. " + reason + " Old age will not take you before you have one. " + MembersPanel.howToGainMembers(simulation);
             }
             return "Heir: " + heir.getName() + ", " + reason + "." + age;
         }

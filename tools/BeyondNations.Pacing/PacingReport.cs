@@ -246,6 +246,11 @@ namespace beyondnations.pacing {
                     milestones = r.Milestones,
                     unlocks = r.Unlocks,
                     calendarReadyTick = r.CalendarReadyTick,
+                    eraTicks = r.EraTicks,
+                    outcome = r.Outcome,
+                    outcomeTick = r.OutcomeTick,
+                    upgradesBought = r.UpgradesBought,
+                    upgradeCoins = r.UpgradeCoins,
                     calendarWaitSeconds = r.CalendarWaitTicks.ToDictionary(kv => kv.Key, kv => (double) kv.Value / r.TicksPerSecond),
                     objectives = r.Objectives.ConvertAll(t => new {
                         index = t.Index,

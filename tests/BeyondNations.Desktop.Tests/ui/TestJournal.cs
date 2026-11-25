@@ -306,6 +306,22 @@ namespace beyondnationstests {
             }
         }
 
+        [Fact]
+        public void testFooter_NamesKeysOnADesktop_AndNothingOnATouchScreen() {
+            try {
+                TouchLayout.reset();
+                string desktop = JournalScreen.footerText(false);
+                Assert.Contains("closes", desktop);
+                Assert.DoesNotContain("{", desktop);
+                Assert.Null(JournalScreen.footerText(true));
+                // the page says touch is on: no keys, whatever the caller thought
+                TouchLayout.setState(TouchMode.On, true, 150f);
+                Assert.Null(JournalScreen.footerText(false));
+            } finally {
+                TouchLayout.reset();
+            }
+        }
+
         // --- layout ----------------------------------------------------------------
 
         [Theory]

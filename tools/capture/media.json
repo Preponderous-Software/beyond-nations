@@ -21,7 +21,7 @@
   "shots": [
     {
       "name": "flyover", "kind": "clip", "device": "film",
-      "comment": "Seed 12 fifty minutes in (150000 ticks), the camera gliding from one nation's village across the border to its neighbour's. About two minutes under llvmpipe.",
+      "comment": "Seed 12 fifty minutes in (150000 ticks), the camera gliding from one nation's town across the border to its neighbour's (the closest pair of lived-in settlements of two nations; empty outposts are passed over). Under a minute under llvmpipe.",
       "argv+": ["--seed", "12", "--start-screen", "world", "--advance-ticks", "150000",
                 "--flyover-out", "{out_dir}/frames", "--flyover-frames", "90"],
       "glob": "frame-*.png",
@@ -30,8 +30,8 @@
       "video": ["mp4"], "poster": 0.24,
       "gallery": { "width": 480, "poster": true },
       "file": "../../.github/media/flyover.gif",
-      "caption": "Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's village, the border, the next nation's village.",
-      "alt": "A flyover of seed 12 fifty minutes in: over one nation's village, its houses, fields, market stalls, trees and residents, then across the line where two nations' rings of border posts meet, to a neighbouring nation's village"
+      "caption": "Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's town, the border, the next nation's town.",
+      "alt": "A flyover of seed 12 fifty minutes in: over the Town of Newport, its houses, fields, market stalls and residents round the plaza, then across the line where two nations' rings of border posts meet, to the neighbouring Town of Lowerham, as busy"
     },
     {
       "name": "seasons", "kind": "clip", "device": "desktop", "gif": false,
@@ -60,15 +60,25 @@
       "captions": ["Spring", "Summer", "Autumn", "Winter"],
       "file": "../../.github/media/seasons.jpg",
       "caption": "The same spot on seed 12 in spring, summer, autumn and winter.",
-      "alt": "Four views of the same spot on seed 12, captioned Spring, Summer, Autumn and Winter: fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; in each the Season box above the player box says which season it is, how long until winter and what the land is good for"
+      "alt": "Four views of the same spot on seed 12, captioned Spring, Summer, Autumn and Winter: fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; in each the top strip names the season and day, Spring 1/2 to Winter 1/2, the Next line asks for wood and the first tip card sits under the player; in autumn a chip under the strip warns Winter in 2 days, and in winter it reads Winter: no harvests"
     },
     {
       "name": "settlement-town", "kind": "still", "device": "desktop",
+      "comment": "400 frames, not 90: by 90 the opening news toast still covers the town's name. Toasts and tip cards run on real time, so a reshoot may still catch the toast or the first tip card; reshoot (or fix the alt) until the take matches the alt.",
       "argv+": ["--seed", "42", "--start-screen", "world", "--stage-settlement",
-                "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+                "--screenshot-after-frames", "400", "--exit-after-frames", "402"],
       "file": "../../.github/media/settlement-town.jpg",
-      "caption": "A lived-in town and today's HUD.",
-      "alt": "The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about; round the edges the HUD -- the era bar, the first objective, the chronicle, the first tip, the inventory, the command bar, the Season box and the player box"
+      "caption": "A lived-in town under the HUD: a thin strip across the top, one Next line, and only what matters now.",
+      "alt": "The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about under the town's name, 6 here, 12/16 residents; the HUD is a thin strip across the top -- Spring 1/2, dim meters for energy, food and coins, and the Journal, ? and Menu buttons -- with one line under it, Next: Gather wood - Wood 0/10; nothing else is up but the command bar at the bottom left"
+    },
+    {
+      "name": "journal", "kind": "still", "device": "desktop",
+      "comment": "The Journal (J, or the Journal button on the top strip) over a lived-in nation, on its Goals tab.",
+      "argv+": ["--seed", "42", "--stage-outpost", "--advance-ticks", "3000", "--stage-journal", "goals",
+                "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
+      "file": "../../.github/media/journal.jpg",
+      "caption": "The Journal (J, or the Journal button on the top strip): goals, chronicle, era, inventory and nation as picture tiles.",
+      "alt": "The Journal over the world on its Goals tab: tabs for Goals, Chronicle, Era, Inventory and Nation, each with an icon; a progress track at 1 of 9; a row of picture tiles -- Food, the goal under way, outlined in gold, Wood ticked, and Nation, Settle, Home, Stall, Village, Market and 2nd home dimmed with padlocks; and a line saying J or Esc closes it, the arrows or Tab turn the page and a click on a tile shows more"
     },
     {
       "name": "two-settlements", "kind": "still", "device": "desktop",
@@ -92,18 +102,18 @@
                 "--screenshot-after-frames", "60", "--exit-after-frames", "62"],
       "file": "../../.github/media/laws-heir.jpg",
       "caption": "The Laws tab: who your heir is, when old age comes, and Abdicate.",
-      "alt": "The Laws tab of Blackburg: changes take 30 seconds, Defence 3, Heir: Ella Wood, the longest sworn of your people, old age comes in about 40 minutes, an Abdicate button, then taxes, conscription, borders and rationing with a button for each setting"
+      "alt": "The Laws tab of Blackburg: changes take 30 seconds, Defence 3, Heir: Ella Wood, the longest sworn of your people, old age comes in about 40 minutes, an Abdicate button, then taxes, conscription and borders with a button for each setting, and Up and Down to scroll to the fourth law"
     },
     {
       "name": "market-panel", "kind": "still", "device": "desktop",
-      "comment": "No flag opens the market panel, so click-shot.sh clicks it open the way a player does: Trade at Market on the command bar, the Stone button, then Sell, and grabs the window once state.json lists the panel. The points are the 1280x720 layout's.",
+      "comment": "No flag opens the market panel, so click-shot.sh clicks it open the way a player does: Trade at Market on the command bar, the Stone button (twice, which gives the panel time to show Sell), then Sell, and grabs the window once state.json lists the panel. The points are the 1280x720 layout's.",
       "argv": ["bash", "{manifest_dir}/click-shot.sh", "--out", "{out_dir}/market.png",
-               "--click", "570,642", "--click", "640,177", "--click", "761,329", "--until-panel", "market-trade", "--",
+               "--click", "570,642", "--click", "751,237", "--click", "751,237", "--click", "761,537", "--until-panel", "market-trade", "--",
                "dotnet", "{game}", "@common", "--seed", "42", "--start-screen", "world", "--stage-market"],
       "glob": "market.png",
       "file": "../../.github/media/market-panel.jpg",
       "caption": "The market panel: pick a good, see where it sells best and what you would make, and buy or sell a chosen quantity.",
-      "alt": "The market panel in the Village of Farmwood: one button per good (apples, wood, stone) with its buy and sell price and how many you carry, stone picked; buy at 21, sell at 20, the best price in reach is 34 at the Village of Blackburg, buy here and sell there for +13 a unit; -5, -1, +1, +5 and All; Buy 1 for 21 and Sell 1 for 20; the receipt Sold 1 stone to Tilly Davies for 21 coins and this visit's net +21"
+      "alt": "The market panel in the Village of Farmwood: one button per good (apples, chicken meat, wood, stone, planks, bricks, axes, pickaxes and saplings) with its buy and sell price and how many you carry, stone picked; buy at 19, sell at 18, the best price in reach is 23 at the Village of Blackburg, buy here and sell there for +4 a unit; -5, -1, 1, +1, +5 and All; Buy 1 for 19 and Sell 1 for 18; the receipt Sold 1 stone to Tilly Davies for 19 coins and this visit's net +19. Round it the HUD: the top strip, the Next line, a Carrying chip, and the Settlement Info and Market Info boxes that show while you stand in a settlement"
     },
     {
       "name": "settlement-screen", "kind": "still", "device": "desktop",
@@ -119,8 +129,8 @@
       "argv+": ["--seed", "42", "--start-screen", "world", "--stage-settlement", "--season", "autumn", "--advance-ticks", "22000",
                 "--screenshot-after-frames", "90", "--exit-after-frames", "92"],
       "file": "../../.github/media/winter-warning.jpg",
-      "caption": "The day before winter: the banner, the chronicle and the Season box say what the nation carries.",
-      "alt": "The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 17 members are short of the food they want, the player's own hunger banner sits above it, the town's name floats below the chronicle, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 79 of 68 for winter"
+      "caption": "The day before winter: chips under the top strip say winter is a day off and how much food the nation carries for it.",
+      "alt": "The night before winter in the town of Southernland: the top strip reads Autumn 2/2 with the Next line under it; down the left, chips read Winter in 1 day and Food: 97 of 196 for winter, each with an amber warning mark because members are short; the town's name and 14 here, 15/16 residents float over the plaza, and the first tip card waits under the player"
     }
   ]
 }

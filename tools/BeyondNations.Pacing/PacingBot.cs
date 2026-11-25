@@ -61,6 +61,18 @@ namespace beyondnations.pacing {
         private readonly bool noCourting;
         private bool inviting = false;
 
+        /** Building upgrades bought (upgradeBuildings), and the coins they cost: the pacing report's measure of the sink. */
+        private int upgradesBought;
+        private int upgradeCoins;
+
+        public int getUpgradesBought() {
+            return upgradesBought;
+        }
+
+        public int getUpgradeCoins() {
+            return upgradeCoins;
+        }
+
         public PacingBot(Simulation simulation, bool noCourting = false) {
             this.simulation = simulation ?? throw new ArgumentNullException(nameof(simulation));
             this.player = simulation.getPlayer();
@@ -569,6 +581,93 @@ namespace beyondnations.pacing {
             return CoinReserve + Math.Max(MinCoinsKept, funds);
         }
 
+        /**
+        * Once a settlement has no room for another building, a bot that does
+        * not court spends its surplus on upgrades (the settlement screen's
+        * Upgrade buttons, UpgradeBuildingCommand): a house first when the
+        * settlement is nearly out of room for residents, otherwise the
+        * cheapest upgrade on offer. It pays only out of what the nation's
+        * funds hold above its next goal (upgradeFundsKept). Only that next
+        * goal is reserved, not the ones after it: in the Town era it spends
+        * what lies above the Kingdom's 6,000, and those coins are missing
+        * when it then saves for Prosperity's 15,000, so the upgrades can
+        * delay or cost a Prosperity win (seed 2 won at 225m 31s without
+        * them and not within four hours with them; PACING.md, "Upgrading
+        * buildings"). False when there is nothing it will upgrade now.
+        */
+        private bool upgradeBuildings() {
+            if (!noCourting || !WorldView.isLeader(simulation)) {
+                return false;
+            }
+            Nation nation = WorldView.playerNation(simulation);
+            NationStanding standing = NationStanding.of(simulation);
+            if (nation == null || standing == null) {
+                return false;
+            }
+            int coins = WorldView.coins(simulation);
+            int kept = upgradeFundsKept();
+            Settlement where = null;
+            BuildingType chosen = BuildingType.HOUSE;
+            int best = int.MaxValue;
+            foreach (EntityId settlementId in nation.getSettlements()) {
+                if (!(simulation.getEntityRepository().getEntity(settlementId) is Settlement settlement)
+                        || BuildingPlanner.suggestNext(settlement) != null) {
+                    continue;
+                }
+                bool crowded = settlement.getResidentCount() >= settlement.getResidentCap() - 2;
+                foreach (BuildingType type in new[] { BuildingType.HOUSE, BuildingType.FARM, BuildingType.STOREHOUSE }) {
+                    int price = BuildingUpgrades.getNextPrice(settlement, type);
+                    if (price == 0 || BuildingUpgrades.describeWhyNot(settlement, player.getInventory(), type) != null
+                            || coins < price + CoinReserve || standing.funds - price < kept) {
+                        continue;
+                    }
+                    // a crowded settlement's house comes before anything cheaper
+                    int rank = crowded && type == BuildingType.HOUSE ? 0 : price;
+                    if (rank < best) {
+                        best = rank;
+                        where = settlement;
+                        chosen = type;
+                    }
+                }
+            }
+            if (where == null) {
+                return false;
+            }
+            activity = "upgrading a " + BuildingCatalog.getDisplayName(chosen).ToLowerInvariant();
+            if (player.getCurrentSettlementId() == where.getId()) {
+                int price = BuildingUpgrades.getNextPrice(where, chosen);
+                if (new UpgradeBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, chosen)) {
+                    upgradesBought++;
+                    upgradeCoins += price;
+                }
+                return true;
+            }
+            leaveSettlementIfInside();
+            if (approach(where.getPosition())) {
+                interact();
+            }
+            return true;
+        }
+
+        /**
+        * The nation's funds the bot keeps rather than spend on upgrades: the
+        * next era's Funds requirement (6,000 for the Kingdom), and in the
+        * Kingdom era the Prosperity victory's (VictoryRules.ProsperityFunds),
+        * as a player reading the era box would; never less than MinCoinsKept.
+        */
+        private int upgradeFundsKept() {
+            int funds = 0;
+            if (simulation.getEraTracker().getEra() >= VictoryRules.ProsperityEra) {
+                funds = VictoryRules.ProsperityFunds;
+            }
+            foreach (EraRequirement requirement in simulation.getEraTracker().getRequirements(simulation)) {
+                if (requirement.label == "Funds") {
+                    funds = Math.Max(funds, requirement.target);
+                }
+            }
+            return Math.Max(MinCoinsKept, funds);
+        }
+
         /** The least the bot keeps when it buys a building: a purse below this is not a surplus. */
         private const int MinCoinsKept = 1000;
 
@@ -754,6 +853,10 @@ namespace beyondnations.pacing {
                 activity = "growing without courting";
                 // houses make room for the settlers the world brings
                 if (growSettlement()) {
+                    return;
+                }
+                // and once its settlements are full, upgrades their buildings
+                if (upgradeBuildings()) {
                     return;
                 }
                 earnFunds();

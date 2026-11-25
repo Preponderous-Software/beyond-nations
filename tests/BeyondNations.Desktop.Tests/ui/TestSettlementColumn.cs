@@ -70,18 +70,6 @@ namespace beyondnationstests.desktop.ui {
             };
         }
 
-        /** The column's height and box width at a window size, as WorldHud works them out on a desktop. */
-        private static void columnFor(float width, float height, out float columnHeight, out float boxWidth, out float gap) {
-            WorldHud.Layout layout = WorldHud.Layout.compute(width, height, 1f);
-            columnHeight = height - layout.Margin * 2f;
-            boxWidth = layout.BoxWidth;
-            gap = layout.Gap;
-        }
-
-        private static void fit(Column column, float columnHeight, float boxWidth, float gap) {
-            WorldHud.fitSettlementColumn(columnHeight, gap, boxWidth, Metrics, column.Settlement, column.Market, column.Season, column.Player);
-        }
-
         [Fact]
         public void aLineTooLongForTheBoxIsCountedOnceForEachRowItWrapsTo() {
             // 200 wide leaves 184 for text: 26 characters a row
@@ -98,70 +86,24 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(17f * 3 + (23f - 17f) + 16f, column.Player.estimateHeight(400f, Metrics));
         }
 
-        public static IEnumerable<object[]> Windows() {
-            yield return new object[] { 960f, 540f };
-            yield return new object[] { 1024f, 768f };
-            yield return new object[] { 1280f, 720f };
-            yield return new object[] { 412f, 915f };
-        }
-
-        [Theory]
-        [MemberData(nameof(Windows))]
-        public void theFourBoxesFitTheColumn_SoNoneIsDrawnOverAnother(float width, float height) {
-            columnFor(width, height, out float columnHeight, out float boxWidth, out float gap);
-            Column column = stagedColumn();
-            fit(column, columnHeight, boxWidth, gap);
-            Assert.True(WorldHud.fits(columnHeight, gap, boxWidth, Metrics, column.all()),
-                width + "x" + height + ": " + WorldHud.stackedHeight(gap, boxWidth, Metrics, column.all()) + " > " + columnHeight);
-        }
-
         [Fact]
-        public void at960x540_TheMarketListsWhatFits_AndSaysHowManyMoreThereAre() {
-            columnFor(960f, 540f, out float columnHeight, out float boxWidth, out float gap);
+        public void aShortMarketBox_ListsWhatFits_AndSaysHowManyMoreThereAre() {
             Column column = stagedColumn();
-            fit(column, columnHeight, boxWidth, gap);
-
-            Assert.True(column.Market.isCompact() && column.Season.isCompact() && column.Player.isCompact());
-            int listed = column.Market.getListedGoods().Count;
-            int shown = column.Market.getShownGoods().Count;
-            Assert.Equal(7, listed);
-            Assert.InRange(shown, 3, listed - 1);
-            List<string> lines = column.Market.getLines();
+            MarketInfoBox market = column.Market;
+            market.setCompact(true);
+            int listed = market.getListedGoods().Count;
+            float full = market.estimateHeight(200f, Metrics);
+            market.fitHeight(full - Metrics.LineHeight * 3f, 200f, Metrics);
+            int shown = market.getShownGoods().Count;
+            Assert.InRange(shown, 1, listed - 1);
+            Assert.True(market.estimateHeight(200f, Metrics) <= full - Metrics.LineHeight * 3f);
+            List<string> lines = market.getLines();
             Assert.Equal(MarketInfoBox.describeMoreGoods(listed - shown), lines[lines.Count - 1]);
             // the staples lead, so they are the last to go
-            Assert.Equal(new List<ItemType> { ItemType.APPLE, ItemType.WOOD, ItemType.STONE }, column.Market.getShownGoods().GetRange(0, 3));
-        }
-
-        [Fact]
-        public void at1280x720_OnlyTheMarketGivesWay_AndThePlayerBoxKeepsEveryLine() {
-            columnFor(1280f, 720f, out float columnHeight, out float boxWidth, out float gap);
-            Column column = stagedColumn();
-            fit(column, columnHeight, boxWidth, gap);
-
-            Assert.True(column.Market.isCompact());
-            Assert.False(column.Player.isCompact());
-            Assert.Equal(column.Market.getListedGoods().Count, column.Market.getShownGoods().Count);
-        }
-
-        [Fact]
-        public void aTallWindowShowsEveryBoxInFull() {
-            Column column = stagedColumn();
-            fit(column, 1400f, 200f, 10f);
-            foreach (InfoBox box in column.all()) {
-                Assert.False(box.isCompact(), box.getTitle());
-            }
-            Assert.DoesNotContain(column.Market.getLines(), line => line.Contains("more good"));
-        }
-
-        [Fact]
-        public void fittingAgainInMoreRoom_PutsEverythingBack() {
-            Column column = stagedColumn();
-            fit(column, 520f, 200f, 10f);
-            Assert.True(column.Player.isCompact());
-            fit(column, 1400f, 200f, 10f);
-            Assert.False(column.Market.isCompact());
-            Assert.False(column.Player.isCompact());
-            Assert.Equal(column.Market.getListedGoods().Count, column.Market.getShownGoods().Count);
+            Assert.Equal(ItemType.APPLE, market.getShownGoods()[0]);
+            // more room puts everything back
+            market.fitHeight(2000f, 200f, Metrics);
+            Assert.Equal(listed, market.getShownGoods().Count);
         }
 
         [Fact]
@@ -206,66 +148,6 @@ namespace beyondnationstests.desktop.ui {
             Assert.Equal(360f, FeelDirector.hintCardTopStacked(500f, 360f, 430f, 300f, 553f, 5f));
             // no fallback given: where it was asked for
             Assert.Equal(548f, FeelDirector.hintCardTopStacked(548f, 0f, 444f, 100f, 553f, 5f));
-        }
-
-        // --- a phone (#466) ----------------------------------------------------------------------------
-
-        private static float touchFit(Column column, float columnHeight, float boxWidth, float gap, bool withSeason,
-                out bool showSettlement, out bool showMarket) {
-            WorldHud.fitTouchColumn(columnHeight, gap, boxWidth, Metrics, column.Settlement, column.Market,
-                withSeason ? column.Season : null, column.Player, out showSettlement, out showMarket);
-            List<InfoBox> shown = new List<InfoBox>();
-            if (showSettlement) {
-                shown.Add(column.Settlement);
-            }
-            if (showMarket) {
-                shown.Add(column.Market);
-            }
-            if (withSeason) {
-                shown.Add(column.Season);
-            }
-            shown.Add(column.Player);
-            return WorldHud.stackedHeight(gap, boxWidth, Metrics, shown.ToArray());
-        }
-
-        public static IEnumerable<object[]> PhoneColumns() {
-            // on its side: from the top margin down to the touch controls' band (844x390, 150 reserved)
-            yield return new object[] { 844f, 390f - 150f - 20f, true };
-            // upright: beside the era box and the objective tracker (390x844)
-            yield return new object[] { 390f, 240f, false };
-            // a tall tablet held upright has room for more
-            yield return new object[] { 768f, 600f, false };
-        }
-
-        [Theory]
-        [MemberData(nameof(PhoneColumns))]
-        public void onAPhone_TheColumnStopsAboveTheTouchControls_AndKeepsThePlayerBox(float width, float columnHeight, bool withSeason) {
-            WorldHud.Layout layout = WorldHud.Layout.compute(width, 844f, 1f);
-            Column column = stagedColumn();
-            float used = touchFit(column, columnHeight, layout.BoxWidth, layout.Gap, withSeason, out _, out _);
-            Assert.True(used <= columnHeight, width + ": " + used + " > " + columnHeight);
-        }
-
-        [Fact]
-        public void onAShortColumn_TheMarketThenTheSettlementGiveWay_ForWhatIsATapAway() {
-            WorldHud.Layout layout = WorldHud.Layout.compute(844f, 390f, 1f);
-            Column column = stagedColumn();
-
-            touchFit(column, 2000f, layout.BoxWidth, layout.Gap, true, out bool settlement, out bool market);
-            Assert.True(settlement && market);
-            Assert.False(column.Player.isCompact());
-
-            float withoutMarket = WorldHud.stackedHeight(layout.Gap, layout.BoxWidth, Metrics,
-                column.Settlement, column.Season.setCompact(true), column.Player.setCompact(true));
-            touchFit(column, withoutMarket, layout.BoxWidth, layout.Gap, true, out settlement, out market);
-            Assert.True(settlement);
-            Assert.False(market);
-
-            touchFit(column, withoutMarket - 1f, layout.BoxWidth, layout.Gap, true, out settlement, out market);
-            Assert.False(settlement);
-            Assert.False(market);
-            // the energy bar is still there
-            Assert.StartsWith("Energy", column.Player.getLines()[0]);
         }
     }
 }

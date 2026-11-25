@@ -102,6 +102,14 @@ namespace beyondnations.pacing {
         */
         public Dictionary<string, int> CalendarReadyTick = new Dictionary<string, int>();
         public Dictionary<string, int> CalendarWaitTicks = new Dictionary<string, int>();
+        /** The tick the player's nation reached each era after the camp (EraTracker), by era name; one never reached is absent. */
+        public Dictionary<string, int> EraTicks = new Dictionary<string, int>();
+        /** How the run ended (RunOutcome name, NONE while it goes on) and the tick it did, or -1. */
+        public string Outcome = "NONE";
+        public int OutcomeTick = -1;
+        /** Building upgrades the bot bought (UpgradeBuildingCommand), and the coins they cost. */
+        public int UpgradesBought;
+        public int UpgradeCoins;
 
         /** Raids on the player's nation per hour of game time. */
         public double raidsOnPlayerPerHour() {
@@ -253,6 +261,16 @@ namespace beyondnations.pacing {
                 });
             }
             result.TicksRun = tick;
+            EraTracker eras = simulation.getEraTracker();
+            foreach (Era era in System.Enum.GetValues<Era>()) {
+                if (era != Era.CAMP && era <= eras.getEra()) {
+                    result.EraTicks[Eras.getDisplayName(era)] = eras.getReachedTick(era);
+                }
+            }
+            result.Outcome = eras.getOutcome().ToString();
+            result.OutcomeTick = eras.hasEnded() ? eras.getOutcomeTick() : -1;
+            result.UpgradesBought = bot.getUpgradesBought();
+            result.UpgradeCoins = bot.getUpgradeCoins();
             return result;
         }
 

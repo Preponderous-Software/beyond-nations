@@ -37,6 +37,8 @@ namespace beyondnations {
     *   6 -> 7  who holds a settlement (#176, SettlementOwnership): every
     *           settlement's "ownerId" and "ownerName", null -- held by its
     *           nation's leader, as every settlement was before
+    *   7 -> 8  building upgrades (BuildingUpgrades): every building's
+    *           "level", 0 -- as built, as every building was before
     */
     public static class SaveMigrations {
         /** steps[i] migrates a body of version i + 1 to version i + 2. */
@@ -47,7 +49,32 @@ namespace beyondnations {
             addEras,
             addEnvoys,
             addSettlementOwners,
+            addBuildingLevels,
         };
+
+        /** 7 -> 8: a world from before building upgrades has every building as built, at level 0. */
+        private static JsonObject addBuildingLevels(JsonObject body) {
+            foreach (string list in new[] { "entities", "orphanEntities" }) {
+                JsonArray entities = body[list] as JsonArray;
+                if (entities == null) {
+                    continue;
+                }
+                foreach (JsonNode entity in entities) {
+                    JsonObject saved = entity as JsonObject;
+                    if (saved == null || !(saved["type"] is JsonValue type) || type.ToString() != "SETTLEMENT"
+                            || !(saved["buildings"] is JsonArray buildings)) {
+                        continue;
+                    }
+                    foreach (JsonNode building in buildings) {
+                        if (building is JsonObject savedBuilding && !savedBuilding.ContainsKey("level")) {
+                            savedBuilding["level"] = 0;
+                        }
+                    }
+                }
+            }
+            body["formatVersion"] = 8;
+            return body;
+        }
 
         /** 6 -> 7: a world from before settlement ownership has every settlement held by its leader. */
         private static JsonObject addSettlementOwners(JsonObject body) {

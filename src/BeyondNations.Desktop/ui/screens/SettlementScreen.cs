@@ -274,11 +274,63 @@ namespace beyondnations.desktop.ui.screens {
                     build.Add(command);
                 }
             }
+            // upgrades are bought with coins too: with the toggle on Pay with Coins,
+            // and on their own once there is nothing left to build here
+            if (payWithCoins || !anyBuilding) {
+                build.AddRange(getUpgradeCommands(simulation, settlement));
+            }
             if (anyBuilding) {
                 build.Add(new WorldCommand(payToggleLabel(payWithCoins), CommandGroup.Build, () => SettlementScreen.payWithCoins = !payWithCoins)
                     .setTooltip(payWithCoins ? PayWithMaterialsTooltip : PayWithCoinsTooltip));
             }
             return build;
+        }
+
+        /** "Upgrade House (1,500)": the coins for the next level of the lowest house here. */
+        public static string upgradeLabel(BuildingType type, int price) {
+            return "Upgrade " + BuildingCatalog.getDisplayName(type) + " (" + BuildingPurchase.formatCoins(price) + ")";
+        }
+
+        /** Whether this is an Upgrade button (getUpgradeCommands), which asks for a second tap as Buy does. */
+        public static bool isUpgrade(WorldCommand command) {
+            return command.getLabel().StartsWith("Upgrade ");
+        }
+
+        /** Whether this button spends coins on a building and so asks for a second tap: Buy or Upgrade. */
+        public static bool isPurchase(WorldCommand command) {
+            return isBuy(command) || isUpgrade(command);
+        }
+
+        /**
+        * The Upgrade buttons (BuildingUpgrades, UpgradeBuildingCommand): one
+        * for each type the settlement has a building of that can still go up
+        * a level, greyed with the reason while the purse falls short or the
+        * level waits for the Kingdom era. None before the Town era, outside
+        * the player's own nation, or once every building is fully upgraded.
+        */
+        public static List<WorldCommand> getUpgradeCommands(Simulation simulation, Settlement settlement) {
+            List<WorldCommand> upgrades = new List<WorldCommand>();
+            Player player = simulation.getPlayer();
+            if (settlement == null || player.getNationId() == null || settlement.getNationId() != player.getNationId()
+                    || player.getCurrentSettlementId() != settlement.getId() || !BuildingUpgrades.areUpgradesUnlocked(settlement)) {
+                return upgrades;
+            }
+            foreach (BuildingType type in WorldCommandBar.BuildOrder) {
+                Building next = BuildingUpgrades.isUpgradable(type) ? BuildingUpgrades.findNext(settlement, type) : null;
+                if (next == null) {
+                    continue;
+                }
+                int level = next.getLevel() + 1;
+                BuildingType chosen = type;
+                string whyNot = BuildingUpgrades.describeWhyNot(settlement, player.getInventory(), type);
+                upgrades.Add(new WorldCommand(upgradeLabel(type, BuildingUpgrades.getPrice(type, level)), CommandGroup.Build, () =>
+                    new UpgradeBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, chosen))
+                    .setEnabled(whyNot == null, whyNot)
+                    // what it does, after why not while greyed (a hover shows the tooltip in place of the reason)
+                    .setTooltip((whyNot == null ? "" : whyNot + " ") + "Level " + level + ": " + BuildingUpgrades.describeEffect(type, level) + ".")
+                    .requireConfirm());
+            }
+            return upgrades;
         }
 
         /** The toggle that turns the building buttons from Build into Buy and back. */
@@ -443,6 +495,48 @@ namespace beyondnations.desktop.ui.screens {
                 lines.Add("Next: " + BuildingCatalog.getDisplayName(next.Value) + ", " + BuildingCatalog.describeCost(next.Value)
                     + ", or " + BuildingPurchase.formatCoins(full) + " coins" + withWhatYouHave + ".");
             }
+            lines.AddRange(describeUpgrades(settlement));
+            return lines;
+        }
+
+        /**
+        * What the next upgrade of each type does and costs: "Upgrade a House
+        * to level 1: room for 6 residents (was 4), 1,500 coins." -- the
+        * button's hover says it too, but a phone has no hover. Before the
+        * Town era, once the settlement is full: "Upgrades come with the
+        * Town era." Nothing for a settlement with no upgradable building.
+        */
+        public static List<string> describeUpgrades(Settlement settlement) {
+            List<string> lines = new List<string>();
+            bool anyUpgradable = false;
+            foreach (BuildingType type in System.Enum.GetValues<BuildingType>()) {
+                if (BuildingUpgrades.isUpgradable(type) && settlement.getNumBuildings(type) > 0) {
+                    anyUpgradable = true;
+                }
+            }
+            if (!anyUpgradable) {
+                return lines;
+            }
+            if (!BuildingUpgrades.areUpgradesUnlocked(settlement)) {
+                if (BuildingPlanner.suggestNext(settlement) == null) {
+                    lines.Add("Upgrades come with the " + Eras.getDisplayName(BuildingUpgrades.eraFor(1)) + " era.");
+                }
+                return lines;
+            }
+            int levels = settlement.getNumUpgrades();
+            if (levels > 0) {
+                lines.Add("Upgrades bought here: " + levels + ".");
+            }
+            foreach (BuildingType type in System.Enum.GetValues<BuildingType>()) {
+                Building next = BuildingUpgrades.isUpgradable(type) ? BuildingUpgrades.findNext(settlement, type) : null;
+                if (next == null) {
+                    continue;
+                }
+                int level = next.getLevel() + 1;
+                lines.Add("Upgrade a " + BuildingCatalog.getDisplayName(type) + " to level " + level + ": "
+                    + BuildingUpgrades.describeEffect(type, level) + ", " + BuildingPurchase.formatCoins(BuildingUpgrades.getPrice(type, level)) + " coins"
+                    + (BuildingUpgrades.isLevelUnlocked(settlement, level) ? "." : ", in the " + Eras.getDisplayName(BuildingUpgrades.eraFor(level)) + " era."));
+            }
             return lines;
         }
 
@@ -584,9 +678,8 @@ namespace beyondnations.desktop.ui.screens {
             float y = System.MathF.Max(System.MathF.Max(height / 18f, UiScale.px(12f)), Overlay.touchCloseBottom());
 
             Overlay.beginFullScreen("##settlement-screen", width, height);
-            Overlay.dimBackground(width, height);
-            // and darker again: the world's floating labels and the well showed through the text (playtest 0.8.0 s07)
-            ImGui.GetWindowDrawList().AddRectFilled(Vector2.Zero, new Vector2(width, height), ImGui.GetColorU32(new Vector4(0.04f, 0.05f, 0.07f, 0.6f)));
+            // dimmed and darker again: the world's floating labels and the well showed through the text (playtest 0.8.0 s07)
+            Overlay.panelBackground(width, height);
             UiAction action = UiAction.None;
             System.Action pending = null;
 
@@ -667,68 +760,67 @@ namespace beyondnations.desktop.ui.screens {
             float headingStep = lineHeight * 0.8f;
             float textStep = lineHeight * 0.68f;
             List<Section> sections = getSections(simulation, settlement);
-            List<List<string>> wrapped = new List<List<string>>();
+            // each wrapped row, and whether it carries on the line above it (kept in one column)
+            List<List<(string text, bool continues)>> wrapped = new List<List<(string text, bool continues)>>();
             foreach (Section section in sections) {
-                List<string> lines = new List<string>();
+                List<(string text, bool continues)> lines = new List<(string text, bool continues)>();
                 foreach (string line in section.lines) {
-                    lines.AddRange(TextWrap.wrap(line, columnWidth, text => ImGui.CalcTextSize(text).X * textScale));
+                    List<string> parts = TextWrap.wrap(line, columnWidth, text => ImGui.CalcTextSize(text).X * textScale);
+                    for (int j = 0; j < parts.Count; j++) {
+                        lines.Add((parts[j], j > 0));
+                    }
                 }
                 wrapped.Add(lines);
             }
             float top = y + gap;
             float bottom = actionsTop - gap;
-            if (twoColumns) {
-                // ownership, people and buildings on the left; stores and market on the right
-                float leftY = top;
-                float rightY = top;
-                for (int i = 0; i < sections.Count; i++) {
-                    bool right = i >= 3;
-                    float x = right ? left + columnWidth + columnGap : left;
-                    float sy = right ? rightY : leftY;
-                    sy = drawSection(sections[i].heading, wrapped[i], x, sy, bottom, headingSize, textSize, headingStep, textStep, gap);
-                    if (right) {
-                        rightY = sy;
-                    } else {
-                        leftY = sy;
-                    }
+            // the rows flow down the first column and on into the second, as a newspaper's do,
+            // so a long Buildings section carries over instead of being cut off; scrolled by whole rows
+            List<bool> headings = new List<bool>();
+            List<bool> continues = new List<bool>();
+            List<string> rows = new List<string>();
+            for (int i = 0; i < sections.Count; i++) {
+                headings.Add(true);
+                continues.Add(false);
+                rows.Add(sections[i].heading);
+                for (int j = 0; j < wrapped[i].Count; j++) {
+                    headings.Add(false);
+                    continues.Add(wrapped[i][j].continues);
+                    rows.Add(wrapped[i][j].text);
                 }
-            } else {
-                // one column, scrolled by whole lines
-                List<KeyValuePair<bool, string>> flat = new List<KeyValuePair<bool, string>>();
-                for (int i = 0; i < sections.Count; i++) {
-                    flat.Add(new KeyValuePair<bool, string>(true, sections[i].heading));
-                    foreach (string line in wrapped[i]) {
-                        flat.Add(new KeyValuePair<bool, string>(false, line));
-                    }
+            }
+            int columns = twoColumns ? 2 : 1;
+            float sectionGap = twoColumns ? gap : 0f;
+            // the last row is kept for "Scroll for more" when it does not all fit
+            float flowBottom = bottom;
+            if (layoutRows(headings, continues, 0, bottom - top, columns, headingStep, textStep, sectionGap).Count < rows.Count) {
+                flowBottom -= textStep;
+            }
+            float flowHeight = flowBottom - top;
+            int lastFirst = 0;
+            while (lastFirst < rows.Count - 1 && layoutRows(headings, continues, lastFirst, flowHeight, columns, headingStep, textStep, sectionGap).Count < rows.Count - lastFirst) {
+                lastFirst++;
+            }
+            firstLine = System.Math.Clamp(firstLine + readScroll(top, flowBottom, textStep), 0, lastFirst);
+            List<RowPlace> placed = layoutSections(headings, continues, firstLine, flowHeight, columns, headingStep, textStep, sectionGap);
+            foreach (RowPlace place in placed) {
+                float x = left + (columnWidth + columnGap) * place.column;
+                if (headings[place.row]) {
+                    ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(HeadingColour));
+                    Overlay.textAtScaled(rows[place.row], headingSize, x, top + place.y);
+                    ImGui.PopStyleColor();
+                } else {
+                    Overlay.textAtScaled(rows[place.row], textSize, x, top + place.y);
                 }
-                // the last line is kept for "Scroll for more"
-                bottom -= textStep;
-                int fitting = System.Math.Max(1, (int) ((bottom - top) / textStep) - 1);
-                firstLine = System.Math.Clamp(firstLine + readScroll(top, bottom, textStep), 0, System.Math.Max(0, flat.Count - fitting));
-                float sy = top;
-                for (int i = firstLine; i < flat.Count; i++) {
-                    float step = flat[i].Key ? headingStep : textStep;
-                    if (sy + step > bottom) {
-                        break;
-                    }
-                    if (flat[i].Key) {
-                        ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(HeadingColour));
-                        Overlay.textAtScaled(flat[i].Value, headingSize, left, sy);
-                        ImGui.PopStyleColor();
-                    } else {
-                        Overlay.textAtScaled(flat[i].Value, textSize, left, sy);
-                    }
-                    sy += step;
-                }
-                if (firstLine + fitting < flat.Count) {
-                    Overlay.textCentered(TouchLayout.isActive() ? "Drag for more" : "Scroll for more", height / 42f, bottom + textStep * 0.4f, width);
-                }
+            }
+            if (firstLine + placed.Count < rows.Count) {
+                Overlay.textCentered(TouchLayout.isActive() ? "Drag for more" : "Scroll for more", height / 42f, flowBottom + textStep * 0.4f, width);
             }
 
             float rowWidth = width - left * 2f;
             float buildY = actionsTop;
             if (build.Count > 0) {
-                string note = payWithCoins ? buyNote(player) : BuildNote;
+                string note = payWithCoins || (payToggle == null && build.Exists(isUpgrade)) ? buyNote(player) : BuildNote;
                 if (payToggle == null) {
                     Overlay.textCentered(note, height / 40f, buildY, width);
                 } else {
@@ -764,11 +856,11 @@ namespace beyondnations.desktop.ui.screens {
                         ImGui.BeginDisabled();
                     }
                     // a purchase of thousands takes a second tap: the first arms it and shows the price
-                    bool armed = isBuy(command) && command.isEnabled() && command.getLabel() == armedBuy;
+                    bool armed = isPurchase(command) && command.isEnabled() && command.getLabel() == armedBuy;
                     string shown = armed ? confirmLabel(command.getLabel()) : command.getLabel();
                     bool pressed = Overlay.buttonAt(fitLabel(shown, each) + "##settlement-build-" + i, bx, by, each, buttonHeight);
                     // what a Buy pays for, or why it is greyed (no hover on a touch screen: a tap says why, below)
-                    string hover = isBuy(command) ? command.getTooltip() : null;
+                    string hover = isPurchase(command) ? command.getTooltip() : null;
                     if (hover != null && !TouchLayout.isActive() && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                         ImGui.BeginTooltip();
                         ImGui.TextUnformatted(hover);
@@ -780,7 +872,7 @@ namespace beyondnations.desktop.ui.screens {
                         if (ImGui.IsMouseClicked(ImGuiMouseButton.Left) && ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                             WorldHud.explainDisabled(command, player.getStatus());
                         }
-                    } else if (pressed && isBuy(command) && !armed) {
+                    } else if (pressed && isPurchase(command) && !armed) {
                         armedBuy = command.getLabel();
                         armedAt = now;
                     } else if (pressed) {
@@ -878,23 +970,102 @@ namespace beyondnations.desktop.ui.screens {
             return action;
         }
 
-        private static float drawSection(string heading, List<string> lines, float x, float y, float bottom,
-                float headingSize, float textSize, float headingStep, float textStep, float gap) {
-            if (y + headingStep > bottom) {
-                return y;
+        /** Where a row of the sections goes: its index, its column, and its top below the sections' top. */
+        public readonly struct RowPlace {
+            public readonly int row;
+            public readonly int column;
+            public readonly float y;
+
+            public RowPlace(int row, int column, float y) {
+                this.row = row;
+                this.column = column;
+                this.y = y;
             }
-            ImGui.PushStyleColor(ImGuiCol.Text, ImGui.GetColorU32(HeadingColour));
-            Overlay.textAtScaled(heading, headingSize, x, y);
-            ImGui.PopStyleColor();
-            y += headingStep;
-            foreach (string line in lines) {
-                if (y + textStep > bottom) {
+        }
+
+        /**
+        * Lays the rows from first on down the columns, each height tall: a
+        * row that does not fit starts the next column, a line wrapped over
+        * several rows (continues: the row carries on the one above) stays in
+        * one column, a heading never ends a column without its first line,
+        * and a heading below another row has sectionGap above it. Returns
+        * the rows placed, in order; those left over need a scroll. With
+        * keepSections a column breaks only between sections, and a section
+        * taller than a column ends the layout there. Measured only, so a
+        * test can check it.
+        */
+        public static List<RowPlace> layoutRows(IList<bool> headings, IList<bool> continues, int first, float height, int columns,
+                float headingStep, float textStep, float sectionGap, bool keepSections = false) {
+            List<RowPlace> placed = new List<RowPlace>();
+            int column = 0;
+            float y = 0f;
+            for (int i = first; i < headings.Count; i++) {
+                bool heading = headings[i];
+                float lead = heading && y > 0f ? sectionGap : 0f;
+                float step = heading ? headingStep : textStep;
+                // a heading keeps the first line under it, and a line its wrapped rows, unless they fill a column
+                int start = heading ? i + 1 : i;
+                int end = start;
+                if (start < headings.Count && !headings[start] && (heading || !continues[i])) {
+                    end = start + 1;
+                    while (end < headings.Count && !headings[end] && continues[end]) {
+                        end++;
+                    }
+                }
+                if (heading && keepSections) {
+                    // the whole section, so a column breaks only between sections
+                    end = i + 1;
+                    while (end < headings.Count && !headings[end]) {
+                        end++;
+                    }
+                }
+                float need = (heading ? step : 0f) + textStep * (end - start);
+                if (keepSections && heading && need > height) {
+                    // a section taller than a column: not kept whole, so the rest is not placed
                     break;
                 }
-                Overlay.textAtScaled(line, textSize, x, y);
-                y += textStep;
+                if (need > height || need == 0f) {
+                    need = step;
+                }
+                if (y + lead + need > height) {
+                    column++;
+                    y = 0f;
+                    lead = 0f;
+                    if (column >= columns || need > height) {
+                        break;
+                    }
+                }
+                placed.Add(new RowPlace(i, column, y + lead));
+                y += lead + step;
             }
-            return y + gap;
+            return placed;
+        }
+
+        /**
+        * layoutRows, balanced: from the top, when every section fits whole in
+        * a column, the columns are made as even as they can be with each
+        * section kept whole (Ownership, People and Buildings on the left,
+        * Stores and Market on the right, as a rule). When they do not, or
+        * once scrolled, the rows flow on from one column into the next.
+        */
+        public static List<RowPlace> layoutSections(IList<bool> headings, IList<bool> continues, int first, float height, int columns,
+                float headingStep, float textStep, float sectionGap) {
+            if (first == 0 && columns > 1
+                    && layoutRows(headings, continues, 0, height, columns, headingStep, textStep, sectionGap, true).Count == headings.Count) {
+                // the shortest column height that still holds them all
+                float low = 0f;
+                float high = height;
+                for (int i = 0; i < 24; i++) {
+                    float mid = (low + high) / 2f;
+                    if (layoutRows(headings, continues, 0, mid, columns, headingStep, textStep, sectionGap, true).Count == headings.Count) {
+                        high = mid;
+                    } else {
+                        low = mid;
+                    }
+                }
+                return layoutRows(headings, continues, 0, high, columns, headingStep, textStep, sectionGap, true);
+            }
+            return layoutRows(headings, continues, first, height, columns, headingStep, textStep, sectionGap);
         }
 
         /** The label cut with "..." to fit the width, as the command bar cuts a long name. */

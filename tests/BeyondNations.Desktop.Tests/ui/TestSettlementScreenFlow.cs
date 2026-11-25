@@ -252,6 +252,83 @@ namespace beyondnationstests.desktop.ui {
             SettlementScreens.beforeDraw(null, screens);
         }
 
+        /**
+        * The coin sink once the slots are full (building upgrades): with
+        * nothing left to build, the Upgrade buttons stand on their own,
+        * greyed with the reason (no coins; level 2 waits for the Kingdom),
+        * and Upgrade raises a building a level for its price.
+        */
+        [Fact]
+        public void testAFullSettlement_OffersUpgrades_GreyedWithTheReason() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            Player player = simulation.getPlayer();
+            enter(simulation, camp, screens);
+            player.getInventory().clear();
+            camp.setBuildingEra(Era.VILLAGE);
+            foreach (BuildingType type in new[] { BuildingType.WORKSHOP, BuildingType.STOREHOUSE, BuildingType.STOREHOUSE,
+                    BuildingType.FARM, BuildingType.FARM, BuildingType.FARM, BuildingType.FARM }) {
+                Assert.True(camp.addBuilding(type));
+            }
+            while (camp.addBuilding(BuildingType.HOUSE)) {
+            }
+            Assert.Null(BuildingPlanner.suggestNext(camp));
+
+            // the Village era: no upgrades yet, and the screen says when they come
+            Assert.DoesNotContain(SettlementScreen.getBuildCommands(simulation, camp, false), SettlementScreen.isUpgrade);
+            Assert.Contains("Upgrades come with the Town era.", SettlementScreen.describeBuildings(camp));
+
+            camp.setBuildingEra(Era.TOWN);
+            List<WorldCommand> build = SettlementScreen.getBuildCommands(simulation, camp, false);
+            // nothing to build, so no Pay toggle: the upgrades stand on their own
+            Assert.DoesNotContain(build, SettlementScreen.isPayToggle);
+            WorldCommand house = build.Find(c => c.getLabel() == SettlementScreen.upgradeLabel(BuildingType.HOUSE, 1500));
+            Assert.NotNull(house);
+            Assert.True(SettlementScreen.isPurchase(house));
+            Assert.False(house.isEnabled());
+            Assert.Equal("Needs 1,500 coins; you have 0.", house.getDisabledReason());
+            Assert.Equal("Needs 1,500 coins; you have 0. Level 1: room for 6 residents (was 4).", house.getTooltip());
+            Assert.Contains(build, c => c.getLabel() == SettlementScreen.upgradeLabel(BuildingType.FARM, 1200));
+            Assert.Contains(build, c => c.getLabel() == SettlementScreen.upgradeLabel(BuildingType.STOREHOUSE, 2000));
+            Assert.DoesNotContain(build, c => c.getLabel().StartsWith("Upgrade Workshop"));
+            Assert.Contains("Upgrade a House to level 1: room for 6 residents (was 4), 1,500 coins.", SettlementScreen.describeBuildings(camp));
+
+            int cap = camp.getResidentCap();
+            player.getInventory().addItem(ItemType.COIN, 1500);
+            house = SettlementScreen.getBuildCommands(simulation, camp, false).Find(c => c.getLabel() == SettlementScreen.upgradeLabel(BuildingType.HOUSE, 1500));
+            Assert.True(house.isEnabled());
+            Assert.Equal("Confirm: 1,500 coins", SettlementScreen.confirmLabel(house.getLabel()));
+            house.execute();
+            Assert.Equal(cap + 2, camp.getResidentCap());
+            Assert.Equal(0, player.getInventory().getNumItems(ItemType.COIN));
+            Assert.StartsWith("House upgraded to level 1", player.getStatus().getStatus());
+
+            // every house at level 1: the next is level 2, which waits for the Kingdom era
+            player.getInventory().addItem(ItemType.COIN, 100000);
+            while (BuildingUpgrades.findNext(camp, BuildingType.HOUSE).getLevel() == 0) {
+                Assert.True(new UpgradeBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, BuildingType.HOUSE));
+            }
+            house = SettlementScreen.getBuildCommands(simulation, camp, false).Find(c => c.getLabel() == SettlementScreen.upgradeLabel(BuildingType.HOUSE, 3000));
+            Assert.NotNull(house);
+            Assert.False(house.isEnabled());
+            Assert.Equal("Level 2 comes with the Kingdom era.", house.getDisabledReason());
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
+        [Fact]
+        public void testPayWithCoins_AlsoOffersUpgrades_WhileThereIsRoomToBuild() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            enter(simulation, camp, screens);
+            camp.setBuildingEra(Era.TOWN);
+            Assert.True(camp.addBuilding(BuildingType.FARM));
+
+            Assert.DoesNotContain(SettlementScreen.getBuildCommands(simulation, camp, false), SettlementScreen.isUpgrade);
+            List<WorldCommand> coins = SettlementScreen.getBuildCommands(simulation, camp, true);
+            Assert.Contains(coins, c => c.getLabel() == SettlementScreen.upgradeLabel(BuildingType.FARM, 1200));
+            // only the types the settlement has
+            Assert.DoesNotContain(coins, c => c.getLabel().StartsWith("Upgrade House"));
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
         [Fact]
         public void testThePayToggle_FlipsTheScreensMode() {
             Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);

@@ -126,7 +126,7 @@ namespace beyondnationstests {
                 Derived = new[] { "nationResources", "nationRepository" },
             },
             [typeof(Stall)] = saved("ownerId", "inventory"),
-            [typeof(Building)] = saved("type", "slot"),
+            [typeof(Building)] = saved("type", "slot", "level"),
             [typeof(NationOrder)] = saved("nationId", "itemType", "quantity", "delivered"),
             [typeof(Nation)] = new Entry {
                 Saved = new[] { "random", "id", "name", "leaderId", "members", "roles", "color", "settlements" },
@@ -187,6 +187,13 @@ namespace beyondnationstests {
                 // the current ambition's goal comes back from its saved progress counter (ObjectiveTracker.load);
                 // a finished one's is not saved, and shows its era's floor after a load (ScaledAmbition)
                 Transient = new[] { "goal" },
+            },
+            [typeof(VictoryAmbition)] = new Entry {
+                // the catalog's "Win the game" text and reward, rebuilt with the ambition
+                Derived = new[] { "winTitle", "winHint", "winReward" },
+                // whether it was made after a victory: looked at again on the first evaluation, or brought
+                // back with a post-victory goal's saved counter (VictoryAmbition.restore)
+                Transient = new[] { "decided", "afterVictory" },
             },
             [typeof(AmbitionGoal)] = new Entry { Derived = new[] { "label", "target", "title", "measure", "hint", "reward" } },
             [typeof(ObjectiveReward)] = new Entry { Derived = new[] { "items" } },

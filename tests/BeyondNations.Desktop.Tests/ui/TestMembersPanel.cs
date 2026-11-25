@@ -140,6 +140,41 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testNoHeir_WithNoStrangersLeft_DoesNotSayToBefriendAStranger() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(simulation.getPlayer());
+            // every other pawn in the world is sworn to some other nation
+            foreach (Entity entity in simulation.getEntityRepository().getEntities()) {
+                if (entity is Pawn pawn && pawn.getNationId() == null) {
+                    pawn.setNationId(new NationId());
+                }
+            }
+            simulation.getEraTracker().countPeople(simulation);
+            Assert.Equal(0, simulation.getEraTracker().getStrangersLeft());
+
+            List<string> lines = MembersPanel.getLines(simulation);
+
+            Assert.StartsWith("No heir: if you die now, your line ends. No strangers are left", lines[1]);
+            Assert.DoesNotContain("befriend a stranger", lines[1]);
+            Assert.Equal(ObjectiveCatalog.membersHint(simulation), MembersPanel.howToGainMembers(simulation));
+            Assert.Contains(MembersPanel.howToGainMembers(simulation), LawsPanel.describeSuccession(simulation));
+        }
+
+        [Fact]
+        public void testHowToGainMembers_WhileStrangersAreLeft_SaysToBefriendOne() {
+            GameConfig config = new GameConfig();
+            config.setWorldSeed(42);
+            Simulation simulation = new Simulation(config);
+            simulation.getEntityRepository().addEntity(new Pawn(new System.Numerics.Vector3(3, 0, 3), "Stranger", simulation.getRandom()));
+            simulation.getEraTracker().countPeople(simulation);
+            Assert.True(simulation.getEraTracker().getStrangersLeft() > 0);
+            Assert.Equal(MembersPanel.HowToGainMembers, MembersPanel.howToGainMembers(simulation));
+        }
+
+        [Fact]
         public void testWithoutANation_TheTabSaysHowToGetOne() {
             GameConfig config = new GameConfig();
             config.setWorldSeed(42);

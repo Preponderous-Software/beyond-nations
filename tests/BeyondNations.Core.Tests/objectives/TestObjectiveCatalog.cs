@@ -363,6 +363,37 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testWinTheGame_IsMetOnceAVictoryComes() {
+            makePlayerLeader();
+            Objective win = ObjectiveCatalog.ambition(3, Era.KINGDOM);
+            Assert.False(win.evaluate(simulation).isComplete());
+            simulation.getEraTracker().stageEnding(simulation, Era.KINGDOM, RunOutcome.PROSPERITY);
+            Assert.True(win.evaluate(simulation).isComplete());
+            Assert.Equal("Win the game", win.getTitle());
+        }
+
+        [Fact]
+        public void testAfterAVictory_TheKingdomLap_AsksForMoreBuildings_NotTheWinAgain() {
+            makePlayerLeader();
+            simulation.getEraTracker().stageEnding(simulation, Era.KINGDOM, RunOutcome.PROSPERITY);
+            Assert.True(VictoryRules.isVictory(simulation.getEraTracker().getOutcome()));
+            for (int lap = 0; lap < 3; lap++) {
+                Objective ambition = ObjectiveCatalog.ambition(3 + lap * ObjectiveCatalog.AmbitionCategoryCount, Era.KINGDOM);
+                ObjectiveProgress progress = ambition.evaluate(simulation);
+                Assert.False(progress.isComplete(), "lap " + lap);
+                Assert.Equal("Buildings", progress.getLabel());
+                Assert.StartsWith("Put up ", ambition.getTitle());
+                Assert.False(ambition.getReward().isEmpty());
+                Assert.DoesNotContain("Dominion", ambition.getHint(simulation));
+
+                // a save brings the post-victory goal back from its counter
+                Objective rebuilt = ObjectiveCatalog.ambition(3 + lap * ObjectiveCatalog.AmbitionCategoryCount, Era.KINGDOM);
+                Assert.True(((ScaledAmbition) rebuilt).restore(progress));
+                Assert.Equal(ambition.getTitle(), rebuilt.getTitle());
+            }
+        }
+
+        [Fact]
         public void testSettlementAmbitions_NeverAskPastTheEraLimit() {
             for (int index = 2; index < 40; index += ObjectiveCatalog.AmbitionCategoryCount) {
                 foreach (Era era in new[] { Era.CAMP, Era.VILLAGE, Era.TOWN }) {

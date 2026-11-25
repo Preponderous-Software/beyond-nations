@@ -31,7 +31,6 @@ namespace beyondnations.desktop.ui.screens {
         private const float SideMargin = 10f;
         private const float DesignBoxWidth = 200f;
         private const float BoxGap = 10f;
-        public const string ControlsButtonLabel = "? Controls";
 
         /**
         * Energy below which the HUD warns that the player is going hungry,
@@ -233,6 +232,15 @@ namespace beyondnations.desktop.ui.screens {
                 : null;
             float columnTop = stackCentre ? centreY + layout.Gap * 0.5f : y;
             float chipRoom = stackCentre ? (width - layout.Margin * 2f) : layout.BoxWidth * 1.4f;
+            if (!stackCentre) {
+                // beside the centred banners (hunger, realm alert, status), never under them:
+                // narrower to keep out of their band, or below them when even a box's width does not fit
+                chipRoom = chipRoomBeside(layout, width, centreWidth);
+                if (chipRoom < layout.BoxWidth) {
+                    chipRoom = layout.BoxWidth * 1.4f;
+                    columnTop = System.MathF.Max(y, centreY + layout.Gap * 0.5f);
+                }
+            }
             float leftBottom = drawContextChips(simulation, layout, layout.LeftX, columnTop, chipRoom, stackCentre, ref action);
             if (debugMode) {
                 DebugInfoBox debugInfoBox = new DebugInfoBox(simulation);
@@ -265,7 +273,12 @@ namespace beyondnations.desktop.ui.screens {
                 Danger = player.getEnergy() < StarvingEnergy || EraBox.siegeUnderWay(simulation) != null,
             };
             overlays.update(now, context);
-            drawOverlay(width, height, layout, System.MathF.Max(contextBottom, centreY) + layout.Gap, centreY + layout.Gap, now, touch);
+            // a toast or card wider than the band clear of the chips starts below them
+            float overlayTopEdge = System.MathF.Max(contextBottom, centreY);
+            if (!stackCentre && overlaysChips(layout, width, chipRoom, FeelDirector.hintCardWidth(width))) {
+                overlayTopEdge = System.MathF.Max(overlayTopEdge, leftBottom);
+            }
+            drawOverlay(width, height, layout, overlayTopEdge + layout.Gap, centreY + layout.Gap, now, touch);
             hudPanels.end();
 
             // the caravan dispatch panel, when Send Caravan has opened it, over the rest
@@ -358,7 +371,7 @@ namespace beyondnations.desktop.ui.screens {
             Region region = simulation.getRegionMap().regionAt(player.getPosition());
             string stale = feed.getLandKey();
             OverlayItem toast = feed.land(claim?.getNationName(), own, RegionCatalog.name(region), RegionCatalog.describe(region),
-                player.isCurrentlyInSettlement());
+                player.isCurrentlyInSettlement(), now);
             if (toast != null) {
                 if (stale != null) {
                     overlays.withdraw(stale);
@@ -637,6 +650,23 @@ namespace beyondnations.desktop.ui.screens {
             return bottom;
         }
 
+        /**
+        * How wide the chips down the left may be on a wide screen, where the
+        * centred banners (hunger, realm alert, status) share their rows:
+        * up to 1.4 boxes, but never into the centred band, so a long chip
+        * is not drawn under a banner. Less than a box's width means the
+        * band leaves no room beside it, and the chips go below the banners.
+        */
+        public static float chipRoomBeside(Layout layout, float width, float centreWidth) {
+            float centreLeft = (width - centreWidth) / 2f;
+            return System.MathF.Min(layout.BoxWidth * 1.4f, centreLeft - layout.Gap - layout.LeftX);
+        }
+
+        /** Whether a centred item itemWidth wide would reach over chips chipRoom wide down the left. */
+        public static bool overlaysChips(Layout layout, float width, float chipRoom, float itemWidth) {
+            return (width - itemWidth) / 2f < layout.LeftX + chipRoom + layout.Gap;
+        }
+
         /** What the player carries, most first, coins left out (they are a meter). */
         public static List<KeyValuePair<string, int>> carried(Inventory inventory) {
             List<KeyValuePair<string, int>> items = new List<KeyValuePair<string, int>>();
@@ -838,121 +868,6 @@ namespace beyondnations.desktop.ui.screens {
                 needed += box.estimateHeight(boxWidth, metrics);
             }
             return needed;
-        }
-
-        /**
-        * Fits a settlement's four boxes into a right-hand column height
-        * high. They stay in full when they fit; otherwise the market, then
-        * the season, then the player box drop their least needed lines,
-        * until they fit; and when even that
-        * is too tall, the market lists only the prices the room left allows
-        * ("+2 more goods"), so the season box is never pushed over the
-        * player box (#350: at 960x540 and 1280x720 a growing price list and
-        * wrapped lines did just that).
-        */
-        public static void fitSettlementColumn(float height, float gap, float boxWidth, InfoBox.Metrics metrics,
-                SettlementInfoBox settlement, MarketInfoBox market, SeasonInfoBox season, PlayerInfoBox player) {
-            market.setMaxGoods(-1);
-            foreach (InfoBox box in new InfoBox[] { market, season, player }) {
-                box.setCompact(false);
-            }
-            // one box at a time, the tallest first, so a column that is
-            // only a little short keeps the season's region and the player's
-            // details (1280x720)
-            foreach (InfoBox box in new InfoBox[] { market, season, player }) {
-                if (fits(height, gap, boxWidth, metrics, settlement, market, season, player)) {
-                    return;
-                }
-                box.setCompact(true);
-            }
-            if (fits(height, gap, boxWidth, metrics, settlement, market, season, player)) {
-                return;
-            }
-            float rest = stackedHeight(gap, boxWidth, metrics, settlement, season, player) + gap;
-            market.fitHeight(height - rest, boxWidth, metrics);
-        }
-
-        /**
-        * A phone's right-hand column inside a settlement (#466): the touch
-        * controls take the bottom of the screen, and the settlement's four
-        * boxes ran under them, the player box (with the energy bar) off the
-        * bottom. The player box and the season (null when it is drawn
-        * elsewhere) always stay; the boxes give way as on the desktop
-        * (fitSettlementColumn), and when that is not enough the market box
-        * is left out, then the settlement box. What they show is a tap away:
-        * Trade at Market and the Settlement button.
-        */
-        public static void fitTouchColumn(float height, float gap, float boxWidth, InfoBox.Metrics metrics,
-                SettlementInfoBox settlement, MarketInfoBox market, SeasonInfoBox season, PlayerInfoBox player,
-                out bool showSettlement, out bool showMarket) {
-            List<InfoBox> required = new List<InfoBox>();
-            if (season != null) {
-                required.Add(season);
-            }
-            required.Add(player);
-            List<InfoBox> all = new List<InfoBox> { settlement, market };
-            all.AddRange(required);
-            showSettlement = true;
-            showMarket = true;
-            market.setMaxGoods(-1);
-            foreach (InfoBox box in all) {
-                box.setCompact(false);
-            }
-            List<InfoBox> giveWay = new List<InfoBox> { market };
-            giveWay.AddRange(required);
-            foreach (InfoBox box in giveWay) {
-                if (fits(height, gap, boxWidth, metrics, all.ToArray())) {
-                    return;
-                }
-                box.setCompact(true);
-            }
-            if (fits(height, gap, boxWidth, metrics, all.ToArray())) {
-                return;
-            }
-            // the market with fewer prices, while it still lists some
-            List<InfoBox> rest = new List<InfoBox> { settlement };
-            rest.AddRange(required);
-            market.fitHeight(height - stackedHeight(gap, boxWidth, metrics, rest.ToArray()) - gap, boxWidth, metrics);
-            if (market.getShownGoods().Count > 0 && fits(height, gap, boxWidth, metrics, all.ToArray())) {
-                return;
-            }
-            market.setMaxGoods(-1);
-            showMarket = false;
-            if (fits(height, gap, boxWidth, metrics, rest.ToArray())) {
-                return;
-            }
-            showSettlement = false;
-        }
-
-        /** Where the Season box goes on a phone on its side. */
-        public enum SeasonPlace { Right, Left }
-
-        /**
-        * Where the Season box goes on a phone on its side, and which of it
-        * and the player box are compact. In order: both in full with the
-        * season above the player box (right); the season in full under the
-        * objective tracker (left); the season compact, right then left; then
-        * the player box compact too, right then left. With room nowhere it
-        * goes left, compact (it ran under the joystick in full, #465).
-        * rightHeight is the right column's height; leftRoom the height free
-        * under the tracker.
-        */
-        public static SeasonPlace placeTouchSeason(InfoBox season, InfoBox player, float boxWidth, float gap, InfoBox.Metrics metrics,
-                float rightHeight, float leftRoom) {
-            bool[][] tries = { new[] { false, false }, new[] { true, false }, new[] { true, true } };
-            foreach (bool[] compact in tries) {
-                season.setCompact(compact[0]);
-                player.setCompact(compact[1]);
-                if (fits(rightHeight, gap, boxWidth, metrics, season, player)) {
-                    return SeasonPlace.Right;
-                }
-                if (!compact[1] && fits(leftRoom, gap, boxWidth, metrics, season)) {
-                    return SeasonPlace.Left;
-                }
-            }
-            season.setCompact(true);
-            player.setCompact(false);
-            return SeasonPlace.Left;
         }
 
         /**

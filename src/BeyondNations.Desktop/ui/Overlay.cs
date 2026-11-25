@@ -61,6 +61,20 @@ namespace beyondnations.desktop.ui {
         }
 
         /**
+        * The backing of a full screen of text and buttons (the Settlement
+        * and Nations screens): dimBackground and a dark tint over it, so the
+        * world's floating labels, trees and the player do not show through
+        * the text, nor through the gaps in a row of buttons, on a phone.
+        */
+        public static void panelBackground(float width, float height) {
+            dimBackground(width, height);
+            ImGui.GetWindowDrawList().AddRectFilled(Vector2.Zero, new Vector2(width, height), ImGui.GetColorU32(PanelTint));
+        }
+
+        /** The tint panelBackground lays over the dimmed world. */
+        public static readonly Vector4 PanelTint = new Vector4(0.04f, 0.05f, 0.07f, 0.6f);
+
+        /**
         * The height of one line of text plus the spacing after it, and of a
         * framed widget such as a button, worked out from the style rather
         * than asked of ImGui: the browser build links cimgui statically and

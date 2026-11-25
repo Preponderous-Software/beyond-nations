@@ -175,11 +175,16 @@ namespace beyondnations {
                 default: {
                     Era? next = Eras.next(era);
                     if (next == null) {
-                        return new Objective(id, "Win the game",
-                            s => ObjectiveProgress.flag(VictoryRules.isVictory(s.getEraTracker().getOutcome())),
+                        // once won, the run goes on: a lap asks the realm to keep growing instead (VictoryAmbition)
+                        int buildingsFloor = 3 + 3 * tier;
+                        ObjectiveReward buildingsReward = reward.and(ItemType.STONE, BuildingCatalog.getStoneCost(BuildingType.HOUSE));
+                        return new VictoryAmbition(id, "Win the game",
                             "Dominion (most settlements), Prosperity (" + VictoryRules.ProsperityFunds + " funds, "
                                 + VictoryRules.ProsperityMembers + " members) or Concord (allied with every nation).",
-                            reward, true);
+                            reward,
+                            buildingsGoal(buildingsFloor, buildingsReward),
+                            s => buildingsGoal(System.Math.Max(buildingsFloor, nationBuildings(s) + BuildingsStep), buildingsReward),
+                            (label, target) => label == "Buildings" ? buildingsGoal(target, buildingsReward) : null);
                     }
                     Era target = next.Value;
                     return new Objective(id, "Reach the " + Eras.getDisplayName(target) + " era",
