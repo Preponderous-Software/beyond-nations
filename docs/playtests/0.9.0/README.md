@@ -1,13 +1,13 @@
 # Playtest evidence: 0.9.0
 
-This is the playtest of the 2026-11-24 polish pass, which is expected to become 0.9.0. It was run on uncommitted trees on top of `develop` at **`2167959c`**. The game reported its version as `0.8.1-SNAPSHOT`; the version is bumped when the release is cut.
+This is the playtest of the 2026-11-24 polish pass, which was released as 0.9.0. It was run on uncommitted trees on top of `develop` at **`2167959c`**. The game reported its version as `0.8.1-SNAPSHOT`; the version is bumped when the release is cut.
 
 It was one playtest agent running sessions one after another, not the 10-session parallel run of earlier releases. The run used [playtester](https://github.com/Preponderous-Software/playtester) with its `beyond-nations` profile ([docs/PLAYTESTING.md](../../PLAYTESTING.md)), software rendering on a headless display.
 
 | | |
 | --- | --- |
 | Builds tested | `bn-integration`: develop + every gameplay lane, no contextual HUD. `bn-full`: the same plus the contextual HUD, Journal and unlocks. Each session's `report.json` gives its tree in `build.commit`. |
-| Released as | 0.9.0 (expected). If the release turns out to be a different version, rename this directory to match ([docs/RELEASING.md](../../RELEASING.md)). |
+| Released as | 0.9.0 (merged as #523, `4ce2fe54`) |
 | Date | 2026-11-24, about 14:40 to 16:40 MST |
 | Sessions | w1, w2 (bn-integration); f1, w2f, w3 (bn-full) |
 | Results | [summary.md](summary.md) and [summary.json](summary.json): 27 findings in 25 groups |
