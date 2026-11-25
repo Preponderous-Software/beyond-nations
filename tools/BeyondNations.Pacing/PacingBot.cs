@@ -462,6 +462,9 @@ namespace beyondnations.pacing {
                 generalPlay();
                 return;
             }
+            if (buyBuilding(target, wanted.Value)) {
+                return;
+            }
             Inventory stockpile = target.getInventory();
             if (WorldView.wood(simulation) + stockpile.getNumItems(ItemType.WOOD) < BuildingCatalog.getWoodCost(wanted.Value)) {
                 gather(EntityType.TREE);
@@ -481,6 +484,93 @@ namespace beyondnations.pacing {
                 interact();
             }
         }
+
+        /**
+        * A bot that does not court builds up and lets the world bring the
+        * members: it puts up the building the settlement needs next (houses
+        * make room for settlers) with the wood and stone it carries when they
+        * cover it, and otherwise buys it with coins (buyBuilding below). It
+        * used to only earn, and sat on thousands of coins and a pack of stone
+        * with its settlement three buildings big. False when there is nothing
+        * it can build or buy now.
+        */
+        private bool growSettlement() {
+            // not in the opening: the Camp era's arc builds what it asks for, and
+            // houses then would take in the strangers the first day keeps for courting
+            if (!WorldView.isLeader(simulation) || simulation.getEraTracker().getEra() == Era.CAMP) {
+                return false;
+            }
+            Settlement target = settlementToBuildIn();
+            if (target == null) {
+                return false;
+            }
+            BuildingType? wanted = BuildingPlanner.suggestNext(target);
+            if (wanted == null) {
+                return false;
+            }
+            if (BuildingPurchase.getCoinPrice(target, player.getInventory(), wanted.Value) == 0) {
+                activity = "building a " + BuildingCatalog.getDisplayName(wanted.Value).ToLowerInvariant();
+                if (player.getCurrentSettlementId() == target.getId()) {
+                    new BuildBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, wanted.Value);
+                    return true;
+                }
+                leaveSettlementIfInside();
+                if (approach(target.getPosition())) {
+                    interact();
+                }
+                return true;
+            }
+            return buyBuilding(target, wanted.Value);
+        }
+
+        /**
+        * A bot that does not court has coins piling up and nothing to spend
+        * them on, so it buys buildings with them (the settlement screen's Pay
+        * with Coins, BuyBuildingCommand): the building the settlement needs
+        * next, when the purse covers the wood and stone it is short of and
+        * still keeps what the era's Funds requirement asks (coinsKeptForFunds).
+        * The courting bot spends its coins on gifts and does not buy.
+        */
+
+        private bool buyBuilding(Settlement target, BuildingType wanted) {
+            if (!noCourting) {
+                return false;
+            }
+            int price = BuildingPurchase.getCoinPrice(target, player.getInventory(), wanted);
+            if (price == 0 || WorldView.coins(simulation) < price + coinsKeptForFunds()) {
+                return false;
+            }
+            activity = "buying a " + BuildingCatalog.getDisplayName(wanted).ToLowerInvariant();
+            if (player.getCurrentSettlementId() == target.getId()) {
+                new BuyBuildingCommand(simulation.getNationRepository(), simulation.getEntityRepository()).execute(player, wanted);
+                return true;
+            }
+            leaveSettlementIfInside();
+            if (approach(target.getPosition())) {
+                interact();
+            }
+            return true;
+        }
+
+        /**
+        * The coins the bot keeps rather than spend on buildings: what the
+        * next era's Funds requirement asks (1,000 for the Town, 3,000 for the
+        * Kingdom), as a player reading the era box would, and never less
+        * than MinCoinsKept, so it buys out of a surplus and not with the
+        * few hundred coins of the opening.
+        */
+        private int coinsKeptForFunds() {
+            int funds = 0;
+            foreach (EraRequirement requirement in simulation.getEraTracker().getRequirements(simulation)) {
+                if (requirement.label == "Funds") {
+                    funds = requirement.target;
+                }
+            }
+            return CoinReserve + Math.Max(MinCoinsKept, funds);
+        }
+
+        /** The least the bot keeps when it buys a building: a purse below this is not a surplus. */
+        private const int MinCoinsKept = 1000;
 
         /** The nation's settlement with the most buildings that is not yet a town, or its first. */
         private Settlement settlementToBuildIn() {
@@ -662,6 +752,10 @@ namespace beyondnations.pacing {
             if (noCourting) {
                 // build up and let the world bring the members
                 activity = "growing without courting";
+                // houses make room for the settlers the world brings
+                if (growSettlement()) {
+                    return;
+                }
                 earnFunds();
                 return;
             }

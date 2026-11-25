@@ -32,7 +32,8 @@ namespace beyondnationstests.desktop.input {
             Assert.Equal(Key.Space, KeyBindings.Jump);
             Assert.Equal(Key.ShiftLeft, KeyBindings.Sprint);
             Assert.Equal(Key.N, KeyBindings.CreateNewNation);
-            Assert.Equal(Key.J, KeyBindings.JoinNation);
+            Assert.Equal(Key.T, KeyBindings.JoinNation);
+            Assert.Equal(Key.J, KeyBindings.ToggleJournal);
             Assert.Equal(Key.L, KeyBindings.LeaveNation);
             Assert.Equal(Key.F, KeyBindings.FoundSettlement);
             Assert.Equal(Key.P, KeyBindings.PlantSapling);
@@ -73,7 +74,7 @@ namespace beyondnationstests.desktop.input {
                 KeyBindings.Jump, KeyBindings.Sprint,
                 KeyBindings.CreateNewNation, KeyBindings.JoinNation, KeyBindings.LeaveNation,
                 KeyBindings.FoundSettlement, KeyBindings.PlantSapling, KeyBindings.TeleportToHomeSettlement,
-                KeyBindings.BuildStall, KeyBindings.BuildBuilding, KeyBindings.ToggleInventory, KeyBindings.ToggleCrafting, KeyBindings.ToggleAutoWalk,
+                KeyBindings.BuildStall, KeyBindings.BuildBuilding, KeyBindings.ToggleInventory, KeyBindings.ToggleCrafting, KeyBindings.ToggleJournal, KeyBindings.ToggleAutoWalk,
                 KeyBindings.ToggleCameraView, KeyBindings.ToggleChronicle, KeyBindings.ToggleChronicleScope,
                 KeyBindings.IncreaseRenderDistance, KeyBindings.DecreaseRenderDistance, KeyBindings.Pause, KeyBindings.ShowControls,
                 KeyBindings.ToggleDebugMode, KeyBindings.GenerateNearbyLand, KeyBindings.SpawnNewPawn,

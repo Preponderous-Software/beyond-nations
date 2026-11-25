@@ -129,6 +129,50 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testWhyNotHere_OpenGround_IsNull() {
+            Nation nation = makePlayerLeader();
+            addSettlementAt(new Vector3(gameConfig.getMinDistanceBetweenSettlements(), 0, 0));
+
+            Assert.Null(SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero,
+                gameConfig.getMinDistanceBetweenSettlements(), nation.getId()));
+        }
+
+        [Fact]
+        public void testWhyNotHere_TooClose_NamesTheSettlementAndSpacing_WithoutTheWayOut() {
+            Nation nation = makePlayerLeader();
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
+            addSettlementAt(new Vector3(minDistance - 1, 0, 0));
+
+            Assert.Equal("Too close to the Camp of Otherland: " + (minDistance - 1) + " paces away, and settlements must be "
+                + minDistance + " paces apart.",
+                SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero, minDistance, nation.getId()));
+        }
+
+        [Fact]
+        public void testWhyNotHere_InsideAnotherNationsClaim_SaysWhoseLand_BeforeTheSpacing() {
+            Nation nation = makePlayerLeader();
+            addSettlementAt(new Vector3(30, 0, 0));
+
+            Assert.Equal("This land is claimed by Otherland. Found your settlement outside its borders.",
+                SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero,
+                    gameConfig.getMinDistanceBetweenSettlements(), nation.getId()));
+        }
+
+        [Fact]
+        public void testWhyNotHere_AgreesWithTheCommand_WhichStillNamesTheWayOut() {
+            makePlayerLeader();
+            player.setPosition(Vector3.Zero);
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
+            addSettlementAt(new Vector3(minDistance - 1, 0, 0));
+            string reason = SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero, minDistance, player.getNationId());
+
+            command.execute(player);
+
+            Assert.Equal(reason + " Open ground lies about 10 paces to the west.", player.getStatus().getStatus());
+        }
+
+        [Fact]
         public void testNearestOpenSite_IsClearOfEverySettlement() {
             makePlayerLeader();
             addSettlementAt(new Vector3(100, 0, 0));
@@ -292,6 +336,53 @@ namespace beyondnationstests {
             command.execute(player);
 
             Assert.Equal(nation.getSettlement(1), player.getHomeSettlementId());
+        }
+    
+        /** #521: what a tap on the greyed button says, worked out only on the tap. */
+        [Fact]
+        public void testExplainGround_OpenGround_IsNull_AndPointsNothingOut() {
+            Nation nation = makePlayerLeader();
+            player.setPosition(Vector3.Zero);
+            addSettlementAt(new Vector3(gameConfig.getMinDistanceBetweenSettlements() + 1, 0, 0));
+
+            Assert.Null(command.explainGround(player, nation.getId()));
+            Assert.Null(player.takePointedOutGround());
+        }
+
+        [Fact]
+        public void testExplainGround_TooClose_NamesTheWayOut_AndPointsItOut_LikeTheCommand() {
+            Nation nation = makePlayerLeader();
+            player.setPosition(Vector3.Zero);
+            int minDistance = gameConfig.getMinDistanceBetweenSettlements();
+            addSettlementAt(new Vector3(minDistance - 1, 0, 0));
+            string reason = SettlementSites.describeWhyNotHere(entityRepository, nationRepository, Vector3.Zero, minDistance, nation.getId());
+
+            string explained = command.explainGround(player, nation.getId());
+
+            Assert.Equal(reason + " Open ground lies about 10 paces to the west.", explained);
+            Vector3? pointed = player.takePointedOutGround();
+            Assert.NotNull(pointed);
+            Assert.True(pointed.Value.X < 0f);
+            // nothing was spent or founded
+            Assert.Equal(1, entityRepository.getNumEntitiesOfType(EntityType.SETTLEMENT));
+
+            // the command's own refusal says the same
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            command.execute(player);
+            Assert.Equal(explained, player.getStatus().getStatus());
+        }
+
+        [Fact]
+        public void testExplainGround_InAnotherNationsClaim_SaysWhoseLand_AndTheWayOut() {
+            Nation nation = makePlayerLeader();
+            player.setPosition(Vector3.Zero);
+            addSettlementAt(new Vector3(30, 0, 0));
+
+            string explained = command.explainGround(player, nation.getId());
+
+            Assert.StartsWith("This land is claimed by Otherland. Found your settlement outside its borders. ", explained);
+            Assert.Contains("paces to the", explained);
+            Assert.NotNull(player.takePointedOutGround());
         }
     }
 }

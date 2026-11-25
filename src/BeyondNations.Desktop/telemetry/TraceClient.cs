@@ -1,5 +1,5 @@
 /*
- * trace-client 0.3.0 -- https://github.com/Stephenson-Software/trace-client-csharp
+ * trace-client 0.4.0 -- https://github.com/Stephenson-Software/trace-client-csharp
  *
  * One call to report that a program was used. Copy this file into a project as
  * is, or reference the project; either way there is nothing else to add.
@@ -38,11 +38,18 @@ namespace StephensonSoftware.Trace
     ///   accumulated.</item>
     /// </list>
     /// <para>Reporting is opt-out, and the person running the program has the
-    /// last word. The constructor checks, in this order, and the first match is
-    /// what <see cref="DisabledReason"/> says: the environment
-    /// (<c>TRACE_USAGE_REPORTING=off</c> or <c>DO_NOT_TRACK=1</c>) -- reason
-    /// <c>environment</c>; the program's own setting, <c>enabled: false</c> --
-    /// reason <c>config</c>; no key -- reason <c>no key</c>.</para>
+    /// last word. Every switch fails closed: a value that does not clearly mean
+    /// "on" -- a typo, a quoted <c>"false"</c>, an empty value -- turns reporting
+    /// off, and nothing in this client ever turns a switch back on. The
+    /// constructor checks, in this order, and the first match is what
+    /// <see cref="DisabledReason"/> says: the environment
+    /// (<c>TRACE_USAGE_REPORTING</c> set to anything but blank, <c>true</c>,
+    /// <c>on</c>, <c>yes</c> or <c>1</c>; or <c>DO_NOT_TRACK</c> set to anything
+    /// but blank, <c>0</c>, <c>false</c>, <c>off</c> or <c>no</c>; or an
+    /// environment that cannot be read) -- reason <c>environment</c>; the
+    /// program's own setting, <c>enabled: false</c> -- reason <c>config</c>,
+    /// read it with <see cref="AllowsReporting"/> so it fails closed too; no key
+    /// -- reason <c>no key</c>.</para>
     /// <para>Every event carries the program's own version as the tag
     /// <c>version</c> -- the third constructor argument, required, so a
     /// <c>command</c> event can be tied to a release as well as a
@@ -56,7 +63,7 @@ namespace StephensonSoftware.Trace
     /// <code>
     /// var trace = new TraceClient("https://trace.example.org", "my-game", ProgramVersion,
     ///                             key: settings.UsageReportingKey,
-    ///                             enabled: settings.UsageReportingEnabled);
+    ///                             enabled: TraceClient.AllowsReporting(settings.UsageReportingEnabled));
     /// trace.Report("startup");
     /// ...
     /// trace.Dispose(); // on shutdown: sends what is queued, bounded by the timeout
@@ -65,24 +72,32 @@ namespace StephensonSoftware.Trace
     public sealed class TraceClient : IDisposable
     {
         /// <summary>The client version, as sent in the User-Agent header.</summary>
-        public const string Version = "0.3.0";
+        public const string Version = "0.4.0";
 
         /// <summary>How many reports may wait to be sent before new ones are dropped.</summary>
         public const int QueueCapacity = 256;
 
-        /// <summary>Per-request timeout, and the total time <see cref="Close"/> waits for queued reports.</summary>
+        /// <summary>
+        /// Per-request timeout, and the time <see cref="Close"/> waits for queued reports
+        /// before it cancels the in-flight request and waits up to half a second more.
+        /// </summary>
         public static readonly TimeSpan Timeout = TimeSpan.FromSeconds(5);
 
         /// <summary>The most tags the server accepts on one report.</summary>
         public const int MaxTags = 32;
 
-        /// <summary>The longest application, name, tag key or tag value the server accepts, in UTF-16 chars.</summary>
+        /// <summary>The longest application, name, tag key or tag value the server accepts, in UTF-16 chars.
+        /// The program's version and installation ID are tag values too, so the constructor rejects either past it.</summary>
         public const int MaxLength = 255;
 
-        /// <summary>Environment variable that turns reporting off: <c>off</c>, <c>false</c>, <c>0</c>, <c>no</c>.</summary>
+        /// <summary>Environment variable that turns reporting off when set to anything but blank,
+        /// <c>true</c>, <c>on</c>, <c>yes</c> or <c>1</c> (case-insensitive): <c>off</c>, <c>false</c>,
+        /// <c>0</c>, <c>no</c>, a typo, ...</summary>
         public const string EnvUsageReporting = "TRACE_USAGE_REPORTING";
 
-        /// <summary>Environment variable that turns reporting off: <c>1</c>, <c>true</c>, <c>yes</c>. See https://consoledonottrack.com.</summary>
+        /// <summary>Environment variable that turns reporting off when set to anything but blank,
+        /// <c>0</c>, <c>false</c>, <c>off</c> or <c>no</c> (case-insensitive): <c>1</c>, <c>true</c>,
+        /// <c>yes</c>, ... See https://consoledonottrack.com.</summary>
         public const string EnvDoNotTrack = "DO_NOT_TRACK";
 
         /// <summary>Reason given when an environment variable turned reporting off.</summary>
@@ -122,22 +137,33 @@ namespace StephensonSoftware.Trace
         /// <paramref name="version"/>, reporting to the trace server at
         /// <paramref name="baseUrl"/>. Throws <see cref="ArgumentException"/> only for a
         /// missing or malformed <paramref name="baseUrl"/>, a missing
-        /// <paramref name="application"/>, or a missing <paramref name="version"/> or
-        /// one longer than <see cref="MaxLength"/> characters -- programming errors,
-        /// not runtime ones.
+        /// <paramref name="application"/>, a missing <paramref name="version"/> or
+        /// one longer than <see cref="MaxLength"/> characters, or an
+        /// <paramref name="installId"/> longer than <see cref="MaxLength"/> characters --
+        /// programming errors, not runtime ones.
         /// </summary>
-        /// <param name="baseUrl">The trace server, e.g. <c>https://trace.danielstephenson.dev</c>.</param>
-        /// <param name="application">The program's name, exactly as its key was issued for.</param>
+        /// <param name="baseUrl">The trace server, e.g. <c>https://trace.danielstephenson.dev</c>. Only
+        /// a URL that does not parse is rejected: <c>ftp://host</c>, or <c>localhost:8080</c> with its
+        /// scheme left off, makes a client whose every report is a logged drop.</param>
+        /// <param name="application">The program's name, exactly as its key was issued for. Keep it
+        /// ASCII: it is also sent in the User-Agent header, which .NET 5+ refuses to send with
+        /// non-ASCII characters, so every report would be dropped there.</param>
         /// <param name="version">The program's own version, trimmed. Sent as the tag <c>version</c>
         /// on every event unless the event carries its own.</param>
         /// <param name="key">The program's write key. Without one the client is a no-op.</param>
-        /// <param name="enabled">The program's own opt-out. <c>false</c> yields a client that reports nothing.</param>
-        /// <param name="log">Where dropped reports are mentioned. Optional; treat as debug-level.</param>
+        /// <param name="enabled">The program's own opt-out. <c>false</c> yields a client that reports nothing.
+        /// When the setting comes from a file or other loosely typed source, pass it through
+        /// <see cref="AllowsReporting"/> so that anything but a clear "on" turns reporting off.</param>
+        /// <param name="log">Where dropped reports and installation ID file failures are mentioned.
+        /// Optional; treat as debug-level.
+        /// Called on the caller's thread or on the client's background thread, so it must be
+        /// quick and thread-safe. A failed delivery's message includes the report's JSON body.</param>
         /// <param name="installId">The installation's ID, sent as the tag <c>install</c> on every
         /// event. It should be random -- e.g. a <see cref="Guid.NewGuid"/> the program stores in its
         /// own settings -- and never derived from a person, account or address. Trimmed; <c>null</c>
-        /// or blank means none. Longer than <see cref="MaxLength"/> characters throws
-        /// <see cref="ArgumentException"/>. Wins over <paramref name="installIdFile"/>.</param>
+        /// or blank means none was given, which leaves <paramref name="installIdFile"/> in charge.
+        /// Longer than <see cref="MaxLength"/> characters throws <see cref="ArgumentException"/>.
+        /// Any other value wins over <paramref name="installIdFile"/>.</param>
         /// <param name="installIdFile">A file, chosen by the program, that holds the installation's
         /// ID; read or created with <see cref="InstallIdFromFile"/>, but only when the client is
         /// enabled, so a disabled client never writes it. Optional; there is no default location.</param>
@@ -206,7 +232,8 @@ namespace StephensonSoftware.Trace
             }
             else if (!string.IsNullOrWhiteSpace(installIdFile))
             {
-                InstallId = ReadOrCreateInstallId(installIdFile, Log);
+                // The raw callback: Note adds the prefix, so Log here would add it twice.
+                InstallId = ReadOrCreateInstallId(installIdFile, _log);
             }
             _queue = new BlockingCollection<string>(new ConcurrentQueue<string>(), QueueCapacity);
             _stop = new CancellationTokenSource();
@@ -215,7 +242,12 @@ namespace StephensonSoftware.Trace
             _thread.Start();
         }
 
-        /// <summary>A client that reports nothing. Useful as a default before settings are read.</summary>
+        /// <summary>
+        /// A client that reports nothing. Useful as a default before settings are read.
+        /// Its <see cref="DisabledReason"/> is <see cref="ReasonConfig"/>, or
+        /// <see cref="ReasonEnvironment"/> when the environment turns reporting off, since
+        /// the environment is checked first.
+        /// </summary>
         public static TraceClient Disabled()
         {
             return new TraceClient("http://disabled.invalid", "disabled", "disabled", enabled: false);
@@ -225,7 +257,9 @@ namespace StephensonSoftware.Trace
         /// Why <see cref="Report"/> sends nothing: <c>null</c> when enabled, otherwise
         /// <see cref="ReasonEnvironment"/>, <see cref="ReasonConfig"/> or
         /// <see cref="ReasonNoKey"/>, verbatim, so a program can print
-        /// <c>"Usage reporting is off (" + reason + ")."</c>. Decided once, in the constructor.
+        /// <c>"Usage reporting is off (" + reason + ")."</c>. Decided once, in the constructor:
+        /// <see cref="Close"/> does not change it, so a closed client that was enabled still
+        /// says <c>null</c>. <see cref="IsEnabled"/> answers whether reports are going out.
         /// </summary>
         public string DisabledReason { get; private set; }
 
@@ -322,51 +356,83 @@ namespace StephensonSoftware.Trace
         }
 
         /// <summary>
-        /// Whether the environment asks for usage reporting to be off, via
-        /// <c>TRACE_USAGE_REPORTING=off</c> or <c>DO_NOT_TRACK=1</c>. Only the listed
-        /// values count; anything else (including empty) leaves the program's
-        /// own setting in charge.
+        /// Whether the environment asks for usage reporting to be off. Fails closed:
+        /// <see cref="EnvUsageReporting"/> set to anything but blank, <c>true</c>, <c>on</c>,
+        /// <c>yes</c> or <c>1</c>, or <see cref="EnvDoNotTrack"/> set to anything but blank,
+        /// <c>0</c>, <c>false</c>, <c>off</c> or <c>no</c> (case-insensitive, trimmed), turns
+        /// reporting off. An environment that cannot be read (e.g. a
+        /// <see cref="System.Security.SecurityException"/> in a sandbox) may hold
+        /// <c>DO_NOT_TRACK=1</c>, so it counts as opting out too. Never throws.
         /// </summary>
         public static bool EnvironmentDisables()
         {
             try
             {
-                return IsOff(EnvironmentSource(EnvUsageReporting)) || IsYes(EnvironmentSource(EnvDoNotTrack));
+                string usageReporting = EnvironmentSource(EnvUsageReporting);
+                if (!string.IsNullOrWhiteSpace(usageReporting) && !IsOn(usageReporting))
+                {
+                    return true;
+                }
+                string doNotTrack = EnvironmentSource(EnvDoNotTrack);
+                return !string.IsNullOrWhiteSpace(doNotTrack) && !IsNegative(doNotTrack);
             }
             catch (Exception)
             {
-                return false; // e.g. a SecurityException in a sandbox; the program's setting stays in charge
+                return true; // an environment that cannot be read may say DO_NOT_TRACK=1
             }
         }
 
-        private static bool IsOff(string value)
+        /// <summary>
+        /// Whether a program's own reporting setting, as read from its configuration,
+        /// allows reporting -- for the constructor's <c>enabled</c>. Fails closed: only
+        /// <c>true</c>, or a string reading <c>true</c>, <c>on</c>, <c>yes</c> or <c>1</c>
+        /// (any case, surrounding space ignored), allows it. Anything else turns reporting
+        /// off: <c>false</c>, a quoted <c>"false"</c>, <c>off</c>, <c>no</c>, a typo, a
+        /// number, or <c>null</c>. Never throws.
+        /// </summary>
+        /// <param name="setting">The raw value: a <see cref="bool"/>, a <see cref="string"/>,
+        /// <c>null</c> or anything else.</param>
+        public static bool AllowsReporting(object setting)
+        {
+            if (setting is bool)
+            {
+                return (bool)setting;
+            }
+            string text = setting as string;
+            return text != null && IsOn(text);
+        }
+
+        // true, on, yes or 1, ignoring case and surrounding space.
+        private static bool IsOn(string value)
         {
             if (value == null)
             {
                 return false;
             }
             string v = value.Trim().ToLowerInvariant();
-            return v == "off" || v == "false" || v == "0" || v == "no";
+            return v == "true" || v == "on" || v == "yes" || v == "1";
         }
 
-        private static bool IsYes(string value)
+        // false, off, no or 0, ignoring case and surrounding space.
+        private static bool IsNegative(string value)
         {
-            if (value == null)
-            {
-                return false;
-            }
             string v = value.Trim().ToLowerInvariant();
-            return v == "1" || v == "true" || v == "yes";
+            return v == "false" || v == "off" || v == "no" || v == "0";
         }
 
         /// <summary>
         /// Reports that <paramref name="name"/> happened, with an optional numeric
         /// value and optional string tags. Returns immediately and never throws.
         /// The program's version is added as the tag <c>version</c> unless
-        /// <paramref name="tags"/> already has one; <paramref name="tags"/> itself is
+        /// <paramref name="tags"/> already has one, and so is <see cref="InstallId"/>, if
+        /// any, as the tag <c>install</c>, unless <paramref name="tags"/> has one or it
+        /// would pass <see cref="MaxTags"/>; <paramref name="tags"/> itself is
         /// never modified. A report the server would reject for its size -- more than
         /// <see cref="MaxTags"/> tags, or a string longer than <see cref="MaxLength"/> --
-        /// is dropped here instead of being sent.
+        /// is dropped here instead of being sent. A null or blank <paramref name="name"/>
+        /// sends nothing and logs nothing, and so does any report on a disabled client or
+        /// after <see cref="Close"/>. A NaN or infinite <paramref name="value"/> is left
+        /// out of the event, which is still sent.
         /// </summary>
         public void Report(string name, double? value = null, IEnumerable<KeyValuePair<string, string>> tags = null)
         {
@@ -380,7 +446,7 @@ namespace StephensonSoftware.Trace
                 string problem = Json(_application, name, value, WithInstall(WithVersion(tags, _version), InstallId), out body);
                 if (problem != null)
                 {
-                    Log("dropped " + name + ": " + problem);
+                    Log("dropped " + ForLog(name) + ": " + problem);
                     return;
                 }
                 if (!_queue.TryAdd(body))
@@ -392,8 +458,15 @@ namespace StephensonSoftware.Trace
             {
                 // InvalidOperationException when Close() raced us, or anything
                 // else: a usage report must never be the reason a program stops.
-                Log("could not queue " + name + ": " + failure.Message);
+                Log("could not queue " + ForLog(name) + ": " + failure.Message);
             }
+        }
+
+        // A name past MaxLength is the very thing being dropped; its length is
+        // the program's to choose, so it does not reach the log uncut.
+        private static string ForLog(string name)
+        {
+            return name.Length > MaxLength ? name.Substring(0, MaxLength) + "..." : name;
         }
 
         /// <summary>
@@ -401,8 +474,9 @@ namespace StephensonSoftware.Trace
         /// <see cref="Timeout"/> in total to be sent first. A program that reports
         /// and exits within milliseconds -- a CLI -- would otherwise lose its one
         /// event. The bound still holds: an unreachable server delays exit by at
-        /// most the timeout, never a hang; whatever has not been sent by then is
-        /// dropped. Safe to call more than once, and on a disabled client.
+        /// most the timeout plus half a second to cancel the in-flight request,
+        /// never a hang; whatever has not been sent by then is dropped and logged.
+        /// Safe to call more than once, and on a disabled client.
         /// </summary>
         public void Close()
         {
@@ -442,7 +516,13 @@ namespace StephensonSoftware.Trace
             }
             catch (Exception)
             {
-                // OperationCanceledException from Close() giving up; nothing to report.
+                // OperationCanceledException from Close() giving up. The queue is
+                // never disposed, so Count cannot throw on this thread.
+                int left = _queue.Count;
+                if (left > 0)
+                {
+                    Log("close timed out, dropped " + left + " queued report(s)");
+                }
             }
             finally
             {

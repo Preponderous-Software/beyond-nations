@@ -133,9 +133,10 @@ namespace beyondnations.desktop.ui.screens {
             NationRepository nationRepository = simulation.getNationRepository();
             EntityRepository entityRepository = simulation.getEntityRepository();
             Nation own = nationRepository.getNation(player.getNationId());
-            foreach (string line in getLines(simulation)) {
-                y = NationScreen.drawWrappedCentred(line, height / 36f, y, width, left, lineHeight * 0.7f, 3);
-            }
+            // sized for a narrow screen too, and wrapped whole (#467, #506)
+            float textHeight = Overlay.textHeightFor(width, height);
+            y = NationScreen.drawHeader(getLines(simulation), textHeight / 36f, y, width, left, lineHeight * 0.7f,
+                NationScreen.listBottom(height, lineHeight) - (buttonHeight + buttonGap) * 4f);
             if (own == null) {
                 return null;
             }
@@ -182,7 +183,7 @@ namespace beyondnations.desktop.ui.screens {
                 // hand on the rule: pick a member with the arrows, then Hand Over twice
                 List<Pawn> heirs = TransferLeadershipCommand.candidates(own, entityRepository);
                 if (heirs.Count == 0) {
-                    y = NationScreen.drawWrappedCentred("No one else is in " + own.getName() + " to hand its rule to.", height / 38f,
+                    y = NationScreen.drawWrappedCentred("No one else is in " + own.getName() + " to hand its rule to.", textHeight / 38f,
                         y, width, left, lineHeight * 0.65f, 1) + buttonGap;
                 } else {
                     heirPick = SettlementScreen.wrap(heirPick, heirs.Count);
@@ -232,7 +233,7 @@ namespace beyondnations.desktop.ui.screens {
                 if (refusal != null) {
                     ImGui.EndDisabled();
                 }
-                float disbandBottom = NationScreen.drawWrappedLeft(refusal ?? describeDisband(own), height / 40f, left + disbandWidth + buttonGap,
+                float disbandBottom = NationScreen.drawWrappedLeft(refusal ?? describeDisband(own), textHeight / 40f, left + disbandWidth + buttonGap,
                     y, rowWidth - disbandWidth - buttonGap, lineHeight * 0.55f, 3);
                 y = System.MathF.Max(y + buttonHeight, disbandBottom) + buttonGap * 2f;
             }
@@ -240,10 +241,10 @@ namespace beyondnations.desktop.ui.screens {
             // the settlements, each with Open
             List<SettlementRow> rows = getSettlementRows(simulation);
             y = NationScreen.drawWrappedCentred("Settlements (" + rows.Count + ")" + (rows.Count == 0 ? "." : ": open one to choose who holds it."),
-                height / 36f, y, width, left, lineHeight * 0.7f, 2);
+                textHeight / 36f, y, width, left, lineHeight * 0.7f, 2);
             float open = System.MathF.Min(UiScale.px(96f), rowWidth / 4f);
             float textWidth = rowWidth - open - buttonGap;
-            float fontSize = height / 38f;
+            float fontSize = Overlay.atLeastAtlasFontSize(textHeight / 38f);
             // a row is as tall as its text, up to five lines on a phone
             float textScale = Overlay.fontScaleFor(fontSize);
             float textStep = lineHeight * 0.6f;
@@ -254,7 +255,7 @@ namespace beyondnations.desktop.ui.screens {
                 steps[i] = System.MathF.Max(buttonHeight, textStep * rowLines[i]) + buttonGap;
             }
             float step = steps.Length > 0 ? steps[0] : buttonHeight;
-            float listBottom = height - lineHeight * 3.2f;
+            float listBottom = NationScreen.listBottom(height, lineHeight);
             float stripHeight = buttonHeight + buttonGap;
             LawsPanel.Window window = LawsPanel.fit(steps, y, listBottom, stripHeight, firstRow);
             window = LawsPanel.fit(steps, y, listBottom, stripHeight, firstRow + readScroll(window.listTop, listBottom, step));

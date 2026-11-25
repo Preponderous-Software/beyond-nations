@@ -89,7 +89,7 @@ The following controls are available in the game:
 | `Space` | Jump |
 | `Left Shift` | Sprint |
 | `N` | Create a new nation |
-| `J` | Join a random nation |
+| `T` | Join a random nation |
 | `L` | Leave your current nation |
 | `F` | Found a settlement |
 | `P` | Plant a sapling |
@@ -99,16 +99,16 @@ The following controls are available in the game:
 | `I` | Open / close the inventory screen (pauses the world) |
 | `O` | Open / close the nations screen: every nation, its size and its relation to yours; a leader can send tribute, propose an alliance, declare war or offer peace, or denounce from here, and set the nation's laws on its *Laws* tab (pauses the world; *Realm* on a touch screen) |
 | `C` | Open / close the crafting screen (axe, pickaxe, cooked meat, planks, bricks; pauses the world) |
+| `J` | Open / close the Journal: goals, chronicle, era, inventory and nation as picture tiles; a tap or click on a tile shows its detail, and the arrows or `Tab` turn the page (pauses the world) |
 | `Insert` | Toggle auto-walk |
 | `V` | Switch between the third-person and first-person view |
-| `Y` | Cycle the chronicle: recent entries (top of the screen) → full scrollable history → hidden |
+| `Y` | Cycle the chronicle: your news as toasts → full scrollable history → hidden |
 | `U` | Switch the chronicle between your news (you, your nation, its neighbours, and nations founded or fallen) and every nation; the full chronicle has the same switch |
-| Era box (top left; click or tap) | Open / close what the next era needs, what it unlocks and how close each victory is |
 | `Right Mouse Button` (hold) + move the mouse | Steer: left/right turns you (W then walks that way), up/down tilts the camera |
 | `Page Up` | Increase render distance |
 | `Page Down` | Decrease render distance |
 | `Escape` | Pause / unpause; close the inventory, nations or crafting screen; back out of a menu; quit from the main menu |
-| `?` (`/` key) | Show every control (also the **? Controls** button on the HUD, pause screen and main menu) |
+| `?` (`/` key) | Show every control (also the **?** button at the top right of the HUD, and **Controls** on the pause screen and main menu) |
 | `F1` | Toggle debug mode (and the debug menu) |
 | `F2` | Generate nearby land *(debug mode only)* |
 | `F3` | Spawn a new pawn *(debug mode only)* |
@@ -128,6 +128,16 @@ A number of systems combine to create the gameplay experience. Some are already 
 
 *A lived-in town and today's HUD.*
 <!-- darkroom:end -->
+
+The HUD shows only what is needed now: a thin top strip (season, energy, food, coins and **Journal**), one *Next* line, and boxes and chips only while they matter ([SYSTEMS.md](./docs/SYSTEMS.md#the-world-hud-host)).
+
+<img src="docs/screenshots/contextual-hud/desktop-world-pair.jpg" alt="A new world before and after the contextual HUD: before, the era, objective, chronicle, season and player boxes ring the screen; after, a thin top strip, one Next line and the tip card" width="560"> <img src="docs/screenshots/contextual-hud/portrait-world-pair.jpg" alt="The same on a phone held upright: before, the boxes fill the top half; after, the thin strip, the Next line and the tip" width="300">
+
+*Before and after the contextual HUD, on a desktop and a phone.*
+
+The **Journal** (`J`, or the button in the top strip) holds the rest as picture tiles: goals, chronicle, era, inventory and nation.
+
+<img src="docs/screenshots/journal/desktop-goals.jpg" alt="The Journal on its Goals tab: a progress line at 1/9 and the goals as picture tiles, Food chosen, Wood ticked and the rest locked" width="440"> <img src="docs/screenshots/journal/desktop-nation.jpg" alt="The Journal on its Nation tab: tiles for the era, who leads, members, settlements, buildings, stalls, funds, allies, wars and nations" width="440"> <img src="docs/screenshots/journal/phone-era-card.jpg" alt="The Journal's Era tab on a phone, an era tapped and its card open" width="150">
 
 A settlement is drawn as a place: a plaza with a well and the nation's banner, its market stalls in a ring around it (an owned stall has a nation-coloured awning and a crate of whatever it sells; a stall for sale has a pale awning and a yellow sign), and its buildings in a wider ring beyond. Pawns inside a settlement stay visible and mill about the plaza, so a busy town looks busy.
 
@@ -167,20 +177,20 @@ A run has an arc. Your nation advances **Camp → Village → Town → Kingdom**
 | --- | --- | --- |
 | Camp | a village (2 buildings), 10 members, 2 market stalls; day 2 | the workshop (planks and bricks); up to 3 settlements |
 | Village | a town (5 buildings), 18 members, 2 settlements, 1,000 funds; day 7 | the storehouse (more stalls); up to 6 settlements |
-| Town | 2 towns, 25 members, 4 settlements, 3,000 funds; day 19 | any number of settlements, and the Prosperity victory |
+| Town | 3 towns, 40 members, 5 settlements, 6,000 funds; day 6 | any number of settlements, and the Prosperity victory |
 
-Each era also waits for its day (a day is ten minutes of play). A camp may build houses and farms and hold one settlement, and until the Town era nobody can besiege a nation you lead (raids still come). The objectives follow: after the opening steps the ambitions are set by the era you are in, and the last asks you to win. The era box at the top left of the HUD shows your era and how near the next one is; click or tap it for the details.
+Each era also waits for its day (a day is ten minutes of play). A camp may build houses and farms and hold one settlement, and until the Town era nobody can besiege a nation you lead (raids still come). The objectives follow: after the opening steps the ambitions are set by the era you are in, and the last asks you to win. A card says what each new era unlocks, and the Journal's **Era** tab (`J`) shows your era, what the next one needs and how near you are.
 
 <img src="./docs/screenshots/village-recruiting-reland/era-box-before-after.png" alt="The era box opened in a staged settlement on day 1: Village, Members 10/10 and Stalls 2/2 ticked, and the day still to come, Day 1/3 before this change and Day 1/2 after it" width="440">
 
-Win by **Dominion** (from the Town era, hold more than half of every settlement in the world, at least six), **Prosperity** (in the Kingdom era, 6,000 funds and 40 members) or **Concord** (from the Town era, be allied with every nation still standing). Lose if the nation you built collapses: no settlement and nobody but you, for five minutes. Either way the end-of-run screen tells the story -- the outcome, the era reached, the days survived and your numbers, then *The History of* your nation, drawn from the chronicle -- and offers to **Continue playing** (after a victory), start a **New world** or go to the **Main menu**. `--stage-victory` and `--stage-defeat` open on it (the screenshot above is `--seed 42 --start-screen world --stage-victory`; the one below is `--stage-defeat` at phone size).
+Win by **Dominion** (from the Town era, hold more than half of every settlement in the world, at least six), **Prosperity** (in the Kingdom era, 15,000 funds and 50 members) or **Concord** (from the Town era, be allied with every nation still standing). Lose if the nation you built collapses: no settlement and nobody but you, for five minutes. Either way the end-of-run screen tells the story -- the outcome, the era reached, the days survived and your numbers, then *The History of* your nation, drawn from the chronicle -- and offers to **Continue playing** (after a victory), start a **New world** or go to the **Main menu**. `--stage-victory` and `--stage-defeat` open on it (the screenshot above is `--seed 42 --start-screen world --stage-victory`; the one below is `--stage-defeat` at phone size).
 
 <img src="./.github/media/end-of-run-defeat-phone.png" alt="The end-of-run screen after a defeat, at phone size: the stats stacked, the history wrapped, New world, Load and Main menu buttons stacked for a thumb" width="260">
 
 ### Nations that deal with each other
 ![Two nations' borders meeting on the road ahead: rings of posts capped in each nation's colour curve in from either side toward the point where the claims touch, with each nation's village in the distance](./.github/media/diplomacy-borders.png)
 
-Every settlement claims the land around it: 70 units for a camp, 100 for a village, 130 for a town. Claims never overlap; where two would, the border is drawn where they meet. Each claim is ringed by short posts capped in its nation's colour, the player box says whose land you are in and which way you face, and crossing a border says so on the status line. Nobody may found a settlement inside another nation's claim or within 250 units of any other settlement, and founding one near another nation's land is resented. A refused founding names the settlement in the way, how far it is, and how far and which way the nearest open ground lies.
+Every settlement claims the land around it: 70 units for a camp, 100 for a village, 130 for a town. Claims never overlap; where two would, the border is drawn where they meet. Each claim is ringed by short posts capped in its nation's colour, and crossing a border names whose land you are in on the status line. Nobody may found a settlement inside another nation's claim or within 250 units of any other settlement, and founding one near another nation's land is resented. A refused founding names the settlement in the way, how far it is, and how far and which way the nearest open ground lies.
 
 Every pair of nations has a standing from -100 to +100: **Hostile** (-50 and below), **Rival** (-20), **Neutral**, **Friendly** (+20) and **Allied**. Neighbours rub each other the wrong way, faster where their borders touch; allies warm; two nations with a common enemy draw together; trading at another nation's market helps a little, and poaching its members with an invitation hurts. Pawn-led nations make their own choices: they ally once relations reach +40, pay tribute to a hostile neighbour twice their strength, and denounce weaker nations they despise.
 
@@ -239,7 +249,7 @@ Loyalty is how each member feels about you. Push someone to -15 and they desert,
 *The same spot on seed 12 in spring, summer, autumn and winter.*
 <!-- darkroom:end -->
 
-The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season, and the Season box (above the player box) shows the season, warns *Winter in 2 days*, shows how much food your nation's people carry for winter, and names the land you stand on. The day before winter the chronicle and a banner say whether your nation is ready; carry food home and *Feed Residents* lays it in for them. You eat what you carry on your own, without wasting a rich meal on a nearly full stomach, or press *Eat* to eat now.
+The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season. The top of the screen shows the season and day; in autumn and winter chips warn *Winter in 2 days* and show how much food your nation's people carry for winter (the Journal's **Era** tab has the same). The day before winter the chronicle and a banner say whether your nation is ready; carry food home and *Feed Residents* lays it in for them. You eat what you carry on your own, without wasting a rich meal on a nearly full stomach, or press *Eat* to eat now.
 
 <!-- darkroom:shot winter-warning -->
 ![The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 17 members are short of the food they want, the player's own hunger banner sits above it, the town's name floats below the chronicle, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 79 of 68 for winter](.github/media/winter-warning.jpg)
@@ -424,7 +434,7 @@ Mount & Blade: Warband is a medieval action role-playing game that features a sa
 Minecraft is a sandbox video game that allows players to explore a procedurally generated world, gather resources, craft items, and build structures. The game features a variety of gameplay elements such as combat, exploration, and resource gathering. The game is a great source of inspiration for our project because it features many of the gameplay elements that we want to implement in our game.
 
 ## Usage reporting
-Usage reporting is on by default: each time the game starts, Beyond Nations sends its name (`beyond-nations`), its version and a random installation ID in one `startup` event to [trace](https://github.com/Stephenson-Software/trace) at `https://trace.danielstephenson.dev`. Nothing about you, your machine, your world or anything you do in the game is sent. (The trace server sees the IP address of the request, as every web server does.)
+Usage reporting is on by default: each time the game starts, Beyond Nations sends its name (`beyond-nations`), its version and a random installation ID in one `startup` event to [trace](https://danielstephenson.dev/usage-reporting) at `https://trace.danielstephenson.dev`. Nothing about you, your machine, your world or anything you do in the game is sent. (The trace server sees the IP address of the request, as every web server does.)
 
 The installation ID is a random UUID, made on the first run with reporting on and kept in a file named `trace-install-id` beside `settings.json` (see below). It is not derived from anything about you or your computer; it only lets trace count installations rather than startups. Delete the file to reset it. Setting the environment variable `TRACE_INSTALL_ID` sends that value instead, and the file is left alone. Every way of turning reporting off below also stops the ID: with reporting off, the file is never created, read or sent. The report goes out on a background thread, never holds up the game, and is dropped silently if the service cannot be reached.
 
@@ -441,14 +451,14 @@ The first run creates a `settings.json` in the game's data directory (`~/.local/
   ```
 
 - the command-line switch `--no-usage-reporting`, for one run
-- the environment variable `TRACE_USAGE_REPORTING=off` (also `false`, `0`, `no`), which turns off every program that reports to trace
-- the environment variable `DO_NOT_TRACK=1` (see [consoledonottrack.com](https://consoledonottrack.com))
+- the environment variable `TRACE_USAGE_REPORTING=off` (any value other than blank, `true`, `on`, `yes` or `1` counts), which turns off every program that reports to trace
+- the environment variable `DO_NOT_TRACK=1` (any value other than blank, `0`, `false`, `off` or `no` counts; see [consoledonottrack.com](https://consoledonottrack.com))
 
-The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
+If the switch or either variable already turns reporting off on the very first run, `settings.json` is created with `"enabled": false`, so reporting stays off on later runs without it. Every switch fails closed: `enabled` reports only when it is `true` (or the string `"true"`, `"on"`, `"yes"` or `"1"`), so `"false"`, `"off"`, `0` or `null` keep reporting off, as do a `"usageReporting"` that is not an object (such as `"usageReporting": false`) and a `settings.json` that cannot be read or is not an object. So is an opt-out written under another spelling: a block named `usage_reporting`, `usage-reporting` or `UsageReporting`, an `enable`/`Enabled` switch that is not clearly on, or `"disabled": true`. The file is never rewritten in those cases. The environment variables win over everything else. When reporting is off, the game says so at startup with the reason. The defaults the game ships with, including the reporting key, are in `src/BeyondNations.Desktop/usage-reporting.json`.
 
 The [browser build](./docs/WEB.md#usage-reporting-off) sends nothing: the reporting code is not part of it.
 
-Details: https://github.com/Stephenson-Software/trace#usage-reporting
+Details: https://danielstephenson.dev/usage-reporting
 
 ## Contributing
 To get started contributing to this project, please read the [Contributing Guide](./docs/CONTRIBUTING.md).

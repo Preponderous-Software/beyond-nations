@@ -30,8 +30,20 @@ namespace beyondnations.desktop.telemetry {
     *
     * The bundled usage-reporting.json carries the defaults (enabled, endpoint,
     * key). settings.json lives in the game's data directory and is the
-    * player's; it is created on first run with reporting shown as enabled, so
-    * the switch is visible on disk, and it is never rewritten after that.
+    * player's; it is created on first run with the switch visible on disk --
+    * enabled, unless that first run was already opted out (environment or
+    * --no-usage-reporting), in which case it records "enabled": false so the
+    * opt-out outlives the variable or flag -- and it is never rewritten
+    * after that.
+    *
+    * Every switch fails closed: "enabled" reports only when it is true (or the
+    * string "true", "on", "yes" or "1"); "false", "off", 0, null or a typo are
+    * off, as is a "usageReporting" that is not an object, a settings.json
+    * whose root is not an object, and one that cannot be read. So is an
+    * opt-out written under another spelling: a "usage_reporting",
+    * "usage-reporting" or "UsageReporting" block (or value) that is not clearly
+    * on, or an "enable" / "Enabled" switch that is not clearly on, or a
+    * "disabled" switch that is on, in any such block (see hasNearMissOptOut).
     * Its "endpoint" and "key" entries, when present, override the bundled
     * ones -- which is how a run is pointed at a local server instead of the
     * real one.
@@ -44,7 +56,7 @@ namespace beyondnations.desktop.telemetry {
         public const string SettingsFileName = "settings.json";
         public const string InstallIdFileName = "trace-install-id";
         public const string InstallIdVariable = "TRACE_INSTALL_ID";
-        public const string DetailsUrl = "https://github.com/Stephenson-Software/trace#usage-reporting";
+        public const string DetailsUrl = "https://danielstephenson.dev/usage-reporting";
 
         private static readonly JsonDocumentOptions JsonOptions = new JsonDocumentOptions {
             CommentHandling = JsonCommentHandling.Skip,
@@ -91,7 +103,8 @@ namespace beyondnations.desktop.telemetry {
         * settings.json counts as reporting off, since a player who edited it
         * by hand was most likely turning it off.
         */
-        public static Settings load(string defaultsPath, string settingsPath, Action<string> warn) {
+        public static Settings load(string defaultsPath, string settingsPath, Action<string> warn,
+                                    bool switchedOff = false) {
             Settings settings = new Settings();
             try {
                 using (JsonDocument defaults = JsonDocument.Parse(File.ReadAllText(defaultsPath), JsonOptions)) {
@@ -105,21 +118,37 @@ namespace beyondnations.desktop.telemetry {
             try {
                 if (!File.Exists(settingsPath)) {
                     settings.FirstRun = true;
+                    // A first run that is already opted out records "off", so
+                    // a later run without the variable or flag does not report.
+                    bool optedOut = switchedOff || TraceClient.EnvironmentDisables();
                     Directory.CreateDirectory(Path.GetDirectoryName(settingsPath));
                     File.WriteAllText(settingsPath,
                         "{" + System.Environment.NewLine
                         + "    \"usageReporting\": {" + System.Environment.NewLine
-                        + "        \"enabled\": true" + System.Environment.NewLine
+                        + "        \"enabled\": " + (optedOut ? "false" : "true") + System.Environment.NewLine
                         + "    }" + System.Environment.NewLine
                         + "}" + System.Environment.NewLine);
                     return settings;
                 }
                 using (JsonDocument player = JsonDocument.Parse(File.ReadAllText(settingsPath), JsonOptions)) {
                     JsonElement block;
+                    if (player.RootElement.ValueKind != JsonValueKind.Object) {
+                        // Not the settings this game writes: it may have been an
+                        // attempt to opt out, so it never counts as "on".
+                        warn(settingsPath + " is not a JSON object; usage reporting stays off until it is fixed");
+                        settings.Enabled = false;
+                    } else if (player.RootElement.TryGetProperty("usageReporting", out block)) {
+                        if (block.ValueKind == JsonValueKind.Object) {
+                            readInto(block, settings);
+                        } else {
+                            // "usageReporting": false (or "off", ...) is the switch itself.
+                            settings.Enabled = enabledFrom(block);
+                        }
+                    }
                     if (player.RootElement.ValueKind == JsonValueKind.Object
-                        && player.RootElement.TryGetProperty("usageReporting", out block)
-                        && block.ValueKind == JsonValueKind.Object) {
-                        readInto(block, settings);
+                            && hasNearMissOptOut(player.RootElement)) {
+                        // An opt-out written under another spelling is an opt-out.
+                        settings.Enabled = false;
                     }
                 }
             } catch (Exception e) {
@@ -129,20 +158,84 @@ namespace beyondnations.desktop.telemetry {
             return settings;
         }
 
+        /**
+        * Whether the settings root holds an attempt to turn usage reporting off
+        * that is not written exactly as "usageReporting": { "enabled": ... }.
+        * Such a setting would not be recognised and the bundled default (on)
+        * would stand. A player who wrote any of these did not ask for
+        * reporting, so each counts as off:
+        *   - a top-level key that spells "usage reporting" another way
+        *     ("usage_reporting", "usage-reporting", "UsageReporting", ...)
+        *     holding a value, or an "enabled"-like key, that is not clearly on;
+        *   - "usageReporting": "off" -- a value instead of a block;
+        *   - inside any such block, a key that spells "enabled" another way
+        *     ("enable", "Enabled", ...) that is not clearly on, or one that
+        *     spells "disabled" whose value is on.
+        */
+        public static bool hasNearMissOptOut(JsonElement root) {
+            foreach (JsonProperty property in root.EnumerateObject()) {
+                if (!normalise(property.Name).Contains("usagereport")) {
+                    continue;
+                }
+                JsonElement value = property.Value;
+                if (value.ValueKind != JsonValueKind.Object) {
+                    if (!enabledFrom(value)) {
+                        return true;
+                    }
+                    continue;
+                }
+                foreach (JsonProperty child in value.EnumerateObject()) {
+                    if (property.Name == "usageReporting" && child.Name == "enabled") {
+                        continue; // the switch itself, read by load
+                    }
+                    string name = normalise(child.Name);
+                    if (name.Contains("disabl") && enabledFrom(child.Value)) {
+                        return true;
+                    }
+                    if (name.Contains("enabl") && !enabledFrom(child.Value)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static string normalise(string key) {
+            System.Text.StringBuilder letters = new System.Text.StringBuilder();
+            foreach (char c in key.ToLowerInvariant()) {
+                if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+                    letters.Append(c);
+                }
+            }
+            return letters.ToString();
+        }
+
         private static void readInto(JsonElement block, Settings settings) {
             JsonElement value;
             if (block.TryGetProperty("enabled", out value)) {
-                if (value.ValueKind == JsonValueKind.False) {
-                    settings.Enabled = false;
-                } else if (value.ValueKind == JsonValueKind.True) {
-                    settings.Enabled = true;
-                }
+                settings.Enabled = enabledFrom(value);
             }
             if (block.TryGetProperty("endpoint", out value) && value.ValueKind == JsonValueKind.String) {
                 settings.Endpoint = value.GetString();
             }
             if (block.TryGetProperty("key", out value) && value.ValueKind == JsonValueKind.String) {
                 settings.Key = value.GetString();
+            }
+        }
+
+        /**
+        * A JSON value read as the reporting switch, failing closed: true, or a
+        * string the client reads as on ("true", "on", "yes", "1"), is on;
+        * anything else -- false, "false", "off", 0, null, a typo -- is off.
+        */
+        private static bool enabledFrom(JsonElement value) {
+            switch (value.ValueKind) {
+                case JsonValueKind.True:
+                    return true;
+                case JsonValueKind.String:
+                    return TraceClient.AllowsReporting(value.GetString());
+                default:
+                    return false;
             }
         }
 
@@ -182,7 +275,7 @@ namespace beyondnations.desktop.telemetry {
         public static TraceClient start(bool switchedOff, string defaultsPath, string settingsPath,
                                         Action<string> info, Action<string> warn) {
             try {
-                Settings settings = load(defaultsPath, settingsPath, warn);
+                Settings settings = load(defaultsPath, settingsPath, warn, switchedOff);
                 string endpoint = string.IsNullOrWhiteSpace(settings.Endpoint)
                     ? "https://trace.danielstephenson.dev"
                     : settings.Endpoint;

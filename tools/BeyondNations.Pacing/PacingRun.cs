@@ -91,6 +91,17 @@ namespace beyondnations.pacing {
         public int MembersJoinedOtherwise;
         /** The tick each watched milestone was first reached; a milestone never reached is absent. */
         public Dictionary<string, int> Milestones = new Dictionary<string, int>();
+        /** The tick each HUD unlock's own condition first held (PacingUnlocks), by UnlockId name; one never met is absent. */
+        public Dictionary<string, int> Unlocks = new Dictionary<string, int>();
+        /**
+        * The calendar waits: for each era the player's nation was in, the
+        * first tick it had every requirement to leave it but the day
+        * (EraRules.requirementsToLeave), and how many ticks it spent so,
+        * waiting on nothing but the calendar. Sampled once a second of game
+        * time. An era whose other requirements were never all met is absent.
+        */
+        public Dictionary<string, int> CalendarReadyTick = new Dictionary<string, int>();
+        public Dictionary<string, int> CalendarWaitTicks = new Dictionary<string, int>();
 
         /** Raids on the player's nation per hour of game time. */
         public double raidsOnPlayerPerHour() {
@@ -156,6 +167,7 @@ namespace beyondnations.pacing {
             SuccessionNotice shownNotice = null;
             int noticeSince = 0;
             sample(simulation, bot, result);
+            PacingUnlocks.observe(simulation, 0, result.Unlocks);
             while (tick < options.MaxTicks && (recorded < options.ObjectiveLimit || result.Milestones.Count < options.Milestones.Count)) {
                 bot.beforeTick();
                 simulation.fixedUpdate(dt);
@@ -170,6 +182,7 @@ namespace beyondnations.pacing {
                 }
 
                 // at most one objective completes per evaluation, but loop in case
+                int recordedBefore = recorded;
                 while (recorded < tracker.getCompletedCount() && recorded < options.ObjectiveLimit) {
                     Objective done = tracker.getObjectives()[recorded];
                     result.Objectives.Add(new ObjectiveTiming {
@@ -183,6 +196,10 @@ namespace beyondnations.pacing {
                     });
                     previousCompletionTick = tick;
                     recorded++;
+                }
+                // the HUD's unlocks, read-only: every second, and as each objective comes up
+                if (tick % options.TicksPerSecond == 0 || recorded != recordedBefore) {
+                    PacingUnlocks.observe(simulation, tick, result.Unlocks);
                 }
                 if (result.FirstMemberTick < 0 && WorldView.members(simulation) >= 2) {
                     result.FirstMemberTick = tick;
@@ -206,6 +223,7 @@ namespace beyondnations.pacing {
                         "world-" + options.Seed + "-pacing-t" + tick + SaveSlots.Extension), SaveGame.encode(simulation, "pacing"));
                 }
                 if (tick % options.TicksPerSecond == 0) {
+                    recordCalendarWait(simulation, result, options.TicksPerSecond);
                     foreach (string milestone in options.Milestones) {
                         if (!result.Milestones.ContainsKey(milestone) && PacingMilestones.isReached(simulation, milestone)) {
                             result.Milestones[milestone] = tick;
@@ -236,6 +254,42 @@ namespace beyondnations.pacing {
             }
             result.TicksRun = tick;
             return result;
+        }
+
+        /**
+        * Whether the player's nation has everything it needs to leave its
+        * era except the day: the stretch in which a player has nothing that
+        * can bring the next era sooner (docs/PACING.md, "Calendar waits").
+        */
+        public static bool waitingOnlyForTheDay(List<EraRequirement> requirements) {
+            bool dayUnmet = false;
+            foreach (EraRequirement requirement in requirements) {
+                if (requirement.isMet()) {
+                    continue;
+                }
+                if (requirement.label != "Day") {
+                    return false;
+                }
+                dayUnmet = true;
+            }
+            return dayUnmet;
+        }
+
+        private static void recordCalendarWait(Simulation simulation, PacingRunResult result, int ticks) {
+            if (WorldView.playerNation(simulation) == null) {
+                return;
+            }
+            EraTracker tracker = simulation.getEraTracker();
+            if (!waitingOnlyForTheDay(tracker.getRequirements(simulation))) {
+                return;
+            }
+            string era = tracker.getEra().ToString();
+            int tick = simulation.getTickCounter().getTotalTicks();
+            if (!result.CalendarReadyTick.ContainsKey(era)) {
+                result.CalendarReadyTick[era] = tick;
+                result.CalendarWaitTicks[era] = 0;
+            }
+            result.CalendarWaitTicks[era] += ticks;
         }
 
         private static void sample(Simulation simulation, PacingBot bot, PacingRunResult result) {

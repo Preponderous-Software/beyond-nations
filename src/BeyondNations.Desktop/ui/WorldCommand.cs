@@ -61,6 +61,7 @@ namespace beyondnations.desktop.ui {
         private string widthLabel;
         private string tooltip;
         private string disabledReason;
+        private System.Func<string> tapExplanation;
 
         public WorldCommand(string label, System.Action action) {
             this.label = label;
@@ -98,6 +99,26 @@ namespace beyondnations.desktop.ui {
         /** Why the button cannot be clicked right now; null while it can. */
         public string getDisabledReason() {
             return enabled ? null : disabledReason;
+        }
+
+        /**
+        * A fuller reason for a tap or click on the greyed button, worked out
+        * only when that happens: Found Settlement's way to open ground needs
+        * a search too slow for every frame (#521). It may also act, as that
+        * one points the ground out. Returning null falls back to the
+        * disabled reason.
+        */
+        public WorldCommand setTapExplanation(System.Func<string> tapExplanation) {
+            this.tapExplanation = tapExplanation;
+            return this;
+        }
+
+        /** What a tap or click on the button says while it is disabled: the tap explanation, else the disabled reason; null while enabled. */
+        public string explainTap() {
+            if (enabled) {
+                return null;
+            }
+            return tapExplanation?.Invoke() ?? disabledReason;
         }
 
         /**

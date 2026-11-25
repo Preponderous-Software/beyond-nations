@@ -302,6 +302,61 @@ namespace beyondnations.desktop.ui {
             return result;
         }
 
+        /**
+        * The first page of a paged bar (as compute's page 0) for commands in
+        * any order: a phone's bar in its front-first order
+        * (WorldCommandBar.frontFirst), whose other pages are the More sheet
+        * (CommandSheet, #512). The order is the caller's, apart from the
+        * drastic and pawn buttons, which still never share the first page
+        * with the rest.
+        *
+        * Each button goes on the lowest row it fits on, not only the row
+        * the last one went on: in a camp, Feed Residents is too wide to go
+        * beside More and took the row above, and More was left alone on
+        * the bottom row with room for Settlement and Exit Settlement.
+        * Buttons are placed in order, so one coming or going later in the
+        * list never moves one before it; one that fits nowhere is left for
+        * the sheet. More and the bar's top are where paging puts them.
+        */
+        public static Result firstPage(List<WorldCommand> commands, System.Func<string, float> measure, Settings settings) {
+            Result result = paged(commands, measure, settings, 0);
+            int rows = System.Math.Max(1, settings.MaxRows);
+            float rowStep = settings.ButtonHeight + settings.SpacingY;
+            // where each row has got to; the bottom one starts after More
+            float[] rowRight = new float[rows];
+            for (int r = 0; r < rows; r++) {
+                rowRight[r] = settings.Left;
+            }
+            rowRight[0] = result.More.Right;
+            bool anyPlaced = false;
+            for (int i = 0; i < commands.Count; i++) {
+                result.Shown[i] = false;
+                result.Buttons[i] = new Rect();
+                CommandGroup group = commands[i].getGroup();
+                if (group == CommandGroup.Drastic || group == CommandGroup.People) {
+                    continue;
+                }
+                float width = buttonWidth(commands[i], measure, settings);
+                for (int r = 0; r < rows; r++) {
+                    float x = rowRight[r] > settings.Left ? rowRight[r] + settings.SpacingX : rowRight[r];
+                    float fitted = width;
+                    // a button too wide to go beside More on a bar of one row is narrowed to fit, as paging does
+                    if (rows == 1 && !anyPlaced) {
+                        fitted = System.MathF.Max(1f, System.MathF.Min(width, settings.Right - x));
+                    }
+                    if (x + fitted > settings.Right + 0.01f) {
+                        continue;
+                    }
+                    result.Buttons[i] = new Rect { X = x, Y = settings.Bottom - settings.ButtonHeight - r * rowStep, Width = fitted, Height = settings.ButtonHeight };
+                    result.Shown[i] = true;
+                    rowRight[r] = x + fitted;
+                    anyPlaced = true;
+                    break;
+                }
+            }
+            return result;
+        }
+
         /** How many rows fit between top and bottom (0 when top is not above bottom). */
         private static int rowsSpanned(float top, float bottom, Settings settings) {
             if (top >= bottom) {

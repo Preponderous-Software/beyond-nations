@@ -20,7 +20,13 @@ namespace beyondnations.desktop.ui.feel {
         HungerWarning,
         CombatHit,
         UiClick,
-        ObjectiveComplete
+        ObjectiveComplete,
+        /**
+        * A world event has stopped the world for the player's choice: a
+        * bell, so a player waiting out winter without watching the screen
+        * hears that the wait has stopped (#502).
+        */
+        WorldEvent
     }
 
     /** The background loop: birdsong and wind by day, crickets by night, or nothing (menus, muted). */

@@ -14,8 +14,15 @@ namespace beyondnations.pacing {
         public const string Caravan = "caravan";
         /** The rule has passed to an heir at least once (old age, hunger or abdication). */
         public const string Succession = "succession";
+        /**
+        * The player's nation is in the Town era: its shelter from sieges
+        * ends and it may hold six settlements. At day 7 it came 57 minutes
+        * in, after 35 to 49 minutes of waiting on the calendar alone, and so after
+        * a session (docs/PACING.md, "Calendar waits").
+        */
+        public const string TownEra = "town-era";
 
-        public static readonly string[] All = { Storehouse, Caravan, Succession };
+        public static readonly string[] All = { Storehouse, Caravan, Succession, TownEra };
 
         public static bool isReached(Simulation simulation, string id) {
             switch (id) {
@@ -36,6 +43,8 @@ namespace beyondnations.pacing {
                     return simulation.getTradeCaravans().getNumPlayerCaravans() > 0;
                 case Succession:
                     return simulation.getRealm().getLineage().Count > 0;
+                case TownEra:
+                    return WorldView.playerNation(simulation) != null && simulation.getEraTracker().getEra() >= Era.TOWN;
             }
             throw new System.ArgumentException("unknown milestone " + id);
         }

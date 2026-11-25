@@ -16,6 +16,8 @@ namespace beyondnations.desktop.ui.feel {
         HungerWarning,
         ObjectiveComplete,
         Raided,
+        /** A world event's choice sheet came up and stopped the world (#502). */
+        WorldEventWaiting,
         /** "+5 stone" over the player; carries no sound of its own. */
         Gain
     }
@@ -59,6 +61,7 @@ namespace beyondnations.desktop.ui.feel {
         private Vector3 lastTree, lastRock, lastChicken;
         private EnergyBar.Tier lastTier;
         private int lastCompleted;
+        private WorldEventInstance lastPendingEvent;
         private readonly Dictionary<EntityId, int> buildingCounts = new Dictionary<EntityId, int>();
         private readonly List<FeelEvent> pending = new List<FeelEvent>();
 
@@ -131,6 +134,7 @@ namespace beyondnations.desktop.ui.feel {
                 }
                 lastTier = tier;
                 lastCompleted = completed;
+                lastPendingEvent = simulation.getWorldEvents()?.getPending();
                 scanWorld(at, null);
                 pending.Clear();
                 primed = true;
@@ -148,6 +152,14 @@ namespace beyondnations.desktop.ui.feel {
                 output.Add(new FeelEvent { kind = FeelEventKind.ObjectiveComplete, position = at });
             }
             lastCompleted = completed;
+
+            // a new choice sheet stops the world; a player waiting without
+            // watching the screen hears it (#502). Once per event, not per frame.
+            WorldEventInstance pendingEvent = simulation.getWorldEvents()?.getPending();
+            if (pendingEvent != null && pendingEvent != lastPendingEvent) {
+                output.Add(new FeelEvent { kind = FeelEventKind.WorldEventWaiting, position = at });
+            }
+            lastPendingEvent = pendingEvent;
 
             scanWorld(at, output);
 

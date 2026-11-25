@@ -132,6 +132,32 @@ namespace beyondnations.pacing.tests {
         }
 
         [Fact]
+        public void testUnlocks_FailWhenAfterTheObjectiveThatNeedsItOrNever() {
+            // join-nation is the third objective: it is pointed at when "eat" completes, at 20 s
+            ObjectiveTiming wood = done("gather-wood", 10); wood.CompletedAtTick = 10 * Tps;
+            ObjectiveTiming eat = done("eat", 10); eat.CompletedAtTick = 20 * Tps;
+            ObjectiveTiming join = done("join-nation", 1); join.CompletedAtTick = 21 * Tps;
+            PacingRunResult onTime = runOf(1, wood, eat, join);
+            PacingRunResult late = runOf(2, wood, eat, join);
+            onTime.TicksRun = late.TicksRun = 100 * Tps;
+            foreach (desktop.ui.progression.HudUnlocks.Rule rule in desktop.ui.progression.HudUnlocks.Rules) {
+                onTime.Unlocks[rule.id.ToString()] = 20 * Tps;
+                late.Unlocks[rule.id.ToString()] = 20 * Tps;
+            }
+            late.Unlocks["Nation"] = 20 * Tps + 1;
+            late.Unlocks.Remove("Winter");
+
+            Assert.Equal(20 * Tps, PacingUnlocks.pointedAt(onTime, "join-nation"));
+            Assert.Equal(0, PacingUnlocks.pointedAt(onTime, "gather-wood"));
+            Assert.Equal(-1, PacingUnlocks.pointedAt(onTime, "build-stall"));
+            List<PacingFinding> findings = PacingUnlocks.check(new List<PacingRunResult> { onTime, late });
+            Assert.DoesNotContain(findings, f => f.Seed == 1 && f.isFailure());
+            Assert.Equal(PacingVerdict.TooSlow, findings.Find(f => f.Seed == 2 && f.Id == PacingUnlocks.FindingPrefix + "Nation").Verdict);
+            Assert.Equal(PacingVerdict.Never, findings.Find(f => f.Seed == 2 && f.Id == PacingUnlocks.FindingPrefix + "Winter").Verdict);
+            Assert.Equal(2, findings.FindAll(f => f.isFailure()).Count);
+        }
+
+        [Fact]
         public void testSuggest_KeepsTheMilestones() {
             PacingBudget previous = budgetOf(entry("a", 3, 999));
             previous.Milestones.Add(new MilestoneBudget { Id = "caravan", Title = "Send a caravan", MaxSeconds = 600 });
@@ -205,6 +231,28 @@ namespace beyondnations.pacing.tests {
                     sample.Nations + " nations at tick " + sample.Tick);
             }
             Assert.True(atSunset.Nationless >= 5, "only " + atSunset.Nationless + " strangers left at sunset");
+        }
+
+        [Fact]
+        public void testCalendarWait_OnlyWhenTheDayIsAllThatIsShort() {
+            EraRequirement day = new EraRequirement("Day", 3, EraRules.TownDay);
+            EraRequirement members = new EraRequirement("Members", 5, EraRules.TownMembers);
+            EraRequirement funds = new EraRequirement("Funds", 2000, EraRules.TownFunds);
+            Assert.True(PacingRun.waitingOnlyForTheDay(new List<EraRequirement> { funds, day }));
+            Assert.False(PacingRun.waitingOnlyForTheDay(new List<EraRequirement> { members, day }));
+            // all met is not a wait: the era comes on the next evaluation
+            Assert.False(PacingRun.waitingOnlyForTheDay(new List<EraRequirement> { funds, new EraRequirement("Day", 9, EraRules.TownDay) }));
+            Assert.False(PacingRun.waitingOnlyForTheDay(new List<EraRequirement>()));
+        }
+
+        [Fact]
+        public void testReport_ListsTheCalendarWaits() {
+            PacingRunResult run = runOf(1, done("a", 2));
+            run.CalendarReadyTick[Era.VILLAGE.ToString()] = 600 * Tps;
+            run.CalendarWaitTicks[Era.VILLAGE.ToString()] = 1020 * Tps;
+            string markdown = PacingReport.markdown(new List<PacingRunResult> { run }, budgetOf(entry("a", 0, 60)), new List<PacingFinding>());
+            Assert.Contains("## Calendar waits", markdown);
+            Assert.Contains("| " + Eras.getDisplayName(Era.VILLAGE) + " | ready 10m 00s, waited 17m 00s |", markdown);
         }
 
         [Fact]

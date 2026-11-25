@@ -257,7 +257,7 @@ namespace beyondnationstests {
                     openRealm.update(Realm.LAW_DELAY_TICKS);
                 }
                 int stolen = before;
-                fixture.rounds(Diplomacy.RAID_EVERY_ROUNDS);   // one raid
+                fixture.rounds(Diplomacy.PLAYER_RAID_EVERY_ROUNDS);   // one raid (the player's nation is raided once a minute)
                 taken[open] = stolen - target.getFunds() + (open == 1 ? Laws.OPEN_BORDERS_TOLL : 0);
             }
             Assert.Equal(Diplomacy.RAID_COINS, taken[0]);
@@ -283,7 +283,7 @@ namespace beyondnationstests {
                     Assert.Equal(4, fixture.diplomacy.getDefence(own));
                 }
                 int before = target.getFunds();
-                fixture.rounds(Diplomacy.RAID_EVERY_ROUNDS);
+                fixture.rounds(Diplomacy.PLAYER_RAID_EVERY_ROUNDS);
                 taken[levy] = before - target.getFunds();
             }
             Assert.Equal(Diplomacy.RAID_COINS, taken[0]);

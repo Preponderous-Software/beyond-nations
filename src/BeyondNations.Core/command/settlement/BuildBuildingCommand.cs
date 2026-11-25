@@ -23,17 +23,8 @@ namespace beyondnations {
         }
 
         public bool execute(Player player, BuildingType? requestedType) {
-            if (player.getNationId() == null) {
-                player.getStatus().update("You are not in a nation.");
-                return false;
-            }
-            if (player.getCurrentSettlementId() == null) {
-                player.getStatus().update("You are not inside a settlement.");
-                return false;
-            }
-            Settlement settlement = entityRepository.getEntity(player.getCurrentSettlementId()) as Settlement;
-            if (settlement == null || !settlement.getNationId().Equals(player.getNationId())) {
-                player.getStatus().update("You are not inside a settlement owned by your nation.");
+            Settlement settlement = findOwnSettlement(player, entityRepository);
+            if (settlement == null) {
                 return false;
             }
 
@@ -78,12 +69,38 @@ namespace beyondnations {
             SettlementTier before = settlement.getTier();
             BuildingCatalog.deductCost(player.getInventory(), stockpile, type);
             settlement.addBuilding(type);
-            string message = name + " built.";
-            if (settlement.getTier() != before) {
-                message += " The settlement is now a " + SettlementTiers.getDisplayName(settlement.getTier()) + "!";
-            }
+            string message = name + " built." + describeTierChange(before, settlement);
             player.getStatus().update(message);
             return true;
+        }
+
+        /**
+        * The settlement of the player's own nation they stand in, or null,
+        * having told them why not. Build and Buy (BuyBuildingCommand) both
+        * start here.
+        */
+        public static Settlement findOwnSettlement(Player player, EntityRepository entityRepository) {
+            if (player.getNationId() == null) {
+                player.getStatus().update("You are not in a nation.");
+                return null;
+            }
+            if (player.getCurrentSettlementId() == null) {
+                player.getStatus().update("You are not inside a settlement.");
+                return null;
+            }
+            Settlement settlement = entityRepository.getEntity(player.getCurrentSettlementId()) as Settlement;
+            if (settlement == null || !settlement.getNationId().Equals(player.getNationId())) {
+                player.getStatus().update("You are not inside a settlement owned by your nation.");
+                return null;
+            }
+            return settlement;
+        }
+
+        /** " The settlement is now a Town!" when a building lifted its tier, else empty. */
+        public static string describeTierChange(SettlementTier before, Settlement settlement) {
+            return settlement.getTier() != before
+                ? " The settlement is now a " + SettlementTiers.getDisplayName(settlement.getTier()) + "!"
+                : "";
         }
     }
 }

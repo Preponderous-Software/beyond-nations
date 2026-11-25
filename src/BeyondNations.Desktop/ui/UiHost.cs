@@ -41,6 +41,7 @@ namespace beyondnations.desktop.ui {
         private readonly ControlsScreen controlsScreen = new ControlsScreen();
         private readonly NationScreen nationScreen = new NationScreen();
         private readonly SettlementScreen settlementScreen = new SettlementScreen();
+        private readonly JournalScreen journalScreen = new JournalScreen();
         private readonly CraftingScreen craftingScreen = new CraftingScreen();
         private readonly LoadScreen loadScreen = new LoadScreen();
         private readonly SuccessionScreen successionScreen = new SuccessionScreen();
@@ -67,8 +68,15 @@ namespace beyondnations.desktop.ui {
         // sound, effects and tips (ui/feel); null leaves the screens as they were
         private FeelDirector feel;
 
+        /** A world was started or loaded: what the HUD shows of it yet (WorldHud.beginWorld). */
+        public void beginWorld(Simulation simulation, bool newWorld, bool everythingUnlocked) {
+            worldHud.beginWorld(simulation, newWorld, everythingUnlocked);
+        }
+
         public void setFeel(FeelDirector director) {
             feel = director;
+            // tips show through the world HUD's overlay queue
+            worldHud.setFeel(director);
         }
 
         public UiHost(GL gl, IWindow window, IInputContext input, ScreenState screens, GameConfig gameConfig, SaveSession saves, ShareSession share) {
@@ -246,6 +254,11 @@ namespace beyondnations.desktop.ui {
                         action = settlementScreen.draw(width, height, simulation);
                     }
                     break;
+                case ScreenType.JOURNAL:
+                    if (simulation != null) {
+                        action = journalScreen.draw(width, height, simulation);
+                    }
+                    break;
             }
 
             // a screen drawn over the world (the settlement screen's title,
@@ -319,6 +332,9 @@ namespace beyondnations.desktop.ui {
                     leaveRequested = true;
                     screens.goTo(ScreenType.MAIN_MENU);
                     break;
+                case UiAction.OpenPause:
+                    screens.escapePressed();
+                    break;
                 case UiAction.OpenControls:
                 case UiAction.CloseControls:
                     screens.controlsPressed();
@@ -350,6 +366,9 @@ namespace beyondnations.desktop.ui {
                     break;
                 case UiAction.CloseSettlement:
                     screens.closeSettlement();
+                    break;
+                case UiAction.OpenJournal:
+                    screens.openJournal();
                     break;
             }
         }

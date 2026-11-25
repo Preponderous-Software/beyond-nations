@@ -206,6 +206,95 @@ namespace beyondnationstests.desktop.ui {
             SettlementScreens.beforeDraw(null, screens);
         }
 
+        /**
+        * The coin sink (fun pass): a purse of thousands with nothing to buy.
+        * Pay with Coins turns the building buttons into Buy buttons, greyed
+        * with the reason while the purse falls short, and Buy pays coins for
+        * the wood and stone the player lacks.
+        */
+        [Fact]
+        public void testPayWithCoins_TurnsBuildIntoBuy_AndBuysTheBuilding() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            Player player = simulation.getPlayer();
+            enter(simulation, camp, screens);
+            player.getInventory().clear();
+            camp.getInventory().clear();
+
+            List<WorldCommand> build = SettlementScreen.getBuildCommands(simulation, camp, false);
+            Assert.Contains(build, c => c.getLabel() == "Build House");
+            WorldCommand toggle = build.Find(SettlementScreen.isPayToggle);
+            Assert.NotNull(toggle);
+            Assert.Equal(SettlementScreen.PayWithCoinsLabel, toggle.getLabel());
+
+            int price = BuildingPurchase.getFullCoinPrice(camp, BuildingType.HOUSE);
+            build = SettlementScreen.getBuildCommands(simulation, camp, true);
+            Assert.DoesNotContain(build, c => c.getLabel() == "Build House");
+            Assert.Equal(SettlementScreen.PayWithMaterialsLabel, build.Find(SettlementScreen.isPayToggle).getLabel());
+            WorldCommand buy = build.Find(c => c.getLabel() == SettlementScreen.buyLabel(BuildingType.HOUSE, price));
+            Assert.NotNull(buy);
+            Assert.True(SettlementScreen.isBuy(buy));
+            // an empty purse: greyed, saying how many coins it needs
+            Assert.False(buy.isEnabled());
+            Assert.Equal("Needs " + BuildingPurchase.formatCoins(price) + " coins; you have 0.", buy.getDisabledReason());
+            // Build Stall and Feed Residents stay as they were
+            Assert.Contains(build, c => c.getLabel() == "Build Stall");
+            Assert.Contains(build, SettlementScreen.isFeedResidents);
+
+            player.getInventory().addItem(ItemType.COIN, price + 10);
+            buy = SettlementScreen.getBuildCommands(simulation, camp, true).Find(c => c.getLabel() == SettlementScreen.buyLabel(BuildingType.HOUSE, price));
+            Assert.True(buy.isEnabled());
+            Assert.Equal("Confirm: " + BuildingPurchase.formatCoins(price) + " coins", SettlementScreen.confirmLabel(buy.getLabel()));
+            buy.execute();
+
+            Assert.Equal(1, camp.getNumBuildings(BuildingType.HOUSE));
+            Assert.Equal(10, player.getInventory().getNumItems(ItemType.COIN));
+            Assert.StartsWith("House bought", player.getStatus().getStatus());
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
+        [Fact]
+        public void testThePayToggle_FlipsTheScreensMode() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            enter(simulation, camp, screens);
+            bool was = SettlementScreen.isPayingWithCoins();
+            try {
+                SettlementScreen.setPayingWithCoins(false);
+                SettlementScreen.getBuildCommands(simulation, camp, false).Find(SettlementScreen.isPayToggle).execute();
+                Assert.True(SettlementScreen.isPayingWithCoins());
+                SettlementScreen.getBuildCommands(simulation, camp, true).Find(SettlementScreen.isPayToggle).execute();
+                Assert.False(SettlementScreen.isPayingWithCoins());
+            } finally {
+                SettlementScreen.setPayingWithCoins(was);
+            }
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
+        [Fact]
+        public void testTheBuildingsSection_GivesTheNextBuildingsCoinPrice() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            List<string> lines = SettlementScreen.describeBuildings(camp);
+            BuildingType next = BuildingPlanner.suggestNext(camp).Value;
+            Assert.Contains(lines, l => l.EndsWith("or " + BuildingPurchase.formatCoins(BuildingPurchase.getFullCoinPrice(camp, next)) + " coins."));
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
+        /** Playtest w1: the text said "or 2,160 coins" and the button "Buy Farm (1,764)"; the text now gives both and says why. */
+        [Fact]
+        public void testTheBuildingsSection_GivesThePriceWithWhatYouHave_WhenItDiffers() {
+            Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);
+            BuildingType next = BuildingPlanner.suggestNext(camp).Value;
+            Inventory carried = new Inventory(1000);
+            carried.addItem(ItemType.WOOD, 1);
+            int full = BuildingPurchase.getFullCoinPrice(camp, next);
+            int yours = BuildingPurchase.getCoinPrice(camp, carried, next);
+            List<string> lines = SettlementScreen.describeBuildings(camp, carried);
+            // one wood of its own makes the price for what is short less than the full price
+            Assert.True(yours > 0 && yours < full);
+            Assert.Contains(lines, l => l.EndsWith("or " + BuildingPurchase.formatCoins(full) + " coins ("
+                + BuildingPurchase.formatCoins(yours) + " with what you have)."));
+            SettlementScreens.beforeDraw(null, screens);
+        }
+
         [Fact]
         public void testOutside_TheScreenOffersNoBuilding() {
             Simulation simulation = atEnterSettlement(out Settlement camp, out ScreenState screens);

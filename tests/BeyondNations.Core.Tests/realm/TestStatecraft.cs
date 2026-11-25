@@ -166,7 +166,7 @@ namespace beyondnationstests {
                     fixture.simulation.getRealm().grantTruce(own, raider);
                 }
                 int before = target.getFunds();
-                fixture.rounds(Diplomacy.RAID_EVERY_ROUNDS);
+                fixture.rounds(Diplomacy.PLAYER_RAID_EVERY_ROUNDS);
                 taken[truce] = before - target.getFunds();
             }
             Assert.Equal(Diplomacy.RAID_COINS, taken[0]);

@@ -71,6 +71,42 @@ namespace beyondnationstests.desktop.ui {
         }
 
         [Fact]
+        public void testFoundSettlement_GreyedOnAnotherNationsLand_WithWhoseLandItIs() {
+            // #503: on another nation's land it was enabled, and only pressing it said why not
+            Simulation simulation = leaderWithOneSettlement(out Nation nation, out _);
+            nation.setSettlementLimit(3);
+            Player player = simulation.getPlayer();
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
+            Nation other = new Nation("Hamletwood", new EntityId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(other);
+            simulation.getEntityRepository().addEntity(new Settlement(player.getPosition() + new Vector3(30, 0, 0),
+                other.getId(), other.getColor(), other.getName(), simulation.getRandom()));
+
+            WorldCommand command = findFound(simulation);
+
+            Assert.False(command.isEnabled());
+            Assert.Equal("This land is claimed by Hamletwood. Found your settlement outside its borders.", command.getTooltip());
+        }
+
+        [Fact]
+        public void testFoundSettlement_GreyedTooNearASettlement_WithHowFarApartTheyMustBe() {
+            Simulation simulation = leaderWithOneSettlement(out Nation nation, out Settlement home);
+            nation.setSettlementLimit(3);
+            Player player = simulation.getPlayer();
+            player.getInventory().addItem(ItemType.WOOD, FoundingCost.wood(1));
+            player.getInventory().addItem(ItemType.STONE, FoundingCost.stone(1));
+            int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
+            player.setPosition(home.getPosition() + new Vector3(0, 0, minDistance - 50));
+
+            WorldCommand command = findFound(simulation);
+
+            Assert.False(command.isEnabled());
+            Assert.Equal("Too close to the " + home.getDisplayName() + ": " + (minDistance - 50)
+                + " paces away, and settlements must be " + minDistance + " paces apart.", command.getTooltip());
+        }
+
+        [Fact]
         public void testFoundSettlement_FromTheBar_FoundsASecond_AndKeepsTheHome() {
             Simulation simulation = leaderWithOneSettlement(out Nation nation, out Settlement home);
             nation.setSettlementLimit(3);

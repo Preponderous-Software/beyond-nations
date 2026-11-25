@@ -29,8 +29,8 @@ namespace beyondnations {
         public const int DominionMinSettlements = 6;
 
         public const Era ProsperityEra = Era.KINGDOM;
-        public const int ProsperityFunds = 6000;
-        public const int ProsperityMembers = 40;
+        public const int ProsperityFunds = 15000;
+        public const int ProsperityMembers = 50;
 
         public const Era ConcordEra = Era.TOWN;
         public const int ConcordMinNations = 2;

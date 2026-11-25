@@ -24,6 +24,9 @@ namespace beyondnations {
         // one settlement: who holds it, its people, buildings, stores and
         // market, and what its holder can do with it (#178); opened on
         // entering a settlement and from the nations screen
-        SETTLEMENT
+        SETTLEMENT,
+        // the picture journal: goals, chronicle, era, inventory and nation as
+        // tiles, laid over the stopped world (desktop ui/screens/JournalScreen)
+        JOURNAL
     }
 }

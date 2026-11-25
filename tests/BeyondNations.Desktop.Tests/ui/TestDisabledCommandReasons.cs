@@ -280,5 +280,57 @@ namespace beyondnationstests.desktop.ui {
             settlement.getInventory().clear();
             return simulation;
         }
+    
+        /**
+        * #521: a tap or click on the greyed Found Settlement names the way to
+        * open ground and points it out, as F does; the hover reason (worked
+        * out every frame) stays the short one.
+        */
+        [Fact]
+        public void testTapOnGreyedFoundSettlement_TooClose_NamesTheWayToOpenGround_AndPointsItOut() {
+            Simulation simulation = createSimulation();
+            Player player = simulation.getPlayer();
+            new NationCreateCommand(simulation.getNationRepository(), simulation.getEventProducer(), simulation.getRandom(), simulation.getNationNameGenerator())
+                .execute(player);
+            player.getInventory().addItem(ItemType.WOOD, Settlement.WOOD_COST_TO_BUILD);
+            int minDistance = simulation.getGameConfig().getMinDistanceBetweenSettlements();
+            Nation other = new Nation("Otherland", new EntityId(), simulation.getRandom());
+            simulation.getNationRepository().addNation(other);
+            Settlement near = new Settlement(player.getPosition() + new Vector3(minDistance - 40, 0, 0), other.getId(), other.getColor(), other.getName(), simulation.getRandom());
+            simulation.getEntityRepository().addEntity(near);
+            player.takePointedOutGround();
+
+            WorldCommand found = find(simulation, "Found Settlement");
+            Assert.False(found.isEnabled());
+            string hover = found.getTooltip();
+            Assert.DoesNotContain("Open ground", hover);
+            // building the bar did not run the search
+            Assert.Null(player.takePointedOutGround());
+
+            WorldHud.explainDisabled(found, player.getStatus());
+
+            string said = player.getStatus().getStatus();
+            Assert.StartsWith(hover + " Open ground lies about ", said);
+            Assert.NotNull(player.takePointedOutGround());
+            Assert.Null(TestTouchText.namedKey(said));
+        }
+
+        [Fact]
+        public void testTapExplanation_OnlyWhileDisabled_AndFallsBackToTheReason() {
+            int asked = 0;
+            WorldCommand command = new WorldCommand("Found Settlement", () => { })
+                .setEnabled(false, "Short reason.")
+                .setTapExplanation(() => { asked++; return null; });
+            Assert.Equal("Short reason.", command.getTooltip());
+            Assert.Equal(0, asked);
+            Assert.Equal("Short reason.", command.explainTap());
+            Assert.Equal(1, asked);
+
+            command.setTapExplanation(() => "Short reason. Open ground lies about 10 paces to the west.");
+            Assert.Equal("Short reason. Open ground lies about 10 paces to the west.", command.explainTap());
+
+            command.setEnabled(true);
+            Assert.Null(command.explainTap());
+        }
     }
 }

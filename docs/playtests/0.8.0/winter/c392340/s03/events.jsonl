@@ -1,0 +1,470 @@
+{"type":"screen","tick":0,"wallTimeMs":1794813985302,"from":null,"to":"TITLE"}
+{"type":"screen","tick":0,"wallTimeMs":1794813987865,"from":"TITLE","to":"MAIN_MENU"}
+{"type":"screen","tick":0,"wallTimeMs":1794813995126,"from":"MAIN_MENU","to":"NEW_WORLD"}
+{"type":"world","tick":145000,"wallTimeMs":1794813998497,"how":"created","slot":"world-103-20261116-072638","seed":103}
+{"type":"screen","tick":145000,"wallTimeMs":1794813998498,"from":"NEW_WORLD","to":"WORLD"}
+{"type":"status","tick":145931,"wallTimeMs":1794814017119,"text":"Created nation Northernfield."}
+{"type":"chronicle","tick":145931,"wallTimeMs":1794814017119,"kind":"NationCreation","text":"Under your hand, the nation of Northernfield was born."}
+{"type":"status","tick":146259,"wallTimeMs":1794814025127,"text":"Not enough wood. Need 50 more."}
+{"type":"status","tick":146758,"wallTimeMs":1794814040452,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":146790,"wallTimeMs":1794814041416,"text":"No entities within range to interact with."}
+{"type":"status","tick":146826,"wallTimeMs":1794814042468,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":146858,"wallTimeMs":1794814043414,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":146890,"wallTimeMs":1794814044335,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":146922,"wallTimeMs":1794814045322,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":147346,"wallTimeMs":1794814057825,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":147362,"wallTimeMs":1794814058300,"text":"No entities within range to interact with."}
+{"type":"status","tick":147382,"wallTimeMs":1794814058830,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":147402,"wallTimeMs":1794814059404,"kind":"StallBuilt","text":"Grace Lewis built a market stall in Farmburg."}
+{"type":"status","tick":147582,"wallTimeMs":1794814064461,"text":"You enter the land of Farmburg (Neutral)."}
+{"type":"objective_completed","tick":147602,"wallTimeMs":1794814065064,"number":1,"id":"gather-wood","title":"Gather wood","ticksTaken":2602}
+{"type":"status","tick":147602,"wallTimeMs":1794814065064,"text":"Objective complete: Gather wood. \u002B2 apples."}
+{"type":"chronicle","tick":147602,"wallTimeMs":1794814065064,"kind":"NationCreation","text":"Judy Walker founded the nation of Greatport."}
+{"type":"status","tick":147618,"wallTimeMs":1794814065486,"text":"No entities within range to interact with."}
+{"type":"status","tick":147634,"wallTimeMs":1794814065991,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":147650,"wallTimeMs":1794814066454,"kind":"StallBuilt","text":"Trade came to Farmburg: Katie Watson built a stall."}
+{"type":"status","tick":147782,"wallTimeMs":1794814070360,"text":"You leave the land of Farmburg for the wilds."}
+{"type":"chronicle","tick":147902,"wallTimeMs":1794814073969,"kind":"NationCreation","text":"The nation of Smallshire was born, with Harriet Evans at its head."}
+{"type":"chronicle","tick":147950,"wallTimeMs":1794814075378,"kind":"SettlementFounded","text":"Judy Walker raised the first settlement of Greatport."}
+{"type":"status","tick":147978,"wallTimeMs":1794814076254,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":147998,"wallTimeMs":1794814076830,"text":"No entities within range to interact with."}
+{"type":"chronicle","tick":148002,"wallTimeMs":1794814076963,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Frank Taylor."}
+{"type":"status","tick":148010,"wallTimeMs":1794814077233,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":148202,"wallTimeMs":1794814082896,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":148218,"wallTimeMs":1794814083407,"text":"No entities within range to interact with."}
+{"type":"status","tick":148234,"wallTimeMs":1794814083862,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":148350,"wallTimeMs":1794814087217,"kind":"SettlementFounded","text":"Harriet Evans raised the first settlement of Smallshire."}
+{"type":"status","tick":148602,"wallTimeMs":1794814093949,"text":"Gathered 5 wood and 2 apples from tree."}
+{"type":"status","tick":148618,"wallTimeMs":1794814094361,"text":"No entities within range to interact with."}
+{"type":"status","tick":148634,"wallTimeMs":1794814094832,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":149002,"wallTimeMs":1794814105801,"kind":"StallBuilt","text":"Trade came to Greatport: Judy Walker built a stall."}
+{"type":"status","tick":149242,"wallTimeMs":1794814113979,"text":"You enter the land of Greatport (Neutral)."}
+{"type":"status","tick":149258,"wallTimeMs":1794814114431,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":149274,"wallTimeMs":1794814114908,"text":"No entities within range to interact with."}
+{"type":"status","tick":149290,"wallTimeMs":1794814115317,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":149450,"wallTimeMs":1794814119914,"kind":"StallBuilt","text":"Trade came to Smallshire: Harriet Evans built a stall."}
+{"type":"status","tick":149502,"wallTimeMs":1794814121453,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"objective_completed","tick":149550,"wallTimeMs":1794814122935,"number":2,"id":"eat","title":"Eat something","ticksTaken":1948}
+{"type":"status","tick":149550,"wallTimeMs":1794814122935,"text":"Objective complete: Eat something. \u002B25 coins."}
+{"type":"objective_completed","tick":149602,"wallTimeMs":1794814124591,"number":3,"id":"join-nation","title":"Create or join a nation","ticksTaken":52}
+{"type":"status","tick":149602,"wallTimeMs":1794814124591,"text":"Objective complete: Create or join a nation. \u002B25 coins."}
+{"type":"status","tick":149658,"wallTimeMs":1794814126482,"text":"Gathered 6 wood and 3 apples from tree."}
+{"type":"status","tick":149674,"wallTimeMs":1794814126909,"text":"No entities within range to interact with."}
+{"type":"status","tick":149690,"wallTimeMs":1794814127406,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":149850,"wallTimeMs":1794814132050,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Frank Taylor."}
+{"type":"status","tick":149890,"wallTimeMs":1794814133327,"text":"You leave the land of Greatport for the wilds."}
+{"type":"status","tick":149994,"wallTimeMs":1794814136646,"text":"Gathered 4 wood and 3 apples from tree."}
+{"type":"status","tick":150010,"wallTimeMs":1794814137187,"text":"No entities within range to interact with."}
+{"type":"status","tick":150026,"wallTimeMs":1794814137677,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":150250,"wallTimeMs":1794814146109,"kind":"NationRelationChange","text":"Farmburg and Greatport have become rivals over their border."}
+{"type":"status","tick":150274,"wallTimeMs":1794814147175,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":150286,"wallTimeMs":1794814147717,"text":"No entities within range to interact with."}
+{"type":"status","tick":150294,"wallTimeMs":1794814148020,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":150302,"wallTimeMs":1794814148303,"kind":"StallBuilt","text":"Trade came to Farmburg: Bob Thomas built a stall."}
+{"type":"chronicle","tick":150750,"wallTimeMs":1794814167124,"kind":"NationRelationChange","text":"Farmburg and Smallshire have become rivals over their border."}
+{"type":"world_event_offered","tick":150754,"wallTimeMs":1794814167263,"title":"A claimant stirs","body":"Zach Williams of Farmburg claims the right to lead it in place of Frank Taylor, and has come in secret asking for your backing.","options":["Back the claimant (20 coins)","Warn Farmburg\u0027s leader","Stay out of it"]}
+{"type":"status","tick":150754,"wallTimeMs":1794814214601,"text":"No entities within range to interact with. (x3)"}
+{"type":"status","tick":150754,"wallTimeMs":1794814278260,"text":"No entities within range to interact with. (x4)"}
+{"type":"status","tick":150754,"wallTimeMs":1794814278666,"text":"No entities within range to interact with. (x5)"}
+{"type":"status","tick":150754,"wallTimeMs":1794814279153,"text":"No entities within range to interact with. (x6)"}
+{"type":"status","tick":150754,"wallTimeMs":1794814289341,"text":"Zach Williams seized the leadership of Farmburg without Northernfield\u0027s help, and has not forgotten it."}
+{"type":"chronicle","tick":150754,"wallTimeMs":1794814289341,"kind":"LeadershipChange","text":"Zach Williams now leads Farmburg."}
+{"type":"chronicle","tick":150754,"wallTimeMs":1794814289341,"kind":"WorldEvent","text":"Zach Williams seized the leadership of Farmburg without Northernfield\u0027s help, and has not forgotten it."}
+{"type":"world_event_resolved","tick":150754,"wallTimeMs":1794814289341,"title":"A claimant stirs","status":"Zach Williams seized the leadership of Farmburg without Northernfield\u0027s help, and has not forgotten it."}
+{"type":"chronicle","tick":150802,"wallTimeMs":1794814290720,"kind":"StallBuilt","text":"Peggy Brown built a market stall in Farmburg."}
+{"type":"chronicle","tick":150802,"wallTimeMs":1794814290720,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Jasmine Brown."}
+{"type":"chronicle","tick":150802,"wallTimeMs":1794814290720,"kind":"StallBuilt","text":"Trade came to Farmburg: Quinn Wood built a stall."}
+{"type":"chronicle","tick":150950,"wallTimeMs":1794814295152,"kind":"StallBuilt","text":"A new stall opened in the market of Greatport, built by Judy Walker."}
+{"type":"save","tick":151002,"wallTimeMs":1794814296808,"count":1}
+{"type":"status","tick":151042,"wallTimeMs":1794814298054,"text":"Gathered 4 wood and 2 apples from tree."}
+{"type":"status","tick":151054,"wallTimeMs":1794814298421,"text":"No entities within range to interact with."}
+{"type":"status","tick":151070,"wallTimeMs":1794814298915,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":151302,"wallTimeMs":1794814305969,"text":"You enter the land of Greatport (Neutral)."}
+{"type":"status","tick":151330,"wallTimeMs":1794814306880,"text":"Gathered 6 wood and 1 apple from tree."}
+{"type":"status","tick":151342,"wallTimeMs":1794814307269,"text":"No entities within range to interact with."}
+{"type":"status","tick":151354,"wallTimeMs":1794814307666,"text":"No entities within range to interact with. (x2)"}
+{"type":"status","tick":151370,"wallTimeMs":1794814308120,"text":"This land is claimed by Greatport. Found your settlement outside its borders. Open ground lies about 160 paces to the south-west."}
+{"type":"chronicle","tick":151550,"wallTimeMs":1794814313824,"kind":"NationCreation","text":"Charlie Thompson declared the nation of Fortford, though none had yet sworn to it."}
+{"type":"status","tick":151690,"wallTimeMs":1794814318366,"text":"You leave the land of Greatport for the wilds."}
+{"type":"chronicle","tick":151750,"wallTimeMs":1794814320612,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Harriet Johnson."}
+{"type":"status","tick":151862,"wallTimeMs":1794814324551,"text":"You are back on your own land."}
+{"type":"chronicle","tick":151862,"wallTimeMs":1794814324551,"kind":"SettlementFounded","text":"You raised the first settlement of Northernfield."}
+{"type":"objective_completed","tick":151902,"wallTimeMs":1794814326332,"number":4,"id":"found-settlement","title":"Found a settlement","ticksTaken":2300}
+{"type":"status","tick":151902,"wallTimeMs":1794814326332,"text":"Objective complete: Found a settlement. \u002B50 coins."}
+{"type":"chronicle","tick":151902,"wallTimeMs":1794814326332,"kind":"NationJoin","text":"Katie Williams threw in their lot with Northernfield."}
+{"type":"chronicle","tick":151902,"wallTimeMs":1794814326332,"kind":"NationJoin","text":"Northernfield welcomed Bella Thomas into its ranks."}
+{"type":"chronicle","tick":151902,"wallTimeMs":1794814326332,"kind":"NationJoin","text":"Alice Walker threw in their lot with Northernfield."}
+{"type":"chronicle","tick":152102,"wallTimeMs":1794814336455,"kind":"SettlementFounded","text":"Charlie Thompson laid the first stones of Fortford."}
+{"type":"chronicle","tick":152150,"wallTimeMs":1794814339666,"kind":"StallBuilt","text":"Trade came to Smallshire: Harriet Evans built a stall."}
+{"type":"chronicle","tick":152450,"wallTimeMs":1794814353608,"kind":"NationCreation","text":"Stan Walker declared the nation of Southernport, though none had yet sworn to it."}
+{"type":"screen","tick":152734,"wallTimeMs":1794814366872,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"objective_completed","tick":152734,"wallTimeMs":1794814366872,"number":5,"id":"enter-settlement","title":"Enter your settlement","ticksTaken":832}
+{"type":"status","tick":152734,"wallTimeMs":1794814366872,"text":"Objective complete: Enter your settlement."}
+{"type":"screen","tick":152734,"wallTimeMs":1794814374255,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":152738,"wallTimeMs":1794814374405,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"chronicle","tick":152802,"wallTimeMs":1794814376139,"kind":"StallBuilt","text":"Judy Walker built a market stall in Greatport."}
+{"type":"chronicle","tick":152902,"wallTimeMs":1794814378724,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Peggy Brown."}
+{"type":"chronicle","tick":153102,"wallTimeMs":1794814383558,"kind":"NationCreation","text":"Mia Wood raised a banner and called it Greatton."}
+{"type":"chronicle","tick":153250,"wallTimeMs":1794814387009,"kind":"NationCreation","text":"Ursula Davies declared the nation of Cityland, though none had yet sworn to it."}
+{"type":"status","tick":153294,"wallTimeMs":1794814388032,"text":"Exited settlement."}
+{"type":"chronicle","tick":153502,"wallTimeMs":1794814393291,"kind":"NationCreation","text":"The nation of Westernburg was born, with Frank Lewis at its head."}
+{"type":"chronicle","tick":153602,"wallTimeMs":1794814396138,"kind":"SettlementFounded","text":"Mia Wood laid the first stones of Greatton."}
+{"type":"chronicle","tick":153750,"wallTimeMs":1794814400081,"kind":"StallBuilt","text":"Judy Walker built a market stall in Greatport."}
+{"type":"chronicle","tick":153850,"wallTimeMs":1794814402222,"kind":"SettlementFounded","text":"Stan Walker raised the first settlement of Southernport."}
+{"type":"chronicle","tick":153902,"wallTimeMs":1794814403477,"kind":"SettlementFounded","text":"Frank Lewis raised the first settlement of Westernburg."}
+{"type":"status","tick":153910,"wallTimeMs":1794814403669,"text":"You leave the land of Northernfield for the wilds."}
+{"type":"chronicle","tick":153950,"wallTimeMs":1794814404673,"kind":"StallBuilt","text":"A new stall opened in the market of Fortford, built by Charlie Thompson."}
+{"type":"status","tick":154074,"wallTimeMs":1794814407669,"text":"Gathered 5 wood and 3 apples from tree."}
+{"type":"status","tick":154094,"wallTimeMs":1794814408150,"text":"Gathered 5 wood and 1 apple from tree."}
+{"type":"chronicle","tick":154102,"wallTimeMs":1794814408341,"kind":"StallBuilt","text":"Trade came to Farmburg: Rachel Lewis built a stall."}
+{"type":"status","tick":154110,"wallTimeMs":1794814408521,"text":"No entities within range to interact with."}
+{"type":"status","tick":154114,"wallTimeMs":1794814408613,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"status","tick":154250,"wallTimeMs":1794814411768,"text":"Greatport resents your border: relations are now Rival (-20). Smallshire resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":154250,"wallTimeMs":1794814411768,"kind":"NationCreation","text":"Yvonne Davies raised a banner and called it Northport."}
+{"type":"chronicle","tick":154250,"wallTimeMs":1794814411768,"kind":"NationRelationChange","text":"Northernfield and Greatport have become rivals over their border."}
+{"type":"chronicle","tick":154250,"wallTimeMs":1794814411768,"kind":"NationRelationChange","text":"Northernfield and Smallshire have become rivals over their border."}
+{"type":"status","tick":154382,"wallTimeMs":1794814415318,"text":"You are back on your own land."}
+{"type":"chronicle","tick":154402,"wallTimeMs":1794814415873,"kind":"StallBuilt","text":"Tina Thompson built a market stall in Farmburg."}
+{"type":"status","tick":154502,"wallTimeMs":1794814418648,"text":"Fortford resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":154502,"wallTimeMs":1794814418648,"kind":"NationRelationChange","text":"Northernfield and Fortford have become rivals over their border."}
+{"type":"status","tick":154518,"wallTimeMs":1794814419054,"text":"No entities within range to interact with."}
+{"type":"status","tick":154534,"wallTimeMs":1794814419468,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":154602,"wallTimeMs":1794814421158,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Rachel White."}
+{"type":"chronicle","tick":154602,"wallTimeMs":1794814421158,"kind":"SettlementFounded","text":"Cityland put down roots: Ursula Davies founded its first settlement."}
+{"type":"status","tick":154730,"wallTimeMs":1794814424305,"text":"You leave the land of Northernfield for the wilds."}
+{"type":"chronicle","tick":154802,"wallTimeMs":1794814426049,"kind":"NationCreation","text":"Olivia Roberts raised a banner and called it Villagefield."}
+{"type":"chronicle","tick":154850,"wallTimeMs":1794814427189,"kind":"SettlementFounded","text":"Villagefield put down roots: Olivia Roberts founded its first settlement."}
+{"type":"status","tick":154918,"wallTimeMs":1794814428701,"text":"Gathered 6 wood and 2 apples from tree."}
+{"type":"status","tick":154934,"wallTimeMs":1794814429070,"text":"No entities within range to interact with."}
+{"type":"status","tick":154954,"wallTimeMs":1794814429512,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":155102,"wallTimeMs":1794814432809,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Stan Walker."}
+{"type":"chronicle","tick":155250,"wallTimeMs":1794814436198,"kind":"SettlementFounded","text":"Yvonne Davies raised the first settlement of Northport."}
+{"type":"chronicle","tick":155250,"wallTimeMs":1794814436198,"kind":"StallBuilt","text":"A new stall opened in the market of Westernburg, built by Frank Lewis."}
+{"type":"status","tick":155298,"wallTimeMs":1794814437371,"text":"Gathered 4 wood and 1 apple from tree."}
+{"type":"status","tick":155318,"wallTimeMs":1794814437822,"text":"No entities within range to interact with."}
+{"type":"status","tick":155334,"wallTimeMs":1794814438176,"text":"No entities within range to interact with. (x2)"}
+{"type":"chronicle","tick":155650,"wallTimeMs":1794814445216,"kind":"NationCreation","text":"Bob Watson founded the nation of Bigshire."}
+{"type":"chronicle","tick":155750,"wallTimeMs":1794814447480,"kind":"NationRelationChange","text":"Farmburg and Smallshire are now hostile."}
+{"type":"status","tick":156002,"wallTimeMs":1794814453024,"text":"Greatton resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":156002,"wallTimeMs":1794814453024,"kind":"NationRelationChange","text":"Northernfield and Greatton have become rivals over their border."}
+{"type":"chronicle","tick":156002,"wallTimeMs":1794814453024,"kind":"NationRelationChange","text":"Relations between Smallshire and Farmburg are now rival."}
+{"type":"chronicle","tick":156050,"wallTimeMs":1794814454029,"kind":"StallBuilt","text":"Trade came to Greatton: Mia Wood built a stall."}
+{"type":"chronicle","tick":156050,"wallTimeMs":1794814454029,"kind":"StallBuilt","text":"Trade came to Villagefield: Olivia Roberts built a stall."}
+{"type":"chronicle","tick":156150,"wallTimeMs":1794814456098,"kind":"SettlementFounded","text":"Bigshire put down roots: Bob Watson founded its first settlement."}
+{"type":"chronicle","tick":156202,"wallTimeMs":1794814457176,"kind":"StallBuilt","text":"Trade came to Greatport: Judy Walker built a stall."}
+{"type":"chronicle","tick":156202,"wallTimeMs":1794814457176,"kind":"StallBuilt","text":"A new stall opened in the market of Westernburg, built by Frank Lewis."}
+{"type":"status","tick":156250,"wallTimeMs":1794814458157,"text":"Southernport resents your border: relations are now Rival (-20). Westernburg resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":156250,"wallTimeMs":1794814458157,"kind":"NationRelationChange","text":"Northernfield and Southernport have become rivals over their border."}
+{"type":"chronicle","tick":156250,"wallTimeMs":1794814458157,"kind":"NationRelationChange","text":"Northernfield and Westernburg have become rivals over their border."}
+{"type":"chronicle","tick":156400,"wallTimeMs":1794814461177,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Stan Walker."}
+{"type":"chronicle","tick":156451,"wallTimeMs":1794814462213,"kind":"NationCreation","text":"Ella Robinson declared the nation of Fortfield, though none had yet sworn to it."}
+{"type":"chronicle","tick":156503,"wallTimeMs":1794814463328,"kind":"SettlementFounded","text":"Fortfield put down roots: Ella Robinson founded its first settlement."}
+{"type":"chronicle","tick":156551,"wallTimeMs":1794814464627,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Jasmine Brown. The market is now full."}
+{"type":"chronicle","tick":156551,"wallTimeMs":1794814464627,"kind":"NationCreation","text":"Frank Evans founded the nation of Cityfield."}
+{"type":"save","tick":157003,"wallTimeMs":1794814480155,"count":2}
+{"type":"status","tick":157003,"wallTimeMs":1794814480155,"text":"Autosaved."}
+{"type":"chronicle","tick":157003,"wallTimeMs":1794814480155,"kind":"NationRelationChange","text":"Southernport and Cityland have become rivals over their border."}
+{"type":"chronicle","tick":157003,"wallTimeMs":1794814480155,"kind":"NationRelationChange","text":"Greatton and Cityland have become rivals over their border."}
+{"type":"chronicle","tick":157103,"wallTimeMs":1794814483598,"kind":"NationCreation","text":"Peggy Roberts declared the nation of Southtown, though none had yet sworn to it."}
+{"type":"chronicle","tick":157251,"wallTimeMs":1794814488554,"kind":"NationRelationChange","text":"Smallshire and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":157251,"wallTimeMs":1794814488554,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":157351,"wallTimeMs":1794814491970,"kind":"StallBuilt","text":"A new stall opened in the market of Greatport, built by Judy Walker."}
+{"type":"chronicle","tick":157403,"wallTimeMs":1794814493756,"kind":"StallBuilt","text":"Trade came to Fortford: Charlie Thompson built a stall."}
+{"type":"status","tick":157503,"wallTimeMs":1794814497090,"text":"Northport resents your border: relations are now Rival (-20)."}
+{"type":"chronicle","tick":157503,"wallTimeMs":1794814497090,"kind":"StallBuilt","text":"A new stall opened in the market of Southernport, built by Stan Walker."}
+{"type":"chronicle","tick":157503,"wallTimeMs":1794814497090,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Judy Thompson."}
+{"type":"chronicle","tick":157503,"wallTimeMs":1794814497090,"kind":"NationCreation","text":"The nation of Southford was born, with Linda Taylor at its head."}
+{"type":"chronicle","tick":157503,"wallTimeMs":1794814497090,"kind":"StallBuilt","text":"Trade came to Farmburg: Frank Watson built a stall."}
+{"type":"chronicle","tick":157503,"wallTimeMs":1794814497090,"kind":"NationRelationChange","text":"Farmburg and Northport have become rivals over their border."}
+{"type":"chronicle","tick":157503,"wallTimeMs":1794814497090,"kind":"NationRelationChange","text":"Northernfield and Northport have become rivals over their border."}
+{"type":"chronicle","tick":157551,"wallTimeMs":1794814498632,"kind":"StallBuilt","text":"Harriet Evans built a market stall in Smallshire."}
+{"type":"chronicle","tick":157551,"wallTimeMs":1794814498632,"kind":"StallBuilt","text":"Trade came to Farmburg: Gemma Evans built a stall."}
+{"type":"status","tick":157751,"wallTimeMs":1794814505282,"text":"Farmburg shares an enemy with you: relations are now Friendly (\u002B21)."}
+{"type":"chronicle","tick":157751,"wallTimeMs":1794814505282,"kind":"SettlementFounded","text":"Frank Evans raised the first settlement of Cityfield."}
+{"type":"chronicle","tick":157751,"wallTimeMs":1794814505282,"kind":"SettlementFounded","text":"Linda Taylor raised the first settlement of Southford."}
+{"type":"chronicle","tick":157751,"wallTimeMs":1794814505282,"kind":"NationRelationChange","text":"Relations between Farmburg and Northernfield are now friendly against a common enemy."}
+{"type":"chronicle","tick":157751,"wallTimeMs":1794814505282,"kind":"NationRelationChange","text":"Farmburg and Smallshire are now hostile over their border."}
+{"type":"chronicle","tick":157903,"wallTimeMs":1794814514055,"kind":"StallBuilt","text":"A new stall opened in the market of Greatton, built by Mia Wood."}
+{"type":"chronicle","tick":157951,"wallTimeMs":1794814515692,"kind":"StallBuilt","text":"Trade came to Greatport: Judy Walker built a stall."}
+{"type":"chronicle","tick":158003,"wallTimeMs":1794814517356,"kind":"NationRaid","text":"Farmburg raided Smallshire and carried off 3 coins, 1 wood, 5 stone."}
+{"type":"chronicle","tick":158051,"wallTimeMs":1794814518953,"kind":"StallBuilt","text":"Gemma Evans built a market stall in Farmburg. The market is now full."}
+{"type":"chronicle","tick":158203,"wallTimeMs":1794814523855,"kind":"NationCreation","text":"Natalie Davies founded the nation of Fortland."}
+{"type":"chronicle","tick":158251,"wallTimeMs":1794814525438,"kind":"SettlementFounded","text":"Fortland put down roots: Natalie Davies founded its first settlement."}
+{"type":"chronicle","tick":158251,"wallTimeMs":1794814525438,"kind":"WorldEvent","text":"Wanderers came to the Village of Smallshire, and Harriet Evans welcomed them all: Natalie Robinson, Eve Walker, Oscar Walker joined Smallshire."}
+{"type":"chronicle","tick":158451,"wallTimeMs":1794814532015,"kind":"SettlementFounded","text":"Southtown put down roots: Peggy Roberts founded its first settlement."}
+{"type":"chronicle","tick":158503,"wallTimeMs":1794814533687,"kind":"NationRelationChange","text":"Fortford and Bigshire have become rivals over their border."}
+{"type":"chronicle","tick":158503,"wallTimeMs":1794814533687,"kind":"NationRelationChange","text":"Southernport and Bigshire have become rivals over their border."}
+{"type":"status","tick":158611,"wallTimeMs":1794814537275,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":158751,"wallTimeMs":1794814541249,"kind":"StallBuilt","text":"Natalie Davies built a market stall in Fortland."}
+{"type":"chronicle","tick":158751,"wallTimeMs":1794814541249,"kind":"NationRelationChange","text":"Greatton and Fortfield have become rivals over their border."}
+{"type":"chronicle","tick":158751,"wallTimeMs":1794814541249,"kind":"NationRelationChange","text":"Westernburg and Fortfield have become rivals over their border."}
+{"type":"chronicle","tick":158853,"wallTimeMs":1794814543292,"kind":"StallBuilt","text":"Trade came to Southernport: Stan Walker built a stall. The market is now full."}
+{"type":"chronicle","tick":158950,"wallTimeMs":1794814545247,"kind":"StallBuilt","text":"Trade came to Smallshire: Harriet Evans built a stall."}
+{"type":"chronicle","tick":159001,"wallTimeMs":1794814546428,"kind":"NationCreation","text":"Daisy Lewis raised a banner and called it Southland."}
+{"type":"chronicle","tick":159101,"wallTimeMs":1794814549446,"kind":"StallBuilt","text":"Ursula Davies built a market stall in Cityland."}
+{"type":"chronicle","tick":159153,"wallTimeMs":1794814551177,"kind":"StallBuilt","text":"Trade came to Westernburg: Frank Lewis built a stall."}
+{"type":"chronicle","tick":159353,"wallTimeMs":1794814557852,"kind":"StallBuilt","text":"Trade came to Greatport: Judy Walker built a stall. The market is now full."}
+{"type":"status","tick":159501,"wallTimeMs":1794814563217,"text":"Cityland shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":159501,"wallTimeMs":1794814563217,"kind":"NationRelationChange","text":"Relations between Northernfield and Cityland are now friendly against a common enemy."}
+{"type":"status","tick":159753,"wallTimeMs":1794814572000,"text":"Villagefield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":159753,"wallTimeMs":1794814572000,"kind":"NationRelationChange","text":"Relations between Northernfield and Villagefield are now friendly against a common enemy."}
+{"type":"chronicle","tick":159901,"wallTimeMs":1794814577185,"kind":"StallBuilt","text":"A new stall opened in the market of Fortford, built by Charlie Thompson."}
+{"type":"chronicle","tick":159901,"wallTimeMs":1794814577185,"kind":"NationCreation","text":"Bob Wilson founded the nation of Castleville."}
+{"type":"chronicle","tick":160001,"wallTimeMs":1794814580700,"kind":"StallBuilt","text":"Mia Wood built a market stall in Greatton."}
+{"type":"chronicle","tick":160001,"wallTimeMs":1794814580700,"kind":"StallBuilt","text":"Trade came to Southtown: Peggy Roberts built a stall."}
+{"type":"chronicle","tick":160001,"wallTimeMs":1794814580700,"kind":"StallBuilt","text":"A new stall opened in the market of Fortland, built by Natalie Davies."}
+{"type":"chronicle","tick":160001,"wallTimeMs":1794814580700,"kind":"NationRelationChange","text":"Farmburg and Cityfield have become rivals over their border."}
+{"type":"chronicle","tick":160001,"wallTimeMs":1794814580700,"kind":"NationRelationChange","text":"Farmburg and Southford have become rivals over their border."}
+{"type":"chronicle","tick":160001,"wallTimeMs":1794814580700,"kind":"NationRelationChange","text":"Villagefield and Cityfield have become rivals over their border."}
+{"type":"chronicle","tick":160153,"wallTimeMs":1794814586125,"kind":"SettlementFounded","text":"Bob Wilson raised the first settlement of Castleville."}
+{"type":"status","tick":160225,"wallTimeMs":1794814589219,"text":"Welcome home!"}
+{"type":"status","tick":160233,"wallTimeMs":1794814589762,"text":"You are back on your own land."}
+{"type":"chronicle","tick":160301,"wallTimeMs":1794814592833,"kind":"NationCreation","text":"Oscar Taylor founded the nation of Westernford."}
+{"type":"status","tick":160501,"wallTimeMs":1794814601025,"text":"Smallshire has fallen and been disbanded."}
+{"type":"chronicle","tick":160501,"wallTimeMs":1794814601025,"kind":"NationRelationChange","text":"Farmburg and Fortland have become rivals over their border."}
+{"type":"chronicle","tick":160501,"wallTimeMs":1794814601025,"kind":"SettlementCapture","text":"Farmburg captured a village from Smallshire."}
+{"type":"chronicle","tick":160501,"wallTimeMs":1794814601025,"kind":"NationDisband","text":"Smallshire is no more; its last village fell to Farmburg."}
+{"type":"status","tick":160649,"wallTimeMs":1794814606720,"text":"Entered settlement."}
+{"type":"screen","tick":160653,"wallTimeMs":1794814606875,"from":"WORLD","to":"SETTLEMENT"}
+{"type":"chronicle","tick":160653,"wallTimeMs":1794814606875,"kind":"StallBuilt","text":"Peggy Roberts built a market stall in Southtown."}
+{"type":"screen","tick":160653,"wallTimeMs":1794814612525,"from":"SETTLEMENT","to":"WORLD"}
+{"type":"status","tick":160657,"wallTimeMs":1794814612713,"text":"You are inside the settlement. Its buttons are below; Exit Settlement walks you back out."}
+{"type":"chronicle","tick":160701,"wallTimeMs":1794814614398,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Zach Williams."}
+{"type":"chronicle","tick":160753,"wallTimeMs":1794814616436,"kind":"NationRelationChange","text":"Fortford and Southtown have become rivals over their border."}
+{"type":"chronicle","tick":160753,"wallTimeMs":1794814616436,"kind":"NationRelationChange","text":"Southernport and Southtown have become rivals over their border."}
+{"type":"chronicle","tick":160901,"wallTimeMs":1794814622085,"kind":"NationJoin","text":"Harriet Evans joined Northernfield."}
+{"type":"chronicle","tick":160953,"wallTimeMs":1794814624188,"kind":"StallBuilt","text":"A new stall opened in the market of Fortland, built by Natalie Davies."}
+{"type":"status","tick":161001,"wallTimeMs":1794814626235,"text":"Bigshire shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":161001,"wallTimeMs":1794814626235,"kind":"NationRelationChange","text":"Relations between Northernfield and Bigshire are now friendly against a common enemy."}
+{"type":"chronicle","tick":161053,"wallTimeMs":1794814628331,"kind":"SettlementFounded","text":"Oscar Taylor raised the first settlement of Westernford."}
+{"type":"chronicle","tick":161101,"wallTimeMs":1794814630245,"kind":"StallBuilt","text":"Trade came to Westernburg: Frank Lewis built a stall."}
+{"type":"chronicle","tick":161153,"wallTimeMs":1794814632333,"kind":"StallBuilt","text":"A new stall opened in the market of Villagefield, built by Olivia Roberts."}
+{"type":"status","tick":161241,"wallTimeMs":1794814635895,"text":"You are inside the settlement and cannot walk here. Choose Exit Settlement to walk back out."}
+{"type":"status","tick":161253,"wallTimeMs":1794814636360,"text":"Fortfield shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":161253,"wallTimeMs":1794814636360,"kind":"NationRelationChange","text":"Relations between Northernfield and Fortfield are now friendly against a common enemy."}
+{"type":"status","tick":161257,"wallTimeMs":1794814636522,"text":"You are inside the settlement and cannot walk here. Choose Exit Settlement to walk back out."}
+{"type":"chronicle","tick":161401,"wallTimeMs":1794814642188,"kind":"StallBuilt","text":"A new stall opened in the market of Southtown, built by Peggy Roberts."}
+{"type":"chronicle","tick":161453,"wallTimeMs":1794814644260,"kind":"SettlementFounded","text":"Southland put down roots: Daisy Lewis founded its first settlement."}
+{"type":"chronicle","tick":161553,"wallTimeMs":1794814648222,"kind":"NationJoin","text":"Natalie Robinson joined Northernfield."}
+{"type":"chronicle","tick":161565,"wallTimeMs":1794814648725,"kind":"Caravan","text":"A caravan from Northport sold 20 wood at the Village of Farmburg for 491 coins."}
+{"type":"chronicle","tick":161601,"wallTimeMs":1794814650106,"kind":"NationJoin","text":"Oscar Walker joined Northernfield."}
+{"type":"chronicle","tick":162001,"wallTimeMs":1794814667163,"kind":"StallBuilt","text":"A new stall opened in the market of Castleville, built by Bob Wilson."}
+{"type":"chronicle","tick":162001,"wallTimeMs":1794814667163,"kind":"NationRelationChange","text":"Relations between Greatport and Farmburg are now neutral."}
+{"type":"chronicle","tick":162001,"wallTimeMs":1794814667163,"kind":"NationRelationChange","text":"Cityland and Southernport are now hostile."}
+{"type":"chronicle","tick":162001,"wallTimeMs":1794814667163,"kind":"NationRelationChange","text":"Cityland and Greatton are now hostile."}
+{"type":"chronicle","tick":162001,"wallTimeMs":1794814667163,"kind":"NationRaid","text":"Cityland raided Southernport and carried off 5 coins."}
+{"type":"chronicle","tick":162001,"wallTimeMs":1794814667163,"kind":"NationRaid","text":"Raiders from Cityland struck Greatton, taking 5 coins."}
+{"type":"chronicle","tick":162201,"wallTimeMs":1794814675090,"kind":"StallBuilt","text":"A new stall opened in the market of Southland, built by Daisy Lewis."}
+{"type":"chronicle","tick":162253,"wallTimeMs":1794814679775,"kind":"NationRelationChange","text":"Fortford and Villagefield are now hostile."}
+{"type":"chronicle","tick":162501,"wallTimeMs":1794814690466,"kind":"NationRelationChange","text":"Cityland and Castleville have become rivals over their border."}
+{"type":"chronicle","tick":162501,"wallTimeMs":1794814690466,"kind":"NationRelationChange","text":"Southtown and Castleville have become rivals over their border."}
+{"type":"chronicle","tick":162701,"wallTimeMs":1794814698262,"kind":"StallBuilt","text":"A new stall opened in the market of Westernburg, built by Frank Lewis."}
+{"type":"chronicle","tick":162753,"wallTimeMs":1794814700303,"kind":"StallBuilt","text":"A new stall opened in the market of Fortford, built by Charlie Thompson."}
+{"type":"chronicle","tick":162753,"wallTimeMs":1794814700303,"kind":"NationRelationChange","text":"Farmburg and Greatport have become rivals over their border."}
+{"type":"chronicle","tick":162853,"wallTimeMs":1794814703188,"kind":"StallBuilt","text":"Mia Wood built a market stall in Greatton."}
+{"type":"chronicle","tick":162853,"wallTimeMs":1794814703188,"kind":"StallBuilt","text":"A new stall opened in the market of Cityland, built by Ursula Davies."}
+{"type":"save","tick":163001,"wallTimeMs":1794814706988,"count":3}
+{"type":"status","tick":163001,"wallTimeMs":1794814706988,"text":"Autosaved."}
+{"type":"chronicle","tick":163001,"wallTimeMs":1794814706988,"kind":"NationRelationChange","text":"Farmburg and Northport are now hostile."}
+{"type":"chronicle","tick":163001,"wallTimeMs":1794814706988,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now rival."}
+{"type":"chronicle","tick":163001,"wallTimeMs":1794814706988,"kind":"NationRaid","text":"Farmburg raided Northport and carried off 5 wood."}
+{"type":"chronicle","tick":163053,"wallTimeMs":1794814708759,"kind":"StallBuilt","text":"Trade came to Fortland: Natalie Davies built a stall."}
+{"type":"chronicle","tick":163101,"wallTimeMs":1794814710992,"kind":"StallBuilt","text":"A new stall opened in the market of Southland, built by Daisy Lewis."}
+{"type":"chronicle","tick":163201,"wallTimeMs":1794814716094,"kind":"StallBuilt","text":"Trade came to Bigshire: Bob Watson built a stall."}
+{"type":"status","tick":163253,"wallTimeMs":1794814718643,"text":"Southtown shares an enemy with you: relations are now Friendly (\u002B20)."}
+{"type":"chronicle","tick":163253,"wallTimeMs":1794814718643,"kind":"NationRelationChange","text":"Relations between Northernfield and Southtown are now friendly against a common enemy."}
+{"type":"chronicle","tick":163501,"wallTimeMs":1794814728263,"kind":"NationRelationChange","text":"Southford and Westernford have become rivals over their border."}
+{"type":"chronicle","tick":163501,"wallTimeMs":1794814728263,"kind":"NationRelationChange","text":"Fortland and Westernford have become rivals over their border."}
+{"type":"chronicle","tick":163501,"wallTimeMs":1794814728263,"kind":"NationRelationChange","text":"Fortford and Bigshire are now hostile."}
+{"type":"chronicle","tick":163501,"wallTimeMs":1794814728263,"kind":"NationRelationChange","text":"Southernport and Bigshire are now hostile."}
+{"type":"chronicle","tick":163701,"wallTimeMs":1794814735283,"kind":"StallBuilt","text":"Daisy Lewis built a market stall in Southland."}
+{"type":"status","tick":163721,"wallTimeMs":1794814735945,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":163753,"wallTimeMs":1794814737071,"kind":"NationRelationChange","text":"Villagefield and Southland have become rivals over their border."}
+{"type":"chronicle","tick":163753,"wallTimeMs":1794814737071,"kind":"NationRelationChange","text":"Bigshire and Southland have become rivals over their border."}
+{"type":"chronicle","tick":163753,"wallTimeMs":1794814737071,"kind":"NationRelationChange","text":"Southtown and Southland have become rivals over their border."}
+{"type":"chronicle","tick":163753,"wallTimeMs":1794814737071,"kind":"NationRelationChange","text":"Fortfield and Greatton are now hostile."}
+{"type":"chronicle","tick":163753,"wallTimeMs":1794814737071,"kind":"NationRelationChange","text":"Fortfield and Westernburg are now hostile."}
+{"type":"chronicle","tick":163853,"wallTimeMs":1794814740500,"kind":"StallBuilt","text":"Zach Williams built a market stall in Farmburg."}
+{"type":"chronicle","tick":163853,"wallTimeMs":1794814740500,"kind":"StallBuilt","text":"Natalie Davies built a market stall in Fortland."}
+{"type":"chronicle","tick":163901,"wallTimeMs":1794814742205,"kind":"StallBuilt","text":"Trade came to Southford: Linda Taylor built a stall."}
+{"type":"chronicle","tick":164001,"wallTimeMs":1794814745705,"kind":"NationRelationChange","text":"Relations between Greatport and Farmburg are now neutral."}
+{"type":"chronicle","tick":164001,"wallTimeMs":1794814745705,"kind":"NationRaid","text":"Fortford raided Bigshire and carried off 2 coins, 1 wood."}
+{"type":"chronicle","tick":164001,"wallTimeMs":1794814745705,"kind":"NationRaid","text":"Raiders from Fortfield struck Greatton, taking 5 coins."}
+{"type":"chronicle","tick":164001,"wallTimeMs":1794814745705,"kind":"NationRaid","text":"Fortfield raided Westernburg and carried off 5 coins."}
+{"type":"chronicle","tick":164101,"wallTimeMs":1794814750010,"kind":"StallBuilt","text":"Bob Wilson built a market stall in Castleville."}
+{"type":"chronicle","tick":164253,"wallTimeMs":1794814755251,"kind":"StallBuilt","text":"Trade came to Fortfield: Ella Robinson built a stall."}
+{"type":"status","tick":164269,"wallTimeMs":1794814755825,"text":"You stocked 1 resident for winter in the Camp of Northernfield."}
+{"type":"chronicle","tick":164453,"wallTimeMs":1794814762366,"kind":"StallBuilt","text":"Mia Wood built a market stall in Greatton."}
+{"type":"chronicle","tick":164501,"wallTimeMs":1794814763966,"kind":"NationRelationChange","text":"Greatport and Southford have become rivals over their border."}
+{"type":"chronicle","tick":164553,"wallTimeMs":1794814765750,"kind":"StallBuilt","text":"Trade came to Cityland: Ursula Davies built a stall."}
+{"type":"chronicle","tick":164601,"wallTimeMs":1794814767430,"kind":"StallBuilt","text":"Trade came to Southland: Daisy Lewis built a stall."}
+{"type":"chronicle","tick":164653,"wallTimeMs":1794814769226,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortford."}
+{"type":"chronicle","tick":164753,"wallTimeMs":1794814772731,"kind":"StallBuilt","text":"A new stall opened in the market of Westernburg, built by Frank Lewis."}
+{"type":"chronicle","tick":164753,"wallTimeMs":1794814772731,"kind":"StallBuilt","text":"Trade came to Fortland: Natalie Davies built a stall."}
+{"type":"chronicle","tick":164853,"wallTimeMs":1794814776348,"kind":"StallBuilt","text":"Trade came to Southtown: Peggy Roberts built a stall."}
+{"type":"chronicle","tick":164901,"wallTimeMs":1794814778053,"kind":"StallBuilt","text":"A new stall opened in the market of Bigshire, built by Bob Watson."}
+{"type":"status","tick":165001,"wallTimeMs":1794814781585,"text":"Greatport sent 20 coins of tribute to the treasury of your camp (its Funds, shown while you stand in it)."}
+{"type":"chronicle","tick":165001,"wallTimeMs":1794814781585,"kind":"NationRelationChange","text":"Farmburg and Cityfield are now hostile."}
+{"type":"chronicle","tick":165001,"wallTimeMs":1794814781585,"kind":"NationRelationChange","text":"Farmburg and Southford are now hostile."}
+{"type":"chronicle","tick":165001,"wallTimeMs":1794814781585,"kind":"NationRelationChange","text":"Villagefield and Cityfield are now hostile."}
+{"type":"chronicle","tick":165001,"wallTimeMs":1794814781585,"kind":"NationRaid","text":"Farmburg raided Southford and carried off 3 coins, 5 stone."}
+{"type":"chronicle","tick":165101,"wallTimeMs":1794814785088,"kind":"StallBuilt","text":"Oscar Taylor built a market stall in Westernford."}
+{"type":"chronicle","tick":165501,"wallTimeMs":1794814799349,"kind":"NationRelationChange","text":"Farmburg and Fortford have become rivals over their border."}
+{"type":"chronicle","tick":165553,"wallTimeMs":1794814801239,"kind":"StallBuilt","text":"Zach Williams built a market stall in Farmburg."}
+{"type":"status","tick":165753,"wallTimeMs":1794814808400,"text":"Northport has fallen and been disbanded."}
+{"type":"chronicle","tick":165753,"wallTimeMs":1794814808400,"kind":"NationRelationChange","text":"Greatport and Greatton have formed an alliance."}
+{"type":"chronicle","tick":165753,"wallTimeMs":1794814808400,"kind":"NationRelationChange","text":"Fortford and Greatton swore an alliance."}
+{"type":"chronicle","tick":165753,"wallTimeMs":1794814808400,"kind":"NationRelationChange","text":"Southernport and Southtown are now hostile."}
+{"type":"chronicle","tick":165753,"wallTimeMs":1794814808400,"kind":"SettlementCapture","text":"After a siege, a village of Northport fell to Farmburg."}
+{"type":"chronicle","tick":165753,"wallTimeMs":1794814808400,"kind":"NationDisband","text":"The banners of Northport came down when Farmburg took its last village."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRelationChange","text":"Greatport and Southernport have formed an alliance."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRelationChange","text":"Relations between Fortford and Farmburg are now neutral."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRelationChange","text":"Fortford and Westernburg swore an alliance."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRelationChange","text":"Southernport and Westernburg have formed an alliance."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRelationChange","text":"Relations between Southford and Farmburg are now rival."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRelationChange","text":"Relations between Southford and Greatport are now neutral."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRaid","text":"Southernport raided Cityland and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRaid","text":"Southernport raided Southtown and carried off 5 coins, 5 wood."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRaid","text":"Raiders from Greatton struck Cityland, taking 5 coins, 5 wood."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRaid","text":"Raiders from Greatton struck Fortfield, taking 4 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":166001,"wallTimeMs":1794814815217,"kind":"NationRaid","text":"Westernburg raided Fortfield and carried off 5 wood, 5 stone."}
+{"type":"status","tick":166253,"wallTimeMs":1794814821300,"text":"Bigshire has fallen and been disbanded."}
+{"type":"chronicle","tick":166253,"wallTimeMs":1794814821300,"kind":"SettlementCapture","text":"Fortford captured a village from Bigshire."}
+{"type":"chronicle","tick":166253,"wallTimeMs":1794814821300,"kind":"NationDisband","text":"The banners of Bigshire came down when Fortford took its last village."}
+{"type":"chronicle","tick":166501,"wallTimeMs":1794814830000,"kind":"NationRelationChange","text":"Farmburg and Greatport have become rivals over their border."}
+{"type":"chronicle","tick":167001,"wallTimeMs":1794814845135,"kind":"NationRelationChange","text":"Farmburg and Southford are now hostile over their border."}
+{"type":"chronicle","tick":167001,"wallTimeMs":1794814845135,"kind":"NationRelationChange","text":"Relations between Greatport and Farmburg are now neutral."}
+{"type":"chronicle","tick":167001,"wallTimeMs":1794814845135,"kind":"NationRelationChange","text":"Villagefield and Southtown have formed an alliance."}
+{"type":"chronicle","tick":167001,"wallTimeMs":1794814845135,"kind":"NationRelationChange","text":"Relations between Southford and Farmburg are now rival."}
+{"type":"chronicle","tick":167501,"wallTimeMs":1794814862846,"kind":"NationRelationChange","text":"Farmburg and Fortford have become rivals over their border."}
+{"type":"chronicle","tick":167501,"wallTimeMs":1794814862846,"kind":"NationRelationChange","text":"Greatport and Southford have become rivals over their border."}
+{"type":"chronicle","tick":167501,"wallTimeMs":1794814862846,"kind":"NationRelationChange","text":"Fortford and Southernport have formed an alliance."}
+{"type":"chronicle","tick":167501,"wallTimeMs":1794814862846,"kind":"NationRelationChange","text":"Southernport and Castleville swore an alliance."}
+{"type":"chronicle","tick":167501,"wallTimeMs":1794814862846,"kind":"NationRelationChange","text":"Castleville and Southtown are now hostile."}
+{"type":"status","tick":167689,"wallTimeMs":1794814868738,"text":"You stocked 3 residents for winter in the Camp of Northernfield."}
+{"type":"status","tick":167753,"wallTimeMs":1794814871269,"text":"Cityfield has fallen and been disbanded."}
+{"type":"chronicle","tick":167753,"wallTimeMs":1794814871269,"kind":"SettlementCapture","text":"Farmburg captured a camp from Cityfield."}
+{"type":"chronicle","tick":167753,"wallTimeMs":1794814871269,"kind":"NationDisband","text":"With its last camp taken by Farmburg, Cityfield passed into history."}
+{"type":"chronicle","tick":168001,"wallTimeMs":1794814879817,"kind":"NationRelationChange","text":"Relations between Southford and Greatport are now neutral."}
+{"type":"chronicle","tick":168001,"wallTimeMs":1794814879817,"kind":"NationRaid","text":"Castleville raided Southtown and carried off 3 coins."}
+{"type":"status","tick":168501,"wallTimeMs":1794814897925,"text":"Southtown has fallen and been disbanded. Fortfield has fallen and been disbanded."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"NationRelationChange","text":"Farmburg and Westernford have formed an alliance."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"NationRelationChange","text":"Westernford and Southford are now hostile."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"NationRelationChange","text":"Westernford and Fortland are now hostile."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"SettlementCapture","text":"Southernport captured a village from Southtown."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"NationDisband","text":"Southtown is no more; its last village fell to Southernport."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"SettlementCapture","text":"After a siege, a village of Fortfield fell to Greatton."}
+{"type":"chronicle","tick":168501,"wallTimeMs":1794814897925,"kind":"NationDisband","text":"With its last village taken by Greatton, Fortfield passed into history."}
+{"type":"status","tick":168753,"wallTimeMs":1794814908360,"text":"Cityland has fallen and been disbanded."}
+{"type":"chronicle","tick":168753,"wallTimeMs":1794814908360,"kind":"StallBuilt","text":"Bob Brown built a market stall in Greatton."}
+{"type":"chronicle","tick":168753,"wallTimeMs":1794814908360,"kind":"NationRelationChange","text":"Castleville and Cityland are now hostile."}
+{"type":"chronicle","tick":168753,"wallTimeMs":1794814908360,"kind":"SettlementCapture","text":"Southernport captured a village from Cityland."}
+{"type":"chronicle","tick":168753,"wallTimeMs":1794814908360,"kind":"NationDisband","text":"With its last village taken by Southernport, Cityland passed into history."}
+{"type":"chronicle","tick":168801,"wallTimeMs":1794814910392,"kind":"StallBuilt","text":"Trade came to Greatton: Bob Brown built a stall."}
+{"type":"chronicle","tick":168853,"wallTimeMs":1794814912621,"kind":"StallBuilt","text":"Trade came to Greatton: Bob Brown built a stall."}
+{"type":"save","tick":169001,"wallTimeMs":1794814922089,"count":4}
+{"type":"chronicle","tick":169001,"wallTimeMs":1794814922089,"kind":"NationRelationChange","text":"Relations between Southford and Westernford are now rival."}
+{"type":"chronicle","tick":169001,"wallTimeMs":1794814922089,"kind":"NationRaid","text":"Westernford raided Fortland and carried off 5 coins."}
+{"type":"chronicle","tick":169253,"wallTimeMs":1794814931678,"kind":"NationRelationChange","text":"Farmburg and Greatport have become rivals over their border."}
+{"type":"status","tick":169341,"wallTimeMs":1794814935334,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":169501,"wallTimeMs":1794814941939,"kind":"NationRelationChange","text":"Southland and Castleville have become rivals over their border."}
+{"type":"chronicle","tick":170001,"wallTimeMs":1794814962486,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":170753,"wallTimeMs":1794814991856,"kind":"NationRelationChange","text":"Farmburg and Westernburg have become rivals over their border."}
+{"type":"chronicle","tick":170753,"wallTimeMs":1794814991856,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"status","tick":171001,"wallTimeMs":1794815001757,"text":"Winter has come. No harvests, bare trees; the cold bites outdoors."}
+{"type":"chronicle","tick":171001,"wallTimeMs":1794815001757,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":171001,"wallTimeMs":1794815001757,"kind":"NationRaid","text":"Westernford raided Fortland and carried off 3 coins."}
+{"type":"status","tick":171253,"wallTimeMs":1794815012057,"text":"Fortland has fallen and been disbanded."}
+{"type":"chronicle","tick":171253,"wallTimeMs":1794815012057,"kind":"SettlementCapture","text":"Westernford captured a village from Fortland."}
+{"type":"chronicle","tick":171253,"wallTimeMs":1794815012057,"kind":"NationDisband","text":"Fortland is no more; its last village fell to Westernford."}
+{"type":"chronicle","tick":171753,"wallTimeMs":1794815026789,"kind":"NationRelationChange","text":"Farmburg and Fortford are now hostile."}
+{"type":"status","tick":171873,"wallTimeMs":1794815029652,"text":"You stocked 3 residents for winter in the Camp of Northernfield."}
+{"type":"chronicle","tick":172001,"wallTimeMs":1794815032430,"kind":"NationRaid","text":"Raiders from Farmburg struck Fortford, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":172753,"wallTimeMs":1794815048041,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":172753,"wallTimeMs":1794815048041,"kind":"NationRelationChange","text":"Farmburg and Greatport are now hostile."}
+{"type":"chronicle","tick":173001,"wallTimeMs":1794815053611,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":173001,"wallTimeMs":1794815053611,"kind":"NationRaid","text":"Farmburg raided Greatport and carried off 5 coins."}
+{"type":"chronicle","tick":173501,"wallTimeMs":1794815064513,"kind":"NationRelationChange","text":"Farmburg and Westernburg are now hostile."}
+{"type":"chronicle","tick":174001,"wallTimeMs":1794815074844,"kind":"NationRaid","text":"Farmburg raided Westernburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":174053,"wallTimeMs":1794815076000,"kind":"StallBuilt","text":"Trade came to Farmburg: Ella Walker built a stall."}
+{"type":"chronicle","tick":174501,"wallTimeMs":1794815090167,"kind":"NationRelationChange","text":"Castleville and Southland are now hostile."}
+{"type":"chronicle","tick":174753,"wallTimeMs":1794815098797,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"status","tick":174957,"wallTimeMs":1794815103096,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"save","tick":175001,"wallTimeMs":1794815104085,"count":5}
+{"type":"chronicle","tick":175001,"wallTimeMs":1794815104085,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":175001,"wallTimeMs":1794815104085,"kind":"NationRaid","text":"Castleville raided Southland and carried off 5 coins."}
+{"type":"status","tick":176505,"wallTimeMs":1794815141021,"text":"This settlement does not have any stalls."}
+{"type":"status","tick":176717,"wallTimeMs":1794815147397,"text":"You stocked 3 residents for winter in the Camp of Northernfield."}
+{"type":"chronicle","tick":176753,"wallTimeMs":1794815148457,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":176753,"wallTimeMs":1794815148457,"kind":"NationRelationChange","text":"Fortford and Southford swore an alliance."}
+{"type":"chronicle","tick":176753,"wallTimeMs":1794815148457,"kind":"NationRelationChange","text":"Villagefield and Southland are now hostile."}
+{"type":"chronicle","tick":177001,"wallTimeMs":1794815158395,"kind":"NationRelationChange","text":"Farmburg and Southford are now hostile over their border."}
+{"type":"chronicle","tick":177001,"wallTimeMs":1794815158395,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":177001,"wallTimeMs":1794815158395,"kind":"NationRelationChange","text":"Relations between Southland and Villagefield are now rival."}
+{"type":"chronicle","tick":177001,"wallTimeMs":1794815158395,"kind":"NationRaid","text":"Raiders from Fortford struck Farmburg, taking 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":177001,"wallTimeMs":1794815158395,"kind":"NationRaid","text":"Farmburg raided Southford and carried off 5 coins, 5 stone."}
+{"type":"status","tick":177253,"wallTimeMs":1794815167104,"text":"Southland has fallen and been disbanded."}
+{"type":"chronicle","tick":177253,"wallTimeMs":1794815167104,"kind":"StallBuilt","text":"Linda Taylor built a market stall in Southford."}
+{"type":"chronicle","tick":177253,"wallTimeMs":1794815167104,"kind":"SettlementCapture","text":"Castleville captured a camp from Southland."}
+{"type":"chronicle","tick":177253,"wallTimeMs":1794815167104,"kind":"NationDisband","text":"With its last camp taken by Castleville, Southland passed into history."}
+{"type":"chronicle","tick":177301,"wallTimeMs":1794815168939,"kind":"StallBuilt","text":"Charlie Thompson built a market stall in Fortford."}
+{"type":"chronicle","tick":177553,"wallTimeMs":1794815176646,"kind":"StallBuilt","text":"Trade came to Westernburg: Frank Lewis built a stall."}
+{"type":"chronicle","tick":177953,"wallTimeMs":1794815188065,"kind":"StallBuilt","text":"Trade came to Fortford: Charlie Thompson built a stall."}
+{"type":"chronicle","tick":178101,"wallTimeMs":1794815191411,"kind":"StallBuilt","text":"A new stall opened in the market of Southford, built by Linda Taylor."}
+{"type":"chronicle","tick":178701,"wallTimeMs":1794815207360,"kind":"StallBuilt","text":"A new stall opened in the market of Greatton, built by Mia Wood."}
+{"type":"chronicle","tick":178753,"wallTimeMs":1794815209648,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":178853,"wallTimeMs":1794815213576,"kind":"StallBuilt","text":"Trade came to Westernford: Oscar Taylor built a stall."}
+{"type":"chronicle","tick":178901,"wallTimeMs":1794815215667,"kind":"StallBuilt","text":"Trade came to Westernburg: Frank Lewis built a stall. The market is now full."}
+{"type":"chronicle","tick":178953,"wallTimeMs":1794815217814,"kind":"StallBuilt","text":"Trade came to Southford: Linda Taylor built a stall."}
+{"type":"chronicle","tick":179001,"wallTimeMs":1794815219646,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":179053,"wallTimeMs":1794815221680,"kind":"StallBuilt","text":"Trade came to Fortford: Charlie Thompson built a stall. The market is now full."}
+{"type":"chronicle","tick":179101,"wallTimeMs":1794815223276,"kind":"StallBuilt","text":"A new stall opened in the market of Farmburg, built by Zach Williams."}
+{"type":"chronicle","tick":179101,"wallTimeMs":1794815223276,"kind":"StallBuilt","text":"Trade came to Villagefield: Olivia Roberts built a stall."}
+{"type":"chronicle","tick":179153,"wallTimeMs":1794815224950,"kind":"StallBuilt","text":"A new stall opened in the market of Castleville, built by Bob Wilson."}
+{"type":"chronicle","tick":179153,"wallTimeMs":1794815224950,"kind":"WorldEvent","text":"Karl White\u0027s claim to lead Farmburg came to nothing, and Olivia Roberts kept well out of it."}
+{"type":"chronicle","tick":180053,"wallTimeMs":1794815253938,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Oscar Taylor."}
+{"type":"chronicle","tick":180253,"wallTimeMs":1794815259111,"kind":"NationRelationChange","text":"Farmburg and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":180301,"wallTimeMs":1794815260352,"kind":"StallBuilt","text":"A new stall opened in the market of Southford, built by Linda Taylor."}
+{"type":"chronicle","tick":180501,"wallTimeMs":1794815265406,"kind":"NationRelationChange","text":"Southford and Westernford are now hostile over their border."}
+{"type":"chronicle","tick":180501,"wallTimeMs":1794815265406,"kind":"NationRelationChange","text":"Westernburg and Southford have formed an alliance."}
+{"type":"status","tick":180573,"wallTimeMs":1794815267257,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":180953,"wallTimeMs":1794815278107,"kind":"StallBuilt","text":"A new stall opened in the market of Greatton, built by Mia Wood."}
+{"type":"save","tick":181001,"wallTimeMs":1794815279596,"count":6}
+{"type":"chronicle","tick":181001,"wallTimeMs":1794815279596,"kind":"StallBuilt","text":"Trade came to Farmburg: Zach Williams built a stall."}
+{"type":"chronicle","tick":181001,"wallTimeMs":1794815279596,"kind":"NationRelationChange","text":"Relations between Villagefield and Farmburg are now neutral."}
+{"type":"chronicle","tick":181001,"wallTimeMs":1794815279596,"kind":"NationRaid","text":"Westernford raided Southford and carried off 5 coins."}
+{"type":"chronicle","tick":181253,"wallTimeMs":1794815287335,"kind":"NationRelationChange","text":"Greatport and Fortford swore an alliance."}
+{"type":"chronicle","tick":181553,"wallTimeMs":1794815296002,"kind":"StallBuilt","text":"A new stall opened in the market of Castleville, built by Bob Wilson. The market is now full."}
+{"type":"chronicle","tick":181753,"wallTimeMs":1794815300436,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":181801,"wallTimeMs":1794815301517,"kind":"StallBuilt","text":"Trade came to Westernford: Oscar Taylor built a stall."}
+{"type":"chronicle","tick":182001,"wallTimeMs":1794815305890,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"chronicle","tick":182053,"wallTimeMs":1794815307328,"kind":"StallBuilt","text":"Linda Taylor built a market stall in Southford."}
+{"type":"world_event_offered","tick":182101,"wallTimeMs":1794815308792,"title":"Sickness","body":"A fever is spreading through the Camp of Northernfield. 3 of its people have taken to their beds, and more may follow.","options":["Pay a healer (20 coins)","Quarantine the sick","Let it run its course"]}
+{"type":"status","tick":182101,"wallTimeMs":1794815362087,"text":"A fever broke out in the Camp of Northernfield; you paid a healer, and every patient recovered."}
+{"type":"chronicle","tick":182101,"wallTimeMs":1794815362087,"kind":"WorldEvent","text":"A fever broke out in the Camp of Northernfield; you paid a healer, and every patient recovered."}
+{"type":"world_event_resolved","tick":182101,"wallTimeMs":1794815362087,"title":"Sickness","status":"A fever broke out in the Camp of Northernfield; you paid a healer, and every patient recovered."}
+{"type":"chronicle","tick":182153,"wallTimeMs":1794815363244,"kind":"StallBuilt","text":"Trade came to Villagefield: Olivia Roberts built a stall."}
+{"type":"chronicle","tick":182501,"wallTimeMs":1794815370977,"kind":"NationRelationChange","text":"Farmburg and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":182501,"wallTimeMs":1794815370977,"kind":"NationRelationChange","text":"Southernport and Greatton have become rivals over their border."}
+{"type":"chronicle","tick":182601,"wallTimeMs":1794815373229,"kind":"StallBuilt","text":"A new stall opened in the market of Greatton, built by Mia Wood. The market is now full."}
+{"type":"chronicle","tick":183001,"wallTimeMs":1794815382119,"kind":"NationRelationChange","text":"Greatport and Westernburg swore an alliance."}
+{"type":"chronicle","tick":183001,"wallTimeMs":1794815382119,"kind":"NationRelationChange","text":"Relations between Villagefield and Farmburg are now neutral."}
+{"type":"chronicle","tick":183001,"wallTimeMs":1794815382119,"kind":"NationRaid","text":"Greatport raided Farmburg and carried off 5 coins, 5 wood, 5 stone."}
+{"type":"chronicle","tick":183153,"wallTimeMs":1794815385543,"kind":"StallBuilt","text":"A new stall opened in the market of Westernford, built by Oscar Taylor."}
+{"type":"chronicle","tick":183501,"wallTimeMs":1794815393159,"kind":"StallBuilt","text":"Trade came to Southford: Linda Taylor built a stall."}
+{"type":"chronicle","tick":183701,"wallTimeMs":1794815397562,"kind":"StallBuilt","text":"Olivia Roberts built a market stall in Villagefield."}
+{"type":"chronicle","tick":184201,"wallTimeMs":1794815408554,"kind":"StallBuilt","text":"Zach Williams built a market stall in Farmburg. The market is now full."}
+{"type":"chronicle","tick":184501,"wallTimeMs":1794815414980,"kind":"NationRelationChange","text":"Farmburg and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":185001,"wallTimeMs":1794815425726,"kind":"NationRelationChange","text":"Relations between Villagefield and Farmburg are now neutral."}
+{"type":"chronicle","tick":185101,"wallTimeMs":1794815427834,"kind":"StallBuilt","text":"A new stall opened in the market of Southford, built by Linda Taylor. The market is now full."}
+{"type":"chronicle","tick":185701,"wallTimeMs":1794815440616,"kind":"StallBuilt","text":"Oscar Taylor built a market stall in Westernford."}
+{"type":"chronicle","tick":185753,"wallTimeMs":1794815441710,"kind":"NationRelationChange","text":"Fortford and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":186001,"wallTimeMs":1794815447021,"kind":"NationRelationChange","text":"Relations between Villagefield and Fortford are now neutral."}
+{"type":"status","tick":186193,"wallTimeMs":1794815451073,"text":"Ate an apple (\u002B15 energy)."}
+{"type":"chronicle","tick":186753,"wallTimeMs":1794815462749,"kind":"NationRelationChange","text":"Fortford and Castleville have become rivals over their border."}
+{"type":"save","tick":187001,"wallTimeMs":1794815468249,"count":7}
+{"type":"status","tick":187001,"wallTimeMs":1794815468249,"text":"Autosaved."}
+{"type":"chronicle","tick":187001,"wallTimeMs":1794815468249,"kind":"NationRelationChange","text":"Farmburg and Villagefield have become rivals over their border."}
+{"type":"chronicle","tick":187001,"wallTimeMs":1794815468249,"kind":"NationRelationChange","text":"Relations between Villagefield and Farmburg are now neutral."}
+{"type":"chronicle","tick":187001,"wallTimeMs":1794815468249,"kind":"NationRelationChange","text":"Relations between Castleville and Fortford are now neutral."}
+{"type":"chronicle","tick":187101,"wallTimeMs":1794815470479,"kind":"StallBuilt","text":"Trade came to Westernford: Oscar Taylor built a stall."}

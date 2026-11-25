@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeyondNations.Pacing", "too
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeyondNations.Pacing.Tests", "tools\BeyondNations.Pacing.Tests\BeyondNations.Pacing.Tests.csproj", "{9E27B8D5-5CD4-4064-ABCB-A520E7FCDF93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeyondNations.WinterSweep", "tools\BeyondNations.WinterSweep\BeyondNations.WinterSweep.csproj", "{BA22EBA1-9BF8-4329-A456-A2B2DF02D1C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{9E27B8D5-5CD4-4064-ABCB-A520E7FCDF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E27B8D5-5CD4-4064-ABCB-A520E7FCDF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E27B8D5-5CD4-4064-ABCB-A520E7FCDF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA22EBA1-9BF8-4329-A456-A2B2DF02D1C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA22EBA1-9BF8-4329-A456-A2B2DF02D1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA22EBA1-9BF8-4329-A456-A2B2DF02D1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA22EBA1-9BF8-4329-A456-A2B2DF02D1C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F3F6AF0B-DDC9-40EB-8086-74E3288947F2} = {4AA8847B-A6F0-4B5B-9A0E-EDA1FA678442}

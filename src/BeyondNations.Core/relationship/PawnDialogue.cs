@@ -28,6 +28,20 @@ namespace beyondnations {
             return aside == null ? line : line + " " + aside;
         }
 
+        /**
+        * A member's answer to a leader's order (#507: orders go by
+        * membership). Every member takes the order; how well it knows the
+        * leader only colours what it says: "I'll bring 10 wood for Ashford."
+        */
+        public static string orderReply(RelationshipTier tier, string task, string nationName) {
+            switch (tier) {
+                case RelationshipTier.LOYAL: return "Consider it done. I'll " + task + " for " + nationName + ".";
+                case RelationshipTier.FRIEND: return "Happy to. I'll " + task + " for " + nationName + ".";
+                case RelationshipTier.ACQUAINTANCE: return "I'll " + task + " for " + nationName + ".";
+                default: return "I hardly know you, but you lead " + nationName + ". I'll " + task + ".";
+            }
+        }
+
         private static string greeting(RelationshipTier tier, bool playerLeadsPawn) {
             if (playerLeadsPawn) {
                 switch (tier) {
@@ -105,7 +119,7 @@ namespace beyondnations {
                 return "I still need a settlement to call home.";
             }
             if (playerLeadsPawn && tier < RelationshipTier.ACQUAINTANCE) {
-                return "I hardly know you. Why should I follow you?";
+                return "I hardly know you yet, but " + pawnNation.getName() + " is mine too. Give the word.";
             }
             return pawnNation.getName() + " is " + pawnNation.getNumberOfMembers() + " strong now. I'm glad to be part of it.";
         }

@@ -18,11 +18,11 @@ namespace beyondnations.desktop.ui.boxes {
         }
 
         /** Always listed, held or not. Crafted items are listed only once held. */
-        private static readonly ItemType[] AlwaysShown = {
+        public static readonly ItemType[] AlwaysShown = {
             ItemType.COIN, ItemType.WOOD, ItemType.STONE, ItemType.APPLE, ItemType.SAPLING, ItemType.CHICKEN_MEAT
         };
 
-        private static readonly ItemType[] ShownWhenHeld = {
+        public static readonly ItemType[] ShownWhenHeld = {
             ItemType.COOKED_MEAT, ItemType.PLANKS, ItemType.BRICKS, ItemType.AXE, ItemType.PICKAXE
         };
 

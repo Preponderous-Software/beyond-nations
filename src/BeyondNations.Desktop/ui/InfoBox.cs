@@ -34,6 +34,12 @@ namespace beyondnations.desktop.ui {
             this.title = title;
         }
 
+        /** The box as one line, for a chip on the HUD; by default the title. */
+        public virtual string getChipText() { return title; }
+
+        /** What a chip of this box must not hide: a warning or a danger (HudBadge), or None. */
+        public virtual HudBadge getBadge() { return HudBadge.None; }
+
         /**
         * Fewer lines, for a column with no room for every box in full (a
         * settlement's boxes at 960x540, playtest 0.5.0/0.6.0 #350). What a

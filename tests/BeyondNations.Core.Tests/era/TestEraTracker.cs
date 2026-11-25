@@ -171,6 +171,25 @@ namespace beyondnationstests {
         }
 
         [Fact]
+        public void testTown_GateOpensInsideASession() {
+            // The Town waited for day 7, 57 minutes in: the pacing bot had
+            // everything else by minute 10 and waited 47 minutes on the
+            // calendar alone, so a 45 to 60 minute session never saw the Town
+            // era (docs/PACING.md, "Calendar waits"). It now opens in the
+            // first half hour, and still well after the Village's.
+            int ticksPerSecond = simulation.getTickCounter().getTicksPerSecond();
+            int ticks = 0;
+            while (EraTracker.dayOf(simulation) < EraRules.TownDay) {
+                simulation.getTickCounter().increment();
+                ticks++;
+            }
+            Assert.True(ticks >= 20 * 60 * ticksPerSecond, "the gate opened after only " + ticks + " ticks");
+            Assert.True(ticks <= 30 * 60 * ticksPerSecond, "the gate opened after " + ticks + " ticks");
+            Assert.Equal(Era.VILLAGE, EraRules.calendarEra(EraRules.TownDay - 1));
+            Assert.Equal(Era.TOWN, EraRules.calendarEra(EraRules.TownDay));
+        }
+
+        [Fact]
         public void testEras_AdvanceOneAtATime_AndNeverGoBack() {
             Nation nation = makeKingdomReadyNation();
             eras.evaluate(simulation);
@@ -284,7 +303,7 @@ namespace beyondnationstests {
             Assert.NotEqual(SettlementTier.TOWN, target.getTier());
             Nation attacker = makePawnNation("Ironhold");
             Settlement base_ = addSettlement(attacker, new Vector3(0, 1, 6000));
-            addMembers(attacker, 60);
+            addMembers(attacker, 3 * EraRules.KingdomMembers); // well over twice the defence of a Kingdom-ready nation
             Diplomacy diplomacy = simulation.getDiplomacy();
 
             eras.applyRules(simulation);

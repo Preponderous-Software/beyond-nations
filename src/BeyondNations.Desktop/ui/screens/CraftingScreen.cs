@@ -127,6 +127,10 @@ namespace beyondnations.desktop.ui.screens {
             float panelWidth = System.MathF.Min(width - 32f, 760f * scale);
             float x0 = (width - panelWidth) * 0.5f;
             float lineHeight = Overlay.BaseFontSize * scale + 3f;
+            // the smaller lines (where the player is, each row's benefit and
+            // status, the last craft's result) are never drawn below the atlas
+            // size, where the bitmap font drops hyphens and full stops (#505)
+            float smallScale = Overlay.atLeastAtlasSize(scale * 0.9f);
             float top = System.MathF.Max(height * 0.08f, 16f);
             float bottomReserve = lineHeight * 2f + 44f * scale;
             float rowHeight = System.MathF.Min(lineHeight * 3f + 14f * scale,
@@ -144,7 +148,7 @@ namespace beyondnations.desktop.ui.screens {
             Overlay.textCentered(ObjectiveKeyNames.closeHint(CloseHint, TouchHint), lineHeight * 0.8f, y, width);
             y += lineHeight * 0.9f;
             y = System.MathF.Max(y, Overlay.touchCloseBottom());
-            ImGui.SetWindowFontScale(scale * 0.9f);
+            ImGui.SetWindowFontScale(smallScale);
             drawWrapped(getLocationLine(simulation), x0, ref y, panelWidth, lineHeight * 0.9f, new Vector4(0.85f, 0.85f, 0.85f, 1f));
             y += lineHeight * 0.4f;
 
@@ -175,7 +179,7 @@ namespace beyondnations.desktop.ui.screens {
                 ImGui.SetCursorPos(new Vector2(x0 + 8f, ty));
                 ImGui.TextUnformatted(fit(row.Heading, textWidth));
                 ty += lineHeight;
-                ImGui.SetWindowFontScale(scale * 0.9f);
+                ImGui.SetWindowFontScale(smallScale);
                 ImGui.SetCursorPos(new Vector2(x0 + 8f, ty));
                 Overlay.textColoured(new Vector4(0.85f, 0.85f, 0.75f, 1f), fit(row.Benefit, textWidth));
                 ty += lineHeight * 0.95f;
@@ -188,7 +192,7 @@ namespace beyondnations.desktop.ui.screens {
             // the result of the last craft, since the world's status line is hidden behind this screen
             string status = ObjectiveKeyNames.resolve(simulation.getPlayer().getStatus().getStatus());
             if (!string.IsNullOrEmpty(status)) {
-                ImGui.SetWindowFontScale(scale * 0.9f);
+                ImGui.SetWindowFontScale(smallScale);
                 y += 2f;
                 drawWrapped(status, x0, ref y, panelWidth, lineHeight * 0.9f, new Vector4(1f, 1f, 1f, 1f));
                 ImGui.SetWindowFontScale(1f);

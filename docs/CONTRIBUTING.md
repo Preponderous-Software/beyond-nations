@@ -25,6 +25,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--ui-scale F` | draw the UI F times its design size, 1 to 4; by default the monitor's content scale (150 % in Windows display settings is 1.5) |
 | `--seed S` | fix the world seed, so a run is reproducible: a number, or any text, which is hashed to one (see [SHARING.md](./SHARING.md)) |
 | `--screenshot-after-frames N` | write a PNG and carry on |
+| `--lockstep N` | run exactly N ticks every frame, ignoring the wall clock; on by default (N = 1) with `--screenshot-after-frames` (with or without a `--stage-*` flag; staged play without a screenshot follows the clock), so a staged shot shows the same scene for the same seed and frame count on a loaded machine; `--lockstep 0` follows the clock as normal play does |
 | `--render-stats` | report draw calls, instance counts and frame times on exit |
 | `--render-distance N` | start at this render distance; 0 keeps the configured one |
 | `--no-culling` | submit every primitive, culling nothing, to measure what culling saves |
@@ -39,6 +40,7 @@ The game takes arguments that make it checkable without a person watching it, wh
 | `--no-saves` | neither autosave, save on quit nor offer saved worlds this run, so an automated run leaves a player's saves alone (see [SAVES.md](./SAVES.md)) |
 | `--continue` | open in the most recently saved world, as **Continue** on the main menu does; falls back to the main menu when there is none |
 | `--stage-settlement` | open with a lived-in settlement (nation, market, merchants, residents) standing ahead of the player |
+| `--stage-journal [TAB[:N]]` | open on the Journal over the world, on its Goals tab or the one named (`goals`, `chronicle`, `era`, `inventory`, `nation`); `:N` opens the N-th tile's card. Pair it with `--stage-outpost --advance-ticks 3000` for a lived-in nation |
 | `--stage-holdings` | as `--stage-outpost` (a Village-era nation with two settlements), with the newer settlement given to a member and the player standing outside it |
 | `--stage-diplomacy` | open leading a nation between a friendly and a hostile, besieging neighbour, standing at the border |
 | `--stage-succession` | as `--stage-diplomacy`, with the player about to starve, so the first tick hands the rule to an heir and opens the succession screen |

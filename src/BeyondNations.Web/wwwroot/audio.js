@@ -130,6 +130,13 @@ const cues = {
     tone(t + 0.3, 1046.5, 0.7, { type: "triangle", gain: 0.24 }, v);
     tone(t + 0.3, 1318.5, 0.7, { type: "triangle", gain: 0.16 }, v);
   },
+  // a world event stopped the world for a choice: two bell strikes, low then high (#502)
+  event(t, v) {
+    [[587.33, 0], [880, 0.32]].forEach(([f, d]) => {
+      tone(t + d, f, 0.9, { gain: 0.3 }, v);
+      tone(t + d, f * 2.76, 0.5, { gain: 0.08 }, v);
+    });
+  },
 };
 
 // --- the ambient loop: wind and birds by day, a lower wind and crickets by night ---

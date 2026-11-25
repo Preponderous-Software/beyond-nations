@@ -230,6 +230,50 @@ namespace beyondnationstests {
             Assert.False(WinterStores.cannotFeed(new WinterStores.Count(5, 0, 5, 0), Season.AUTUMN));
         }
 
+        /**
+        * Playtest w2f: by midday of winter's first day an on-track nation
+        * showed "Too little food", its stores falling as eaten while the
+        * target stayed at the whole winter's. In winter the stores are
+        * measured against what the rest of winter needs.
+        */
+        [Fact]
+        public void testCannotFeed_MidWinter_MeasuresTheRestOfWinter() {
+            int wanted = 4 * SeasonalRules.WINTER_FOOD_STORE;
+            // half way through, half the winter's food is enough
+            Assert.False(WinterStores.cannotFeed(new WinterStores.Count(4, wanted / 2, 4, 0), Season.WINTER, 0.5f));
+            Assert.True(WinterStores.cannotFeed(new WinterStores.Count(4, wanted / 2 - 1, 4, 0), Season.WINTER, 0.5f));
+            // a nation that ate a little of its store by midday of day 1 is still on track
+            Assert.False(WinterStores.cannotFeed(new WinterStores.Count(4, wanted - 7, 4, 0), Season.WINTER, 0.25f));
+            // at the very start, the whole winter is wanted, as before
+            Assert.True(WinterStores.cannotFeed(new WinterStores.Count(4, wanted - 1, 1, 0), Season.WINTER, 0f));
+        }
+
+        [Fact]
+        public void testWantedFor_IsTheWholeWinterBeforeIt_AndTheRestOfItDuringIt() {
+            WinterStores.Count stores = new WinterStores.Count(4, 0, 4, 0);
+            Assert.Equal(stores.Wanted, stores.wantedFor(Season.AUTUMN, 0.9f));
+            Assert.Equal(stores.Wanted, stores.wantedFor(Season.WINTER, 0f));
+            Assert.Equal(stores.Wanted / 2, stores.wantedFor(Season.WINTER, 0.5f));
+            Assert.Equal(stores.Wanted * 3 / 4, stores.wantedFor(Season.WINTER, 0.25f));
+            Assert.Equal(1, stores.wantedFor(Season.WINTER, 0.999f));
+        }
+
+        /** The calendar overload reads the season's progress, so an on-track nation mid-winter can feed its members and a short one cannot. */
+        [Fact]
+        public void testCannotFeed_ByTheCalendar_MidWinter() {
+            Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);
+            Pawn member = addMember(simulation, nation, settlement, 95f, SeasonalRules.WINTER_FOOD_STORE / 2, true);
+            jumpToDayOfYear(simulation, 3 * SeasonCalendar.DAYS_PER_SEASON + 1);
+            SeasonCalendar calendar = simulation.getSeasonCalendar();
+            Assert.True(calendar.isWinter());
+            Assert.True(calendar.getSeasonProgress() >= 0.5f);
+            Assert.False(WinterStores.cannotFeed(simulation.getEntityRepository(), nation.getId(), calendar));
+            member.getInventory().clear();
+            Assert.True(WinterStores.cannotFeed(simulation.getEntityRepository(), nation.getId(), calendar));
+            // without a calendar it is spring, where only hunger counts
+            Assert.False(WinterStores.cannotFeed(simulation.getEntityRepository(), nation.getId(), (SeasonCalendar) null));
+        }
+
         [Fact]
         public void testCount_CountsTheHungry() {
             Simulation simulation = inOwnSettlement(out Nation nation, out Settlement settlement);

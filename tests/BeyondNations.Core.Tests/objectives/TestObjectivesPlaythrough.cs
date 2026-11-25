@@ -346,6 +346,14 @@ namespace beyondnationstests {
             Assert.Equal(ObjectiveCatalog.firstArc().Count, tracker.getCompletedCount());
             Assert.True(tracker.isOnAmbitions());
             Assert.NotNull(tracker.getCurrent());
+
+            // the first ambition asks for more than the nation has (ScaledAmbition),
+            // and a save gives back the same target, from its progress counter
+            Assert.False(tracker.getCurrentProgress().isComplete(), tracker.getCurrent().getTitle());
+            Simulation copy = SaveGame.decode(SaveGame.encode(simulation, "test"));
+            Objective restored = copy.getObjectiveTracker().getCurrent();
+            Assert.Equal(tracker.getCurrent().getTitle(), restored.getTitle());
+            Assert.Equal(tracker.getCurrentProgress().getTarget(), restored.evaluate(copy).getTarget());
         }
     }
 }
