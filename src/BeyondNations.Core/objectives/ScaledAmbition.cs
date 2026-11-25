@@ -88,7 +88,7 @@ namespace beyondnations {
         * Takes back the goal a save's progress counter names. Returns whether
         * it could; if not, the goal is chosen afresh on the next evaluation.
         */
-        public bool restore(ObjectiveProgress saved) {
+        public virtual bool restore(ObjectiveProgress saved) {
             if (!saved.hasCounter() || rebuild == null) {
                 return false;
             }

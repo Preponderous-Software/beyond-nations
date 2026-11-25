@@ -22,7 +22,7 @@ namespace beyondnations {
         * The format this build writes. Bump it for any change to what a save
         * holds, and add the step from the previous version to SaveMigrations.
         */
-        public const int CurrentFormatVersion = 7;
+        public const int CurrentFormatVersion = 8;
 
         // --- writing ---
 

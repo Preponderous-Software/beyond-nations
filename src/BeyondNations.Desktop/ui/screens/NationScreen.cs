@@ -465,7 +465,8 @@ namespace beyondnations.desktop.ui.screens {
             confirmGate.update(ImGui.GetTime(), simulation.getPlayer().getStatus());
 
             Overlay.beginFullScreen("##nation-screen", width, height);
-            Overlay.dimBackground(width, height);
+            // the Settlement screen's backing: with only a dim the world showed through the text and the tab row's gaps on a phone
+            Overlay.panelBackground(width, height);
 
             // the four tabs, as big buttons so a thumb finds them
             const int tabs = 4;

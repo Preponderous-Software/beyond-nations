@@ -137,7 +137,7 @@ See the [CI/CD Documentation](./CI-CD.md) for what the pipeline does with them.
 
 ### Refreshing the README's screenshots and GIFs
 
-The README's flyover, seasons, town, nation, settlement screen, members, Laws tab, market panel and winter images are a shot list, `tools/capture/media.json`, for [darkroom](https://github.com/Preponderous-Software/darkroom). Each shot runs the real game with the switches above on its own virtual display and turns what it writes into a JPEG, or for the flyover a GIF, an MP4 and a poster still, each fitted under a size budget. The seasons are one run per season (`"each"`), composed into a captioned 2x2 grid. Linux only (it needs `Xvfb`, `apt install xvfb`); about five minutes in all, most of it the flyover's 150,000 ticks.
+The README's flyover, seasons, town, Journal, nation, settlement screen, members, Laws tab, market panel and winter images are a shot list, `tools/capture/media.json`, for [darkroom](https://github.com/Preponderous-Software/darkroom). Each shot runs the real game with the switches above on its own virtual display and turns what it writes into a JPEG, or for the flyover a GIF, an MP4 and a poster still, each fitted under a size budget. The seasons are one run per season (`"each"`), composed into a captioned 2x2 grid. Linux only (it needs `Xvfb`, `apt install xvfb`); about five minutes in all, most of it the flyover's 150,000 ticks.
 
 ```bash
 pip install "darkroom[video] @ git+https://github.com/Preponderous-Software/darkroom"

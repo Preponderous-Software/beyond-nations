@@ -95,7 +95,7 @@ namespace beyondnations.desktop.ui.screens {
             string reason;
             Pawn heir = Succession.chooseHeir(own, player, simulation.getEntityRepository(), out reason);
             lines.Add(heir == null
-                ? "No heir: if you die now, your line ends. " + HowToGainMembers
+                ? "No heir: if you die now, your line ends. " + howToGainMembers(simulation)
                 : "Your heir: " + heir.getName() + ", " + reason + ".");
             lines.Add("When you die, your family comes first, then the most loyal, then the longest sworn.");
             string traders = describeTraderSlots(own);
@@ -129,6 +129,16 @@ namespace beyondnations.desktop.ui.screens {
         */
         public const string HowToGainMembers = "To gain members, befriend a stranger in no nation (talk, give gifts) and invite them;"
             + " a settlement with two market stalls draws newcomers, open borders twice as fast, and the highest taxes none.";
+
+        /**
+        * HowToGainMembers while strangers in no nation are left; once none
+        * are, what still works (ObjectiveCatalog.membersHint's no-strangers
+        * and world-full lines), as befriending a stranger is no way then.
+        */
+        public static string howToGainMembers(Simulation simulation) {
+            string hint = ObjectiveCatalog.membersHint(simulation);
+            return hint == ObjectiveCatalog.InviteMembersHint ? HowToGainMembers : hint;
+        }
 
         /** The player first, then every other member, oldest first; empty without a nation. */
         public static List<Row> getRows(Simulation simulation) {

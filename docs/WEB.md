@@ -119,8 +119,8 @@ game lays its screens out for a finger (`TouchLayout` in
   middle of the HUD, with touch-sized *Got it* and *No tips*.
 
   <img src="screenshots/contextual-hud/portrait-world-pair.jpg" alt="A phone held upright in a new world, before and after: before, the era, objective, season and player boxes and the chronicle strip fill the top half; after, a thin strip with Spring 1/2, the energy, food and coin meters and Journal, the Next line, and the tip card" width="420">
-  <img src="screenshots/contextual-hud/portrait-autumn-pair.jpg" alt="The last day of autumn on a phone held upright, before and after: after, the winter and food chips and the winter banner under the top strip" width="420">
-  <img src="screenshots/contextual-hud/portrait-market-pair.jpg" alt="A market town on a phone held upright, before and after: after, the settlement and market boxes side by side under the Next line" width="420">
+  <img src="screenshots/contextual-hud/portrait-autumn-pair.jpg" alt="The last day of autumn on a phone held upright, before and after: after, the winter and food chips under the top strip" width="420">
+  <img src="screenshots/contextual-hud/portrait-market-pair.jpg" alt="A market town on a phone held upright, before and after: after, an Objective complete toast and the tip card under the Next line" width="420">
   <img src="screenshots/contextual-hud/landscape-world-pair.jpg" alt="A new world on a phone on its side, before and after: after, the top strip, the Next line and the tip, clear of the joystick and the buttons" width="420">
   <img src="screenshots/contextual-hud/landscape-autumn-pair.jpg" alt="Autumn on a phone on its side, before and after" width="420">
   <img src="screenshots/contextual-hud/landscape-market-pair.jpg" alt="A market town on a phone on its side, before and after: after, the settlement and market boxes down the right" width="420">

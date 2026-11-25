@@ -64,6 +64,87 @@ namespace beyondnationstests {
             Assert.Null(WorldComparer.difference(loaded, SaveGame.decode(SaveGame.encode(loaded, "test"))));
         }
 
+        [Theory]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        public void testTheRecentFixtures_StillLoadAndPlayOn_WithEveryBuildingAsBuilt(int version) {
+            // format 8 adds each building's upgrade level; older saves load with every building at level 0
+            byte[] file = File.ReadAllBytes(SaveFixtures.pathFor(version));
+            Assert.Equal(version, SaveGame.check(file).FormatVersion);
+            Simulation loaded = SaveGame.decode(file);
+            Assert.Equal(SaveFixtures.FixtureTicks, loaded.getTickCounter().getTotalTicks());
+            foreach (Entity entity in loaded.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT)) {
+                foreach (Building building in ((Settlement) entity).getBuildings()) {
+                    Assert.Equal(0, building.getLevel());
+                }
+            }
+            for (int i = 0; i < 1500; i++) {
+                loaded.fixedUpdate(1f / 50f);
+            }
+            byte[] resaved = SaveGame.encode(loaded, "test");
+            Assert.Equal(SaveGame.CurrentFormatVersion, SaveGame.check(resaved).FormatVersion);
+            Assert.Null(WorldComparer.difference(loaded, SaveGame.decode(resaved)));
+        }
+
+        [Fact]
+        public void testTheVersion7To8Step_GivesEverySettlementsBuildingsLevel0_AndLeavesOtherEntitiesAlone() {
+            JsonObject body = new JsonObject {
+                ["formatVersion"] = 7,
+                ["entities"] = new JsonArray {
+                    new JsonObject {
+                        ["type"] = "SETTLEMENT",
+                        ["buildings"] = new JsonArray {
+                            new JsonObject { ["type"] = "HOUSE", ["slot"] = 0 },
+                            new JsonObject { ["type"] = "FARM", ["slot"] = 1 },
+                        },
+                    },
+                    new JsonObject { ["type"] = "PAWN" },
+                },
+                ["orphanEntities"] = new JsonArray {
+                    new JsonObject { ["type"] = "SETTLEMENT", ["buildings"] = new JsonArray { new JsonObject { ["type"] = "STOREHOUSE", ["slot"] = 0 } } },
+                },
+            };
+            JsonObject migrated = SaveMigrations.migrate(body, 7, 8);
+            Assert.Equal(8, (int) migrated["formatVersion"]);
+            JsonArray buildings = (JsonArray) migrated["entities"][0]["buildings"];
+            Assert.Equal(0, (int) buildings[0]["level"]);
+            Assert.Equal(0, (int) buildings[1]["level"]);
+            Assert.Equal(0, (int) migrated["orphanEntities"][0]["buildings"][0]["level"]);
+            Assert.False(((JsonObject) migrated["entities"][1]).ContainsKey("level"));
+        }
+
+        [Fact]
+        public void testAnUpgradedBuilding_SurvivesASaveAndLoad() {
+            Simulation simulation = SaveFixtures.fixtureWorld();
+            Settlement settlement = null;
+            foreach (Entity entity in simulation.getEntityRepository().getEntitiesOfType(EntityType.SETTLEMENT)) {
+                settlement = (Settlement) entity;
+                break;
+            }
+            Assert.NotNull(settlement);
+            settlement.setBuildingEra(Era.KINGDOM);
+            settlement.addBuilding(BuildingType.HOUSE);
+            settlement.addBuilding(BuildingType.STOREHOUSE);
+            Inventory purse = new Inventory(0);
+            purse.addItem(ItemType.COIN, 1500 + 3000 + 2000);
+            BuildingUpgrades.upgrade(settlement, purse, BuildingType.HOUSE);
+            BuildingUpgrades.upgrade(settlement, purse, BuildingType.HOUSE);
+            BuildingUpgrades.upgrade(settlement, purse, BuildingType.STOREHOUSE);
+            int cap = settlement.getResidentCap();
+            int stalls = settlement.getMarket().getMaxNumStalls();
+
+            Simulation loaded = SaveGame.decode(SaveGame.encode(simulation, "test"));
+            Assert.Null(WorldComparer.difference(simulation, loaded));
+            Settlement again = (Settlement) loaded.getEntityRepository().getEntity(settlement.getId());
+            Assert.Equal(3, again.getNumUpgrades());
+            for (int i = 0; i < settlement.getNumBuildings(); i++) {
+                Assert.Equal(settlement.getBuildings()[i].getLevel(), again.getBuildings()[i].getLevel());
+            }
+            Assert.Equal(cap, again.getResidentCap());
+            Assert.Equal(stalls, again.getMarket().getMaxNumStalls());
+        }
+
         [Fact]
         public void testTheVersion1Fixture_FromBeforeEras_LoadsAtTheCamp() {
             Simulation loaded = SaveGame.decode(File.ReadAllBytes(SaveFixtures.pathFor(1)));

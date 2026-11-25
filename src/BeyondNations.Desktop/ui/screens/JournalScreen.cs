@@ -202,6 +202,15 @@ namespace beyondnations.desktop.ui.screens {
             return "(" + KeyNames.describe(KeyBindings.ToggleJournal) + " or {Pause} closes; arrows or Tab turn the page; click a tile for more)";
         }
 
+        /**
+        * The footer under the tiles: the keys on a desktop, nothing on a
+        * touch screen (the Close button is in the corner, and a finger has
+        * no J or Escape).
+        */
+        public static string footerText(bool touch) {
+            return touch || TouchLayout.isActive() ? null : ObjectiveKeyNames.resolve(keyboardHint());
+        }
+
         public UiAction draw(float width, float height, Simulation simulation) {
             bool staged = requestedTab.HasValue && requestedCard > 0;
             int card = requestedCard;
@@ -260,8 +269,9 @@ namespace beyondnations.desktop.ui.screens {
                 drawCard(drawList, layout, chosen, baseSize);
             }
 
-            if (!touch) {
-                Overlay.textCentered(ObjectiveKeyNames.closeHint(keyboardHint()), baseSize, layout.footerY + (layout.height - layout.footerY) / 2f, width);
+            string footer = footerText(touch);
+            if (footer != null) {
+                Overlay.textCentered(footer, baseSize, layout.footerY + (layout.height - layout.footerY) / 2f, width);
             }
             Overlay.end();
             // a finger has no J or Escape (TouchLayout)

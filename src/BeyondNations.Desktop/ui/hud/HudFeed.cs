@@ -27,6 +27,25 @@ namespace beyondnations.desktop.ui.hud {
         private string lastRegion;
         private int crossings;
         private string landKey;
+        private bool landPending;
+        private string pendingLand;
+        private string pendingRegion;
+        private double pendingSince;
+        private readonly Dictionary<string, double> landLastSeen = new Dictionary<string, double>();
+
+        /**
+        * How long, in seconds, new land or a new region must stay underfoot
+        * before it is announced, so a few steps over a border and back say
+        * nothing.
+        */
+        public const double LandSettleSeconds = 2.0;
+
+        /**
+        * Land and region the player stood on within this many seconds are
+        * not announced again, so walking along a border does not repeat the
+        * same two toasts.
+        */
+        public const double LandRecentSeconds = 45.0;
 
         /** Forget what was seen (a new world or a load): the next look only takes note. */
         public void reset() {
@@ -36,6 +55,8 @@ namespace beyondnations.desktop.ui.hud {
             chronicleSeen = false;
             landSeen = false;
             landKey = null;
+            landPending = false;
+            landLastSeen.Clear();
         }
 
         /**
@@ -143,14 +164,20 @@ namespace beyondnations.desktop.ui.hud {
 
         /**
         * Whose land the player stands on (null for unclaimed land; own says
-        * it is the player's nation's) and the region underfoot; a short
-        * toast when either has changed since the last look: "Now on
+        * it is the player's nation's) and the region underfoot, at time now
+        * (seconds); a short toast when either has changed: "Now on
         * Blackburg's land", "Unclaimed land", "Back on your own land", or
         * just the new region. Inside a settlement nothing is looked at, so
         * entering and leaving one is not a crossing.
+        *
+        * With hysteresis: the new land and region must stay underfoot for
+        * LandSettleSeconds before they count, and land and region stood on
+        * within the last LandRecentSeconds are taken note of silently, so
+        * walking along a border does not repeat toasts.
         */
-        public OverlayItem land(string owner, bool own, string region, string regionNote, bool inSettlement) {
+        public OverlayItem land(string owner, bool own, string region, string regionNote, bool inSettlement, double now) {
             if (inSettlement) {
+                landPending = false;
                 return null;
             }
             string land = owner == null ? null : (own ? "\u0001own" : owner);
@@ -158,13 +185,35 @@ namespace beyondnations.desktop.ui.hud {
                 landSeen = true;
                 lastLand = land;
                 lastRegion = region;
+                landPending = false;
+                landLastSeen[placeKey(land, region)] = now;
                 return null;
             }
+            if (land == lastLand && region == lastRegion) {
+                landPending = false;
+                landLastSeen[placeKey(land, region)] = now;
+                return null;
+            }
+            if (!landPending || land != pendingLand || region != pendingRegion) {
+                landPending = true;
+                pendingLand = land;
+                pendingRegion = region;
+                pendingSince = now;
+                return null;
+            }
+            if (now - pendingSince < LandSettleSeconds) {
+                return null;
+            }
+            // settled: the new land and region count from here
+            landPending = false;
             bool landChanged = land != lastLand;
-            bool regionChanged = region != lastRegion;
+            landLastSeen[placeKey(lastLand, lastRegion)] = now;
             lastLand = land;
             lastRegion = region;
-            if (!landChanged && !regionChanged) {
+            string key = placeKey(land, region);
+            bool recent = landLastSeen.TryGetValue(key, out double seen) && now - seen <= LandRecentSeconds + LandSettleSeconds;
+            landLastSeen[key] = now;
+            if (recent) {
                 return null;
             }
             string regionLine = region == null ? null
@@ -174,6 +223,10 @@ namespace beyondnations.desktop.ui.hud {
             crossings++;
             landKey = "land:" + crossings;
             return OverlayItem.toast(landKey, title, body ?? "");
+        }
+
+        private static string placeKey(string land, string region) {
+            return (land ?? "\u0002wild") + "|" + (region ?? "");
         }
 
         /** "Now on Blackburg's land", "Back on your own land", or "Unclaimed land". */

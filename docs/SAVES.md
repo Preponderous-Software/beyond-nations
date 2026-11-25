@@ -70,7 +70,7 @@ A save is UTF-8 text (in practice ASCII) in two parts:
   and `seed` must agree with the header's.
 
 `tests/BeyondNations.Core.Tests/save/fixtures/v1-seed42-tick2400.bnsave`,
-`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave`, `v4-seed42-tick2400.bnsave`, `v5-seed42-tick2400.bnsave` and `v6-seed42-tick2400.bnsave` are real version 1 to 6 saves; open one to see every section. `.gitattributes` marks
+`v2-seed42-tick2400.bnsave`, `v3-seed42-tick2400.bnsave`, `v4-seed42-tick2400.bnsave`, `v5-seed42-tick2400.bnsave`, `v6-seed42-tick2400.bnsave`, `v7-seed42-tick2400.bnsave` and `v8-seed42-tick2400.bnsave` are real version 1 to 8 saves; open one to see every section. `.gitattributes` marks
 `*.bnsave` as binary, since a line-ending conversion would break the checksum.
 
 ### What the body holds
@@ -86,7 +86,7 @@ and goes on exactly as the saved one would have:
 | `random` | the full state of each of the four random streams (`main`, `settlementLife`, `traits`, `population`): seed, the generator's 56 ints and its two indices |
 | `simulation` | the death counters, the territory the player was last told about, the chunk world generation is centred on, and the names each name generator has handed out |
 | `environment` | every chunk: its id, coordinates, size and stream, and each location's id, colour and entity list |
-| `playerId`, `entities` | every entity in the repository, in repository order: id, name, position, velocity, visibility, deletion mark, inventory (every slot and every tool's wear), appearance (every part, colour and label), and what its kind adds -- a pawn's energy, raw metabolism, speed, nation, home, behaviour, target, mill target, relationships, conversation cooldowns, order, traits and settler flag; a settlement's colour, nation, residents, buildings, claim radius, siege text and its market with every stall and its prices (each item's pressure and last-round reference price, where they differ from the defaults); a caravan's nation, colour, home and market, whether it is outbound or returning, its escort, whether it is the player's, its takings, when it set out and which way it faces (its goods and purse are its inventory); the player's yaw, speeds, energy, metabolism, relationships, nation, home and status line; a sapling's planting tick and growth time; a chicken's wander state; a drop's stack |
+| `playerId`, `entities` | every entity in the repository, in repository order: id, name, position, velocity, visibility, deletion mark, inventory (every slot and every tool's wear), appearance (every part, colour and label), and what its kind adds -- a pawn's energy, raw metabolism, speed, nation, home, behaviour, target, mill target, relationships, conversation cooldowns, order, traits and settler flag; a settlement's colour, nation, residents, buildings (each with its type, slot and upgrade level), claim radius, siege text and its market with every stall and its prices (each item's pressure and last-round reference price, where they differ from the defaults); a caravan's nation, colour, home and market, whether it is outbound or returning, its escort, whether it is the player's, its takings, when it set out and which way it faces (its goods and purse are its inventory); the player's yaw, speeds, energy, metabolism, relationships, nation, home and status line; a sapling's planting tick and growth time; a chicken's wander state; a drop's stack |
 | `orphanEntities` | entities something still holds that the repository no longer does, such as a pawn's target that was gathered and swept away the same tick; the pawn lets go on its next step, and must load holding it so that step happens the same way |
 | `nations`, `orphanNations` | every nation in founding order (id, name, colour, leader, members, roles, settlements, stream), and any disbanded nation still recorded as laying a siege |
 | `relations` | every pair's score, alliances and denunciations |
@@ -168,7 +168,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 
 ## Versioning and migration
 
-`SaveGame.CurrentFormatVersion` is the format this build writes; it is 7.
+`SaveGame.CurrentFormatVersion` is the format this build writes; it is 8.
 
 | Version | Change | Migration from the one before |
 | --- | --- | --- |
@@ -179,6 +179,7 @@ Reading (`SaveGame.decode`, `SaveSlots.load`):
 | 5 | eras and the end of a run: the `eras` section | add `eras` at the camp, with no outcome and an empty history; the era catches up with the nation one era a second as play resumes, and the chronicle's kept lines about the player are copied into the history |
 | 6 | the player's envoys (diplomacy takes game time, #424): `envoys` in the `realm` section | add `envoys` empty: every envoy is home, so the player can deal with any nation at once, as before |
 | 7 | who holds a settlement (#176): `ownerId` and `ownerName` on every settlement | add both as null on every settlement: each is held by its nation's leader, as every settlement was before |
+| 8 | building upgrades: `level` on every building of every settlement | add `level` 0 to every building: each stands as built, as every building did before |
 
 - **Any change to what a save holds bumps the version**, including adding a
   section. A new section in an old save would otherwise be silently dropped by

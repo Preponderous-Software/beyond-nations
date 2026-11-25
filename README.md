@@ -2,9 +2,9 @@
 Beyond Nations, previously called the Open Source Game project, started as a collaborative effort between Preponderous Software and the Fairfield Programming Association. It aims to create an open-source game that can serve as a reference for aspiring developers.
 
 <!-- darkroom:shot flyover -->
-<img src=".github/media/flyover-poster.jpg" alt="A flyover of seed 12 fifty minutes in: over one nation&#x27;s village, its houses, fields, market stalls, trees and residents, then across the line where two nations&#x27; rings of border posts meet, to a neighbouring nation&#x27;s village (poster)" width="480"> <img src=".github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over one nation&#x27;s village, its houses, fields, market stalls, trees and residents, then across the line where two nations&#x27; rings of border posts meet, to a neighbouring nation&#x27;s village" width="480">
+<img src=".github/media/flyover-poster.jpg" alt="A flyover of seed 12 fifty minutes in: over the Town of Newport, its houses, fields, market stalls and residents round the plaza, then across the line where two nations&#x27; rings of border posts meet, to the neighbouring Town of Lowerham, as busy (poster)" width="480"> <img src=".github/media/flyover.gif" alt="A flyover of seed 12 fifty minutes in: over the Town of Newport, its houses, fields, market stalls and residents round the plaza, then across the line where two nations&#x27; rings of border posts meet, to the neighbouring Town of Lowerham, as busy" width="480">
 
-*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's village, the border, the next nation's village.*
+*Seed 12 after 150,000 ticks (fifty minutes of game time), drawn by the game's own Strata renderer, nobody playing: one nation's town, the border, the next nation's town.*
 
 [MP4 version](.github/media/flyover.mp4)
 <!-- darkroom:end -->
@@ -124,9 +124,9 @@ A number of systems combine to create the gameplay experience. Some are already 
 
 ### Settlements that grow
 <!-- darkroom:shot settlement-town -->
-![The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about; round the edges the HUD -- the era bar, the first objective, the chronicle, the first tip, the inventory, the command bar, the Season box and the player box](.github/media/settlement-town.jpg)
+![The town of Southernland on day 1: a plaza with a well and banner, market stalls with nation-coloured awnings and crates, houses and trees, residents milling about under the town's name, 6 here, 12/16 residents; the HUD is a thin strip across the top -- Spring 1/2, dim meters for energy, food and coins, and the Journal, ? and Menu buttons -- with one line under it, Next: Gather wood - Wood 0/10; nothing else is up but the command bar at the bottom left](.github/media/settlement-town.jpg)
 
-*A lived-in town and today's HUD.*
+*A lived-in town under the HUD: a thin strip across the top, one Next line, and only what matters now.*
 <!-- darkroom:end -->
 
 The HUD shows only what is needed now: a thin top strip (season, energy, food, coins and **Journal**), one *Next* line, and boxes and chips only while they matter ([SYSTEMS.md](./docs/SYSTEMS.md#the-world-hud-host)).
@@ -225,7 +225,7 @@ The nations screen's **Laws** tab is your court. On a short window it says how m
 The tab also names your heir, says when old age will come for you, and offers **Abdicate**, which hands the rule and all you carry to the heir (the screenshot is `--seed 42 --start-screen laws --stage-diplomacy`).
 
 <!-- darkroom:shot laws-heir -->
-![The Laws tab of Blackburg: changes take 30 seconds, Defence 3, Heir: Ella Wood, the longest sworn of your people, old age comes in about 40 minutes, an Abdicate button, then taxes, conscription, borders and rationing with a button for each setting](.github/media/laws-heir.jpg)
+![The Laws tab of Blackburg: changes take 30 seconds, Defence 3, Heir: Ella Wood, the longest sworn of your people, old age comes in about 40 minutes, an Abdicate button, then taxes, conscription and borders with a button for each setting, and Up and Down to scroll to the fourth law](.github/media/laws-heir.jpg)
 
 *The Laws tab: who your heir is, when old age comes, and Abdicate.*
 <!-- darkroom:end -->
@@ -244,17 +244,17 @@ Loyalty is how each member feels about you. Push someone to -15 and they desert,
 
 ### Seasons and regions
 <!-- darkroom:shot seasons-grid -->
-![Four views of the same spot on seed 12, captioned Spring, Summer, Autumn and Winter: fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; in each the Season box above the player box says which season it is, how long until winter and what the land is good for](.github/media/seasons.jpg)
+![Four views of the same spot on seed 12, captioned Spring, Summer, Autumn and Winter: fresh green, deeper summer green, olive autumn ground with orange and brown crowns on the trees, then pale snow with frosted trees; in each the top strip names the season and day, Spring 1/2 to Winter 1/2, the Next line asks for wood and the first tip card sits under the player; in autumn a chip under the strip warns Winter in 2 days, and in winter it reads Winter: no harvests](.github/media/seasons.jpg)
 
 *The same spot on seed 12 in spring, summer, autumn and winter.*
 <!-- darkroom:end -->
 
-The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season. The top of the screen shows the season and day; in autumn and winter chips warn *Winter in 2 days* and show how much food your nation's people carry for winter (the Journal's **Era** tab has the same). The day before winter the chronicle and a banner say whether your nation is ready; carry food home and *Feed Residents* lays it in for them. You eat what you carry on your own, without wasting a rich meal on a nearly full stomach, or press *Eat* to eat now.
+The year turns: **spring**, **summer**, **autumn** and **winter**, two in-game days each, so a year is about 80 minutes of play. Spring and summer are easy and chickens hatch; in autumn farms yield double, and it is time to lay in food, because in **winter** farms yield nothing, saplings grow slowly, and the cold makes you (and every pawn) burn energy faster outdoors. Pawns lay in food from autumn and keep closer to home in winter. The ground and the leaves change colour with the season. The top of the screen shows the season and day; in autumn and winter chips warn *Winter in 2 days* and show how much food your nation's people carry for winter (the Journal's **Era** tab has the same). The day before winter the chronicle and the status line say whether your nation is ready, and the food chip carries an amber warning mark while any member is short; carry food home and *Feed Residents* lays it in for them. You eat what you carry on your own, without wasting a rich meal on a nearly full stomach, or press *Eat* to eat now.
 
 <!-- darkroom:shot winter-warning -->
-![The night before winter in the town of Southernland: a banner says winter comes tomorrow and that 9 of the nation's 17 members are short of the food they want, the player's own hunger banner sits above it, the town's name floats below the chronicle, and the Season box reads Autumn, day 2 of 2, Winter in 1 day, food 79 of 68 for winter](.github/media/winter-warning.jpg)
+![The night before winter in the town of Southernland: the top strip reads Autumn 2/2 with the Next line under it; down the left, chips read Winter in 1 day and Food: 97 of 196 for winter, each with an amber warning mark because members are short; the town's name and 14 here, 15/16 residents float over the plaza, and the first tip card waits under the player](.github/media/winter-warning.jpg)
 
-*The day before winter: the banner, the chronicle and the Season box say what the nation carries.*
+*The day before winter: chips under the top strip say winter is a day off and how much food the nation carries for it.*
 <!-- darkroom:end -->
 
 <img src="./docs/screenshots/tree-model/forest-orbit.gif" alt="A slow circle round a stand of trees in a forest on seed 12: round broadleaf crowns, tiered crowns and tall oval crowns of different sizes on brown trunks, their lower leaves a darker green, casting shadows on the grass" width="480">
@@ -302,6 +302,14 @@ In the browser every action has a sound: chop, mine, pickup, craft, a building f
 
 A new world opens with five short tips, one at a time: walk and look, chop a tree, gather stone, found a settlement, and where your goals are. Each goes away as soon as you have done it, *Got it* dismisses it, and *No tips* turns them all off. A tip you have finished is never shown again, in that world or the next (*Show Tips* on the config screen starts them over). On a phone they talk about the pad and the *Use* button instead of keys. <img src="./.github/media/feel-tip-phone.png" alt="The same tip on a phone, above the on-screen controls: Walk with the pad on the left. Drag across the world to look around." width="260" align="right"> `--stage-feel` replays the effects every 20 frames for screenshots (the image above is `--seed 42 --start-screen world --stage-settlement --stage-feel`).
 
+The HUD shows only what you need now. In normal play it is a thin strip across the top (the season and day; meters for energy, food and coins that stay dim until one runs low or changes; the **Journal** button, with **?** and **Menu** on a desktop) and one *Next* line under it saying what to do, with a progress bar (*Next: Gather wood - Wood 3/10*). The rest comes and goes: the settlement and market boxes while you stand in a settlement, the winter chips in autumn and winter, a *Carrying ...* chip while you carry something, and a red or amber chip during a siege. One card or toast shows at a time, and the HUD and the command bar start small and fill in as you go, each new part with a card saying what it unlocks. A chip, a meter or the Next line opens the Journal on the matching tab.
+
+<!-- darkroom:shot journal -->
+![The Journal over the world on its Goals tab: tabs for Goals, Chronicle, Era, Inventory and Nation, each with an icon; a progress track at 1 of 9; a row of picture tiles -- Food, the goal under way, outlined in gold, Wood ticked, and Nation, Settle, Home, Stall, Village, Market and 2nd home dimmed with padlocks; and a line saying J or Esc closes it, the arrows or Tab turn the page and a click on a tile shows more](.github/media/journal.jpg)
+
+*The Journal (J, or the Journal button on the top strip): goals, chronicle, era, inventory and nation as picture tiles.*
+<!-- darkroom:end -->
+
 ### Trade caravans and living prices
 ![A trade caravan on the road: a cart with a pack in its nation's colour, a canvas bale and its drover, labelled with where it is going and what it carries, and the command bar offering Buy wood, Sell to Caravan, Escort Caravan and Raid Caravan](./.github/media/trade-caravan.png)
 
@@ -310,7 +318,7 @@ Every market prices its goods by what it has and who lives there. Prices fall as
 *Trade at Market* (on the command bar in any settlement with stalls) opens the market panel: pick a good, see the best price in reach and what a unit would make carried there, choose a quantity, and buy or sell exactly that, with a receipt and the visit's running total. `--stage-market` opens the game standing in a trading neighbour's market, one press from the panel.
 
 <!-- darkroom:shot market-panel -->
-![The market panel in the Village of Farmwood: one button per good (apples, wood, stone) with its buy and sell price and how many you carry, stone picked; buy at 21, sell at 20, the best price in reach is 34 at the Village of Blackburg, buy here and sell there for +13 a unit; -5, -1, +1, +5 and All; Buy 1 for 21 and Sell 1 for 20; the receipt Sold 1 stone to Tilly Davies for 21 coins and this visit's net +21](.github/media/market-panel.jpg)
+![The market panel in the Village of Farmwood: one button per good (apples, chicken meat, wood, stone, planks, bricks, axes, pickaxes and saplings) with its buy and sell price and how many you carry, stone picked; buy at 19, sell at 18, the best price in reach is 23 at the Village of Blackburg, buy here and sell there for +4 a unit; -5, -1, 1, +1, +5 and All; Buy 1 for 19 and Sell 1 for 18; the receipt Sold 1 stone to Tilly Davies for 19 coins and this visit's net +19. Round it the HUD: the top strip, the Next line, a Carrying chip, and the Settlement Info and Market Info boxes that show while you stand in a settlement](.github/media/market-panel.jpg)
 
 *The market panel: pick a good, see where it sells best and what you would make, and buy or sell a chosen quantity.*
 <!-- darkroom:end -->

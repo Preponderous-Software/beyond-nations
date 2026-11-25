@@ -55,6 +55,7 @@ namespace beyondnations {
         private static readonly Rgba Plaster = new Rgba(0.88f, 0.82f, 0.68f);
         private static readonly Rgba Door = new Rgba(0.25f, 0.15f, 0.08f);
         private static readonly Rgba Canvas = new Rgba(0.93f, 0.91f, 0.84f);
+        private static readonly Rgba Gold = new Rgba(0.95f, 0.78f, 0.25f);
         private static readonly Rgba SignYellow = new Rgba(0.98f, 0.82f, 0.15f);
         private static readonly Rgba AppleRed = new Rgba(0.82f, 0.12f, 0.10f);
         private static readonly Rgba Goods = new Rgba(0.70f, 0.55f, 0.33f);
@@ -90,6 +91,8 @@ namespace beyondnations {
             signature = signature * 8 + getStockpileLevel(settlement.getInventory(), ItemType.STONE);
             // the border moves in whole units, so a claim nudged by a fraction does not redraw
             signature = signature * 512 + (long) settlement.getClaimRadius();
+            // upgrades fly pennants; a settlement with none keeps the signature it always had
+            signature ^= settlement.getNumUpgrades() * 0x9E3779B97F4A7C1L;
             return signature;
         }
 
@@ -121,6 +124,7 @@ namespace beyondnations {
                     case BuildingType.FARM: addFarm(appearance, at, g); break;
                     case BuildingType.WORKSHOP: addWorkshop(appearance, at, nation, g); break;
                 }
+                addUpgradePennants(appearance, at, building.getLevel(), g);
             }
 
             if (settlement.getTier() == SettlementTier.TOWN) {
@@ -176,6 +180,21 @@ namespace beyondnations {
             a.addPart(PrimitiveKind.Cube, at + new Vector3(0, g + 4.45f, 0), new Vector3(1.8f, 0.5f, 1.8f), roof);
             a.addPart(PrimitiveKind.Cube, at + new Vector3(1.3f, g + 4.4f, 1.3f), new Vector3(0.5f, 1.4f, 0.5f), Stone);
             a.addPart(PrimitiveKind.Cube, at + doorOffset(at, 2f, 1.8f) + new Vector3(0, g + 0.9f, 0), doorScale(at, 1.0f, 1.8f), Door);
+        }
+
+        /**
+        * An upgraded building (BuildingUpgrades) flies a pole at its corner
+        * with a gold pennant for each level, so the upgrade shows in the world.
+        */
+        private static void addUpgradePennants(Appearance a, Vector3 at, int level, float g) {
+            if (level <= 0) {
+                return;
+            }
+            Vector3 corner = at + new Vector3(-2.4f, 0, -2.4f);
+            a.addPart(PrimitiveKind.Cube, corner + new Vector3(0, g + 3f, 0), new Vector3(0.25f, 6f, 0.25f), DarkWood);
+            for (int i = 0; i < level; i++) {
+                a.addPart(PrimitiveKind.Cube, corner + new Vector3(0.7f, g + 5.6f - i * 1.1f, 0), new Vector3(1.2f, 0.8f, 0.12f), Gold);
+            }
         }
 
         private static void addStorehouse(Appearance a, Vector3 at, Rgba nation, float g) {
